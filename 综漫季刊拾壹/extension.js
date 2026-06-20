@@ -762,7 +762,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 var num44 = game.countPlayer(function (current) {
-                                    return current.num('e', { subtype: 'equip1' }) + current.num('e', { subtype: 'equip2' }) > 0 && current != player;
+                                    return current.countCards('e', { subtype: 'equip1' }) + current.countCards('e', { subtype: 'equip2' }) > 0 && current != player;
                                 });
                                 return num44 > 0;
                             },
@@ -776,7 +776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.countPlayer(function (current) {
                                     var es = current.getCards('e');
                                     for (let i = 0; i < es.length; i++) {
-                                        if (current != player && current.num('e', { subtype: 'equip1' }) + current.num('e', { subtype: 'equip2' }) > 0) {
+                                        if (current != player && current.countCards('e', { subtype: 'equip1' }) + current.countCards('e', { subtype: 'equip2' }) > 0) {
                                             if (get.subtype(es[i]) == 'equip1' || get.subtype(es[i]) == 'equip2') {
                                                 if (!player.storage.zmqtyh.includes(es[i])) {
                                                     player.storage.zmqtyh.push(es[i]);
@@ -3774,7 +3774,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target) {
-                                        if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+                                        if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
                                             if (get.attitude(player, target) > 0) {
                                                 return -6;
                                             } else {

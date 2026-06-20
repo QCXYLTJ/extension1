@@ -2281,7 +2281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 name: 'shan',
                             },
                             viewAsFilter(player) {
-                                if (!player.num('he', { color: 'red' })) return false;
+                                if (!player.countCards('he', { color: 'red' })) return false;
                             },
                             position: 'he',
                             prompt: '将一张红色牌当【闪】使用或打出',
@@ -2339,7 +2339,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 name: 'sha',
                             },
                             viewAsFilter(player) {
-                                if (!player.num('he', { color: 'black' })) return false;
+                                if (!player.countCards('he', { color: 'black' })) return false;
                             },
                             prompt: '将一张黑色牌当【杀】使用或打出',
                             check(card) {

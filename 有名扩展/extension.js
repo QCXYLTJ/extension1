@@ -343,7 +343,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 number: 2,
                             },
                             viewAsFilter(player) {
-                                if (!player.num('he', { color: 'black' })) return false;
+                                if (!player.countCards('he', { color: 'black' })) return false;
                             },
                             prompt: '将一张黑色牌当杀使用或打出',
                             check(card) {
@@ -351,7 +351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    if (!player.num('he', { color: 'black' })) return false;
+                                    if (!player.countCards('he', { color: 'black' })) return false;
                                 },
                                 respondSha: true,
                                 basic: {
@@ -361,7 +361,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 3,
                                 result: {
                                     target(player, target) {
-                                        if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+                                        if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
                                             return -3.05 + target.countCards('h', { name: 'shan' }) / 4; //QQQ
                                         }
                                         return -1.55 + target.countCards('h', { name: 'shan' }) / 4;
@@ -442,7 +442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         var shas = playe.getCards('h', 'sha');
                                         if (shas.length > 1) {
-                                            if (player.num('e', 'zhuge')) return 0;
+                                            if (player.countCards('e', 'zhuge')) return 0;
                                             if (player.hasSkill('paoxiao')) return 0;
                                             if (player.hasSkill('fengnu')) return 0;
                                             if (!player.getStat().card.sha) {
@@ -461,7 +461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         if (card) {
                                             for (var i = 0; i < game.players.length; i++) {
-                                                if (get.attitude(target, game.players[i]) < 0 && target.canUse(card, game.players[i], true, true) && !game.players[i].num('e', 'baiyin')) {
+                                                if (get.attitude(target, game.players[i]) < 0 && target.canUse(card, game.players[i], true, true) && !game.players[i].countCards('e', 'baiyin')) {
                                                     if (ai.get.effect(game.players[i], card, target) > 0) return 1;
                                                 }
                                             }
@@ -5474,7 +5474,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: ['yanmie'],
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('he', { color: 'black' }) > 0;
+                                return player.countCards('he', { color: 'black' }) > 0;
                             },
                             check(card) {
                                 return 6 - get.value(card);
@@ -10340,7 +10340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             i.chooseToDiscard('h', true, { type: 'basic' }, '请弃置一张基本牌');
                                             i.draw(2);
                                         }
-                                        if (i.num('he', { type: 'equip' }) && i.maxHp - i.hp) {
+                                        if (i.countCards('he', { type: 'equip' }) && i.maxHp - i.hp) {
                                             i.chooseToDiscard('h', true, { type: 'equip' }, '请弃置一张装备牌');
                                             i.recover();
                                         }
@@ -13238,7 +13238,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('targets1', targets[1])
                                         .set('filterButton', function (button) {
                                             var targets1 = _status.event.targets1;
-                                            return !targets1.num('e', { subtype: get.subtype(button.link) });
+                                            return !targets1.countCards('e', { subtype: get.subtype(button.link) });
                                         });
                                 } else {
                                     event.finish();
@@ -14662,7 +14662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 effect: {
                                     target(card, player, target) {
                                         if (player == target && get.type(card) == 'equip') {
-                                            if (player.num('e', { subtype: get.subtype(card) })) {
+                                            if (player.countCards('e', { subtype: get.subtype(card) })) {
                                                 for (var i = 0; i < game.players.length; i++) {
                                                     if (game.players[i] != player && get.attitude(player, game.players[i]) > 0) {
                                                         return 0;
@@ -15456,7 +15456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseControl(['red', 'black', 'basic', 'trick', 'equip']).set('ai', function () {
                                     var player = _status.event.player;
-                                    if (player.num('shan') == 0) return 'basic';
+                                    if (player.countCards('h', 'shan') == 0) return 'basic';
                                     if (player.countCards('e') <= 1) return 'equip';
                                     if (player.countCards('h') > 2) return 'trick';
                                     return 'red';

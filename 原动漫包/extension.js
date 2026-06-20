@@ -5524,7 +5524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				},
 				ai: {
 					order() {
-						if (_status.event.player.num('sha') <= 1) return 10;
+						if (_status.event.player.countCards('h', 'sha') <= 1) return 10;
 						return lib.card.sha.ai.order + 1;
 					},
 					result: {

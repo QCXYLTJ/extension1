@@ -3048,7 +3048,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     },
                     result: {
                         target(player, target) {
-                            if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+                            if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
                                 if (get.attitude(player, target) > 0) {
                                     return -6;
                                 } else {

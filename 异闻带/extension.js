@@ -3958,7 +3958,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             prompt: '请选择1名角色',
                             filter(event, player) {
-                                return player.countCards('h') > 7 && player.num('e', { subtype: 'equip5' }) == 1;
+                                return player.countCards('h') > 7 && player.countCards('e', { subtype: 'equip5' }) == 1;
                             },
                             filterTarget(card, player, target) {
                                 if (target == player) return false;
@@ -3993,7 +3993,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.countCards('h') > 6 && player.num('e', { subtype: 'equip5' }) == 1;
+                                return player.countCards('h') > 6 && player.countCards('e', { subtype: 'equip5' }) == 1;
                             },
                             content() {
                                 player.markSkill('hero必中状态');
@@ -4082,7 +4082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             prompt: '请选择1名角色',
                             _priority: 101,
                             filter(event, player) {
-                                return player.num('e', { subtype: 'equip2' }) == 1;
+                                return player.countCards('e', { subtype: 'equip2' }) == 1;
                             },
                             filterTarget(card, player, target) {
                                 if (player != game.me && target == player) return false;
@@ -4121,7 +4121,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('e', { subtype: 'equip5' }) == 1;
+                                return player.countCards('e', { subtype: 'equip5' }) == 1;
                             },
                             content() {
                                 player.gain(game.createCard('hero小刀'))._triggered = null;
@@ -7088,7 +7088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'useCardToPlayered',
                             },
                             filter(event, player) {
-                                return event.card.name == 'sha' && player.num('e', { subtype: 'equip1' }) >= 1;
+                                return event.card.name == 'sha' && player.countCards('e', { subtype: 'equip1' }) >= 1;
                             },
                             forced: true,
                             logTarget: 'target',
@@ -18017,7 +18017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     _priority: 78,
                                     filter(event, player) {
-                                        return event.card.name == 'sha' && player.num('e', { subtype: 'equip1' }) >= 1;
+                                        return event.card.name == 'sha' && player.countCards('e', { subtype: 'equip1' }) >= 1;
                                     },
                                     forced: true,
                                     logTarget: 'target',
@@ -28043,7 +28043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.countPlayer(function (current) {
                                         return current.getExpansions('银红视线2').length;
                                     }) < 5 &&
-                                    player.num('e', { subtype: 'equip1' }) >= 1
+                                    player.countCards('e', { subtype: 'equip1' }) >= 1
                                 ) {
                                     player.node.avatar.setBackgroundImage('extension/异闻带/image/猩红凝视维吉尔4.jpg');
                                     player.awakenSkill('银红视线流向');
@@ -28054,7 +28054,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.countPlayer(function (current) {
                                         return current.getExpansions('银红视线2').length;
                                     }) >= 5 &&
-                                    player.num('e', { subtype: 'equip1' }) >= 1
+                                    player.countCards('e', { subtype: 'equip1' }) >= 1
                                 ) {
                                     player.node.avatar.setBackgroundImage('extension/异闻带/image/猩红凝视维吉尔5.jpg');
                                     player.restoreSkill('银红视线流向');
@@ -28065,7 +28065,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.countPlayer(function (current) {
                                         return current.getExpansions('银红视线2').length;
                                     }) < 2 &&
-                                    player.num('e', { subtype: 'equip1' }) >= 1
+                                    player.countCards('e', { subtype: 'equip1' }) >= 1
                                 ) {
                                     player.node.avatar.setBackgroundImage('extension/异闻带/image/猩红凝视维吉尔3.jpg');
                                     player.awakenSkill('银红视线流向');
@@ -28079,7 +28079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.countPlayer(function (current) {
                                         return current.getExpansions('银红视线2').length;
                                     }) < 5 &&
-                                    !player.num('e', { subtype: 'equip1' }) >= 1
+                                    !player.countCards('e', { subtype: 'equip1' }) >= 1
                                 ) {
                                     player.node.avatar.setBackgroundImage('extension/异闻带/image/猩红凝视维吉尔1.jpg');
                                     player.awakenSkill('银红视线流向');
@@ -28090,7 +28090,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.countPlayer(function (current) {
                                         return current.getExpansions('银红视线2').length;
                                     }) >= 5 &&
-                                    !player.num('e', { subtype: 'equip1' }) >= 1
+                                    !player.countCards('e', { subtype: 'equip1' }) >= 1
                                 ) {
                                     player.node.avatar.setBackgroundImage('extension/异闻带/image/猩红凝视维吉尔2.jpg');
                                     player.restoreSkill('银红视线视线1');
@@ -28101,7 +28101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.countPlayer(function (current) {
                                         return current.getExpansions('银红视线2').length;
                                     }) < 2 &&
-                                    !player.num('e', { subtype: 'equip1' }) >= 1
+                                    !player.countCards('e', { subtype: 'equip1' }) >= 1
                                 ) {
                                     player.flashAvatar();
                                     player.awakenSkill('银红视线视线1');
@@ -29156,13 +29156,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mod: {
                                 selectTarget(card, player, range) {
                                     if (range[1] == -1) return;
-                                    if (card.name == 'sha' && player.num('e', { subtype: 'equip1' }) >= 1) range[1] += 1;
+                                    if (card.name == 'sha' && player.countCards('e', { subtype: 'equip1' }) >= 1) range[1] += 1;
                                 },
                                 attackRange(player, distance) {
-                                    if (player.num('e', { subtype: 'equip1' }) >= 1) return distance + 3;
+                                    if (player.countCards('e', { subtype: 'equip1' }) >= 1) return distance + 3;
                                 },
                                 cardUsable(card, player, num) {
-                                    if (card.name == 'sha' && player.num('e', { subtype: 'equip1' }) >= 1) return num + 1;
+                                    if (card.name == 'sha' && player.countCards('e', { subtype: 'equip1' }) >= 1) return num + 1;
                                 },
                             },
                         },
@@ -29173,7 +29173,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             _priority: 15,
                             popup: false,
                             filter(event, player) {
-                                return player.num('e', { subtype: 'equip2' }) >= 1;
+                                return player.countCards('e', { subtype: 'equip2' }) >= 1;
                             },
                             content() {
                                 trigger.untrigger();
@@ -29530,16 +29530,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mod: {
                                 globalFrom(from, to, distance) {
                                     if (from.name == '吞影爱丽丝') {
-                                        return distance + from.num('e', { subtype: 'equip3' }) + from.num('e', { subtype: 'equip4' });
+                                        return distance + from.countCards('e', { subtype: 'equip3' }) + from.countCards('e', { subtype: 'equip4' });
                                     } else {
-                                        return distance + from.num('e', { subtype: 'equip3' }) + from.num('e', { subtype: 'equip4' });
+                                        return distance + from.countCards('e', { subtype: 'equip3' }) + from.countCards('e', { subtype: 'equip4' });
                                     }
                                 },
                                 globalTo(from, to, distance, player) {
                                     if (to.name == '吞影爱丽丝') {
-                                        return distance + to.num('e', { subtype: 'equip3' }) + to.num('e', { subtype: 'equip4' });
+                                        return distance + to.countCards('e', { subtype: 'equip3' }) + to.countCards('e', { subtype: 'equip4' });
                                     } else {
-                                        return distance - to.num('e', { subtype: 'equip3' }) - to.num('e', { subtype: 'equip4' });
+                                        return distance - to.countCards('e', { subtype: 'equip3' }) - to.countCards('e', { subtype: 'equip4' });
                                     }
                                 },
                             },

@@ -1752,7 +1752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return player != target && trigger.player != target;
 								}).ai = function (target) {
 									if (trigger.card.name == 'sha') {
-										if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
+										if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') != 'baiyin') return 0;
 										return -get.attitude(player, target);
 									}
 									if (trigger.card.name == 'tao') {
@@ -1775,7 +1775,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:群雄并起/audio:2',
 							enable: 'phaseUse',
 							filter(event, player) {
-								return player.num('he', { color: 'black' }) > 0;
+								return player.countCards('he', { color: 'black' }) > 0;
 							},
 							check(card) {
 								return 6 - get.value(card);
@@ -4906,7 +4906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return player != target;
 								}).ai = function (target) {
 									if (trigger.card.name == 'sha') {
-										if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
+										if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') != 'baiyin') return 0;
 										return -get.attitude(player, target);
 									}
 									if (trigger.card.name == 'tao') {
@@ -9539,7 +9539,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return player != target;
 								}).ai = function (target) {
 									if (trigger.card.name == 'sha') {
-										if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
+										if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') != 'baiyin') return 0;
 										return -get.attitude(player, target);
 									}
 									if (trigger.card.name == 'tao') {
@@ -16038,7 +16038,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (card1) player.gain(card1, 'gain2');
 								('step 3');
 								var m = 0;
-								game.players.map((i) => (m += i.num('ej', (c) => c.number <= 6)));
+								game.players.map((i) => (m += i.countCards('ej', (c) => c.number <= 6)));
 								player.changeHujia(m);
 								('step 4');
 								player.chooseTarget(get.prompt('兴乱攻占长安')).set('ai', function (target) {
@@ -16059,7 +16059,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { player: 'phaseEnd' },
 							content() {
 								var list = game.filterPlayer(function (current) {
-									return current.isEnemiesOf(player) && current.num('he', (c) => c.number <= 6) < player.num('he', (c) => c.number <= 6);
+									return current.isEnemiesOf(player) && current.countCards('he', (c) => c.number <= 6) < player.countCards('he', (c) => c.number <= 6);
 								});
 								list.sort(lib.sort.seat);
 								list.map((i) => i.loseHp());
@@ -16327,7 +16327,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 1');
 								if (result.bool) {
-									player.draw(1 + player.num('he', (card) => get.subtype(card) == 'equip1'));
+									player.draw(1 + player.countCards('he', (card) => get.subtype(card) == 'equip1'));
 									result.targets[0].damage();
 								}
 							},
@@ -16349,7 +16349,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const videoHeight = 150; // 视窗高度的百分比
 								const videoWidth = (576 / 944) * videoHeight; // 宽度为高度的576/944
 								game.mp41('zhangxiu玄凰砺羽sptx');
-								trigger.num += 1 + player.num('he', (card) => get.subtype(card) == 'equip1');
+								trigger.num += 1 + player.countCards('he', (card) => get.subtype(card) == 'equip1');
 							},
 						},
 						挽袭: {
@@ -16361,14 +16361,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								game.JPG1('huangzu簇箭伏波dhtx', 2000);
-								player.draw(1 + player.num('he', (c) => get.type(c) == 'equip'));
+								player.draw(1 + player.countCards('he', (c) => get.type(c) == 'equip'));
 								player.addTempSkill('挽袭2', { player: 'phaseAfter' });
 								player.chooseTarget(get.prompt('挽袭')).set('ai', function (target) {
 									return -get.attitude(player, target);
 								});
 								('step 1');
 								if (result.bool) {
-									var num = player.num('he', (c) => get.type(c) == 'equip') + result.targets[0].num('he', (c) => get.type(c) == 'equip');
+									var num = player.countCards('he', (c) => get.type(c) == 'equip') + result.targets[0].countCards('he', (c) => get.type(c) == 'equip');
 									for (var i = 0; i < num; i++) {
 										player.useCard({ name: 'wanjian' }, result.targets, false);
 									}
@@ -16380,7 +16380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { source: 'damageBegin' },
 							content() {
 								game.JPG1('huangzu簇箭伏波dhtx', 2000);
-								trigger.num += 1 + player.num('he', (c) => get.tag(c, 'damage'));
+								trigger.num += 1 + player.countCards('he', (c) => get.tag(c, 'damage'));
 							},
 						},
 						震泽: {
@@ -16523,7 +16523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								trigger.cancel();
 								var n = 0;
-								game.players.map((i) => i.countCards('h', (c) => (n += c.num(h, (i) => i.name == 'sha'))));
+								game.players.map((i) => i.countCards('h', (c) => (n += c.countCards('h', (i) => i.name == 'sha'))));
 								player.draw(1 + n);
 								var target = game
 									.filterPlayer(function (current) {
@@ -17043,7 +17043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('he', (c) => get.type(c, 'trick') == 'trick' && get.color(c) == 'black');
+								return player.countCards('he', (c) => get.type(c, 'trick') == 'trick' && get.color(c) == 'black');
 							},
 							content() {
 								'step 0';

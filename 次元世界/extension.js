@@ -28853,7 +28853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && event.player != target;
                                 }).ai = function (target) {
                                     if (get.tag(trigger.card, 'damage')) {
-                                        if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
+                                        if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') != 'baiyin') return 0;
                                         if (target.hp <= 1) return Math.random < 0.3;
                                         return 0.5;
                                     }
@@ -29655,7 +29655,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('he', { type: 'trick' });
+                                return player.countCards('he', { type: 'trick' });
                             },
                             filterCard(card, player) {
                                 return get.type(card) == 'trick';
@@ -33976,7 +33976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool == false && player.countCards('he') > 0) {
                                     player.chooseToDiscard(1, 'he', true).set('ai', function (card) {
-                                        if (player.num('he', { color: 'black' }) > 0) return get.color(card) == 'black';
+                                        if (player.countCards('he', { color: 'black' }) > 0) return get.color(card) == 'black';
                                         return -get.value(card);
                                     });
                                 }
@@ -34005,7 +34005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         if (result.bool == false && player.countCards('he') > 0) {
                                             player.chooseToDiscard(1, 'he', true).set('ai', function (card) {
-                                                if (player.num('he', { color: 'black' }) > 0) return get.color(card) == 'black';
+                                                if (player.countCards('he', { color: 'black' }) > 0) return get.color(card) == 'black';
                                                 return -get.value(card);
                                             });
                                         }

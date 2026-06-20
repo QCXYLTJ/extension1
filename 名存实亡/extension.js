@@ -3420,7 +3420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								if (
-									player.num('he', (card) => {
+									player.countCards('he', (card) => {
 										return get.color(card) == 'red';
 									})
 								)
@@ -3803,7 +3803,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:名存实亡/audio:2',
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1' && (event.card.name == '烈画雀弓' || event.card.name == 'modao陌刀');
+								return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1' && (event.card.name == '烈画雀弓' || event.card.name == 'modao陌刀');
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -4569,7 +4569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								type: 'equip',
 							},
 							filter(event, player) {
-								return player.num('he', { type: 'equip' }) > 0;
+								return player.countCards('he', { type: 'equip' }) > 0;
 							},
 							viewAs: {
 								name: 'shan',
@@ -4582,7 +4582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							ai: {
 								respondShan: true,
 								skillTagFilter(player) {
-									if (!player.num('he', { type: 'equip' })) return false;
+									if (!player.countCards('he', { type: 'equip' })) return false;
 								},
 								basic: {
 									useful: [7, 2],
@@ -5991,7 +5991,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
+								return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -9931,7 +9931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
+								return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -11020,10 +11020,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							mod: {
 								globalFrom(from, to, distance) {
-									return distance - from.num('he', { color: 'black' });
+									return distance - from.countCards('he', { color: 'black' });
 								},
 								globalTo(from, to, distance) {
-									return distance + to.num('he', { color: 'black' });
+									return distance + to.countCards('he', { color: 'black' });
 								},
 							},
 							content() {

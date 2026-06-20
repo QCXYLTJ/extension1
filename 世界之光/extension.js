@@ -9911,7 +9911,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.lg_duoelongzhao = 0;
                             },
                             filter(event, player) {
-                                return player.num('e', { type: 'equip' }) && get.type(event.card) == 'equip';
+                                return player.countCards('e', { type: 'equip' }) && get.type(event.card) == 'equip';
                             },
                             async content(event, trigger, player) {
                                 trigger.cancel();

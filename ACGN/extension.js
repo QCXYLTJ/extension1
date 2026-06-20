@@ -14817,7 +14817,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target(card, player, target) {
                                         if (player.hasSkillTag('unequip', false, card)) return;
                                         if (player.skills.includes('jueqing')) return [1, -1];
-                                        if (player.num('e', { subtype: 'equip1' }) > 0) return [1, 0, 0, -1.5];
+                                        if (player.countCards('e', { subtype: 'equip1' }) > 0) return [1, 0, 0, -1.5];
                                     },
                                 },
                             },
@@ -14882,7 +14882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (player == _status.currentPhase) return false;
-                                return event.cards && event.cards.length == 1 && event.card.suit == 'heart' && (player.num('e', { name: 'jingfanma' }) || player.num('e', { name: 'bxyr_jingfan' }));
+                                return event.cards && event.cards.length == 1 && event.card.suit == 'heart' && (player.countCards('e', { name: 'jingfanma' }) || player.countCards('e', { name: 'bxyr_jingfan' }));
                             },
                             equipSkill: true,
                             content() {
@@ -14977,7 +14977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             equipSkill: true,
                             mod: {
                                 globalFrom(from, to) {
-                                    if (from.num('e', { name: 'bxyr_kuaihang' }) && from == _status.currentPhase) {
+                                    if (from.countCards('e', { name: 'bxyr_kuaihang' }) && from == _status.currentPhase) {
                                         return -Infinity;
                                     }
                                 },

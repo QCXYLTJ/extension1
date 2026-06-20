@@ -6226,7 +6226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             nobracket: true,
                             filter(event, player) {
-                                return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
+                                return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
                             },
                             async content(event, trigger, player) {
                                 trigger.cancel();

@@ -2493,7 +2493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             selectTarget: [1, 3],
                             filter(event, player) {
-                                return player.num('he', { subtype: 'equip1' });
+                                return player.countCards('he', { subtype: 'equip1' });
                             },
                             filterCard(card) {
                                 return get.subtype(card) == 'equip1';

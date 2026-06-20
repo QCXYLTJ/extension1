@@ -2782,7 +2782,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							usable: 1,
 							selectTarget: [1, 3],
 							filter(event, player) {
-								return player.num('he', { subtype: 'equip1' });
+								return player.countCards('he', { subtype: 'equip1' });
 							},
 							filterCard(card) {
 								return get.subtype(card) == 'equip1';
@@ -13220,10 +13220,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.target.draw(3);
 								('step 1');
 								if (
-									trigger.target.num('he', (card) => {
+									trigger.target.countCards('he', (card) => {
 										return get.color(card) == 'black';
 									}) >
-									trigger.target.num('he', (card) => {
+									trigger.target.countCards('he', (card) => {
 										return get.color(card) == 'red';
 									})
 								)
@@ -14704,7 +14704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { global: 'phaseEnd' },
 							nobracket: true,
 							filter(event, player) {
-								return event.player.num('he', { color: 'black' });
+								return event.player.countCards('he', { color: 'black' });
 							},
 							check(event, player) {
 								return get.attitude(player, event.player) <= 0;
@@ -14719,7 +14719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { global: 'phaseEnd' },
 							nobracket: true,
 							filter(event, player) {
-								return event.player.num('he', (card) => get.type(card, 'trick') == 'trick');
+								return event.player.countCards('he', (card) => get.type(card, 'trick') == 'trick');
 							},
 							check(event, player) {
 								return get.attitude(player, event.player) <= 0;
@@ -14872,7 +14872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, event.player) <= 0;
 							},
 							content() {
-								if (trigger.player.num('he', (c) => get.type(c) == 'basic')) {
+								if (trigger.player.countCards('he', (c) => get.type(c) == 'basic')) {
 									var giveCard = trigger.player.getCards('he', (c) => get.type(c) == 'basic').randomGet();
 									player.gain(giveCard, trigger.player);
 									trigger.player.$give(giveCard, player);
@@ -14982,7 +14982,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								trigger.target.draw(2);
 								if (trigger.target.countCards('h', { type: 'basic' })) trigger.player.chooseToDiscard(2, true, 'he');
-								if (trigger.target.num('he', (c) => c.name == 'sha' || c.number <= 9)) trigger.cancel();
+								if (trigger.target.countCards('he', (c) => c.name == 'sha' || c.number <= 9)) trigger.cancel();
 							},
 							ai: {
 								effect: {
@@ -15043,7 +15043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:士兵扩展包/audio:2',
 							trigger: { target: 'shaBegin' },
 							filter(event, player) {
-								return player.num('he', (c) => get.color(c) == 'red');
+								return player.countCards('he', (c) => get.color(c) == 'red');
 							},
 							nobracket: true,
 							content() {
@@ -15125,10 +15125,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:士兵扩展包/audio:2',
 							trigger: { player: 'phaseBegin' },
 							filter(event, player) {
-								return player.num('he', (c) => get.color(c) == 'black');
+								return player.countCards('he', (c) => get.color(c) == 'black');
 							},
 							content() {
-								player.draw(3 + player.num('he', (card) => get.tag(card, 'damage')));
+								player.draw(3 + player.countCards('he', (card) => get.tag(card, 'damage')));
 								player.phaseUse();
 							},
 							group: '羌锋2',
@@ -15138,7 +15138,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('he', (c) => get.color(c) == 'black' || c.name == 'sha');
+								return player.countCards('he', (c) => get.color(c) == 'black' || c.name == 'sha');
 							},
 							content() {
 								'step 0';
@@ -15203,8 +15203,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									var cards = result.targets[0].getCards('h');
 									if (cards) result.targets[0].showCards(cards);
-									if (result.targets[0].num('he', (c) => get.color(c) == 'red' || c.name == 'shan')) player.gain([game.createCard('shan'), game.createCard('shan')], 'draw');
-									if (result.targets[0].num('he', (c) => get.color(c) == 'black')) player.useCard({ name: 'youdishenru' }, result.targets[0], false);
+									if (result.targets[0].countCards('he', (c) => get.color(c) == 'red' || c.name == 'shan')) player.gain([game.createCard('shan'), game.createCard('shan')], 'draw');
+									if (result.targets[0].countCards('he', (c) => get.color(c) == 'black')) player.useCard({ name: 'youdishenru' }, result.targets[0], false);
 								}
 							},
 						},
@@ -15258,7 +15258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 2');
 								player.draw(trigger.target.maxHp - trigger.target.hp);
-								if (player.num('he', (c) => get.color(c) == 'black') > trigger.target.num('he', (c) => get.color(c) == 'black')) player.recover();
+								if (player.countCards('he', (c) => get.color(c) == 'black') > trigger.target.countCards('he', (c) => get.color(c) == 'black')) player.recover();
 							},
 						},
 						乌桓弯刀2: {
@@ -15935,7 +15935,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								('step 1');
 								if (result.bool) {
-									if (result.targets[0].num('he', (c) => c.name == 'sha' || (get.tag(c, 'damage') && get.type(c) == 'trick'))) {
+									if (result.targets[0].countCards('he', (c) => c.name == 'sha' || (get.tag(c, 'damage') && get.type(c) == 'trick'))) {
 										var giveCard = result.targets[0].getCards('he', (c) => c.name == 'sha' || (get.tag(c, 'damage') && get.type(c) == 'trick'));
 										player.gain(giveCard, result.targets[0]);
 										result.targets[0].$give(giveCard, player);
@@ -17953,7 +17953,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.draw(result.targets[0].countCards('he', { color: 'black' }));
 									event.t = result.targets[0];
 								}
-								for (var i = 0; i < player.num('he', { color: 'black' }); i++) {
+								for (var i = 0; i < player.countCards('he', { color: 'black' }); i++) {
 									player.useCard({ name: 'wanjian' }, event.t);
 								}
 								var list = game.filterPlayer(function (current) {

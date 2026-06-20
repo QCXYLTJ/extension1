@@ -619,7 +619,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('he', { suit: 'spade' }) > 0;
+                                return player.countCards('he', { suit: 'spade' }) > 0;
                             },
                             check(card) {
                                 return 6 - get.value(card);
@@ -2117,7 +2117,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('he', { suit: 'heart' }) > 0;
+                                return player.countCards('he', { suit: 'heart' }) > 0;
                             },
                             check(card) {
                                 return 6 - get.value(card);
@@ -6457,7 +6457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && event.player != target;
                                 }).ai = function (target) {
                                     if (trigger.card.name == 'sha') {
-                                        if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
+                                        if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') != 'baiyin') return 0;
                                         if (target.hp <= 1) return Math.random < 0.3;
                                         return 0.5;
                                     }

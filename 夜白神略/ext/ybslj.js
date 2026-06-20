@@ -17453,18 +17453,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						}
 					}
 				},
-				/*
-				mod:{
-					aiValue:function(player,card,num){
-						var numb=get.num(card);
-						var numc=numb/6;
-						return num+numb;
-					},
-					aiUseful:function(){
-						return lib.skill.yb042_mingtui.mod.aiValue.apply(this,arguments);
-					},
-				},
-				*/
 			},
 			yb042_lisheng: {
 				audio: 'ext:夜白神略/audio/character:2',

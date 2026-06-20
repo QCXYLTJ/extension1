@@ -4927,7 +4927,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('targets1', targets[1])
 										.set('filterButton', function (button) {
 											var targets1 = _status.event.targets1;
-											return !targets1.num('e', { subtype: get.subtype(button.link) });
+											return !targets1.countCards('e', { subtype: get.subtype(button.link) });
 										});
 								} else {
 									event.finish();
@@ -10468,7 +10468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { type: 'equip' }) && get.type(event.card) == 'equip';
+								return player.countCards('e', { type: 'equip' }) && get.type(event.card) == 'equip';
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -11885,7 +11885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw(
 									game.countPlayer(function (current) {
 										return current.group == 'wu';
-									}) + player.num('e', { type: 'equip' })
+									}) + player.countCards('e', { type: 'equip' })
 								);
 							},
 						},
@@ -15644,7 +15644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.isTurnedOver();
 							},
 							filter(event, player) {
-								return player.num('he', (card) => {
+								return player.countCards('he', (card) => {
 									return card.suit == 'club';
 								});
 							},
@@ -16253,7 +16253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:虎踞江东/audio:2',
 							trigger: { source: 'damageBegin' },
 							filter(event, player) {
-								return player.num('he', (card) => card.name == 'shandian' || card.name == 'shuiyanqijunx' || card.name == 'hongshui');
+								return player.countCards('he', (card) => card.name == 'shandian' || card.name == 'shuiyanqijunx' || card.name == 'hongshui');
 							},
 							content() {
 								'step 0';
@@ -16933,7 +16933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								effect: {
 									target(card, player, target) {
 										if (player == target && get.type(card) == 'equip') {
-											if (player.num('e', { subtype: get.subtype(card) })) {
+											if (player.countCards('e', { subtype: get.subtype(card) })) {
 												for (var i = 0; i < game.players.length; i++) {
 													if (game.players[i] != player && get.attitude(player, game.players[i]) > 0) {
 														return 0;

@@ -5134,7 +5134,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     content() {
                                         'step 0';
                                         var type = get.type(trigger.card, 'trick');
-                                        if (player.num('he', { type: type }) > 0) {
+                                        if (player.countCards('he', { type: type }) > 0) {
                                             player
                                                 .chooseCardTarget({
                                                     filterCard(card) {
@@ -15588,7 +15588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    return player.num('he', { suit: 'club' }) > 0;
+                                    return player.countCards('he', { suit: 'club' }) > 0;
                                 },
                                 threaten: 1.5,
                                 save: true,

@@ -2193,7 +2193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (get.position(button.link) == 'j') {
                                                 return !targets1.hasJudge(button.link.viewAs || button.link.name);
                                             } else {
-                                                return !targets1.num('e', { subtype: get.subtype(button.link) });
+                                                return !targets1.countCards('e', { subtype: get.subtype(button.link) });
                                             }
                                         });
                                 } else {

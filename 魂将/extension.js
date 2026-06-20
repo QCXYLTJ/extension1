@@ -7506,7 +7506,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               usable: 1,
               enable: 'phaseUse',
               filter(event, player) {
-                return player.num('he', { subtype: 'equip1' });
+                return player.countCards('he', { subtype: 'equip1' });
               },
               filterCard(card) {
                 return get.subtype(card) == 'equip1';
@@ -7920,7 +7920,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     name: 'sha',
                   },
                   viewAsFilter(player) {
-                    if (!player.num('he', { color: 'black' })) return false;
+                    if (!player.countCards('he', { color: 'black' })) return false;
                   },
                   prompt: '将一张黑色牌当杀使用或打出',
                   check(card) {
@@ -7928,7 +7928,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   },
                   ai: {
                     skillTagFilter(player) {
-                      if (!player.num('he', { color: 'black' })) return false;
+                      if (!player.countCards('he', { color: 'black' })) return false;
                     },
                     respondSha: true,
                     canLink(player, target, card) {
@@ -11253,7 +11253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               audio: 'ext:魂将/武将配音/极略篇/魂贾诩:2',
               enable: 'phaseUse',
               filter(event, player) {
-                return player.num('he', { suit: 'spade' }) > 0;
+                return player.countCards('he', { suit: 'spade' }) > 0;
               },
               check(card) {
                 return 6 - get.value(card);
@@ -11308,7 +11308,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return player != target && trigger.player != target;
                 }).ai = function (target) {
                   if (trigger.card.name == 'sha') {
-                    if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
+                    if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') != 'baiyin') return 0;
                     return -get.attitude(player, target);
                   }
                   if (trigger.card.name == 'tao') {
@@ -11580,7 +11580,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               usable: 1,
               enable: 'phaseUse',
               filter(event, player) {
-                return player.num('he', { suit: 'heart' }) > 0;
+                return player.countCards('he', { suit: 'heart' }) > 0;
               },
               check(card) {
                 return 6 - get.value(card);
@@ -12358,7 +12358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               position: 'he',
               filter(event, player) {
-                return player.num('he', { color: 'black' }) > 0 && !player.isLinked();
+                return player.countCards('he', { color: 'black' }) > 0 && !player.isLinked();
               },
               check(card) {
                 return 8 - get.value(card);
@@ -12698,13 +12698,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               filter(event, player) {
                 if (event.type == 'dying') {
-                  return event.filterCard({ name: 'tao' }, player) && ((!player.hasJudge('lebu') && player.num('he', { suit: 'diamond' })) || (!player.hasJudge('bingliang') && player.num('he', { suit: 'club' })));
+                  return event.filterCard({ name: 'tao' }, player) && ((!player.hasJudge('lebu') && player.countCards('he', { suit: 'diamond' })) || (!player.hasJudge('bingliang') && player.countCards('he', { suit: 'club' })));
                 }
                 if (event.parent.name != 'phaseUse') return false;
                 if (!lib.filter.filterCard({ name: 'tao' }, player, event)) {
                   return false;
                 }
-                return player.isDamaged() && ((!player.hasJudge('lebu') && player.num('he', { suit: 'diamond' })) || (!player.hasJudge('bingliang') && player.num('he', { suit: 'club' })));
+                return player.isDamaged() && ((!player.hasJudge('lebu') && player.countCards('he', { suit: 'diamond' })) || (!player.hasJudge('bingliang') && player.countCards('he', { suit: 'club' })));
               },
               position: 'he',
               filterCard(card, player, target) {

@@ -6586,7 +6586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { player: 'phaseDrawBegin' },
 							forced: true,
 							content() {
-								trigger.num += player.num('he', (card) => !get.tag(card, 'damage'));
+								trigger.num += player.countCards('he', (card) => !get.tag(card, 'damage'));
 							},
 						},
 						泊澜: {
@@ -11923,7 +11923,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return event.player.isAlive() && event.player != player;
 							},
 							content() {
-								var num = trigger.player.num('he', { type: 'equip' });
+								var num = trigger.player.countCards('he', { type: 'equip' });
 								trigger.player.discard(trigger.player.getCards('he', { type: 'equip' }));
 								player.draw(2 + num);
 								player.recover();
@@ -12576,7 +12576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								trigger.source.damage(
-									trigger.source.num('he', (card) => {
+									trigger.source.countCards('he', (card) => {
 										return get.color(card) == 'red';
 									})
 								);
@@ -12624,7 +12624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('he', (c) => ['huoshaolianying', 'shuiyanqijunx', 'shandian', 'huoshan'].includes(c.name));
+								return player.countCards('he', (c) => ['huoshaolianying', 'shuiyanqijunx', 'shandian', 'huoshan'].includes(c.name));
 							},
 							content() {
 								'step 0';
@@ -12731,7 +12731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:洪荒ol/audio:2',
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { subtype: 'equip3' }) && get.subtype(event.card) == 'equip3';
+								return player.countCards('e', { subtype: 'equip3' }) && get.subtype(event.card) == 'equip3';
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -15214,7 +15214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:洪荒ol/audio:2',
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1' && (event.card.name == 'liaoji撩戟' || event.card.name == 'kuanggeji狂歌戟' || event.card.name == 'edoushuangji恶斗双戟');
+								return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1' && (event.card.name == 'liaoji撩戟' || event.card.name == 'kuanggeji狂歌戟' || event.card.name == 'edoushuangji恶斗双戟');
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -15256,13 +15256,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:洪荒ol/audio:2',
 							trigger: { source: 'damageBegin' },
 							filter(event, player) {
-								return player.num('he', { subtype: 'equip1' });
+								return player.countCards('he', { subtype: 'equip1' });
 							},
 							content() {
-								var num = player.num('he', { subtype: 'equip1' });
+								var num = player.countCards('he', { subtype: 'equip1' });
 								trigger.num += num;
-								player.draw(num + player.num('he', { color: 'black' }));
-								player.changeHujia(num + player.num('he', { color: 'black' }));
+								player.draw(num + player.countCards('he', { color: 'black' }));
+								player.changeHujia(num + player.countCards('he', { color: 'black' }));
 							},
 						},
 						liaoji撩戟: {
@@ -16538,7 +16538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								result.targets[0].draw();
 								event.a = result.targets[0];
 								('step 2');
-								if (event.a.num('he', { color: 'red' }) < event.a.num('he', { color: 'black' })) {
+								if (event.a.countCards('he', { color: 'red' }) < event.a.countCards('he', { color: 'black' })) {
 									event.t = game
 										.filterPlayer(function (current) {
 											return current.isEnemiesOf(player);
@@ -17774,7 +17774,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 2');
 								if (result.bool) {
-									if (result.cards.some((c) => get.type(c) == 'equip')) player.draw(3 - event.t.num('he', { color: 'black' }));
+									if (result.cards.some((c) => get.type(c) == 'equip')) player.draw(3 - event.t.countCards('he', { color: 'black' }));
 								}
 							},
 						},

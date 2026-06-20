@@ -263,7 +263,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											var hastarget = game.hasPlayer(function (current) {
 												return get.attitude(target, current) < 0;
 											});
-											var be = target.num('e', { color: 'black' });
+											var be = target.countCards('e', { color: 'black' });
 											if (target.countCards('h', 'shan') && be) {
 												if (!target.hasSkill('qqwz_天道')) return 0;
 												return [0, hastarget ? target.countCards('he') / 2 : 0];
@@ -605,7 +605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (card) {
 											if (
 												game.hasPlayer(function (current) {
-													return get.attitude(target, current) < 0 && target.canUse(card, current, true, true) && !current.num('e', 'baiyin') && ai.get.effect(current, card, target) > 0;
+													return get.attitude(target, current) < 0 && target.canUse(card, current, true, true) && !current.countCards('e', 'baiyin') && ai.get.effect(current, card, target) > 0;
 												})
 											) {
 												return 1;
@@ -1145,7 +1145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								number: 5,
 							},
 							viewAsFilter(player) {
-								if (!player.num('hej', { color: 'red' })) return false;
+								if (!player.countCards('hej', { color: 'red' })) return false;
 							},
 							prompt: '将一张红色牌当桃使用',
 							check(card) {
@@ -1153,7 +1153,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							ai: {
 								skillTagFilter(player) {
-									if (!player.num('hej', { color: 'red' })) return false;
+									if (!player.countCards('hej', { color: 'red' })) return false;
 								},
 								respondSha: true,
 								basic: {
@@ -1167,7 +1167,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 3,
 								result: {
 									target(player, target) {
-										if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+										if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
 											if (get.attitude(player, target) > 0) {
 												return -6;
 											}
@@ -2113,12 +2113,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.num('he', { type: 'equip' }) > 0;
+								return player.countCards('he', { type: 'equip' }) > 0;
 							},
 							content() {
 								'step 0';
 								player
-									.chooseToDiscard(get.prompt('qqwz_计筹'), [1, player.num('he', { type: 'equip' })], 'he', function (card) {
+									.chooseToDiscard(get.prompt('qqwz_计筹'), [1, player.countCards('he', { type: 'equip' })], 'he', function (card) {
 										return get.type(card) == 'equip';
 									})
 									.set('ai', function (card) {
@@ -2489,7 +2489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return card.name == 'sha' || get.type(card) == 'equip' || get.type(card) == 'basic';
 							},
 							filter(event, player) {
-								return player.countCards('h', 'sha') > 0 || player.num('he', { type: 'equip' }) > 0 || player.countCards('h', { type: 'basic' }) > 0;
+								return player.countCards('h', 'sha') > 0 || player.countCards('he', { type: 'equip' }) > 0 || player.countCards('h', { type: 'basic' }) > 0;
 							},
 							check(card) {
 								return 8 - get.value(card);
@@ -3196,7 +3196,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							ai: {
 								skillTagFilter(player) {
-									return player.num('he', { color: 'red' }) > 0 && _status.currentPhase != player;
+									return player.countCards('he', { color: 'red' }) > 0 && _status.currentPhase != player;
 								},
 								threaten: 1.5,
 								save: true,
@@ -3942,7 +3942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:千秋万载/audio:2',
 							enable: 'phaseUse',
 							filter(event, player) {
-								return player.num('he', { type: 'equip' });
+								return player.countCards('he', { type: 'equip' });
 							},
 							filterCard: {
 								type: 'equip',
@@ -4085,7 +4085,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 								result: {
 									target(player, target) {
-										if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+										if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
 											if (get.attitude(player, target) > 0) {
 												return -6;
 											} else {
@@ -4582,7 +4582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:千秋万载/audio:2',
 							group: 'qqwz_焦凤2',
 							filter(event, player) {
-								return player.num('he', { color: 'red' }) > 0;
+								return player.countCards('he', { color: 'red' }) > 0;
 							},
 							enable: 'chooseToUse',
 							filterCard(card, player) {
@@ -4783,7 +4783,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:千秋万载/audio:2',
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
+								return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -5532,7 +5532,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.num('e', { type: 'equip' }) && get.type(event.card) == 'equip';
+								return player.countCards('e', { type: 'equip' }) && get.type(event.card) == 'equip';
 							},
 							async content(event, trigger, player) {
 								trigger.cancel();
@@ -6460,7 +6460,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										result: {
 											target(player, target) {
-												if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+												if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
 													if (get.attitude(player, target) > 0) {
 														return -6;
 													} else {
@@ -7183,7 +7183,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							check(card) {
 								if (get.type(card) != 'equip') return 0;
 								var player = _status.currentPhase;
-								if (player.num('he', { subtype: get.subtype(card) }) > 1) {
+								if (player.countCards('he', { subtype: get.subtype(card) }) > 1) {
 									return 11 - ai.get.equipValue(card);
 								}
 								return 6 - ai.get.equipValue(card);
@@ -7875,7 +7875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 								result: {
 									target(player, target) {
-										if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+										if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
 											if (get.attitude(player, target) > 0) {
 												return -6;
 											} else {
@@ -8115,7 +8115,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (card) {
 											if (
 												game.hasPlayer(function (current) {
-													return get.attitude(target, current) < 0 && target.canUse(card, current, true, true) && !current.num('e', 'baiyin') && ai.get.effect(current, card, target) > 0;
+													return get.attitude(target, current) < 0 && target.canUse(card, current, true, true) && !current.countCards('e', 'baiyin') && ai.get.effect(current, card, target) > 0;
 												})
 											) {
 												return 1;
@@ -8967,7 +8967,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							discard: false,
 							filter(event, player) {
-								return player.num('he', { color: 'red' }) > 0;
+								return player.countCards('he', { color: 'red' }) > 0;
 							},
 							prepare: 'throw',
 							position: 'he',

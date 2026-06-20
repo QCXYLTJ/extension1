@@ -781,7 +781,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 3,
                                 result: {
                                     target(player, target) {
-                                        if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+                                        if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
                                             if (get.attitude(player, target) > 0) {
                                                 return -6;
                                             } else {
@@ -1632,10 +1632,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             nobracket: true,
                             mod: {
                                 selectTarget(card, player, range) {
-                                    if (player.num('e', { subtype: 'equip1' }) >= 2 && card.name == 'sha' && Array.isArray(range) && range[1] != -1) range[1]++;
+                                    if (player.countCards('e', { subtype: 'equip1' }) >= 2 && card.name == 'sha' && Array.isArray(range) && range[1] != -1) range[1]++;
                                 },
                                 cardUsable(card, player, num) {
-                                    if (player.num('e', { subtype: 'equip1' }) >= 2 && card.name == 'sha') return num + 1;
+                                    if (player.countCards('e', { subtype: 'equip1' }) >= 2 && card.name == 'sha') return num + 1;
                                 },
                             },
                             trigger: {
@@ -1644,7 +1644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             silent: true,
                             forced: true,
                             filter(event, player) {
-                                return player.num('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
+                                return player.countCards('e', { subtype: 'equip1' }) && get.subtype(event.card) == 'equip1';
                             },
                             async content(event, trigger, player) {
                                 trigger.cancel();
@@ -1683,7 +1683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     silent: true,
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e', { subtype: 'equip1' }) >= 2 && event.card && event.card.name == 'sha';
+                                        return player.countCards('e', { subtype: 'equip1' }) >= 2 && event.card && event.card.name == 'sha';
                                     },
                                     content() {
                                         trigger.directHit = true;
@@ -7494,7 +7494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    return player.num('he', { color: 'red' }) > 0 && _status.currentPhase != player;
+                                    return player.countCards('he', { color: 'red' }) > 0 && _status.currentPhase != player;
                                 },
                                 threaten: 1.5,
                                 save: true,
@@ -7574,7 +7574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 cards: [{ node: { image: {}, info: {}, name: {}, name2: {}, background: {}, intro: {}, range: {} }, storage: {}, vanishtag: [], _uncheck: [], suit: 'heart', number: 1, name: 'wanjian', cardid: '6219801286', clone: { name: 'wanjian', suit: 'heart', number: 1, node: { name: {}, info: {}, intro: {}, background: {}, image: {} }, _transitionEnded: true, timeout: 928 }, timeout: 785, original: 'h' }],
                             },
                             viewAsFilter(player) {
-                                if (!player.num('he', { suit: 'heart' })) return false;
+                                if (!player.countCards('he', { suit: 'heart' })) return false;
                             },
                             prompt: '将一张♥️️手牌当作流星火羽使用',
                             check(card) {
@@ -7630,7 +7630,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 number: 7,
                             },
                             viewAsFilter(player) {
-                                if (!player.num('he', { suit: 'club' })) return false;
+                                if (!player.countCards('he', { suit: 'club' })) return false;
                             },
                             prompt: '将一张♣️️手牌当作无懈可击使用',
                             check(card) {
@@ -10224,7 +10224,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('e', { subtype: 'equip1' }) == 2;
+                                return player.countCards('e', { subtype: 'equip1' }) == 2;
                             },
                             filterTarget(card, player, target) {
                                 return player != target && lib.filter.targetEnabled({ name: 'sha' }, player, target);
@@ -13283,7 +13283,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             nobracket: true,
                             forced: true,
                             filter(event, player) {
-                                return event.card && event.card.name == 'sha' && player.num('e', { subtype: 'equip1' }) == 1;
+                                return event.card && event.card.name == 'sha' && player.countCards('e', { subtype: 'equip1' }) == 1;
                             },
                             content() {
                                 'step 0';

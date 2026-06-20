@@ -11179,7 +11179,7 @@ game.import('character', function () {
 						return player != target && trigger.player != target;
 					}).ai = function (target) {
 						if (trigger.card.name == 'huogong') {
-							if (target.num('e', '2') && target.getCards('e') == 'tengjia') return 2;
+							if (target.countCards('e', { subtype: 'equip2' }) && target.getCards('e') == 'tengjia') return 2;
 							if (target.countCards('h') <= 0) return -5;
 							if (target.hp <= 1) return Math.random < 0.3;
 							return 0.5;

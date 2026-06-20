@@ -2223,7 +2223,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e', { subtype: 'equip4' }) == 1 && get.subtype(event.card) == 'equip4';
+                                        return player.countCards('e', { subtype: 'equip4' }) == 1 && get.subtype(event.card) == 'equip4';
                                     },
                                     async content(event, trigger, player) {
                                         trigger.cancel();
@@ -2340,7 +2340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e', { subtype: 'equip3' }) == 1 && get.subtype(event.card) == 'equip3';
+                                        return player.countCards('e', { subtype: 'equip3' }) == 1 && get.subtype(event.card) == 'equip3';
                                     },
                                     async content(event, trigger, player) {
                                         trigger.cancel();
@@ -2457,7 +2457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e', { subtype: 'equip2' }) == 1 && get.subtype(event.card) == 'equip2';
+                                        return player.countCards('e', { subtype: 'equip2' }) == 1 && get.subtype(event.card) == 'equip2';
                                     },
                                     async content(event, trigger, player) {
                                         trigger.cancel();
@@ -2574,7 +2574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e', { subtype: 'equip1' }) == 1 && get.subtype(event.card) == 'equip1';
+                                        return player.countCards('e', { subtype: 'equip1' }) == 1 && get.subtype(event.card) == 'equip1';
                                     },
                                     async content(event, trigger, player) {
                                         trigger.cancel();
@@ -2691,7 +2691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e', { subtype: 'equip5' }) == 1 && get.subtype(event.card) == 'equip5';
+                                        return player.countCards('e', { subtype: 'equip5' }) == 1 && get.subtype(event.card) == 'equip5';
                                     },
                                     async content(event, trigger, player) {
                                         trigger.cancel();

@@ -3705,7 +3705,7 @@ export async function precontent(config, pack) {
 			},
 			viewAsFilter(player) {
 				if (
-					!player.num('he', {
+					!player.countCards('he', {
 						color: 'red',
 					})
 				)
@@ -3718,7 +3718,7 @@ export async function precontent(config, pack) {
 			ai: {
 				skillTagFilter(player) {
 					if (
-						!player.num('he', {
+						!player.countCards('he', {
 							color: 'red',
 						})
 					)
@@ -4351,7 +4351,7 @@ export async function precontent(config, pack) {
 			},
 			viewAsFilter(player) {
 				if (
-					!player.num('he', {
+					!player.countCards('he', {
 						color: 'red',
 					})
 				)
@@ -4437,7 +4437,7 @@ export async function precontent(config, pack) {
 			},
 			viewAsFilter(player) {
 				if (
-					!player.num('he', {
+					!player.countCards('he', {
 						color: 'black',
 					})
 				)
@@ -5060,7 +5060,7 @@ export async function precontent(config, pack) {
 						list.add(i);
 					}
 				}
-				return list.length && player.num('e', { name: 'gezi_stone' });
+				return list.length && player.countCards('e', { name: 'gezi_stone' });
 			},
 			usable: 1,
 			chooseButton: {

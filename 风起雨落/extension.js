@@ -262,7 +262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('he', { suit: 'heart' }) > 0;
+                                return player.countCards('he', { suit: 'heart' }) > 0;
                             },
                             check(card) {
                                 return 6 - get.value(card);

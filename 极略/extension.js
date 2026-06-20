@@ -12756,7 +12756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             position: 'he',
                             filter(event, player) {
-                                return player.num('he', { color: 'black' }) > 0 && !player.isLinked();
+                                return player.countCards('he', { color: 'black' }) > 0 && !player.isLinked();
                             },
                             check(card) {
                                 return 8 - get.value(card);

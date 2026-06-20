@@ -1848,7 +1848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         result: {
                                             target(player, target) {
-                                                if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+                                                if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
                                                     if (get.attitude(player, target) > 0) {
                                                         return -6;
                                                     } else {
@@ -5657,7 +5657,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     player: 1,
                                     target(player, target) {
-                                        if (player.hasSkill('jiu') && !target.num('e', 'baiyin')) {
+                                        if (player.hasSkill('jiu') && !target.countCards('e', 'baiyin')) {
                                             if (get.attitude(player, target) > 0) {
                                                 return -6;
                                             } else {
