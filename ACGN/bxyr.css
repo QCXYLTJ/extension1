@@ -1,0 +1,420 @@
+
+.player>.zhenwo {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.perfecttext {
+	color: rgb(255, 20, 147);
+}
+.card.fullskin.perfect>.name {
+	color: white;
+	background: rgba(255, 20, 147, 0.6);
+	border: 1px solid rgb(158, 102, 0);
+	box-shadow: rgba(0,0,0,0.4) 0 0 10px inset;
+}
+.card.fullskin.perfect>.name2 {
+	color: rgb(255, 20, 147);
+}
+.player>.camp-wrap[data-camp='meng']>.camp-back {
+	background: linear-gradient(to bottom, rgb(100, 7, 55), rgb(255, 24, 150));
+}
+.player>.camp-wrap[data-camp='mo']>.camp-back {
+	background: linear-gradient(to bottom, rgb(50, 5, 55), rgb(114, 17, 128));
+}
+.player>.camp-wrap[data-camp='xian']>.camp-back {
+	background: linear-gradient(to bottom, rgb(110, 42, 20), rgb(247, 92, 47));
+}
+.player>.camp-wrap[data-camp='gui']>.camp-back {
+	background: linear-gradient(to bottom, rgb(128, 0, 0), rgb(248, 0, 0));
+}
+.player>.camp-wrap[data-camp='shen']>.camp-back {
+	background: linear-gradient(to bottom, rgb(100, 80, 0), rgb(255, 215, 0));
+}
+.player>.camp-wrap[data-camp='yao']>.camp-back {
+	background: linear-gradient(to bottom, rgb(110, 4, 110), rgb(223, 10, 223));
+}
+.player>.camp-wrap[data-camp='ming']>.camp-back {
+	background: linear-gradient(to bottom, rgb(100, 100, 100), rgb(196, 196, 196));
+}
+.player>.camp-wrap[data-camp='long']>.camp-back {
+	background: linear-gradient(to bottom, rgb(0, 98, 120), rgb(0, 204, 255));
+}
+.player>.camp-wrap[data-camp='xie']>.camp-back {
+	background: linear-gradient(to bottom, rgb(40, 40, 40), rgb(150, 150, 150));
+}
+.player>.camp-wrap[data-camp='ling']>.camp-back {
+	background: linear-gradient(to bottom, rgb(0, 130, 50), rgb(102, 255, 153));
+}
+.player .identity[data-color='meng'],
+div[data-nature='meng'],
+span[data-nature='meng'] {
+    text-shadow: black 0 0 1px,
+    rgb(255, 20, 147) 0 0 2px,
+    rgba(255, 20, 147, 1) 0 0 5px,
+    rgba(255, 20, 147, 1) 0 0 10px,
+    rgba(255, 20, 147, 1) 0 0 10px,
+    rgba(255, 20, 147, 1) 0 0 20px,
+    rgba(255, 20, 147, 1) 0 0 20px
+}
+div[data-nature='mengm'],
+span[data-nature='mengm'] {
+    text-shadow: black 0 0 1px,
+    rgba(255, 20, 147, 1) 0 0 2px,
+    rgba(255, 20, 147, 1) 0 0 5px,
+    rgba(255, 20, 147, 1) 0 0 10px,
+    rgba(255, 20, 147, 1) 0 0 10px,
+    rgba(255, 20, 147, 1) 0 0 20px,
+    rgba(255, 20, 147, 1) 0 0 20px
+}
+div[data-nature='mengmm'],
+span[data-nature='mengmm'] {
+    text-shadow: black 0 0 1px,
+    rgba(255, 20, 147, 1) 0 0 2px,
+    rgba(255, 20, 147, 1) 0 0 5px,
+    rgba(255, 20, 147, 1) 0 0 10px,
+    rgba(255, 20, 147, 1) 0 0 10px,
+    rgba(255, 20, 147, 1) 0 0 20px,
+    rgba(255, 20, 147, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='meng'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(255, 20, 147, 1), rgba(255, 20, 147, 1), rgba(255, 20, 147, 1));
+}
+.player > .camp-zone[data-camp='meng'] > .camp-name {
+    text-shadow: 0 0 5px rgb(255, 20, 147), 0 0 10px rgb(255, 20, 147), 0 0 15px rgb(255, 20, 147);
+}
+.player .identity[data-color='mo'],
+div[data-nature='mo'],
+span[data-nature='mo'] {
+    text-shadow: black 0 0 1px,
+    rgb(114, 17, 128) 0 0 2px,
+    rgba(114, 17, 128, 1) 0 0 5px,
+    rgba(114, 17, 128, 1) 0 0 10px,
+    rgba(114, 17, 128, 1) 0 0 10px,
+    rgba(114, 17, 128, 1) 0 0 20px,
+    rgba(114, 17, 128, 1) 0 0 20px
+}
+div[data-nature='mom'],
+span[data-nature='mom'] {
+    text-shadow: black 0 0 1px,
+    rgba(114, 17, 128, 1) 0 0 2px,
+    rgba(114, 17, 128, 1) 0 0 5px,
+    rgba(114, 17, 128, 1) 0 0 10px,
+    rgba(114, 17, 128, 1) 0 0 10px,
+    rgba(114, 17, 128, 1) 0 0 20px,
+    rgba(114, 17, 128, 1) 0 0 20px
+}
+div[data-nature='momm'],
+span[data-nature='momm'] {
+    text-shadow: black 0 0 1px,
+    rgba(114, 17, 128, 1) 0 0 2px,
+    rgba(114, 17, 128, 1) 0 0 5px,
+    rgba(114, 17, 128, 1) 0 0 10px,
+    rgba(114, 17, 128, 1) 0 0 10px,
+    rgba(114, 17, 128, 1) 0 0 20px,
+    rgba(114, 17, 128, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='mo'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(114, 17, 128, 1), rgba(114, 17, 128, 1), rgba(114, 17, 128, 1));
+}
+.player > .camp-zone[data-camp='mo'] > .camp-name {
+    text-shadow: 0 0 5px rgb(114, 17, 128), 0 0 10px rgb(114, 17, 128), 0 0 15px rgb(114, 17, 128);
+}
+.player .identity[data-color='xian'],
+div[data-nature='xian'],
+span[data-nature='xian'] {
+    text-shadow: black 0 0 1px,
+    rgb(247, 92, 47) 0 0 2px,
+    rgba(247, 92, 47, 1) 0 0 5px,
+    rgba(247, 92, 47, 1) 0 0 10px,
+    rgba(247, 92, 47, 1) 0 0 10px,
+    rgba(247, 92, 47, 1) 0 0 20px,
+    rgba(247, 92, 47, 1) 0 0 20px
+}
+div[data-nature='xianm'],
+span[data-nature='xianm'] {
+    text-shadow: black 0 0 1px,
+    rgba(247, 92, 47, 1) 0 0 2px,
+    rgba(247, 92, 47, 1) 0 0 5px,
+    rgba(247, 92, 47, 1) 0 0 10px,
+    rgba(247, 92, 47, 1) 0 0 10px,
+    rgba(247, 92, 47, 1) 0 0 20px,
+    rgba(247, 92, 47, 1) 0 0 20px
+}
+div[data-nature='xianmm'],
+span[data-nature='xianmm'] {
+    text-shadow: black 0 0 1px,
+    rgba(247, 92, 47, 1) 0 0 2px,
+    rgba(247, 92, 47, 1) 0 0 5px,
+    rgba(247, 92, 47, 1) 0 0 10px,
+    rgba(247, 92, 47, 1) 0 0 10px,
+    rgba(247, 92, 47, 1) 0 0 20px,
+    rgba(247, 92, 47, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='xian'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(247, 92, 47, 1), rgba(247, 92, 47, 1), rgba(247, 92, 47, 1));
+}
+.player > .camp-zone[data-camp='xian'] > .camp-name {
+    text-shadow: 0 0 5px rgb(247, 92, 47), 0 0 10px rgb(247, 92, 47), 0 0 15px rgb(247, 92, 47);
+}
+.player .identity[data-color='gui'],
+div[data-nature='gui'],
+span[data-nature='gui'] {
+    text-shadow: black 0 0 1px,
+    rgb(248, 0, 0) 0 0 2px,
+    rgba(248, 0, 0, 1) 0 0 5px,
+    rgba(248, 0, 0, 1) 0 0 10px,
+    rgba(248, 0, 0, 1) 0 0 10px,
+    rgba(248, 0, 0, 1) 0 0 20px,
+    rgba(248, 0, 0, 1) 0 0 20px
+}
+div[data-nature='guim'],
+span[data-nature='guim'] {
+    text-shadow: black 0 0 1px,
+    rgba(248, 0, 0, 1) 0 0 2px,
+    rgba(248, 0, 0, 1) 0 0 5px,
+    rgba(248, 0, 0, 1) 0 0 10px,
+    rgba(248, 0, 0, 1) 0 0 10px,
+    rgba(248, 0, 0, 1) 0 0 20px,
+    rgba(248, 0, 0, 1) 0 0 20px
+}
+div[data-nature='guimm'],
+span[data-nature='guimm'] {
+    text-shadow: black 0 0 1px,
+    rgba(248, 0, 0, 1) 0 0 2px,
+    rgba(248, 0, 0, 1) 0 0 5px,
+    rgba(248, 0, 0, 1) 0 0 10px,
+    rgba(248, 0, 0, 1) 0 0 10px,
+    rgba(248, 0, 0, 1) 0 0 20px,
+    rgba(248, 0, 0, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='gui'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(248, 0, 0, 1), rgba(248, 0, 0, 1), rgba(248, 0, 0, 1));
+}
+.player > .camp-zone[data-camp='gui'] > .camp-name {
+    text-shadow: 0 0 5px rgb(248, 0, 0), 0 0 10px rgb(248, 0, 0), 0 0 15px rgb(248, 0, 0);
+}
+.player .identity[data-color='shen'],
+div[data-nature='shen'],
+span[data-nature='shen'] {
+    text-shadow: black 0 0 1px,
+    rgb(255, 215, 0) 0 0 2px,
+    rgba(255, 215, 0, 1) 0 0 5px,
+    rgba(255, 215, 0, 1) 0 0 10px,
+    rgba(255, 215, 0, 1) 0 0 10px,
+    rgba(255, 215, 0, 1) 0 0 20px,
+    rgba(255, 215, 0, 1) 0 0 20px 
+}
+div[data-nature='shenm'],
+span[data-nature='shenm'] {
+    text-shadow: black 0 0 1px,
+    rgba(255, 215, 0, 1) 0 0 2px,
+    rgba(255, 215, 0, 1) 0 0 5px,
+    rgba(255, 215, 0, 1) 0 0 10px,
+    rgba(255, 215, 0, 1) 0 0 10px,
+    rgba(255, 215, 0, 1) 0 0 20px,
+    rgba(255, 215, 0, 1) 0 0 20px
+}
+div[data-nature='shenmm'],
+span[data-nature='shenmm'] {
+    text-shadow: black 0 0 1px,
+    rgba(255, 215, 0, 1) 0 0 2px,
+    rgba(255, 215, 0, 1) 0 0 5px,
+    rgba(255, 215, 0, 1) 0 0 10px,
+    rgba(255, 215, 0, 1) 0 0 10px,
+    rgba(255, 215, 0, 1) 0 0 20px,
+    rgba(255, 215, 0, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='shen'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 1), rgba(255, 215, 0, 1), rgba(255, 215, 0, 1));
+}
+.player > .camp-zone[data-camp='shen'] > .camp-name {
+    text-shadow: 0 0 5px rgb(255, 215, 0), 0 0 10px rgb(255, 215, 0), 0 0 15px rgb(255, 215, 0);
+}
+.player .identity[data-color='yao'],
+div[data-nature='yao'],
+span[data-nature='yao'] {
+    text-shadow: black 0 0 1px,
+    rgb(223, 10, 223) 0 0 2px,
+    rgba(223, 10, 223, 1) 0 0 5px,
+    rgba(223, 10, 223, 1) 0 0 10px,
+    rgba(223, 10, 223, 1) 0 0 10px,
+    rgba(223, 10, 223, 1) 0 0 20px,
+    rgba(223, 10, 223, 1) 0 0 20px 
+}
+div[data-nature='yaom'],
+span[data-nature='yaom'] {
+    text-shadow: black 0 0 1px,
+    rgba(223, 10, 223, 1) 0 0 2px,
+    rgba(223, 10, 223, 1) 0 0 5px,
+    rgba(223, 10, 223, 1) 0 0 10px,
+    rgba(223, 10, 223, 1) 0 0 10px,
+    rgba(223, 10, 223, 1) 0 0 20px,
+    rgba(223, 10, 223, 1) 0 0 20px
+}
+div[data-nature='yaomm'],
+span[data-nature='yaomm'] {
+    text-shadow: black 0 0 1px,
+    rgba(223, 10, 223, 1) 0 0 2px,
+    rgba(223, 10, 223, 1) 0 0 5px,
+    rgba(223, 10, 223, 1) 0 0 10px,
+    rgba(223, 10, 223, 1) 0 0 10px,
+    rgba(223, 10, 223, 1) 0 0 20px,
+    rgba(223, 10, 223, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='yao'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(223, 10, 223, 1), rgba(223, 10, 223, 1), rgba(223, 10, 223, 1));
+}
+.player > .camp-zone[data-camp='yao'] > .camp-name {
+    text-shadow: 0 0 5px rgb(223, 10, 223), 0 0 10px rgb(223, 10, 223), 0 0 15px rgb(223, 10, 223);
+}
+.player .identity[data-color='ming'],
+div[data-nature='ming'],
+span[data-nature='ming'] {
+    text-shadow: black 0 0 1px,
+    rgb(196, 196, 196) 0 0 2px,
+    rgba(196, 196, 196, 1) 0 0 5px,
+    rgba(196, 196, 196, 1) 0 0 10px,
+    rgba(196, 196, 196, 1) 0 0 10px,
+    rgba(196, 196, 196, 1) 0 0 20px,
+    rgba(196, 196, 196, 1) 0 0 20px 
+}
+div[data-nature='mingm'],
+span[data-nature='mingm'] {
+    text-shadow: black 0 0 1px,
+    rgba(196, 196, 196, 1) 0 0 2px,
+    rgba(196, 196, 196, 1) 0 0 5px,
+    rgba(196, 196, 196, 1) 0 0 10px,
+    rgba(196, 196, 196, 1) 0 0 10px,
+    rgba(196, 196, 196, 1) 0 0 20px,
+    rgba(196, 196, 196, 1) 0 0 20px
+}
+div[data-nature='mingmm'],
+span[data-nature='mingmm'] {
+    text-shadow: black 0 0 1px,
+    rgba(196, 196, 196, 1) 0 0 2px,
+    rgba(196, 196, 196, 1) 0 0 5px,
+    rgba(196, 196, 196, 1) 0 0 10px,
+    rgba(196, 196, 196, 1) 0 0 10px,
+    rgba(196, 196, 196, 1) 0 0 20px,
+    rgba(196, 196, 196, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='ming'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(196, 196, 196, 1), rgba(196, 196, 196, 1), rgba(196, 196, 196, 1));
+}
+.player > .camp-zone[data-camp='ming'] > .camp-name {
+    text-shadow: 0 0 5px rgb(196, 196, 196), 0 0 10px rgb(196, 196, 196), 0 0 15px rgb(196, 196, 196);
+}
+.player .identity[data-color='xie'],
+div[data-nature='xie'],
+span[data-nature='xie'] {
+    text-shadow: black 0 0 1px,
+    rgb(153, 153, 153) 0 0 2px,
+    rgba(153, 153, 153, 1) 0 0 5px,
+    rgba(153, 153, 153, 1) 0 0 10px,
+    rgba(153, 153, 153, 1) 0 0 10px,
+    rgba(153, 153, 153, 1) 0 0 20px,
+    rgba(153, 153, 153, 1) 0 0 20px 
+}
+div[data-nature='xiem'],
+span[data-nature='xiem'] {
+    text-shadow: black 0 0 1px,
+    rgba(153, 153, 153, 1) 0 0 2px,
+    rgba(153, 153, 153, 1) 0 0 5px,
+    rgba(153, 153, 153, 1) 0 0 10px,
+    rgba(153, 153, 153, 1) 0 0 10px,
+    rgba(153, 153, 153, 1) 0 0 20px,
+    rgba(153, 153, 153, 1) 0 0 20px
+}
+div[data-nature='xiemm'],
+span[data-nature='xiemm'] {
+    text-shadow: black 0 0 1px,
+    rgba(153, 153, 153, 1) 0 0 2px,
+    rgba(153, 153, 153, 1) 0 0 5px,
+    rgba(153, 153, 153, 1) 0 0 10px,
+    rgba(153, 153, 153, 1) 0 0 10px,
+    rgba(153, 153, 153, 1) 0 0 20px,
+    rgba(153, 153, 153, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='xie'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(153, 153, 153, 1), rgba(153, 153, 153, 1), rgba(153, 153, 153, 1));
+}
+.player > .camp-zone[data-camp='xie'] > .camp-name {
+    text-shadow: 0 0 5px rgb(153, 153, 153), 0 0 10px rgb(153, 153, 153), 0 0 15px rgb(153, 153, 153);
+}
+.player .identity[data-color='long'],
+div[data-nature='long'],
+span[data-nature='long'] {
+    text-shadow: black 0 0 1px,
+    rgb(0, 204, 255) 0 0 2px,
+    rgba(0, 204, 255, 1) 0 0 5px,
+    rgba(0, 204, 255, 1) 0 0 10px,
+    rgba(0, 204, 255, 1) 0 0 10px,
+    rgba(0, 204, 255, 1) 0 0 20px,
+    rgba(0, 204, 255, 1) 0 0 20px 
+}
+div[data-nature='longm'],
+span[data-nature='longm'] {
+    text-shadow: black 0 0 1px,
+    rgba(0, 204, 255, 1) 0 0 2px,
+    rgba(0, 204, 255, 1) 0 0 5px,
+    rgba(0, 204, 255, 1) 0 0 10px,
+    rgba(0, 204, 255, 1) 0 0 10px,
+    rgba(0, 204, 255, 1) 0 0 20px,
+    rgba(0, 204, 255, 1) 0 0 20px
+}
+div[data-nature='longmm'],
+span[data-nature='longmm'] {
+    text-shadow: black 0 0 1px,
+    rgba(0, 204, 255, 1) 0 0 2px,
+    rgba(0, 204, 255, 1) 0 0 5px,
+    rgba(0, 204, 255, 1) 0 0 10px,
+    rgba(0, 204, 255, 1) 0 0 10px,
+    rgba(0, 204, 255, 1) 0 0 20px,
+    rgba(0, 204, 255, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='long'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(0, 204, 255, 1), rgba(0, 204, 255, 1), rgba(0, 204, 255, 1));
+}
+.player > .camp-zone[data-camp='long'] > .camp-name {
+    text-shadow: 0 0 5px rgb(0, 204, 255), 0 0 10px rgb(0, 204, 255), 0 0 15px rgb(0, 204, 255);
+}
+.player .identity[data-color='ling'],
+div[data-nature='ling'],
+span[data-nature='ling'] {
+    text-shadow: black 0 0 1px,
+    rgb(102, 255, 153) 0 0 2px,
+    rgba(102, 255, 153, 1) 0 0 5px,
+    rgba(102, 255, 153, 1) 0 0 10px,
+    rgba(102, 255, 153, 1) 0 0 10px,
+    rgba(102, 255, 153, 1) 0 0 20px,
+    rgba(102, 255, 153, 1) 0 0 20px 
+}
+div[data-nature='lingm'],
+span[data-nature='lingm'] {
+    text-shadow: black 0 0 1px,
+    rgba(102, 255, 153, 1) 0 0 2px,
+    rgba(102, 255, 153, 1) 0 0 5px,
+    rgba(102, 255, 153, 1) 0 0 10px,
+    rgba(102, 255, 153, 1) 0 0 10px,
+    rgba(102, 255, 153, 1) 0 0 20px,
+    rgba(102, 255, 153, 1) 0 0 20px
+}
+div[data-nature='lingmm'],
+span[data-nature='lingmm'] {
+    text-shadow: black 0 0 1px,
+    rgba(102, 255, 153, 1) 0 0 2px,
+    rgba(102, 255, 153, 1) 0 0 5px,
+    rgba(102, 255, 153, 1) 0 0 10px,
+    rgba(102, 255, 153, 1) 0 0 10px,
+    rgba(102, 255, 153, 1) 0 0 20px,
+    rgba(102, 255, 153, 1) 0 0 20px
+}
+.player > .camp-zone[data-camp='ling'] > .camp-back {
+    background: linear-gradient(to bottom, rgba(102, 255, 153, 1), rgba(102, 255, 153, 1), rgba(102, 255, 153, 1));
+}
+.player > .camp-zone[data-camp='ling'] > .camp-name {
+    text-shadow: 0 0 5px rgb(102, 255, 153), 0 0 10px rgb(102, 255, 153), 0 0 15px rgb(102, 255, 153);
+}

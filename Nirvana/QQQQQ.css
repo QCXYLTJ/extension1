@@ -1,0 +1,7 @@
+/* 菜单动画渐变效果 */
+.Qmenu {
+	animation: fairy 5s linear 0s infinite;
+	font-family: shousha;
+	font-weight: bold;
+	font-size: 20px;
+}

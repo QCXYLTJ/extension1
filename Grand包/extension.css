@@ -1,0 +1,220 @@
+.camp-wrap[data-camp='saber']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='saber']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="saber"] {
+  background-image: url(image/group/无名补丁/name2_saber.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='caster']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='caster']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="caster"] {
+  background-image: url(image/group/无名补丁/name2_caster.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='lancer']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='lancer']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="lancer"] {
+  background-image: url(image/group/无名补丁/name2_lancer.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='rider']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='rider']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="rider"] {
+  background-image: url(image/group/无名补丁/name2_rider.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='assassin']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='assassin']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="assassin"] {
+  background-image: url(image/group/无名补丁/name2_assassin.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='basaker']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='basaker']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="basaker"] {
+  background-image: url(image/group/无名补丁/name2_basaker.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='archer']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='archer']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="archer"] {
+  background-image: url(image/group/无名补丁/name2_archer.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='ruler']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='ruler']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="ruler"] {
+  background-image: url(image/group/无名补丁/name2_ruler.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='avenger']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='avenger']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="avenger"] {
+  background-image: url(image/group/无名补丁/name2_avenger.png) !important;
+  background-size: 100% 100% !important;
+}
+.camp-wrap[data-camp='song']>.camp-back {
+  overflow: hidden;
+}
+.camp-wrap[data-camp='song']>.camp-back:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(255, 215, 0);
+  background-size: 400%;
+  -webkit-filter: brightness(0.6);
+  -o-filter: brightness(0.6);
+  -moz-filter: brightness(0.6);
+  filter: brightness(0.6);
+  /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="song"] {
+  background-image: url(image/group/无名补丁/name2_song.png) !important;
+  background-size: 100% 100% !important;
+}

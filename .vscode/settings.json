@@ -1,0 +1,111 @@
+{
+    "files.exclude": {
+        "**/*.jpg": true,
+        "**/*.png": true,
+        "**/*.mp3": true,
+        "**/.拖曳读取": true,
+        "**/.应用配置": true,
+        "**/.node_modules": true,
+        "**/.全能搜索": true
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.editorActionsLocation": "hidden",
+    "workbench.activityBar.location": "bottom",
+    "workbench.sideBar.location": "right",
+    "workbench.tree.indent": 20,
+    "workbench.tree.renderIndentGuides": "always",
+    "window.openFoldersInNewWindow": "on",
+    "diffEditor.wordWrap": "on",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "variable.other",
+                "settings": {
+                    "foreground": "#0fc40f" // 这里的"#FF0000"代表红色，你可以修改为你想要的颜色
+                }
+            },
+            {
+                "scope": "variable.property", // 特定于键名
+                "settings": {
+                    "foreground": "#00FFFF" // 不同的颜色
+                }
+            },
+            {
+                "name": "let variable",
+                "scope": [
+                    "variable.other.readwrite.js"
+                ],
+                "settings": {
+                    "foreground": "#df4f0d"
+                }
+            }
+        ]
+    },
+    "editor.unicodeHighlight.allowedCharacters": {
+        "‮": true
+    },
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "window.confirmSaveUntitledWorkspace": false,
+    "git.ignoreMissingGitWarning": true,
+    "workbench.editor.wrapTabs": true,
+    "editor.wordWrap": "on",
+    "breadcrumbs.enabled": false,
+    "codeQL.telemetry.enableTelemetry": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.formatOnType": true,
+    "workbench.editor.empty.hint": "hidden",
+    "prettier.printWidth": 9999,
+    "prettier.singleQuote": true,
+    "prettier.proseWrap": "never",
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "prettier.jsxSingleQuote": true,
+    "prettier.useTabs": true,
+    "prettier.ignorePath": "",
+    "prettier.useEditorConfig": false,
+    "prettier.configPath": "./prettier.config.mjs",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "editor.formatOnPaste": true,
+    "search.searchOnTypeDebouncePeriod": 5000,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.formatOnSave": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.unicodeHighlight.nonBasicASCII": false, // 允许最多 50 个警告
+    "eslint.configFile": "./eslint.config.mjs",
+    "extensions.trustedPublishers": [
+        "esbenp",
+        "plibither8",
+        "ryu1kn"
+    ],
+    "eslint.quiet": false, // 不要忽略 warning
+    "eslint.options": {
+        "maxWarnings": 10000 // 允许更多警告（设为 0 表示不限）
+    },
+    "editor.pasteAs.preferences": [],
+    "eslint.workingDirectories": [
+        "D:/GAME/无名杀PC/resources/app/extension"
+    ],
+    "eslint.validate": [
+        "javascript"
+    ],
+    "eslint.codeActionsOnSave.rules": null,
+    "javascript.suggestionActions.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "chat.tools.terminal.outputLocation": "chat",
+}
