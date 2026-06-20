@@ -1,0 +1,126 @@
+.yemian {
+    background-image: url(dengchang.jpg) !important;
+    /*background-color: rgba(255, 217, 102,0.3);
+    box-shadow: 12px 12px 12px 12px rgb(75, 56, 0, 0.80) inset;*/
+    position: fixed;
+    top: 0%;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    z-index: 599;
+}
+.image1 {
+    background-image: url(guanqia.png) !important;
+    /*鸟*/
+    position: fixed;
+    top: 25%;
+    left: 46%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image2 {
+    background-image: url(guanqia.png) !important;
+    /*天*/
+    position: fixed;
+    top: 29.5%;
+    left: 36%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image3 {
+    background-image: url(guanqia.png) !important;
+    /*龙*/
+    position: fixed;
+    top: 40%;
+    left: 30.5%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image4 {
+    background-image: url(guanqia.png) !important;
+    /*地*/
+    position: fixed;
+    top: 52%;
+    left: 35%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image5 {
+    background-image: url(guanqia.png) !important;
+    /*蛇*/
+    position: fixed;
+    bottom: 35%;
+    left: 46%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image6 {
+    background-image: url(guanqia.png) !important;
+    /*风*/
+    position: fixed;
+    top: 52%;
+    right: 34%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image7 {
+    background-image: url(guanqia.png) !important;
+    /*虎*/
+    position: fixed;
+    top: 39%;
+    right: 30.5%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}
+.image8 {
+    background-image: url(guanqia.png) !important;
+    /*云*/
+    position: fixed;
+    top: 29.5%;
+    right: 34.2%;
+    width: 8%;
+    height: 8%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.01;
+    z-index: 700;
+}

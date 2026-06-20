@@ -1,0 +1,270 @@
+
+dfpro.png
+size: 4053,3722
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2_0
+  rotate: false
+  xy: 3144, 2583
+  size: 301, 142
+  orig: 1280, 576
+  offset: 0, 385
+  index: -1
+2_10
+  rotate: true
+  xy: 2440, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_11
+  rotate: true
+  xy: 3018, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_12
+  rotate: false
+  xy: 2, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_13
+  rotate: true
+  xy: 1284, 580
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_14
+  rotate: true
+  xy: 2, 2
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_15
+  rotate: true
+  xy: 580, 2
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_16
+  rotate: true
+  xy: 1862, 580
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_17
+  rotate: false
+  xy: 2440, 706
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_18
+  rotate: false
+  xy: 2440, 128
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_19
+  rotate: false
+  xy: 1158, 2
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_2
+  rotate: true
+  xy: 3144, 2727
+  size: 993, 572
+  orig: 1280, 576
+  offset: 0, 4
+  index: -1
+2_3
+  rotate: false
+  xy: 2, 3144
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_37
+  rotate: true
+  xy: 3596, 1788
+  size: 937, 455
+  orig: 1280, 576
+  offset: 343, 0
+  index: -1
+2_38
+  rotate: true
+  xy: 3596, 1335
+  size: 451, 283
+  orig: 1280, 576
+  offset: 829, 20
+  index: -1
+2_4
+  rotate: true
+  xy: 1284, 2440
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_5
+  rotate: true
+  xy: 2, 1862
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_6
+  rotate: true
+  xy: 580, 1862
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_7
+  rotate: false
+  xy: 1158, 1862
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_8
+  rotate: false
+  xy: 1862, 3144
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_9
+  rotate: false
+  xy: 1862, 2566
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+dfpro2.png
+size: 4048,3144
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2_20
+  rotate: true
+  xy: 2, 1862
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_21
+  rotate: true
+  xy: 2, 580
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_22
+  rotate: false
+  xy: 2, 2
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_23
+  rotate: false
+  xy: 1284, 2566
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_24
+  rotate: true
+  xy: 580, 1862
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_25
+  rotate: true
+  xy: 580, 580
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_26
+  rotate: false
+  xy: 2566, 2566
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_27
+  rotate: true
+  xy: 1158, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_28
+  rotate: false
+  xy: 1158, 706
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_29
+  rotate: false
+  xy: 1284, 128
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_30
+  rotate: true
+  xy: 1736, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_31
+  rotate: true
+  xy: 2314, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_32
+  rotate: false
+  xy: 2440, 706
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_33
+  rotate: false
+  xy: 2566, 128
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_34
+  rotate: true
+  xy: 2892, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1
+2_35
+  rotate: true
+  xy: 3470, 1284
+  size: 1280, 576
+  orig: 1280, 576
+  offset: 0, 0
+  index: -1

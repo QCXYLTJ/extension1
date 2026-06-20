@@ -1,0 +1,242 @@
+/* 签到页面 */
+.dqzw-boss-sign-in-container {
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    width: 80%;
+    height: 90%;
+    overflow: hidden;
+    transform: translate(-100%, 50%) rotate(90deg);
+    animation: dqzw-boss-sign-in-reward-retract 1s linear forwards;
+    z-index: 20;
+    --transform: none;
+    --top: -20%
+}
+.dqzw-boss-sign-in-container.dqzw-boss-sign-in-container-retract {
+    transform: none;
+    animation: dqzw-boss-sign-in-content-unfold .4s 1s forwards  
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-axle {
+    position: absolute;
+    top: -2%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    /* 没素材没动画() */
+    background: url(../../../image/background/sign_in_axle.png) 0 0 / 100% 100%;
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content {
+    position: absolute;
+    left: 0;
+    top: -98%;
+    width: 100%;
+    height: 92%;
+    background: url(../../../image/background/sign_in.png) 0 0 / 100% 100%;
+    counter-reset: dqzw-boss-sign-in-reward-count;
+    animation: dqzw-boss-sign-in-content-unfold 1.2s 1s forwards;
+    --top: 4%;
+    --transform: translateY(-100%)
+}
+.dqzw-boss-sign-in-container.dqzw-boss-sign-in-container-retract > .dqzw-boss-sign-in-content {
+    animation: dqzw-boss-sign-in-content-unfold 1.2s 1s forwards,
+        dqzw-boss-sign-in-reward-retract .8s linear forwards
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 1%;
+    width: 100%;
+    height: 66%;
+    overflow: hidden
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 11%;
+    height: 76%;
+    background: url(../../../image/background/sign_in_reward.png) 0 0 / 100% 100%;
+    counter-increment: dqzw-boss-sign-in-reward-count;
+    margin: 0 .5%;
+    animation: var(--animation);
+    --animation: none;
+    --name: '无名'
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward:not(.dqzw-boss-sign-in-grand-reward)::before, 
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward::after {
+    content: '第' counter(dqzw-boss-sign-in-reward-count) '天';
+    position: absolute;
+    top: 55%;
+    color: hsl(38, 39%, 37%);
+    font-weight: 900;
+    font-family: shousha;
+    writing-mode: vertical-lr;
+    text-shadow: none;
+    text-orientation: upright
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward::after {
+    content: var(--name);
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1px 1rem 1px;
+    top: 15%;
+    right: 5%;
+    width: 18%;
+    color: white;
+    font-size: 105%;
+    background: url(../../../image/icon/sign_in_name.png) 0 0 / 100% 100%
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward.dqzw-boss-sign-in-grand-reward::after {
+    font-size: 150%
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward:not(.dqzw-boss-sign-in-grand-reward) > .dqzw-boss-sign-in-receive {
+    position: absolute;
+    width: 50%;
+    height: 20%;
+    bottom: 2%;
+    background: url(../../../image/button/sign_in_receive.png) 0 0 / 100% 100%
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward.dqzw-boss-sign-in-tomorrow-receive:not(.dqzw-boss-sign-in-grand-reward) > .dqzw-boss-sign-in-receive {
+    background-image: url(../../../image/button/tomorrow_receive.png)
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward > .dqzw-boss-sign-in-rarity {
+    position: absolute;
+    top: 5%;
+    right: -4%;
+    width: 36%;
+    height: 16%;
+    background: var(--background) 0 0 / 100% 100%;
+    --background: url(../../../image/icon/rarity_rare.png);
+    z-index: 1
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward > .videoavatar {
+    position: absolute;
+    top: 8%;
+    width: 68%;
+    height: 30%;
+    border-radius: 100%
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward.dqzw-boss-sign-in-grand-reward > .videoavatar {
+    width: 72%;
+    height: 90%;
+    border-radius: 12px;
+    mask: var(--mask);
+    -webkit-mask: var(--mask);
+    --mask: radial-gradient(black 60%, transparent 90%)
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward > .dqzw-boss-sign-in-receive.dqzw-boss-sign-in-tomorrow-receive {
+    background-image: url(../../../image/button/sign_in_tomorrow_receive.png)
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward:nth-child(odd) {
+    transform: translateY(150%);
+    --transform: translateY(25%)
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward:nth-child(even),
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward.dqzw-boss-sign-in-grand-reward {
+    transform: translateY(-150%);
+    --transform: none
+}
+.dqzw-boss-sign-in-container > .dqzw-boss-sign-in-content > .dqzw-boss-sign-in-reward-container > .dqzw-boss-sign-in-reward.dqzw-boss-sign-in-grand-reward {
+    width: 16%;
+    height: 100%
+}
+.dqzw-boss-sign-in-reward.dqzw-boss-sign-in-current-reward {
+    background-image: url(../../../image/background/sign_in_current_reward.png) !important
+}
+.dqzw-boss-sign-in-content > .dqzw-boss-sign-in-text {
+    position: absolute;
+    left: 57%;
+    bottom: 9%
+}
+.dqzw-boss-sign-in-content > .dqzw-boss-sign-in-text > div {  
+    position: relative;
+    color: transparent;
+    font-size: 3vw;
+    font-weight: 900;
+    font-family: dqzw_jinshi;
+    white-space: nowrap;
+    text-shadow: none;
+    text-stroke: 1px hsl(28, 100%, 35%);
+    -webkit-text-stroke: 1px hsl(28, 100%, 35%);
+    background-image: linear-gradient(
+        hsl(36, 94%, 75%) 30%,
+        hsl(58, 96%, 89%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text
+}
+.dqzw-boss-sign-in-content > .dqzw-boss-sign-in-text > div big {
+    font-size: 170%
+}
+.dqzw-boss-sign-in-content > .dqzw-boss-sign-in-text > div:nth-child(3) {
+     text-indent: 4.5rem
+}
+@keyframes dqzw-boss-sign-in-content-unfold {
+    to {
+        top: var(--top)
+    }
+}
+@keyframes dqzw-boss-sign-in-reward-retract {
+    to {
+        transform: var(--transform)
+    }
+}
+/* 获得物品动画 */
+.dqzw-boss-gain-item-container {
+    position: absolute;
+    pointer-events: none;
+    right: 1%;
+    top: 25%;
+    width: 12%;
+    height: 36%;
+    z-index: 100
+}
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 20%;
+    font-family: dqzw_hanyiwenhei;
+    background: url(../../../image/background/item.png) 0 0 / 100% 100%;
+    animation: var(--animation);
+    margin-left: 120%;
+    --animation: dqzw-boss-gain-item-margin .8s forwards;
+    --transform: translateY(-150%);
+    --margin: 0
+}
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item.removing {
+    animation: var(--animation), dqzw-boss-sign-in-reward-retract .8s forwards
+}
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item > .dqzw-boss-gain-item-image-container,
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item > .dqzw-boss-gain-item-count-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 28%;
+    height: 100%;
+    overflow: hidden
+}
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item > .dqzw-boss-gain-item-image-container > *:first-child {
+    width: 50%;
+    height: 50%;
+    transform: translateX(-1%)
+}
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item > .dqzw-boss-gain-item-image-container > *:not(.videoavatar):first-child {
+    transform: translateX(-1%) scale(1.4)
+}
+.dqzw-boss-gain-item-container > .dqzw-boss-gain-item > .dqzw-boss-gain-item-count-container {
+    justify-content: initial;
+    width: 72%;
+    margin: 0
+}
+@keyframes dqzw-boss-gain-item-margin {
+    to {
+        margin: var(--margin)
+    }
+}

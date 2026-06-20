@@ -1,0 +1,7 @@
+let list = new Array(13).fill([]);
+[
+    ['spade'],
+    ['club'],
+    ['diamond'],
+    ['heart']
+];

@@ -1,0 +1,281 @@
+/* 模块管理 */
+.dqzw-module-management-page {
+    position: absolute;
+    left: 15%;
+    top: 10%;
+    width: 70%;
+    height: 80%;
+    font-family: dqzw_hanyiwenhei;
+    z-index: 20
+}
+.dqzw-module-management-page > .dqzw-module-management-page-caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    position: relative;
+    width: 99%;
+    height: 5%;
+    margin: .5%
+}
+.dqzw-module-management-page > .dqzw-module-management-page-column,
+.dqzw-module-management-page > .dqzw-module-management-page-config {
+    position: absolute;
+	top: 6%;
+	height: 93.5%;
+	border-radius: 8px;
+	border: 1px solid black;
+	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, .3)
+}
+.dqzw-module-management-page > .dqzw-module-management-page-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	left: .5%;
+	width: 20.5%;
+	overflow-y: auto
+}
+.dqzw-module-management-page > .dqzw-module-management-page-config {
+    left: 21.5%;
+	width: 78%;
+	border: 1px solid black;
+	overflow: hidden
+}
+.dqzw-module-management-page > .dqzw-module-management-page-column > * {
+    position: relative;
+    width: 88%;
+    margin: 2% 3%
+}
+.dqzw-module-management-page > .dqzw-module-management-page-column > *:first-child {
+    margin-top: 3%
+}
+.dqzw-module-management-page-config-content,
+.dqzw-module-management-page-config-content > * {
+    position: relative;
+    width: 98%;
+    height: 98%;
+    overflow-y: auto;
+    margin: .7%
+}
+.dqzw-module-management-page-config-content > * {
+    display: flex-inline;
+	flex-direction: column;
+	align-items: center;
+    width: 22.5%;
+    height: 20%;
+    margin: .5%
+}
+.dqzw-module-management-page-config-content > * > * {
+    position: relative  
+}
+.dqzw-module-management-page-config-content > * > .menubutton:last-child {
+    width: 90%;
+    height: 59%;
+    border: 1px solid black;
+    box-shadow: none;
+    overflow: auto;
+    margin: 0
+}
+.dqzw-module-management-page-column::-webkit-scrollbar,
+.dqzw-module-management-page-config-content::-webkit-scrollbar {
+    display: block;
+    width: 2vw
+} 
+.dqzw-module-management-page-column::-webkit-scrollbar-track,
+.dqzw-module-management-page-config-content::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 8px;
+    box-shadow: inset 0 0 1px 2px rgba(0, 0, 0, .3)
+}
+.dqzw-module-management-page-column::-webkit-scrollbar-thumb,
+.dqzw-module-management-page-config-content::-webkit-scrollbar-thumb {
+    background: #99FFFF;
+    border-radius: 8px;
+    border: 1px solid black    
+}
+.dqzw-module-management-page-config-content-button-cross .dqzw-module-management-page-config-content-button-chain {
+    zoom: 1
+}
+.dqzw-module-management-page-config-content-button-cross.active .dqzw-module-management-page-config-content-button-chain {
+    zoom: 1.4
+}
+.dqzw-module-management-page-config-content-button-cross.active .dqzw-module-management-page-config-content-button-chain.dqzw-module-management-page-config-content-button-chain-one {
+    transform: rotate(35deg) scale(1.2)
+}
+.dqzw-module-management-page-config-content-button-cross.active .dqzw-module-management-page-config-content-button-chain.dqzw-module-management-page-config-content-button-chain-two {
+    transform: rotate(145deg) scale(1.2)
+}
+.dqzw-module-management-page-config-content-button-chain-one {
+    transform: rotate(35deg) scale(1.2) translateX(-140%)
+}
+.dqzw-module-management-page-config-content-button-chain-two {
+    transform: rotate(145deg) scale(1.2) translateX(-140%)
+}
+.dqzw-module-management-page-config-content-button-chain {
+    position: absolute;
+    top: calc(50% - 10px);
+    left: 0;
+    height: 20px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    z-index: 3;
+    transform-origin: center;
+    pointer-events: none
+}
+.dqzw-module-management-page-config-content-button-chain > div {
+    overflow: visible;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0
+}
+.nolink .dqzw-module-management-page-config-content-button-chain {
+    display: none
+}
+.dqzw-module-management-page-config-content-button-chain > div > div {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 0 0 1px, rgba(0, 0, 0, 0.4) 0 0 2px
+}
+.dqzw-module-management-page-config-content-button-chain > div > div:nth-child(odd) {
+    height: 8px;
+    width: 10px;
+    border-radius: 2px;
+    top: 6px
+}
+.dqzw-module-management-page-config-content-button-chain > div > div:nth-child(even) {
+    width: 10px;
+    height: 2px;
+    top: 9px;
+    z-index: 1;
+    border-radius: 2px
+}
+.dqzw-shake {
+    animation: dqzw-shake .7s
+}
+.dqzw-boss-container-mas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10
+}
+.dqzw-page-filter {
+    position: absolute;	
+    pointer-events: none !important;
+    left: 45%;
+    top: 45%;
+    width: 5%;
+    height: 5%;
+    border-radius: 50%;
+    transform-origin: center;
+    z-index: 30000;
+    transition: all var(--time);
+    transform: scale(var(--scale));
+    backdrop-filter: var(--filter);
+    -webkit-backdrop-filter: var(--filter);
+    --filter: grayscale(1);
+    --time: 1s;
+    --delay: 0s;
+    --scale: 0
+}
+.dqzw-nofilter.player, .dqzw-page-filter-window .thrown {
+    z-index: 30001 !important
+}
+.dqzw-boss-scale {
+    width: 0;
+    height: 0;
+    font-size: 0			        	        
+}
+.dqzw-boss-scale2 {
+    transform: scale(0)
+}
+.dqzw-boss-filter-shadow {
+    filter: var(--shadow);
+    -webkit-filter: var(--shadow);                  
+    --shadow: drop-shadow(0 0 3px var(--color));
+    --color: rgb(10, 155, 67)     
+}
+.dqzw-boss-filter-grayscale {
+    filter: grayscale(var(--num));
+    -webkit-filter: grayscale(var(--num));
+    --num: 1
+}
+.dqzw-boss-filter-brightness {
+    filter: brightness(var(--num));
+    -webkit-filter: brightness(var(--num));
+    --num: .82
+}
+@keyframes dqzw-boss-rotate {
+    to {
+        transform: rotate(-360deg)
+    }
+}
+@keyframes dqzw-boss-move {
+    to {
+        transform: translateX(var(--dqzw-boss-move-x)) translateY(var(--dqzw-boss-move-y))
+    }
+}
+@keyframes dqzw-boss-unfold {
+    to {
+        clip-path: var(--clip-unfold);
+        -webkit-clip-path: var(--clip-unfold)  	        		
+    }
+}
+@keyframes dqzw-boss-filter {
+    to {
+        filter: var(--filter);
+        -webkit-filter: var(--filter) 	        		
+    }
+}
+@keyframes dqzw-boss-flicker {
+    50% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+@keyframes dqzw-shake {
+    20% {
+        transform: translateX(-10px)
+    }
+    40% {
+        transform: translateX(10px)
+    }
+    60% {
+        transform: translateX(-10px)
+    }
+    80% {
+        transform: translateX(10px)
+    }
+    100% {
+        transform: translateX(0)
+    }
+}
+@font-face {
+    font-family: dqzw_hanyiwenhei;
+    font-display: swap;
+    src: url(../../font/dqzw_hanyiwenhei.ttf)
+}
+@font-face {
+    font-family: dqzw_fangzhengzhunyuan;
+    font-display: swap;
+    src: url(../../font/dqzw_fangzhengzhunyuan.ttf)
+}
+@font-face {
+    font-family: dqzw_yulan;
+    font-display: swap;
+    src: url(../../font/dqzw_yulan.ttf)
+}
+@font-face {
+    font-family: dqzw_jinshi;
+    font-display: swap;
+    src: url(../../font/dqzw_jinshi.ttf)
+}
