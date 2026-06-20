@@ -55,72 +55,6 @@ if (QQQ.作者模式) {
 //     function load() { },
 //     function error() { }
 // );
-//—————————————————————————————————————————————————————————————————————————————镇压清瑶
-const sha = function () {
-  if (lib.version.includes('β')) {
-    alert('朋友,你好');
-    alert('我不知道你是怎么拿到这个扩展的……');
-    alert('如果你是萌新的话,我想请你知道……');
-    alert('这个β版无名杀并不是原版,而是某些脑子不正常的人搞出的伪服……');
-    alert('伪服无名杀用的都是原版无名杀1.9.124版本的老代码,但是伪服无名杀的作者却不遵循原版无名杀自带的GPL_3协议的开源原则,对部分代码进行加密……');
-    alert('而且还抄袭一些扩展作者的扩展并据为己有且不署原作者的名字');
-    alert('所以在此请你卸掉这个伪无名杀,回归原版的怀抱');
-    game.reload();
-    throw new Error();
-  }
-  if (Array.isArray(lib.config.extensions)) {
-    for (const i of lib.config.extensions) {
-      if (['假装无敌', '取消弹窗报错'].includes(i)) {
-        game.removeExtension(i);
-      }
-    }
-  }
-  if (!lib.config.dev) {
-    game.saveConfig('dev', true);
-  }
-  Reflect.defineProperty(lib.config, 'dev', {
-    get() {
-      return true;
-    },
-    set() {}
-  });
-  if (lib.config.extension_alert) {
-    game.saveConfig('extension_alert', false);
-  }
-  Reflect.defineProperty(lib.config, 'extension_alert', {
-    get() {
-      return false;
-    },
-    set() {}
-  });
-  if (lib.config.compatiblemode) {
-    game.saveConfig('compatiblemode', false);
-  }
-  Reflect.defineProperty(_status, 'withError', {
-    get() {
-      if (game.players.some((q) => q.name == 'HL_许劭')) {
-        return true;
-      }
-      return false;
-    },
-    set() {}
-  });
-  const originalonerror = window.onerror;
-  Reflect.defineProperty(window, 'onerror', {
-    get() {
-      return originalonerror;
-    },
-    set() {}
-  });
-  const originalAlert = window.alert;
-  Reflect.defineProperty(window, 'alert', {
-    get() {
-      return originalAlert;
-    },
-    set() {}
-  });
-};
-sha();
 //—————————————————————————————————————————————————————————————————————————————一些原型方法
 const yuanxing = function () {
   Reflect.defineProperty(Array.prototype, 'Qinclude', {
@@ -168,7 +102,7 @@ const boss = function () {
     filter() {
       game.sort();
     },
-    content() {}
+    content() { }
   }; //排座位
   let _me;
   Reflect.defineProperty(game, 'me', {
@@ -272,7 +206,7 @@ const boss = function () {
       cards: []
     },
     gaintag: [],
-    forResult() {}
+    forResult() { }
   };
   game.changeBossQ = function (name) {
     _status.event.forceDie = true;
@@ -812,11 +746,11 @@ game.addMode(
     },
     element: {
       player: {
-        dieAfter() {},
-        out() {}
+        dieAfter() { },
+        out() { }
       },
       content: {
-        die() {}
+        die() { }
       }
     },
     get: {
