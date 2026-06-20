@@ -1,0 +1,27 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+.shuidi {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  background:
+    /* blue  */
+    url(shuilong水龙dhtx.png) no-repeat center center;
+  background-size: contain;
+  /* border-radius: 50%; */
+  transform: translateX(-50%);
+  animation: drop-shuidi 1s linear forwards;
+  pointer-events: none;
+}
+@keyframes drop-shuidi {
+  to {
+    top: 110%;
+  }
+}

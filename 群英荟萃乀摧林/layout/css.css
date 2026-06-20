@@ -1,0 +1,287 @@
+.redtext {
+	color: rgb(255, 20, 20);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.zhugongtext {
+	color: rgb(248, 83, 46);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.zhuanhuanjitext {
+	background-image: -webkit-linear-gradient(bottom, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 0, 235));
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: rgb(255, 255, 255, 0.7);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.taotext {
+	color: rgb(238, 53, 115);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.nightext {
+	color: rgb(52, 89, 232);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.weitext2 {
+	color: rgb(52, 89, 232);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+	font-family: xinwei;
+	font-size: larger;
+}
+.shutext2 {
+	color: rgb(203, 77, 36);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+	font-family: xinwei;
+	font-size: larger;
+}
+.wutext2 {
+	color: rgb(27, 164, 27);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+	font-family: xinwei;
+	font-size: larger;
+}
+.quntext2 {
+	color: rgb(154, 148, 122);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+	font-family: xinwei;
+	font-size: larger;
+}
+.jintext2 {
+	color: rgb(118, 32, 149);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+	font-family: xinwei;
+	font-size: larger;
+}
+.hantext2 {
+	color: #b14231;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+	font-family: xinwei;
+	font-size: larger;
+}
+.orangetext {
+	color: rgb(255, 183, 15);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.jintext {
+	color: rgb(162, 38, 207);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.coffeetext {
+	color: rgb(237, 132, 12);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.blacktext {
+	color: #000000;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.blackwtext {
+	color: #000000;
+	-webkit-text-stroke: 0.7px white;
+	font-size: larger;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.whitewtext {
+	color: #Ffffff;
+	font-size: larger;
+	-webkit-text-stroke: 0.3px black;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.redwtext {
+	color: rgb(255, 20, 20);
+	-webkit-text-stroke: 0.7px white;
+	font-size: larger;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.promptext {
+	color: #959595;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.importext {
+	font-family: xinwei;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.dongwumingyunxian {
+	font-family: xinwei;
+	font-size: large;
+	color: #0cff30;
+	margin-left: 0.6px;
+	margin-right: 1.4px;
+	margin-bottom: 0.5px;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.imredtext {
+	font-family: xinwei;
+	color: rgb(255, 20, 20);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.almondtext {
+	color: rgb(255, 235, 205);
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.grasstext {
+	color: #ACFF0C;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.leaftext {
+	color: #0cff30;
+	text-shadow: black 0 0 2px;
+	text-rendering: optimizeLegibility;
+}
+.lefttext {
+	text-align: left;
+	display: inline-block;
+}
+.qyhc_xushaotext {
+	text-align: right;
+	display: inline-block;
+}
+.Optext {
+	opacity: 0.4;
+}
+.optext {
+	opacity: 0;
+}
+.OPtext {
+	opacity: 0.7 !important;
+	text-decoration: line-through;
+}
+.dialog.withclbg {
+	background: rgba(0, 0, 0, 0.36);
+	box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px;
+	border-radius: 6px;
+	min-height: 200px;
+}
+.qyhc_close {
+	position: absolute;
+	background-image: url(../image/asset/close.png);
+	z-index: 10;
+	display: block;
+	right: -3px;
+	top: -3px;
+	width: 33px;
+	height: 33px;
+	cursor: pointer;
+	background-size: 100% 100%;
+}
+.player .playerkuangfeng {
+	animation: game_start 0.5s;
+	-webkit-animation: game_start 0.5s;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 4;
+	pointer-events: none;
+	background: rgb(219, 89, 2, 0.18);
+}
+.player .playerdawu {
+	animation: game_start 0.5s;
+	-webkit-animation: game_start 0.5s;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 4;
+	pointer-events: none;
+	background: rgba(188, 188, 255, 0.12);
+}
+.qyhc_style_func {
+	width: 75%;
+	display: block;
+	white-space: nowrap;
+	position: relative;
+	background-color: rgba(243, 35, 35, 0.26);
+	box-shadow: 0 5px 15px rgba(20, 20, 20, 0.4);
+	border-radius: 3px;
+	text-align: center;
+	margin: 0 auto;
+	align-items: center;
+	backdrop-filter: blur(60px);
+	filter: blur(0.2px);
+}
+.qyhc_style_func:hover {
+	transform: scale(1.05);
+	filter: brightness(120%);
+}
+.qyhc_hovertext:hover {
+	transform: scale(1.02);
+	filter: brightness(110%);
+}
+.qyhc_style_func2 {
+	display: block;
+	white-space: nowrap;
+	position: relative;
+	width: 97%;
+	background-color: rgba(243, 35, 35, 0.26);
+	box-shadow: 0 5px 15px rgba(20, 20, 20, 0.4);
+	border-radius: 10px;
+	text-align: center;
+	margin: 0 auto;
+	align-items: center;
+	backdrop-filter: blur(60px);
+	filter: blur(0.2px);
+}
+.qyhc_style_func2:hover {
+	transform: scale(1.03);
+	filter: brightness(120%);
+}
+.qyhc_style_func3 {
+	display: inline-block;
+	white-space: nowrap;
+	position: relative;
+	background-color: rgba(243, 35, 35, 0.26);
+	box-shadow: 0 5px 15px rgba(20, 20, 20, 0.4);
+	border-radius: 3px;
+	text-align: center;
+	margin: 0 auto;
+	align-items: center;
+	backdrop-filter: blur(60px);
+	filter: blur(0.2px);
+}
+.qyhc_style_func3:hover {
+	transform: scale(1.04);
+	filter: brightness(110%);
+}
+.qyhccltag {
+	left: 4px;
+	top: calc(50% - 6px);
+	bottom: auto;
+	right: 4px;
+	width: auto;
+	color: #181818;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: none;
+	white-space: normal;
+	background: rgba(230, 210, 166, 0.8);
+	border-radius: 2px;
+	border: 1px solid black;
+	pointer-events: none;
+	z-index: 2;
+}

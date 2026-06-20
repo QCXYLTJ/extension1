@@ -1,0 +1,12 @@
+#arena.decadeUI>.dialog.prompt {
+	top: auto;
+	height: auto;
+	background: none;
+	transform: none;
+	box-shadow: none;
+    transform: translateY(-20px);
+}
+.card>.temp-name[data-nature='thunder'] {
+	color: darkblue;
+	text-shadow: 0 0 0.5px #423569, 0 0 0.5px #423569;
+}

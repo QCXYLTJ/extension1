@@ -1,0 +1,200 @@
+/* 用于瞬发技字体 */
+@font-face {
+    font-family: 'HYZLSJ';
+    src: url(./image/fonts/HYZLSJ.TTF);
+}
+/*感谢 雷 的技术支持 感谢 萌新(转型中) 的授权*/
+.Yao-dibeijing {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 8;
+}
+.Yao-skilltip {
+    width: 20%;
+    min-height: 5%;
+    left: 50%;
+    top: 50%;
+    font-size: 16px;
+    color: #ccad76;
+    font-family: 'shousha';
+    background-color: rgba(36, 29, 19, 0.85);
+    border: #523a24 3px solid;
+    border-radius: 10px;
+    position: absolute;
+    display: block;
+    padding: 8px;
+    transform: translate(-50%, -50%);
+    transition: none;
+}
+/*来自选将美化*/
+/*点击标记的框*/
+.dialognewnew {
+    background-image: url(image/mark/newdialog1.png);
+    background-size: 100% 100%;
+    width: 100%;
+    height: 230px;
+    /*left: -25px;*/
+    top: 140px;
+    display: block;
+    z-index: 60;
+    position: absolute;
+    text-align: center;
+    animation: fadenum 0.5s;
+}
+/*公用技能名框*/
+.jinengmingzix {
+    background-image: url(image/mark/cebian.png);
+    background-size: 100% 100%;
+    height: 130px;
+    width: 38px;
+    writing-mode: tb-rl;
+    font-size: 23px;
+    left: 21.5%;
+    top: 23%;
+    color: #e4e4d5;
+    text-shadow: 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325;
+    font-family: shousha;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+/*公用卡牌底图*/
+.kapaiditux {
+    background-image: url(image/mark/newarena1.png);
+    background-size: 100% 100%;
+    width: 720px;
+    height: 145px;
+    left: 25%;
+    top: 22%;
+    display: flex;
+    justify-content: flex-start;
+}
+/*折叠框*/
+.dialogguagua {
+    transition: all 0.2s linear;
+    display: flex;
+    width: 97.5%;
+    height: 200px;
+    border-width: 60px 18px 12px 18px;
+    border-style: solid;
+    border-color: transparent;
+    border-image-source: url(image/mark/dialoggua.png);
+    border-image-slice: 61 18 12 18 fill;
+    border-image-repeat: stretch;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(1.0);
+    z-index: 66;
+}
+/*隐藏框*/
+.dialogguagua.open {
+    height: 0px;
+}
+/*框三角*/
+.dialogguagua>.newTitlexg {
+    top: -50px;
+    left: 55%;
+    transform: rotate(0deg);
+    transition: all 0.2s linear;
+    width: 30px;
+    height: 30px;
+    background-image: url(image/mark/arrow.png);
+    background-size: 100% 100% !important;
+}
+/*框内容*/
+.dialogguagua>.dialognewnewxgxg {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/*框标题*/
+.dialogguagua>.newTitle1xg {
+    left: calc(50% - 45px);
+    right: calc(50% - 60px);
+    overflow: visible !important;
+    width: 90px;
+    top: -53px;
+    height: 50px;
+    text-align: center;
+    letter-spacing: 3px !important;
+    background: linear-gradient(#C8BEB4 1%, #FCF8CC 12%, #F3F0BE, #FEF5A8, #E1D275, #C9B173, #D6CB6F, #A99355, #AC9557, #A38A51, #A38A51, #B29983, #B19786, #B19786, #B19786, #9B8583), linear-gradient(to right, #FCF8CC, #AC9557);
+    font-family: 'HYZLSJ';
+    font-size: 42px !important;
+    font-weight: normal;
+    -webkit-background-clip: text;
+    text-shadow: none;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 0 0.5px #2F1809) drop-shadow(-2px 0 1.5px #2F1809) drop-shadow(0 2px 1px #2F1809) drop-shadow(0 -2px 1.5px #2F1809) blur(0.55px) saturate(1.25) contrast(1.25) grayscale(0.08) sepia(0.1);
+}
+/*卡牌名+图*/
+.dialogguagua>.dialognewnewxgxg>.jinengmingzixxg {
+    background-image: url(image/mark/cebian.png);
+    background-size: 100% 100%;
+    height: 130px;
+    width: 38px;
+    writing-mode: tb-rl;
+    font-size: 23px;
+    left: 21.5%;
+    top: 13%;
+    color: #e4e4d5;
+    text-shadow: 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325;
+    font-family: shousha;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+/*卡牌底图*/
+.dialogguagua>.dialognewnewxgxg>.kapaidituxxg {
+    background-image: url(image/mark/newarena1.png);
+    background-size: 100% 100%;
+    width: 720px;
+    height: 145px;
+    left: 25%;
+    top: 10%;
+    display: flex;
+    justify-content: flex-start;
+}
+/*框三角*/
+.dialog#shoushadialoggua>.newTitlexg {
+    top: -50px;
+    left: 57%;
+    transform: rotate(0deg);
+    transition: all 0.2s linear;
+    width: 30px;
+    height: 30px;
+    background-image: url(image/mark/arrow.png);
+    background-size: 100% 100%;
+    z-index: 2;
+}
+/*框内容*/
+.dialog#shoushadialoggua>.dialognewnewxgxg {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/*框标题*/
+.dialog#shoushadialoggua>.newTitle1xg {
+    left: -10px;
+    width: 100%;
+    top: -53px;
+    height: 50px;
+    text-align: center;
+    letter-spacing: 3px;
+    background: linear-gradient(#C8BEB4 1%, #FCF8CC 12%, #F3F0BE, #FEF5A8, #E1D275, #C9B173, #D6CB6F, #A99355, #AC9557, #A38A51, #A38A51, #B29983, #B19786, #B19786, #B19786, #9B8583), linear-gradient(to right, #FCF8CC, #AC9557);
+    font-family: 'HYZLSJ';
+    font-size: 42px;
+    font-weight: normal;
+    -webkit-background-clip: text;
+    text-shadow: none;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 0 0.5px #2F1809) drop-shadow(-2px 0 1.5px #2F1809) drop-shadow(0 2px 1px #2F1809) drop-shadow(0 -2px 1.5px #2F1809) blur(0.55px) saturate(1.25) contrast(1.25) grayscale(0.08) sepia(0.1);
+    z-index: 1;
+}

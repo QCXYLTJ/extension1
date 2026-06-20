@@ -1,0 +1,112 @@
+<html>
+<head>
+    <title>群英荟萃乀摧林扩展命令运行功能帮助</title>
+</head>
+<body>
+    <!--各js文件主要内容:
+    skills.js 部分翻译、卡牌类提示、globalSkills、地主技、阶段回合时机优化、必需武将补丁、神鬼无前&美猴王技能延展、ai&get&ui库函数
+    jiange.js 剑阁模式
+    mazhao.js 武将调整功能
+    characBuding.js 技能优化功能
+    yinwen.js 卡牌引文、武将称号&介绍
+    corret.js 描述优化功能
+    AIyh.js AI优化功能
+    cards.js 牌堆功能
+    reyinni.js 势力优化功能、dynamicTranslate、animate-->
+    <p style='text-align:right;margin-right:20px;'><input type="button" name="close" value="关闭(按Alt+Esc可最小化本窗口)"
+            onclick="window.close();" /></p>
+    <span style="font-size: x-large;">同一效果多种输入用<|>隔开,变量名用加粗斜体表示</span>
+    <table border="1" style="font-size: x-large;">
+        <tr>
+            <td>help|?|？|</td>
+            <td>查看帮助</td>
+        </tr>
+        <tr>
+            <td>cardcheck</td>
+            <td>核对牌堆是否符合牌表</td>
+        </tr>
+        <tr>
+            <td>Develop</td>
+            <td>处于开发人员模式则离开开发人员模式,否则进入开发人员模式(谨慎进入)</td>
+        </tr>
+        <tr>
+            <td>sortConfig <b><i>A</i></b></td>
+            <td><b><i>A</i></b>为一个由1~7这七个数字组成的一个七位数,每个数字必须且仅能出现一次,表示将扩展选项面板进行排序(1~用前须设;2~武将相关;3~卡牌相关;4~美化优化;5~模式相关;6~扩展相关;7~基建工具,非开发人员非首次使用推荐顺序:2345716;开发人员使用推荐顺序:7524361,联机用户则将6置于前两位)供复制:<br>sortConfig
+                2345716<br>sortConfig 7524361<br>sortConfig 2634571<br>sortConfig 7652431</td>
+        </tr>
+        <tr>
+            <td>lasttrans</td>
+            <td>查看最近一次有效翻译结果</td>
+        </tr>
+        <tr>
+            <td>ceshi</td>
+            <td>测试扩展是否正常运作,正常运作将会在重启游戏时弹出两个弹窗,如果只弹出一个或都不弹出,请请通过扩展群聊或扩展帖联系扩展作者感时花溅泪乀摧林</td>
+        </tr>
+        <tr>
+            <td>chuchang</td>
+            <td>令群英荟萃乀摧林扩展回复出厂设置</td>
+        </tr>
+        <tr>
+            <td>skinMove</td>
+            <td>调整<皮肤资源挪用>的状态(默认为不开启)</td>
+        </tr>
+        <tr>
+            <td>removeFight</td>
+            <td>调整<减冲突模式>的状态(手机端默认开启,电脑端默认不开启)</td>
+        </tr>
+        <tr>
+            <td>ui</td>
+            <td>开启扩展<其他UI补丁>时,切换是否显示<点击改变排版>,默认为显示</td>
+        </tr>
+        <tr>
+            <td>changeOpen</td>
+            <td>调整<文件打开方式>的状态(手机端默认为create式【新建一个对象,电脑使用不方便切屏,不推荐电脑使用】,电脑端默认为open式【打开一个窗口,手机使用会覆盖原窗口,不建议手机使用】,输入命令切换模式)
+            </td>
+        </tr>
+        <tr>
+            <td>tempJS <b><i>B</i></b></td>
+            <td>将扩展layout目录下的temp.js文件修改为<b><i>B</i></b>(用于紧急修复BUG使用)</td>
+        </tr>
+        <tr>
+            <td>tempJS</td>
+            <td>清空temp.js文件</td>
+        </tr>
+        <tr>
+            <td>dieaudio</td>
+            <td>扩展武将阵亡配音测试</td>
+        </tr>
+        <tr>
+            <td>sortCard A</td>
+            <td>排序A牌表,作者自用功能,慎用</td>
+        </tr>
+        <tr>
+            <td>pack</td>
+            <td>打包出厂,作者自用功能,慎用</td>
+        </tr>
+        <tr>
+            <td>extbeon</td>
+            <td>打开<extbeoff>记录的所有扩展</td>
+        </tr>
+        <tr>
+            <td>extbeoff</td>
+            <td>若有开启的扩展,关闭所有扩展并记录</td>
+        </tr>
+        <tr>
+            <td>cleverTrick</td>
+            <td>切换<智囊增加功能(令智囊增加【增兵减灶】和【调虎离山】)>的状态,默认为开启</td>
+        </tr>
+        <tr>
+            <td>crawler X Y Z</td>
+            <td>作者自用功能,并非完善功能,不建议使用</td>
+        </tr>
+        <tr>
+            <td>changeHuJia X</td>
+            <td>将护甲上限改为X(X为正整数),若输入不规范则默认为取消该设置</td>
+        </tr>
+        <tr>
+            <td>其余内容</td>
+            <td>与在命令框内输入此内容得到相同结果(结果会在游戏记录中打印)</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+.player>.Zq-shunfaanniu {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: calc(30%);
+    width: 45px;
+    height: 19px;
+    background-image: url(image/ui/button_ol.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    line-height: 18px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'yuanli';
+    /*字体*/
+    text-align: center;
+    color: white;
+    /*字体颜色,这个还有用*/
+}

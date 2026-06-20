@@ -1,0 +1,6 @@
+.player>.card-count {
+	width: 41px;
+	left: -7px;
+	background-size: 27px 27px;
+	background-position: 5px -1px;
+}

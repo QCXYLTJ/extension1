@@ -1,0 +1,8 @@
+/*十周年样式＆手杀样式一＆一将成名样式*/
+.player > .camp-wrap[data-camp="qx_han"] > .camp-back {
+	background: linear-gradient(to bottom, rgb(128, 0, 128), rgb(70, 3, 70));
+}
+/*手杀样式二*/
+.player > .camp-wrap[data-camp="qx_han"] > .camp-name {
+	text-shadow: 0 0 5px rgb(128, 0, 128), 0 0 10px rgb(128, 0, 128), 0 0 15px rgb(128, 0, 128);
+}
