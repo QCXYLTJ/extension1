@@ -1,0 +1,91 @@
+/*瞬发技按钮*/
+.player>.scqh_Shunfaji {
+	display: block;
+	position: absolute;
+	top: 0%;
+	right: 20%;
+	width: 60%;
+	height: 10%;
+	background-image: url(ui/scqh_shunfaji.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	z-index: 80;
+	cursor: pointer;
+	font-size: 15px;
+	font-family: "xinwei";
+	text-align: center;
+	color: white;
+}
+.player>.scqh_Shunfaji_Shan {
+	display: block;
+	position: absolute;
+	right: 22.5%;
+	top: calc(1%);
+	width: 70px;
+	height: 17px;
+	background-image: url(ui/scqh_shunfaji.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	z-index: 130;
+	cursor: pointer;
+	font-size: 15px;
+	font-family: "xinwei";
+	text-align: center;
+	color: white;
+}
+/*特殊名词解释对话框*/
+.scqh-dialog>.scqh-dialog-close {
+	position: absolute;
+	margin: 5px;
+	right: 3%;
+	top: 13px;
+	width: 30px;
+	height: 30px;
+	background-size: 100% 100%;
+	background-image: url(ui/scqh_dialog_close.png);
+}
+.scqh-dialog {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 40%;
+	height: 50%;
+	background-size: 100% 100%;
+	background-image: url(ui/scqh_dialog.png);
+	transform: translate(-50%, -50%);
+	z-index: 22;
+}
+.scqh-dialog>.scqh-dialog-icon {
+	position: absolute;
+	margin: 5px;
+	top: 40px;
+	width: 60px;
+	height: 60px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	box-shadow: 0 0 5px black;
+}
+.scqh-dialog>.scqh-dialog-text {
+	position: absolute;
+	margin: 5px;
+	top: 25%;
+	left: 10%;
+	width: 80%;
+	height: 65%;
+	font-family: "moren";
+	overflow: scroll;
+	font-size: 18px;
+	color: white !important;
+}
+.scqh-dialog>.scqh-dialog-title {
+	position: absolute;
+	margin: 5px;
+	top: 5%;
+	left: 10%;
+	width: 320px;
+	height: auto;
+	font-family: "xinwei";
+	font-size: 21px;
+	color: white !important;
+}

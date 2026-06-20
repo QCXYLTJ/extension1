@@ -1,0 +1,31 @@
+.daogui_text{
+    text-decoration: underline 10%;
+}
+/*.daogui_jia{
+    text-decoration: underline 10%;
+}*/
+.daogui_tip{
+    width: 20%;
+    min-height: 5%;
+    left: 50%;
+    top: 50%;
+    font-size: 16px;
+    color: #ccad76;
+    font-family: \'shousha\';
+    background-color: rgba(36, 29, 19, 0.85);
+    border: #523a24 3px solid;
+    border-radius: 10px;
+    position: absolute;
+    display: block;
+    padding: 8px;
+    transform: translate(-50%, -50%);
+    transition: none;
+}
+.daogui_beijing{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}

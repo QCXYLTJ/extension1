@@ -1,0 +1,50 @@
+内联元素 水平居中，使用text-align: center;
+垂直居中 1. line-heigh:100%;
+2. padding上下填充相同 块级元素 使用盒模型居中： 水平居中，使用 margin-left:auto;
+margin-right:auto;
+垂直居中 padding上下填充相同 eg. <div class="container"><div class="centered-element">居中的元素</div></div>.container {
+  height: 300px;
+  /* 设置容器高度，方便查看效果 */
+}
+.centered-element {
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: auto;
+  padding-bottom: auto;
+  /* 其他样式属性 */
+}
+使用绝对定位和负边距居中： 将要居中的元素设置为 position: absolute;
+，使用top: 50%;
+和left: 50%;
+将元素的左上角定位在父元素的中心位置 再使用负边距或translate将元素向左上角移动自身宽度和高度的一半 eg. <div class="container"><div class="centered-element">居中的元素</div></div>.container {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  /* 设置容器高度，方便查看效果 */
+}
+.centered-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 或者用负边距 */
+  /*
+  magin-left: -100px;
+  magin-top: -150px;
+  */
+  /* 其他样式属性 */
+}
+使用flex布局居中： 将父元素设置为display: flex;
+，并使用justify-content: center;
+和align-items: center;
+来实现水平和垂直居中。例如： <div class="container"><div class="centered-element">居中的元素</div></div>.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  /* 设置容器高度，方便查看效果 */
+}
+.centered-element {
+  /* 其他样式属性 */
+}

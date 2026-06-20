@@ -1,0 +1,7 @@
+.menu.main{
+	width: 400px;
+	height:500px;
+	position: absolute;
+	overflow:hidden;
+	padding:0;
+}

@@ -1,0 +1,426 @@
+.baojux {
+	position: absolute;
+	top: 50%;
+	height: 30px;
+	opacity: 0.8;
+	width: 50%;
+	background-color: #000000;
+}
+.baojux1 {
+	position: relative;
+	left: 0;
+	height: 30px;
+	width: 20%;
+	background-color: orange;
+}
+.baojux2 {
+	position: relative;
+	left: 10px;
+	height: 30px;
+	width: 20%;
+	background-color: blue;
+}
+.baojux3 {
+	left: 20px;
+	position: relative;
+	height: 30px;
+	width: 20%;
+	background-color: yellow;
+}
+.baojux4 {
+	position: relative;
+	left: 30px;
+	height: 30px;
+	width: 20%;
+	background-color: red;
+}
+#boxline {
+	position: absolute;
+	left: 50%;
+	width: 25%;
+	height: 43px;
+	top: 25%;
+	z-index: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+#box_zhuyin1 {
+	position: relative;
+	width: 25%;
+	height: 100%;
+	background-size: 100% 100%;
+	/* border: 1px dotted #eee; */
+}
+#box_zhuyin2 {
+	position: relative;
+	width: 25%;
+	height: 100%;
+	background-size: 100% 100%;
+	/* border: 1px dotted #eee; */
+}
+#box_fuyin1 {
+	position: relative;
+	width: 25%;
+	height: 100%;
+	background-size: 100% 100%;
+	/* border: 1px dotted #eee; */
+}
+#box_fuyin2 {
+	position: relative;
+	width: 25%;
+	height: 100%;
+	background-size: 100% 100%;
+	/* border: 1px dotted #eee; */
+}
+#baojuSelector {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 11;
+	display: none;
+	margin: auto;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	overflow: auto;
+	/* opacity: 0.8 !important; */
+	background-color: rgba(0, 0, 0, 0.85);
+}
+.toolbar {
+	height: 50px;
+	line-height: 50px;
+	position: relative;
+	padding-top: 10px;
+	display: block;
+}
+#yxsMainButton {
+	width: 5px;
+	height: 5px;
+	background-color: #000000;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#yxsMain {
+	width: 450px;
+	height: 300px;
+	background-color: #000000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	z-index: 99;
+	display: none;
+}
+.heroSel {
+	position: relative;
+	padding: 5px;
+}
+#skillSelectorBoxxx {
+	position: relative;
+	min-height: 200px;
+	overflow-y: auto;
+}
+#baojusave_box {
+	width: 450px;
+	height: 300px;
+	background-color: #000000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	z-index: 99;
+}
+#boxlinex {
+	position: absolute;
+	left: 45%;
+	width: 25%;
+	height: 30px;
+	top: 50%;
+	z-index: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: orange;
+}
+.zskillitems {
+	position: relative;
+	line-height: 20px;
+	padding: 10px;
+	height: 80px;
+	width: 50px;
+}
+.baojuimg {
+	width: 50px;
+	height: 50px;
+	position: relative;
+}
+.baojutext {
+	position: relative;
+}
+.mainbjbox {
+	position: relative;
+	top: 2px;
+	left: 5px;
+	margin-left: 3px;
+	width: 18px;
+	height: 18px;
+	background: #55201f;
+}
+#xxx {
+	position: relative;
+	height: 10px;
+	width: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 100;
+	top: 100px;
+}
+#chooseDiren {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 101;
+}
+.heroList {
+	position: relative;
+	margin-top: 20px;
+}
+.herolabel {
+	position: relative;
+	margin-left: 10px;
+}
+.zhulist1 {
+	position: relative;
+	margin-top: 20px;
+}
+.zhulist2 {
+	position: relative;
+	margin-top: 20px;
+}
+.fulist1 {
+	position: relative;
+	margin-top: 20px;
+}
+.fulist2 {
+	position: relative;
+	margin-top: 20px;
+}
+#heroname {
+	position: relative;
+}
+#heroz1 {
+	position: relative;
+}
+#heroz2 {
+	position: relative;
+}
+#herof1 {
+	position: relative;
+}
+#herof2 {
+	position: relative;
+}
+.closebtn {
+	position: relative;
+}
+#baojusavebox {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#userInput {
+	margin-bottom: 20px;
+}
+#passInput {
+	margin-bottom: 20px;
+}
+#btnbox {
+	display: flex;
+	flex-direction: row;
+	padding: 20px;
+	position: relative;
+	top: 10px;
+}
+#yinSelector {
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	position: absolute;
+	z-index: 20;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+#yincard {
+	width: 500px;
+	height: 260px;
+	left: calc(50% - 250px);
+	top: calc(50% - 150px);
+	animation: dialog_start2 0.3s;
+	-webkit-animation: dialog_start2 0.3s;
+	background-image: url(baoju/ybox.jpg);
+	background-size: 100% 100%;
+	border: 2px dotted #eee;
+}
+#yinSelector1 {
+	width: 100%;
+	height: 40px;
+	position: relative;
+}
+#yinSelector2 {
+	width: 100%;
+	height: 130px;
+	position: relative;
+}
+#yinSelector3 {
+	width: 100%;
+	height: 40px;
+	position: relative;
+}
+#yincloseBtn {
+	right: 3px;
+	height: 40px;
+	width: 40px;
+}
+#yincontent {
+	left: 14px;
+	top: 7px;
+	height: 100%;
+	width: 473px;
+}
+#yincontentImg {
+	height: 60px;
+	width: 60px;
+	background-size: 100% 100%;
+	left: 10px;
+	top: 10px;
+}
+#yincontentText {
+	left: 79px;
+	top: 10px;
+	width: 394px;
+	height: 113px;
+}
+#yintext1 {
+	text-shadow: none;
+	text-align: left;
+	left: 0;
+	height: 30px;
+	width: 300px;
+	font-size: 18px;
+	color: #000;
+}
+#yintext2 {
+	text-shadow: none;
+	text-align: left;
+	left: 0;
+	top: 30px;
+	height: 30px;
+	width: 300px;
+	font-size: 18px;
+	color: #000;
+}
+#yintext3 {
+	text-shadow: none;
+	text-align: left;
+	left: 0;
+	top: 60px;
+	height: 30px;
+	width: 383px;
+	font-size: 18px;
+	color: #000;
+}
+#yinbottomText {
+	text-shadow: none;
+	width: 100%;
+	text-align: center;
+	left: 0;
+	top: 25px;
+	font-size: 20px;
+	color: #000;
+}
+#gameMap {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #000000;
+	z-index: 1000;
+}
+#gameMapD1 {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+}
+#gameMapD2 {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	text-align: center;
+	align-items: center;
+}
+.gkStyle {
+	position: relative;
+	height: 50px;
+	width: 200px;
+	text-align: center;
+	color: #fff;
+	font-size: 30px;
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+	justify-content: center;
+	border-radius: 4px;
+	background-image: linear-gradient(rgba(47, 101, 150, 1), rgba(43, 90, 132, 1));
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 10px;
+	text-shadow: black 0 0 2px;
+	padding: 5px;
+	font-family: 'STXinwei', 'xinwei';
+}
+#mapClose {
+	position: relative;
+	margin-left: 100px;
+	font-size: 24px;
+}
+.baojubg {
+	z-index: 3000;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+.mytitle {
+	padding-top: 20px;
+	display: block;
+	position: relative;
+	font-size: 20px;
+	font-weight: bold;
+}
+.mycontent {
+	display: block;
+	position: relative;
+	margin-top: 10px;
+	line-height: 22px;
+}
+.impInfo {
+	display: block;
+	margin-top: 10px;
+	line-height: 22px;
+}

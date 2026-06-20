@@ -1,0 +1,19 @@
+.tplinexy {
+	pointer-events: none;
+	transition-property: transform,opacity;
+	width: 174px;
+	height: 123px;
+	z-index: 4;
+	transform-origin: top center;
+}
+.tplvshilinexy {
+	pointer-events: none;
+	transition-property: transform,opacity;
+	width: 128px;
+	height: 128px;
+	z-index: 4;
+	transform-origin: top center;
+}
+.tplinexy.drag{
+	transition-property: none !important;
+}
