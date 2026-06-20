@@ -1,0 +1,206 @@
+.xtlditu {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 824;
+}
+.xtldialog {
+  width: 265px;
+  height: 320px;
+  position: absolute;
+  background-image: url(image/taofen/xtl_dialog.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  right: calc(16.2% - 20px);
+  top: calc(66.7% - 340px);
+  transform-origin: top right;
+  z-index: 999;
+}
+.xtlbtn {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background-image: url(image/taofen/xtl_btn.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  left: 83.8%;
+  bottom: 33.3%;
+  z-index: 5;
+}
+.xtlnulishuliang {
+  position: absolute;
+  height: 5%;
+  width: 30%;
+  left: 67%;
+  top: 59%;
+  z-index: 5;
+}
+.xtlbaoshoupai {
+  position: absolute;
+  height: 1.5%;
+  width: 30%;
+  left: 5%;
+  top: 25%;
+  z-index: 5;
+}
+.xtlgaigepai {
+  position: absolute;
+  height: 1.5%;
+  width: 30%;
+  left: 5%;
+  top: 36%;
+  z-index: 5;
+}
+.xtljunguopai {
+  position: absolute;
+  height: 1.5%;
+  width: 30%;
+  left: 5%;
+  top: 47%;
+  z-index: 5;
+}
+.xtldangweijun {
+  position: absolute;
+  height: 1.5%;
+  width: 30%;
+  left: 5%;
+  top: 58%;
+  z-index: 5;
+}
+.xtlqiye1 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 1.5%;
+  top: 72.5%;
+  color: red;
+  z-index: 5;
+}
+.xtlqiye2 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 21.5%;
+  top: 72.5%;
+  color: red;
+  z-index: 5;
+}
+.xtlqiye3 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 1.5%;
+  top: 86%;
+  color: red;
+  z-index: 5;
+}
+.xtlqiye4 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 21.5%;
+  top: 86%;
+  color: red;
+  z-index: 5;
+}
+.xtlxiangmu1 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 64%;
+  top: 79%;
+  text-align: left;
+  font-size: 5px;
+  z-index: 5;
+}
+.xtlxiangmu2 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 90.5%;
+  top: 79%;
+  text-align: left;
+  font-size: 5px;
+  z-index: 5;
+}
+.xtlxiangmu3 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 52%;
+  top: 83.5%;
+  text-align: left;
+  font-size: 5px;
+  z-index: 5;
+}
+.xtlxiangmu4 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 90.4%;
+  top: 83.5%;
+  text-align: left;
+  font-size: 5px;
+  z-index: 5;
+}
+.xtlxiangmu5 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 56%;
+  top: 88%;
+  text-align: left;
+  font-size: 5px;
+  z-index: 5;
+}
+.xtlxiangmu6 {
+  position: absolute;
+  height: 1%;
+  width: 25%;
+  left: 91.2%;
+  top: 88%;
+  text-align: left;
+  font-size: 5px;
+  z-index: 5;
+}
+.wklditu {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 824;
+}
+.wkldialog {
+  width: 280px;
+  height: 335px;
+  position: absolute;
+  background-image: url(image/taofen/wkl_dialog.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  right: calc(16.2% - 20px);
+  top: calc(88% - 340px);
+  transform-origin: top right;
+  z-index: 999;
+}
+.wklbtn {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  background-image: url(image/taofen/wkl_btn.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  left: 83.8%;
+  bottom: 33.3%;
+  z-index: 5;
+}
+.wkldiqufazhan {
+  position: absolute;
+  height: 5%;
+  width: 30%;
+  left: 67%;
+  top: 59%;
+  z-index: 5;
+}

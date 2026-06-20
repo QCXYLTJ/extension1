@@ -1,0 +1,8807 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+}
+.tsymq_windowPrompt {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-color: hsla(0, 0%, 0%, 0.842);
+  z-index: 10;
+}
+.tsymq_windowPromptBody {
+  width: 50vmax;
+  height: 28vmax;
+  left: 50%;
+  top: 50%;
+  margin-left: -25vmax;
+  margin-top: -14vmax;
+  font-size: 1vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/icon_jianglichuangkou.png);
+  box-shadow: 0 0 40px #000000;
+}
+.tsymq_windowPromptBody2 {
+  width: 70vmax;
+  height: 40vmax;
+  left: 50%;
+  top: 50%;
+  margin-left: -35vmax;
+  margin-top: -20vmax;
+  font-size: 1vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame11.png);
+  box-shadow: 0 0 40px #000000;
+}
+.tsymq_windowPromptTitle {
+  width: 96%;
+  height: 9%;
+  top: 4.5%;
+  left: 2%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-indent: 1vw;
+  letter-spacing: 1vw;
+  font-size: 2vw;
+  font-family: JiZiDBSS;
+  color: rgba(255, 255, 255, 1);
+}
+.tsymq_windowPromptTitle2 {
+  width: 96%;
+  height: 9%;
+  top: 4.5%;
+  left: 2%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-indent: 0.8vw;
+  letter-spacing: 0.5vw;
+  font-size: 1.8vw;
+  font-family: yuanli;
+  color: #fdc507;
+}
+.tsymq_windowPromptText {
+  position: absolute;
+  width: 96%;
+  height: 80%;
+  bottom: 1%;
+  left: 2%;
+  text-align: left;
+  text-indent: 3.2vw;
+  font-size: 1.6vw;
+  font-family: JiZiDBSS;
+  color: rgba(255, 255, 255, 1);
+}
+.tsymq_windowPromptText2 {
+  position: absolute;
+  width: 92%;
+  height: 85%;
+  bottom: 3%;
+  left: 4%;
+  text-align: left;
+  text-indent: 2.4vw;
+  line-height: 150%;
+  font-size: 1.2vw;
+  font-family: yuanli;
+  color: #fdc507;
+  overflow: auto;
+}
+.tsymq_windowPromptText3 {
+  position: absolute;
+  width: 96%;
+  height: 15%;
+  bottom: 12%;
+  left: 2%;
+  text-align: center;
+  text-indent: 3.2vw;
+  font-size: 2.5vw;
+  font-family: yuanli;
+  color: rgba(25, 25, 25, 1);
+}
+.tsymq_windowPromptText4 {
+  position: absolute;
+  width: 96%;
+  height: 15%;
+  bottom: 25%;
+  left: 2%;
+  text-align: center;
+  font-size: 2.5vw;
+  font-family: yuanli;
+  color: rgba(25, 25, 25, 1);
+}
+.tsymq_windowPromptText5 {
+  position: absolute;
+  width: 96%;
+  height: 30%;
+  top: 20%;
+  left: 2%;
+  text-align: center;
+  text-indent: 3.2vw;
+  font-size: 2.5vw;
+  font-family: yuanli;
+  color: rgba(25, 25, 25, 1);
+}
+.tsymq_windowPromptSlider {
+  position: absolute;
+  width: 90%;
+  height: 2%;
+  bottom: 5%;
+  left: 5%;
+  border-radius: 2vw;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/slider_frame_1.png);
+  /*border-radius:25px;
+  border: 1px solid #F0D;*/
+}
+.tsymq_windowPromptSliderBody {
+  position: absolute;
+  width: 99.5%;
+  height: 100%;
+  left: 0.25%;
+  top: 0%;
+  border-radius: 2vw;
+  overflow: hidden;
+  text-align: center;
+  z-index: 10;
+}
+.tsymq_windowPromptSliderColor {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  left: 0.5%;
+  top: 20%;
+  overflow: visible;
+  pointer-events: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/slider_color_1.png);
+  -webkit-transition: all 0s;
+  z-index: 1;
+}
+.tsymq_windowPromptSliderNum {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: JiZiDBSS;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 11;
+}
+#tsymq_windowPromptText3 {
+  position: absolute;
+  width: 50%;
+  height: 4%;
+  bottom: 9%;
+  left: 25%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  font-family: yuanli;
+  color: #fdc507;
+}
+.tsymq_windowPromptButton1 {
+  position: absolute;
+  width: 18%;
+  height: 9%;
+  bottom: 3%;
+  left: 30%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-indent: 1vw;
+  letter-spacing: 1vw;
+  font-size: 1.7vw;
+  font-family: Microsoft YaHei;
+  color: rgba(255, 255, 255, 1);
+  z-index: 10;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_click3.png);
+}
+.tsymq_windowPromptButton1:hover {
+  -webkit-transform: scale(1.2);
+}
+.tsymq_windowPromptButton2 {
+  position: absolute;
+  width: 18%;
+  height: 9%;
+  bottom: 3%;
+  right: 30%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-indent: 1vw;
+  letter-spacing: 1vw;
+  font-size: 1.7vw;
+  font-family: Microsoft YaHei;
+  color: rgba(255, 255, 255, 1);
+  z-index: 10;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_click2.png);
+}
+.tsymq_windowPromptButton2:hover {
+  -webkit-transform: scale(1.2);
+}
+.tsymq_windowPromptButton4 {
+  position: absolute;
+  width: 18%;
+  height: 9%;
+  bottom: 3%;
+  left: 30%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 4.5vw;
+  font-size: 3.0vw;
+  font-family: yuanli;
+  color: rgba(255, 255, 255, 1);
+  z-index: 10;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_click3.png);
+}
+.tsymq_windowPromptButton4:hover {
+  -webkit-transform: scale(1.1);
+}
+.tsymq_windowPromptButton5 {
+  position: absolute;
+  width: 18%;
+  height: 9%;
+  bottom: 3%;
+  right: 30%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 4.5vw;
+  font-size: 3.0vw;
+  font-family: yuanli;
+  color: rgba(255, 255, 255, 1);
+  z-index: 10;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_click2.png);
+}
+.tsymq_windowPromptButton5:hover {
+  -webkit-transform: scale(1.1);
+}
+.tsymq_windowPromptButton3 {
+  position: absolute;
+  width: 16%;
+  height: 7%;
+  bottom: 15%;
+  left: 42%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 3.0vw;
+  font-size: 1.7vw;
+  font-family: Microsoft YaHei;
+  color: #fdc507;
+  z-index: 10;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon2.png);
+}
+.tsymq_windowPromptButton3:hover {
+  -webkit-transform: scale(1.2);
+}
+.tsymq_myBody {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.tsymq_myBackground {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 40px #610909;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: hsla(0, 0%, 0%, 0.842);
+  /*background-image: url(../../extension/武将界面/image/background/bg_synthesis.png);*/
+}
+.tsymq_myBox {
+  width: 50%;
+  height: 0%;
+  top: 50%;
+  left: 50%;
+  padding-bottom: 50%;
+  background-color: lightblue;
+  font-size: 1vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: JiZiDBSS;
+  background-color: #68228B;
+  box-shadow: 0 0 40px #7D26CD;
+  transform: translate(-50%, -50%);
+}
+.tsymq_myBox:after {
+  content: "";
+  width: 0;
+  height: 5px;
+  position: absolute;
+  background: white;
+  top: 100%;
+  right: 50%;
+  transition: all .5s;
+}
+.tsymq_myBox:hover:after {
+  width: 100%;
+  right: 0;
+}
+#loading {
+  position: absolute;
+  z-index: 2;
+  height: 5%;
+  border: 1px solid rgba(255, 255, 0, 1);
+  filter: progid:DXImageTransform.microsoft.gradient(gradienttype=1, startColorStr=white, endColorStr=#39867b);
+  background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+  pointer-events: none;
+}
+#tsymq_shelte {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2021;
+}
+#loadtext {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 1);
+  z-index: 3;
+  width: 100%;
+  height: 5%;
+  line-height: 23px;
+  text-align: center;
+  pointer-events: none;
+}
+@font-face {
+  font-family: 'JiZiDBSS';
+  src: local('极字经典大标宋简繁-闪'), url(../../extension/武将界面/image/fonts/JiZiDBSS.ttf);
+}
+#tsymq_synthesis_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg_synthesis.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_body {
+  position: absolute;
+  width: 100%;
+  height: 87%;
+  left: 0%;
+  top: 8%;
+  border: 1px solid rgba(255, 222, 173, 1);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_playbody {
+  position: absolute;
+  width: 46%;
+  height: 98%;
+  left: 0%;
+  top: -1%;
+  /*border: 1px solid rgba(255 ,222, 173,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/frame/icon_frame_square9.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_playbody_box {
+  position: absolute;
+  width: 92%;
+  height: 85%;
+  left: 4%;
+  bottom: 2%;
+  text-align: center;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: auto;
+}
+#tsymq_synthesis_div {
+  position: relative;
+  width: 14%;
+  height: 22%;
+  left: 0%;
+  top: 2%;
+  margin: 0% 3% 3% 3%;
+}
+#tsymq_synthesis_divInfo {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  left: 0%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+  font-family: yuanli;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_workshop {
+  position: absolute;
+  width: 47.8%;
+  height: 85%;
+  left: 44%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/icon_frame_square10.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_workshop_prop1 {
+  position: absolute;
+  width: 12.25%;
+  height: 15%;
+  top: 2.5%;
+  right: 43.25%;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_propName {
+  position: absolute;
+  width: 15%;
+  height: 90%;
+  top: 0%;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.75vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon_shuimo.png);
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_propNum {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  right: 3%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  pointer-events: none;
+}
+#tsymq_synthesis_workshop_prop2 {
+  position: absolute;
+  width: 12.25%;
+  height: 15%;
+  bottom: 20%;
+  left: 16.25%;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_prop3 {
+  position: absolute;
+  width: 12.25%;
+  height: 15.25%;
+  bottom: 20%;
+  right: 16.25%;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_play1 {
+  position: absolute;
+  width: 8%;
+  height: 10%;
+  top: 82%;
+  right: 45.2%;
+  border: 2px solid rgba(37, 35, 47, 1);
+  background: -webkit-linear-gradient(top, rgba(93, 22, 22, 0.5), rgba(44, 4, 4, 1));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_play1Name {
+  position: absolute;
+  width: 30%;
+  height: 4%;
+  top: 92%;
+  right: 34.35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+  font-family: yuanli;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+}
+#tsymq_synthesis_workshop_probability {
+  position: absolute;
+  width: 30%;
+  height: 4%;
+  top: 98%;
+  right: 34.25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+  font-family: Microsoft YaHei;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+}
+#tsymq_synthesis_workshop_play2 {
+  position: absolute;
+  width: 12.25%;
+  height: 15.25%;
+  top: 43.25%;
+  right: 43.25%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_speed {
+  position: absolute;
+  width: 31%;
+  height: 38.5%;
+  top: 31.7%;
+  right: 34%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_circular_speed4.png);
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_frame {
+  position: absolute;
+  width: 21%;
+  height: 23%;
+  top: 41.5%;
+  right: 39%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/icon_frame_square11.png);
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_workshop_start {
+  position: absolute;
+  width: 30%;
+  height: 13%;
+  bottom: -16%;
+  right: 34%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.25vw;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_confirm4.png);
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_synthesis_gemstone {
+  position: absolute;
+  width: 8%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(37, 35, 47, 0.75);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_gemstone_div {
+  position: relative;
+  width: 80%;
+  height: 15%;
+  top: 2%;
+  right: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+  margin: 0% 1% 5% 1%;
+}
+#tsymq_synthesis_gemstone_info {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0%;
+  top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: yuanli;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_synthesis_gemstone_box {
+  position: absolute;
+  width: 100%;
+  height: 95%;
+  left: 0%;
+  bottom: 0%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+}
+#tsymq_synthesis_returnBodr {
+  position: absolute;
+  width: 3.0%;
+  height: 5.5%;
+  top: 0%;
+  right: 1%;
+  border-radius: 50%;
+  /*border: 1px solid rgba(255 ,255 ,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 2021;
+}
+#tsymq_DisplayPage {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+}
+#tsymq_DisplayPage_bg {
+  position: absolute;
+  width: 101%;
+  height: 50%;
+  left: -0.5%;
+  top: 25%;
+  border: 1px solid rgba(255, 222, 173, 1);
+  background: -webkit-linear-gradient(top, rgba(0, 139, 139, 1), rgba(0, 104, 139, 1));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.2s;
+  animation-duration: 0.6s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: sizeAnimation-2;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+#tsymq_DisplayPage_Line {
+  position: absolute;
+  width: 100%;
+  height: 98%;
+  left: 0%;
+  top: 0.75%;
+  border: 1px solid rgba(255, 222, 173, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.2s;
+}
+#tsymq_DisplayPage_body {
+  position: absolute;
+  width: 90%;
+  height: 96%;
+  left: 5%;
+  top: 2%;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.2s;
+}
+#tsymq_DisplayPage_div {
+  position: relative;
+  width: 12.5%;
+  height: 44%;
+  left: 0%;
+  top: 1.5%;
+  z-index: 10;
+  border: 1px solid rgba(255, 222, 173, 1);
+  margin: 0% 3% 1% 3%;
+  overflow: hidden;
+}
+#tsymq_DisplayPage_imp {
+  position: absolute;
+  width: 100%;
+  height: 130%;
+  left: 0%;
+  top: 0%;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#tsymq_DisplayPage_name {
+  position: absolute;
+  width: 100%;
+  height: 18%;
+  left: 0%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+  font-family: yuanli;
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+.tsymq_unlockPopup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 2022;
+}
+.tsymq_unlockPopupBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg6.png);
+}
+.tsymq_unlockPopupBody0 {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  left: 50%;
+  top: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.tsymq_unlockPopupBody {
+  position: absolute;
+  width: 0%;
+  height: 0;
+  left: 50%;
+  top: 17%;
+  text-align: center;
+  padding-bottom: 30%;
+  background-color: #5D478B;
+  /*border: 2px solid #FFD39B;*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/bg4.jpg);
+  animation-duration: 0.8s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: sizeAnimation-4;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes sizeAnimation-3 {
+  0% {
+    top: 0%;
+    height: 0%;
+  }
+  15% {
+    top: 25%;
+    height: 2.5%;
+  }
+  35% {
+    top: 25%;
+    height: 2.5%;
+  }
+  to {
+    top: 25%;
+    height: 50%;
+  }
+}
+@keyframes sizeAnimation-4 {
+  0% {
+    width: 0%;
+    left: 50%;
+  }
+  to {
+    width: 100%;
+    left: 0%;
+  }
+}
+.tsymq_unlockPopupBody2 {
+  position: absolute;
+  width: 0%;
+  height: 84%;
+  left: 50%;
+  top: 8%;
+  text-align: center;
+  /*border: 1px solid #FFD39B;*/
+  animation-duration: 1.2s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: sizeAnimation-4;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymq_unlockPopupBodyJuanzhou {
+  position: absolute;
+  width: 99%;
+  height: 100%;
+  left: 0.5%;
+  top: 0%;
+  /*border: 1px solid #F0D;*/
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/juanzhou.png);
+}
+.tsymq_unlockPopupBodyJuanzhouDibuBG {
+  position: absolute;
+  width: 62%;
+  height: 88%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  text-align: center;
+}
+.tsymq_unlockPopupBodyJuanzhouRecordBody {
+  position: absolute;
+  width: 20%;
+  height: 87%;
+  top: 6%;
+  left: 5%;
+  text-align: center;
+  font-size: 1.2vw;
+  color: #fff;
+  font-family: shousha;
+  overflow: auto;
+  white-space: nowrap;
+  /*border: 1px solid #FFD39B;*/
+}
+.tsymq_unlockPopupBodyJuanzhouRecordICON {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  bottom: 7%;
+  left: 28vw;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/record.png);
+}
+.tsymq_unlockPopupBodyJuanzhouRecordNum {
+  position: absolute;
+  width: 10vw;
+  height: 2vw;
+  bottom: 7%;
+  left: 22.5vw;
+  text-align: left;
+  font-size: 1.0vw;
+  line-height: 1.0vw;
+  color: #fff;
+  font-family: shousha;
+}
+.tsymq_unlockPopupBodyJuanzhouRuleBody {
+  position: absolute;
+  width: 16vw;
+  height: 20vw;
+  top: 18%;
+  right: 7%;
+  text-align: left;
+  text-indent: 1.0vw;
+  font-size: 1.0vw;
+  line-height: 1.5vw;
+  color: #fff;
+  font-family: shousha;
+  overflow: auto;
+  /*border: 1px solid #FFD39B;*/
+}
+.tsymq_unlockPopupBodyJuanzhouGuangHuan1 {
+  position: absolute;
+  width: 78%;
+  height: 0%;
+  top: -10%;
+  left: 10.5%;
+  border-radius: 50%;
+  /*border: 1px solid #F0D;*/
+  padding-bottom: 78%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/guanghuan1.png);
+  -webkit-transition: all 0.1s;
+  animation-duration: 30s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-1;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymq_unlockPopupBodyJuanzhouGuangHuan2 {
+  position: absolute;
+  width: 54%;
+  height: 0%;
+  top: 7%;
+  left: 22.5%;
+  border-radius: 50%;
+  /*border: 1px solid #F0D;*/
+  padding-bottom: 54%;
+  /*transform: translate(-50%,-50%);/*字体会变模糊*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/guanghuan2.png);
+}
+.tsymq_unlockPopupBodyJuanzhouGuangHuan3 {
+  position: absolute;
+  width: 60%;
+  height: 0%;
+  top: 20%;
+  left: 20%;
+  /*border: 1px solid #F0D;*/
+  padding-bottom: 60%;
+  /*transform: translate(-50%,-50%);/*字体会变模糊*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/guanghuan3.png);
+  -webkit-transition: all 0.1s;
+  animation-duration: 30s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-2;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes zhuanAnimation-2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.tsymq_unlockPopupBodyJuanzhouGuangHuan4 {
+  position: absolute;
+  width: 26%;
+  height: 0%;
+  top: 37%;
+  left: 37%;
+  /*border: 1px solid #F0D;*/
+  padding-bottom: 26%;
+  /*transform: translate(-50%,-50%);/*字体会变模糊*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.0vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/guanghuan4.png);
+  -webkit-transition: all 0.1s;
+  animation-duration: 30s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-2;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymq_unlockPopupBodyJuanzhouGuangHuan5 {
+  position: absolute;
+  width: 40%;
+  height: 0%;
+  top: 30%;
+  left: 30%;
+  /*border: 1px solid #F0D;*/
+  padding-bottom: 40%;
+  /*transform: translate(-50%,-50%);/*字体会变模糊*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/guanghuan5.png);
+  -webkit-transition: all 0.3s;
+  animation-duration: 20s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-3;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes zhuanAnimation-3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes zhuanAnimation-4 {
+  0% {
+    -webkit-transform: scale(1) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: scale(1.4) rotate(360deg);
+  }
+  95% {
+    -webkit-transform: scale(1.4) rotate(7200deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate(14400deg);
+  }
+}
+.tsymq_unlockPopupBodyJuanzhouLucky {
+  position: absolute;
+  width: 26%;
+  height: 0%;
+  top: 46%;
+  left: 37%;
+  padding-bottom: 26%;
+  text-align: center;
+  font-size: 1.25vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+}
+.tsymq_unlockPopupBodyJuanzhouStart1 {
+  position: absolute;
+  width: 13%;
+  height: 10.65%;
+  bottom: 10%;
+  right: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.0vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon3.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStart1:hover {
+  background-image: url(../../extension/武将界面/image/icon/icon4.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStart2 {
+  position: absolute;
+  width: 13%;
+  height: 10.65%;
+  bottom: 22%;
+  right: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.0vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon3.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStart2:hover {
+  background-image: url(../../extension/武将界面/image/icon/icon4.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStart3 {
+  position: absolute;
+  width: 7%;
+  height: 0;
+  bottom: 8%;
+  right: 24%;
+  padding-bottom: 7%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_card_secret.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStart3:hover {
+  -webkit-transform: scale(1.2);
+}
+.tsymq_unlockPopupBodyJuanzhouStorageBody {
+  position: absolute;
+  width: 22%;
+  height: 8%;
+  top: 7%;
+  right: 6%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/show_duobao.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStorageIcon {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_xunbaoling.png);
+}
+.tsymq_unlockPopupBodyJuanzhouStorageNum {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  top: 0%;
+  left: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 2.0vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+}
+.tsymq_unlockPopupBodyJuanzhouOff {
+  position: absolute;
+  width: 4.85%;
+  height: 10.5%;
+  top: 5.5%;
+  right: 6%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_off_1.png);
+}
+.tsymq_unlockPopupBodyJuanzhouBoxs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  right: 0%;
+  border-radius: 50%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+}
+.tsymq_unlockPopupBodyJuanzhouBoxsDiv {
+  position: absolute;
+  width: 14%;
+  height: 14%;
+  top: 0%;
+  right: 0%;
+  text-align: center;
+  -webkit-transition: all 0.3s;
+  background-color: rgba(255, 248, 220, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/prize-box4.png);
+  /*box-shadow: 0 0 5px yellow,0 0 10px yellow,0 0 5px yellow,0 0 10px yellow;*/
+}
+.tsymq_unlockPopupBox {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  bottom: 5%;
+  left: 15%;
+  text-align: center;
+  /*border: 1px solid #FFD700;*/
+}
+.tsymq_choiceOrAwardDiv {
+  position: relative;
+  width: 14%;
+  height: 0;
+  top: 2%;
+  left: 0%;
+  padding-bottom: 14%;
+  -webkit-transition: all 0.1s;
+  animation-duration: 0.4s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-13;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+  margin: 0% 2.5% 5% 2.5%;
+  /*border: 1px solid #FFD700;*/
+}
+.tsymq_choiceOrAwardDivBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/prize-box.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymq_choiceOrAwardDivBg2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/prize-box.png);
+  -webkit-transition: all 0.1s;
+  animation-duration: 30s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-1;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes zhuanAnimation-1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.tsymq_choiceOrAwardDivImp {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  overflow: hidden;
+}
+.tsymq_choiceOrAwardDivName {
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  right: 0%;
+  top: 115%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.8vw;
+  color: #000;
+  white-space: nowrap;
+  font-family: yuanli;
+}
+.tsymq_choiceOrAwardDivType {
+  position: absolute;
+  width: 25%;
+  height: 45%;
+  right: 4%;
+  top: -1%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tsymq_choiceOrAwardDivRank {
+  position: absolute;
+  width: 40%;
+  height: 35%;
+  right: 30%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: xinwei;
+  font-size: 38px;
+  color: rgb(255, 255, 255);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 6;
+  animation-duration: 0.2s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: xyzAnimation-1;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymq_choiceOrAwardDivNum {
+  position: absolute;
+  width: 95%;
+  height: 0%;
+  right: 5%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  font-size: 1.5vw;
+  color: #000;
+  font-family: JiZiDBSS;
+}
+.tsymq_unlockPopupDiv {
+  position: absolute;
+  width: 17%;
+  height: 80%;
+  top: 10%;
+  left: 41.5%;
+  -webkit-transition: all 0.1s;
+  animation-duration: 0.4s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-13;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymq_unlockPopupDivHpNum {
+  position: absolute;
+  width: 80%;
+  height: 20%;
+  top: 50%;
+  left: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 2vw;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center center;
+}
+.tsymq_unlockPopupBodyTop {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  left: 50%;
+  top: -25%;
+  overflow: hidden;
+}
+.tsymq_unlockPopupBodyTop-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 100%;
+  top: 0%;
+  -webkit-transition: all 0.3s;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/bg5-1.png);
+}
+.tsymq_unlockPopupBodyTop-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  top: 0%;
+  -webkit-transition: all 0.3s;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/bg5-2.png);
+}
+.tsymq_unlockPopupBodyTitle {
+  position: absolute;
+  width: 50%;
+  height: 20%;
+  left: 25%;
+  top: -20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3.5vw;
+  text-indent: 1vw;
+  letter-spacing: 0.5vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: JiZiDBSS;
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+}
+.tsymq_unlockPopupBodyTips {
+  position: absolute;
+  width: 20%;
+  height: 6%;
+  left: 40%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 2vw;
+  color: rgba(255, 255, 255, 1);
+  font-family: yuanli;
+  -webkit-transition: all 0.2s;
+  pointer-events: none;
+  opacity: 1;
+  animation-duration: 3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-1;
+  /*动画名称*/
+  animation-iteration-count: infinite;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes opacityAnimation-1 {
+  0% {
+    opacity: 0.1;
+    -webkit-transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+  }
+  to {
+    opacity: 0.1;
+    -webkit-transform: scale(1);
+  }
+}
+.tsymq_unlockPopup_body_jiangdengBox {
+  position: absolute;
+  width: 30%;
+  height: 8%;
+  left: 35%;
+  bottom: 4%;
+  z-index: 10;
+}
+.tsymq_unlockPopup_body_jiangdengBoxImp {
+  position: absolute;
+  width: 16%;
+  height: 0%;
+  left: 5%;
+  bottom: 0%;
+  padding-bottom: 16%;
+}
+.tsymq_unlockPopup_body_jiangdengBoxbg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.2s;
+  animation-duration: 50s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: zhuanAnimation;
+  /*动画名称*/
+  animation-iteration-count: infinite;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+  z-index: 10;
+}
+.tsymq_unlockPopup_body_jiangdengImpText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2vw;
+  color: rgb(255, 255, 255);
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+}
+.tsymq_unlockPopup_body_jiangdengBoxSpeed {
+  position: absolute;
+  width: 82%;
+  height: 80%;
+  left: 18%;
+  bottom: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/jiangdeng_bg.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+.tsymq_unlockPopup_body_jiangdengcolorbody {
+  position: absolute;
+  width: 88%;
+  height: 60%;
+  left: 0%;
+  bottom: 20%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+.tsymq_unlockPopup_body_jiangdengSpeedColor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  bottom: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/jiangdeng_speedColor.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+.tsymq_unlockPopup_body_jiangdengText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.3vw;
+  color: #000;
+  font-family: yuanli;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+  z-index: 10;
+}
+.tsymq_secret_Shop {
+  position: absolute;
+  width: 97%;
+  height: 100%;
+  top: 0%;
+  left: 1.5%;
+  opacity: 1;
+  z-index: 10;
+}
+.tsymq_secret_Shop_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg_shenmishangdian.png);
+  -webkit-transition: all 0.2s;
+}
+.tsymq_secret_Shop_body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.2s;
+}
+.tsymq_secret_Shop_returnBodr {
+  position: absolute;
+  width: 4.2%;
+  height: 9%;
+  top: 1.25%;
+  right: 2.4%;
+  /*border: 1px solid rgba(255 ,255 ,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 2021;
+}
+.tsymq_secret_Shop_coin {
+  position: absolute;
+  width: 11.5%;
+  height: 5%;
+  right: 20.5%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.5vw;
+  color: #fff;
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_secret_Shop_jiangfu {
+  position: absolute;
+  width: 11.5%;
+  height: 5%;
+  right: 7.15%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.5vw;
+  color: #fff;
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_secret_Shop_Lock {
+  position: absolute;
+  width: 3.5%;
+  height: 6.5%;
+  right: 11%;
+  top: 1%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_lock.png);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_secret_Shop_Menu {
+  position: absolute;
+  width: 3.5%;
+  height: 6.5%;
+  right: 15%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_menu.png);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+.tsymq_secret_Shop_Hero {
+  position: absolute;
+  width: 3.5%;
+  height: 6%;
+  left: 11%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_hero1.png);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+.tsymq_secret_Shop_Skin {
+  position: absolute;
+  width: 3.5%;
+  height: 6%;
+  left: 15%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_skin1.png);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+.tsymq_secret_Shop_Update {
+  position: absolute;
+  width: 3.5%;
+  height: 6%;
+  left: 19%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_lock.png);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+.tsymq_secret_Shop_box {
+  position: absolute;
+  width: 93%;
+  height: 82%;
+  left: 3.5%;
+  top: 15.75%;
+  /*border: 1px solid rgba(255 ,255 ,0,1);*/
+  -webkit-transition: all 0.2s;
+  overflow: auto;
+  text-align: center;
+}
+.tsymq_secret_Shop_boxHuojia {
+  position: relative;
+  width: 100%;
+  height: 46%;
+  left: 0%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  overflow: auto;
+  text-align: center;
+}
+.tsymq_secret_Shop_boxHuojiaImp {
+  position: absolute;
+  width: 100%;
+  height: 23%;
+  left: 0%;
+  bottom: 15%;
+  -webkit-transition: all 0.2s;
+  overflow: auto;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/other/bg_shenmishangdianH.png);
+}
+.tsymq_secret_Shop_cardBody {
+  position: relative;
+  width: 15%;
+  height: 90%;
+  left: 0%;
+  top: 10%;
+  -webkit-transition: all 0.2s;
+  margin: 0% 1.2% 0% 1.2%;
+  /*border: 1px solid rgba(255 ,255 ,0,1);*/
+}
+.tsymq_secret_Shop_cardBottom {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  left: 0%;
+  bottom: 17.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/prop_bottom.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_secret_Shop_cardBody2 {
+  position: relative;
+  width: 17.5%;
+  height: 35%;
+  left: 0%;
+  top: 2%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/icon_frame_square4.png);
+  -webkit-transition: all 0.2s;
+  margin: 0% 1% 2% 1%;
+}
+#tsymq_useOrOpenProp_cardChange {
+  position: absolute;
+  width: 70%;
+  height: 16%;
+  left: 15%;
+  top: 70%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon_confirm2.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_useOrOpenProp_cardChange2 {
+  position: absolute;
+  width: 70%;
+  height: 16%;
+  left: 15%;
+  top: 70%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon_confirm3.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_useOrOpenProp_cardValue {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: #fff;
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_useOrOpenProp_cardStr {
+  position: absolute;
+  width: 15%;
+  height: 13%;
+  right: 19%;
+  bottom: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_useOrOpenProp_cardText {
+  position: absolute;
+  width: 97%;
+  height: 10%;
+  left: 1%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_shopPopup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+}
+#tsymq_shopPopup_bg {
+  position: absolute;
+  width: 98%;
+  height: 100%;
+  left: 1%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/frame19.png);
+  -webkit-transition: all 0.2s;
+}
+#tsymq_shopPopup_body {
+  position: absolute;
+  width: 85%;
+  height: 78.5%;
+  left: 7.5%;
+  top: 14.5%;
+  -webkit-transition: all 0.2s;
+}
+.tsymq_shopPopup_top {
+  position: absolute;
+  width: 98%;
+  height: 6%;
+  left: 1%;
+  top: 0.8%;
+  -webkit-transition: all 0.2s;
+}
+#tsymq_shopPopup_coin_icon {
+  position: absolute;
+  width: 4%;
+  height: 90%;
+  left: 0%;
+  top: 5%;
+  background-color: rgba(139, 59, 60, 1);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_shopPopup_coinbody {
+  position: absolute;
+  width: 14%;
+  height: 90%;
+  left: 56.5%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.5vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_shopPopup_coin_icon2 {
+  position: absolute;
+  width: 4%;
+  height: 90%;
+  left: 19%;
+  top: 5%;
+  background-color: rgba(139, 59, 60, 1);
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_shopPopup_coinbody2 {
+  position: absolute;
+  width: 14%;
+  height: 90%;
+  left: 77.5%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.5vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+#tsymq_shopPopup_coinbody3 {
+  position: absolute;
+  width: 14%;
+  height: 90%;
+  left: 92%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.5vw;
+  color: #fff;
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+}
+.tsymq_shopPopup_dkbody {
+  position: absolute;
+  width: 5%;
+  height: 90%;
+  left: 1%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25vw;
+  color: #fff;
+  font-family: yuanli;
+  background-color: #391f4d;
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+  -webkit-transition: all 0.2s;
+  margin: 0%;
+  box-shadow: 0 0 10px #FFFF00;
+}
+#tsymq_shopPopup_box {
+  position: absolute;
+  width: 74%;
+  height: 92%;
+  left: 1%;
+  top: 12%;
+  border: 2px solid rgba(25, 25, 25, 1);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: auto;
+}
+#tsymq_shopPopup_boxBody {
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  left: 1%;
+  top: 1%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: auto;
+}
+#tsymq_shopPopup_bottom {
+  position: absolute;
+  width: 74%;
+  height: 10%;
+  left: 1%;
+  top: 89%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 28px;
+  color: #000;
+  font-family: JiZiDBSS;
+  /*border: 2px solid rgba(25,25,25,1);*/
+  -webkit-transition: all 0.2s;
+}
+#tsymq_shopPopup_right {
+  position: absolute;
+  width: 23%;
+  height: 92%;
+  right: 1%;
+  top: 12%;
+  border: 2px solid rgba(25, 25, 25, 1);
+}
+#tsymq_shopPopup_right_box2 {
+  position: relative;
+  width: 50%;
+  height: 20%;
+  left: 25%;
+  top: 2%;
+  border-radius: 6px;
+  -webkit-transition: all 0.2s;
+  margin: 0% 0% 2% 0%;
+  text-align: center;
+}
+#tsymq_shopPopup_right_box {
+  position: relative;
+  width: 72%;
+  height: 33%;
+  left: 14%;
+  top: 2%;
+  border-radius: 8px;
+  border: 1px solid rgba(25, 25, 55, 1);
+  -webkit-transition: all 0.2s;
+  margin: 0% 0% 2% 0%;
+}
+#tsymq_shopPopup_right_info {
+  position: relative;
+  width: 96%;
+  height: 50%;
+  left: 2%;
+  top: 3%;
+  text-align: left;
+  font-size: 1.2vw;
+  letter-spacing: 0px;
+  color: #000;
+  font-family: yuanli;
+  -webkit-transition: all 0.2s;
+  overflow: auto;
+}
+#tsymq_shopPopup_right_anniu {
+  position: absolute;
+  width: 75%;
+  height: 10%;
+  right: 12.5%;
+  top: 88%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 3vw;
+  color: #f00;
+  font-family: xinwei;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon1.png);
+  -webkit-transition: all 0.2s;
+}
+#tsymq_shopPopup_right_anniu:hover {
+  color: yellow;
+  -webkit-transform: scale(1.2);
+}
+#tsymq_shopPopup_cardBody {
+  position: relative;
+  width: 16%;
+  height: 30%;
+  left: 0%;
+  top: 2%;
+  -webkit-transition: all 0.2s;
+  margin: 0% 2% 2% 2%;
+}
+#tsymq_shopPopup_cardbox {
+  position: absolute;
+  width: 95%;
+  height: 78%;
+  left: 2.5%;
+  top: 0%;
+  border-radius: 6px;
+  border: 1px solid rgba(25, 25, 55, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_shopPopup_cardbox:hover {
+  /*animation:shake-slow 5s infinite ease-in-out;*/
+  box-shadow: -3px 0px 3px red, 0px -3px 3px red, 3px 0px 3px red, 0px 3px 3px red;
+  -webkit-transform: scale(1.05);
+}
+#tsymq_shopPopup_cardbox_priceBG {
+  position: absolute;
+  width: 90%;
+  height: 0;
+  left: 5%;
+  top: 81%;
+  padding-bottom: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon5.png);
+  -webkit-transition: all 0.2s;
+  pointer-events: none;
+}
+#tsymq_shopPopup_cardbox_price {
+  position: absolute;
+  width: 100%;
+  height: 100;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.5vw;
+  line-height: 2.5vw;
+  color: #2d190b;
+  font-family: yuanli;
+  -webkit-transition: all 0.2s;
+  pointer-events: none;
+}
+#tsymq_shopPopup_cardbox_price2 {
+  position: absolute;
+  width: 100%;
+  height: 19%;
+  left: 0%;
+  top: 103%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 24px;
+  color: #fff;
+  font-family: yuanli;
+  background-color: rgba(139, 59, 60, 1);
+  -webkit-transition: all 0.2s;
+  pointer-events: none;
+  z-index: 5;
+}
+#tsymq_shopPopup_title {
+  position: relative;
+  width: 40%;
+  height: 5%;
+  left: 30%;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 42px;
+  color: #4b1500;
+  font-family: xinwei;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_shopPopup_propBodr {
+  position: absolute;
+  width: 4.5%;
+  height: 16%;
+  top: 14.5%;
+  left: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3vw;
+  color: rgba(139, 59, 60, 1);
+  font-family: yuanli;
+  border-radius: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_shopPopup_equipBodr {
+  position: absolute;
+  width: 4.5%;
+  height: 16%;
+  top: 30.5%;
+  left: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3vw;
+  color: rgba(139, 59, 60, 1);
+  font-family: yuanli;
+  border-radius: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_shopPopup_trickBodr {
+  position: absolute;
+  width: 4.5%;
+  height: 16%;
+  top: 46.5%;
+  left: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3vw;
+  color: rgba(139, 59, 60, 1);
+  font-family: yuanli;
+  border-radius: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_shopPopup_basicBodr {
+  position: absolute;
+  width: 4.5%;
+  height: 16%;
+  top: 62.5%;
+  left: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3vw;
+  color: rgba(139, 59, 60, 1);
+  font-family: yuanli;
+  border-radius: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_shopPopup_returnBodr {
+  position: absolute;
+  width: 4.8%;
+  height: 8%;
+  top: 15.25%;
+  right: 1.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 2021;
+}
+#tsymq_windowPopup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(20, 20, 20, 0);
+  z-index: 2022;
+  pointer-events: none;
+}
+#tsymq_windowPopup_body {
+  position: absolute;
+  width: 101%;
+  height: 7%;
+  left: 0px;
+  top: 93%;
+  background: -webkit-linear-gradient(left, rgba(99, 184, 255, 0), rgba(139, 69, 19, 1), rgba(99, 184, 255, 0));
+  -webkit-transition: all 0.2s;
+  pointer-events: auto;
+}
+#tsymq_windowPopup_body2 {
+  position: absolute;
+  width: 70%;
+  height: 22%;
+  left: 15%;
+  top: 34%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame9.png);
+  -webkit-transition: all 0.2s;
+  pointer-events: none;
+}
+#tsymq_windowPopup_text2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0%;
+  top: 0px;
+  text-align: left;
+  letter-spacing: 2px;
+  font-family: yuanli;
+  font-size: 2.5vw;
+  color: rgb(251, 219, 134);
+  overflow: auto;
+  z-index: 201802;
+  pointer-events: none;
+}
+#tsymq_windowPopup_text {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0%;
+  top: 0px;
+  text-align: left;
+  letter-spacing: 2px;
+  font-family: Microsoft YaHei;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  overflow: auto;
+  z-index: 201802;
+}
+#tsymq_cardPopup_bg {
+  position: relative;
+  width: 11%;
+  height: 22%;
+  left: 3%;
+  top: 2%;
+  border-radius: 6px;
+  border: 1px solid rgba(25, 25, 25, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  margin: 0% 1.8% 1.8% 2.5%;
+}
+#tsymq_cardPopup_bg:hover {
+  -webkit-transform: scale(1.1);
+}
+#tsymq_cardPopup_div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: none;
+}
+#tsymq_cardPopup_divZK {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  right: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  pointer-events: none;
+}
+#tsymq_cardPopup_divZK2 {
+  position: absolute;
+  width: 25%;
+  height: 0;
+  right: 16%;
+  top: 0%;
+  padding-bottom: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  pointer-events: none;
+}
+#tsymq_cardPopup_div_distance {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  right: 0%;
+  top: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  pointer-events: none;
+}
+#tsymq_MatchDataPopup {
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  left: 0%;
+  top: 0%;
+  padding-bottom: 57%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_MatchDataPopupBG {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.1s;
+}
+#tsymq_MatchDataPopup_gameResult {
+  position: absolute;
+  width: 100%;
+  height: 23.3%;
+  left: 0%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  background-position: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 10;
+  animation-duration: 0.5s;
+  /*动画时间*/
+}
+#tsymq_MatchDataPopup_body {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  left: 0%;
+  top: 20%;
+  -webkit-transition: all 0.2s;
+  background-position: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/MatchData.png);
+  z-index: 10;
+  animation-duration: 0.5s;
+  /*动画时间*/
+}
+#tsymq_MatchDataPopup_body_title {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  left: 0%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_titlemod {
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  left: 2.5%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+}
+#tsymq_MatchDataPopup_body_titletask {
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  right: 2.5%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+}
+#tsymq_MatchDataPopup_body_titlemodname {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_titlebody {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  left: 15%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+}
+#tsymq_MatchDataPopup_body_titlediv {
+  position: relative;
+  width: 12%;
+  height: 80%;
+  left: 0%;
+  top: 10%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_titlename {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  white-space: nowrap;
+}
+#tsymq_MatchDataPopup_body_box {
+  position: absolute;
+  width: 64%;
+  height: 90%;
+  left: 18%;
+  top: 10%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+#tsymq_MatchDataPopup_body_playbody {
+  position: relative;
+  width: 100%;
+  height: 11%;
+  left: 0%;
+  top: 1%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  margin: 0% 0% 0.3% 0%;
+}
+#tsymq_MatchDataPopup_body_playdiv {
+  position: absolute;
+  width: 5%;
+  height: 92%;
+  left: 1%;
+  bottom: 0%;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_MatchDataPopup_body_playName {
+  position: absolute;
+  width: 5.5%;
+  height: 30%;
+  left: 1%;
+  top: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 0.8vw;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.25);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  white-space: nowrap;
+}
+#tsymq_MatchDataPopup_body_playMvp {
+  position: absolute;
+  width: 4%;
+  height: 40%;
+  left: 7%;
+  top: 30%;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playimp {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playidentity {
+  position: absolute;
+  width: 30%;
+  height: 35%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 0.5vw;
+  color: rgb(255, 255, 255);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playdamage {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 11.8%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playdamaged {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 24.9%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playgain {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 38%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playcard {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 51%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playkill {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 64.2%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_recover {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 77.2%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_fourDate {
+  position: absolute;
+  width: 11%;
+  height: 90%;
+  left: 90.2%;
+  top: 5%;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_taskbody {
+  position: absolute;
+  width: 17%;
+  height: 90%;
+  right: 1%;
+  top: 10%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+#tsymq_MatchDataPopup_body_taskDiv {
+  position: relative;
+  width: 100%;
+  height: 17%;
+  right: 0%;
+  top: 1%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+  margin: 0% 0% 1% 0%;
+}
+#tsymq_MatchDataPopup_body_taskImp {
+  position: absolute;
+  width: 28%;
+  height: 90%;
+  left: 15%;
+  top: 5%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+  background-position: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/icon_task.png);
+}
+#tsymq_MatchDataPopup_body_taskInfo {
+  position: absolute;
+  width: 60%;
+  height: 90%;
+  left: 35%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1.15vw;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+  /*border: 1px solid rgba(255,2,159,1);*/
+}
+#tsymq_MatchDataPopup_body_playdate {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_fourText {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  top: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+  white-space: nowrap;
+}
+#tsymq_MatchDataPopup_body_playspeed {
+  position: absolute;
+  width: 98%;
+  height: 20%;
+  left: 1%;
+  top: 55%;
+  background: rgba(150, 150, 150, 1);
+  border: 1px solid rgba(255, 231, 155, 1);
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_playspeedColor {
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_MatchDataPopup_body_briefing {
+  position: absolute;
+  width: 17%;
+  height: 90%;
+  left: 1%;
+  top: 10%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+#tsymq_MatchDataPopup_body_briefingImp {
+  position: absolute;
+  width: 76%;
+  height: 60%;
+  left: 12%;
+  top: 4%;
+  background: rgba(150, 150, 150, 1);
+  background-position: center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick {
+  position: absolute;
+  width: 100%;
+  height: 15%;
+  left: 0%;
+  top: 73%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick_photo {
+  position: absolute;
+  width: 25%;
+  height: 80%;
+  top: 10%;
+  left: 6%;
+  border-radius: 50%;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick_photoFrame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/icon_photoFrame.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick_name {
+  position: absolute;
+  width: 35%;
+  height: 25%;
+  left: 25%;
+  top: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 0.8vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick_wins {
+  position: absolute;
+  width: 40%;
+  height: 30%;
+  left: 60%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 0.8vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick_skilledLv {
+  position: absolute;
+  width: 10%;
+  height: 27%;
+  left: 22.2%;
+  top: 53%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.2s;
+  z-index: 11;
+}
+#tsymq_MatchDataPopup_body_Nick_skilledNum {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 0.8vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.2s;
+  z-index: 11;
+}
+#tsymq_MatchDataPopup_body_Nick_speed {
+  position: absolute;
+  width: 66%;
+  height: 27%;
+  right: 7%;
+  top: 51%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_MatchDataPopup_body_Nick_speedColor1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/icon_speedColor1.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  animation-duration: 3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-2;
+  /*动画名称*/
+  animation-iteration-count: infinite;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes opacityAnimation-2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#tsymq_MatchDataPopup_body_Nick_speedColor2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/icon_speedColor2.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_Nick_photoFrame2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/icon_photoFrame2.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_briefingInfo {
+  position: absolute;
+  width: 80%;
+  height: 6%;
+  left: 10%;
+  top: 66%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_briefingOfficer {
+  position: absolute;
+  width: 40%;
+  height: 8%;
+  left: 5%;
+  top: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Microsoft YaHei;
+  font-size: 1.1vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+}
+#tsymq_MatchDataPopup_body_briefingRanking {
+  position: absolute;
+  width: 40%;
+  height: 8%;
+  left: 55%;
+  top: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Microsoft YaHei;
+  font-size: 1.1vw;
+  color: rgb(255, 255, 255);
+  z-index: 10;
+  white-space: nowrap;
+}
+#tsymq_heroPopup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  z-index: 100;
+}
+#tsymq_heroPopup_Body {
+  position: absolute;
+  width: 100vw;
+  height: 50vw;
+  left: 50%;
+  top: 50%;
+  margin-left: -50vw;
+  margin-top: -25vw;
+  -webkit-transition: all 0.1s;
+  pointer-events: auto;
+  z-index: 5;
+}
+#tsymq_heroSssPopup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  z-index: 100;
+  background-color: rgba(50, 50, 50, 0);
+  animation-duration: 3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: bgAnimation-1;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes bgAnimation-1 {
+  0% {
+    background-color: rgba(50, 50, 50, 0);
+  }
+  to {
+    background-color: rgba(50, 50, 50, 1);
+  }
+}
+#tsymq_heroSssPopup_body {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  left: 50%;
+  top: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  /*border: 1px solid rgba(255,231,155,1);*/
+}
+#tsymq_cardPopup_body_div {
+  position: absolute;
+  width: 20%;
+  height: 35%;
+  left: 40%;
+  top: 32.5%;
+  opacity: 1;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 239, 213, 1);
+  -webkit-transition: all 0.2s;
+  pointer-events: auto;
+}
+#tsymq_heroSssPopup_body_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 10;
+  pointer-events: auto;
+  -webkit-transition: all 0.2s;
+}
+#tsymq_heroSssPopup_body_bg1 {
+  position: absolute;
+  width: 50.5%;
+  height: 100%;
+  right: 50%;
+  top: 0%;
+  overflow: hidden;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  pointer-events: auto;
+}
+#tsymq_heroSssPopup_body_bg2 {
+  position: absolute;
+  width: 50.5%;
+  height: 100%;
+  left: 50%;
+  top: 0%;
+  overflow: hidden;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  pointer-events: auto;
+}
+#tsymq_heroSssPopup_body_bg_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  background-position: 0% 0%;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/bg_qun.jpg);
+  z-index: 10;
+  animation-duration: 0.6s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-2;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-2 {
+  0% {
+    left: -100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+#tsymq_heroSssPopup_body_bg_image2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: -100%;
+  top: 0%;
+  -webkit-transition: all 0.2s;
+  background-position: 100% 0%;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/bg_qun.jp);
+  z-index: 10;
+  animation-duration: 0.6s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-2B;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-2B {
+  0% {
+    right: -100%;
+  }
+  to {
+    right: 0%;
+  }
+}
+#tsymq_heroSssPopup_body_child {
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  top: 0%;
+  left: 20%;
+  overflow: hidden;
+  opacity: 1;
+  -webkit-filter: grayscale(0%);
+  background-position: 0px -200px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_heroSssPopup_body_rarity {
+  position: absolute;
+  width: 11%;
+  height: 18%;
+  top: 68%;
+  right: 44.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 1.6s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-3;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-3 {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+  }
+  75% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+#tsymq_heroSssPopup_body_explode {
+  position: absolute;
+  width: 130%;
+  height: 125%;
+  top: -12.5%;
+  right: -15%;
+  opacity: 1;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/effects/huoyan.png);
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 1.9s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-10;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-10 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.3;
+    -webkit-transform: scale(0);
+  }
+  85% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(1.3);
+  }
+}
+#tsymq_heroSssPopup_bg_circular {
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  left: 0%;
+  top: 15%;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  pointer-events: auto;
+  overflow: visible;
+  /*border: 1px solid rgba(255,231,155,1);*/
+}
+#tsymq_heroSssPopup_body_circular {
+  position: absolute;
+  width: 32.5%;
+  height: 117%;
+  left: 33.25%;
+  top: -8.5%;
+  -webkit-transform: scale(0);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 1.2s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-5;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+  overflow: visible;
+}
+@keyframes autoAnimation-5 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+  }
+  75% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+#tsymq_heroSssPopup_body_circular2 {
+  position: absolute;
+  width: 90%;
+  height: 0%;
+  left: 50%;
+  top: 50%;
+  margin-left: -45%;
+  margin-top: -46%;
+  padding-bottom: 90%;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg_qun_1.png);
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 100s;
+  /*动画时间*/
+  animation-name: zhuanAnimation;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes zhuanAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#tsymq_heroSssPopup_body_imp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  right: 0%;
+  border-radius: 0.8vw;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 1.4s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-9;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-9 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.tsymq_heroSssPopup_body_imp_Frame {
+  position: absolute;
+  width: 108%;
+  height: 101.5%;
+  right: -4%;
+  top: -1.05%;
+  /*opacity:0;*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/style/gradation_ver_5.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_heroSssPopup_body_Stc {
+  position: absolute;
+  width: 50%;
+  height: 8%;
+  left: 0%;
+  top: 88%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: yuanli;
+  font-size: 38px;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 11;
+}
+.tsymq_heroSssPopup_newICON {
+  position: relative;
+  width: 10%;
+  height: 100%;
+  top: 0%;
+  background-image: url(../../extension/武将界面/image/icon/newicon.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+  margin: 10px;
+}
+#tsymq_heroSssPopup_body_group {
+  position: absolute;
+  width: 8%;
+  height: 100%;
+  top: -10%;
+  right: 16.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/bg_qun_3.png);
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 1.3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-6;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-6 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    height: 1%;
+  }
+  75% {
+    opacity: 0;
+    height: 1%;
+  }
+  to {
+    opacity: 1;
+    height: 55%;
+  }
+}
+#tsymq_heroSssPopup_body_title {
+  position: absolute;
+  width: 50%;
+  left: 11%;
+  top: 35%;
+  text-align: center;
+  font-size: 3.0vw;
+  letter-spacing: 0px;
+  line-height: 3.0vw;
+  font-family: JinBangZhaoPai;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  color: gold;
+}
+#tsymq_heroSssPopup_body_Line {
+  position: absolute;
+  width: 2.0%;
+  height: 60%;
+  top: 5%;
+  right: 24.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/other/Line.png);
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-duration: 1.3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-7;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-7 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    height: 1%;
+  }
+  75% {
+    opacity: 0;
+    height: 1%;
+  }
+  to {
+    opacity: 1;
+    height: 60%;
+  }
+}
+#tsymq_heroSssPopup_body_text {
+  position: absolute;
+  width: 1%;
+  height: 80%;
+  top: 10%;
+  right: 28%;
+  text-align: left;
+  border-radius: 10px;
+  letter-spacing: 0px;
+  color: rgb(255, 255, 255);
+  font-size: 1.8vw;
+  font-family: JinBangZhaoPai;
+  -webkit-transition: all 0.1s;
+  z-index: 11;
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+  animation: autoAnimation-8 3.6s steps(20);
+}
+@keyframes autoAnimation-8 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.1;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#tsymq_heroSssPopup_body_box {
+  position: absolute;
+  width: 100%;
+  height: 8%;
+  right: 0%;
+  bottom: 0%;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.65);
+  animation-duration: 5s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-11;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-11 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#tsymq_timelimit_popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.85);
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+}
+#tsymq_timelimit_body {
+  position: absolute;
+  width: 100%;
+  height: 55%;
+  top: 22.5%;
+  left: 0%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.5s;
+  z-index: 10;
+}
+#tsymq_timelimit_imp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.5s;
+  z-index: 10;
+}
+#tsymq_timelimit_imp_off {
+  position: absolute;
+  width: 10%;
+  height: 8%;
+  right: 45%;
+  top: 96%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/Timelimit/jinruyouxi.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_Full_Fill_Black_Alpha-50 {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_taskReset_bg {
+  position: absolute;
+  width: 80vmax;
+  height: 45vmax;
+  left: 50%;
+  top: 50%;
+  margin-left: -40vmax;
+  margin-top: -22.5vmax;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/icon_frame_square7.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_taskReset_bg-1 {
+  position: absolute;
+  width: 97.5%;
+  height: 5.6%;
+  left: 1.25%;
+  bottom: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/icon_frame_square7-1.png);
+  */ -webkit-transition: all 0.3s;
+  z-index: 11;
+}
+#tsymq_taskReset_name {
+  position: absolute;
+  width: 20%;
+  height: 5%;
+  top: 1%;
+  left: 2.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.0vw;
+  color: rgb(255, 255, 0);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_taskReset_box {
+  position: absolute;
+  width: 93%;
+  height: 84%;
+  top: 11.5%;
+  left: 3.5%;
+  /*border: 1px solid rgba(255,25,25,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_taskReset_body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+  text-align: left;
+  overflow: auto;
+}
+#tsymq_taskReset_div {
+  position: relative;
+  width: 48%;
+  height: 32%;
+  top: 1%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/icon_frame_square8.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+  margin: 0% 1% 1% 1%;
+}
+#tsymq_taskReset_taskName {
+  position: absolute;
+  width: 40%;
+  height: 20%;
+  top: 5%;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  letter-spacing: 0.25em;
+  font-size: 1.8vw;
+  color: rgb(255, 0, 0);
+  font-family: shousha;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_taskReset_taskIntro {
+  position: absolute;
+  width: 70%;
+  height: 65%;
+  top: 25%;
+  left: 5%;
+  text-align: left;
+  text-indent: 2em;
+  letter-spacing: 0.15em;
+  font-size: 1.0vw;
+  color: rgb(0, 0, 0);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_taskReset_taskImp {
+  position: absolute;
+  width: 20%;
+  height: 55%;
+  top: 10%;
+  right: 3%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_taskReset_taskClick {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  top: 70%;
+  right: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25vw;
+  color: rgb(0, 0, 0);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_Full_Fill_Black_Alpha-85 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.85);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg_xuanzejiangli.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_box {
+  position: absolute;
+  width: 81.75%;
+  height: 72.25%;
+  top: 18%;
+  left: 9.05%;
+  border: 1px solid rgba(255, 255, 255, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_returnBodr {
+  position: absolute;
+  width: 3%;
+  height: 5%;
+  top: 12%;
+  right: 2.1%;
+  border-radius: 50%;
+  /*border: 1px solid rgba(255 ,255 ,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 2021;
+}
+#tsymq_useOrOpenProp_PropName {
+  position: absolute;
+  width: 25%;
+  height: 5%;
+  top: 0%;
+  left: 37.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.8vw;
+  color: rgb(255, 255, 255);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_flls {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+#tsymq_useOrOpenProp_cardBody {
+  position: relative;
+  width: 17.5%;
+  height: 25%;
+  left: 0%;
+  top: 2%;
+  -webkit-transition: all 0.2s;
+  margin: 0% 1% 2% 1%;
+}
+#tsymq_useOrOpenProp_cardDiv {
+  position: absolute;
+  width: 93%;
+  height: 93%;
+  left: 3.5%;
+  top: 3.5%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  overflow: hidden;
+}
+#tsymq_useOrOpenProp_cardImp {
+  position: absolute;
+  width: 100%;
+  height: 180%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+  animation-duration: 10s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: none;
+  /*动画名称*/
+  animation-iteration-count: infinite;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-12 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+#tsymq_useOrOpenProp_cardSquare {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/icon_frame_square.png);
+  -webkit-transition: all 0.2s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/icon_frame_body.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+  pointer-events: none;
+}
+#tsymq_useOrOpenProp_page {
+  position: absolute;
+  width: 24%;
+  height: 70%;
+  top: 8.0%;
+  left: 73.5%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+.tsymq_useOrOpenProp_SortForm {
+  position: absolute;
+  width: 12%;
+  height: 5%;
+  top: 6.5%;
+  right: 28%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-family: shousha;
+  font-size: 1.45vw;
+  line-height: 2.8vw;
+  z-index: 10;
+  border: 1px solid rgba(185, 185, 185, 1);
+  background-color: rgba(255, 255, 255, 1);
+}
+.tsymq_useOrOpenProp_SelectForm {
+  position: absolute;
+  width: 12%;
+  height: 5%;
+  top: 6.5%;
+  right: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-family: shousha;
+  font-size: 1.45vw;
+  line-height: 2.8vw;
+  z-index: 10;
+  border: 1px solid rgba(185, 185, 185, 1);
+  background-color: rgba(255, 255, 255, 1);
+}
+#tsymq_optionalSkin_page {
+  position: absolute;
+  width: 16.25%;
+  height: 45%;
+  top: 15.0%;
+  left: 77.5%;
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_useOrOpenProp_confirm {
+  position: absolute;
+  width: 16%;
+  height: 10%;
+  top: 81%;
+  left: 77%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.0vw;
+  color: rgb(70, 60, 79);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_click_1_off.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+#tsymq_autoPueryTask_body2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame18.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+#tsymq_autoPueryTask_TaskInfo {
+  position: relative;
+  width: 100%;
+  height: 30%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  line-height: 30px;
+  color: rgb(25, 25, 25);
+  font-family: Microsoft YaHei;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 1% 0% 1%;
+}
+#tsymq_generalPopup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_journalPopup_body {
+  position: relative;
+  width: 90%;
+  height: 85%;
+  top: 7.5%;
+  left: 5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame3.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_journalPopup_text {
+  position: absolute;
+  width: 98%;
+  height: 86%;
+  right: 1%;
+  top: 12%;
+  font-size: 1.2vw;
+  color: rgb(50, 50, 50);
+  font-family: SimHei;
+  text-align: center;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  overflow: auto;
+}
+#tsymq_generalPopup_body {
+  position: relative;
+  width: 80%;
+  height: 85%;
+  top: 7.5%;
+  left: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame3.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_generalPopup_title {
+  position: absolute;
+  width: 30%;
+  height: 6.5%;
+  right: 35%;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 2vw;
+  color: rgb(255, 255, 255);
+  font-family: xinwei;
+  font-weight: bold;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/other/jinengkuang3.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_role {
+  position: absolute;
+  width: 12.5%;
+  height: 23.5%;
+  top: 2%;
+  left: 3%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-position: 0% 20%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_yuankuang {
+  position: absolute;
+  width: 118%;
+  height: 118%;
+  top: -8%;
+  left: -9%;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/frame/avatar_yuankuang.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_roleName {
+  position: absolute;
+  width: 15%;
+  height: 6.5%;
+  top: 28.5%;
+  left: 1.8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_season {
+  position: absolute;
+  width: 15%;
+  height: 45%;
+  top: 37%;
+  left: 1.8%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_qizhi2.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_other {
+  position: absolute;
+  width: 15%;
+  height: 17%;
+  bottom: 1%;
+  left: 1.8%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_otherBody {
+  position: relative;
+  width: 45%;
+  height: 45%;
+  top: 1%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 2% 1% 2%;
+}
+#tsymq_overviewPopup_otherImp {
+  position: absolute;
+  width: 40%;
+  height: 65%;
+  top: 0%;
+  left: 30%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_otherData {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  top: 70%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  pointer-events: auto;
+}
+#tsymq_overviewPopup_season_text {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  /*background: -webkit-linear-gradient(left, rgba(25,25,25,0), rgba(25,175,177,1), rgba(25,25,25,0));*/
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_season_text2 {
+  position: absolute;
+  width: 100%;
+  height: 18%;
+  top: 72.5%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  /*background: -webkit-linear-gradient(left, rgba(25,25,25,0), rgba(177,175,25,1), rgba(25,25,25,0)); */
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_season_imp {
+  position: absolute;
+  width: 75%;
+  height: 55%;
+  top: 20%;
+  left: 12.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_officer_body {
+  position: absolute;
+  width: 15%;
+  height: 26%;
+  top: 1%;
+  left: 19%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_qizhi.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_jiangdeng_body {
+  position: absolute;
+  width: 63%;
+  height: 26%;
+  top: 1%;
+  left: 35%;
+  border: 2px solid rgba(219, 180, 66, 1);
+  background-color: rgba(25, 25, 25, 0.75);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+.tsymq_overviewPopup_jiangdeng_div {
+  position: relative;
+  width: 6.2%;
+  height: 0%;
+  top: 2%;
+  left: 0%;
+  padding-bottom: 6.2%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 1.25% 1% 1.25%;
+}
+.tsymq_overviewPopup_jiangdeng_divText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: shousha;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_jiangdeng_imp {
+  position: absolute;
+  width: 98%;
+  height: 100%;
+  top: 0%;
+  left: 1%;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 110%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_jiangdeng_text {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  top: 80%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  background: -webkit-linear-gradient(left, rgba(25, 25, 25, 0), rgba(177, 175, 25, 1), rgba(25, 25, 25, 0));
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_LV {
+  position: absolute;
+  width: 79%;
+  height: 7%;
+  top: 28%;
+  left: 19%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_LV_text {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  top: 10%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25vw;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_LV_speedBox {
+  position: absolute;
+  width: 80%;
+  height: 50%;
+  top: 22%;
+  left: 20%;
+  border-radius: 20px;
+  border: 2px solid rgba(219, 180, 66, 1);
+  background-color: rgba(25, 25, 25, 0.5);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_LV_speedColor {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  border-radius: 20px;
+  background: -webkit-linear-gradient(left, rgba(37, 129, 139, 1), rgba(77, 240, 250, 1), rgba(37, 129, 139, 1));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 5;
+}
+#tsymq_overviewPopup_LV_speedColor2 {
+  position: absolute;
+  width: 100%;
+  height: 88%;
+  right: 0%;
+  top: 6%;
+  border-radius: 20px;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(173, 255, 255, 1));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 5;
+}
+#tsymq_overviewPopup_LV_speedText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_LV_speedColorLeft {
+  position: absolute;
+  width: 6%;
+  height: 90%;
+  left: 0%;
+  top: 5%;
+  border-radius: 20px;
+  background: -webkit-linear-gradient(left, rgba(173, 255, 255, 1), rgba(5, 5, 5, 0));
+  z-index: 5;
+}
+#tsymq_overviewPopup_LV_speedColorRight {
+  position: absolute;
+  width: 6%;
+  height: 90%;
+  right: 0%;
+  top: 5%;
+  border-radius: 20px;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(173, 255, 255, 1));
+  z-index: 5;
+}
+#tsymq_overviewPopup_option {
+  position: absolute;
+  width: 79%;
+  height: 8%;
+  top: 38%;
+  left: 19%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 0% 0% 0%;
+  text-align: center;
+}
+#tsymq_overviewPopup_option_useMos {
+  position: relative;
+  width: 16%;
+  height: 90%;
+  top: 5%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_click_1_off.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 0% 0% 0%;
+}
+#tsymq_overviewPopup_option_useMosInfo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.35vw;
+  color: rgb(70, 60, 79);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_box {
+  position: absolute;
+  width: 100%;
+  height: 96.5%;
+  top: 0.5%;
+  left: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+#tsymq_overviewPopup_page {
+  position: absolute;
+  width: 79%;
+  height: 53%;
+  top: 47%;
+  left: 19%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame16.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  text-align: center;
+  overflow: auto;
+}
+#tsymq_overviewPopup_achievement_div {
+  position: relative;
+  width: 10%;
+  height: 28.5%;
+  top: 2%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/Achievement/icon_Achievement2.jpg);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 1% 1.25% 1%;
+}
+#tsymq_overviewPopup_achievement_obg {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 5%;
+  left: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 1% 1% 1%;
+}
+#tsymq_overviewPopup_achievement_divInfo {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  top: 70%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  background: rgba(0, 0, 0, 1);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_achievement_divText {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  top: 10%;
+  left: 0%;
+  word-wrap: break-word;
+  text-align: center;
+  font-size: 0.6vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  background: rgba(0, 0, 0, 0.85);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  opacity: 0;
+}
+#tsymq_overviewPopup_page_div {
+  position: relative;
+  width: 20%;
+  height: 25%;
+  top: 5%;
+  left: 0%;
+  background: rgba(20, 20, 18, 0.25);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 2% 2% 2%;
+}
+#tsymq_overviewPopup_page_circular {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.1vw;
+  color: rgb(255, 236, 139);
+  font-family: Microsoft YaHei;
+  border-radius: 50%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overviewPopup_page_square {
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  top: 0%;
+  right: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.1vw;
+  line-height: 1.2vw;
+  color: rgb(255, 236, 224);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_overviewPopup_page_div {
+  position: relative;
+  width: 18%;
+  height: 76%;
+  top: 12%;
+  left: 1%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 2% 0% 2%;
+}
+.tsymq_overviewPopup_page_changci {
+  position: absolute;
+  width: 50%;
+  height: 13%;
+  bottom: 16%;
+  right: -1%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_changci.png);
+  z-index: 10;
+}
+.tsymq_overviewPopup_page_shenglv {
+  position: absolute;
+  width: 50%;
+  height: 13%;
+  bottom: 2%;
+  right: -1%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_shenglv.png);
+  z-index: 10;
+}
+.tsymq_overviewPopup_page_numbody {
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  font-family: shousha;
+  z-index: 5;
+}
+#tsymq_overviewPopup_page_name {
+  position: absolute;
+  width: 13%;
+  height: 35%;
+  right: 2%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  background: rgba(255, 0, 0, 1);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_incomeBody {
+  position: relative;
+  width: 90%;
+  height: 25.5%;
+  left: 5%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/other/bg_beijingban.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 0% 2% 0%;
+}
+#tsymq_taskPopup_infobody {
+  position: relative;
+  width: 90%;
+  height: 14%;
+  left: 5%;
+  top: 20%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_weizhi1.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 0% 2% 0%;
+}
+#tsymq_taskPopup_infotitle {
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25vw;
+  color: rgb(255, 255, 255);
+  font-family: shousha;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_infotext {
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  right: -5%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9vw;
+  color: rgb(255, 255, 255);
+  font-family: shousha;
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  z-index: 5;
+}
+#tsymq_taskPopup_titleBody {
+  position: relative;
+  width: 90%;
+  height: 12%;
+  left: 5%;
+  top: 2%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_click0.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 0% 2% 0%;
+}
+#tsymq_taskPopup_titleBody_div {
+  position: relative;
+  width: 98%;
+  height: 17%;
+  left: 1%;
+  top: 1%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/bg_task_body.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  margin: 0% 0% 1% 0%;
+}
+#tsymq_characterTask_titleBody_div {
+  position: relative;
+  width: 24%;
+  height: 46%;
+  left: 0%;
+  top: 2%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/bg_xuanshang.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  margin: 0% 0% 2% 0.8%;
+}
+#tsymq_characterTask_titleBody_reward {
+  position: absolute;
+  width: 60%;
+  height: 34%;
+  left: 20%;
+  top: 18%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  text-align: center;
+  margin: 0 auto;
+}
+#tsymq_characterTask_titleBody_reward_div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/xuanshangjiangli.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  margin: 0% 0% 0% 0%;
+}
+#tsymq_characterTask_titleBody_reward_imp {
+  position: absolute;
+  width: 60%;
+  height: 70%;
+  left: 15%;
+  top: 15%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_characterTask_titleBody_div_name {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  left: 0%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  color: rgb(5, 5, 5);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_characterTask_titleBody_div_info {
+  position: absolute;
+  width: 80%;
+  height: 35%;
+  left: 10%;
+  top: 52%;
+  text-align: left;
+  font-size: 16px;
+  color: rgb(5, 5, 5);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+#tsymq_characterTask_titleBody_div_receive {
+  position: absolute;
+  width: 70%;
+  height: 10%;
+  right: 15%;
+  bottom: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/xuanshanganniu.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_TimelimitPopup_titleBody_div {
+  position: relative;
+  width: 100%;
+  height: 45%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  margin: 0% 0% 2% 0%;
+}
+#tsymq_TimelimitPopup_titleBody_div_reward {
+  position: absolute;
+  width: 18%;
+  height: 15%;
+  right: 41%;
+  top: 92.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/Timelimit/lingqujiangli.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_taskPopup_titleBody_div_imp {
+  position: absolute;
+  width: 11%;
+  height: 0%;
+  left: 1%;
+  top: 5%;
+  padding-bottom: 11%;
+  border: 1px solid rgba(0, 255, 255, 1);
+  background-position: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_titleBody_div_name {
+  position: absolute;
+  width: 20%;
+  height: 30%;
+  left: 13%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.5vw;
+  text-indent: 1em;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  background: linear-gradient(to right, rgba(255, 0, 0, 1), rgba(255, 255, 255, 0));
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_titleBody_div_info {
+  position: absolute;
+  width: 40%;
+  height: 64%;
+  left: 13%;
+  top: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.1vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+#tsymq_taskPopup_titleBody_div_receive {
+  position: absolute;
+  width: 12%;
+  height: 46%;
+  right: 1%;
+  top: 27%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgb(93, 32, 2);
+  font-family: JiZiDBSS;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_tast_state.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_taskPopup_titleBody_div_reward {
+  position: absolute;
+  width: 32%;
+  height: 80%;
+  left: 54%;
+  top: 10%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  text-align: center;
+  margin: 0 auto;
+}
+#tsymq_taskPopup_titleBody_div_reward_div {
+  position: relative;
+  width: 23%;
+  height: 0%;
+  left: 1%;
+  top: 10%;
+  padding-bottom: 23%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/prize-box.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+  margin: 0% 0% 0% 1%;
+}
+#tsymq_taskPopup_titleBody_div_reward_imp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_taskPopup_titleBody_div_reward_name {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  right: 3%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(255, 255, 79);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  pointer-events: none;
+}
+#tsymq_sign_speedBox {
+  position: absolute;
+  width: 100%;
+  height: 17%;
+  left: 0%;
+  bottom: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_reward1 {
+  position: absolute;
+  width: 8%;
+  height: 67%;
+  right: 1%;
+  top: -8%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  -webkit-transition: all 0.1s;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 5;
+}
+#tsymq_sign_reward2 {
+  position: absolute;
+  width: 8%;
+  height: 67%;
+  right: 45.5%;
+  top: -8%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_reward3 {
+  position: absolute;
+  width: 8%;
+  height: 67%;
+  left: 22%;
+  top: -8%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_reward4 {
+  position: absolute;
+  width: 8%;
+  height: 67%;
+  left: 13%;
+  top: -8%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_reward5 {
+  position: absolute;
+  width: 8%;
+  height: 67%;
+  left: 4%;
+  top: -8%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_reward_info {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  left: 0%;
+  top: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1vw;
+  color: rgb(255, 255, 255);
+  font-family: shousha;
+  background: rgba(25, 25, 50, 1);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_text1 {
+  position: absolute;
+  width: 10%;
+  height: 18%;
+  left: 3%;
+  top: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(25, 25, 25);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_text2 {
+  position: absolute;
+  width: 10%;
+  height: 18%;
+  left: 12%;
+  top: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(25, 25, 25);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_text3 {
+  position: absolute;
+  width: 10%;
+  height: 18%;
+  left: 21%;
+  top: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(25, 25, 25);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_text4 {
+  position: absolute;
+  width: 10%;
+  height: 18%;
+  right: 44.5%;
+  top: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(25, 25, 25);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_text5 {
+  position: absolute;
+  width: 10%;
+  height: 18%;
+  right: 0%;
+  top: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(25, 25, 25);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_speed {
+  position: absolute;
+  width: 98%;
+  height: 10%;
+  left: 1%;
+  top: 66%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_sign_speedColor {
+  position: absolute;
+  width: 0%;
+  height: 98%;
+  left: 0%;
+  top: 1%;
+  background: rgba(255, 215, 0, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.5s;
+  z-index: 5;
+}
+#tsymq_sign_speedColor2 {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background: -webkit-linear-gradient(left, rgba(255, 255, 0, 0), rgba(255, 255, 255, 1));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 5;
+}
+#tsymq_taskPopup_titleBody_sign {
+  position: relative;
+  width: 10%;
+  height: 18%;
+  left: 0%;
+  top: 2%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_date1.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  margin: 0% 0% 1% 2.1%;
+}
+#tsymq_taskPopup_titleBody_name {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2vw;
+  color: rgb(70, 70, 98);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: none;
+}
+#tsymq_signPopup_titleBody_name {
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  left: 2%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2vw;
+  color: rgb(39, 39, 60);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: none;
+}
+#tsymq_taskPopup_titleBody_info {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  left: 0%;
+  top: 67%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1vw;
+  color: rgb(255, 255, 0);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: none;
+}
+#tsymq_Task_body_Activity {
+  position: relative;
+  width: 98%;
+  height: 98%;
+  left: 1%;
+  top: 1%;
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+#tsymq_taskPopup_Activity_div {
+  position: relative;
+  width: 12.5%;
+  height: 78%;
+  left: 0.3%;
+  top: 1%;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/bg_week_poster.png);
+  -webkit-transition: all 0.1s;
+  z-index: 1000;
+  margin: 0% 0% 0% 1.4%;
+}
+#tsymq_taskPopup_Activity_div:hover {
+  top: 0%;
+}
+#tsymq_taskPopup_Activity_div_Text {
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  left: 0%;
+  top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgb(0, 0, 0);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_Activity_speed {
+  position: absolute;
+  width: 90%;
+  height: 0%;
+  top: 28%;
+  left: 5%;
+  padding-bottom: 90%;
+  z-index: 5;
+}
+#tsymq_taskPopup_Activity_content {
+  position: absolute;
+  width: 86%;
+  height: 86%;
+  top: 7%;
+  left: 7%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 1);
+  z-index: 5;
+}
+#tsymq_taskPopup_Activity_speedText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  line-height: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_Activity_bg1 {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0%;
+  border-radius: 100px 0 0 100px;
+  z-index: 3;
+  background: rgba(173, 216, 230, 1);
+  overflow: hidden;
+}
+#tsymq_taskPopup_Activity_bg2 {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 50%;
+  border-radius: 0px 100px 100px 0;
+  z-index: 1;
+  background: rgba(173, 216, 230, 1);
+  overflow: hidden;
+}
+#tsymq_taskPopup_Activity_pr1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  border-radius: 0px 100px 100px 0px;
+  -webkit-transition: all 0.1s;
+  background: rgba(255, 215, 0, 1);
+  transform: rotate(-180deg);
+  transform-origin: 0% 50%;
+  z-index: 2;
+}
+#tsymq_taskPopup_Activity_pr2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 100%;
+  top: 0%;
+  border-radius: 0px 100px 100px 0px;
+  -webkit-transition: all 0.1s;
+  background: rgba(255, 215, 0, 1);
+  transform: rotate(0deg);
+  transform-origin: 0% 50%;
+  z-index: 4;
+}
+#tsymq_taskPopup_Activity_div_name {
+  position: absolute;
+  width: 40%;
+  height: 8%;
+  left: 30%;
+  top: 84.8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_Activity_div_reward {
+  position: absolute;
+  width: 80%;
+  height: 0%;
+  left: 10%;
+  top: 53%;
+  padding-bottom: 80%;
+  border-radius: 6px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/prize-box.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+#tsymq_taskPopup_Activity_div_reward_name {
+  position: absolute;
+  width: 80%;
+  height: 5%;
+  left: 10%;
+  top: 73%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(0, 0, 0);
+  font-family: shousha;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  pointer-events: auto;
+}
+#tsymq_Task_body_Box1 {
+  position: absolute;
+  width: 16.5%;
+  height: 90%;
+  left: 6.6%;
+  top: 8%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_Task_body_body {
+  position: absolute;
+  width: 70%;
+  height: 88%;
+  left: 25%;
+  top: 10%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  overflow: auto;
+}
+#tsymq_generalPopup_title2 {
+  position: absolute;
+  width: 30%;
+  height: 6.5%;
+  right: 0%;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.2vw;
+  color: rgb(25, 25, 25);
+  font-family: Microsoft YaHei;
+  background: -webkit-linear-gradient(left, rgba(99, 184, 255, 0), rgba(255, 255, 255, 0.85), rgba(99, 184, 255, 0));
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overview_dialog {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  margin: auto;
+}
+#tsymq_overview_dialog_offBG {
+  position: absolute;
+  width: 5.4%;
+  height: 30%;
+  top: 10%;
+  right: 3%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon_off_2.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overview_dialog_off {
+  position: absolute;
+  width: 74%;
+  height: 23.5%;
+  top: 0%;
+  right: 13%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_overview_dialog_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/frame15.png);
+  -webkit-transition: all 0.1s;
+  z-index: 9;
+}
+#tsymq_overview_dialog_body {
+  position: absolute;
+  width: 84%;
+  height: 79%;
+  top: 14.5%;
+  left: 8%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_task_dialog_body_box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  /*overflow: auto;*/
+}
+#tsymq_task_dialog_body_huojia_div {
+  position: relative;
+  width: 10%;
+  height: 300%;
+  left: 0%;
+  top: -205%;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 3% 0% 3%;
+}
+#tsymq_task_dialog_body_huojia_bottom {
+  position: absolute;
+  width: 100%;
+  height: 24%;
+  bottom: 0%;
+  left: 0%;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/prop_bottom.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#tsymq_task_dialog_body_huojia_imp {
+  position: absolute;
+  width: 90%;
+  height: 0%;
+  bottom: 15%;
+  left: 5%;
+  padding-bottom: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 10;
+}
+#tsymq_task_dialog_body_huojia_name {
+  position: absolute;
+  width: 15%;
+  right: 10%;
+  top: 0%;
+  text-align: center;
+  font-size: 1vw;
+  line-height: 1vw;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  background: rgba(255, 5, 5, 0.75);
+  z-index: 10;
+}
+#tsymq_task_dialog_body_huojia_text {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  right: 0%;
+  bottom: -3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8vw;
+  line-height: 1vw;
+  color: rgb(255, 255, 255);
+  font-family: JiZiDBSS;
+  z-index: 10;
+}
+.tsymq_gameCharacter {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /*background-image: url(../../extension/武将界面/UI2000.png);*/
+  font-family: xinwei;
+  text-align: center;
+  z-index: 10;
+}
+#tsymq_newMenu_Recruit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/matchbg.jpg);
+  z-index: 10;
+}
+.tsymq_recruitHeros {
+  position: relative;
+  width: 50%;
+  height: 90%;
+  left: 25%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/recruitBody1.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitHeros_juanzhou {
+  position: absolute;
+  width: 100%;
+  height: 81%;
+  left: 0%;
+  top: 0%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/recruitBody2.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitHeros_longyin {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  top: 10%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/longyin.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  animation-duration: 4s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: outAnimation;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center bottom;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes outAnimation {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    /*贝塞尔曲线 : X1 Y1 X2 Y2*/
+    transform: translate3d(0, 0, 0);
+    /*设置只在Z轴上移动*/
+  }
+  40%,
+  43% {
+    transition-timing-function: cubic-bezier(0.755, 0.50, 0.855, 0.060);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+.tsymq_jackpotPopup_bodys {
+  position: absolute;
+  width: 98%;
+  height: 88%;
+  right: 1%;
+  top: 10%;
+  background: -webkit-linear-gradient(left, rgba(99, 184, 255, 0), rgba(255, 255, 255, 0.85), rgba(99, 184, 255, 0));
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_jackpotPopup_div {
+  position: relative;
+  width: 8%;
+  height: 22%;
+  left: 1.25%;
+  top: 2%;
+  border-radius: 0.4vw;
+  border: 1px solid rgba(25, 25, 25, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  margin: 0% 1.8% 1.2% 0%;
+}
+.tsymq_jackpotPopup_div_name {
+  position: relative;
+  width: 100%;
+  height: 15%;
+  left: 0%;
+  top: 42.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(0, 0, 0);
+  font-family: xinwei;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.45), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0.45));
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  margin: 0% 1.8% 1% 0%;
+}
+.tsymq_recruitJackpot {
+  position: absolute;
+  width: 2.4%;
+  height: 22%;
+  right: 11%;
+  top: 0%;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/brand2.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymq_recruitRule {
+  position: absolute;
+  width: 2.4%;
+  height: 22%;
+  right: 7%;
+  top: 0%;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/brand2.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymq_recruitJournal {
+  position: absolute;
+  width: 2.4%;
+  height: 22%;
+  right: 3%;
+  top: 0%;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/brand2.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymq_recruit_text {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  right: 0%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgb(120, 80, 60);
+  text-shadow: none;
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruit_text:hover {
+  color: #ae0000;
+  -webkit-transform: scale(1.25);
+}
+.tsymq_recruitOut {
+  position: absolute;
+  width: 7%;
+  height: 30%;
+  left: 2%;
+  top: 60%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/fanhuiyouxi.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitShop {
+  position: absolute;
+  width: 10%;
+  height: 20%;
+  right: 0%;
+  top: 70%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/Shop.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitToken {
+  position: absolute;
+  width: 20%;
+  height: 4%;
+  right: 40%;
+  top: 76%;
+  background: -webkit-linear-gradient(left, rgba(99, 184, 255, 0), rgba(255, 255, 255, 0.85), rgba(99, 184, 255, 0));
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitToken_text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 5%;
+  font-size: 1.3vw;
+  letter-spacing: 0px;
+  color: rgb(0, 0, 0);
+  font-family: xinwei;
+  line-height: 42px;
+  /*border: 1px solid rgba(117,77,56,1);*/
+  background: -webkit-linear-gradient(left, rgba(99, 184, 255, 0), rgba(255, 255, 255, 0.85), rgba(99, 184, 255, 0));
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymqNodeHomeBodyHideBodyTimeZMLIcon {
+  position: absolute;
+  width: 5%;
+  height: 0;
+  left: 32%;
+  bottom: 17.5%;
+  padding-bottom: 5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_zhaomuling2.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+.tsymqNodeHomeBodyHideBodyTimeZMLNum {
+  position: absolute;
+  width: 10%;
+  height: 0;
+  left: 29%;
+  bottom: 17%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1vw;
+  color: #FFF;
+  -webkit-transition: all 0.1s;
+  background-color: rgba(40, 0, 67, 0.85);
+  z-index: 5;
+}
+.tsymq_recruitFlop {
+  position: absolute;
+  width: 14%;
+  height: 6%;
+  right: 43.25%;
+  top: 74%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.8vw;
+  line-height: 4vw;
+  color: #3e0c00;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/zhaomuICON2.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitFlopV {
+  position: absolute;
+  width: 11%;
+  height: 7%;
+  right: 51.2%;
+  bottom: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.8vw;
+  line-height: 4vw;
+  color: #3e0c00;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/zhaomuICON1.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitFlopX {
+  position: absolute;
+  width: 11%;
+  height: 7%;
+  right: 38.3%;
+  bottom: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.8vw;
+  line-height: 4vw;
+  color: #3e0c00;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/zhaomuICON1.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.loader {
+  position: relative;
+  width: 8em;
+  height: 8em;
+  background: linear-gradient(-225deg,
+      #ff3cac 0%,
+      #562b7c 52%,
+      #2b86c5 100%);
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+}
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: inherit;
+}
+.loader span:nth-child(1) {
+  filter: blur(5px);
+}
+.loader span:nth-child(2) {
+  filter: blur(10px);
+}
+.loader span:nth-child(3) {
+  filter: blur(25px);
+}
+.loader span:nth-child(4) {
+  filter: blur(50px);
+}
+.loader::after {
+  position: absolute;
+  content: "";
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #222;
+  border-radius: inherit;
+}
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.tsymq_recruitFlop:hover {
+  color: #9400D3;
+  -webkit-transform: scale(1.05);
+}
+.tsymq_recruitFlopV:hover {
+  text-shadow: 0 0 3px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 7px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
+}
+.tsymq_recruitFlopX:hover {
+  text-shadow: 0 0 3px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 7px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
+}
+.tsymq_recruitCardFrame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(25, 25, 25, 0.85);
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+}
+.tsymq_recruitCardBody {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  right: 0%;
+  top: 10%;
+  -webkit-transition: all 0.1s;
+  pointer-events: auto;
+  z-index: 5;
+}
+.tsymq_recruitCardBody_bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background: -webkit-linear-gradient(left, rgba(25, 25, 25, 0.5), rgba(20, 20, 20, 1), rgba(25, 25, 25, 0.5));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 1;
+}
+.tsymq_recruitCardBodyTop {
+  position: absolute;
+  width: 30%;
+  height: 20%;
+  right: 35%;
+  top: -20%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/effects/huodejiangli.png);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 11;
+  animation-duration: 1s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-4;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-4 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    top: -20%;
+  }
+  75% {
+    opacity: 0;
+    top: -20%;
+  }
+  to {
+    opacity: 1;
+    top: 0%;
+  }
+}
+.tsymq_recruitCardBodyTopX {
+  position: fixed;
+  width: 30%;
+  height: 30%;
+  right: 35%;
+  top: -15%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/effects/huodejiangli.png);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 11;
+  animation-duration: 0.1s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoScale-2;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoScale-2 {
+  0% {
+    top: -38%;
+  }
+  to {
+    top: -15%;
+  }
+}
+.tsymq_recruitCardBodyBox {
+  position: absolute;
+  width: 35%;
+  height: 56%;
+  right: 19.2%;
+  top: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: xinwei;
+  font-size: 38px;
+  color: rgb(255, 255, 255);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame2.png);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 1;
+}
+.tsymq_recruitCardBodyBg {
+  position: absolute;
+  width: 40%;
+  height: 60%;
+  right: 18.5%;
+  top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: xinwei;
+  font-size: 38px;
+  color: rgb(255, 255, 255);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame4.png);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 1;
+}
+.tsymq_recruitCardBodyBox1 {
+  position: absolute;
+  width: 60%;
+  height: 20%;
+  left: 4%;
+  top: 4%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/searchBody3.png);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+}
+.tsymq_recruitCardBodyBox2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  border: 2px solid rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 1);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 100;
+}
+.tsymq_recruitCardBodyRank {
+  position: absolute;
+  width: 28%;
+  height: 30%;
+  right: 3%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: xinwei;
+  font-size: 38px;
+  color: rgb(255, 255, 255);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 6;
+  animation-duration: 0.2s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: xyzAnimation-1;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes xyzAnimation-1 {
+  0% {
+    display: none;
+    -webkit-transform: scale(7);
+  }
+  to {
+    display: block;
+    -webkit-transform: scale(1);
+  }
+}
+.tsymq_recruitCardBodyGroup {
+  position: absolute;
+  width: 20%;
+  height: 76%;
+  top: 12%;
+  left: 5%;
+  font-size: 48px;
+  line-height: 1.25em;
+  text-indent: 0em;
+  color: rgb(255, 255, 255);
+  /*border-radius: 50%;*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  z-index: 2011;
+}
+.tsymq_recruitCardBodyName {
+  position: absolute;
+  width: 80%;
+  height: 50%;
+  left: 30%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: justify;
+  font-family: xinwei;
+  font-size: 1.8vw;
+  color: rgb(255, 255, 255);
+  /*border-radius: 50%;*/
+  text-align: left;
+  z-index: 2011;
+}
+.tsymq_recruitCardBodyHpBox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 100%;
+  z-index: 10;
+}
+.tsymq_recruitCardBodyHpDiv {
+  position: relative;
+  width: 10%;
+  height: 0;
+  bottom: 0%;
+  left: 0%;
+  padding-bottom: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0% 0% 0% 0%;
+}
+.tsymq_recruitCardBody_Skills {
+  position: absolute;
+  width: 60%;
+  height: 10%;
+  left: 4%;
+  top: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: justify;
+  font-family: yuanli;
+  font-size: 1.5vw;
+  text-indent: 1em;
+  letter-spacing: 0px;
+  color: rgb(255, 255, 255);
+  /*border-radius: 50%;*/
+  text-align: left;
+  background-image: url(../../extension/武将界面/image/other/renwujineng.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2011;
+}
+.tsymq_recruitCardBody_SkillsBox {
+  position: absolute;
+  width: 92%;
+  height: 60%;
+  left: 4%;
+  top: 35%;
+  font-size: 1.35vw;
+  font-family: yuanli;
+  line-height: 1.6vw;
+  color: rgb(120, 80, 60);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2011;
+  overflow: auto;
+  pointer-events: auto;
+}
+.tsymq_recruitCardBodySpeed {
+  position: absolute;
+  width: 51%;
+  height: 8%;
+  right: 0%;
+  top: 5%;
+  border: 1px solid rgba(21, 233, 19, 1);
+  z-index: 2021;
+}
+.tsymq_recruitCardBodyStc {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  right: 0%;
+  top: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: xinwei;
+  font-size: 1.5vw;
+  color: rgb(255, 255, 255);
+  /*border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+}
+.tsymq_recruitCardBodyStc2 {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  right: 0%;
+  top: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-size: 1.6vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 2022;
+}
+.tsymq_recruitCardBody_newICON {
+  position: relative;
+  width: 4.9%;
+  height: 100%;
+  top: 0%;
+  background-image: url(../../extension/武将界面/image/icon/newicon.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+  margin: 10px;
+}
+.tsymq_recruitCardBodyStcinfo {
+  position: relative;
+  height: 100%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-family: yuanli;
+  font-size: 1.5vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+}
+.tsymq_recruitCardBodyStcinfo2 {
+  position: absolute;
+  width: 45%;
+  height: 100%;
+  left: 5%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-family: yuanli;
+  font-size: 2.0vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+}
+.tsymq_recruitCardBodyStcnum {
+  position: relative;
+  height: 100%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-family: Microsoft YaHei;
+  font-style: italic;
+  text-shadow: 0 0 10px yellow, 0 0 20px red, 0 0 30px yellow, 0 0 40px yellow;
+  font-size: 4.0vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+  z-index: 5;
+}
+.tsymq_recruit_cardbox {
+  position: relative;
+  width: 60%;
+  height: 90%;
+  top: 0%;
+  left: 20%;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_recruit_cardbox1 {
+  position: relative;
+  width: 100%;
+  height: 90%;
+  top: 0%;
+  left: 0%;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_recruit_cardbody1 {
+  position: relative;
+  width: 100%;
+  height: 70%;
+  top: 15%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame1.png);
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_recruit_cardbox2 {
+  position: relative;
+  width: 100%;
+  height: 90%;
+  top: 0%;
+  left: 0%;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_recruit_cardbody2 {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  top: 0%;
+  left: 10%;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  background-color: rgba(25, 25, 25, 0.5);
+  transition: 0.5s ease-in-out;
+  z-index: 5;
+}
+.tsymq_recruit_character_Name {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 18%;
+  height: 42%;
+  top: 17%;
+  right: 92%;
+  letter-spacing: 0px;
+  line-height: 1.5vw;
+  color: rgb(255, 255, 255);
+  font-family: xinwei;
+  font-size: 1.5vw;
+  -webkit-text-stroke-width: 0.20px;
+  z-index: 2021;
+}
+.tsymq_recruit_character_NameX {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 18%;
+  height: 42%;
+  top: 17%;
+  right: 92%;
+  letter-spacing: 0px;
+  line-height: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: xinwei;
+  font-size: 1.2vw;
+  -webkit-text-stroke-width: 0.20px;
+  z-index: 2021;
+}
+.tsymq_recruit_character_HpBody {
+  position: absolute;
+  width: 70%;
+  height: 45%;
+  left: 31%;
+  top: 56.6%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/style/border_hp1.webp);
+  z-index: 10;
+  pointer-events: none;
+}
+.tsymq_recruit_character_HpBox {
+  position: absolute;
+  width: 11%;
+  height: 30%;
+  left: 89%;
+  bottom: 5%;
+  /*border: 1px solid rgba(255,25,255,1);*/
+  z-index: 10;
+  white-space: pre-wrap;
+}
+.tsymq_recruit_character_HpDiv {
+  position: relative;
+  width: 90%;
+  height: 0;
+  bottom: 2%;
+  left: 5%;
+  display: flex;
+  flex-flow: wrap;
+  padding-bottom: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0% 0% 15% 0%;
+}
+.tsymq_recruit_character_HpNum {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  top: 0%;
+  left: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1.0vw;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center center;
+}
+.tsymq_recruit_character_Unlock {
+  position: absolute;
+  width: 16%;
+  height: 40%;
+  top: 0%;
+  right: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0px;
+  line-height: 29px;
+  color: rgb(255, 25, 25);
+  font-family: xinwei;
+  font-size: 28px;
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/style/weiyongyou.png);
+  z-index: 20;
+  pointer-events: none;
+}
+.tsymq_recruit_character_UnlockX {
+  position: absolute;
+  width: 16%;
+  height: 40%;
+  top: 0%;
+  right: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0px;
+  line-height: 21px;
+  color: rgb(255, 25, 25);
+  font-family: xinwei;
+  font-size: 20px;
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/style/weiyongyou.png);
+  z-index: 20;
+  pointer-events: none;
+}
+.tsymq_recruit_character_UnlockX2 {
+  position: absolute;
+  width: 16%;
+  height: 40%;
+  top: 0%;
+  right: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0px;
+  line-height: 21px;
+  color: rgb(255, 25, 25);
+  font-family: xinwei;
+  font-size: 20px;
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/style/yiyongyou.png);
+  z-index: 20;
+  pointer-events: none;
+}
+.tsymq_recruit_character_Rarity {
+  position: absolute;
+  width: 40%;
+  height: 25%;
+  top: 83%;
+  right: 30%;
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  pointer-events: none;
+  z-index: 2022;
+}
+.tsymq_recruitCard_biaokuang {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  transition: 0.5s ease-in-out;
+  z-index: 6;
+  animation-duration: 1s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoScale-1;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoScale-1 {
+  0% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.0);
+  }
+}
+.tsymq_recruitCard_biaokuang2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  transition: 0.5s ease-in-out;
+  z-index: 2000;
+  animation-duration: 3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoScale-1A;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoScale-1A {
+  0% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.0);
+  }
+}
+.tsymq_recruitCard_biaokuang3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  transition: 0.5s ease-in-out;
+  z-index: 6;
+  animation-duration: 3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoScale-1B;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoScale-1B {
+  0% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.0);
+  }
+}
+.tsymq_recruitCard_exchange {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background-image: url(../../extension/武将界面/image/background/jiangfubg.png);*/
+  pointer-events: none;
+  transition: 0.5s ease-in-out;
+  z-index: 6;
+}
+.tsymq_recruitCard_exchange_imp {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  left: 0%;
+  bottom: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_jiangfu.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+.tsymq_recruitCard_exchange_Text {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  top: 15%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: #d0a86b;
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+#card {
+  position: relative;
+  width: 14.5%;
+  height: 32%;
+  top: 10%;
+  left: 1%;
+  border-radius: 5%;
+  transition: 2s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/cai.png);
+  margin: 0% 2.5% 3.5% 2.5%;
+  box-shadow: -3px 0px 3px #9400D3, 0px -3px 3px #9400D3, 3px 0px 3px #9400D3, 0px 3px 3px #9400D3;
+  z-index: 5;
+}
+#card1 {
+  position: absolute;
+  width: 13%;
+  height: 68%;
+  top: 16%;
+  left: 43.5%;
+  border-radius: 0.4vw;
+  transition: 0.5s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/cai.png);
+  z-index: 5;
+}
+#cardV {
+  position: absolute;
+  width: 13%;
+  height: 70%;
+  top: 15%;
+  left: 43.5%;
+  border-radius: 3%;
+  transition: 0.5s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/cai.png);
+  z-index: 5;
+}
+#cardX {
+  position: relative;
+  width: 12.5%;
+  height: 35%;
+  top: 16%;
+  left: 10%;
+  border-radius: 0.4vw;
+  transition: 0.5s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/cai.png);
+  margin: 0% 4.5% 2.5% 0%;
+  z-index: 2021;
+}
+#card:hover {
+  animation: shake-slow 5s infinite ease-in-out;
+  box-shadow: -3px 0px 3px red, 0px -3px 3px red, 3px 0px 3px red, 0px 3px 3px red;
+}
+#card2 {
+  position: relative;
+  width: 20%;
+  height: 55%;
+  top: 22.5%;
+  left: 37.5%;
+  border-radius: 2%;
+  transition: 0.5s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/cai.png);
+  margin: 0% 2.5% 3.5% 2.5%;
+  z-index: 5;
+  animation-duration: 2.0s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: xyzAnimation-0;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes xyzAnimation-0 {
+  0% {
+    transform: rotateY(0deg) scaleX(-1);
+  }
+  to {
+    left: 18%;
+    transform: rotateY(1260deg) scaleX(-1);
+  }
+}
+#card3 {
+  position: absolute;
+  width: 13%;
+  height: 70%;
+  top: 15%;
+  left: 43.5%;
+  border-radius: 3%;
+  transition: 0.5s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/cai.png);
+  z-index: 5;
+}
+#tsymq_boxFrameV {
+  position: absolute;
+  width: 105%;
+  height: 101.3%;
+  right: -2%;
+  top: -1.15%;
+  opacity: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/style/long.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+}
+#tsymq_boxFrameV.tsymq_boxFrameA {
+  width: 100.2%;
+  height: 100.2%;
+  right: 0%;
+  top: -0.2%;
+  opacity: 1;
+}
+#card.card-flip {
+  transform: rotateY(180deg) scaleX(-1);
+}
+#card1.card-flip {
+  transform: rotateY(180deg) scaleX(-1);
+}
+#card3.card-flip {
+  transform: rotateY(180deg) scaleX(-1);
+}
+#cardX.card-flip {
+  transform: rotateY(180deg) scaleX(-1);
+}
+@keyframes myfirst {
+  0% {
+    transform: scale(1);
+  }
+  77%,
+  83%,
+  90%,
+  97% {
+    transform: rotate(3deg);
+  }
+  80%,
+  87%,
+  93% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes shake-slow {
+  2% {
+    transform: translate(6px, -2px) rotate(3.5deg);
+  }
+  4% {
+    transform: translate(5px, 8px) rotate(-0.5deg);
+  }
+  6% {
+    transform: translate(6px, -3px) rotate(-2.5deg);
+  }
+  8% {
+    transform: translate(4px, -2px) rotate(1.5deg);
+  }
+  10% {
+    transform: translate(-6px, 8px) rotate(-1.5deg);
+  }
+  12% {
+    transform: translate(-5px, 5px) rotate(1.5deg);
+  }
+  14% {
+    transform: translate(4px, 10px) rotate(3.5deg);
+  }
+  16% {
+    transform: translate(0px, 4px) rotate(1.5deg);
+  }
+  18% {
+    transform: translate(-1px, -6px) rotate(-0.5deg);
+  }
+  20% {
+    transform: translate(6px, -9px) rotate(2.5deg);
+  }
+  22% {
+    transform: translate(1px, -5px) rotate(-1.5deg);
+  }
+  24% {
+    transform: translate(-9px, 6px) rotate(-0.5deg);
+  }
+  26% {
+    transform: translate(8px, -2px) rotate(-1.5deg);
+  }
+  28% {
+    transform: translate(2px, -3px) rotate(-2.5deg);
+  }
+  30% {
+    transform: translate(9px, -7px) rotate(-0.5deg);
+  }
+  32% {
+    transform: translate(8px, -6px) rotate(-2.5deg);
+  }
+  34% {
+    transform: translate(-5px, 1px) rotate(3.5deg);
+  }
+  36% {
+    transform: translate(0px, -5px) rotate(2.5deg);
+  }
+  38% {
+    transform: translate(2px, 7px) rotate(-1.5deg);
+  }
+  40% {
+    transform: translate(6px, 3px) rotate(-1.5deg);
+  }
+  42% {
+    transform: translate(1px, -5px) rotate(-1.5deg);
+  }
+  44% {
+    transform: translate(10px, -4px) rotate(-0.5deg);
+  }
+  46% {
+    transform: translate(-2px, 2px) rotate(3.5deg);
+  }
+  48% {
+    transform: translate(3px, 4px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translate(8px, 1px) rotate(-1.5deg);
+  }
+  52% {
+    transform: translate(7px, 4px) rotate(-1.5deg);
+  }
+  54% {
+    transform: translate(10px, 8px) rotate(-1.5deg);
+  }
+  56% {
+    transform: translate(-3px, 0px) rotate(-0.5deg);
+  }
+  58% {
+    transform: translate(0px, -1px) rotate(1.5deg);
+  }
+  60% {
+    transform: translate(6px, 9px) rotate(-1.5deg);
+  }
+  62% {
+    transform: translate(-9px, 8px) rotate(0.5deg);
+  }
+  64% {
+    transform: translate(-6px, 10px) rotate(0.5deg);
+  }
+  66% {
+    transform: translate(7px, 0px) rotate(0.5deg);
+  }
+  68% {
+    transform: translate(3px, 8px) rotate(-0.5deg);
+  }
+  70% {
+    transform: translate(-2px, -9px) rotate(1.5deg);
+  }
+  72% {
+    transform: translate(-6px, 2px) rotate(1.5deg);
+  }
+  74% {
+    transform: translate(-2px, 10px) rotate(-1.5deg);
+  }
+  76% {
+    transform: translate(2px, 8px) rotate(2.5deg);
+  }
+  78% {
+    transform: translate(6px, -2px) rotate(-0.5deg);
+  }
+  80% {
+    transform: translate(6px, 8px) rotate(0.5deg);
+  }
+  82% {
+    transform: translate(10px, 9px) rotate(3.5deg);
+  }
+  84% {
+    transform: translate(-3px, -1px) rotate(3.5deg);
+  }
+  86% {
+    transform: translate(1px, 8px) rotate(-2.5deg);
+  }
+  88% {
+    transform: translate(-5px, -9px) rotate(2.5deg);
+  }
+  90% {
+    transform: translate(2px, 8px) rotate(0.5deg);
+  }
+  92% {
+    transform: translate(0px, -1px) rotate(1.5deg);
+  }
+  94% {
+    transform: translate(-8px, -1px) rotate(0.5deg);
+  }
+  96% {
+    transform: translate(-3px, 8px) rotate(-1.5deg);
+  }
+  98% {
+    transform: translate(4px, 8px) rotate(0.5deg);
+  }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+.shake-slow {
+  animation: shake-slow 5s infinite ease-in-out;
+}
+.tsymq_recruit_returnBodr {
+  position: absolute;
+  width: 10%;
+  height: 6%;
+  top: 98%;
+  left: 40%;
+  border-radius: 6px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+}
+.tsymq_recruit_returnBodr:hover {
+  -webkit-transform: scale(1.1);
+}
+.tsymq_recruit_returnAuto {
+  position: absolute;
+  width: 10%;
+  height: 6%;
+  top: 98%;
+  left: 50%;
+  border-radius: 6px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+}
+.tsymq_recruit_returnAuto:hover {
+  -webkit-transform: scale(1.1);
+}
+.tsymq_recruitExplain {
+  position: absolute;
+  width: 40%;
+  height: 8%;
+  right: 30%;
+  top: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/other/Explain.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_recruitScanning {
+  position: relative;
+  width: 2%;
+  height: 66%;
+  left: 10%;
+  top: 18%;
+  background-color: rgba(255, 255, 255, 0.25);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+  animation-duration: 1.9s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoAnimation-0;
+  /*动画名称*/
+  animation-iteration-count: infinite;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoAnimation-0 {
+  0% {
+    left: 10%;
+    display: block;
+  }
+  to {
+    left: 88%;
+    display: none;
+  }
+}
+.tsymq_recruitShaoGuang_Body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: hidden;
+}
+.tsymq_recruitShaoGuang {
+  position: absolute;
+  width: 15%;
+  height: 200%;
+  left: 0%;
+  top: -50%;
+  background-color: rgba(255, 255, 255, 0.11);
+  -webkit-transition: all 0.1s;
+  -webkit-transform: rotate(45deg);
+  z-index: 5;
+  animation-duration: 2s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoSaoMiao;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoSaoMiao {
+  0% {
+    left: -90%;
+  }
+  to {
+    left: 180%;
+  }
+}
+.tsymq_recruit_effect_Box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*background: rgba(255,255,255,0.75); */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+  overflow: auto;
+  animation-duration: 5s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: autoScale;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes autoScale {
+  0% {
+    transform: scale(1.1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+.tsymq_game_dlcbody {
+  position: absolute;
+  width: 19%;
+  height: 88.5%;
+  right: 79.5%;
+  top: 6.5%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 105% 101%;
+  background-image: url(../../extension/武将界面/image/background/dlcbody.png);
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+.tsymq_dlcHeros {
+  position: absolute;
+  width: 88.8%;
+  height: 90%;
+  right: 5.535%;
+  top: 12%;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymq_dlcframe {
+  position: absolute;
+  width: 79.5%;
+  height: 84%;
+  right: 0%;
+  top: 9%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+}
+.tsymq_dlcframe {
+  position: absolute;
+  width: 79.5%;
+  height: 84%;
+  right: 0%;
+  top: 9%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+}
+.tsymq_characterDivBody {
+  position: relative;
+  width: 15.45%;
+  height: 39%;
+  left: 0%;
+  top: 5%;
+  border-radius: 0.4vw;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 2% 3.5% 2%;
+}
+.tsymq_characterDivImp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  border-radius: 6px;
+  -webkit-transition: all 0.1s;
+}
+#tsymq_characterDivBan {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 113%;
+  background-image: url(../../extension/武将界面/image/style/banicon.png);
+  pointer-events: none;
+  display: none;
+}
+.tsymq_characterDivGroupColor {
+  position: absolute;
+  width: 16.5%;
+  height: 56%;
+  top: 11%;
+  right: 92%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  z-index: 2001;
+}
+.tsymq_characterDivGroupBody {
+  position: absolute;
+  width: 32.5%;
+  height: 76%;
+  top: -8%;
+  right: 84.5%;
+  /*background-position: center center;*/
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  z-index: 2001;
+}
+.tsymq_characterDivGroup {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  top: 4.5%;
+  right: 0%;
+  font-size: 45px;
+  color: rgb(255, 255, 255);
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  z-index: 2002;
+}
+.tsymq_characterDivGroup2 {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  top: 4.5%;
+  right: 0%;
+  font-size: 45px;
+  color: rgb(255, 255, 255);
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  z-index: 2002;
+}
+.tsymq_characterDivGroupXW {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  top: 4.5%;
+  right: 0%;
+  font-size: 45px;
+  color: rgb(255, 255, 255);
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  z-index: 2002;
+}
+.tsymq_characterDivGroupT {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 25%;
+  top: 5%;
+  right: 0%;
+  font-size: 2.25vw;
+  color: rgb(255, 255, 255);
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  z-index: 2002;
+}
+.tsymq_characterDivName {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 18%;
+  height: 42%;
+  top: 17%;
+  right: 92%;
+  border-radius: 10px;
+  letter-spacing: 0px;
+  line-height: 29px;
+  color: rgb(255, 255, 255);
+  font-family: xinwei;
+  font-size: 30px;
+  -webkit-text-stroke-width: 0.20px;
+  z-index: 2021;
+}
+.tsymq_characterDivNameV {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 18%;
+  height: 42%;
+  top: 18%;
+  right: 92.5%;
+  border-radius: 10px;
+  letter-spacing: 0px;
+  line-height: 25px;
+  color: rgb(255, 255, 255);
+  font-family: xinwei;
+  font-size: 24px;
+  -webkit-text-stroke-width: 0.20px;
+  z-index: 2021;
+}
+.tsymq_characterHpBody {
+  position: relative;
+  width: 75%;
+  height: 50%;
+  left: 14.5%;
+  top: 52.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/style/border_hp1.webp);
+  z-index: 2021;
+}
+.tsymq_characterHpBox {
+  position: relative;
+  width: 15%;
+  height: 80%;
+  top: 10%;
+  left: 40%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 2022;
+}
+.tsymq_characterDivHp {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  top: 20%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center center;
+}
+.tsymq_characterDivHp_auto {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 80%;
+  left: 9%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center center;
+}
+.tsymq_characterDivHpNum {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 45%;
+  left: 9%;
+  font-size: 24px;
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center center;
+}
+.tsymq_characterDivAarity {
+  position: absolute;
+  width: 50%;
+  height: 35%;
+  top: 74%;
+  right: 25%;
+  margin-right: 0px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  text-align: center;
+  pointer-events: none;
+  z-index: 2022;
+}
+.tsymq_DivBlank {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  text-align: center;
+  z-index: 10;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.box {
+  width: 92%;
+  height: 4%;
+  top: 94.5%;
+  right: 4%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+@keyframes wordsLoop {
+  0% {
+    transform: translateX(200px);
+    -webkit-transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes wordsLoop {
+  0% {
+    transform: translateX(200px);
+    -webkit-transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+  }
+}
+.tsymq_dlcDiv_false {
+  position: relative;
+  width: 100%;
+  height: 14%;
+  right: 0%;
+  top: 1%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/EXoff.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+  margin: 0% 0% 0% 0%;
+}
+.tsymq_dlcExtra {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 2.5%;
+  top: 0%;
+  border: 1px solid rgba(252, 77, 56, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/topping.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+  -webkit-transform: rotate(45deg);
+  display: none;
+  pointer-events: auto;
+}
+.tsymq_dlcName {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  font-size: 2.5vw;
+  letter-spacing: -2px;
+  color: rgb(213, 183, 89);
+  font-family: xinwei;
+  line-height: 42px;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+}
+.tsymq_bpNum {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+}
+.tsymq_Num {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.75vw;
+  letter-spacing: 0px;
+  color: rgb(213, 183, 89);
+  font-family: songti;
+  text-align: right;
+  line-height: 42px;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+}
+.tsymq_dlcOn_true {
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  right: 79%;
+  top: 1%;
+  font-size: 52px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+}
+.tsymq_dlcOn_false {
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  right: 62%;
+  top: 1%;
+  font-size: 52px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+  /*display:none;*/
+}
+.tsymq_dlcSort {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  font-size: 1.2vw;
+  color: rgb(213, 183, 89);
+  font-family: Microsoft YaHei;
+  line-height: 1.0vw;
+  ;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+}
+.tsymq_dlcNameX {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  font-size: 1.75vw;
+  letter-spacing: 2px;
+  color: rgb(213, 183, 89);
+  font-family: Microsoft YaHei;
+  line-height: 42px;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+}
+.tsymq_dlcPendant {
+  position: relative;
+  width: 95%;
+  height: 10%;
+  left: 0%;
+  top: 1%;
+  font-size: 64px;
+  letter-spacing: 0.1em;
+  color: rgb(20, 20, 20);
+  font-family: Microsoft YaHei;
+  text-align: left;
+  text-indent: 1.5em;
+  line-height: 1.3em;
+  border: 2px solid rgba(117, 77, 56, 1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2003;
+}
+#input_textInput {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 10px;
+  border-bottom: 2px solid rgb(180, 180, 180);
+  z-index: 2021;
+}
+.tsymq_buttonbody {
+  position: absolute;
+  width: 26%;
+  height: 7.5%;
+  right: 50%;
+  top: 10.1%;
+  /*border: 1px solid rgba(117,77,56,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+}
+.tsymq_bpbody {
+  position: absolute;
+  width: 9.5%;
+  height: 7.5%;
+  right: 2.8%;
+  top: 10%;
+  /*border: 2px solid rgba(117,77,56,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+  pointer-events: none;
+}
+.tsymq_menuBody {
+  position: absolute;
+  width: 17.75%;
+  height: 7.4%;
+  right: 31.25%;
+  top: 17.2%;
+  /*border: 2px solid rgba(0,0,0,1);*/
+  -webkit-transition: all 0.1s;
+  z-index: 2005;
+}
+.tsymq_boxBody {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*background: rgba(255,255,255,0.75);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2000;
+}
+.tsymq_columnbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*background: rgba(255,255,255,0.75); */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+}
+.tsymq_oldBody {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*background: rgba(255,255,255,0.75); */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+  overflow: auto;
+}
+.tsymq_newBody {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+}
+.tsymq_newBody2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2010;
+  overflow: auto;
+}
+.tsymq_newButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 48%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  font-size: 2.5vw;
+  letter-spacing: 0px;
+  color: rgb(213, 183, 89);
+  font-family: xinwei;
+  text-align: center;
+  line-height: 1.25em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+  margin: 0% 1% 0% 1%;
+}
+.tsymq_newButton2 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 48%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  font-size: 2.5vw;
+  letter-spacing: 0px;
+  color: rgb(213, 183, 89);
+  font-family: xinwei;
+  text-align: center;
+  line-height: 1.25em;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.1s;
+  z-index: 2001;
+  margin: 0% 1% 0% 1%;
+}
+.tsymq_sortBodyName {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  height: 70px;
+  right: 0%;
+  top: 0%;
+  font-size: 1.5vw;
+  color: rgb(213, 183, 89);
+  font-family: Microsoft YaHei;
+  text-align: center;
+  line-height: 2.0em;
+  border: 1px solid rgba(197, 157, 98, 1);
+  background: rgba(62, 30, 30, 0.85);
+  -webkit-transition: all 0.1s;
+  z-index: 2020;
+}
+.tsymq_ColumnBody {
+  position: absolute;
+  width: 13%;
+  height: 7.4%;
+  right: 36%;
+  top: 10%;
+  font-size: 52px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/searchBody.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2020;
+  overflow: visible;
+}
+.tsymq_ColumnClick {
+  position: absolute;
+  width: 32%;
+  height: 0;
+  right: -36%;
+  top: 0%;
+  padding-bottom: 32%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/column.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+  /*display:none;*/
+}
+.tsymq_SearchBody {
+  position: absolute;
+  width: 13%;
+  height: 7.4%;
+  right: 17%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/searchBody.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+}
+#tsymq_Search_input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.75vw;
+  font-family: Microsoft YaHei;
+  color: rgb(213, 183, 89);
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 10;
+  pointer-events: auto;
+}
+.tsymq_SearchClick {
+  position: absolute;
+  width: 32%;
+  height: 0;
+  right: -36%;
+  top: 0%;
+  padding-bottom: 32%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/search.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+  /*display:none;*/
+}
+.tsymq_framebody {
+  position: absolute;
+  width: 91%;
+  height: 83.5%;
+  right: 4.5%;
+  top: 11%;
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+  overflow: auto;
+  text-align: center;
+}
+.tsymq_sortFrame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 100%;
+  height: 7%;
+  left: 0%;
+  top: 1%;
+  letter-spacing: 0px;
+  color: rgb(213, 183, 89);
+  font-family: shousha;
+  font-size: 2.0vw;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/other/Sorticon.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+  pointer-events: none;
+  margin: 0% 0% 1.5% 0%;
+}
+.tsymq_game_bgbody {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/other/BGbody.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2002;
+  pointer-events: none;
+}
+.tsymq_explain_frame {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  background-color: rgba(20, 20, 20, 0.8);
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+}
+.tsymq_explain_title {
+  position: absolute;
+  width: 20%;
+  height: 8%;
+  right: 40%;
+  top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(139, 59, 60, 1);
+  font-family: yuanli;
+  font-size: 36px;
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+}
+.tsymq_explain_Body {
+  position: relative;
+  width: 60%;
+  height: 64%;
+  left: 0%;
+  top: 20%;
+  /*border: 1px solid rgba(25,255,25,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/background/frame6.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2000;
+}
+.tsymq_explain_body_info {
+  position: relative;
+  width: 78%;
+  height: 82%;
+  right: 0%;
+  top: 11%;
+  text-indent: 2em;
+  text-align: left;
+  color: rgba(20, 20, 20, 1);
+  font-family: Microsoft YaHei;
+  font-size: 24px;
+  line-height: 30px;
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+  overflow: auto;
+}
+.tsymq_tool_frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  z-index: 2021;
+}
+.tsymq_tool_Body {
+  position: absolute;
+  width: 60%;
+  height: 67%;
+  left: 20%;
+  top: 16.5%;
+  /*border: 1px solid rgba(25,255,25,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/toolBOX.png);
+  -webkit-transition: all 0.1s;
+  z-index: 2000;
+}
+.tsymq_tool_title {
+  position: absolute;
+  width: 100%;
+  height: 7%;
+  left: 0%;
+  top: 2.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: #542328;
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+}
+.tsymq_tool_div {
+  position: relative;
+  width: 80%;
+  height: 8%;
+  left: 10%;
+  top: 13%;
+  /*border: 1px solid rgba(255,255,25,1);*/
+  -webkit-transition: all 0.1s;
+  margin: 0% 0% 1% 0%;
+}
+.tsymq_tool_div_title {
+  position: relative;
+  width: 18%;
+  height: 90%;
+  left: 1%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: #fff;
+  font-family: yuanli;
+  border-radius: 0.5vw;
+  background-color: #542328;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  margin: 0% 0% 0% 0%;
+}
+.tsymq_tool_div2 {
+  position: absolute;
+  width: 19%;
+  height: 8%;
+  left: 29%;
+  top: 84%;
+  border-radius: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  margin: 0% 1% 1.5% 1%;
+}
+.tsymq_projects {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  left: 20%;
+  top: 0%;
+  -webkit-transition: all 0.1s;
+  margin: 0% 0% 0% 0%;
+}
+.tsymq_projects_Div {
+  position: relative;
+  width: 18%;
+  height: 100%;
+  left: 1%;
+  top: 0%;
+  float: left;
+  margin: 0% 1% 0% 0%;
+}
+.tsymq_projects_Box {
+  position: absolute;
+  width: 78%;
+  height: 80%;
+  left: 20%;
+  top: 10%;
+  pointer-events: auto;
+  /*background-color: #2d1b13;*/
+  /*border: 1px solid #d3ab6d;*/
+}
+.tsymq_projects_BoxSliderBody {
+  position: absolute;
+  width: calc(92% - 1vw);
+  height: 54%;
+  left: 0.45vw;
+  top: 50%;
+  margin-top: -2%;
+  overflow: hidden;
+  border-radius: 1vw;
+  text-align: center;
+  background-color: #542328;
+  border: 1px solid rgba(85, 85, 85, 0.5);
+}
+.tsymq_projects_Div_icon {
+  position: absolute;
+  width: 16%;
+  height: 0;
+  left: 2%;
+  top: 30%;
+  padding-bottom: 16%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+}
+.tsymq_projects_Div_info {
+  position: absolute;
+  width: 82%;
+  height: 100%;
+  left: 18%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  text-indent: 0.2vw;
+  font-size: 1.5vw;
+  color: #542328;
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+}
+.tsymq_game_OFFButton {
+  position: absolute;
+  width: 4.35%;
+  height: 0;
+  right: 90%;
+  top: 0%;
+  padding-bottom: 4.35%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/return.png);
+  z-index: 10;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.tsymq_overviewPopup_historyRecordDiv {
+  position: relative;
+  width: 95%;
+  height: 30%;
+  top: 3%;
+  left: 0%;
+  border: 1px solid rgba(55, 55, 55, 1);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  margin: 0% 0% 0.5% 0%;
+}
+.tsymq_overviewPopup_historyRecordImp {
+  position: absolute;
+  width: 10%;
+  height: 90%;
+  top: 4.5%;
+  left: 0.5%;
+  border: 1px solid rgba(55, 55, 55, 1);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+  overflow: hidden;
+}
+.tsymq_overviewPopup_historyRecordImp1-25 {
+  position: absolute;
+  width: 75%;
+  height: 125%;
+  top: -25%;
+  right: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 1);
+  -webkit-transform: rotateY(180deg) scaleX(1) rotate(-15deg);
+}
+.tsymq_overviewPopup_historyRecordImp2-25 {
+  position: absolute;
+  width: 75%;
+  height: 125%;
+  top: -5%;
+  left: 45%;
+  overflow: hidden;
+  -webkit-transform: rotateY(180deg) scaleX(1) rotate(-15deg);
+}
+.tsymq_overviewPopup_historyRecordImp1-50 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  /*border: 1px solid rgba(255,5,5,1);*/
+  -webkit-transform: rotateY(180deg) scaleX(1) rotate(-15deg);
+}
+.tsymq_overviewPopup_historyRecordImp2-50 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  right: -30%;
+  -webkit-transform: rotateY(180deg) scaleX(1) rotate(-15deg);
+}
+.tsymq_overviewPopup_historyRecordImp1-100 {
+  position: absolute;
+  width: 125%;
+  height: 125%;
+  top: 12.5%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tsymq_overviewPopup_historyRecordImp2-100 {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: 5%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tsymq_overviewPopup_historyRecordText {
+  position: absolute;
+  width: 85%;
+  height: 90%;
+  top: 4.5%;
+  left: 11.5%;
+  -webkit-transition: all 0.1s;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(255, 255, 255, 0));
+  z-index: 10;
+}
+.tsymq_overviewPopup_historyRecordDivInfo {
+  position: absolute;
+  width: 35%;
+  height: 90%;
+  top: 10%;
+  left: 15%;
+  text-align: left;
+  font-size: 1.25vw;
+  color: rgb(255, 255, 255);
+  font-family: Microsoft YaHei;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_overviewPopup_historyRecordDivResult {
+  position: absolute;
+  width: 10%;
+  height: 90%;
+  top: 5%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2.0vw;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymq_overviewPopup_historyRecordDivPlayVideo {
+  position: absolute;
+  width: 10%;
+  height: 40%;
+  top: 7.5%;
+  right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.0vw;
+  -webkit-transition: all 0.1s;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(255, 255, 255, 0));
+  z-index: 10;
+}
+.tsymq_overviewPopup_historyRecordDivPage {
+  position: absolute;
+  width: 10%;
+  height: 40%;
+  bottom: 7.5%;
+  right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.0vw;
+  -webkit-transition: all 0.1s;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(255, 255, 255, 0));
+  z-index: 10;
+}
+#tsymq_useCardExperience_cardBody {
+  position: relative;
+  width: 13%;
+  height: 5%;
+  left: 0%;
+  top: 2%;
+  -webkit-transition: all 0.2s;
+  margin: 0% 0.5% 1% 0.5%;
+  border: 1px solid rgba(255, 5, 5, 1);
+}
+#tsymq_useCardExperience_cardName {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  right: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: rgb(255, 5, 5);
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+@media only screen and (max-width: 1280px) {
+  .tsymq_windowPromptButton4 {
+    font-size: 2.0rem;
+  }
+  .tsymq_windowPromptButton5 {
+    font-size: 2.0rem;
+  }
+  .tsymq_shopPopup_propBodr {
+    font-size: 1.35rem;
+  }
+  .tsymq_shopPopup_equipBodr {
+    font-size: 1.35rem;
+  }
+  .tsymq_shopPopup_trickBodr {
+    font-size: 1.35rem;
+  }
+  .tsymq_shopPopup_basicBodr {
+    font-size: 1.35rem;
+  }
+}

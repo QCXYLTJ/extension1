@@ -1,0 +1,1966 @@
+.onlineShopHome {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/act_ws_general_bg3.png);
+  z-index: 10;
+}
+.onlineShopHomeBody {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  left: 50%;
+  top: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/box_onlineShop.png);
+  z-index: 10;
+}
+.onlineShopHomeBody>.onlineShopTitle {
+  position: absolute;
+  width: 16%;
+  height: 7%;
+  right: 42%;
+  top: 0.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 2.2vw;
+  color: #de9d30;
+  font-family: yuanli;
+  text-shadow: 0 0 3px rgba(255, 100, 40, 0.5), 0 0 5px rgba(255, 100, 40, 0.5), 0 0 7px rgba(255, 100, 40, 0.5), 0 0 10px rgba(255, 100, 40, 0.5);
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.onlineShopHomeBody>.onlineShopOFF {
+  width: 4.5%;
+  height: 9%;
+  top: 11%;
+  right: 2%;
+  z-index: 10;
+}
+.onlineShopBody {
+  position: absolute;
+  width: 86%;
+  height: 82.75%;
+  top: 12.5%;
+  left: 7%;
+  overflow: auto;
+  text-align: center;
+  z-index: 10;
+}
+.onlineShopPlayDiv1 {
+  position: absolute;
+  width: 19%;
+  height: 38.5%;
+  top: 6.5%;
+  left: 4.5%;
+  z-index: 10;
+}
+.onlineShopPlayDiv2 {
+  position: absolute;
+  width: 19%;
+  height: 40%;
+  top: 46.5%;
+  left: 4.5%;
+  z-index: 10;
+}
+.onlineShopDiv {
+  position: relative;
+  width: 17%;
+  height: 45%;
+  top: 0%;
+  left: 0%;
+  -webkit-transition: all 0.1s;
+  margin: 1% 1% 0.5% 1%;
+}
+.onlineShopDivBox {
+  position: absolute;
+  width: 90%;
+  height: 0;
+  top: 0%;
+  left: 5%;
+  padding-bottom: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/prize-box9.png);
+}
+.onlineShopDivBoxZK {
+  position: absolute;
+  width: 40%;
+  height: 0;
+  left: 0%;
+  top: -2%;
+  padding-bottom: 40%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+}
+.onlineShopDivBoxVip0 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_vip0.png);
+  z-index: 11;
+}
+.onlineShopDivBoxImp {
+  position: absolute;
+  width: 78%;
+  height: 0%;
+  top: 10%;
+  left: 11%;
+  border-radius: 50%;
+  padding-bottom: 78%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.onlineShopDivBoxNameIcon {
+  position: absolute;
+  width: 100%;
+  height: 18%;
+  bottom: 5%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_frame_square6.png);
+}
+.onlineShopDivBoxNameText {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 10%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  white-space: nowrap;
+  /*不换行*/
+  font-size: 1.3vw;
+  color: rgba(255, 201, 1, 1);
+  font-family: yuanli;
+  text-shadow: 0 0 3px rgba(255, 100, 40, 0.5), 0 0 5px rgba(255, 100, 40, 0.5), 0 0 7px rgba(255, 100, 40, 0.5), 0 0 10px rgba(255, 100, 40, 0.5);
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.onlineShopDivPrice {
+  position: absolute;
+  width: 100%;
+  height: 19%;
+  bottom: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon9.png);
+}
+.onlineShopDivBoxVip {
+  position: absolute;
+  width: 21%;
+  height: 80%;
+  right: 0%;
+  top: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+}
+.onlineShopDivPriceIcon {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  bottom: 0%;
+  left: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_coin.png);
+}
+.onlineShopDivPriceText {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 10%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  white-space: nowrap;
+  /*不换行*/
+  font-size: 2.0vw;
+  color: rgba(112, 18, 1, 1);
+  font-family: yuanli;
+  text-shadow: 0 0 3px rgba(255, 0, 0, 0.3), 0 0 5px rgba(255, 0, 0, 0.3), 0 0 7px rgba(255, 0, 0, 0.3), 0 0 10px rgba(255, 0, 0, 0.3);
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.doudizhuHome {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/act_ws_general_bg3.png);
+  z-index: 10;
+}
+.doudizhuHomeBody {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  left: 50%;
+  top: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.doudizhuHomeBody>.doudizhuHomeBg-back {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 8%;
+  height: 15.3%;
+  display: block;
+  z-index: 31;
+}
+.doudizhuHomeBody>.doudizhuTitle {
+  width: 12%;
+  height: 10%;
+  top: 0%;
+  left: 20%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon-shop-title.png);
+  z-index: 10;
+}
+.doudizhuHomeBody>.doudizhuTop {
+  width: 15%;
+  height: 5%;
+  top: 0%;
+  right: 11%;
+  background: -webkit-linear-gradient(left, rgba(42, 32, 22, 0.9), rgba(0, 0, 0, 0));
+  z-index: 10;
+}
+.doudizhuHomeBody>.doudizhuTop2 {
+  width: 15%;
+  height: 5%;
+  top: 0%;
+  right: 27%;
+  background: -webkit-linear-gradient(left, rgba(42, 32, 22, 0.9), rgba(0, 0, 0, 0));
+  z-index: 10;
+}
+.doudizhuTopIcon {
+  position: absolute;
+  width: 18%;
+  height: 100%;
+  bottom: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_huanledou.png);
+  z-index: 3;
+}
+.doudizhuTopIcon2 {
+  position: absolute;
+  width: 18%;
+  height: 100%;
+  bottom: 0%;
+  left: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_jinpiao.png);
+  z-index: 3;
+}
+.doudizhuTopNum {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  bottom: 0%;
+  left: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 2.0vw;
+  font-weight: 900;
+  color: #fff;
+  z-index: 5;
+}
+.doudizhuHomeBody>.doudizhuPlayImp {
+  position: absolute;
+  width: 32%;
+  height: 95%;
+  bottom: -3.5%;
+  left: -3.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/welfare_left_part_bg0.png);
+  z-index: 10;
+}
+.doudizhuHomeBody>.doudizhuShop {
+  position: absolute;
+  width: 64%;
+  height: 82%;
+  top: 10%;
+  left: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg-touming-1.png);
+  z-index: 10;
+}
+.doudizhuShopBody {
+  width: 100%;
+  height: 90%;
+  top: 5%;
+  left: 0%;
+  overflow: auto;
+  text-align: center;
+  z-index: 10;
+}
+.doudizhuShopDiv {
+  position: relative;
+  width: 31%;
+  height: 29%;
+  top: 0%;
+  left: 0%;
+  -webkit-transition: all 0.1s;
+  margin: 1% 1% 1% 1%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/login_scalebg.png);
+}
+.doudizhuShopDivImp {
+  position: absolute;
+  width: 26%;
+  height: 0;
+  top: 10%;
+  left: 6%;
+  padding-bottom: 26%;
+  text-align: center;
+  pointer-events: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/prize-box8.png);
+  z-index: 3;
+}
+.doudizhuShopDivImp2 {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 3;
+}
+.doudizhuShopDivNumText {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  right: 0%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  font-family: Microsoft YaHei;
+  text-shadow: none;
+  font-size: 1.0vw;
+  color: #FFF;
+  font-weight: 900;
+  -webkit-text-stroke: 1px #000;
+  z-index: 5;
+}
+.doudizhuShopDivTextBody {
+  position: absolute;
+  width: 58%;
+  height: 48%;
+  top: 8%;
+  right: 6%;
+  text-align: center;
+  pointer-events: auto;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(42, 32, 22, 0.5), rgba(42, 32, 22, 0.75), rgba(42, 32, 22, 0.85), rgba(42, 32, 22, 0.9), rgba(42, 32, 22, 0.85), rgba(42, 32, 22, 0.75), rgba(42, 32, 22, 0.5), rgba(0, 0, 0, 0));
+  z-index: 3;
+}
+.doudizhuShopDivNameText {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  right: 0%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.2vw;
+  color: #FFF;
+  z-index: 5;
+}
+.doudizhuShopDivTextLine {
+  position: absolute;
+  width: 80%;
+  height: 1px;
+  left: 10%;
+  top: 50%;
+  border-top: 1px solid #fff;
+  z-index: 10;
+  pointer-events: none;
+}
+.doudizhuShopDivTextDate {
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  right: 0%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.2vw;
+  color: #FFF;
+  z-index: 5;
+}
+.doudizhuShopDivButton {
+  position: absolute;
+  width: 90%;
+  height: 33%;
+  bottom: 8%;
+  right: 5%;
+  text-align: center;
+  pointer-events: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../extension/武将界面/image/icon/icon6.png);
+  z-index: 3;
+}
+.doudizhuShopDivButtonIcon {
+  position: absolute;
+  width: 18%;
+  height: 100%;
+  bottom: 0%;
+  left: 18%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_jinpiao.png);
+  z-index: 3;
+}
+.doudizhuShopDivButtonValue {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 2.0vw;
+  font-weight: 900;
+  color: #1f0033;
+  z-index: 5;
+}
+.tsymqNodeHomeBodyHideBodyTimeFixed {
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 56.25%;
+  text-align: center;
+  pointer-events: auto;
+  z-index: 3;
+}
+.tsymqNodeHomeBodyHideBodyTimeBody {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 3;
+  background-color: rgba(40, 0, 67, 0.85);
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBox {
+  position: absolute;
+  width: 52%;
+  height: 0;
+  left: 24%;
+  bottom: 0%;
+  padding-bottom: 52%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/recruitBody1.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymqNodeHomeBodyHideBodyTimeQFDIcon {
+  position: absolute;
+  width: 7.5%;
+  height: 0;
+  left: 14%;
+  bottom: 20%;
+  padding-bottom: 7.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/prop/icon_newqifudeng.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymqNodeHomeBodyHideBodyTimeQFDNum {
+  position: absolute;
+  width: 10%;
+  height: 0;
+  left: 12.5%;
+  bottom: 19%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1vw;
+  color: #FFF;
+  -webkit-transition: all 0.1s;
+  background-color: rgba(40, 0, 67, 0.85);
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxFlop {
+  position: absolute;
+  width: 22%;
+  height: 8%;
+  right: 55%;
+  bottom: 15.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.8vw;
+  line-height: 4vw;
+  color: #3e0c00;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/zhaomuICON1.png);
+  -webkit-transition: all 0.1s;
+  overflow: auto;
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxFlopX {
+  position: absolute;
+  width: 22%;
+  height: 8%;
+  left: 54%;
+  bottom: 15.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: yuanli;
+  text-shadow: none;
+  font-size: 1.8vw;
+  line-height: 4vw;
+  color: #3e0c00;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/zhaomuICON1.png);
+  -webkit-transition: all 0.1s;
+  overflow: auto;
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound1 {
+  position: absolute;
+  width: 45%;
+  height: 0;
+  left: 27%;
+  top: 18%;
+  padding-bottom: 45%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/1.png);
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  animation-duration: 50s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-3;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound2 {
+  position: absolute;
+  width: 39%;
+  height: 0;
+  left: 30.15%;
+  top: 21%;
+  padding-bottom: 39%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/2.png);
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  animation-duration: 30s;
+  /*动画时间*/
+  animation-name: zhuanAnimation-2;
+  animation-iteration-count: infinite;
+  /*动作循环的次数:infinite 无限循环*/
+  transform-origin: center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound2a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/7.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  animation-duration: 3.5s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-4;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes opacityAnimation-4 {
+  0% {
+    opacity: 0;
+    transform: scale(1.0);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(1.0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(2.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound3 {
+  position: absolute;
+  width: 33%;
+  height: 0;
+  left: 33%;
+  top: 24%;
+  padding-bottom: 33%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/3.png);
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);*/
+}
+@keyframes zhuanAnimation-5 {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+  }
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound3a {
+  position: absolute;
+  width: 28%;
+  height: 0;
+  left: 36%;
+  top: 3%;
+  padding-bottom: 28%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/wei.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  /*border: 1px solid rgba(0,0,0,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound3b {
+  position: absolute;
+  width: 28%;
+  height: 0;
+  left: 9%;
+  bottom: 20%;
+  padding-bottom: 28%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/shu.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  /*border: 1px solid rgba(0,0,0,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound3c {
+  position: absolute;
+  width: 28%;
+  height: 0;
+  right: 9%;
+  bottom: 20%;
+  padding-bottom: 28%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/wu.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  /*border: 1px solid rgba(0,0,0,1);*/
+}
+@keyframes sizeAnimation-7 {
+  0% {
+    opacity: 0;
+    transform: scale(8.0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(7.0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound4 {
+  position: absolute;
+  width: 37.5%;
+  height: 0;
+  left: 30.75%;
+  top: 21.75%;
+  padding-bottom: 37.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/4.png);
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound4a {
+  position: absolute;
+  width: 125%;
+  height: 125%;
+  left: -12.5%;
+  top: -12.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/7.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  animation-duration: 2.5s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-3;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound5 {
+  position: absolute;
+  width: 15%;
+  height: 0;
+  left: 42%;
+  top: 33%;
+  padding-bottom: 15%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/5.png);
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound6 {
+  position: absolute;
+  width: 14%;
+  height: 0;
+  left: 42.3%;
+  top: 33.5%;
+  padding-bottom: 14%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/6.png);
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(0,0,0,1);
+  opacity:1;*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound6a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/6a.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  animation-duration: 2.5s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-3;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes opacityAnimation-3 {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound6b {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/9.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  animation-duration: 3.5s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-4;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymqNodeHomeBodyHideBodyTimeCentreBoxRound6c {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/feng.png);
+  -webkit-transition: all 0.1s;
+  opacity: 0;
+  animation-duration: 2s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: opacityAnimation-4;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+.tsymqNodeHomeBodyHideBodyTimeMessage {
+  position: absolute;
+  width: 20%;
+  height: 40%;
+  top: 30%;
+  right: 2%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.1s;
+  overflow: auto;
+}
+.tsymqNodeHomeBodyHideBodyTimeOffBottom {
+  position: absolute;
+  width: 5%;
+  height: 13%;
+  left: 4%;
+  bottom: 15%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/off.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymqNodeHomeBodyHideBodyTimeShop {
+  position: absolute;
+  width: 12%;
+  height: 22%;
+  right: 1%;
+  bottom: 10.5%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/qifu/Shop.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymqNodeHomeBodyHideBodyTimeCharacterBox {
+  position: absolute;
+  width: 28%;
+  height: 64%;
+  left: 8%;
+  top: 18%;
+  /*border: 1px solid rgba(0,0,0,1);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.5s;
+  animation-duration: 8s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: topAnimation-1;
+  /*动画名称*/
+  animation-iteration-count: infinite;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+  z-index: 3;
+}
+@keyframes topAnimation-1 {
+  0% {
+    top: 20%;
+    transform: rotate(0deg);
+  }
+  25% {
+    top: 21%;
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    top: 20%;
+    transform: rotate(0deg);
+  }
+  75% {
+    top: 21%;
+    transform: rotate(-0.5deg);
+  }
+  100% {
+    top: 20%;
+    transform: rotate(0deg);
+  }
+}
+.tsymqNodeHomeBodyHideBodyTimeJournal {
+  position: absolute;
+  width: 2.4%;
+  height: 22%;
+  right: 11%;
+  top: 0%;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/brand2.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalText {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  right: 0%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: rgb(120, 80, 60);
+  text-shadow: none;
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 5;
+  overflow: auto;
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalBody {
+  position: absolute;
+  width: 80%;
+  height: 73%;
+  top: 13.5%;
+  left: 10%;
+  /*border: 1px solid rgba(0,0,0,1);
+  background-color: rgba(0,0,0,0.5);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/buy_dlg.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalBox {
+  position: absolute;
+  width: 86%;
+  height: 85%;
+  top: 8%;
+  left: 7%;
+  overflow: auto;
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(255,255,255,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalBoxText {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  right: 5%;
+  top: 5%;
+  text-align: left;
+  text-indent: 2.4vw;
+  font-size: 1.2vw;
+  color: rgb(35, 35, 35);
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalTitle {
+  position: absolute;
+  width: 30%;
+  height: 6%;
+  right: 35%;
+  top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.8vw;
+  color: #2d1b13;
+  font-family: yuanli;
+  text-shadow: none;
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalDiv {
+  position: relative;
+  width: 10%;
+  height: 0;
+  top: 2%;
+  left: 0%;
+  padding-bottom: 10%;
+  -webkit-transition: all 0.1s;
+  margin: 0% 1% 2% 1%;
+  /*border: 1px solid #FFD700;*/
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalPlayImp {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0%;
+  top: 0%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.2s;
+}
+.tsymqNodeHomeBodyHideBodyTimeJournalName {
+  position: absolute;
+  width: 94%;
+  height: 24%;
+  right: 3%;
+  bottom: 5%;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8vw;
+  text-shadow: none;
+  color: #ffebb8;
+  font-family: yuanli;
+  background-color: rgba(25, 25, 25, 0.85);
+}
+.tsymqNodeHomeBodyHideBodyTimeDiv {
+  position: relative;
+  width: 13.5%;
+  height: 50%;
+  left: 0%;
+  top: -100%;
+  z-index: 10;
+  margin: 0% 1% 0% 1%;
+  transition: all 0.3s;
+  align-items: center;
+  pointer-events: none;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/bg_zhanqi3.png);
+}
+.tsymqNodeHomeBodyHideBodyTimeDiv:hover {
+  top: 22.5%;
+}
+.tsymqNodeHomeBodyHideBodyTimeBox {
+  position: absolute;
+  width: 40%;
+  height: 0;
+  top: 15%;
+  left: 30%;
+  padding-bottom: 40%;
+  align-items: center;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 155, 100, 1);
+}
+.tsymqNodeHomeBodyHideBodyTimeBox2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  align-items: center;
+  transform: rotate(-45deg);
+  border: 1px solid rgba(255, 155, 100, 1);
+}
+.tsymqNodeHomeBodyHideBodyTimeNum {
+  position: absolute;
+  width: 90%;
+  height: 5%;
+  top: 45%;
+  left: 5%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8vw;
+  color: #ffebb8;
+  font-family: Microsoft YaHei;
+  /*border: 1px solid rgba(255 ,155 ,100,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeName {
+  position: absolute;
+  width: 90%;
+  height: 10%;
+  top: 50%;
+  left: 5%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5vw;
+  color: #ffde00;
+  font-family: shousha;
+  /*border: 1px solid rgba(255 ,155 ,100,1);*/
+}
+.tsymqNodeHomeBodyHideBodyTimeInfo {
+  position: absolute;
+  width: 90%;
+  height: 35%;
+  top: 62.5%;
+  left: 5%;
+  text-indent: 1.2vw;
+  text-align: left;
+  font-size: 0.7vw;
+  color: #ffebb8;
+  font-family: Microsoft YaHei;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  pointer-events: auto;
+}
+.tsymqNodeHomeBodyHideBodyTimeAuthor {
+  position: absolute;
+  width: 90%;
+  height: 7%;
+  top: 92%;
+  left: 5%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.0vw;
+  color: #7c0000;
+  font-family: Microsoft YaHei;
+  /*border: 1px solid rgba(255 ,155 ,100,1);*/
+}
+.tsymqQiFuJiangLi_offbg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  z-index: 10;
+}
+.tsymqQiFuJiangLi_bg {
+  position: absolute;
+  width: 90%;
+  height: 63%;
+  top: 10%;
+  left: 4.75%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/bless_result_bg.png);
+  z-index: 10;
+}
+.tsymqQiFuJiangLi_Body {
+  position: absolute;
+  width: 80%;
+  height: 87%;
+  bottom: 0%;
+  left: 10%;
+  text-align: center;
+  /*border: 1px solid rgba(255 ,155 ,100,1);*/
+}
+.tsymqQiFuJiangLi_Div {
+  position: relative;
+  width: 12%;
+  height: 0;
+  left: 0%;
+  top: 0%;
+  padding-bottom: 12%;
+  z-index: 10;
+  margin: 5% 3% 3% 3%;
+  transition: all 0.3s;
+  pointer-events: auto;
+}
+.tsymqQiFuJiangLi_DivCard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  z-index: 10;
+  transition: all 0.3s;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/prize-Green.png);
+  animation-duration: 0.3s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: sizeAnimation-5;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes sizeAnimation-5 {
+  0% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.tsymqQiFuJiangLi_ShanGuang {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  z-index: 10;
+  transition: all 0.3s;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/effects/shanguang.png);
+  animation-duration: 0.7s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: sizeAnimation-6;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数:infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为:居中靠下*/
+}
+@keyframes sizeAnimation-6 {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+#tsymq_QiFuShop_bg {
+  position: absolute;
+  width: 82%;
+  height: 80%;
+  top: 10%;
+  left: 9%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/frame10.png);
+  z-index: 10;
+}
+.tsymq_QiFuShop_Box {
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  top: 5%;
+  left: 4%;
+  overflow: auto;
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(255,255,255,1);*/
+}
+.tsymq_QiFuShop_Title {
+  position: absolute;
+  width: 30%;
+  height: 5%;
+  right: 35%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.7vw;
+  color: #fff;
+  font-family: yuanli;
+  text-shadow: none;
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymq_QiFuShop_Bottom {
+  position: absolute;
+  width: 94%;
+  height: 5%;
+  right: 2%;
+  bottom: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.0vw;
+  color: #330100;
+  font-family: yuanli;
+  text-shadow: none;
+  font-weight: bold;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/frame8.png);
+  -webkit-transition: all 0.1s;
+  pointer-events: none;
+}
+.tsymq_QiFuShop_Div {
+  position: relative;
+  width: 45%;
+  height: 20%;
+  top: 2%;
+  left: 0%;
+  -webkit-transition: all 0.1s;
+  margin: 0% 2% 2% 2%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/frame7.png);
+}
+.tsymq_QiFuShop_DivInfos {
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  left: 4%;
+  top: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.8vw;
+  color: #330100;
+  font-family: yuanli;
+  text-shadow: none;
+  font-weight: bold;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymq_QiFuShop_DivImp {
+  position: absolute;
+  width: 20%;
+  height: 0;
+  right: 15%;
+  top: 8%;
+  padding-bottom: 20%;
+  -webkit-transition: all 0.1s;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/icon/prize-Green.png);
+}
+.tsymq_choiceOrAwardDivImp2 {
+  position: absolute;
+  width: 84%;
+  height: 84%;
+  left: 8%;
+  top: 8%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: all 0.1s;
+  overflow: hidden;
+}
+.tsymq_QiFuShop_DivName {
+  position: absolute;
+  width: 84%;
+  height: 24%;
+  right: 8%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.6vw;
+  text-shadow: none;
+  color: #ffebb8;
+  font-family: yuanli;
+  background-color: rgba(25, 25, 25, 0.85);
+}
+.tsymqAnimationCanvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  pointer-events: none;
+  display: block !important;
+}
+.animation_SF_eff_pzhongse {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  left: -10%;
+  top: -10%;
+}
+/*.tsymqAnimationCanvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0%;
+  top: 0%;
+  z-index: 10;
+  background: url(../../extension/武将界面/Canvas/SF_eff_pzhongse/css_sprites.png); 
+  background-repeat: no-repeat;
+  animation-name: step2;
+  animation-duration: 0.8s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: steps(20);
+  pointer-events: none;
+  box-shadow: none;
+  transition: opacity 0.1s linear;
+} */
+#tsymq_zimibodybg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  z-index: 10;
+}
+.tsymq_zimibody {
+  position: absolute;
+  width: 82%;
+  height: 83%;
+  top: 8.5%;
+  left: 9%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/frame10.png);
+  z-index: 10;
+}
+.tsymq_zimibodyTitle {
+  position: absolute;
+  width: 30%;
+  height: 5%;
+  right: 35%;
+  top: 0.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.7vw;
+  color: #fff;
+  font-family: yuanli;
+  text-shadow: none;
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymq_zimibodyBox {
+  position: absolute;
+  width: 92%;
+  height: 91.75%;
+  top: 5.5%;
+  left: 4%;
+  align-items: center;
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(255,255,255,1);*/
+}
+.tsymq_zimibodyBoxTop {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.2vw;
+  color: #8B0000;
+  -webkit-transition: all 0.1s;
+}
+.tsymq_zimibodyBoxLast {
+  position: absolute;
+  width: 50%;
+  height: 10%;
+  top: 13%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  font-size: 1.0vw;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.1s;
+}
+.tsymq_zimibodyBoxLink {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0%;
+  top: 20%;
+  border-top: 1px solid #000;
+  z-index: 10;
+  pointer-events: none;
+}
+.tsymq_zimibodyBoxBody {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  top: 20%;
+  left: 0%;
+  overflow: auto;
+  text-align: center;
+  -webkit-transition: all 0.1s;
+}
+.tsymq_zimibodyBoxBodyDiv {
+  position: relative;
+  width: 9%;
+  height: 28%;
+  top: 2%;
+  left: 0%;
+  margin: 0.5% 0.5% 1% 0.5%;
+  -webkit-transition: all 0.1s;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.tsymq_zimibodyBoxBodyDivCardName {
+  position: absolute;
+  width: 90%;
+  height: 30%;
+  right: 5%;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.4vw;
+  color: #8B0000;
+  font-family: JinBangZhaoPai;
+  /*border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymq_zimibodyBoxBodyDivCardType {
+  position: absolute;
+  width: 17%;
+  left: 3%;
+  bottom: 5%;
+  text-align: center;
+  font-size: 1.0vw;
+  color: #CD2626;
+  font-family: yuanli;
+  border: 1px solid #CD2626;
+  -webkit-transition: all 0.1s;
+}
+.tsymq_zimibodyBoxBodyDivStorageText {
+  position: absolute;
+  width: 100%;
+  height: 17%;
+  right: 0%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2vw;
+  color: rgb(255, 255, 255);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_text.png);
+  -webkit-transition: all 0.1s;
+}
+.tsymqOperationFrame {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  left: 50%;
+  top: 50%;
+  display: block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/buy_dlg.png);
+  transform-origin: center;
+  z-index: 10;
+}
+.tsymqOperationFrameTitle {
+  position: absolute;
+  width: 30%;
+  height: 6%;
+  right: 35%;
+  top: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 2.5vw;
+  color: #2d1b13;
+  font-family: yuanli;
+  text-shadow: none;
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymqOperationFramePackBody {
+  position: absolute;
+  min-width: 40%;
+  min-height: 10%;
+  left: 30%;
+  bottom: 15%;
+  z-index: 2022;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/bg_task_body2.png);
+}
+.tsymqOperationFramePackButtonNum {
+  position: absolute;
+  width: 36%;
+  height: 70%;
+  right: 32%;
+  bottom: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.25vw;
+  color: #d0a86b;
+  font-family: yuanli;
+}
+.tsymqOperationFrameBox {
+  position: absolute;
+  width: 86%;
+  height: 85%;
+  top: 8%;
+  left: 7%;
+  overflow: auto;
+  text-align: center;
+  -webkit-transition: all 0.1s;
+}
+.tsymqOperationFrameBoxBody {
+  position: absolute;
+  width: 98%;
+  height: 70%;
+  top: 0%;
+  left: 1%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: auto;
+  text-align: center;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymqOperationFrameBoxBodyDiv {
+  position: relative;
+  width: 15%;
+  height: 0%;
+  top: 1%;
+  left: 0%;
+  padding-bottom: 15%;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 1);
+  margin: 0% 2% 1% 2%;
+  z-index: 10;
+}
+.tsymqOperationFrameBoxBodyDivName {
+  position: absolute;
+  width: 94%;
+  height: 24%;
+  right: 3%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 1.8vw;
+  text-shadow: none;
+  color: #ffebb8;
+  font-family: yuanli;
+  background-color: rgba(25, 25, 25, 0.85);
+}
+.tsymqOperationFrameZiMi {
+  position: absolute;
+  width: 80%;
+  height: 74%;
+  top: 13%;
+  left: 10%;
+  /*border: 1px solid rgba(0,0,0,1);
+  background-color: rgba(0,0,0,0.5);*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/background/buy_dlg.png);
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymqOperationFrameZiMiTitle {
+  position: absolute;
+  width: 30%;
+  height: 6%;
+  right: 35%;
+  top: 1.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  font-size: 1.8vw;
+  color: #2d1b13;
+  font-family: yuanli;
+  text-shadow: none;
+  /*font-weight:bold;
+  border: 1px solid rgba(255,255,255,1);*/
+  -webkit-transition: all 0.1s;
+}
+.tsymqOperationFrameZiMiBox {
+  position: absolute;
+  width: 86%;
+  height: 85%;
+  top: 8%;
+  left: 7%;
+  overflow: auto;
+  text-align: center;
+  -webkit-transition: all 0.1s;
+}
+.tsymqOperationFrameZiMiBoxDiv {
+  position: absolute;
+  width: 15%;
+  height: 40%;
+  top: 2.5%;
+  left: 42.5%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.tsymqExchangeHuanLeDouDiv {
+  position: relative;
+  width: 97%;
+  height: 30%;
+  left: 0%;
+  top: 1%;
+  margin: 0% 1% 1% 1%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../extension/武将界面/image/background/icon_frame_square6.png);
+}
+.tsymqExchangeHuanLeDouDivInfo {
+  position: absolute;
+  width: 68%;
+  height: 88%;
+  left: 1%;
+  top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 5vw;
+  color: #2d1b13;
+  font-family: yuanli;
+  text-shadow: none;
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(255,255,255,1);*/
+}
+.tsymqExchangeHuanLeDouDivBuy {
+  position: absolute;
+  width: 25%;
+  height: 88%;
+  right: 1%;
+  top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 4.5vw;
+  color: #fff;
+  font-family: yuanli;
+  text-shadow: none;
+  -webkit-transition: all 0.1s;
+  /*border: 1px solid rgba(255,255,255,1);*/
+}
+.tsymqOperationFrameZiMiBoxText {
+  position: absolute;
+  width: 90%;
+  right: 5%;
+  top: 45%;
+  text-align: center;
+  text-indent: 2.4vw;
+  font-size: 1.5vw;
+  color: rgb(35, 35, 35);
+  font-family: yuanli;
+  -webkit-transition: all 0.1s;
+  z-index: 10;
+}
+.tsymqOperationFrameZiMiBoxStorageText {
+  position: absolute;
+  width: 24%;
+  height: 12%;
+  bottom: 24%;
+  left: 38%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.5vw;
+  color: rgb(250, 250, 250);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon_text.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+.tsymqOperationFrameZiMiBoxBet {
+  position: absolute;
+  width: 24%;
+  height: 12%;
+  bottom: 2%;
+  left: 51%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3.0vw;
+  color: rgb(70, 60, 79);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon2.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+.tsymqOperationFrameZiMiBoxOff {
+  position: absolute;
+  width: 24%;
+  height: 12%;
+  bottom: 2%;
+  right: 51%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3.0vw;
+  color: rgb(70, 60, 79);
+  font-family: yuanli;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../extension/武将界面/image/icon/icon1.png);
+  -webkit-transition: all 0.3s;
+  z-index: 10;
+}
+@media only screen and (max-width: 1280px) {
+  .tsymqOperationFrameTitle {
+    font-size: 2.0rem;
+  }
+}
