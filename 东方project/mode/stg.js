@@ -3956,11 +3956,11 @@ game.addMode(
                 },
                 content() {
                     'step 0';
-                    if (trigger.player.num('h')) player.discardPlayerCard('h', trigger.player, true);
+                    if (trigger.player.countCards('h')) player.discardPlayerCard('h', trigger.player, true);
                     ('step 1');
-                    if (trigger.player.num('e')) player.discardPlayerCard('e', trigger.player, true);
+                    if (trigger.player.countCards('e')) player.discardPlayerCard('e', trigger.player, true);
                     ('step 2');
-                    if (trigger.player.num('j')) player.discardPlayerCard('j', trigger.player, true);
+                    if (trigger.player.countCards('j')) player.discardPlayerCard('j', trigger.player, true);
                 },
             },
             stg_bailou_skill: {

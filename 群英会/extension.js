@@ -14005,7 +14005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								event.list = [];
-								for (var i = 0; i < player.num('h'); i++) {
+								for (var i = 0; i < player.countCards('h'); i++) {
 									if (event.list.includes(get.suit(player.getCards('h')[i]))) continue;
 									event.list.push(get.suit(player.getCards('h')[i]));
 									game.print(event.list);

@@ -38942,7 +38942,7 @@ const skill = {
         audio: 'ext:活动BOSS/audio/skill:true',
         enable: 'phaseUse',
         filter(event, player) {
-            return !player.hasSkill('sx_yinhu_filter') && player.num('he');
+            return !player.hasSkill('sx_yinhu_filter') && player.countCards('he');
         },
         filterCard(card, player) {
             return !player.storage.sx_yinhu_type.includes(get.type2(card));
@@ -39135,7 +39135,7 @@ const skill = {
         },
         enable: 'phaseUse',
         filter(event, player) {
-            return !player.hasSkill('shanhe_yinhu_filter') && player.num('he');
+            return !player.hasSkill('shanhe_yinhu_filter') && player.countCards('he');
         },
         filterCard(card, player) {
             return !player.storage.shanhe_yinhu_type.includes(get.type2(card));
@@ -39217,7 +39217,7 @@ const skill = {
         },
         enable: 'phaseUse',
         filter(event, player) {
-            return !player.hasSkill('shanhe_yinhua_filter') && player.num('he');
+            return !player.hasSkill('shanhe_yinhua_filter') && player.countCards('he');
         },
         filterCard(card, player) {
             return !player.storage.shanhe_yinhua_suit.includes(card.suit);
@@ -39781,7 +39781,7 @@ const skill = {
                 trigger: { player: 'phaseZhunbeiBegin' },
                 filter(event, player) {
                     return !game.hasPlayer(function (current) {
-                        return current != player && current.num('h') > player.num('h');
+                        return current != player && current.countCards('h') > player.countCards('h');
                     });
                 },
                 forced: true,

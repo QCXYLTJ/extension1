@@ -5722,7 +5722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:综漫季刊陆/audio:4',
                             enable: ['chooseToUse'],
                             filter(event, player) {
-                                if (!player.num('h') || player.num('h') % 2 == 0) return false;
+                                if (!player.countCards('h') || player.countCards('h') % 2 == 0) return false;
                                 return player.storage.zmt_np >= 5 && _status.currentPhase == player;
                             },
                             filterCard(card, player) {
@@ -5734,7 +5734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             viewAsFilter(player) {
                                 var card = player.getCards('h')[0];
-                                if (!player.num('h') || player.num('h') % 2 == 0) return false;
+                                if (!player.countCards('h') || player.countCards('h') % 2 == 0) return false;
                                 return player.storage.zmt_np >= 5;
                             },
                             precontent() {
@@ -5777,7 +5777,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:综漫季刊陆/audio:2',
                             enable: ['chooseToUse'],
                             filter(event, player) {
-                                if (!player.num('h') || player.num('h') % 2 == 0) return false;
+                                if (!player.countCards('h') || player.countCards('h') % 2 == 0) return false;
                                 return player.storage.zmt_np >= 5 && _status.currentPhase != player;
                             },
                             filterCard(card, player) {
@@ -5789,7 +5789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             viewAsFilter(player) {
                                 var card = player.getCards('h')[0];
-                                if (!player.num('h') || player.num('h') % 2 == 0) return false;
+                                if (!player.countCards('h') || player.countCards('h') % 2 == 0) return false;
                                 return player.storage.zmt_np >= 5;
                             },
                             precontent() {

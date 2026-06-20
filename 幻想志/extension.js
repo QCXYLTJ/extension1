@@ -6385,7 +6385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								event.current = player.next;
 								('step 1');
-								if (event.current.num('h')) {
+								if (event.current.countCards('h')) {
 									event.current.chooseCard('交给' + get.translation(player) + '一张手牌或者弃置一张牌').set('ai', function (card) {
 										if (get.attitude(event.current, player) <= 0) return -1;
 										return 8 - get.value(card);
@@ -6399,7 +6399,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								('step 2');
-								if (!event.current.num('h')) {
+								if (!event.current.countCards('h')) {
 									event.finish();
 								} else {
 									player.line(event.current, 'green');

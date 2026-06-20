@@ -1119,7 +1119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         result: {
                            target(player, target) {
                               if (target.num('h', 'tao')) return 0;
-                              var nh = target.num('h');
+                              var nh = target.countCards('h');
                               if (nh <= 2) return 1;
                               if (target.hp == 1 && target.maxHp > 2) return 1;
                               return 0;
@@ -8458,7 +8458,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      mod: {
                         maxHandcard(player, num) {
                            var pnum = 0;
-                           var pmax = player.num('h');
+                           var pmax = player.countCards('h');
                            var pcard = player.getCards('h');
                            for (var i = 0; i < pmax; i++) {
                               if (get.subtype(pcard[i]) == 'equip1') pnum++;
@@ -8515,7 +8515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      ai: {
                         wuxie(target, card, player, viewer) {
                            if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
-                              if (!target.num('h') || target.hp == 1 || Math.random() < 0.7) return 0;
+                              if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                            }
                         },
                         basic: {
@@ -8529,7 +8529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                  if (game.players[i].ai.shown == 0) num++;
                               }
                               if (num > 1) return 0;
-                              var nh = target.num('h');
+                              var nh = target.countCards('h');
                               if (get.mode() == 'identity') {
                                  if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
                               }
@@ -8571,7 +8571,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      ai: {
                         wuxie(target, card, player, viewer) {
                            if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
-                              if (!target.num('h') || target.hp == 1 || Math.random() < 0.7) return 0;
+                              if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                            }
                         },
                         basic: {
@@ -8585,7 +8585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                  if (game.players[i].ai.shown == 0) num++;
                               }
                               if (num > 1) return 0;
-                              var nh = target.num('h');
+                              var nh = target.countCards('h');
                               if (get.mode() == 'identity') {
                                  if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
                               }
@@ -9977,7 +9977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         threaten: 1.5,
                         result: {
                            target(player, target) {
-                              return -target.num('h');
+                              return -target.countCards('h');
                            },
                         },
                         order: 10,
@@ -11094,7 +11094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         result: {
                            player(player) {
-                              if (player.num('h') >= player.hp - 1) return -1;
+                              if (player.countCards('h') >= player.hp - 1) return -1;
                               if (player.hp < 2) return -1;
                               return 1;
                            },
@@ -11799,7 +11799,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               },
                               result: {
                                  player(player) {
-                                    if (player.num('h') >= player.hp - 1) return -1;
+                                    if (player.countCards('h') >= player.hp - 1) return -1;
                                     if (player.hp < 2) return -1;
                                     return 1;
                                  },
@@ -12704,7 +12704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      mod: {
                         maxHandcard(player, num) {
                            var pnum = 0;
-                           var pmax = player.num('h');
+                           var pmax = player.countCards('h');
                            var pcard = player.getCards('h');
                            for (var i = 0; i < pmax; i++) {
                               if (get.type(pcard[i]) == 'trick' || get.type(pcard[i]) == 'delay') pnum++;

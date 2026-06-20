@@ -4538,7 +4538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							/*ai:{
 								 effect:{
 									 target:function (card,player,target){
-							 if(target.num('he')==0) return;
+							 if(target.countCards('he')==0) return;
 							 if(card.name!='sha') return;
 							 var min=1;
 							 var friend=get.attitude(player,target)>0;

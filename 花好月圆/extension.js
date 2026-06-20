@@ -1905,7 +1905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 effect: {
                                     target(card, player, target) {
-                                        if (target.num('he') == 0) return;
+                                        if (target.countCards('he') == 0) return;
                                         if (card.name != 'sha') return;
                                         var min = 1;
                                         var friend = get.attitude(player, target) > 0;
@@ -2639,12 +2639,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter(event, player) {
                                 if (player.countCards('h') == 0) return false;
                                 for (var i = 0; i < game.players.length; i++) {
-                                    if (game.players[i].hp != player.hp && game.players[i].num('h')) return true;
+                                    if (game.players[i].hp != player.hp && game.players[i].countCards('h')) return true;
                                 }
                                 return false;
                             },
                             filterTarget(card, player, target) {
-                                return target.hp != player.hp && target.num('h') > 0;
+                                return target.hp != player.hp && target.countCards('h') > 0;
                             },
                             content() {
                                 'step 0';
@@ -2683,7 +2683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target(player, target) {
                                         var att = get.attitude(player, target);
-                                        var oc = target.num('h') == 1;
+                                        var oc = target.countCards('h') == 1;
                                         if (att > 0 && oc) return 0;
                                         for (var i = 0; i < game.players.length; i++) {
                                             if (game.players[i] != target && game.players[i] != player && get.distance(target, game.players[i], 'attack') <= 1) {
@@ -2705,7 +2705,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var max = player.maxHp - hs.length;
                                         for (var i = 0; i < game.players.length; i++) {
                                             if (get.attitude(player, game.players[i]) > 2) {
-                                                max = Math.max(Math.min(5, game.players[i].hp) - game.players[i].num('h'), max);
+                                                max = Math.max(Math.min(5, game.players[i].hp) - game.players[i].countCards('h'), max);
                                             }
                                         }
                                         switch (max) {
@@ -3495,7 +3495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var dialog = ui.create.dialog('缔盟');
                                 for (var i = 0; i < game.players.length; i++) {
                                     if (game.players[i] == player) continue;
-                                    if (game.players[i].num('h')) {
+                                    if (game.players[i].countCards('h')) {
                                         dialog.add(get.translation(game.players[i]) + '的手牌');
                                         var hs = game.players[i].getCards('h');
                                         dialog.add(hs);
@@ -3538,14 +3538,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget(
                                         '缔盟:选择两名角色置换他们的手牌',
                                         function (card, player, target) {
-                                            return target.num('h') >= 0;
+                                            return target.countCards('h') >= 0;
                                         },
                                         2
                                     )
                                     .set('ai', function (target) {
-                                        if (!ui.selected.targets.length) return -get.attitude(player, target) + target.num('h');
+                                        if (!ui.selected.targets.length) return -get.attitude(player, target) + target.countCards('h');
                                         if (ui.selected.targets.length) {
-                                            var num = ui.selected.targets[0].num('h') - target.num('h');
+                                            var num = ui.selected.targets[0].countCards('h') - target.countCards('h');
                                             if (num > 0) return get.attitude(player, target);
                                             return 0;
                                         }
@@ -3571,9 +3571,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.tag(card, 'damage')) {
                                             if (player.hasSkill('jueqing')) return [1, -2];
                                             if (!target.hasFriend()) return;
-                                            if (target.hp >= 4 && player.countCards('h') > target.num('h')) return [1, get.tag(card, 'damage') * 2];
-                                            if (target.hp == 3 && player.countCards('h') > target.num('h')) return [1, get.tag(card, 'damage') * 1.5];
-                                            if (target.hp == 2 && player.countCards('h') > target.num('h')) return [1, get.tag(card, 'damage') * 0.5];
+                                            if (target.hp >= 4 && player.countCards('h') > target.countCards('h')) return [1, get.tag(card, 'damage') * 2];
+                                            if (target.hp == 3 && player.countCards('h') > target.countCards('h')) return [1, get.tag(card, 'damage') * 1.5];
+                                            if (target.hp == 2 && player.countCards('h') > target.countCards('h')) return [1, get.tag(card, 'damage') * 0.5];
                                         }
                                     },
                                 },
@@ -3589,14 +3589,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget(
                                         '缔盟:选择两名角色置换他们的手牌',
                                         function (card, player, target) {
-                                            return target.num('h') >= 0;
+                                            return target.countCards('h') >= 0;
                                         },
                                         2
                                     )
                                     .set('ai', function (target) {
-                                        if (!ui.selected.targets.length) return -get.attitude(player, target) + target.num('h');
+                                        if (!ui.selected.targets.length) return -get.attitude(player, target) + target.countCards('h');
                                         if (ui.selected.targets.length) {
-                                            var num = ui.selected.targets[0].num('h') - target.num('h');
+                                            var num = ui.selected.targets[0].countCards('h') - target.countCards('h');
                                             if (num > 0) return get.attitude(player, target);
                                             return 0;
                                         }
@@ -3621,9 +3621,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.tag(card, 'damage')) {
                                             if (player.hasSkill('jueqing')) return [1, -2];
                                             if (!target.hasFriend()) return;
-                                            if (target.hp >= 4 && player.countCards('h') > target.num('h')) return [1, get.tag(card, 'damage') * 2];
-                                            if (target.hp == 3 && player.countCards('h') > target.num('h')) return [1, get.tag(card, 'damage') * 1.5];
-                                            if (target.hp == 2 && player.countCards('h') > target.num('h')) return [1, get.tag(card, 'damage') * 0.5];
+                                            if (target.hp >= 4 && player.countCards('h') > target.countCards('h')) return [1, get.tag(card, 'damage') * 2];
+                                            if (target.hp == 3 && player.countCards('h') > target.countCards('h')) return [1, get.tag(card, 'damage') * 1.5];
+                                            if (target.hp == 2 && player.countCards('h') > target.countCards('h')) return [1, get.tag(card, 'damage') * 0.5];
                                         }
                                     },
                                 },
@@ -4671,7 +4671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var att = get.attitude(player, target);
                                     if (att >= 4) {
                                         if (target.hp == 1 && target.maxHp > 2) return att;
-                                        if (target.hp == 2 && target.maxHp > 3 && target.num('he') == 0) return att * 0.7;
+                                        if (target.hp == 2 && target.maxHp > 3 && target.countCards('he') == 0) return att * 0.7;
                                         return 0;
                                     }
                                     return -1;
@@ -5016,7 +5016,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filterTarget(card, player, target) {
-                                return player != target && target.num('h') > 0;
+                                return player != target && target.countCards('h') > 0;
                             },
                             filter(event, player) {
                                 return player.countCards('h') > 0;
@@ -5060,7 +5060,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -0.7;
                                     },
                                     target(player, target) {
-                                        var num = target.num('h');
+                                        var num = target.countCards('h');
                                         if (num == 1) return -1;
                                         if (num == 2) return -0.7;
                                         return -0.5;

@@ -342,16 +342,16 @@ export function precontent(bilibilicharacter) {
                     trigger: { source: 'damageEnd' },
                     filter(event, player) {
                         if (!event.player.isAlive() || event.player == player) return false;
-                        return event.player.num('hej') > 0;
+                        return event.player.countCards('hej') > 0;
                     },
                     logTarget: 'player',
                     forced: true,
                     content() {
                         'step 0';
                         var num = 0;
-                        if (trigger.player.num('h')) num++;
-                        if (trigger.player.num('e')) num++;
-                        if (trigger.player.num('j')) num++;
+                        if (trigger.player.countCards('h')) num++;
+                        if (trigger.player.countCards('e')) num++;
+                        if (trigger.player.countCards('j')) num++;
                         if (num) {
                             player.gainPlayerCard(trigger.player, 'hej', num, true).set('filterButton', function (button) {
                                 for (var i = 0; i < ui.selected.buttons.length; i++) {
@@ -644,7 +644,7 @@ export function precontent(bilibilicharacter) {
                         sub1: {
                             trigger: { global: 'phaseEnd' },
                             filter(event, player) {
-                                return player.num('h') <= player.hp;
+                                return player.countCards('h') <= player.hp;
                             },
                             forced: true,
                             content() {
@@ -729,7 +729,7 @@ export function precontent(bilibilicharacter) {
                         }).ai = function (target) {
                             if (get.attitude(player, target) > 2) return 5 + Math.random();
                             var draw = player.maxHp - player.hp;
-                            var num = target.num('he') + 1;
+                            var num = target.countCards('he') + 1;
                             if (num == draw) return 4;
                             if (num < draw) return Math.min(1, 4 - (draw - num));
                             return Math.min(1, 4 - (draw - num) * 0.5);

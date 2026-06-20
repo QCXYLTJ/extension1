@@ -5815,7 +5815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.target && event.target == player;
                             },
                             content() {
-                                var num = trigger.player.num('h');
+                                var num = trigger.player.countCards('h');
                                 trigger.player.lose(trigger.player.getCards('h'));
                                 for (var i = 0; i < num; i++) trigger.player.gain(game.createCard('du'))._triggered = null;
                             },

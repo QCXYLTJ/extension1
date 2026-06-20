@@ -12168,13 +12168,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 global: 'haitushiqu',
                 filter(event, player) {
                     var stat = player.getStat('skill').haitushiqu;
-                    return stat <= player.num('he') && stat >= 1;
+                    return stat <= player.countCards('he') && stat >= 1;
                 },
                 hiddenCard(player, name) {
                     var num = player.getStat('skill').haitushiqu;
                     if (num == 0) return false;
                     if (get.type(name) == 'basic' && lib.inpile.includes(name)) {
-                        return num <= player.num('he');
+                        return num <= player.countCards('he');
                     }
                 },
                 chooseButton: {

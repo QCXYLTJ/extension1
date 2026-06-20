@@ -1793,7 +1793,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.canCompare(target);
                             },
                             filter(event, player) {
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             content() {
                                 'step 0';
@@ -3154,7 +3154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             filter(event, player) {
                                 for (var i of game.players) {
-                                    if (i.num('j') > 0) {
+                                    if (i.countCards('j') > 0) {
                                         return true;
                                     }
                                 }
@@ -6515,7 +6515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         ('step 1');
                                         player.recover(1);
-                                        trigger.player.draw(trigger.player.maxHp - trigger.player.num('h'));
+                                        trigger.player.draw(trigger.player.maxHp - trigger.player.countCards('h'));
                                     },
                                 },
                                 2: {
@@ -6614,7 +6614,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         if (player.storage.zmyemoruyuan_1 == 2) {
                                             player.recover(1);
-                                            trigger.player.draw(trigger.player.maxHp - trigger.player.num('h'));
+                                            trigger.player.draw(trigger.player.maxHp - trigger.player.countCards('h'));
                                         } else event.finish();
                                     },
                                 },
@@ -6641,7 +6641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h') == 0 && player.storage.zmjiushibajian_1 <= 2 && event.hs && event.hs.length;
+                                return player.countCards('h') == 0 && player.storage.zmjiushibajian_1 <= 2 && event.hs && event.hs.length;
                             },
                             content() {
                                 'step 0';
@@ -6683,7 +6683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         } else event.finish();
                                         ('step 2');
                                         player.recover(1);
-                                        trigger.player.draw(trigger.player.maxHp - trigger.player.num('h'));
+                                        trigger.player.draw(trigger.player.maxHp - trigger.player.countCards('h'));
                                     },
                                 },
                                 2: {
@@ -6691,7 +6691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player: 'loseEnd',
                                     },
                                     filter(event, player) {
-                                        return player.num('h') == 0 && player.storage.zmjiushibajian_1 >= 3;
+                                        return player.countCards('h') == 0 && player.storage.zmjiushibajian_1 >= 3;
                                     },
                                     forced: true,
                                     content() {
@@ -6704,7 +6704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         global: 'loseEnd',
                                     },
                                     filter(event, player) {
-                                        return event.player.num('h') == 0 && event.player != player && event.hs && event.hs.length && event.player.isAlive();
+                                        return event.player.countCards('h') == 0 && event.player != player && event.hs && event.hs.length && event.player.isAlive();
                                     },
                                     prompt(event, player) {
                                         return `是否令${get.translation(event.player)}摸两张牌？`;

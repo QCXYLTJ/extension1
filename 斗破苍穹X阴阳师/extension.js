@@ -14979,7 +14979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 							},
 							filter(event, player) {
-								return player.num('h') > 0 && player.storage.douqi > 50;
+								return player.countCards('h') > 0 && player.storage.douqi > 50;
 							},
 							content() {
 								if (Math.random() <= 0.1) trigger.num++;
@@ -15004,7 +15004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 							},
 							filter(event, player) {
-								return player.num('h') > 0 && player.storage.douqi > 50;
+								return player.countCards('h') > 0 && player.storage.douqi > 50;
 							},
 							content() {
 								if (Math.random() <= 0.15) trigger.num++;

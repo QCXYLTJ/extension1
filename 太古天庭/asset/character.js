@@ -3605,7 +3605,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             if (player.num('h', 'shan')) return 1;
                             var num = 0;
                             for (var i = 0; i < game.players.length; i++) {
-                                if (game.players[i].canUse('sha', player) && game.players[i].num('h') > 1) {
+                                if (game.players[i].canUse('sha', player) && game.players[i].countCards('h') > 1) {
                                     num--;
                                 } else {
                                     num++;

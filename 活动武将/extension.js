@@ -2656,16 +2656,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: { source: 'damageEnd' },
                             filter(event, player) {
                                 if (!event.player.isIn() || event.player == player) return false;
-                                return event.player.num('hej') > 0;
+                                return event.player.countCards('hej') > 0;
                             },
                             logTarget: 'player',
                             forced: true,
                             content() {
                                 'step 0';
                                 var num = 0;
-                                if (trigger.player.num('h')) num++;
-                                if (trigger.player.num('e')) num++;
-                                if (trigger.player.num('j')) num++;
+                                if (trigger.player.countCards('h')) num++;
+                                if (trigger.player.countCards('e')) num++;
+                                if (trigger.player.countCards('j')) num++;
                                 if (num > 0) {
                                     player.gainPlayerCard(trigger.player, 'hej', num, true).set('filterButton', function (button) {
                                         for (var i = 0; i < ui.selected.buttons.length; i++) {
@@ -3088,21 +3088,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             selectTarget: 1,
                             filterTarget(card, player, target) {
-                                return target != player && target.num('h') > player.num('h');
+                                return target != player && target.countCards('h') > player.countCards('h');
                             },
                             content() {
                                 'step 0';
                                 player.gainPlayerCard(target, 'h', true);
                                 if (
                                     !game.hasPlayer(function (current) {
-                                        return current != player && current.num('h') > player.num('h');
+                                        return current != player && current.countCards('h') > player.countCards('h');
                                     })
                                 )
                                     event.finish();
                                 ('step 1');
                                 player
                                     .chooseTarget('子鼠:你可以获得手牌数大于你的其他角色一张手牌,你可以重复此流程直到你的手牌数为全场最多', function (card, player, target) {
-                                        return target != player && target.num('h') > player.num('h');
+                                        return target != player && target.countCards('h') > player.countCards('h');
                                     })
                                     .set('ai', function (target) {
                                         var att = get.attitude(player, target);
@@ -3119,7 +3119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 if (
                                     game.hasPlayer(function (current) {
-                                        return current != player && current.num('h') > player.num('h');
+                                        return current != player && current.countCards('h') > player.countCards('h');
                                     })
                                 )
                                     event.goto(1);
@@ -3169,7 +3169,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:活动武将/audio/skill:true',
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return !player.hasSkill('cxy_YinHu_filter') && player.num('he');
+                                return !player.hasSkill('cxy_YinHu_filter') && player.countCards('he');
                             },
                             filterCard(card, player) {
                                 return !player.storage.cxy_YinHu_type.includes(get.type(card));
@@ -3519,7 +3519,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger: { player: 'phaseBegin' },
                                     filter(event, player) {
                                         return !game.hasPlayer(function (current) {
-                                            return current != player && current.num('h') > player.num('h');
+                                            return current != player && current.countCards('h') > player.countCards('h');
                                         });
                                     },
                                     forced: true,

@@ -8452,10 +8452,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', function (event, player) {
                                         if (player.hp == 1) return '死';
                                         if (player.hp == player.maxHp) return '生';
-                                        if (player.hp == 2 && player.num('he') >= 2) return '死';
-                                        if (player.hp == 2 && player.num('he') == 1) return Math.random() < 0.5 ? '生' : '死';
-                                        if (player.hp == 3 && player.num('he') >= 3) return '死';
-                                        if (player.hp == 3 && player.num('he') == 2) return Math.random() < 0.5 ? '生' : '死';
+                                        if (player.hp == 2 && player.countCards('he') >= 2) return '死';
+                                        if (player.hp == 2 && player.countCards('he') == 1) return Math.random() < 0.5 ? '生' : '死';
+                                        if (player.hp == 3 && player.countCards('he') >= 3) return '死';
+                                        if (player.hp == 3 && player.countCards('he') == 2) return Math.random() < 0.5 ? '生' : '死';
                                         return Math.random() < 0.3 ? '生' : '死';
                                     });
                                 ('step 1');

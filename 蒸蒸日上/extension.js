@@ -7419,7 +7419,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								target.draw();
 								('step 1');
-								if (target.num('h') < 2) {
+								if (target.countCards('h') < 2) {
 									target.damage('fire');
 									event.finish();
 								} else {
@@ -7427,7 +7427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.chooseControl('获得你两张牌', '对你造成伤害', ui.create.dialog('请选择一项', 'hidden'))
 										.set('ai', function () {
 											var player = _status.event.target;
-											if (player.num('he') < 2 || ((player.hasSkill('kuangfeng2') || player.hasSkill('tengjia2')) && !player.hasSkillTag('nofire') && !player.hasSkillTag('nodamage'))) return '获得你两张牌';
+											if (player.countCards('he') < 2 || ((player.hasSkill('kuangfeng2') || player.hasSkill('tengjia2')) && !player.hasSkillTag('nofire') && !player.hasSkillTag('nodamage'))) return '获得你两张牌';
 											if (
 												player.num('h', 'tao') ||
 												player.num('h', 'jiu') ||
@@ -7442,7 +7442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											)
 												return '对你造成伤害';
 											if (player.hp == 1 && (!player.num('h', 'tao') || !player.num('h', 'jiu'))) return '获得你两张牌';
-											if (player.num('h') > 3) return '获得你两张牌';
+											if (player.countCards('h') > 3) return '获得你两张牌';
 											if (player.hasSkillTag('nofire')) return '对你造成伤害';
 											if (player.hasSkill('jijiu')) return '对你造成伤害';
 											if (player.hasSkill('upgrade_jijiu')) return '对你造成伤害';
@@ -7477,7 +7477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target(player, target) {
 										if (target.hasSkillTag('nofire')) return 1;
 										if (player == target) return -2;
-										var nh = target.num('h');
+										var nh = target.countCards('h');
 										if (nh > 2) return -0.5;
 										if (nh == 1) return -1;
 										if (nh == 1 && target.hp == 1) return -2;
@@ -7514,7 +7514,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									)
 									.set('targetRequired', true);
 								('step 1');
-								if (result.bool == false && target.num('he') > 0) {
+								if (result.bool == false && target.countCards('he') > 0) {
 									player.gainPlayerCard(target, 'he', true);
 									event.finish();
 								} else {
@@ -7543,8 +7543,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var num = 0;
 										if (get.attitude(target, player) < -1) num--;
 										if (get.attitude(target, player) > 1) num++;
-										if (target.num('he') == 0) return 0;
-										if (target.num('he') == 1) return -0.5;
+										if (target.countCards('he') == 0) return 0;
+										if (target.countCards('he') == 1) return -0.5;
 										if (player.hp <= 1) return -2;
 										if (target.num('h', 'sha') == 0 && Math.random() < 0.5) return 1;
 										return num - 1;
@@ -7588,7 +7588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (get.mode() == 'identity') {
 											if (target.isZhu && target.hp <= 1) return 10;
 										}
-										if (target.num('h') < 1) return 2;
+										if (target.countCards('h') < 1) return 2;
 										return 2;
 									},
 								},
@@ -7635,7 +7635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								result: {
 									target(player, target) {
 										// if(player==target&&player.hp<=0) return 2;
-										var nh = target.num('h');
+										var nh = target.countCards('h');
 										var keep = false;
 										if (nh <= target.hp) {
 											keep = true;
@@ -7698,7 +7698,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							charlotte: true,
 							content() {
-								var num = Math.ceil(player.num('he') / 2);
+								var num = Math.ceil(player.countCards('he') / 2);
 								player.chooseToDiscard(num, 'he', true);
 								player.removeSkill('upgrade_shuiyanqijun_skill');
 							},
@@ -7769,9 +7769,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								result: {
 									target(player, target) {
 										var att = get.attitude(player, target);
-										if (target.num('h') >= 4) return 0;
-										if (target.num('h') == 0 && att > 0) return 2;
-										var num = target.num('h');
+										if (target.countCards('h') >= 4) return 0;
+										if (target.countCards('h') == 0 && att > 0) return 2;
+										var num = target.countCards('h');
 										if (att > 0) return att - num;
 									},
 								},
@@ -7864,7 +7864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'shaMiss',
 							},
 							filter(event, player) {
-								if (event.target && event.target.num('e')) return true;
+								if (event.target && event.target.countCards('e')) return true;
 								return false;
 							},
 							prompt(event, player) {
@@ -7882,7 +7882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (name && name.includes('qishaqixingbaodao') && card) {
 										trigger.target.gain(card, player);
 										player.$give(card, trigger.target);
-										if (trigger.target.num('e') > 0) {
+										if (trigger.target.countCards('e') > 0) {
 											player.gainPlayerCard('e', trigger.target, true);
 										}
 									}
@@ -7922,8 +7922,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								result: {
 									target(player, target) {
 										//	var att=get.attitude(player,target);
-										//	if(target.num('h')>=4) return 0;
-										//		if(target.num('h')==0&&att>0) return 2;
+										//	if(target.countCards('h')>=4) return 0;
+										//		if(target.countCards('h')==0&&att>0) return 2;
 										//						var num=target.countCards('h');
 										//							if(att>0)  return att-num;
 										return 1;

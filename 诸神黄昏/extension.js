@@ -6220,7 +6220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'shaBegin',
                             },
                             filter(event, player) {
-                                return player.num('h') > 0 && event.target.num('h') > 0;
+                                return player.countCards('h') > 0 && event.target.countCards('h') > 0;
                             },
                             usable: 1,
                             content() {
@@ -6266,7 +6266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'shaBegin',
                             },
                             filter(event, player) {
-                                return player.num('h') > 3 && event.target.num('h') > 3;
+                                return player.countCards('h') > 3 && event.target.countCards('h') > 3;
                             },
                             usable: 1,
                             content() {
@@ -6675,7 +6675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         num++;
                                     }
                                 }
-                                return player.num('h') < num;
+                                return player.countCards('h') < num;
                             },
                             content() {
                                 var num = 0;
@@ -6686,7 +6686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         num++;
                                     }
                                 }
-                                player.draw(num - player.num('h'));
+                                player.draw(num - player.countCards('h'));
                             },
                             ai: {
                                 threaten: 1.3,
@@ -10477,7 +10477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             filterCard: true,
                             filterTarget(card, player, target) {
-                                return player != target && target.num('h') > 0;
+                                return player != target && target.countCards('h') > 0;
                             },
                             content() {
                                 var targetCard = target.getCards('h').randomGet();
@@ -17921,8 +17921,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 var num1 = game.countGroup();
-                                var num2 = num1 - player.num('h');
-                                var num3 = player.num('e');
+                                var num2 = num1 - player.countCards('h');
+                                var num3 = player.countCards('e');
                                 if (num2 > 0) {
                                     player.draw(num2);
                                 } else if (num3 > 0) {
@@ -21627,17 +21627,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filterTarget(card, player, target) {
-                                return player != target && target.num('e') > 0 && player.num('e') >= target.num('e');
+                                return player != target && target.countCards('e') > 0 && player.countCards('e') >= target.countCards('e');
                             },
                             prompt: '发动此技能？',
                             content() {
                                 'step 0';
-                                var num = target.num('e');
+                                var num = target.countCards('e');
                                 player.chooseToDiscard(num, true, 'e');
                                 ('step 1');
                                 player.gain(target.getCards('e'));
                                 target.$give(target.getCards('e'), player);
-                                var num = target.num('e');
+                                var num = target.countCards('e');
                                 target.damage('fire', num, true);
                                 target.addTempSkill('lg_zhuoshao', { player: 'phaseEnd' });
                                 player.removeSkill('lg_zhuanhuan_bayuantaiyangjian');
@@ -23194,7 +23194,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             filterCard: true,
                             check(card) {
@@ -24899,13 +24899,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.maxHp - player.hp > 0;
                             },
                             filterTarget(card, player, target) {
-                                return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
+                                return player != target && target.countCards('h') > 0 && get.distance(player, target, 'attack') <= 1;
                             },
                             content() {
-                                if (player.maxHp - player.hp <= target.num('h')) {
+                                if (player.maxHp - player.hp <= target.countCards('h')) {
                                     target.showCards(target.getCards('h').randomGets(player.maxHp - player.hp));
                                 } else {
-                                    target.showCards(target.getCards('h').randomGets(target.num('h')));
+                                    target.showCards(target.getCards('h').randomGets(target.countCards('h')));
                                 }
                             },
                             ai: {
@@ -25881,7 +25881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.maxHp > player.hp;
                             },
                             filterTarget(card, player, target) {
-                                return player != target && get.distance(player, target, 'attack') <= 1 && target.num('h') > 0 && ui.selected.cards.length;
+                                return player != target && get.distance(player, target, 'attack') <= 1 && target.countCards('h') > 0 && ui.selected.cards.length;
                             },
                             filterCard: true,
                             selectCard() {
@@ -25893,7 +25893,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 var loseHpNum = player.maxHp - player.hp;
-                                if (target.num('h') >= loseHpNum) {
+                                if (target.countCards('h') >= loseHpNum) {
                                     var cards = target.getCards('h').randomGets(loseHpNum);
                                     target.$give(loseHpNum, player);
                                     player.gain(cards);
@@ -39934,7 +39934,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 global: 'damageBegin',
                             },
                             filter(event, player) {
-                                return event.player != player && event.player.num('h') <= player.num('h');
+                                return event.player != player && event.player.countCards('h') <= player.countCards('h');
                             },
                             check(event, player) {
                                 if (get.attitude(player, event.player) > 0) return false;
@@ -41473,7 +41473,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         }
                                         player.storage.lg_xingbian_sub = [];
-                                        return player.num('he') && ui.cardPile.childNodes.length;
+                                        return player.countCards('he') && ui.cardPile.childNodes.length;
                                     },
                                     selectCard: 1,
                                     filterCard: true,
@@ -41941,7 +41941,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 global: 'phaseBegin',
                             },
                             filter(event, player) {
-                                return event.player != player && event.player.num('he') >= player.num('he');
+                                return event.player != player && event.player.countCards('he') >= player.countCards('he');
                             },
                             forced: true,
                             content() {
@@ -43950,7 +43950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 global: 'damageBegin',
                             },
                             filter(event, player) {
-                                return event.player != player && event.player.num('h') >= player.num('h');
+                                return event.player != player && event.player.countCards('h') >= player.countCards('h');
                             },
                             check(event, player) {
                                 if (get.attitude(player, event.player) > 0) return false;
@@ -46918,7 +46918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.num = 0;
                                 ('step 1');
                                 if (num < event.targets.length) {
-                                    if (event.targets[num].num('h')) {
+                                    if (event.targets[num].countCards('h')) {
                                         player.gainPlayerCard(event.targets[num], 'h', true);
                                         player.addTempSkill('lg_yanjie1', { player: 'phaseEndStart' });
                                     }
@@ -47185,7 +47185,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (event.target.num('h') > player.num('h')) {
+                                if (event.target.countCards('h') > player.countCards('h')) {
                                     event.target.damage();
                                 }
                             },

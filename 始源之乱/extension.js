@@ -1672,7 +1672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (event.parent.parent.name === 'phaseUse') return false;
-                                if (player.num('h') === 0) return false;
+                                if (player.countCards('h') === 0) return false;
                                 if (event.player === player) return false;
                                 return event.cards && event.cards.length;
                             },

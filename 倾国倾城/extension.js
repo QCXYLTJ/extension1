@@ -2650,7 +2650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:倾国倾城/配音/界限突破:2',
                             usable: 5,
                             check(event, player) {
-                                return player.num('h') < 6;
+                                return player.countCards('h') < 6;
                             },
                             ai: {
                                 reverseOrder: true,
@@ -4093,7 +4093,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     num = 0;
                                 for (i = 0; i < game.players.length; i++) {
                                     if (player != game.players[i]) {
-                                        if (get.attitude(player, game.players[i]) <= 0 && game.players[i].num('he')) num++;
+                                        if (get.attitude(player, game.players[i]) <= 0 && game.players[i].countCards('he')) num++;
                                     }
                                 }
                                 check = num >= 2;
@@ -4101,7 +4101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     '是否发动【ys_画雨笼山】？',
                                     [1, 2],
                                     function (card, player, target) {
-                                        return target.num('he') > 0 && player != target;
+                                        return target.countCards('he') > 0 && player != target;
                                     },
                                     function (target) {
                                         if (!check) return 0;

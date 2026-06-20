@@ -774,7 +774,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('h');
+                                return player.countCards('h');
                             },
                             content() {
                                 event.cards = player.getCards('h');
@@ -6102,7 +6102,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.draw();
                                 ('step 1');
-                                if (target.num('he')) {
+                                if (target.countCards('he')) {
                                     target.chooseToDiscard('he', true).set('ai', function (card) {
                                         var val = 8 - get.value(card);
                                         if (card.suit === 'spade') val += 10;
@@ -6142,7 +6142,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             logTarget: 'target',
                             content() {
                                 'step 0';
-                                if (trigger.target.num('j')) {
+                                if (trigger.target.countCards('j')) {
                                     player
                                         .chooseControl(1, function (event, player) {
                                             if (get.attitude(player, trigger.target) < 2) return 1;

@@ -1524,7 +1524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 1,
                                 result: {
                                     target(player, target) {
-                                        if (player.num('h') >= target.num('h') || target.num('h') == 1) return -1;
+                                        if (player.countCards('h') >= target.countCards('h') || target.countCards('h') == 1) return -1;
                                         return 1;
                                     },
                                 },
@@ -2798,7 +2798,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 wuxie(target, card, player, viewer) {
                                     if (target.hp == 1) return;
                                     if (player == viewer) {
-                                        if (player.num('h') - (get.maxUse(player) + player.num('h', 'wuxie')) >= player.hp + 1 && Math.random() > 0.7) return;
+                                        if (player.countCards('h') - (get.maxUse(player) + player.num('h', 'wuxie')) >= player.hp + 1 && Math.random() > 0.7) return;
                                     }
                                     if (viewer.hasJudgeFirend()) return 0;
                                     if (target.isSafe()) return 0;

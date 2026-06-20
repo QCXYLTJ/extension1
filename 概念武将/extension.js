@@ -993,7 +993,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filterTarget(card, player, target) {
-								return player != target && target.num('he') > 0;
+								return player != target && target.countCards('he') > 0;
 							},
 							prompt: '请选择1名角色',
 							content() {
@@ -1201,7 +1201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							filter(event, player) {
 								for (var i of game.players) {
-									return i.num('hej') > 0;
+									return i.countCards('hej') > 0;
 								}
 							},
 							prompt: '请选择1名角色',
@@ -1227,7 +1227,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								target.popup(event.choice);
 								var players = [];
 								for (var i of game.players) {
-									if (i != player && i.num('hej')) {
+									if (i != player && i.countCards('hej')) {
 										players.push(i);
 									}
 								}
@@ -1266,7 +1266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player != target;
 							},
 							filter(event, player) {
-								return player.num('h') > 0;
+								return player.countCards('h') > 0;
 							},
 							prompt: '请选择1名角色',
 							content() {
@@ -1648,7 +1648,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						zyile_xianjing: {
 							trigger: { player: 'phaseDrawBegin' },
 							check(event, player) {
-								if (player.num('h') < 6) return 1;
+								if (player.countCards('h') < 6) return 1;
 								return 0;
 							},
 							content() {
@@ -1815,7 +1815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								players.remove(player);
 								for (var i of players) {
 									i.discard(i.getCards('hej'));
-									i.loseHp(Math.floor(i.num('hej') / 4));
+									i.loseHp(Math.floor(i.countCards('hej') / 4));
 								}
 							},
 							precreate8(player) {
@@ -2316,7 +2316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.chooseToUse({ name: 'sha' }, event.target, -1, '戮心:对' + get.translation(result.targets[0]) + '使用一张杀,否则你失去一点体力并且' + get.translation(result.targets[0]) + '弃置所有牌.')
 										.set('targetRequired', true)
 										.set('ai', function (target) {
-											if (event.target.num('h') == 0) return -1;
+											if (event.target.countCards('h') == 0) return -1;
 											return 1;
 										});
 								} else {
@@ -2342,8 +2342,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (trigger.player.getStat('damage') > 0) {
 									player.chooseBool('是否要令' + get.translation(trigger.player) + '跳过下个摸牌阶段？').set('choice', get.attitude(player, trigger.player) <= 0);
 								} else {
-									trigger.player.$give(Math.floor(trigger.player.num('h') / 2), player);
-									player.gain(trigger.player.getCards('h').randomGets(Math.floor(trigger.player.num('h') / 2)));
+									trigger.player.$give(Math.floor(trigger.player.countCards('h') / 2), player);
+									player.gain(trigger.player.getCards('h').randomGets(Math.floor(trigger.player.countCards('h') / 2)));
 									event.finish();
 								}
 								('step 1');
@@ -4108,7 +4108,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { player: 'phaseBegin' },
 							_priority: 2,
 							filter(event, player) {
-								return player.num('he') > 0;
+								return player.countCards('he') > 0;
 							},
 							check(event, player) {
 								return 1;
@@ -4151,7 +4151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									trigger: { player: 'phaseEnd' },
 									_priority: 2,
 									filter(event, player) {
-										return player.num('he') > 0;
+										return player.countCards('he') > 0;
 									},
 									check(event, player) {
 										return 1;

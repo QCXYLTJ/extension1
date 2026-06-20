@@ -1151,7 +1151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 10,
                                 result: {
                                     player(player) {
-                                        if (player.num('h') < 2) {
+                                        if (player.countCards('h') < 2) {
                                             return 0;
                                         }
                                         return 1;

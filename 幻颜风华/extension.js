@@ -3146,13 +3146,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.maxHp - player.hp > 0;
 							},
 							filterTarget(card, player, target) {
-								return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
+								return player != target && target.countCards('h') > 0 && get.distance(player, target, 'attack') <= 1;
 							},
 							content() {
-								if (player.maxHp - player.hp <= target.num('h')) {
+								if (player.maxHp - player.hp <= target.countCards('h')) {
 									target.showCards(target.getCards('h').randomGets(player.maxHp - player.hp));
 								} else {
-									target.showCards(target.getCards('h').randomGets(target.num('h')));
+									target.showCards(target.getCards('h').randomGets(target.countCards('h')));
 								}
 							},
 							ai: {
@@ -13421,7 +13421,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.maxHp > player.hp;
 							},
 							filterTarget(card, player, target) {
-								return player != target && get.distance(player, target, 'attack') <= 1 && target.num('h') > 0;
+								return player != target && get.distance(player, target, 'attack') <= 1 && target.countCards('h') > 0;
 							},
 							filterCard: true,
 							selectCard() {
@@ -13433,7 +13433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								var loseHpNum = player.maxHp - player.hp;
-								if (target.num('h') >= loseHpNum) {
+								if (target.countCards('h') >= loseHpNum) {
 									var cards = target.getCards('h').randomGets(loseHpNum);
 									target.$give(loseHpNum, player);
 									player.gain(cards);
@@ -20407,7 +20407,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (event.target && event.target.num('h') == player.countCards('h')) {
+								if (event.target && event.target.countCards('h') == player.countCards('h')) {
 									event.target.gain(
 										get.cardPile(function (card) {
 											return card.number == '1';

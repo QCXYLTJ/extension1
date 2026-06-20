@@ -3518,7 +3518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filterTarget(card, player, target) {
-                                return target.num('h') > 0 && player != target;
+                                return target.countCards('h') > 0 && player != target;
                             },
                             content() {
                                 'step 0';
@@ -3570,7 +3570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (target.hp == target.maxHp) return 1;
                                         if (player.hp == player.maxHp) return 1;
                                         if (target.hp == 1) return 2;
-                                        var hs = player.num('h');
+                                        var hs = player.countCards('h');
                                         var bool = false;
                                         for (var i = 0; i < hs.length; i++) {
                                             if (hs[i].number >= 9 && get.value(hs[i]) < 7) {
@@ -3592,7 +3592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filterTarget(card, player, target) {
-                                return target.num('h') > 0 && player != target;
+                                return target.countCards('h') > 0 && player != target;
                             },
                             content() {
                                 'step 0';
@@ -3644,7 +3644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (target.hp == target.maxHp) return 0;
                                         if (player.hp == player.maxHp) return 0;
                                         if (target.hp == 1) return 2;
-                                        var hs = player.num('h');
+                                        var hs = player.countCards('h');
                                         var bool = false;
                                         for (var i = 0; i < hs.length; i++) {
                                             if (hs[i].number >= 9 && get.value(hs[i]) < 7) {

@@ -4197,7 +4197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     fixed: true,
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('e');
+                                        return player.countCards('e');
                                     },
                                     async content(event, trigger, player) {
                                         trigger.cancel();
@@ -6972,7 +6972,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (event.name == 'phaseDiscard') {
                                                 var num = target.countCards('h');
                                                 num += get.threaten(target);
-                                                if (target.num('h') - 1 >= target.getHandcardLimit()) {
+                                                if (target.countCards('h') - 1 >= target.getHandcardLimit()) {
                                                     num * 10;
                                                 }
                                                 return -get.attitude(_status.event.player, target) - num;
@@ -7475,7 +7475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (player.storage.zmt_np < 30) return false;
-                                return event.card && event.player.num('he') > 0 && event.player.isAlive();
+                                return event.card && event.player.countCards('he') > 0 && event.player.isAlive();
                             },
                             check(event, player) {
                                 return get.attitude(player, event.player) <= 0;

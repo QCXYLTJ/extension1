@@ -452,7 +452,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     ai: {
                                         result: {
                                             target(card, player, target) {
-                                                if (card.name == 'juedou' && target.num('h') > 0) return [1, 0, 0, -1];
+                                                if (card.name == 'juedou' && target.countCards('h') > 0) return [1, 0, 0, -1];
                                             },
                                         },
                                     },
@@ -2801,7 +2801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 player.chooseTarget('是否发动【怜惜】？', function (card, player, target) {
-                                    return target != player && target.num('h');
+                                    return target != player && target.countCards('h');
                                 });
                                 ('step 1');
                                 if (result.bool) {
@@ -4999,7 +4999,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.draw(2);
                                 ('step 1');
-                                if (target.num('he')) {
+                                if (target.countCards('he')) {
                                     target.chooseToDiscard('he', true).set('ai', function (card) {
                                         var val = 8 - get.value(card);
                                         if (card.suit === 'spade') val += 10;
@@ -6593,7 +6593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         num++;
                                     }
                                 }
-                                return player.num('h') < num;
+                                return player.countCards('h') < num;
                             },
                             content() {
                                 var num = 0;
@@ -6604,7 +6604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         num++;
                                     }
                                 }
-                                player.draw(num - player.num('h'));
+                                player.draw(num - player.countCards('h'));
                             },
                             ai: {
                                 threaten: 1.3,
@@ -8233,7 +8233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filterCard: true,
                             position: 'he',
                             filterTarget(card, player, target) {
-                                return player != target && target.num('he') > 0;
+                                return player != target && target.countCards('he') > 0;
                             },
                             check(card) {
                                 return 6 - get.value(card);

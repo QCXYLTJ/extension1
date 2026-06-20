@@ -5567,7 +5567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             charlotte: true,
                             forced: true,
                             filter(event, player) {
-                                return player.num('he') > 0;
+                                return player.countCards('he') > 0;
                             },
                             content() {
                                 'step 0';
@@ -6743,7 +6743,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         gd38_zhengyi: {
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('h') == player.hp && _status.currentPhase == player && !player.hasSkill('gd38_zhengyi_buff');
+                                return player.countCards('h') == player.hp && _status.currentPhase == player && !player.hasSkill('gd38_zhengyi_buff');
                             },
                             forced: true,
                             fixed: true,

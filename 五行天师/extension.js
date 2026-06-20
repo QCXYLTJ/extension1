@@ -2330,7 +2330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     delay: false,
                     prompt: '把所有手牌和装备交给一名其他角色',
                     filter(event, player) {
-                        return player.num('he') > 0;
+                        return player.countCards('he') > 0;
                     },
                     filterCard(card, player) {
                         return true;
@@ -2343,7 +2343,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         target.gain(cards, player, 'giveAuto');
                         ('step 1');
-                        var num = target.num('h');
+                        var num = target.countCards('h');
                         target.discard(target.getCards('h'));
                         target.draw(num);
                         target.showHandcards();
@@ -2364,7 +2364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         threaten: 1.8,
                         result: {
                             target(player, target) {
-                                return -target.num('h') - 1;
+                                return -target.countCards('h') - 1;
                             },
                         },
                     },

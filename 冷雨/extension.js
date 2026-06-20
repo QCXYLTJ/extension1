@@ -2736,7 +2736,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (player.num('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -3107,8 +3107,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 player.chooseTarget(get.translation(trigger.player) + '的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',是否发动【嗫告篇帙·未来记载】？', function (card, player, target) {
-                                    if (target == player) return target.num('hej');
-                                    return target.num('ej');
+                                    if (target == player) return target.countCards('hej');
+                                    return target.countCards('ej');
                                 }).ai = function (target) {
                                     return player == target;
                                 };
@@ -3322,13 +3322,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var player = _status.event.player;
                                     if (get.attitude(_status.event.player, target) == 0) return 0;
                                     if (get.attitude(_status.event.player, target) > 0) {
-                                        if (target.classList.contains('turnedover')) return 1000 - target.num('h');
+                                        if (target.classList.contains('turnedover')) return 1000 - target.countCards('h');
                                         if (player.maxHp - player.hp < 3) return -1;
-                                        return 100 - target.num('h');
+                                        return 100 - target.countCards('h');
                                     } else {
                                         if (target.classList.contains('turnedover')) return -1;
                                         if (player.maxHp - player.hp >= 3) return -1;
-                                        return 1 + target.num('h');
+                                        return 1 + target.countCards('h');
                                     }
                                 };
                                 ('step 1');
@@ -6071,7 +6071,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return get.color(card);
                             },
                             viewAsFilter(player) {
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             viewAs: {
                                 name: 'wuxie',
@@ -10191,8 +10191,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 result: {
                                     target(card, player, target) {
-                                        if (card.name == 'juedou' && target.num('h') > 0) return [1, 0, 0, -1];
-                                        if (card.name == 'sha' && target.num('h') > 0) return [1, 0, 0, -1];
+                                        if (card.name == 'juedou' && target.countCards('h') > 0) return [1, 0, 0, -1];
+                                        if (card.name == 'sha' && target.countCards('h') > 0) return [1, 0, 0, -1];
                                     },
                                 },
                             },
@@ -13328,7 +13328,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('h');
+                                return player.countCards('h');
                             },
                             check(card) {
                                 return 7 - get.value(card);
@@ -13381,7 +13381,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter(event, player) {
                                 var num = 0 + game.countPlayer();
                                 for (var i of game.players) {
-                                    for (var j = 0; j < i.num('j'); j++) {
+                                    for (var j = 0; j < i.countCards('j'); j++) {
                                         num += i.getCards('j')[j].number;
                                     }
                                 }

@@ -2414,7 +2414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             selectCard: -1,
                             filterCard: true,
                             filter(event, player) {
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             position: 'h',
                             viewAs: {

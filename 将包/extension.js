@@ -651,13 +651,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 wuxie(target, card, player, viewer) {
                                     if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
-                                        if (!target.num('h') || target.hp == 1 || Math.random() < 0.7) return 0;
+                                        if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                                     }
                                 },
                                 result: {
                                     target(player, target) {
                                         if (player.hasUnknown(2)) return 0;
-                                        var nh = target.num('h');
+                                        var nh = target.countCards('h');
                                         if (get.mode() == 'identity') {
                                             if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
                                         }
@@ -1474,7 +1474,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 5,
                             filter(event, player) {
-                                return player.num('h') >= 1;
+                                return player.countCards('h') >= 1;
                             },
                             content() {
                                 'step 0';
@@ -3395,7 +3395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 effect: {
                                     target(card, player, target) {
-                                        if (player.num('he') > 1 && get.tag(card, 'damage')) {
+                                        if (player.countCards('he') > 1 && get.tag(card, 'damage')) {
                                             if (player.hasSkill('jueqing')) return [1, -1.5];
                                             if (get.attitude(target, player) < 0) return [1, 1];
                                         }
@@ -4886,13 +4886,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 wuxie(target, card, player, viewer) {
                                     if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
-                                        if (!target.num('h') || target.hp == 1 || Math.random() < 0.7) return 0;
+                                        if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                                     }
                                 },
                                 result: {
                                     target(player, target) {
                                         if (player.hasUnknown(2)) return 0;
-                                        var nh = target.num('h');
+                                        var nh = target.countCards('h');
                                         if (get.mode() == 'identity') {
                                             if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
                                         }
@@ -5337,7 +5337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 5,
                             filter(event, player) {
-                                return player.num('h') >= 1;
+                                return player.countCards('h') >= 1;
                             },
                             content() {
                                 'step 0';
@@ -6169,7 +6169,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseControl('回血', '加伤害', 'cancel2').set('prompt', get.prompt('shenshu_wunu'));
                                 ('step 1');
                                 if (result.control && result.control != 'cancel2') {
-                                    var nd = player.num('h');
+                                    var nd = player.countCards('h');
                                     if (result.control == '回血') {
                                         player.recover(2);
                                     } else {

@@ -961,7 +961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             filter(event, player) {
                                 if (player.storage.zmt_np < 80) return false;
-                                return player.num('h') > 1;
+                                return player.countCards('h') > 1;
                             },
                             selectCard: [2, 99],
                             filterCard(card) {
@@ -1009,8 +1009,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 0.2,
                                 result: {
                                     player(player) {
-                                        if (player.num('e') > 0) return 1;
-                                        var num = player.num('h');
+                                        if (player.countCards('e') > 0) return 1;
+                                        var num = player.countCards('h');
                                         if (num > player.hp) return 1;
                                         if (num == 1) return -1;
                                         return -0.7;
@@ -1221,7 +1221,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (player.storage.zmjiulongbahuan2 <= 8) {
                                         player.storage.zmjiulongbahuan2 += 1;
                                     }
-                                    player.draw(player.maxHp - player.num('h'));
+                                    player.draw(player.maxHp - player.countCards('h'));
                                 }
                                 ('step 2');
                                 player.storage.zmjiulongbahuan = trigger.card.number;
@@ -3167,7 +3167,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (player.storage.zmt_np < 50) return false;
-                                return event.player != player && player.num('e') > 0;
+                                return event.player != player && player.countCards('e') > 0;
                             },
                             _priority: 10,
                             content() {
@@ -3177,7 +3177,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.mp422('zmbuladamante');
                                 ('step 1');
                                 trigger.num++;
-                                var num0 = player.num('e');
+                                var num0 = player.countCards('e');
                                 player.chooseToDiscard(Infinity, 'e', '弃置所有装备牌', true);
                                 trigger.player.chooseToDiscard(num0, 'he', true);
                             },
@@ -5638,7 +5638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             viewAsFilter(player) {
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             viewAs: {
                                 name: 'sha',

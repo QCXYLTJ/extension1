@@ -2537,8 +2537,8 @@ game.import('character', function () {
 						player.loseHp();
 						event.finish();
 					} else {
-						var num = player.num('h') - player.hp;
-						if (player.num('h') > player.hp) {
+						var num = player.countCards('h') - player.hp;
+						if (player.countCards('h') > player.hp) {
 							player.chooseToDiscard('h', true, num);
 						} else {
 							player.draw(num);
@@ -6036,7 +6036,7 @@ game.import('character', function () {
 							order: 10,
 							result: {
 								player(player) {
-									var nh = player.num('h');
+									var nh = player.countCards('h');
 									if (nh == 0) return 0;
 									if (nh >= player.maxHp && player.maxHp >= 8) return 3;
 									if (nh >= player.hp && player.maxHp >= 8) return 0.3;
@@ -11189,7 +11189,7 @@ game.import('character', function () {
 							return 0.5;
 						}
 						if (trigger.card.name == 'guohe' || trigger.card.name == 'shunshou') {
-							if (target.num('h') == 0) return Math.random < 0.3;
+							if (target.countCards('h') == 0) return Math.random < 0.3;
 							return 1;
 						}
 					};

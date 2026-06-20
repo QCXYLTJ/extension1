@@ -1095,10 +1095,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h') < 4;
+                                return player.countCards('h') < 4;
                             },
                             content() {
-                                player.draw(4 - player.num('h'));
+                                player.draw(4 - player.countCards('h'));
                                 var js = player.getCards('j');
                                 if (js.length) {
                                     player.discard(js);

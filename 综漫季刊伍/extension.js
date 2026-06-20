@@ -554,7 +554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else {
                                         game.playzm5(['zmxianzhenzhe21', 'zmxianzhenzhe22', 'zmxianzhenzhe23', 'zmxianzhenzhe24', 'zmxianzhenzhe25'].randomGet());
                                     }
-                                    player.draw(player.hp - player.num('h'));
+                                    player.draw(player.hp - player.countCards('h'));
                                     event.finish();
                                 }
                                 if (player.countCards('h') > player.hp) {
@@ -5226,7 +5226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var dialog = ui.create.dialog('hidden');
                                     for (var i of game.players) {
                                         if (i == player) continue;
-                                        if (i.num('h')) {
+                                        if (i.countCards('h')) {
                                             dialog.add(get.translation(i) + '的手牌');
                                             var hs = i.getCards('h');
                                             dialog.add(hs);
@@ -5301,7 +5301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i of game.players) {
                                             if (i == player || i.countCards('h') == 0) continue;
                                             dialog.add(get.translation(i) + '的手牌');
-                                            if (i.num('h')) {
+                                            if (i.countCards('h')) {
                                                 var hs = i.getCards('h');
                                                 for (var j = 0; j < hs.length; j++) {
                                                     cards.push(hs[j]);

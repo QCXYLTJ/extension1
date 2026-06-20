@@ -271,12 +271,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return card.suit == 'heart';
                             },
                             filterTarget(card, player, target) {
-                                return target.num('h') > 0;
+                                return target.countCards('h') > 0;
                             },
                             position: 'he',
                             content() {
                                 'step 0';
-                                var num = target.num('h');
+                                var num = target.countCards('h');
                                 target.discard(target.getCards('h'));
                                 target.draw(num);
                                 target.showHandcards();
@@ -301,7 +301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target(player, target) {
                                         var recover = target.maxHp - target.hp;
-                                        var nh = target.num('h');
+                                        var nh = target.countCards('h');
                                         if (recover >= 2) return nh + recover;
                                         return nh;
                                     },
@@ -4268,9 +4268,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         trigger.player.turnOver();
                                         player.storage.pojunon.remove(trigger.player);
                                         ('step 2');
-                                        if (player.num('h') > trigger.player.num('h')) trigger.num++;
-                                        if (player.num('e') > trigger.player.num('e')) trigger.num++;
-                                        if (player.num('j') > trigger.player.num('j')) trigger.num++;
+                                        if (player.countCards('h') > trigger.player.countCards('h')) trigger.num++;
+                                        if (player.countCards('e') > trigger.player.countCards('e')) trigger.num++;
+                                        if (player.countCards('j') > trigger.player.countCards('j')) trigger.num++;
                                     },
                                 },
                             },
@@ -4327,7 +4327,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 if (
                                     game.hasPlayer(function (current) {
-                                        return event.targetx.includes(current) && current.num('e') > 0;
+                                        return event.targetx.includes(current) && current.countCards('e') > 0;
                                     })
                                 ) {
                                     list.push('将' + get.translation(event.target) + '装备区的一张牌置入你的装备区');
@@ -4360,7 +4360,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.numx = 0;
                                 ('step 5');
-                                if (event.targetx[event.numx].num('e') > 0) {
+                                if (event.targetx[event.numx].countCards('e') > 0) {
                                     var next = player.choosePlayerCard(event.targetx[event.numx], 'e', 1, get.prompt('yichengon', event.targetx[event.numx]));
                                     next.set('ai', function (button) {
                                         if (!_status.event.goon) return 0;
@@ -4523,7 +4523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player, name) {
                                 if (name == 'damageBegin3') return event.source && event.source.countMark('jieyingon_gain') > 0;
-                                return event.player.countMark('jieyingon_gain') > 0 && event.player != player && event.player.num('h') > 0;
+                                return event.player.countMark('jieyingon_gain') > 0 && event.player != player && event.player.countCards('h') > 0;
                             },
                             forced: true,
                             audio: 'ext:风起雨落/audio:2',
@@ -4593,7 +4593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         if (event.triggername == 'phaseDiscardBegin') {
                                             trigger.cancel();
-                                            player.draw(player.maxHp - player.num('h'));
+                                            player.draw(player.maxHp - player.countCards('h'));
                                         } else {
                                             trigger.num += player.countMark('jieyingon_gain');
                                         }
@@ -6435,7 +6435,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             content() {
                                 'step 0';
-                                if (event.triggername == 'linkBegin' || event.triggername == 'dying') if (player.num('h') < 4) player.draw(4 - player.num('h'));
+                                if (event.triggername == 'linkBegin' || event.triggername == 'dying') if (player.countCards('h') < 4) player.draw(4 - player.countCards('h'));
                                 if (event.triggername == 'damageAfter') player.link();
                                 if (event.triggername == 'linkAfter' || event.triggername == 'dyingAfter') player.recover();
                             },
@@ -7919,8 +7919,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.awakenSkill('zhengfaon');
                                 trigger.cancel();
                                 ('step 1');
-                                if (player.num('h') <= 4) player.draw(4 - player.num('h'));
-                                else player.chooseToDiscard('h', true, player.num('h') - 4);
+                                if (player.countCards('h') <= 4) player.draw(4 - player.countCards('h'));
+                                else player.chooseToDiscard('h', true, player.countCards('h') - 4);
                                 player.maxHp = 4;
                                 player.hp = 4;
                                 player.awakenSkill('renhuaion');
@@ -8356,8 +8356,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 } else {
                                     var list = ['受到伤害', '失去上限'];
-                                    if (player.num('he') > 1) list.push('交与牌');
-                                    player.chooseControl(list).set('prompt', '义争:选择失去一点体力上限或受到一点伤害' + (player.num('he') > 1 ? '或交与一名其他角色两张牌' : ''));
+                                    if (player.countCards('he') > 1) list.push('交与牌');
+                                    player.chooseControl(list).set('prompt', '义争:选择失去一点体力上限或受到一点伤害' + (player.countCards('he') > 1 ? '或交与一名其他角色两张牌' : ''));
                                 }
                                 ('step 2');
                                 if (result.control == '失去上限') player.loseMaxHp();
@@ -8603,7 +8603,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     },
                                     selectCard(card, player, target) {
-                                        return Math.min(_status.event.player.num('he'), 5);
+                                        return Math.min(_status.event.player.countCards('he'), 5);
                                     },
                                     filterTarget(card, player, target) {
                                         return target.isAlive() && target != _status.event.player;
@@ -8845,7 +8845,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             delay: false,
                             usable: 1,
                             selectCard(card, player, target) {
-                                if (_status.event.player.num('h') < 6) return -1;
+                                if (_status.event.player.countCards('h') < 6) return -1;
                                 return [1, 5];
                             },
                             check(card) {
@@ -9002,7 +9002,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.triggername != 'phaseBegin') {
                                     player.drawTo(7);
                                     if (player.hp < 7) player.recover(7 - player.hp);
-                                    if (player.num('h') < 7) player.draw(7 - player.num('h'));
+                                    if (player.countCards('h') < 7) player.draw(7 - player.countCards('h'));
                                     player.storage.jincuion = 7;
                                     event.finish();
                                 }

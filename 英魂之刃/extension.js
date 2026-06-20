@@ -5857,7 +5857,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'damageBegin',
 							},
 							filter(event, player) {
-								return player.num('h') >= 1 && player.storage.nyhzr仙灵伙伴 >= 1;
+								return player.countCards('h') >= 1 && player.storage.nyhzr仙灵伙伴 >= 1;
 							},
 							content() {
 								player.storage.nyhzr仙灵伙伴 -= 1;
@@ -6207,7 +6207,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('hej') > 0;
+								return player.countCards('hej') > 0;
 							},
 							filterTarget(card, player, target) {
 								return player != target;
@@ -6220,7 +6220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 1,
 								result: {
 									player(player) {
-										return player.num('h') - 1;
+										return player.countCards('h') - 1;
 									},
 									target(player, target) {
 										return -get.attitude(player, target);
@@ -6294,7 +6294,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'shaBegin',
 							},
 							check(event, player) {
-								if (event.target.num('h') < 3) return false;
+								if (event.target.countCards('h') < 3) return false;
 								return get.attitude(player, event.target) <= 0;
 							},
 							logTarget: 'target',
@@ -6379,7 +6379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								game.log(player, '转化蜘蛛形态');
 							},
 							check(event, player) {
-								return player.num('h') < 3;
+								return player.countCards('h') < 3;
 							},
 						},
 						znyhzr幽影之蜕: {
@@ -6673,11 +6673,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filterTarget(card, player, target) {
-								if (target.num('hej') == 0) return false;
+								if (target.countCards('hej') == 0) return false;
 								return player != target;
 							},
 							filter(event, player) {
-								return player.hasSkill('nyhzr光明圣礼') && player.num('h') >= 1;
+								return player.hasSkill('nyhzr光明圣礼') && player.countCards('h') >= 1;
 							},
 							content() {
 								player.discardPlayerCard(1, player, true);
@@ -6687,7 +6687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 15,
 								result: {
 									player(player) {
-										return player.num('h') - 1;
+										return player.countCards('h') - 1;
 									},
 									target(player, target) {
 										return -get.attitude(player, target);
@@ -6726,7 +6726,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 							},
 							check(event, player) {
-								if (player.num('h') < 2) return false;
+								if (player.countCards('h') < 2) return false;
 								if (player.previous.identity == 'zhong' && player.next.identity == 'zhong') return false;
 								return true;
 							},
@@ -6880,7 +6880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageEnd',
 							},
 							filter(event, player) {
-								return player.num('h') >= 1;
+								return player.countCards('h') >= 1;
 							},
 							content() {
 								if (player.hasSkill('nyhzr血月')) {
@@ -7352,7 +7352,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageBegin',
 							},
 							filter(event, player) {
-								return player.num('h') >= 2;
+								return player.countCards('h') >= 2;
 							},
 							content() {
 								if (!player.hasSkill('nyhzr妖斧')) {
@@ -7562,7 +7562,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageEnd',
 							},
 							filter(event, player) {
-								return !player.hasSkill('nyhzr真龙化身') && player.num('h') > 2;
+								return !player.hasSkill('nyhzr真龙化身') && player.countCards('h') > 2;
 							},
 							content() {
 								player.discard(player.getCards('h'));
@@ -7570,7 +7570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.player.removeSkill(trigger.player.skills.randomGet());
 							},
 							check(event, player) {
-								if (player.num('h') > 4) return false;
+								if (player.countCards('h') > 4) return false;
 								if (player.hp <= 1) return false;
 								if (player.identity == event.player.identity) return false;
 								if (event.player.identity == 'zhu' && player.identity == 'zhong') return false;
@@ -8005,10 +8005,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							usable: 1,
 							filter(event, player) {
-								return player.num('h') > 0;
+								return player.countCards('h') > 0;
 							},
 							check(event, player) {
-								return player.num('h') > 2;
+								return player.countCards('h') > 2;
 							},
 							content() {
 								player.showCards(player.getCards('h'));
@@ -8052,7 +8052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filter(event, player) {
 								for (var i of game.players) {
 									//QQQ
-									return i.num('h') > 0 && player.storage.nyhzr钻能光球 >= 2;
+									return i.countCards('h') > 0 && player.storage.nyhzr钻能光球 >= 2;
 								}
 							},
 							prompt: '请选择1名角色',
@@ -8081,7 +8081,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var players = [];
 								for (var i of game.players) {
 									//QQQ
-									if (i != player && i.num('h')) {
+									if (i != player && i.countCards('h')) {
 										players.push(i);
 									}
 								}
@@ -8445,7 +8445,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filter(event, player) {
 								for (var i of game.players) {
 									//QQQ
-									if (i != player && i.num('hej')) {
+									if (i != player && i.countCards('hej')) {
 										return true;
 									}
 								}
@@ -8455,7 +8455,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.getStat('skill').nyhzr镭射光束--;
 								player.chooseTarget(function (card, player, target) {
-									return player != target && target.num('hej');
+									return player != target && target.countCards('hej');
 								}, '请选择1名角色').ai = function (target) {
 									return -get.attitude(player, target);
 								};
@@ -8474,15 +8474,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.position = 'hej';
 								var position = event.position;
 								for (var i = 0; i < position.length; i++) {
-									if (position[i] == 'h' && target.num('h')) {
+									if (position[i] == 'h' && target.countCards('h')) {
 										event.dialog.add('手牌');
 										var hs = target.getCards('h');
 										hs.randomSort();
 										event.dialog.add(hs);
-									} else if (position[i] == 'e' && target.num('e')) {
+									} else if (position[i] == 'e' && target.countCards('e')) {
 										event.dialog.add('装备牌');
 										event.dialog.add(target.getCards('e'));
-									} else if (position[i] == 'j' && target.num('j')) {
+									} else if (position[i] == 'j' && target.countCards('j')) {
 										event.dialog.add('判定牌');
 										event.dialog.add(target.getCards('j'));
 									}
@@ -8559,7 +8559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player != target;
 							},
 							filter(event, player) {
-								return player.num('h') > player.hp + 1;
+								return player.countCards('h') > player.hp + 1;
 							},
 							content() {
 								'step 0';
@@ -8567,7 +8567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var qyzsha = get.cardPile(function (card) {
 									return card.name == 'sha';
 								});
-								if (qyzsha && player.num('h') > player.hp + 1 && target.hp > 0) {
+								if (qyzsha && player.countCards('h') > player.hp + 1 && target.hp > 0) {
 									player.gain(qyzsha, 'gain2');
 									player.useCard(qyzsha, target);
 									player.chooseToDiscard(1, 'h', true);
@@ -8709,7 +8709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'damageBegin',
 							},
 							filter(event, player) {
-								return player.num('h') >= 1 && player.storage.nyhzr仙灵伙伴ol >= 2;
+								return player.countCards('h') >= 1 && player.storage.nyhzr仙灵伙伴ol >= 2;
 							},
 							content() {
 								player.storage.nyhzr仙灵伙伴ol -= 2;
@@ -8875,7 +8875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										source: 'damageEnd',
 									},
 									filter(event, player) {
-										return player.num('h') > 2;
+										return player.countCards('h') > 2;
 									},
 									content() {
 										player.discard(player.getCards('h'));
@@ -8883,7 +8883,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										trigger.player.removeSkill(trigger.player.skills.randomGet());
 									},
 									check(event, player) {
-										if (player.num('h') > 4) return false;
+										if (player.countCards('h') > 4) return false;
 										if (player.hp <= 1) return false;
 										if (player.identity == event.player.identity) return false;
 										if (event.player.identity == 'zhu' && player.identity == 'zhong') return false;
@@ -8921,7 +8921,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								game.log(player, '的神威震慑对手');
-								trigger.player.chooseToDiscard(trigger.player.num('h'), 'h', true);
+								trigger.player.chooseToDiscard(trigger.player.countCards('h'), 'h', true);
 							},
 						},
 						rnyhzr幽影之蜕ol: {
@@ -9015,12 +9015,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageEnd',
 							},
 							filter(event, player) {
-								return player.num('h') > 0;
+								return player.countCards('h') > 0;
 							},
 							content() {
 								'step 0';
 								player.chooseControl(['弃牌回复体力', '将现有体力转化为护盾值']).ai = function () {
-									if (player.num('h') > 1) return '弃牌回复体力';
+									if (player.countCards('h') > 1) return '弃牌回复体力';
 								};
 								('step 1');
 								if (result.control == '弃牌回复体力') {
@@ -9307,7 +9307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (event.responded) return false;
 								for (var i of game.players) {
 									//QQQ
-									if (i != player && i.num('h')) {
+									if (i != player && i.countCards('h')) {
 										return player.storage.nyhzr凤求凰ol == 0;
 									}
 								}
@@ -9316,7 +9316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								player.chooseTarget(function (card, player, target) {
-									return player != target && target.num('h');
+									return player != target && target.countCards('h');
 								}, '请选择【凤求凰】的目标').ai = function (target) {
 									var att = get.attitude(player, target) + 1;
 									if (target.num('h', 'shan') || target.num('h', 'sha')) {
@@ -9362,7 +9362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseAfter',
 							},
 							filter(event, player) {
-								return player.num('h') >= 2;
+								return player.countCards('h') >= 2;
 							},
 							content() {
 								'step 0';
@@ -9425,7 +9425,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return event.target && event.target != player && event.target.storage.nyhzr火之箭矢ol > 0 && event.target.num('h') > 0;
+										return event.target && event.target != player && event.target.storage.nyhzr火之箭矢ol > 0 && event.target.countCards('h') > 0;
 									},
 									content() {
 										trigger.target.chooseToDiscard(1, 'h', true);
@@ -9810,7 +9810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'damageBegin',
 							},
 							filter(event, player) {
-								return event.source && event.source.num('h') > 0 && player.num('h') > 0;
+								return event.source && event.source.countCards('h') > 0 && player.countCards('h') > 0;
 							},
 							content() {
 								'step 0';
@@ -9925,7 +9925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.storage.nyhzr鬼雄ol1 != 1 && event.source && event.source.num('h') > 0;
+										return player.storage.nyhzr鬼雄ol1 != 1 && event.source && event.source.countCards('h') > 0;
 									},
 									content() {
 										'step 0';
@@ -9985,12 +9985,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseAfter',
 							},
 							filter(event, player) {
-								return player.num('h') < player.hp;
+								return player.countCards('h') < player.hp;
 							},
 							forced: true,
 							content() {
 								'step 0';
-								event.cards = get.cards(player.hp - player.num('h'));
+								event.cards = get.cards(player.hp - player.countCards('h'));
 								player.showCards(event.cards);
 								('step 1');
 								nyhzr腐肉吸噬olNum = 0;
@@ -10079,7 +10079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.storage.nyhzr通天法眼olClub = 0;
 								player.storage.nyhzr通天法眼olSpade = 0;
 								player.chooseTarget(function (card, player, target) {
-									return player != target && target.num('h');
+									return player != target && target.countCards('h');
 								}, '请选择一名角色').ai = function (target) {
 									return -get.attitude(player, target);
 								};
@@ -10547,13 +10547,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseEnd',
 							},
 							filter(event, player) {
-								return player.num('h') >= 1 && player != event.player;
+								return player.countCards('h') >= 1 && player != event.player;
 							},
 							forced: true,
 							content() {
 								'step 0';
 								player.chooseBool('是否弃置一张手牌并令' + get.translation(trigger.player) + '进行一个额外的摸牌阶段？').ai = function (event, player) {
-									return get.attitude(player, trigger.player) > 0 && trigger.player.num('h') < 3;
+									return get.attitude(player, trigger.player) > 0 && trigger.player.countCards('h') < 3;
 								};
 								('step 1');
 								if (result.bool) {
@@ -10575,8 +10575,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							prompt: '选择两名拼点目标',
 							content() {
 								'step 0';
-								if (targets[0].num('h') == 0) targets[0].draw();
-								if (targets[1].num('h') == 0) targets[1].draw();
+								if (targets[0].countCards('h') == 0) targets[0].draw();
+								if (targets[1].countCards('h') == 0) targets[1].draw();
 								if (targets[0].group != targets[1].group) player.draw();
 								targets[0].line(targets[1]);
 								targets[0].chooseToCompare(targets[1]);
@@ -10592,7 +10592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								expose: 0.3,
 								result: {
 									target(player, target) {
-										if (get.attitude(player, target) < 0) return -target.num('he');
+										if (get.attitude(player, target) < 0) return -target.countCards('he');
 									},
 								},
 							},
@@ -10601,7 +10601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							nobracket: true,
 							mod: {
 								targetEnabled(card, player, target) {
-									if (player != target && target.hp < target.maxHp && target.num('h') == 0) return false;
+									if (player != target && target.hp < target.maxHp && target.countCards('h') == 0) return false;
 								},
 							},
 							trigger: {
@@ -10699,14 +10699,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player != target;
 							},
 							filter(event, player) {
-								return player.num('h') > player.hp + 1;
+								return player.countCards('h') > player.hp + 1;
 							},
 							content() {
 								'step 0';
 								var qyzsha = get.cardPile(function (card) {
 									return card.name == 'sha';
 								});
-								if (qyzsha && player.num('h') > player.hp + 1 && target.hp > 0) {
+								if (qyzsha && player.countCards('h') > player.hp + 1 && target.hp > 0) {
 									player.gain(qyzsha, 'gain2');
 									player.useCard(qyzsha, target, false);
 									player.chooseToDiscard(1, 'h', true);
@@ -11064,7 +11064,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.skip('phaseUse');
 								player.skip('phaseDiscard');
 								player.chooseControl('判定阶段', '摸牌阶段', '出牌阶段', '弃牌阶段').set('ai', function () {
-									if (player.num('h') <= player.hp) {
+									if (player.countCards('h') <= player.hp) {
 										return '弃牌阶段';
 									} else {
 										return '摸牌阶段';
@@ -11354,7 +11354,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								player.chooseTarget('请选择【所向披靡】的目标', function (card, player, target) {
-									return target.num('e') > 0 && target != player;
+									return target.countCards('e') > 0 && target != player;
 								}).ai = function (target) {
 									return -get.attitude(player, target);
 								};
@@ -11492,9 +11492,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								player.chooseTarget(function (card, player, target) {
-									return player != target && target.num('h');
+									return player != target && target.countCards('h');
 								}, '请选择一名角色并观看其手牌').ai = function (target) {
-									return target.num('h');
+									return target.countCards('h');
 								};
 								('step 1');
 								if (result.bool) {
@@ -11538,7 +11538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								if (trigger.source.num('h') > 0) {
+								if (trigger.source.countCards('h') > 0) {
 									player.chooseControl('red', 'black').set('ai', function () {
 										return 'red';
 									});
@@ -11592,7 +11592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								nyhzr弹药填装oltarget = targets.randomGet();
 								player.draw(2);
-								if (nyhzr弹药填装oltarget.num('h') == 0) nyhzr弹药填装oltarget.draw();
+								if (nyhzr弹药填装oltarget.countCards('h') == 0) nyhzr弹药填装oltarget.draw();
 								nyhzr弹药填装oltarget.line(player);
 								nyhzr弹药填装oltarget.chooseToCompare(player);
 								('step 1');
@@ -11661,7 +11661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								for (var i of game.players) {
 									//QQQ
-									if (i != player && i.sex == 'male' && i.num('h') > 0) {
+									if (i != player && i.sex == 'male' && i.countCards('h') > 0) {
 										player.gainPlayerCard('h', i, true);
 										player.useSkill('nyhzr勾魂大法ol1');
 									}
@@ -11687,7 +11687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								if (result.control == '将一张牌复制并交给所有其他角色') {
-									if (player.num('h') > 0)
+									if (player.countCards('h') > 0)
 										player.chooseCard('请选择需要复制并交给所有其他角色的牌', function (card) {
 											return true;
 										}).ai = function (card) {
@@ -11727,9 +11727,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.control == '弃牌或流失体力') {
 									var list = ['流失一点体力'];
-									if (target.num('h') >= 2) list.push('弃置两张手牌');
+									if (target.countCards('h') >= 2) list.push('弃置两张手牌');
 									target.chooseControl(list).ai = function () {
-										if (target.num('h') >= 2) return '弃置两张手牌';
+										if (target.countCards('h') >= 2) return '弃置两张手牌';
 										return '流失一点体力';
 									};
 								}
@@ -11876,8 +11876,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseAfter',
 							},
 							filter(event, player) {
-								if (_status.connectMode) return player.num('h') > 0;
-								return player.num('e') > 0;
+								if (_status.connectMode) return player.countCards('h') > 0;
+								return player.countCards('e') > 0;
 							},
 							check(event, player) {
 								//					return player.num('h','shan')>0;
@@ -11968,7 +11968,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return game.kong;
 								};
 								player.turnOver = function (all) {
-									if (player.num('h') > 0) player.chooseToDiscard(1, 'h', true);
+									if (player.countCards('h') > 0) player.chooseToDiscard(1, 'h', true);
 									return game.kong;
 								};
 							},
@@ -12155,7 +12155,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if (Math.random() <= 0.1) {
 												i.damage('thunder');
 											} else {
-												if (i.num('h') > 0) i.discard(i.getCards('h').randomGet());
+												if (i.countCards('h') > 0) i.discard(i.getCards('h').randomGet());
 											}
 											game.log(i, '被扇骨刺伤');
 											i.line(player, 'thunder');
@@ -12278,7 +12278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.storage.nyhzr月之轮回ol == 3 || player.storage.nyhzr月之轮回ol == 7;
 							},
 							content() {
-								if (Math.random() <= 0.2 && trigger.player.num('he') > 0) trigger.player.chooseToDiscard(1, 'he', true);
+								if (Math.random() <= 0.2 && trigger.player.countCards('he') > 0) trigger.player.chooseToDiscard(1, 'he', true);
 							},
 						},
 						_nyhzr凸月ol: {
@@ -12318,14 +12318,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (event.responded) return false;
 								for (var i of game.players) {
 									//QQQ
-									if (i != player && i.num('h')) return player.storage.nyhzr月之轮回ol > 3;
+									if (i != player && i.countCards('h')) return player.storage.nyhzr月之轮回ol > 3;
 								}
 								return false;
 							},
 							content() {
 								'step 0';
 								player.chooseTarget(function (card, player, target) {
-									return player != target && target.num('h');
+									return player != target && target.countCards('h');
 								}, '请选择【月潮引力】的目标').ai = function (target) {
 									var att = get.attitude(player, target) + 1;
 									if (target.num('h', 'shan') || target.num('h', 'sha')) att * 10;
@@ -13444,7 +13444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('h') > 0;
+								return player.countCards('h') > 0;
 							},
 							filterCard: { name: 'sha' },
 							selectCard: 1,
@@ -13668,7 +13668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player != target;
 							},
 							filter(event, player) {
-								return player.num('h') > player.num('e');
+								return player.countCards('h') > player.countCards('e');
 							},
 							content() {
 								'step 0';
@@ -13676,7 +13676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var qyzsha = get.cardPile(function (card) {
 									return card.name == 'sha';
 								});
-								if (qyzsha && player.num('h') > player.num('e') && target.hp > 0) {
+								if (qyzsha && player.countCards('h') > player.countCards('e') && target.hp > 0) {
 									player.gain(qyzsha, 'gain2');
 									player.useCard(qyzsha, target);
 									player.chooseToDiscard(1, 'h', true);
@@ -14398,9 +14398,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								var list = ['流失一点体力'];
-								if (trigger.player.num('h') >= 1) list.push('弃置一张手牌');
+								if (trigger.player.countCards('h') >= 1) list.push('弃置一张手牌');
 								trigger.player.chooseControl(list).set('ai', function () {
-									if (trigger.player.num('h') >= 1) return '弃置一张手牌';
+									if (trigger.player.countCards('h') >= 1) return '弃置一张手牌';
 									return '流失一点体力';
 								});
 								('step 1');
@@ -14553,7 +14553,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h') > player.hp * 2;
+										return player.countCards('h') > player.hp * 2;
 									},
 									content() {
 										player.skip('phaseUse');
@@ -14571,7 +14571,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'damageAfter',
 							},
 							filter(event, player) {
-								return event.source && _status.currentPhase != player && player.num('h') >= 2;
+								return event.source && _status.currentPhase != player && player.countCards('h') >= 2;
 							},
 							content() {
 								player.chooseToDiscard(2, 'h', true);
@@ -14752,7 +14752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.awakenSkill('lielongshenggen');
 								player.storage.lielongshenggen = true;
 								target.loseHp();
-								player.storage.lielongshenggen1 = target.num('h');
+								player.storage.lielongshenggen1 = target.countCards('h');
 								player.discard(player.getCards('h'));
 								player.recover(2);
 								player.addSkill('lielongshenggen1');
@@ -15318,7 +15318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return game.kong;
 								};
 								player.turnOver = function (all) {
-									if (player.num('h') > 0) player.chooseToDiscard(1, 'h', true);
+									if (player.countCards('h') > 0) player.chooseToDiscard(1, 'h', true);
 									return game.kong;
 								};
 							},
@@ -15503,7 +15503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							usable: 1,
 							filter(event, player) {
-								return player.num('h') > 0;
+								return player.countCards('h') > 0;
 							},
 							content() {
 								player.chooseToDiscard(1, 'h', true);
@@ -15537,7 +15537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 21,
 								result: {
 									player(player) {
-										return player.num('h') - 2;
+										return player.countCards('h') - 2;
 									},
 								},
 							},
@@ -15757,7 +15757,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.num('h') > 0 && !player.hasSkill('nyhzr三重卡组');
+								return player.countCards('h') > 0 && !player.hasSkill('nyhzr三重卡组');
 							},
 							content() {
 								player.chooseToDiscard(1, 'h', true);
@@ -16320,7 +16320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.removeSkill('nhyzr皎月之力');
 							},
 							check(event, player) {
-								if (player.num('h') < 2) return false;
+								if (player.countCards('h') < 2) return false;
 								if (player.hp < 2) return false;
 								return true;
 							},

@@ -905,7 +905,7 @@ game.import('extension', function () {
                                 if (player.maxHp - player.hp < 2) {
                                     return false;
                                 } else if (player.maxHp - player.hp == 2) {
-                                    return player.num('h') >= 2;
+                                    return player.countCards('h') >= 2;
                                 }
                                 return true;
                             },

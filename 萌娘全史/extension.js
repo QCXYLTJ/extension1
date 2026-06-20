@@ -2975,8 +2975,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     ai2(target) {
                                         if (get.attitude(player, target) <= 0) return -1;
-                                        if (!target.num('h') || target.hp == 1) return 20;
-                                        if (target.hp == 2 || (!target.num('h') && !target.num('j'))) return 15;
+                                        if (!target.countCards('h') || target.hp == 1) return 20;
+                                        if (target.hp == 2 || (!target.countCards('h') && !target.countCards('j'))) return 15;
                                         return get.attitude(player, target);
                                     },
                                     prompt: '给饷:弃置一张牌,令一名其他角色摸X张牌',
@@ -2986,9 +2986,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discard(result.cards);
                                     var num = 1;
                                     var target = result.targets[0];
-                                    if (!target.num('e')) num += 1;
-                                    if (!target.num('h')) num += 1;
-                                    if (!target.num('j')) num += 1;
+                                    if (!target.countCards('e')) num += 1;
+                                    if (!target.countCards('h')) num += 1;
+                                    if (!target.countCards('j')) num += 1;
                                     target.draw(num);
                                 }
                             },
@@ -3328,7 +3328,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             popup: false,
                             content() {
-                                player.storage.hx_qianfa = player.num('h');
+                                player.storage.hx_qianfa = player.countCards('h');
                                 player.addTempSkill('hx_qianfa_add', 'phaseAfter');
                                 player.markSkill('hx_qianfa');
                             },

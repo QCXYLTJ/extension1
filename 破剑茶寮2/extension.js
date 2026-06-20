@@ -4622,11 +4622,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         zymhudiedao1: {
                             enable: 'phaseUse',
                             filterTarget(card, player, target) {
-                                return player != target && target.num('h') > 0;
+                                return player != target && target.countCards('h') > 0;
                             },
                             filter(event, player) {
                                 if (player.storage.zym_np < 90) return false;
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             content() {
                                 'step 0';
@@ -4784,7 +4784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     target(player, target) {
                                         if (get.attitude(player, target) > 0 || get.effect(target, { name: 'sha' }, player) <= 0) return 0;
-                                        var num = target.num('h');
+                                        var num = target.countCards('h');
                                         if (num == 1) return -1;
                                         if (num == 2) return -0.7;
                                         return -0.5;
@@ -14686,7 +14686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             _priority: 2,
                             filter(event, player) {
-                                return player.num('he') > 0;
+                                return player.countCards('he') > 0;
                             },
                             check(event, player) {
                                 return 1;

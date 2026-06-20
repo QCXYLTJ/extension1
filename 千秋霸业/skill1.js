@@ -2828,7 +2828,7 @@ const skill = {
                 content() {
                     'step 0';
                     player.chooseControl('①', '②', ui.create.dialog('掣政', player.storage.lg_chezheng)).ai = function (event, player) {
-                        if (player.hp > 2 && player.num('e') >= 2 && player.storage.lg_chezheng.length == player.getAttackRange()) return '②';
+                        if (player.hp > 2 && player.countCards('e') >= 2 && player.storage.lg_chezheng.length == player.getAttackRange()) return '②';
                         return '①';
                     };
                     ('step 1');
@@ -2843,7 +2843,7 @@ const skill = {
                         player.chooseToDiscard(2, true, 'h');
                     } else {
                         player.gain(cards, 'gain2');
-                        var sp = player.num('h') + cards.length;
+                        var sp = player.countCards('h') + cards.length;
                         if (sp != player.getAttackRange()) player.showHandcards();
                     }
                     if (!player.storage.lg_chezheng.length) {
@@ -16658,7 +16658,7 @@ const skill = {
             global: 'phaseDrawAfter',
         },
         filter(event, player) {
-            return player.num('e') >= event.num && event.player.sex == 'male';
+            return player.countCards('e') >= event.num && event.player.sex == 'male';
         },
         check(event, player) {
             if (Array.isArray(event.cards))
@@ -24255,7 +24255,7 @@ const skill = {
         usable: 1,
         enable: 'phaseUse',
         filterTarget(card, player, target) {
-            return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
+            return player != target && target.countCards('h') > 0 && get.distance(player, target, 'attack') <= 1;
         },
         content() {
             target.showCards(target.getCards('h').randomGet());
@@ -27106,8 +27106,8 @@ const skill = {
         content() {
             'step 0';
             player.chooseTarget(get.translation(trigger.player) + '的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',发动此技能？', function (card, player, target) {
-                if (target == player) return target.num('ej');
-                return target.num('ej');
+                if (target == player) return target.countCards('ej');
+                return target.countCards('ej');
             }).ai = function (target) {
                 return player == target;
             };
@@ -35808,7 +35808,7 @@ const skill = {
         filter(event, player) {
             for (var i of game.players) {
                 //QQQ
-                if (i.num('h') > player.countCards('h')) return true;
+                if (i.countCards('h') > player.countCards('h')) return true;
             }
             return false;
         },
@@ -35823,7 +35823,7 @@ const skill = {
                 var maxh = true;
                 for (var i of game.players) {
                     //QQ
-                    if (i.num('h') > player.countCards('h')) {
+                    if (i.countCards('h') > player.countCards('h')) {
                         maxh = false;
                     }
                 }
@@ -35854,12 +35854,12 @@ const skill = {
                     var cangain = 0;
                     for (var i of game.players) {
                         //QQ
-                        if (i.num('h') > player.countCards('h')) cangain++;
+                        if (i.countCards('h') > player.countCards('h')) cangain++;
                     }
                     var maxh = true;
                     for (var i of game.players) {
                         //QQ
-                        if (i.num('h') - 1 > player.countCards('h') + cangain) {
+                        if (i.countCards('h') - 1 > player.countCards('h') + cangain) {
                             maxh = false;
                         }
                     }
@@ -37357,7 +37357,7 @@ const skill = {
         },
         content() {
             'step 0';
-            if (trigger.source.num('h') > 0) {
+            if (trigger.source.countCards('h') > 0) {
                 player.chooseControl('red', 'black').set('ai', function () {
                     return 'red';
                 });
@@ -39304,7 +39304,7 @@ const skill = {
         },
         forced: true,
         filter(event, player) {
-            return event.source && event.source.hp == player.num('h');
+            return event.source && event.source.hp == player.countCards('h');
         },
         content() {
             trigger.num -= 1;
@@ -44630,7 +44630,7 @@ const skill = {
         },
         content() {
             var num1 = game.countGroup();
-            var num2 = num1 - player.num('h');
+            var num2 = num1 - player.countCards('h');
             if (num2 > 0) {
                 player.draw(num2);
             } else if (num2 < 0) {
@@ -49909,7 +49909,7 @@ const skill = {
         content() {
             for (var i of game.players) {
                 //QQ
-                if (i.num('j') > 0) player.gain(i.getCards('j'), 'gain2');
+                if (i.countCards('j') > 0) player.gain(i.getCards('j'), 'gain2');
             }
         },
     },

@@ -1628,7 +1628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                player.draw(player.getHandcardLimit() - player.num('h'));
+                                player.draw(player.getHandcardLimit() - player.countCards('h'));
                             },
                             ai: {
                                 basic: {

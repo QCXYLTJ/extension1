@@ -3014,7 +3014,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             charlotte: true,
                             fixed: true,
                             check(event, player) {
-                                return player.num('h') < player.hp && player.hp == player.maxHp;
+                                return player.countCards('h') < player.hp && player.hp == player.maxHp;
                             },
                             content() {
                                 'step 0';

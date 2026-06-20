@@ -2048,7 +2048,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 8 - get.value(card);
                             },
                             content() {
-                                if (target.num('he') > 0) {
+                                if (target.countCards('he') > 0) {
                                     player.gainPlayerCard('he', target, 2, true);
                                 }
                                 if (target.hasSkillTag('nofire')) {
@@ -9720,7 +9720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             filterTarget(card, player, target) {
                                 return player != target;
@@ -9751,7 +9751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 9,
                                 result: {
                                     target(player, target) {
-                                        return -target.num('he') - (player.num('h', 'du') ? 1 : 0);
+                                        return -target.countCards('he') - (player.num('h', 'du') ? 1 : 0);
                                     },
                                 },
                                 threaten: 2,
@@ -13918,7 +13918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 11,
                                 result: {
                                     target(player, target) {
-                                        return -target.num('he') - 2 + Math.floor(Math.sqrt(target.countMark('slc_shengfa_mark')));
+                                        return -target.countCards('he') - 2 + Math.floor(Math.sqrt(target.countMark('slc_shengfa_mark')));
                                     },
                                 },
                             },

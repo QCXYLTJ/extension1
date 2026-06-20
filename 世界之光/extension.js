@@ -6397,7 +6397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         lg_xuwangzhiguan: {
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('e') > 1;
+                                return player.countCards('e') > 1;
                             },
                             selectTarget: [1, 4],
                             filterTarget(card, player, target) {
@@ -16549,19 +16549,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player
                                     .chooseTarget([1, 2], get.prompt('lg_yinluo'), [trigger.num], function (card, player, target) {
-                                        return target.num('h') < Math.min(target.maxHp);
+                                        return target.countCards('h') < Math.min(target.maxHp);
                                     })
                                     .set('ai', function (target) {
                                         var att = get.attitude(_status.event.player, target);
                                         if (att > 3) {
-                                            return Math.min(target.maxHp) - target.num('h');
+                                            return Math.min(target.maxHp) - target.countCards('h');
                                         }
                                         return att / 3;
                                     });
                                 ('step 1');
                                 if (result.bool) {
                                     for (var i = 0; i < result.targets.length; i++) {
-                                        result.targets[i].draw(Math.min(result.targets[i].maxHp) - result.targets[i].num('h'));
+                                        result.targets[i].draw(Math.min(result.targets[i].maxHp) - result.targets[i].countCards('h'));
                                     }
                                 }
                             },
@@ -16575,7 +16575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             for (var i of game.players) {
                                                 //QQ
                                                 if (get.attitude(target, i) > 0) {
-                                                    max = Math.max(Math.min(5, i.hp) - i.num('h'), max);
+                                                    max = Math.max(Math.min(5, i.hp) - i.countCards('h'), max);
                                                 }
                                             }
                                             switch (max) {
@@ -16589,7 +16589,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return [0, max];
                                             }
                                         }
-                                        if ((card.name == 'tao' || card.name == 'caoyao') && target.hp > 1 && target.num('h') <= target.hp) return [0, 0];
+                                        if ((card.name == 'tao' || card.name == 'caoyao') && target.hp > 1 && target.countCards('h') <= target.hp) return [0, 0];
                                     },
                                 },
                             },
@@ -19789,7 +19789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player
                                     .chooseTarget(get.prompt('lg_wuduan2'), function (card, player, target) {
-                                        return player != target && target.num('he') > 0;
+                                        return player != target && target.countCards('he') > 0;
                                     })
                                     .set('ai', function (target) {
                                         return -get.attitude(_status.event.player, target);

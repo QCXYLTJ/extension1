@@ -14043,7 +14043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.yguance = [setInterval(reupdate, 500), list];
                                     setTimeout(function () {
                                         list[0].addGaintag('yguance');
-                                        player.node.handcards1.insertBefore(list[0], player.node.handcards1.childNodes[player.num('h')]);
+                                        player.node.handcards1.insertBefore(list[0], player.node.handcards1.childNodes[player.countCards('h')]);
                                         ui.updatehl();
                                     }, 750);
                                 }
@@ -14079,7 +14079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     setTimeout(function () {
                                         for (var card of list) {
                                             card.addGaintag('yguancezhe');
-                                            player.node.handcards1.insertBefore(card, player.node.handcards1.childNodes[player.num('h')]);
+                                            player.node.handcards1.insertBefore(card, player.node.handcards1.childNodes[player.countCards('h')]);
                                         }
                                         ui.updatehl();
                                     }, 750);
@@ -14235,7 +14235,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.yguance = [setInterval(reupdate, 500), list];
                                     setTimeout(function () {
                                         list[0].addGaintag('yquanshi');
-                                        player.node.handcards1.insertBefore(list[0], player.node.handcards1.childNodes[player.num('h')]);
+                                        player.node.handcards1.insertBefore(list[0], player.node.handcards1.childNodes[player.countCards('h')]);
                                         ui.updatehl();
                                     }, 750);
                                 }
@@ -14281,7 +14281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.yguance = [setInterval(reupdate, 500), list];
                                             setTimeout(function () {
                                                 list[0].addGaintag('yquanshi');
-                                                player.node.handcards1.insertBefore(list[0], player.node.handcards1.childNodes[player.num('h')]);
+                                                player.node.handcards1.insertBefore(list[0], player.node.handcards1.childNodes[player.countCards('h')]);
                                                 ui.updatehl();
                                             }, 750);
                                         }
@@ -17772,7 +17772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     setTimeout(function () {
                                         for (var card of list) {
                                             card.addGaintag('yzhihuizhiquan');
-                                            player.node.handcards1.insertBefore(card, player.node.handcards1.childNodes[player.num('h')]);
+                                            player.node.handcards1.insertBefore(card, player.node.handcards1.childNodes[player.countCards('h')]);
                                         }
                                         ui.updatehl();
                                     }, 0);

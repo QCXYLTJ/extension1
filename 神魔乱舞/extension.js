@@ -1892,7 +1892,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                 return target != player;
                             },
                             filter(event, player) {
-                                return player.num('h') >= 1;
+                                return player.countCards('h') >= 1;
                             },
                             content() {
                                 'step 0';
@@ -1931,7 +1931,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                             trigger: { player: '暗度After' },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h') == 0;
+                                return player.countCards('h') == 0;
                             },
                             content() {
                                 player.addTempSkill('退隐1', { player: 'phaseBegin' });

@@ -5826,7 +5826,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target: 'useCardToPlayered',
                             },
                             filter(event, player) {
-                                return player.num('h') == 1 && event.player != player && get.type2(event.card) != 'equip';
+                                return player.countCards('h') == 1 && event.player != player && get.type2(event.card) != 'equip';
                             },
                             prompt2(event, player) {
                                 return '诡谲:将所有手牌置入弃牌堆,并发动一次【金蝉脱壳】的效果';

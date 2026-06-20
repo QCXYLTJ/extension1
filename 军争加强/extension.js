@@ -990,7 +990,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 threaten: 1.5,
                                 result: {
                                     target(player, target) {
-                                        return -target.num('h');
+                                        return -target.countCards('h');
                                     },
                                 },
                                 order: 10,
@@ -1337,7 +1337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:军争加强/audio:true',
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return !player.storage.jinzhou && player.num('h') >= 8;
+                                return !player.storage.jinzhou && player.countCards('h') >= 8;
                             },
                             content() {
                                 'step 0';

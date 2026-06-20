@@ -3937,7 +3937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.$give(cards.length, targets[0]);
                             },
                             filter(event, player) {
-                                if (player.num('he') == 0) return 0;
+                                if (player.countCards('he') == 0) return 0;
                                 return game.hasPlayer(function (target) {
                                     return target != player && target.hasSkill('saiqian3', player);
                                 });
@@ -6858,7 +6858,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.gain(event.target.getCards('h'), event.target);
                                         player.gainMaxHp(event.target.maxHp);
                                         player.recover(event.target.hp);
-                                        event.target.$give(event.target.num('h'), player);
+                                        event.target.$give(event.target.countCards('h'), player);
                                         event.target.clearSkills();
                                         event.target.loseMaxHp(event.target.maxHp);
                                     },

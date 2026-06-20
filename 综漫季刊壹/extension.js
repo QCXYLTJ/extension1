@@ -1968,7 +1968,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].recover(1);
-                                        targets[i].draw(targets[i].hp - targets[i].num('h'));
+                                        targets[i].draw(targets[i].hp - targets[i].countCards('h'));
                                     }
                                 }
                             },
@@ -2504,7 +2504,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                             },
                             filterTarget(card, player, target) {
-                                return player != target && target.num('e') >= 1;
+                                return player != target && target.countCards('e') >= 1;
                             },
                             intro: {
                                 content: 'card',
@@ -3536,7 +3536,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'damageBefore',
                             },
                             filter(event, player) {
-                                return player.num('e') > 0;
+                                return player.countCards('e') > 0;
                             },
                             content() {
                                 player.chooseToDiscard(1, 'e', true);
@@ -4308,7 +4308,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h') <= player.hp && player.countCards('h', { color: 'red' });
+                                return player.countCards('h') <= player.hp && player.countCards('h', { color: 'red' });
                             },
                             content() {
                                 'step 0';
@@ -4607,15 +4607,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (player.storage.zmt_np < 30) return false;
-                                return event.target.num('h') > 0 || (event.target.num('h') == 0 && player.num('e') > 0);
+                                return event.target.countCards('h') > 0 || (event.target.countCards('h') == 0 && player.countCards('e') > 0);
                             },
                             check(event, player) {
-                                return get.attitude(player, event.target) < 0 && player.num('h') > 1;
+                                return get.attitude(player, event.target) < 0 && player.countCards('h') > 1;
                             },
                             _priority: 5,
                             content() {
                                 'step 0';
-                                if (trigger.target.num('h') > 0 && player.num('h') > 0) {
+                                if (trigger.target.countCards('h') > 0 && player.countCards('h') > 0) {
                                     player.storage.zmt_np -= 30;
                                     player.chooseToCompare(trigger.target);
                                 } else {
@@ -4628,7 +4628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.mp421('zmlamuleisaer');
                                     trigger.target.damage(2);
                                     event.finish();
-                                } else if (!result.bool && player.num('e') > 0) {
+                                } else if (!result.bool && player.countCards('e') > 0) {
                                     game.playzm1('zmgzjfb');
                                     player.chooseToDiscard(Infinity, 'e', '弃置所有装备牌', true);
                                     event.finish();
@@ -4792,11 +4792,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filterTarget(card, player, target) {
-                                return player != target && target.num('h') > 0;
+                                return player != target && target.countCards('h') > 0;
                             },
                             filter(event, player) {
                                 if (player.storage.zmt_np < 30) return false;
-                                return player.num('h') > 0;
+                                return player.countCards('h') > 0;
                             },
                             content() {
                                 'step 0';
@@ -4847,7 +4847,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     target(player, target) {
                                         if (get.attitude(player, target) > 0 || get.effect(target, { name: 'sha' }, player) <= 0) return 0;
-                                        var num = target.num('h');
+                                        var num = target.countCards('h');
                                         if (num == 1) return -1;
                                         if (num == 2) return -0.7;
                                         return -0.5;

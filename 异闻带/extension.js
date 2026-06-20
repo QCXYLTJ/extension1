@@ -1914,7 +1914,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             gainable: true,
                             content() {
-                                player.storage.hero目缠 += Math.min(7) - player.num('h');
+                                player.storage.hero目缠 += Math.min(7) - player.countCards('h');
                                 player.markSkill('hero目缠');
                             },
                             intro: {
@@ -1987,7 +1987,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ) {
                                     return false;
                                 }
-                                return player.num('h') < Math.min(player.maxHp);
+                                return player.countCards('h') < Math.min(player.maxHp);
                             },
                             content() {
                                 if (Math.min(player.maxHp) < 7) {
@@ -2681,7 +2681,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             marktext: '牌',
                             init(player) {
-                                player.storage.安时间回溯牌 = player.num('h');
+                                player.storage.安时间回溯牌 = player.countCards('h');
                                 player.markSkill('安时间回溯牌');
                             },
                             trigger: {
@@ -2690,7 +2690,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             gainable: true,
                             content() {
-                                player.storage.安时间回溯牌 = player.num('h');
+                                player.storage.安时间回溯牌 = player.countCards('h');
                                 player.markSkill('安时间回溯牌');
                             },
                             intro: {
@@ -2999,7 +2999,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -3118,7 +3118,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -4142,10 +4142,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h') < Math.min(7);
+                                return player.countCards('h') < Math.min(7);
                             },
                             content() {
-                                player.draw(Math.min(7) - player.num('h'));
+                                player.draw(Math.min(7) - player.countCards('h'));
                             },
                         },
                         hero四重打击: {
@@ -5216,8 +5216,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             _priority: 100,
                             content() {
                                 'step 1';
-                                player.maxHp = player.num('h');
-                                player.hp = player.num('h');
+                                player.maxHp = player.countCards('h');
+                                player.hp = player.countCards('h');
                                 ('step 2');
                                 player.draw();
                             },
@@ -5318,16 +5318,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h') < Math.min(player.hp);
+                                return player.countCards('h') < Math.min(player.hp);
                             },
                             content() {
                                 'step 0';
                                 if (player.hp == 1) {
-                                    player.draw(Math.min(player.maxHp - player.hp) - player.num('h'));
+                                    player.draw(Math.min(player.maxHp - player.hp) - player.countCards('h'));
                                 }
                                 ('step 1');
                                 if (player.hp >= 2) {
-                                    player.draw(Math.min(player.hp) - player.num('h'));
+                                    player.draw(Math.min(player.hp) - player.countCards('h'));
                                 }
                             },
                         },
@@ -5517,7 +5517,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -8046,7 +8046,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -8113,7 +8113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -8442,7 +8442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    return player.num('h') - player.num('h', 'shandian') > 0;
+                                    return player.countCards('h') - player.num('h', 'shandian') > 0;
                                 },
                                 basic: {
                                     order: 5,
@@ -10436,7 +10436,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -10717,7 +10717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -11168,7 +11168,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -11237,7 +11237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -11358,7 +11358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -11494,7 +11494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -11974,7 +11974,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -12192,7 +12192,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -12289,7 +12289,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 if (player.hp >= 0) {
                                     player
-                                        .chooseCard(player.num('h') - player.hp, 'h', get.prompt('hero目缠2'), function (card) {
+                                        .chooseCard(player.countCards('h') - player.hp, 'h', get.prompt('hero目缠2'), function (card) {
                                             return get.type(card) != 'basic' || get.type(card) == 'basic';
                                         })
                                         .set('ai', function (card) {
@@ -12298,7 +12298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 if (player.hp < 0) {
                                     player
-                                        .chooseCard(player.num('h'), 'h', get.prompt('hero目缠2'), function (card) {
+                                        .chooseCard(player.countCards('h'), 'h', get.prompt('hero目缠2'), function (card) {
                                             return get.type(card) != 'basic' || get.type(card) == 'basic';
                                         })
                                         .set('ai', function (card) {
@@ -15334,7 +15334,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -15422,7 +15422,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -15485,7 +15485,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -15670,10 +15670,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('h') < Math.min(4);
+                                        return player.countCards('h') < Math.min(4);
                                     },
                                     content() {
-                                        player.draw(Math.min(4) - player.num('h'));
+                                        player.draw(Math.min(4) - player.countCards('h'));
                                     },
                                 },
                             },
@@ -15829,7 +15829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;
@@ -18569,7 +18569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     hp: player.hp,
                                     sex: 'female',
                                     maxHp: player.maxHp,
-                                    hs: get.cards(player.num('h')),
+                                    hs: get.cards(player.countCards('h')),
                                     intro2: '<span style="color: #000000">漆黑噤默</span>',
                                     intro: '<span style="color: #FFFFFF">昔日残影</span>',
                                     onremove(player) {
@@ -22049,7 +22049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (trigger.target.hasSkill('fengyin') > 0) {
                                                 player.storage.鸦充能 -= 11;
                                                 player.markSkill('鸦充能');
-                                                if (trigger.target.num('h') > 11) {
+                                                if (trigger.target.countCards('h') > 11) {
                                                     trigger.target.draw = game.kongfunc;
                                                 }
                                                 trigger.target.chooseToDiscard('he', true, 11);
@@ -22058,7 +22058,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 player.markSkill('鸦充能');
                                                 trigger.target.addSkill('fengyin');
                                                 if (!trigger.target.hasSkill('fengyin')) {
-                                                    if (trigger.target.num('h') > 11) {
+                                                    if (trigger.target.countCards('h') > 11) {
                                                         trigger.target.draw = game.kongfunc;
                                                     }
                                                     trigger.target.chooseToDiscard('he', true, 11);
@@ -27787,7 +27787,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.canUse('sha', player) && i.num('h') > 1) {
+                                            if (i.canUse('sha', player) && i.countCards('h') > 1) {
                                                 num--;
                                             } else {
                                                 num++;

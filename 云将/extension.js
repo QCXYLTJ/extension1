@@ -12064,7 +12064,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             filter(event, player) {
                                 for (var i = 0; i < game.players.length; i++) {
-                                    if (game.players[i] != player && game.players[i].num('hej')) {
+                                    if (game.players[i] != player && game.players[i].countCards('hej')) {
                                         return true;
                                     }
                                 }
@@ -12080,13 +12080,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.position = 'hej';
                                 var position = event.position;
                                 for (var i = 0; i < position.length; i++) {
-                                    if (position[i] == 'h' && target.num('h')) {
+                                    if (position[i] == 'h' && target.countCards('h')) {
                                         event.dialog.add('手牌区');
                                         event.dialog.add(target.getCards('h'));
-                                    } else if (position[i] == 'e' && target.num('e')) {
+                                    } else if (position[i] == 'e' && target.countCards('e')) {
                                         event.dialog.add('装备区');
                                         event.dialog.add(target.getCards('e'));
-                                    } else if (position[i] == 'j' && target.num('j')) {
+                                    } else if (position[i] == 'j' && target.countCards('j')) {
                                         event.dialog.add('判定区');
                                         event.dialog.add(target.getCards('j'));
                                     }
@@ -15431,7 +15431,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 0.3,
                                 result: {
                                     target(player, target) {
-                                        if (get.attitude(player, target) < 0) return -target.num('he');
+                                        if (get.attitude(player, target) < 0) return -target.countCards('he');
                                     },
                                 },
                             },

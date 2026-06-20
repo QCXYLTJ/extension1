@@ -1354,7 +1354,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								number: 6,
 							},
 							viewAsFilter(player) {
-								if (player.num('h') == 0) return false;
+								if (player.countCards('h') == 0) return false;
 							},
 							prompt: '将一张牌当闪电使用',
 							check(card) {
@@ -1362,7 +1362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							ai: {
 								skillTagFilter(player) {
-									return player.num('h') - player.num('h', 'shandian') > 0;
+									return player.countCards('h') - player.num('h', 'shandian') > 0;
 								},
 								basic: {
 									order: 5,
@@ -1470,7 +1470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							selectCard: -1,
 							usable: 1,
 							filter(event, player) {
-								return player.hp > 0 && player.num('h') >= player.hp;
+								return player.hp > 0 && player.countCards('h') >= player.hp;
 							},
 							prepare(cards, player, targets) {
 								player.storage.rixcdmg = Math.ceil(cards.length / player.hp);
@@ -1503,7 +1503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player(player, target) {
 										var num = -get.attitude(player, target);
 										if (num < -1) return num;
-										if (target.num('h', 'shan') + target.hp <= Math.ceil(player.num('h') / player.hp)) num += 10;
+										if (target.num('h', 'shan') + target.hp <= Math.ceil(player.countCards('h') / player.hp)) num += 10;
 										return num;
 									},
 								},
@@ -1582,7 +1582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										result: {
 											target(player, target) {
-												var nh = target.num('h');
+												var nh = target.countCards('h');
 												var keep = false;
 												if (nh <= target.hp) {
 													keep = true;
@@ -1641,7 +1641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									viewAsFilter(player) {
 										var pnum = 0;
-										var pmax = player.num('h');
+										var pmax = player.countCards('h');
 										var pcard = player.getCards('h');
 										for (var i = 0; i < pmax; i++) {
 											if (get.type(pcard[i]) == 'equip') pnum++;
@@ -1723,10 +1723,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.set('ai', function (target) {
 												var num = get.attitude(player, target);
 												if (num > 0) {
-													if (target.num('h') <= 1) {
+													if (target.countCards('h') <= 1) {
 														num += 2;
 													}
-													if (target.num('h') == 0) {
+													if (target.countCards('h') == 0) {
 														num += 2;
 													}
 												}
@@ -1847,7 +1847,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 								maxHandcard(player, num) {
 									var pnum = 0;
-									var pmax = player.num('h');
+									var pmax = player.countCards('h');
 									var pcard = player.getCards('h');
 									for (var i = 0; i < pmax; i++) {
 										if (get.type(pcard[i]) == 'equip') pnum++;
@@ -1865,7 +1865,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.reinit('dan_rixianga', 'dan_rixiangb', _status.connectMode);
 								player.hp = player.maxHp;
-								player.storage.rixcdmg = player.num('he');
+								player.storage.rixcdmg = player.countCards('he');
 								player.$throw(player.getCards('he'));
 								if (player.storage.rixcdmg == 0) return 3;
 								var next = player.chooseTarget('选择言弹目标或取消', function (card, player, target) {
@@ -2202,7 +2202,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return false;
 								}
 								if (event.player == player) return false;
-								if (player.num('h') < 2) return false;
+								if (player.countCards('h') < 2) return false;
 								return true;
 							},
 							content() {
@@ -2212,7 +2212,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									var event = _status.event;
 									var num = -get.attitude(player, trigger.player);
 									if (num > 0) num += get.value(trigger.card);
-									if (num > 0) num -= Math.random() * (12 - event.player.num('h'));
+									if (num > 0) num -= Math.random() * (12 - event.player.countCards('h'));
 									return num;
 								});
 								('step 1');
@@ -2266,7 +2266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filter(event, player) {
 										if (player.storage.monokuma1 != true) return false;
 										if (event.num == 0) return false;
-										if (event.player.num('he') < event.num) return false;
+										if (event.player.countCards('he') < event.num) return false;
 										return true;
 									},
 									content() {
@@ -2632,11 +2632,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									usable: 1,
 									prompt: '你可以弃置一张手牌,选择一名角色查看其手牌,如果这些牌里有与你弃置的牌名字相同的牌,你可以选择获得其中两张牌,或不获得牌对其造成1点伤害,并对其施加【崩溃】标记,直到下次你的回合开始前,该角色不能回复体力值.',
 									filter(event, player) {
-										return player.num('h') > 0;
+										return player.countCards('h') > 0;
 									},
 									filterTarget(card, player, target) {
 										if (player == target) return false;
-										return target.num('h') > 0;
+										return target.countCards('h') > 0;
 									},
 									filterCard: true,
 									check(card) {
@@ -2811,7 +2811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: ['phaseDiscardBefore'],
 							},
 							filter(event, player) {
-								return event.player.num('h') > event.player.getHandcardLimit();
+								return event.player.countCards('h') > event.player.getHandcardLimit();
 							},
 							content() {
 								'step 0';

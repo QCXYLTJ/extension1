@@ -96,7 +96,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						content() {
 							'step 0';
 							var listControl = ['discard_card', 'take_damage'];
-							if (!target.num('e')) listControl.shift();
+							if (!target.countCards('e')) listControl.shift();
 							target.chooseControl(listControl, function (event, player) {
 								if (get.damageEffect(player, event.player, player, 'thunder') >= 0) {
 									return 'take_damage';
@@ -2095,20 +2095,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:名存实亡/audio:2',
 							enable: 'phaseUse',
 							filterTarget(card, player, target) {
-								return target.num('j') > 0;
+								return target.countCards('j') > 0;
 							},
 							usable: 1,
 							selectTarget: -1,
 							filter(event, player) {
 								for (var i = 0; i < game.players.length; i++) {
-									if (game.players[i].num('j')) return true;
+									if (game.players[i].countCards('j')) return true;
 								}
 								return false;
 							},
 							line: 'fire',
 							content() {
 								'step 0';
-								event.num = target.num('j');
+								event.num = target.countCards('j');
 								target.discard(target.getCards('j'));
 								('step 1');
 								target.damage(event.num, 'fire', 'nosource');
@@ -3365,7 +3365,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw(3);
 								//._triggered=null;
 								// if(trigger.source!=undefined&&trigger.source!=player){
-								//player.gainPlayerCard(true,trigger.source,[Math.ceil(trigger.source.num('he')/2)].randomGet());
+								//player.gainPlayerCard(true,trigger.source,[Math.ceil(trigger.source.countCards('he')/2)].randomGet());
 								// }
 							},
 							ai: {
@@ -3582,7 +3582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player
 									.chooseTarget(get.prompt('p破z竹'), function (card, player, target) {
-										return target.num('he');
+										return target.countCards('he');
 									})
 									.set('ai', function (target) {
 										return get.attitude(player, target);
@@ -3597,7 +3597,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.num = result.cards[0].number;
 									player
 										.chooseTarget(get.prompt('p破z竹'), function (card, player, target) {
-											return target.num('he');
+											return target.countCards('he');
 										})
 										.set('ai', function (target) {
 											return -get.attitude(player, target);
@@ -3875,7 +3875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if (game.players[i].ai.shown == 0) {
 												allshown = false;
 											}
-											if (game.players[i] != player && game.players[i].num('h') && get.attitude(player, game.players[i]) > 0) {
+											if (game.players[i] != player && game.players[i].countCards('h') && get.attitude(player, game.players[i]) > 0) {
 												return 1;
 											}
 										}
@@ -4030,17 +4030,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filterTarget(card, player, target) {
-								return player != target && target.num('he') > 0 && player.num('he') >= target.num('he');
+								return player != target && target.countCards('he') > 0 && player.countCards('he') >= target.countCards('he');
 							},
 							prompt: '请选择1名角色',
 							content() {
 								'step 0';
-								var num = target.num('he');
+								var num = target.countCards('he');
 								player.chooseToDiscard(num, true);
 								('step 1');
 								player.gain(target.getCards('he'));
 								target.$give(target.getCards('he'), player);
-								var num = target.num('he');
+								var num = target.countCards('he');
 								target.damage('thunder', true);
 							},
 							ai: {
@@ -4235,7 +4235,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								var check;
 								for (var i = 0; i < game.players.length; i++) {
-									if (get.attitude(player, game.players[i]) > 0 && game.players[i].num('j')) {
+									if (get.attitude(player, game.players[i]) > 0 && game.players[i].countCards('j')) {
 										check = true;
 										break;
 									}
@@ -4251,13 +4251,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if ((from.getEquips(1) && !target.getEquips(1)) || (from.getEquips(2) && !target.getEquips(2)) || (from.getEquips(3) && !target.getEquips(3)) || (from.getEquips(4) && !target.getEquips(4)) || (from.getEquips(5) && !target.getEquips(5)) || from.getCards('h')) return true;
 										return false;
 									} else {
-										return target.num('hej') > 0;
+										return target.countCards('hej') > 0;
 									}
 								}).ai = function (target) {
 									if (check) return 0;
 									var player = _status.event.player;
 									if (ui.selected.targets.length == 0) {
-										if (target.num('j') && get.attitude(player, target) > 0) return 10;
+										if (target.countCards('j') && get.attitude(player, target) > 0) return 10;
 										if (get.attitude(player, target) < 0) {
 											for (var i = 0; i < game.players.length; i++) {
 												if (get.attitude(player, game.players[i]) > 0) {
@@ -4373,7 +4373,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 10,
 								result: {
 									target(player, target) {
-										switch (target.num('he') == 0) {
+										switch (target.countCards('he') == 0) {
 											case 0:
 												return 0;
 											case 1:
@@ -4427,7 +4427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseAfter',
 							},
 							filter(event, player) {
-								return !player.storage.jihuo && player.num('h') > 0;
+								return !player.storage.jihuo && player.countCards('h') > 0;
 							},
 							forced: true,
 							content() {
@@ -4455,11 +4455,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								var nh = player.num('h');
+								var nh = player.countCards('h');
 								var nm = 1;
 								for (var i = 0; i < game.players.length; i++) {
 									var target = game.players[i];
-									if (target != player && Math.abs(target.num('h') - nh) <= nm) {
+									if (target != player && Math.abs(target.countCards('h') - nh) <= nm) {
 										return true;
 									}
 								}
@@ -4467,7 +4467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								var nh = player.num('h');
+								var nh = player.countCards('h');
 								var nm = 1;
 								var check = true;
 								if (player.num('h', 'tao')) {
@@ -4476,11 +4476,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									check = false;
 								}
 								player.chooseTarget(get.prompt('kuixin'), function (card, player, target) {
-									return target != player && Math.abs(target.num('h') - nh) <= nm;
+									return target != player && Math.abs(target.countCards('h') - nh) <= nm;
 								}).ai = function (target) {
 									if (!check) return 0;
 									if (get.attitude(player, target) < 0) {
-										return target.num('h') - nh;
+										return target.countCards('h') - nh;
 									}
 									return 0;
 								};
@@ -4504,13 +4504,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('h') < 4;
+								return player.countCards('h') < 4;
 							},
 							init(player) {
 								player.storage.guozai2 = 0;
 							},
 							content() {
-								var num = 4 - player.num('h');
+								var num = 4 - player.countCards('h');
 								player.draw(num);
 								player.addSkill('guozai2');
 								player.storage.guozai2 += num;
@@ -4744,7 +4744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (event.target.num('h')) {
+								if (event.target.countCards('h')) {
 									event.target.chooseCard('选择一张手牌交给' + get.translation(player), true).ai = function (card) {
 										return -get.value(card);
 									};
@@ -5430,7 +5430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						讥谀1: {
 							mod: {
 								maxHandcard(player, num) {
-									return num + player.num('h');
+									return num + player.countCards('h');
 								},
 							},
 						},
@@ -6310,7 +6310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return str;
 							},
 							check(event, player) {
-								if (player.num('h') == 0 || player.hp == 1) return 1;
+								if (player.countCards('h') == 0 || player.hp == 1) return 1;
 								return 0;
 							},
 							content() {
@@ -6350,7 +6350,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return str;
 							},
 							check(event, player) {
-								if (player.num('h') == 0 || player.hp == 1) return 1;
+								if (player.countCards('h') == 0 || player.hp == 1) return 1;
 								return 0;
 							},
 							content() {
@@ -9487,7 +9487,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseBegin',
 							},
 							filter(event, player) {
-								return player.num('h') < player.maxHp;
+								return player.countCards('h') < player.maxHp;
 							},
 							content() {
 								player.draw(2);
@@ -9794,11 +9794,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:名存实亡/audio:2',
 							trigger: { player: 'useCardEnd' },
 							filter(event, player) {
-								return player.maxHp != player.num('h');
+								return player.maxHp != player.countCards('h');
 							},
 							content() {
 								'step 0';
-								var num = player.maxHp - player.num('h');
+								var num = player.maxHp - player.countCards('h');
 								if (num > 0) {
 									player.draw(num);
 									player.gainMaxHp();
@@ -9831,7 +9831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return event.player;
 							},
 							content() {
-								var X = Math.max(1, Math.abs(player.hp - player.num('h')));
+								var X = Math.max(1, Math.abs(player.hp - player.countCards('h')));
 								var mp = trigger.source == player ? trigger.player : trigger.source;
 								mp.chooseToDiscard('he', true, X);
 								player.draw(X);
@@ -9849,7 +9849,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player
 									.chooseTarget(get.prompt('早岐'), function (card, player, target) {
-										return target.num('he');
+										return target.countCards('he');
 									})
 									.set('ai', function (target) {
 										return get.attitude(player, target);

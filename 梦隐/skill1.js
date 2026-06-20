@@ -2143,7 +2143,7 @@ const skill = {
             if (!player.isLinked()) return false;
             var num = 0;
             for (var i of game.players) {
-                num += i.num('ej');
+                num += i.countCards('ej');
             }
             return num > 0;
         },
@@ -2151,11 +2151,11 @@ const skill = {
             'step 0';
             player
                 .chooseTarget('###画地为牢###将场上的一张牌置于牌堆顶？', function (card, player, target) {
-                    return target.num('ej') > 0;
+                    return target.countCards('ej') > 0;
                 })
                 .set('ai', function (target) {
-                    if (get.attitude(player, target) > 0) return target.num('j');
-                    if (get.attitude(player, target) < 0) return target.num('e');
+                    if (get.attitude(player, target) > 0) return target.countCards('j');
+                    if (get.attitude(player, target) < 0) return target.countCards('e');
                     return 0;
                 });
             ('step 1');
@@ -33605,7 +33605,7 @@ const skill = {
             if (player.isLinked()) return false;
             var num = 0;
             for (var i of game.players) {
-                num += i.num('ej');
+                num += i.countCards('ej');
             }
             return num > 0;
         },
@@ -33613,11 +33613,11 @@ const skill = {
             'step 0';
             player
                 .chooseTarget('将场上的一张牌置于牌堆顶？', function (card, player, target) {
-                    return target.num('ej') > 0;
+                    return target.countCards('ej') > 0;
                 })
                 .set('ai', function (target) {
-                    if (get.attitude(player, target) > 0) return target.num('j');
-                    if (get.attitude(player, target) < 0) return target.num('e');
+                    if (get.attitude(player, target) > 0) return target.countCards('j');
+                    if (get.attitude(player, target) < 0) return target.countCards('e');
                     return 0;
                 });
             ('step 1');
@@ -44634,7 +44634,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (event.target && event.target.num('e') == player.countCards('e')) {
+            if (event.target && event.target.countCards('e') == player.countCards('e')) {
                 player.draw(4);
                 player.previous.phase('nodelay');
             }
@@ -64378,7 +64378,7 @@ const skill = {
             return get.color(card);
         },
         viewAsFilter(player) {
-            return player.num('h') > 0;
+            return player.countCards('h') > 0;
         },
         viewAs: {
             name: 'wuxie',

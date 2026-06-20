@@ -3502,7 +3502,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 global: 'phaseEnd',
                             },
                             check(event, player) {
-                                var num = player.num('h') / 2;
+                                var num = player.countCards('h') / 2;
                                 if (player.countCards('h', { type: 'basic' }) >= num) {
                                     return get.attitude(player, event.player) <= 0;
                                 } else {
@@ -3510,14 +3510,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                             filter(event, player) {
-                                if (player.num('h') < 1) return false;
-                                return event.player != player && event.player.isAlive() && event.player.getStat('damage') && event.player.num('he') > 0;
+                                if (player.countCards('h') < 1) return false;
+                                return event.player != player && event.player.isAlive() && event.player.getStat('damage') && event.player.countCards('he') > 0;
                             },
                             content() {
                                 'step 0';
                                 trigger.player.discardPlayerCard(player, 'h', true);
                                 ('step 1');
-                                if (get.type(result.links[0]) == 'basic' && trigger.player.num('he')) {
+                                if (get.type(result.links[0]) == 'basic' && trigger.player.countCards('he')) {
                                     player.gainPlayerCard(2, 'he', trigger.player, true);
                                 }
                             },
@@ -5269,7 +5269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (event.card.number == undefined) return false;
-                                return event.player != player && get.distance(player, event.target, 'attack') <= 1 && player.num('he') > 0;
+                                return event.player != player && get.distance(player, event.target, 'attack') <= 1 && player.countCards('he') > 0;
                             },
                             forced: true,
                             content() {

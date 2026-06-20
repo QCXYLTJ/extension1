@@ -267,14 +267,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseBegin',
 							},
 							check(event, player) {
-								if (player.num('h') > 1) return false;
+								if (player.countCards('h') > 1) return false;
 								for (const i of game.players) {
 									if (get.distance(player, i) <= 1 && player != i && get.attitude(player, i) < 0) return true;
 								}
 								return false;
 							},
 							filter(event, player) {
-								return player.num('h') > 0;
+								return player.countCards('h') > 0;
 							},
 							content() {
 								'step 0';
@@ -488,7 +488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseDrawAfter',
 							},
 							filter(event, player) {
-								return player.num('h') >= event.num && event.player.sex == 'male';
+								return player.countCards('h') >= event.num && event.player.sex == 'male';
 							},
 							check(event, player) {
 								if (event.cards == undefined) return false;
@@ -569,7 +569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.maxHp > player.hp;
 							},
 							filterTarget(card, player, target) {
-								return player != target && get.distance(player, target, 'attack') <= 1 && target.num('h') > 0 && ui.selected.cards.length;
+								return player != target && get.distance(player, target, 'attack') <= 1 && target.countCards('h') > 0 && ui.selected.cards.length;
 							},
 							filterCard: true,
 							selectCard() {
@@ -581,7 +581,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								var loseHpNum = player.maxHp - player.hp;
-								if (target.num('h') >= loseHpNum) {
+								if (target.countCards('h') >= loseHpNum) {
 									var cards = target.getCards('h').randomGets(loseHpNum);
 									target.$give(loseHpNum, player);
 									player.gain(cards);
@@ -653,7 +653,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 8.5,
 								result: {
 									player(player) {
-										if (player.num('h') > 1) return 1;
+										if (player.countCards('h') > 1) return 1;
 									},
 								},
 							},
@@ -772,7 +772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return target != player;
 								}).ai = function (target) {
 									if (player.hp > 1) return -1;
-									if (player.num('h') <= 1) return -1;
+									if (player.countCards('h') <= 1) return -1;
 									return get.attitude(player, target);
 								};
 								('step 1');
@@ -790,7 +790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filterTarget(card, player, target) {
-								return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
+								return player != target && target.countCards('h') > 0 && get.distance(player, target, 'attack') <= 1;
 							},
 							content() {
 								target.showCards(target.getCards('h').randomGet());
@@ -814,7 +814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								for (const i of game.players) {
 									if (player != i && get.distance(player, i, 'attack') <= 1) TRF = true;
 								}
-								if (player.num('h') > 0 && TRF == true) list = ['拼点', '流失体力'];
+								if (player.countCards('h') > 0 && TRF == true) list = ['拼点', '流失体力'];
 								player.chooseControl(list);
 								('step 1');
 								if (result.control == '拼点') {
@@ -1090,16 +1090,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'dieBefore',
 							},
 							filter(event, player) {
-								return event.source && event.source == player && (player.num('h') < 4 || player.hp < 4);
+								return event.source && event.source == player && (player.countCards('h') < 4 || player.hp < 4);
 							},
 							content() {
 								'step 0';
 								var list = [];
-								if (player.num('h') < 4) list.push('将手牌补至四张');
+								if (player.countCards('h') < 4) list.push('将手牌补至四张');
 								if (player.hp < 4) list.push('将体力补至四点');
 								player.chooseControl(list);
 								('step 1');
-								if (result.control == '将手牌补至四张') player.draw(4 - player.num('h'));
+								if (result.control == '将手牌补至四张') player.draw(4 - player.countCards('h'));
 								if (result.control == '全体流失体力') player.recover(4 - player.hp);
 							},
 						},
@@ -1425,7 +1425,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'damageBefore',
 							},
 							filter(event, player) {
-								return player.num('e') > 0 && player.num('h') == 0;
+								return player.countCards('e') > 0 && player.countCards('h') == 0;
 							},
 							content() {
 								player.chooseToDiscard(1, 'e', true);
@@ -1722,7 +1722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 11,
 								result: {
 									player(player) {
-										if (player.num('h') > 2) return 1;
+										if (player.countCards('h') > 2) return 1;
 									},
 								},
 							},
@@ -2387,7 +2387,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								for (const i of game.players) {
-									if (i.num('j') > 0) player.gain(i.getCards('j'), 'gain2');
+									if (i.countCards('j') > 0) player.gain(i.getCards('j'), 'gain2');
 								}
 							},
 						},
@@ -2397,7 +2397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								for (const i of game.players) {
-									if (i.num('j') > 0) player.gain(i.getCards('j'), 'gain2');
+									if (i.countCards('j') > 0) player.gain(i.getCards('j'), 'gain2');
 								}
 							},
 						},
@@ -2501,7 +2501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 8.5,
 								result: {
 									player(player) {
-										if (player.num('h') > 1) return 1;
+										if (player.countCards('h') > 1) return 1;
 										return 0;
 									},
 								},
@@ -3064,13 +3064,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.maxHp - player.hp > 0;
 							},
 							filterTarget(card, player, target) {
-								return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
+								return player != target && target.countCards('h') > 0 && get.distance(player, target, 'attack') <= 1;
 							},
 							content() {
-								if (player.maxHp - player.hp <= target.num('h')) {
+								if (player.maxHp - player.hp <= target.countCards('h')) {
 									target.showCards(target.getCards('h').randomGets(player.maxHp - player.hp));
 								} else {
-									target.showCards(target.getCards('h').randomGets(target.num('h')));
+									target.showCards(target.getCards('h').randomGets(target.countCards('h')));
 								}
 							},
 							ai: {

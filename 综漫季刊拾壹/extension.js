@@ -5052,7 +5052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:综漫季刊拾壹/audio:6',
                             enable: ['chooseToUse'],
                             filter(event, player) {
-                                return player.num('h') < 4 && player.countCards('he', { suit: 'diamond' });
+                                return player.countCards('h') < 4 && player.countCards('he', { suit: 'diamond' });
                             },
                             filterCard(card, player) {
                                 return card.suit == 'diamond';
@@ -5062,7 +5062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 name: 'wuzhong',
                             },
                             viewAsFilter(player) {
-                                if (player.num('h') >= 4 || player.countCards('he', { suit: 'diamond' }) == 0) return false;
+                                if (player.countCards('h') >= 4 || player.countCards('he', { suit: 'diamond' }) == 0) return false;
                                 return true;
                             },
                             prompt: '【炎狱创生】可将一张♦️️️牌当做无中生有使用',

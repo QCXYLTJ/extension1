@@ -2911,7 +2911,7 @@ export async function precontent(config, pack) {
 					selectTarget: 1,
 					range: { attack: 1 },
 					filterTarget(card, player, target) {
-						return target.num('hej') > 0;
+						return target.countCards('hej') > 0;
 					},
 					content() {
 						target.loseMaxHp();
@@ -4034,8 +4034,8 @@ export async function precontent(config, pack) {
 			enable: 'phaseUse',
 			usable: 1,
 			filterTarget(card, player, target) {
-				if (player != game.me && player.num('h') == 0) return false;
-				return target.num('h') > 0;
+				if (player != game.me && player.countCards('h') == 0) return false;
+				return target.countCards('h') > 0;
 			},
 			content() {
 				'step 0';
@@ -4949,7 +4949,7 @@ export async function precontent(config, pack) {
 				player.$give(cards.length, targets[0]);
 			},
 			filter(event, player) {
-				if (player.num('he') == 0) return 0;
+				if (player.countCards('he') == 0) return 0;
 				return game.hasPlayer(function (target) {
 					return target != player && target.hasSkill('saiqian_skill', player);
 				});

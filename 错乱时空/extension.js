@@ -5209,11 +5209,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target: -2.2,
                                     player(player, target) {
-                                        if (target.num('h') == 0) return -0.5;
-                                        if (target.num('h') == 1) return -1.1;
+                                        if (target.countCards('h') == 0) return -0.5;
+                                        if (target.countCards('h') == 1) return -1.1;
                                         if (target.hp <= 1) return -2;
                                         if (player.hp <= 1) return -2.5;
-                                        if (player.num('h') == 0 && target.hp < 3) return -0.4;
+                                        if (player.countCards('h') == 0 && target.hp < 3) return -0.4;
                                         return -1.5;
                                     },
                                 },
@@ -15837,7 +15837,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h') >= player.hp - 1) return -1;
+                                        if (player.countCards('h') >= player.hp - 1) return -1;
                                         if (player.hp < 3) return -1;
                                         return 1;
                                     },

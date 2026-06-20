@@ -709,7 +709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 }
                                 if (event.player == player) return false;
-                                if (player.num('h') < 0) return false;
+                                if (player.countCards('h') < 0) return false;
                                 return true;
                             },
                             content() {
@@ -719,7 +719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var event = _status.event;
                                     var num = -get.attitude(player, trigger.player);
                                     if (num > 0) num += get.value(trigger.card);
-                                    if (num > 0) num -= Math.random() * (12 - event.player.num('h'));
+                                    if (num > 0) num -= Math.random() * (12 - event.player.countCards('h'));
                                     return num;
                                 });
                                 ('step 1');

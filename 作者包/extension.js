@@ -568,7 +568,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     player.chooseCard('he', tipstr, 0x1).ai = function () {
                         var att = -get.attitude(player, trigger.player);
                         if (att > 0) att += get.value(trigger.card);
-                        if (att > 0) att -= Math.random() * (0xc - _status.event.player.num('h'));
+                        if (att > 0) att -= Math.random() * (0xc - _status.event.player.countCards('h'));
                         return att;
                     };
                     ('step 1');
@@ -625,7 +625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.update();
                                 for (var i of game.players) {
                                     if (i != player) {
-                                        if (input.value == i.num('h')) {
+                                        if (input.value == i.countCards('h')) {
                                             i.discard(i.getCards('h'));
                                         }
                                         if (input.value == i.maxHp - i.hp) {
@@ -676,7 +676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         player.update();
                         for (var i of game.players) {
                             if (i != player) {
-                                if (value == i.num('h')) {
+                                if (value == i.countCards('h')) {
                                     i.discard(i.getCards('h'));
                                 }
                                 if (value == i.maxHp - i.hp) {

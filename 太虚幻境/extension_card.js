@@ -2477,7 +2477,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 direct:true,
                 audio:true,
                 filter:function (event){
-                return event.card&&event.card.name=='sha'&&event.player.num('e');
+                return event.card&&event.card.name=='sha'&&event.player.countCards('e');
                 },
                 content:function (){
                 player.gainPlayerCard('e',trigger.player);
@@ -2627,7 +2627,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     }).ai = function (target) {
                         var player = _status.event.player;
                         if (get.attitude(_status.event.player, target) > 0) return 0;
-                        if (get.attitude(_status.event.player, target) < 0 && target.num('h') <= 5) return 7 - target.num('h');
+                        if (get.attitude(_status.event.player, target) < 0 && target.countCards('h') <= 5) return 7 - target.countCards('h');
                         return 1;
                     };
                     ('step 1');

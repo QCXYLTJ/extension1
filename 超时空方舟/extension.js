@@ -4504,7 +4504,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ) {
                                     return false;
                                 }
-                                return player.num('h') < Math.min(player.maxHp);
+                                return player.countCards('h') < Math.min(player.maxHp);
                             },
                             content() {
                                 if (Math.min(player.maxHp) < 7) {
@@ -7918,7 +7918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 global: 'useCardToTarget',
                             },
                             filter(event, player) {
-                                return event.targets.length == 1 && event.cards.length == 1 && event.targets[0] != event.player && event.player != player && player.num('h') > 0 && player.countMark('阻止') < 2;
+                                return event.targets.length == 1 && event.cards.length == 1 && event.targets[0] != event.player && event.player != player && player.countCards('h') > 0 && player.countMark('阻止') < 2;
                             },
                             forced: true,
                             content() {
@@ -8229,7 +8229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             filter(event, player) {
                                 return (
-                                    player.num('h') > 0 &&
+                                    player.countCards('h') > 0 &&
                                     event.player != player &&
                                     event.player.getHistory('useCard', function (evt) {
                                         return (
@@ -8530,7 +8530,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         else return false;
                                     },
                                     filter(event, player) {
-                                        return player.getCards('he').length && event.parent.name != 'qw_lmzbd' && event.parent.name != 'qw_ydzcx' && player.num('h') > 0;
+                                        return player.getCards('he').length && event.parent.name != 'qw_lmzbd' && event.parent.name != 'qw_ydzcx' && player.countCards('h') > 0;
                                     },
                                     content() {
                                         player.chooseToDiscard(player.getCards('he')).set('ai', function (card) {
@@ -9127,7 +9127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'damageAfter',
                             },
                             filter(event, player) {
-                                return event.source && event.source.num('h') >= player.num('h');
+                                return event.source && event.source.countCards('h') >= player.countCards('h');
                             },
                             content() {
                                 player.useCard({ name: 'sha' }, trigger.source, false);
@@ -9140,7 +9140,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'useCardToPlayered',
                             },
                             filter(event, player) {
-                                return event.card.name == 'sha' && player.num('h') > 0;
+                                return event.card.name == 'sha' && player.countCards('h') > 0;
                             },
                             logTarget: 'target',
                             prompt: '是否弃置一张牌令此杀无法相应',
@@ -9167,8 +9167,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             content() {
-                                if (target.num('h') < 5) target.draw(5 - target.num('h'));
-                                if (player.num('h') < 5) player.draw(5 - player.num('h'));
+                                if (target.countCards('h') < 5) target.draw(5 - target.countCards('h'));
+                                if (player.countCards('h') < 5) player.draw(5 - player.countCards('h'));
                                 player.addTempSkill('qw_mbwszh_skill', { player: 'phaseAfter' });
                                 target.addTempSkill('qw_mbwszh_skill', { player: 'phaseAfter' });
                                 player.removeSkill('qw_mbwszh');
@@ -9180,10 +9180,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return player.num('h') < 5;
+                                        return player.countCards('h') < 5;
                                     },
                                     content() {
-                                        player.draw(5 - player.num('h'));
+                                        player.draw(5 - player.countCards('h'));
                                     },
                                 },
                             },
@@ -9237,12 +9237,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             usable: 1,
                             filter(event, player) {
-                                return player.num('h') > 3;
+                                return player.countCards('h') > 3;
                             },
                             prompt: '是否将自己的手牌弃至三张并弃置一名角色等量张牌',
                             content() {
                                 'step 0';
-                                event.num = player.num('h') - 3;
+                                event.num = player.countCards('h') - 3;
                                 player.chooseToDiscard(event.num, player.getCards('h'));
                                 ('step 1');
                                 player.chooseTarget().set('prompt', '请选择一名角色弃置其' + event.num + '张牌');
@@ -12615,7 +12615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 event.num--;
                                 ('step 2');
-                                if (target.num('h') < 6 && event.num > 0) {
+                                if (target.countCards('h') < 6 && event.num > 0) {
                                     target.draw();
                                     event.goto(1);
                                 }
