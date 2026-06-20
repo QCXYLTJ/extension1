@@ -1,0 +1,34 @@
+#arena>.uyfaji {
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: calc(30%);
+  width: 45px;
+  height: 19px;
+  background-image: url(uyfaji.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 130;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: 'xinwei';
+  text-align: center;
+  color: white;
+}
+.player>.uyfaji {
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: calc(30%);
+  width: 45px;
+  height: 19px;
+  background-image: url(uyfaji.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 130;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: 'xinwei';
+  text-align: center;
+  color: white;
+}

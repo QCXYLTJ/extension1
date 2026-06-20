@@ -1,0 +1,234 @@
+.showMyCharacter {
+	position: absolute;
+	left: calc(65%);
+	top: calc(50%);
+	width: 200px;
+	height: 200px;
+	background-image: url(buzhihuo.gif);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	z-index: 20;
+}
+.hiddenMyCharacter {
+	position: absolute;
+	left: calc(65%);
+	top: calc(50%);
+	width: 1px;
+	height: 1px;
+	cursor: pointer;
+}
+.menubg.charactercard>.dpcq-playMV {
+	top: calc(94%);
+	right: 0px;
+	width: 23%;
+	height: 5%;
+}
+.HpText {
+	top: -2%;
+	left: calc(3%);
+	width: 50px;
+	height: 10%;
+	font-family: shousha;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
+	color: gold;
+	box-origin: border-box;
+	line-height: -4px;
+}
+.Hp {
+	left: 2px;
+	transform: scaleX(-1);
+}
+.Hp {
+	top: calc(1%);
+	width: 100%;
+	height: 5%;
+	background: red;
+	transition: all 2s;
+	animation: cgcl 2s linear infinite;
+}
+.MaxHp {
+	left: 0%;
+	transform: scaleX(-1);
+}
+.MaxHp {
+	top: 0px;
+	width: 100%;
+	height: 4%;
+	background: black;
+	border: 3px solid gold;
+	transition: all 2s;
+}
+@keyframes cgcl {
+	0% {
+		background: linear-gradient(to left bottom, red 0%, rgb(140, 0, 0) 100%, red 200%, rgb(140, 0, 0) 300%);
+	}
+	5% {
+		background: linear-gradient(to left bottom, red -10%, rgb(140, 0, 0) 90%, red 190%, rgb(140, 0, 0) 290%);
+	}
+	10% {
+		background: linear-gradient(to left bottom, red -20%, rgb(140, 0, 0) 80%, red 180%, rgb(140, 0, 0) 280%);
+	}
+	15% {
+		background: linear-gradient(to left bottom, red -30%, rgb(140, 0, 0) 70%, red 170%, rgb(140, 0, 0) 270%);
+	}
+	20% {
+		background: linear-gradient(to left bottom, red -40%, rgb(140, 0, 0) 60%, red 160%, rgb(140, 0, 0) 260%);
+	}
+	25% {
+		background: linear-gradient(to left bottom, red -50%, rgb(140, 0, 0) 50%, red 150%, rgb(140, 0, 0) 250%);
+	}
+	30% {
+		background: linear-gradient(to left bottom, red -60%, rgb(140, 0, 0) 40%, red 140%, rgb(140, 0, 0) 240%);
+	}
+	35% {
+		background: linear-gradient(to left bottom, red -70%, rgb(140, 0, 0) 30%, red 130%, rgb(140, 0, 0) 230%);
+	}
+	40% {
+		background: linear-gradient(to left bottom, red -80%, rgb(140, 0, 0) 20%, red 120%, rgb(140, 0, 0) 220%);
+	}
+	45% {
+		background: linear-gradient(to left bottom, red -90%, rgb(140, 0, 0) 10%, red 110%, rgb(140, 0, 0) 210%);
+	}
+	50% {
+		background: linear-gradient(to left bottom, red -100%, rgb(140, 0, 0) 0%, red 100%, rgb(140, 0, 0) 200%);
+	}
+	55% {
+		background: linear-gradient(to left bottom, red -110%, rgb(140, 0, 0) -10%, red 90%, rgb(140, 0, 0) 190%);
+	}
+	60% {
+		background: linear-gradient(to left bottom, red -120%, rgb(140, 0, 0) -20%, red 80%, rgb(140, 0, 0) 180%);
+	}
+	65% {
+		background: linear-gradient(to left bottom, red -130%, rgb(140, 0, 0) -30%, red 70%, rgb(140, 0, 0) 170%);
+	}
+	70% {
+		background: linear-gradient(to left bottom, red -140%, rgb(140, 0, 0) -40%, red 60%, rgb(140, 0, 0) 160%);
+	}
+	75% {
+		background: linear-gradient(to left bottom, red -150%, rgb(140, 0, 0) -50%, red 50%, rgb(140, 0, 0) 150%);
+	}
+	80% {
+		background: linear-gradient(to left bottom, red -160%, rgb(140, 0, 0) -60%, red 40%, rgb(140, 0, 0) 140%);
+	}
+	85% {
+		background: linear-gradient(to left bottom, red -170%, rgb(140, 0, 0) -70%, red 30%, rgb(140, 0, 0) 130%);
+	}
+	90% {
+		background: linear-gradient(to left bottom, red -180%, rgb(140, 0, 0) -80%, red 20%, rgb(140, 0, 0) 120%);
+	}
+	95% {
+		background: linear-gradient(to left bottom, red -190%, rgb(140, 0, 0) -90%, red 10%, rgb(140, 0, 0) 110%);
+	}
+	100% {
+		background: linear-gradient(to left bottom, red -200%, rgb(140, 0, 0) -100%, red 0%, rgb(140, 0, 0) 100%);
+	}
+}
+.player .bluefire.hp {
+	top: 21px;
+	left: -30px;
+	width: 160px;
+	bottom: auto;
+	right: auto;
+	text-align: left;
+	transform: none;
+}
+.hp.bluefire>div:not(.lost) {
+	background: rgba(63, 119, 173, 1);
+	border: 1px solid rgba(31, 82, 131, 1);
+}
+.treasure>.hp>div:not(.lost) {
+	background: rgba(63, 119, 173, 1) !important;
+	border: 1px solid rgba(31, 82, 131, 1) !important;
+}
+.hp.bluefire>div.overflow:not(.lost) {
+	background: rgb(154, 154, 154);
+	border: 1px solid rgb(109, 109, 109);
+}
+.hp.bluefire.overflow2>div.overflow:not(.lost) {
+	background: rgb(173, 129, 63);
+	border: 1px solid rgb(131, 109, 31);
+}
+.hp.bluefire>.lost {
+	background: rgba(63, 119, 173, 1);
+	border: 1px solid rgba(31, 82, 131, 1);
+	filter: grayscale(1);
+	-webkit-filter: grayscale(1);
+}
+.player .bluefire.hp>div {
+	left: -100px;
+	top: -38px;
+	width: 12px;
+	height: 12px;
+	margin-left: 4px;
+	margin-bottom: 3px;
+	animation: game_start 0.5s;
+	-webkit-animation: game_start 0.5s;
+}
+.dpcq-Bf-wildfireshow {
+	position: absolute;
+	left: 40px;
+	top: -45px;
+	width: 30px;
+	height: 30px;
+	background-image: url(dpcqyysBF.jpg);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	z-index: 20;
+	cursor: pointer;
+}
+.dpcq-Bf-wildfireshow>.name-wildfireshow {
+	left: 25px;
+	top: 7px;
+	font-size: 20px;
+	font-family: 'xinwei';
+}
+.dpcqyys-dialog {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 400px;
+	height: 430px;
+	background: black;
+	background-size: 100% 100%;
+	background-image: url(dpcqyys_pic_dialog_1.jpg);
+	transform: translate(-50%, -50%);
+	z-index: 22;
+}
+.dpcqyys-dialog>.dpcqyys-dialog-text {
+	position: absolute;
+	margin: 5px;
+	top: 40px;
+	left: 60px;
+	width: 320px;
+	height: 330px;
+	font-family: 'xinwei';
+	overflow: scroll;
+	font-size: 18px;
+	color: white !important;
+}
+.dpcqyys-dialog>.dpcqyys-dialog-title {
+	position: absolute;
+	margin: 5px;
+	top: 10px;
+	left: 10px;
+	width: 320px;
+	height: auto;
+	font-family: 'xinwei';
+	font-size: 21px;
+	color: white !important;
+}
+.dpcqyys-dialog>.dpcqyys-dialog-close {
+	position: absolute;
+	margin: 5px;
+	right: 10px;
+	top: 5px;
+	height: 20px;
+	width: 20px;
+	background: red;
+	background-size: 100% 100%;
+	background-image: url(dpcqyys_pic_close.jpg);
+}

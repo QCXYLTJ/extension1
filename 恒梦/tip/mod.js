@@ -1,0 +1,1 @@
+wuxieRespondable(c, p, t)

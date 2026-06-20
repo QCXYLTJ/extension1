@@ -1,0 +1,30 @@
+.hgmgvois {
+  /*来自浪琴天阙朱果，改为按钮*/
+  /*position:relative;*/
+  --l: 150px;
+  --t: 100px;
+  background-repeat: no-repeat;
+  background-image: url(iftmyi.png) !important;
+  background-size: 100% 100%;
+  width: 180px;
+  height: 120px;
+  left: calc(var(--l));
+  top: calc(var(--t));
+  letter-spacing: 2.5px;
+  position: absolute;
+  transition: none;
+  scale: 0.9;
+  padding: 0px 0px 60px 90px;
+  text-align: left;
+  color: #d67eac;
+  /* text-shadow: -1.3px 0px 2.2px #000, 0px -1.3px 2.2px #000,
+    1.3px 0px 2.2px #000, 0px 1.3px 2.2px #000; */
+  font-family: huangcao;
+  font-size: 28px;
+  font-weight: 800;
+  z-index: 8 !important;
+  cursor: pointer;
+}
+.hgmgvois:hover {
+  transform: scale(1.1);
+}
