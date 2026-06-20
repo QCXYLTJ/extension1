@@ -1,0 +1,13 @@
+照片抠图:
+01. clipping
+ https://clippingmagic.com/
+02. pixmiller
+https://www.pixmiller.com
+03. inpixio
+https://www.inpixio.com/remove-background/
+动图GIF抠图:
+04. unscreen
+https://www.unscreen.com/
+视频抠图:
+05. cutout
+https://www.cutout.pro/zh-CN/remove-video-background

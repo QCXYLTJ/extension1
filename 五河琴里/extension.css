@@ -1,0 +1,604 @@
+.player>.whql-shenwei1 {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-image: url(image/ui/whql_dark_circle.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    cursor: pointer;
+    font-size: 0px;
+    font-family: 'xinwei';
+    text-align: center;
+    color: white;
+}
+.player>.whql-shenwei2 {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-image: url(image/ui/whql_light_circle.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    cursor: pointer;
+    font-size: 0px;
+    font-family: 'xinwei';
+    text-align: center;
+    color: white;
+}
+.dialog>.close-button {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 55px;
+    height: 55px;
+    background-image: url(image/ui/whql_closeButton.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.dialog>.execute-button {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 550px;
+    height: 550px;
+    background-image: url(image/ui/whql_executeButton.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.dialog>.choose-button {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 55px;
+    height: 55px;
+    background-image: url(image/ui/whql_chooseButton.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.dialog>.cheat-button {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 55px;
+    height: 55px;
+    background-image: url(image/ui/whql_cheatButton.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+/*特效最上层*/
+.qgqc-background {
+    z-index: 999;
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+}
+/*特效桌面层*/
+.qgqc_zhuo-background {
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+}
+/*特效御风*/
+.qgqc-yufeng-background {
+    z-index: 999;
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 85%;
+    transform: translate(-50%, -50%);
+}
+/*手杀出牌记录样式*/
+#arenalog {
+    width: calc(50% - 230px);
+    height: calc(100% - 425px);
+    /*100消了四层.*/
+    left: calc(50% + 60px);
+    top: 190px;
+    overflow: hidden;
+    font-family: 'shousha' !important;
+    z-index: -1;
+    pointer-events: none;
+    text-align: center;
+}
+#arenalog.withdialog {
+    opacity: 0.5;
+}
+#arena:not(.oldlayout)>#arenalog[data-position="center"] {
+    left: calc(25% + 105px);
+}
+#arena:not(.oldlayout)>#arenalog[data-position="left"] {
+    left: 150px;
+}
+#arena.oldlayout>#arenalog {
+    top: 160px;
+    width: calc(50% - 280px);
+    height: calc(100% - 355px);
+}
+#arena.oldlayout>#arenalog[data-position="center"] {
+    left: calc(25% + 150px);
+}
+#arena.oldlayout>#arenalog[data-position="left"] {
+    left: 240px;
+}
+/*-------文本颜色------*/
+.firetext {
+    color: rgb(255, 119, 63);
+}
+.yellowtext {
+    color: #bd6420;
+}
+.bluetext {
+    color: #25c523;
+}
+.greentext {
+    color: #bd6420;
+}
+.icetext {
+    color: rgb(59, 98, 115);
+}
+.thundertext,
+.controlthundertext {
+    color: rgb(117, 186, 255);
+}
+.kamitext {
+    color: rgb(90, 118, 99);
+}
+.whitetext .thundertext {
+    color: #d6d0af;
+}
+.poisontext {
+    color: rgb(104, 221, 127);
+}
+.browntext {
+    color: rgb(195, 161, 223);
+}
+.legendtext {
+    color: rgb(233, 131, 255);
+}
+#arenalog>div {
+    position: relative;
+    display: block;
+    width: calc(100% - 23px);
+    left: 20px;
+    font-size: 23px;
+    line-height: 21px;
+    background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.5) 90%, transparent 100%);
+    /*background-image: url(info.png);*/
+    background-size: 100% 100%;
+}
+#window:not(.low_performance) #arena #arenalog>div {
+    animation: game_start 0.5s;
+    -webkit-animation: game_start 0.5s;
+}
+/*护甲图片大小位置*/
+.hujia {
+    top: auto;
+    bottom: 65%;
+    /*上下*/
+    left: 0.5px;
+    /*左右*/
+    /*这些参数可能需要自己调一下*/
+    background-image: url(十周年UI/image/card/shield.png);
+    /*这个位置注意,指向你护甲图片放的位置.图案 推荐使用鸽子手绘的那个,自己看一下其他, 的url怎么写的,图片放到对应文件夹就行.*/
+    background-size: 100%100%;
+    background-repeat: no-repeat;
+    width: 20px;
+    /*图片宽*/
+    height: 18px;
+    /*图片高*/
+    position: relative;
+    z-index: 60;
+    /*图层*/
+    /*护甲数字体*/
+    text-align: center;
+    /*居中*/
+    color: #ffff66;
+    font-size: 10px;
+    font-weight: 900;
+    -webkit-text-stroke: 1px black;
+    /*数字描边*/
+    font-family: HanYiZhongLiShuFan;
+}
+/*添加字体*/
+@font-face {
+    font-family: 'kuangye';
+    src: url(./fonts/kuangye.ttf);
+}
+@font-face {
+    font-family: 'yunfeng';
+    src: url(./fonts/yunfeng.ttf);
+}
+/*修仙文字;此文字太高其他角色境界会看不到,太低了挡住武将露头,我只能调小尽量靠一边显示,觉得不好看的可根据注释自行调整*/
+.xx_wz {
+    /*自调选项,其他项不用动*/
+    top: -3px;
+    /*顶部;此数值小上大下;字体挡武将的自行调整即可;一般在-1～-25之间*/
+    /* position:absolute;/*绝对定位*/
+    position: relative;
+    /*相对定位*/
+    width: 200%;
+    /*宽度*/
+    left: -128%;
+    /*靠左*/
+    margin-left: 50%;
+    /*靠左边距*/
+    overflow: visible;
+    font-family: 'kuangye';
+    /*字体*/
+    font-size: 1.1em;
+    /*字体大小*/
+    line-height: 22px;
+    /*字体行高*/
+    /*font-weight:bold;/*字体加粗*/
+    letter-spacing: -1px;
+    /*增加(值为正)或减少(值为负)字符间距*/
+    z-index: 999;
+    /*字体层级*/
+    text-align: center;
+    /*水平对齐*/
+    white-space: nowrap;
+    /*空白;溢出换行*/
+    HEIGHT: 22px;
+    /*高度*/
+    padding: 0px 0px;
+    /*填充*/
+    COLOR: #99ffff;
+    /*文字颜色*/
+    animation: changeshadowxx 2s ease-in infinite;
+    /*文字背景闪光速度*/
+}
+@keyframes changeshadowxx {
+    /*文字背景闪光颜色*/
+    0% {
+        text-shadow: 2px 2px 0 #000, 0 0 2px #99ffff, 0 0 2px #99ffff, 0 0 2px #99ffff
+    }
+    50% {
+        text-shadow: 2px 2px 0 #000, 0 0 20px #99ffff, 0 0 20px #99ffff, 0 0 20px #99ffff
+    }
+    100% {
+        text-shadow: 2px 2px 0 #000, 0 0 2px #99ffff, 0 0 2px #99ffff, 0 0 2px #99ffff
+    }
+    /*字体放大缩小*/
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/*官阶文字*/
+.gj_wz {
+    /*自调选项,其他项不用动*/
+    top: -13px;
+    /*顶部;此数值小上大下;字体挡武将的自行调整即可;一般在-10～-30之间*/
+    position: absolute;
+    /*位置*/
+    width: 200%;
+    /*宽度*/
+    left: -100%;
+    /*靠左*/
+    margin-left: 50%;
+    /*靠左边距*/
+    overflow: visible;
+    font-family: 'yunfeng';
+    /*字体*/
+    font-size: 1.2em;
+    /*字体大小*/
+    font-weight: bold;
+    /*字体加粗*/
+    letter-spacing: -2px;
+    /*增加(值为正)或减少(值为负)字符间距*/
+    z-index: 999;
+    /*字体层级*/
+    text-align: center;
+    /*水平对齐*/
+    white-space: nowrap;
+    /*空白;溢出换行*/
+    HEIGHT: 33px;
+    /*高度*/
+    padding: 0px 0px;
+    /*填充*/
+    COLOR: #ffcc00;
+    /*文字颜色*/
+    animation: changeshadowgj 1s ease-in infinite;
+    /*文字背景闪光速度*/
+}
+@keyframes changeshadowgj {
+    /*背景闪光颜色*/
+    0% {
+        text-shadow: 2px 2px 0 #000, 0 0 2px #ffcc00, 0 0 2px #ffcc00, 0 0 2px #ffcc00
+    }
+    50% {
+        text-shadow: 2px 2px 0 #000, 0 0 20px #ffcc00, 0 0 20px #ffcc00, 0 0 20px #ffcc00
+    }
+    100% {
+        text-shadow: 2px 2px 0 #000, 0 0 2px #ffcc00, 0 0 2px #ffcc00, 0 0 2px #ffcc00
+    }
+    /*字体放大缩小*/
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/*这里释放游戏内选将/武将界面所有武将都会放大缩小*/
+/*
+.button {
+    width: 200px;
+    height: 46px;
+    line-height: 46px;
+    background: #2e82ff;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 27px;
+    animation: zoomIn 1.5s infinite;
+    text-align: center;
+}
+@keyframes zoomIn {
+    50% {
+     transform: scale(1.2);
+    }
+    100% {
+     transform: scale(1);
+    }
+}*/
+/*霓虹灯按钮效果*/
+/*.button1 {
+    display: inline-block;
+    width: 200px;
+    height: 46px;
+    line-height: 46px;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 27px;
+    text-align: center;
+    background-image: linear-gradient(to right, #ff3300 0%, #eb4402 25%, #ffc404 50%, #eb4402 75%, #ff3300 100%);
+    background-size: 200%;
+    animation: colorGradient 1.5s infinite;
+}
+@keyframes colorGradient {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}*/
+.sksnw-dialog {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 45%;
+    height: 60%;
+    background-size: 100% 100%;
+    background-image: url(image/ui/sksnw_pic_dialog_1.jpg);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.sksnw-dialog>.sksnw-dialog-icon {
+    position: absolute;
+    margin: 5px;
+    top: 40px;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0 0 5px black;
+}
+.sksnw-dialog>.sksnw-dialog-text {
+    position: absolute;
+    margin: 5px;
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    height: 65%;
+    font-family: 'moren';
+    overflow: scroll;
+    font-size: 18px;
+    color: white !important;
+}
+.sksnw-dialog>.sksnw-dialog-title {
+    position: absolute;
+    margin: 5px;
+    top: 12%;
+    left: 10%;
+    width: 320px;
+    height: auto;
+    font-family: 'xinwei';
+    font-size: 21px;
+    color: white !important;
+}
+.sksnw-dialog>.sksnw-dialog-close {
+    position: absolute;
+    margin: 5px;
+    right: 1%;
+    top: 5px;
+    height: 40px;
+    width: 40px;
+    background-size: 100% 100%;
+    background-image: url(image/ui/sksnw_pic_close.jpg);
+}
+.sksnw-background {
+    z-index: 22;
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    background-image: url(image/background/sksn_pic_background_others.jpg);
+}
+.sksnw-background>.sksn-winner-head {
+    display: block;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 50%;
+    width: 200px;
+    height: 275px;
+    background-size: 100% 100%;
+    transform: translate(-50%, -50%);
+    z-index: 23;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.sksnw-background>.sksn-winner-biankuang {
+    display: block;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 50%;
+    width: 210px;
+    height: 285px;
+    background-size: 100% 100%;
+    background-image: url(image/ui/sksn_pic_biankuang.png);
+    transform: translate(-50%, -50%);
+    z-index: 24;
+}
+.sksnw-background>.sksn-win-text {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 135px);
+    width: 600px;
+    height: 80px;
+    transform: translate(-50%, -100%);
+    z-index: 25;
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 65px;
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.sksnw-background>.sksn-win-close-button {
+    position: absolute;
+    left: 50%;
+    top: calc(100% - 100px);
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    transform: translate(-50%, 0%);
+    z-index: 25;
+    background-size: 100% 100%;
+    background-image: url(image/ui/sksn_pic_button.png);
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.sksnw-background>.sksn-winner-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    min-height: 100px;
+    transform: translate(0%, -50%);
+    z-index: 25;
+    font-family: 'xinwei';
+    font-size: 35px;
+    text-align: center;
+}
+.sksnw-background>.sksn-achi-hasDone {
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    width: 350px;
+    min-height: 100px;
+    transform: translate(0%, -50%);
+    color: yellow;
+    z-index: 25;
+    font-family: 'xinwei';
+    font-size: 3vh;
+}
+.sksn-loading {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 230px;
+    background-size: 100% 100%;
+    background-image: url(image/ui/sksn_dialog.jpg);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.sksn-loading>.sksn-loading-text {
+    display: table-cell;
+    position: absolute;
+    margin: 5px;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 100px;
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    text-align: center;
+    vertical-align: middle;
+}
+.sksn-dialog>.sksn-dialog-icon {
+    position: absolute;
+    margin: 5px;
+    top: 40px;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0 0 5px black;
+}
+.sksn-dialog>.sksn-dialog-text {
+    position: absolute;
+    margin: 5px;
+    top: 40px;
+    left: 60px;
+    width: 320px;
+    height: 330px;
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 18px;
+    color: white !important;
+}
+.sksn-dialog>.sksn-dialog-title {
+    position: absolute;
+    margin: 5px;
+    top: 10px;
+    left: 10px;
+    width: 320px;
+    height: auto;
+    font-family: 'xinwei';
+    font-size: 21px;
+    color: white !important;
+}

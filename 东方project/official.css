@@ -1,0 +1,99 @@
+.dfpjpower {
+	top: -30px;
+	left: 50px;
+	width: 15px;
+	height: 85px;
+	line-height: 14px;
+	text-align: left;
+	transform: rotate(90deg);
+	flex-direction: column-reverse;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	/*z-index: 200;*/
+}
+.dfpjpower.text {
+	top: 18px;
+}
+.dfpjpower.textstyle {
+	font-family: 'xinwei'
+}
+.dfpjpower>div {
+	position: relative;
+	width: 16px;
+	height: 16px;
+	margin-left: 3px;
+	background-repeat: no-repeat;
+	border-radius: 100%;
+	border: none;
+	box-shadow: none;
+	filter: brightness(1.5);
+	-webkit-filter: brightness(1.5);
+	transition: all 0.5s;
+}
+.dfpjpower>div:not(.lost) {
+	background: url(official1.png);
+	background-size: 100% 100%;
+	transform: scale(1.4);
+	border-radius: 0px;
+}
+.dfpjpower>.lost {
+	background: url(official4.png);
+	background-size: 100% 100%;
+	transform: scale(1.4);
+	border-radius: 0px;
+}
+/*技能牌相关*/
+#arena:not(.chess) .player[data-position="0"]:not(.minskin)>.jinengpai {
+	pointer-events: auto;
+}
+#arena:not(.chess) .player[data-position="0"]>.jinengpai {
+	left: -20px;
+	top: -26px;
+	transform: none;
+}
+.player .jinengpai {
+	position: relative;
+	display: -webkit-box;
+	top: -11px;
+	left: 5px;
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	padding-bottom: 10px;
+	box-shadow: none;
+	background: none;
+	margin-left: 10px;
+}
+.jinengpai>div>.image {
+	background-size: 120%;
+	background-position: -4px -4px;
+	background-repeat: no-repeat;
+}
+.jinengpai>div>.name,
+.jinengpai>div>.range,
+.jinengpai>div>.gaintag {
+	display: none;
+}
+.jinengpai>div {
+	width: 24px;
+	height: 24px;
+	margin: 0;
+	left: 0;
+	top: 0;
+	opacity: 1;
+	position: absolute;
+	line-height: 20px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+#window:not(.nopointer) .player .jinengpai>.card {
+	cursor: context-menu;
+}
+#arena.selecting:not(.video) .player[data-position="0"] .jinengpai>.card:not(.selectable)>.image,
+#arena.selecting:not(.video) .player[data-position="0"] .jinengpai>.card:not(.selectable)>.background,
+#arena.selecting:not(.video) .player .jinengpai>.card:not(.selectable)>.image,
+#arena.selecting:not(.video) .player .jinengpai>.card:not(.selectable)>.background {
+	opacity: 1;
+}
