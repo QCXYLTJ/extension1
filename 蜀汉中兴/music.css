@@ -1,0 +1,193 @@
+/** {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-image: url(../img/last.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}*/
+#game-box {
+    /*position: absolute;*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    /*border: 2px solid black;*/
+    overflow: hidden;
+    /*因为设置为绝对定位,后面设置子元素的高度大小100%会溢出,使得子元素超出的部分隐藏*/
+}
+#rank-rule {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100px;
+}
+.game-name {
+    text-align: center;
+    margin-top: 20px;
+    color: aliceblue;
+    font-size: larger;
+    font-weight: 800;
+}
+/* 四个轨道的区域 */
+.crack-box {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid white; */
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+    height: 90%;
+    background-color: rgba(2, 8, 37, 0.3);
+    position: relative;
+    transform: perspective(800px) rotateX(36deg) scale(0.8) scaleX(1.2) scaleY(1.2);
+}
+/* 轨道 */
+.crack-box div {
+    position: relative;
+    width: 25%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.347);
+    cursor: pointer;
+}
+@keyframes myMove {
+    from {
+        top: 0%;
+    }
+    to {
+        top: 100%;
+    }
+}
+/* 滑落的♦️️样式 */
+.crack-box .crack div {
+    position: absolute;
+    /* 设置脱离文档流,这样生成的小♦️️不会互相干扰 */
+    width: 100%;
+    height: 10%;
+    left: 0px;
+    top: 0px;
+    background-color: aliceblue;
+    border-radius: 10%;
+    animation-name: myMove;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+/* 作为轨道的按钮 */
+.crack:nth-child(1)::after {
+    content: "Q";
+}
+.crack:nth-child(2)::after {
+    content: "W";
+}
+.crack:nth-child(3)::after {
+    content: "E";
+}
+.crack:nth-child(4)::after {
+    content: "R";
+}
+.crack {
+    pointer-events: none;
+    /* 这样才能使用js选择.crack::after */
+}
+/*伪元素样式*/
+.crack::after {
+    pointer-events: auto;
+    /* 这样才能使用js选择.crack::after */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    box-shadow: -5px -5px 10px rgba(138, 177, 167, 0.496);
+    background-color: rgba(187, 186, 186, 0.476);
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 900;
+    color: rgba(245, 11, 11, 0.625);
+}
+/* 伪元素点击时的属性 */
+.onclick::after {
+    content: "";
+    background-color: red;
+    color: black;
+}
+.prefect {
+    position: absolute;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*调节位置,使得居中*/
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: fantasy;
+    color: rgba(247, 31, 31, 0.7);
+    background-color: rgba(136, 233, 127, 0);
+    z-index: 99;
+    display: none;
+}
+.good {
+    position: absolute;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*调节位置,使得居中*/
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: fantasy;
+    color: rgba(38, 18, 212, 0.676);
+    background-color: rgba(136, 233, 127, 0);
+    z-index: 99;
+    display: none;
+}
+.miss {
+    position: absolute;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*调节位置,使得居中*/
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: fantasy;
+    color: rgba(240, 225, 23, 0.598);
+    background-color: rgba(136, 233, 127, 0);
+    z-index: 99;
+    display: none;
+}
+/* 
+button {
+    border-radius: 10px;
+    text-shadow: 0px 1px 0px #2f6627;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    font-family: Arial;
+    color: #ffffff;
+    background: #44c76776;
+    padding: 12px 30px 12px 30px;
+    border: solid #18ab29 1px;
+    text-decoration: none;
+}
+button:hover {
+    color: #ffffff;
+    background: #e92311af;
+    text-decoration: none;
+}
+*/

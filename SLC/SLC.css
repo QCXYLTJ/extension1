@@ -1,0 +1,341 @@
+.th-confirmdown2 {
+    transform: translateY(280%);
+    z-index: 20 !important;
+}
+.th-dibeijing {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 8;
+}
+.th-headpic {
+    --w: 50px;
+    background-size: 100%;
+    position: absolute;
+    height: var(--w);
+    width: var(--w);
+}
+.th-headname {
+    font-size: 13px;
+    width: 100%;
+    height: 110%;
+    position: absolute;
+    left: 1px;
+    top: 3px;
+    /* letter-spacing: 1px; */
+    /*text-align: center;*/
+    writing-mode: vertical-lr;
+    font-family: 'th-kaishu';
+}
+.th-jinyu {
+    --h: 200px;
+    --y: 0.5;
+    width: 30%;
+    float: left;
+    height: calc(var(--h)*var(--y));
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.th-radiusTL {
+    width: 50%;
+    height: 50%;
+    background-image: radial-gradient(5px at top left, transparent 5px, rgba(24, 23, 23, 0.7));
+    top: 0;
+    left: 0;
+}
+.th-radiusTR {
+    width: 50%;
+    height: 50%;
+    background-image: radial-gradient(5px at top right, transparent 5px, rgba(24, 23, 23, 0.7));
+    top: 0;
+    right: 0;
+}
+.th-radiusBL {
+    width: 50%;
+    height: 50%;
+    background-image: radial-gradient(5px at bottom left, transparent 5px, rgba(24, 23, 23, 0.7));
+    bottom: 0;
+    left: 0;
+}
+.th-radiusBR {
+    width: 50%;
+    height: 50%;
+    background-image: radial-gradient(5px at bottom right, transparent 5px, rgba(24, 23, 23, 0.7));
+    bottom: 0;
+    right: 0;
+}
+.th-sggroupcolor {
+    height: 25%;
+    width: 78%;
+    z-index: 3;
+    right: 0;
+    bottom: 0;
+}
+.th-sgheadborder {
+    background-size: 100% 100%;
+    background-image: url(image/shengong/headborder.png);
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.th-sgheadname {
+    font-size: 7px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+}
+.th-sgheadname {
+    font-size: 7px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+}
+.th-skillnode {
+    width: 75px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    background-image: url(image/effect/skill2.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: 'th-kaishu';
+    text-shadow: 1px 1px 0px #000000,
+        -1px 1px 0px #000000,
+        1px -1px 0px #000000,
+        -1px -1px 0px #000000;
+}
+.th-initselected {
+    background-image: url(image/effect/skillsel2.png);
+}
+.th-initselected2 {
+    background-image: url(image/effect/skillsel3.png);
+}
+.th-skillnodelimit {
+    background-image: url(image/effect/skill3.png);
+}
+.th-skilltishi {
+    --h: 65px;
+    width: 350px;
+    height: var(--h);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 10;
+    overflow: hidden;
+    transition: none;
+    pointer-events: none;
+}
+.th-thunderDdcCon {
+    pointer-events: auto;
+    transition: none;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.th-thunderDdcMin {
+    pointer-events: auto;
+    z-index: 3;
+    left: 10%;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    background-image: url(image/effect/hideDialog.png);
+    background-size: 100% 100%;
+}
+.th-thunderDssCon {
+    pointer-events: auto;
+    transition: none;
+    width: 100%;
+    z-index: 2;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.th-thunderDialog {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+.th-wjinitbg {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 8;
+}
+.th-yuqi {
+    --w: 1600px;
+    --h: 480px;
+    width: calc(var(--w));
+    height: calc(var(--h));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 6;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+.th-yuqipart {
+    --w: 560px;
+    position: relative;
+    height: 100%;
+    width: var(--w);
+    top: 0;
+}
+.th-yuqiAll {
+    height: 160px;
+    text-align: left;
+    position: absolute;
+    white-space: nowrap;
+    background-color: rgba(162, 133, 91, 0.4);
+    border: 2px solid rgb(41, 26, 3);
+    border-radius: 4px;
+}
+.th-yuqi0 {
+    --h: 26px;
+    --w: 98%;
+    --z: 0.9;
+    width: var(--w);
+    left: 0;
+    /* top: var(--h); */
+    zoom: var(--z);
+}
+.th-yuqi1 {
+    --w: 48%;
+    --h: 26px;
+    --z: 0.9;
+    width: var(--w);
+    left: 0;
+    bottom: var(--h);
+    margin-right: -5px !important;
+    zoom: var(--z);
+}
+.th-yuqi2 {
+    --w: 48%;
+    --h: 26px;
+    --z: 0.9;
+    width: var(--w);
+    right: 0;
+    bottom: var(--h);
+    margin-left: -5px !important;
+    zoom: var(--z);
+}
+.th-tishi0 {
+    width: 99.5%;
+    height: auto;
+    left: 0;
+    top: 0;
+    border: 2px solid rgb(41, 26, 3);
+    border-radius: 4px;
+    background-color: rgba(255, 249, 215, 0.4);
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+}
+.th-tishi1 {
+    --w: 49.4%;
+    width: var(--w);
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+    border: 2px solid rgb(41, 26, 3);
+    border-radius: 4px;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    margin-right: -5px !important;
+    background-color: rgba(255, 249, 215, 0.4);
+}
+.th-tishi2 {
+    --w: 49.4%;
+    width: var(--w);
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    border: 2px solid rgb(41, 26, 3);
+    border-radius: 4px;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    margin-left: -5px !important;
+    background-color: rgba(255, 249, 215, 0.4);
+}
+.th-pcchoosebg {
+    width: 180px;
+    height: 40px;
+    bottom: calc(22% + 42px);
+    left: 25%;
+    position: absolute;
+    background-size: 100% 100%;
+    background-image: url(image/effect/chooseBg.png);
+}
+.th-pcchoosebg.mobile {
+    bottom: calc(23% + 35px);
+}
+.th-pcleft {
+    width: 40px;
+    height: 40px;
+    left: 14px;
+    top: -2px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    background-image: url(image/effect/-.png);
+    filter: grayscale()
+}
+.th-pcright {
+    width: 40px;
+    height: 40px;
+    left: 58px;
+    top: -2px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    background-image: url(image/effect/+.png);
+}
+.th-pcchoosetype {
+    width: 80px;
+    height: 30px;
+    left: 90px;
+    top: 1px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 34px;
+    font-family: 'shousha';
+    color: #fcfcbf;
+}
+.th-pingcaiBg {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 17;
+}
