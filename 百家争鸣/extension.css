@@ -1,0 +1,49 @@
+.bjzm-loading {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 230px;
+    background-size: 100% 100%;
+    background-image: url(bjzm_pic_dialog.jfif);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.bjzm-loading>.bjzm-loading-text {
+    display: table-cell;
+    position: absolute;
+    margin: 5px;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 40px;
+    overflow: scroll;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    color: whitesmoke !important;
+    text-align: center;
+    vertical-align: middle;
+}
+/*.player>.dui-marks>.mark>div.mark-text {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 17px;
+    height: 23px;
+    min-height: 16px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 20px;
+    font-family: xinwei,xingkai;
+    color: rgb(77, 60, 51);
+    border-radius: 5px;
+     background-image: none;
+     box-shadow: none;
+    text-shadow: none;
+    animation: none;
+}*/

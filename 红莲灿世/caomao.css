@@ -1,0 +1,158 @@
+/*曹髦区域*/
+.cmarea {
+	display: block;
+	position: absolute;
+	width: 43.07px;
+	height: 186.15px;
+	bottom: -4.38px;
+	right: 149.65px;
+	z-index: 6;
+	pointer-events: none;
+}
+/*曹髦滴圣剑*/
+.cmarea>.cmjian {
+	display: block;
+	position: absolute;
+	width: 43.07px;
+	height: 186.15px;
+	bottom: 0px;
+	right: 0px;
+	background: url(./image/qianlong_bg.png);
+	background-size: 100%;
+	pointer-events: auto !important;
+	z-index: 7;
+}
+/*能量条遮罩*/
+.cmarea>.cmjindutiaobox {
+	width: 100px;
+	height: 210px;
+	right: -4px;
+	bottom: -15px;
+	position: absolute;
+	overflow: hidden;
+	zoom: 0.85;
+	z-index: 8;
+	pointer-events: none;
+	transition: all 0s;
+}
+/*能量条*/
+.cmarea>.cmjindutiaobox>.cmjindutiao {
+	width: 100px;
+	height: 260px;
+	background: url(data:image/png;);
+	background-size: cover;
+	position: absolute;
+	bottom: 0;
+	pointer-events: none;
+}
+/*激活前剑特效*/
+.cmarea>.jiantexiao1 {
+	background: url(./image/SS_CM_jihuoqian.png);
+	background-size: 100%;
+	position: absolute;
+	width: 230px;
+	height: 300px;
+	right: -89px;
+	bottom: -26px;
+	zoom: 0.73;
+	z-index: 9;
+	pointer-events: none;
+}
+/*激活后剑特效*/
+.cmarea>.jiantexiao2 {
+	background: url(./image/SS_CM_jihuo.png);
+	background-size: 100%;
+	width: 260px;
+	height: 360px;
+	right: -97.5px;
+	bottom: -12px;
+	zoom: 0.73;
+	z-index: 10;
+	pointer-events: none;
+}
+/*上层数字*/
+.cmarea>.cmnum1 {
+	font-family: shousha;
+	font-size: 17px;
+	position: absolute;
+	text-shadow: none;
+	color: #d6caba;
+	bottom: 163px;
+	right: 9px;
+	filter: blue(0.5px);
+	pointer-events: none;
+	transition: all 0s;
+	z-index: 12;
+}
+/*下层数字*/
+.cmarea>.cmnum2 {
+	font-family: shousha;
+	font-size: 17px;
+	position: absolute;
+	text-shadow: none;
+	color: transparent;
+	bottom: 163px;
+	right: 9px;
+	-webkit-text-stroke: 3px #39221b;
+	filter: blue(0.5px);
+	pointer-events: none;
+	transition: all 0s;
+	z-index: 11;
+}
+/*技能区域*/
+.cmarea>.skillsarea {
+	width: 90px;
+	height: 160px;
+	bottom: 20px;
+	right: 9px;
+	z-index: 6;
+	pointer-events: none !important;
+}
+/*清正按钮底图*/
+.cmarea>.skillsarea>.btn-map1 {
+	background-image: url(./image/qianlong_btn_unget.png);
+	width: 108px;
+	height: 54px;
+	bottom: 12px;
+	right: 40px;
+	background-size: 100%;
+	zoom: 0.65;
+}
+.cmarea>.skillsarea>.btn-map2 {
+	background-image: url(./image/qianlong_btn_unget.png);
+	width: 108px;
+	height: 54px;
+	bottom: 70px;
+	right: 40px;
+	background-size: 100%;
+	zoom: 0.65;
+}
+.cmarea>.skillsarea>.btn-map3 {
+	background-image: url(./image/qianlong_btn_unget.png);
+	width: 108px;
+	height: 54px;
+	bottom: 129px;
+	right: 40px;
+	background-size: 100%;
+	zoom: 0.65;
+}
+.cmarea>.skillsarea>.btn-map4 {
+	background-image: url(./image/qianlong_btn_unget.png);
+	width: 108px;
+	height: 54px;
+	bottom: 188px;
+	right: 40px;
+	background-size: 100%;
+	zoom: 0.65;
+}
+.cmFireMap {
+	background-image: url(./image/aozhan_huo.png);
+	width: 1336px;
+	height: 752px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	zoom: 0.955;
+	pointer-events: none;
+}

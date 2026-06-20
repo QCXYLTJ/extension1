@@ -1,0 +1,141 @@
+.card.dshj_selected::after,
+.card.dshj_selected::before {
+	opacity: 1;
+}
+.dshj_round_fuyuan {
+	height: 70% !important;
+	width: calc(100% - 95px) !important;
+	left: 50% !important;
+	top: 40% !important;
+	transition: none !important;
+	transform: translate(-50%, -50%) !important;
+	animation: none !important;
+	z-index: 200 !important;
+	background: rgba(0, 0, 0, 0.2) !important;
+	box-shadow: rgba(0, 0, 0, 0.3) 0 0 0 1px !important;
+}
+#window.dshj_selected,
+#arena.dshj_selected {
+	border: #0ea90c solid 5px;
+}
+.dshj_card_selected .card::before {
+	left: -6px;
+	top: -5px;
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	border: #0ea90c solid 5px;
+	border-image-source: none;
+}
+.dshj_card_selected .card:after {
+	content: attr(data-num);
+	position: absolute;
+	font-size: 50px;
+	display: block;
+	box-shadow: none;
+	z-index: 1;
+	text-align: center;
+	top: 50px;
+	color: red;
+	pointer-events: none;
+	font-family: shousha;
+}
+.card-statistics {
+	width: 85%;
+	height: 75%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	background: #231A1B;
+}
+.card-statistics {
+	width: 85%;
+	height: 75%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	background: #231A1B;
+}
+.card-statistics-title {
+	display: flex;
+	position: relative;
+	width: 100%;
+	height: 10%;
+	align-items: center;
+	justify-items: center;
+	background: #372E1F;
+}
+.card-statistics-title>div {
+	position: relative;
+	flex: 1;
+	text-align: center;
+	color: #7F7768;
+	font-family: xinwei;
+	font-size: 25px;
+	align-items: center;
+	justify-items: center;
+	text-shadow: none;
+}
+.card-statistics-content {
+	display: flex;
+	width: 100%;
+	height: 86%;
+	position: relative;
+}
+.card-statistics-content>div {
+	overflow: auto;
+	flex: 1;
+	position: relative;
+	border-right: aliceblue 1px solid;
+}
+.card-statistics-content .items {
+	margin: 5px 0;
+	height: 30px;
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+}
+.card-statistics-content .items .item {
+	position: relative;
+	flex: .8;
+	background: #C5BA9A;
+	line-height: 2;
+	border-radius: 6px;
+}
+.card-statistics-content .items .item-num {
+	position: relative;
+	flex: .2;
+}
+.dshj-loading {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 400px;
+	height: 230px;
+	background-size: 100% 100%;
+	background-image: url(留空.jpg);
+	transform: translate(-50%, -50%);
+	z-index: 22;
+}
+.dshj-loading>.dshj-loading-text {
+	display: table-cell;
+	position: absolute;
+	margin: 5px;
+	top: 50%;
+	left: 50%;
+	width: 380px;
+	height: 100px;
+	font-family: 'xinwei';
+	overflow: scroll;
+	font-size: 18px;
+	transform: translate(-50%, -50%);
+	color: white !important;
+	text-align: center;
+	vertical-align: middle;
+}

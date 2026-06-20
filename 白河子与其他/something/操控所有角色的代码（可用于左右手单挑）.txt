@@ -1,0 +1,10 @@
+game.addGlobalSkill('autoswap');
+lib.element.player.isUnderControl=()=>true;
+for(var i of game.players) i.isUnderControl=function(self,me){
+me=(me||game.me);
+if(this===me){
+if(self) return true;
+return false;
+}
+return true;
+}

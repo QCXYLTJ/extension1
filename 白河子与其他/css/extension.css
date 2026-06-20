@@ -1,0 +1,173 @@
+.camp-wrap[data-camp='fo']>.camp-back {
+    overflow: hidden;
+}
+.camp-wrap[data-camp='fo']>.camp-back:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(255, 215, 0);
+    background-size: 400%;
+    -webkit-filter: brightness(0.6);
+    -o-filter: brightness(0.6);
+    -moz-filter: brightness(0.6);
+    filter: brightness(0.6);
+    /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="fo"] {
+    background-image: url(../group/fo.png) !important;
+    background-size: 100% 100% !important;
+}
+.bufflist .exit {
+    background-image: url(../image/others/exit.png);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    right: -20px;
+    top: -20px;
+}
+/* 定义一个包含图片的容器的样式 */
+.image-container {
+    display: flex;
+    /* 使用 Flex 布局使图片和文本水平居中对齐 */
+    align-items: center;
+    position: relative;
+    /* 垂直居中对齐 */
+    justify-content: center;
+    /* 水平居中对齐 */
+    margin-bottom: 10px;
+    /* 可根据需要设置底部间距 */
+}
+/* 定义正方形图片的样式 */
+.square-image {
+    max-width: 100px;
+    /* 设置图片最大宽度,根据需要调整 */
+    max-height: 100px;
+    /* 设置图片最大高度,根据需要调整 */
+    width: auto;
+    height: auto;
+}
+.bufflist {
+    width: 90% !important;
+    height: 90% !important;
+    top: 5%;
+    left: 5%;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+.bufflist li {
+    font-size: 20px;
+}
+.bufflist .buttons {
+    width: 100%;
+}
+.yuri-dialog {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 530px;
+    height: 393px;
+    text-align: center;
+    background-size: 100% 100%;
+    background-image: url(../image/others/pic_bigdialog.png);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.frmusicname>.name {
+    color: gold;
+    visibility: hidden;
+}
+.yuri-dialog>.yuri-dialog-text {
+    position: absolute;
+    text-align: left;
+    top: calc(27.94%);
+    left: calc(13.64%);
+    width: calc(65.45%);
+    height: calc(65.35%);
+    font-family: 'xingkai';
+    overflow: scroll;
+    font-size: 18px;
+    line-height: 25px;
+    color: black !important;
+    text-shadow: 0 1px 1px white;
+}
+.yuri-dialog>.yuri-dialog-title {
+    position: relative;
+    top: calc(8.2%);
+    margin: auto;
+    width: calc(83.27%);
+    height: calc(6.27%);
+    font-family: 'xingkai';
+    font-size: 21px;
+    color: white !important;
+}
+.yuri-dialog>.yuri-dialog-close {
+    position: absolute;
+    margin: 5px;
+    right: -6px;
+    top: 17px;
+    height: 30px;
+    width: 30px;
+    background-size: 100% 100%;
+    background-image: url(../image/others/pic_close.png);
+}
+.yuri-dialog>.yuri-dialog-icon {
+    position: absolute;
+    top: calc(26.6%);
+    right: calc(14.70%);
+    width: calc(12.91%);
+    height: calc(17.85%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0 0 5px black;
+}
+.progressBG {
+    width: 597px;
+    height: 47px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../image/others/progress_bg.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 20;
+    opacity: 1;
+}
+.progressBG>div {
+    width: 571px;
+    height: 21px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../image/others/progress_bar.png);
+    background-size: 0;
+    background-repeat: no-repeat;
+}
+.yuri-yuritips {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.yuri-skilltip {
+    width: 20%;
+    min-height: 5%;
+    left: 50%;
+    top: 50%;
+    font-size: 16px;
+    color: #ccad76;
+    font-family: 'shousha';
+    background-color: rgba(36, 29, 19, 0.85);
+    border: #523a24 3px solid;
+    border-radius: 10px;
+    position: absolute;
+    display: block;
+    padding: 8px;
+    transform: translate(-50%, -50%);
+    transition: none;
+}

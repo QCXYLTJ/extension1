@@ -1,0 +1,174 @@
+
+SS_CM_dianliang.png
+size: 173,173
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dianliang/dianliangjienng_000
+  rotate: false
+  xy: 2, 130
+  size: 38, 41
+  orig: 120, 120
+  offset: 40, 41
+  index: -1
+dianliang/dianliangjienng_001
+  rotate: false
+  xy: 2, 90
+  size: 36, 38
+  orig: 120, 120
+  offset: 41, 42
+  index: -1
+dianliang/dianliangjienng_002
+  rotate: false
+  xy: 103, 135
+  size: 36, 36
+  orig: 120, 120
+  offset: 41, 42
+  index: -1
+dianliang/dianliangjienng_003
+  rotate: true
+  xy: 138, 99
+  size: 34, 33
+  orig: 120, 120
+  offset: 43, 42
+  index: -1
+dianliang/dianliangjienng_004
+  rotate: true
+  xy: 105, 98
+  size: 35, 31
+  orig: 120, 120
+  offset: 42, 43
+  index: -1
+dianliang/dianliangjienng_005
+  rotate: true
+  xy: 138, 62
+  size: 35, 31
+  orig: 120, 120
+  offset: 42, 43
+  index: -1
+dianliang/dianliangjienng_006
+  rotate: true
+  xy: 98, 56
+  size: 36, 31
+  orig: 120, 120
+  offset: 42, 43
+  index: -1
+dianliang/dianliangjienng_007
+  rotate: true
+  xy: 68, 12
+  size: 36, 32
+  orig: 120, 120
+  offset: 42, 43
+  index: -1
+dianliang/dianliangjienng_008
+  rotate: true
+  xy: 71, 94
+  size: 37, 32
+  orig: 120, 120
+  offset: 42, 43
+  index: -1
+dianliang/dianliangjienng_009
+  rotate: true
+  xy: 2, 50
+  size: 38, 32
+  orig: 120, 120
+  offset: 41, 43
+  index: -1
+dianliang/dianliangjienng_010
+  rotate: true
+  xy: 2, 10
+  size: 38, 31
+  orig: 120, 120
+  offset: 41, 44
+  index: -1
+dianliang/dianliangjienng_011
+  rotate: true
+  xy: 35, 10
+  size: 38, 31
+  orig: 120, 120
+  offset: 41, 44
+  index: -1
+dianliang/dianliangjienng_012
+  rotate: true
+  xy: 36, 50
+  size: 38, 30
+  orig: 120, 120
+  offset: 41, 45
+  index: -1
+dianliang/dianliangjienng_013
+  rotate: true
+  xy: 40, 90
+  size: 38, 29
+  orig: 120, 120
+  offset: 41, 46
+  index: -1
+dianliang/dianliangjienng_014
+  rotate: true
+  xy: 42, 133
+  size: 38, 29
+  orig: 120, 120
+  offset: 41, 46
+  index: -1
+dianliang/dianliangjienng_015
+  rotate: true
+  xy: 68, 50
+  size: 38, 28
+  orig: 120, 120
+  offset: 41, 47
+  index: -1
+dianliang/dianliangjienng_016
+  rotate: true
+  xy: 73, 134
+  size: 37, 28
+  orig: 120, 120
+  offset: 41, 47
+  index: -1
+dianliang/dianliangjienng_017
+  rotate: true
+  xy: 141, 135
+  size: 36, 26
+  orig: 120, 120
+  offset: 41, 48
+  index: -1
+dianliang/dianliangjienng_018
+  rotate: false
+  xy: 131, 35
+  size: 34, 25
+  orig: 120, 120
+  offset: 41, 48
+  index: -1
+dianliang/dianliangjienng_019
+  rotate: true
+  xy: 102, 2
+  size: 31, 23
+  orig: 120, 120
+  offset: 43, 49
+  index: -1
+dianliang/dianliangjienng_020
+  rotate: true
+  xy: 127, 2
+  size: 31, 22
+  orig: 120, 120
+  offset: 44, 50
+  index: -1
+dianliang/dianliangjienng_021
+  rotate: false
+  xy: 151, 12
+  size: 20, 21
+  orig: 120, 120
+  offset: 45, 52
+  index: -1
+dianliang/dianliangjienng_022
+  rotate: true
+  xy: 102, 36
+  size: 18, 20
+  orig: 120, 120
+  offset: 47, 53
+  index: -1
+dianliang/dianliangjienng_023
+  rotate: true
+  xy: 2, 4
+  size: 4, 10
+  orig: 120, 120
+  offset: 47, 54
+  index: -1
