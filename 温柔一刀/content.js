@@ -2394,6 +2394,16 @@ const content = async function () {
     zhijie();
     //————————————————————————————————————————————————————————————————————————————————————————————————————浅层检测
     const qianceng = function () {
+      if (lib.card.zj_lianjunshengyan) {
+        lib.card.zj_lianjunshengyan.selectTarget = function () {
+          return [1, 1];
+        };
+      }
+      if (lib.card.hongyun) {
+        lib.card.hongyun.selectTarget = function () {
+          return [1, 1];
+        };
+      }
       if (lib.card.lizhengshangyou) {
         lib.card.lizhengshangyou.ai = {
           basic: {
@@ -6294,6 +6304,34 @@ const content = async function () {
     qianceng();
     //————————————————————————————————————————————————————————————————————————————————————————————————————深层检测
     const shenceng = function () {
+      if (QQQ.DEEP('lib.skill.dcsbyaozuo.subSkill.ai')) {
+
+      }
+      if (QQQ.DEEP('lib.skill.dcsbyaozuo.subSkill.ai')) {
+        delete lib.skill.dcsbyaozuo.subSkill.ai;
+        lib.skill.dcsbyaozuo.subSkill.effect.ai = {
+          effect: {
+            player(card, player, target) {
+              if (get.is.damageCard(card) && player.hasStorage("dcsbyaozuo_effect", target)) {
+                return 1.5;
+              }
+            },
+          },
+        };
+      }
+      if (QQQ.DEEP('lib.skill.xinzhanyi.subSkill.basic')) {
+        delete lib.skill.xinzhanyi.subSkill.basic.result;
+        lib.skill.xinzhanyi.subSkill.basic.ai = {
+          result: {
+            player(player) {
+              if (get.event().dying) {
+                return get.attitude(player, get.event().dying);
+              }
+              return 1;
+            },
+          },
+        };
+      }
       if (QQQ.DEEP('lib.skill.reqice.chooseButton')) {
         lib.skill.reqice.chooseButton.check = function (button) {
           let player = _status.event.player;
