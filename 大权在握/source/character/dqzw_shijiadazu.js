@@ -863,10 +863,8 @@ export let info = {
       usable: 1,
       logTarget: 'target',
       async content(event, trigger, player) {
-        const target = trigger.target,
-          {
-            result: { bool },
-          } = await player.chooseToCompare(target, (card) => -card.number);
+        const target = trigger.target;
+        const { bool } = await player.chooseToCompare(target, (card) => -card.number).forResult();
         if (!bool) {
           await player.draw('nodelay');
           await target.draw('nodelay');
@@ -975,18 +973,16 @@ export let info = {
                 .then(function () {
                   event.insert(
                     async function (event, trigger, player) {
-                      let suits = trigger.cards.map((card) => card.suit),
-                        {
-                          result: { targets },
-                        } = await player
-                          .chooseTarget(
-                            `###${get.prompt('bingxin')}###令自己本回合只能使用${get.translation(suits)}牌并令一名手牌数最少的角色成为${get.translation(trigger.card)}的额外目标`,
-                            (_card, player, target) => !_status.event.targets.includes(target) && target.isMinHandcard() && lib.filter.filterTarget2(_status.event.card, player, target),
-                            (target) => get.effect(target, _status.event.card, get.player(), get.player())
-                          )
-                          .set('targets', trigger.targets)
-                          .set('card', trigger.card)
-                          .set('num', trigger.cards.length);
+                      let suits = trigger.cards.map((card) => card.suit);
+                      const { targets } = await player
+                        .chooseTarget(
+                          `###${get.prompt('bingxin')}###令自己本回合只能使用${get.translation(suits)}牌并令一名手牌数最少的角色成为${get.translation(trigger.card)}的额外目标`,
+                          (_card, player, target) => !_status.event.targets.includes(target) && target.isMinHandcard() && lib.filter.filterTarget2(_status.event.card, player, target),
+                          (target) => get.effect(target, _status.event.card, get.player(), get.player())
+                        )
+                        .set('targets', trigger.targets)
+                        .set('card', trigger.card)
+                        .set('num', trigger.cards.length).forResult();
                       if (targets && targets.length) {
                         player.setStorage('dqzw_bingxin_unusable', suits);
                         player.addTempSkill('dqzw_bingxin_unusable');
@@ -2263,13 +2259,11 @@ export let info = {
       _priority: 50,
       async content(event, trigger, player) {
         const target = trigger.player,
-          cards = player.getCards('h', (card) => get.is.shownCard(card)),
-          {
-            result: { bool },
-          } = await target
-            .chooseBool()
-            .set('createDialog', [`###是否令${get.translation(player)}发动【${get.skillTranslation(event.name, player)}】？###获得以下牌并令其摸两张牌`, cards])
-            .set('choice', get.attitude(target, player) > 2 ? true : cards.length > 3 && cards.length != player.getCards('h').length);
+          cards = player.getCards('h', (card) => get.is.shownCard(card));
+        const { bool } = await target
+          .chooseBool()
+          .set('createDialog', [`###是否令${get.translation(player)}发动【${get.skillTranslation(event.name, player)}】？###获得以下牌并令其摸两张牌`, cards])
+          .set('choice', get.attitude(target, player) > 2 ? true : cards.length > 3 && cards.length != player.getCards('h').length).forResult();
         if (bool) {
           trigger.cancel();
           player.$give(cards, target);

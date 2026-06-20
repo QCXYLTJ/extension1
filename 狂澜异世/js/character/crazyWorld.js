@@ -645,10 +645,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return !player.getStorage('rgxluzhen').includes(card.name) ? 0.5 : -0.5;
                     });
                     judgeEvent.judge2 = (result) => result.bool;
-                    const {
-                        result: { card },
-                    } = await judgeEvent,
-                        bool = !player.getStorage('rgxluzhen').includes(card.name);
+                    const { card } = await judgeEvent.forResult();
+                    const bool = !player.getStorage('rgxluzhen').includes(card.name);
                     if (bool) {
                         trigger.parent.excluded.add(player);
                         player.markAuto('rgxluzhen', card.name);
@@ -7933,10 +7931,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return game.hasPlayer((current) => trigger.target.canUse(card, current, false)) && get.type(card) != 'equip' ? 0.5 : -0.5; //QQQ
                             });
                             judgeEvent.judge2 = (result) => result.bool;
-                            const {
-                                result: { card },
-                            } = await judgeEvent,
-                                bool = game.hasPlayer((current) => trigger.target.canUse(card, current, false)) && get.type(card) != 'equip';
+                            const { card } = await judgeEvent.forResult();
+                            const bool = game.hasPlayer((current) => trigger.target.canUse(card, current, false)) && get.type(card) != 'equip';
                             if (bool) {
                                 trigger.set('card', { name: card.name, suit: card.suit, number: card.number, nature: card.nature });
                             } else {

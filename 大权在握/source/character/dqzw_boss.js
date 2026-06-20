@@ -425,10 +425,8 @@ export let info = {
           str = `是否令${get.translation(player)}本次摸到的牌可于此阶段弃置？`;
         for (let target of targets) {
           target.line(player, 'green');
-          const { result } = await player.draw('nodelay'),
-            {
-              result: { bool },
-            } = await target.chooseBool(str).set('choice', get.attitude(target, player) > 3);
+          const { result } = await player.draw('nodelay');
+          const { bool } = await target.chooseBool(str).set('choice', get.attitude(target, player) > 3).forResult();
           if (!bool && result) {
             notdiscard.push(...result);
             target.popup('不弃');
