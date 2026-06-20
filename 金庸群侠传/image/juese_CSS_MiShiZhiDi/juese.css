@@ -1,0 +1,621 @@
+@font-face {
+    font-family: biaokaiti;
+    src: url(../../font/font_biaokaiti.woff2);
+}
+@font-face {
+    font-family: fangsong;
+    src: url(../../font/font_zihun36fangsong.woff2);
+}
+@font-face {
+    font-family: heiti;
+    src: url(../../font/font_fzhetifont_fzheti.woff2);
+}
+@font-face {
+    font-family: fzlier;
+    src: url(../../font/font_fzlier.woff2);
+}
+@font-face {
+    font-family: zhuangjia;
+    src: url(../../font/font_zhuangjia.woff2);
+}
+@font-face {
+    font-family: fzlb;
+    src: url(../../font/font_fzlb.woff2);
+}
+@font-face {
+    font-family: fzboy;
+    src: url(../../font/font_fzboyasong.woff2);
+}
+@font-face {
+    font-family: momo;
+    src: url(../../font/font_momolaowushouji.woff2);
+}
+@keyframes chuifu {
+    0% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(1deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes chuifu1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv div {
+    display: block;
+    position: static;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_layerping {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(0, 0%, 0%, 0.842);
+    top: 0;
+    left: 0;
+    background-size: cover;
+}
+.juese_CSS_MiShiZhiDi .leftbg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    transform-origin: left bottom;
+    background-image: url(../juese_MiShiZhiDi/jy_guajian5.png);
+    transform: translateX(-50%);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv {
+    /* width:2560px;
+  height:1440px;
+  background-size:cover;
+  position:absolute;
+  left:0;
+  top:0;
+  transform-origin: 0 0;
+  overflow: hidden;
+  display:block; */
+    width: 2560px;
+    height: 1440px;
+    background-size: cover;
+    position: absolute;
+    left: 51%;
+    top: 50%;
+    transform-origin: 0 0;
+    /* overflow-y: hidden; */
+    display: block;
+    transform-origin: center;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv_backbtn {
+    position: absolute;
+    width: 896px;
+    height: 92px;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(../juese_MiShiZhiDi/jy_back.png);
+    background-size: cover;
+    transform-origin: left top;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv_backbtn:hover {
+    background-image: url(../juese_MiShiZhiDi/jy_back_click.png);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_guajiandiv {
+    position: absolute;
+    width: 1133px;
+    background-image: url(../juese_MiShiZhiDi/jy_guajian.png);
+    height: 250px;
+    bottom: 1087px;
+    right: 146px;
+    z-index: 0;
+    background-size: cover;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv {
+    width: 1133px;
+    height: 1410px;
+    position: absolute;
+    bottom: 0;
+    left: 1200px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juesebgdiv {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-image: url(../juese_MiShiZhiDi/group_jy_ming.png);
+    background-size: cover;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juesebgdiv1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 260PX;
+    z-index: 3;
+    background-size: cover;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juesedivimg {
+    height: 1310px;
+    top: 72px;
+    left: 194px;
+    width: 760px;
+    position: absolute;
+    /* background-image:url(../juese_MiShiZhiDi/yttl_xinran.jpg); */
+    background-size: cover;
+    z-index: 0;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juesedivimg.lutou {
+    background-position-x: center;
+    height: 1300px;
+    top: 29px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_level {
+    position: absolute;
+    top: 110px;
+    right: -19px;
+    transform-origin: top center;
+    /*animation: chuifu1 3s linear 1s infinite alternate;
+    -webkit-animation: chuifu1 3s linear 1s infinite alternate;*/
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_designinfo {
+    /*writing-mode: vertical-lr;*/
+    color: #f7d396;
+    font-family: heiti;
+    font-size: 33px;
+    position: absolute;
+    font-weight: bold;
+    letter-spacing: 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 300px;
+    overflow: hidden;
+    left: 840px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_designinfo:nth-child(1) {
+    top: 875px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_designinfo:nth-child(2) {
+    top: 1002px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_designinfo:nth-child(3) {
+    top: 1130px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_designinfo:nth-child(4) {
+    top: 1254px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_heroname {
+    /*writing-mode: vertical-lr;*/
+    color: #f7d396;
+    /* border: 1px solid; */
+    font-family: heiti;
+    font-size: 45px;
+    position: absolute;
+    top: 510px;
+    left: 852px;
+    letter-spacing: 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 300px;
+    overflow: hidden;
+    /*text-shadow: -4px 0 black, 0 1px black, 1px 0 black, 0 -4px black;*/
+    /* font-weight: bold;*/
+    text-align: center;
+    /* text-align: justify;
+    text-align-last: justify; */
+    /*text-shadow: 1px 1px 8px #f0f0f0, 1px 1px 8px #f0f0f0, 1px 1px 8px #f0f0f0;*/
+    /* text-shadow: 2px 2px 10px rgb(46, 25, 1);*/
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesediv .jyqxz_juese_blood {
+    display: block;
+    width: 50px;
+    position: absolute;
+    bottom: 180px;
+    left: 600px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesecont {
+    width: 1389px;
+    height: 1315px;
+    position: absolute;
+    top: 66px;
+    left: 50px;
+    background-image: url(../juese_MiShiZhiDi/jy_introbox.png);
+    background-size: cover;
+    box-sizing: border-box;
+    /*padding:80px 120px;*/
+    padding-left: 180px;
+    padding-right: 200px;
+    padding-top: 154px;
+    padding-bottom: 100px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesecont .jyqxz_juesecont_itemdiv {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juesecont .jyqxz_juesecont_itemdiv.active {
+    display: block;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skillname {
+    /* float: left;
+  width: 372px;
+  height: 127px;
+  letter-spacing: 12px;
+  line-height: 127px;
+  text-align: center;
+  background-image: url(../juese_MiShiZhiDi/jy_skillbutton.png);
+  font-family: fzlb;
+  font-size: 54px;
+  font-weight: bold;
+  color: #784108;
+  box-sizing: border-box;
+  padding-left: 10px;
+  background-size: cover;
+    text-shadow: none; */
+    float: left;
+    /* width: 372px; */
+    min-width: 372px;
+    box-sizing: border-box;
+    padding: 36px 40px;
+    /* height: 127px; */
+    letter-spacing: 12px;
+    max-width: 900px;
+    /* line-height: 119px; */
+    /* min-height: 127px; */
+    text-align: center;
+    background-image: url(../juese_MiShiZhiDi/jy_skillbutton.png);
+    font-family: heiti;
+    font-size: 50px;
+    /*font-weight: bold;*/
+    letter-spacing: 10px;
+    color: #e3bf77;
+    box-sizing: border-box;
+    /* padding-left: 10px; */
+    background-size: 100% 100%;
+    -webkit-text-stroke: 2px #4a3807;
+    text-stroke: 2px #4a3807;
+    font-weight: bold;
+    /*text-shadow: 1px 1px 8px #4a3807, 1px 1px 8px #4a3807, 1px 1px 8px #4a3807;*/
+    /*text-shadow: none;*/
+    text-justify: inter-word;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_taiciname {
+    float: left;
+    width: 372px;
+    height: 127px;
+    letter-spacing: 12px;
+    line-height: 119px;
+    text-align: center;
+    background-image: url(../juese_MiShiZhiDi/jy_taicibutton.png);
+    background-size: cover;
+    font-family: heiti;
+    font-size: 50px;
+    /*font-weight: bold;*/
+    color: #e3bf77;
+    box-sizing: border-box;
+    padding-left: 10px;
+    text-shadow: none;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skill {
+    overflow: hidden;
+    padding: 10px 0;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skillaudio {
+    float: right;
+    width: 169px;
+    height: 127px;
+    background-image: url(../juese_MiShiZhiDi/jy_audiobutton.png);
+    background-size: cover;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skillaudio:hover {
+    background-image: url(../juese_MiShiZhiDi/jy_audiobutton_click.png);
+}
+/*技能描述属性*/
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skillcont {
+    clear: both;
+    padding: 10px;
+    padding-right: 10px;
+    text-indent: 2em;
+    line-height: 1.2;
+    font-family: heiti;
+    font-size: 42px;
+    color: #7c6f5b;
+    text-shadow: none;
+    text-align: justify;
+    /* text-justify: inter-word;*/
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+/*觉醒技技能描述属性*/
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skillcont p {
+    clear: both;
+    padding: 10px;
+    padding-right: 10px;
+    text-indent: 2em;
+    line-height: 1.2;
+    font-family: heiti;
+    font-size: 42px;
+    color: #7c6f5b;
+    text-shadow: none;
+    text-align: justify;
+    /*text-justify: inter-word;*/
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skilltaici {
+    clear: both;
+    padding: 10px;
+    padding-right: 10px;
+    line-height: 1.2;
+    font-family: heiti;
+    font-size: 42px;
+    color: #7c6f5b;
+    text-shadow: none;
+    text-align: justify;
+    /*text-justify: inter-word;*/
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.juese_CSS_MiShiZhiDi .gonglue {
+    clear: both;
+    padding: 10px;
+    padding-right: 10px;
+    line-height: 1.2;
+    font-family: heiti;
+    font-size: 42px;
+    color: #7c6f5b;
+    text-shadow: none;
+    text-align: justify;
+    /*text-justify: inter-word;*/
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.juese_CSS_MiShiZhiDi .gushi {
+    clear: both;
+    padding: 10px;
+    padding-right: 10px;
+    line-height: 1.3;
+    font-family: heiti;
+    font-size: 42px;
+    color: #7c6f5b;
+    text-shadow: none;
+    text-align: justify;
+    /*text-justify: inter-word;*/
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_right_navsp {
+    transform-origin: left top;
+    transform: scale(0.36875);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_right_navs {
+    position: absolute;
+    left: 50px;
+    top: -50px;
+    width: 216px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 210px;
+    transform-origin: left top;
+    /* animation: chuifu 3s linear 1s infinite alternate;*/
+    /* -webkit-animation: chuifu 3s linear 1s infinite alternate;*/
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_right_nav_item {
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_right_nav_item_footer {
+    position: relative;
+    display: block;
+    left: 34px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_right_nav_bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    transform-origin: letf top;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_left_nav_bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    transform-origin: letf top;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juese_btns {
+    display: block;
+    position: absolute;
+    width: 1240px;
+    bottom: -20px;
+    left: 115px;
+    text-align: center;
+    font-size: 0;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juese_btns .jyqxz_juese_btn {
+    display: inline-block;
+    cursor: pointer;
+}
+.jyqxz_juese_skins_div {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.801);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skins {
+    width: 2421px;
+    height: 1122px;
+    background-image: url(../juese_MiShiZhiDi/jy_skinbox.png);
+    background-size: cover;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 4;
+    transform-origin: center center;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skin_leftbtn {
+    display: block;
+    width: 154px;
+    height: 169px;
+    position: absolute;
+    background-image: url(../juese_MiShiZhiDi/jy_left.png);
+    top: 510px;
+    left: 128px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skin_leftbtn:hover {
+    background-image: url(../juese_MiShiZhiDi/jy_left_click.png);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skin_rightbtn {
+    display: block;
+    width: 154px;
+    height: 169px;
+    position: absolute;
+    background-image: url(../juese_MiShiZhiDi/jy_right.png);
+    top: 510px;
+    right: 108px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skin_rightbtn:hover {
+    background-image: url(../juese_MiShiZhiDi/jy_right_click.png);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skins_showbox {
+    position: absolute;
+    top: 238px;
+    left: 270px;
+    width: 1896px;
+    height: 733px;
+    display: block;
+    overflow-x: scroll;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skinsbox {
+    position: relative;
+    display: block;
+    /* left:0;
+  top:0;
+  transition: left 1s; */
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skinbox {
+    width: 474px;
+    height: 733px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skin {
+    width: 405px;
+    height: 545px;
+    background-size: cover;
+    display: block;
+    position: relative;
+    left: 37px;
+    top: 77px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skin.lutou {
+    height: 582px;
+    top: 40px;
+    background-position-x: center;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skinbox:hover .jyqxz_juese_skin {
+    box-shadow: 0 0 42px 7px #bbff17;
+}
+/*皮肤称号代码*/
+.jyqxz_juese_title {
+    font-size: 55px;
+    color: #f8d85a;
+    position: absolute;
+    width: 80%;
+    /* background: #00000080;*/
+    background-image: url(../juese_MiShiZhiDi/jy_skinname_bg.png);
+    left: 10%;
+    bottom: 123px;
+    z-index: 10;
+    text-align: center;
+    padding: 5px 0px;
+    /* margin: 0 -50px; */
+    font-family: fzlb;
+    text-shadow: 4px 4px 8px #2b1801, 4px 4px 8px #2b1801, 4px 4px 8px #2b1801;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skinborder {
+    width: 100%;
+    height: 100%;
+    background-image: url(../juese_MiShiZhiDi/jy_skinborder.png);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juese_scroll {
+    -ms-overflow-style: none;
+    overflow: scroll !important;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_infodiv .jyqxz_juese_scroll::-webkit-scrollbar {
+    width: 0 !important
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_videos_leftbtn {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-image: url(../juese_MiShiZhiDi/jy_video_left.png);
+    top: 510px;
+    display: block;
+    left: -88px;
+    cursor: pointer;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_videos_leftbtn:hover {
+    background-image: url(../juese_MiShiZhiDi/jy_video_left_click.png);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_videos_rightbtn {
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-image: url(../juese_MiShiZhiDi/jy_video_right.png);
+    top: 510px;
+    display: block;
+    right: -88px;
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_videos_rightbtn:hover {
+    background-image: url(../juese_MiShiZhiDi/jy_video_right_click.png);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_videos {
+    background-image: url(../juese_MiShiZhiDi/jy_videobox.png);
+}
+.juese_CSS_MiShiZhiDi .jyqxz_juese_skinborder.videos {
+    background-image: url(../juese_MiShiZhiDi/jy_videoborder.png);
+}

@@ -1,0 +1,159 @@
+/* 萨米肉鸽通用板子 */
+.SamGeneralChoose {
+  width: 20%;
+  height: 70%;
+  background-size: 100% 100%;
+  background-image: url(../image/mode/rougelike/Saamis/orther/teamIMG/teamBGI.png);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  flex-shrink: 0;
+}
+.SamGeneralChoose .icon {
+  width: 100%;
+  height: 40%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SamGeneralChoose .icon .image {
+  width: 50%;
+  height: 50%;
+  background-size: 100% 100%;
+}
+.SamGeneralChoose .teamName {
+  width: 100%;
+  display: flex;
+  /* align-content: center; */
+  justify-content: center;
+  font-size: 100%;
+  margin: 10% 0;
+  position: relative;
+}
+.SamGeneralChoose .boundaryBox {
+  width: 100%;
+  height: 5%;
+  margin-top: 10%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.SamGeneralChoose .boundaryBox .boundary {
+  width: 80%;
+  height: 100%;
+  background-color: gray;
+}
+.SamGeneralChoose .teamIntro {
+  width: 100%;
+  display: flex;
+  font-size: 80%;
+  margin: 10% 3%;
+  position: relative;
+  justify-content: center;
+}
+/* 萨米肉鸽队伍信息显示 */
+.SamTeamInfo {
+  width: 30%;
+  height: 20%;
+  background-image: url(./../image/mode/rougelike/Saamis/orther/teamInfoDiv/bg.png);
+  background-size: 100% 100%;
+  background-color: black;
+  z-index: 99;
+  position: absolute;
+  bottom: 12%;
+  left: 2%;
+}
+.SamTeamInfo .teamName {
+  width: 30%;
+  height: 18%;
+  position: absolute;
+  left: 5%;
+  top: 8%;
+  background-size: 100% 100%;
+  background-image: url(./../image/mode/rougelike/Saamis/orther/teamInfoDiv/bluebg1.png);
+}
+.SamTeamInfo .teamName .name {
+  width: 100%;
+  height: 100%;
+  font-size: medium;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bolder;
+}
+.SamTeamInfo .content {
+  width: 80%;
+  height: 30%;
+  position: absolute;
+  left: 5%;
+  top: 25%;
+}
+.SamTeamInfo .content .info {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: small;
+}
+.SamTeamInfo .battleNatrue {
+  width: 20%;
+  height: 30%;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  background-size: 100% 100%;
+  background-image: url(./../image/mode/rougelike/Saamis/orther/teamInfoDiv/battleNatrue.png);
+}
+.SamTeamInfo .difNum {
+  bottom: 5%;
+  left: 25%;
+  width: 15%;
+  aspect-ratio: 1;
+  position: absolute;
+}
+.SamTeamInfo .difNum .dif {
+  width: 100%;
+  height: 100%;
+  font-size: xx-large;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+}
+/* 透明背景 */
+.SamBGtransparent {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  left: 0px;
+  bottom: 10%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+/* 详细的藏品图标 */
+.collect {
+  height: 100%;
+  aspect-ratio: 1;
+  background-size: 100% 100%;
+  position: relative;
+}
+.collectName {
+  height: auto;
+  width: 40%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-items: center;
+  font-size: medium;
+  color: white;
+}
+.collectInfo {
+  height: 70%;
+  width: auto;
+  position: relative;
+  font-size: small;
+  color: white;
+}

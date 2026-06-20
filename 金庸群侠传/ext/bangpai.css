@@ -1,0 +1,198 @@
+@font-face {
+  font-family: biaokaiti;
+  src: url(../font/font_biaokaiti.woff2);
+}
+@font-face {
+  font-family: fzboy;
+  src: url(../font/font_fzboyasong.woff2);
+}
+@font-face {
+  font-family: fzxh;
+  src: url(../font/font_fzxihei.woff2);
+}
+@font-face {
+  font-family: sxsgysj;
+  src: url(../font/font_sxsgysj.woff2);
+}
+@font-face {
+  font-family: momo;
+  src: url(../font/font_momolaowushouji.woff2);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+#jyqxz_bangpai_infodiv div {
+  display: block;
+  position: static;
+}
+#jyqxz_bangpai_infodiv {
+  width: 1920px;
+  height: 1080px;
+  background-image: url(../image/bangpai/jy_bp_bg_shaolin.jpg);
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  overflow: hidden;
+  display: block;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_backbtn {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+  z-index: 2;
+}
+#jyqxz_bangpai_infodiv #jyqxz_bangpai_infodiv_infodiv {
+  float: right;
+  width: 1150px;
+  height: 100%;
+  overflow: hidden;
+  background-image: url(../image/bangpai/jy_bp_inro_bg.png);
+  background-size: cover;
+  padding: 0px 30px 0px 200px;
+  box-sizing: border-box;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_infodiv_infos {
+  width: 77%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+/*帮派名称字体属性*/
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_infodiv_infos_bangpai_title {
+  margin-top: 20px;
+  font-family: sxsgysj;
+  font-size: 150px;
+  color: #4c412e;
+  margin: 0 20px 20px;
+  text-shadow: none;
+  /*-webkit-text-stroke: 2px #2173FF;*/
+  /*text-shadow: 6px 2px 12px #d1a333;*/
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_img {
+  display: block;
+  width: 44%;
+  margin-bottom: 10px;
+}
+/*帮派题诗字体体属性*/
+#jyqxz_bangpai_infodiv .zanship {
+  font-family: fzboy;
+  font-size: 30px;
+  color: #645842;
+  text-align: center;
+  text-indent: 0px;
+  word-spacing: 2px;
+  line-height: 1.2;
+  text-shadow: none;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_bangpaifenge {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_contentdiv {
+  flex: 1;
+  overflow-y: auto;
+}
+/*帮派介绍字体属性*/
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_contentdiv_bangpaiinfo {
+  font-size: 30px;
+  font-family: fzxh;
+  line-height: 1.3;
+  text-indent: 2em;
+  color: #645842;
+  padding: 10px;
+  text-shadow: none;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+/*技能描述字体属性*/
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_contentdiv_jinenginfo {
+  font-size: 33px;
+  font-family: fzxh;
+  line-height: 1.3;
+  color: #645842;
+  padding: 10px;
+  padding-top: 20px;
+  text-shadow: none;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_bottom_bg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_bottom_bgimg {
+  width: 100%;
+  display: block;
+}
+@keyframes donghua {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10px, 10px) scale(1.25);
+  }
+  100% {
+    transform: translate(-10px, -10px) scale(0.75);
+  }
+}
+@-webkit-keyframes donghua {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10px, 10px) scale(1.25);
+  }
+  100% {
+    transform: translate(-10px, -10px) scale(0.75);
+  }
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_lihui {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 940px;
+  z-index: 1;
+  animation: donghua 3s linear 1s infinite alternate;
+  -webkit-animation: donghua 3s linear 1s infinite alternate;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_tree {
+  position: absolute;
+  left: 0;
+  top: 385px;
+  /* width:156px; */
+  z-index: 1;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_scroll {
+  -ms-overflow-style: none;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_scroll::-webkit-scrollbar {
+  width: 0 !important
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_infodiv_navs {
+  width: 23%;
+  float: left;
+  height: 100%;
+  overflow-y: auto;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_infodiv_nav {
+  display: block;
+  width: 90%;
+}
+#jyqxz_bangpai_infodiv .jyqxz_bangpai_infodiv_infodiv_nav::after {
+  content: "";
+  display: bloak;
+  width: 5px;
+  height: 5px;
+  background: #d1a333;
+  border-radius: 50%;
+}

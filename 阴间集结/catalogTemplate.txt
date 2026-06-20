@@ -1,0 +1,9 @@
+﻿extension["阴间集结"]={
+	intro:"扩展介绍:本扩展集合了三国杀出现过的所有模式里面的最强武将,原则基础上再加强,强度极高,并且安装扩展后要开启ai禁选.另外此扩展为免费扩展,请勿相信收费购买<br><span style='color: gold'>潜水的火修复版<br>『无名杀扩展大全群』:771901025<br></span>",
+	author:"少年 qq2856427658",
+	nedisk:"",
+	forum:"",
+	size:"#SIZE",
+	version:"3.00.0",
+	files:[#FILES],
+};

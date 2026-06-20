@@ -1,0 +1,179 @@
+@font-face {
+  font-family: biaokaiti;
+  src: url(../font/font_biaokaiti.woff2);
+}
+@font-face {
+  font-family: fzboy;
+  src: url(../font/font_fzboyasong.woff2);
+}
+@font-face {
+  font-family: momo;
+  src: url(../font/font_momolaowushouji.woff2);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+#jyqxz_changjing_infodiv div {
+  display: block;
+  position: static;
+}
+#jyqxz_changjing_infodiv {
+  width: 1920px;
+  height: 1080px;
+  background-image: url(../image/changjing/jy_bp_bg_shaolin.jpg);
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  overflow: hidden;
+  display: block;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_backbtn {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+  z-index: 2;
+}
+/*场景技能描述属性*/
+#jyqxz_changjing_infodiv #jyqxz_changjing_infodiv_infodiv {
+  float: right;
+  width: 900px;
+  height: 100%;
+  overflow: hidden;
+  background-image: url(../image/changjing/jycj_inro_bg.png);
+  background-size: cover;
+  padding: 40px 60px 20px 80px;
+  box-sizing: border-box;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_infodiv_infos {
+  width: 77%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+/*场景名字体属性*/
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_infodiv_infos_changjing_title {
+  font-family: momo;
+  font-size: 150px;
+  color: #d1a333;
+  left: -400px;
+  margin: 0 20px 20px;
+  text-shadow: 6px 2px 12px #d1a333;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_img {
+  display: block;
+  width: 44%;
+  margin-bottom: 10px;
+}
+#jyqxz_changjing_infodiv .zanship {
+  font-family: fzboy;
+  font-size: 30px;
+  color: #d1a333;
+  text-align: center;
+  text-indent: 0px;
+  word-spacing: 0px;
+  line-height: 2;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_changjingfenge {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_contentdiv {
+  flex: 1;
+  overflow-y: auto;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_contentdiv_changjinginfo {
+  font-size: 24px;
+  font-family: biaokaiti;
+  line-height: 1.7;
+  text-indent: 2em;
+  color: #d1a333;
+  padding: 10px;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_contentdiv_jinenginfo {
+  font-size: 28px;
+  font-family: biaokaiti;
+  line-height: 1.7;
+  color: #d1a333;
+  bottom: 10px;
+  padding-left: -500px;
+  padding-bottom: 20px;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_bottom_bg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_bottom_bgimg {
+  width: 100%;
+  display: block;
+}
+@keyframes donghua {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10px, 10px) scale(1.25);
+  }
+  100% {
+    transform: translate(-10px, -10px) scale(0.75);
+  }
+}
+@-webkit-keyframes donghua {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10px, 10px) scale(1.25);
+  }
+  100% {
+    transform: translate(-10px, -10px) scale(0.75);
+  }
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_lihui {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 982px;
+  z-index: 1;
+  /*
+  animation: donghua 3s linear 1s infinite alternate;
+  -webkit-animation: donghua 3s linear 1s infinite alternate;*/
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_tree {
+  position: absolute;
+  left: 0;
+  top: 385px;
+  /* width:156px; */
+  z-index: 1;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_scroll {
+  -ms-overflow-style: none;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_scroll::-webkit-scrollbar {
+  width: 0 !important
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_infodiv_navs {
+  width: 23%;
+  float: left;
+  height: 100%;
+  overflow-y: auto;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_infodiv_nav {
+  display: block;
+  width: 90%;
+}
+#jyqxz_changjing_infodiv .jyqxz_changjing_infodiv_infodiv_nav::after {
+  content: "";
+  display: bloak;
+  width: 5px;
+  height: 5px;
+  background: #d1a333;
+  border-radius: 50%;
+}
