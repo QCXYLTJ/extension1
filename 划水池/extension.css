@@ -1,0 +1,282 @@
+@font-face {
+    font-family: 'hs_zhukai';
+    src: local('汉仪跃晰褚楷'), url(image/card/hs_zhukai.ttf);
+}
+.shield {
+    background: url(extension/划水池/image/card/shield.png);
+}
+@keyframes hs_open-dialog {
+    from {
+        opacity: 0.1;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#hs_wugu.dialog {
+    bottom: calc(30% + 86px) !important;
+    font-family: 'HYZLSJ' !important;
+    color: #eddac3 !important;
+    background-position: center;
+    background-image: url(image/card/ssdialog.png) !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat;
+    white-space: normal;
+    width: 100%;
+    left: auto;
+    height: auto !important;
+    background-color: transparent !important;
+    box-shadow: none;
+    animation: 0.5s ease 0s 1 normal none running hs_open-dialog !important;
+}
+#hs_wugu>.content-container>.content>.caption {
+    font-size: 30px;
+    left: 10px;
+}
+#hs_wugu>.content-container>.content>.buttons {
+    bottom: 15px;
+}
+#hs_wugu>.content-container>.content>.buttons>div {
+    margin: 0;
+}
+#hs_wugu>.content-container>.content>.buttons>.button>.xtx {
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
+    z-index: 2;
+    height: 2.2em;
+    width: 2.2em;
+    background-repeat: no-repeat;
+    background-size: 65px;
+    background-position-y: 10%;
+    background-position-x: 50%;
+    border: 2px solid #c9c9ab;
+}
+#hs_wugu>.content-container>.content>.buttons>.button>.xtx>.xtxName {
+    position: inherit;
+    display: flex;
+    align-items: flex-start;
+    font-family: shousha;
+    font-size: 16px;
+    color: #eddac3;
+    width: 100px;
+    left: 40px;
+    bottom: 0;
+    z-index: 2;
+}
+#hs_wugu>.content-container>.content>.buttons>.button>.huise {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+    z-index: 1;
+}
+#hs_xiujiu>.diss>.dispile>.card>.xtx,
+.hs_xianshou>.xtx {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    z-index: 2;
+    height: 48px;
+    width: 48px;
+    background-repeat: no-repeat;
+    background-size: 75px;
+    background-position-y: 10%;
+    background-position-x: 50%;
+    border: 2px solid #c9c9ab;
+}
+#hs_xiujiu>.diss>.dispile>.card>.xtx>.xtxName,
+.hs_xianshou>.xtx>.xtxName {
+    position: inherit;
+    display: flex;
+    align-items: flex-start;
+    font-family: shousha;
+    font-size: 17px;
+    color: #eddac3;
+    width: 70px;
+    left: 45px;
+    bottom: 5px;
+    z-index: 2;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-shadow: 0 1px #453325, 1px 0 #453325, -1px 0 #453325, 0 -1px #453325;
+}
+#hs_qice.dialog {
+    background-image: url(image/card/ssdialog.png) !important;
+    background-size: 100% 100% !important;
+    width: 110% !important;
+    height: 250px !important;
+    left: -5% !important;
+    right: -5% !important;
+    top: 10% !important;
+    z-index: 8 !important;
+    animation: 0.5s ease 0s 1 normal none running hs_open-dialog !important;
+}
+#hs_qice>.introduce {
+    top: 50px;
+    left: calc(40% + 240px);
+    width: 200px;
+    text-align: left;
+    height: 190px;
+    font-size: 20px;
+    font-family: shousha;
+    color: #c9c9ab;
+    text-shadow: 1px 0 5px black, 1px 1px 2px black, -1px 0 0 black, 0 -1px 0 black;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* 取消掉滚动条*/
+}
+#hs_qice>.resultIntroduce {
+    background-image: url(image/card/cebian.png);
+    --w: 42px;
+    --h: calc(var(--w) * 161 / 51);
+    width: var(--w);
+    height: var(--h);
+    background-size: 100% 100%;
+    font-family: shousha;
+    color: #c9c9ab;
+    text-shadow: 1px 0 5px black, 1px 1px 2px black, -1px 0 0 black, 0 -1px 0 black;
+    top: 24%;
+    left: calc(40% + 50px);
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    writing-mode: tb-rl;
+    line-height: 50px;
+}
+#hs_qice>.cardArea {
+    top: 55px;
+    left: calc(40% + 100px);
+    width: 108px;
+    height: 140px;
+    background-size: 100% 100%;
+}
+#hs_qice>.cardArea>div {
+    top: -10px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+}
+#hs_qice>.cardArea>div:first-child {
+    z-index: 2;
+}
+#hs_xiujiu>.title,
+#hs_qice>.title {
+    font-size: 40px;
+    font-family: 'HYZLSJ';
+    background: linear-gradient(#C8BEB4 1%, #FCF8CC 12%, #F3F0BE, #FEF5A8, #E1D275, #C9B173, #D6CB6F, #A99355, #AC9557, #A38A51, #A38A51, #B29983, #B19786, #B19786, #B19786, #9B8583), linear-gradient(to right, #FCF8CC, #AC9557);
+    filter: drop-shadow(2px 0 0.5px #2F1809) drop-shadow(-2px 0 1.5px #2F1809) drop-shadow(0 2px 1px #2F1809) drop-shadow(0 -2px 1.5px #2F1809) blur(0.55px) saturate(1.25) contrast(1.25) grayscale(0.08) sepia(0.1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    padding-top: 0;
+    width: 100%;
+    height: 36px;
+    line-height: 30px;
+    letter-spacing: 3px !important;
+    text-shadow: none;
+    text-align: center;
+}
+#hs_qice>.smallCharacter {
+    position: absolute;
+    top: 50px;
+    left: 40%;
+    z-index: 2;
+    height: 2.2em;
+    width: 2.2em;
+    background-repeat: no-repeat;
+    background-size: 65px;
+    background-position-y: 10%;
+    background-position-x: 50%;
+    border: 2px solid #ad5949;
+}
+#hs_xiujiu.dialog {
+    background-image: url(image/card/ssdialog.png) !important;
+    background-size: 100% 100% !important;
+    width: 110% !important;
+    height: auto !important;
+    left: -5% !important;
+    right: -5% !important;
+    min-height: 350px !important;
+    top: 10% !important;
+    z-index: 8 !important;
+    animation: 0.5s ease 0s 1 normal none running hs_open-dialog !important;
+}
+#hs_xiujiu>.introduce1 {
+    background-image: url(image/card/cebian.png);
+    --w: 42px;
+    --h: calc(var(--w) * 161 / 51);
+    width: var(--w);
+    height: var(--h);
+    background-size: 100% 100%;
+    font-family: shousha;
+    color: #c9c9ab;
+    text-shadow: 1px 0 5px black, 1px 1px 2px black, -1px 0 0 black, 0 -1px 0 black;
+    top: calc(50% - 66px);
+    left: calc(50% - 450px);
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    writing-mode: tb-rl;
+    line-height: 50px;
+}
+#hs_xiujiu>.showcard {
+    top: calc(50% - 80px);
+    left: calc(50% - 390px);
+    width: 108px;
+    height: 140px;
+    background-size: 100% 100%;
+}
+#hs_xiujiu>.introduce2 {
+    background-image: url(image/card/cebian.png);
+    --w: 42px;
+    --h: calc(var(--w) * 161 / 51);
+    width: var(--w);
+    height: var(--h);
+    background-size: 100% 100%;
+    font-family: shousha;
+    color: #c9c9ab;
+    text-shadow: 1px 0 5px black, 1px 1px 2px black, -1px 0 0 black, 0 -1px 0 black;
+    top: calc(50% - 66px);
+    left: calc(50% - 245px);
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    writing-mode: tb-rl;
+    line-height: 50px;
+}
+#hs_xiujiu>.diss {
+    top: 55px;
+    left: calc(50% - 160px);
+    width: 600px;
+    height: 80%;
+}
+#hs_xiujiu>.diss>.disback {
+    background-image: url(image/card/dialgoarena.png);
+    background-size: 100% 100%;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+#hs_xiujiu>.diss>.dispile {
+    left: 5px;
+    overflow-y: visible;
+    font-family: shousha;
+    color: #c9c9ab;
+    font-size: 23px;
+}

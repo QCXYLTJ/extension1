@@ -1,0 +1,54 @@
+.camp-wrap[data-camp='guan_xkx']>.camp-back {
+    overflow: hidden;
+}
+.camp-wrap[data-camp='guan_xkx']>.camp-back:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(86, 255, 255);
+    background-size: 400%;
+    -webkit-filter: brightness(0.6);
+    -o-filter: brightness(0.6);
+    -moz-filter: brightness(0.6);
+    filter: brightness(0.6);
+    /*设置亮度,范围:0-1*/
+}
+.camp-wrap[data-camp='jun_xkx']>.camp-back {
+    overflow: hidden;
+}
+.camp-wrap[data-camp='jun_xkx']>.camp-back:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(255, 255, 86);
+    background-size: 400%;
+    -webkit-filter: brightness(0.6);
+    -o-filter: brightness(0.6);
+    -moz-filter: brightness(0.6);
+    filter: brightness(0.6);
+    /*设置亮度,范围:0-1*/
+}
+.camp-wrap[data-camp='ye_xkx']>.camp-back {
+    overflow: hidden;
+}
+.camp-wrap[data-camp='ye_xkx']>.camp-back:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(145, 145, 160);
+    background-size: 400%;
+    -webkit-filter: brightness(0.6);
+    -o-filter: brightness(0.6);
+    -moz-filter: brightness(0.6);
+    filter: brightness(0.6);
+    /*设置亮度,范围:0-1*/
+}
