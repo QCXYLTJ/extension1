@@ -1,0 +1,219 @@
+/*分离框*/
+.hok-swicth-choice {
+  z-index: 999;
+  width: 144px;
+  height: 69.6px;
+  background-size: 100% 100%;
+  background-image: url(../image/button/btn1.png);
+  display: block;
+  position: absolute;
+  line-height: 69.6px;
+  font-size: 24px;
+  font-family: 'shousha';
+  text-align: center;
+  color: #D0B999;
+  font-weight: 500;
+  margin: 0 0 -18px 0;
+  white-space: nowrap;
+  transition: all 0s;
+}
+.hok-swicth-choice.active {
+  transform: scale(1.1);
+  background-image: url(../image/button/btn2.png);
+}
+/*主体框*/
+.hok-swicth-dialog {
+  z-index: 999;
+  background-size: cover;
+  width: 716px;
+  height: 418px;
+  margin: auto;
+  transition: all 0s;
+}
+.hok-swicth-dialog>.content {
+  width: 716px;
+  height: 418px;
+  background-size: 100% 100%;
+  background-image: url(../image/ui/public-dialog-bg2.png);
+}
+.hok-swicth-dialog>.content2 {
+  width: 716px;
+  height: 418px;
+}
+.hok-swicth-dialog>.content2.extension {
+  top: 5%;
+  left: 5%;
+  width: 645px;
+  height: 345px;
+  overflow: auto;
+  scrollbar-width: auto;
+}
+/*整个滚动条*/
+.hok-swicth-dialog>.content2::-webkit-scrollbar {
+  display: block !important;
+  width: 18px;
+  height: 100%;
+  zoom: 0.7;
+}
+/*滚动条轨道*/
+.hok-swicth-dialog>.content2::-webkit-scrollbar-track {
+  border-width: 3px 0px 5px 0px;
+  border-style: solid;
+  border-color: transparent;
+  border-image-source: url(../image/ui/pub_scrollbar_bg.png);
+  border-image-slice: 3 0 5 0 fill;
+  border-image-repeat: stretch;
+  background: none;
+}
+/*滚动条上的滚动滑块*/
+.hok-swicth-dialog>.content2::-webkit-scrollbar-thumb {
+  border-width: 4px 0px 7px 0px;
+  border-style: solid;
+  border-color: transparent;
+  border-image-source: url(../image/ui/pub_scrollbar_src.png);
+  border-image-slice: 4 0 7 0 fill;
+  border-image-repeat: stretch;
+  background: none;
+}
+.hok-swicth-dialog>.content>.tips,
+.hok-swicth-dialog>.content2>.tips {
+  font-family: 'shousha';
+  font-size: 25px;
+  color: #4C3221;
+  /*position: relative;*/
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: -1px;
+  top: 2%;
+  left: 10%;
+  text-align: left;
+  font-weight: 500;
+}
+.hok-swicth-dialog>.content2>.title1 {
+  font-family: 'shousha';
+  font-size: 25px;
+  color: #4C3221;
+  /*position: relative;*/
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: -1px;
+  top: 8%;
+  left: 10%;
+  text-align: left;
+  font-weight: 500;
+}
+.hok-swicth-dialog>.content2>.title2 {
+  font-family: 'shousha';
+  font-size: 25px;
+  color: #4C3221;
+  /*position: relative;*/
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: -1px;
+  top: 30%;
+  left: 10%;
+  text-align: left;
+  font-weight: 500;
+}
+.hok-swicth-dialog>.content2>.title3 {
+  font-family: 'shousha';
+  font-size: 25px;
+  color: #4C3221;
+  /*position: relative;*/
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: -1px;
+  top: 50%;
+  left: 10%;
+  text-align: left;
+  font-weight: 500;
+}
+.hok-swicth-dialog>.content2>.select,
+.hok-swicth-dialog>.content3>.select {
+  width: 245px;
+  height: 45px;
+  font-family: 'shousha';
+  font-size: 20px;
+  position: relative;
+  font-weight: normal;
+  text-shadow: none;
+  color: #CBB796;
+  white-space: normal;
+  letter-spacing: -1px;
+  top: 15%;
+  left: 10%;
+  background-size: 100% 100%;
+  background-image: url(../image/ui/publicui_setting_btn_bg.png);
+  line-height: 45px;
+  text-align: left;
+  text-indent: 25px;
+  position: relative;
+  letter-spacing: -1px;
+  overflow: auto;
+}
+.hok-swicth-dialog>.content2.extension>.select {
+  width: 245px;
+  height: 45px;
+  font-family: 'shousha';
+  font-size: 20px;
+  position: relative;
+  font-weight: normal;
+  text-shadow: none;
+  color: #CBB796;
+  white-space: normal;
+  letter-spacing: -1px;
+  top: 15%;
+  left: 5%;
+  background-size: 100% 100%;
+  background-image: url(../image/ui/publicui_setting_btn_bg.png);
+  line-height: 45px;
+  text-align: left;
+  text-indent: 25px;
+  position: relative;
+  letter-spacing: -1px;
+  overflow: auto;
+  margin: 12px;
+}
+.hok-swicth-dialog>.content2.extension>.select.short {
+  width: 175px;
+}
+.hok-swicth-dialog>.content3 {
+  width: 716px;
+  height: 418px;
+  background-size: 100% 100%;
+  background-image: url(../image/ui/public-dialog-bg2.png);
+  overflow: auto;
+}
+.hok-swicth-dialog>.content3>.select.full {
+  width: 92.1%;
+  height: 35%;
+}
+.hok-swicth-dialog>.content2.extension>.select>.selectbtn {
+  width: 65.5px;
+  height: 26px;
+  top: 20%;
+  left: 70%;
+  background-size: 100% 100%;
+  background-image: url(../image/ui/set_btn_on.png);
+}
+.hok-swicth-dialog>.content2.extension>.select>.selectbtn.off {
+  background-image: url(../image/ui/set_btn_off.png);
+}
+.hok-swicth-dialog>.content2>.select>.selectbtn {
+  width: 32px;
+  height: 32px;
+  top: 15%;
+  left: 70%;
+  background-size: 100% 100%;
+}
+.hok-swicth-dialog>.heroimg {
+  position: fixed;
+  width: 194px;
+  height: 229.65px;
+  top: 50%;
+  right: 15%;
+  background-size: 100% 100%;
+}
+.hokdibeijing.setimg {
+  background-color: rgba(0, 0, 0, 0.5);
+}

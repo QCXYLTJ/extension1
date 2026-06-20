@@ -1,0 +1,112 @@
+	.lqtq_coin {
+		/*硬币*/
+		position: relative;
+		top: 200px;
+		left: calc(50% - 100px);
+		width: 200px;
+		height: 200px;
+		transform-style: preserve-3d;
+	}
+	.lqtq_coin_true {
+		animation: 2s lqtq_coin_true forwards;
+	}
+	@keyframes lqtq_coin_true {
+		from {
+			transform: rotateX(0);
+		}
+		to {
+			transform: rotateX(3600deg);
+		}
+	}
+	.lqtq_coin_false {
+		animation: 2s lqtq_coin_false forwards;
+	}
+	@keyframes lqtq_coin_false {
+		from {
+			transform: rotateX(0);
+		}
+		to {
+			transform: rotateX(3780deg);
+		}
+	}
+	.lqtq_coin>div {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fede67;
+		border-radius: 100%;
+	}
+	.lqtq_coin>.lqtq_coin1 {
+		background-size: 100% 100%;
+		position: absolute;
+		transform: translateZ(20px);
+		width: 100%;
+		height: 100%;
+	}
+	.lqtq_coin>.lqtq_coin2 {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transform: translateZ(0);
+		background-size: 100% 100%;
+	}
+	.zgz {
+		/*朱果*/
+		/*position:relative;*/
+		--l: 15px;
+		--t: 100px;
+		background-repeat: no-repeat;
+		background-image: url(image/辅助图/lqtq_zhuguozi.png) !important;
+		background-size: 100% 100%;
+		width: 70.5px;
+		height: 42.5px;
+		left: calc(var(--l));
+		top: calc(var(--t));
+		letter-spacing: 3.2px;
+		position: absolute;
+		transition: none;
+		padding: 28.5px 2px 2px 2px;
+		/*内边距*/
+		/*字体*/
+		text-align: center;
+		color: #e2e0dc;
+		text-shadow: -1.3px 0px 2.2px #000, 0px -1.3px 2.2px #000, 1.3px 0px 2.2px #000, 0px 1.3px 2.2px #000;
+		font-family: shousha;
+		font-size: 17px;
+		font-weight: 900;
+		z-index: 8 !important;
+	}
+	.dm {
+		/*堕魔*/
+		/*position:relative;*/
+		--l: 15px;
+		--t: 100px;
+		background-repeat: no-repeat;
+		background-image: url(image/辅助图/lqtq_duomo.png) !important;
+		background-size: 100% 100%;
+		width: 180.5px;
+		/*图片宽*/
+		height: 65.5px;
+		/*图片高*/
+		left: calc(var(--l));
+		top: calc(var(--t));
+		letter-spacing: 3.2px;
+		/*字间隔*/
+		position: absolute;
+		transition: none;
+		padding: 19px 9px 2px 0px;
+		/*图片延伸*/
+		text-align: right;
+		/*位置(center中)(right右)*/
+		color: #e2e0dc;
+		text-shadow: -1.3px 0px 2.2px #000, 0px -1.3px 2.2px #000, 1.3px 0px 2.2px #000, 0px 1.3px 2.2px #000;
+		/*字阴影*/
+		font-family: shousha;
+		font-size: 12px;
+		/*字大小*/
+		font-weight: 900;
+		/*字粗细*/
+		z-index: 8 !important;
+	}

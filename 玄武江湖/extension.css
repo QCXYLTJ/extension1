@@ -1,0 +1,806 @@
+.player>.xwjh-duihua {
+    display: block;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+    z-index: 1222;
+    background-color: rgba(139, 69, 19, 0.7);
+    border: 2px solid yellow;
+    min-height: 50px;
+    height: auto;
+    color: white;
+    font-size: 15px;
+    font-family: yuanli;
+    opacity: 0.85;
+}
+.xwjh_animation {
+    transition: transform 0s;
+    animation: none;
+    background-repeat: no-repeat;
+    display: block;
+    z-index: 998;
+    overflow: hidden;
+    pointer-events: none;
+}
+.player>.xwjh_animation_onplayer {
+    transition: transform 0s;
+    animation: none;
+    background-repeat: no-repeat;
+    display: block;
+    z-index: 998;
+    overflow: hidden;
+    pointer-events: none;
+}
+.xwjh-gif-background {
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+}
+.xwjh-xchengjiu {
+    display: block;
+    background-size: cover;
+    z-index: 21;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(image/xwjh_pic_background_wangtiange.jpg);
+}
+.xwjh-xchengjiu-return {
+    z-index: 10;
+    background-size: 100% 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    background-image: url(xwjh_pic_backbutton.png);
+    width: 70px;
+    height: 60px;
+}
+.xwjh-xchengjiu-score {
+    z-index: 10;
+    display: block;
+    opacity: 0.7;
+    left: 12%;
+    top: 3%;
+    width: 90%;
+    height: 50px;
+    font-family: 'qh_songhei';
+    font-size: 26px;
+    color: white;
+    pointer-events: none;
+}
+.xwjh-xchengjiu-bk {
+    z-index: 1;
+    display: block;
+    background-size: 100% 100%;
+    width: 50%;
+    height: 50%;
+    background-image: url(xwjh_pic_xchengjiubk.png);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+}
+.xwjh-xchengjiu-bk-cover {
+    z-index: 3;
+    display: block;
+    left: 0;
+    background-size: 100% 100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(xwjh_pic_xchengjiubk_cover.png);
+    pointer-events: none;
+}
+.xwjh-xchengjiu-righttext {
+    z-index: 6;
+    display: block;
+    right: 0;
+    top: 0;
+    padding-right: 10px;
+    padding-top: 10px;
+    height: calc(20.56% - 10px);
+    width: calc(13.07% - 10px);
+    color: white;
+    font-size: 22px;
+    font-family: 'qh_songhei';
+    text-align: right;
+}
+.xwjh-xchengjiu-bk-hideGot {
+    z-index: 15;
+    display: block;
+    left: 0;
+    background-size: 100% 100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(xwjh_pic_xchengjiubk_cover_light3.png);
+    pointer-events: none;
+}
+.xwjh-xchengjiu-bk-light {
+    z-index: 5;
+    display: block;
+    background-size: 100% 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(xwjh_pic_xchengjiubk_cover_light1.png);
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    pointer-events: none;
+    transition: transform 0s;
+}
+.xwjh-xchengjiu-bk-otherbook {
+    z-index: 4;
+    display: block;
+    background-size: 100% 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(xwjh_pic_xchengjiubk_otherbook.png);
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    pointer-events: none;
+    transition: transform 0s;
+}
+.xwjh-xchengjiu-text {
+    z-index: 2;
+    display: block;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    left: calc(8.177%);
+    top: calc(13.33%);
+    width: calc(83.976%);
+    height: calc(76.13%);
+}
+.xwjh-xchengjiu-textinner {
+    display: block;
+    width: calc(95%);
+    height: calc(100%);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: none;
+    text-shadow: none;
+    color: black;
+    font-family: 'yuanli';
+    overflow: scroll;
+}
+.xwjh-xchengjiu-pagename {
+    display: block;
+    transform: rotate(-0.36673rad);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    left: calc(3.38%);
+    top: calc(69.26%);
+    width: calc(4.84%);
+    height: calc(30.61%);
+}
+.xwjh-xchengjiu-pagename-inner {
+    display: table-cell;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    font-size: 35px;
+    font-family: 'xw_longyinshoushu';
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    text-shadow: none;
+    transition: transform 0s, color 0s;
+}
+.xwjh-xchengjiu-leftbelowbt {
+    display: block;
+    z-index: 12;
+    right: calc(90.4%);
+    top: calc(61.02%);
+    height: calc(50%);
+    width: calc(25%);
+    transform: rotate(-0.39399rad);
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+}
+.linexy>.xwjh-shuimo-line {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: url(xwjh_pic_shuimo_line.png);
+    background-position: center;
+    background-size: 50px 100%;
+    background-repeat: no-repeat;
+    left: -48px;
+    top: 0px;
+}
+.xwjh-shuimo>.xwjh-shuimo-round {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url(xwjh_pic_shuimo_round.png);
+    background-position: center;
+    left: -48px;
+    top: 0px;
+}
+.xwjh-shuimo {
+    display: block;
+    position: absolute;
+    transition-property: opacity, transform;
+    width: 4px;
+    z-index: 5;
+    height: 100px;
+    overflow: visible;
+    transform-origin: top center;
+}
+.xwjh-longtou>.xwjh-longtou-image {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url(xwjh_pic_longtou.png);
+    background-position: center;
+    left: -48px;
+    top: 0px;
+}
+.xwjh-longtou {
+    display: block;
+    position: absolute;
+    transition-property: opacity, transform;
+    width: 4px;
+    z-index: 5;
+    height: 100px;
+    overflow: visible;
+    transform-origin: top center;
+}
+.player>.xwjh-Mp-xiaceyou {
+    display: block;
+    right: -16px;
+    bottom: 5px;
+    width: 13px;
+    height: 13px;
+    background-image: url(xwjh_blue_mp.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    cursor: pointer;
+    transition: none;
+}
+.xwjh-Mp-xiaceyou>.name-xiaceyou {
+    left: 0px;
+    top: -15px;
+    font-size: 13px;
+    font-family: 'xinwei';
+}
+.player>.xwjh-Mp-shangcenei {
+    left: calc(50% - 18px);
+    top: 0px;
+    width: 15px;
+    height: 15px;
+    background-image: url(xwjh_blue_mp.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    transition: none;
+    cursor: pointer;
+    display: block;
+}
+.xwjh-Mp-shangcenei>.name-shangcenei {
+    left: 20px;
+    top: 0px;
+    font-size: 15px;
+    font-family: 'xinwei';
+}
+.player>.xwjh-Mp-xiacenei {
+    display: block;
+    left: calc(50% - 18px);
+    bottom: 0px;
+    width: 15px;
+    height: 15px;
+    background-image: url(xwjh_blue_mp.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    cursor: pointer;
+    transition: none;
+}
+.xwjh-Mp-xiacenei>.name-xiacenei {
+    left: 20px;
+    top: 0px;
+    font-size: 15px;
+    font-family: 'xinwei';
+}
+.player>.xwjh-Mp-xiacewai {
+    display: block;
+    left: calc(50% - 18px);
+    bottom: -15px;
+    width: 15px;
+    height: 15px;
+    background-image: url(xwjh_blue_mp.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    cursor: pointer;
+    transition: none;
+}
+.xwjh-Mp-xiacewai>.name-xiacewai {
+    left: 20px;
+    top: 0px;
+    font-size: 15px;
+    font-family: 'xinwei';
+}
+.player>.xwjh-Mp-shangcewai {
+    display: block;
+    left: calc(50% - 18px);
+    top: -15px;
+    width: 15px;
+    height: 15px;
+    background-image: url(xwjh_blue_mp.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 130;
+    cursor: pointer;
+    transition: none;
+}
+.xwjh-Mp-shangcewai>.name-shangcewai {
+    left: 20px;
+    top: 0px;
+    font-size: 15px;
+    font-family: 'xinwei';
+}
+.xwjh-cardmark {
+    font-family: 'huangcao', 'xinwei';
+    font-size: 25px;
+    color: red !important;
+    pointer-events: none;
+    background-image: url(image/xwjh_pic_cardmark.jpg);
+    background-repeat: repeat-x;
+}
+.card>.xwjh-cardmark {
+    position: absolute;
+    bottom: calc(40% - 30px);
+    left: calc(50% - 12px);
+    z-index: 8;
+}
+.xwjh-button {
+    display: inline-block;
+    padding: .3em .5em;
+    background-image: linear-gradient(#ddd, #bbb);
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3em;
+    box-shadow: 0 1px white inset;
+    text-align: center;
+    text-shadow: 0 1px 1px black;
+    color: white;
+    font-weight: bold;
+}
+.xwjh-tujian {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 4;
+}
+.xwjh-touzi-background>.xwjh-touzi {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80px;
+    height: 80px;
+    background-image: url(image/xwjh_pic_touzi_6.jpg);
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
+    background-size: 100% 100%;
+    box-shadow: 0 0 5px black;
+}
+.xwjh-touzi-background {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 450px;
+    height: 300px;
+    background-size: 100% 100%;
+    background-image: url(image/xwjh_pic_duzhuo.jpg);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.xwjh-achievement-background {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    height: 319px;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_achievement.png);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.xwjh-achievement-background>.xwjh-achievement-close {
+    position: absolute;
+    top: 6%;
+    right: 3.5%;
+    height: 5.5%;
+    width: 3.5%;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_small_close_button.png);
+}
+.xwjh-achievement-background>.xwjh-achievement-text {
+    position: absolute;
+    margin: 5px;
+    top: calc(11%);
+    left: calc(4.2%);
+    width: calc(91.6%);
+    height: calc(76%);
+    font-family: 'yuanli';
+    overflow: scroll;
+    font-size: 18px;
+    color: white !important;
+}
+.xwjh-dialog {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 413px;
+    height: 303px;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_bigdialog.png);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.xwjh-chengjiu {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    width: 200px;
+    height: 80px;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_achievement_got.png);
+    transform: translate(-50%, -50%);
+    z-index: 30;
+}
+.xwjh-chengjiu>.xwjh-chengjiu-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 134px;
+    height: 34px;
+    font-family: 'yuanli';
+    overflow: scroll;
+    font-size: 13px;
+    text-align: center;
+    color: white !important;
+    transform: translate(-50%, -50%);
+}
+.xwjh-loading {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 230px;
+    background-size: 100% 100%;
+    background-image: url(image/xwjh_pic_dialog.jpg);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.xwjh-loading>.xwjh-loading-text {
+    display: table-cell;
+    position: absolute;
+    margin: 5px;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 100px;
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    color: white !important;
+    text-align: center;
+    vertical-align: middle;
+}
+.xwjh-dialog>.xwjh-dialog-icon {
+    position: absolute;
+    top: calc(22.94%);
+    left: calc(9.70%);
+    width: calc(10.91%);
+    height: calc(14.85%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0 0 5px black;
+}
+.xww-background {
+    z-index: 22;
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+}
+.xww-background>.xwjh-winner-head {
+    display: block;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 50%;
+    width: 200px;
+    height: 267px;
+    background-size: 100% 100%;
+    transform: translate(-50%, -50%);
+    z-index: 23;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.xww-background>.xwjh-winner-biankuang {
+    display: block;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 50%;
+    width: 200px;
+    height: 267px;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_biankuang.png);
+    transform: translate(-50%, -50%);
+    z-index: 24;
+}
+.xwjh-info-dialog>.xwjh-info-text {
+    position: absolute;
+    margin: 5px;
+    top: calc(10%);
+    left: 5px;
+    width: calc(100% - 20px);
+    height: calc(77%);
+    font-family: 'yuanli';
+    overflow: scroll;
+    font-size: 20px;
+    color: white !important;
+}
+.xww-background>.xwjh-info-dialog {
+    display: block;
+    position: absolute;
+    left: calc(15% + 200px);
+    top: calc(10%);
+    width: calc(80% - 200px);
+    height: calc(90%);
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_bigdialog.png);
+    z-index: 24;
+}
+.xww-background>.xwjh-info-head {
+    display: block;
+    position: absolute;
+    left: calc(5%);
+    top: calc(10%);
+    width: 200px;
+    height: 267px;
+    background-size: 100% 100%;
+    z-index: 23;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.xww-background>.xwjh-info-name {
+    display: table-cell;
+    position: absolute;
+    left: calc(5%);
+    top: calc(10% + 282px);
+    width: 200px;
+    font-family: 'xinwei';
+    font-size: 22px;
+    color: yellow;
+    text-align: center;
+    vertical-align: middle;
+}
+.menubg.charactercard>.xwjh-cardenlarge {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 25;
+    width: 80px;
+    height: 50px;
+    background-image: url(xwjh_pic_enlarge2.png);
+    background-size: 100% 100%;
+    display: block;
+}
+.xww-background>.xwjh-info-close-button {
+    position: absolute;
+    left: calc(5% + 100px);
+    bottom: calc(5%);
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    transform: translate(-50%, 0%);
+    z-index: 25;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_choose_button.png);
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.xww-background>.xwjh-info-biankuang {
+    display: block;
+    position: absolute;
+    left: calc(5%);
+    top: calc(10%);
+    width: 200px;
+    height: 267px;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_biankuang.png);
+    z-index: 24;
+}
+.xww-background>.xwjh-win-text {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 135px);
+    width: 600px;
+    height: 80px;
+    transform: translate(-50%, -100%);
+    z-index: 25;
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 65px;
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.xww-background>.xwjh-winner-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    min-height: 100px;
+    transform: translate(0%, -50%);
+    z-index: 25;
+    font-family: 'xinwei';
+    font-size: 35px;
+    text-align: center;
+}
+.xww-background>.xwjh-win-close-button {
+    position: absolute;
+    left: 50%;
+    top: calc(100% - 100px);
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    transform: translate(-50%, 0%);
+    z-index: 25;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_choose_button.png);
+    font-family: 'xinwei';
+    overflow: scroll;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.xwjh-dialog>.xwjh-dialog-text {
+    position: absolute;
+    top: calc(22.94%);
+    left: calc(23.64%);
+    width: calc(65.45%);
+    height: calc(65.35%);
+    font-family: 'xingkai';
+    overflow: scroll;
+    font-size: 18px;
+    color: black !important;
+    text-shadow: 0 1px 1px white;
+}
+.xwjh-dialog>.xwjh-dialog-title {
+    position: absolute;
+    top: calc(11.00%);
+    left: calc(8.97%);
+    width: calc(83.27%);
+    height: calc(6.27%);
+    font-family: 'xingkai';
+    font-size: 21px;
+    color: white !important;
+}
+.xwjh-dialog>.xwjh-dialog-close {
+    position: absolute;
+    margin: 5px;
+    right: 10px;
+    top: 5px;
+    height: 20px;
+    width: 20px;
+    background-size: 100% 100%;
+    background-image: url(xwjh_pic_close.png);
+}
+#arena[data-player-mark-style="xwjh"]>.player>.dui-marks {
+    display: flex;
+    flex-direction: column;
+    left: auto;
+    top: 1px;
+    right: -20px;
+    width: 18px;
+    height: auto;
+    padding-bottom: 0;
+    z-index: 88;
+}
+#arena[data-player-mark-style="xwjh"]>.player>.dui-marks>.mark {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    width: 18px;
+    height: auto;
+    border-radius: 0;
+    font-family: xinwei, xingkai;
+    box-shadow: none;
+    background: none;
+    overflow: visible;
+    animation: open 0.5s;
+}
+#arena[data-player-mark-style="xwjh"]>.player>.dui-marks>.mark>.mark-text {
+    display: flex !important;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    line-height: 20px;
+    width: 100%;
+    height: 15px;
+    padding-top: 0;
+    color: rgb(77, 60, 51);
+    font-size: 18px;
+    font-family: xinwei, xinkai;
+    border-radius: 6px !important;
+    background: rgb(240, 240, 200);
+    text-shadow: none;
+    box-shadow: 0px 0px 3px rgb(240, 240, 50) inset, 0px 0px 7px rgb(220, 220, 50) inset !important;
+    animation: none;
+}
+#arena[data-player-mark-style="xwjh"]>.player>.dui-marks>.mark>.mark-text::before {
+    display: none;
+}
+#arena[data-player-mark-style="xwjh"]>.player>.dui-marks>.mark>.mark-count {
+    position: absolute;
+    bottom: -1px;
+    left: -5px;
+    top: auto;
+    right: auto;
+    height: 10px;
+    width: 10px;
+    line-height: 11px;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: none;
+    text-align: center;
+    border-radius: 100%;
+    background: yellow;
+    box-shadow: 0 0 1px black inset;
+}

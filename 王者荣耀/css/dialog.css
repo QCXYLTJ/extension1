@@ -1,0 +1,109 @@
+/*选择技能*/
+/*感谢鹿鹿喵*/
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content {
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 200px !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed,
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.menubutton.large.shadowed {
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 20px;
+  color: none !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes.selectable,
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes {
+  top: -100px !important;
+  width: 147px !important;
+  height: 71.75px !important;
+  padding: 0 !important;
+  margin-left: 77.5px !important;
+  margin-right: 77.5px !important;
+  margin-top: 90px !important;
+  margin-bottom: 35px !important;
+  border-radius: 0 !important;
+  line-height: 71.75px;
+  text-align: center;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes.selectable>.skill-button,
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes>.skill-button {
+  white-space: normal;
+  overflow-x: visible;
+  overflow-y: visible;
+  left: 0% !important;
+  top: 0% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-image: url(../image/button/brawl_btn_spell.png);
+  background-size: 100% 100%;
+  background-color: none !important;
+  line-height: 71.75px;
+  text-align: center;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes.selected.selectable>.skill-button {
+  background-image: url(../image/button/brawl_btn_spell_light.png) !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes:not(.selectable)>.skill-button {
+  filter: grayscale(100%);
+  background-image: url(../image/button/brawl_btn_spell_mask.png) !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes.selectable>.skill-button>.skillitem,
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes>.skill-button>.skillitem {
+  left: 0% !important;
+  top: 0% !important;
+  width: 100% !important;
+  height: 100% !important;
+  font-family: 'HYZLSJ';
+  text-align: center;
+  text-shadow: none;
+  background-image: linear-gradient(180deg, #f0d775 30%, #ab8c31 57%, #b0a04d 67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-size: 28px;
+  z-index: 24 !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes.selectable>.skill-button>.skillitem-child,
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes>.skill-button>.skillitem-child {
+  left: 0% !important;
+  top: 0% !important;
+  width: 100% !important;
+  height: 100% !important;
+  font-family: 'HYZLSJ';
+  text-align: center;
+  position: absolute;
+  -webkit-text-stroke: 4.5px rgba(2, 3, 2);
+  opacity: 0.25;
+  white-space: nowrap;
+  font-size: 28px;
+  z-index: 8 !important;
+}
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes.selectable>.skill-button>.skillinfo,
+.dialog#mobiledialog.skill-tdnodes>.content-container>.content>.buttons>.shadowed.reduce_radius.pointerdiv.tdnode.tdnodes>.skill-button>.skillinfo {
+  overflow-y: auto;
+  margin-left: -137px !important;
+  margin-right: -137px !important;
+  margin-top: auto !important;
+  justify-content: center;
+  color: #E7DAC9;
+  filter: blur(0.2px);
+  left: auto;
+  top: 80px;
+  width: 273px;
+  height: 87px;
+  line-height: normal;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+  letter-spacing: -0.5px;
+  text-align: left;
+  text-shadow: none;
+  font-family: 'shousha';
+  font-size: 20px;
+}

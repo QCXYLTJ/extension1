@@ -1,0 +1,9 @@
+.card:empty,
+.card.infohidden {
+    background: url(image/xwjh_pic_jianghuzaijian.jpg);
+    background-size: 100% 100%;
+}
+.card.infohidden:not(.infoflip) {
+    background: url(image/xwjh_pic_jianghuzaijian_back.jpg);
+    background-size: 100% 100%;
+}

@@ -1,0 +1,41 @@
+.cardsetion {
+  left: 1px;
+  width: calc(100% - 2px);
+  color: #fff;
+  text-shadow: 1px 1px black;
+  font-size: 15px;
+  bottom: 9%;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728,1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4C3726, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728;
+  font-family: 'shousha' !important;
+  color: white;
+  font-size: 21px;
+  bottom: 22px;
+  background: none;
+}
+.cardsetion span:not([data-nature]) {
+  white-space: nowrap;
+  color: white;
+  text-shadow: 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728,1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4C3726, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728;
+}
+.cardsetion  span[data-nature="wei"],
+.cardsetion  span[data-nature="shu"],
+.cardsetion  span[data-nature="wu"],
+.cardsetion  span[data-nature="qun"],
+.cardsetion  span[data-nature="jin"],
+.cardsetion  span[data-nature="shen"],
+.cardsetion  span[data-nature="thunder"],
+.cardsetion  span[data-nature="kami"],
+.cardsetion  span[data-nature="metal"],
+.cardsetion  span[data-nature="wood"],
+.cardsetion  span[data-nature="water"],
+.cardsetion  span[data-nature="ice"],
+.cardsetion  span[data-nature="soil"],
+.cardsetion  span[data-nature="fire"],
+.cardsetion  span[data-nature="orange"],
+.cardsetion  span[data-nature="gray"] {
+  color: gold;
+  text-shadow: 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728,1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4C3726, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728;
+}

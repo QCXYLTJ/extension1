@@ -1,0 +1,17 @@
+
+.fontrg {
+    color: red;
+    animation: redGreenColorChange 3s linear infinite;
+}
+.fontgr {
+    color: green;
+    animation: greenRedColorChange 3s linear infinite;
+}
+@keyframes redGreenColorChange {
+  0% { color: red; } /* 动画开始时颜色为红色 */
+  100% { color: green; } /* 动画结束时颜色为绿色 */
+}
+@keyframes greenRedColorChange {
+  0% { color: green; } 
+  100% { color: red; } 
+}

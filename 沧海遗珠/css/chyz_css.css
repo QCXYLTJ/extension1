@@ -1,0 +1,17 @@
+/*定义浮世皆绘颜色*/
+.player .identity[data-color="chyz_fsjh"],
+div[data-nature="chyz_fsjh"],
+span[data-nature="chyz_fsjh"] {
+	text-shadow: black 0 0 1px,rgba(254,228,228,1) 0 0 2px,rgba(254,228,228,1) 0 0 5px,rgba(254,228,228,1) 0 0 10px,
+	rgba(254,228,228,1) 0 0 10px
+}
+div[data-nature="chyz_fsjhm"],
+span[data-nature="chyz_fsjhm"] {
+	text-shadow: black 0 0 1px,rgba(254,228,228,1) 0 0 2px,rgba(254,228,228,1) 0 0 5px,rgba(254,228,228,1) 0 0 5px,
+	rgba(254,228,228,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="chyz_fsjhmm"],
+span[data-nature="chyz_fsjhmm"] {
+	text-shadow: black 0 0 1px,rgba(254,228,228,1) 0 0 2px,rgba(254,228,228,1) 0 0 2px,rgba(254,228,228,1) 0 0 2px,
+	rgba(254,228,228,1) 0 0 2px,black 0 0 1px;
+}

@@ -1,0 +1,1626 @@
+@font-face {
+  font-family: 'HYZLSJ';
+  src: url(../十周年UI/shoushaUI/fonts/HYZLSJ.woff2), url(../手杀ui/fonts/HYZLSJ.woff2), url(./assets/font/HYZLSJ.woff2);
+}
+/*王者荣耀*/
+@font-face {
+  font-family: 'TitleFont';
+  src: url(//game.gtimg.cn/images/yxzj/ip/titlefont_zhong.woff) format('woff'), url(//game.gtimg.cn/images/yxzj/ip/titlefont_zhong.ttf) format('truetype');
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'TitleFont';
+  src: url(//game.gtimg.cn/images/yxzj/ip/titlefont_cu.woff) format('woff'), url(//game.gtimg.cn/images/yxzj/ip/titlefont_cu.ttf) format('truetype');
+  font-display: swap;
+  font-style: normal;
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'TitleFont-1';
+  src: url(//game.gtimg.cn/images/yxzj/ip/yujisyukustd-r-2.woff) format('woff'), url(//game.gtimg.cn/images/yxzj/ip/yujisyukustd-r-2.ttf) format('truetype');
+  font-display: swap;
+  font-style: normal;
+  font-weight: bold;
+}
+.font-title-cn {
+  font-family: 'TitleFont', 'TitleFont-1';
+}
+h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0 0.1rem #000;
+}
+h3 i {
+  display: block;
+  width: 2.4rem;
+  height: 0.26rem;
+  background: url(image/logo/title.png) 0 0/100% 100% no-repeat;
+}
+h3 ins {
+  display: block;
+  width: 2.4rem;
+  height: 0.26rem;
+  background: url(image/logo/title.png) 0 0/100% 100% no-repeat;
+  transform: rotate(180deg);
+}
+.champion-lines {
+  color: #e4c289;
+  font-size: 0.8rem;
+  /*line-height: 2.4;*/
+  letter-spacing: 0.04rem;
+  text-align: center;
+  /*font-style:italic;*/
+}
+/*王者荣耀*/
+/*英雄联盟*/
+.lolquote_2507_p {
+  color: #c4b998;
+  text-align: center;
+  font-family: microsoft yahei, Helvetica, tahoma, simsun, sans-serif;
+  font-weight: 800;
+  font-size: small;
+}
+/*英雄联盟*/
+.smallCharacter {
+  position: absolute;
+  bottom: 10%;
+  z-index: 10;
+  left: 25%;
+  height: 4em;
+  /*width: 2.2em;*/
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position-y: 15%;
+  background-position-x: 50%;
+  /*border: 2px solid #ad5949;*/
+}
+/*手杀对话框*/
+.window>.dialog#mobiledialog {
+  z-index: 66 !important;
+}
+/*手杀样式*/
+.dialog#mobiledialog {
+  transition: all 0.2s linear;
+  display: flex;
+  width: 102%;
+  height: 170px;
+  left: -30px;
+  border-width: 60px 18px 12px 18px;
+  border-style: solid;
+  border-color: transparent;
+  border-image-source: url(image/dialog/ssdialog.png);
+  border-image-slice: 61 18 12 18 fill;
+  border-image-repeat: stretch;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background: none;
+  box-shadow: none !important;
+  top: 10% !important;
+  /*transform: translateY(-50%) scale(1.0)!important;*/
+}
+.dialog#mobiledialog.contentx {
+  transition: all 0.2s linear;
+  width: 102%;
+  height: 170px;
+  position: absolute;
+}
+.dialog#mobiledialog.changeSkill {
+  width: 50%;
+  left: 25%;
+  border-image-slice: 61 350 12 350 fill;
+  /*transform: translateY(-50%) scale(1.0)!important;*/
+}
+.dialog#mobiledialog>.content {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s linear;
+  display: flex;
+}
+.dialog#mobiledialog.open {
+  height: 0px !important;
+  top: calc(30% + 50px) !important;
+}
+.dialog#mobiledialog>.arrow {
+  top: -50px;
+  left: 57%;
+  transform: rotate(0deg);
+  transition: all 0.2s linear;
+  width: 30px;
+  height: 30px;
+  background-image: url(image/dialog/arrow.png);
+  background-size: 100% 100%;
+  z-index: 2;
+}
+.dialog#mobiledialog.open>.arrow,
+.dialog#mobiledialog.open>.game_skill_title:not(.ssTitle)>.game_skill_arrow,
+.dialog#mobiledialog.open>.game_skill_title.ssTitle>.game_skill_arrow {
+  transform: rotate(180deg);
+}
+.dialog#mobiledialog>.game_skill_title {
+  left: 0px;
+  width: 100%;
+  top: -60px;
+  z-index: 1;
+}
+.dialog#mobiledialog>.game_skill_title.ssTitle {
+  left: 0px;
+  width: 100%;
+  top: -60px;
+  height: 50px;
+  text-align: center;
+  letter-spacing: 3px;
+  background: linear-gradient(#C8BEB4 1%, #FCF8CC 12%, #F3F0BE, #FEF5A8, #E1D275, #C9B173, #D6CB6F, #A99355, #AC9557, #A38A51, #A38A51, #B29983, #B19786, #B19786, #B19786, #9B8583), linear-gradient(to right, #FCF8CC, #AC9557);
+  font-family: 'HYZLSJ';
+  font-size: 42px;
+  font-weight: normal;
+  -webkit-background-clip: text;
+  text-shadow: none;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(2px 0 0.5px #2F1809) drop-shadow(-2px 0 1.5px #2F1809) drop-shadow(0 2px 1px #2F1809) drop-shadow(0 -2px 1.5px #2F1809) blur(0.55px) saturate(1.25) contrast(1.25) grayscale(0.08) sepia(0.1);
+  z-index: 1;
+}
+.dialog#mobiledialog>.game_skill_title:not(.ssTitle)>.game_skill_arrow {
+  bottom: 6px;
+  right: 9px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: all 0.2s linear;
+}
+.dialog#mobiledialog>.game_skill_title.ssTitle>.game_skill_arrow {
+  bottom: -6px;
+  right: 9px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: all 0.2s linear;
+}
+/*权计*/
+.dialog#mobiledialog>.sgs-quanjiname {
+  /*目标名*/
+  background-image: url(image/skill/quanji/cebian.png) !important;
+  background-size: 100% 100%;
+  height: 128.8px;
+  width: 40.8px;
+  writing-mode: tb-rl;
+  font-size: 20px;
+  top: 8%;
+  left: 13%;
+  color: #eddac3;
+  text-shadow: 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325;
+  font-family: shousha;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.dialog#mobiledialog>.sgs-quanjiarea {
+  background-image: url(image/skill/quanji/area.png) !important;
+  background-size: 100% 100%;
+  width: 876px;
+  height: 137px;
+  top: 8%;
+  left: 17%;
+  display: block;
+  border-radius: 5px;
+  flex-wrap: nowrap;
+  overflow-x: visible !important;
+  flex-direction: row !important;
+  overflow-y: hidden !important;
+  justify-content: flex-start !important;
+  align-items: center;
+}
+.dialog#mobiledialog>.sgs-quanjiarea:not(.duiquanji)>.card {
+  position: absolute;
+  top: 5%;
+}
+.dialog#mobiledialog>.sgs-quanjiarea.duiquanji>.card {
+  position: absolute;
+  transform: scale(0.9);
+  top: -12%;
+}
+/**权计*/
+/*权计*/
+.dialog#mobiledialog>.content>.sgs-quanjiname {
+  /*目标名*/
+  background-image: url(image/skill/quanji/cebian.png) !important;
+  background-size: 100% 100%;
+  height: 128.8px;
+  width: 40.8px;
+  writing-mode: tb-rl;
+  font-size: 20px;
+  top: 8%;
+  left: 13%;
+  color: #eddac3;
+  text-shadow: 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325;
+  font-family: shousha;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.dialog#mobiledialog>.content>.sgs-quanjiarea {
+  background-image: url(image/skill/quanji/area.png) !important;
+  background-size: 100% 100%;
+  width: 876px;
+  height: 137px;
+  top: 8%;
+  left: 17%;
+  display: block;
+  border-radius: 5px;
+  flex-wrap: nowrap;
+  overflow-x: visible !important;
+  flex-direction: row !important;
+  overflow-y: hidden !important;
+  justify-content: flex-start !important;
+  align-items: center;
+}
+.dialog#mobiledialog>.content>.sgs-quanjiarea:not(.duiquanji)>.card {
+  position: absolute;
+  top: 5%;
+}
+.dialog#mobiledialog>.content>.sgs-quanjiarea.duiquanji>.card {
+  position: absolute;
+  transform: scale(0.9);
+  top: -12%;
+}
+/**权计*/
+/*观潮*/
+.dialog#mobiledialog>.sgs-guanchaoarea {
+  background-image: url(image/skill/quanji/area.png) !important;
+  background-size: 100% 100%;
+  width: 200px;
+  height: 120px;
+  top: 8%;
+  left: 17%;
+  display: block;
+  border-radius: 5px;
+  flex-wrap: nowrap;
+  overflow-x: visible !important;
+  flex-direction: row !important;
+  overflow-y: scroll !important;
+  justify-content: flex-start !important;
+  text-overflow: ellipsis;
+}
+/**谋曹丕行殇*/
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea {
+  display: flex !important;
+  align-items: center !important;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border-radius: 0px;
+  margin: 5px;
+  background-image: url(image/skill/sbfangzhu/spell_dlg_xingshang.png) !important;
+  background-size: 100% 100% !important;
+  width: 349px !important;
+  height: 86px !important;
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea.selectable.selected {
+  box-shadow: none !important;
+  background-image: url(image/skill/sbfangzhu/spell_dlg_xingshang_sel.png) !important;
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea:not(.selectable),
+.dialog#mobiledialog>.content-container>.sgs-yijinarea_long:not(.selectable) {
+  filter: grayscale(100%);
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea>.xingshang-skillTips {
+  font-family: 'shousha';
+  font-size: 20px;
+  color: rgb(42, 32, 30);
+  position: relative;
+  font-weight: normal;
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: 4px;
+  left: 5%;
+  width: 237px;
+  text-align: center !important;
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea>.xingshang-mark {
+  font-family: 'shousha';
+  font-size: 20px;
+  color: rgb(42, 32, 30);
+  text-shadow: 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037;
+  bottom: 15px;
+  left: 85%;
+  width: 80px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea>.xingshang-markcount {
+  font-family: 'shousha';
+  font-size: 35px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  bottom: 30px;
+  left: 85%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea>.heroimg {
+  width: 50px !important;
+  height: 50px !important;
+  background-size: 100% 100% !important;
+  position: relative;
+  left: 10.5%;
+  z-index: 1;
+}
+.dialog#mobiledialog>.content-container>.sgs-xingshangarea>.skillName {
+  font-family: shousha;
+  font-size: 15px;
+  color: rgb(249, 198, 67);
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+  position: relative;
+  top: 20%;
+  left: -2.5%;
+  font-size: 20px;
+  z-index: 2;
+}
+/**谋曹丕行殇*/
+.dialog#mobiledialog>.sgs-xingshangarea {
+  display: flex !important;
+  align-items: center !important;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border-radius: 0px;
+  margin: 5px;
+  background-image: url(image/skill/sbfangzhu/spell_dlg_xingshang.png) !important;
+  background-size: 100% 100% !important;
+  width: 349px !important;
+  height: 86px !important;
+}
+.dialog#mobiledialog>.sgs-xingshangarea.selectable.selected {
+  box-shadow: none !important;
+  background-image: url(image/skill/sbfangzhu/spell_dlg_xingshang_sel.png) !important;
+}
+.dialog#mobiledialog>.sgs-xingshangarea:not(.selectable),
+.dialog#mobiledialog>.sgs-yijinarea_long:not(.selectable) {
+  filter: grayscale(100%);
+}
+.dialog#mobiledialog>.sgs-xingshangarea>.xingshang-skillTips {
+  font-family: 'shousha';
+  font-size: 20px;
+  color: rgb(42, 32, 30);
+  position: relative;
+  font-weight: normal;
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: 4px;
+  left: 5%;
+  width: 237px;
+  text-align: center !important;
+}
+.dialog#mobiledialog>.sgs-xingshangarea>.xingshang-mark {
+  font-family: 'shousha';
+  font-size: 20px;
+  color: rgb(42, 32, 30);
+  text-shadow: 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037, 0px 0px 1px #4c4037, 0 0 1px #4c4037, 0 0 1px #4c4037;
+  bottom: 15px;
+  left: 85%;
+  width: 80px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.dialog#mobiledialog>.sgs-xingshangarea>.xingshang-markcount {
+  font-family: 'shousha';
+  font-size: 35px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  bottom: 30px;
+  left: 85%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.dialog#mobiledialog>.sgs-xingshangarea>.heroimg {
+  width: 50px !important;
+  height: 50px !important;
+  background-size: 100% 100% !important;
+  position: relative;
+  left: 10.5%;
+  z-index: 1;
+}
+.dialog#mobiledialog>.sgs-xingshangarea>.skillName {
+  font-family: shousha;
+  font-size: 15px;
+  color: rgb(249, 198, 67);
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+  position: relative;
+  top: 20%;
+  left: -2.5%;
+  font-size: 20px;
+  z-index: 2;
+}
+.dialog#mobiledialog>.skillTishi {
+  font-family: shousha;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+  position: relative;
+  top: 45%;
+  left: 0%;
+}
+/**谋曹丕行殇*/
+.dialog#mobiledialog>.sgs-yijinarea_long {
+  display: flex !important;
+  align-items: center !important;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border-radius: 0px;
+  margin: 5px;
+  background-image: url(image/ui/game_item_txt_bg_long.png) !important;
+  background-size: 100% 100% !important;
+  width: 349px !important;
+  height: 86px !important;
+}
+.dialog#mobiledialog>.sgs-yijinarea_long>.yijin-skillTips {
+  font-family: 'shousha';
+  font-size: 20px;
+  color: rgb(42, 32, 30);
+  position: relative;
+  font-weight: normal;
+  text-shadow: none;
+  white-space: normal;
+  letter-spacing: 4px;
+  left: 5%;
+  width: 320px;
+  text-align: center;
+}
+/*夺锐*/
+.dialog#mobiledialog>.sgs-drlt_duorui_area {
+  height: 185px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  /*outline: outset;*/
+  /*outline-color: white;*/
+  /*outline-width: thin;*/
+}
+.dialog#mobiledialog>.sgs-drlt_duorui_area>.skillName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 120px;
+  background-image: url(image/skill/drlt_duorui/enabledSlot.png);
+  background-size: 100% 100% !important;
+}
+.dialog#mobiledialog>.sgs-drlt_duorui_area>.skillName:not(.selectable) {
+  filter: grayscale(100%);
+  background-image: url(image/skill/drlt_duorui/disabledSlot.png);
+}
+.dialog#mobiledialog>.sgs-drlt_duorui_area>.skillName.disabled {
+  filter: grayscale(100%);
+  background-image: url(image/skill/drlt_duorui/disabledSlot.png);
+}
+.dialog#mobiledialog>.sgs-drlt_duorui_area>.skillName.selectable.selected {
+  box-shadow: none !important;
+  background-image: url(image/skill/drlt_duorui/enabledSlot2.png) !important;
+}
+.dialog#mobiledialog>.sgs-drlt_duorui_area>.skillName>.skillitem {
+  text-align: center;
+  color: #e4e4d5;
+  text-shadow: 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325;
+  font-family: shousha;
+  font-size: 20px;
+  /*font-weight:bold;*/
+}
+/*夺锐*/
+.dialog#mobiledialog>.content-container>.chooseSkillarea {
+  height: 185px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  /*outline: outset;*/
+  /*outline-color: white;*/
+  /*outline-width: thin;*/
+}
+.dialog#mobiledialog>.content-container>.chooseSkillarea>.skillName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 120px;
+  background-image: url(image/button/brawl_btn_spell.png);
+  background-size: 100% 100% !important;
+}
+.dialog#mobiledialog>.content-container>.chooseSkillarea>.skillName.selectable.selected {
+  box-shadow: none !important;
+  background-image: url(image/button/brawl_btn_spell_light.png) !important;
+}
+/*.dialog#mobiledialog>.content-container>.chooseSkillarea>.skillName:not(.selectable) {
+  filter: grayscale(100%);
+}*/
+.dialog#mobiledialog>.content-container>.chooseSkillarea>.skillName>.skillitem {
+  font-family: 'HYZLSJ';
+  text-align: center;
+  -webkit-text-stroke: 0.2px #3e362a;
+  text-shadow: none;
+  background-image: linear-gradient(180deg, #f0d775 30%, #ab8c31 57%, #b0a04d 67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-size: 24px;
+  width: auto;
+  /*font-weight:bold;*/
+}
+.dialog#mobiledialog>.content-container>.chooseSkillarea>.skillName>.skillitem-child {
+  font-family: 'HYZLSJ';
+  text-align: center;
+  position: absolute;
+  -webkit-text-stroke: 4.3px rgba(2, 3, 2);
+  opacity: 0.1;
+  white-space: nowrap;
+  font-size: 24px;
+  width: auto;
+}
+.dialog#mobiledialog>.content-container>.chooseSkillarea>.skillinfo {
+  color: #FFFFFF;
+  text-align: left;
+  font-family: 'shousha';
+  font-size: 18px;
+  top: 65px;
+  overflow-y: auto;
+  height: 110px;
+  width: 220px;
+}
+.dialog#mobiledialog>.chooseSkillarea {
+  height: 185px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  /*outline: outset;*/
+  /*outline-color: white;*/
+  /*outline-width: thin;*/
+}
+.dialog#mobiledialog>.chooseSkillarea>.skillName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 120px;
+  background-image: url(image/button/brawl_btn_spell.png);
+  background-size: 100% 100% !important;
+}
+.dialog#mobiledialog>.chooseSkillarea>.skillName.selectable.selected {
+  box-shadow: none !important;
+  background-image: url(image/button/brawl_btn_spell_light.png) !important;
+}
+/*.dialog#mobiledialog>.chooseSkillarea>.skillName:not(.selectable) {
+  filter: grayscale(100%);
+}*/
+.dialog#mobiledialog>.chooseSkillarea>.skillName>.skillitem {
+  font-family: 'HYZLSJ';
+  text-align: center;
+  -webkit-text-stroke: 0.2px #3e362a;
+  text-shadow: none;
+  background-image: linear-gradient(180deg, #f0d775 30%, #ab8c31 57%, #b0a04d 67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-size: 24px;
+  width: auto;
+  /*font-weight:bold;*/
+}
+.dialog#mobiledialog>.chooseSkillarea>.skillName>.skillitem-child {
+  font-family: 'HYZLSJ';
+  text-align: center;
+  position: absolute;
+  -webkit-text-stroke: 4.3px rgba(2, 3, 2);
+  opacity: 0.1;
+  white-space: nowrap;
+  font-size: 24px;
+  width: auto;
+}
+.dialog#mobiledialog>.chooseSkillarea>.skillinfo {
+  color: #FFFFFF;
+  text-align: left;
+  font-family: 'shousha';
+  font-size: 18px;
+  top: 65px;
+  overflow-y: auto;
+  height: 110px;
+  width: 220px;
+}
+.dialog#mobiledialog>.targetname1 {
+  background-image: url(image/skill/quanji/cebian.png) !important;
+  background-size: 100% 100%;
+  height: 130px;
+  width: 38px;
+  writing-mode: tb-rl;
+  font-size: 20px;
+  left: 16%;
+  top: 17%;
+  color: #eddac3;
+  text-shadow: 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325, 0 0 2px #453325;
+  font-family: shousha;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+/*十周年按键*/
+.hok-confirmdown {
+  transform: translateY(160%);
+  z-index: 20 !important;
+}
+.hok-confirmdown2 {
+  transform: translateY(280%);
+  z-index: 20 !important;
+}
+/*固政*/
+.dialog#mobiledialog>.sgs-guzhengarea {
+  /*display: flex !important;*/
+  align-items: center !important;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border-radius: 0px;
+  margin: 5px;
+  background-image: url(image/button/ssbn.png) !important;
+  background-size: 100% 100% !important;
+  width: 129.6px !important;
+  height: 50.4px !important;
+  zoom: 0.86 !important;
+  background-size: 100% 100%;
+  line-height: 45px;
+  text-align: center;
+  padding: 8px 16px !important;
+  /*按钮高度+宽度 建议别调5.5 10.5*/
+  min-width: 144px !important;
+  /*限制最小宽度*/
+  min-height: 18px !important;
+  /*限制最大高度*/
+  /*margin: 0px 5px !important;/*与其他按钮之间的距离，越小越靠近0 5*/
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  text-shadow: 0px 0px 5px #515a22, 0 0 5px #515a22, 0 0 5px #515a22, 0px 0px 5px #515a22, 0px 0px 5px #515a22, 0 0 5px #515a22, 0 0 5px #515a22, 0px 0px 5px #515a22, 0 0 5px #515a22, 0 0 5px #515a22, 0px 0px 5px #515a22, 0 0 5px #515a22, 0 0 5px #515a22, 0px 0px 5px #515a22, 0 0 5px #515a22, 0 0 5px #515a22;
+  color: #f9dd8a;
+  font-family: 'shousha';
+  font-size: 24px;
+  font-weight: 300;
+  border-radius: 4px;
+  overflow: visible;
+  transition: none;
+}
+.dialog#mobiledialog>.sgs-guzhengarea:not(.selectable) {
+  filter: grayscale(100%);
+}
+.dialog#mobiledialog>.sgs-guzhengarea.disabled {
+  filter: grayscale(100%);
+}
+/*dialog文本提示*/
+.trigger-skillTips {
+  font-family: shousha;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+}
+.enable-skillTips {
+  font-family: shousha;
+  font-size: 15px;
+  color: rgb(249, 198, 67);
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+}
+/*dialog文本提示*/
+/*瞬发技*/
+.player>.shunfajiButton {
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: calc(30%);
+  width: 55px;
+  height: 28.25px;
+  background-image: url(image/button/button_shousha.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 130;
+  line-height: 28.25px;
+  cursor: pointer;
+  text-align: center;
+}
+.player>.shunfajiButton>.skillName>.skillitem {
+  font-family: 'HYZLSJ';
+  text-align: center;
+  -webkit-text-stroke: 0.4px #3e362a;
+  text-shadow: none;
+  background-image: linear-gradient(180deg, #f0d775 30%, #ab8c31 57%, #b0a04d 67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-size: 16px;
+  width: auto;
+  left: -16px;
+  /*font-weight:bold;*/
+}
+.player>.shunfajiButton>.skillName>.skillitem-child {
+  font-family: 'HYZLSJ';
+  text-align: center;
+  -webkit-text-stroke: 0.3px #3e362a;
+  text-shadow: none;
+  background-image: linear-gradient(180deg, #f0d775 30%, #ab8c31 57%, #b0a04d 67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-size: 16px;
+  width: auto;
+  left: -16px;
+  /*font-weight:bold;*/
+}
+/*反间*/
+.sgs-fanjian {
+  transition: none;
+  z-index: 1;
+  width: 6%;
+  height: 15%;
+  position: absolute;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  writing-mode: tb-rl;
+  justify-content: center;
+  padding-top: 9%;
+  color: #c0a47d;
+}
+.sgs-triggerSkillTips {
+  font-family: shousha;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+}
+.sgs-enableSkillTips {
+  font-family: shousha;
+  font-size: 15px;
+  color: rgb(249, 198, 67);
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+}
+/*严教*/
+.dialog#mobiledialog>.sgs-spyanjiaoarea1 {
+  display: flex !important;
+  align-items: center !important;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border-radius: 0px;
+  margin: 5px;
+  background-image: url(image/skill/spyanjiao/dlg_select_bg1.png);
+  background-size: 100% 100% !important;
+  width: 257.5px;
+  height: 143px;
+  justify-content: center;
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea1.selectable.selected {
+  box-shadow: none !important;
+  background-image: url(image/skill/spyanjiao/dlg_select_bg2.png);
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea2 {
+  width: 257.5px;
+  height: 143px;
+  left: 33%;
+  top: 10%;
+  display: flex;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  background-size: 100% 100%;
+  background-image: url(image/skill/spyanjiao/dlg_select_bg2.png);
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea3 {
+  display: flex !important;
+  align-items: center !important;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border-radius: 0px;
+  margin: 5px;
+  background-image: url(image/skill/spyanjiao/dlg_select_bg3.png);
+  background-size: 100% 100% !important;
+  width: 257.5px;
+  height: 143px;
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea1>.sgs-spyanjiaocardbg,
+.dialog#mobiledialog>.sgs-spyanjiaoarea2>.sgs-spyanjiaocardbg,
+.dialog#mobiledialog>.sgs-spyanjiaoarea3>.sgs-spyanjiaocardbg {
+  left: 12.875px;
+  top: 7.15px;
+  width: 231.75px;
+  height: 128.7px;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea1>.sgs-spyanjiao-bot,
+.dialog#mobiledialog>.sgs-spyanjiaoarea2>.sgs-spyanjiao-bot,
+.dialog#mobiledialog>.sgs-spyanjiaoarea3>.sgs-spyanjiao-bot {
+  top: 97px;
+  width: 250.5px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  background-size: 100% 100%;
+  background-image: url(image/skill/spyanjiao/dlg_select_bg.png);
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea1>.sgs-spyanjiao-mid,
+.dialog#mobiledialog>.sgs-spyanjiaoarea2>.sgs-spyanjiao-mid,
+.dialog#mobiledialog>.sgs-spyanjiaoarea3>.sgs-spyanjiao-mid {
+  left: 2px;
+  top: 47px;
+  width: 253.5px;
+  height: 40px;
+  display: flex;
+  background-size: 100% 100%;
+  background-image: url(image/skill/spyanjiao/dlg_select_bg.png);
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea1>.sgs-spyanjiaosuit,
+.dialog#mobiledialog>.sgs-spyanjiaoarea2>.sgs-spyanjiaosuit,
+.dialog#mobiledialog>.sgs-spyanjiaoarea3>.sgs-spyanjiaosuit {
+  transition: none;
+  z-index: 1;
+  width: 6%;
+  height: 15%;
+  position: absolute;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  writing-mode: tb-rl;
+  justify-content: center;
+  width: 60px;
+  height: 50px;
+  left: 18%;
+  top: 68%;
+}
+.dialog#mobiledialog>.sgs-spyanjiaoarea1>.sgs-spyanjiaotip,
+.dialog#mobiledialog>.sgs-spyanjiaoarea2>.sgs-spyanjiaotip,
+.dialog#mobiledialog>.sgs-spyanjiaoarea3>.sgs-spyanjiaotip {
+  color: rgb(249, 198, 67);
+  width: 50%;
+  height: 14%;
+  font-size: 22px;
+  text-align: center;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 25%;
+  top: 75%;
+  text-align: center;
+}
+.sgs-enableConfirm2 {
+  width: 152px;
+  height: 53px;
+  position: absolute;
+  background-size: 100% 100%;
+  background-image: url(image/button/cancel.png);
+}
+.sgs-prompt {
+  display: block;
+  /*position: absolute;*/
+  z-index: 200;
+  top: -45px;
+  left: 90px;
+  width: 1px;
+  height: 30px;
+  font-family: 'shousha';
+  font-size: 17.5px;
+  color: #fcfc91;
+  text-shadow: -0.3px 0px 0.3px #FFFFFF, 0px -0.3px 0.3px #FFFFFF, 0.3px 0px 0.3px #FFFFFF, 0px 0.3px 0.3px #FFFFFF;
+  /*-webkit-text-stroke: 0.5px rgba(255,0,0,0.8);*/
+}
+.sgs-prompt.jinghongdiao {
+  top: calc(50% - 15px);
+  left: 70%;
+  width: 1px;
+  height: 30px;
+  font-size: 30px;
+  text-shadow: 0.2px 0.2px 0.5px #fcfc91;
+  color: #fcfc91;
+  transform: translate(-40%, -150%);
+  writing-mode: vertical-rl;
+}
+/*魏延奇谋*/
+.sgs-qimou-pcchoosebg {
+  width: 150px;
+  height: 50px;
+  bottom: calc(20% + 52px);
+  left: 20%;
+  position: absolute;
+  background-size: 100% 100%;
+  background-image: url(image/skill/qimou/chooseBg.png);
+}
+.sgs-qimou-pctishi {
+  /*width: 180px;*/
+  height: 45px;
+  bottom: calc(20% + 45px);
+  left: 35%;
+  display: block;
+  position: absolute;
+  font-family: 'shousha';
+  font-size: 20px;
+  color: rgb(255 255 255);
+}
+.sgs-qimou-pcchoosebg.mobile {
+  bottom: calc(23% + 35px);
+}
+.sgs-qimou-pctishi.mobile {
+  bottom: calc(23% + 35px);
+}
+.sgs-qimou-pcleft {
+  width: 40px;
+  height: 40px;
+  left: 10px;
+  top: 2px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  background-image: url(image/skill/qimou/-.png);
+  filter: grayscale()
+}
+.sgs-qimou-pcright {
+  width: 40px;
+  height: 40px;
+  left: 50px;
+  top: 2px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  background-image: url(image/skill/qimou/+.png);
+}
+.sgs-qimou-pcchoosetype {
+  width: 80px;
+  height: 30px;
+  left: 90px;
+  top: 1px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 34px;
+  font-family: 'shousha';
+  color: #fcfcbf;
+}
+.sgs-qimou-pcchoosetype.number {
+  width: 35px;
+  height: 33.5px;
+  left: 100px;
+  top: 5.5px;
+  text-align: center;
+  font-size: 23.5px;
+  line-height: 34px;
+  background-size: 100% 100%;
+  background-image: url(image/skill/qimou/game_choose_label_bg.png);
+  font-family: 'shousha';
+  color: #fcfcbf;
+}
+.sgs-qimou-pingcaiBg {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 17;
+}
+/*庞德公评才*/
+/*按钮*/
+.control.disabled.dui {
+  opacity: 1 !important;
+  cursor: default !important;
+  filter: grayscale(100%);
+}
+/*修整*/
+.returned {
+  background-image: url(image/base/game_ud_waiting.png);
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  width: 70%;
+  height: 20%;
+  /* opacity: 0; */
+  background-size: cover;
+  pointer-events: none;
+  z-index: 64;
+}
+.returned.dui {
+  left: -5%;
+  top: 36%;
+  width: 100%;
+  height: 18%;
+  /* opacity: 0; */
+  background-size: cover;
+  pointer-events: none;
+  z-index: 64;
+}
+.returned_round {
+  background-image: url(image/base/game_ud_turn_flag.png);
+  position: absolute;
+  left: 25%;
+  top: 40%;
+  width: 50%;
+  height: 45%;
+  /* opacity: 0; */
+  background-size: cover;
+  pointer-events: none;
+  z-index: 64;
+}
+.returned_round.dui {
+  left: 17%;
+  top: 48%;
+  width: 65%;
+  height: 41%;
+  /* opacity: 0; */
+  background-size: cover;
+  pointer-events: none;
+  z-index: 64;
+}
+.returned_number {
+  font-family: shousha;
+  font-size: 40px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.returned_number.dui {
+  font-family: shousha;
+  font-size: 40px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+/*修整*/
+/*更新*/
+.hokupdate {
+  z-index: 999;
+  background-size: cover;
+  width: 2048px;
+  height: 2048px;
+  margin: auto;
+}
+.hokupdate>.hokauthorq {
+  z-index: 999;
+  width: 238px;
+  height: 431px;
+  background-size: 100% 100%;
+  background-image: url(image/author/authorQQ.jpg);
+}
+.hokupdate>.hokauthorg {
+  z-index: 999;
+  width: 238px;
+  height: 431px;
+  left: 238px;
+  background-size: 100% 100%;
+  background-image: url(image/author/extensionQQ.jpg);
+}
+.hokupdate>.heroimg {
+  z-index: 999;
+  position: fixed;
+  width: 388px;
+  height: 459.3px;
+  top: 25%;
+  right: 0px;
+  background-size: 100% 100%;
+}
+.hokupdate>.hokclose {
+  z-index: 999;
+  position: fixed;
+  overflow: hidden;
+  --w: 76px;
+  --h: calc(var(--w) * 64/76);
+  width: var(--w);
+  height: var(--h);
+  top: 10%;
+  right: 10%;
+  margin: 23px;
+  background-size: 100% 100%;
+  background-image: url(image/tower/tower_encounter_option_refruse.png);
+}
+/*快捷开关*/
+#HOKSHORTCUTSWITCH {
+  width: 72.75px;
+  height: 86.125px;
+  left: 270px;
+  top: 280px;
+  z-index: 9;
+  display: block;
+  transition: unset;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url(https://game.gtimg.cn/images/yxzj/cp/a20240124yearlimit/role_zhaoyun.235b7dff.png);
+  background-size: 100%, 100%;
+}
+#HOKSHORTCUTSWITCH.HOK_role_2025 {
+  width: 100px;
+  height: 116px;
+}
+/*搬运自Thunder*/
+.hokdibeijing {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 8;
+}
+.hok-hokDialog {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+.hok-hokDssCon {
+  pointer-events: auto;
+  transition: none;
+  width: 100%;
+  z-index: 2;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*overflow-x: scroll;*/
+}
+.hok-hokDssMin {
+  pointer-events: auto;
+  z-index: 3;
+  left: calc(50% + 20px);
+  width: 3%;
+  height: 30px;
+  position: absolute;
+}
+.hok-hokDdcCon {
+  pointer-events: auto;
+  transition: none;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hok-hokDdcMin {
+  pointer-events: auto;
+  z-index: 3;
+  left: 10%;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  background-image: url(image/thunder/hideDialog.png);
+  background-size: 100% 100%;
+}
+.hok-cxtime {
+  --w: 500px;
+  width: var(--w);
+  height: 18px;
+  top: calc(50% + 210px);
+  left: calc(50% - var(--w) * 0.5 - 24px);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #4b5151;
+  border-radius: 10px;
+  z-index: 17;
+  transition: none;
+}
+.hok-cxtime2 {
+  --w: 500px;
+  width: var(--w);
+  height: 15px;
+  top: calc(50% + 210px);
+  left: calc(50% - var(--w) * 0.5 - 24px);
+  position: absolute;
+  background-image: url(image/jindutiao/jindutiao2.png);
+  background-size: 100% 100%;
+  z-index: 17;
+  transition: none;
+}
+.hok-cxtimecover {
+  --w: 496px;
+  width: var(--w);
+  height: 14px;
+  top: 2px;
+  left: 2px;
+  margin: auto;
+  position: absolute;
+  background-image: linear-gradient(0deg, #971823, #d75964 10%, #e30f28 20%, #bd4103 50%, #dacfb1);
+  border-radius: 8px;
+  transition: width 200ms;
+}
+.hok-cxtimecover2 {
+  --w: 496px;
+  width: var(--w);
+  height: 9px;
+  top: 2px;
+  left: 2px;
+  margin: auto;
+  position: absolute;
+  background-color: #F4C336;
+  border-radius: 4px;
+  transition: width 200ms;
+}
+.hok-skilltip {
+  width: 20%;
+  min-height: 5%;
+  left: 50%;
+  top: 50%;
+  font-size: 16px;
+  color: #ccad76;
+  font-family: 'shousha';
+  background-color: rgba(36, 29, 19, 0.85);
+  border: #523a24 3px solid;
+  border-radius: 10px;
+  position: absolute;
+  display: block;
+  padding: 8px;
+  transform: translate(-50%, -50%);
+  transition: none;
+}
+.hokzjcard {
+  top: 80px;
+  position: absolute;
+  transform: scale(0.9);
+}
+.shelie-box {
+  width: 487.5px;
+  height: 170px;
+  position: absolute;
+  background-size: 100% 100%;
+  background-image: url(image/thunder/shelie.png);
+  /*overflow: auto;*/
+}
+.hok-yuqi {
+  --w: 1600px;
+  --h: 480px;
+  width: calc(var(--w));
+  height: calc(var(--h));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+.hok-yuqipart {
+  --w: 560px;
+  position: relative;
+  height: 100%;
+  width: var(--w);
+  top: 0;
+}
+.hok-yuqiAll {
+  /*height: 160px;*/
+  width: 619.4px;
+  height: 142.1px;
+  top: auto;
+  text-align: left;
+  position: absolute;
+  white-space: nowrap;
+  /*background-color: rgba(162, 133, 91, 0.4);*/
+  background-image: url(image/thunder/sheliex.png);
+  background-size: 100% 100%;
+  border: 2px solid rgb(41, 26, 3);
+  border-radius: 4px;
+}
+.hok-yuqi0 {
+  --h: 26px;
+  --w: 48%;
+  --z: 0.9;
+  width: 89%;
+  left: 0;
+  /* top: var(--h); */
+  zoom: var(--z);
+}
+.hok-yuqi1 {
+  --w: 48%;
+  --h: 26px;
+  --z: 0.9;
+  width: 89%;
+  left: 0;
+  bottom: var(--h);
+  margin-right: -5px !important;
+  zoom: var(--z);
+}
+.hok-yuqi2 {
+  --w: 48%;
+  --h: 26px;
+  --z: 0.9;
+  width: 89%;
+  right: 0;
+  bottom: var(--h);
+  margin-left: -5px !important;
+  zoom: var(--z);
+}
+.hok-tishi0 {
+  width: 99.5%;
+  height: auto;
+  left: 0;
+  top: 0;
+  border: 2px solid rgb(41, 26, 3);
+  border-radius: 4px;
+  background-color: rgba(255, 249, 215, 0.4);
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  position: relative;
+}
+.hok-tishi1 {
+  --w: 49.4%;
+  width: var(--w);
+  position: absolute;
+  height: 20px;
+  bottom: 0;
+  left: 0;
+  border: 2px solid rgb(41, 26, 3);
+  border-radius: 4px;
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  margin-right: -5px !important;
+  background-color: rgba(255, 249, 215, 0.4);
+}
+.hok-tishi2 {
+  --w: 49.4%;
+  width: var(--w);
+  position: absolute;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  border: 2px solid rgb(41, 26, 3);
+  border-radius: 4px;
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  margin-left: -5px !important;
+  background-color: rgba(255, 249, 215, 0.4);
+}
+.th-confirmdown {
+  transform: translateY(160%);
+  z-index: 20 !important;
+}
+.th-confirmdown2 {
+  transform: translateY(280%);
+  z-index: 20 !important;
+}
+.hok-gongxinAll {
+  /*height: 160px;*/
+  width: 876px;
+  height: 140px;
+  top: auto;
+  text-align: left;
+  position: absolute;
+  white-space: nowrap;
+  /*background-color: rgba(162, 133, 91, 0.4);*/
+  background-image: url(image/skill/quanji/area.png);
+  background-size: 100% 100%;
+  border: 2px solid rgb(41, 26, 3);
+  border-radius: 4px;
+}
+.hok-gongxin0 {
+  --h: 26px;
+  --w: 91%;
+  --z: 0.9;
+  width: 91%;
+  left: 0;
+  /* top: var(--h); */
+  zoom: var(--z);
+}
+.hok-gongxin1 {
+  --w: 48%;
+  --h: 26px;
+  --z: 0.9;
+  width: 16%;
+  left: 25%;
+  bottom: var(--h);
+  margin-right: -5px !important;
+  zoom: var(--z);
+}
+.hok-gongxin2 {
+  --w: 48%;
+  --h: 26px;
+  --z: 0.9;
+  width: 16%;
+  right: 165px;
+  bottom: var(--h);
+  margin-left: -5px !important;
+  zoom: var(--z);
+}
+.card-disabled {
+  opacity: 0.5;
+}
+/*搬运自雷佬Thunder*/
+/*搬运至太虚幻境*/
+#hokmessagePopupHome {
+  width: 100%;
+  height: 70%;
+  left: 0%;
+  bottom: 20%;
+  pointer-events: none;
+  text-align: center;
+  z-index: 2022;
+}
+.hokmessagePopupDiv {
+  position: relative;
+  width: 100%;
+  height: 5%;
+  top: 100%;
+  left: 0%;
+  text-align: center;
+  animation-duration: 1.6s;
+  /*动画时间*/
+  animation-fill-mode: both;
+  /*播放后的状态*/
+  animation-name: popupMessageTips;
+  /*动画名称*/
+  animation-iteration-count: 1;
+  /*动画循环次数：infinite 无限循环*/
+  transform-origin: center center;
+  /*设置动画旋转元素的基点为：居中靠下*/
+  margin: 0% 0% 0% 0%;
+}
+@keyframes popupMessageTips {
+  0% {
+    opacity: 0;
+    top: 100%;
+  }
+  25% {
+    opacity: 1;
+    top: 95%;
+  }
+  80% {
+    opacity: 1;
+    top: 95%;
+  }
+  to {
+    opacity: 0;
+    top: 80%;
+  }
+}
+.hokmessagePopupDivBg {
+  position: absolute;
+  width: 319px;
+  height: 28px;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(image/ui/offical_rank_fllow.png);
+  -webkit-transition: all 0s;
+}
+.hokmessagePopupDivText {
+  position: absolute;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: shousha;
+  font-size: 20px;
+  color: white;
+  text-shadow: 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037, 0px 0px 3px #4c4037, 0 0 3px #4c4037, 0 0 3px #4c4037;
+  position: relative;
+  letter-spacing: 4px;
+  -webkit-transition: all 0s;
+}
+/*武将的小头像*/
+.hokcharacterPic {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  vertical-align: top;
+  background-position-x: 50%;
+  background-repeat: no-repeat;
+  margin: 8px;
+}
+/*联机换肤*/
+.hokChangeSkin {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  /* background-size: cover; */
+  /*pointer-events: none;*/
+  /*z-index: 2 !important;*/
+}
+.HOKBGM_MUSICImage {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+}
+.HOKBGM_MUSICText {
+  width: 100%;
+  height: 35%;
+  font-family: 'shousha';
+  font-size: 8px;
+  text-align: center;
+  bottom: 0;
+  position: absolute;
+  margin-bottom: inherit;
+}
+.hokscspvp {
+  z-index: 999;
+  width: 200px;
+  height: 54px;
+  background-size: 100% 100%;
+  background-image: url(image/logo/logo.png);
+  display: block;
+  position: absolute;
+}
+.hokscsBtn0 {
+  z-index: 999;
+  background-size: cover;
+}
+.hokscsBtn0>.hokclose {
+  z-index: 999;
+  position: fixed;
+  overflow: hidden;
+  --w: 76px;
+  --h: calc(var(--w) * 64/76);
+  width: var(--w);
+  height: var(--h);
+  top: 10%;
+  right: 10%;
+  margin: 23px;
+  background-size: 100% 100%;
+  background-image: url(image/tower/tower_encounter_option_refruse.png);
+}
+/*虚拟卡牌tag*/
+.card>.virtualMark {
+  background-size: 100% 100%;
+  top: 12px;
+  left: 8px;
+  width: 23.5px;
+  height: 42.3px;
+  background-image: url(assets/image/virtual.png);
+}
+.card>.used-clone {
+  text-shadow: 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4C3726, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728;
+  /*text-shadow: 1px 1px 2px #ff6600, 1px -1px 2px #ff6600, -1px -1px 2px #ff6600, -1px 1px 2px #ff6600;*/
+  font-family: 'shousha' !important;
+  color: white;
+  font-size: 21px;
+  bottom: 22px;
+  background: none;
+  text-align: center;
+  left: 15%;
+  width: 72px;
+  z-index: 5;
+}
+.card>.used-clone>span>.colorText {
+  /*font-size: 24px;*/
+  color: gold;
+  white-space: nowrap;
+}
+.warpAndBigger {
+  display: block;
+  letter-spacing: 2px
+}
+.hokhuanhaiyingyue {
+  display: none;
+}

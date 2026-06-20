@@ -1,0 +1,108 @@
+/*本体手杀势力美化*/
+.player > .group {
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  display: none;
+  pointer-events: none;
+  display: block;
+}
+/*新版*/
+#arena.long.slim_player .player > .name,
+#arena.long.slim_player .player > .name,
+#arena.long.uslim_player .player > .name,
+#arena.long.mslim_player .player > .name,
+#arena.long.lslim_player .player > .name {
+  left: -1px;
+  top: 21px;
+  z-index: 10;
+}
+#arena.slim_player .player > .name,
+#arena.uslim_player .player > .name,
+#arena.mslim_player .player > .name,
+#arena.lslim_player .player > .name {
+  left: 1.5px;
+  top: 21px;
+  z-index: 10;
+}
+#arena.long.slim_player .player > .equips,
+#arena.long.slim_player .player > .equips,
+#arena.long.uslim_player .player > .equips,
+#arena.long.mslim_player .player > .equips,
+#arena.long.lslim_player .player > .equips {
+  left: 25px;
+}
+#arena.slim_player .player > .equips,
+#arena.uslim_player .player > .equips,
+#arena.mslim_player .player > .equips,
+#arena.uslim_player .player .equips {
+  left: 28px;
+}
+#arena.long.slim_player .player > .hp:not(.actcount),
+#arena.long.slim_player .player > .hp:not(.actcount),
+#arena.long.uslim_player .player > .hp:not(.actcount),
+#arena.long.mslim_player .player > .hp:not(.actcount),
+#arena.long.lslim_player .player > .hp:not(.actcount) {
+  left: 1px;
+}
+#arena > .player:not(.minskin) > .hp:not(.actcount) {
+  left: 3px;
+}
+#arena.long.slim_player .player > .count,
+#arena.long.slim_player .player > .count,
+#arena.long.uslim_player .player > .count,
+#arena.long.mslim_player .player > .count,
+#arena.long.lslim_player .player > .count {
+  left: 120px;
+}
+#arena.slim_player .player > .count,
+#arena.uslim_player .player > .count,
+#arena.mslim_player .player > .count,
+#arena.slim_player .player .count {
+  left: 150px;
+}
+/*搬运自十周年UI*/
+/*联机名称显示*/
+.player>.nameol {
+	top: -20px;
+	font-size: 20px;
+	font-family: 'shousha';
+	text-shadow: 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728,1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4C3726, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728, 1px 1px 2px #4c3728, 1px -1px 2px #4c3728, -1px -1px 2px #4c3728, -1px 1px 2px #4c3728;
+	z-index: 89;
+	pointer-events: none;
+}
+/*判定牌图层*/
+.player .judges {
+  right: -33px;
+  top: 26px;
+  left: auto;
+  z-index: 3;
+}
+/*阵亡*/
+.player>.dieidentity {
+  width: 100px;
+  height: 174px;
+  opacity: 1;
+  display: block;
+  text-align: center;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  left: calc(50% - 40px);
+  top: auto;
+  bottom: 10px;
+}
+.player .tipContainer {
+  --bg: #2b2b28;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  bottom: max(48%, var(--bottom, 46%));
+  height: fit-content;
+  display: var(--tip-display);
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  z-index: 3;
+}
