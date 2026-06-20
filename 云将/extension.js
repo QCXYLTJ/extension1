@@ -12081,13 +12081,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (var i = 0; i < position.length; i++) {
                                     if (position[i] == 'h' && target.num('h')) {
                                         event.dialog.add('手牌区');
-                                        event.dialog.add(target.get('h'));
+                                        event.dialog.add(target.getCards('h'));
                                     } else if (position[i] == 'e' && target.num('e')) {
                                         event.dialog.add('装备区');
-                                        event.dialog.add(target.get('e'));
+                                        event.dialog.add(target.getCards('e'));
                                     } else if (position[i] == 'j' && target.num('j')) {
                                         event.dialog.add('判定区');
-                                        event.dialog.add(target.get('j'));
+                                        event.dialog.add(target.getCards('j'));
                                     }
                                 }
                                 var dialog = event.dialog;

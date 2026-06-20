@@ -567,7 +567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 var n = trigger.target.maxHp;
                                 var m = trigger.target.hp;
-                                var skills = trigger.target.get('s', false, false);
+                                var skills = trigger.target.getCards('s');
                                 skills = skills.slice(0);
                                 for (var j = 0; j < skills.length; j++) {
                                     if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
@@ -1111,11 +1111,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 7');
                                 event.finish();
                                 ('step 8');
-                                var e1 = player.get('e', '1');
-                                var e2 = player.get('e', '2');
-                                var e3 = player.get('e', '3');
-                                var e4 = player.get('e', '4');
-                                var e5 = player.get('e', '5');
+                                var e1 = player.getEquips(1);
+                                var e2 = player.getEquips(2);
+                                var e3 = player.getEquips(3);
+                                var e4 = player.getEquips(4);
+                                var e5 = player.getEquips(5);
                                 var card = trigger.cards[0];
                                 if ((get.subtype(card) == 'equip1' && !e1) || (get.subtype(card) == 'equip2' && !e2) || (get.subtype(card) == 'equip3' && !e3) || (get.subtype(card) == 'equip4' && !e4) || (get.subtype(card) == 'equip5' && !e5)) {
                                     player.equip(trigger.cards[0]);
@@ -2790,7 +2790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     logTarget: 'target',
                                     content() {
-                                        var e2 = trigger.target.get('e', '2');
+                                        var e2 = trigger.target.getEquips(2);
                                         if (e2) {
                                             trigger.target.discard(e2);
                                             trigger.targets.remove(trigger.target);

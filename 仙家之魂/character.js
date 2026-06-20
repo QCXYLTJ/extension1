@@ -8123,9 +8123,7 @@ game.import('character', function () {
 							if (get.attitude(player, i) > 0) {
 								if (
 									player != i &&
-									!i.get('e', {
-										subtype: get.subtype(button.link),
-									})[0] &&
+									!i.getEquips(get.subtype(button.link))[0] &&
 									get.attitude(player, i) > 0
 								) {
 									equipTarget = true;
@@ -11181,7 +11179,7 @@ game.import('character', function () {
 						return player != target && trigger.player != target;
 					}).ai = function (target) {
 						if (trigger.card.name == 'huogong') {
-							if (target.num('e', '2') && target.get('e') == 'tengjia') return 2;
+							if (target.num('e', '2') && target.getCards('e') == 'tengjia') return 2;
 							if (target.countCards('h') <= 0) return -5;
 							if (target.hp <= 1) return Math.random < 0.3;
 							return 0.5;

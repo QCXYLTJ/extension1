@@ -928,7 +928,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     },
                                     target(player, target) {
-                                        if (!player.get('e', '1')) {
+                                        if (!player.getEquips(1)) {
                                             if (player.hp < 2) return 0;
                                             if (player.hp == 2 && target.hp >= 2) return 0;
                                         }
@@ -2389,7 +2389,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     },
                                     target(player, target) {
-                                        if (!player.get('e', '1')) {
+                                        if (!player.getEquips(1)) {
                                             if (player.hp < 2) return 0;
                                             if (player.hp == 2 && target.hp >= 2) return 0;
                                         }

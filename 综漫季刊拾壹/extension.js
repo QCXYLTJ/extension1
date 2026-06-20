@@ -2495,7 +2495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     event.tr = tr;
                                     var controls = [];
-                                    var skills = tr.get('s', false, false);
+                                    var skills = tr.getCards('s');
                                     for (let i = 0; i < skills.length; i++) {
                                         var info = lib.skill[skills[i]];
                                         if (!info) continue;
@@ -4238,7 +4238,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.awakenSkill('zmxuanqibianhua');
                                 var tr = target;
                                 var controls = [];
-                                var skills = tr.get('s', false, false);
+                                var skills = tr.getCards('s');
                                 for (let i = 0; i < skills.length; i++) {
                                     var info = lib.skill[skills[i]];
                                     if (!info) continue;

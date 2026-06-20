@@ -1737,7 +1737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:幻颜风华/audio:3',
 							enable: 'phaseUse',
 							filter(event, player) {
-								return !player.get('e', '5') && game.countPlayer((p) => p.countCards('he') && player != p && !p.hasSkill('lg_xiefengwuye1'));
+								return !player.getEquips(5) && game.countPlayer((p) => p.countCards('he') && player != p && !p.hasSkill('lg_xiefengwuye1'));
 							},
 							filterTarget(card, player, target) {
 								return target.countCards('he') && player != target && !target.hasSkill('lg_xiefengwuye1');
@@ -3150,9 +3150,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								if (player.maxHp - player.hp <= target.num('h')) {
-									target.showCards(target.get('h').randomGets(player.maxHp - player.hp));
+									target.showCards(target.getCards('h').randomGets(player.maxHp - player.hp));
 								} else {
-									target.showCards(target.get('h').randomGets(target.num('h')));
+									target.showCards(target.getCards('h').randomGets(target.num('h')));
 								}
 							},
 							ai: {
@@ -4936,7 +4936,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageBefore',
 							},
 							filter(event, player) {
-								if (event.player.get('e', '2')) return true;
+								if (event.player.getEquips(2)) return true;
 								return false;
 							},
 							content() {
@@ -6422,12 +6422,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								trigger.num += 2;
-								for (var i = 0; i < player.get('h').length; i++) {
-									player.storage.lg_kuanglan.push(player.get('h')[i]);
+								for (var i = 0; i < player.getCards('h').length; i++) {
+									player.storage.lg_kuanglan.push(player.getCards('h')[i]);
 								}
 								player.showHandcards();
 								player.markSkill('lg_kuanglan');
-								player.lose(player.get('h'), ui.special);
+								player.lose(player.getCards('h'), ui.special);
 								('step 1');
 								player.judge(function (card) {
 									for (var i = 0; i < player.storage.lg_kuanglan.length; i++) {
@@ -8353,7 +8353,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.canCompare(event.player); // && !event.player.hasSkill("jlsg_chanyuan");
 							},
 							check(event, player) {
-								var cards = player.get('h');
+								var cards = player.getCards('h');
 								for (var i = 0; i < cards.length; i++) {
 									if (cards[i].number > 11 && get.value(cards[i]) < 7) {
 										return get.attitude(player, event.player) < 0;
@@ -8461,7 +8461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.canCompare(event.player); // && !event.player.hasSkill("jlsg_chanyuan");
 							},
 							check(event, player) {
-								var cards = player.get('h');
+								var cards = player.getCards('h');
 								for (var i = 0; i < cards.length; i++) {
 									if (cards[i].number > 11 && get.value(cards[i]) < 7) {
 										return get.attitude(player, event.player) < 0;
@@ -11692,7 +11692,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								effect: {
 									target(card, player, target, current) {
 										if (get.tag(card, 'damage')) {
-											var bs = player.get('h');
+											var bs = player.getCards('h');
 											if (bs.length == 0) return 0;
 											if ((player.hasSkill('jiu') || player.hasSkill('tianxianjiu')) && card.name == 'sha') return;
 											if (player.countCards('h') <= 1) return 0;
@@ -12581,7 +12581,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var num = trigger.source.countCards('hej', { suit: 'club' });
 								if (num > THCN) num = THCN;
 								var THCN = trigger.source.countCards('h');
-								var THC = trigger.source.get('h');
+								var THC = trigger.source.getCards('h');
 								var list = [];
 								for (var i = 0; i < num; i++) {
 									list.push(THC[i]);
@@ -13434,13 +13434,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								var loseHpNum = player.maxHp - player.hp;
 								if (target.num('h') >= loseHpNum) {
-									var cards = target.get('h').randomGets(loseHpNum);
+									var cards = target.getCards('h').randomGets(loseHpNum);
 									target.$give(loseHpNum, player);
 									player.gain(cards);
 									player.addTempSkill('lg_chunzhenzhufu1', { player: 'phaseEnd' });
 								} else {
-									target.$give(target.get('h').length, player);
-									player.gain(target.get('h'));
+									target.$give(target.getCards('h').length, player);
+									player.gain(target.getCards('h'));
 								}
 							},
 							ai: {
@@ -22185,7 +22185,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								}
 								var suits = ['heart', 'club', 'spade', 'diamond'];
-								var cards = player.get('he');
+								var cards = player.getCards('he');
 								for (var i = 0; i < cards.length; i++) {
 									if (suits.includes(cards[i].suit)) suits.remove(cards[i].suit);
 								}
@@ -22197,7 +22197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								player.showHandcards();
 								var suits = ['heart', 'club', 'spade', 'diamond'];
-								event.cards = player.get('he');
+								event.cards = player.getCards('he');
 								if (Array.isArray(event.cards))
 									for (var i of event.cards) {
 										//QQ
@@ -24167,7 +24167,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageBegin',
 							},
 							filter(event, player) {
-								if (!event.player.get('e', '5')) return false;
+								if (!event.player.getEquips(5)) return false;
 								return event.card;
 							},
 							content() {

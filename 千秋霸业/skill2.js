@@ -259,7 +259,7 @@ const skill = {
             global: 'phaseUseBegin',
         },
         check(event, player) {
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             for (var i = 0; i < cards.length; i++) {
                 if (cards[i].number > 11 && get.value(cards[i]) < 7) {
                     return get.attitude(player, event.player) < 0;
@@ -4026,7 +4026,7 @@ const skill = {
         lose: false,
         prompt: '发动此技能',
         selectCard() {
-            var cards = _status.event.player.get('h');
+            var cards = _status.event.player.getCards('h');
             var suits = [];
             for (var i = 0; i < cards.length; i++) {
                 if (!suits.includes(cards[i].suit)) suits.push(cards[i].suit);
@@ -4037,7 +4037,7 @@ const skill = {
             'step 0';
             player.showHandcards();
             var he = [];
-            var hs = player.get('h');
+            var hs = player.getCards('h');
             he = he.concat(hs);
             for (var i = 0; i < cards.length; i++) {
                 he.remove(cards[i]);
@@ -4050,7 +4050,7 @@ const skill = {
             order: 2,
             result: {
                 player(player) {
-                    var cards = player.get('h');
+                    var cards = player.getCards('h');
                     var suits = [];
                     for (var i = 0; i < cards.length; i++) {
                         if (!suits.includes(cards[i].suit)) suits.push(cards[i].suit);
@@ -17957,7 +17957,7 @@ const skill = {
             player: 'respondAfter',
         },
         filter(event, player) {
-            if (player.get('e', '5')) return true;
+            if (player.getEquips(5)) return true;
             return false;
         },
         content() {
@@ -19262,7 +19262,7 @@ const skill = {
         forced: true,
         content() {
             'step 0';
-            player.chooseCardButton(get.prompt('lg_qingxian2'), 1, player.get('h')).set('ai', function (card) {
+            player.chooseCardButton(get.prompt('lg_qingxian2'), 1, player.getCards('h')).set('ai', function (card) {
                 if (player.maxHp == player.hp) return 1;
                 return;
             });
@@ -28012,7 +28012,7 @@ const skill = {
             player.draw();
             var pl = game.players.randomGet();
             pl.showHandcards();
-            if (pl.get('h', 'sha').length) player.useCard({ name: 'sha' }, pl, false);
+            if (p.getCards('h', 'sha').length) player.useCard({ name: 'sha' }, pl, false);
         },
         ai: {
             result: {
@@ -32739,14 +32739,14 @@ const skill = {
                 filter(event, player) {
                     if (event.player == player) return false;
                     if (!event.cards) return false;
-                    if (player.get('he').length == 0) return false;
-                    for (var i of player.get('he')) {
+                    if (player.getCards('he').length == 0) return false;
+                    for (var i of player.getCards('he')) {
                         if (event.cards.includes(i)) return true;
                     }
                     return false;
                 },
                 content() {
-                    trigger.cards.remove(player.get('he'));
+                    trigger.cards.remove(player.getCards('he'));
                 },
             },
             Before: {
@@ -37013,7 +37013,7 @@ const skill = {
             ('step 3');
             player
                 .chooseTarget('选择至多' + get.cnNumber(event.num[1]) + '名其他角色？', [event.num[0], event.num[1]], function (card, player, target) {
-                    return player != target && (target.countCards('h') > 0 || target.get('e', '2'));
+                    return player != target && (target.countCards('h') > 0 || target.getEquips(2));
                 })
                 .set('ai', function (target) {
                     return -get.attitude(player, target);
@@ -37029,7 +37029,7 @@ const skill = {
             if (targets && targets.length) {
                 for (var i = 0; i < targets.length; i++) {
                     var target = targets[i];
-                    if (target.get('e', '2')) target.discard(target.get('e', '2'));
+                    if (target.getEquips(2)) target.discard(target.getEquips(2));
                     else target.chooseToDiscard('h', 2, true) && target.damage();
                 }
             }
@@ -42629,7 +42629,7 @@ const skill = {
             player: 'phaseUseBegin',
         },
         filter(event, player) {
-            if (player.get('e', '5')) return true;
+            if (player.getEquips(5)) return true;
             return false;
         },
         content() {
@@ -42644,7 +42644,7 @@ const skill = {
         },
         forced: true,
         filter(event, player) {
-            if (player.get('e', '5')) return false;
+            if (player.getEquips(5)) return false;
             return event.card && event.card.name == 'chuqibuyi' && event.card.name == 'huogong';
         },
         content() {
@@ -43402,7 +43402,7 @@ const skill = {
             for (var i of game.players) {
                 //QQ
                 if (i != player) {
-                    var skills = i.get('s', false, false);
+                    var skills = i.getCards('s');
                     for (var j = 0; j < skills.length; j++) {
                         if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
                             var str = lib.translate[skills[j] + '_info'];

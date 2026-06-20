@@ -6239,7 +6239,7 @@ game.import('extension', function () {
                             },
                             content() {
                                 for (var i = 0; i < player.countCards('hej', { suit: 'heart' }); i++) {
-                                    player.get('hej', { suit: 'heart' })[i].init(game.createCard('du'));
+                                    player.getCards('hej', { suit: 'heart' })[i].init(game.createCard('du'));
                                 }
                             },
                         },
@@ -6702,15 +6702,15 @@ game.import('extension', function () {
                                 var adjacentPlayers = [];
                                 if (target.previous && target.previous.isAlive()) adjacentPlayers.push(target.previous);
                                 if (target.next && target.next.isAlive()) adjacentPlayers.push(target.next);
-                                var color = get.color(target.get('h'));
+                                var color = get.color(target.getCards('h'));
                                 var damagedPlayers = adjacentPlayers.filter(function (player) {
-                                    return player != adjacentPlayers && get.color(player.get('h')) == color;
+                                    return player != adjacentPlayers && get.color(player.getCards('h')) == color;
                                 });
                                 if (damagedPlayers.length) {
                                     for (var i of damagedPlayers) {
                                         i.damage('fire');
                                         i.randomDiscard('he', true);
-                                        if (get.color(i.get('h')) == color) {
+                                        if (get.color(i.getCards('h')) == color) {
                                             i.damage('fire'); //QQQ
                                             i.randomDiscard(1, true);
                                             event.redo = true;

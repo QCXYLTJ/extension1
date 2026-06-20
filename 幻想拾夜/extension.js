@@ -751,7 +751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             _priority: 100,
                             filter(event, player, target) {
-                                return event.card && event.card.name == 'sha' && event.target.get('e', { subtype: 'equip2' }).length && event.target.get('e', { subtype: 'equip2' }) && player.num('he') > 0;
+                                return event.card && event.card.name == 'sha' && event.target.getEquips(2).length && event.target.getEquips(2) && player.num('he') > 0;
                             },
                             content() {
                                 'step 0';
@@ -2131,12 +2131,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.chooseTarget('请选择目标', 2, function (card, player, target) {
                                             if (ui.selected.targets.length) {
                                                 var from = ui.selected.targets[0];
-                                                var judges = from.get('j');
+                                                var judges = from.getCards('j');
                                                 for (let i = 0; i < judges.length; i++) {
                                                     if (!target.hasJudge(judges[i].viewAs || judges[i].name)) return true;
                                                 }
                                                 if (target.isMin()) return false;
-                                                if ((from.get('e', '1') && !target.get('e', '1')) || (from.get('e', '2') && !target.get('e', '2')) || (from.get('e', '3') && !target.get('e', '3')) || (from.get('e', '4') && !target.get('e', '4')) || (from.get('e', '5') && !target.get('e', '5'))) return true;
+                                                if ((from.getEquips(1) && !target.getEquips(1)) || (from.getEquips(2) && !target.getEquips(2)) || (from.getEquips(3) && !target.getEquips(3)) || (from.getEquips(4) && !target.getEquips(4)) || (from.getEquips(5) && !target.getEquips(5))) return true;
                                                 return false;
                                             } else {
                                                 return target.num('ej') > 0;
@@ -2148,7 +2148,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 if (get.attitude(player, target) < 0) {
                                                     for (const i of game.players) {
                                                         if (get.attitude(player, i) > 0) {
-                                                            if ((target.get('e', '1') && !i.get('e', '1')) || (target.get('e', '2') && !i.get('e', '2')) || (target.get('e', '3') && !i.get('e', '3')) || (target.get('e', '4') && !i.get('e', '4')) || (target.get('e', '5') && !i.get('e', '5'))) return -get.attitude(player, target);
+                                                            if ((target.getEquips(1) && !i.getEquips(1)) || (target.getEquips(2) && !i.getEquips(2)) || (target.getEquips(3) && !i.getEquips(3)) || (target.getEquips(4) && !i.getEquips(4)) || (target.getEquips(5) && !i.getEquips(5))) return -get.attitude(player, target);
                                                         }
                                                     }
                                                 }
@@ -2226,7 +2226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             logTarget: 'player',
                             check(event, player) {
-                                var cards = event.player.get('h');
+                                var cards = event.player.getCards('h');
                                 var save = false;
                                 if (Array.isArray(cards)) for (const i of cards) {
                                     if (get.tag(i, 'save')) {
@@ -2252,7 +2252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var cards = trigger.player.get('h');
+                                var cards = trigger.player.getCards('h');
                                 event.bool = cards.length >= 2;
                                 trigger.player.discard(cards);
                                 trigger.player.recover(2);
@@ -3808,7 +3808,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = target.countCards('h');
-                                target.discard(target.get('h'));
+                                target.discard(target.getCards('h'));
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');

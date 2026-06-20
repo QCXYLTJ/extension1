@@ -4175,9 +4175,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var data = {};
                                 for (var i of game.players) {
                                     data[i.dataset.position] = {
-                                        h: get.cardsInfo(i.get('h')),
-                                        e: get.cardsInfo(i.get('e')),
-                                        j: get.cardsInfo(i.get('j')),
+                                        h: get.cardsInfo(i.getCards('h')),
+                                        e: get.cardsInfo(i.getCards('e')),
+                                        j: get.cardsInfo(i.getCards('j')),
                                     };
                                 }
                                 ('step 5');
@@ -5692,7 +5692,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.draw();
                                 }
                                 if (result.control == '复制手牌') {
-                                    var hs = target.get('h');
+                                    var hs = target.getCards('h');
                                     if (hs.length && !target.storage.longzu_jingtong) {
                                         var hs2 = [];
                                         for (var i = 0; i < hs.length; i++) {

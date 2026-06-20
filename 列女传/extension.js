@@ -140,7 +140,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.showCards(cards);
                                 player.gain(cards);
                                 game.log(player, '收回了', cards);
-                                var targetCard = target.get('h').randomGet();
+                                var targetCard = target.getCards('h').randomGet();
                                 target.showCards(targetCard);
                                 if (get.color(cards) == get.color(targetCard)) {
                                     player.recover();
@@ -928,12 +928,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseTarget('请选择目标', 2, function (card, player, target) {
                                             if (ui.selected.targets.length) {
                                                 var from = ui.selected.targets[0];
-                                                var judges = from.get('j');
+                                                var judges = from.getCards('j');
                                                 for (var i = 0; i < judges.length; i++) {
                                                     if (!target.hasJudge(judges[i].viewAs || judges[i].name)) return true;
                                                 }
                                                 if (target.isMin()) return false;
-                                                if ((from.get('e', '1') && !target.get('e', '1')) || (from.get('e', '2') && !target.get('e', '2')) || (from.get('e', '3') && !target.get('e', '3')) || (from.get('e', '4') && !target.get('e', '4')) || (from.get('e', '5') && !target.get('e', '5'))) return true;
+                                                if ((from.getEquips(1) && !target.getEquips(1)) || (from.getEquips(2) && !target.getEquips(2)) || (from.getEquips(3) && !target.getEquips(3)) || (from.getEquips(4) && !target.getEquips(4)) || (from.getEquips(5) && !target.getEquips(5))) return true;
                                                 return false;
                                             } else {
                                                 return target.num('ej') > 0;
@@ -948,7 +948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 for (var i of game.players) {
                                                     //QQ
                                                     if (get.attitude(player, i) > 0) {
-                                                        if ((target.get('e', '1') && !i.get('e', '1')) || (target.get('e', '2') && !i.get('e', '2')) || (target.get('e', '3') && !i.get('e', '3')) || (target.get('e', '4') && !i.get('e', '4')) || (target.get('e', '5') && !i.get('e', '5'))) return -get.attitude(player, target);
+                                                        if ((target.getEquips(1) && !i.getEquips(1)) || (target.getEquips(2) && !i.getEquips(2)) || (target.getEquips(3) && !i.getEquips(3)) || (target.getEquips(4) && !i.getEquips(4)) || (target.getEquips(5) && !i.getEquips(5))) return -get.attitude(player, target);
                                                     }
                                                 }
                                             }

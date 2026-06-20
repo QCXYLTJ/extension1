@@ -139,7 +139,7 @@ export async function precontent(config, pack) {
 							target.markSkill('gezi_ruodianjielu');
 						}
 						if (result.control == '展示手牌并揭露弱点') {
-							target.showCards(target.get('h'));
+							target.showCards(target.getCards('h'));
 							player.draw();
 							target.addSkill('gezi_ruodianjielu');
 							if (!target.storage.gezi_ruodianjielu) {
@@ -154,7 +154,7 @@ export async function precontent(config, pack) {
 							target.markSkill('gezi_ruodianjielu');
 						}
 						if (result.control == '展示手牌并明置身份') {
-							target.showCards(target.get('h'));
+							target.showCards(target.getCards('h'));
 							player.draw();
 							if ((_status.yibianmoshi == true && get.mode() == 'identity') || get.mode() == 'stg') {
 								target.useSkill('_tanpai');
@@ -174,7 +174,7 @@ export async function precontent(config, pack) {
 						}
 						if (result.control) {
 							if (result.control == '展示手牌') {
-								target.showCards(target.get('h'));
+								target.showCards(target.getCards('h'));
 								player.draw();
 							}
 							if (result.control == '明置身份') {
@@ -437,7 +437,7 @@ export async function precontent(config, pack) {
 					},
 					content() {
 						'step 0';
-						target.showCards(target.get('h'));
+						target.showCards(target.getCards('h'));
 						('step 1');
 						player.chooseCard('你可以用一张牌交换' + get.translation(target) + '一张不同类型的牌', 1, function (card) {
 							return (
@@ -459,7 +459,7 @@ export async function precontent(config, pack) {
 							event.finish();
 						}
 						('step 3');
-						player.chooseCardButton(target.get('h'), '获得一张牌', 1, true).set('filterButton', function (button) {
+						player.chooseCardButton(target.getCards('h'), '获得一张牌', 1, true).set('filterButton', function (button) {
 							return get.type(button.link) != get.type(event.card);
 						}).ai = function (button) {
 							var val = get.value(button.link);
@@ -1560,7 +1560,7 @@ export async function precontent(config, pack) {
 						result: {
 							target(player, target) {
 								if (target.maxHp == target.hp) return 0;
-								var es = target.get('e');
+								var es = target.getCards('e');
 								var nh = target.countCards('h');
 								if (get.attitude(player, target) <= 0) return target.countCards('hej') ? -1.5 : 1.5;
 								return -1.5;
@@ -4042,7 +4042,7 @@ export async function precontent(config, pack) {
 				if (player.name == 'gezi_eiki') {
 					player.say('不要在阎魔面前隐藏任何东西.没用的');
 				}
-				if (target.get('h').length == 0) {
+				if (target.getCards('h').length == 0) {
 					event.finish();
 					return;
 				}
@@ -9351,7 +9351,7 @@ export async function precontent(config, pack) {
 						if (!i.hasSkill('gezi_shuanggui2')) continue;
 						if (i.countCards('h')) {
 							dialog.add(get.translation(i) + '的手牌');
-							var hs = i.get('h');
+							var hs = i.getCards('h');
 							dialog.add(hs);
 						}
 					}
@@ -9417,7 +9417,7 @@ export async function precontent(config, pack) {
 					if (!i.hasSkill('gezi_shuanggui2')) continue;
 					dialog.add(get.translation(i) + '的手牌');
 					if (i.countCards('h')) {
-						var hs = i.get('h');
+						var hs = i.getCards('h');
 						for (var j = 0; j < hs.length; j++) {
 							cards.push(hs[j]);
 						}

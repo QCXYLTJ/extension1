@@ -2979,7 +2979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.zym_np -= 20;
                                 player
                                     .chooseTarget(get.prompt('神威·攻'), function (card, player, target) {
-                                        if (trigger.target == target && trigger.target.get('he').length == 0) return false;
+                                        if (trigger.target == target && trigger.target.getCards('he').length == 0) return false;
                                         return target != player && get.distance(trigger.target, target) <= 1;
                                     })
                                     .set('ai', function (target) {
@@ -2988,7 +2988,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     event.targets = result.targets[0];
-                                    if (result.targets[0].get('he').length >= 1) {
+                                    if (result.targets[0].getCards('he').length >= 1) {
                                         result.targets[0].chooseToDiscard(true, 'he');
                                     }
                                 }

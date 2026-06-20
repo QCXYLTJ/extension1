@@ -5816,7 +5816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 var num = trigger.player.num('h');
-                                trigger.player.lose(trigger.player.get('h'));
+                                trigger.player.lose(trigger.player.getCards('h'));
                                 for (var i = 0; i < num; i++) trigger.player.gain(game.createCard('du'))._triggered = null;
                             },
                         },

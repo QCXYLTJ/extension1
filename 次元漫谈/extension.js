@@ -1995,12 +1995,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 										var recovers = 0;
 										if (get.recoverEffect(tar, tar, player) > 0 && tar.getEquip('baiyin')) {
-											if (lib.filter.canBeGained(tar.get('e', '2'), player, tar)) recovers++;
+											if (lib.filter.canBeGained(tar.getEquips(2), player, tar)) recovers++;
 										}
 										var att = get.attitude(player, tar);
 										if (att > 0) {
-											if (recovers > 0 && get.color(tar.get('e', '2')) == 'black') return '黑';
-											if (recovers > 0 && get.color(tar.get('e', '2')) == 'red') return '红';
+											if (recovers > 0 && get.color(tar.getEquips(2)) == 'black') return '黑';
+											if (recovers > 0 && get.color(tar.getEquips(2)) == 'red') return '红';
 											return '取消';
 										}
 										return ['黑', '红'].randomGet();
@@ -2229,24 +2229,24 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.equip4 = 0;
 										event.equip5 = 0;
 										event.judges = 0;
-										if (player.get('e', '1')) {
-											var c = player.get('e', '1');
+										if (player.getEquips(1)) {
+											var c = player.getEquips(1);
 											event.equip1 += c.number;
 										}
-										if (player.get('e', '2')) {
-											var c = player.get('e', '2');
+										if (player.getEquips(2)) {
+											var c = player.getEquips(2);
 											event.equip2 += c.number;
 										}
-										if (player.get('e', '3')) {
-											var c = player.get('e', '3');
+										if (player.getEquips(3)) {
+											var c = player.getEquips(3);
 											event.equip3 += c.number;
 										}
-										if (player.get('e', '4')) {
-											var c = player.get('e', '4');
+										if (player.getEquips(4)) {
+											var c = player.getEquips(4);
 											event.equip4 += c.number;
 										}
-										if (player.get('e', '5')) {
-											var c = player.get('e', '5');
+										if (player.getEquips(5)) {
+											var c = player.getEquips(5);
 											event.equip5 += c.number;
 										}
 										player
@@ -2258,11 +2258,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return get.damageEffect(current, player, player) > 0 && get.attitude(player, current) < 0;
 												});
 												if (num > 0) {
-													if (list.includes('宝物栏') && player.get('e', '5')) return '宝物栏';
-													else if (list.includes('防御马') && player.get('e', '3')) return '防御马';
-													else if (list.includes('进攻马') && player.get('e', '4')) return '进攻马';
-													else if (list.includes('武器栏') && player.get('e', '1')) return '武器栏';
-													else if (list.includes('防具栏') && player.get('e', '2')) return '防具栏';
+													if (list.includes('宝物栏') && player.getEquips(5)) return '宝物栏';
+													else if (list.includes('防御马') && player.getEquips(3)) return '防御马';
+													else if (list.includes('进攻马') && player.getEquips(4)) return '进攻马';
+													else if (list.includes('武器栏') && player.getEquips(1)) return '武器栏';
+													else if (list.includes('防具栏') && player.getEquips(2)) return '防具栏';
 												}
 												return '取消';
 											});

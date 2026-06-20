@@ -14726,7 +14726,7 @@ const skill = {
         return true;
       }
       var suits = ['heart', 'club', 'spade', 'diamond'];
-      var cards = player.get('h');
+      var cards = player.getCards('h');
       if (Array.isArray(cards))
         for (var i of cards) {
           if (suits.includes(i.suit)) suits.remove(i.suit);
@@ -14738,7 +14738,7 @@ const skill = {
     },
     content() {
       var suits = ['heart', 'club', 'spade', 'diamond'];
-      event.cards = player.get('h');
+      event.cards = player.getCards('h');
       if (Array.isArray(event.cards))
         for (var i of event.cards) {
           if (suits.includes(i.suit)) suits.remove(i.suit);
@@ -17754,9 +17754,9 @@ const skill = {
         for (var i = 0; i < targets.length; i++) {
           var num = player.getAttackRange();
           var target = targets[i];
-          if (target.get('e', '2')) {
+          if (target.getEquips(2)) {
             target.link();
-            target.discard(target.get('e', '2'));
+            target.discard(target.getEquips(2));
           } else {
             target.damage(num, 'thunder', 'nosource');
             target.chooseToDiscard('he', 4, true);
@@ -20758,7 +20758,7 @@ const skill = {
       player: 'phaseEnd',
     },
     filter(event, player) {
-      if (player.get('e', '2')) return true;
+      if (player.getEquips(2)) return true;
       return false;
     },
     content() {

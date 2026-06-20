@@ -19670,7 +19670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.mx2_zaiduxuan == 1) player.useSkill('mx2_dongganyin_miku1');
                                 if (player.storage.mx2_zaiduxuan == 2) player.useSkill('mx2_dongganyin_miku2');
                                 if (player.storage.mx2_zaiduxuan == 3) player.useSkill('mx2_dongganyin_miku3');
-                                target.showCards(target.get('hej').randomGet());
+                                target.showCards(target.getCards('hej').randomGet());
                                 if (target.hp >= player.hp) target.draw(4);
                                 if (target.getAttackRange() >= player.getAttackRange()) player.draw(4);
                                 if (target.isMaxEquip()) {

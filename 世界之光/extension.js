@@ -3567,8 +3567,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     player.line(result.targets);
                                     var card;
-                                    for (var i = 0; i < result.targets[0].get('e').length; i++) {
-                                        if (get.subtype(event.c[0]) == get.subtype(result.targets[0].get('e')[i])) var card = result.targets[0].get('e')[i];
+                                    for (var i = 0; i < result.targets[0].getCards('e').length; i++) {
+                                        if (get.subtype(event.c[0]) == get.subtype(result.targets[0].getCards('e')[i])) var card = result.targets[0].getCards('e')[i];
                                     }
                                     player.gain(card, 'gain2');
                                     player.equip(card);
@@ -6366,7 +6366,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 }
                                 var suits = ['heart', 'club', 'spade', 'diamond'];
-                                var cards = player.get('h');
+                                var cards = player.getCards('h');
                                 for (var i = 0; i < cards.length; i++) {
                                     if (suits.includes(cards[i].suit)) suits.remove(cards[i].suit);
                                 }
@@ -6377,7 +6377,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 var suits = ['heart', 'club', 'spade', 'diamond'];
-                                event.cards = player.get('h');
+                                event.cards = player.getCards('h');
                                 if (Array.isArray(event.cards))
                                     for (var i of event.cards) {
                                         //QQ
@@ -6529,11 +6529,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 trigger.num += 3;
-                                for (var i = 0; i < player.get('h').length; i++) {
-                                    player.storage.lg_tiancaiouxiang.push(player.get('h')[i]);
+                                for (var i = 0; i < player.getCards('h').length; i++) {
+                                    player.storage.lg_tiancaiouxiang.push(player.getCards('h')[i]);
                                 }
                                 player.markSkill('lg_tiancaiouxiang');
-                                player.lose(player.get('h'), ui.special);
+                                player.lose(player.getCards('h'), ui.special);
                                 ('step 1');
                                 player.judge(function (card) {
                                     for (var i = 0; i < player.storage.lg_tiancaiouxiang.length; i++) {
@@ -14363,7 +14363,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = player.maxHp - player.hp;
                                 if (num > THCN) num = THCN;
                                 var THCN = trigger.source.countCards('h');
-                                var THC = trigger.source.get('h');
+                                var THC = trigger.source.getCards('h');
                                 var list = [];
                                 for (var i = 0; i < num; i++) {
                                     list.push(THC[i]);
@@ -20730,7 +20730,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 effect: {
                                     target(card, player, target, current) {
-                                        var bs = player.get('h');
+                                        var bs = player.getCards('h');
                                         if (bs.length == 0) return 0;
                                         if (player.hasSkill('jiu') || player.hasSkill('tianxianjiu')) return;
                                         return [1, 0, 1, -0.5];
@@ -22429,12 +22429,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         var recovers = 0;
                                         if (get.recoverEffect(tar, tar, player) > 0 && tar.getEquip('baiyin')) {
-                                            if (lib.filter.canBeGained(tar.get('e', '2'), player, tar)) recovers++;
+                                            if (lib.filter.canBeGained(tar.getEquips(2), player, tar)) recovers++;
                                         }
                                         var att = get.attitude(player, tar);
                                         if (att > 0) {
-                                            if (recovers > 0 && get.color(tar.get('e', '2')) == 'black') return '黑色';
-                                            if (recovers > 0 && get.color(tar.get('e', '2')) == 'red') return '红色';
+                                            if (recovers > 0 && get.color(tar.getEquips(2)) == 'black') return '黑色';
+                                            if (recovers > 0 && get.color(tar.getEquips(2)) == 'red') return '红色';
                                             return '取消';
                                         }
                                         return ['黑色', '红色'].randomGet();

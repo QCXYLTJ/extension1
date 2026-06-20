@@ -5864,7 +5864,7 @@ export default function () {
                                 player: 'phaseDrawBegin',
                             },
                             check(event, player) {
-                                var e2 = player.get('e', '2');
+                                var e2 = player.getEquips(2);
                                 if (e2) {
                                     if (e2.name == 'liannu') return true;
                                     if (e2.name == 'qinglong') return true;
@@ -8063,7 +8063,7 @@ export default function () {
                             },
                             audio: 'ext:MA动漫包/audio:2',
                             check(event, player) {
-                                var j2 = player.get('j', '2');
+                                var j2 = playe.getCards('j', '2');
                                 if (j2) {
                                     if (j2.name == 'lebu') return true;
                                     if (j2.name == 'bingliang') return true;

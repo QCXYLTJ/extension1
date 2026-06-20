@@ -4655,10 +4655,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				content() {
 					'step 0';
-					player.chooseToDiscard(trigger.targets[0].get('h'), true);
+					player.chooseToDiscard(trigger.targets[0].getCards('h'), true);
 					('step 1');
 					if (result.bool) {
-						trigger.targets[0].discard(trigger.targets[0].get('h'));
+						trigger.targets[0].discard(trigger.targets[0].getCards('h'));
 						player.draw(1);
 					}
 				},
@@ -6372,7 +6372,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					('step 1');
 					if (event.players.length) {
 						var current = event.players.shift();
-						var hs = current.get('h');
+						var hs = current.getCards('h');
 						if (hs.length && hs.length < 3) {
 							current.damage('fire', 3 - hs.length);
 						}

@@ -2174,7 +2174,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 const tr = target;
                                 const controls = [];
-                                const skills = tr.get('s', false, false);
+                                const skills = tr.getCards('s');
                                 for (let i = 0; i < skills.length; i++) {
                                     let info = lib.skill[skills[i]];
                                     if (!info) {

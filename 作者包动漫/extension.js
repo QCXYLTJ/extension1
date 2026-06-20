@@ -6270,7 +6270,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (game.players[i] == player) continue;
                                     if (game.players[i].countCards('h')) {
                                         dialog.add(get.translation(game.players[i]) + '的手牌');
-                                        var hs = game.players[i].get('h');
+                                        var hs = game.players[i].getCards('h');
                                         dialog.add(hs);
                                     }
                                 }

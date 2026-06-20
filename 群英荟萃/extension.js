@@ -2346,7 +2346,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.target.update();
                                 var List = ['回复一点体力', '摸一张牌', '取消'];
                                 if (player.hp == player.maxHp) List.remove('回复一点体力');
-                                if (trigger.target.get('h').length == 0) {
+                                if (trigger.target.getCards('h').length == 0) {
                                     player.chooseControl(List, function () {
                                         if (player.hp == player.maxHp) {
                                             return '回复一点体力';

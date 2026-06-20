@@ -83,7 +83,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 if (player.storage.fzjs == 0) {
                                     player.draw(4);
-                                    player.discard(player.get('hej'));
+                                    player.discard(player.getCards('hej'));
                                     player.uninit;
                                     player.init(player.name, 'high_zombie');
                                     player.maxHp = 5;
@@ -98,7 +98,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else {
                                     player.draw(4);
-                                    player.discard(player.get('hej'));
+                                    player.discard(player.getCards('hej'));
                                     player.uninit;
                                     player.init(player.name, 'low_zombie');
                                     player.maxHp = 3;

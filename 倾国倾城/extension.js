@@ -4111,7 +4111,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     for (var i = 0; i < result.targets.length; i++) {
-                                        player.gain(result.targets[i].get('he').randomGet());
+                                        player.gain(result.targets[i].getCards('he').randomGet());
                                         result.targets[i].$give(1, player);
                                     }
                                 }

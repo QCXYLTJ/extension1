@@ -13401,7 +13401,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var index = ['复制其手牌', '获取一个技能', '获取装备技能'].indexOf(result.control);
                                             switch (index) {
                                                 case 0:
-                                                    var hs = event.target.get('h');
+                                                    var hs = event.target.getCards('h');
                                                     if (hs.length) {
                                                         var hs2 = [];
                                                         for (var i = 0; i < hs.length; i++) {

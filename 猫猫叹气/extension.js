@@ -11555,7 +11555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (var i = 0; i < targets.length; i++) {
                                     if (targets[i].countCards('e')) {
                                         dialog.add(get.translation(targets[i]) + '的装备区');
-                                        var es = targets[i].get('e');
+                                        var es = targets[i].getCards('e');
                                         dialog.add(es);
                                     }
                                 }

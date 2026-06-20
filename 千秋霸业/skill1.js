@@ -6135,7 +6135,7 @@ const skill = {
             source: 'damageBefore',
         },
         filter(event, player) {
-            if (event.player.get('e', '1')) return true;
+            if (event.player.getEquips(1)) return true;
             return false;
         },
         content() {
@@ -7950,8 +7950,8 @@ const skill = {
             if (result.bool) {
                 player.line(result.targets);
                 var card;
-                for (var i = 0; i < result.targets[0].get('e').length; i++) {
-                    if (get.subtype(event.c[0]) == get.subtype(result.targets[0].get('e')[i])) var card = result.targets[0].get('e')[i];
+                for (var i = 0; i < result.targets[0].getCards('e').length; i++) {
+                    if (get.subtype(event.c[0]) == get.subtype(result.targets[0].getCards('e')[i])) var card = result.targets[0].getCards('e')[i];
                 }
                 player.gain(card, 'gain2');
                 player.equip(card);
@@ -12422,7 +12422,7 @@ const skill = {
             global: 'shaMiss',
         },
         check(event, player) {
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             for (var i = 0; i < cards.length; i++) {
                 if (cards[i].number > 11 && get.value(cards[i]) < 7) {
                     return get.attitude(player, event.player) < 0;
@@ -14837,14 +14837,14 @@ const skill = {
         line: true,
         content() {
             'step 0';
-            target.chooseCardButton(player.get('h'), true).set('ai', function (button) {
+            target.chooseCardButton(player.getCards('h'), true).set('ai', function (button) {
                 return 1;
             });
             ('step 1');
             if (result.bool) {
                 player.$give(1, target);
                 target.gain(result.links[0], player);
-                player.chooseCardButton(target.get('h'), true).set('ai', function (button) {
+                player.chooseCardButton(target.getCards('h'), true).set('ai', function (button) {
                     return 1;
                 });
             } else {
@@ -15400,7 +15400,7 @@ const skill = {
             var num = player.hp;
             if (num > THCN) num = THCN;
             var THCN = trigger.source.countCards('h');
-            var THC = trigger.source.get('h');
+            var THC = trigger.source.getCards('h');
             var list = [];
             for (var i = 0; i < num; i++) {
                 list.push(THC[i]);
@@ -16706,12 +16706,12 @@ const skill = {
                     });
                     var recovers = 0;
                     if (get.recoverEffect(tar, tar, player) > 0 && tar.getEquip('baiyin')) {
-                        if (lib.filter.canBeGained(tar.get('e', '2'), player, tar)) recovers++;
+                        if (lib.filter.canBeGained(tar.getEquips(2), player, tar)) recovers++;
                     }
                     var att = get.attitude(player, tar);
                     if (att > 0) {
-                        if (recovers > 0 && get.suit(tar.get('e', '2')) == 'club') return '♣️️';
-                        if (recovers > 0 && get.suit(tar.get('e', '2')) == 'heart') return '♥️️';
+                        if (recovers > 0 && get.suit(tar.getEquips(2)) == 'club') return '♣️️';
+                        if (recovers > 0 && get.suit(tar.getEquips(2)) == 'heart') return '♥️️';
                         return '取消';
                     }
                     return ['♣️️', '♥️️'].randomGet();
@@ -24251,7 +24251,7 @@ const skill = {
             return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
         },
         content() {
-            target.showCards(target.get('h').randomGet());
+            target.showCards(target.getCards('h').randomGet());
         },
         ai: {
             order: 13,
@@ -25792,7 +25792,7 @@ const skill = {
             var num = Math.ceil(player.countCards('he', { suit: 'diamond' }) - trigger.source.countCards('he', { suit: 'diamond' }) / 2);
             trigger.source.loseHp(num);
             trigger.source.popup(result.control);
-            if (result.control == '①') trigger.source.discard(trigger.source.get('hej'));
+            if (result.control == '①') trigger.source.discard(trigger.source.getCards('hej'));
             if (result.control == '②') {
                 var evt = _status.event;
                 for (var i = 0; i < 10; i++) {
@@ -26443,7 +26443,7 @@ const skill = {
             if (result.bool) {
                 for (var i = 0; i < result.targets.length; i++) {
                     var pl = result.targets[i];
-                    var card = pl.get('h').randomGet();
+                    var card = pl.getCards('h').randomGet();
                     player.showCards(card, get.translation(pl.name) + '的一张牌');
                     if (get.color(card) == 'red') {
                         pl.$give(card, player);
@@ -31469,7 +31469,7 @@ const skill = {
             event.basic = 0;
             (event.equip = 0), (event.trick = 0), (event.num = trigger.cards.length);
             ('step 1');
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             for (var i = 0; i < cards.length; i++) {
                 if (get.type(cards[i], 'trick') == 'basic') {
                     event.basic++;
@@ -31548,7 +31548,7 @@ const skill = {
             'step 0';
             player.useSkill('lg_ciai1');
             trigger.player.recover();
-            player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.get('h'), true);
+            player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.getCards('h'), true);
             ('step 1');
             if (result.bool) trigger.player.discard(result.links[0]);
         },
@@ -31787,7 +31787,7 @@ const skill = {
             ('step 1');
             if (result.bool) {
                 if (trigger.player != player) {
-                    trigger.player.chooseCardButton('将装备区内的一张牌交给' + get.translation(player), trigger.player.get('e'), true);
+                    trigger.player.chooseCardButton('将装备区内的一张牌交给' + get.translation(player), trigger.player.getCards('e'), true);
                 } else {
                     event.finish();
                 }
@@ -35554,9 +35554,9 @@ const skill = {
             for (var i of game.players) {
                 //QQ
                 if (i != player) {
-                    if (i.get('e', '2')) {
+                    if (i.getEquips(2)) {
                         player.storage.lg_tunmo++;
-                        i.discard(i.get('e', '2'));
+                        i.discard(i.getEquips(2));
                     }
                 }
             }
@@ -37117,7 +37117,7 @@ const skill = {
         forced: true,
         content() {
             'step 0';
-            player.chooseCardButton(get.prompt('lg_taoyin'), 1, player.get('j')).set('ai', function (card) {
+            player.chooseCardButton(get.prompt('lg_taoyin'), 1, player.getCards('j')).set('ai', function (card) {
                 if (player.maxHp == player.hp) return 1;
                 return;
             });
@@ -37360,7 +37360,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            var sourceShowCard = trigger.source.get('h').randomGet();
+            var sourceShowCard = trigger.source.getCards('h').randomGet();
             player.showCards(sourceShowCard);
             if (get.color(sourceShowCard) != result.control) {
                 trigger.source.discard(sourceShowCard);
@@ -40629,7 +40629,7 @@ const skill = {
                 target(player, target, card) {
                     if (target) {
                         if (target.hasSkillTag('equipDraw')) return 8;
-                        if (!target.get('e', '1')) return 5;
+                        if (!target.getEquips(1)) return 5;
                     }
                     return 1;
                 }, //QQQ
@@ -43778,14 +43778,14 @@ const skill = {
         line: true,
         content() {
             'step 0';
-            target.chooseCardButton(player.get('h'), true).set('ai', function (button) {
+            target.chooseCardButton(player.getCards('h'), true).set('ai', function (button) {
                 return 1;
             });
             ('step 1');
             if (result.bool) {
                 player.$give(1, target);
                 target.gain(result.links[0], player);
-                player.chooseCardButton(target.get('h'), true).set('ai', function (button) {
+                player.chooseCardButton(target.getCards('h'), true).set('ai', function (button) {
                     return 1;
                 });
             } else {
@@ -46559,7 +46559,7 @@ const skill = {
             for (var i of game.players) {
                 //QQ
                 if (i != player) {
-                    var skills = i.get('s', false, false);
+                    var skills = i.getCards('s');
                     for (var j = 0; j < skills.length; j++) {
                         if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
                             var str = lib.translate[skills[j] + '_info'];
@@ -49875,7 +49875,7 @@ const skill = {
         content() {
             for (var i of game.players) {
                 //QQ
-                if (i.num('j') > 0) player.gain(i.get('j'), 'gain2');
+                if (i.num('j') > 0) player.gain(i.getCards('j'), 'gain2');
             }
         },
     },
@@ -51935,7 +51935,7 @@ const skill = {
                 return true;
             }
             var suits = ['heart', 'club', 'spade', 'diamond'];
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             for (var i = 0; i < cards.length; i++) {
                 if (suits.includes(cards[i].suit)) suits.remove(cards[i].suit);
             }
@@ -51947,7 +51947,7 @@ const skill = {
         content() {
             player.showHandcards();
             var suits = ['heart', 'club', 'spade', 'diamond'];
-            event.cards = player.get('h');
+            event.cards = player.getCards('h');
             if (Array.isArray(event.cards))
                 for (var i of event.cards) {
                     //QQ

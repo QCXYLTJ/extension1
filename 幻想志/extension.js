@@ -3000,7 +3000,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								next.set('selectCard', function () {
-									var cards = _status.event.player.get('h');
+									var cards = _status.event.player.getCards('h');
 									var suits = [];
 									for (var i = 0; i < cards.length; i++) {
 										if (!suits.includes(cards[i].suit)) suits.push(cards[i].suit);
@@ -3014,7 +3014,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									var cards = result.cards,
 										he = [],
-										hs = player.get('h');
+										hs = player.getCards('h');
 									he = he.concat(hs);
 									for (var i = 0; i < cards.length; i++) {
 										he.remove(cards[i]);
@@ -3045,7 +3045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								next.set('selectCard', function () {
-									var cards = _status.event.player.get('h');
+									var cards = _status.event.player.getCards('h');
 									var suits = [];
 									for (var i = 0; i < cards.length; i++) {
 										if (!suits.includes(cards[i].suit)) suits.push(cards[i].suit);
@@ -3053,7 +3053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return suits.length;
 								});
 								next.set('ai', function (card) {
-									var cards = _status.event.player.get('h');
+									var cards = _status.event.player.getCards('h');
 									var suits = [];
 									for (var i = 0; i < cards.length; i++) {
 										if (!suits.includes(cards[i].suit)) suits.push(cards[i].suit);
@@ -3066,7 +3066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									var cards = result.cards,
 										he = [],
-										hs = event.target.get('h');
+										hs = event.target.getCards('h');
 									he = he.concat(hs);
 									for (var i = 0; i < cards.length; i++) {
 										he.remove(cards[i]);
@@ -3074,7 +3074,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (he.length) event.target.discard(he);
 									event.cards = event.cards.concat(he);
 								} else {
-									player.gain(event.target.get('h'), event.target, 'giveAuto');
+									player.gain(event.target.getCards('h'), event.target, 'giveAuto');
 								}
 								if (event.players.length) event.goto(4);
 								('step 7');
@@ -5848,7 +5848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								(event.equip = 0), (event.trick = 0);
 								('step 2');
 								if (event.num > 0) {
-									var cards = player.get('h');
+									var cards = player.getCards('h');
 									for (var i = 0; i < cards.length; i++) {
 										if (get.type(cards[i], 'trick') == 'basic') {
 											event.basic++;
@@ -6107,9 +6107,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var data = {};
 								for (var i = 0; i < game.players.length; i++) {
 									data[game.players[i].dataset.position] = {
-										h: get.cardsInfo(game.players[i].get('h')),
-										e: get.cardsInfo(game.players[i].get('e')),
-										j: get.cardsInfo(game.players[i].get('j')),
+										h: get.cardsInfo(game.players[i].getCards('h')),
+										e: get.cardsInfo(game.players[i].getCards('e')),
+										j: get.cardsInfo(game.players[i].getCards('j')),
 									};
 								}
 								game.addVideo('skill', event.player, ['zyile_shijix', data]);

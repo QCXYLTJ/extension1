@@ -4049,7 +4049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								player.gainMaxHp();
-								player.discard(player.get('j'));
+								player.discard(player.getCards('j'));
 								player.hp = Math.min(9, player.maxHp);
 								player.draw();
 								('step 1');
@@ -6740,7 +6740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (i == player) continue;
 										if (i.countCards('h')) {
 											dialog.add(get.translation(i) + '的手牌');
-											var hs = i.get('h');
+											var hs = i.getCards('h');
 											dialog.add(hs);
 										}
 									}
@@ -7658,7 +7658,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.player.storage.xwj_xhuoying_kuilei = true;
 								var skills = [];
 								for (var i = 0; i < game.dead.length; i++) {
-									var skill = game.dead[i].get('s', false, false).randomGet();
+									var skill = game.dead[i].getCards('s').randomGet();
 									skills.push(skill);
 								}
 								player.addAdditionalSkill('xwj_xhuoying_kuilei', skills);
@@ -9187,7 +9187,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								var chat = ['这一次,不会再射不中', '你们会像他那样一块块地烂掉'].randomGet();
 								player.say(chat);
-								target.showCards(target.get('h'));
+								target.showCards(target.getCards('h'));
 								target.addTempSkill('xwj_xhuoying_lunxue', 'phaseAfter');
 								player.discardPlayerCard(target, 'he', true);
 							},
@@ -10910,7 +10910,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var chat = ['万象天引', '对面的帅哥美女,看过来'].randomGet();
 								player.say(chat);
 								if (num < event.targets.length) {
-									var h = event.targets[num].get('h');
+									var h = event.targets[num].getCards('h');
 									if (h.length) {
 										var card = h.randomGet();
 										player.gain(card, event.targets[num]);
@@ -16581,7 +16581,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							audio: 'ext:群英会/audio:1',
 							filter(event, player) {
-								var card = player.get('e', '5');
+								var card = player.getEquips(5);
 								if (card) {
 									var name = card.name;
 									if (event.name == 'tao' && get.itemtype(event.cards) == 'cards' && get.position(event.cards[0]) == 'd' && event.player != player && name && name.includes('xwj_xus_houzi')) return true;
@@ -16597,7 +16597,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.untrigger();
 								trigger.finish();
 								('step 1');
-								player.discard(player.get('e', '5'));
+								player.discard(player.getEquips(5));
 								('step 2');
 								player.gain(trigger.cards);
 								player.$gain2(trigger.cards);

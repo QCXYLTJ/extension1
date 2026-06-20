@@ -8142,7 +8142,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     var pl = result.targets[0];
-                                    var card = pl.get('h').randomGet();
+                                    var card = pl.getCards('h').randomGet();
                                     player.discardPlayerCard(pl, 'h', 1);
                                 }
                             },

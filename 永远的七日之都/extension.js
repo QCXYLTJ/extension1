@@ -634,7 +634,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = target.num('h');
-                                target.discard(target.get('h'));
+                                target.discard(target.getCards('h'));
                                 target.draw(5);
                                 target.showHandcards();
                                 ('step 1');
@@ -642,7 +642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(card) != 'basic';
                                 });
                                 target.discard(
-                                    target.get('h', function (card) {
+                                    targe.getCards('h', function (card) {
                                         return get.type(card) != 'basic';
                                     })
                                 );
@@ -1412,7 +1412,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'phaseEnd',
                             },
                             filter(event, player) {
-                                if (player.get('e', '1')) return true;
+                                if (player.getEquips(1)) return true;
                                 return false;
                             },
                             content() {
@@ -2132,7 +2132,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = target.num('h');
-                                target.discard(target.get('h'));
+                                target.discard(target.getCards('h'));
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
@@ -3064,7 +3064,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (i.num('h') >= i.storage.yzjm_mark) {
                                             player.gainPlayerCard(i.storage.yzjm_mark, i, 'h', true);
                                         } else {
-                                            player.gain(i.get('h'));
+                                            player.gain(i.getCards('h'));
                                             i.$give(i.num('h'), player);
                                             i.damage(1)._triggered = null;
                                         }
@@ -4426,8 +4426,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player != target && target.countCards('h');
                             },
                             content() {
-                                player.gain(target.get('h'));
-                                target.$give(target.get('h').length, player);
+                                player.gain(target.getCards('h'));
+                                target.$give(target.getCards('h').length, player);
                                 target.turnOver();
                                 player.turnOver();
                                 target.loseHp();
@@ -4702,7 +4702,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (i.num('h') >= i.storage.yydqrzd_zl_mark) {
                                             player.gainPlayerCard(i.storage.yydqrzd_zl_mark, i, 'h', true);
                                         } else {
-                                            player.gain(i.get('h'));
+                                            player.gain(i.getCards('h'));
                                             i.$give(i.num('h'), player);
                                             i.damage(3)._triggered = null;
                                         }
@@ -5558,7 +5558,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (eff >= 0) return 1 + eff;
                                         var value = 0,
                                             i;
-                                        var cards = player.get('h');
+                                        var cards = player.getCards('h');
                                         for (var i = 0; i < cards.length; i++) {
                                             value += get.value(cards[i]);
                                         }
@@ -5877,7 +5877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 order(name, player) {
-                                    var cards = player.get('h');
+                                    var cards = player.getCards('h');
                                     if (player.num('h', 'sha') == 0) {
                                         return 1;
                                     }
@@ -6457,7 +6457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && event.player != target;
                                 }).ai = function (target) {
                                     if (trigger.card.name == 'sha') {
-                                        if (target.num('e', '2') && target.get('e') != 'baiyin') return 0;
+                                        if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
                                         if (target.hp <= 1) return Math.random < 0.3;
                                         return 0.5;
                                     }
@@ -7203,8 +7203,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player != target && target.countCards('h');
                             },
                             content() {
-                                player.gain(target.get('h'));
-                                target.$give(target.get('h').length, player);
+                                player.gain(target.getCards('h'));
+                                target.$give(target.getCards('h').length, player);
                                 target.goMad({ player: 'phaseBegin' });
                             },
                             ai: {
@@ -7261,7 +7261,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 order(name, player) {
-                                    var cards = player.get('h');
+                                    var cards = player.getCards('h');
                                     if (player.num('h', 'juedou') == 0) {
                                         return 1;
                                     }

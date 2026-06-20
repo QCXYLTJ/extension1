@@ -7513,8 +7513,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filter(evt, player) {
 								if (!player.num('h')) return;
 								if (evt.name != 'phaseUse')
-									return player.get('h').every(function (card) {
-										return get.color(card) == get.color(player.get('h')[0]);
+									return player.getCards('h').every(function (card) {
+										return get.color(card) == get.color(player.getCards('h')[0]);
 									});
 								return true;
 							},
@@ -8223,7 +8223,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if (trigger.player.hasCard({ color: red && !black ? 'black' : black && !red ? 'red' : '    ' }, 'h')) link = trigger.player.getCards('h', { color: red && !black ? 'black' : black && !red ? 'red' : '    ' }).randomGet();
 										}
 									}
-									if (!link) link = trigger.player.get('h').randomGet();
+									if (!link) link = trigger.player.getCards('h').randomGet();
 									event._result = { links: [link] };
 								};
 								if (!event.isMine() && !player.isOnline2()) {
@@ -14494,7 +14494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									false,
 									{
 										target: me,
-										cards: evt.target.get('h'),
+										cards: evt.target.getCards('h'),
 									},
 									true
 								),
@@ -17827,7 +17827,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return player.canUse({ name: 'sha', cards: ui.selected.cards }, _status.event.target, false);
 									}).ai = function (card) {
 										var player = get.player();
-										return get.effect(_status.event.target, { name: 'sha', unequip: true }, player, player) + (card.name == 'sha' ? 6 : (player.num('h') <= 2 || player.hp <= 2) && !(player.num('h') == 1 && get.name(player.get('h')[0]) == 'shan' && !_status.event.parent.directHit) ? 5 : card.name == 'shan' && !_status.event.parent.directHit ? -15 : -7) - get.value(card);
+										return get.effect(_status.event.target, { name: 'sha', unequip: true }, player, player) + (card.name == 'sha' ? 6 : (player.num('h') <= 2 || player.hp <= 2) && !(player.num('h') == 1 && get.name(player.getCards('h')[0]) == 'shan' && !_status.event.parent.directHit) ? 5 : card.name == 'shan' && !_status.event.parent.directHit ? -15 : -7) - get.value(card);
 									};
 								('step 1');
 								if (result.bool) {
@@ -17961,7 +17961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											map[id].shanRequired = 2;
 										}
 									}
-									trigger.target.discard(trigger.target.get('e'));
+									trigger.target.discard(trigger.target.getCards('e'));
 									player.storage.ark_hanmang = 2;
 								}
 								if (skill == 2) {
@@ -19595,7 +19595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseZhunbeiBegin',
 							},
 							check(event, player) {
-								var cards = player.get('h');
+								var cards = player.getCards('h');
 								for (var i = 0; i < cards.length; i++) {
 									if (cards[i].number > 11 && get.value(cards[i]) < 7) {
 										return get.attitude(player, event.player) < 0;
@@ -19638,7 +19638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseZhunbeiBegin',
 							},
 							check(event, player) {
-								var cards = player.get('h');
+								var cards = player.getCards('h');
 								for (var i = 0; i < cards.length; i++) {
 									if (cards[i].number > 11 && get.value(cards[i]) < 7) {
 										return get.attitude(player, event.player) < 0;

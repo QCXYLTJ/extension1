@@ -603,7 +603,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status) {
         (e) => {
             e.stopPropagation();
             if (!game.me) return void 0;
-            for (let i of game.me.get('hej').filter((value) => value.classList.contains('selectable'))) {
+            for (let i of game.me.getCards('hej').filter((value) => value.classList.contains('selectable'))) {
                 _status.dragged = false;
                 _status.clicked = false;
                 i.dispatchEvent(new Event(lib.zyile_common.isMobile() ? 'touchend' : 'click'));

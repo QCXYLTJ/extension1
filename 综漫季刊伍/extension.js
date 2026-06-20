@@ -715,7 +715,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.target.showHandcards();
                                 var list2 = [];
-                                var hs = event.target.get('h');
+                                var hs = event.target.getCards('h');
                                 if (hs.length) {
                                     var hs2 = [];
                                     for (var i = 0; i < hs.length; i++) {
@@ -1572,17 +1572,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (cards.length) {
                                     var num0 = 0;
                                     var maxArray = [];
-                                    for (var i = 0; i < player.get('he').length; i++) {
+                                    for (var i = 0; i < player.getCards('he').length; i++) {
                                         if (maxArray.length == 0) {
-                                            maxArray.push(player.get('he')[i]);
+                                            maxArray.push(player.getCards('he')[i]);
                                         } else {
                                             var h = maxArray[0];
-                                            if (h.number > get.number(player.get('he')[i])) {
-                                                maxArray = [player.get('he')[i]];
-                                                num0 = get.number(player.get('he')[i]);
-                                            } else if (h.number == get.number(player.get('he')[i])) {
-                                                maxArray.push(player.get('he')[i]);
-                                                num0 = get.number(player.get('he')[i]);
+                                            if (h.number > get.number(player.getCards('he')[i])) {
+                                                maxArray = [player.getCards('he')[i]];
+                                                num0 = get.number(player.getCards('he')[i]);
+                                            } else if (h.number == get.number(player.getCards('he')[i])) {
+                                                maxArray.push(player.getCards('he')[i]);
+                                                num0 = get.number(player.getCards('he')[i]);
                                             }
                                         }
                                     }
@@ -2610,7 +2610,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.storage.zmtianhui = 0;
                                         player.draw(num);
                                         ('step 1');
-                                        var card = player.get('h')[0];
+                                        var card = player.getCards('h')[0];
                                         card.init([event.suit, card.number, card.name]);
                                     },
                                 },
@@ -5228,7 +5228,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (i == player) continue;
                                         if (i.num('h')) {
                                             dialog.add(get.translation(i) + '的手牌');
-                                            var hs = i.get('h');
+                                            var hs = i.getCards('h');
                                             dialog.add(hs);
                                         }
                                     }
@@ -5302,7 +5302,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (i == player || i.countCards('h') == 0) continue;
                                             dialog.add(get.translation(i) + '的手牌');
                                             if (i.num('h')) {
-                                                var hs = i.get('h');
+                                                var hs = i.getCards('h');
                                                 for (var j = 0; j < hs.length; j++) {
                                                     cards.push(hs[j]);
                                                 }

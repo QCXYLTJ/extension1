@@ -11995,7 +11995,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     player.loseMaxHp(1);
                                     var target = result.targets[0];
-                                    target.gain(player.get('h'), player);
+                                    target.gain(player.getCards('h'), player);
                                     player.$give(player.num('h'), target);
                                     var skills = [];
                                     for (var i in lib.character) {
@@ -17506,7 +17506,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 player.storage.cysh_jiaocai = true;
-                                player.gain(target.get('j'), target);
+                                player.gain(target.getCards('j'), target);
                                 target.$give(target.num('j'), player);
                             },
                             ai: {
@@ -21364,7 +21364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 for (const i of game.players) {
                                     if (i == player) continue;
-                                    var skills = i.get('s', false, false);
+                                    var skills = i.getCards('s');
                                     skills = skills.slice(0);
                                     for (var j = 0; j < skills.length; j++) {
                                         if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
@@ -21377,7 +21377,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 for (var i = 0; i < game.dead.length; i++) {
                                     if (game.dead[i] == player) continue;
-                                    var skills = game.dead[i].get('s', false, false);
+                                    var skills = game.dead[i].getCards('s');
                                     skills = skills.slice(0);
                                     for (var j = 0; j < skills.length; j++) {
                                         if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
@@ -28853,7 +28853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && event.player != target;
                                 }).ai = function (target) {
                                     if (get.tag(trigger.card, 'damage')) {
-                                        if (target.num('e', '2') && target.get('e') != 'baiyin') return 0;
+                                        if (target.num('e', '2') && target.getCards('e') != 'baiyin') return 0;
                                         if (target.hp <= 1) return Math.random < 0.3;
                                         return 0.5;
                                     }
@@ -30389,7 +30389,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.showCharacter(1);
                                 }
                                 var controls = [];
-                                var skills = trigger.player.get('s', false, false);
+                                var skills = trigger.player.getCards('s');
                                 for (var i = 0; i < skills.length; i++) {
                                     var info = lib.skill[skills[i]];
                                     if (!info) continue;

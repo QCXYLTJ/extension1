@@ -542,7 +542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					var mem = game.players[i];
 					if (mem == pl) continue;
 					if (mem.hp > 1) return true;
-					if (mem.get('he').length) return true;
+					if (mem.getCards('he').length) return true;
 				}
 				return false;
 			};
@@ -897,7 +897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.clearSkills();
 									return false;
 								}
-								var es = trigger.target.get('e');
+								var es = trigger.target.getCards('e');
 								trigger.target.discard(es);
 							},
 							tag: {
@@ -1436,7 +1436,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								if (player.get('h').length == 0) {
+								if (player.getCards('h').length == 0) {
 									trigger.num--;
 									return;
 								}
@@ -1642,7 +1642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									viewAsFilter(player) {
 										var pnum = 0;
 										var pmax = player.num('h');
-										var pcard = player.get('h');
+										var pcard = player.getCards('h');
 										for (var i = 0; i < pmax; i++) {
 											if (get.type(pcard[i]) == 'equip') pnum++;
 										}
@@ -1848,7 +1848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								maxHandcard(player, num) {
 									var pnum = 0;
 									var pmax = player.num('h');
-									var pcard = player.get('h');
+									var pcard = player.getCards('h');
 									for (var i = 0; i < pmax; i++) {
 										if (get.type(pcard[i]) == 'equip') pnum++;
 									}
@@ -1866,7 +1866,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.reinit('dan_rixianga', 'dan_rixiangb', _status.connectMode);
 								player.hp = player.maxHp;
 								player.storage.rixcdmg = player.num('he');
-								player.$throw(player.get('he'));
+								player.$throw(player.getCards('he'));
 								if (player.storage.rixcdmg == 0) return 3;
 								var next = player.chooseTarget('选择言弹目标或取消', function (card, player, target) {
 									return player.canUse('sha', target);
@@ -1882,7 +1882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								next.set('source', trigger.source);
 								('step 1');
 								if (result.bool) {
-									player.lose(player.get('he'));
+									player.lose(player.getCards('he'));
 									event.tgs = result.targets[0];
 								} else {
 									event.goto(3);
@@ -2284,7 +2284,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											var ra1 = get.attitude(player, pl);
 											var ra2 = get.attitude(player, target);
 											var num = ra1;
-											var hc = pl.get('he');
+											var hc = pl.getCards('he');
 											if (ra1 > 0) {
 												if (ra2 < 0) num += 2;
 												hc.sort(function (a, b) {
@@ -2645,7 +2645,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									content() {
 										'step 0';
-										event.cards = target.get('h');
+										event.cards = target.getCards('h');
 										var ishit = false;
 										var card = card || cards[0];
 										game.playSe('wuqie1');
@@ -2772,7 +2772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							_priority: 1501,
 							filter(event, player) {
 								if (event.player == player || event.target != player) return false;
-								var tg = player.get('h');
+								var tg = player.getCards('h');
 								for (var i = 0; i < tg.length; i++) if (tg[i].name == event.card.name) return true;
 								return false;
 							},
@@ -3154,7 +3154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								if (!trigger.player.getEquip(2)) trigger.num++;
-								if (trigger.player.get('h').length == 0) trigger.num++;
+								if (trigger.player.getCards('h').length == 0) trigger.num++;
 							},
 						},
 						erda2: {

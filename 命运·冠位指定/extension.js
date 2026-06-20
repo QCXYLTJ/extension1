@@ -8459,7 +8459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         maxHandcard(player, num) {
                            var pnum = 0;
                            var pmax = player.num('h');
-                           var pcard = player.get('h');
+                           var pcard = player.getCards('h');
                            for (var i = 0; i < pmax; i++) {
                               if (get.subtype(pcard[i]) == 'equip1') pnum++;
                            }
@@ -8946,7 +8946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         for (var i = 0; i < game.players.length; i++) {
                            if (game.players[i] != player) {
-                              var skills = game.players[i].get('s', false, false);
+                              var skills = game.players[i].getCards('s');
                               for (var j = 0; j < skills.length; j++) {
                                  if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
                                     var str = lib.translate[skills[j] + '_info'];
@@ -10035,7 +10035,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            return 0;
                         });
                         ('step 1');
-                        if (!player.get('e', '1')) {
+                        if (!player.getEquips(1)) {
                            var card = get.cardPile('qilin', 'field');
                            if (card) {
                               player.equip(card, 'gain2', 'log');
@@ -10074,7 +10074,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         player.storage.EXCD = 1;
                         player.clearNp();
                         ('step 1');
-                        target.discard(target.get('he'));
+                        target.discard(target.getCards('he'));
                         target.damage(2);
                         if (target.previous != player) target.previous.damage(2);
                         if (target.next != player) target.next.damage(2);
@@ -10113,7 +10113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               player.storage.EXCD = 1;
                               player.clearNp();
                               ('step 1');
-                              target.discard(target.get('he'));
+                              target.discard(target.getCards('he'));
                               target.damage(3);
                               if (target.previous != player) target.previous.damage(3);
                               if (target.next != player) target.next.damage(3);
@@ -12705,7 +12705,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         maxHandcard(player, num) {
                            var pnum = 0;
                            var pmax = player.num('h');
-                           var pcard = player.get('h');
+                           var pcard = player.getCards('h');
                            for (var i = 0; i < pmax; i++) {
                               if (get.type(pcard[i]) == 'trick' || get.type(pcard[i]) == 'delay') pnum++;
                            }

@@ -138,7 +138,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     },
                     content() {
                         var hs = [];
-                        var hs2 = game.me.get('h');
+                        var hs2 = game.me.getCards('h');
                         for (var i of hs2) hs.push(game.createCard2(i.name, i.suit, i.number, i.nature));
                         hs.sort(function (a, b) {
                             if (a.name != b.name) return lib.sort.card(a.name, b.name);

@@ -2743,7 +2743,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							ai: {
 								effect: {
 									target(card, player, target, current) {
-										var bs = player.get('h');
+										var bs = player.getCards('h');
 										if (bs.length == 0) return 0;
 										if (player.hasSkill('jiu') || player.hasSkill('tianxianjiu')) return;
 										return [1, 0, 1, -0.5];
@@ -2761,8 +2761,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filterCard: true,
 							position: 'he',
 							content() {
-								player.discard(player.get('he'));
-								player.gain(target.get('he'));
+								player.discard(player.getCards('he'));
+								player.gain(target.getCards('he'));
 								target.$give(target.num('he'), player);
 							},
 							ai: {
@@ -2961,7 +2961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									var cur = event.targets2.shift();
 									if (cur && cur.num('he')) {
 										if (cur.num('e')) {
-											cur.discard(cur.get('e'));
+											cur.discard(cur.getCards('e'));
 										}
 										cur.chooseToDiscard('h', true, 1);
 									}
@@ -4300,7 +4300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (event.player.countCards('h') > player.countCards('h')) return true;
 							},
 							content() {
-								player.gain(trigger.player.get('h'));
+								player.gain(trigger.player.getCards('h'));
 								trigger.player.$give(trigger.player.num('h'), player);
 							},
 							ai: {
@@ -6211,8 +6211,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							// filterCard:true,
 							// position:"he",
 							content() {
-								player.discard(player.get('he'));
-								player.gain(target.get('he'));
+								player.discard(player.getCards('he'));
+								player.gain(target.getCards('he'));
 								target.$give(target.num('he'), player);
 								var list = game.filterPlayer(function (current) {
 									return current.isFriendsOf(player);
@@ -12847,7 +12847,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, event.player) <= 0;
 							},
 							content() {
-								var hs = trigger.player.get('h');
+								var hs = trigger.player.getCards('h');
 								if (hs.length) {
 									var hs2 = [];
 									for (var i = 0; i < hs.length; i++) {
@@ -13446,7 +13446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									result.targets[0].draw(result.targets[0].maxHp);
 									result.targets[0].recover();
-									var hs = player.get('he', (card) => get.type(card) != 'basic');
+									var hs = player.getCards('he', (card) => get.type(card) != 'basic');
 									var hs2 = hs.map((card) => game.createCard(card));
 									if (hs2.length) result.targets[0].gain(hs2, 'draw');
 								}
@@ -13456,8 +13456,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							trigger: { player: 'damageEnd' },
 							content() {
-								player.discard(player.get('he', (card) => get.type(card) == 'basic').randomGet());
-								if (trigger.source) trigger.source.discard(trigger.source.get('he').randomGets(2));
+								player.discard(player.getCards('he', (card) => get.type(card) == 'basic').randomGet());
+								if (trigger.source) trigger.source.discard(trigger.source.getCards('he').randomGets(2));
 							},
 						},
 						桂枪: {
@@ -13510,7 +13510,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							group: '长镖2',
 							content() {
 								'step 0';
-								var hs = player.get('he', (card) => get.tag(card, 'damage'));
+								var hs = player.getCards('he', (card) => get.tag(card, 'damage'));
 								event.num = hs.length;
 								var hs2 = hs.map((card) => game.createCard(card));
 								if (hs2.length) player.gain(hs2, 'draw');
@@ -13554,7 +13554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								list.sort(lib.sort.seat);
 								event.list = list;
-								var hs = player.get('he', (card) => get.type(card) == 'basic' || get.tag(card, 'damage'));
+								var hs = player.getCards('he', (card) => get.type(card) == 'basic' || get.tag(card, 'damage'));
 								var hs2 = hs.map((card) => game.createCard(card));
 								event.hs2 = hs2;
 								('step 2');
@@ -14095,7 +14095,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: { player: 'shaBegin' },
 							group: '毒枪2',
 							content() {
-								var hs = trigger.target.get('he').randomGets(2);
+								var hs = trigger.target.getCards('he').randomGets(2);
 								var hs2 = hs.map((card) => game.createCard(card));
 								if (hs2.length) player.gain(hs2, 'draw');
 								trigger.target.gain([game.createCard('du'), game.createCard('du')], 'gain2');
@@ -15073,7 +15073,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.bool) {
 									player.draw(result.targets[0].countCards('he', (c) => get.type(c) == 'basic' || c.number <= 9));
-									player.gain(game.createCard(result.targets[0].get('he').randomGet()), 'draw');
+									player.gain(game.createCard(result.targets[0].getCards('he').randomGet()), 'draw');
 									result.targets[0].discard(result.targets[0].getCards('he').randomGet());
 									result.targets[0].judge(function (c) {
 										return get.type(c) == 'basic' || c.number <= 9 ? 1 : -1;
@@ -16336,7 +16336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								trigger.target.changeHujia();
 								trigger.target.draw();
-								var hs = trigger.player.get('he', (card) => get.color(card) == 'red').randomGets(2);
+								var hs = trigger.player.getCards('he', (card) => get.color(card) == 'red').randomGets(2);
 								var hs2 = hs.map((card) => game.createCard(card));
 								if (hs2.length) trigger.target.gain(hs2, 'draw');
 								trigger.target.useCard({ name: 'huogong' }, trigger.player, false);
@@ -16354,7 +16354,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								('step 1');
 								if (result.bool) {
-									var hs = result.targets[0].get('he').randomGets(2);
+									var hs = result.targets[0].getCards('he').randomGets(2);
 									var hs2 = hs.map((card) => game.createCard(card));
 									if (hs2.length) player.gain(hs2, 'draw');
 									result.targets[0].draw();
@@ -16396,8 +16396,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									var otherTarget = result.targets[0];
 									var num = 0;
-									for (var i = 0; i < player.get('he').length; i++) {
-										if (get.color(player.get('he')[i]) == 'black') {
+									for (var i = 0; i < player.getCards('he').length; i++) {
+										if (get.color(player.getCards('he')[i]) == 'black') {
 											num++;
 										}
 									}

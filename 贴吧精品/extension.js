@@ -18376,7 +18376,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('指定一名其他角色,其于本轮内使用【杀】的次数上限、使用以<出牌阶段限一次>开始的技能次数上限分别:-1、+1', function (card, player, target) {
                                         return !target.hasSkill('shiduan3d8_buff1');
                                     }).ai = function (target) {
-                                        var skills = target.get('s', false, false);
+                                        var skills = target.getCards('s');
                                         var att = get.attitude(player, target);
                                         var count = 0;
                                         for (var i = 0; i < skills.length; i++) {
@@ -18396,7 +18396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('指定一名其他角色,其于本轮内使用【杀】的次数上限、使用以<出牌阶段限一次>开始的技能次数上限分别:+1、-1', function (card, player, target) {
                                         return !target.hasSkill('shiduan3d8_buff2');
                                     }).ai = function (target) {
-                                        var skills = target.get('s', false, false);
+                                        var skills = target.getCards('s');
                                         var att = get.attitude(player, target);
                                         var count = 0;
                                         for (var i = 0; i < skills.length; i++) {
@@ -18418,7 +18418,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         result.targets[0].addTempSkill('shiduan3d8_buff2', {
                                             player: 'phaseEnd',
                                         });
-                                        var skills = result.targets[0].get('s', false, false);
+                                        var skills = result.targets[0].getCards('s');
                                         result.targets[0].storage.shiduan3d8_buff2_skills = [];
                                         for (var i = 0; i < skills.length; i++) {
                                             var info = lib.skill[skills[i]];
@@ -18434,7 +18434,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         result.targets[0].addTempSkill('shiduan3d8_buff1', {
                                             player: 'phaseEnd',
                                         });
-                                        var skills = result.targets[0].get('s', false, false);
+                                        var skills = result.targets[0].getCards('s');
                                         result.targets[0].storage.shiduan3d8_buff1_skills = [];
                                         for (var i = 0; i < skills.length; i++) {
                                             var info = lib.skill[skills[i]];
@@ -18464,7 +18464,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var wu_jieduanji_enemy = 0;
                                         for(var i = 0;i<players.length;i++){
                                             var target = players[i];
-                                            var skills=target.get('s',false,false);
+                                            var skills=targe.getCards('s',false,false);
                                             var att = get.attitude(player,target);
                                             var count = 0;
                                             for(i=0;i<skills.length;i++){
@@ -20345,11 +20345,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (var i = 0; i < players.length; i++) {
                                     if (players[i] == event.player) continue;
                                     if (get.attitude(player, players[i]) <= 0) continue;
-                                    if (get.subtype(event.cards[0]) == 'equip1' && players[i].get('e', '1') == undefined && event.player.countCards('h') < players[i].countCards('h')) return true;
-                                    if (get.subtype(event.cards[0]) == 'equip2' && players[i].get('e', '2') == undefined && event.player.hp > players[i].hp) return true;
-                                    if (get.subtype(event.cards[0]) == 'equip3' && players[i].get('e', '3') == undefined && event.player.hp > players[i].hp) return true;
-                                    if (get.subtype(event.cards[0]) == 'equip4' && players[i].get('e', '4') == undefined && event.player.countCards('h') < players[i].countCards('h')) return true;
-                                    if (get.subtype(event.cards[0]) == 'equip5' && players[i].get('e', '5') == undefined && event.player.countCards('h') < players[i].countCards('h')) return true;
+                                    if (get.subtype(event.cards[0]) == 'equip1' && players[i].getEquips(1) == undefined && event.player.countCards('h') < players[i].countCards('h')) return true;
+                                    if (get.subtype(event.cards[0]) == 'equip2' && players[i].getEquips(2) == undefined && event.player.hp > players[i].hp) return true;
+                                    if (get.subtype(event.cards[0]) == 'equip3' && players[i].getEquips(3) == undefined && event.player.hp > players[i].hp) return true;
+                                    if (get.subtype(event.cards[0]) == 'equip4' && players[i].getEquips(4) == undefined && event.player.countCards('h') < players[i].countCards('h')) return true;
+                                    if (get.subtype(event.cards[0]) == 'equip5' && players[i].getEquips(5) == undefined && event.player.countCards('h') < players[i].countCards('h')) return true;
                                 }
                                 return false;
                             },
@@ -20406,16 +20406,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         )
                                         .set('ai', function (target) {
                                             if (get.attitude(player, target) <= 0) return -1;
-                                            if (get.subtype(trigger.cards[0]) == 'equip1' && target.get('e', '1') == undefined) return Math.max(2, target.countCards('h'));
-                                            if (get.subtype(trigger.cards[0]) == 'equip2' && target.get('e', '2') == undefined) return Math.max(2, 10 - target.hp);
-                                            if (get.subtype(trigger.cards[0]) == 'equip3' && target.get('e', '3') == undefined) return Math.max(2, 10 - target.hp);
-                                            if (get.subtype(trigger.cards[0]) == 'equip4' && target.get('e', '4') == undefined) return Math.max(2, target.countCards('h'));
-                                            if (get.subtype(trigger.cards[0]) == 'equip5' && target.get('e', '5') == undefined) return Math.max(2, target.countCards('h'));
-                                            if (get.subtype(trigger.cards[0]) == 'equip1' && target.get('e', '1') != undefined) return Math.max(1, 5 - get.value(target.get('e', '1')));
-                                            if (get.subtype(trigger.cards[0]) == 'equip2' && target.get('e', '2') != undefined) return Math.max(1, 5 - get.value(target.get('e', '2')));
-                                            if (get.subtype(trigger.cards[0]) == 'equip3' && target.get('e', '3') != undefined) return Math.max(1, 5 - get.value(target.get('e', '3')));
-                                            if (get.subtype(trigger.cards[0]) == 'equip4' && target.get('e', '4') != undefined) return Math.max(1, 5 - get.value(target.get('e', '4')));
-                                            if (get.subtype(trigger.cards[0]) == 'equip5' && target.get('e', '5') != undefined) return Math.max(1, 5 - get.value(target.get('e', '5')));
+                                            if (get.subtype(trigger.cards[0]) == 'equip1' && target.getEquips(1) == undefined) return Math.max(2, target.countCards('h'));
+                                            if (get.subtype(trigger.cards[0]) == 'equip2' && target.getEquips(2) == undefined) return Math.max(2, 10 - target.hp);
+                                            if (get.subtype(trigger.cards[0]) == 'equip3' && target.getEquips(3) == undefined) return Math.max(2, 10 - target.hp);
+                                            if (get.subtype(trigger.cards[0]) == 'equip4' && target.getEquips(4) == undefined) return Math.max(2, target.countCards('h'));
+                                            if (get.subtype(trigger.cards[0]) == 'equip5' && target.getEquips(5) == undefined) return Math.max(2, target.countCards('h'));
+                                            if (get.subtype(trigger.cards[0]) == 'equip1' && target.getEquips(1) != undefined) return Math.max(1, 5 - get.value(target.getEquips(1)));
+                                            if (get.subtype(trigger.cards[0]) == 'equip2' && target.getEquips(2) != undefined) return Math.max(1, 5 - get.value(target.getEquips(2)));
+                                            if (get.subtype(trigger.cards[0]) == 'equip3' && target.getEquips(3) != undefined) return Math.max(1, 5 - get.value(target.getEquips(3)));
+                                            if (get.subtype(trigger.cards[0]) == 'equip4' && target.getEquips(4) != undefined) return Math.max(1, 5 - get.value(target.getEquips(4)));
+                                            if (get.subtype(trigger.cards[0]) == 'equip5' && target.getEquips(5) != undefined) return Math.max(1, 5 - get.value(target.getEquips(5)));
                                             return 1;
                                         });
                                 }
@@ -20495,16 +20495,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (player.storage.equip5_player != 0) return true;
                                     return false;
                                 }
-                                if (player.get('e', '1') == undefined && target.get('e', '1') != undefined) return true;
-                                if (player.get('e', '2') == undefined && target.get('e', '2') != undefined) return true;
-                                if (player.get('e', '3') == undefined && target.get('e', '3') != undefined) return true;
-                                if (player.get('e', '4') == undefined && target.get('e', '4') != undefined) return true;
-                                if (player.get('e', '5') == undefined && target.get('e', '5') != undefined) return true;
-                                if (player.get('e', '1') != undefined && target.get('e', '1') == undefined && player.storage.equip1_player == target) return true;
-                                if (player.get('e', '2') != undefined && target.get('e', '2') == undefined && player.storage.equip2_player == target) return true;
-                                if (player.get('e', '3') != undefined && target.get('e', '3') == undefined && player.storage.equip3_player == target) return true;
-                                if (player.get('e', '4') != undefined && target.get('e', '4') == undefined && player.storage.equip4_player == target) return true;
-                                if (player.get('e', '5') != undefined && target.get('e', '5') == undefined && player.storage.equip5_player == target) return true;
+                                if (player.getEquips(1) == undefined && target.getEquips(1) != undefined) return true;
+                                if (player.getEquips(2) == undefined && target.getEquips(2) != undefined) return true;
+                                if (player.getEquips(3) == undefined && target.getEquips(3) != undefined) return true;
+                                if (player.getEquips(4) == undefined && target.getEquips(4) != undefined) return true;
+                                if (player.getEquips(5) == undefined && target.getEquips(5) != undefined) return true;
+                                if (player.getEquips(1) != undefined && target.getEquips(1) == undefined && player.storage.equip1_player == target) return true;
+                                if (player.getEquips(2) != undefined && target.getEquips(2) == undefined && player.storage.equip2_player == target) return true;
+                                if (player.getEquips(3) != undefined && target.getEquips(3) == undefined && player.storage.equip3_player == target) return true;
+                                if (player.getEquips(4) != undefined && target.getEquips(4) == undefined && player.storage.equip4_player == target) return true;
+                                if (player.getEquips(5) != undefined && target.getEquips(5) == undefined && player.storage.equip5_player == target) return true;
                                 if (player.storage.equip1_player != 0 && player.storage.equip1_player != target) return true;
                                 if (player.storage.equip2_player != 0 && player.storage.equip2_player != target) return true;
                                 if (player.storage.equip3_player != 0 && player.storage.equip3_player != target) return true;
@@ -20535,27 +20535,27 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (player.storage.equip1_player != 0) {
                                         player.storage.equip1_player = 0;
                                         player.storage.equip1_card = 0;
-                                        if (player.get('e', '1')) player.get('e', '1').delete();
+                                        if (player.getEquips(1)) player.getEquips(1).delete();
                                     }
                                     if (player.storage.equip2_player != 0) {
                                         player.storage.equip2_player = 0;
                                         player.storage.equip2_card = 0;
-                                        if (player.get('e', '2')) player.get('e', '2').delete();
+                                        if (player.getEquips(2)) player.getEquips(2).delete();
                                     }
                                     if (player.storage.equip3_player != 0) {
                                         player.storage.equip3_player = 0;
                                         player.storage.equip3_card = 0;
-                                        if (player.get('e', '3')) player.get('e', '3').delete();
+                                        if (player.getEquips(3)) player.getEquips(3).delete();
                                     }
                                     if (player.storage.equip4_player != 0) {
                                         player.storage.equip4_player = 0;
                                         player.storage.equip4_card = 0;
-                                        if (player.get('e', '4')) player.get('e', '4').delete();
+                                        if (player.getEquips(4)) player.getEquips(4).delete();
                                     }
                                     if (player.storage.equip5_player != 0) {
                                         player.storage.equip5_player = 0;
                                         player.storage.equip5_card = 0;
-                                        if (player.get('e', '5')) player.get('e', '5').delete();
+                                        if (player.getEquips(5)) player.getEquips(5).delete();
                                     }
                                     event.finish();
                                 }
@@ -20563,113 +20563,113 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var flag1 = 1;
                                 var flag2 = 1;
                                 var flag3 = 1;
-                                if (player.get('e', '1') == undefined && target.get('e', '1') != undefined) flag = 1;
-                                if (player.get('e', '2') == undefined && target.get('e', '2') != undefined) flag = 1;
-                                if (player.get('e', '3') == undefined && target.get('e', '3') != undefined) flag = 1;
-                                if (player.get('e', '4') == undefined && target.get('e', '4') != undefined) flag = 1;
-                                if (player.get('e', '5') == undefined && target.get('e', '5') != undefined) flag = 1;
-                                if (player.get('e', '1') != undefined && target.get('e', '1') == undefined && player.storage.equip1_player == target) flag1 = 1;
-                                if (player.get('e', '2') != undefined && target.get('e', '2') == undefined && player.storage.equip2_player == target) flag1 = 1;
-                                if (player.get('e', '3') != undefined && target.get('e', '3') == undefined && player.storage.equip3_player == target) flag1 = 1;
-                                if (player.get('e', '4') != undefined && target.get('e', '4') == undefined && player.storage.equip4_player == target) flag1 = 1;
-                                if (player.get('e', '5') != undefined && target.get('e', '5') == undefined && player.storage.equip5_player == target) flag1 = 1;
+                                if (player.getEquips(1) == undefined && target.getEquips(1) != undefined) flag = 1;
+                                if (player.getEquips(2) == undefined && target.getEquips(2) != undefined) flag = 1;
+                                if (player.getEquips(3) == undefined && target.getEquips(3) != undefined) flag = 1;
+                                if (player.getEquips(4) == undefined && target.getEquips(4) != undefined) flag = 1;
+                                if (player.getEquips(5) == undefined && target.getEquips(5) != undefined) flag = 1;
+                                if (player.getEquips(1) != undefined && target.getEquips(1) == undefined && player.storage.equip1_player == target) flag1 = 1;
+                                if (player.getEquips(2) != undefined && target.getEquips(2) == undefined && player.storage.equip2_player == target) flag1 = 1;
+                                if (player.getEquips(3) != undefined && target.getEquips(3) == undefined && player.storage.equip3_player == target) flag1 = 1;
+                                if (player.getEquips(4) != undefined && target.getEquips(4) == undefined && player.storage.equip4_player == target) flag1 = 1;
+                                if (player.getEquips(5) != undefined && target.getEquips(5) == undefined && player.storage.equip5_player == target) flag1 = 1;
                                 if (player.storage.equip1_player != 0 && player.storage.equip1_player != target) {
                                     flag2 = 1;
-                                    if (target.get('e', '1') != undefined) flag3 = 1;
+                                    if (target.getEquips(1) != undefined) flag3 = 1;
                                 }
                                 if (player.storage.equip2_player != 0 && player.storage.equip2_player != target) {
                                     flag2 = 1;
-                                    if (target.get('e', '2') != undefined) flag3 = 1;
+                                    if (target.getEquips(2) != undefined) flag3 = 1;
                                 }
                                 if (player.storage.equip3_player != 0 && player.storage.equip3_player != target) {
                                     flag2 = 1;
-                                    if (target.get('e', '3') != undefined) flag3 = 1;
+                                    if (target.getEquips(3) != undefined) flag3 = 1;
                                 }
                                 if (player.storage.equip4_player != 0 && player.storage.equip4_player != target) {
                                     flag2 = 1;
-                                    if (target.get('e', '4') != undefined) flag3 = 1;
+                                    if (target.getEquips(4) != undefined) flag3 = 1;
                                 }
                                 if (player.storage.equip5_player != 0 && player.storage.equip5_player != target) {
                                     flag2 = 1;
-                                    if (target.get('e', '5') != undefined) flag3 = 1;
+                                    if (target.getEquips(5) != undefined) flag3 = 1;
                                 }
                                 if (flag == 0 && flag1 == 0 && flag2 == 0) event.finish();
-                                if (player.get('e', '1') == undefined && target.get('e', '1') != undefined) {
-                                    var cd = target.get('e', '1');
+                                if (player.getEquips(1) == undefined && target.getEquips(1) != undefined) {
+                                    var cd = target.getEquips(1);
                                     var card = game.createCard(cd);
                                     player.equip(card);
                                     player.storage.equip1_player = target;
                                     player.storage.equip1_card = card;
                                 }
-                                if (player.get('e', '2') == undefined && target.get('e', '2') != undefined) {
-                                    var cd = target.get('e', '2');
+                                if (player.getEquips(2) == undefined && target.getEquips(2) != undefined) {
+                                    var cd = target.getEquips(2);
                                     var card = game.createCard(cd);
                                     player.equip(card);
                                     player.storage.equip2_player = target;
                                     player.storage.equip2_card = card;
                                 }
-                                if (player.get('e', '3') == undefined && target.get('e', '3') != undefined) {
-                                    var cd = target.get('e', '3');
+                                if (player.getEquips(3) == undefined && target.getEquips(3) != undefined) {
+                                    var cd = target.getEquips(3);
                                     var card = game.createCard(cd);
                                     player.equip(card);
                                     player.storage.equip3_player = target;
                                     player.storage.equip3_card = card;
                                 }
-                                if (player.get('e', '4') == undefined && target.get('e', '4') != undefined) {
-                                    var cd = target.get('e', '4');
+                                if (player.getEquips(4) == undefined && target.getEquips(4) != undefined) {
+                                    var cd = target.getEquips(4);
                                     var card = game.createCard(cd);
                                     player.equip(card);
                                     player.storage.equip4_player = target;
                                     player.storage.equip4_card = card;
                                 }
-                                if (player.get('e', '5') == undefined && target.get('e', '5') != undefined) {
-                                    var cd = target.get('e', '5');
+                                if (player.getEquips(5) == undefined && target.getEquips(5) != undefined) {
+                                    var cd = target.getEquips(5);
                                     var card = game.createCard(cd);
                                     player.equip(card);
                                     player.storage.equip5_player = target;
                                     player.storage.equip5_card = card;
                                 }
-                                if (player.get('e', '1') != undefined && target.get('e', '1') == undefined) {
+                                if (player.getEquips(1) != undefined && target.getEquips(1) == undefined) {
                                     if (player.storage.equip1_player == target) {
                                         player.storage.equip1_player = 0;
                                         player.storage.equip1_card = 0;
-                                        if (player.get('e', '1')) player.get('e', '1').delete();
+                                        if (player.getEquips(1)) player.getEquips(1).delete();
                                     }
                                 }
-                                if (player.get('e', '2') != undefined && target.get('e', '2') == undefined) {
+                                if (player.getEquips(2) != undefined && target.getEquips(2) == undefined) {
                                     if (player.storage.equip2_player == target) {
                                         player.storage.equip2_player = 0;
                                         player.storage.equip2_card = 0;
-                                        if (player.get('e', '2')) player.get('e', '2').delete();
+                                        if (player.getEquips(2)) player.getEquips(2).delete();
                                     }
                                 }
-                                if (player.get('e', '3') != undefined && target.get('e', '3') == undefined) {
+                                if (player.getEquips(3) != undefined && target.getEquips(3) == undefined) {
                                     if (player.storage.equip3_player == target) {
                                         player.storage.equip3_player = 0;
                                         player.storage.equip3_card = 0;
-                                        if (player.get('e', '3')) player.get('e', '3').delete();
+                                        if (player.getEquips(3)) player.getEquips(3).delete();
                                     }
                                 }
-                                if (player.get('e', '4') != undefined && target.get('e', '4') == undefined) {
+                                if (player.getEquips(4) != undefined && target.getEquips(4) == undefined) {
                                     if (player.storage.equip4_player == target) {
                                         player.storage.equip4_player = 0;
                                         player.storage.equip4_card = 0;
-                                        if (player.get('e', '4')) player.get('e', '4').delete();
+                                        if (player.getEquips(4)) player.getEquips(4).delete();
                                     }
                                 }
-                                if (player.get('e', '5') != undefined && target.get('e', '5') == undefined) {
+                                if (player.getEquips(5) != undefined && target.getEquips(5) == undefined) {
                                     if (player.storage.equip5_player == target) {
                                         player.storage.equip5_player = 0;
                                         player.storage.equip5_card = 0;
-                                        if (player.get('e', '5')) player.get('e', '5').delete();
+                                        if (player.getEquips(5)) player.getEquips(5).delete();
                                     }
                                 }
                                 if (player.storage.equip1_player != target && player.storage.equip1_player != 0) {
                                     player.storage.equip1_player = 0;
                                     player.storage.equip1_card = 0;
-                                    if (player.get('e', '1')) player.get('e', '1').delete();
-                                    if (target.get('e', '1') != undefined) {
-                                        var cd = target.get('e', '1');
+                                    if (player.getEquips(1)) player.getEquips(1).delete();
+                                    if (target.getEquips(1) != undefined) {
+                                        var cd = target.getEquips(1);
                                         var card = game.createCard(cd);
                                         player.equip(card);
                                         player.storage.equip1_player = target;
@@ -20679,9 +20679,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.equip2_player != target && player.storage.equip2_player != 0) {
                                     player.storage.equip2_player = 0;
                                     player.storage.equip2_card = 0;
-                                    if (player.get('e', '2')) player.get('e', '2').delete();
-                                    if (target.get('e', '2') != undefined) {
-                                        var cd = target.get('e', '2');
+                                    if (player.getEquips(2)) player.getEquips(2).delete();
+                                    if (target.getEquips(2) != undefined) {
+                                        var cd = target.getEquips(2);
                                         var card = game.createCard(cd);
                                         player.equip(card);
                                         player.storage.equip2_player = target;
@@ -20691,9 +20691,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.equip3_player != target && player.storage.equip3_player != 0) {
                                     player.storage.equip3_player = 0;
                                     player.storage.equip3_card = 0;
-                                    if (player.get('e', '3')) player.get('e', '3').delete();
-                                    if (target.get('e', '3') != undefined) {
-                                        var cd = target.get('e', '3');
+                                    if (player.getEquips(3)) player.getEquips(3).delete();
+                                    if (target.getEquips(3) != undefined) {
+                                        var cd = target.getEquips(3);
                                         var card = game.createCard(cd);
                                         player.equip(card);
                                         player.storage.equip3_player = target;
@@ -20703,9 +20703,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.equip4_player != target && player.storage.equip4_player != 0) {
                                     player.storage.equip4_player = 0;
                                     player.storage.equip4_card = 0;
-                                    if (player.get('e', '4')) player.get('e', '4').delete();
-                                    if (target.get('e', '4') != undefined) {
-                                        var cd = target.get('e', '4');
+                                    if (player.getEquips(4)) player.getEquips(4).delete();
+                                    if (target.getEquips(4) != undefined) {
+                                        var cd = target.getEquips(4);
                                         var card = game.createCard(cd);
                                         player.equip(card);
                                         player.storage.equip4_player = target;
@@ -20715,9 +20715,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.equip5_player != target && player.storage.equip5_player != 0) {
                                     player.storage.equip5_player = 0;
                                     player.storage.equip5_card = 0;
-                                    if (player.get('e', '5')) player.get('e', '5').delete();
-                                    if (target.get('e', '5') != undefined) {
-                                        var cd = target.get('e', '5');
+                                    if (player.getEquips(5)) player.getEquips(5).delete();
+                                    if (target.getEquips(5) != undefined) {
+                                        var cd = target.getEquips(5);
                                         var card = game.createCard(cd);
                                         player.equip(card);
                                         player.storage.equip5_player = target;
@@ -24354,14 +24354,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = 0;
                                 if (player.storage.langhuai3d8 == 0) {
                                     var suits = [];
-                                    var cards = player.get('h');
+                                    var cards = player.getCards('h');
                                     for (var i = 0; i < cards.length; i++) {
                                         if (!suits.includes(cards[i].suit)) suits.add(cards[i].suit);
                                     }
                                     num = suits.length;
                                 } else {
                                     var suits = ['heart', 'club', 'spade', 'diamond'];
-                                    var cards = player.get('h');
+                                    var cards = player.getCards('h');
                                     for (var i = 0; i < cards.length; i++) {
                                         if (suits.includes(cards[i].suit)) suits.remove(cards[i].suit);
                                     }
@@ -24382,7 +24382,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.showHandcards();
                                 if (player.storage.langhuai3d8 == 0) {
                                     var suits = [];
-                                    event.cards = player.get('h');
+                                    event.cards = player.getCards('h');
                                     if (Array.isArray(event.cards))
                                         for (var i of event.cards) {
                                             if (!suits.includes(i.suit)) suits.add(i.suit);
@@ -24391,7 +24391,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.storage.langhuai3d8 = 1;
                                 } else {
                                     var suits = ['heart', 'club', 'spade', 'diamond'];
-                                    event.cards = player.get('h');
+                                    event.cards = player.getCards('h');
                                     if (Array.isArray(event.cards))
                                         for (var i of event.cards) {
                                             if (suits.includes(i.suit)) suits.remove(i.suit);
@@ -24420,7 +24420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.showHandcards();
                                 if (player.storage.langhuai3d8 == 0) {
                                     var suits = [];
-                                    event.cards = player.get('h');
+                                    event.cards = player.getCards('h');
                                     if (Array.isArray(event.cards))
                                         for (var i of event.cards) {
                                             if (!suits.includes(i.suit)) suits.add(i.suit);
@@ -24429,7 +24429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.storage.langhuai3d8 = 1;
                                 } else {
                                     var suits = ['heart', 'club', 'spade', 'diamond'];
-                                    event.cards = player.get('h');
+                                    event.cards = player.getCards('h');
                                     if (Array.isArray(event.cards))
                                         for (var i of event.cards) {
                                             if (suits.includes(i.suit)) suits.remove(i.suit);

@@ -2517,7 +2517,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 ai: {
                     effect: {
                         target(card, player) {
-                            var equip1 = player.get('e', '1');
+                            var equip1 = player.getEquips(1);
                             if (equip1 && equip1.name == 'qinggang') return 1;
                             if (player.num('s', 'unequip')) return;
                             if (card.name == 'sha' && get.color(card) == 'red') return 'zerotarget';

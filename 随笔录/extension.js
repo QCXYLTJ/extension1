@@ -1645,7 +1645,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             //扩展ol明日方舟全局
             lib.element.player.ysblmrfz_hasCDSkill = function () {
                 var player = this;
-                var skills = player.get('s');
+                var skills = player.getCards('s');
                 for (var i = 0; i < skills.length; i++) {
                     var skill = skills[i];
                     if (lib.skill[skill] != undefined && lib.skill[skill].ysblmrfz_cd > 0) return true;
@@ -1671,7 +1671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (player.storage.ysblmrfz_cd_skill == undefined) player.storage.ysblmrfz_cd_skill = {};
                     if (skill != undefined) {
                         if (skill == 'all') {
-                            var skills = player.get('s');
+                            var skills = player.getCards('s');
                             for (var i = 0; i < skills.length; i++) {
                                 var skill = skills[i];
                                 if (lib.skill[skill] != undefined && lib.skill[skill].ysblmrfz_cd > 0) player.storage.ysblmrfz_cd_skill[skill] = lib.skill[skill].ysblmrfz_cd;
@@ -23494,7 +23494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i = 0; i < game.players.length; i++) {
                                             var pl = game.players[i];
                                             if (pl != player) {
-                                                var skill = pl.get('s', false, false);
+                                                var skill = pl.getCards('s');
                                                 for (j = 0; j < skill.length; j++) {
                                                     if (lib.translate[skill[j] + '_info'] != undefined && lib.translate[skill[j] + '_info'].includes('锁定技')) return true;
                                                 }
@@ -23506,7 +23506,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i = 0; i < game.players.length; i++) {
                                             var pl = game.players[i];
                                             if (pl != player) {
-                                                var skill = pl.get('s', false, false);
+                                                var skill = pl.getCards('s');
                                                 for (j = 0; j < skill.length; j++) {
                                                     if (lib.translate[skill[j] + '_info'] != undefined && lib.translate[skill[j] + '_info'].includes('锁定技')) list.push(skill[j]);
                                                 }
@@ -23609,13 +23609,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var skill = list.randomGet();
                                 player.addTempSkill(skill, { player: 'phaseBegin' });
                                 game.log(player, '获得了技能【' + get.translation(skill) + '】');
-                                player.draw(player.get('s', false, false).length);
+                                player.draw(player.getCards('s').length);
                             },
                             ai: {
                                 order: 13,
                                 result: {
                                     player(player) {
-                                        if (player.hp <= 1 || (player.countCards('h') > 3 && player.get('s', false, false).length - 1 <= 2 && player.hp <= 2)) return 1;
+                                        if (player.hp <= 1 || (player.countCards('h') > 3 && player.getCards('s').length - 1 <= 2 && player.hp <= 2)) return 1;
                                     },
                                 },
                             },
@@ -24256,8 +24256,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var equip = player.get('e').randomGet();
-                                player.chooseCardButton(player.get('e'), '请选择需要替换的装备牌').ai = function (button) {
+                                var equip = player.getCards('e').randomGet();
+                                player.chooseCardButton(player.getCards('e'), '请选择需要替换的装备牌').ai = function (button) {
                                     if (button.link == equip) return 1;
                                 };
                                 ('step 1');

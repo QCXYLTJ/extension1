@@ -126,8 +126,8 @@ const skill = {
             if (result.bool) {
                 player.line(result.targets);
                 var card;
-                for (var i = 0; i < result.targets[0].get('e').length; i++) {
-                    if (event.c[0].suit == get.suit(result.targets[0].get('e')[i])) var card = result.targets[0].get('e')[i];
+                for (var i = 0; i < result.targets[0].getCards('e').length; i++) {
+                    if (event.c[0].suit == get.suit(result.targets[0].getCards('e')[i])) var card = result.targets[0].getCards('e')[i];
                 }
                 player.gain(card, 'gain2');
                 player.equip(card);
@@ -21068,9 +21068,9 @@ const skill = {
             'step 0';
             player.storage.mx_zaihuoxiongxiang = 0;
             for (var i of game.players) {
-                if (i.get('e', '2')) {
+                if (i.getEquips(2)) {
                     player.storage.mx_zaihuoxiongxiang++;
-                    i.discard(i.get('e', '2'));
+                    i.discard(i.getEquips(2));
                 }
             }
             if (player.storage.mx_zaihuoxiongxiang > 0)
@@ -21474,7 +21474,7 @@ const skill = {
         },
         forced: true,
         filter(event, player) {
-            if (!player.get('e', '1')) return false;
+            if (!player.getEquips(1)) return false;
             return event.card && (event.card.name == 'sha' || event.card.name == 'chuqibuyi');
         },
         content() {
@@ -33081,7 +33081,7 @@ const skill = {
             return player.canCompare(event.player);
         },
         check(event, player) {
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             if (Array.isArray(cards))
                 for (var i of cards) {
                     if (i.number > 11 && get.value(i) < 7) {
@@ -42017,7 +42017,7 @@ const skill = {
                 return true;
             }
             var suits = ['heart', 'club', 'spade', 'diamond'];
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             if (Array.isArray(cards))
                 for (var i of cards) {
                     if (suits.includes(i.suit)) suits.remove(i.suit);
@@ -42029,7 +42029,7 @@ const skill = {
         },
         content() {
             var suits = ['heart', 'club', 'spade', 'diamond'];
-            event.cards = player.get('h');
+            event.cards = player.getCards('h');
             if (Array.isArray(event.cards))
                 for (var i of event.cards) {
                     if (suits.includes(i.suit)) suits.remove(i.suit);
@@ -42552,11 +42552,11 @@ const skill = {
             for (var i of players) {
                 if (i == event.player) continue;
                 if (get.attitude(player, i) <= 0) continue;
-                if (get.subtype(event.card.cards[0]) == 'equip1' && i.get('e', '1') == undefined && event.player.countCards('h') < i.countCards('h')) return true;
-                if (get.subtype(event.card.cards[0]) == 'equip2' && i.get('e', '2') == undefined && event.player.hp > i.hp) return true;
-                if (get.subtype(event.card.cards[0]) == 'equip3' && i.get('e', '3') == undefined && event.player.hp > i.hp) return true;
-                if (get.subtype(event.card.cards[0]) == 'equip4' && i.get('e', '4') == undefined && event.player.countCards('h') < i.countCards('h')) return true;
-                if (get.subtype(event.card.cards[0]) == 'equip5' && i.get('e', '5') == undefined && event.player.countCards('h') < i.countCards('h')) return true;
+                if (get.subtype(event.card.cards[0]) == 'equip1' && i.getEquips(1) == undefined && event.player.countCards('h') < i.countCards('h')) return true;
+                if (get.subtype(event.card.cards[0]) == 'equip2' && i.getEquips(2) == undefined && event.player.hp > i.hp) return true;
+                if (get.subtype(event.card.cards[0]) == 'equip3' && i.getEquips(3) == undefined && event.player.hp > i.hp) return true;
+                if (get.subtype(event.card.cards[0]) == 'equip4' && i.getEquips(4) == undefined && event.player.countCards('h') < i.countCards('h')) return true;
+                if (get.subtype(event.card.cards[0]) == 'equip5' && i.getEquips(5) == undefined && event.player.countCards('h') < i.countCards('h')) return true;
             }
             return false;
         },
@@ -42614,16 +42614,16 @@ const skill = {
                     )
                     .set('ai', function (target) {
                         if (get.attitude(player, target) <= 0) return -1;
-                        if (get.subtype(trigger.card.cards[0]) == 'equip1' && target.get('e', '1') == undefined) return Math.max(2, target.countCards('h'));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip2' && target.get('e', '2') == undefined) return Math.max(2, 10 - target.hp);
-                        if (get.subtype(trigger.card.cards[0]) == 'equip3' && target.get('e', '3') == undefined) return Math.max(2, 10 - target.hp);
-                        if (get.subtype(trigger.card.cards[0]) == 'equip4' && target.get('e', '4') == undefined) return Math.max(2, target.countCards('h'));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip5' && target.get('e', '5') == undefined) return Math.max(2, target.countCards('h'));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip1' && target.get('e', '1') != undefined) return Math.max(1, 5 - get.value(target.get('e', '1')));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip2' && target.get('e', '2') != undefined) return Math.max(1, 5 - get.value(target.get('e', '2')));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip3' && target.get('e', '3') != undefined) return Math.max(1, 5 - get.value(target.get('e', '3')));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip4' && target.get('e', '4') != undefined) return Math.max(1, 5 - get.value(target.get('e', '4')));
-                        if (get.subtype(trigger.card.cards[0]) == 'equip5' && target.get('e', '5') != undefined) return Math.max(1, 5 - get.value(target.get('e', '5')));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip1' && target.getEquips(1) == undefined) return Math.max(2, target.countCards('h'));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip2' && target.getEquips(2) == undefined) return Math.max(2, 10 - target.hp);
+                        if (get.subtype(trigger.card.cards[0]) == 'equip3' && target.getEquips(3) == undefined) return Math.max(2, 10 - target.hp);
+                        if (get.subtype(trigger.card.cards[0]) == 'equip4' && target.getEquips(4) == undefined) return Math.max(2, target.countCards('h'));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip5' && target.getEquips(5) == undefined) return Math.max(2, target.countCards('h'));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip1' && target.getEquips(1) != undefined) return Math.max(1, 5 - get.value(target.getEquips(1)));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip2' && target.getEquips(2) != undefined) return Math.max(1, 5 - get.value(target.getEquips(2)));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip3' && target.getEquips(3) != undefined) return Math.max(1, 5 - get.value(target.getEquips(3)));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip4' && target.getEquips(4) != undefined) return Math.max(1, 5 - get.value(target.getEquips(4)));
+                        if (get.subtype(trigger.card.cards[0]) == 'equip5' && target.getEquips(5) != undefined) return Math.max(1, 5 - get.value(target.getEquips(5)));
                         return 1;
                     });
             }
@@ -49026,7 +49026,7 @@ const skill = {
             global: 'phaseUseBegin',
         },
         check(event, player) {
-            var cards = player.get('h');
+            var cards = player.getCards('h');
             if (Array.isArray(cards))
                 for (var i of cards) {
                     if (i.number > 11 && get.value(i) < 7) {
@@ -56808,7 +56808,7 @@ const skill = {
             if (result.bool) {
                 player.moveCard();
                 if (trigger.player != player) {
-                    trigger.player.chooseCardButton('将一张手牌交给' + get.translation(player), trigger.player.get('h'), true);
+                    trigger.player.chooseCardButton('将一张手牌交给' + get.translation(player), trigger.player.getCards('h'), true);
                 } else {
                     event.finish();
                 }
@@ -57590,7 +57590,7 @@ const skill = {
             effect: {
                 target(card, player, target, current) {
                     if (get.tag(card, 'damage')) {
-                        var bs = player.get('h');
+                        var bs = player.getCards('h');
                         if (bs.length == 0) return 0;
                         if ((player.hasSkill('jiu') || player.hasSkill('tianxianjiu')) && card.name == 'sha') return;
                         if (player.countCards('h') <= 1) return 0;
@@ -64863,7 +64863,7 @@ const skill = {
         },
         forced: true,
         filter(event, player) {
-            if (!player.get('e', '1')) return false;
+            if (!player.getEquips(1)) return false;
             return player.storage.mx_suiluji != player.getAttackRange() && event.card && event.card.suit == 'club';
         },
         content() {

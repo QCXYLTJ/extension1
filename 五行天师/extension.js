@@ -2344,7 +2344,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         target.gain(cards, player, 'giveAuto');
                         ('step 1');
                         var num = target.num('h');
-                        target.discard(target.get('h'));
+                        target.discard(target.getCards('h'));
                         target.draw(num);
                         target.showHandcards();
                         ('step 2');
@@ -2352,7 +2352,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return get.type(card) != 'basic';
                         });
                         target.discard(
-                            target.get('h', function (card) {
+                            targe.getCards('h', function (card) {
                                 return get.type(card) != 'basic';
                             })
                         );

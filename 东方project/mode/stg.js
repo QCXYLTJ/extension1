@@ -1411,7 +1411,7 @@ game.addMode(
                     next.set('ai1', function () {
                         var target = _status.event.player;
                         var evt = _status.event.parent;
-                        var sks = target.get('s');
+                        var sks = target.getCards('s');
                         return 1;
                     });
                 },

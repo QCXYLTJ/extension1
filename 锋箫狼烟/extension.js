@@ -2106,7 +2106,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 effect: {
                                     target(card, player, target, current) {
-                                        var bs = player.get('h');
+                                        var bs = player.getCards('h');
                                         if (bs.length == 0) return 0;
                                         if (player.hasSkill('jiu') || player.hasSkill('tianxianjiu')) return;
                                         return [1, 0, 1, -0.5];
@@ -2751,7 +2751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.source != undefined && event.source.countCards('h') > 0;
                             },
                             content() {
-                                event.cards = trigger.source.get('h');
+                                event.cards = trigger.source.getCards('h');
                                 var numBasic = 0;
                                 var numEquip = 0;
                                 var numTrick = 0;
@@ -2806,7 +2806,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     result.targets[0].showHandcards();
-                                    var cards = result.targets[0].get('h', { suit: 'club' });
+                                    var cards = result.targets[0.getCards('h', { suit: 'club' });
                                     if (cards.length) {
                                         player.gain(cards);
                                         result.targets[0].$give(cards.length, result.targets[0]);
@@ -5171,7 +5171,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (i == player) continue;
                                     if (i.countCards('h')) {
                                         dialog.add(get.translation(i) + '的手牌');
-                                        var hs = i.get('h');
+                                        var hs = i.getCards('h');
                                         dialog.add(hs);
                                     }
                                 }
@@ -5209,9 +5209,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i of game.players) {
                                             if (i.isOut()) continue;
                                             if (i == player) continue;
-                                            var cards = i.get('h');
+                                            var cards = i.getCards('h');
                                             for (var j = 0; j < cards.length; j++) {
-                                                if (player.get('h').includes(cards[j])) cards.splice(j--, 1);
+                                                if (player.getCards('h').includes(cards[j])) cards.splice(j--, 1);
                                             }
                                             if (cards.length) return true;
                                         }
@@ -5224,15 +5224,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return player != target && target.countCards('h');
                                             })
                                             .set('ai', function (target) {
-                                                var num = target.get('h');
+                                                var num = target.getCards('h');
                                                 return -get.attitude(player, target) + num;
                                             });
                                         ('step 1');
                                         if (result.bool) {
                                             player.line(result.targets, 'green');
-                                            var cards = result.targets[0].get('h');
+                                            var cards = result.targets[0].getCards('h');
                                             for (var j = 0; j < cards.length; j++) {
-                                                if (player.get('h').includes(cards[j])) cards.splice(j--, 1);
+                                                if (player.getCards('h').includes(cards[j])) cards.splice(j--, 1);
                                             }
                                             player.gain(cards, result.targets[0]);
                                             if (cards.length) result.targets[0].$give(cards.length, player);

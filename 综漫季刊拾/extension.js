@@ -1652,14 +1652,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (trigger.respondTo[0] == player) {
                                     //目标响应
                                     var list = [];
-                                    var cards1 = trigger.player.get('h');
+                                    var cards1 = trigger.player.getCards('h');
                                     for (var i = 0; i < cards1.length; i++) {
                                         list.push(cards1[i]);
                                     }
                                 } else {
                                     event.mark = trigger.respondTo[0];
                                     var list = [];
-                                    var cards1 = event.mark.get('h');
+                                    var cards1 = event.mark.getCards('h');
                                     for (var i = 0; i < cards1.length; i++) {
                                         list.push(cards1[i]);
                                     }

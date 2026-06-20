@@ -6155,8 +6155,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 ('step 1');
                                 event.suit = result.control;
-                                player.viewCards('攻心', target.get('h'));
-                                event.cards = target.get('h', function (card) {
+                                player.viewCards('攻心', target.getCards('h'));
+                                event.cards = targe.getCards('h', function (card) {
                                     return card.suit == event.suit;
                                 });
                                 if (!event.cards.length) {
@@ -22855,7 +22855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.suit = result.control;
                                 player.popup(event.suit + 2);
                                 game.log(player, '选择了', event.suit + 2);
-                                event.cards = target.get('h', function (card) {
+                                event.cards = targe.getCards('h', function (card) {
                                     return card.suit == event.suit;
                                 });
                                 if (!event.cards.length) {

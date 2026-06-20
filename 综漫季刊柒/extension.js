@@ -4471,12 +4471,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 var num0 = 0;
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     game.broadcastAll(function (card) {
                                         if (get.tag(card, 'damage')) {
                                             num0++;
                                         }
-                                    }, player.get('h')[i]);
+                                    }, player.getCards('h')[i]);
                                 }
                                 if (event.player == player) return false;
                                 return num0 > 0;

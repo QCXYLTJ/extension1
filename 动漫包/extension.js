@@ -828,7 +828,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseControl('火', '雷', '毒', '无来源', ui.create.dialog('请选择一项', 'hidden')).ai = function (event, player) {
                                     var player = trigger.player;
-                                    var equip2 = trigger.player.get('e', '2');
+                                    var equip2 = trigger.player.getEquips(2);
                                     if (player.hasSkillTag('nofire')) return '无来源';
                                     if (player.hasSkillTag('nothunder')) return '无来源';
                                     if (equip2 && equip2.name == 'tengjia') return '火';
@@ -885,7 +885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 event.target.showHandcards();
                                 ('step 3');
-                                var cards = event.target.get('h', 'sha');
+                                var cards = event.targe.getCards('h', 'sha');
                                 if (cards.length) {
                                     player.gain(cards);
                                     event.target.$give(cards, player);
@@ -911,9 +911,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 3;
                                 });
                                 ('step 1');
-                                var num = trigger.player.get('h');
-                                var cards0 = trigger.player.get('h', 'shan');
-                                var cards1 = trigger.player.get('h', 'sha');
+                                var num = trigger.player.getCards('h');
+                                var cards0 = trigger.playe.getCards('h', 'shan');
+                                var cards1 = trigger.playe.getCards('h', 'sha');
                                 switch (result.card.suit) {
                                     case 'heart':
                                         trigger.player.damage('fire');
@@ -963,7 +963,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.player.num('he') > 0 && event.player != player;
                             },
                             content() {
-                                var hs = trigger.player.get('he');
+                                var hs = trigger.player.getCards('he');
                                 if (hs.length) {
                                     var hs2 = [];
                                     for (var i = 0; i < hs.length; i++) {
@@ -1380,17 +1380,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     for (var j = 0; j < players.length; j++) {
                                         if (position[i] == 'h' && players[j].num('h')) {
                                             event.dialog.add(get.translation(players[j]) + '的手牌');
-                                            var hs = players[j].get('h');
+                                            var hs = players[j].getCards('h');
                                             hs.randomSort();
                                             event.dialog.add(hs);
                                         }
                                         if (position[i] == 'e' && players[j].num('e')) {
                                             event.dialog.add(get.translation(players[j]) + '的装备牌');
-                                            event.dialog.add(players[j].get('e'));
+                                            event.dialog.add(players[j].getCards('e'));
                                         }
                                         if (position[i] == 'j' && players[j].num('j')) {
                                             event.dialog.add(get.translation(players[j]) + '的判定牌');
-                                            event.dialog.add(players[j].get('j'));
+                                            event.dialog.add(players[j].getCards('j'));
                                         }
                                     }
                                 }
@@ -2664,9 +2664,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var data = {};
                                 for (var i of game.players) {
                                     data[i.dataset.position] = {
-                                        h: get.cardsInfo(i.get('h')),
-                                        e: get.cardsInfo(i.get('e')),
-                                        j: get.cardsInfo(i.get('j')),
+                                        h: get.cardsInfo(i.getCards('h')),
+                                        e: get.cardsInfo(i.getCards('e')),
+                                        j: get.cardsInfo(i.getCards('j')),
                                     };
                                 }
                                 game.addVideo('skill', event.player, ['cya', data]);
@@ -2890,7 +2890,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 for (var i of players) {
                                     if (i == player) continue;
-                                    var skills = i.get('s').concat(i.hiddenSkills);
+                                    var skills = i.getCards('s').concat(i.hiddenSkills);
                                     for (j = 0; j < skills.length; j++) {
                                         if (skills2.includes(skills[j]) && !list.includes(skills[j])) {
                                             list.push(skills[j]);
@@ -3223,7 +3223,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 if (get.type(result.card) == 'equip') {
                                     trigger.player.damage('thunder', 1);
-                                    player.discard(player.get('he'));
+                                    player.discard(player.getCards('he'));
                                 }
                                 if (get.type(result.card) == 'trick') {
                                     trigger.player.damage('thunder', num);
@@ -3512,11 +3512,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (player.num('he')) {
                                             var str = '';
                                             str += '是否替换' + get.translation(trigger.player) + '的一张手牌？';
-                                            player.chooseCardButton(str, trigger.player.get('h')).set('ai', function (button) {
+                                            player.chooseCardButton(str, trigger.player.getCards('h')).set('ai', function (button) {
                                                 return get.value(button.link);
                                             });
                                         } else {
-                                            player.viewCards('隙间', trigger.player.get('h'));
+                                            player.viewCards('隙间', trigger.player.getCards('h'));
                                             event.finish();
                                         }
                                         ('step 1');
@@ -3739,7 +3739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.player != player && player.hp < player.maxHp && player.num('h') > 2;
                             },
                             check(event, player) {
-                                var cards = player.get('h');
+                                var cards = player.getCards('h');
                                 if (cards.length <= 4) {
                                     if (Array.isArray(cards)) for (var i of cards) {
                                         if (i.name == 'shan' || i.name == 'tao') return false;
@@ -4450,7 +4450,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     },
                                     target(player, target) {
-                                        if (!player.get('e', '1')) {
+                                        if (!player.getEquips(1)) {
                                             if (player.hp < 2) return 0;
                                             if (player.hp == 2 && target.hp >= 2) return 0;
                                         }
@@ -5037,7 +5037,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.line(event.target);
                                         ('step 2');
                                         player.addSkill(event.target.skills);
-                                        player.gain(event.target.get('h'), event.target);
+                                        player.gain(event.target.getCards('h'), event.target);
                                         player.gainMaxHp(event.target.maxHp);
                                         player.recover(event.target.hp);
                                         event.target.$give(event.target.num('h'), player);
@@ -6768,11 +6768,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e1 = event.player.get('e', '1');
+                                var e1 = event.player.getEquips(1);
                                 return player != event.player && e1;
                             },
                             content() {
-                                player.gain(trigger.player.get('e', '1'));
+                                player.gain(trigger.player.getEquips(1));
                                 trigger.untrigger();
                                 trigger.finish();
                             },
@@ -6785,11 +6785,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e1 = event.player.get('e', '1');
+                                var e1 = event.player.getEquips(1);
                                 return player != event.player && e1;
                             },
                             content() {
-                                player.gain(trigger.player.get('e', '1'));
+                                player.gain(trigger.player.getEquips(1));
                                 trigger.untrigger();
                                 trigger.finish();
                                 player.say('这遍地武器,在我看来,都是坟墓.');
@@ -8526,7 +8526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     },
                                     target(player, target) {
-                                        if (!player.get('e', '1')) {
+                                        if (!player.getEquips(1)) {
                                             if (player.hp < 2) return 0;
                                             if (player.hp == 2 && target.hp >= 2) return 0;
                                         }
@@ -9620,11 +9620,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                                 ('step 1');
@@ -9655,11 +9655,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                                 ('step 1');
@@ -9690,11 +9690,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                                 ('step 1');
@@ -9725,11 +9725,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                                 ('step 1');
@@ -9760,11 +9760,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                                 ('step 1');
@@ -9795,11 +9795,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                                 ('step 1');
@@ -9838,11 +9838,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                var e = event.player.get('e');
+                                var e = event.player.getCards('e');
                                 return player != event.player && e;
                             },
                             content() {
-                                player.gain(trigger.player.get('e'));
+                                player.gain(trigger.player.getCards('e'));
                                 trigger.untrigger();
                                 trigger.finish();
                             },
@@ -15206,8 +15206,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     value(card, player) {
                                         var value = 0;
                                         var info = get.info(card);
-                                        if (player.get('e', info.subtype[5]) && card != player.get('e', info.subtype[5])) {
-                                            value = get.value(player.get('e', info.subtype[5]), player);
+                                        if (player.getEquips(info.subtype[5]) && card != player.getEquips(info.subtype[5])) {
+                                            value = get.value(player.getEquips(info.subtype[5]), player);
                                         }
                                         var equipValue = info.ai.equipValue || info.ai.basic.equipValue;
                                         if (typeof equipValue == 'function') return equipValue(card, player) - value;
@@ -15251,8 +15251,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     value(card, player) {
                                         var value = 0;
                                         var info = get.info(card);
-                                        if (player.get('e', info.subtype[5]) && card != player.get('e', info.subtype[5])) {
-                                            value = get.value(player.get('e', info.subtype[5]), player);
+                                        if (player.getEquips(info.subtype[5]) && card != player.getEquips(info.subtype[5])) {
+                                            value = get.value(player.getEquips(info.subtype[5]), player);
                                         }
                                         var equipValue = info.ai.equipValue || info.ai.basic.equipValue;
                                         if (typeof equipValue == 'function') return equipValue(card, player) - value;

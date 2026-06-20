@@ -427,7 +427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							if (!_status.gameStarted) return;
 							game.pause2();
 							const cardsInfo = game.players
-								.map((item) => item.get('h'))
+								.map((item) => item.getCards('h'))
 								.flat(window.Infinity)
 								.concat(...ui.cardPile.childNodes)
 								.concat(...ui.discardPile.childNodes)
@@ -9175,7 +9175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											player.addTempSkill('zshy_yice_sub2', 'phaseAfter');
 											player.addTempSkill('mashu', 'phaseAfter');
 										} else {
-											player.discard(player.get('j'));
+											player.discard(player.getCards('j'));
 											player.draw();
 										}
 									},

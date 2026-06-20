@@ -1054,7 +1054,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player
                                     .chooseTarget(get.prompt('zmdacidabeiqianyeshou'), function (card, player, target) {
-                                        if (trigger.target == target && trigger.target.get('he').length == 0) return false;
+                                        if (trigger.target == target && trigger.target.getCards('he').length == 0) return false;
                                         return target != player && get.distance(trigger.target, target) <= 1;
                                     })
                                     .set('ai', function (target) {
@@ -1063,7 +1063,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     event.targets = result.targets[0];
-                                    if (result.targets[0].get('he').length >= 1) {
+                                    if (result.targets[0].getCards('he').length >= 1) {
                                         result.targets[0].chooseToDiscard(true, 'he');
                                     } else {
                                         trigger.targets.addArray(event.targets);
@@ -2047,10 +2047,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.suit = trigger.cards.suit;
                                 trigger.source.gain(trigger.cards, 'gain2');
                                 ('step 1');
-                                for (var i = 0; i < trigger.source.get('h').length; i++) {
+                                for (var i = 0; i < trigger.source.getCards('h').length; i++) {
                                     game.broadcastAll(function (card) {
                                         if (card.suit == event.suit) card.init([card.suit, card.number, 'du']);
-                                    }, trigger.source.get('h')[i]);
+                                    }, trigger.source.getCards('h')[i]);
                                 }
                             },
                             subSkill: {
@@ -2184,27 +2184,27 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var maxArray = [];
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     if (maxArray.length == 0) {
-                                        maxArray.push(player.get('h')[i]);
+                                        maxArray.push(player.getCards('h')[i]);
                                     } else {
                                         var h = maxArray[0];
-                                        if (h.number < get.number(player.get('h')[i])) {
-                                            maxArray = [player.get('h')[i]];
-                                            event.num = get.number(player.get('h')[i]);
-                                        } else if (h.number == get.number(player.get('h')[i])) {
-                                            maxArray.push(player.get('h')[i]);
-                                            event.num = get.number(player.get('h')[i]);
+                                        if (h.number < get.number(player.getCards('h')[i])) {
+                                            maxArray = [player.getCards('h')[i]];
+                                            event.num = get.number(player.getCards('h')[i]);
+                                        } else if (h.number == get.number(player.getCards('h')[i])) {
+                                            maxArray.push(player.getCards('h')[i]);
+                                            event.num = get.number(player.getCards('h')[i]);
                                         }
                                     }
                                 }
                                 event.num2 = player.countCards('h');
                                 ('step 1');
                                 // player.discard(maxArray);
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     game.broadcastAll(function (card) {
                                         if (card.number < event.num) player.discard(card);
-                                    }, player.get('h')[i]);
+                                    }, player.getCards('h')[i]);
                                 }
                                 player.draw(event.num2);
                             },
@@ -3872,7 +3872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var controls = [];
                                 /*  var name=player.name;  
                                   skills1=lib.character[name][3];
-                                                     var skills=player.get('s',false,false);     
+                                                     var skills=playe.getCards('s',false,false);     
                                   skills.remove(skills1);
                                                      for(i=0;i<skills.length;i++){
                                                          var info=lib.skill[skills[i]];   
@@ -5165,12 +5165,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.zmt_np -= 30;
                                 player.gain(trigger.cards, 'gain2');
                                 ('step 1');
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     game.broadcastAll(function (card) {
                                         if (card.name == 'sha') {
                                             card.init([card.suit, card.number, 'sha', 'thunder']);
                                         }
-                                    }, player.get('h')[i]);
+                                    }, player.getCards('h')[i]);
                                 }
                             },
                         },
@@ -5322,12 +5322,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets && event.targets.length) {
                                     var target = event.targets.shift();
-                                    for (var i = 0; i < target.get('h').length; i++) {
+                                    for (var i = 0; i < target.getCards('h').length; i++) {
                                         game.broadcastAll(function (card) {
                                             if (get.tag(card, 'damage') /*&&event.targets[event.num2].canUse(card,event.targets[event.num2],false)*/) {
                                                 target.useCard(card, target);
                                             }
-                                        }, target.get('h')[i]);
+                                        }, target.getCards('h')[i]);
                                     }
                                     event.redo();
                                 }
@@ -5577,25 +5577,25 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 if (trigger.respondTo[0] == player) {
                                     //目标响应
-                                    var cards = player.get('h'),
+                                    var cards = player.getCards('h'),
                                         list = [];
                                     if (Array.isArray(cards))
                                         for (var i of cards) {
                                             list.push(i);
                                         }
-                                    var cards1 = trigger.player.get('h');
+                                    var cards1 = trigger.player.getCards('h');
                                     for (var i = 0; i < cards1.length; i++) {
                                         list.push(cards1[i]);
                                     }
                                 } else {
                                     event.mark = trigger.respondTo[0];
-                                    var cards = player.get('h'),
+                                    var cards = player.getCards('h'),
                                         list = [];
                                     if (Array.isArray(cards))
                                         for (var i of cards) {
                                             list.push(i);
                                         }
-                                    var cards1 = event.mark.get('h');
+                                    var cards1 = event.mark.getCards('h');
                                     for (var i = 0; i < cards1.length; i++) {
                                         list.push(cards1[i]);
                                     }

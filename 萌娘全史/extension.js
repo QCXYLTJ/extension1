@@ -1035,7 +1035,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (player.hp == 1) return -5;
                                             else return player.hp - player.maxHp;
                                         } else if (get.type(card) == 'equip') {
-                                            if ((get.subtype(card) == 'equip1' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip2' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip3' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip4' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip5' && player.get('e', '1') == undefined)) return -3;
+                                            if ((get.subtype(card) == 'equip1' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip2' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip3' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip4' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip5' && player.getEquips(1) == undefined)) return -3;
                                             else return -1.5;
                                         }
                                         return -1;
@@ -1045,7 +1045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (target.hp == 1) return 5;
                                             else return target.maxHp - target.hp;
                                         } else if (get.type(card) == 'equip') {
-                                            if ((get.subtype(card) == 'equip1' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip2' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip3' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip4' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip5' && target.get('e', '1') == undefined)) return 1;
+                                            if ((get.subtype(card) == 'equip1' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip2' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip3' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip4' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip5' && target.getEquips(1) == undefined)) return 1;
                                             else return 3;
                                         }
                                         return 0.5;
@@ -1141,7 +1141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (player.hp == 1) return -5;
                                             else return player.hp - player.maxHp;
                                         } else if (get.type(card) == 'equip') {
-                                            if ((get.subtype(card) == 'equip1' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip2' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip3' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip4' && player.get('e', '1') == undefined) || (get.subtype(card) == 'equip5' && player.get('e', '1') == undefined)) return -3;
+                                            if ((get.subtype(card) == 'equip1' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip2' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip3' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip4' && player.getEquips(1) == undefined) || (get.subtype(card) == 'equip5' && player.getEquips(1) == undefined)) return -3;
                                             else return -1.5;
                                         }
                                         return -1;
@@ -1151,7 +1151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (target.hp == 1) return 5;
                                             else return target.maxHp - target.hp;
                                         } else if (get.type(card) == 'equip') {
-                                            if ((get.subtype(card) == 'equip1' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip2' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip3' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip4' && target.get('e', '1') == undefined) || (get.subtype(card) == 'equip5' && target.get('e', '1') == undefined)) return 1;
+                                            if ((get.subtype(card) == 'equip1' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip2' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip3' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip4' && target.getEquips(1) == undefined) || (get.subtype(card) == 'equip5' && target.getEquips(1) == undefined)) return 1;
                                             else return 3;
                                         }
                                         return 0.5;
@@ -8486,11 +8486,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var card = i;
                                     if (get.type(card) != 'equip') continue;
                                     for (var j = 0; j < players.length; j++) {
-                                        if (get.subtype(card) == 'equip1' && ((players[j].get('e', '1') != undefined && get.value(card) > players[j].get('e', '1')) || players[j].get('e', '1') == undefined)) flag = 1;
-                                        if (get.subtype(card) == 'equip2' && ((players[j].get('e', '2') != undefined && get.value(card) > players[j].get('e', '2')) || players[j].get('e', '2') == undefined)) flag = 1;
-                                        if (get.subtype(card) == 'equip3' && ((players[j].get('e', '3') != undefined && get.value(card) > players[j].get('e', '3')) || players[j].get('e', '3') == undefined)) flag = 1;
-                                        if (get.subtype(card) == 'equip4' && ((players[j].get('e', '4') != undefined && get.value(card) > players[j].get('e', '4')) || players[j].get('e', '4') == undefined)) flag = 1;
-                                        if (get.subtype(card) == 'equip5' && ((players[j].get('e', '5') != undefined && get.value(card) > players[j].get('e', '5')) || players[j].get('e', '5') == undefined)) flag = 1;
+                                        if (get.subtype(card) == 'equip1' && ((players[j].getEquips(1) != undefined && get.value(card) > players[j].getEquips(1)) || players[j].getEquips(1) == undefined)) flag = 1;
+                                        if (get.subtype(card) == 'equip2' && ((players[j].getEquips(2) != undefined && get.value(card) > players[j].getEquips(2)) || players[j].getEquips(2) == undefined)) flag = 1;
+                                        if (get.subtype(card) == 'equip3' && ((players[j].getEquips(3) != undefined && get.value(card) > players[j].getEquips(3)) || players[j].getEquips(3) == undefined)) flag = 1;
+                                        if (get.subtype(card) == 'equip4' && ((players[j].getEquips(4) != undefined && get.value(card) > players[j].getEquips(4)) || players[j].getEquips(4) == undefined)) flag = 1;
+                                        if (get.subtype(card) == 'equip5' && ((players[j].getEquips(5) != undefined && get.value(card) > players[j].getEquips(5)) || players[j].getEquips(5) == undefined)) flag = 1;
                                     }
                                 }
                                 var urgent = 0;
@@ -8548,11 +8548,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i of cards) {
                                             var card = i;
                                             if (get.type(card) != 'equip') continue;
-                                            if (get.subtype(card) == 'equip1' && ((target.get('e', '1') != undefined && get.value(card) > target.get('e', '1')) || target.get('e', '1') == undefined)) return 1;
-                                            if (get.subtype(card) == 'equip2' && ((target.get('e', '2') != undefined && get.value(card) > target.get('e', '2')) || target.get('e', '2') == undefined)) return 1;
-                                            if (get.subtype(card) == 'equip3' && ((target.get('e', '3') != undefined && get.value(card) > target.get('e', '3')) || target.get('e', '3') == undefined)) return 1;
-                                            if (get.subtype(card) == 'equip4' && ((target.get('e', '4') != undefined && get.value(card) > target.get('e', '4')) || target.get('e', '4') == undefined)) return 1;
-                                            if (get.subtype(card) == 'equip5' && ((target.get('e', '5') != undefined && get.value(card) > target.get('e', '5')) || target.get('e', '5') == undefined)) return 1;
+                                            if (get.subtype(card) == 'equip1' && ((target.getEquips(1) != undefined && get.value(card) > target.getEquips(1)) || target.getEquips(1) == undefined)) return 1;
+                                            if (get.subtype(card) == 'equip2' && ((target.getEquips(2) != undefined && get.value(card) > target.getEquips(2)) || target.getEquips(2) == undefined)) return 1;
+                                            if (get.subtype(card) == 'equip3' && ((target.getEquips(3) != undefined && get.value(card) > target.getEquips(3)) || target.getEquips(3) == undefined)) return 1;
+                                            if (get.subtype(card) == 'equip4' && ((target.getEquips(4) != undefined && get.value(card) > target.getEquips(4)) || target.getEquips(4) == undefined)) return 1;
+                                            if (get.subtype(card) == 'equip5' && ((target.getEquips(5) != undefined && get.value(card) > target.getEquips(5)) || target.getEquips(5) == undefined)) return 1;
                                         }
                                         return 0.5;
                                     },

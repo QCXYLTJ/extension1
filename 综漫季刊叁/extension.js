@@ -4043,7 +4043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     result.targets[0].addSkill('zmbaishe_1');
                                     var controls = [];
-                                    var skills = trigger.player.get('s', false, false);
+                                    var skills = trigger.player.getCards('s');
                                     for (var i = 0; i < skills.length; i++) {
                                         var info = lib.skill[skills[i]];
                                         if (!info) continue;
@@ -4691,7 +4691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.zmt_np -= 30;
                                 ('step 2');
                                 var list2 = [];
-                                var hs = player.get('h');
+                                var hs = player.getCards('h');
                                 if (hs.length) {
                                     var hs2 = [];
                                     for (var i = 0; i < hs.length; i++) {
@@ -5875,10 +5875,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.zmt_np -= 25;
                                 trigger.cancel();
                                 ('step 1');
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     game.broadcastAll(function (card) {
                                         card.init([card.suit, card.number, 'wuxie']);
-                                    }, player.get('h')[i]);
+                                    }, player.getCards('h')[i]);
                                 }
                             },
                             subSkill: {
@@ -6751,14 +6751,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     mod: {
                                         maxHandcard(player, num) {
                                             var num1 = 0;
-                                            for (var i = 0; i < player.get('hej').length; i++) {
+                                            for (var i = 0; i < player.getCards('hej').length; i++) {
                                                 game.broadcastAll(function (card) {
                                                     for (var i = 0; i < player.storage.zmduotianzhimos_2.length; i++) {
                                                         if (card.name && card.name == player.storage.zmduotianzhimos_2[i].name) {
                                                             num1++;
                                                         }
                                                     }
-                                                }, player.get('hej')[i]);
+                                                }, player.getCards('hej')[i]);
                                             }
                                             return num - num1;
                                         },
@@ -6918,7 +6918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.num2 >= 1) {
                                     var controls = [];
-                                    var skills = trigger.player.get('s', false, false);
+                                    var skills = trigger.player.getCards('s');
                                     for (var i = 0; i < skills.length; i++) {
                                         var info = lib.skill[skills[i]];
                                         if (!info) continue;
@@ -7487,7 +7487,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (event.num1 >= 0) {
                                     event.num1--;
-                                    var sourceShowCard = trigger.player.get('he').randomGet();
+                                    var sourceShowCard = trigger.player.getCards('he').randomGet();
                                     trigger.player.showCards(sourceShowCard);
                                     if (get.color(sourceShowCard) != 'red') {
                                         trigger.player.discard(sourceShowCard);

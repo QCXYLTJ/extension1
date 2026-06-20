@@ -745,8 +745,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_linai);
-									player.$give(player.get('hej'), target);
-									target.gain(player.get('hej'), player);
+									player.$give(player.getCards('hej'), target);
+									target.gain(player.getCards('hej'), player);
 									player.recover();
 									target.recover();
 								}
@@ -873,7 +873,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								player.turnOver();
-								player.gain(player.get('j'), 'gain2');
+								player.gain(player.getCards('j'), 'gain2');
 							},
 						},
 						TLP_gumi: {

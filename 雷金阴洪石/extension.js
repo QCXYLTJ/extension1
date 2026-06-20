@@ -1084,7 +1084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							popup: false,
 							content() {
-								trigger.player.discard(trigger.player.get('e'));
+								trigger.player.discard(trigger.player.getCards('e'));
 							},
 						},
 						ljyhsl_lrfj_feijun2: {
@@ -1525,8 +1525,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									player.line(result.targets);
 									var card;
-									for (let i = 0; i < result.targets[0].get('e').length; i++) {
-										if (get.subtype(event.c[0]) == get.subtype(result.targets[0].get('e')[i])) var card = result.targets[0].get('e')[i];
+									for (let i = 0; i < result.targets[0].getCards('e').length; i++) {
+										if (get.subtype(event.c[0]) == get.subtype(result.targets[0].getCards('e')[i])) var card = result.targets[0].getCards('e')[i];
 									}
 									player.gain(card, 'gain2');
 									player.equip(card);
@@ -1683,7 +1683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								trigger.num--;
-								player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.get('h'), true);
+								player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.getCards('h'), true);
 								('step 1');
 								if (result.bool) trigger.player.discard(result.links[0]);
 							},
@@ -2022,11 +2022,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								trigger.num--;
-								for (let i = 0; i < player.get('h').length; i++) {
-									player.storage.ljyhsl_nzry_xieji.push(player.get('h')[i]);
+								for (let i = 0; i < player.getCards('h').length; i++) {
+									player.storage.ljyhsl_nzry_xieji.push(player.getCards('h')[i]);
 								}
 								player.markSkill('ljyhsl_nzry_xieji');
-								player.lose(player.get('h'), ui.special);
+								player.lose(player.getCards('h'), ui.special);
 								('step 1');
 								player.judge(function (card) {
 									for (let i = 0; i < player.storage.ljyhsl_nzry_xieji.length; i++) {
@@ -2762,14 +2762,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							line: true,
 							content() {
 								'step 0';
-								target.chooseCardButton(player.get('h'), true).set('ai', function (button) {
+								target.chooseCardButton(player.getCards('h'), true).set('ai', function (button) {
 									return 1;
 								});
 								('step 1');
 								if (result.bool) {
 									player.$give(1, target);
 									target.gain(result.links[0], player);
-									player.chooseCardButton(target.get('h'), true).set('ai', function (button) {
+									player.chooseCardButton(target.getCards('h'), true).set('ai', function (button) {
 										return 1;
 									});
 								} else {

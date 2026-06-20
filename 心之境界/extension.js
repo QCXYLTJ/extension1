@@ -754,7 +754,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.removeMark('xzjj_huanxiang', 2);
                                 player.addSkill('xzjj_duorui');
                                 player.addSkill('xzjj_xinqi');
-                                target.discard(target.get('hej'));
+                                target.discard(target.getCards('hej'));
                                 player.draw(3);
                             },
                             subSkill: {
@@ -5046,13 +5046,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (card.name == 'sha' && !player.getEquip(1)) return num + 1;
                                 },
                                 globalTo(from, to, distance) {
-                                    var e1 = to.get('e', '3');
-                                    var e2 = to.get('e', '4');
+                                    var e1 = to.getEquips(3);
+                                    var e2 = to.getEquips(4);
                                     if (!e1 && !e2) return distance + 1;
                                 },
                                 globalFrom(from, to, distance) {
-                                    var e1 = from.get('e', '3');
-                                    var e2 = from.get('e', '4');
+                                    var e1 = from.getEquips(3);
+                                    var e2 = from.getEquips(4);
                                     if (!e1 && !e2) return distance - 1;
                                 },
                             },
@@ -5467,7 +5467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var cards = trigger.player.get('h');
+                                var cards = trigger.player.getCards('h');
                                 event.bool = cards.length >= 2;
                                 trigger.player.discard(cards);
                                 trigger.player.recover(2);
@@ -6082,13 +6082,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (card.name == 'sha' && !player.getEquip(1)) return num + 1;
                                 },
                                 globalTo(from, to, distance) {
-                                    var e1 = to.get('e', '3');
-                                    var e2 = to.get('e', '4');
+                                    var e1 = to.getEquips(3);
+                                    var e2 = to.getEquips(4);
                                     if (!e1 && !e2) return distance + 1;
                                 },
                                 globalFrom(from, to, distance) {
-                                    var e1 = from.get('e', '3');
-                                    var e2 = from.get('e', '4');
+                                    var e1 = from.getEquips(3);
+                                    var e2 = from.getEquips(4);
                                     if (!e1 && !e2) return distance - 1;
                                 },
                             },
@@ -6855,7 +6855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.addSkill('xzjj_huanxiangjianglin'); //QQQ
                                         player.addSkill('xzjj_chuangsheng');
                                         player.addSkill(event.target.skills);
-                                        player.gain(event.target.get('h'), event.target);
+                                        player.gain(event.target.getCards('h'), event.target);
                                         player.gainMaxHp(event.target.maxHp);
                                         player.recover(event.target.hp);
                                         event.target.$give(event.target.num('h'), player);
@@ -7207,7 +7207,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 for (const i of game.players) {
                                     if (i == player) continue;
-                                    var skills = i.get('s', false, false);
+                                    var skills = i.getCards('s');
                                     skills = skills.slice(0);
                                     for (var j = 0; j < skills.length; j++) {
                                         if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {

@@ -5775,23 +5775,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (name == 'gainBefore') {
                                     if (event.player == player) return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 } else {
                                     if (event.type != 'discard') return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 }
                             },
                             content() {
-                                trigger.cards.remove(player.get('he'));
+                                trigger.cards.remove(player.getCards('he'));
                             },
                         },
                         xinxin_xukong2: {
@@ -7605,23 +7605,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (name == 'gainBefore') {
                                     if (event.player == player) return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 } else {
                                     if (event.type != 'discard') return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 }
                             },
                             content() {
-                                trigger.cards.remove(player.get('he'));
+                                trigger.cards.remove(player.getCards('he'));
                             },
                         },
                         yin_falu: {
@@ -8084,23 +8084,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (name == 'gainBefore') {
                                     if (event.player == player) return false;
                                     if (!event.cards) return false;
-                                    if (player.get('e').length == 0) return false;
-                                    for (var i of player.get('e')) {
+                                    if (player.getCards('e').length == 0) return false;
+                                    for (var i of player.getCards('e')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 } else {
                                     if (event.type != 'discard') return false;
                                     if (!event.cards) return false;
-                                    if (player.get('e').length == 0) return false;
-                                    for (var i of player.get('e')) {
+                                    if (player.getCards('e').length == 0) return false;
+                                    for (var i of player.getCards('e')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 }
                             },
                             content() {
-                                trigger.cards.remove(player.get('he'));
+                                trigger.cards.remove(player.getCards('he'));
                             },
                         },
                         xinzhukou: {
@@ -10797,23 +10797,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (name == 'gainBefore') {
                                     if (event.player == player) return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 } else {
                                     if (event.type != 'discard') return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 }
                             },
                             content() {
-                                trigger.cards.remove(player.get('he'));
+                                trigger.cards.remove(player.getCards('he'));
                             },
                         },
                         xin_chenghao: {
@@ -12163,23 +12163,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (name == 'gainBefore') {
                                     if (event.player == player) return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 } else {
                                     if (event.type != 'discard') return false;
                                     if (!event.cards) return false;
-                                    if (player.get('h').length == 0) return false;
-                                    for (var i of player.get('h')) {
+                                    if (player.getCards('h').length == 0) return false;
+                                    for (var i of player.getCards('h')) {
                                         if (event.cards.includes(i)) return true;
                                     }
                                     return false;
                                 }
                             },
                             content() {
-                                trigger.cards.remove(player.get('he'));
+                                trigger.cards.remove(player.getCards('he'));
                             },
                         },
                         xinspwuku: {

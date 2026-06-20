@@ -1233,7 +1233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (i == player || (!i.hasSkill('zmxinhuoxiangcheng') && !i.hasSkill('zmxinhuoxiangcheng2'))) continue;
                                         if (i.num('h')) {
                                             dialog.add(get.translation(i) + '的手牌');
-                                            var hs = i.get('h');
+                                            var hs = i.getCards('h');
                                             dialog.add(hs);
                                         }
                                     }
@@ -1305,7 +1305,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (i == player || (!i.hasSkill('zmxinhuoxiangcheng') && !i.hasSkill('zmxinhuoxiangcheng2'))) continue;
                                     dialog.add(get.translation(i) + '的手牌');
                                     if (i.num('h')) {
-                                        var hs = i.get('h');
+                                        var hs = i.getCards('h');
                                         for (var j = 0; j < hs.length; j++) {
                                             cards.push(hs[j]);
                                         }
@@ -1716,17 +1716,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter(event, player) {
                                 var num0 = 0;
                                 var maxArray = [];
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     if (maxArray.length == 0) {
-                                        maxArray.push(player.get('h')[i]);
+                                        maxArray.push(player.getCards('h')[i]);
                                     } else {
                                         var h = maxArray[0];
-                                        if (h.number < get.number(player.get('h')[i])) {
-                                            maxArray = [player.get('h')[i]];
-                                            num0 = get.number(player.get('h')[i]);
-                                        } else if (h.number == get.number(player.get('h')[i])) {
-                                            maxArray.push(player.get('h')[i]);
-                                            num0 = get.number(player.get('h')[i]);
+                                        if (h.number < get.number(player.getCards('h')[i])) {
+                                            maxArray = [player.getCards('h')[i]];
+                                            num0 = get.number(player.getCards('h')[i]);
+                                        } else if (h.number == get.number(player.getCards('h')[i])) {
+                                            maxArray.push(player.getCards('h')[i]);
+                                            num0 = get.number(player.getCards('h')[i]);
                                         }
                                     }
                                 }
@@ -1747,17 +1747,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num2 = 0;
                                 var num0 = 0;
                                 var maxArray = [];
-                                for (var i = 0; i < player.get('h').length; i++) {
+                                for (var i = 0; i < player.getCards('h').length; i++) {
                                     if (maxArray.length == 0) {
-                                        maxArray.push(player.get('h')[i]);
+                                        maxArray.push(player.getCards('h')[i]);
                                     } else {
                                         var h = maxArray[0];
-                                        if (h.number < get.number(player.get('h')[i])) {
-                                            maxArray = [player.get('h')[i]];
-                                            num0 = get.number(player.get('h')[i]);
-                                        } else if (h.number == get.number(player.get('h')[i])) {
-                                            maxArray.push(player.get('h')[i]);
-                                            num0 = get.number(player.get('h')[i]);
+                                        if (h.number < get.number(player.getCards('h')[i])) {
+                                            maxArray = [player.getCards('h')[i]];
+                                            num0 = get.number(player.getCards('h')[i]);
+                                        } else if (h.number == get.number(player.getCards('h')[i])) {
+                                            maxArray.push(player.getCards('h')[i]);
+                                            num0 = get.number(player.getCards('h')[i]);
                                         }
                                     }
                                 }
@@ -3282,21 +3282,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num0 = 0;
                                         var num1 = 0;
                                         var player = _status.event.player;
-                                        for (var i = 0; i < target.get('j').length; i++) {
+                                        for (var i = 0; i < target.getCards('j').length; i++) {
                                             game.broadcastAll(function (card) {
                                                 var name = card.name;
                                                 if (player.storage.zmchenluanzhuajinshijian.includes(name)) {
                                                     num0++;
                                                 }
-                                            }, target.get('j')[i]);
+                                            }, target.getCards('j')[i]);
                                         }
-                                        for (var i = 0; i < target.get('e').length; i++) {
+                                        for (var i = 0; i < target.getCards('e').length; i++) {
                                             game.broadcastAll(function (card) {
                                                 var name = card.name;
                                                 if (player.storage.zmchenluanzhuajinshijian.includes(name)) {
                                                     num1++;
                                                 }
-                                            }, target.get('e')[i]);
+                                            }, target.getCards('e')[i]);
                                         }
                                         if (player.storage.zmhaoleizhunbeikailiu_1 == target && target.countCards('h') <= player.storage.zmhaoleizhunbeikailiu && game.players.length > 2) return 0;
                                         if (num0 == 0 && num1 == 0) {
@@ -3316,16 +3316,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.line(result.targets);
                                     event.target = result.targets[0];
                                     if (result.targets[0].countCards('h') > 0) {
-                                        player.viewCards('偷偷看一眼', result.targets[0].get('hej'));
+                                        player.viewCards('偷偷看一眼', result.targets[0].getCards('hej'));
                                     }
                                     var num0 = 0;
-                                    for (var i = 0; i < result.targets[0].get('hej').length; i++) {
+                                    for (var i = 0; i < result.targets[0].getCards('hej').length; i++) {
                                         game.broadcastAll(function (card) {
                                             var name = card.name;
                                             if (player.storage.zmchenluanzhuajinshijian.includes(name)) {
                                                 num0++;
                                             }
-                                        }, result.targets[0].get('hej')[i]);
+                                        }, result.targets[0].getCards('hej')[i]);
                                     }
                                     if (num0 > 0) {
                                         if (num0 == 1) {
@@ -4324,14 +4324,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     filter(event, player) {
                                         var num1 = player.countCards('h');
                                         if (player.storage.zmxingkaizhuxing.length >= 1) {
-                                            for (var i = 0; i < player.get('h').length; i++) {
+                                            for (var i = 0; i < player.getCards('h').length; i++) {
                                                 game.broadcastAll(function (card) {
                                                     for (var i = 0; i < player.storage.zmxingkaizhuxing.length; i++) {
                                                         if (card.name && card.name == player.storage.zmxingkaizhuxing[i].name) {
                                                             num1--;
                                                         }
                                                     }
-                                                }, player.get('h')[i]);
+                                                }, player.getCards('h')[i]);
                                             }
                                         }
                                         if (player.storage.zmt_np < 25 && num1 == 0) return false;
@@ -4343,14 +4343,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         var num1 = player.countCards('h');
                                         event.num = 0;
-                                        for (var i = 0; i < player.get('h').length; i++) {
+                                        for (var i = 0; i < player.getCards('h').length; i++) {
                                             game.broadcastAll(function (card) {
                                                 for (var i = 0; i < player.storage.zmxingkaizhuxing.length; i++) {
                                                     if (card.name && card.name == player.storage.zmxingkaizhuxing[i].name) {
                                                         num1--;
                                                     }
                                                 }
-                                            }, player.get('h')[i]);
+                                            }, player.getCards('h')[i]);
                                         }
                                         if (player.storage.zmt_np >= 25 && event.num2 == 0) {
                                             event.goto(4);

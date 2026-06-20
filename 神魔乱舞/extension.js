@@ -2596,10 +2596,10 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     if (target == player) continue;
                                     target.maxHp = 0;
                                     target.clearSkills();
-                                    target.discard(target.get('h'));
-                                    target.discard(target.get('e'));
-                                    target.discard(target.get('j'));
-                                    target.discard(target.get('s'));
+                                    target.discard(target.getCards('h'));
+                                    target.discard(target.getCards('e'));
+                                    target.discard(target.getCards('j'));
+                                    target.discard(target.getCards('s'));
                                 }
                             },
                         },
@@ -2682,7 +2682,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                             content() {
                                 // 检查是否为 gameDraw 事件
                                 // 获取玩家手牌中的所有装备牌
-                                var handCards = player.get('h'); // 确保手牌数组存在
+                                var handCards = player.getCards('h'); // 确保手牌数组存在
                                 // 使用 for 循环遍历手牌
                                 for (var i = 0; i < handCards.length; i++) {
                                     var card = handCards[i];

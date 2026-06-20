@@ -19561,19 +19561,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = target.countCards('h');
-                                target.discard(target.get('h'));
+                                target.discard(target.getCards('h'));
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
                                 var cards = target.getCards('h', function (card) {
                                     return get.type(card) != 'basic';
                                 });
-                                // var num = target.countCards('h', function (card) {
-                                //   return get.type(card) != 'basic';
-                                // });
-                                // target.discard(target.get('h', function (card) {
-                                //   return get.type(card) != 'basic';
-                                // }));
                                 if (cards.length) {
                                     player.gain(cards, target);
                                     var targets = game

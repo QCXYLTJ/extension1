@@ -5291,7 +5291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = target.countCards('h');
-                                target.discard(target.get('h'));
+                                target.discard(target.getCards('h'));
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
@@ -5826,7 +5826,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'phaseEnd',
                             },
                             filter(event, player) {
-                                if (player.get('e', '1')) return true;
+                                if (player.getEquips(1)) return true;
                                 return false;
                             },
                             content() {
@@ -6409,7 +6409,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target(card, player, target, current) {
                                         if (card.name == 'sha' || card.name == 'juedou' || card.name == 'nanman' || card.name == 'huogong' || card.name == 'huoshaolianying' || card.name == 'wanjian' || card.name == 'shuiyanqijunx' || card.name == 'youdishenru' || card.name == 'qishayuqingguzong' || card.name == 'lebu') {
                                             if (_status.event.name == 'new_xiangle') return;
-                                            var bs = player.get('he');
+                                            var bs = player.getCards('he');
                                             if (bs.length < 2) return 0;
                                             if (player.hasSkill('jiu') || player.hasSkill('tianxianjiu')) return;
                                             if (bs.length <= 3) {
@@ -7790,8 +7790,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             popup: false,
                             forced: true,
                             filter(event, player) {
-                                if (event.player.get('e', '3')) return true;
-                                if (event.player.get('e', '4')) return true;
+                                if (event.player.getEquips(3)) return true;
+                                if (event.player.getEquips(4)) return true;
                                 return false;
                             },
                             content() {
@@ -8698,7 +8698,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.冷雨阿蒂拉_游星之纹章 && player.storage.冷雨阿蒂拉_游星之纹章.length == 0) return true;
                                 var suit = ['heart', 'diamond', 'club', 'spade'];
                                 for (var i = 0; i < player.storage.冷雨阿蒂拉_游星之纹章.length; i++) if (suit.includes(player.storage.冷雨阿蒂拉_游星之纹章[i].suit)) suit.remove(player.storage.冷雨阿蒂拉_游星之纹章[i].suit);
-                                var cards = event.player.get('h');
+                                var cards = event.player.getCards('h');
                                 if (Array.isArray(cards)) for (var i of cards) if (suit.includes(i.suit)) return true;
                                 return false;
                             },
@@ -12689,7 +12689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                if (!player.get('e', '1')) return false;
+                                if (!player.getEquips(1)) return false;
                                 return event.card && event.card.name == 'sha';
                             },
                             content() {
@@ -13382,7 +13382,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = 0 + game.countPlayer();
                                 for (var i of game.players) {
                                     for (var j = 0; j < i.num('j'); j++) {
-                                        num += i.get('j')[j].number;
+                                        num += i.getCards('j')[j].number;
                                     }
                                 }
                                 return game.roundNumber > 2 && !player.storage.冷雨赛米拉米斯_庭园建造.length < num;
@@ -14542,7 +14542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     popup: false,
                                     forced: true,
                                     content() {
-                                        player.enableSkill('', player.get('s'));
+                                        player.enableSkill('', player.getCards('s'));
                                         player.removeSkill('冷雨美杜莎_自我封印_回复');
                                     },
                                 },
@@ -14554,7 +14554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.gain(target.getCards('h'), target);
                                 target.$give(target.countCards('h'), player);
                                 target.draw(Math.min(4, target.maxHp));
-                                target.disableSkill('', target.get('s'));
+                                target.disableSkill('', target.getCards('s'));
                                 target.addSkill('冷雨美杜莎_自我封印_回复');
                             },
                             check(card) {
@@ -14786,7 +14786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     popup: false,
                                     forced: true,
                                     content() {
-                                        player.enableSkill('', player.get('s'));
+                                        player.enableSkill('', player.getCards('s'));
                                         player.removeSkill('冷雨艾蕾什基伽尔_冥界审判_回复');
                                     },
                                 },
@@ -14805,7 +14805,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 target.addTempSkill('冷雨封疗', { player: 'phaseUseBegin' });
-                                target.disableSkill('', target.get('s'));
+                                target.disableSkill('', target.getCards('s'));
                                 target.addSkill('冷雨艾蕾什基伽尔_冥界审判_回复');
                             },
                             ai: {

@@ -16171,7 +16171,7 @@ export async function precontent(config, pack) {
             },
             ai: {
                 order(name, player) {
-                    var cards = player.get('h');
+                    var cards = player.getCards('h');
                     if (player.countCards('h', 'sha') == 0) {
                         return 1;
                     }
@@ -27887,19 +27887,13 @@ export async function precontent(config, pack) {
             content() {
                 'step 0';
                 var num = target.countCards('h');
-                target.discard(target.get('h'));
+                target.discard(target.getCards('h'));
                 target.draw(num);
                 target.showHandcards();
                 ('step 1');
                 var cards = target.getCards('h', function (card) {
                     return get.type(card) != 'basic';
                 });
-                // var num = target.countCards('h', function (card) {
-                //   return get.type(card) != 'basic';
-                // });
-                // target.discard(target.get('h', function (card) {
-                //   return get.type(card) != 'basic';
-                // }));
                 if (cards.length) {
                     target.discard(cards, player);
                     target.damage(cards.length);

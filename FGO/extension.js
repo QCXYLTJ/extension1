@@ -14412,7 +14412,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 event.target.showHandcards();
                                 var list2 = [];
-                                var hs = event.target.get('h');
+                                var hs = event.target.getCards('h');
                                 if (hs.length) {
                                     var hs2 = [];
                                     for (var i = 0; i < hs.length; i++) {
@@ -14526,7 +14526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 event.target.showHandcards();
                                 var list2 = [];
-                                var hs = event.target.get('h');
+                                var hs = event.target.getCards('h');
                                 if (hs.length) {
                                     var hs2 = [];
                                     for (var i = 0; i < hs.length; i++) {

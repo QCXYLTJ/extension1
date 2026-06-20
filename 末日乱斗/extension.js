@@ -1066,7 +1066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var hs = player.get('hej');
+                                var hs = player.getCards('hej');
                                 game.addVideo('lose', player, [get.cardsInfo(hs), [], [], []]);
                                 for (var i = 0; i < hs.length; i++) {
                                     hs[i].discard(false);
@@ -1282,8 +1282,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.source && event.source.isIn();
                             },
                             content() {
-                                game.log(trigger.source, '获得了', player.get('s', false, false));
-                                trigger.source.addSkill(player.get('s', false, false));
+                                game.log(trigger.source, '获得了', player.getCards('s'));
+                                trigger.source.addSkill(player.getCards('s'));
                             },
                         };
                     },

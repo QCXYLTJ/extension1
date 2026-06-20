@@ -2670,7 +2670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             logTarget: 'player',
                             content() {
                                 'step 0';
-                                var hs = trigger.player.get('he');
+                                var hs = trigger.player.getCards('he');
                                 if (hs.length) {
                                     player.gain(hs.randomGet(), trigger.player);
                                     trigger.player.$give(1, player);
@@ -6719,7 +6719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 } else if (name == 'loseAfter' || name == 'phaseBefore') {
                                     var suits = ['heart', 'club', 'spade', 'diamond'];
-                                    var cards = player.get('h');
+                                    var cards = player.getCards('h');
                                     for (var i = 0; i < cards.length; i++) {
                                         if (suits.includes(cards[i].suit)) suits.remove(cards[i].suit);
                                     }

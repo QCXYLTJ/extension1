@@ -3522,7 +3522,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                if (target.get('h').length == 0 || player.get('h').length == 0) {
+                                if (target.getCards('h').length == 0 || player.getCards('h').length == 0) {
                                     event.finish();
                                     return;
                                 }
@@ -3596,7 +3596,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                if (target.get('h').length == 0 || player.get('h').length == 0) {
+                                if (target.getCards('h').length == 0 || player.getCards('h').length == 0) {
                                     event.finish();
                                     return;
                                 }

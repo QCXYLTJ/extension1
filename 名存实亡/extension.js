@@ -2109,7 +2109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								event.num = target.num('j');
-								target.discard(target.get('j'));
+								target.discard(target.getCards('j'));
 								('step 1');
 								target.damage(event.num, 'fire', 'nosource');
 							},
@@ -2119,7 +2119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target(player, target) {
 										var eff = get.damageEffect(target, player, target, 'fire');
 										if (eff >= 0) return eff + 1;
-										var judges = target.get('j');
+										var judges = target.getCards('j');
 										if (!judges.length) return 0;
 										if (target.hp == 1 || judges.length > 1) return -judges.length;
 										var name = judges[0].viewAs || judges[0].name;
@@ -4038,8 +4038,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var num = target.num('he');
 								player.chooseToDiscard(num, true);
 								('step 1');
-								player.gain(target.get('he'));
-								target.$give(target.get('he'), player);
+								player.gain(target.getCards('he'));
+								target.$give(target.getCards('he'), player);
 								var num = target.num('he');
 								target.damage('thunder', true);
 							},
@@ -4129,7 +4129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseControl('雷电属性', '穿透雷电', ui.create.dialog('请选择一项', 'hidden')).ai = function (event, player) {
 									var player2 = trigger.player;
-									var equip2 = trigger.player.get('e', '2');
+									var equip2 = trigger.player.getEquips(2);
 									if (player2 == player) return '雷电属性';
 									if (player2.hasSkillTag('nofire')) return '穿透雷电';
 									if (player2.hasSkillTag('nothunder')) return '雷电属性';
@@ -4191,7 +4191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseControl('火焰属性', '穿透火焰', ui.create.dialog('请选择一项', 'hidden')).ai = function (event, player) {
 									var player2 = trigger.player;
-									var equip2 = trigger.player.get('e', '2');
+									var equip2 = trigger.player.getEquips(2);
 									if (player2 == player) return '火焰属性';
 									if (player2.hasSkillTag('nofire')) return '穿透火焰';
 									if (player2.hasSkillTag('nothunder')) return '火焰属性';
@@ -4243,12 +4243,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.chooseTarget('请选择目标', 2, function (card, player, target) {
 									if (ui.selected.targets.length) {
 										var from = ui.selected.targets[0];
-										var judges = from.get('j');
+										var judges = from.getCards('j');
 										for (var i = 0; i < judges.length; i++) {
 											if (!target.hasJudge(judges[i].viewAs || judges[i].name)) return true;
 										}
 										if (target.isMin()) return false;
-										if ((from.get('e', '1') && !target.get('e', '1')) || (from.get('e', '2') && !target.get('e', '2')) || (from.get('e', '3') && !target.get('e', '3')) || (from.get('e', '4') && !target.get('e', '4')) || (from.get('e', '5') && !target.get('e', '5')) || from.get('h')) return true;
+										if ((from.getEquips(1) && !target.getEquips(1)) || (from.getEquips(2) && !target.getEquips(2)) || (from.getEquips(3) && !target.getEquips(3)) || (from.getEquips(4) && !target.getEquips(4)) || (from.getEquips(5) && !target.getEquips(5)) || from.getCards('h')) return true;
 										return false;
 									} else {
 										return target.num('hej') > 0;
@@ -4261,7 +4261,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (get.attitude(player, target) < 0) {
 											for (var i = 0; i < game.players.length; i++) {
 												if (get.attitude(player, game.players[i]) > 0) {
-													if ((target.get('e', '1') && !game.players[i].get('e', '1')) || (target.get('e', '2') && !game.players[i].get('e', '2')) || (target.get('e', '3') && !game.players[i].get('e', '3')) || (target.get('e', '4') && !game.players[i].get('e', '4')) || (target.get('e', '5') && !game.players[i].get('e', '5')) || target.get('h')) return -get.attitude(player, target);
+													if ((target.getEquips(1) && !game.players[i].getEquips(1)) || (target.getEquips(2) && !game.players[i].getEquips(2)) || (target.getEquips(3) && !game.players[i].getEquips(3)) || (target.getEquips(4) && !game.players[i].getEquips(4)) || (target.getEquips(5) && !game.players[i].getEquips(5)) || target.getCards('h')) return -get.attitude(player, target);
 												}
 											}
 										}
@@ -4487,8 +4487,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.bool) {
 									var target = result.targets[0];
-									var cards0 = target.get('h');
-									var cards1 = player.get('h');
+									var cards0 = target.getCards('h');
+									var cards1 = player.getCards('h');
 									target.gain(cards1);
 									player.gain(cards0);
 									target.$give(cards0.length, player);
@@ -6576,7 +6576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.storage.军略 = 0;
 									game.log(player, '移去了所有<军略>标记');
 									for (var i = 0; i < result.targets.length; i++) {
-										result.targets[i].discard(result.targets[i].get('e'));
+										result.targets[i].discard(result.targets[i].getCards('e'));
 										result.targets[i].damage('fire');
 									}
 								}
@@ -7692,9 +7692,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.list1 = [];
 								event.list2 = [];
 								if (target.countCards('h') > 0) {
-									var chooseButton = player.chooseButton(4, 'hidden', ['你的手牌', player.get('h'), get.translation(target.name) + '的手牌', target.get('h'), 'hidden']);
+									var chooseButton = player.chooseButton(4, 'hidden', ['你的手牌', player.getCards('h'), get.translation(target.name) + '的手牌', target.getCards('h'), 'hidden']);
 								} else {
-									var chooseButton = player.chooseButton(4, 'hidden', ['你的手牌', player.get('h'), 'hidden']);
+									var chooseButton = player.chooseButton(4, 'hidden', ['你的手牌', player.getCards('h'), 'hidden']);
 								}
 								chooseButton.set('ai', function (button) {
 									//if(button.link.name=='du') return 1;
@@ -7817,8 +7817,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return event.player != player && event.player.storage.劫營 != undefined && event.player.countCards('h') > 0;
 									},
 									content() {
-										trigger.player.$give(trigger.player.get('h'), player);
-										player.gain(trigger.player.get('h'), trigger.player);
+										trigger.player.$give(trigger.player.getCards('h'), player);
+										player.gain(trigger.player.getCards('h'), trigger.player);
 									},
 								},
 							},

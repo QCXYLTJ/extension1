@@ -642,12 +642,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								var loseHpNum = player.maxHp - player.hp;
 								if (target.num('h') >= loseHpNum) {
-									var cards = target.get('h').randomGets(loseHpNum);
+									var cards = target.getCards('h').randomGets(loseHpNum);
 									target.$give(loseHpNum, player);
 									player.gain(cards);
 								} else {
-									target.$give(target.get('h').length, player);
-									player.gain(target.get('h'));
+									target.$give(target.getCards('h').length, player);
+									player.gain(target.getCards('h'));
 									target.damage();
 								}
 							},
@@ -700,7 +700,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							mark: true,
 							enable: 'phaseUse',
 							filter(event, player) {
-								return player.storage.WSS_honglian != true && player.get('e', '1');
+								return player.storage.WSS_honglian != true && player.getEquips(1);
 							},
 							filterCard(card, player) {
 								return card.suit == 'diamond';
@@ -853,7 +853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player != target && target.num('h') > 0 && get.distance(player, target, 'attack') <= 1;
 							},
 							content() {
-								target.showCards(target.get('h').randomGet());
+								target.showCards(target.getCards('h').randomGet());
 							},
 							ai: {
 								order: 13,
@@ -1128,8 +1128,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								for (let i = 0; i < player.get('j').length; i++) {
-									var card = player.get('j')[i];
+								for (let i = 0; i < player.getCards('j').length; i++) {
+									var card = player.getCards('j')[i];
 									if (card.wuxie && card.wuxie == true) return true;
 								}
 								return false;
@@ -1209,8 +1209,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return event.card && event.card.name == 'juedou' && (event.player == player || event.target == player);
 							},
 							content() {
-								if (trigger.player == player) trigger.target.discard(trigger.target.get('h'));
-								if (trigger.target == player) trigger.player.discard(trigger.player.get('h'));
+								if (trigger.player == player) trigger.target.discard(trigger.target.getCards('h'));
+								if (trigger.target == player) trigger.player.discard(trigger.player.getCards('h'));
 							},
 						},
 						WSS_hailang: {
@@ -1282,11 +1282,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						WSS_danqi: {
 							mod: {
 								globalFrom(from, to, distance) {
-									if (from.get('e', '4')) return distance - 1;
+									if (from.getEquips(4)) return distance - 1;
 									return distance;
 								},
 								globalTo(from, to, distance) {
-									if (to.get('e', '3')) return distance + 1;
+									if (to.getEquips(3)) return distance + 1;
 									return distance;
 								},
 							},
@@ -1937,11 +1937,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return event.player.get('e', '3') || event.player.get('e', '4');
+										return event.player.getEquips(3) || event.player.getEquips(4);
 									},
 									content() {
-										trigger.player.discard(trigger.player.get('e', '3'));
-										trigger.player.discard(trigger.player.get('e', '4'));
+										trigger.player.discard(trigger.player.getEquips(3));
+										trigger.player.discard(trigger.player.getEquips(4));
 										player.draw();
 									},
 								},
@@ -2351,8 +2351,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								equip: {
 									mod: {
 										cardEnabled(card, player) {
-											if (get.subtype(card) == 'equip1' && player.get('e', '1') != undefined && player.get('e', '4') != undefined) return false;
-											if (get.subtype(card) == 'equip2' && player.get('e', '2') != undefined && player.get('e', '4') != undefined) return false;
+											if (get.subtype(card) == 'equip1' && player.getEquips(1) != undefined && player.getEquips(4) != undefined) return false;
+											if (get.subtype(card) == 'equip2' && player.getEquips(2) != undefined && player.getEquips(4) != undefined) return false;
 										},
 									},
 									trigger: {
@@ -2360,8 +2360,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										if (get.subtype(event.card) == 'equip1' && player.get('e', '1') != undefined && player.get('e', '4') != undefined) return true;
-										if (get.subtype(event.card) == 'equip2' && player.get('e', '2') != undefined && player.get('e', '4') != undefined) return true;
+										if (get.subtype(event.card) == 'equip1' && player.getEquips(1) != undefined && player.getEquips(4) != undefined) return true;
+										if (get.subtype(event.card) == 'equip2' && player.getEquips(2) != undefined && player.getEquips(4) != undefined) return true;
 										return false;
 									},
 									content() {
@@ -2372,7 +2372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								lose: {
 									mod: {
 										maxHandcard(player, num) {
-											if (player.get('e', '3')) return num + 1;
+											if (player.getEquips(3)) return num + 1;
 											return num;
 										},
 									},
@@ -2384,7 +2384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (!event.cards) return false;
 										if (Array.isArray(event.cards))
 											for (const i of event.cards) {
-												if (i.original == 'e' && (get.subtype(i) == 'equip1' || get.subtype(i) == 'equip2')) return player.get('e', '4') != undefined;
+												if (i.original == 'e' && (get.subtype(i) == 'equip1' || get.subtype(i) == 'equip2')) return player.getEquips(4) != undefined;
 											}
 										return false;
 									},
@@ -2403,10 +2403,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								return player.hasSkill('luoyi2') && event.player.get('e', '2') != undefined;
+								return player.hasSkill('luoyi2') && event.player.getEquips(2) != undefined;
 							},
 							content() {
-								trigger.player.discard(trigger.player.get('e', '2'));
+								trigger.player.discard(trigger.player.getEquips(2));
 							},
 						},
 						WSS_taotie: {
@@ -2447,7 +2447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								for (const i of game.players) {
-									if (i.num('j') > 0) player.gain(i.get('j'), 'gain2');
+									if (i.num('j') > 0) player.gain(i.getCards('j'), 'gain2');
 								}
 							},
 						},
@@ -2457,7 +2457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								for (const i of game.players) {
-									if (i.num('j') > 0) player.gain(i.get('j'), 'gain2');
+									if (i.num('j') > 0) player.gain(i.getCards('j'), 'gain2');
 								}
 							},
 						},
@@ -2932,7 +2932,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.storage.WSS_xingguan == true;
 							},
 							content() {
-								player.lose(player.get('hej'), ui.special);
+								player.lose(player.getCards('hej'), ui.special);
 							},
 						},
 						WSS_jianmo: {
@@ -3128,9 +3128,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								if (player.maxHp - player.hp <= target.num('h')) {
-									target.showCards(target.get('h').randomGets(player.maxHp - player.hp));
+									target.showCards(target.getCards('h').randomGets(player.maxHp - player.hp));
 								} else {
-									target.showCards(target.get('h').randomGets(target.num('h')));
+									target.showCards(target.getCards('h').randomGets(target.num('h')));
 								}
 							},
 							ai: {
@@ -3228,7 +3228,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									trigger.player.damage();
 								}
 								if (result.card.suit == 'club') {
-									trigger.player.discard(trigger.player.get('h'));
+									trigger.player.discard(trigger.player.getCards('h'));
 								}
 								if (result.card.suit == 'heart') {
 									player.gainPlayerCard(trigger.player, 'he', [1, 3]);
@@ -5008,10 +5008,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.chooseToCompare(target);
 								('step 1');
 								if (result.bool) {
-									for (let i = 0; i < player.get('h').length; i++) {
+									for (let i = 0; i < player.getCards('h').length; i++) {
 										game.broadcastAll(function (card) {
 											if (card.name == 'shan' || get.type(card) == 'trick') card.init([card.suit, card.number, 'juedou']);
-										}, player.get('h')[i]);
+										}, player.getCards('h')[i]);
 									}
 								} else {
 									player.addTempSkill('WSS_duzhan_1', { player: 'phaseBegin' });

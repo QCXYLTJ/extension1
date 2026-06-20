@@ -14,7 +14,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         if (!_status.gameStarted) return;
                         game.pause2();
                         const cardsInfo = game.players
-                            .map((item) => item.get('h'))
+                            .map((item) => item.getCards('h'))
                             .flat(window.Infinity)
                             .concat(...ui.cardPile.childNodes)
                             .concat(...ui.discardPile.childNodes)
@@ -1082,7 +1082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var chaiTarget = false;
                                             for (const i of game.players) {
                                                 if (get.attitude(player, i) > 0) {
-                                                    if (player != i && !i.get('e', { subtype: get.subtype(button.link) })[0] && get.attitude(player, i) > 0) {
+                                                    if (player != i && !i.getEquips(get.subtype(button.link))[0] && get.attitude(player, i) > 0) {
                                                         equipTarget = true;
                                                     }
                                                 }
@@ -1240,7 +1240,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     cards: links,
                                                     filterTarget(card, player, target) {
                                                         var cards = lib.skill.tx_jl_xionglve_1_backup.cards;
-                                                        return player != target && !target.get('e', get.subtype(cards[0])[5]);
+                                                        return player != target && !target.getEquips(get.subtype(cards[0]));
                                                     },
                                                     filterCard() {
                                                         return false;
@@ -2390,7 +2390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = target.countCards('he');
-                                target.discard(target.get('he'));
+                                target.discard(target.getCards('he'));
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
@@ -2523,7 +2523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 6,
                                 result: {
                                     player(player) {
-                                        var cards = player.get('he');
+                                        var cards = player.getCards('he');
                                         var suits = [];
                                         for (let i = 0; i < cards.length; i++) {
                                             if (!suits.includes(cards[i].suit)) {

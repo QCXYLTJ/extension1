@@ -3672,7 +3672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.targets.sort(lib.sort.seat);
                                         ('step 3');
                                         if (event.num < event.targets.length) {
-                                            if (event.targets[event.num].get('he').length < 4) {
+                                            if (event.targets[event.num].getCards('he').length < 4) {
                                                 event.targets[event.num].damage(1);
                                             } else {
                                                 event.targets[event.num].randomDiscard(4, 'he', true);
@@ -5676,7 +5676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         if (num4 <= num5 && num4 > 1) return false;
                                     }
-                                    if (event.player.get('e', '2') && event.player.get('e', '2').name == 'tengjia') return false;
+                                    if (event.player.getEquips(2) && event.player.getEquips(2).name == 'tengjia') return false;
                                 }
                                 return get.attitude(player, event.player) <= 0;
                             },

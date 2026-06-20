@@ -864,15 +864,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.player == player) {
                                     if (player.countCards('h') == 0) return false;
                                     var maxArray = [];
-                                    for (var i = 0; i < player.get('h').length; i++) {
+                                    for (var i = 0; i < player.getCards('h').length; i++) {
                                         if (maxArray.length == 0) {
-                                            maxArray.push(player.get('h')[i]);
+                                            maxArray.push(player.getCards('h')[i]);
                                         } else {
                                             var h = maxArray[0];
-                                            if (h.number < get.number(player.get('h')[i])) {
-                                                maxArray = [player.get('h')[i]];
-                                            } else if (h.number == get.number(player.get('h')[i])) {
-                                                maxArray.push(player.get('h')[i]);
+                                            if (h.number < get.number(player.getCards('h')[i])) {
+                                                maxArray = [player.getCards('h')[i]];
+                                            } else if (h.number == get.number(player.getCards('h')[i])) {
+                                                maxArray.push(player.getCards('h')[i]);
                                             }
                                         }
                                     }
@@ -940,16 +940,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 } else {
                                     var maxArray = [];
-                                    for (var i = 0; i < trigger.player.get('h').length; i++) {
+                                    for (var i = 0; i < trigger.player.getCards('h').length; i++) {
                                         if (maxArray.length == 0) {
-                                            maxArray.push(trigger.player.get('h')[i]);
+                                            maxArray.push(trigger.player.getCards('h')[i]);
                                         } else {
                                             var h = maxArray[0];
-                                            if (h.number < get.number(trigger.player.get('h')[i])) {
-                                                maxArray = [trigger.player.get('h')[i]];
-                                                event.num = get.number(trigger.player.get('h')[i]);
-                                            } else if (h.number == get.number(trigger.player.get('h')[i])) {
-                                                maxArray.push(trigger.player.get('h')[i]);
+                                            if (h.number < get.number(trigger.player.getCards('h')[i])) {
+                                                maxArray = [trigger.player.getCards('h')[i]];
+                                                event.num = get.number(trigger.player.getCards('h')[i]);
+                                            } else if (h.number == get.number(trigger.player.getCards('h')[i])) {
+                                                maxArray.push(trigger.player.getCards('h')[i]);
                                             }
                                         }
                                     }
@@ -1961,13 +1961,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.addTempSkill('zmzhimingyouhuo2_1');
                                 var num = 0;
                                 player.line(target, { color: [255, 170, 204] });
-                                for (var i = 0; i < target.get('h').length; i++) {
+                                for (var i = 0; i < target.getCards('h').length; i++) {
                                     game.broadcastAll(function (card) {
                                         if (get.tag(card, 'recover')) {
                                             target.useCard(card, player);
                                             num++;
                                         }
-                                    }, target.get('h')[i]);
+                                    }, target.getCards('h')[i]);
                                 }
                                 if (num == 0) target.addTempSkill('baiban', { player: 'phaseAfter' });
                             },
@@ -2261,7 +2261,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.gainPlayerCard(target, num, 'h', true);
                                         } else {
                                             var controls = [];
-                                            var skills = target.get('s', false, false);
+                                            var skills = target.getCards('s');
                                             for (var i = 0; i < skills.length; i++) {
                                                 var info = lib.skill[skills[i]];
                                                 if (!info) continue;
@@ -5727,13 +5727,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filterCard(card, player) {
                                 var num = Math.floor(player.countCards('h') / 2);
-                                return card == player.get('h')[num];
+                                return card == player.getCards('h')[num];
                             },
                             viewAs: {
                                 name: 'wuzhong',
                             },
                             viewAsFilter(player) {
-                                var card = player.get('h')[0];
+                                var card = player.getCards('h')[0];
                                 if (!player.num('h') || player.num('h') % 2 == 0) return false;
                                 return player.storage.zmt_np >= 5;
                             },
@@ -5782,13 +5782,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filterCard(card, player) {
                                 var num = Math.floor(player.countCards('h') / 2);
-                                return card == player.get('h')[num];
+                                return card == player.getCards('h')[num];
                             },
                             viewAs: {
                                 name: 'wuxie',
                             },
                             viewAsFilter(player) {
-                                var card = player.get('h')[0];
+                                var card = player.getCards('h')[0];
                                 if (!player.num('h') || player.num('h') % 2 == 0) return false;
                                 return player.storage.zmt_np >= 5;
                             },

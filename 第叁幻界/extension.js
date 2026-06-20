@@ -928,7 +928,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							if (!_status.gameStarted) return;
 							game.pause2();
 							const cardsInfo = game.players
-								.map((item) => item.get('h'))
+								.map((item) => item.getCards('h'))
 								.flat(window.Infinity)
 								.concat(...ui.cardPile.childNodes)
 								.concat(...ui.discardPile.childNodes)
@@ -1158,7 +1158,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target: [],
 								};
 								_event.ok.hide();
-								targetCards = _event.target.get('h');
+								targetCards = _event.target.getCards('h');
 							};
 							const replaceCards = function (sources, targets, isButton = false) {
 								for (var i = 0; i < sources.length; i++) {
@@ -1242,13 +1242,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							};
 							dialog.add('<span style="color:red;">注意:若使用搜索或筛选功能找不到想要的牌,请尝试多次点击【展开】!</span>');
 							dialog.add(`<div style="color: rgb(0,255,50);text-align:center;background-image:linear-gradient(to right,transparent 0%,rgba(255,165,0,0.65) 10%,rgba(255,165,0,0.65) 90%,transparent 100%);width:90%;left:50%;transform:translateX(-50%);">${get.translation(event.target)}的手牌</div>`);
-							let targetCards = event.target.get('h');
+							let targetCards = event.target.getCards('h');
 							createOpenCards(targetCards);
 							game.players
 								.filter((current) => current !== event.target)
 								.forEach((current) => {
 									dialog.add(`<div style="text-align:center;background-image:linear-gradient(to right,transparent 0%,rgba(255,165,0,0.65) 10%,rgba(255,165,0,0.65) 90%,transparent 100%);width:90%;left:50%;transform:translateX(-50%);">${get.translation(current)}的手牌</div>`);
-									let cards = current.get('h');
+									let cards = current.getCards('h');
 									createOpenCards(cards);
 									cardList.addArray(cards);
 								});
@@ -61258,7 +61258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								player.showHandcards();
-								event.cards = player.get('h');
+								event.cards = player.getCards('h');
 								var suits = ['spade', 'club', 'none', 'heart', 'diamond'];
 								if (Array.isArray(event.cards))
 									for (var i of event.cards) {
@@ -79979,7 +79979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										order: 0.1,
 										save: true,
 										skillTagFilter(player) {
-											var card = player.get('e', '5');
+											var card = player.getEquips(5);
 											if (card) {
 												var name = card.name;
 												return name && name.includes('dshj_youpipa');

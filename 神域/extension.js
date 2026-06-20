@@ -5782,8 +5782,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player != target && target.countCards('h');
                             },
                             content() {
-                                player.gain(target.get('h'));
-                                target.$give(target.get('h').length, player);
+                                player.gain(target.getCards('h'));
+                                target.$give(target.getCards('h').length, player);
                             },
                             ai: {
                                 order: 12,

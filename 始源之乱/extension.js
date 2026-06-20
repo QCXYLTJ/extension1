@@ -2523,7 +2523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 trigger.cancel();
-                                player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.get('h'), 2, true);
+                                player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.getCards('h'), 2, true);
                                 ('step 1');
                                 if (result.bool) trigger.player.discard(result.links[0]);
                             },

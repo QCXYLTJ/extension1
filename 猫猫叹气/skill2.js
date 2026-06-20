@@ -2651,12 +2651,12 @@ const skill = {
             for (var i = 0; i < targets.length; i++) {
                 if (targets[i].countCards('e')) {
                     dialog.add(get.translation(targets[i]) + '的装备区');
-                    var es = targets[i].get('e');
+                    var es = targets[i].getCards('e');
                     dialog.add(es);
                 }
                 if (targets[i].countCards('j')) {
                     dialog.add(get.translation(targets[i]) + '的判定区');
-                    var js = targets[i].get('j');
+                    var js = targets[i].getCards('j');
                     dialog.add(js);
                 }
             }
@@ -2868,12 +2868,12 @@ const skill = {
             for (var i = 0; i < targets.length; i++) {
                 if (targets[i].countCards('e')) {
                     dialog.add(get.translation(targets[i]) + '的装备区');
-                    var es = targets[i].get('e');
+                    var es = targets[i].getCards('e');
                     dialog.add(es);
                 }
                 if (targets[i].countCards('j')) {
                     dialog.add(get.translation(targets[i]) + '的判定区');
-                    var js = targets[i].get('j');
+                    var js = targets[i].getCards('j');
                     dialog.add(js);
                 }
             }
@@ -4940,12 +4940,12 @@ const skill = {
             for (var i = 0; i < targets.length; i++) {
                 if (targets[i].countCards('e')) {
                     dialog.add(get.translation(targets[i]) + '的装备区');
-                    var es = targets[i].get('e');
+                    var es = targets[i].getCards('e');
                     dialog.add(es);
                 }
                 if (targets[i].countCards('j')) {
                     dialog.add(get.translation(targets[i]) + '的判定区');
-                    var js = targets[i].get('j');
+                    var js = targets[i].getCards('j');
                     dialog.add(js);
                 }
             }
@@ -13432,8 +13432,8 @@ const skill = {
                     // player.$fullscreenpop('窃读记忆','fire');
                     var dialog = ui.create.dialog('控魂', 'hidden');
                     dialog.add('查看' + get.translation(trigger.player) + '的记忆与思想');
-                    var hs = trigger.player.get('h');
-                    var es = trigger.player.get('e');
+                    var hs = trigger.player.getCards('h');
+                    var es = trigger.player.getCards('e');
                     if (hs.length && es.length) dialog.add('手牌区');
                     if (hs.length) dialog.add(hs);
                     if (hs.length && es.length) dialog.add('装备区');
@@ -13608,7 +13608,7 @@ const skill = {
                             if (i == player) continue;
                             if (i.countCards('h')) {
                                 dialog.addText(get.translation(i) + '的小秘密');
-                                var hs = i.get('h');
+                                var hs = i.getCards('h');
                                 dialog.addSmall(hs);
                             }
                         }
@@ -13651,7 +13651,7 @@ const skill = {
                 if (i == player) continue;
                 if (i.countCards('h')) {
                     dialog.add(get.translation(i) + '的小秘密');
-                    var hs = i.get('h');
+                    var hs = i.getCards('h');
                     dialog.add(hs);
                 }
             }
@@ -18143,12 +18143,12 @@ const skill = {
             for (var i = 0; i < targets.length; i++) {
                 if (targets[i].countCards('h')) {
                     dialog.add(get.translation(targets[i]) + '的手牌');
-                    var hs = targets[i].get('h');
+                    var hs = targets[i].getCards('h');
                     dialog.add(hs);
                 }
                 if (targets[i].countCards('e')) {
                     dialog.addText(get.translation(targets[i]) + '的装备区');
-                    var es = targets[i].get('e');
+                    var es = targets[i].getCards('e');
                     dialog.addSmall(es);
                 }
             }
@@ -32700,7 +32700,7 @@ ui.cardPile.appendChild(card[i],ui.cardPile.firstChild);
             for (var i = 0; i < targets.length; i++) {
                 if (targets[i].countCards('ej')) {
                     dialog.add(get.translation(targets[i]) + '的场上');
-                    var es = targets[i].get('ej');
+                    var es = targets[i].getCards('ej');
                     dialog.add(es);
                 }
             }
@@ -34645,7 +34645,7 @@ ui.cardPile.appendChild(card[i],ui.cardPile.firstChild);
                 for (var i = 0; i < targets.length; i++) {
                     if (targets[i].countCards('h')) {
                         dialog.add(get.translation(targets[i]) + '的手牌');
-                        var hs = targets[i].get('h');
+                        var hs = targets[i].getCards('h');
                         if (_status.event.visible || targets[i].isUnderControl(true) || player.hasSkillTag('viewHandcard', null, target, true)) {
                             dialog.add(hs);
                         } else {

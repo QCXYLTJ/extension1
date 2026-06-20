@@ -136,7 +136,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					if (event.num < 3) event.goto(1);
 				}
 				if (event.junfa == 'junfa6') {
-					var cards = player.get('he');
+					var cards = player.getCards('he');
 					for (var i = 0; i < result.cards.length; i++) cards.remove(result.cards[i]);
 					player.discard(cards);
 				}
@@ -372,7 +372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					if (event.num < 3) event.goto(1);
 				}
 				if (event.junling == 'junling6') {
-					var cards = player.get('he');
+					var cards = player.getCards('he');
 					source.gain(
 						result.cards.map((i) => game.createCard(i)),
 						'draw'
@@ -2533,7 +2533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									trigger.target
 										.chooseBool('是否装备' + get.translation(event.card) + '？')
 										.set('ai', function () {
-											var current = _status.event.player.get('e', { subtype: get.subtype(_status.event.card) });
+											var current = _status.event.player.getEquips(get.subtype(_status.event.card));
 											if (current && current.length) {
 												return ai.get.equipValue(event.card) > ai.get.equipValue(current[0]);
 											}
@@ -2744,7 +2744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								event.videoId = lib.status.videoId++;
-								var cards = target.get('h');
+								var cards = target.getCards('h');
 								if (player.isOnline2()) {
 									player.send(
 										function (cards, id) {
@@ -3173,14 +3173,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filter(event, player) {
 								if (event.parent.name != '雷袭') {
 									for (var i = 0; i < game.players.length; i++) {
-										if (game.players[i].get('e') && game.players[i] != event.player) return true;
+										if (game.players[i].getCards('e') && game.players[i] != event.player) return true;
 									}
 								}
 								return false;
 							},
 							content() {
 								for (var i = 0; i < game.players.length; i++) {
-									if (game.players[i].get('e') && game.players[i] != trigger.player) {
+									if (game.players[i].getCards('e') && game.players[i] != trigger.player) {
 										game.players[i].damage(1, 'thunder');
 									}
 								}
@@ -6226,7 +6226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							usable: 2,
 							content() {
-								var hs = trigger.player.get('he');
+								var hs = trigger.player.getCards('he');
 								if (hs.length) {
 									var hs2 = [];
 									for (var i = 0; i < hs.length; i++) {
@@ -7552,7 +7552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									trigger.target
 										.chooseBool('是否装备' + get.translation(event.card) + '？')
 										.set('ai', function () {
-											var current = _status.event.player.get('e', { subtype: get.subtype(_status.event.card) });
+											var current = _status.event.player.getEquips(get.subtype(_status.event.card));
 											if (current && current.length) {
 												return ai.get.equipValue(event.card) > ai.get.equipValue(current[0]);
 											}
@@ -7882,7 +7882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player(player, target) {
 										if (target.hasSkill('jueqing')) return -10;
 										var mn = 1;
-										var hs = player.get('h');
+										var hs = player.getCards('h');
 										for (var i = 0; i < hs.length; i++) {
 											mn = Math.max(mn, hs[i].number);
 										}
@@ -8033,7 +8033,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player(player, target) {
 										if (target.hasSkill('jueqing')) return -10;
 										var mn = 1;
-										var hs = player.get('h');
+										var hs = player.getCards('h');
 										for (var i = 0; i < hs.length; i++) {
 											mn = Math.max(mn, hs[i].number);
 										}
@@ -9432,7 +9432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player(player, target) {
 										if (target.hasSkill('jueqing')) return -10;
 										var mn = 1;
-										var hs = player.get('h');
+										var hs = player.getCards('h');
 										for (var i = 0; i < hs.length; i++) {
 											mn = Math.max(mn, hs[i].number);
 										}
@@ -10300,12 +10300,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, event.player) < 0;
 							},
 							filter(event, player) {
-								return event.card && event.card.name == 'sha' && player.get('e', '1');
+								return event.card && event.card.name == 'sha' && player.getEquips(1);
 							},
 							content() {
 								'step 0';
 								var num = 1;
-								var info = get.info(player.get('e', '1'));
+								var info = get.info(player.getEquips(1));
 								if (info && info.distance && info.distance.attackFrom) {
 									num -= info.distance.attackFrom;
 								}
@@ -10330,7 +10330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 1');
 								if (!event.directfalse && result.bool) {
-									var e1 = player.get('e', '1');
+									var e1 = player.getEquips(1);
 									if (e1) {
 										player.discard(e1);
 									}
@@ -10349,19 +10349,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, event.player) < 0;
 							},
 							filter(event, player) {
-								return event.card && event.card.name == 'sha' && player.get('e', '1');
+								return event.card && event.card.name == 'sha' && player.getEquips(1);
 							},
 							content() {
 								'step 0';
 								var num = 1;
-								var info = get.info(player.get('e', '1'));
+								var info = get.info(player.getEquips(1));
 								if (info && info.distance && info.distance.attackFrom) {
 									num -= info.distance.attackFrom;
 								}
 								player.draw(num, '摸' + get.cnNumber(num) + '张手牌');
 								('step 1');
 								if (result.bool) {
-									var e1 = player.get('e', '1');
+									var e1 = player.getEquips(1);
 									if (e1) {
 										player.discard(e1);
 									}
@@ -10459,7 +10459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								trigger.cancel();
 								player.draw(2);
-								trigger.player.discard(4, trigger.player.get('he'));
+								trigger.player.discard(4, trigger.player.getCards('he'));
 							},
 						},
 						承武cw: {
@@ -12772,7 +12772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.bool) {
 									result.targets[0].draw(5 + result.targets[0].countCards('e', (card) => get.subtype(card) == 'equip3' || get.subtype(card) == 'equip4'));
-									var hs = result.targets[0].get('h');
+									var hs = result.targets[0].getCards('h');
 									if (hs.length) result.targets[0].gain(game.createCard(hs.randomGet()), 'draw');
 									result.targets[0].chooseToUse('定基:是否使用一张卡牌？');
 								}
@@ -13414,7 +13414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								result: {
 									target(player, target) {
 										if (get.attitude(player, target) <= 0) return target.num('he') > 0 ? -1.5 : 1.5;
-										var js = target.get('j');
+										var js = target.getCards('j');
 										if (js.length) {
 											var jj = js[0].viewAs ? { name: js[0].viewAs } : js[0];
 											if (jj.name == 'shunshou') return 3;
@@ -13430,7 +13430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										}
 										if (get.attitude(player, target) > 1) {
-											var js = target.get('j');
+											var js = target.getCards('j');
 											if (js.length) {
 												var jj = js[0].viewAs ? { name: js[0].viewAs } : js[0];
 												if (jj.name == 'shunshou') return 1;
@@ -13979,7 +13979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.markSkill('逐师');
 								if (player.storage.逐师 == 0) player.unmarkSkill('逐师');
 								//player.changeHujia();
-								trigger.player.discard(trigger.player.get('he').randomGets());
+								trigger.player.discard(trigger.player.getCards('he').randomGets());
 								trigger.player.addTempSkill('逐师3');
 							},
 						},
@@ -16699,7 +16699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											target.$gain2(card);
 											var skills = lib.character[name][3];
 											var list = [];
-											var targetskills = target.get('s');
+											var targetskills = target.getCards('s');
 											for (var j = 0; j < skills.length; j++) {
 												if (lib.translate[skills[j] + '_info'] && lib.skill[skills[j]] && !lib.skill[skills[j]].unique && !targetskills.includes(skills[j])) {
 													list.push(skills[j]);
@@ -17644,7 +17644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											target.$gain2(card);
 											var skills = lib.character[name][3];
 											var list = [];
-											var targetskills = target.get('s');
+											var targetskills = target.getCards('s');
 											for (var j = 0; j < skills.length; j++) {
 												if (lib.translate[skills[j] + '_info'] && lib.skill[skills[j]] && !lib.skill[skills[j]].unique && !targetskills.includes(skills[j])) {
 													list.push(skills[j]);
@@ -18121,7 +18121,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											target.$gain2(card);
 											var skills = lib.character[name][3];
 											var list = [];
-											var targetskills = target.get('s');
+											var targetskills = target.getCards('s');
 											for (var j = 0; j < skills.length; j++) {
 												if (lib.translate[skills[j] + '_info'] && lib.skill[skills[j]] && !lib.skill[skills[j]].unique && !targetskills.includes(skills[j])) {
 													list.push(skills[j]);

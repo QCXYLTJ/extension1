@@ -999,7 +999,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target(player, target, card) {
 										if (target.hasSkill('ly_junshenbao_machao_mashu') || target.hasSkill('ly_junshenbao_mateng_mashu') || target.hasSkill('mashu')) return 10;
 										if (target.hasSkillTag('equipDraw')) return 8;
-										if (!target.get('e', '1')) return 5; //QQQ
+										if (!target.getEquips(1)) return 5; //QQQ
 										return 1;
 									},
 								},
@@ -2165,8 +2165,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageBefore',
 							},
 							filter(event, player) {
-								if (event.player.get('e', '3')) return true;
-								if (event.player.get('e', '4')) return true;
+								if (event.player.getEquips(3)) return true;
+								if (event.player.getEquips(4)) return true;
 								return false;
 							},
 							content() {
@@ -2605,7 +2605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								source: 'damageBegin',
 							},
 							filter(event, player) {
-								if (!event.player.get('e', '2')) return false;
+								if (!event.player.getEquips(2)) return false;
 								return event.card;
 							},
 							content() {
@@ -4583,7 +4583,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							discard: false,
 							prepare: 'give',
 							filterTarget(card, player, target) {
-								return target != player && (!target.get('e', '3') || !target.get('e', '4'));
+								return target != player && (!target.getEquips(3) || !target.getEquips(4));
 							},
 							content() {
 								'step 0';
@@ -7871,7 +7871,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								var target = trigger.player;
 								player.line(target, 'white');
-								target.disableSkill('', target.get('s'));
+								target.disableSkill('', target.getCards('s'));
 								target.addSkill('ly_junshenbao_zhangren_chuanxin_recover');
 								game.log(target, '<span style=\"color: red\">失去所有技能</span>');
 							},
@@ -7883,7 +7883,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									popup: false,
 									forced: true,
 									content() {
-										player.enableSkill('', player.get('s'));
+										player.enableSkill('', player.getCards('s'));
 										player.removeSkill('ly_junshenbao_zhangren_chuanxin_recover');
 										game.log(player, '<span style=\"color: gold\">回复所有技能</span>');
 									},
@@ -8306,7 +8306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								for (var i of game.players) {
 									//QQ
 									if (i == player) continue;
-									var skills = i.get('s', false, false);
+									var skills = i.getCards('s');
 									skills = skills.slice(0);
 									for (var j = 0; j < skills.length; j++) {
 										if (lib.skill[skills[j]] && lib.translate[skills[j] + '_info']) {
