@@ -1,0 +1,22 @@
+.camp-wrap[data-camp='zq_fo']>.camp-back {
+    overflow: hidden;
+}
+.camp-wrap[data-camp='zq_fo']>.camp-back:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(255, 215, 0);
+    background-size: 400%;
+    -webkit-filter: brightness(0.6);
+    -o-filter: brightness(0.6);
+    -moz-filter: brightness(0.6);
+    filter: brightness(0.6);
+    /*设置亮度,范围:0-1*/
+}
+.button.character.newstyle>.identity[data-nature="zq_fo"] {
+    background-image: url(image/group/name2_zq_fo.png) !important;
+    background-size: 100% 100% !important;
+}

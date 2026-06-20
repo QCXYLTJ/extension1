@@ -1,0 +1,148 @@
+/*这里是太古势力*/
+.button.character.newstyle>.identity[data-nature="taigu"] {
+    background-image: url(../image/group/name2_taigu.png) !important;
+    background-size: 100% 100% !important;
+}
+.player>.camp-wrap[data-camp='taigu']>.camp-back {
+    background: linear-gradient(to bottom, rgb(255, 215, 000), rgb(255, 215, 000));
+}
+.qhcamp-wrap[data-camp='taigu']>.qhcamp-back {
+    background: linear-gradient(to bottom, rgb(255, 215, 000), rgb(255, 215, 000));
+}
+.tgtt-tips {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/* 定义一个包含图片的容器的样式 */
+.image-container {
+    display: flex;
+    /* 使用 Flex 布局使图片和文本水平居中对齐 */
+    align-items: center;
+    position: relative;
+    /* 垂直居中对齐 */
+    justify-content: center;
+    /* 水平居中对齐 */
+    margin-bottom: 10px;
+    /* 可根据需要设置底部间距 */
+}
+/* 定义正方形图片的样式 */
+.square-image {
+    max-width: 100px;
+    /* 设置图片最大宽度,根据需要调整 */
+    max-height: 100px;
+    /* 设置图片最大高度,根据需要调整 */
+    width: auto;
+    height: auto;
+}
+.tgttbufflist .exit {
+    background-image: url(../image/others/exit.png);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    right: -20px;
+    top: -20px;
+}
+.tgttbufflist {
+    width: 90% !important;
+    height: 90% !important;
+    top: 5%;
+    left: 5%;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+.tgttbufflist li {
+    font-size: 20px;
+}
+.tgttbufflist .buttons {
+    width: 100%;
+}
+.tgtt-dialog {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 530px;
+    height: 393px;
+    text-align: center;
+    background-size: 100% 100%;
+    background-image: url(../image/others/tgtt_pic_bigdialog.jpg);
+    transform: translate(-50%, -50%);
+    z-index: 22;
+}
+.tgtt-dialog>.tgtt-dialog-text {
+    position: absolute;
+    text-align: left;
+    top: calc(27.94%);
+    left: calc(13.64%);
+    width: calc(65.45%);
+    height: calc(65.35%);
+    font-family: 'xingkai';
+    overflow: scroll;
+    font-size: 18px;
+    line-height: 25px;
+    color: black !important;
+    text-shadow: 0 1px 1px white;
+}
+.tgtt-dialog>.tgtt-dialog-title {
+    position: relative;
+    top: calc(8.2%);
+    margin: auto;
+    width: calc(83.27%);
+    height: calc(6.27%);
+    font-family: 'xingkai';
+    font-size: 21px;
+    color: white !important;
+}
+.tgtt-dialog>.tgtt-dialog-close {
+    position: absolute;
+    margin: 5px;
+    right: -6px;
+    top: 17px;
+    height: 30px;
+    width: 30px;
+    background-size: 100% 100%;
+    background-image: url(../image/others/tgtt_pic_close.png);
+}
+.tgtt-dialog>.tgtt-dialog-icon {
+    position: absolute;
+    top: calc(26.6%);
+    right: calc(14.70%);
+    width: calc(12.91%);
+    height: calc(17.85%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0 0 5px black;
+}
+.tgtt-skilltip {
+    width: 20%;
+    min-height: 5%;
+    left: 50%;
+    top: 50%;
+    font-size: 16px;
+    color: #ccad76;
+    font-family: 'shousha';
+    background-color: rgba(36, 29, 19, 0.85);
+    border: #523a24 3px solid;
+    border-radius: 10px;
+    position: absolute;
+    display: block;
+    padding: 8px;
+    transform: translate(-50%, -50%);
+    transition: none;
+}
+.tgttyingxiongshenhua {
+    animation: game_start 0.5s;
+    -webkit-animation: game_start 0.5s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: rgba(255, 215, 000, 0.3);
+}

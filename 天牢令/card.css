@@ -1,0 +1,12 @@
+.card>.temp-name[data-nature='kami'] {
+	color: yellow;
+	text-shadow: 0 0 5px red, 0 0 10px red;
+}
+.card>.temp-name[data-nature='ice'] {
+	color: lightblue;
+	text-shadow: 0 0 5px blue, 0 0 10px blue;
+}
+.card>.temp-name[data-nature='tl_she'] {
+	color: #3e3935;
+	background-image: url(shesha_background.png);
+}
