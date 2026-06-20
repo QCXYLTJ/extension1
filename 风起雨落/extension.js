@@ -281,7 +281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
-                                var num = target.num('h', function (card) {
+                                var num = target.countCards('h', function (card) {
                                     return get.type(card) != 'basic';
                                 });
                                 if (num == 0) {

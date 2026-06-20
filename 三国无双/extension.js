@@ -1467,7 +1467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							filter(event, player) {
 								if (event.card.name != 'guohe' && event.card.name != 'shunshou') return false;
-								if (event.card.suit && player.num('h', { suit: event.card.suit })) {
+								if (event.card.suit && player.countCards('h', { suit: event.card.suit })) {
 									return event.player != player;
 								}
 								return false;

@@ -2798,7 +2798,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 wuxie(target, card, player, viewer) {
                                     if (target.hp == 1) return;
                                     if (player == viewer) {
-                                        if (player.countCards('h') - (get.maxUse(player) + player.num('h', 'wuxie')) >= player.hp + 1 && Math.random() > 0.7) return;
+                                        if (player.countCards('h') - (get.maxUse(player) + player.countCards('h', 'wuxie')) >= player.hp + 1 && Math.random() > 0.7) return;
                                     }
                                     if (viewer.hasJudgeFirend()) return 0;
                                     if (target.isSafe()) return 0;
@@ -7017,7 +7017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 1,
                                 result: {
                                     target(player, target, card) {
-                                        if (player.hp + player.num('h', 'tao') > 3) return -1;
+                                        if (player.hp + player.countCards('h', 'tao') > 3) return -1;
                                         return 0;
                                     },
                                 },
@@ -11088,7 +11088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 player.chooseControlList([`移除所有<隐兵>印记摸${player.storage.圣_tianming}张牌并受到来自于标记角色的一点伤害`, `你与被标记角色一同摸${event.num}张牌`], true).set('ai', function (event, player) {
-                                    if (player.storage.圣_tianming > event.num && player.hp + player.num('h', 'tao') > 2) return 0;
+                                    if (player.storage.圣_tianming > event.num && player.hp + player.countCards('h', 'tao') > 2) return 0;
                                     if (event.num >= player.storage.圣_tianming) return 1;
                                     return 0;
                                 });

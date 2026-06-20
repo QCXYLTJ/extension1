@@ -1977,7 +1977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 12,
                             forced: true,
                             content() {
-                                var num = 1 + player.num('h', { color: 'black' });
+                                var num = 1 + player.countCards('h', { color: 'black' });
                                 ('step 0');
                                 player
                                     .chooseTarget(get.prompt('gd12_quansha'), '对一名其他角色造成' + num + '点伤害', function (card, player, target) {
@@ -2727,7 +2727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.target.chooseToDiscard('请弃置一张锦囊牌,否则不能使用闪抵消此杀', 'he', function (card) {
                                     return get.type(card) == 'trick';
                                 }).ai = function (card) {
-                                    var num = trigger.target.num('h', 'shan');
+                                    var num = trigger.target.countCards('h', 'shan');
                                     if (num == 0) return 0;
                                     return 8 - get.value(card);
                                 };

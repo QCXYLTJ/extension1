@@ -45311,7 +45311,7 @@ export async function precontent(config, pack) {
                                 var keep = false;
                                 if (nh <= target.hp) {
                                     keep = true;
-                                } else if (nh == target.hp + 1 && target.hp >= 2 && target.num('h', 'tao') <= 1) {
+                                } else if (nh == target.hp + 1 && target.hp >= 2 && target.countCards('h', 'tao') <= 1) {
                                     keep = true;
                                 }
                                 var mode = get.mode();
@@ -45335,7 +45335,7 @@ export async function precontent(config, pack) {
                                         var num = 0;
                                         for (let aplayer of game.players) {
                                             if (aplayer.identity == 'fan') {
-                                                num += aplayer.num('h', 'tao');
+                                                num += aplayer.countCards('h', 'tao');
                                                 if (num > 2) return 2;
                                             }
                                         }

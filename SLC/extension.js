@@ -9751,7 +9751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 9,
                                 result: {
                                     target(player, target) {
-                                        return -target.countCards('he') - (player.num('h', 'du') ? 1 : 0);
+                                        return -target.countCards('he') - (player.countCards('h', 'du') ? 1 : 0);
                                     },
                                 },
                                 threaten: 2,

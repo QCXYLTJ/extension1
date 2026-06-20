@@ -19601,7 +19601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, event.player) < 0;
 									}
 								}
-								if (player.num('h', 'shan') && get.attitude(player, event.player) < 0 && player.countCards('h') > 2) return 1;
+								if (player.countCards('h', 'shan') && get.attitude(player, event.player) < 0 && player.countCards('h') > 2) return 1;
 								return 0;
 							},
 							filter(event, player) {
@@ -19644,7 +19644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, event.player) < 0;
 									}
 								}
-								if (player.num('h', 'shan') && get.attitude(player, event.player) < 0 && player.countCards('h') > 2) return 1;
+								if (player.countCards('h', 'shan') && get.attitude(player, event.player) < 0 && player.countCards('h') > 2) return 1;
 								return 0;
 							},
 							filter(event, player) {

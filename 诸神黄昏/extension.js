@@ -4538,8 +4538,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                     if (player.isDamaged()) return button.link[2] == 'tao' ? 1 : -1;
-                                    if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
-                                    if (shaTarget && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+                                    if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
+                                    if (shaTarget && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
                                     return button.link[2] == 'sha' ? 1 : -1;
                                 },
                                 backup(links, player) {
@@ -39938,7 +39938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             check(event, player) {
                                 if (get.attitude(player, event.player) > 0) return false;
-                                return player.num('h', 'sha') > 0 && player.num('h', 'shan') > 0;
+                                return player.countCards('h', 'sha') > 0 && player.countCards('h', 'shan') > 0;
                             },
                             content() {
                                 'step 0';
@@ -43954,7 +43954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             check(event, player) {
                                 if (get.attitude(player, event.player) > 0) return false;
-                                return player.num('h', 'sha') > 0 && player.num('h', 'shan') > 0;
+                                return player.countCards('h', 'sha') > 0 && player.countCards('h', 'shan') > 0;
                             },
                             content() {
                                 'step 0';

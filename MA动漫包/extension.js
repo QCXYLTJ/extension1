@@ -5869,7 +5869,7 @@ export default function () {
                                     if (e2.name == 'liannu') return true;
                                     if (e2.name == 'qinglong') return true;
                                 }
-                                return player.num('h', 'sha') < 1;
+                                return player.countCards('h', 'sha') < 1;
                             },
                             content() {
                                 trigger.num--;
@@ -8068,7 +8068,7 @@ export default function () {
                                     if (j2.name == 'lebu') return true;
                                     if (j2.name == 'bingliang') return true;
                                 }
-                                return player.num('h', 'sha') > 1;
+                                return player.countCards('h', 'sha') > 1;
                             },
                             prompt2: '是否从牌堆/弃牌堆中获得一张【杀】并执行一个额外的出牌阶段？',
                             content() {

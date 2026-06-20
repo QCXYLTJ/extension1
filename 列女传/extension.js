@@ -434,11 +434,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 global: 'loseHpBegin',
                             },
                             filter(event, player) {
-                                return event.player != player && _status.currentPhase == player && player.num('h', 'sha') > 0;
+                                return event.player != player && _status.currentPhase == player && player.countCards('h', 'sha') > 0;
                             },
                             content() {
                                 'step 0';
-                                var card = player.num('h', 'sha');
+                                var card = player.countCards('h', 'sha');
                                 player.chooseToDiscard(card, true);
                                 ('step 1');
                                 trigger.player.chooseToDiscard(trigger.player.countCards('h'), 'h', true);
@@ -529,7 +529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.countCards('e') < 1 && player.num('h', 'sha') < 3;
+                                return player.countCards('e') < 1 && player.countCards('h', 'sha') < 3;
                             },
                             content() {
                                 'step 0';

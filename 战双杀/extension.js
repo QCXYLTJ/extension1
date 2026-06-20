@@ -651,7 +651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     check(event, player) {
                                         var num = 0;
                                         num -= get.attitude(player, event.player);
-                                        if (player.num('h', 'sha') == 0) num += Math.random() * 6;
+                                        if (player.countCards('h', 'sha') == 0) num += Math.random() * 6;
                                         return num > 0;
                                     },
                                     _priority: 1,

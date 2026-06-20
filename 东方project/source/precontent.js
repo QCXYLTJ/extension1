@@ -4848,7 +4848,7 @@ export async function precontent(config, pack) {
 			usable: 1,
 			filter(event, player) {
 				return (
-					player.num('h', {
+					player.countCards('h', {
 						type: 'basic',
 					}) > 0
 				);
@@ -7591,7 +7591,7 @@ export async function precontent(config, pack) {
 						}
 					}
 				}
-				return player.num('h', { name: 'sha' }) && list.length;
+				return player.countCards('h', { name: 'sha' }) && list.length;
 			}, //QQQ
 			chooseButton: {
 				dialog(event, player) {

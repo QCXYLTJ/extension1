@@ -4624,7 +4624,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                             },
                             viewAsFilter(player) {
                                 //使用限制,需要有【闪】才能视为【杀】
-                                if (!player.num('h', 'shan')) return false;
+                                if (!player.countCards('h', 'shan')) return false;
                             },
                             prompt: '将一张闪当杀使用或打出', //提示文字
                             check() {
@@ -4643,7 +4643,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                 respondSha: true, //可以响应杀使用的条件
                                 skillTagFilter(player) {
                                     //技能提示
-                                    if (!player.num('h', 'shan')) return false;
+                                    if (!player.countCards('h', 'shan')) return false;
                                 },
                                 order: 4, //执行顺序
                                 useful: -1, //实用性

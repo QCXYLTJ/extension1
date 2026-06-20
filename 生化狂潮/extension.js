@@ -1108,7 +1108,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 type: 'equip',
                             },
                             viewAsFilter(player) {
-                                return player.num('h', { type: 'equip' }) > 0;
+                                return player.countCards('h', { type: 'equip' }) > 0;
                             },
                             viewAs: {
                                 name: 'tiesuo',
@@ -1164,7 +1164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         zom_shidu2: {
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('h', { type: 'equip' }) > 0;
+                                return player.countCards('h', { type: 'equip' }) > 0;
                             },
                             filterCard: {
                                 type: 'equip',

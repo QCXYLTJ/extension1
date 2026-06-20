@@ -4754,7 +4754,7 @@ const skill = {
       event.num = num;
       var chs = get.cnNumber(num);
       player.chooseToDiscard('he', num, '弃置' + chs + '张牌,或失去' + chs + '点体力').ai = function (card) {
-        if (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.num('h', 'tao') + player.num('h', 'jiu') > num) return 0; else
+        if (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.countCards('h', 'tao') + player.countCards('h', 'jiu') > num) return 0; else
           return 12 - get.value(card);
       };
       'step 1';
@@ -4874,7 +4874,7 @@ const skill = {
       event.num = num;
       var chs = get.cnNumber(num);
       event.mubiao[event.count].chooseToDiscard('he', num, '弃置' + chs + '张牌,或失去' + chs + '点体力').ai = function (card) {
-        if (get.effect(event.mubiao[event.count], { name: 'losehp' }, event.mubiao[event.count], event.mubiao[event.count]) >= 0 && event.mubiao[event.count].hp + event.mubiao[event.count].num('h', 'tao') + event.mubiao[event.count].num('h', 'jiu') > num) return 0; else
+        if (get.effect(event.mubiao[event.count], { name: 'losehp' }, event.mubiao[event.count], event.mubiao[event.count]) >= 0 && event.mubiao[event.count].hp + event.mubiao[event.count].countCards('h', 'tao') + event.mubiao[event.count].countCards('h', 'jiu') > num) return 0; else
           return 12 - get.value(card);
       };
       'step 4';
@@ -28142,9 +28142,9 @@ const skill = {
       var player = _status.event.player,
         target = _status.event.dying;
       if (target != player) {
-        if (player.getDamagedHp() > 0) return player.num('h', 'tao') + target.hp <= 0; else
-          return player.num('h', 'tao') + target.num('h', 'tao') + target.num('h', 'jiu') + target.hp <= 0;
-      } else return player.num('h', 'tao') + player.num('h', 'jiu') + player.hp <= 0;
+        if (player.getDamagedHp() > 0) return player.countCards('h', 'tao') + target.hp <= 0; else
+          return player.countCards('h', 'tao') + target.countCards('h', 'tao') + target.countCards('h', 'jiu') + target.hp <= 0;
+      } else return player.countCards('h', 'tao') + player.countCards('h', 'jiu') + player.hp <= 0;
     },
     logTarget: 'player',
     content() {
@@ -29745,7 +29745,7 @@ const skill = {
     check(event, player) {
       var player = _status.event.player,
         target = _status.event.dying;
-      return get.attitude(player, target) > 0 && lib.filter.cardSavable({ name: 'tao' }, player, target) && 1 + player.num('h', 'tao') + target.num('h', 'tao') + target.num('h', 'jiu') + target.hp > 0;
+      return get.attitude(player, target) > 0 && lib.filter.cardSavable({ name: 'tao' }, player, target) && 1 + player.countCards('h', 'tao') + target.countCards('h', 'tao') + target.countCards('h', 'jiu') + target.hp > 0;
     },
     logTarget: 'target',
     content() {
@@ -29755,7 +29755,7 @@ const skill = {
       player.
         chooseControl(list, function (event, player) {
           if (player.hp == player.maxHp) return '体力';
-          if (player.hp < player.maxHp - 1 || player.hp + player.num('h', 'tao') <= 2) return '体力上限';
+          if (player.hp < player.maxHp - 1 || player.hp + player.countCards('h', 'tao') <= 2) return '体力上限';
           return '体力';
         }).
         set('prompt', '啖睛:失去1点体力或减1点体力上限');
@@ -29786,7 +29786,7 @@ const skill = {
       },
       result: {
         target(player, target) {
-          if (player.num('h', 'tao') + target.num('h', 'tao') + target.num('h', 'jiu') + target.hp >= 0) return 3; else
+          if (player.countCards('h', 'tao') + target.countCards('h', 'tao') + target.countCards('h', 'jiu') + target.hp >= 0) return 3; else
             return 0;
         }
       }
@@ -29802,7 +29802,7 @@ const skill = {
     },
     check(event, player) {
       var target = _status.event.player;
-      return get.attitude(player, target) > 0 && lib.filter.cardSavable({ name: 'tao' }, player, target) && 1 + player.num('h', 'tao') + target.num('h', 'tao') + target.num('h', 'jiu') + target.hp > 0;
+      return get.attitude(player, target) > 0 && lib.filter.cardSavable({ name: 'tao' }, player, target) && 1 + player.countCards('h', 'tao') + target.countCards('h', 'tao') + target.countCards('h', 'jiu') + target.hp > 0;
     },
     logTarget: 'target',
     content() {
@@ -29812,7 +29812,7 @@ const skill = {
       player.
         chooseControl(list, function (event, player) {
           if (player.hp == player.maxHp) return '体力';
-          if (player.hp < player.maxHp - 1 || player.hp + player.num('h', 'tao') <= 2) return '体力上限';
+          if (player.hp < player.maxHp - 1 || player.hp + player.countCards('h', 'tao') <= 2) return '体力上限';
           return '体力';
         }).
         set('prompt', '啖睛:失去1点体力或减1点体力上限');
@@ -29836,7 +29836,7 @@ const skill = {
       },
       result: {
         target(player, target) {
-          if (player.num('h', 'tao') + target.num('h', 'tao') + target.num('h', 'jiu') + target.hp >= 0) return 3; else
+          if (player.countCards('h', 'tao') + target.countCards('h', 'tao') + target.countCards('h', 'jiu') + target.hp >= 0) return 3; else
             return 0;
         }
       }
@@ -29910,9 +29910,9 @@ const skill = {
         target = _status.event.dying;
       if (player.maxHp == 1) return false;
       if (target != player) {
-        if (player.getDamagedHp() > 0) return player.num('h', 'tao') + target.hp <= 0; else
-          return player.num('h', 'tao') + target.num('h', 'tao') + target.num('h', 'jiu') + target.hp <= 0;
-      } else return player.num('h', 'tao') + player.num('h', 'jiu') + player.hp <= 0;
+        if (player.getDamagedHp() > 0) return player.countCards('h', 'tao') + target.hp <= 0; else
+          return player.countCards('h', 'tao') + target.countCards('h', 'tao') + target.countCards('h', 'jiu') + target.hp <= 0;
+      } else return player.countCards('h', 'tao') + player.countCards('h', 'jiu') + player.hp <= 0;
     },
     logTarget: 'target',
     content() {
@@ -34046,7 +34046,7 @@ const skill = {
         content() {
           'step 0';
           var check =
-            player.hp + player.num('h', 'tao') + player.num('h', 'jiu') > 1 && (
+            player.hp + player.countCards('h', 'tao') + player.countCards('h', 'jiu') > 1 && (
               player.needsToDiscard() ||
               player.hasSkill('shanhe_shebian') && player.canMoveCard(true, true) ||
               game.hasPlayer(function (current) {

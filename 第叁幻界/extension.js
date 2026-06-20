@@ -75551,7 +75551,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var nh = target.countCards('h');
 										var keep = false;
 										if (nh <= target.hp) keep = true;
-										else if (nh == target.hp + 1 && target.hp >= 2 && target.num('h', 'tao') <= 1) keep = true;
+										else if (nh == target.hp + 1 && target.hp >= 2 && target.countCards('h', 'tao') <= 1) keep = true;
 										var mode = get.mode();
 										if (target.hp >= 2 && keep && target.hasFriend()) {
 											if (target.hp > 2) return 0;

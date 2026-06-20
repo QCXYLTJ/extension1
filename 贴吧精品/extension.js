@@ -24196,7 +24196,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             shaTarget = true;
                                         }
                                     }
-                                    if (shaTarget && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+                                    if (shaTarget && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 },
                                 backup(links, player) {

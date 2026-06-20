@@ -650,7 +650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     value: 5,
                                 },
                                 wuxie(target, card, player, viewer) {
-                                    if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
+                                    if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
                                         if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                                     }
                                 },
@@ -4885,7 +4885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     value: 5,
                                 },
                                 wuxie(target, card, player, viewer) {
-                                    if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
+                                    if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
                                         if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                                     }
                                 },

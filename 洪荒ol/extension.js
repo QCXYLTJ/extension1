@@ -2482,7 +2482,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 9,
 								result: {
 									target(player, target) {
-										return -target.countCards('he') - (player.num('h', 'du') ? 1 : 0);
+										return -target.countCards('he') - (player.countCards('h', 'du') ? 1 : 0);
 									},
 								},
 								threaten: 2,
@@ -6754,7 +6754,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									result.targets[0].damage(2);
 									trigger.player.gain(game.createCard('sha'), 'draw');
-									trigger.player.draw(result.targets[0].num('h', (card) => ['sha', 'jiu'].includes(card.name)));
+									trigger.player.draw(result.targets[0].countCards('h', (card) => ['sha', 'jiu'].includes(card.name)));
 								}
 							},
 						},
@@ -7501,7 +7501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 9,
 								result: {
 									target(player, target) {
-										return -target.countCards('he') - (player.num('h', 'du') ? 1 : 0);
+										return -target.countCards('he') - (player.countCards('h', 'du') ? 1 : 0);
 									},
 								},
 								threaten: 2,
@@ -7804,7 +7804,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								player.gain(event.cards);
 								('step 1');
-								if (player.num('h', 'sha')) {
+								if (player.countCards('h', 'sha')) {
 									player.chooseToUse('再起:使用一张杀').filterCard = function (card) {
 										return card.name == 'sha' && get.itemtype(card) == 'card';
 									};
@@ -8149,7 +8149,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											case 'diamond':
 												return 1 + Math.sqrt(target.countCards('h'));
 											case 'club':
-												return -target.countCards('h') - Math.sqrt(target.num('h', 'sha'));
+												return -target.countCards('h') - Math.sqrt(target.countCards('h', 'sha'));
 											case 'spade':
 												return get.damageEffect(target, player, target, 'thunder');
 											default:
@@ -17719,7 +17719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.showCards(event.cards);
 								player.gain(event.cards);
 								('step 1');
-								if (player.num('h', (card) => get.type(card) != 'equip')) {
+								if (player.countCards('h', (card) => get.type(card) != 'equip')) {
 									player.chooseToUse('直取:使用一张非装备牌').filterCard = function (card) {
 										return get.type(card) != 'equip' && get.itemtype(card) == 'card';
 									};

@@ -227,7 +227,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filter(event, player) {
-                                return player.num('h', { color: 'black' }) > 0;
+                                return player.countCards('h', { color: 'black' }) > 0;
                             },
                             filterTarget(card, player, target) {
                                 if (ui.selected.targets.length) {
@@ -3817,7 +3817,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     result.targets[0].draw(2);
                                     if (
-                                        result.targets[0].num('h', (card) => {
+                                        result.targets[0].countCards('h', (card) => {
                                             return get.color(card) == 'red';
                                         })
                                     ) {
@@ -5493,7 +5493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
-                                var num = target.num('h', function (card) {
+                                var num = target.countCards('h', function (card) {
                                     return get.type(card) != 'basic';
                                 });
                                 target.discard(
@@ -5714,7 +5714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (suitx != 'heart' && suitx != 'diamond' && suitx != 'club' && suitx != 'spade') return false;
                                 if (type != 'basic' && type != 'trick') return false;
                                 if (!event.card.suit) return false;
-                                if (suitx && player.num('h', { suit: suitx })) {
+                                if (suitx && player.countCards('h', { suit: suitx })) {
                                     return event.player && event.player != player && _status.currentPhase != player && event.targets && event.targets.length;
                                 }
                                 return false;
@@ -5750,7 +5750,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (nme == 'juedou' && (player == trigger.targets[0] || trigger.targets[0].hp == 1)) return val;
                                         if (nme == 'chenhuodajie') return val;
                                         if (nme == 'lebu' && trigger.targets[0].countCards('h') > trigger.targets[0].hp) return val;
-                                        if (nme == 'sha' && trigger.targets[0].hp == 1 && !trigger.targets[0].num('h', 'shan')) return val;
+                                        if (nme == 'sha' && trigger.targets[0].hp == 1 && !trigger.targets[0].countCards('h', 'shan')) return val;
                                         if (nme == 'jiedao' && trigger.targets[0] == player) return val;
                                         if (nme == 'yihuajiemu' && trigger.targets[0] == player) return val;
                                         if (nme == 'shuiyanqijun' && trigger.targets.includes(player)) return val;
@@ -10336,7 +10336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     result.targets.sort(lib.sort.seat).forEach((i) => {
                                         i.moveCard();
-                                        if (i.num('h', { type: 'basic' })) {
+                                        if (i.countCards('h', { type: 'basic' })) {
                                             i.chooseToDiscard('h', true, { type: 'basic' }, '请弃置一张基本牌');
                                             i.draw(2);
                                         }
@@ -11025,7 +11025,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var target = event.target;
                                 var tosave = trigger.player;
                                 var att = get.attitude(target, tosave);
-                                var hastao = target.num('h', 'tao');
+                                var hastao = target.countCards('h', 'tao');
                                 target
                                     .chooseToDiscard(4, true, 'he')
                                     .set('ai', function (card) {
@@ -18157,7 +18157,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     result.targets[0].addTempSkill('矢志2', 'phaseAfter');
-                                    var x = player.num('h', (i) => i.name == 'sha');
+                                    var x = player.countCards('h', (i) => i.name == 'sha');
                                     player.draw(x);
                                     if (player.hp == 1) player.recover(x);
                                 }

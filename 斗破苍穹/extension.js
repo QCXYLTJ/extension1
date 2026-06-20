@@ -162,7 +162,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var next = trigger.target.chooseToRespond({ name: 'shan' });
                                             next.autochoose = lib.filter.autoRespondShan;
                                             next.ai = function (card) {
-                                                if (trigger.target.num('h', 'shan') > 1) {
+                                                if (trigger.target.countCards('h', 'shan') > 1) {
                                                     return ai.get.unuseful2(card);
                                                 }
                                                 return -1;

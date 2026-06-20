@@ -793,7 +793,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.hasMark('xzjj_mengxin')) {
                                     player.chooseControlList(['回复一点体力', '摸一张牌'], true).set('ai', function (event, player) {
                                         if (player.hp < 4) return 0;
-                                        if (player.hp + player.num('h', 'tao') > 3) return 1;
+                                        if (player.hp + player.countCards('h', 'tao') > 3) return 1;
                                         return 0;
                                     });
                                 } else {
@@ -4004,7 +4004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             filter(event, player) {
                                 if (event.player == player) return false;
-                                return player.num('h', { type: 'trick' });
+                                return player.countCards('h', { type: 'trick' });
                             },
                             check(event, player) {
                                 var att = 0;

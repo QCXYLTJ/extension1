@@ -878,7 +878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.chooseControl(event.list)
 									.set('prompt', '选择要执行的阶段')
 									.set('ai', function () {
-										if (player.countCards('h') <= player.hp || player.num('j', 'lebu')) {
+										if (player.countCards('h') <= player.hp || player.countCards('j', 'lebu')) {
 											if (event.list.includes('弃牌')) return '弃牌';
 											if (!event.list.includes('弃牌') && event.list.includes('判定')) return '判定';
 											if (!event.list.includes('弃牌') && !event.list.includes('判定') && event.list.includes('摸牌')) return '摸牌';
@@ -7209,7 +7209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:军神包/audio:2',
 							enable: 'phaseUse',
 							filter(event, player) {
-								return player.num('h', { type: 'equip' }) > 0;
+								return player.countCards('h', { type: 'equip' }) > 0;
 							},
 							filterCard(card) {
 								return get.type(card) == 'equip';

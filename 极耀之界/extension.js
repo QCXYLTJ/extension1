@@ -395,7 +395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 if (player.hasMark('tx_jl_kuangbao')) {
                                     player.chooseControlList(['移去一枚【暴怒】标记', '受到一点伤害'], true).set('ai', function (event, player) {
-                                        if (player.hp + player.num('h', 'tao') > 3) return 1;
+                                        if (player.hp + player.countCards('h', 'tao') > 3) return 1;
                                         return 0;
                                     });
                                 } else {

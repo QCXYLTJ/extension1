@@ -1446,7 +1446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 wuxie(target, card, player, viewer) {
-                                    if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
+                                    if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
                                         if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                                     }
                                 },
@@ -2953,7 +2953,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else {
                                     var num = Math.ceil(player.storage.E_shujufenpei / 2);
                                     if (num >= player.hp - 1) {
-                                        if (!player.num('h', 'tao') || !player.num('h', 'jiu')) return event.result();
+                                        if (!player.countCards('h', 'tao') || !player.countCards('h', 'jiu')) return event.result();
                                         if (num >= player.hp + 1) return event.result();
                                         return (event._result = event.skillai(lib.skill.E_shujufenpei.createDialog(player, target, true)));
                                     } else {
@@ -3290,14 +3290,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 isBeated: true,
                             },
                             filter(event, player) {
-                                return player.num('h', { suit: 'heart' }) > 0;
+                                return player.countCards('h', { suit: 'heart' }) > 0;
                             },
                             check() {
                                 return 1;
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    return player.num('h', { suit: 'heart' }) > 0;
+                                    return player.countCards('h', { suit: 'heart' }) > 0;
                                 },
                                 save: true,
                                 order: 4,
@@ -4218,11 +4218,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 }
                                 if (get.tag(event.card, 'respondSha')) {
-                                    if (player.num('h', { name: 'sha' }) == 0) {
+                                    if (player.countCards('h', { name: 'sha' }) == 0) {
                                         return true;
                                     }
                                 } else if (get.tag(event.card, 'respondShan')) {
-                                    if (player.num('h', { name: 'shan' }) == 0) {
+                                    if (player.countCards('h', { name: 'shan' }) == 0) {
                                         return true;
                                     }
                                 } else if (get.tag(event.card, 'damage')) {
@@ -7445,8 +7445,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var next = player.chooseToDiscard('是否弃置两张牌使' + get.translation(trigger.card) + '失效？', 'he', 2);
                                 next.ai = function (card) {
                                     if (ai.get.effect(player, trigger.card, trigger.player, player) < 0) {
-                                        if (get.tag(trigger.card, 'respondSha') && player.num('h', 'sha')) return 0;
-                                        if (get.tag(trigger.card, 'respondShan') && player.num('h', 'shan')) return 0;
+                                        if (get.tag(trigger.card, 'respondSha') && player.countCards('h', 'sha')) return 0;
+                                        if (get.tag(trigger.card, 'respondShan') && player.countCards('h', 'shan')) return 0;
                                         if (card.name == 'guohe') return 0;
                                         return 4 - get.value(card);
                                     }
@@ -7513,7 +7513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var keep = false;
                                         if (nh <= target.hp) {
                                             keep = true;
-                                        } else if (nh == target.hp + 1 && target.hp >= 2 && target.num('h', 'tao') <= 1) {
+                                        } else if (nh == target.hp + 1 && target.hp >= 2 && target.countCards('h', 'tao') <= 1) {
                                             keep = true;
                                         }
                                         var mode = get.mode();
@@ -7537,7 +7537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 var num = 0;
                                                 for (var i of game.players) {
                                                     if (i.identity == 'fan') {
-                                                        num += i.num('h', 'tao');
+                                                        num += i.countCards('h', 'tao');
                                                         if (num > 2) return 2;
                                                     }
                                                 }
@@ -8489,7 +8489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             if (i.canUse('sha', player) && i.countCards('h') > 1) {
@@ -10666,7 +10666,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = player.countCards('h');
                                         if (num < 4) return 0;
                                         if (player.isDamaged) {
-                                            if (num == 4 && (player.num('h', 'shan') || player.num('h', 'jiu') || player.num('h', 'tao'))) return -0.5;
+                                            if (num == 4 && (player.countCards('h', 'shan') || player.countCards('h', 'jiu') || player.countCards('h', 'tao'))) return -0.5;
                                         }
                                         return 0.9;
                                     },

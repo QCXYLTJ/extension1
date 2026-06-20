@@ -3526,7 +3526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							if (player.hasMark('baonu')) {
 								player.chooseControlList(['移去1枚【暴怒】标记', '受到1点伤害'], true).set('ai', function (event, player) {
 									if (player.storage.baonu > 6) return 0;
-									if (player.hp + player.num('h', 'tao') > 3) return 1;
+									if (player.hp + player.countCards('h', 'tao') > 3) return 1;
 									return 0;
 								});
 							} else {
@@ -7199,7 +7199,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								basic: {
 									equipValue(card, player) {
 										if (
-											player.num('h', {
+											player.countCards('h', {
 												type: 'basic',
 											}) < 1
 										)
@@ -7231,7 +7231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (player != game.me) {
 									if (player.hp <= 1)
 										return (
-											player.num('h', {
+											player.countCards('h', {
 												color: 'red',
 											}) > 1
 										);
@@ -7301,7 +7301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 9.5,
 								basic: {
 									equipValue(card, player) {
-										if (player.num('h', 'qishaxiujian')) return 6;
+										if (player.countCards('h', 'qishaxiujian')) return 6;
 										return 1;
 									},
 								},
@@ -7429,8 +7429,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											var player = _status.event.target;
 											if (player.countCards('he') < 2 || ((player.hasSkill('kuangfeng2') || player.hasSkill('tengjia2')) && !player.hasSkillTag('nofire') && !player.hasSkillTag('nodamage'))) return '获得你两张牌';
 											if (
-												player.num('h', 'tao') ||
-												player.num('h', 'jiu') ||
+												player.countCards('h', 'tao') ||
+												player.countCards('h', 'jiu') ||
 												(player.countCards('he', {
 													color: 'red',
 												}) &&
@@ -7441,7 +7441,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													player.hasSkill('relonghun'))
 											)
 												return '对你造成伤害';
-											if (player.hp == 1 && (!player.num('h', 'tao') || !player.num('h', 'jiu'))) return '获得你两张牌';
+											if (player.hp == 1 && (!player.countCards('h', 'tao') || !player.countCards('h', 'jiu'))) return '获得你两张牌';
 											if (player.countCards('h') > 3) return '获得你两张牌';
 											if (player.hasSkillTag('nofire')) return '对你造成伤害';
 											if (player.hasSkill('jijiu')) return '对你造成伤害';
@@ -7546,7 +7546,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (target.countCards('he') == 0) return 0;
 										if (target.countCards('he') == 1) return -0.5;
 										if (player.hp <= 1) return -2;
-										if (target.num('h', 'sha') == 0 && Math.random() < 0.5) return 1;
+										if (target.countCards('h', 'sha') == 0 && Math.random() < 0.5) return 1;
 										return num - 1;
 									},
 								},
@@ -7639,7 +7639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var keep = false;
 										if (nh <= target.hp) {
 											keep = true;
-										} else if (nh == target.hp + 1 && target.hp >= 2 && target.num('h', 'tao') <= 1) {
+										} else if (nh == target.hp + 1 && target.hp >= 2 && target.countCards('h', 'tao') <= 1) {
 											keep = true;
 										}
 										var mode = get.mode();
@@ -7663,7 +7663,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												var num = 0;
 												for (var i of game.players) {
 													if (i.identity == 'fan') {
-														num += i.num('h', 'tao');
+														num += i.countCards('h', 'tao');
 														if (num > 2) return 2;
 													}
 												}

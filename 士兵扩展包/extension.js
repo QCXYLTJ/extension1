@@ -3055,7 +3055,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 								result: {
 									target(player, target) {
-										if (target.num('j', 'lebu')) return 1;
+										if (target.countCards('j', 'lebu')) return 1;
 										return Math.max(1, 2 - target.countCards('h') / 10);
 									},
 								},
@@ -13600,7 +13600,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								trigger.player.gain([game.createCard('sha'), game.createCard('sha')], 'draw');
 								player.gain([game.createCard('sha'), game.createCard('sha')], 'draw');
-								if (player.num('h', { type: 'basic' }) == trigger.player.num('h', { type: 'basic' })) {
+								if (player.countCards('h', { type: 'basic' }) == trigger.player.countCards('h', { type: 'basic' })) {
 									trigger.player.recover();
 									trigger.player.draw(2);
 									player.recover();
@@ -13618,7 +13618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								trigger.player.gain([game.createCard(list.randomGet()), game.createCard(list.randomGet())], 'draw');
 								player.gain([game.createCard(list.randomGet()), game.createCard(list.randomGet())], 'draw');
-								if (player.num('h', { type: 'trick' }) == trigger.player.num('h', { type: 'trick' })) {
+								if (player.countCards('h', { type: 'trick' }) == trigger.player.countCards('h', { type: 'trick' })) {
 									trigger.player.recover(); //QQQ
 									trigger.player.draw(2);
 									player.recover();
@@ -13943,7 +13943,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:士兵扩展包/audio:2',
 							trigger: { player: 'phaseBegin' },
 							content() {
-								var num = 1 + player.num('h', (card) => get.tag(card, 'damage'));
+								var num = 1 + player.countCards('h', (card) => get.tag(card, 'damage'));
 								player.draw(num);
 								var list = game.filterPlayer(function (current) {
 									return current.isEnemiesOf(player);
@@ -14825,8 +14825,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return current.isEnemiesOf(player);
 								});
 								list.sort(lib.sort.seat);
-								if (player.num('h', (c) => get.tag(c, 'damage'))) {
-									for (var i = 0; i < player.num('h', (c) => get.tag(c, 'damage')); i++) {
+								if (player.countCards('h', (c) => get.tag(c, 'damage'))) {
+									for (var i = 0; i < player.countCards('h', (c) => get.tag(c, 'damage')); i++) {
 										player.useCard({ name: 'huoshaolianying' }, list, false);
 									}
 								} else {
@@ -14981,7 +14981,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								trigger.target.draw(2);
-								if (trigger.target.num('h', { type: 'basic' })) trigger.player.chooseToDiscard(2, true, 'he');
+								if (trigger.target.countCards('h', { type: 'basic' })) trigger.player.chooseToDiscard(2, true, 'he');
 								if (trigger.target.num('he', (c) => c.name == 'sha' || c.number <= 9)) trigger.cancel();
 							},
 							ai: {
@@ -15316,7 +15316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								if (trigger.source) {
 									var n = 1;
-									if (trigger.source.num('h', (c) => get.tag(c, 'damage')) < player.num('h', (c) => get.tag(c, 'damage'))) n++;
+									if (trigger.source.countCards('h', (c) => get.tag(c, 'damage')) < player.countCards('h', (c) => get.tag(c, 'damage'))) n++;
 									trigger.source.damage(n);
 								}
 								player.chooseTarget(get.prompt('铜甲士阵')).set('ai', function (target) {
@@ -15541,7 +15541,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.useCard({ name: 'sha' }, list, false);
 								}
 								('step 1');
-								if (player.num('h', { color: 'black' }) > player.num('h', { color: 'red' })) player.changeHuajia();
+								if (player.countCards('h', { color: 'black' }) > player.countCards('h', { color: 'red' })) player.changeHuajia();
 								else player.gain(game.createCard('jiu'), 'draw');
 							},
 						},
@@ -16250,7 +16250,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else {
 										result.targets[0].turnOver();
 										result.targets[0].chooseToDiscard(true, '请弃置一张基本牌', 'he', (c) => get.type(c) == 'basic');
-										player.draw(4 - result.targets[0].num('h', (c) => get.type(c) == 'basic'));
+										player.draw(4 - result.targets[0].countCards('h', (c) => get.type(c) == 'basic'));
 									}
 								}
 							},

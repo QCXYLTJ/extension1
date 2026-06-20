@@ -12060,7 +12060,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     if (player.hasMark('baonu')) {
                         player.chooseControlList(['移去2枚【暴怒】标记', '失去2点体力'], true).set('ai', function (event, player) {
                             if (player.storage.baonu > 6) return 0;
-                            if (player.hp + player.num('h', 'tao') > 3) return 1;
+                            if (player.hp + player.countCards('h', 'tao') > 3) return 1;
                             return 0;
                         });
                     } else {

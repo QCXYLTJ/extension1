@@ -3816,7 +3816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         涤罪之枪: {
                             mod: {
                                 maxHandcard(player, num) {
-                                    return num + player.num('h', 'sha');
+                                    return num + player.countCards('h', 'sha');
                                 },
                             },
                             enable: 'phaseUse',
@@ -3860,7 +3860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     forced: true,
                                     filter(event, player) {
                                         if (event.player == player) return false;
-                                        if (player.num('h', 'sha') == 0) return false;
+                                        if (player.countCards('h', 'sha') == 0) return false;
                                         return player.hasCard(function (card) {
                                             return card.number >= event.card.number && card.name == 'sha';
                                         });

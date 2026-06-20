@@ -309,7 +309,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				lib.skill._chenhuodajie.filter = function (event, player) {
 					if (event.player == player) return false;
 					if (!event.player.countCards('he')) return false;
-					if (player.num('h', 'chenhuodajie')) return true;
+					if (player.countCards('h', 'chenhuodajie')) return true;
 					var mn = player.getEquips(5);
 					if (mn && mn.name == 'muniu' && mn.cards && mn.cards.length) {
 						for (var i of mn.cards) {
@@ -413,7 +413,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				},
 				check(event, player) {
 					var att = get.attitude(player, event.player);
-					if (att > 2 && !event.player.num('h', 'tao') && !event.player.num('h', 'jiu')) return true;
+					if (att > 2 && !event.player.countCards('h', 'tao') && !event.player.countCards('h', 'jiu')) return true;
 					return false;
 				},
 				filter(event, player) {
@@ -464,8 +464,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				content() {
 					'step 0';
 					player.chooseControl('basic', 'equip', 'trick', 'delay').ai = function (event) {
-						if (player.num('h', { type: 'basic' }) < 2) return 'basic';
-						if (!player.num('h', { type: 'trick' })) return 'trick';
+						if (player.countCards('h', { type: 'basic' }) < 2) return 'basic';
+						if (!player.countCards('h', { type: 'trick' })) return 'trick';
 						if (Math.random() > 0.5) return 'delay';
 						return 'equip';
 					};
@@ -1918,7 +1918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				content() {
 					'step 0';
 					player.chooseControl('抵消伤害', '继续结算', ui.create.dialog('请选择一项', 'hidden')).ai = function () {
-						if (player.num('h', { name: 'shan' }) >= 1 && get.type(event.card) == 'basic') return '继续结算';
+						if (player.countCards('h', { name: 'shan' }) >= 1 && get.type(event.card) == 'basic') return '继续结算';
 						return '抵消伤害';
 					};
 					('step 1');
@@ -2032,7 +2032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				content() {
 					'step 0';
 					player.chooseControl('red', 'black', ui.create.dialog('请选择一种颜色', 'hidden')).ai = function (event) {
-						if (target.num('h', { color: 'red' }) > target.num('h', { color: 'black' })) return 'red';
+						if (target.countCards('h', { color: 'red' }) > target.countCards('h', { color: 'black' })) return 'red';
 						return 'black';
 					};
 					('step 1');
@@ -2620,7 +2620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			lib.skill.SE_xijian = {
 				trigger: { global: 'phaseBegin' },
 				filter(event, player) {
-					if (!player.num('h', { suit: 'diamond' })) return false;
+					if (!player.countCards('h', { suit: 'diamond' })) return false;
 					return event.player != player && event.player.countCards('h') > 0 && get.distance(player, event.player, 'attack') > 1;
 				},
 				check(event, player) {
@@ -2652,7 +2652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			lib.skill.SE_xijian2 = {
 				trigger: { global: 'phaseEnd' },
 				filter(event, player) {
-					if (!player.num('h', { suit: 'club' })) return false;
+					if (!player.countCards('h', { suit: 'club' })) return false;
 					return event.player != player && event.player.countCards('h') > 0 && get.distance(player, event.player, 'attack') <= 1;
 				},
 				check(event, player) {
@@ -2689,7 +2689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					return false;
 				},
 				filter(event, player) {
-					if (!player.num('h', { suit: 'heart' })) return false;
+					if (!player.countCards('h', { suit: 'heart' })) return false;
 					return true;
 				},
 				forced: true,
@@ -2720,7 +2720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					return false;
 				},
 				filter(event, player) {
-					if (!player.num('h', { suit: 'spade' })) return false;
+					if (!player.countCards('h', { suit: 'spade' })) return false;
 					return true;
 				},
 				forced: true,
@@ -2855,7 +2855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					}
 					('step 2');
 					var target = event.target;
-					var num = target.num('h', { type: 'trick' });
+					var num = target.countCards('h', { type: 'trick' });
 					var cards = targe.getCards('h', { type: 'trick' });
 					if (num > 0) {
 						target.lose(cards)._triggered = null;
@@ -2965,7 +2965,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					}
 					('step 4');
 					var target = event.target;
-					var num = target.num('h', { type: 'trick' });
+					var num = target.countCards('h', { type: 'trick' });
 					var cards = targe.getCards('h', { type: 'trick' });
 					if (num > 0) {
 						target.lose(cards)._triggered = null;
@@ -3040,10 +3040,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						var trigger = event.parent.parent;
 						var dialog = ui.create.dialog('请选择需要声明的1张基本牌', [list, 'vcard']);
 						player.chooseButton(dialog, function (button) {
-							if (!player.getStat().card.sha && player.num('h', { name: 'sha' })) return button.link[2] == 'tianxianjiu' ? 1 : -1;
-							if (player.hp == 1 && !player.num('h', { name: 'tao' })) return button.link[2] == 'pantao' ? 1 : -1;
-							if (!player.num('h', { name: 'jiu' }) && player.num('h', { name: 'sha' })) return button.link[2] == 'jiu' ? 1.5 : -1.5;
-							if (!player.num('h', { name: 'sha' }) && !player.getStat().card.sha) return button.link[2] == 'shihuawuqi' ? 1 : -1;
+							if (!player.getStat().card.sha && player.countCards('h', { name: 'sha' })) return button.link[2] == 'tianxianjiu' ? 1 : -1;
+							if (player.hp == 1 && !player.countCards('h', { name: 'tao' })) return button.link[2] == 'pantao' ? 1 : -1;
+							if (!player.countCards('h', { name: 'jiu' }) && player.countCards('h', { name: 'sha' })) return button.link[2] == 'jiu' ? 1.5 : -1.5;
+							if (!player.countCards('h', { name: 'sha' }) && !player.getStat().card.sha) return button.link[2] == 'shihuawuqi' ? 1 : -1;
 							if (player.countCards('h') > player.hp) return button.link[2] == 'jihuocard' ? 1 : -1;
 							if (player.countCards('h') < 2) return button.link[2] == 'xingjiegoutong' ? 1 : -1;
 							return button.link[2] == 'xiangyuye';
@@ -3081,7 +3081,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					}
 					('step 4');
 					var target = event.target;
-					var num = target.num('h', { type: 'basic' });
+					var num = target.countCards('h', { type: 'basic' });
 					var cards = targe.getCards('h', { type: 'basic' });
 					if (num > 0) {
 						target.lose(cards)._triggered = null;
@@ -3210,7 +3210,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					('step 2');
 					var target = event.target;
 					if (trigger.filterCard({ name: 'sha' }, player)) {
-						var num = target.num('h', { type: 'basic' });
+						var num = target.countCards('h', { type: 'basic' });
 						var cards = targe.getCards('h', { type: 'basic' });
 						if (num > 0) {
 							target.lose(cards)._triggered = null;
@@ -3223,7 +3223,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						event.goto(3);
 					}
 					if (trigger.filterCard({ name: 'shan' }, player)) {
-						var num = target.num('h', { type: 'basic' });
+						var num = target.countCards('h', { type: 'basic' });
 						var cards = targe.getCards('h', { type: 'basic' });
 						if (num > 0) {
 							target.lose(cards)._triggered = null;
@@ -3276,7 +3276,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					}
 					('step 2');
 					var target = event.target;
-					var num = target.num('h', { type: 'trick' });
+					var num = target.countCards('h', { type: 'trick' });
 					var cards = targe.getCards('h', { type: 'trick' });
 					if (num > 0) {
 						target.lose(cards)._triggered = null;
@@ -4551,7 +4551,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						return player != target && target.countCards('h');
 					}, '是否发动【邪眼】?').ai = function (target) {
 						var att = get.attitude(player, target) + 1;
-						if (target.num('h', 'shan') || target.num('h', 'sha')) {
+						if (target.countCards('h', 'shan') || target.countCards('h', 'sha')) {
 							att * 10;
 						}
 						return -att;
@@ -4904,7 +4904,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							var num = player.countCards('h');
 							if (num < 4) return 0;
 							if (player.isDamaged) {
-								if (num == 4 && (player.num('h', 'shan') || player.num('h', 'jiu') || player.num('h', 'tao'))) return -0.5;
+								if (num == 4 && (player.countCards('h', 'shan') || player.countCards('h', 'jiu') || player.countCards('h', 'tao'))) return -0.5;
 							}
 							return 0.9;
 						},
@@ -6736,7 +6736,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				marktext: '存',
 				check(event, player) {
 					var att = get.attitude(player, event.player);
-					if ((player.num('h', 'tao') || player.num('h', 'shan') || player.num('h', 'jiu')) && player.hp <= 1) return false;
+					if ((player.countCards('h', 'tao') || player.countCards('h', 'shan') || player.countCards('h', 'jiu')) && player.hp <= 1) return false;
 					var num = Math.abs(player.countCards('hej') - event.player.countCards('hej'));
 					if (event.player.identity && player.identity && event.player.identity == player.identity && att > 0) {
 						if (player.countCards('j') > 0 && event.player.countCards('j') > 0) return true;
@@ -7018,7 +7018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					} else {
 						var num = Math.ceil(player.storage.SE_shujufenpei / 2);
 						if (num >= player.hp - 1) {
-							if (!player.num('h', 'tao') || !player.num('h', 'jiu')) return event.result();
+							if (!player.countCards('h', 'tao') || !player.countCards('h', 'jiu')) return event.result();
 							if (num >= player.hp + 1) return event.result();
 							return (event._result = event.skillai(lib.skill.SE_shujufenpei.createDialog(player, target, true)));
 						} else {
@@ -7422,8 +7422,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				trigger: { global: 'phaseEnd' },
 				forced: true,
 				filter(event, player) {
-					if (player.num('h', { type: 'trick' })) return false;
-					if (player.num('h', { type: 'delay' })) return false;
+					if (player.countCards('h', { type: 'trick' })) return false;
+					if (player.countCards('h', { type: 'delay' })) return false;
 					return true;
 				},
 				content() {
@@ -7472,7 +7472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					effect: {
 						target(card, player, target) {
 							if (get.type(card) == 'trick') {
-								if (player.hp == 1 && !player.num('h', 'tao')) {
+								if (player.hp == 1 && !player.countCards('h', 'tao')) {
 									return [0, 1, 0, -10];
 								}
 								if (player.hp == player.maxHp) {
@@ -7507,7 +7507,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					effect: {
 						target(card, player, target) {
 							if (get.type(card) == 'delay') {
-								if (player.hp == 1 && !player.num('h', 'tao')) {
+								if (player.hp == 1 && !player.countCards('h', 'tao')) {
 									return [0, 1, 0, -10];
 								}
 								if (player.hp == player.maxHp) {
@@ -7563,7 +7563,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				_priority: 5,
 				forced: true,
 				filter(event, player) {
-					return player.num('h', { type: 'delay' }) || player.num('h', { type: 'trick' });
+					return player.countCards('h', { type: 'delay' }) || player.countCards('h', { type: 'trick' });
 				},
 				content() {
 					'step 0';
@@ -7576,7 +7576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							cards1.push(cards0[i]);
 						}
 					}
-					var num = player.num('h', { type: 'trick' }) + player.num('h', { type: 'delay' });
+					var num = player.countCards('h', { type: 'trick' }) + player.countCards('h', { type: 'delay' });
 					if (num > 0 && cards1.length) {
 						player.recover(num);
 						for (var i of game.players) {
@@ -8575,8 +8575,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					target.chooseControl('获得你的牌', '流失体力', ui.create.dialog('请选择一项', 'hidden')).ai = function () {
 						if (target.countCards('he') < 2) return '获得你的牌';
-						if (target.num('h', 'tao') || target.num('h', 'jiu')) return '流失体力';
-						if (target.hp == 1 && (!target.num('h', 'tao') || !target.num('h', 'jiu'))) return '获得你的牌';
+						if (target.countCards('h', 'tao') || target.countCards('h', 'jiu')) return '流失体力';
+						if (target.hp == 1 && (!target.countCards('h', 'tao') || !target.countCards('h', 'jiu'))) return '获得你的牌';
 						if (target.hp == target.maxHp && get.attitude(target, player) < 0 && player.hp == 1) return '流失体力';
 						if (target.hp < target.maxHp && get.attitude(target, player) < 0) return '流失体力';
 						return '获得你的牌';

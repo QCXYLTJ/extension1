@@ -1081,7 +1081,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var target = event.target;
                                 var tosave = trigger.player;
                                 var att = get.attitude(target, tosave);
-                                var hastao = target.num('h', 'tao');
+                                var hastao = target.countCards('h', 'tao');
                                 target
                                     .chooseToDiscard(4, true, 'he')
                                     .set('ai', function (card) {

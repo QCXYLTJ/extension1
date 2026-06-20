@@ -3939,7 +3939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							group: ['zzhongzi2'],
 							enable: 'chooseToUse',
 							filter(event, player) {
-								return player.num('h', { type: 'basic' });
+								return player.countCards('h', { type: 'basic' });
 							},
 							chooseButton: {
 								dialog() {
@@ -3967,8 +3967,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									}
 									if (player.isDamaged()) return button.link[2] == 'tao' ? 1 : -1;
-									if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
-									if (shaTarget && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+									if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
+									if (shaTarget && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
 									return button.link[2] == 'sha' ? 1 : -1;
 								},
 								backup(links, player) {
@@ -4003,7 +4003,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								name: 'shan',
 							},
 							viewAsFilter(player) {
-								if (!player.num('h', { type: 'basic' })) return false;
+								if (!player.countCards('h', { type: 'basic' })) return false;
 							},
 							prompt: '将一张基本牌当闪打出',
 							check() {
@@ -4012,7 +4012,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							ai: {
 								respondShan: true,
 								skillTagFilter(player) {
-									if (!player.num('h', { type: 'basic' })) return false;
+									if (!player.countCards('h', { type: 'basic' })) return false;
 								},
 								result: {
 									target(card, player, target, current) {
@@ -4470,9 +4470,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var nh = player.countCards('h');
 								var nm = 1;
 								var check = true;
-								if (player.num('h', 'tao')) {
+								if (player.countCards('h', 'tao')) {
 									check = false;
-								} else if (player.num('h', 'shan') && player.num('h', 'wuxie')) {
+								} else if (player.countCards('h', 'shan') && player.countCards('h', 'wuxie')) {
 									check = false;
 								}
 								player.chooseTarget(get.prompt('kuixin'), function (card, player, target) {
@@ -10098,7 +10098,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							nobracket: true,
 							trigger: { player: 'phaseUseBegin' },
 							filter(event, player) {
-								return player.num('h', (card) => {
+								return player.countCards('h', (card) => {
 									return get.tag(card, 'damage');
 								});
 							},

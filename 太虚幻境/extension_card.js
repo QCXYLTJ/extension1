@@ -880,7 +880,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 },
                 content() {
                     target.showHandcards();
-                    if (target.num('h', { name: 'shan' }) <= 0) {
+                    if (target.countCards('h', { name: 'shan' }) <= 0) {
                         target.draw(3);
                     }
                 },
@@ -889,13 +889,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         order: 7.1,
                         useful: 1,
                         value(event, player) {
-                            if (!player.num('h', { name: 'shan' })) return 10;
+                            if (!player.countCards('h', { name: 'shan' })) return 10;
                             return 2.9;
                         },
                     },
                     result: {
                         target(player) {
-                            if (!player.num('h', { name: 'shan' })) return 1;
+                            if (!player.countCards('h', { name: 'shan' })) return 1;
                             return 0;
                         },
                     },
@@ -2508,7 +2508,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 audio: true,
                 forced: true,
                 filter(event, player) {
-                    return event.card.name == 'sha' && get.color(event.card) == 'red' && !event.parent.player.num('s', 'unequip');
+                    return event.card.name == 'sha' && get.color(event.card) == 'red' && !event.parent.player.countCards('s', 'unequip');
                 },
                 content() {
                     trigger.untrigger();
@@ -2519,7 +2519,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         target(card, player) {
                             var equip1 = player.getEquips(1);
                             if (equip1 && equip1.name == 'qinggang') return 1;
-                            if (player.num('s', 'unequip')) return;
+                            if (player.countCards('s', 'unequip')) return;
                             if (card.name == 'sha' && get.color(card) == 'red') return 'zerotarget';
                         },
                     },
@@ -2577,7 +2577,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 audio: 'ext:太虚幻境/audio/card:1',
                 filter(event, player) {
                     if (event.num <= 1) return false;
-                    if (event.parent.player.num('s', 'unequip')) return false;
+                    if (event.parent.player.countCards('s', 'unequip')) return false;
                     return true;
                 },
                 _priority: -10,
@@ -2592,7 +2592,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 filterCard: { name: 'shan' },
                 viewAs: { name: 'sha', nature: 'thunder' },
                 viewAsFilter(player) {
-                    if (!player.num('h', 'shan')) return false;
+                    if (!player.countCards('h', 'shan')) return false;
                 },
                 prompt: '将一张闪当雷杀使用或打出',
                 check() {
@@ -2606,7 +2606,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     },
                     respondSha: true,
                     skillTagFilter(player) {
-                        if (!player.num('h', 'shan')) return false;
+                        if (!player.countCards('h', 'shan')) return false;
                     },
                     order: 4,
                     useful: -1,
@@ -3002,7 +3002,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             txbaihuaqun: {
                 trigger: { player: 'damageBefore' },
                 filter(event, player) {
-                    if (event.source && event.source.num('s', 'unequip')) return;
+                    if (event.source && event.source.countCards('s', 'unequip')) return;
                     if (event.player.hp == 1) return true;
                 },
                 forced: true,

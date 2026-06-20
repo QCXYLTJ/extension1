@@ -4869,7 +4869,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   .chooseControl('选项一', '选项二', function () {
                     if (
                       player.hp == 1 &&
-                      !player.num('h', function (card) {
+                      !player.countCards('h', function (card) {
                         return get.tag(card, 'recover');
                       })
                     ) {
@@ -5118,10 +5118,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                       if (lose > recover && lose > 0) return type == 'trick' ? 1 : -1;
                       if (lose < recover && recover > 0) return type == 'trick' ? 1 : -1;
                       if (player.isDamaged()) return type == 'basic' ? 1 : -1;
-                      if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return type == 'basic' ? 1 : -1;
+                      if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return type == 'basic' ? 1 : -1;
                       if (equipTarget) return type == 'equip' ? 1 : -1;
                       if (shunTarget || chaiTarget) return type == 'trick' ? 1 : -1;
-                      if (shaTarget && !player.num('h', 'sha')) return type == 'basic' ? 1 : -1;
+                      if (shaTarget && !player.countCards('h', 'sha')) return type == 'basic' ? 1 : -1;
                       return 0;
                     };
                     ('step 1');
@@ -5183,8 +5183,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                           if (shunTarget) return button.link[2] == 'shunshou' ? 1 : -1;
                           if (chaiTarget) return button.link[2] == 'guohe' ? 1 : -1;
                           if (player.isDamaged()) return button.link[2] == 'tao' ? 1 : -1;
-                          if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
-                          if (shaTarget && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+                          if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
+                          if (shaTarget && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
                           return button.link[2] == 'sha' || button.link[2] == 'wuzhong' ? 1 : -1;
                         };
                       } else {
@@ -5277,12 +5277,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                       }
                       if (player.isDamaged()) return type == 'basic' ? 2 : -1;
-                      if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return type == 'basic' ? 1 : -1;
+                      if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return type == 'basic' ? 1 : -1;
                       if (lose > recover && lose > 0) return type == 'trick' ? 1 : -1;
                       if (lose < recover && recover > 0) return type == 'trick' ? 1 : -1;
                       if (equipTarget) return type == 'equip' ? 1 : -1;
                       if (shunTarget || chaiTarget) return type == 'trick' ? 1 : -1;
-                      if (shaTarget && !player.num('h', 'sha')) return type == 'basic' ? 1 : -1;
+                      if (shaTarget && !player.countCards('h', 'sha')) return type == 'basic' ? 1 : -1;
                       return 0;
                     },
                     backup(links, player) {
@@ -5401,8 +5401,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                               }
                               if (player.isDamaged()) return button.link[2] == 'tao' ? 1 : -1;
-                              if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
-                              if (shaTarget && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+                              if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
+                              if (shaTarget && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
                               return button.link[2] == 'sha' ? 1 : -1;
                             },
                             backup(links, player) {
@@ -5674,12 +5674,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 } else {
                   player.chooseControl('替换', 'cancel', dialog).ai = function () {
                     if (_status.currentPhase !== player) {
-                      if (get.type(cards[0]) == 'basic' && player.num('h', { type: 'basic' }) < player.countCards('h') / 2) return '替换';
+                      if (get.type(cards[0]) == 'basic' && player.countCards('h', { type: 'basic' }) < player.countCards('h') / 2) return '替换';
                       if (get.type(cards[0]) != 'basic') return '替换';
                     }
                     if (_status.currentPhase == player) {
                       if (get.type(cards[0]) == 'trick' && player.hp <= player.maxHp / 2) return '替换';
-                      if (get.type(cards[0]) == 'basic' && player.hp > player.maxHp / 2 && player.num('h', { type: 'trick' })) return '替换';
+                      if (get.type(cards[0]) == 'basic' && player.hp > player.maxHp / 2 && player.countCards('h', { type: 'trick' })) return '替换';
                       if (get.type(cards[0]) == 'equip' && player.countCards('e') < 4) return '替换';
                     }
                     if (get.type(cards[0]) == 'basic') player.storage.pd = 'basic';
@@ -5694,10 +5694,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 } else if (result.control == '替换') {
                   player.chooseCard('选择一张牌置于牌堆顶', 'h', true).ai = function (card) {
                     if (_status.currentPhase == player) {
-                      if (player.hp <= player.maxHp / 2 && player.num('h', { type: 'basic' })) {
+                      if (player.hp <= player.maxHp / 2 && player.countCards('h', { type: 'basic' })) {
                         return get.type(card) == 'basic';
                       }
-                      if (player.hp > player.maxHp / 2 && player.num('h', { type: 'trick' })) {
+                      if (player.hp > player.maxHp / 2 && player.countCards('h', { type: 'trick' })) {
                         return get.type(card) == 'trick';
                       }
                     } else {
@@ -5788,8 +5788,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   if (lose > recover && lose > 0 && player.storage.hj_jl_tianji_top == 'trick') return button.link[2] == 'wanjian' ? 1 : -1;
                   if (lose < recover && recover > 0 && player.storage.hj_jl_tianji_top == 'trick') return button.link[2] == 'taoyuan' ? 1 : -1;
                   if (player.storage.hj_jl_tianji_top == 'basic' && player.isDamaged()) return button.link[2] == 'tao' ? 1 : -1;
-                  if (player.storage.hj_jl_tianji_top == 'basic' && player.num('h', 'sha')) return button.link[2] == 'jiu' ? 1 : -1;
-                  if (player.storage.hj_jl_tianji_top == 'basic' && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+                  if (player.storage.hj_jl_tianji_top == 'basic' && player.countCards('h', 'sha')) return button.link[2] == 'jiu' ? 1 : -1;
+                  if (player.storage.hj_jl_tianji_top == 'basic' && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
                   if (player.storage.hj_jl_tianji_top == 'trick') return button.link[2] == 'wuzhong' ? 1 : -1;
                   if (game.players.length < 4 && player.storage.hj_jl_tianji_top == 'trick') return button.link[2] == 'shunshou' ? 1 : -1;
                   return button.link[2] == 'guohe' ? 1 : -1;
@@ -5848,7 +5848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               check(card, event) {
                 var player = _status.event.player;
                 if (player.storage.hj_jl_tianji_top == 'basic') return 1;
-                if (player.num('h', 'tao')) return 0;
+                if (player.countCards('h', 'tao')) return 0;
                 return player.hp - 1;
               },
               onuse(result, player) {
@@ -5954,7 +5954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               check(card, event) {
                 var player = _status.event.player;
                 if (player.storage.hj_jl_tianji_top == 'basic') return 1;
-                if (player.num('h', 'sha')) return 0;
+                if (player.countCards('h', 'sha')) return 0;
                 return 1;
               },
               viewAs: {
@@ -6104,7 +6104,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   return 0;
                 }
-                if (player.hp <= 2 && !player.num('h', 'tao')) return 0;
+                if (player.hp <= 2 && !player.countCards('h', 'tao')) return 0;
                 return 1;
               },
               selectCard: -1,
@@ -6148,7 +6148,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               check(card, event) {
                 var player = _status.event.player;
                 if (player.storage.pd == 'basic') return 1;
-                if (player.num('h', 'shan')) return 0;
+                if (player.countCards('h', 'shan')) return 0;
                 return 1;
               },
               viewAs: {
@@ -7662,7 +7662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               enable: ['phaseUse', 'chooseToRespond', 'chooseToUse'],
               filter(event, player) {
-                return player.num('h', { name: ['sha', 'tao'] }) > 0;
+                return player.countCards('h', { name: ['sha', 'tao'] }) > 0;
               },
               filterCard: {
                 name: ['sha', 'tao'],
@@ -7902,7 +7902,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 'step 0';
                 player.showHandcards();
                 ('step 1');
-                if (!player.num('h', 'sha')) {
+                if (!player.countCards('h', 'sha')) {
                   player.addTempSkill('hj_jl_shayi_success', 'phaseAfter');
                 } else {
                   player.draw();
@@ -9248,7 +9248,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               content() {
                 'step 0';
                 player.chooseCard('是否对' + get.translation(trigger.player) + '发动【合谋】?').ai = function (card) {
-                  if (get.attitude(player, trigger.player) > 0 && !trigger.player.num('j', 'lebu') && trigger.player.countCards('h') > 2) return 4 - get.value(card);
+                  if (get.attitude(player, trigger.player) > 0 && !trigger.player.countCards('j', 'lebu') && trigger.player.countCards('h') > 2) return 4 - get.value(card);
                   return false;
                 };
                 ('step 1');
@@ -9280,13 +9280,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   marktext: '♥️️︎',
                   mark: true,
                   filter(event, player) {
-                    return player.num('h', { suit: 'heart' });
+                    return player.countCards('h', { suit: 'heart' });
                   },
                   viewAs: {
                     name: 'shunshou',
                   },
                   viewAsFilter(player) {
-                    if (!player.num('h', { suit: 'heart' })) return false;
+                    if (!player.countCards('h', { suit: 'heart' })) return false;
                   },
                   prompt: '将一张♥️️︎牌当顺手牵羊使用',
                   filterCard(card, player) {
@@ -9374,7 +9374,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return card.suit == 'diamond';
                   },
                   viewAsFilter(player) {
-                    if (!player.num('h', { suit: 'diamond' })) return false;
+                    if (!player.countCards('h', { suit: 'diamond' })) return false;
                   },
                   prompt: '将一张♦️️︎牌当火攻使用',
                   check(card) {
@@ -9451,7 +9451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return card.suit == 'club';
                   },
                   viewAsFilter(player) {
-                    if (!player.num('h', { suit: 'club' })) return false;
+                    if (!player.countCards('h', { suit: 'club' })) return false;
                   },
                   prompt: '将一张♣️️︎牌当借刀杀人使用',
                   check(card) {
@@ -10477,7 +10477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 name: 'shunshou',
               },
               viewAsFilter(player) {
-                if (!player.num('h', { color: 'black' })) return false;
+                if (!player.countCards('h', { color: 'black' })) return false;
               },
               prompt: '将一张黑色手牌当顺手牵羊使用',
               check(card) {
@@ -11272,7 +11272,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 target.draw(num);
                 target.showHandcards();
                 ('step 1');
-                var num = target.num('h', function (card) {
+                var num = target.countCards('h', function (card) {
                   return get.type(card) != 'basic';
                 });
                 target.discard(
@@ -11552,7 +11552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   if (save) return 0;
                   if (!save) {
                     if (event.player.hasSkill('jiushi') && !event.player.isTurnedOver()) return 0;
-                    if (player.num('h', 'tao') && event.player.countCards('h') >= 2) return 0;
+                    if (player.countCards('h', 'tao') && event.player.countCards('h') >= 2) return 0;
                     return 1;
                   }
                 }
@@ -11599,7 +11599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 target.draw(num);
                 target.showHandcards();
                 ('step 1');
-                var num = target.num('h', function (card) {
+                var num = target.countCards('h', function (card) {
                   return get.type(card) != 'basic';
                 });
                 if (num == 0) {
@@ -14154,7 +14154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 1');
                 event.card = event.cards.shift();
                 player.chooseToDiscard('是否发动【冲阵】替换弃牌堆中的' + get.translation(event.card) + '?', 'he', (card) => card.name != 'shan').ai = function (card) {
-                  if (player.num('h', { name: 'shan' }) >= 2) return false;
+                  if (player.countCards('h', { name: 'shan' }) >= 2) return false;
                   return 6 - get.value(card);
                 };
                 ('step 2');

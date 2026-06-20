@@ -29112,7 +29112,7 @@ player.chooseToDiscard('he',2,'是否弃置两张牌对'+get.translation(trigger
                     if (player.countCards('he') > 0) {
                         player.chooseControlList(['弃置一张牌', '失去一点体力'], true).set('ai', function (event, player) {
                             //  if(player.countCards('he')>0) return 0;
-                            if (player.hp + player.num('h', 'tao') > 4) return 1;
+                            if (player.hp + player.countCards('h', 'tao') > 4) return 1;
                             return 0;
                         });
                     } else {

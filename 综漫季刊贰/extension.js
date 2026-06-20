@@ -1110,8 +1110,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         zmyuwu: {
                             mod: {
                                 maxHandcard(player, num) {
-                                    if (player.num('h', 'sha') > 0) {
-                                        return num + player.num('h', 'sha') - 1;
+                                    if (player.countCards('h', 'sha') > 0) {
+                                        return num + player.countCards('h', 'sha') - 1;
                                     } else {
                                         return num;
                                     }
@@ -1326,7 +1326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         zxiaobaichong: {
                             mod: {
                                 maxHandcard(player, num) {
-                                    return num + player.num('h', 'sha');
+                                    return num + player.countCards('h', 'sha');
                                 },
                             },
                             nobracket: true,
@@ -1378,7 +1378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     forced: true,
                                     filter(event, player) {
                                         if (event.player == player) return false;
-                                        if (player.num('h', 'sha') == 0) return false;
+                                        if (player.countCards('h', 'sha') == 0) return false;
                                         return player.hasCard(function (card) {
                                             return card.number >= event.card.number && card.name == 'sha';
                                         });
@@ -1823,7 +1823,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         cards: [{ node: { image: {}, info: {}, name: {}, name2: {}, background: {}, intro: {}, range: {} }, storage: { uncheck: [] }, suit: 'heart', number: 8, name: 'shan', original: 'h', _transform: 'translateX(1072px)', _mouseentercreated: false, clone: { name: 'shan', suit: 'heart', number: 8, node: { name: {}, info: {}, intro: {}, background: {}, image: {} }, _transitionEnded: true, timeout: 6282 }, timeout: 6136 }],
                                     },
                                     viewAsFilter(player) {
-                                        if (!player.num('h', 'shan')) return false;
+                                        if (!player.countCards('h', 'shan')) return false;
                                     },
                                     prompt: '将一张【闪】当【杀】使用或打出',
                                     check() {
@@ -1837,7 +1837,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         respondSha: true,
                                         skillTagFilter(player) {
-                                            if (!player.num('h', 'shan')) return false;
+                                            if (!player.countCards('h', 'shan')) return false;
                                         },
                                         order: 3.1,
                                         useful: -1,
@@ -1963,12 +1963,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     },
                                     viewAsFilter(player) {
-                                        if (!player.num('h', 'sha')) return false;
+                                        if (!player.countCards('h', 'sha')) return false;
                                     },
                                     ai: {
                                         respondShan: true,
                                         skillTagFilter(player) {
-                                            if (!player.num('h', 'sha')) return false;
+                                            if (!player.countCards('h', 'sha')) return false;
                                         },
                                         effect: {
                                             target(card, player, target, current) {
@@ -2001,7 +2001,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     },
                                     viewAsFilter(player) {
-                                        if (!player.num('h', 'du')) return false;
+                                        if (!player.countCards('h', 'du')) return false;
                                     },
                                     ai: {
                                         basic: {
@@ -2291,12 +2291,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     viewAsFilter(player) {
                                         if (_status.currentPhase == player) return false;
-                                        if (!player.num('h', 'sha')) return false;
+                                        if (!player.countCards('h', 'sha')) return false;
                                     },
                                     ai: {
                                         respondShan: true,
                                         skillTagFilter(player) {
-                                            if (!player.num('h', 'sha')) return false;
+                                            if (!player.countCards('h', 'sha')) return false;
                                         },
                                         effect: {
                                             target(card, player, target, current) {
@@ -3389,8 +3389,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             nobracket: true,
                             mod: {
                                 maxHandcard(player, num) {
-                                    if (player.num('h', { type: 'trick' }) > 0 || player.num('h', { type: 'delay' }) > 0) {
-                                        return num + player.num('h', { type: 'delay' }) + player.num('h', { type: 'trick' });
+                                    if (player.countCards('h', { type: 'trick' }) > 0 || player.countCards('h', { type: 'delay' }) > 0) {
+                                        return num + player.countCards('h', { type: 'delay' }) + player.countCards('h', { type: 'trick' });
                                     } else {
                                         return num;
                                     }

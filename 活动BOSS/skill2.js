@@ -768,7 +768,7 @@ const skill = {
         check(event, player) {
             if (get.attitude(player, event.player) > -2) return false;
             if (event.player.hp < 3) return false;
-            return get.effect(player, { name: 'losehp' }, player, player) >= 0 || (player.hp + player.num('h', 'tao') > 1 && !event.player.hasSkillTag('filterDamage'));
+            return get.effect(player, { name: 'losehp' }, player, player) >= 0 || (player.hp + player.countCards('h', 'tao') > 1 && !event.player.hasSkillTag('filterDamage'));
         },
         logTarget: 'player',
         content() {
@@ -861,7 +861,7 @@ const skill = {
             if (target.isIn())
                 player.chooseBool(get.prompt('shanhe_fenji', target), '失去1点体力,令该角色摸两张牌').set('ai', function () {
                     var evt = _status.event.parent;
-                    if (player.hp + player.num('h', 'tao') <= 3) return 0;
+                    if (player.hp + player.countCards('h', 'tao') <= 3) return 0;
                     return get.attitude(evt.player, evt.target) > 4;
                 });
             else {
@@ -889,7 +889,7 @@ const skill = {
         logTarget: 'player',
         check(event, player) {
             if (get.attitude(player, event.player) < 5) return false;
-            return get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.num('h', 'tao') > 3;
+            return get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.countCards('h', 'tao') > 3;
         },
         content() {
             'step 0';
@@ -1037,7 +1037,7 @@ const skill = {
                 }, 'eh')
             )
                 return true;
-            return player.hp > Math.max(1, event.player.hp) || (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.num('h', 'tao') > 3);
+            return player.hp > Math.max(1, event.player.hp) || (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.countCards('h', 'tao') > 3);
         },
         content() {
             'step 0';
@@ -6621,8 +6621,8 @@ const skill = {
             player
                 .chooseControl(true)
                 .set('ai', function () {
-                    if (player.hp == player.maxHp || player.num('h', 'tao') >= num + player.getDamagedHp() || (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.num('h', 'tao') + player.num('h', 'jiu') > num)) return 0;
-                    if ((player.hp + player.num('h', 'tao') + (num >= player.hp ? player.num('h', 'jiu') : 0) <= player.maxHp - num || player.hp + player.num('h', 'tao') + (num >= player.hp ? player.num('h', 'jiu') : 0) <= num) && player.maxHp > num) return 1;
+                    if (player.hp == player.maxHp || player.countCards('h', 'tao') >= num + player.getDamagedHp() || (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.countCards('h', 'tao') + player.countCards('h', 'jiu') > num)) return 0;
+                    if ((player.hp + player.countCards('h', 'tao') + (num >= player.hp ? player.countCards('h', 'jiu') : 0) <= player.maxHp - num || player.hp + player.countCards('h', 'tao') + (num >= player.hp ? player.countCards('h', 'jiu') : 0) <= num) && player.maxHp > num) return 1;
                     return 0;
                 })
                 .set('choiceList', [event.str1, event.str2]);
@@ -6662,7 +6662,7 @@ const skill = {
             player
                 .chooseBool(get.prompt2('shanhe_fangquan'))
                 .set('ai', function () {
-                    if (!_status.event.fang || (((player.getDamagedHp() > 0 && player.num('h', 'tao') > 0) || (player.hasSkill('shanhe_jijiu') && player.countCards('hs', { type: 'equip', color: 'red' }) > 0)) && player.countCards('h') > player.getHandcardLimit())) return false;
+                    if (!_status.event.fang || (((player.getDamagedHp() > 0 && player.countCards('h', 'tao') > 0) || (player.hasSkill('shanhe_jijiu') && player.countCards('hs', { type: 'equip', color: 'red' }) > 0)) && player.countCards('h') > player.getHandcardLimit())) return false;
                     return game.hasPlayer(function (target) {
                         if (target.hasJudge('lebu') || target == player) return false;
                         if (get.attitude(player, target) > 4) {
@@ -6724,7 +6724,7 @@ const skill = {
             player
                 .chooseBool(get.prompt2('shanhe_fangquana'))
                 .set('ai', function () {
-                    if (!_status.event.fang || (player.getDamagedHp() > 0 && player.num('h', 'tao') > 0 && player.countCards('h') > player.getHandcardLimit())) return false;
+                    if (!_status.event.fang || (player.getDamagedHp() > 0 && player.countCards('h', 'tao') > 0 && player.countCards('h') > player.getHandcardLimit())) return false;
                     return game.hasPlayer(function (target) {
                         if (target.hasJudge('lebu') || target == player) return false;
                         if (get.attitude(player, target) > 4) {
@@ -12603,7 +12603,7 @@ const skill = {
             else var list = ['失去1点体力', 'cancel2'];
             player
                 .chooseControl(list, function (event, player) {
-                    if (player.hp + player.num('h', 'tao') <= 3 && !player.hasMark('shezhan_huaiju')) return 'cancel2';
+                    if (player.hp + player.countCards('h', 'tao') <= 3 && !player.hasMark('shezhan_huaiju')) return 'cancel2';
                     if (player.hp < player.countCards('h')) return '移去一个【橘】';
                     return '失去1点体力';
                 })
@@ -13163,7 +13163,7 @@ const skill = {
                 player.chooseControlList(['移去一枚【暴怒】标记', '失去1点体力'], true).set('ai', function (event, player) {
                     if (get.effect(player, { name: 'losehp' }, player, player) >= 0) return 1;
                     if (player.storage.baonu > 6) return 0;
-                    if (player.hp + player.num('h', 'tao') > 3) return 1;
+                    if (player.hp + player.countCards('h', 'tao') > 3) return 1;
                     return 0;
                 });
             } else {
@@ -13181,7 +13181,7 @@ const skill = {
             effect: {
                 player_use(card, player) {
                     if (get.type(card) == 'trick' && get.value(card) < 6) {
-                        if (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.num('h', 'tao') > 3) return [1, 1];
+                        if (get.effect(player, { name: 'losehp' }, player, player) >= 0 && player.hp + player.countCards('h', 'tao') > 3) return [1, 1];
                         return [0, -2];
                     }
                 },
@@ -13202,7 +13202,7 @@ const skill = {
                 .set('prompt', get.prompt('shanhe_zhuijia'))
                 .set('ai', function () {
                     var player = _status.event.player;
-                    if (player.isDamaged() && player.num('h', 'tao') <= player.getDamagedHp() && player.countCards('h') >= player.maxHp) return 1;
+                    if (player.isDamaged() && player.countCards('h', 'tao') <= player.getDamagedHp() && player.countCards('h') >= player.maxHp) return 1;
                     return 0;
                 })
                 .setHiddenSkill('shanhe_zhuijia');

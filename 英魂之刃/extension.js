@@ -3296,7 +3296,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr血肉钩索' });
+											return num + player.countCards('h', { name: 'KAnyhzr血肉钩索' });
 										},
 									},
 									trigger: {
@@ -3305,7 +3305,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr血肉钩索 == 1 || player.storage._KAnyhzr血肉钩索 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr血肉钩索' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr血肉钩索' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr血肉钩索 = 1;
@@ -3318,7 +3318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr血肉钩索' }) <= 0 && player.storage._KAnyhzr血肉钩索 == 1;
+										return player.countCards('h', { name: 'KAnyhzr血肉钩索' }) <= 0 && player.storage._KAnyhzr血肉钩索 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr血肉钩索 = undefined;
@@ -3333,7 +3333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr腐蚀瘟疫' });
+											return num + player.countCards('h', { name: 'KAnyhzr腐蚀瘟疫' });
 										},
 									},
 									trigger: {
@@ -3342,7 +3342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr腐蚀瘟疫 == 1 || player.storage._KAnyhzr腐蚀瘟疫 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr腐蚀瘟疫' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr腐蚀瘟疫' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr腐蚀瘟疫 = 1;
@@ -3355,7 +3355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr腐蚀瘟疫' }) <= 0 && player.storage._KAnyhzr腐蚀瘟疫 == 1;
+										return player.countCards('h', { name: 'KAnyhzr腐蚀瘟疫' }) <= 0 && player.storage._KAnyhzr腐蚀瘟疫 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr腐蚀瘟疫 = undefined;
@@ -3370,7 +3370,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr腐肉吸噬' });
+											return num + player.countCards('h', { name: 'KAnyhzr腐肉吸噬' });
 										},
 									},
 									trigger: {
@@ -3379,7 +3379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr腐肉吸噬 == 1 || player.storage._KAnyhzr腐肉吸噬 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr腐肉吸噬' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr腐肉吸噬' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr腐肉吸噬 = 1;
@@ -3392,7 +3392,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr腐肉吸噬' }) <= 0 && player.storage._KAnyhzr腐肉吸噬 == 1;
+										return player.countCards('h', { name: 'KAnyhzr腐肉吸噬' }) <= 0 && player.storage._KAnyhzr腐肉吸噬 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr腐肉吸噬 = undefined;
@@ -3407,7 +3407,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr致命啃咬' });
+											return num + player.countCards('h', { name: 'KAnyhzr致命啃咬' });
 										},
 									},
 									trigger: {
@@ -3416,7 +3416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr致命啃咬 == 1 || player.storage._KAnyhzr致命啃咬 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr致命啃咬' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr致命啃咬' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr致命啃咬 = 1;
@@ -3429,7 +3429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr致命啃咬' }) <= 0 && player.storage._KAnyhzr致命啃咬 == 1;
+										return player.countCards('h', { name: 'KAnyhzr致命啃咬' }) <= 0 && player.storage._KAnyhzr致命啃咬 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr致命啃咬 = undefined;
@@ -3444,7 +3444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr仙灵伙伴' });
+											return num + player.countCards('h', { name: 'KAnyhzr仙灵伙伴' });
 										},
 									},
 									trigger: {
@@ -3453,7 +3453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr仙灵伙伴 == 1 || player.storage._KAnyhzr仙灵伙伴 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr仙灵伙伴' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr仙灵伙伴' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr仙灵伙伴 = 1;
@@ -3466,7 +3466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr仙灵伙伴' }) <= 0 && player.storage._KAnyhzr仙灵伙伴 == 1;
+										return player.countCards('h', { name: 'KAnyhzr仙灵伙伴' }) <= 0 && player.storage._KAnyhzr仙灵伙伴 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr仙灵伙伴 = undefined;
@@ -3481,7 +3481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr奥妙冲击' });
+											return num + player.countCards('h', { name: 'KAnyhzr奥妙冲击' });
 										},
 									},
 									trigger: {
@@ -3490,7 +3490,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr奥妙冲击 == 1 || player.storage._KAnyhzr奥妙冲击 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr奥妙冲击' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr奥妙冲击' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr奥妙冲击 = 1;
@@ -3503,7 +3503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr奥妙冲击' }) <= 0 && player.storage._KAnyhzr奥妙冲击 == 1;
+										return player.countCards('h', { name: 'KAnyhzr奥妙冲击' }) <= 0 && player.storage._KAnyhzr奥妙冲击 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr奥妙冲击 = undefined;
@@ -3518,7 +3518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr迷藏印记' });
+											return num + player.countCards('h', { name: 'KAnyhzr迷藏印记' });
 										},
 									},
 									trigger: {
@@ -3527,7 +3527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr迷藏印记 == 1 || player.storage._KAnyhzr迷藏印记 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr迷藏印记' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr迷藏印记' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr迷藏印记 = 1;
@@ -3540,7 +3540,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr迷藏印记' }) <= 0 && player.storage._KAnyhzr迷藏印记 == 1;
+										return player.countCards('h', { name: 'KAnyhzr迷藏印记' }) <= 0 && player.storage._KAnyhzr迷藏印记 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr迷藏印记 = undefined;
@@ -3555,7 +3555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr闪耀之光' });
+											return num + player.countCards('h', { name: 'KAnyhzr闪耀之光' });
 										},
 									},
 									trigger: {
@@ -3564,7 +3564,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr闪耀之光 == 1 || player.storage._KAnyhzr闪耀之光 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr闪耀之光' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr闪耀之光' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr闪耀之光 = 1;
@@ -3577,7 +3577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr闪耀之光' }) <= 0 && player.storage._KAnyhzr闪耀之光 == 1;
+										return player.countCards('h', { name: 'KAnyhzr闪耀之光' }) <= 0 && player.storage._KAnyhzr闪耀之光 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr闪耀之光 = undefined;
@@ -3592,7 +3592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr恶魔冲锋' });
+											return num + player.countCards('h', { name: 'KAnyhzr恶魔冲锋' });
 										},
 									},
 									trigger: {
@@ -3601,7 +3601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr恶魔冲锋 == 1 || player.storage._KAnyhzr恶魔冲锋 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr恶魔冲锋' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr恶魔冲锋' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr恶魔冲锋 = 1;
@@ -3614,7 +3614,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr恶魔冲锋' }) <= 0 && player.storage._KAnyhzr恶魔冲锋 == 1;
+										return player.countCards('h', { name: 'KAnyhzr恶魔冲锋' }) <= 0 && player.storage._KAnyhzr恶魔冲锋 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr恶魔冲锋 = undefined;
@@ -3629,7 +3629,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr恐惧结界' });
+											return num + player.countCards('h', { name: 'KAnyhzr恐惧结界' });
 										},
 									},
 									trigger: {
@@ -3638,7 +3638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr恐惧结界 == 1 || player.storage._KAnyhzr恐惧结界 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr恐惧结界' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr恐惧结界' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr恐惧结界 = 1;
@@ -3651,7 +3651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr恐惧结界' }) <= 0 && player.storage._KAnyhzr恐惧结界 == 1;
+										return player.countCards('h', { name: 'KAnyhzr恐惧结界' }) <= 0 && player.storage._KAnyhzr恐惧结界 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr恐惧结界 = undefined;
@@ -3666,7 +3666,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr镰刀挥舞' });
+											return num + player.countCards('h', { name: 'KAnyhzr镰刀挥舞' });
 										},
 									},
 									trigger: {
@@ -3675,7 +3675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr镰刀挥舞 == 1 || player.storage._KAnyhzr镰刀挥舞 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr镰刀挥舞' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr镰刀挥舞' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr镰刀挥舞 = 1;
@@ -3688,7 +3688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr镰刀挥舞' }) <= 0 && player.storage._KAnyhzr镰刀挥舞 == 1;
+										return player.countCards('h', { name: 'KAnyhzr镰刀挥舞' }) <= 0 && player.storage._KAnyhzr镰刀挥舞 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr镰刀挥舞 = undefined;
@@ -3703,7 +3703,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr恐惧镰刀' });
+											return num + player.countCards('h', { name: 'KAnyhzr恐惧镰刀' });
 										},
 									},
 									trigger: {
@@ -3712,7 +3712,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr恐惧镰刀 == 1 || player.storage._KAnyhzr恐惧镰刀 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr恐惧镰刀' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr恐惧镰刀' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr恐惧镰刀 = 1;
@@ -3725,7 +3725,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr恐惧镰刀' }) <= 0 && player.storage._KAnyhzr恐惧镰刀 == 1;
+										return player.countCards('h', { name: 'KAnyhzr恐惧镰刀' }) <= 0 && player.storage._KAnyhzr恐惧镰刀 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr恐惧镰刀 = undefined;
@@ -3740,7 +3740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr幽影之蜕' });
+											return num + player.countCards('h', { name: 'KAnyhzr幽影之蜕' });
 										},
 									},
 									trigger: {
@@ -3749,7 +3749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr幽影之蜕 == 1 || player.storage._KAnyhzr幽影之蜕 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr幽影之蜕' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr幽影之蜕' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr幽影之蜕 = 1;
@@ -3762,7 +3762,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr幽影之蜕' }) <= 0 && player.storage._KAnyhzr幽影之蜕 == 1;
+										return player.countCards('h', { name: 'KAnyhzr幽影之蜕' }) <= 0 && player.storage._KAnyhzr幽影之蜕 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr幽影之蜕 = undefined;
@@ -3777,7 +3777,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr暗夜蛛毒' });
+											return num + player.countCards('h', { name: 'KAnyhzr暗夜蛛毒' });
 										},
 									},
 									trigger: {
@@ -3786,7 +3786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr暗夜蛛毒 == 1 || player.storage._KAnyhzr暗夜蛛毒 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr暗夜蛛毒' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr暗夜蛛毒' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr暗夜蛛毒 = 1;
@@ -3799,7 +3799,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr暗夜蛛毒' }) <= 0 && player.storage._KAnyhzr暗夜蛛毒 == 1;
+										return player.countCards('h', { name: 'KAnyhzr暗夜蛛毒' }) <= 0 && player.storage._KAnyhzr暗夜蛛毒 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr暗夜蛛毒 = undefined;
@@ -3814,7 +3814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr猎物锁定' });
+											return num + player.countCards('h', { name: 'KAnyhzr猎物锁定' });
 										},
 									},
 									trigger: {
@@ -3823,7 +3823,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr猎物锁定 == 1 || player.storage._KAnyhzr猎物锁定 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr猎物锁定' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr猎物锁定' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr猎物锁定 = 1;
@@ -3836,7 +3836,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr猎物锁定' }) <= 0 && player.storage._KAnyhzr猎物锁定 == 1;
+										return player.countCards('h', { name: 'KAnyhzr猎物锁定' }) <= 0 && player.storage._KAnyhzr猎物锁定 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr猎物锁定 = undefined;
@@ -3851,7 +3851,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr女皇神威' });
+											return num + player.countCards('h', { name: 'KAnyhzr女皇神威' });
 										},
 									},
 									trigger: {
@@ -3860,7 +3860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr女皇神威 == 1 || player.storage._KAnyhzr女皇神威 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr女皇神威' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr女皇神威' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr女皇神威 = 1;
@@ -3873,7 +3873,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr女皇神威' }) <= 0 && player.storage._KAnyhzr女皇神威 == 1;
+										return player.countCards('h', { name: 'KAnyhzr女皇神威' }) <= 0 && player.storage._KAnyhzr女皇神威 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr女皇神威 = undefined;
@@ -3888,7 +3888,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr超时空战斧' });
+											return num + player.countCards('h', { name: 'KAnyhzr超时空战斧' });
 										},
 									},
 									trigger: {
@@ -3897,7 +3897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr超时空战斧 == 1 || player.storage._KAnyhzr超时空战斧 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr超时空战斧' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr超时空战斧' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr超时空战斧 = 1;
@@ -3910,7 +3910,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr超时空战斧' }) <= 0 && player.storage._KAnyhzr超时空战斧 == 1;
+										return player.countCards('h', { name: 'KAnyhzr超时空战斧' }) <= 0 && player.storage._KAnyhzr超时空战斧 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr超时空战斧 = undefined;
@@ -3925,7 +3925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr断裂时空' });
+											return num + player.countCards('h', { name: 'KAnyhzr断裂时空' });
 										},
 									},
 									trigger: {
@@ -3934,7 +3934,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr断裂时空 == 1 || player.storage._KAnyhzr断裂时空 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr断裂时空' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr断裂时空' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr断裂时空 = 1;
@@ -3947,7 +3947,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr断裂时空' }) <= 0 && player.storage._KAnyhzr断裂时空 == 1;
+										return player.countCards('h', { name: 'KAnyhzr断裂时空' }) <= 0 && player.storage._KAnyhzr断裂时空 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr断裂时空 = undefined;
@@ -3962,7 +3962,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr时空道标' });
+											return num + player.countCards('h', { name: 'KAnyhzr时空道标' });
 										},
 									},
 									trigger: {
@@ -3971,7 +3971,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr时空道标 == 1 || player.storage._KAnyhzr时空道标 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr时空道标' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr时空道标' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr时空道标 = 1;
@@ -3984,7 +3984,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr时空道标' }) <= 0 && player.storage._KAnyhzr时空道标 == 1;
+										return player.countCards('h', { name: 'KAnyhzr时空道标' }) <= 0 && player.storage._KAnyhzr时空道标 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr时空道标 = undefined;
@@ -3999,7 +3999,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr逝时若光' });
+											return num + player.countCards('h', { name: 'KAnyhzr逝时若光' });
 										},
 									},
 									trigger: {
@@ -4008,7 +4008,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr逝时若光 == 1 || player.storage._KAnyhzr逝时若光 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr逝时若光' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr逝时若光' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr逝时若光 = 1;
@@ -4021,7 +4021,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr逝时若光' }) <= 0 && player.storage._KAnyhzr逝时若光 == 1;
+										return player.countCards('h', { name: 'KAnyhzr逝时若光' }) <= 0 && player.storage._KAnyhzr逝时若光 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr逝时若光 = undefined;
@@ -4036,7 +4036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr闪电感染' });
+											return num + player.countCards('h', { name: 'KAnyhzr闪电感染' });
 										},
 									},
 									trigger: {
@@ -4045,7 +4045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr闪电感染 == 1 || player.storage._KAnyhzr闪电感染 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr闪电感染' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr闪电感染' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr闪电感染 = 1;
@@ -4058,7 +4058,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr闪电感染' }) <= 0 && player.storage._KAnyhzr闪电感染 == 1;
+										return player.countCards('h', { name: 'KAnyhzr闪电感染' }) <= 0 && player.storage._KAnyhzr闪电感染 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr闪电感染 = undefined;
@@ -4073,7 +4073,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr雷霆之环' });
+											return num + player.countCards('h', { name: 'KAnyhzr雷霆之环' });
 										},
 									},
 									trigger: {
@@ -4082,7 +4082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr雷霆之环 == 1 || player.storage._KAnyhzr雷霆之环 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr雷霆之环' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr雷霆之环' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr雷霆之环 = 1;
@@ -4095,7 +4095,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr雷霆之环' }) <= 0 && player.storage._KAnyhzr雷霆之环 == 1;
+										return player.countCards('h', { name: 'KAnyhzr雷霆之环' }) <= 0 && player.storage._KAnyhzr雷霆之环 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr雷霆之环 = undefined;
@@ -4110,7 +4110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr灾祸匣' });
+											return num + player.countCards('h', { name: 'KAnyhzr灾祸匣' });
 										},
 									},
 									trigger: {
@@ -4119,7 +4119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr灾祸匣 == 1 || player.storage._KAnyhzr灾祸匣 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr灾祸匣' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr灾祸匣' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr灾祸匣 = 1;
@@ -4132,7 +4132,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr灾祸匣' }) <= 0 && player.storage._KAnyhzr灾祸匣 == 1;
+										return player.countCards('h', { name: 'KAnyhzr灾祸匣' }) <= 0 && player.storage._KAnyhzr灾祸匣 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr灾祸匣 = undefined;
@@ -4147,7 +4147,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr毁灭指针' });
+											return num + player.countCards('h', { name: 'KAnyhzr毁灭指针' });
 										},
 									},
 									trigger: {
@@ -4156,7 +4156,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr毁灭指针 == 1 || player.storage._KAnyhzr毁灭指针 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr毁灭指针' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr毁灭指针' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr毁灭指针 = 1;
@@ -4169,7 +4169,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr毁灭指针' }) <= 0 && player.storage._KAnyhzr毁灭指针 == 1;
+										return player.countCards('h', { name: 'KAnyhzr毁灭指针' }) <= 0 && player.storage._KAnyhzr毁灭指针 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr毁灭指针 = undefined;
@@ -4184,7 +4184,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr炽天使' });
+											return num + player.countCards('h', { name: 'KAnyhzr炽天使' });
 										},
 									},
 									trigger: {
@@ -4193,7 +4193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr炽天使 == 1 || player.storage._KAnyhzr炽天使 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr炽天使' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr炽天使' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr炽天使 = 1;
@@ -4206,7 +4206,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr炽天使' }) <= 0 && player.storage._KAnyhzr炽天使 == 1;
+										return player.countCards('h', { name: 'KAnyhzr炽天使' }) <= 0 && player.storage._KAnyhzr炽天使 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr炽天使 = undefined;
@@ -4221,7 +4221,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr圣光惩戒' });
+											return num + player.countCards('h', { name: 'KAnyhzr圣光惩戒' });
 										},
 									},
 									trigger: {
@@ -4230,7 +4230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr圣光惩戒 == 1 || player.storage._KAnyhzr圣光惩戒 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr圣光惩戒' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr圣光惩戒' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr圣光惩戒 = 1;
@@ -4243,7 +4243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr圣光惩戒' }) <= 0 && player.storage._KAnyhzr圣光惩戒 == 1;
+										return player.countCards('h', { name: 'KAnyhzr圣光惩戒' }) <= 0 && player.storage._KAnyhzr圣光惩戒 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr圣光惩戒 = undefined;
@@ -4258,7 +4258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr光明圣礼' });
+											return num + player.countCards('h', { name: 'KAnyhzr光明圣礼' });
 										},
 									},
 									trigger: {
@@ -4267,7 +4267,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr光明圣礼 == 1 || player.storage._KAnyhzr光明圣礼 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr光明圣礼' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr光明圣礼' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr光明圣礼 = 1;
@@ -4280,7 +4280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr光明圣礼' }) <= 0 && player.storage._KAnyhzr光明圣礼 == 1;
+										return player.countCards('h', { name: 'KAnyhzr光明圣礼' }) <= 0 && player.storage._KAnyhzr光明圣礼 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr光明圣礼 = undefined;
@@ -4295,7 +4295,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr天之罚' });
+											return num + player.countCards('h', { name: 'KAnyhzr天之罚' });
 										},
 									},
 									trigger: {
@@ -4304,7 +4304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr天之罚 == 1 || player.storage._KAnyhzr天之罚 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr天之罚' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr天之罚' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr天之罚 = 1;
@@ -4317,7 +4317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr天之罚' }) <= 0 && player.storage._KAnyhzr天之罚 == 1;
+										return player.countCards('h', { name: 'KAnyhzr天之罚' }) <= 0 && player.storage._KAnyhzr天之罚 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr天之罚 = undefined;
@@ -4332,7 +4332,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr骄阳陨落' });
+											return num + player.countCards('h', { name: 'KAnyhzr骄阳陨落' });
 										},
 									},
 									trigger: {
@@ -4341,7 +4341,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr骄阳陨落 == 1 || player.storage._KAnyhzr骄阳陨落 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr骄阳陨落' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr骄阳陨落' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr骄阳陨落 = 1;
@@ -4354,7 +4354,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr骄阳陨落' }) <= 0 && player.storage._KAnyhzr骄阳陨落 == 1;
+										return player.countCards('h', { name: 'KAnyhzr骄阳陨落' }) <= 0 && player.storage._KAnyhzr骄阳陨落 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr骄阳陨落 = undefined;
@@ -4369,7 +4369,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr逐阳' });
+											return num + player.countCards('h', { name: 'KAnyhzr逐阳' });
 										},
 									},
 									trigger: {
@@ -4378,7 +4378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr逐阳 == 1 || player.storage._KAnyhzr逐阳 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr逐阳' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr逐阳' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr逐阳 = 1;
@@ -4391,7 +4391,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr逐阳' }) <= 0 && player.storage._KAnyhzr逐阳 == 1;
+										return player.countCards('h', { name: 'KAnyhzr逐阳' }) <= 0 && player.storage._KAnyhzr逐阳 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr逐阳 = undefined;
@@ -4406,7 +4406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr燎火之箭' });
+											return num + player.countCards('h', { name: 'KAnyhzr燎火之箭' });
 										},
 									},
 									trigger: {
@@ -4415,7 +4415,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr燎火之箭 == 1 || player.storage._KAnyhzr燎火之箭 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr燎火之箭' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr燎火之箭' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr燎火之箭 = 1;
@@ -4428,7 +4428,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr燎火之箭' }) <= 0 && player.storage._KAnyhzr燎火之箭 == 1;
+										return player.countCards('h', { name: 'KAnyhzr燎火之箭' }) <= 0 && player.storage._KAnyhzr燎火之箭 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr燎火之箭 = undefined;
@@ -4443,7 +4443,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr穿云箭' });
+											return num + player.countCards('h', { name: 'KAnyhzr穿云箭' });
 										},
 									},
 									trigger: {
@@ -4452,7 +4452,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr穿云箭 == 1 || player.storage._KAnyhzr穿云箭 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr穿云箭' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr穿云箭' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr穿云箭 = 1;
@@ -4465,7 +4465,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr穿云箭' }) <= 0 && player.storage._KAnyhzr穿云箭 == 1;
+										return player.countCards('h', { name: 'KAnyhzr穿云箭' }) <= 0 && player.storage._KAnyhzr穿云箭 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr穿云箭 = undefined;
@@ -4480,7 +4480,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr极速冲击' });
+											return num + player.countCards('h', { name: 'KAnyhzr极速冲击' });
 										},
 									},
 									trigger: {
@@ -4489,7 +4489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr极速冲击 == 1 || player.storage._KAnyhzr极速冲击 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr极速冲击' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr极速冲击' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr极速冲击 = 1;
@@ -4502,7 +4502,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr极速冲击' }) <= 0 && player.storage._KAnyhzr极速冲击 == 1;
+										return player.countCards('h', { name: 'KAnyhzr极速冲击' }) <= 0 && player.storage._KAnyhzr极速冲击 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr极速冲击 = undefined;
@@ -4517,7 +4517,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr魔卡出击' });
+											return num + player.countCards('h', { name: 'KAnyhzr魔卡出击' });
 										},
 									},
 									trigger: {
@@ -4526,7 +4526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr魔卡出击 == 1 || player.storage._KAnyhzr魔卡出击 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr魔卡出击' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr魔卡出击' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr魔卡出击 = 1;
@@ -4539,7 +4539,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr魔卡出击' }) <= 0 && player.storage._KAnyhzr魔卡出击 == 1;
+										return player.countCards('h', { name: 'KAnyhzr魔卡出击' }) <= 0 && player.storage._KAnyhzr魔卡出击 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr魔卡出击 = undefined;
@@ -4554,7 +4554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr强效魔卡' });
+											return num + player.countCards('h', { name: 'KAnyhzr强效魔卡' });
 										},
 									},
 									trigger: {
@@ -4563,7 +4563,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr强效魔卡 == 1 || player.storage._KAnyhzr强效魔卡 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr强效魔卡' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr强效魔卡' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr强效魔卡 = 1;
@@ -4576,7 +4576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr强效魔卡' }) <= 0 && player.storage._KAnyhzr强效魔卡 == 1;
+										return player.countCards('h', { name: 'KAnyhzr强效魔卡' }) <= 0 && player.storage._KAnyhzr强效魔卡 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr强效魔卡 = undefined;
@@ -4591,7 +4591,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr三重卡组' });
+											return num + player.countCards('h', { name: 'KAnyhzr三重卡组' });
 										},
 									},
 									trigger: {
@@ -4600,7 +4600,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr三重卡组 == 1 || player.storage._KAnyhzr三重卡组 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr三重卡组' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr三重卡组' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr三重卡组 = 1;
@@ -4613,7 +4613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr三重卡组' }) <= 0 && player.storage._KAnyhzr三重卡组 == 1;
+										return player.countCards('h', { name: 'KAnyhzr三重卡组' }) <= 0 && player.storage._KAnyhzr三重卡组 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr三重卡组 = undefined;
@@ -4628,7 +4628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr嗜血' });
+											return num + player.countCards('h', { name: 'KAnyhzr嗜血' });
 										},
 									},
 									trigger: {
@@ -4637,7 +4637,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr嗜血 == 1 || player.storage._KAnyhzr嗜血 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr嗜血' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr嗜血' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr嗜血 = 1;
@@ -4650,7 +4650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr嗜血' }) <= 0 && player.storage._KAnyhzr嗜血 == 1;
+										return player.countCards('h', { name: 'KAnyhzr嗜血' }) <= 0 && player.storage._KAnyhzr嗜血 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr嗜血 = undefined;
@@ -4665,7 +4665,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr血蚀之河' });
+											return num + player.countCards('h', { name: 'KAnyhzr血蚀之河' });
 										},
 									},
 									trigger: {
@@ -4674,7 +4674,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr血蚀之河 == 1 || player.storage._KAnyhzr血蚀之河 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr血蚀之河' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr血蚀之河' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr血蚀之河 = 1;
@@ -4687,7 +4687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr血蚀之河' }) <= 0 && player.storage._KAnyhzr血蚀之河 == 1;
+										return player.countCards('h', { name: 'KAnyhzr血蚀之河' }) <= 0 && player.storage._KAnyhzr血蚀之河 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr血蚀之河 = undefined;
@@ -4702,7 +4702,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr血虐暴风' });
+											return num + player.countCards('h', { name: 'KAnyhzr血虐暴风' });
 										},
 									},
 									trigger: {
@@ -4711,7 +4711,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr血虐暴风 == 1 || player.storage._KAnyhzr血虐暴风 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr血虐暴风' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr血虐暴风' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr血虐暴风 = 1;
@@ -4724,7 +4724,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr血虐暴风' }) <= 0 && player.storage._KAnyhzr血虐暴风 == 1;
+										return player.countCards('h', { name: 'KAnyhzr血虐暴风' }) <= 0 && player.storage._KAnyhzr血虐暴风 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr血虐暴风 = undefined;
@@ -4739,7 +4739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr血祭启示录' });
+											return num + player.countCards('h', { name: 'KAnyhzr血祭启示录' });
 										},
 									},
 									trigger: {
@@ -4748,7 +4748,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr血祭启示录 == 1 || player.storage._KAnyhzr血祭启示录 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr血祭启示录' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr血祭启示录' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr血祭启示录 = 1;
@@ -4761,7 +4761,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr血祭启示录' }) <= 0 && player.storage._KAnyhzr血祭启示录 == 1;
+										return player.countCards('h', { name: 'KAnyhzr血祭启示录' }) <= 0 && player.storage._KAnyhzr血祭启示录 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr血祭启示录 = undefined;
@@ -4778,7 +4778,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									mode: ['identity'],
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr王牌' });
+											return num + player.countCards('h', { name: 'KAnyhzr王牌' });
 										},
 									},
 									trigger: {
@@ -4787,7 +4787,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr王牌 == 1 || player.storage._KAnyhzr王牌 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr王牌' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr王牌' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr王牌 = 1;
@@ -4818,7 +4818,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr王牌' }) <= 0 && player.storage._KAnyhzr王牌 == 1;
+										return player.countCards('h', { name: 'KAnyhzr王牌' }) <= 0 && player.storage._KAnyhzr王牌 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr王牌 = undefined;
@@ -4843,7 +4843,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr龙人血脉' });
+											return num + player.countCards('h', { name: 'KAnyhzr龙人血脉' });
 										},
 									},
 									trigger: {
@@ -4852,7 +4852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr龙人血脉 == 1 || player.storage._KAnyhzr龙人血脉 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr龙人血脉' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr龙人血脉' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr龙人血脉 = 1;
@@ -4865,7 +4865,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr龙人血脉' }) <= 0 && player.storage._KAnyhzr龙人血脉 == 1;
+										return player.countCards('h', { name: 'KAnyhzr龙人血脉' }) <= 0 && player.storage._KAnyhzr龙人血脉 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr龙人血脉 = undefined;
@@ -4880,7 +4880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr真龙形态' });
+											return num + player.countCards('h', { name: 'KAnyhzr真龙形态' });
 										},
 									},
 									trigger: {
@@ -4889,7 +4889,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr真龙形态 == 1 || player.storage._KAnyhzr真龙形态 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr真龙形态' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr真龙形态' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr真龙形态 = 1;
@@ -4902,7 +4902,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr真龙形态' }) <= 0 && player.storage._KAnyhzr真龙形态 == 1;
+										return player.countCards('h', { name: 'KAnyhzr真龙形态' }) <= 0 && player.storage._KAnyhzr真龙形态 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr真龙形态 = undefined;
@@ -4917,7 +4917,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr龙之咆哮' });
+											return num + player.countCards('h', { name: 'KAnyhzr龙之咆哮' });
 										},
 									},
 									trigger: {
@@ -4926,7 +4926,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr龙之咆哮 == 1 || player.storage._KAnyhzr龙之咆哮 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr龙之咆哮' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr龙之咆哮' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr龙之咆哮 = 1;
@@ -4939,7 +4939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr龙之咆哮' }) <= 0 && player.storage._KAnyhzr龙之咆哮 == 1;
+										return player.countCards('h', { name: 'KAnyhzr龙之咆哮' }) <= 0 && player.storage._KAnyhzr龙之咆哮 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr龙之咆哮 = undefined;
@@ -4954,7 +4954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								1: {
 									mod: {
 										maxHandcard(player, num) {
-											return num + player.num('h', { name: 'KAnyhzr龙之吐息' });
+											return num + player.countCards('h', { name: 'KAnyhzr龙之吐息' });
 										},
 									},
 									trigger: {
@@ -4963,7 +4963,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									filter(event, player) {
 										if (player.storage._KAnyhzr龙之吐息 == 1 || player.storage._KAnyhzr龙之吐息 != undefined) return false;
-										return player.num('h', { name: 'KAnyhzr龙之吐息' }) > 0;
+										return player.countCards('h', { name: 'KAnyhzr龙之吐息' }) > 0;
 									},
 									content() {
 										player.storage._KAnyhzr龙之吐息 = 1;
@@ -4976,7 +4976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									forced: true,
 									filter(event, player) {
-										return player.num('h', { name: 'KAnyhzr龙之吐息' }) <= 0 && player.storage._KAnyhzr龙之吐息 == 1;
+										return player.countCards('h', { name: 'KAnyhzr龙之吐息' }) <= 0 && player.storage._KAnyhzr龙之吐息 == 1;
 									},
 									content() {
 										player.storage._KAnyhzr龙之吐息 = undefined;
@@ -5611,7 +5611,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: ['chooseToUse'],
 							filterCard: { type: 'equip' },
 							viewAsFilter(player) {
-								return player.num('h', { type: 'equip' }) > 0;
+								return player.countCards('h', { type: 'equip' }) > 0;
 							},
 							viewAs: { name: 'tiesuo' },
 							check() {
@@ -5627,7 +5627,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						ganran2: {
 							enable: 'phaseUse',
 							filter(event, player) {
-								return player.num('h', { type: 'equip' }) > 0;
+								return player.countCards('h', { type: 'equip' }) > 0;
 							},
 							filterCard: { type: 'equip' },
 							prepare(cards, player) {
@@ -6026,7 +6026,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									name: '重铸♣️️︎',
 									enable: 'phaseUse',
 									filter(event, player) {
-										return player.num('h', { suit: 'club' }) > 0;
+										return player.countCards('h', { suit: 'club' }) > 0;
 									},
 									filterCard(card) {
 										return card.suit == 'club';
@@ -6061,7 +6061,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									audio: 'ext:英魂之刃/audio:1',
 									enable: 'phaseUse',
 									filter(event, player) {
-										return player.num('h', { suit: 'club' }) > 0;
+										return player.countCards('h', { suit: 'club' }) > 0;
 									},
 									filterCard(card) {
 										return card.suit == 'club';
@@ -6355,7 +6355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 100,
 								result: {
 									player(player) {
-										return player.num('h', 'sha') - 0;
+										return player.countCards('h', 'sha') - 0;
 									},
 								},
 							},
@@ -7615,124 +7615,124 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									content() {
 										var names = ['KAnyhzr龙人血脉', 'KAnyhzr龙之咆哮', 'KAnyhzr龙之吐息', 'KAnyhzr真龙形态', 'KAnyhzr嗜血', 'KAnyhzr血蚀之河', 'KAnyhzr血虐暴风', 'KAnyhzr血祭启示录', 'KAnyhzr骄阳陨落', 'KAnyhzr逐阳', 'KAnyhzr燎火之箭', 'KAnyhzr穿云箭', 'KAnyhzr血肉钩索', 'KAnyhzr腐蚀瘟疫', 'KAnyhzr腐肉吸噬', 'KAnyhzr致命啃咬', 'KAnyhzr仙灵伙伴', 'KAnyhzr奥妙冲击', 'KAnyhzr迷藏印记', 'KAnyhzr闪耀之光', 'KAnyhzr恶魔冲锋', 'KAnyhzr恐惧结界', 'KAnyhzr镰刀挥舞', 'KAnyhzr恐惧镰刀', 'KAnyhzr幽影之蜕', 'KAnyhzr暗夜蛛毒', 'KAnyhzr猎物锁定', 'KAnyhzr女皇神威', 'KAnyhzr超时空战斧', 'KAnyhzr断裂时空', 'KAnyhzr时空道标', 'KAnyhzr逝时若光', 'KAnyhzr闪电感染', 'KAnyhzr雷霆之环', 'KAnyhzr灾祸匣', 'KAnyhzr毁灭指针', 'KAnyhzr炽天使', 'KAnyhzr圣光惩戒', 'KAnyhzr光明圣礼', 'KAnyhzr天之罚'];
-										if (player.num('h', { name: 'KAnyhzr龙之吐息' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr龙之吐息' }) > 0) {
 											names.remove('KAnyhzr龙之吐息');
 										}
-										if (player.num('h', { name: 'KAnyhzr龙之咆哮' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr龙之咆哮' }) > 0) {
 											names.remove('KAnyhzr龙之咆哮');
 										}
-										if (player.num('h', { name: 'KAnyhzr龙人血脉' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr龙人血脉' }) > 0) {
 											names.remove('KAnyhzr龙人血脉');
 										}
-										if (player.num('h', { name: 'KAnyhzr真龙形态' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr真龙形态' }) > 0) {
 											names.remove('KAnyhzr真龙形态');
 										}
-										if (player.num('h', { name: 'KAnyhzr嗜血' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr嗜血' }) > 0) {
 											names.remove('KAnyhzr嗜血');
 										}
-										if (player.num('h', { name: 'KAnyhzr血蚀之河' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr血蚀之河' }) > 0) {
 											names.remove('KAnyhzr血蚀之河');
 										}
-										if (player.num('h', { name: 'KAnyhzr血虐暴风' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr血虐暴风' }) > 0) {
 											names.remove('KAnyhzr血虐暴风');
 										}
-										if (player.num('h', { name: 'KAnyhzr血祭启示录' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr血祭启示录' }) > 0) {
 											names.remove('KAnyhzr血祭启示录');
 										}
-										if (player.num('h', { name: 'KAnyhzr骄阳陨落' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr骄阳陨落' }) > 0) {
 											names.remove('KAnyhzr骄阳陨落');
 										}
-										if (player.num('h', { name: 'KAnyhzr逐阳' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr逐阳' }) > 0) {
 											names.remove('KAnyhzr逐阳');
 										}
-										if (player.num('h', { name: 'KAnyhzr燎火之箭' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr燎火之箭' }) > 0) {
 											names.remove('KAnyhzr燎火之箭');
 										}
-										if (player.num('h', { name: 'KAnyhzr穿云箭' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr穿云箭' }) > 0) {
 											names.remove('KAnyhzr穿云箭');
 										}
-										if (player.num('h', { name: 'KAnyhzr血肉钩索' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr血肉钩索' }) > 0) {
 											names.remove('KAnyhzr血肉钩索');
 										}
-										if (player.num('h', { name: 'KAnyhzr腐蚀瘟疫' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr腐蚀瘟疫' }) > 0) {
 											names.remove('KAnyhzr腐蚀瘟疫');
 										}
-										if (player.num('h', { name: 'KAnyhzr腐肉吸噬' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr腐肉吸噬' }) > 0) {
 											names.remove('KAnyhzr腐肉吸噬');
 										}
-										if (player.num('h', { name: 'KAnyhzr致命啃咬' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr致命啃咬' }) > 0) {
 											names.remove('KAnyhzr致命啃咬');
 										}
-										if (player.num('h', { name: 'KAnyhzr仙灵伙伴' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr仙灵伙伴' }) > 0) {
 											names.remove('KAnyhzr仙灵伙伴');
 										}
-										if (player.num('h', { name: 'KAnyhzr奥妙冲击' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr奥妙冲击' }) > 0) {
 											names.remove('KAnyhzr奥妙冲击');
 										}
-										if (player.num('h', { name: 'KAnyhzr迷藏印记' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr迷藏印记' }) > 0) {
 											names.remove('KAnyhzr迷藏印记');
 										}
-										if (player.num('h', { name: 'KAnyhzr闪耀之光' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr闪耀之光' }) > 0) {
 											names.remove('KAnyhzr闪耀之光');
 										}
-										if (player.num('h', { name: 'KAnyhzr恶魔冲锋' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr恶魔冲锋' }) > 0) {
 											names.remove('KAnyhzr恶魔冲锋');
 										}
-										if (player.num('h', { name: 'KAnyhzr恐惧结界' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr恐惧结界' }) > 0) {
 											names.remove('KAnyhzr恐惧结界');
 										}
-										if (player.num('h', { name: 'KAnyhzr镰刀挥舞' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr镰刀挥舞' }) > 0) {
 											names.remove('KAnyhzr镰刀挥舞');
 										}
-										if (player.num('h', { name: 'KAnyhzr恐惧镰刀' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr恐惧镰刀' }) > 0) {
 											names.remove('KAnyhzr恐惧镰刀');
 										}
-										if (player.num('h', { name: 'KAnyhzr幽影之蜕' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr幽影之蜕' }) > 0) {
 											names.remove('KAnyhzr幽影之蜕');
 										}
-										if (player.num('h', { name: 'KAnyhzr暗夜蛛毒' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr暗夜蛛毒' }) > 0) {
 											names.remove('KAnyhzr暗夜蛛毒');
 										}
-										if (player.num('h', { name: 'KAnyhzr猎物锁定' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr猎物锁定' }) > 0) {
 											names.remove('KAnyhzr猎物锁定');
 										}
-										if (player.num('h', { name: 'KAnyhzr女皇神威' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr女皇神威' }) > 0) {
 											names.remove('KAnyhzr女皇神威');
 										}
-										if (player.num('h', { name: 'KAnyhzr超时空战斧' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr超时空战斧' }) > 0) {
 											names.remove('KAnyhzr超时空战斧');
 										}
-										if (player.num('h', { name: 'KAnyhzr断裂时空' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr断裂时空' }) > 0) {
 											names.remove('KAnyhzr断裂时空');
 										}
-										if (player.num('h', { name: 'KAnyhzr时空道标' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr时空道标' }) > 0) {
 											names.remove('KAnyhzr时空道标');
 										}
-										if (player.num('h', { name: 'KAnyhzr逝时若光' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr逝时若光' }) > 0) {
 											names.remove('KAnyhzr逝时若光');
 										}
-										if (player.num('h', { name: 'KAnyhzr闪电感染' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr闪电感染' }) > 0) {
 											names.remove('KAnyhzr闪电感染');
 										}
-										if (player.num('h', { name: 'KAnyhzr雷霆之环' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr雷霆之环' }) > 0) {
 											names.remove('KAnyhzr雷霆之环');
 										}
-										if (player.num('h', { name: 'KAnyhzr灾祸匣' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr灾祸匣' }) > 0) {
 											names.remove('KAnyhzr灾祸匣');
 										}
-										if (player.num('h', { name: 'KAnyhzr毁灭指针' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr毁灭指针' }) > 0) {
 											names.remove('KAnyhzr毁灭指针');
 										}
-										if (player.num('h', { name: 'KAnyhzr炽天使' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr炽天使' }) > 0) {
 											names.remove('KAnyhzr炽天使');
 										}
-										if (player.num('h', { name: 'KAnyhzr圣光惩戒' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr圣光惩戒' }) > 0) {
 											names.remove('KAnyhzr圣光惩戒');
 										}
-										if (player.num('h', { name: 'KAnyhzr光明圣礼' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr光明圣礼' }) > 0) {
 											names.remove('KAnyhzr光明圣礼');
 										}
-										if (player.num('h', { name: 'KAnyhzr天之罚' }) > 0) {
+										if (player.countCards('h', { name: 'KAnyhzr天之罚' }) > 0) {
 											names.remove('KAnyhzr天之罚');
 										}
 										if (!player.hasSkill('nyhzr星钻之力')) {
@@ -8906,7 +8906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								order: 100,
 								result: {
 									player(player) {
-										return player.num('h', 'sha');
+										return player.countCards('h', 'sha');
 									},
 								},
 							},
@@ -9319,7 +9319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return player != target && target.countCards('h');
 								}, '请选择【凤求凰】的目标').ai = function (target) {
 									var att = get.attitude(player, target) + 1;
-									if (target.num('h', 'shan') || target.num('h', 'sha')) {
+									if (target.countCards('h', 'shan') || target.countCards('h', 'sha')) {
 										att * 10;
 									}
 									return -att;
@@ -11292,7 +11292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							filter(event, player) {
 								if (get.type(event.card) != 'basic' && get.type(event.card) != 'trick') return false;
-								if (event.card.suit && player.num('h', { suit: event.card.suit })) {
+								if (event.card.suit && player.countCards('h', { suit: event.card.suit })) {
 									return event.player && event.player != player && _status.currentPhase != player;
 								}
 								return false;
@@ -11708,7 +11708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							usable: 1,
 							filter(event, player) {
-								return player.num('h', 'sha') > 0;
+								return player.countCards('h', 'sha') > 0;
 							},
 							filterCard(card) {
 								return card.name == 'sha';
@@ -11719,9 +11719,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								var list = ['弃牌或流失体力'];
-								if (target.num('h', 'sha') > 0) list.push('弃置一张杀');
+								if (target.countCards('h', 'sha') > 0) list.push('弃置一张杀');
 								target.chooseControl(list).ai = function () {
-									if (target.num('h', 'sha') > 0) return '弃置一张杀';
+									if (target.countCards('h', 'sha') > 0) return '弃置一张杀';
 									return '弃牌或流失体力';
 								};
 								('step 1');
@@ -11880,7 +11880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return player.countCards('e') > 0;
 							},
 							check(event, player) {
-								//					return player.num('h','shan')>0;
+								//					return player.countCards('h','shan')>0;
 								return false;
 							},
 							content() {
@@ -12328,7 +12328,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return player != target && target.countCards('h');
 								}, '请选择【月潮引力】的目标').ai = function (target) {
 									var att = get.attitude(player, target) + 1;
-									if (target.num('h', 'shan') || target.num('h', 'sha')) att * 10;
+									if (target.countCards('h', 'shan') || target.countCards('h', 'sha')) att * 10;
 									return -att;
 								};
 								('step 1');

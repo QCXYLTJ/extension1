@@ -1580,7 +1580,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									nono = true;
 								} else if (trigger.player.hp > 1 && player.countCards('h') < 3) {
 									nono = true;
-								} else if (trigger.player.canUse('sha', player) && !player.num('h', 'shan') && trigger.player.countCards('h') >= 3) {
+								} else if (trigger.player.canUse('sha', player) && !player.countCards('h', 'shan') && trigger.player.countCards('h') >= 3) {
 									nono = true;
 								}
 								var next = player.chooseToDiscard(get.prompt('zhendu', trigger.player));
@@ -1794,7 +1794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								target.draw(num);
 								target.showHandcards();
 								('step 1');
-								var num = target.num('h', function (card) {
+								var num = target.countCards('h', function (card) {
 									return get.type(card) != 'basic';
 								});
 								target.discard(
@@ -1819,7 +1819,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:群雄并起/audio:2',
 							enable: 'phaseUse',
 							filter(event, player) {
-								return !player.storage.jianshu && player.num('h', { color: 'black' }) > 0;
+								return !player.storage.jianshu && player.countCards('h', { color: 'black' }) > 0;
 							},
 							init(player) {
 								player.storage.jianshu = false;
@@ -1961,7 +1961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 4,
 							enable: 'phaseUse',
 							filter(event, player) {
-								return player.num('h', 'sha') > 0;
+								return player.countCards('h', 'sha') > 0;
 							},
 							filterCard: {
 								name: 'sha',
@@ -2473,7 +2473,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 1');
 								if (result.bool && result.targets && result.targets.length) {
-									var num = player.num('h', { color: 'black' });
+									var num = player.countCards('h', { color: 'black' });
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage(num);
 								}
@@ -3462,7 +3462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								target.showHandcards();
 								('step 1');
 								var target = trigger.player;
-								var num = target.num('h', function (card) {
+								var num = target.countCards('h', function (card) {
 									return get.type(card) != 'basic';
 								});
 								target.discard(
@@ -3518,7 +3518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 								('step 5');
 								//target.showHandcards();
-								var num = target.num('h', function (card) {
+								var num = target.countCards('h', function (card) {
 									return get.type(card) != 'trick';
 								});
 								target.discard(
@@ -4931,7 +4931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseBegin',
 							},
 							check(event, player) {
-								if (event.player.num('j', 'lebu')) return 0;
+								if (event.player.countCards('j', 'lebu')) return 0;
 								if (get.attitude(player, event.player) < -2) {
 									var cards = player.getCards('h');
 									if (cards.length > player.hp) return true;
@@ -9564,7 +9564,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseBegin',
 							},
 							check(event, player) {
-								if (event.player.num('j', 'lebu')) return 0;
+								if (event.player.countCards('j', 'lebu')) return 0;
 								if (get.attitude(player, event.player) < -2) {
 									var cards = player.getCards('h');
 									if (cards.length > player.hp) return true;
@@ -9653,7 +9653,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 2');
 								player.chooseControl('决斗', '出杀').ai = function () {
-									if (_status.event.player.num('h', 'sha') >= 2) return '决斗';
+									if (_status.event.player.countCards('h', 'sha') >= 2) return '决斗';
 									return '出杀';
 								};
 								('step 3');
@@ -10877,7 +10877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 								('step 5');
 								//target.showHandcards();
-								var num = target.num('h', function (card) {
+								var num = target.countCards('h', function (card) {
 									return get.type(card) != 'trick';
 								});
 								target.discard(
@@ -13830,7 +13830,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							usable: 2,
 							nobracket: true,
 							filter(event, player) {
-								return player.num('h', function (card) {
+								return player.countCards('h', function (card) {
 									return card.name == 'tiesuo' || card.name == 'huogong' || card.name == 'bingliang' || card.name == 'wuxie';
 								});
 							},
@@ -14027,10 +14027,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								target.draw(num);
 								target.showHandcards();
 								('step 1');
-								var num = target.num('h', function (card) {
+								var num = target.countCards('h', function (card) {
 									return get.type(card, 'trick') != 'trick';
 								});
-								var num1 = target.num('h', function (card) {
+								var num1 = target.countCards('h', function (card) {
 									return get.type(card, 'trick') == 'trick';
 								});
 								target.discard(
@@ -14609,7 +14609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:群雄并起/audio:2',
 							trigger: { player: 'phaseEnd' },
 							filter(event, player) {
-								return player.num('h', function (card) {
+								return player.countCards('h', function (card) {
 									return card.name == 'sha' || card.number >= 5;
 								});
 							},
@@ -16523,7 +16523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								trigger.cancel();
 								var n = 0;
-								game.players.map((i) => i.num('h', (c) => (n += c.num(h, (i) => i.name == 'sha'))));
+								game.players.map((i) => i.countCards('h', (c) => (n += c.num(h, (i) => i.name == 'sha'))));
 								player.draw(1 + n);
 								var target = game
 									.filterPlayer(function (current) {
@@ -16556,7 +16556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 3');
 								if (result.bool) {
 									player.gainPlayerCard(result.targets[0], 2, 'he', true, 'visible');
-									result.targets[0].draw(2 + player.num('h', (c) => c.name == 'sha'));
+									result.targets[0].draw(2 + player.countCards('h', (c) => c.name == 'sha'));
 								}
 							},
 						},

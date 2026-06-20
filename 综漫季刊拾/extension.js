@@ -5816,7 +5816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             filter(event, player) {
-                                return player.num('h', 'shan') > 0;
+                                return player.countCards('h', 'shan') > 0;
                             },
                             content() {
                                 'step 0';

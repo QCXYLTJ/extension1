@@ -2995,7 +2995,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -3114,7 +3114,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -5513,7 +5513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -8042,7 +8042,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -8109,7 +8109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -8417,7 +8417,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     filter(event, player) {
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.num('j', 'shandian')) {
+                                            if (i.countCards('j', 'shandian')) {
                                                 return false;
                                             }
                                         }
@@ -8442,7 +8442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    return player.countCards('h') - player.num('h', 'shandian') > 0;
+                                    return player.countCards('h') - player.countCards('h', 'shandian') > 0;
                                 },
                                 basic: {
                                     order: 5,
@@ -9680,7 +9680,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     filter(event, player) {
                                         for (var i of game.players) {
                                             //QQQ
-                                            if (i.num('j', 'shandian')) {
+                                            if (i.countCards('j', 'shandian')) {
                                                 return false;
                                             }
                                         }
@@ -10432,7 +10432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -10713,7 +10713,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -11164,7 +11164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -11233,7 +11233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -11354,7 +11354,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -11490,7 +11490,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -11970,7 +11970,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -12188,7 +12188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -15330,7 +15330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -15418,7 +15418,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -15481,7 +15481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -15825,7 +15825,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ
@@ -27783,7 +27783,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 1,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQQ

@@ -25585,8 +25585,8 @@ const skill = {
                     }
                 }
                 if (player.isDamaged()) return button.link[2] == 'tao' ? 1 : -1;
-                if (shaTarget && player.num('h', 'sha') && !player.num('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
-                if (shaTarget && !player.num('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
+                if (shaTarget && player.countCards('h', 'sha') && !player.countCards('h', 'jiu')) return button.link[2] == 'jiu' ? 1 : -1;
+                if (shaTarget && !player.countCards('h', 'sha')) return button.link[2] == 'sha' ? 1 : -1;
                 return button.link[2] == 'sha' ? 1 : -1;
             },
             backup(links, player) {
@@ -46264,7 +46264,7 @@ const skill = {
         },
         filter(event, player) {
             if (get.type(event.card) != 'trick') return false;
-            if (event.card.suit && player.num('h', { suit: event.card.suit })) {
+            if (event.card.suit && player.countCards('h', { suit: event.card.suit })) {
                 return event.player && event.player != player && _status.currentPhase != player;
             }
             return false;

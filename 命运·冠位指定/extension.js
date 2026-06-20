@@ -1118,7 +1118,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         order: 1,
                         result: {
                            target(player, target) {
-                              if (target.num('h', 'tao')) return 0;
+                              if (target.countCards('h', 'tao')) return 0;
                               var nh = target.countCards('h');
                               if (nh <= 2) return 1;
                               if (target.hp == 1 && target.maxHp > 2) return 1;
@@ -8463,7 +8463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            for (var i = 0; i < pmax; i++) {
                               if (get.subtype(pcard[i]) == 'equip1') pnum++;
                            }
-                           return num + player.num('h', ' ') + pnum;
+                           return num + player.countCards('h', ' ') + pnum;
                         },
                      },
                      group: ['Emiya2_skill'],
@@ -8473,7 +8473,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               player: ['phaseBegin'],
                            },
                            filter(event, player) {
-                              //if(event.parent.player.num('s','unequip')) return false;
+                              //if(event.parent.player.countCards('s','unequip')) return false;
                               if (!player.isEmpty(1)) return false;
                               return true;
                            },
@@ -8514,7 +8514,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      },
                      ai: {
                         wuxie(target, card, player, viewer) {
-                           if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
+                           if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
                               if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                            }
                         },
@@ -8570,7 +8570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      },
                      ai: {
                         wuxie(target, card, player, viewer) {
-                           if (get.attitude(viewer, target) > 0 && target.num('h', 'shan')) {
+                           if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
                               if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
                            }
                         },
@@ -10623,7 +10623,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               event.num++;
                               event.redo();
                            }else{
-                           if(event.target.num('h','shan')>0){
+                           if(event.target.countCards('h','shan')>0){
                               var next=event.target.chooseToRespond({name:'shan'});
                   next.set('ai',function(card){
                      return 11-get.value(card);
@@ -10723,7 +10723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               event.num++;
                               event.redo();
                            }else{
-                           if(event.target.num('h','shan')>0){
+                           if(event.target.countCards('h','shan')>0){
                               var next=event.target.chooseToRespond({name:'shan'});
                   next.set('ai',function(card){
                      return 11-get.value(card);
@@ -12709,7 +12709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            for (var i = 0; i < pmax; i++) {
                               if (get.type(pcard[i]) == 'trick' || get.type(pcard[i]) == 'delay') pnum++;
                            }
-                           return num + player.num('h', ' ') + pnum;
+                           return num + player.countCards('h', ' ') + pnum;
                         },
                      },
                   },
@@ -13438,7 +13438,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            prompt: '将杀当作万箭齐发打出',
                            viewAs: { name: 'wanjian' },
                            filter(event, player) {
-                              return player.num('h', { name: 'sha' }) > 0;
+                              return player.countCards('h', { name: 'sha' }) > 0;
                            },
                            check() {
                               return 1;
@@ -13454,7 +13454,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            prompt: '将决定当作南蛮入侵打出',
                            viewAs: { name: 'nanman' },
                            filter(event, player) {
-                              return player.num('h', { name: 'juedou' }) > 0;
+                              return player.countCards('h', { name: 'juedou' }) > 0;
                            },
                            check() {
                               return 1;

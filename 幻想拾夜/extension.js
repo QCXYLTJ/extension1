@@ -2243,7 +2243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (save) return 0;
                                     if (!save) {
                                         if (event.player.hasSkill('jiushi') && !event.player.isTurnedOver()) return 0;
-                                        if (player.num('h', 'tao') && event.player.countCards('h') >= 2) return 0;
+                                        if (player.countCards('h', 'tao') && event.player.countCards('h') >= 2) return 0;
                                         if (sgs.needKongcheng(event.player)) return 2;
                                         return 1;
                                     }
@@ -2363,7 +2363,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'damageBegin',
                             },
                             filter(event, player) {
-                                return player.num('h', { color: 'red', name: 'sha' }) > 0;
+                                return player.countCards('h', { color: 'red', name: 'sha' }) > 0;
                             },
                             forced: true,
                             content() {
@@ -2784,7 +2784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (get.color(event.card) != 'red') return false;
                                 if (!event.player) return false;
                                 if (event.player == player) return false;
-                                return player.num('h', 'shan') > 0;
+                                return player.countCards('h', 'shan') > 0;
                             },
                             forced: true,
                             content() {
@@ -4683,7 +4683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (target.countCards('h') == 1) return 0.5;
                                         if (target.countCards('h') <= 2 && target.countCards('e') > 1) return 0.7;
                                         if (player.hp <= 2) return -2;
-                                        if (player.num('h', 'shan') == 0) return -1;
+                                        if (player.countCards('h', 'shan') == 0) return -1;
                                         return -0.5;
                                     },
                                     target(player, target) {

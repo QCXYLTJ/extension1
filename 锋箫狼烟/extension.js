@@ -406,7 +406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var next = trigger.target.chooseToRespond({ name: 'sha' });
                                         next.autochoose = lib.filter.autoRespondSha;
                                         next.ai = function (card) {
-                                            if (trigger.target.num('h', 'sha') > 0) {
+                                            if (trigger.target.countCards('h', 'sha') > 0) {
                                                 return ai.get.unuseful2(card);
                                             }
                                             return -1;
@@ -437,7 +437,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var next = trigger.turn.chooseToRespond({ name: 'shan' });
                                         next.autochoose = lib.filter.autoRespondShan;
                                         next.ai = function (card) {
-                                            if (get.attitude(trigger.turn, player) < 0 && trigger.turn.num('h', 'shan') > 0) {
+                                            if (get.attitude(trigger.turn, player) < 0 && trigger.turn.countCards('h', 'shan') > 0) {
                                                 return ai.get.unuseful2(card);
                                             }
                                             return -1;

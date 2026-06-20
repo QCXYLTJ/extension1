@@ -811,7 +811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     let player = trigger.player;
                                     if (player.hp == player.maxHp) {
                                         return 6 - get.value(card);
-                                    } else if (player.hp == 1 && (!player.num('h', 'tao') || !player.num('h', 'jiu'))) {
+                                    } else if (player.hp == 1 && (!player.countCards('h', 'tao') || !player.countCards('h', 'jiu'))) {
                                         return 10 - get.value(card);
                                     }
                                     return 7 - get.value(card);
@@ -5569,7 +5569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             enable: 'phaseUse',
                             filter(event, player) {
-                                return player.num('h', { name: 'sha' }) > 0;
+                                return player.countCards('h', { name: 'sha' }) > 0;
                             },
                             content() {
                                 player.addTempSkill('hdsk_pokong_1');
@@ -15513,7 +15513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         szdl_ylhy: {
                             audio: 'ext:Nirvana/audio/曹植:2',
                             filter(event, player) {
-                                return player.num('h', { color: 'black' }) >= 1 && player.countMark('szdl_yljf_jiu') >= 1;
+                                return player.countCards('h', { color: 'black' }) >= 1 && player.countMark('szdl_yljf_jiu') >= 1;
                             },
                             filterCard(card) {
                                 return get.color(card) == 'black';
@@ -17336,7 +17336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 1');
-                                if (trigger.player != player && trigger.player.num('h', { name: 'sha' }) > 0) {
+                                if (trigger.player != player && trigger.player.countCards('h', { name: 'sha' }) > 0) {
                                     player
                                         .chooseTarget('选择出杀的目标', true, function (card, player, target) {
                                             return _status.event.targets.canUse('sha', target);
@@ -17816,7 +17816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         if (result.control == 'cancel2') event.finish();
                                         else {
-                                            var num = player.num('h', { type: result.control });
+                                            var num = player.countCards('h', { type: result.control });
                                             trigger.player.gain(
                                                 player.getCards('h', function (card) {
                                                     return get.type2(card) == result.control;
@@ -18607,7 +18607,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('ai', function (target) {
                                                 var player = _status.event.player;
                                                 var target = _status.event.target;
-                                                if (get.attitude(player, target) < 0 && (player.num('h', { name: 'tao' }) > 0 || player.num('h', { name: 'jiu' }) > 0 || player.hp > 1)) return '失去一点体力,使此杀伤害加一';
+                                                if (get.attitude(player, target) < 0 && (player.countCards('h', { name: 'tao' }) > 0 || player.countCards('h', { name: 'jiu' }) > 0 || player.hp > 1)) return '失去一点体力,使此杀伤害加一';
                                                 return '取消';
                                             })
                                             .set('target', trigger.target)
@@ -20639,7 +20639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.countCards('h') > 0;
                             },
                             content() {
-                                if (player.num('h', { type: 'basic' }) > 0) {
+                                if (player.countCards('h', { type: 'basic' }) > 0) {
                                     var card = get.cardPile2(function (card) {
                                         return get.type(card) == 'basic';
                                     });
@@ -20647,7 +20647,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.gain(card, 'gain2', 'log');
                                     }
                                 }
-                                if (player.num('h', { type: 'trick' }) > 0) {
+                                if (player.countCards('h', { type: 'trick' }) > 0) {
                                     var card = get.cardPile2(function (card) {
                                         return get.type(card) == 'trick';
                                     });
@@ -20655,7 +20655,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.gain(card, 'gain2', 'log');
                                     }
                                 }
-                                if (player.num('h', { type: 'equip' }) > 0) {
+                                if (player.countCards('h', { type: 'equip' }) > 0) {
                                     var card = get.cardPile2(function (card) {
                                         return get.type(card) == 'equip';
                                     });
@@ -21044,7 +21044,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.hasMark('szdl_baonu')) {
                                     player.chooseControlList(['移去一枚【暴怒】标记', '失去一点体力'], true).set('ai', function (event, player) {
                                         if (player.storage.szdl_baonu > 6) return 0;
-                                        if (player.hp + player.num('h', 'tao') > 3) return 1;
+                                        if (player.hp + player.countCards('h', 'tao') > 3) return 1;
                                         return 0;
                                     });
                                 } else {
@@ -21969,7 +21969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player: 'phaseDiscardBegin',
                                     },
                                     filter(event, player) {
-                                        return player.num('h', { type: 'equip' }) > 0;
+                                        return player.countCards('h', { type: 'equip' }) > 0;
                                     },
                                     content() {
                                         'step 0';
@@ -21986,7 +21986,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         if (result.bool) {
                                             player.useCard(result.cards[0], player).animate = false;
-                                            if (player.num('h', { type: 'equip' }) > 0) {
+                                            if (player.countCards('h', { type: 'equip' }) > 0) {
                                                 event.goto(0);
                                             }
                                         }
@@ -22981,7 +22981,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return target != player;
                             },
                             filter(event, player) {
-                                return player.num('h', { type: 'equip' }) > 0;
+                                return player.countCards('h', { type: 'equip' }) > 0;
                             },
                             content() {
                                 target.gain(cards, player, 'giveAuto');
@@ -25839,7 +25839,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 1,
                             filterTarget(card, player, target) {
-                                return target != player && !target.hasSkill('szdl_choufa_tao') && !target.hasSkill('szdl_choufa_sha') && (player.num('h', { name: 'sha' }) > 0 || player.num('h', { name: 'tao' }) > 0);
+                                return target != player && !target.hasSkill('szdl_choufa_tao') && !target.hasSkill('szdl_choufa_sha') && (player.countCards('h', { name: 'sha' }) > 0 || player.countCards('h', { name: 'tao' }) > 0);
                             },
                             ai: {
                                 order: 7.2,
@@ -29764,7 +29764,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'phaseEnd',
                             },
                             filter(event, player) {
-                                return player.num('h', { type: 'equip' }) > 0;
+                                return player.countCards('h', { type: 'equip' }) > 0;
                             },
                             init(player) {
                                 player.storage.szdl_zongshi = 0;

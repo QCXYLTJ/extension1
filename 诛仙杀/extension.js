@@ -699,7 +699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseControlList(['失去1点体力', '移去一枚<怨>'], true).set('ai', function (event, player) {
                                         if (get.effect(player, { name: 'losehp' }, player, player) >= 0) return 0;
                                         if (player.countMark('gm_yuanshang') > 3) return 1;
-                                        if (player.hp + player.num('h', 'tao') > 3) return 0;
+                                        if (player.hp + player.countCards('h', 'tao') > 3) return 0;
                                         return 1;
                                     });
                                 } else {

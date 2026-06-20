@@ -1362,7 +1362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							ai: {
 								skillTagFilter(player) {
-									return player.countCards('h') - player.num('h', 'shandian') > 0;
+									return player.countCards('h') - player.countCards('h', 'shandian') > 0;
 								},
 								basic: {
 									order: 5,
@@ -1503,7 +1503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player(player, target) {
 										var num = -get.attitude(player, target);
 										if (num < -1) return num;
-										if (target.num('h', 'shan') + target.hp <= Math.ceil(player.countCards('h') / player.hp)) num += 10;
+										if (target.countCards('h', 'shan') + target.hp <= Math.ceil(player.countCards('h') / player.hp)) num += 10;
 										return num;
 									},
 								},
@@ -1518,7 +1518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										name: 'sha',
 									},
 									viewAsFilter(player) {
-										return player.num('h', 'sha') > 0;
+										return player.countCards('h', 'sha') > 0;
 									},
 									position: 'h',
 									viewAs: {
@@ -1568,7 +1568,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									ai: {
 										skillTagFilter(player) {
-											return player.num('h', 'sha') > 0;
+											return player.countCards('h', 'sha') > 0;
 										},
 										threaten: 1.5,
 										save: true,
@@ -1586,7 +1586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												var keep = false;
 												if (nh <= target.hp) {
 													keep = true;
-												} else if (nh == target.hp + 1 && target.hp >= 2 && target.num('h', 'tao') <= 1) {
+												} else if (nh == target.hp + 1 && target.hp >= 2 && target.countCards('h', 'tao') <= 1) {
 													keep = true;
 												}
 												if (target.hp >= 2 && keep && target.hasFriend()) {
@@ -1609,7 +1609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 														var num = 0;
 														for (var i = 0; i < game.players.length; i++) {
 															if (game.players[i].identity == 'fan') {
-																num += game.players[i].num('h', 'tao');
+																num += game.players[i].countCards('h', 'tao');
 																if (num > 2) return 2;
 															}
 														}
@@ -1852,7 +1852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									for (var i = 0; i < pmax; i++) {
 										if (get.type(pcard[i]) == 'equip') pnum++;
 									}
-									return num + player.num('h', 'sha') + pnum;
+									return num + player.countCards('h', 'sha') + pnum;
 								},
 							},
 						},
@@ -1875,7 +1875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									var num = -get.attitude(_status.event.player, target);
 									if (num > 0) {
 										if (target.hp == 1) num += 1;
-										if (target.hp + target.num('h', 'shan') <= _status.event.player.storage.rixcdmg) num += 1;
+										if (target.hp + target.countCards('h', 'shan') <= _status.event.player.storage.rixcdmg) num += 1;
 									}
 									return num;
 								});
@@ -2067,7 +2067,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							filter(event, player) {
 								if (event.player == player) return false;
-								if (player.num('h', 'sha') == 0) return false;
+								if (player.countCards('h', 'sha') == 0) return false;
 								return true;
 							},
 							content() {
@@ -2094,7 +2094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							mod: {
 								maxHandcard(player, num) {
-									return num + player.num('h', 'sha');
+									return num + player.countCards('h', 'sha');
 								},
 							},
 						},
@@ -2146,7 +2146,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									check(event, player) {
 										var num = 0;
 										num -= get.attitude(player, event.player);
-										if (player.num('h', 'sha') == 0) num += Math.random() * 6;
+										if (player.countCards('h', 'sha') == 0) num += Math.random() * 6;
 										return num > 0;
 									},
 									_priority: 1,

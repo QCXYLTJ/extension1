@@ -638,7 +638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.draw(5);
                                 target.showHandcards();
                                 ('step 1');
-                                var num = target.num('h', function (card) {
+                                var num = target.countCards('h', function (card) {
                                     return get.type(card) != 'basic';
                                 });
                                 target.discard(
@@ -1531,7 +1531,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 var suit = result.card.suit;
                                 var target = trigger.target;
-                                var num = target.num('h', 'shan');
+                                var num = target.countCards('h', 'shan');
                                 target
                                     .chooseToDiscard('请弃置一张' + get.translation(suit) + '牌,否则不能使用闪抵消此杀', 'he', function (card) {
                                         return card.suit == _status.event.suit;
@@ -1729,7 +1729,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 2,
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'shan')) return 1;
+                                        if (player.countCards('h', 'shan')) return 1;
                                         var num = 0;
                                         for (var i of game.players) {
                                             //QQ
@@ -1900,7 +1900,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.target.chooseToDiscard('请弃置一张锦囊牌,否则不能使用闪抵消此杀', 'he', function (card) {
                                     return get.type(card) == 'trick';
                                 }).ai = function (card) {
-                                    var num = trigger.target.num('h', 'shan');
+                                    var num = trigger.target.countCards('h', 'shan');
                                     if (num == 0) return 0;
                                     return 8 - get.value(card);
                                 };
@@ -2136,7 +2136,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.draw(num);
                                 target.showHandcards();
                                 ('step 1');
-                                var num = target.num('h', function (card) {
+                                var num = target.countCards('h', function (card) {
                                     return get.type(card) != 'basic';
                                 });
                                 if (num == 0) {
@@ -5878,7 +5878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 order(name, player) {
                                     var cards = player.getCards('h');
-                                    if (player.num('h', 'sha') == 0) {
+                                    if (player.countCards('h', 'sha') == 0) {
                                         return 1;
                                     }
                                     for (var i = 0; i < cards.length; i++) {
@@ -5890,7 +5890,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'sha') > 0) return 0.6;
+                                        if (player.countCards('h', 'sha') > 0) return 0.6;
                                         var num = player.countCards('h');
                                         if (num > player.hp) return 0;
                                         if (num == 1) return -2;
@@ -7262,7 +7262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 order(name, player) {
                                     var cards = player.getCards('h');
-                                    if (player.num('h', 'juedou') == 0) {
+                                    if (player.countCards('h', 'juedou') == 0) {
                                         return 1;
                                     }
                                     for (var i = 0; i < cards.length; i++) {
@@ -7274,7 +7274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     player(player) {
-                                        if (player.num('h', 'juedou') > 0) return 0.6;
+                                        if (player.countCards('h', 'juedou') > 0) return 0.6;
                                         var num = player.countCards('h');
                                         if (num > player.hp) return 0;
                                         if (num == 1) return -2;
