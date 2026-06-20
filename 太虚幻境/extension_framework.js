@@ -8713,7 +8713,7 @@ game.import('太虚幻境', function (lib, game, ui, get, ai, _status) {
                         }
                         let adjust = lib.config.taixuhuanjing.adjust;
                         while (!lib.config.taixuhuanjing.buff.includes('buff_txhj_yunchouweiwo') && adjust > 0) {
-                            const { result } = await player.chooseBool(`可以免费使用${adjust}次手气卡,是否更换手牌？`);
+                            const result = await player.chooseBool(`可以免费使用${adjust}次手气卡,是否更换手牌？`).forResult();
                             if (result?.bool) {
                                 adjust--;
                                 const hs = player.getCards('h');

@@ -590,14 +590,15 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									dialog.push(`<div class='text center'>武库未点亮</div>`);
 									dialog.push([list2, 'vcard']);
 								}
-								const { result } = await player
+								const result = await player
 									.chooseButton(dialog)
 									.set('ai', (button) => player.getUseValue({ name: button.link[2] }) * (1 + player.countCards('hs', button.link[2]))) //QQQ//在主动技内部调用get.effect,但没有trigger
 									.set('filterButton', function (button) {
 										var player = _status.event.player;
 										if (player.storage.ybdy_qingyu_light.includes(button.link[2])) return false;
 										return true;
-									});
+									})
+									.forResult();
 								if (result.links && result.links[0]) {
 									var name = result.links[0][2];
 									player.storage.ybdy_qingyu_light.push(name);
@@ -1396,7 +1397,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							player = _status.event.player;
 						var target = _status.event.getTrigger().name == 'phaseZhunbei' ? player : player.next;
 						var att = get.sgn(get.attitude(player, target));
-						const top = [], bottom = cards;
+						const top = [],
+							bottom = cards;
 						for (const i of target.getCards('j')) {
 							const judge = get.judge(i);
 							bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -3338,15 +3340,16 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					next.processAI = function (list) {
 						var cards = list[0][1],
 							player = _status.event.player;
-						const top = [], bottom = cards;
+						const top = [],
+							bottom = cards;
 						for (const i of player.getCards('j')) {
 							const judge = get.judge(i);
-							bottom.sort((a, b) => (judge(b) - judge(a))); //价值高的牌放前面
+							bottom.sort((a, b) => judge(b) - judge(a)); //价值高的牌放前面
 							if (bottom.length) {
 								top.push(bottom.shift());
 							}
 						}
-						bottom.sort((a, b) => (get.value(b) - get.value(a))); //把价值高的牌放前面
+						bottom.sort((a, b) => get.value(b) - get.value(a)); //把价值高的牌放前面
 						while (bottom.length) {
 							top.push(bottom.shift());
 						}
@@ -4681,11 +4684,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			/*
-			准备阶段,你可获得X名角色各1张牌,相关角色弃置2张牌,你摸6-X张牌
-			结束阶段,你可弃置至多6-X名角色各1张牌,相关角色流失2点体力,你摸X张牌
-			直到你的下个回合开始.本回合〖阵峙〗角色回复体力时,你回复1点体力
-			直到你的下个回合开始.本回合〖阵峙〗角色进入濒死状态时,你摸1张牌
-			*/
+	  准备阶段,你可获得X名角色各1张牌,相关角色弃置2张牌,你摸6-X张牌
+	  结束阶段,你可弃置至多6-X名角色各1张牌,相关角色流失2点体力,你摸X张牌
+	  直到你的下个回合开始.本回合〖阵峙〗角色回复体力时,你回复1点体力
+	  直到你的下个回合开始.本回合〖阵峙〗角色进入濒死状态时,你摸1张牌
+	  */
 			ybhzy_xiasi: {
 				audio: 'bolan',
 				forced: true,
@@ -4711,7 +4714,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						link.push([i, get.translation(i)]);
 					}
 					if (link[0]) {
-						const { result } = await player.chooseButton(['获得一个技能', [list, 'character'], [link, 'tdnodes']], 1, true).set('filterButton', (button) => skill.includes(button.link));
+						const result = await player
+							.chooseButton(['获得一个技能', [list, 'character'], [link, 'tdnodes']], 1, true)
+							.set('filterButton', (button) => skill.includes(button.link))
+							.forResult();
 						if (result.links && result.links[0]) {
 							player.storage.QQQ_xiasi.add(result.links[0]);
 							player.addTempSkills(result.links[0]);
@@ -4807,10 +4813,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						link.push([i, get.translation(i)]);
 					}
 					if (link[0]) {
-						const { result } = await player.chooseButton(['失去一个技能', [link, 'tdnodes']]).set('ai', (button) => {
-							if (['ybhzy_xiasi', 'ybhzy_rongzhi', 'ybhzy_hongya', 'ybhzy_fuxin'].includes(button.link)) return -1;
-							return Math.random();
-						});
+						const result = await player
+							.chooseButton(['失去一个技能', [link, 'tdnodes']])
+							.set('ai', (button) => {
+								if (['ybhzy_xiasi', 'ybhzy_rongzhi', 'ybhzy_hongya', 'ybhzy_fuxin'].includes(button.link)) return -1;
+								return Math.random();
+							})
+							.forResult();
 						if (result.links && result.links[0]) {
 							if (player.storage.QQQ_xiasi.includes(result.links[0])) {
 								player.draw();
@@ -4819,10 +4828,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							trigger.player.hp = 1;
 							trigger.player.update();
 							trigger.player.drawTo(4);
-							const { result: result1 } = await player
+							const result1 = await player
 								.chooseTarget()
 								.set('ai', (target) => -get.attitude(player, target))
-								.set('prompt2', '请选择一名有角色,令其体力上限-1');
+								.set('prompt2', '请选择一名有角色,令其体力上限-1')
+								.forResult();
 							if (result1.targets && result1.targets[0]) {
 								result1.targets[0].loseMaxHp();
 							}
@@ -4841,7 +4851,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					//QQQ
 					player.hp = player.maxHp;
 					player.drawTo(player.maxHp);
-					const { result } = await player.chooseBool('将武将牌技能调整为与游戏开始时一致');
+					const result = await player.chooseBool('将武将牌技能调整为与游戏开始时一致').forResult();
 					if (result.bool) {
 						player.draw(player.storage.QQQ_xiasi.length);
 						player.storage.QQQ_xiasi = [];
@@ -4904,18 +4914,27 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						link.push([i, get.translation(i)]);
 					}
 					if (link[0]) {
-						const { result } = await player.chooseButton(['选择失去武将牌上一个技能', [link, 'tdnodes']]).set('ai', (button) => {
-							if (['ybhzy_xiasi', 'ybhzy_rongzhi', 'ybhzy_hongya', 'ybhzy_fuxin'].includes(button.link)) return -1;
-							return Math.random();
-						});
+						const result = await player
+							.chooseButton(['选择失去武将牌上一个技能', [link, 'tdnodes']])
+							.set('ai', (button) => {
+								if (['ybhzy_xiasi', 'ybhzy_rongzhi', 'ybhzy_hongya', 'ybhzy_fuxin'].includes(button.link)) return -1;
+								return Math.random();
+							})
+							.forResult();
 						if (result.links && result.links[0]) {
 							if (player.storage.QQQ_xiasi.includes(result.links[0])) {
 								player.draw();
 							}
 							player.RS(result.links[0]);
-							const { result: result1 } = await player.chooseTarget((c, p, t) => t.countCards('he')).set('ai', (t) => -get.attitude(t, player));
+							const result1 = await player
+								.chooseTarget((c, p, t) => t.countCards('he'))
+								.set('ai', (t) => -get.attitude(t, player))
+								.forResult();
 							if (result1.targets && result1.targets[0]) {
-								const { result: result2 } = await player.chooseButton(['展示其中1张牌,若此牌为装备牌/非装备牌,你可使用之/当作一张同类型的牌使用', result1.targets[0].getCards('he')]).set('ai', (button) => player.getUseValue(button.link));
+								const result2 = await player
+									.chooseButton(['展示其中1张牌,若此牌为装备牌/非装备牌,你可使用之/当作一张同类型的牌使用', result1.targets[0].getCards('he')])
+									.set('ai', (button) => player.getUseValue(button.link))
+									.forResult();
 								if (result2.links && result2.links[0]) {
 									if (get.type(result2.links[0]) == 'equip') {
 										player.equip(result2.links[0]);
@@ -4936,7 +4955,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 												}
 											}
 										}
-										const { result: result3 } = await player.chooseButton(['当作一张同类型的牌使用', [list, 'vcard']]).set('ai', (button) => player.getUseValue(button.link));
+										const result3 = await player
+											.chooseButton(['当作一张同类型的牌使用', [list, 'vcard']])
+											.set('ai', (button) => player.getUseValue(button.link))
+											.forResult();
 										if (result3.links && result3.links[0]) {
 											await player
 												.chooseUseTarget(
@@ -5021,31 +5043,37 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (!info.content) continue;
 						if (info.type == 'equip') list.add(i);
 					}
-					const { result } = await player.chooseButton(['选择一张装备牌', [list, 'vcard']]).set('ai', function (button) {
-						var name = button.link[2];
-						if (game.players.some((q) => q.isEnemiesOf(player) && q.countCards('e', (c) => get.subtype(name) == get.subtype(c)))) {
-							return 10 - get.value({ name: name });
-						}
-						if (trigger.player == player) {
-							if (['equip1', 'equip5'].includes(get.subtype(name))) {
-								return 2 * get.value({ name: name });
+					const result = await player
+						.chooseButton(['选择一张装备牌', [list, 'vcard']])
+						.set('ai', function (button) {
+							var name = button.link[2];
+							if (game.players.some((q) => q.isEnemiesOf(player) && q.countCards('e', (c) => get.subtype(name) == get.subtype(c)))) {
+								return 10 - get.value({ name: name });
 							}
-						} else {
-							if (['equip2', 'equip3'].includes(get.subtype(name))) {
-								return 2 * get.value({ name: name });
+							if (trigger.player == player) {
+								if (['equip1', 'equip5'].includes(get.subtype(name))) {
+									return 2 * get.value({ name: name });
+								}
+							} else {
+								if (['equip2', 'equip3'].includes(get.subtype(name))) {
+									return 2 * get.value({ name: name });
+								}
 							}
-						}
-						return get.value({ name: name });
-					});
+							return get.value({ name: name });
+						})
+						.forResult();
 					if (result.links && result.links[0]) {
 						var card = game.createCard(result.links[0][2]);
 						if (card) {
-							const { result: result1 } = await player.chooseTarget('选择角色装备').set('ai', (t) => {
-								if (t.isEnemiesOf(player) && t.hasCard((c) => get.subtype(card) == get.subtype(c), 'e')) {
-									return -get.attitude(t, player);
-								}
-								return get.attitude(t, player);
-							});
+							const result1 = await player
+								.chooseTarget('选择角色装备')
+								.set('ai', (t) => {
+									if (t.isEnemiesOf(player) && t.hasCard((c) => get.subtype(card) == get.subtype(c), 'e')) {
+										return -get.attitude(t, player);
+									}
+									return get.attitude(t, player);
+								})
+								.forResult();
 							if (result1.targets && result1.targets[0]) {
 								player.storage.QQQ_jingdu.push(card);
 								result1.targets[0].equip(card);
@@ -5091,10 +5119,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				async content(event, trigger, player) {
 					//QQQ
 					var list = ['nanman', 'wanjian', 'taoyuan', 'wugu'];
-					const { result } = await player.chooseButton([get.prompt2('QQQ_yuxi'), [list, 'vcard']]).set('ai', function (button) {
-						var player = _status.event.player;
-						return player.getUseValue({ name: button.link[2] });
-					});
+					const result = await player
+						.chooseButton([get.prompt2('QQQ_yuxi'), [list, 'vcard']])
+						.set('ai', function (button) {
+							var player = _status.event.player;
+							return player.getUseValue({ name: button.link[2] });
+						})
+						.forResult();
 					if (result.bool) {
 						player.chooseUseTarget(result.links[0][2], true, false);
 					}
@@ -5374,14 +5405,14 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			yblf_zhenzhi: '阵峙',
 			yblf_zhenzhi_info: '准备阶段/结束阶段,你可获得/弃置X/至多6-X名角色各1张牌,被获得/弃置牌的角色须弃置2张牌/流失2点体力,你摸6-X/X张牌.直到你的下个回合开始.本回合〖阵峙〗角色回复体力后/进入濒死状态时,你回复1点体力/摸1张牌(X为你准备阶段选择获得牌的角色数且不大于6).',
 			/*
-			准备阶段,你可获得X名角色各1张牌,相关角色弃置2张牌,你摸6-X张牌
-			结束阶段,你可弃置至多6-X名角色各1张牌,相关角色流失2点体力,你摸X张牌
-			直到你的下个回合开始.本回合〖阵峙〗角色回复体力时,你回复1点体力
-			直到你的下个回合开始.本回合〖阵峙〗角色进入濒死状态时,你摸1张牌
-			神刘封 4勾玉
-			阵峙:准备阶段/结束阶段,你可获得/弃置X/至多6-X名角色各1张牌,被获得/弃置牌的角色须弃置2张牌/流失2点体力,你摸6-X/X张牌.直到你的下个回合开始.本回合〖阵峙〗角色回复体力/进入濒死状态,你回复1点体力/摸1张牌(X为你准备阶段选择获得牌的角色数且不大于6).
-			台词:陷嗣
-			*/
+	  准备阶段,你可获得X名角色各1张牌,相关角色弃置2张牌,你摸6-X张牌
+	  结束阶段,你可弃置至多6-X名角色各1张牌,相关角色流失2点体力,你摸X张牌
+	  直到你的下个回合开始.本回合〖阵峙〗角色回复体力时,你回复1点体力
+	  直到你的下个回合开始.本回合〖阵峙〗角色进入濒死状态时,你摸1张牌
+	  神刘封 4勾玉
+	  阵峙:准备阶段/结束阶段,你可获得/弃置X/至多6-X名角色各1张牌,被获得/弃置牌的角色须弃置2张牌/流失2点体力,你摸6-X/X张牌.直到你的下个回合开始.本回合〖阵峙〗角色回复体力/进入濒死状态,你回复1点体力/摸1张牌(X为你准备阶段选择获得牌的角色数且不大于6).
+	  台词:陷嗣
+	  */
 			ybhzy_xiasi: '遐思', //博览
 			ybhzy_xiasi_info: '锁定技.每当你于一个回合内首次使用或打出牌名字数为X的牌时,你从2X张武将牌中选择获得一个技能直到本回合结束.',
 			ybhzy_rongzhi: '容止', //仪法
@@ -5395,18 +5426,18 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			'#ybhzy_hongya1': '好女宜家,可度大厄.',
 			'#ybhzy_hongya2': '宗族有难,当施以援手.',
 			/*
-			绘钟琰  晋  3勾玉
-			遐思:锁定技.每当你于一个回合内首次使用或打出牌名字数为X的牌时,你从2X张武将牌中选择获得一个技能直到本回合结束.
-			台词:博览
-			容止:出牌阶段限一次.你可重铸至少3张花色各不相同的牌并获得技能〖雅相〗直到本回合结束,你可令一名角色手牌上限-1.
-			台词:仪法
-			弘雅:当有角色进入濒死状态后,你可选择失去武将牌上的一个技能令其将体力值回复至1并将手牌摸至4,你可令一名角色体力值上限-1.
-			台词:保族
-			赋心:锁定技.当你失去最后一张手牌时,你将手牌和体力值补至体力上限,你可将武将牌技能调整为与游戏开始时一致.当你使用或失去因〖遐思〗获得的技能时,你摸1张牌.
-			台词:啸咏
-			＊雅相:出牌阶段限Y次.你可选择失去武将牌上一个技能,观看一名角色的牌并展示其中1张牌,若此牌为装备牌/非装备牌,你可使用之/当作一张同类型的牌使用(Y为本回合你发动〖遐思〗的次数).
-			台词:观骨
-			*/
+	  绘钟琰  晋  3勾玉
+	  遐思:锁定技.每当你于一个回合内首次使用或打出牌名字数为X的牌时,你从2X张武将牌中选择获得一个技能直到本回合结束.
+	  台词:博览
+	  容止:出牌阶段限一次.你可重铸至少3张花色各不相同的牌并获得技能〖雅相〗直到本回合结束,你可令一名角色手牌上限-1.
+	  台词:仪法
+	  弘雅:当有角色进入濒死状态后,你可选择失去武将牌上的一个技能令其将体力值回复至1并将手牌摸至4,你可令一名角色体力值上限-1.
+	  台词:保族
+	  赋心:锁定技.当你失去最后一张手牌时,你将手牌和体力值补至体力上限,你可将武将牌技能调整为与游戏开始时一致.当你使用或失去因〖遐思〗获得的技能时,你摸1张牌.
+	  台词:啸咏
+	  ＊雅相:出牌阶段限Y次.你可选择失去武将牌上一个技能,观看一名角色的牌并展示其中1张牌,若此牌为装备牌/非装备牌,你可使用之/当作一张同类型的牌使用(Y为本回合你发动〖遐思〗的次数).
+	  台词:观骨
+	  */
 			//换行锚点
 			//----------------------
 		}, //翻译(必填)
@@ -5443,9 +5474,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		},
 	};
 	/*
-	// if(!lib.characterPack.mode_guozhan)lib.characterPack.mode_guozhan;
-	// 这是一个大饼,也是一个尝试
-	*/
+  // if(!lib.characterPack.mode_guozhan)lib.characterPack.mode_guozhan;
+  // 这是一个大饼,也是一个尝试
+  */
 	for (var i in No1_chyz.character) {
 		No1_chyz.character[i][4].push(`ext:沧海遗珠/image/character/${i}.jpg`);
 	}

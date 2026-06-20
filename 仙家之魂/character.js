@@ -12712,7 +12712,7 @@ game.import('character', function () {
 				async cost(event, trigger, player) {
 					let num = game.countPlayer((current) => current != player && current.countCards('he') > 0 && get.attitude(player, current) <= 0);
 					let check = num >= 2;
-					const { result } = await player
+					const result = await player
 						.chooseTarget(
 							'〖智愚〗:请选择至多两名角色从其区域内获得至多两张牌',
 							[1, 2],
@@ -12726,7 +12726,7 @@ game.import('character', function () {
 								return 1 - att;
 							}
 						)
-						.set('aicheck', check);
+						.set('aicheck', check).forResult();
 					event.result = result;
 				},
 				async content(event, trigger, player) {
@@ -14349,9 +14349,9 @@ game.import('character', function () {
 				},
 				_priority: -5,
 				async cost(event, trigger, player) {
-					const { result } = await player.chooseTarget('〖授业〗:请选择一名其他角色令其随机获得一个技能直到其发动该技能', lib.filter.notMe).set('ai', (target) => {
+					const result = await player.chooseTarget('〖授业〗:请选择一名其他角色令其随机获得一个技能直到其发动该技能', lib.filter.notMe).set('ai', (target) => {
 						return get.attitude(player, target);
-					});
+					}).forResult();
 					event.result = result;
 				},
 				async content(event, trigger, player) {
@@ -22768,7 +22768,7 @@ game.import('character', function () {
 					player.loseHp();
 					player.draw(2);
 					for (const npc of game.players) {
-						const { result } = await npc.draw();
+						const result = await npc.draw().forResult();
 						if (result && result[0]?.name == 'tao') {
 							player.gain(result, 'gain2');
 						}

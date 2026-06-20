@@ -4662,7 +4662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 player.draw();
                                 if (player.countCards('he') && trigger.target != player) {
-                                    const { result } = await player.chooseCard('he', '交给' + get.translation(trigger.target) + '一张牌').set('ai', function (card) {
+                                    const result = await player.chooseCard('he', '交给' + get.translation(trigger.target) + '一张牌').set('ai', function (card) {
                                         //QQQ
                                         if (trigger.target.isEnemiesOf(player)) return false;
                                         if (get.position(card) == 'e') return -1;
@@ -4671,7 +4671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.type(card) == 'basic') return 0.5;
                                         if (get.type(card) == 'equip') return 0.3;
                                         return -get.value(card);
-                                    });
+                                    }).forResult();
                                     if (result.cards && result.cards[0]) {
                                         trigger.target.gain(result.cards, player, 'give');
                                         if (get.type(result.cards[0]) == 'trick') trigger.target.recover();

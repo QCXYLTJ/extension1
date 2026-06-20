@@ -3714,7 +3714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             init: (player) => (player.storage.Grand_caiyi = []),
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseCardTarget({
+                                const result = await player.chooseCardTarget({
                                     prompt: '弃置一张牌并选择一名其他角色,猜测其的身份',
                                     filterCard: true,
                                     position: 'he',
@@ -3723,7 +3723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     ai2(target) {
                                         return target.maxHp - target.hp || 1;
                                     },
-                                });
+                                }).forResult();
                                 if (result.cards && result.targets && result.targets[0]) {
                                     player.discard(result.cards);
                                     player.storage.Grand_caiyi.add(result.targets[0]);

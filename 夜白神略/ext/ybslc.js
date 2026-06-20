@@ -37,7 +37,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				filterTarget: true,
 				async content(event, trigger, player) {
 					//QQQ
-					const { result } = await player.chooseButton(['改变势力', [lib.group, 'tdnodes']]).set('ai', (button) => button.link == 'shen');
+					const result = await player.chooseButton(['改变势力', [lib.group, 'tdnodes']]).set('ai', (button) => button.link == 'shen').forResult();
 					if (result.links && result.links[0]) {
 						event.target.changeGroup(result.links[0]);
 						event.target.draw(1);

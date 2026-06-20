@@ -10172,7 +10172,7 @@ game.import('character', function () {
                         return false;
                     if (player.getHandcardLimit() > 2) return false;
                     return game.hasPlayer(function (current) {
-                        return current != player && player.inRange(current) && get.attitude(player, current) < 0;//QQQ
+                        return current != player && player.inRange(current) && get.attitude(player, current) < 0; //QQQ
                     });
                 },
                 filter(event, player) {
@@ -16074,6 +16074,7 @@ game.import('character', function () {
                         ['种子(此牌结算完毕后你可以将其交给一名其他角色)', []],
                         ['皮毛(不可被其他角色响应)', []],
                     ];
+
                     var next = player.chooseToMove('【旅梦】:请分配牌的类型', true);
                     next.set('list', list);
                     next.set('filterMove', function (from, to, moved) {
@@ -18108,15 +18109,18 @@ game.import('character', function () {
                         },
                         async content(event, trigger, player) {
                             var cards = trigger.player.getExpansions('bingzhumrfz').filter((i) => i.name == trigger.card.name || i.suit == trigger.card.suit);
-                            const { bool, links } = await player.chooseCardButton('【秉烛】:你可以弃置其一张‘司’并令此牌对一名目标角色无效', cards).set('ai', () => {
-                                var player = _status.event.player,
-                                    event = _status.event.getTrigger(),
-                                    friend = game.filterPlayer((current) => current == player || get.attitude(current, player) > 0);
-                                for (var i of event.targets) {
-                                    if (friend.includes(i)) return 1;
-                                }
-                                return 0;
-                            }).forResult();
+                            const { bool, links } = await player
+                                .chooseCardButton('【秉烛】:你可以弃置其一张‘司’并令此牌对一名目标角色无效', cards)
+                                .set('ai', () => {
+                                    var player = _status.event.player,
+                                        event = _status.event.getTrigger(),
+                                        friend = game.filterPlayer((current) => current == player || get.attitude(current, player) > 0);
+                                    for (var i of event.targets) {
+                                        if (friend.includes(i)) return 1;
+                                    }
+                                    return 0;
+                                })
+                                .forResult();
                             if (!bool) return;
                             const targets = await player
                                 .chooseTarget('【秉烛】:请选择一名目标角色,此牌对该角色无效', true)
@@ -18717,7 +18721,7 @@ game.import('character', function () {
                 // forced: true,
                 async cost(event, trigger, player) {
                     let sourceCards = trigger.cards || undefined;
-                    const { result } = await player
+                    const result = await player
                         .chooseToDiscard('he')
                         .set('prompt', get.prompt('baidumrfz'))
                         .set('prompt2', `你可以弃置一张牌,${sourceCards === undefined ? '(' + get.translation(trigger.card) + '无对应的实体牌)' : '你获得' + get.translation(trigger.card) + '(' + get.translation(sourceCards) + '),'}${get.translation(trigger.player)}摸你弃置的牌与对其造成伤害的牌的字数之差的绝对值张牌.`)
@@ -18734,7 +18738,8 @@ game.import('character', function () {
                             }
                         })
                         .set('targetx', trigger.player)
-                        .set('cardx', trigger.card);
+                        .set('cardx', trigger.card)
+                        .forResult();
                     event.result = result;
                 },
                 async content(event, trigger, player) {
@@ -19024,7 +19029,8 @@ game.import('character', function () {
                             ai1: (card) => 8 - get.value(card),
                             ai2: (target) => get.damageEffect(target, player, player, 'fire') > 0,
                         })
-                        .set('targetx', trigger.player).forResult();
+                        .set('targetx', trigger.player)
+                        .forResult();
                     if (!cards || !targets) return;
                     player.discard(cards);
                     targets[0].damage(player, 'fire');
@@ -19461,12 +19467,15 @@ game.import('character', function () {
                     return player.countCards('h') > 0;
                 },
                 async cost(event, trigger, player) {
-                    const { result } = await player.chooseCard([1, 2], '【荒响】:你可以选择两张手牌将其标记为‘残影’').set('ai', (card) => {
-                        var num = get.value(card);
-                        if (card.name == 'shan' || card.name == 'wuxie') num += 10;
-                        if (get.type2(card) == 'equip') num -= 2;
-                        return num;
-                    });
+                    const result = await player
+                        .chooseCard([1, 2], '【荒响】:你可以选择两张手牌将其标记为‘残影’')
+                        .set('ai', (card) => {
+                            var num = get.value(card);
+                            if (card.name == 'shan' || card.name == 'wuxie') num += 10;
+                            if (get.type2(card) == 'equip') num -= 2;
+                            return num;
+                        })
+                        .forResult();
                     event.result = result;
                 },
                 async content(event, trigger, player) {
@@ -19552,7 +19561,7 @@ game.import('character', function () {
                                 if (bool) return;
                                 targets[0].damage();
                             } else {
-                                const { result } = await player.draw();
+                                const result = await player.draw().forResult();
                                 result[0].addGaintag('newhuangxiangmrfzx');
                             }
                         },
@@ -19650,7 +19659,7 @@ game.import('character', function () {
                     return player.countCards('h') > 0 && player.hasUseTarget('chuqibuyi');
                 },
                 async cost(event, trigger, player) {
-                    const { result } = await player
+                    const result = await player
                         .chooseControl('club', 'spade', 'diamond', 'heart', 'cancel2')
                         .set('prompt', '你可以将一种颜色的所有手牌当做任意花色且伤害基数为2的【出其不意】使用,若此牌造成伤害,受到伤害的角色依次弃置装备区和手牌区的一张牌.')
                         .set('ai', () => {
@@ -19662,7 +19671,8 @@ game.import('character', function () {
                             )
                                 return 'cancel2';
                             return lib.suit.randomGet();
-                        });
+                        })
+                        .forResult();
                     event.result = {};
                     if (result.control === 'cancel2') event.result.bool = false;
                     else event.result.bool = true;
@@ -19809,7 +19819,7 @@ game.import('character', function () {
                         storage = player.storage.tongmaimrfz;
                     if (storage.includes(0)) prompt2 = prompt2.replace('回复一点体力或', '');
                     if (storage.includes(1)) prompt2 = prompt2.replace('或复原武将牌', '');
-                    const { result } = await player
+                    const result = await player
                         .chooseTarget()
                         .set('prompt', get.prompt('tongmaimrfz'))
                         .set('prompt2', prompt2)
@@ -19823,7 +19833,8 @@ game.import('character', function () {
                             var player = get.event('player');
                             return get.attitude(target, player) > 0 && (target.getDamagedHp() > 0 || target.isTurnedOver() || target.isLinked());
                         })
-                        .set('storage', storage);
+                        .set('storage', storage)
+                        .forResult();
                     event.result = result;
                 },
                 async content(event, trigger, player) {
@@ -19890,7 +19901,7 @@ game.import('character', function () {
                     });
                 },
                 async cost(event, trigger, player) {
-                    const { result } = await player
+                    const result = await player
                         .chooseTarget()
                         .set('prompt', get.prompt('shulangmrfz'))
                         .set('prompt2', `你可以观看一名其他角色的手牌并选择其中一张牌,该角色选择一项:<br>①失去一点体力,令你获得此牌.<br>②令你视为使用此牌,本回合结束阶段你发动一次【鲸猎】.<br>③对你使用一张【杀】,若此杀造成伤害,你翻面,反之执行其他两项.`)
@@ -19902,7 +19913,8 @@ game.import('character', function () {
                             if (att >= 0) num += 2;
                             else num += 5 + target.getDamagedHp();
                             return (num += target.countCards('h') / 2);
-                        });
+                        })
+                        .forResult();
                     event.result = result;
                 },
                 async content(event, trigger, player) {
@@ -20076,7 +20088,7 @@ game.import('character', function () {
                     return '你可以对' + get.translation(event.player) + '使用一张杀';
                 },
                 async content(event, trigger, player) {
-                    const { result } = await player
+                    const result = await player
                         .chooseToUse(function (card, player, event) {
                             if (card.name != 'sha') return false;
                             return true;
@@ -20089,7 +20101,8 @@ game.import('character', function () {
                             if (target != _status.event.sourcex && !ui.selected.targets.includes(_status.event.sourcex)) return false;
                             return player.canUse({ name: 'sha' }, target, false);
                         })
-                        .set('sourcex', trigger.player);
+                        .set('sourcex', trigger.player)
+                        .forResult();
                     if (
                         player.hasHistory('useCard', (evt) => {
                             return (
@@ -20267,7 +20280,7 @@ game.import('character', function () {
                     return get.attitude(player, event.player) < 0;
                 },
                 async content(event, trigger, player) {
-                    const { result } = await player.chooseToCompare(trigger.player);
+                    const result = await player.chooseToCompare(trigger.player).forResult();
                     if (result.bool) {
                         var discards = lib.skill.zheqimrfz_eff2.getDiscard(trigger);
                         const links =

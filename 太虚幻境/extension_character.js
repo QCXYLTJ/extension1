@@ -4485,9 +4485,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					});
 				},
 				async content(event, trigger, player) {
-					const { result } = await player.judge(function () {
+					const result = await player.judge(function () {
 						return 1;
-					});
+					}).forResult();
 					if (result.suit === 'heart') {
 						player.recover();
 						player.gain(result.card, 'gain2');

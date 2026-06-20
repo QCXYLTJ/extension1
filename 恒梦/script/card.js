@@ -1,4 +1,4 @@
-﻿+(function () {
++function () {
   const { lib, game, ui, get, ai, _status } = window.hgmg;
   game.import('card', function () {
     const hgmgcard = {
@@ -40,12 +40,12 @@
             prename = list.randomGet();
             const card = game.createCard(prename, 'none');
             if (card) cards.push(card);
-            player
-              .when({ player: 'shaHit' })
-              .vars({ cards: cards })
-              .then(() => {
-                if (trigger.card.uiyi) player.gain(cards, 'gain');
-              });
+            player.
+            when({ player: 'shaHit' }).
+            vars({ cards: cards }).
+            then(() => {
+              if (trigger.card.uiyi) player.gain(cards, 'gain');
+            });
             player.useCard({ name: 'sha', uiyi: true }, target, false);
           },
           ai: {
@@ -56,61 +56,61 @@
               if (get.cardtag(card, 'yingbian_hit')) {
                 hit = true;
                 if (
-                  targets.some((target) => {
-                    return (
-                      target.mayHaveShan(
-                        viewer,
-                        'use',
-                        target.getCards('h', (i) => {
-                          return i.hasGaintag('sha_notshan');
-                        })
-                      ) &&
-                      get.attitude(viewer, target) < 0 &&
-                      get.damageEffect(target, player, viewer, get.natureList(card)) > 0
-                    );
-                  })
-                )
-                  base += 5;
+                targets.some((target) => {
+                  return (
+                    target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
+                      })
+                    ) &&
+                    get.attitude(viewer, target) < 0 &&
+                    get.damageEffect(target, player, viewer, get.natureList(card)) > 0);
+
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_add')) {
                 if (
-                  game.hasPlayer(function (current) {
-                    return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
-                  })
-                )
-                  base += 5;
+                game.hasPlayer(function (current) {
+                  return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_damage')) {
                 if (
-                  targets.some((target) => {
-                    return (
-                      get.attitude(player, target) < 0 &&
-                      (hit ||
-                        !target.mayHaveShan(
-                          viewer,
-                          'use',
-                          target.getCards('h', (i) => {
-                            return i.hasGaintag('sha_notshan');
-                          })
-                        ) ||
-                        player.hasSkillTag(
-                          'directHit_ai',
-                          true,
-                          {
-                            target: target,
-                            card: card,
-                          },
-                          true
-                        )) &&
-                      !target.hasSkillTag('filterDamage', null, {
-                        player: player,
-                        card: card,
-                        jiu: true,
+                targets.some((target) => {
+                  return (
+                    get.attitude(player, target) < 0 && (
+                    hit ||
+                    !target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
                       })
-                    );
-                  })
-                )
-                  base += 5;
+                    ) ||
+                    player.hasSkillTag(
+                      'directHit_ai',
+                      true,
+                      {
+                        target: target,
+                        card: card
+                      },
+                      true
+                    )) &&
+                    !target.hasSkillTag('filterDamage', null, {
+                      player: player,
+                      card: card,
+                      jiu: true
+                    }));
+
+                }))
+
+                base += 5;
               }
               return base;
             },
@@ -121,7 +121,7 @@
             },
             basic: {
               useful: [5, 3, 1],
-              value: [5, 3, 1],
+              value: [5, 3, 1]
             },
             order(item, player) {
               let res = 3.2;
@@ -146,55 +146,55 @@
                   return cache.odds * cache.eff;
                 }
                 if (
-                  player.hasSkill('jiu') ||
-                  player.hasSkillTag('damageBonus', true, {
-                    target: target,
-                    card: card,
-                  })
-                ) {
+                player.hasSkill('jiu') ||
+                player.hasSkillTag('damageBonus', true, {
+                  target: target,
+                  card: card
+                }))
+                {
                   if (
-                    target.hasSkillTag('filterDamage', null, {
-                      player: player,
-                      card: card,
-                      jiu: true,
-                    })
-                  )
-                    eff = -0.5;
-                  else {
+                  target.hasSkillTag('filterDamage', null, {
+                    player: player,
+                    card: card,
+                    jiu: true
+                  }))
+
+                  eff = -0.5;else
+                  {
                     num = 2;
-                    if (get.attitude(player, target) > 0) eff = -7;
-                    else eff = -4;
+                    if (get.attitude(player, target) > 0) eff = -7;else
+                    eff = -4;
                   }
                 }
                 if (
-                  !player.hasSkillTag(
-                    'directHit_ai',
-                    true,
-                    {
-                      target: target,
-                      card: card,
-                    },
-                    true
-                  )
-                )
-                  odds -=
-                    0.7 *
-                    target.mayHaveShan(
-                      player,
-                      'use',
-                      target.getCards('h', (i) => {
-                        return i.hasGaintag('sha_notshan');
-                      }),
-                      'odds'
-                    );
+                !player.hasSkillTag(
+                  'directHit_ai',
+                  true,
+                  {
+                    target: target,
+                    card: card
+                  },
+                  true
+                ))
+
+                odds -=
+                0.7 *
+                target.mayHaveShan(
+                  player,
+                  'use',
+                  target.getCards('h', (i) => {
+                    return i.hasGaintag('sha_notshan');
+                  }),
+                  'odds'
+                );
                 _status.event.putTempCache('sha_result', 'eff', {
                   bool: target.hp > num && get.attitude(player, target) > 0,
                   card: ai.getCacheKey(card, true),
                   eff: eff,
-                  odds: odds,
+                  odds: odds
                 });
                 return odds * eff;
-              },
+              }
             },
             tag: {
               respond: 1,
@@ -214,9 +214,9 @@
               },
               poisonDamage(card, nature) {
                 if (game.hasNature(card, 'poison')) return 1;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         lsyk_uier: {
           audio: true,
@@ -239,7 +239,7 @@
           content() {
             'step 0';
             player.useCard({ name: 'sha', uisj: true }, target, false);
-            ('step 1');
+            'step 1';
             player.when({ player: 'useCard' }).then(() => {
               trigger.effectCount++;
               game.log(trigger.card, '额外结算一次');
@@ -253,61 +253,61 @@
               if (get.cardtag(card, 'yingbian_hit')) {
                 hit = true;
                 if (
-                  targets.some((target) => {
-                    return (
-                      target.mayHaveShan(
-                        viewer,
-                        'use',
-                        target.getCards('h', (i) => {
-                          return i.hasGaintag('sha_notshan');
-                        })
-                      ) &&
-                      get.attitude(viewer, target) < 0 &&
-                      get.damageEffect(target, player, viewer, get.natureList(card)) > 0
-                    );
-                  })
-                )
-                  base += 5;
+                targets.some((target) => {
+                  return (
+                    target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
+                      })
+                    ) &&
+                    get.attitude(viewer, target) < 0 &&
+                    get.damageEffect(target, player, viewer, get.natureList(card)) > 0);
+
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_add')) {
                 if (
-                  game.hasPlayer(function (current) {
-                    return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
-                  })
-                )
-                  base += 5;
+                game.hasPlayer(function (current) {
+                  return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_damage')) {
                 if (
-                  targets.some((target) => {
-                    return (
-                      get.attitude(player, target) < 0 &&
-                      (hit ||
-                        !target.mayHaveShan(
-                          viewer,
-                          'use',
-                          target.getCards('h', (i) => {
-                            return i.hasGaintag('sha_notshan');
-                          })
-                        ) ||
-                        player.hasSkillTag(
-                          'directHit_ai',
-                          true,
-                          {
-                            target: target,
-                            card: card,
-                          },
-                          true
-                        )) &&
-                      !target.hasSkillTag('filterDamage', null, {
-                        player: player,
-                        card: card,
-                        jiu: true,
+                targets.some((target) => {
+                  return (
+                    get.attitude(player, target) < 0 && (
+                    hit ||
+                    !target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
                       })
-                    );
-                  })
-                )
-                  base += 5;
+                    ) ||
+                    player.hasSkillTag(
+                      'directHit_ai',
+                      true,
+                      {
+                        target: target,
+                        card: card
+                      },
+                      true
+                    )) &&
+                    !target.hasSkillTag('filterDamage', null, {
+                      player: player,
+                      card: card,
+                      jiu: true
+                    }));
+
+                }))
+
+                base += 5;
               }
               return base;
             },
@@ -318,7 +318,7 @@
             },
             basic: {
               useful: [5, 3, 1],
-              value: [5, 3, 1],
+              value: [5, 3, 1]
             },
             order(item, player) {
               let res = 3.2;
@@ -343,55 +343,55 @@
                   return cache.odds * cache.eff;
                 }
                 if (
-                  player.hasSkill('jiu') ||
-                  player.hasSkillTag('damageBonus', true, {
-                    target: target,
-                    card: card,
-                  })
-                ) {
+                player.hasSkill('jiu') ||
+                player.hasSkillTag('damageBonus', true, {
+                  target: target,
+                  card: card
+                }))
+                {
                   if (
-                    target.hasSkillTag('filterDamage', null, {
-                      player: player,
-                      card: card,
-                      jiu: true,
-                    })
-                  )
-                    eff = -0.5;
-                  else {
+                  target.hasSkillTag('filterDamage', null, {
+                    player: player,
+                    card: card,
+                    jiu: true
+                  }))
+
+                  eff = -0.5;else
+                  {
                     num = 2;
-                    if (get.attitude(player, target) > 0) eff = -7;
-                    else eff = -4;
+                    if (get.attitude(player, target) > 0) eff = -7;else
+                    eff = -4;
                   }
                 }
                 if (
-                  !player.hasSkillTag(
-                    'directHit_ai',
-                    true,
-                    {
-                      target: target,
-                      card: card,
-                    },
-                    true
-                  )
-                )
-                  odds -=
-                    0.7 *
-                    target.mayHaveShan(
-                      player,
-                      'use',
-                      target.getCards('h', (i) => {
-                        return i.hasGaintag('sha_notshan');
-                      }),
-                      'odds'
-                    );
+                !player.hasSkillTag(
+                  'directHit_ai',
+                  true,
+                  {
+                    target: target,
+                    card: card
+                  },
+                  true
+                ))
+
+                odds -=
+                0.7 *
+                target.mayHaveShan(
+                  player,
+                  'use',
+                  target.getCards('h', (i) => {
+                    return i.hasGaintag('sha_notshan');
+                  }),
+                  'odds'
+                );
                 _status.event.putTempCache('sha_result', 'eff', {
                   bool: target.hp > num && get.attitude(player, target) > 0,
                   card: ai.getCacheKey(card, true),
                   eff: eff,
-                  odds: odds,
+                  odds: odds
                 });
                 return odds * eff;
-              },
+              }
             },
             tag: {
               respond: 1,
@@ -411,9 +411,9 @@
               },
               poisonDamage(card, nature) {
                 if (game.hasNature(card, 'poison')) return 1;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         lsyk_uisj: {
           audio: true,
@@ -445,61 +445,61 @@
               if (get.cardtag(card, 'yingbian_hit')) {
                 hit = true;
                 if (
-                  targets.some((target) => {
-                    return (
-                      target.mayHaveShan(
-                        viewer,
-                        'use',
-                        target.getCards('h', (i) => {
-                          return i.hasGaintag('sha_notshan');
-                        })
-                      ) &&
-                      get.attitude(viewer, target) < 0 &&
-                      get.damageEffect(target, player, viewer, get.natureList(card)) > 0
-                    );
-                  })
-                )
-                  base += 5;
+                targets.some((target) => {
+                  return (
+                    target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
+                      })
+                    ) &&
+                    get.attitude(viewer, target) < 0 &&
+                    get.damageEffect(target, player, viewer, get.natureList(card)) > 0);
+
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_add')) {
                 if (
-                  game.hasPlayer(function (current) {
-                    return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
-                  })
-                )
-                  base += 5;
+                game.hasPlayer(function (current) {
+                  return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_damage')) {
                 if (
-                  targets.some((target) => {
-                    return (
-                      get.attitude(player, target) < 0 &&
-                      (hit ||
-                        !target.mayHaveShan(
-                          viewer,
-                          'use',
-                          target.getCards('h', (i) => {
-                            return i.hasGaintag('sha_notshan');
-                          })
-                        ) ||
-                        player.hasSkillTag(
-                          'directHit_ai',
-                          true,
-                          {
-                            target: target,
-                            card: card,
-                          },
-                          true
-                        )) &&
-                      !target.hasSkillTag('filterDamage', null, {
-                        player: player,
-                        card: card,
-                        jiu: true,
+                targets.some((target) => {
+                  return (
+                    get.attitude(player, target) < 0 && (
+                    hit ||
+                    !target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
                       })
-                    );
-                  })
-                )
-                  base += 5;
+                    ) ||
+                    player.hasSkillTag(
+                      'directHit_ai',
+                      true,
+                      {
+                        target: target,
+                        card: card
+                      },
+                      true
+                    )) &&
+                    !target.hasSkillTag('filterDamage', null, {
+                      player: player,
+                      card: card,
+                      jiu: true
+                    }));
+
+                }))
+
+                base += 5;
               }
               return base;
             },
@@ -510,7 +510,7 @@
             },
             basic: {
               useful: [5, 3, 1],
-              value: [5, 3, 1],
+              value: [5, 3, 1]
             },
             order(item, player) {
               let res = 3.2;
@@ -535,55 +535,55 @@
                   return cache.odds * cache.eff;
                 }
                 if (
-                  player.hasSkill('jiu') ||
-                  player.hasSkillTag('damageBonus', true, {
-                    target: target,
-                    card: card,
-                  })
-                ) {
+                player.hasSkill('jiu') ||
+                player.hasSkillTag('damageBonus', true, {
+                  target: target,
+                  card: card
+                }))
+                {
                   if (
-                    target.hasSkillTag('filterDamage', null, {
-                      player: player,
-                      card: card,
-                      jiu: true,
-                    })
-                  )
-                    eff = -0.5;
-                  else {
+                  target.hasSkillTag('filterDamage', null, {
+                    player: player,
+                    card: card,
+                    jiu: true
+                  }))
+
+                  eff = -0.5;else
+                  {
                     num = 2;
-                    if (get.attitude(player, target) > 0) eff = -7;
-                    else eff = -4;
+                    if (get.attitude(player, target) > 0) eff = -7;else
+                    eff = -4;
                   }
                 }
                 if (
-                  !player.hasSkillTag(
-                    'directHit_ai',
-                    true,
-                    {
-                      target: target,
-                      card: card,
-                    },
-                    true
-                  )
-                )
-                  odds -=
-                    0.7 *
-                    target.mayHaveShan(
-                      player,
-                      'use',
-                      target.getCards('h', (i) => {
-                        return i.hasGaintag('sha_notshan');
-                      }),
-                      'odds'
-                    );
+                !player.hasSkillTag(
+                  'directHit_ai',
+                  true,
+                  {
+                    target: target,
+                    card: card
+                  },
+                  true
+                ))
+
+                odds -=
+                0.7 *
+                target.mayHaveShan(
+                  player,
+                  'use',
+                  target.getCards('h', (i) => {
+                    return i.hasGaintag('sha_notshan');
+                  }),
+                  'odds'
+                );
                 _status.event.putTempCache('sha_result', 'eff', {
                   bool: target.hp > num && get.attitude(player, target) > 0,
                   card: ai.getCacheKey(card, true),
                   eff: eff,
-                  odds: odds,
+                  odds: odds
                 });
                 return odds * eff;
-              },
+              }
             },
             tag: {
               respond: 1,
@@ -603,9 +603,9 @@
               },
               poisonDamage(card, nature) {
                 if (game.hasNature(card, 'poison')) return 1;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         lsyk_uisi: {
           audio: true,
@@ -630,7 +630,7 @@
             player.when({ player: 'shaDamage' }).then(() => {
               if (trigger.card.uisi && trigger.target.isAlive() && !trigger.target.hasSkill('bwjifw')) trigger.target.addSkill('bwjifw');
             });
-            ('step 1');
+            'step 1';
             player.useCard({ name: 'sha', uisi: true }, target, false);
           },
           ai: {
@@ -641,61 +641,61 @@
               if (get.cardtag(card, 'yingbian_hit')) {
                 hit = true;
                 if (
-                  targets.some((target) => {
-                    return (
-                      target.mayHaveShan(
-                        viewer,
-                        'use',
-                        target.getCards('h', (i) => {
-                          return i.hasGaintag('sha_notshan');
-                        })
-                      ) &&
-                      get.attitude(viewer, target) < 0 &&
-                      get.damageEffect(target, player, viewer, get.natureList(card)) > 0
-                    );
-                  })
-                )
-                  base += 5;
+                targets.some((target) => {
+                  return (
+                    target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
+                      })
+                    ) &&
+                    get.attitude(viewer, target) < 0 &&
+                    get.damageEffect(target, player, viewer, get.natureList(card)) > 0);
+
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_add')) {
                 if (
-                  game.hasPlayer(function (current) {
-                    return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
-                  })
-                )
-                  base += 5;
+                game.hasPlayer(function (current) {
+                  return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
+                }))
+
+                base += 5;
               }
               if (get.cardtag(card, 'yingbian_damage')) {
                 if (
-                  targets.some((target) => {
-                    return (
-                      get.attitude(player, target) < 0 &&
-                      (hit ||
-                        !target.mayHaveShan(
-                          viewer,
-                          'use',
-                          target.getCards('h', (i) => {
-                            return i.hasGaintag('sha_notshan');
-                          })
-                        ) ||
-                        player.hasSkillTag(
-                          'directHit_ai',
-                          true,
-                          {
-                            target: target,
-                            card: card,
-                          },
-                          true
-                        )) &&
-                      !target.hasSkillTag('filterDamage', null, {
-                        player: player,
-                        card: card,
-                        jiu: true,
+                targets.some((target) => {
+                  return (
+                    get.attitude(player, target) < 0 && (
+                    hit ||
+                    !target.mayHaveShan(
+                      viewer,
+                      'use',
+                      target.getCards('h', (i) => {
+                        return i.hasGaintag('sha_notshan');
                       })
-                    );
-                  })
-                )
-                  base += 5;
+                    ) ||
+                    player.hasSkillTag(
+                      'directHit_ai',
+                      true,
+                      {
+                        target: target,
+                        card: card
+                      },
+                      true
+                    )) &&
+                    !target.hasSkillTag('filterDamage', null, {
+                      player: player,
+                      card: card,
+                      jiu: true
+                    }));
+
+                }))
+
+                base += 5;
               }
               return base;
             },
@@ -706,7 +706,7 @@
             },
             basic: {
               useful: [5, 3, 1],
-              value: [5, 3, 1],
+              value: [5, 3, 1]
             },
             order(item, player) {
               let res = 3.2;
@@ -731,55 +731,55 @@
                   return cache.odds * cache.eff;
                 }
                 if (
-                  player.hasSkill('jiu') ||
-                  player.hasSkillTag('damageBonus', true, {
-                    target: target,
-                    card: card,
-                  })
-                ) {
+                player.hasSkill('jiu') ||
+                player.hasSkillTag('damageBonus', true, {
+                  target: target,
+                  card: card
+                }))
+                {
                   if (
-                    target.hasSkillTag('filterDamage', null, {
-                      player: player,
-                      card: card,
-                      jiu: true,
-                    })
-                  )
-                    eff = -0.5;
-                  else {
+                  target.hasSkillTag('filterDamage', null, {
+                    player: player,
+                    card: card,
+                    jiu: true
+                  }))
+
+                  eff = -0.5;else
+                  {
                     num = 2;
-                    if (get.attitude(player, target) > 0) eff = -7;
-                    else eff = -4;
+                    if (get.attitude(player, target) > 0) eff = -7;else
+                    eff = -4;
                   }
                 }
                 if (
-                  !player.hasSkillTag(
-                    'directHit_ai',
-                    true,
-                    {
-                      target: target,
-                      card: card,
-                    },
-                    true
-                  )
-                )
-                  odds -=
-                    0.7 *
-                    target.mayHaveShan(
-                      player,
-                      'use',
-                      target.getCards('h', (i) => {
-                        return i.hasGaintag('sha_notshan');
-                      }),
-                      'odds'
-                    );
+                !player.hasSkillTag(
+                  'directHit_ai',
+                  true,
+                  {
+                    target: target,
+                    card: card
+                  },
+                  true
+                ))
+
+                odds -=
+                0.7 *
+                target.mayHaveShan(
+                  player,
+                  'use',
+                  target.getCards('h', (i) => {
+                    return i.hasGaintag('sha_notshan');
+                  }),
+                  'odds'
+                );
                 _status.event.putTempCache('sha_result', 'eff', {
                   bool: target.hp > num && get.attitude(player, target) > 0,
                   card: ai.getCacheKey(card, true),
                   eff: eff,
-                  odds: odds,
+                  odds: odds
                 });
                 return odds * eff;
-              },
+              }
             },
             tag: {
               respond: 1,
@@ -799,9 +799,9 @@
               },
               poisonDamage(card, nature) {
                 if (game.hasNature(card, 'poison')) return 1;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         yttr_hstc: {
           image: 'ext:恒梦/image/yttr/yttr_hstc.png',
@@ -834,15 +834,15 @@
               useful(card, i) {
                 let player = _status.event.player;
                 if (_status.event.isPhaseUsing())
-                  return game.hasPlayer((cur) => {
-                    return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
-                  })
-                    ? 4.2
-                    : 1;
+                return game.hasPlayer((cur) => {
+                  return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
+                }) ?
+                4.2 :
+                1;
               },
               value(card, player) {
                 return 8;
-              },
+              }
             },
             result: {
               ignoreStatus: true,
@@ -867,10 +867,10 @@
                   ch = target.countCards('h');
                 l(dhqm.name);
                 const chen = Array.from(dhqmytqi, ({ suit }) => suit);
-                let tian = dhqm
-                  .getCards('h', (c) => chen.includes(c.suit))
-                  .slice()
-                  .sort((a, b) => get.order(b, dhqm) - get.order(a, dhqm));
+                let tian = dhqm.
+                getCards('h', (c) => chen.includes(c.suit)).
+                slice().
+                sort((a, b) => get.order(b, dhqm) - get.order(a, dhqm));
                 let tiansuit = Array.from(tian, ({ suit }) => suit).unique();
                 dhqmytqi.sort((a, b) => tiansuit.indexOf(a.suit) - tiansuit.indexOf(b.suit));
                 const dhqmww = dhqmytqi.length ? dhqmytqi[0].name : card.name;
@@ -881,21 +881,21 @@
                 if (mubnytqi && mlen) ukjm += 4 * mlen;
                 let juli = (gp.indexOf(target) + gp.length) / gp.length;
                 return Math.max(0.1, jpgo * 4 - ukjm - juli);
-              },
-            },
+              }
+            }
           },
           selectTarget: 1,
           enable: true,
           content() {
             if (
-              !card?.cards.some((card) => {
-                return get.position(card, true) !== 'o';
-              })
-            ) {
+            !card?.cards.some((card) => {
+              return get.position(card, true) !== 'o';
+            }))
+            {
               target.addJudge(card, cards);
             }
           },
-          allowMultiple: false,
+          allowMultiple: false
         },
         yttr_fhpm: {
           image: 'ext:恒梦/image/yttr/yttr_fhpm.png',
@@ -928,35 +928,35 @@
               useful(card, i) {
                 let player = _status.event.player;
                 if (_status.event.isPhaseUsing())
-                  return game.hasPlayer((cur) => {
-                    return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
-                  })
-                    ? 4.2
-                    : 1;
+                return game.hasPlayer((cur) => {
+                  return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
+                }) ?
+                4.2 :
+                1;
               },
               value(card, player) {
                 return 8;
-              },
+              }
             },
             result: {
               ignoreStatus: true,
               player(player, target, card) {
                 return lib.card.yttr_hstc.ai.result.player.apply(this, arguments);
-              },
-            },
+              }
+            }
           },
           selectTarget: 1,
           enable: true,
           content() {
             if (
-              !card?.cards.some((card) => {
-                return get.position(card, true) !== 'o';
-              })
-            ) {
+            !card?.cards.some((card) => {
+              return get.position(card, true) !== 'o';
+            }))
+            {
               target.addJudge(card, cards);
             }
           },
-          allowMultiple: false,
+          allowMultiple: false
         },
         yttr_mwhx: {
           image: 'ext:恒梦/image/yttr/yttr_mwhx.png',
@@ -989,35 +989,35 @@
               useful(card, i) {
                 let player = _status.event.player;
                 if (_status.event.isPhaseUsing())
-                  return game.hasPlayer((cur) => {
-                    return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
-                  })
-                    ? 4.2
-                    : 1;
+                return game.hasPlayer((cur) => {
+                  return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
+                }) ?
+                4.2 :
+                1;
               },
               value(card, player) {
                 return 8;
-              },
+              }
             },
             result: {
               ignoreStatus: true,
               player(player, target, card) {
                 return lib.card.yttr_hstc.ai.result.player.apply(this, arguments);
-              },
-            },
+              }
+            }
           },
           selectTarget: 1,
           enable: true,
           content() {
             if (
-              !card?.cards.some((card) => {
-                return get.position(card, true) !== 'o';
-              })
-            ) {
+            !card?.cards.some((card) => {
+              return get.position(card, true) !== 'o';
+            }))
+            {
               target.addJudge(card, cards);
             }
           },
-          allowMultiple: false,
+          allowMultiple: false
         },
         yttr_hwtc: {
           image: 'ext:恒梦/image/yttr/yttr_hwtc.png',
@@ -1050,35 +1050,35 @@
               useful(card, i) {
                 let player = _status.event.player;
                 if (_status.event.isPhaseUsing())
-                  return game.hasPlayer((cur) => {
-                    return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
-                  })
-                    ? 4.2
-                    : 1;
+                return game.hasPlayer((cur) => {
+                  return cur !== player && lib.filter.judge(card, player, cur) && get.effect(cur, card, player, player) > 0;
+                }) ?
+                4.2 :
+                1;
               },
               value(card, player) {
                 return 8;
-              },
+              }
             },
             result: {
               ignoreStatus: true,
               player(player, target, card) {
                 return lib.card.yttr_hstc.ai.result.player.apply(this, arguments);
-              },
-            },
+              }
+            }
           },
           selectTarget: 1,
           enable: true,
           content() {
             if (
-              !card?.cards.some((card) => {
-                return get.position(card, true) !== 'o';
-              })
-            ) {
+            !card?.cards.some((card) => {
+              return get.position(card, true) !== 'o';
+            }))
+            {
               target.addJudge(card, cards);
             }
           },
-          allowMultiple: false,
+          allowMultiple: false
         },
         vumgmwmg: {
           image: 'ext:恒梦/image/vumg/vumgmwmg.jpg',
@@ -1099,14 +1099,14 @@
                 let player = _status.event.player;
                 if (!game.checkMod(card, player, 'unchanged', 'cardEnabled2', player)) return 2 / (1 + i);
                 let fs = game.filterPlayer((current) => {
-                  return get.attitude(player, current) > 0 && current.hp <= 2;
-                }),
+                    return get.attitude(player, current) > 0 && current.hp <= 2;
+                  }),
                   damaged = 0,
                   needs = 0;
                 fs.forEach((f) => {
                   if (f.hp > 3 || !lib.filter.cardSavable(card, player, f)) return;
-                  if (f.hp > 1) damaged++;
-                  else needs++;
+                  if (f.hp > 1) damaged++;else
+                  needs++;
                 });
                 if (needs && damaged) return 5 * needs + 3 * damaged;
                 if (needs + damaged > 1 || player.hasSkillTag('maixie')) return 8;
@@ -1117,30 +1117,30 @@
               },
               value(card, player) {
                 let fs = game.filterPlayer((current) => {
-                  return get.attitude(_status.event.player, current) > 0;
-                }),
+                    return get.attitude(_status.event.player, current) > 0;
+                  }),
                   damaged = 0,
                   needs = 0;
                 fs.forEach((f) => {
                   if (!player.canUse('tao', f)) return;
-                  if (f.hp <= 1) needs++;
-                  else if (f.hp == 2) damaged++;
+                  if (f.hp <= 1) needs++;else
+                  if (f.hp == 2) damaged++;
                 });
-                if ((needs && damaged) || player.hasSkillTag('maixie')) return Math.max(9, 5 * needs + 3 * damaged);
+                if (needs && damaged || player.hasSkillTag('maixie')) return Math.max(9, 5 * needs + 3 * damaged);
                 if (needs || damaged > 1) return 8;
                 if (damaged) return 7.5;
                 return Math.max(5, 9.2 - player.hp);
-              },
+              }
             },
             result: {
               target(player, target) {
                 if (target.hasSkillTag('maixie')) return 3;
                 return 2;
-              },
+              }
             },
             tag: {
-              recover: 1,
-            },
+              recover: 1
+            }
           },
           filterTarget(card, player, target) {
             if (!_status.currentPhase || _status.currentPhase !== player) return false;
@@ -1151,7 +1151,7 @@
           },
           content() {
             player.recover();
-          },
+          }
         },
         vumgeemg: {
           image: 'ext:恒梦/image/vumg/vumgeemg.jpg',
@@ -1164,9 +1164,9 @@
             result: {
               player(player, target) {
                 return -1;
-              },
+              }
             },
-            order: 7.5,
+            order: 7.5
           },
           global: ['vumgeemg1', 'vumgeemg2'],
           filterTarget(card, player, target) {
@@ -1174,7 +1174,7 @@
           },
           modTarget: true,
           content() {
-          },
+          }
         },
         cvlm_1: {
           image: 'ext:恒梦/image/bahl/cvlm_1.png',
@@ -1182,7 +1182,7 @@
           type: 'equip',
           subtype: 'equip1',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           skills: ['vjlu'],
           ai: {
@@ -1197,14 +1197,14 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_2: {
           image: 'ext:恒梦/image/bahl/cvlm_2.png',
@@ -1212,7 +1212,7 @@
           type: 'equip',
           subtype: 'equip1',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           skills: ['tdee'],
           ai: {
@@ -1227,21 +1227,21 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_3: {
           image: 'ext:恒梦/image/bahl/cvlm_3.png',
           fullskin: true,
           type: 'equip',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           subtype: 'equip1',
           skills: ['lsyr'],
@@ -1257,14 +1257,14 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_4: {
           image: 'ext:恒梦/image/bahl/cvlm_4.png',
@@ -1272,7 +1272,7 @@
           type: 'equip',
           subtype: 'equip1',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           skills: ['yuih'],
           ai: {
@@ -1287,14 +1287,14 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_5: {
           image: 'ext:恒梦/image/bahl/cvlm_5.png',
@@ -1302,7 +1302,7 @@
           type: 'equip',
           subtype: 'equip1',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           skills: ['juqt'],
           ai: {
@@ -1317,21 +1317,21 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_6: {
           image: 'ext:恒梦/image/bahl/cvlm_6.png',
           fullskin: true,
           type: 'equip',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           subtype: 'equip1',
           loseDelay: false,
@@ -1348,21 +1348,21 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_7: {
           image: 'ext:恒梦/image/bahl/cvlm_7.png',
           fullskin: true,
           type: 'equip',
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           subtype: 'equip1',
           skills: ['iyjy'],
@@ -1378,20 +1378,20 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         cvlm_8: {
           image: 'ext:恒梦/image/bahl/cvlm_8.png',
           fullskin: true,
           distance: {
-            attackFrom: -3,
+            attackFrom: -3
           },
           type: 'equip',
           subtype: 'equip1',
@@ -1408,46 +1408,46 @@
               equipValue: 6,
               order: 1,
               useful: 2,
-              value: 1,
+              value: 1
             },
             result: {
               target(player, target, card) {
                 return get.equipResult(player, target, card.name);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         dyui_1: {
-          fullskin: true,
+          fullskin: true
         },
         dyui_2: {
-          fullskin: true,
+          fullskin: true
         },
         dyui_3: {
-          fullskin: true,
+          fullskin: true
         },
         dyui_4: {
-          fullskin: true,
+          fullskin: true
         },
         dyui_5: {
-          fullskin: true,
-        },
+          fullskin: true
+        }
       },
       skill: {
         vjlu: {
           mod: {
             cardUsable(card, player, num) {
               if (card.name == 'sha') return num + 1;
-            },
+            }
           },
-          group: 'vjlu1',
+          group: 'vjlu1'
         },
         vjlu1: {
           logTarget: 'player',
           equipSkill: true,
           audio: 'ext:恒梦/audio/cards:2',
           trigger: {
-            source: 'damageBegin2',
+            source: 'damageBegin2'
           },
           filter(event, player) {
             return event.card && event.card.name == 'sha';
@@ -1461,29 +1461,29 @@
             effect: {
               player(card, player, target, current) {
                 if (
-                  card.name == 'sha' &&
-                  !target.hasSkillTag('filterDamage', null, {
-                    player: player,
-                    card: card,
-                  })
-                ) {
+                card.name == 'sha' &&
+                !target.hasSkillTag('filterDamage', null, {
+                  player: player,
+                  card: card
+                }))
+                {
                   let uh = get.damageEffect(target.previous, player, player),
                     xx = get.damageEffect(target.next, player, player);
                   return [1, uh + xx, 1, -2];
                 }
-              },
-            },
-          },
+              }
+            }
+          }
         },
         tdee: {
           equipSkill: true,
-          group: 'tdee1',
+          group: 'tdee1'
         },
         tdee1: {
           equipSkill: true,
           audio: 'ext:恒梦/audio/cards:2',
           trigger: {
-            source: 'damageBegin1',
+            source: 'damageBegin1'
           },
           filter(event, player) {
             return event.card && event.card.name == 'sha';
@@ -1500,16 +1500,16 @@
             effect: {
               player(card, player, target, current) {
                 if (
-                  card.name == 'sha' &&
-                  !target.hasSkillTag('filterDamage', null, {
-                    player: player,
-                    card: card,
-                  })
-                )
-                  return [1, 1, 1, -3];
-              },
-            },
-          },
+                card.name == 'sha' &&
+                !target.hasSkillTag('filterDamage', null, {
+                  player: player,
+                  card: card
+                }))
+
+                return [1, 1, 1, -3];
+              }
+            }
+          }
         },
         lsyr: {
           audio: 'ext:恒梦/audio/cards:2',
@@ -1528,19 +1528,19 @@
               return player.hasUseTarget(i);
             });
             while (cards2.length) {
-              const result = await player
-                .chooseButton(['是否使用其中一张牌？', cards])
-                .set('filterButton', function (button) {
-                  return player.hasUseTarget(button.link);
-                })//QQQ
-                .set('ai', function (button) {
-                  let card = button.link;
-                  if (card.name == 'wuzhong' || card.name == 'shunshou' || card.name == 'wugu' || card.name == 'yiyi') return 30;
-                  else {
-                    return player.getUseValue(card);
-                  }
-                })
-                .forResult();
+              const result = await player.
+              chooseButton(['是否使用其中一张牌？', cards]).
+              set('filterButton', function (button) {
+                return player.hasUseTarget(button.link);
+              }) //QQQ
+              .set('ai', function (button) {
+                let card = button.link;
+                if (card.name == 'wuzhong' || card.name == 'shunshou' || card.name == 'wugu' || card.name == 'yiyi') return 30;else
+                {
+                  return player.getUseValue(card);
+                }
+              }).
+              forResult();
               if (!result.bool) break;
               let card = result.links[0];
               await player.chooseUseTarget(true, card, false).set('filterTarget', function (card, player, target) {
@@ -1553,17 +1553,17 @@
             }
             const loses = player.storage.lsyr;
             player.loseToDiscardpile(loses);
-          },
+          }
         },
         yuih: {
           equipSkill: true,
-          group: 'yuih1',
+          group: 'yuih1'
         },
         yuih1: {
           equipSkill: true,
           audio: 'ext:恒梦/audio/cards:2',
           trigger: {
-            source: 'damageBegin2',
+            source: 'damageBegin2'
           },
           filter(event, player) {
             return event.card && event.card.name == 'sha';
@@ -1578,29 +1578,29 @@
             player.loseHp();
             const num = trigger.player.hp - trigger.num - 1;
             trigger.num = trigger.player.hp;
-            trigger.player
-              .when('damageEnd')
-              .filter((evt) => evt === trigger)
-              .vars({ num })
-              .then(() => {
-                trigger.player.recover(num);
-              });
+            trigger.player.
+            when('damageEnd').
+            filter((evt) => evt === trigger).
+            vars({ num }).
+            then(() => {
+              trigger.player.recover(num);
+            });
           },
           ai: {
             effect: {
               player(card, player, target, current) {
                 if (
-                  card.name == 'sha' &&
-                  !target.hasSkillTag('filterDamage', null, {
-                    player: player,
-                    card: card,
-                  })
-                ) {
+                card.name == 'sha' &&
+                !target.hasSkillTag('filterDamage', null, {
+                  player: player,
+                  card: card
+                }))
+                {
                   if (!target.countCards('h', (i) => ['tao', 'jiu'].includes(i.name))) return [1, 0, 1, -2 * target.hp - 2];
                 }
-              },
-            },
-          },
+              }
+            }
+          }
         },
         juqt: {
           audio: 'ext:恒梦/audio/cards:2',
@@ -1613,12 +1613,12 @@
               let range2 = get.select(get.info(card).selectTarget);
               if (range2[0] != 1 && range2[1] != 1) return;
               if (card.name == 'sha' || get.type(card) == 'trick') range[1] = Infinity;
-            },
+            }
           },
           filter(event, player) {
             if (event.targets.length <= 1) return false;
-            if (event.card.name == 'sha') return true;
-            else if (get.type(event.card) == 'trick') {
+            if (event.card.name == 'sha') return true;else
+            if (get.type(event.card) == 'trick') {
               let range = get.select(get.info(event.card).selectTarget);
               if (range[0] == 1 && range[1] == 1) return true;
             }
@@ -1629,7 +1629,7 @@
               trigger.target.popup('失误');
               trigger.cancel();
             }
-          },
+          }
         },
         gsbu: {
           equipSkill: true,
@@ -1637,7 +1637,7 @@
           group: 'gsbu_1',
           audio: 'ext:恒梦/audio/cards:2',
           trigger: {
-            source: 'damageSource',
+            source: 'damageSource'
           },
           content() {
             if (!trigger.player.hasSkill('gsbu2')) trigger.player.addSkill('gsbu2');
@@ -1645,7 +1645,7 @@
           subSkill: {
             1: {
               trigger: {
-                source: 'damageBegin1',
+                source: 'damageBegin1'
               },
               forced: true,
               filter(event, player) {
@@ -1655,10 +1655,10 @@
                 trigger.nature = 'fire';
               },
               ai: {
-                presha: true,
-              },
-            },
-          },
+                presha: true
+              }
+            }
+          }
         },
         gsbu2: {
           trigger: { player: 'damageBegin3' },
@@ -1670,7 +1670,7 @@
           marktext: '风',
           mark: true,
           intro: {
-            name: '狂风',
+            name: '狂风'
           },
           forced: true,
           content() {
@@ -1680,29 +1680,29 @@
             effect: {
               target(card, player, target, current) {
                 if (get.tag(card, 'fireDamage')) return 1.5;
-              },
-            },
+              }
+            }
           },
           group: 'gsbu2_destroy',
           subSkill: {
             destroy: {
               trigger: {
-                player: 'dying',
+                player: 'dying'
               },
               forced: true,
               equipSkill: true,
               content() {
                 player.removeSkill('gsbu2');
-              },
-            },
-          },
+              }
+            }
+          }
         },
         iyjy: {
           group: 'iyjy_one',
           equipSkill: true,
           audio: 'ext:恒梦/audio/cards:2',
           trigger: {
-            player: 'useCardToPlayered',
+            player: 'useCardToPlayered'
           },
           forced: true,
           filter(event, player) {
@@ -1726,8 +1726,8 @@
                   event.player.hasSkill('iyjy2') &&
                   event.player.getHistory('lose', function (evt) {
                     if (evt.type == 'discard' && evt.getParent('phaseDiscard') == event) return true;
-                  }).length
-                );
+                  }).length);
+
               },
               logTarget: 'player',
               content() {
@@ -1738,10 +1738,10 @@
                 player.draw(num);
               },
               ai: {
-                combo: 'iyjy',
-              },
-            },
-          },
+                combo: 'iyjy'
+              }
+            }
+          }
         },
         iyjy2: {
           charlotte: true,
@@ -1749,8 +1749,8 @@
           mod: {
             maxHandcard(player, num) {
               return num - player.countMark('iyjy2');
-            },
-          },
+            }
+          }
         },
         igyk: {
           audio: 'ext:恒梦:true',
@@ -1797,10 +1797,10 @@
                 for (const i in player.countCards('h')) {
                   if (get.tag(player.getCards('h')[i], 'damage')) num++;
                 }
-                if (target && num > target.hp) return 1;//QQQ
+                if (target && num > target.hp) return 1; //QQQ
                 return 0;
-              },
-            },
+              }
+            }
           },
           subSkill: {
             2: {
@@ -1810,7 +1810,7 @@
                 });
               },
               trigger: {
-                source: 'damageBegin2',
+                source: 'damageBegin2'
               },
               lastDo: true,
               forced: true,
@@ -1824,13 +1824,13 @@
                   trigger.cancel();
                   trigger.player.storage.igyk_damage += trigger.num;
                   player.addTempSkill('igyk_4', {
-                    player: 'phaseDiscardBegin',
+                    player: 'phaseDiscardBegin'
                   });
                 }
               },
               ai: {
-                directHit_ai: true,
-              },
+                directHit_ai: true
+              }
             },
             3: {
               init(player) {
@@ -1847,25 +1847,25 @@
                 },
                 cardDiscardable(card, player) {
                   if (get.position(card) == 'h') return false;
-                },
+                }
               },
               intro: {
-                content: '不能使用或打出或弃置手牌',
-              },
+                content: '不能使用或打出或弃置手牌'
+              }
             },
             4: {
               onremove(player) {
                 player.removeSkill('igyk_2');
               },
               trigger: {
-                global: 'phaseDiscardBefore',
+                global: 'phaseDiscardBefore'
               },
               filter(event, player) {
                 return (
                   game.countPlayer(function (current) {
                     return current.storage.igyk_damage > 0;
-                  }) > 0
-                );
+                  }) > 0);
+
               },
               forced: true,
               async content(event, trigger, player) {
@@ -1876,15 +1876,15 @@
                 for (let i = 0; i < targets.length; i++) {
                   await targets[i].damage(targets[i].storage.igyk_damage);
                 }
-              },
-            },
-          },
+              }
+            }
+          }
         },
         vumgeemg1: {
           trigger: {
             player: ['loseAfter', 'compare'],
             global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
-            target: 'compare',
+            target: 'compare'
           },
           cardSkill: true,
           filter(event, player, name) {
@@ -1898,13 +1898,13 @@
             if (event.name != 'equip' && !event.visible) return false;
             var evt = event.getl(player);
             if (
-              !evt ||
-              !evt.hs ||
-              !evt.hs.filter(function (i) {
-                return i.name == 'vumgeemg';
-              }).length
-            )
-              return false;
+            !evt ||
+            !evt.hs ||
+            !evt.hs.filter(function (i) {
+              return i.name == 'vumgeemg';
+            }).length)
+
+            return false;
             for (const i of lib.skill.g_du.whiteListFilter) {
               if (i(event, player)) return false;
             }
@@ -1923,7 +1923,7 @@
             }
             player.loseHp(num).type = 'du';
           },
-          _priority: -50,
+          _priority: -50
         },
         vumgeemg2: {
           trigger: { target: 'useCardToTargeted' },
@@ -1943,38 +1943,38 @@
                 if (lib.card[card.name] && target.hasCard((card) => card.name == 'vumgeemg', 'h')) {
                   return [1, -1];
                 }
-              },//QQQ
-            },
-          },
+              } //QQQ
+            }
+          }
         },
         vumgmwmg1: {
           cardSkill: true,
           popup: false,
           audio: 'vumg',
           trigger: {
-            player: 'damageEnd',
+            player: 'damageEnd'
           },
           filter(event, player) {
             if (player === _status.currentPhase) return false;
             return player.hasUsableCard('vumgmwmg');
           },
           async cost(event, trigger, player) {
-            event.result = await player
-              .chooseToUse()
-              .set('prompt', '是否使用【美梦】进入调离状态？')
-              .set('filterCard', function (card, player) {
-                if (card.name != 'vumgmwmg') return false;
-                return lib.filter.cardEnabled(card, player, 'forceEnable');
-              })
-              .set('ai1', function (card) {
-                if (_status.currentPhase && _status.currentPhase == player) return false;
-              })
-              .forResult();
+            event.result = await player.
+            chooseToUse().
+            set('prompt', '是否使用【美梦】进入调离状态？').
+            set('filterCard', function (card, player) {
+              if (card.name != 'vumgmwmg') return false;
+              return lib.filter.cardEnabled(card, player, 'forceEnable');
+            }).
+            set('ai1', function (card) {
+              if (_status.currentPhase && _status.currentPhase == player) return false;
+            }).
+            forResult();
           },
           async content(event, trigger, player) {
             await player.addTempSkill('diaohulishan');
-          },
-        },
+          }
+        }
       },
       translate: {
         cvlm_1: '湛卢',
@@ -2061,12 +2061,12 @@
         dyui_2_bg: '礼',
         dyui_3_bg: '智',
         dyui_4_bg: '信',
-        dyui_5_bg: '仁',
-      },
+        dyui_5_bg: '仁'
+      }
     };
     lib.translate.hgmgcard_card_config = '恒梦卡牌';
     lib.config.all.cards.add('hgmgcard');
     lib.config.cards.add('hgmgcard');
     return hgmgcard;
   });
-})();
+}();

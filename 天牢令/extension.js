@@ -29795,14 +29795,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseToDiscard('弃置一张牌,令' + get.translation(trigger.player) + '本次使用的【杀】不计入使用次数', 'he').set('ai', (card) => {
+                                const result = await player.chooseToDiscard('弃置一张牌,令' + get.translation(trigger.player) + '本次使用的【杀】不计入使用次数', 'he').set('ai', (card) => {
                                     if (trigger.player.isFriendsOf(player)) {
                                         if (get.color(trigger.card) == 'red') return true;
                                         if (get.color(card) == 'red') return 9 - get.value(card);
                                         return 4 - get.value(card);
                                     }
                                     return 0;
-                                });
+                                }).forResult();
                                 if (result.cards && result.cards[0]) {
                                     if (trigger.addCount !== false) {
                                         trigger.addCount = false;
@@ -37173,7 +37173,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     async content(event, trigger, player) {
                                         //QQQ
-                                        const { result } = await player.chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target)).set('ai', (target) => get.effect(target, trigger.card, player, player));
+                                        const result = await player.chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target)).set('ai', (target) => get.effect(target, trigger.card, player, player)).forResult();
                                         if (result.targets && result.targets[0]) {
                                             trigger.targets.push(result.targets[0]);
                                         }

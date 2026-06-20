@@ -14342,7 +14342,8 @@ const skills = {
 		check: () => true,
 		async content(event, trigger, player) {
 			if (player.countDiscardableCards(player, 'hes') > 0) {
-				const { result } = await player.chooseToDiscard([1, 2], 'hes', '是否弃置至多两张牌,回复等量的装备栏？', false).set('ai', get.disvalue);
+				const result = await player.chooseToDiscard([1, 2], 'hes', '是否弃置至多两张牌,回复等量的装备栏？', false)
+					.set('ai', get.disvalue).forResult();
 				if (result.cards && result.cards.length) {
 					const num = result.cards.length;
 					if (num >= player.countDisabledSlot()) {

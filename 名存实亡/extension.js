@@ -2814,7 +2814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							check: (event, player) => event.targets.some((Q) => Q.isFriendsOf(player)),
 							async content(event, trigger, player) {
 								//QQQ
-								const { result } = await player.chooseTarget((c, p, t) => t.countCards('hej')).set('ai', (target) => 10 - get.attitude(player, target));
+								const result = await player.chooseTarget((c, p, t) => t.countCards('hej')).set('ai', (target) => 10 - get.attitude(player, target)).forResult();
 								if (result.targets && result.targets[0]) {
 									const { result: result1 } = await player.chooseTarget().set('ai', (target) => -get.attitude(player, target));
 									if (result1.targets && result1.targets[0]) {
@@ -6816,7 +6816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							usable: 1,
 							async content(event, trigger, player) {
 								//QQQ
-								const { result } = await player.chooseTarget('对一名角色造成1点伤害').set('ai', (target) => -get.attitude(player, target));
+								const result = await player.chooseTarget('对一名角色造成1点伤害').set('ai', (target) => -get.attitude(player, target)).forResult();
 								if (result.targets && result.targets[0]) {
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage();
@@ -6833,7 +6833,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							usable: 1,
 							async content(event, trigger, player) {
 								//QQQ
-								const { result } = await player.chooseTarget('弃置一名其他角色一张牌', (c, p, t) => t.countCards('he')).set('ai', (target) => -get.attitude(player, target));
+								const result = await player.chooseTarget('弃置一名其他角色一张牌', (c, p, t) => t.countCards('he')).set('ai', (target) => -get.attitude(player, target)).forResult();
 								if (result.targets && result.targets[0]) {
 									player.line(result.targets[0], 'green');
 									player.discardPlayerCard(result.targets[0], true, 'he');
@@ -8420,7 +8420,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								var num = 7;
 								while (num-- > 0) {
-									const { result } = await player.chooseButton(['选择一名角色对其使用牌堆的1张牌', Array.from(ui.cardPile.childNodes).slice(0, 7)]).set('ai', (button) => player.getUseValue(button.link));
+									const result = await player.chooseButton(['选择一名角色对其使用牌堆的1张牌', Array.from(ui.cardPile.childNodes).slice(0, 7)])
+										.set('ai', (button) => player.getUseValue(button.link)).forResult();
 									if (result.links && result.links[0]) {
 										game.cardsGotoOrdering(result.links);
 										await player.chooseUseTarget(result.links[0], true, false);

@@ -3198,13 +3198,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         };
                                         trigger.cancel();
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseTarget('〖天道〗：令一名其他角色失去所有技能', function (card, player, target) {
                                                 return target != player;
                                             })
                                             .set('ai', (target) => {
                                                 return -get.attitude(player, target);
-                                            });
+                                            })
+                                            .forResult();
                                         if (result.bool) {
                                             player.line(result.targets);
                                             CSK(result.targets[0]);
@@ -3694,13 +3695,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.hasMark('wmsj_十世沉淀');
                             },
                             async content(event, trigger, player) {
-                                const { result } = await player
+                                const result = await player
                                     .chooseTarget(lib.filter.notMe)
                                     .set('prompt', '十世沉淀')
                                     .set('prompt2', '是否使用一张不可闪避且伤害+1的【杀】')
                                     .set('ai', (target) => {
                                         return -get.attitude(player, target);
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool) {
                                     player.line(result.targets);
                                     player.logSkill('wmsj_十世沉淀');
@@ -3761,6 +3763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             [4, '〖御甲〗：令一名角色获得1点护甲'],
                                             [5, '〖镇封〗：观看并获得一名其他角色的一张牌，其无法使用或打出与此牌同花色的手牌'],
                                         ],
+
                                         'textbutton',
                                     ]);
                                     return dialog;
@@ -4097,9 +4100,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         ['draw', str1],
                                                         ['discard', str2],
                                                     ],
+
                                                     'textbutton',
                                                 ],
                                             ],
+
                                             filterTarget(card, player, target) {
                                                 return target != player;
                                             },
@@ -4410,21 +4415,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 if (event.triggername == 'phaseJieshuBegin') {
-                                    const { bool, targets, cards } = await player.chooseCardTarget({
-                                        prompt: '大道宝瓶',
-                                        prompt2: '弃置一张牌并选择一名角色',
-                                        filterTarget: lib.filter.notMe,
-                                        selectCard: 1,
-                                        filterCard: true,
-                                        position: 'he',
-                                        ai1(card) {
-                                            return 5 - get.value(card);
-                                        },
-                                        ai2(target) {
-                                            var player = _status.event.player;
-                                            return -get.attitude(player, target);
-                                        },
-                                    }).forResult();
+                                    const { bool, targets, cards } = await player
+                                        .chooseCardTarget({
+                                            prompt: '大道宝瓶',
+                                            prompt2: '弃置一张牌并选择一名角色',
+                                            filterTarget: lib.filter.notMe,
+                                            selectCard: 1,
+                                            filterCard: true,
+                                            position: 'he',
+                                            ai1(card) {
+                                                return 5 - get.value(card);
+                                            },
+                                            ai2(target) {
+                                                var player = _status.event.player;
+                                                return -get.attitude(player, target);
+                                            },
+                                        })
+                                        .forResult();
                                     if (bool) {
                                         const card = cards[0];
                                         const npc = targets[0];
@@ -5090,6 +5097,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 [1, '〖摸牌阶段〗：你亮出牌堆顶五张牌并获得其中的红色牌'],
                                                 [2, '〖弃牌阶段〗：你令一名角色摸一张牌再弃置一名角色一张牌'],
                                             ],
+
                                             'textbutton',
                                         ],
                                     ])
@@ -5565,6 +5573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     ['equip', '废除其所有装备栏，若全部废除则令此伤害翻倍'],
                                     ['turn', '令其翻面，若以已翻至背面则改为此伤害翻倍'],
                                 ];
+
                                 const result = await player
                                     .chooseButton([top, [list, 'textbutton']], 1)
                                     .set('filterButton', function (button) {
@@ -6042,13 +6051,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 trigger.cancel();
                                 if (trigger.name == 'die') {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseTarget(lib.filter.notMe)
                                         .set('prompt', '〖全知全能〗')
                                         .set('prompt2', '选择一名角色失去所有技能')
                                         .set('ai', (target) => {
                                             return -get.attitude(get.player(), target);
-                                        });
+                                        })
+                                        .forResult();
                                     if (result.bool) {
                                         player.line(result.targets);
                                         result.targets[0].skills = [];
@@ -6880,13 +6890,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 trigger.cancel();
                                 if (trigger.name == 'die') {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseTarget(lib.filter.notMe)
                                         .set('prompt', '〖真·自在极意〗')
                                         .set('prompt2', '选择一名角色失去所有技能')
                                         .set('ai', (target) => {
                                             return -get.attitude(get.player(), target);
-                                        });
+                                        })
+                                        .forResult();
                                     if (result.bool) {
                                         player.line(result.targets);
                                         result.targets[0].skills = [];
@@ -7331,7 +7342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return false;
                                 };
-                                const { result } = await next;
+                                const result = await next.forResult();
                                 if (result?.bool) {
                                     await player.recover(num);
                                 }
@@ -7574,7 +7585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return false;
                                     };
-                                    const { result } = await next;
+                                    const result = await next.forResult();
                                     if (result?.bool) {
                                         trigger.cancel();
                                         const result0 = await player
@@ -7880,7 +7891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return false;
                                     };
-                                    const { result } = await next;
+                                    const result = await next.forResult();
                                     if (result?.bool) {
                                         trigger.cancel();
                                     }
@@ -8049,7 +8060,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return false;
                                         };
-                                        const { result } = await next;
+                                        const result = await next.forResult();
                                         if (result?.bool) {
                                             trigger.cancel();
                                         }
@@ -8421,7 +8432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return false;
                                         };
-                                        const { result } = await next;
+                                        const result = await next.forResult();
                                         if (result?.bool) {
                                             trigger.cancel();
                                             var result0 = await player
@@ -8467,7 +8478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return false;
                                 };
-                                const { result } = await next;
+                                const result = await next.forResult();
                                 if (result?.bool) {
                                     trigger.cancel();
                                     let jie = ['shandian', 'fulei', 'hongshui', 'huoshan'].randomGets(2);
@@ -9306,6 +9317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     [1, '跳过出牌阶段'],
                                     [2, '减少1点体力上限'],
                                 ];
+
                                 const result = await trigger.player
                                     .chooseButton([top, [list, 'textbutton']], 1, true)
                                     .set('ai', () => 1 + Math.random())

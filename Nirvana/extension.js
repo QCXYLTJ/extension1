@@ -49,7 +49,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (typeof card == 'string') {
                         card = { name: card };
                     }
-                    const player = this, info = get.info(card);
+                    const player = this,
+                        info = get.info(card);
                     if (!lib.filter.cardEnabled(card, player)) return false; //卡牌使用限制
                     if (info.notarget) return true;
                     if (!info.filterTarget) return true;
@@ -67,22 +68,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (typeof card == 'string') {
                         card = { name: card };
                     }
-                    const player = this, info = get.info(card), event = _status.event;
+                    const player = this,
+                        info = get.info(card),
+                        event = _status.event;
                     const evt = event.name.startsWith('chooseTo') ? event : event.getParent((q) => q.name.startsWith('chooseTo'));
                     if (evt.filterCard2) {
                         return evt._backup.filterCard(card, player, evt);
-                    }//viewAs的技能会修改chooseToUse事件的filterCard
+                    } //viewAs的技能会修改chooseToUse事件的filterCard
                     else if (evt.filterCard && evt.filterCard != lib.filter.filterCard) {
-                        return evt.filterCard(card, player, evt);//这里也有次数限制
-                    }
-                    else {
-                        if (!lib.filter.cardEnabled(card, player)) return false;//卡牌使用限制
+                        return evt.filterCard(card, player, evt); //这里也有次数限制
+                    } else {
+                        if (!lib.filter.cardEnabled(card, player)) return false; //卡牌使用限制
                         if (info.notarget) return true;
                         if (!info.filterTarget) return true;
                         if (!info.enable) return true;
-                        if (evt.name == 'chooseToRespond') return true;//chooseToRespond无次数距离目标限制
+                        if (evt.name == 'chooseToRespond') return true; //chooseToRespond无次数距离目标限制
                         if (filter) {
-                            if (!lib.filter.cardUsable(card, player, evt)) return false;//次数限制
+                            if (!lib.filter.cardUsable(card, player, evt)) return false; //次数限制
                         }
                         if (evt.filterTarget && evt.filterTarget != lib.filter.filterTarget) {
                             return game.hasPlayer(function (current) {
@@ -92,13 +94,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         return game.hasPlayer(function (current) {
                             if (info.multicheck && !info.multicheck(card, player)) return false;
                             if (filter) {
-                                if (!lib.filter.targetInRange(card, player, current)) return false;//距离限制
+                                if (!lib.filter.targetInRange(card, player, current)) return false; //距离限制
                                 return lib.filter.targetEnabledx(card, player, current);
                             }
-                            return lib.filter.targetEnabled(card, player, current);//目标限制
+                            return lib.filter.targetEnabled(card, player, current); //目标限制
                         });
                     }
-                };//删除次数限制//filter决定有无次数距离限制//viewAs的技能会修改chooseToUse事件的filterCard
+                }; //删除次数限制//filter决定有无次数距离限制//viewAs的技能会修改chooseToUse事件的filterCard
                 lib.element.player.qcard = function (type, filter, range) {
                     const list = [];
                     for (const i in lib.card) {
@@ -1413,7 +1415,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.addSkillTrigger(i);
                                     }
                                 }
-                                const cards = player.getCards('e', { subtype: get.subtype(card) });//没有trigger.card
+                                const cards = player.getCards('e', { subtype: get.subtype(card) }); //没有trigger.card
                                 const num = cards.length - 2;
                                 if (num > 0) {
                                     const { links } = await player.chooseButton(['选择弃置', cards], num, true).forResult();
@@ -5270,14 +5272,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.playerx = trigger.player;
                                     var storage = trigger.player.storage.hdsk_xinjuedou;
                                 }
-                                const { result: { cards } } = await player.chooseToDiscard(
-                                    1,
-                                    'he',
-                                    function (card) {
-                                        return _status.event.storage.includes(get.type2(card));
-                                    },
-                                    '破空斩:是否弃置一张' + get.translation(storage) + '牌对其发动<破空斩>?'
-                                )
+                                const {
+                                    result: { cards },
+                                } = await player
+                                    .chooseToDiscard(
+                                        1,
+                                        'he',
+                                        function (card) {
+                                            return _status.event.storage.includes(get.type2(card));
+                                        },
+                                        '破空斩:是否弃置一张' + get.translation(storage) + '牌对其发动<破空斩>?'
+                                    )
                                     .set('storage', storage)
                                     .set('ai', function (card) {
                                         return 7 - get.value(card);
@@ -5294,7 +5299,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         listx.push('摸牌');
                                     }
                                     if (listx.length) {
-                                        const { control } = await player.chooseControl(listx)
+                                        const { control } = await player
+                                            .chooseControl(listx)
                                             .set('choiceList', list)
                                             .set(
                                                 'choice',
@@ -5303,7 +5309,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return '摸牌';
                                                 })()
                                             )
-                                            .set('ai', () => _status.event.choice).forResult();
+                                            .set('ai', () => _status.event.choice)
+                                            .forResult();
                                         if (control == '伤害') {
                                             event.playerx.damage();
                                             player.storage.hdsk_xinpokong.push('damage');
@@ -5315,7 +5322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.playerx.storage.hdsk_xinjuedou.remove(get.type2(cards[0]));
                                     }
                                 }
-                            },//QQQ
+                            }, //QQQ
                             group: 'hdsk_xinpokong_clear',
                             subSkill: {
                                 clear: {
@@ -9568,7 +9575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 var card = ui.cardPile.firstChild;
                                 player.showCards(card);
-                                const { result } = await player.chooseControl('牌堆顶', '牌堆底');
+                                const result = await player.chooseControl('牌堆顶', '牌堆底').forResult();
                                 if (result.control == '牌堆底') {
                                     ui.discardPile.appendChild(card);
                                 }
@@ -9608,6 +9615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 type: 'basic',
                                             }),
                                         ],
+
                                         'he',
                                         function (card) {
                                             return get.type(card) == 'basic';
@@ -10984,6 +10992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     suit: 'spade',
                                                 }) > 0
                                             );
+
                                         if (name == 'tao')
                                             return (
                                                 player.countCards('hs', {
@@ -11410,8 +11419,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (!_status.event.check) return 0;
                                         return 7 - get.value(card);
                                     })
-                                    .set('check', check)
-                                    ('step 1');
+                                    .set(
+                                        'check',
+                                        check
+                                    )('step 1');
                                 if (result.bool) {
                                     player.lose(result.cards, ui.discardPile);
                                     player.$throw(result.cards, 1000);
@@ -11779,7 +11790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         szdl_jiuyuan2: {
                             trigger: {
                                 global: ['recoverEnd'],
-                            },//QQQ
+                            }, //QQQ
                             filter(event, player) {
                                 if (event.player == player) return false;
                                 if (event.player.group != 'wu') return false;
@@ -14222,6 +14233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return get.type(card) == 'equip';
                                                 }),
                                             ],
+
                                             true
                                         )
                                         .set('ai', function (button) {
@@ -18529,7 +18541,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 1;
                                         else return -1;
                                     },
-                                },//QQQ
+                                }, //QQQ
                                 effect: {
                                     target(card, player, target) {
                                         if (get.tag(card, 'damage')) {
@@ -23813,7 +23825,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player = _status.event.player;
                                     var target = _status.event.getTrigger().name == 'phaseZhunbei' ? player : player.next;
                                     var att = get.sgn(get.attitude(player, target));
-                                    const top = [], bottom = cards;
+                                    const top = [],
+                                        bottom = cards;
                                     for (const i of target.getCards('j')) {
                                         const judge = get.judge(i);
                                         bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -24027,10 +24040,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         max = i.suit;
                                     }
                                 }
-                                const { result } = await player.chooseControl(list).set('ai', () => max);
+                                const result = await player
+                                    .chooseControl(list)
+                                    .set('ai', () => max)
+                                    .forResult();
                                 player.draw(trigger.target.countCards('h', { suit: result.control }));
                                 list.remove(result.control);
-                                const { result: result1 } = await player.chooseControl(list).set('ai', () => max);
+                                const result1 = await player
+                                    .chooseControl(list)
+                                    .set('ai', () => max)
+                                    .forResult();
                                 trigger.parent.baseDamage += trigger.target.countCards('h', { suit: result1.control });
                             },
                         },
@@ -25412,16 +25431,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.num1 = player.getHistory('useCard').length;
                                 event.str1 = '令至多' + event.num1 + '名角色摸' + event.num + '张牌';
                                 event.str2 = '对任意名体力值之和为' + event.num1 + '的角色造成' + event.num + '点伤害';
-                                player.chooseControl('cancel2').set('ai', function (event) {
-                                    if (
-                                        game.countPlayer(function (current) {
-                                            return get.attitude(player, current) < 0 && current.hp == event.num1;
-                                        }) > 0 &&
-                                        event.num1 <= 3
-                                    )
-                                        return 1;
-                                    return 0;
-                                })
+                                player
+                                    .chooseControl('cancel2')
+                                    .set('ai', function (event) {
+                                        if (
+                                            game.countPlayer(function (current) {
+                                                return get.attitude(player, current) < 0 && current.hp == event.num1;
+                                            }) > 0 &&
+                                            event.num1 <= 3
+                                        )
+                                            return 1;
+                                        return 0;
+                                    })
                                     .set('choiceList', [event.str1, event.str2])
                                     .set('prompt', '是否发动【溃诛】？');
                                 ('step 1');
@@ -29549,10 +29570,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         const list2 = list.filter((q) => !get.tag(q, 'damage'));
                                         if (list1[0]) control.add('获得伤害牌');
                                         if (list2[0]) control.add('获得非伤害牌');
-                                        const { result } = await player.chooseControl(control).set('ai', () => {
-                                            if (list1.length > list2.length) return '获得伤害牌';
-                                            return '获得非伤害牌';
-                                        });
+                                        const result = await player
+                                            .chooseControl(control)
+                                            .set('ai', () => {
+                                                if (list1.length > list2.length) return '获得伤害牌';
+                                                return '获得非伤害牌';
+                                            })
+                                            .forResult();
                                         for (var i of list) {
                                             ui.discardPile.appendChild(i);
                                         }
@@ -30187,12 +30211,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (list.length > 2) break;
                                 }
                                 player.gain(list, 'gain2');
-                                const { result } = await player.chooseButton(['任意张牌交给一名其他角色,其可选择<三策>中一项', list]).set('ai', (button) => 6 - get.value(button.link));
+                                const result = await player
+                                    .chooseButton(['任意张牌交给一名其他角色,其可选择<三策>中一项', list])
+                                    .set('ai', (button) => 6 - get.value(button.link))
+                                    .forResult();
                                 if (result.links && result.links[0]) {
-                                    const { result: result1 } = await player.chooseTarget().set('ai', (t) => get.attitude(t, player));
+                                    const result1 = await player
+                                        .chooseTarget()
+                                        .set('ai', (t) => get.attitude(t, player))
+                                        .forResult();
                                     if (result1.targets && result1.targets[0]) {
                                         result1.targets[0].gain(result.links, 'gain2');
-                                        const { result: result2 } = await result1.targets[0].chooseControl(player.storage.szdl_sice);
+                                        const result2 = await result1.targets[0].chooseControl(player.storage.szdl_sice).forResult();
                                         if (result2.control == '下策') {
                                             game.log(result1.targets[0], '选择了下策');
                                             player.storage.szdl_sice.remove('下策');
@@ -30387,6 +30417,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }).length) &&
                                         get.attitude(player, event.player) <= 0
                                     );
+
                                 return (
                                     event.target.getCards('hs', function (card) {
                                         return card.name == 'shan';
@@ -32917,6 +32948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.type(card) == 'basic';
                                         }).length,
                                     ];
+
                                 return [1, player.getCards('hes').length];
                             },
                             audio: 'ext:Nirvana/audio/甘宁:2',
@@ -33407,26 +33439,38 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (list[0]) {
-                                    const { result } = await player.chooseControl(list).set('ai', () => {
-                                        if (_status.currentPhase) {
-                                            if (_status.currentPhase.isFriendsOf(player)) return '摸一张牌并令当前回合角色本回合手牌上限加一';
-                                            if (player.countCards('he') && _status.currentPhase.countCards('he')) {
-                                                return '弃置一张牌,弃置当前回合角色一张牌';
+                                    const result = await player
+                                        .chooseControl(list)
+                                        .set('ai', () => {
+                                            if (_status.currentPhase) {
+                                                if (_status.currentPhase.isFriendsOf(player)) return '摸一张牌并令当前回合角色本回合手牌上限加一';
+                                                if (player.countCards('he') && _status.currentPhase.countCards('he')) {
+                                                    return '弃置一张牌,弃置当前回合角色一张牌';
+                                                }
                                             }
-                                        }
-                                        if (player.countCards('he')) {
-                                            return '重铸一张牌并令一名其他角色重铸一张牌';
-                                        }
-                                    });
+                                            if (player.countCards('he')) {
+                                                return '重铸一张牌并令一名其他角色重铸一张牌';
+                                            }
+                                        })
+                                        .forResult();
                                     switch (result.control) {
                                         case '重铸一张牌并令一名其他角色重铸一张牌':
                                             {
-                                                const { result: result1 } = await player.chooseCard('he').set('ai', (c) => 6 - get.value(c));
+                                                const result1 = await player
+                                                    .chooseCard('he')
+                                                    .set('ai', (c) => 6 - get.value(c))
+                                                    .forResult();
                                                 if (result1.cards && result1.cards[0]) {
                                                     player.recast(result1.cards);
-                                                    const { result: result2 } = await player.chooseTarget((c, p, t) => t.countCards('he')).set('ai', (t) => get.attitude(t, player));
+                                                    const result2 = await player
+                                                        .chooseTarget((c, p, t) => t.countCards('he'))
+                                                        .set('ai', (t) => get.attitude(t, player))
+                                                        .forResult();
                                                     if (result2.targets && result2.targets[0]) {
-                                                        const { result: result3 } = await result2.targets[0].chooseCard('he').set('ai', (c) => 6 - get.value(c));
+                                                        const result3 = await result2.targets[0]
+                                                            .chooseCard('he')
+                                                            .set('ai', (c) => 6 - get.value(c))
+                                                            .forResult();
                                                         if (result3.cards && result3.cards[0]) {
                                                             result2.targets[0].recast(result3.cards);
                                                         }
@@ -37485,20 +37529,26 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = Math.abs(player.maxHp - player.hp);
                                         if (num == 0) list.remove('冲阵');
                                         var num1 = player.countCards('e') ? 2 : 1;
-                                        const { result } = await player.chooseButton(['选择一项', [list, 'tdnodes']], [1, num1]).set('ai', (button) => {
-                                            if (button.link == '冲阵' && trigger.targets.some((q) => q.isEnemiesOf(player) && q.countCards('he', (c) => get.type(c) != 'trick'))) return 9;
-                                            if (button.link == '酣战') return 5;
-                                            return 0;
-                                        });
+                                        const result = await player
+                                            .chooseButton(['选择一项', [list, 'tdnodes']], [1, num1])
+                                            .set('ai', (button) => {
+                                                if (button.link == '冲阵' && trigger.targets.some((q) => q.isEnemiesOf(player) && q.countCards('he', (c) => get.type(c) != 'trick'))) return 9;
+                                                if (button.link == '酣战') return 5;
+                                                return 0;
+                                            })
+                                            .forResult();
                                         if (result.links && result.links[0]) {
                                             if (result.links.length > 1) {
                                                 player.randomDiscard('e');
                                             }
                                             for (var i of result.links) {
                                                 if (i == '冲阵') {
-                                                    const { result: result1 } = await player.chooseTarget((c, p, t) => t.countCards('he') && trigger.targets.includes(t)).set('ai', (t) => -get.attitude(t, player));
+                                                    const result1 = await player
+                                                        .chooseTarget((c, p, t) => t.countCards('he') && trigger.targets.includes(t))
+                                                        .set('ai', (t) => -get.attitude(t, player))
+                                                        .forResult();
                                                     if (result1.targets && result1.targets[0]) {
-                                                        const { result: result2 } = await player.discardPlayerCard(result1.targets[0], 'he', num, true);
+                                                        const result2 = await player.discardPlayerCard(result1.targets[0], 'he', num, true).forResult();
                                                         if (result2.cards && result2.cards[0]) {
                                                             var cards = result2.cards.filter((q) => get.type(q) != 'trick');
                                                             if (cards[0]) {
@@ -37642,7 +37692,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (game.hasPlayer((current) => current.num('e') || current.num('j'))) {
                                     list.push('移动牌');
                                 }
-                                const { result } = await player.chooseControl(list).set('ai', () => list.randomGet());
+                                const result = await player
+                                    .chooseControl(list)
+                                    .set('ai', () => list.randomGet())
+                                    .forResult();
                                 if (result.control == '摸牌') {
                                     player.draw(2);
                                 }
@@ -37969,7 +38022,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (game.hasPlayer((current) => current.num('e') || current.num('j'))) {
                                             list.push('移动牌');
                                         }
-                                        const { result } = await player.chooseControl(list).set('ai', () => list.randomGet());
+                                        const result = await player
+                                            .chooseControl(list)
+                                            .set('ai', () => list.randomGet())
+                                            .forResult();
                                         if (result.control == '摸牌') {
                                             player.storage.szdl_newyingzi1--;
                                             player.draw(Math.min(player.hp, 20));
@@ -38115,7 +38171,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (player.storage.szdl_hongyi.includes(i) && lib.filter.targetEnabled2(trigger.card, player, i) && !trigger.targets.includes(i)) list.push(i);
                                         }
                                         if (list.length) {
-                                            const { result } = await player
+                                            const result = await player
                                                 .chooseControl('确定', '取消')
                                                 .set('prompt', '弘仪:是否令' + get.translation(list) + '成为' + get.translation(trigger.card) + '的额外目标')
                                                 .set('ai', function () {
@@ -38132,7 +38188,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     }
                                                     if (num >= 0) return '确定';
                                                     return '取消';
-                                                });
+                                                })
+                                                .forResult();
                                             player.storage.szdl_hongyi = [];
                                             if (result.control == '确定') {
                                                 player.line(list);
@@ -38594,6 +38651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     ['基本', '', 'sha'],
                                                     ['基本', '', 'jiu'],
                                                 ],
+
                                                 'vcard',
                                             ]);
                                             var buttons = Array.from(dialog.content.querySelectorAll('.buttons')).slice(-1)[0],
@@ -46534,7 +46592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.cards.push(player.getCards('h')[i]);
                                 }
                                 event.targets = [player, target];
-                                (event.list = []), (map = {});
+                                ((event.list = []), (map = {}));
                                 for (var i of event.cards) {
                                     var suit = i.suit;
                                     if (!map[suit]) map[suit] = [];
@@ -46610,6 +46668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         [player, event.list1],
                                         [target, event.list2],
                                     ],
+
                                     discarder: player,
                                 }).setContent('discardMultiple');
                                 target.damage();
@@ -46700,7 +46759,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:Nirvana/audio/蔡琰:2',
                             forced: true,
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseCard('he').set('ai', (c) => 8 - get.value(c));
+                                const result = await player
+                                    .chooseCard('he')
+                                    .set('ai', (c) => 8 - get.value(c))
+                                    .forResult();
                                 if (result.cards && result.cards[0]) {
                                     const list = [];
                                     var numx = player.getHistory('useCard').length;
@@ -46715,7 +46777,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                     if (list[0]) {
-                                        const { result: result1 } = await player.chooseButton(['要转化为的牌', [list, 'vcard']]).set('ai', (button) => player.getUseValue({ name: button.link[2] }));
+                                        const result1 = await player
+                                            .chooseButton(['要转化为的牌', [list, 'vcard']])
+                                            .set('ai', (button) => player.getUseValue({ name: button.link[2] }))
+                                            .forResult();
                                         if (result1.links && result1.links[0]) {
                                             if (get.type(result.cards[0]) == get.type(result1.links[0][2])) {
                                                 player.draw();
@@ -47689,7 +47754,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i of cards) {
                                             var card = ui.create.card(ui.special);
                                             card.init([i.suit, i.number, i.name, i.nature]);
-                                            (card.cardid = i.cardid), (card.wunature = i.wunature), (card.storage = i.storage), (card.relatedCard = i);
+                                            ((card.cardid = i.cardid), (card.wunature = i.wunature), (card.storage = i.storage), (card.relatedCard = i));
                                             result.push(card);
                                         }
                                         return result;
@@ -50874,7 +50939,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .map((q) => get.type(q))
                                     .unique()
                                     .filter((i) => !player.storage.szdl_gangmeng.includes(i));
-                                const { result } = await player.chooseButton(['弃置手牌中一种本回合未以此法弃置过的类型的所有牌', [type, 'tdnodes']]).set('ai', (button) => 3 - player.countCards('he', (c) => get.type(c) == button.link));
+                                const result = await player
+                                    .chooseButton(['弃置手牌中一种本回合未以此法弃置过的类型的所有牌', [type, 'tdnodes']])
+                                    .set('ai', (button) => 3 - player.countCards('he', (c) => get.type(c) == button.link))
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     player.storage.szdl_gangmeng.add(result.links[0]);
                                     player.when('phaseEnd').then(() => (player.storage.szdl_gangmeng = []));
@@ -51793,7 +51861,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player = _status.event.player;
                                     var target = _status.currentPhase == player ? player : player.next;
                                     var att = get.sgn(get.attitude(player, target));
-                                    const top = [], bottom = cards;
+                                    const top = [],
+                                        bottom = cards;
                                     for (const i of target.getCards('j')) {
                                         const judge = get.judge(i);
                                         bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面

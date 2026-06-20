@@ -7974,10 +7974,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         list.push(i);
                                         skills1.addArray(lib.character[i][3]);
                                     }
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseButton(['选择并获得至多六个技能', [list, 'character'], [skills1.map((i) => [i, get.translation(i)]), 'tdnodes']], [0, 6])
                                         .set('filterButton', (button) => skills1.includes(button.link))
-                                        .set('ai', (button) => Math.random());
+                                        .set('ai', (button) => Math.random()).forResult();
                                     if (result.links && result.links[0]) {
                                         player.addSkillLog(result.links);
                                     }
@@ -10618,7 +10618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var cards = get.cards(player.storage.slc_yuqi[1]);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove(true, '隅泣(若对话框显示不完整,可下滑操作)')
                                     .set('list', [['牌堆顶的牌', cards], ['交给' + get.translation(trigger.player) + '(至多' + get.cnNumber(player.storage.slc_yuqi[2]) + '张)'], ['交给自己(至多' + get.cnNumber(player.storage.slc_yuqi[3]) + '张)']])
                                     .set('filterMove', function (from, to, moved) {
@@ -10634,7 +10634,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         else card2 = cards.pop();
                                         return [cards, [card2], cards1];
                                     })
-                                    .set('filterOk', (moved) => moved[2].length);
+                                    .set('filterOk', (moved) => moved[2].length).forResult();
                                 if (result.moved && result.moved[0]) {
                                     while (result.moved[0].length) {
                                         ui.cardPile.insertBefore(result.moved[0].pop().fix(), ui.cardPile.firstChild);
@@ -10664,7 +10664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var info = player.storage.slc_yuqi;
                                 var list = ['距离', '观看牌堆', '交给别人', '交给自己'];
-                                const { result } = await player
+                                const result = await player
                                     .chooseControl(list)
                                     .set('prompt', get.prompt('xianjing'))
                                     .set('prompt2', '令距离[' + info[0] + '],观看牌堆顶[' + info[1] + ']张牌,[' + info[2] + ']张交给受伤角色,[' + info[3] + ']张交给自己中的一个数字+1')
@@ -10673,7 +10673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (info[0] < info[3] && game.countPlayer((current) => get.distance(player, current) <= info[0])) return '距离';
                                         if (info[3] < info[1] - 1 && info[3] < 10) return '交给自己';
                                         return '观看牌堆';
-                                    });
+                                    }).forResult();
                                 var num = list.indexOf(result.control);
                                 info[num] = info[num] + 1;
                                 game.log(player, '将', result.control, '数字改为', '#y' + info[num]);

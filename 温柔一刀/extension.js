@@ -102,7 +102,7 @@ const boss = function () {
     filter() {
       game.sort();
     },
-    content() { }
+    content() {}
   }; //排座位
   let _me;
   Reflect.defineProperty(game, 'me', {
@@ -206,7 +206,7 @@ const boss = function () {
       cards: []
     },
     gaintag: [],
-    forResult() { }
+    forResult() {}
   };
   game.changeBossQ = function (name) {
     _status.event.forceDie = true;
@@ -746,11 +746,11 @@ game.addMode(
     },
     element: {
       player: {
-        dieAfter() { },
-        out() { }
+        dieAfter() {},
+        out() {}
       },
       content: {
-        die() { }
+        die() {}
       }
     },
     get: {

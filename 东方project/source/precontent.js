@@ -1433,7 +1433,7 @@ export async function precontent(config, pack) {
 						player.$skill('死境之门', null, null, true);
 					},
 					async content(event, trigger, player) {
-						const { result } = await event.target.chosenPlayerCard('hej', event.target, true);
+						const result = await event.target.chosenPlayerCard('hej', event.target, true).forResult();
 						if (result?.links?.length) {
 							const card = result.links[0];
 							if (get.type(card) == 'jinengpai') {

@@ -8347,11 +8347,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ//选的目标数为0,就会没有ai里面的target报错
 								var nm = player.countCards('e');
 								if (nm > 0) {
-									const { result } = await player.chooseTarget('【机铁连环】:是否令' + nm + '名角色改变横置状态？', nm).set('ai', function (target) {
+									const result = await player.chooseTarget('【机铁连环】:是否令' + nm + '名角色改变横置状态？', nm).set('ai', function (target) {
 										var att = get.attitude(player, target);
 										if (target.isLinked()) return att;
 										else return -att + 0.1;
-									});
+									}).forResult();
 									if (result.targets && result.targets[0]) {
 										player.line(result.targets, 'fire');
 										for (var i of result.targets) {

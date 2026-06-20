@@ -2117,7 +2117,7 @@ export async function precontent(config, pack) {
 						return event.num > 0;
 					},
 					async content(event, trigger, player) {
-						const { result } = await player.judge();
+						const result = await player.judge().forResult();
 						if (result.color == 'red') {
 							const list = game.players.slice(0);
 							list.remove(player);
@@ -8887,7 +8887,7 @@ export async function precontent(config, pack) {
 							},
 							async content(event, trigger, player) {
 								const tg = trigger.source;
-								const { result } = await tg.judge();
+								const result = await tg.judge().forResult();
 								if (result.suit == 'spade') {
 									tg.changeGroup('yao');
 									tg.popup('yao', get.groupnature('yao', 'raw'));
@@ -9042,9 +9042,9 @@ export async function precontent(config, pack) {
 					async content(event, trigger, player) {
 						const players = game.players.slice(0).sortBySeat();
 						const n = players.length - 1;
-						const { result } = await player.chooseToDiscard('h', n, `弃置${n}张牌,视为对所有其他角色使用一张不可响应的【杀】`).set('ai', function (card) {
+						const result = await player.chooseToDiscard('h', n, `弃置${n}张牌,视为对所有其他角色使用一张不可响应的【杀】`).set('ai', function (card) {
 							return 100 - get.value(card);
-						});
+						}).forResult();
 						if (result) {
 							player.line(players);
 							players.forEach((ch) => {

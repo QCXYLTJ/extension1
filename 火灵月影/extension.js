@@ -854,6 +854,7 @@ const kangxing2 = function () {
             'HL_zuishi',
             '测试',
         ],
+
         //每局游戏每个技能限一次
     };
     for (const namex of ['player', 'global', 'source', 'target']) {
@@ -2676,38 +2677,40 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const { result } = await i.chooseToUse({
-                            filterCard(card, player, event) {
-                                return lib.filter.cardSavable(card, player, player1);
-                            },
-                            filterTarget(card, player, target) {
-                                if (!card || target != player1) {
-                                    return false;
-                                }
-                                const info = get.info(card);
-                                if (!info.singleCard || ui.selected.targets.length == 0) {
-                                    const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
-                                    if (mod1 == false) {
+                        const result = await i
+                            .chooseToUse({
+                                filterCard(card, player, event) {
+                                    return lib.filter.cardSavable(card, player, player1);
+                                },
+                                filterTarget(card, player, target) {
+                                    if (!card || target != player1) {
                                         return false;
                                     }
-                                    const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-                                    if (mod2 != 'unchanged') {
-                                        return mod2;
+                                    const info = get.info(card);
+                                    if (!info.singleCard || ui.selected.targets.length == 0) {
+                                        const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                                        if (mod1 == false) {
+                                            return false;
+                                        }
+                                        const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                                        if (mod2 != 'unchanged') {
+                                            return mod2;
+                                        }
                                     }
-                                }
-                                return true;
-                            },
-                            prompt: get.translation(player1) + '濒死,是否帮助？',
-                            ai1() {
-                                return 1;
-                            },
-                            ai2() {
-                                return get.attitude(player1, i);
-                            },
-                            type: 'dying',
-                            targetRequired: true,
-                            dying: player1,
-                        });
+                                    return true;
+                                },
+                                prompt: get.translation(player1) + '濒死,是否帮助？',
+                                ai1() {
+                                    return 1;
+                                },
+                                ai2() {
+                                    return get.attitude(player1, i);
+                                },
+                                type: 'dying',
+                                targetRequired: true,
+                                dying: player1,
+                            })
+                            .forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -3753,14 +3756,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 let index = 0;
                                 while (true) {
                                     const npc = players[index];
-                                    const { result } = await npc
+                                    const result = await npc
                                         .chooseToRespond('打出两张更大的同点数扑克,否则受到2点伤害', 2, (c) => {
                                             if (ui.selected.cards.length) {
                                                 return c.name == 'pukepai' && c.number == ui.selected.cards[0].number;
                                             }
                                             return c.name == 'pukepai' && c.number > num;
                                         })
-                                        .set('complexCard', true); //filtercard里面调用ui.selected.cards,需要这个complexCard来刷新ui.selected.cards
+                                        .set('complexCard', true)
+                                        .forResult(); //filtercard里面调用ui.selected.cards,需要这个complexCard来刷新ui.selected.cards
                                     if (result?.cards?.length) {
                                         index = (index + 1) % 2;
                                         num = result.cards[0].number;
@@ -4597,7 +4601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 let num1 = 0,
                                     num2 = 0;
                                 for (const npc of player.getEnemies()) {
-                                    const { result } = await npc
+                                    const result = await npc
                                         .chooseToUse(
                                             '对一名友方角色使用一张【杀】,否则本回合无法使用【桃】,失去一点体力',
                                             (card) => card.name == 'sha',
@@ -4605,7 +4609,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         )
                                         .set('ai2', function () {
                                             return 1;
-                                        });
+                                        })
+                                        .forResult();
                                     if (result?.card) {
                                         num2++;
                                     } else {
@@ -6741,7 +6746,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 if (trigger.card.number && trigger.cards && trigger.cards[0]) {
-                                    const { result } = await player.chooseCard('与其使用的牌拼点', 'h');
+                                    const result = await player.chooseCard('与其使用的牌拼点', 'h').forResult();
                                     if (result.cards && result.cards[0]) {
                                         game.cardsGotoOrdering(result.cards);
                                         await player.$compare(result.cards[0], trigger.player, trigger.cards[0]);
@@ -6786,7 +6791,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter: (event, player) => event.player.isEnemiesOf(player),
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.judge('螭吻吞脊', (card) => (get.color(card) == 'black' ? -2 : 2));
+                                const result = await player.judge('螭吻吞脊', (card) => (get.color(card) == 'black' ? -2 : 2)).forResult();
                                 if (result && result.card) {
                                     if (get.color(result.card) == 'black') {
                                         player.loseHp();
@@ -6803,7 +6808,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter: (event, player) => event.target.isEnemiesOf(player),
                             forced: true,
                             async content(event, trigger, player) {
-                                const { result } = await player.judge('睚眦雪恨', (card) => (card.number == player.maxHp ? 0 : 2));
+                                const result = await player.judge('睚眦雪恨', (card) => (card.number == player.maxHp ? 0 : 2)).forResult();
                                 if (result && result.card) {
                                     if (result.card.number != player.maxHp) {
                                         trigger.target.addMark('_HL_shaoshang', 2);
@@ -6847,7 +6852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.num > 0 && player.countCards('he') && num > 0;
                             },
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseToDiscard(1, 'he', true);
+                                const result = await player.chooseToDiscard(1, 'he', true).forResult();
                                 if (result.cards && result.cards[0]) {
                                     let num = 0;
                                     for (const i of game.players) {
@@ -8392,15 +8397,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 new MutationObserver(async function () {
                                     const num = player.node.handcards1.childNodes.length - 5;
                                     if (num > 0) {
-                                        const { result } = await player.chooseCard('将手牌数调整为5', 'h', num, true).set('ai', (c) => {
-                                            if (player.isPhaseUsing()) {
-                                                if (player.hasValueTarget(c, null, true)) {
-                                                    return -1;
+                                        const result = await player
+                                            .chooseCard('将手牌数调整为5', 'h', num, true)
+                                            .set('ai', (c) => {
+                                                if (player.isPhaseUsing()) {
+                                                    if (player.hasValueTarget(c, null, true)) {
+                                                        return -1;
+                                                    }
+                                                    return 20 - get.value(c);
                                                 }
-                                                return 20 - get.value(c);
-                                            }
-                                            return 6 - get.useful(c);
-                                        });
+                                                return 6 - get.useful(c);
+                                            })
+                                            .forResult();
                                         if (result?.cards?.length) {
                                             for (const card of result.cards) {
                                                 ui.discardPile.appendChild(card);
@@ -8583,7 +8591,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     avatar.qvideo.style.objectFit = 'contain';
                                     let bool = true;
                                     while (player.HL_kuangbao) {
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseToUse()
                                             .set('filterCard', (c) => player.filterCardx(c) && get.tag(c, 'damage'))
                                             .set('filterTarget', (c, p, t) => true) //可以对自己用伤害牌
@@ -8591,7 +8599,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 if (lib.card[card.name]) {
                                                     return number0(player.getUseValue(card, null, true)) + 10;
                                                 }
-                                            });
+                                            })
+                                            .forResult();
                                         if (result?.bool) {
                                         } else {
                                             player.HL_kuangbao = false;
@@ -9074,14 +9083,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return !event.player.isjingling() && player.hasCard((c) => c.number == 3, 'h');
                                     },
                                     async content(event, trigger, player) {
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseToUse(`使用一张点数为3的牌,若此牌对${get.translation(trigger.player)}造成伤害,跳过其回合`)
                                             .set('filterCard', (c) => player.filterCardx(c) && c.number == 3)
                                             .set('ai1', (card, arg) => {
                                                 if (lib.card[card.name]) {
                                                     return number0(player.getUseValue(card, null, true)) + 10;
                                                 }
-                                            });
+                                            })
+                                            .forResult();
                                         if (result?.cards?.length) {
                                             const his = trigger.player.actionHistory;
                                             const evt = his[his.length - 1];
@@ -11188,7 +11198,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 let index = 0;
                                 while (true) {
                                     const npc = players[index];
-                                    const { result } = await npc.chooseToRespond('打出一张更大的扑克,否则受到1点伤害', (c) => c.name == 'pukepai' && c.number > num);
+                                    const result = await npc.chooseToRespond('打出一张更大的扑克,否则受到1点伤害', (c) => c.name == 'pukepai' && c.number > num).forResult();
                                     if (result?.cards?.length) {
                                         index = (index + 1) % 2;
                                         num = result.cards[0].number;

@@ -5246,12 +5246,12 @@ export let info = {
                 player.Zhujian.card = card;
                 player.markSkill('duanzaoqu');
                 /*var dialog = ui.create.dialog(false);
-                        var inputContainer = document.createElement('div');
-                        var input = inputContainer.appendChild(document.createElement('input'));
-                        dialog.addText('请输入原始剑胚的新名')
-                        dialog.add(inputContainer);
-                        dialog.open
-                        game.pause()
+                var inputContainer = document.createElement('div');
+                var input = inputContainer.appendChild(document.createElement('input'));
+                dialog.addText('请输入原始剑胚的新名')
+                dialog.add(inputContainer);
+                dialog.open
+                game.pause()
         */
             },
             triggerx: {
@@ -8786,9 +8786,9 @@ export let info = {
                     hiddenCard(player, name) {
                         if (!player.storage.dqzw_zhibian) return false;
                         /*if(name=='wuxie'){
-                                        var evt=_status.event.getParent(4);
-                                        if(!evt.targets||evt.targets.length>1) return false;
-                                    }*/
+                            var evt=_status.event.getParent(4);
+                            if(!evt.targets||evt.targets.length>1) return false;
+                        }*/
                         if (['basic', 'trick'].includes(get.type(name)) && lib.inpile.includes(name)) return true;
                     },
                     filter(event, player) {
@@ -13213,8 +13213,8 @@ export let info = {
             },
             filter(event, player) {
                 /*return !player.getStorage('dqzw_zhuzhuan')
-                            .includes(event.card.name)
-                            && !/delay|equip/.test(get.type(event.card));*/
+                    .includes(event.card.name)
+                    && !/delay|equip/.test(get.type(event.card));*/
                 if (event.type != 'use' && event.parent.parent.name != 'respond') return false;
                 let evt = event.getl(event.player);
                 return (
@@ -13246,7 +13246,7 @@ export let info = {
                     player,
                     '#g记录了牌名',
                     /*'#y【' + get.translation(name)
-                              + '】'*/
+                    + '】'*/
                     '#y' + hs.map((name) => '【' + get.translation(name) + '】').join()
                 );
                 hs.forEach((name, index) => {
@@ -13828,10 +13828,10 @@ export let info = {
         },
         dqzw_shengshi: {
             /*hookTrigger: {
-                      after (event, player, name) {
-                          return event.skill == 'dqzw_wanshi';
-                      },
-                  },*/
+                after (event, player, name) {
+                    return event.skill == 'dqzw_wanshi';
+                },
+            },*/
             forced: true,
             trigger: {
                 player: 'logSkillBegin',
@@ -15325,7 +15325,7 @@ export let info = {
                 },
                 backup(links, player) {
                     /*var backup = get.copy(lib.skill.dqzw_quanqing_backup);
-                              backup.card = {name: links[0][2], suit: 'none'};*/
+                    backup.card = {name: links[0][2], suit: 'none'};*/
                     let link = links.find((link) => get.itemtype(link) != 'card'),
                         cards = links.filter((link) => get.itemtype(link) == 'card');
                     return {
@@ -15459,53 +15459,53 @@ export let info = {
             },
         },
         /*dqzw_sp_songwei: {
-                audio: 'ext:大权在握/audio/skill:1',
-                zhuSkill: true,
-                global: 'dqzw_zhengshuo_check',
-                hyphenated: ['欧阳', '太史', '端木', '上官', '司马', '东方', '独孤', '南宫', '万俟', '闻人',
-                    '夏侯', '诸葛', '尉迟', '公羊', '赫连', '澹台', '皇甫', '宗政', '濮阳', '公冶',
-                    '太叔', '申屠', '公孙', '慕容', '仲孙', '钟离', '长孙', '宇文', '城池', '司徒',
-                    '鲜于', '司空', '汝嫣', '闾丘', '子车', '亓官', '司寇', '巫马', '公西', '颛孙',
-                    '壤驷', '公良', '漆雕', '乐正', '宰父', '谷梁', '拓跋', '夹谷', '轩辕', '令狐',
-                    '段干', '百里', '呼延', '东郭', '南门', '羊舌', '微生', '公户', '公玉', '公仪',
-                    '梁丘', '公仲', '公上', '公门', '公山', '公坚', '左丘', '公伯', '西门', '公祖',
-                    '第五', '公乘', '贯丘', '公皙', '南荣', '东里', '东宫', '仲长', '子书', '子桑',
-                    '即墨', '达奚', '褚师'],
-                subSkill: {
-                    check: {// 仅判断本体氏族
-                        silent: true,
-                        trigger: {
-                            global: ['gameStart', 'zhuUpdate'],
-                        },
-                        filter (event, player) {
-                            if (player.name.indexOf('clan_') == 0 && !lib.character[player.name][4].includes('unreal_clan')) return false;
-                            return player.group == 'wei' && !lib.skill.dqzw_sp_songwei.hyphenated.some(str => get.slimName(player.name).indexOf(str) == 0);
-                        },
-                        content () {
-                            var skill = 'dqzw_sp_songwei', character = lib.character;
-                            var names = Object.keys(character).filter(name => name.indexOf('clan_') == 0 && character[name][1] == 'wei');
-                            var target = game.findPlayer(target => target.hasZhuSkill(skill, player));
-                            var name = 'dqzw_sp_caopi';
-                            if (game.hasPlayer(target => target.hasZhuSkill(skill, player))) {
-                                var clans = names.map(name => character[name][4].find(str => str.indexOf('clan:') == 0)).toUniqued();
-                                var surname = get.slimName(player.name).slice(0, 1);
-                                var clan = clans.find(clan => clan.slice(-2, -1) == surname);
-                                if (clan) {
-                                    character[name][4].addArray([clan, 'unreal_clan']);
-                                    var skills = character[names.find(name => character[name][4].some(str => str == clan))][3].filter(skill => get.info(skill).clanSkill);
-                                    if (skills.length)
-                                    {
-                                        target.addAdditionalSkill(skill, skills);                                                    
-                                    };
-                                }
-                            } else {
-                                character[name][4].removeArray([clan, 'unreal_clan']);
-                                //target.removeAdditionalSkill(skill);
+            audio: 'ext:大权在握/audio/skill:1',
+            zhuSkill: true,
+            global: 'dqzw_zhengshuo_check',
+            hyphenated: ['欧阳', '太史', '端木', '上官', '司马', '东方', '独孤', '南宫', '万俟', '闻人',
+                '夏侯', '诸葛', '尉迟', '公羊', '赫连', '澹台', '皇甫', '宗政', '濮阳', '公冶',
+                '太叔', '申屠', '公孙', '慕容', '仲孙', '钟离', '长孙', '宇文', '城池', '司徒',
+                '鲜于', '司空', '汝嫣', '闾丘', '子车', '亓官', '司寇', '巫马', '公西', '颛孙',
+                '壤驷', '公良', '漆雕', '乐正', '宰父', '谷梁', '拓跋', '夹谷', '轩辕', '令狐',
+                '段干', '百里', '呼延', '东郭', '南门', '羊舌', '微生', '公户', '公玉', '公仪',
+                '梁丘', '公仲', '公上', '公门', '公山', '公坚', '左丘', '公伯', '西门', '公祖',
+                '第五', '公乘', '贯丘', '公皙', '南荣', '东里', '东宫', '仲长', '子书', '子桑',
+                '即墨', '达奚', '褚师'],
+            subSkill: {
+                check: {// 仅判断本体氏族
+                    silent: true,
+                    trigger: {
+                        global: ['gameStart', 'zhuUpdate'],
+                    },
+                    filter (event, player) {
+                        if (player.name.indexOf('clan_') == 0 && !lib.character[player.name][4].includes('unreal_clan')) return false;
+                        return player.group == 'wei' && !lib.skill.dqzw_sp_songwei.hyphenated.some(str => get.slimName(player.name).indexOf(str) == 0);
+                    },
+                    content () {
+                        var skill = 'dqzw_sp_songwei', character = lib.character;
+                        var names = Object.keys(character).filter(name => name.indexOf('clan_') == 0 && character[name][1] == 'wei');
+                        var target = game.findPlayer(target => target.hasZhuSkill(skill, player));
+                        var name = 'dqzw_sp_caopi';
+                        if (game.hasPlayer(target => target.hasZhuSkill(skill, player))) {
+                            var clans = names.map(name => character[name][4].find(str => str.indexOf('clan:') == 0)).toUniqued();
+                            var surname = get.slimName(player.name).slice(0, 1);
+                            var clan = clans.find(clan => clan.slice(-2, -1) == surname);
+                            if (clan) {
+                                character[name][4].addArray([clan, 'unreal_clan']);
+                                var skills = character[names.find(name => character[name][4].some(str => str == clan))][3].filter(skill => get.info(skill).clanSkill);
+                                if (skills.length)
+                                {
+                                    target.addAdditionalSkill(skill, skills);                                                    
+                                };
                             }
-                        },
-                    },                                
-                },
-            },*/
+                        } else {
+                            character[name][4].removeArray([clan, 'unreal_clan']);
+                            //target.removeAdditionalSkill(skill);
+                        }
+                    },
+                },                                
+            },
+        },*/
         dqzw_sp_songwei: {
             audio: 'ext:大权在握/audio/skill:2',
             forced: true,
@@ -15521,13 +15521,13 @@ export let info = {
                 'step 0';
                 var clans = Object.keys(lib.skill[event.name].clan_map).filter((clan) => game.hasPlayer((target) => target.group == 'wei' && target.hasClan(clan)));
                 /*if (clans.length) {
-                            player.chooseControl(clans, function (event, player) {
-                                return get.event('controls').randomGet();
-                            }).set('prompt', '正朔:选择要加入的氏族');
-                        } else {
-                            event.finish();
-                        }
-                        'step 1'*/
+                    player.chooseControl(clans, function (event, player) {
+                        return get.event('controls').randomGet();
+                    }).set('prompt', '正朔:选择要加入的氏族');
+                } else {
+                    event.finish();
+                }
+                'step 1'*/
                 let skills = clans.map((clan) => lib.skill[event.name].clan_map[clan]);
                 lib.character.dqzw_sp_caopi[4].add(...clans.map((clan) => 'clan:' + clan));
                 lib.character.dqzw_sp_caopi[4].add('UR_clan');
@@ -15629,15 +15629,15 @@ export let info = {
                 target.gain(event.cards1.filterInD('o')).set('getlx', false);
                 player.gain(event.cards2).set('getlx', false);
                 /*event.cards2.forEach(function (card) {
-                            if (get.position(card, true) == 'o') {
-                                if (card.viewAs || get.type(card) == 'delay') {
-                                    if (card.viewAs) player.addJudge({name: card.viewAs}, [card]);
-                                    else player.addJudge(card);
-                                } else {
-                                    player.equip(card);
-                                }
-                            }
-                        });*/
+                    if (get.position(card, true) == 'o') {
+                        if (card.viewAs || get.type(card) == 'delay') {
+                            if (card.viewAs) player.addJudge({name: card.viewAs}, [card]);
+                            else player.addJudge(card);
+                        } else {
+                            player.equip(card);
+                        }
+                    }
+                });*/
                 ('step 5');
             },
             global: 'dqzw_huangu_global',
@@ -16767,12 +16767,12 @@ export let info = {
             },
         },
         /*舍梦:使命技,锁定技,游戏开始时,你弃置所有手牌.
-            你不能打出或使用实体牌.成功:当你击杀一名角色时,你将手牌补充至体力上限;
-            失败:当你进入濒死时,你将体力回复至体力上限.
-            黑猫:转换技,出牌阶段你可弃置一张牌,阳:令一名角色于下个回合开始时获得
-            一个出牌或摸牌阶段;阴:令一名角色于下个回合跳过判定或弃牌阶段.
-            白猫:转换技,阳:视为使用或打出你本轮弃置过的牌(每张牌限一次)
-            阴:向下改变X点体力(X为本轮你发动过的阴技能次数减2)*/
+        你不能打出或使用实体牌.成功:当你击杀一名角色时,你将手牌补充至体力上限;
+        失败:当你进入濒死时,你将体力回复至体力上限.
+        黑猫:转换技,出牌阶段你可弃置一张牌,阳:令一名角色于下个回合开始时获得
+        一个出牌或摸牌阶段;阴:令一名角色于下个回合跳过判定或弃牌阶段.
+        白猫:转换技,阳:视为使用或打出你本轮弃置过的牌(每张牌限一次)
+        阴:向下改变X点体力(X为本轮你发动过的阴技能次数减2)*/
         dqzw_shemeng: {},
         dqzw_xiezhi: {
             trigger: {
@@ -17147,10 +17147,13 @@ export let info = {
                     .forResult();
                 if (bool) {
                     if (suit == 'club') player.recover();
-                    const { result } = await player.chooseTarget('雷击:是否对一名角色造成' + (suit == 'spade' ? 2 : 1) + '点雷电伤害？').set('ai', function (target) {
-                        const player = get.player();
-                        return get.damageEffect(target, player, player, 'thunder');
-                    });
+                    const result = await player
+                        .chooseTarget('雷击:是否对一名角色造成' + (suit == 'spade' ? 2 : 1) + '点雷电伤害？')
+                        .set('ai', function (target) {
+                            const player = get.player();
+                            return get.damageEffect(target, player, player, 'thunder');
+                        })
+                        .forResult();
                     if (result.bool) {
                         const target = result.targets[0];
                         player.line(target, 'thunder');
@@ -17177,7 +17180,7 @@ export let info = {
                         dialog.add(trigger.player.judging);
                         dialog.addText('弃牌堆(你可以用其中一张牌代替此牌)');
                         dialog.add(Array.from(ui.discardPile.childNodes).filter((card) => card.number >= get.number(trigger.player.judging.at(0))));
-                        const { result } = await player
+                        const result = await player
                             .chooseButton(dialog)
                             .set('filterButton', function (button) {
                                 return !get.event('judging').includes(button.link);
@@ -17189,7 +17192,8 @@ export let info = {
                                 const att = get.attitude(player, trigger.player);
                                 return att * (trigger.judge(button.link) - trigger.judge(judging));
                             })
-                            .set('judging', trigger.player.judging);
+                            .set('judging', trigger.player.judging)
+                            .forResult();
                         if (result.bool) {
                             const link = result.links[0];
                             await game.cardsGotoOrdering(link).set('relatedEvent', trigger);
@@ -17324,14 +17328,15 @@ export let info = {
                     content: async function (event, trigger, player) {
                         trigger.set(event.name, true);
                         const select = [1, game.countPlayer((target) => target.countDiscardableCards(player, 'j') > 0)];
-                        const { result } = await player
+                        const result = await player
                             .chooseTarget(get.prompt(event.name), '你可以弃置任意名角色判定区一张牌并视为使用一张基本牌', select, function (card, player, target) {
                                 return target.countDiscardableCards(player, 'j') > 0;
                             })
                             .set('ai', function (target) {
                                 const player = get.player();
                                 return get.effect(target, { name: 'guohe_copy', position: 'j' }, player, player);
-                            });
+                            })
+                            .forResult();
                         if (result.bool) {
                             player.line(result.targets);
                             for (const target of result.targets.sortBySeat()) {
@@ -17515,7 +17520,7 @@ export let info = {
                     },
                     content: async function (event, trigger, player) {
                         const prompt = get.translation(trigger.player) + '的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',' + get.prompt(event.name);
-                        const { result } = await player
+                        const result = await player
                             .chooseCard(prompt, 'hes', function (card, player) {
                                 if (card.name != 'ying') return false;
                                 const mod2 = game.checkMod(card, player, 'unchanged', 'cardEnabled2', player);
@@ -17534,7 +17539,8 @@ export let info = {
                                 if (attitude > 0) return result - get.value(card) / 2;
                                 else return -result - get.value(card) / 2;
                             })
-                            .set('judging', trigger.player.judging[0]);
+                            .set('judging', trigger.player.judging[0])
+                            .forResult();
                         if (result.bool) {
                             await player.respond(result.cards, event.name, 'highlight', 'noOrdering');
                             if (trigger.player.judging[0].clone) {
@@ -17663,9 +17669,12 @@ export let info = {
                 player: 'die',
             },
             content: async function (event, trigger, player) {
-                const { result } = await player.chooseTarget(get.prompt(event.name), '令一名其他角色获得仅执行第一项的〖节桢〗', lib.filter.notMe).set('ai', function (target) {
-                    return get.attitude(get.player(), target);
-                });
+                const result = await player
+                    .chooseTarget(get.prompt(event.name), '令一名其他角色获得仅执行第一项的〖节桢〗', lib.filter.notMe)
+                    .set('ai', function (target) {
+                        return get.attitude(get.player(), target);
+                    })
+                    .forResult();
                 if (result.bool) {
                     const target = result.targets[0];
                     target.addSkillLog('dqzw_jiezhen');
@@ -17821,13 +17830,14 @@ export let info = {
                 const action = lib.skill[event.name].getRoundHistory(player);
                 const num = action.reduce((num, his) => num + his.skipped.length, 0);
                 const prompt2 = '你可以令至多' + get.cnNumber(num) + '名角色各重铸一张牌,你使用以此法重铸的装备牌';
-                const { result } = await player
+                const result = await player
                     .chooseTarget(get.prompt(event.name), prompt2, [1, num], function (card, player, target) {
                         return target.hasCard((card) => target.canRecast(card), 'he');
                     })
                     .set('ai', function (target) {
                         return get.attitude(get.player(), target);
-                    });
+                    })
+                    .forResult();
                 if (result.bool) {
                     const targets = result.targets.sortBySeat();
                     for (const target of targets) {
@@ -17851,10 +17861,13 @@ export let info = {
                 global: 'roundStart',
             },
             content: async function (event, trigger, player) {
-                const { result } = await player.chooseTarget(get.prompt(event.name), '令至多两名角色本轮内其回合结束时横置', [1, 2]).set('ai', function (target) {
-                    const player = get.player();
-                    return get.effect(target, { name: 'tiesuo' }, player, player);
-                });
+                const result = await player
+                    .chooseTarget(get.prompt(event.name), '令至多两名角色本轮内其回合结束时横置', [1, 2])
+                    .set('ai', function (target) {
+                        const player = get.player();
+                        return get.effect(target, { name: 'tiesuo' }, player, player);
+                    })
+                    .forResult();
                 if (result.bool) {
                     const targets = result.targets.sortBySeat();
                     player.addTempSkill('dqzw_cuiwei_link', 'roundStart');
@@ -17875,7 +17888,7 @@ export let info = {
                     content: async function (event, trigger, player) {
                         await trigger.player.link();
                         if (game.hasPlayer((target) => target.isLinked() == trigger.player.isLinked() && target.countGainableCards(player, 'he') > 0)) {
-                            const { result } = await player
+                            const result = await player
                                 .chooseTarget('摧围:你可以获得一名' + (trigger.player.isLinked() ? '' : '未') + '处于横置状态角色的一张牌', function (card, player, target) {
                                     const source = get.event('source');
                                     return target.isLinked() == source.isLinked() && target.countGainableCards(player, 'he') > 0;
@@ -17884,7 +17897,8 @@ export let info = {
                                     const player = get.player();
                                     return get.effect(target, { name: 'shunshou_copy2' }, player, player);
                                 })
-                                .set('source', trigger.player);
+                                .set('source', trigger.player)
+                                .forResult();
                             if (result.bool) player.gainPlayerCard(result.targets[0], true, 'he').set('boolline', true);
                         }
                     },
@@ -20687,17 +20701,17 @@ export let info = {
                         //判断谁有无懈
                         var map = event._info_map;
                         /*var list=game.filterPlayer(function(current){
-                                        if(event.triggername=='phaseJudge'){
-                                            if(game.checkMod(map.card,map.target,current,'unchanged','wuxieJudgeEnabled',current)==false) return false;
-                                            if(game.checkMod(map.card,map.target,current,'unchanged','wuxieJudgeRespondable',map.target)==false) return false;
-                                        }
-                                        else{
-                                            if(trigger.parent.directHit.includes(current)) return false;
-                                            if(game.checkMod(map.card,map.player,map.target,current,'unchanged','wuxieEnabled',current)==false) return false;
-                                            if(game.checkMod(map.card,map.player,map.target,current,'unchanged','wuxieRespondable',map.player)==false) return false;
-                                        }
-                                        return current.hasWuxie(map);
-                                    });*/
+                            if(event.triggername=='phaseJudge'){
+                                if(game.checkMod(map.card,map.target,current,'unchanged','wuxieJudgeEnabled',current)==false) return false;
+                                if(game.checkMod(map.card,map.target,current,'unchanged','wuxieJudgeRespondable',map.target)==false) return false;
+                            }
+                            else{
+                                if(trigger.parent.directHit.includes(current)) return false;
+                                if(game.checkMod(map.card,map.player,map.target,current,'unchanged','wuxieEnabled',current)==false) return false;
+                                if(game.checkMod(map.card,map.player,map.target,current,'unchanged','wuxieRespondable',map.player)==false) return false;
+                            }
+                            return current.hasWuxie(map);
+                        });*/
                         list = [player];
                         player.storage.dqzw_desi_effect = event._info_map.player;
                         event.list = list;
@@ -21307,10 +21321,13 @@ export let info = {
                 const cards = [],
                     directresult = [];
                 if (player.countCards('h')) {
-                    const { result } = await player.chooseCard(get.translation(event.name) + ':你可以亮出至多三张手牌', [1, Math.min(3, player.countCards('h'))], 'h').set('ai', function (card) {
-                        if (ui.selected.cards.length) return 0;
-                        return 1 + _status.event.getTrigger().judge(card) - get.value(card) / 2;
-                    });
+                    const result = await player
+                        .chooseCard(get.translation(event.name) + ':你可以亮出至多三张手牌', [1, Math.min(3, player.countCards('h'))], 'h')
+                        .set('ai', function (card) {
+                            if (ui.selected.cards.length) return 0;
+                            return 1 + _status.event.getTrigger().judge(card) - get.value(card) / 2;
+                        })
+                        .forResult();
                     if (result.bool) {
                         player.lose(result.cards, ui.ordering);
                         cards.addArray(result.cards);
@@ -21446,7 +21463,7 @@ export let info = {
                 });
                 for (const target of targets) {
                     if (target == player) {
-                        const { result } = await target.chooseToDiscard('素节:弃置一张牌并摸一张牌', 'he', true);
+                        const result = await target.chooseToDiscard('素节:弃置一张牌并摸一张牌', 'he', true).forResult();
                         await target.draw();
                     } else {
                         await target.addShownCards(trigger.getg(target), tag);
@@ -21502,9 +21519,12 @@ export let info = {
                 return player.hasCard((card) => player.canRecast(card), 'he');
             },
             content: async function (event, trigger, player) {
-                const { result } = await player.chooseCard(get.prompt(event.name), '你可以重铸两张牌', 2, lib.filter.cardRecastable).set('ai', function (card) {
-                    return 5 - get.value(card);
-                });
+                const result = await player
+                    .chooseCard(get.prompt(event.name), '你可以重铸两张牌', 2, lib.filter.cardRecastable)
+                    .set('ai', function (card) {
+                        return 5 - get.value(card);
+                    })
+                    .forResult();
                 if (result.bool) {
                     await player.recast(result.cards);
                     if (
@@ -21546,7 +21566,7 @@ export let info = {
                 return event.card && get.type(event.card) == 'basic' && game.hasPlayer((target) => target.hasCard((card) => target.canRecast(card, player), 'he'));
             },
             content: async function (event, trigger, player) {
-                const { result } = await player
+                const result = await player
                     .chooseTarget(get.prompt(event.name), '你可以重铸一名角色一张牌', function (card, player, target) {
                         return target.hasCard((card) => target.canRecast(card, player), 'he');
                     })
@@ -21555,7 +21575,8 @@ export let info = {
                             att = get.attitude(player, target);
                         if (!player.hasHistory('useSkill', (evt) => evt.skill == 'dqzw_bizheng' && evt.targets && evt.targets.includes(target))) return att + 1;
                         return att;
-                    });
+                    })
+                    .forResult();
                 if (result.bool) {
                     const target = result.targets[0];
                     const { links } = await player

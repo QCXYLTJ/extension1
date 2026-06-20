@@ -23027,12 +23027,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (!event.isMine()) {
                                         event.dialog.style.display = 'none';
                                     }
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseButton(true)
                                         .set('dialog', event.videoId)
                                         .set('ai', function (button) {
                                             return 1;
-                                        });
+                                        }).forResult();
                                     if (result.links && result.links[0]) {
                                         event.card = result.links[0];
                                         player.gain(event.card, event.target);
@@ -29690,13 +29690,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 player.awakenSkill('acgn_shuizhihuxi_yizhixing_shengshengliuzhuan');
                                 while (player.acgn_kamadotanjirou_modosu-- > 0) {
-                                    const { result } = await player.judge(function (card) {
+                                    const result = await player.judge(function (card) {
                                         if (!player.sslz) return 20 - card.number;
                                         if (player.sslz && player.sslz[player.sslz.length - 1] - card.number < 0) {
                                             return 4;
                                         }
                                         return 0.5;
-                                    });
+                                    }).forResult();
                                     if (result.card) {
                                         if (!player.sslz) {
                                             player.sslz = [];
@@ -37092,12 +37092,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 await player.chooseToDiscard(true, 'he', 1).set('prompt', '千机:请弃置一张牌');
                                 if (skill.length) {
-                                    const { result } = await player.chooseButton(['请选择获得两个〖千机形态〗', [skill, 'tdnodes']], 2).set('ai', function (button) {
+                                    const result = await player.chooseButton(['请选择获得两个〖千机形态〗', [skill, 'tdnodes']], 2).set('ai', function (button) {
                                         if (button.link == 'acgn_qianji_tu') return 9;
                                         if (button.link == 'acgn_qianji_min' && trigger.player == player) return 9;
                                         if (button.link == 'acgn_qianji_jian' && trigger.player != player && player.countCards('h') > 5) return 9;
                                         return Math.random();
-                                    });
+                                    }).forResult();
                                     if (result.links && result.links[0]) {
                                         for (var i of result.links) {
                                             game.log(player, `选择获得【千机-${get.translation(i)}】`);

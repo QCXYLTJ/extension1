@@ -14242,7 +14242,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										num[i.number] = num[i.number] + 1 || 1;
 										num[i.suit] = num[i.suit] + 1 || 1;
 									}
-									const { result } = await player.chooseCard('h').set('ai', (c) => (num[c.suit] || 0) + (num[i.number] || 0) * -get.attitude(player, trigger.player));
+									const result = await player.chooseCard('h').set('ai', (c) => (num[c.suit] || 0) + (num[i.number] || 0) * -get.attitude(player, trigger.player)).forResult();
 									if (result.cards && result.cards[0]) {
 										player.showCards(result.cards);
 										var cards = list.filter((q) => q.suit == result.cards[0].suit || q.number == result.cards[0].number);

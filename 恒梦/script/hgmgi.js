@@ -1,4 +1,4 @@
-﻿const { lib, game, ui, get, ai, _status } = window.hgmg;
+const { lib, game, ui, get, ai, _status } = window.hgmg;
 game.import('character', function (lib, game, ui, get, ai, _statu) {
   const hgmgi = {
     name: 'hgmgi',
@@ -1076,7 +1076,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
         audio: 'ext:恒梦/audio/tmeevimg:4',
         async cost(event, trigger, player) {
           const list = ['内旋', '外旋', 'cancel2'];
-          const { result } = await player
+          const result = await player
             .chooseControl(list)
             .set('prompt', get.prompt2('hwbdxrwu'))
             .set('ai', function () {
@@ -1086,7 +1086,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               } else if (player.storage.xrwum2 - player.storage.xrwum1 < 7) {
                 return 1;
               } else return [0, 1].randomGet();
-            });
+            })
+            .forResult();
           if (result.control !== 'cancel2') {
             event.result = {
               bool: true,
@@ -2228,6 +2229,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   },
                 ],
               ],
+
               true
             )
             .set('ai', (button) => {
@@ -2384,6 +2386,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   },
                 ],
               ],
+
               true
             )
             .set('ai', (button) => {
@@ -2540,6 +2543,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   },
                 ],
               ],
+
               true
             )
             .set('ai', (button) => {
@@ -2695,6 +2699,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   },
                 ],
               ],
+
               true
             )
             .set('ai', (button) => {
@@ -2849,6 +2854,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   },
                 ],
               ],
+
               true
             )
             .set('ai', (button) => {
@@ -3163,6 +3169,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               ['', ''],
               ['rgba(18, 4, 4, 0.75)', 'rgb(200, 200, 200)'],
             ],
+
             content() {
               let red = 0,
                 black = 0;
@@ -4738,7 +4745,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   }
                 },
               },
-            },//QQQ
+            }, //QQQ
           },
           miehuo: {
             audio: 'ystj_4',
@@ -5928,7 +5935,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           const list = ['cixiong', 'fangtian', 'hanbing', 'qinggang', 'feilongduofeng', 'yitianjian', 'wufengjian', 'yajiaoqiang'];
           list.push(
             ...lib.inpile.filter((i) => {
-              return get.tag({ name: i }, 'uizijx');//QQQ
+              return get.tag({ name: i }, 'uizijx'); //QQQ
             })
           );
           return list;
@@ -5956,7 +5963,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             const playerx = game.filterPlayer((current) => seat[0] <= current.seatNum && current.seatNum <= seat[1]),
               targetx = game.filterPlayer((current) => seat[0] >= current.seatNum || current.seatNum >= seat[1]);
             if ((playerx.includes(event.player) && targetx.includes(event.target)) || (playerx.includes(event.target) && targetx.includes(event.player))) return true;
-          }//QQQ
+          } //QQQ
           return false;
         },
         async content(event, trigger, player) {
@@ -6374,7 +6381,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               for (const i of cards) {
                 if (suittozimu[i.suit]) {
                   suittozimu[i.suit].push(i);
-                }//QQQ
+                } //QQQ
               }
               event.stz = Object.values(suittozimu);
               ('step 1');
@@ -7476,7 +7483,9 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
         content() {
           player.disableSkill('hmdili_fgso3', 'vihg');
           player.addTempSkill('hmdili_fgso3');
-          let c = get.cards(cards.length), cs = [], cas = [];
+          let c = get.cards(cards.length),
+            cs = [],
+            cas = [];
           cs = Array.from(c, ({ name }) => name);
           cards.forEach((i) => cas.push(i.name));
           if (uuzuxlts(cs, cas)) player.removeSkills(['hmdili_fgso1', 'hmdili_fgso2']);
@@ -7587,7 +7596,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               player = _status.event.player;
             const target = player.next;
             const att = get.attitude(player, target);
-            const top = [], bottom = cards;
+            const top = [],
+              bottom = cards;
             for (const i of target.getCards('j')) {
               const judge = get.judge(i);
               bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -7689,13 +7699,11 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                     if (nat.includes(j)) continue;
                     return true;
                   }
-                }
-                else {
+                } else {
                   return true;
                 }
               }
-            }
-            else {
+            } else {
               if (get.type(i) == 'trick') {
                 return true;
               }
@@ -7722,13 +7730,11 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                       if (nat.includes(j)) continue;
                       list.push(['基本', '', 'sha', j]);
                     }
-                  }
-                  else {
+                  } else {
                     list.push(['基本', '', i]);
                   }
                 }
-              }
-              else {
+              } else {
                 if (get.type(i) == 'trick') {
                   list.push(['锦囊', '', i]);
                 }
@@ -7824,7 +7830,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           },
           order() {
             const player = _status.event.player,
-              storage = player.storage.tmlb_viewed, list = [],
+              storage = player.storage.tmlb_viewed,
+              list = [],
               nam = Array.from(storage, ({ name }) => name),
               nat = Array.from(storage, ({ nature }) => nature);
             if (player.storage.tmlb) {
@@ -8655,9 +8662,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             name: trigger.card.name,
             nature: trigger.card.nature,
           };
-          const result = await player
-            .chooseUseTarget(card, get.prompt('mjuuuahx_bian'), false, false)
-            .set('prompt2', '视为再使用一张' + get.translation(card))
+          const result = await player.chooseUseTarget(card, get.prompt('mjuuuahx_bian'), false, false).set('prompt2', '视为再使用一张' + get.translation(card));
           if (result.bool) {
             player.markAuto('mjuuuahx_bian', [trigger.card.name]);
             player.draw();
@@ -9046,12 +9051,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               player.awakenSkill('lwjp_jtxk');
               const cards = player.getExpansions('lwjp');
               player.gain(cards, 'give', player, 'bySlef');
-              const { result } = await player
+              const result = await player
                 .chooseControl('♥️️', '♦️️', '♣️️', '♠️️')
                 .set('prompt', '请选择一种花色的牌无次数限制')
                 .set('ai', function (target) {
                   return ['♣️️', '♠️️'].randomGet();
-                });
+                })
+                .forResult();
               if (result.control !== 'cancel2') {
                 event.result = {
                   bool: true,
@@ -9695,7 +9701,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             const suit = card.suit;
             if (!lib.suit.includes(suit)) return;
             if (player.storage.yehoc.includes(suit)) return num / 3;
-            if (get.isjiui(card)) return num + 4;//QQQ
+            if (get.isjiui(card)) return num + 4; //QQQ
             return num;
           },
         },
@@ -9771,13 +9777,14 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               const target = event.targets[0];
               const choices = game.zvdrlujkxrxl(player, target, false);
               choices.push('cancel2');
-              const { result } = await player
+              const result = await player
                 .chooseControl(choices)
                 .set('prompt', get.prompt('yeho_uzhv'))
                 .set('将其一张牌以某个方向传递给你,沿途目标横置')
                 .set('ai', function () {
                   return [0, 1].randomGet();
-                });
+                })
+                .forResult();
               if (result.control === 'cancel2') return;
               const resulta = await target
                 .chooseCard(true, '将1张牌以' + (result.control === '↘' ? '↗' : '↖') + '方向传递给金乌,沿途目标横置', 1, 'he', (card, player) => true)
@@ -9826,14 +9833,15 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               const rcard = event.cards[0];
               const choices = game.zvdrlujkxrxl(player, target, false);
               choices.push('cancel2');
-              const { result } = await player
+              const result = await player
                 .chooseControl(choices)
                 .set('prompt', get.prompt('yeho_uzhv'))
                 .set('prompt2', '令其将一张牌以某个方向传递给你,沿途目标横置')
                 .set('choices', choices)
                 .set('ai', function () {
                   return 0;
-                });
+                })
+                .forResult();
               if (result.control === 'cancel2') return;
               let pretar = target;
               if (result.control == '↘') {
@@ -10275,10 +10283,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             name: cardx.name,
             nature: cardx.nature,
           };
-          player
-            .chooseUseTarget(card, get.prompt('lsxn'), false, false)
-            .set('prompt2', '视为使用一张' + get.translation(card))
-            ('step 1');
+          player.chooseUseTarget(card, get.prompt('lsxn'), false, false).set('prompt2', '视为使用一张' + get.translation(card))('step 1');
           if (result.bool) {
             if (!player.storage.lsxnx[trigger.card.name]) player.storage.lsxnx[trigger.card.name] = 0;
             player.storage.lsxnx[trigger.card.name]++;
@@ -10667,7 +10672,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             }
           }
           choices.push('cancel2');
-          const { result } = await player
+          const result = await player
             .chooseControl(choices)
             .set('prompt', get.prompt('ivxt'))
             .set('prompt2', '令自己和' + get.translation(trigger.target) + '某个方向之间的所有角色均成为' + get.translation(trigger.card) + '的目标')
@@ -10675,7 +10680,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             .set('ai', function () {
               let evt = _status.event.getTrigger();
               return lib.skill.ivxt.aiJudge(evt.card, evt.player, evt.target, true);
-            });
+            })
+            .forResult();
           if (result.control === 'cancel2') return;
           let targets = [];
           if (result.control == '↖顺时针') {
@@ -10720,7 +10726,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           return game.hasPlayer((current) => current.isDamaged() && player.canUse('sha', current, false) && get.distance(player, current, 'attack') <= 1);
         },
         async content(event, trigger, player) {
-          const { result } = await player
+          const result = await player
             .chooseToUse(function (card, player, event) {
               if (card.name != 'sha') return false;
               return lib.filter.filterCard.apply(this, arguments);
@@ -10742,7 +10748,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 },
                 _status.event.player
               );
-            });
+            })
+            .forResult();
           if (!result.bool) return;
           player.removeMark('charge');
           const target = result.targets[0];
@@ -11003,7 +11010,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           } else {
             const cards = player.getExpansions('uufa_mark'),
               num = Math.floor(cards.length / 2);
-            const { bool, links } = await player.chooseButton(['###散发###<div class="text center">请移去至少' + get.cnNumber(num) + '张<束发>牌</div>', cards], [num, Infinity], true)
+            const { bool, links } = await player
+              .chooseButton(['###散发###<div class="text center">请移去至少' + get.cnNumber(num) + '张<束发>牌</div>', cards], [num, Infinity], true)
               .set('ai', (button) => {
                 const player = get.event('player'),
                   value = player.getUseValue(button.link, true),
@@ -11030,7 +11038,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   return -40;
                 }
                 return Math.max(-40, -value - get.value(button.link));
-              }).forResult();
+              })
+              .forResult();
             event.result = {
               bool: bool,
               cost_data: links,
@@ -12194,8 +12203,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   return [1, endeff, 1, 1];
                 }
                 return [1, 0, 1, 0.1];
-              }//QQQ
-            }
+              } //QQQ
+            },
           },
         },
         subSkill: {
@@ -12307,6 +12316,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               player.storage.dyui_round.push('　信:濒死免疫　');
             },
           ];
+
           for (let i of links) {
             game.log(player, '选择了', '#g【遁世】', '的', '#y选项' + get.cnNumber(i + 1, true));
             map[i](trigger, player, event);
@@ -12548,7 +12558,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             })
             .set('ai', (button) => {
               return get.buttonValue(button);
-            })//QQQ
+            }) //QQQ
             .forResultLinks();
           if (!links || !links.length) return;
           player.setAvatar('grnk', 'grnka');
@@ -12588,6 +12598,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                       }
                     },
                   ],
+
                   skills: [],
                   distance: {},
                   ai: {
@@ -12855,7 +12866,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               cards.yiiu(links[0]);
               numx--;
             }
-          }//QQQ
+          } //QQQ
           game.broadcastAll(
             function (player, cards) {
               player.gain(cards, 'gain2');
@@ -13224,8 +13235,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             if (!event.given) event.given = [];
             event.given.push(res);
             if (event.num > 0) event.goto(1);
-          }
-          else event.finish();//QQQ
+          } else event.finish(); //QQQ
           ('step 3');
           player.storage.fgxl = event.numx - event.num;
           for (let i = 0; i < event.given.length; i++) {
@@ -13728,7 +13738,10 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
         },
         forced: true,
         async content(event, trigger, player) {
-          const { bool } = await player.chooseBool(get.prompt('dcjiudun'), '摸一张牌,视为使用一张【酒】').set('ai', () => 1).forResult();
+          const { bool } = await player
+            .chooseBool(get.prompt('dcjiudun'), '摸一张牌,视为使用一张【酒】')
+            .set('ai', () => 1)
+            .forResult();
           if (!bool) return;
           player.draw();
           player.chooseUseTarget('jiu', true);
@@ -13843,9 +13856,12 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             )
               cards2.push(i);
           }
-          const { result } = await player.chooseButton(['蜃楼:是否使用其中的一张牌？', cards2]).set('ai', function (button) {
-            return _status.event.player.getUseValue(button.link, false);
-          });
+          const result = await player
+            .chooseButton(['蜃楼:是否使用其中的一张牌？', cards2])
+            .set('ai', function (button) {
+              return _status.event.player.getUseValue(button.link, false);
+            })
+            .forResult();
           if (result.bool)
             event.result = {
               bool: true,
@@ -14103,6 +14119,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return;
               },
             ];
+
             event.controls = [ui.create.control(controls.concat(['清除选择', 'stayleft']))];
           };
           if (event.isMine()) func();
@@ -14970,7 +14987,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           if (event.cards[0].name.indexOf('cvlm_') == 0 && !player.getCards('e').includes(event.cards[0])) {
             player.draw(2);
           }
-        },//QQQ
+        }, //QQQ
         ai: {
           order: 11,
           expose: 0.2,
@@ -16448,7 +16465,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 if (typeof target.storage[j] == 'number') {
                   target.storage[j] = 0;
                 }
-              }//QQQ
+              } //QQQ
               const skills = target.getStockSkills(true, true);
               for (const skill of skills) {
                 target.addSkillTrigger(skill);
@@ -16531,7 +16548,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   suits = get.hxse(),
                   suitIndex = suits.indexOf(suit);
                 if (!lib.suit.includes(suit)) return;
-                if (hryt && get.attitude(player, hryt) < 0) return;//QQQ
+                if (hryt && get.attitude(player, hryt) < 0) return; //QQQ
                 const list = ['yttr_hstc', 'yttr_fhpm', 'yttr_mwhx', 'yttr_hwtc'];
                 const xxyiww = game.findPlayer((p) => p.hasCard((c) => get.kapdmkzi(c) === list.hzmm(list[suitIndex]), 'j'));
                 if (!xxyiww) return;
@@ -16676,7 +16693,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             presuit = uuzu[(list.indexOf(suit) + 1) % 4],
             preiupd = game.findPlayer((i) => i.getCards('j').some((j) => get.kapdmkzi(j).includes(presuit)));
           const p = uuzu[list.indexOf(suit)];
-          const pc = trigger.player.getCards('j').find((card) => get.kapdmkzi(card).includes(p));//QQQ
+          const pc = trigger.player.getCards('j').find((card) => get.kapdmkzi(card).includes(p)); //QQQ
           event.result = await player
             .chooseTarget(true, `将${get.translation(yttrcard.name)}置入一名角色判定区`, trigger.result.bool ? `下一位即将奏响music的角色:${get.translation(preiupd.name)}` : undefined)
             .set('ai', function (target) {
@@ -16720,7 +16737,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
         async content(event, trigger, player) {
           if (event.targets?.length) {
             trigger.player.skip('phaseUse');
-          }//QQQ
+          } //QQQ
           const suittoname = {
             heart: 'yttr_hstc',
             diamond: 'yttr_fhpm',
@@ -17484,8 +17501,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           if (get.mode() == 'guozhan') {
             list = [];
             for (const i in lib.characterPack.mode_guozhan) list.push(i);
-          }
-          else {
+          } else {
             list = [];
             for (const i in lib.character) {
               if (lib.filter.characterDisabled2(i) || lib.filter.characterDisabled(i)) continue;
@@ -18921,7 +18937,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               if (tp == player) {
                 if (iup && iup === vsp) {
                   await iup.draw();
-                }//QQQ
+                } //QQQ
                 else {
                   if (iup) {
                     await iup.draw();
@@ -18937,7 +18953,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 else xrzep = vsp;
               } else xrzep = player;
               if (!xrzep) return;
-              const { result } = await xrzep
+              const result = await xrzep
                 .chooseToUse(
                   function (card, player, event) {
                     if (get.tag(trigger.card, 'damage') ? get.tag(card, 'damage') : !get.tag(card, 'damage')) return false;
@@ -18950,7 +18966,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 .set('filterTarget', function (card, player, target) {
                   if (!player.canUse(card, target)) return false;
                   return lib.filter.targetEnabled.apply(this, arguments);
-                });
+                })
+                .forResult();
             },
           },
           use: {
@@ -19070,7 +19087,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           const iup = game.findPlayer((current) => current.hasSkill('yjwu_iuwu') && current.getStorage('yjwu_iuwu').includes(player));
           const vsp = game.findPlayer((current) => current.hasSkill('yjwu_vswu') && current.getStorage('yjwu_vswu').includes(player));
           return iup && vsp && [iup, vsp].includes(ep);
-        },//QQQ
+        }, //QQQ
         async content(event, trigger, player) {
           trigger.cancel();
           const tp = trigger.player;

@@ -14321,7 +14321,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.removeGaintag('minisbduanliang_tag');
                                         await player.draw().set('gaintag', ['minisbduanliang_tag']);
                                         const card = player.getCards('he', (card) => card.hasGaintag('minisbduanliang_tag'))[0];
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseToDuiben(target)
                                             .set('namelist', ['固守城池', '突出重围', '围城断粮', '擂鼓进军'])
                                             .set('ai', (button) => {
@@ -14330,7 +14330,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 if (get.effect(target, { name: 'juedou' }, source, source) >= 10 && button.link[2] == 'db_def2' && Math.random() < 0.5) return 10;
                                                 return 1 + Math.random();
                                             })
-                                            .set('sourceSkill', 'sbduanliang');
+                                            .set('sourceSkill', 'sbduanliang')
+                                            .forResult();
                                         if (result.bool) {
                                             if (result.player == 'db_def1') {
                                                 if (target.hasJudge('bingliang')) await player.gainPlayerCard(target, 'he', true);
@@ -19469,7 +19470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         const target = trigger.target;
                                         target.addTempSkill('fengyin');
                                         trigger.directHit.add(target);
-                                        const { result } = await player
+                                        const result = await player
                                             .mini_chooseToMouYi(target)
                                             .set('namelist', ['出阵迎战', '拱卫中军', '直取敌营', '扰阵疲敌'])
                                             .set('ai', (button) => {
@@ -19479,7 +19480,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 if (!target.countCards('he') && get.attitude(target, source) <= 0 && button.link[2] == 'db_atk1') return 10;
                                                 return 1 + Math.random();
                                             })
-                                            .set('sourceSkill', 'sbtieji');
+                                            .set('sourceSkill', 'sbtieji')
+                                            .forResult();
                                         if (result.bool) {
                                             if (result.player == 'db_def1') player.gainPlayerCard(target, 'he', true);
                                             else player.draw(2);
@@ -19978,7 +19980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 const target = lib.skill.chongzhen.logTarget(trigger, player);
-                                const { result } = await player
+                                const result = await player
                                     .mini_chooseToMouYi(target)
                                     .set('namelist', ['暂避锋芒', '趁虚而入', '偃旗息鼓', '胆壮心雄'])
                                     .set('ai', (button) => {
@@ -19987,7 +19989,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         const att = get.attitude(source, target);
                                         if (source.countMark('charge') > 2 && (button.link[2] == 'db_atk2' || button.link[2] == 'db_def1')) return att > 0 ? -10 : 10;
                                         return 1 + Math.random();
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool) {
                                     if (result.player == 'db_def1') {
                                         const card = get.cardPile((card) => get.type(card) != 'basic');
@@ -20874,7 +20877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filterTarget: lib.filter.notMe,
                             async content(event, trigger, player) {
                                 const target = event.target;
-                                const { result } = await player
+                                const result = await player
                                     .mini_chooseToMouYi(target)
                                     .set('namelist', ['半渡而击', '扰袭敌营', '休养生息', '白衣渡江'])
                                     .set('ai', (button) => {
@@ -20883,7 +20886,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.effect(target, { name: 'sha', storage: { minisbduojing: true } }, source, source) < 0 && (button.link[2] == 'db_atk2' || button.link[2] == 'db_def1')) return 10;
                                         if (get.effect(target, { name: 'shunshou_copy2' }, source, source) < 0 && (button.link[2] == 'db_atk1' || button.link[2] == 'db_def2')) return 10;
                                         return 1 + Math.random();
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool) {
                                     if (result.player == 'db_def1') {
                                         await player.gainPlayerCard(target, 'he', true);
@@ -30797,7 +30801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (targets[0].canUse(sha, targets[1], false)) await targets[0].useCard(sha, targets[1], false);
                                 const cards = targets[0].getEquips(1);
                                 if (cards.length && game.hasPlayer((target) => target != targets[0])) {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseTarget('是否将' + get.translation(cards) + '交给一名其他角色？', (card, player, target) => {
                                             return target != get.event('target');
                                         })
@@ -30807,7 +30811,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return (target.hasSkillTag('nogain') ? 0 : get.attitude(get.event('player'), target)) * Math.max(0.1, target.getUseValue(cards[0]));
                                         })
                                         .set('target', targets[0])
-                                        .set('cards', cards);
+                                        .set('cards', cards)
+                                        .forResult();
                                     if (result.bool) await result.targets[0].gain(cards, targets[0], 'give').set('giver', player);
                                 }
                             },
@@ -31775,13 +31780,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域')
+                                        .forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');

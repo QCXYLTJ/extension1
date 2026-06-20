@@ -3855,7 +3855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var card = get.cards(4);
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['获得其中任意数量点数之和不大于13的牌', card], [0, card.length])
                                     .set('filterButton', (button) => {
                                         if (ui.selected.buttons[0]) {
@@ -3867,7 +3867,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return true;
                                     })
-                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number);
+                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number).forResult();
                                 if (result.links && result.links[0]) {
                                     player.gain(result.links, 'gain2');
                                 }

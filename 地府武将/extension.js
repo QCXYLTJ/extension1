@@ -1436,10 +1436,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.judge(function (card) {
+                                const result = await player.judge(function (card) {
                                     if (get.color(card) == 'red') return 2;
                                     return 1;
-                                });
+                                }).forResult();
                                 if (get.color(result.card) == 'red') {
                                     var num = -1,
                                         Q;
@@ -2533,7 +2533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 if (trigger.target.countCards('h')) {
-                                    const { result } = await player.discardPlayerCard(trigger.target, 1, 'h', get.prompt('difu_蛮击', trigger.target), true).set('ai', (button) => get.value(button.link));
+                                    const result = await player.discardPlayerCard(trigger.target, 1, 'h', get.prompt('difu_蛮击', trigger.target), true).set('ai', (button) => get.value(button.link)).forResult();
                                     if (result.links && result.links[0]) {
                                         if (result.links[0].name == 'sha') {
                                             trigger.parent.baseDamage++;

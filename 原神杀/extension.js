@@ -1335,16 +1335,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 10,
                                 result: {
                                     target: 1 /*function(player,target){
-                            var att=get.attitude(_status.event.player,target);
-                            if(att>0){
-                                if(!target.hasSkill('fyj_skill')) att+=3;
-                                if(target.isTurnedOver()) att+=3;
-                                if(target.getCards('j',function(card){
-                                    return card.name=='lebu'||card.name=='bingliang';
-                                }).length) att+=3;
-                            }
-                            return att;
-                        },*/,
+                  var att=get.attitude(_status.event.player,target);
+                  if(att>0){
+                  if(!target.hasSkill('fyj_skill')) att+=3;
+                  if(target.isTurnedOver()) att+=3;
+                  if(target.getCards('j',function(card){
+                  return card.name=='lebu'||card.name=='bingliang';
+                  }).length) att+=3;
+                  }
+                  return att;
+                  },*/,
                                 },
                                 threaten: 1.1,
                             },
@@ -2565,7 +2565,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     //你可以将< 庭火>当火[杀]使用
                                     async content(event, trigger, player) {
-                                        const { result } = await player.chooseButton(['将一张<庭火>当火[杀]使用', player.storage.yanxiaotinghuowu]).set('ai', (button) => 2);
+                                        const result = await player
+                                            .chooseButton(['将一张<庭火>当火[杀]使用', player.storage.yanxiaotinghuowu])
+                                            .set('ai', (button) => 2)
+                                            .forResult();
                                         if (result.links && result.links[0]) {
                                             player.storage.yanxiaotinghuowu.remove(result.links[0]);
                                             await player.chooseUseTarget({ name: 'sha', nature: 'fire' }, result.links, true, false);
@@ -2829,8 +2832,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         xg_yanhuo: {
                             subSkill: {
-                                draw: {
-                                },
+                                draw: {},
                             },
                             trigger: {
                                 player: 'useCardBegin',
@@ -3369,29 +3371,32 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.dc_jieqi = ['获得三枚<丹火印>', '获得三张红色牌', '回复三点体力'];
                             },
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseButton(['选择一项,移除该项', [player.storage.dc_jieqi, 'tdnodes']]).set('ai', (button) => {
-                                    switch (button.link) {
-                                        case '获得三枚<丹火印>': {
-                                            return (
-                                                player.countCards('h', function (card) {
-                                                    return get.color(card) == 'red';
-                                                }) < 3 &&
-                                                !player.countMark('dangshu') &&
-                                                player.countCards('h') > 2
-                                            );
+                                const result = await player
+                                    .chooseButton(['选择一项,移除该项', [player.storage.dc_jieqi, 'tdnodes']])
+                                    .set('ai', (button) => {
+                                        switch (button.link) {
+                                            case '获得三枚<丹火印>': {
+                                                return (
+                                                    player.countCards('h', function (card) {
+                                                        return get.color(card) == 'red';
+                                                    }) < 3 &&
+                                                    !player.countMark('dangshu') &&
+                                                    player.countCards('h') > 2
+                                                );
+                                            }
+                                            case '获得三张红色牌': {
+                                                return (
+                                                    player.countCards('h', function (card) {
+                                                        return get.color(card) == 'red';
+                                                    }) < 3 && !player.countMark('dangshu')
+                                                );
+                                            }
+                                            case '回复三点体力': {
+                                                return player.hp < 2;
+                                            }
                                         }
-                                        case '获得三张红色牌': {
-                                            return (
-                                                player.countCards('h', function (card) {
-                                                    return get.color(card) == 'red';
-                                                }) < 3 && !player.countMark('dangshu')
-                                            );
-                                        }
-                                        case '回复三点体力': {
-                                            return player.hp < 2;
-                                        }
-                                    }
-                                });
+                                    })
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     switch (result.links[0]) {
                                         case '获得三枚<丹火印>':
@@ -3793,7 +3798,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     mark: true,
                                     intro: {
                                         content(storage, player, skill) {
-                                            let list = Object.keys(player.disabledSkills);//QQQ
+                                            let list = Object.keys(player.disabledSkills); //QQQ
                                             if (list.length) {
                                                 var str = '失效技能:';
                                                 for (var i = 0; i < list.length; i++) {
@@ -5187,8 +5192,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return 0;
                                     })
-                                    .set('effect', effect)
-                                    ('step 1');
+                                    .set(
+                                        'effect',
+                                        effect
+                                    )('step 1');
                                 if (result.bool && result.cards) {
                                     event.card = result.cards[0];
                                     trigger.targets.length = 0;
@@ -5359,10 +5366,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 const cards = get.cards(player.hp);
                                 var evt = event.getParent(2);
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['将其中一张锦囊牌当做任意锦囊牌使用', cards])
                                     .set('ai', (button) => 2)
-                                    .set('filterButton', (button) => get.type(button.link) == 'trick');
+                                    .set('filterButton', (button) => get.type(button.link) == 'trick')
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     var list = [];
                                     for (var i in lib.card) {
@@ -5374,7 +5382,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                     if (list.length) {
-                                        const { result: result1 } = await player.chooseButton([`视为使用一张牌`, [list, 'vcard']]).set('ai', (button) => player.getUseValue(button.link[2]));
+                                        const result1 = await player
+                                            .chooseButton([`视为使用一张牌`, [list, 'vcard']])
+                                            .set('ai', (button) => player.getUseValue(button.link[2]))
+                                            .forResult();
                                         if (result1.links && result1.links[0]) {
                                             await player.chooseUseTarget({ name: result1.links[0][2] }, result.links, true, false);
                                         }
@@ -5549,8 +5560,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (val < 0) return 10 - val;
                                         return _status.event.effect - val;
                                         return 0;
-                                    })
-                                    ('step 2');
+                                    })('step 2');
                                 if (result.cards && result.bool) {
                                     player.discard(result.cards);
                                     player.chooseCardButton(event.cards, [1, result.cards.length], `【窥视】:获得其中${result.cards.length}张锦囊牌`).ai = function (card) {
@@ -8098,9 +8108,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             //出牌阶段限一次,你可以将一张♥️️️牌当【桃园结义】或【五谷丰登】使用
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseButton(['将一张♥️️️牌当【桃园结义】或【五谷丰登】使用', player.getCards('he', { suit: 'heart' })]).set('ai', (button) => 6 - get.value(button.link));
+                                const result = await player
+                                    .chooseButton(['将一张♥️️️牌当【桃园结义】或【五谷丰登】使用', player.getCards('he', { suit: 'heart' })])
+                                    .set('ai', (button) => 6 - get.value(button.link))
+                                    .forResult();
                                 if (result.links && result.links[0]) {
-                                    const { result: result1 } = await player.chooseButton([`视为使用一张牌`, [['taoyuan', 'wugu'], 'vcard']]).set('ai', (button) => player.getUseValue(button.link[2]));
+                                    const result1 = await player
+                                        .chooseButton([`视为使用一张牌`, [['taoyuan', 'wugu'], 'vcard']])
+                                        .set('ai', (button) => player.getUseValue(button.link[2]))
+                                        .forResult();
                                     if (result1.links && result1.links[0]) {
                                         await player.chooseUseTarget({ name: result1.links[0][2] }, result.links, true, false);
                                     }
@@ -11520,8 +11536,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             /*filter:function(event,player){
-                                return player!=_status.currentPhase;
-                            },*/
+                  return player!=_status.currentPhase;
+              },*/
                             usable: 1,
                             forced: true,
                             content() {
@@ -12803,7 +12819,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var count = trigger.cards.filter((q) => get.color(q) == 'red').length;
                                 while (count-- > 0) {
-                                    const { result } = await player.chooseTarget().set('ai', (t) => get.attitude(player, t));
+                                    const result = await player
+                                        .chooseTarget()
+                                        .set('ai', (t) => get.attitude(player, t))
+                                        .forResult();
                                     if (result.targets && result.targets[0]) {
                                         await result.targets[0].chooseDrawRecover(2, true);
                                     }
@@ -12942,7 +12961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 const discarded = get.discarded().filter((q) => get.color(q) == 'red');
                                 for (const i of discarded) {
-                                    const { result } = await player.chooseControl(Array.from(lib.nature.keys())).set('prompt', get.prompt('审判')).set('prompt2', '请选择杀的属性');
+                                    const result = await player.chooseControl(Array.from(lib.nature.keys())).set('prompt', get.prompt('审判')).set('prompt2', '请选择杀的属性').forResult();
                                     await player.useCard({ name: 'sha', nature: result.control }, [i], false, trigger.player, '审判');
                                 }
                             },
@@ -13784,14 +13803,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (player.storage.kuanglan) {
-                                    player
-                                        .gainPlayerCard(get.prompt('duanyu', trigger.target), trigger.target, 'hej', 'visibleMove')
-                                        .set('ai', function (button) {
-                                            var player = _status.event.player;
-                                            var evt = _status.event.target;
-                                            if (get.attitude(player, evt) > 0 && get.position(button.link) == 'j') return 4 + get.value(button.link);
-                                            return 3;
-                                        })
+                                    player.gainPlayerCard(get.prompt('duanyu', trigger.target), trigger.target, 'hej', 'visibleMove').set('ai', function (button) {
+                                        var player = _status.event.player;
+                                        var evt = _status.event.target;
+                                        if (get.attitude(player, evt) > 0 && get.position(button.link) == 'j') return 4 + get.value(button.link);
+                                        return 3;
+                                    });
                                 }
                             },
                         },
@@ -15407,8 +15424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!info.image) {
                         if (info.fullskin) {
                             info.image = `ext:原神杀/image/${i}.png`;
-                        }
-                        else {
+                        } else {
                             info.image = `ext:原神杀/image/${i}.jpg`;
                         }
                     }

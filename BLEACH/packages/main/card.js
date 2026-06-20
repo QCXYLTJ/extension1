@@ -80,37 +80,37 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_tenken_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_zabimaru: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_zabimaru.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -3
+          attackFrom: -3,
         },
         fullskin: true,
         skills: ['zanpakuto_zabimaru_skill'],
         ai: {
           basic: {
-            equipValue: 4
-          }
-        }
+            equipValue: 4,
+          },
+        },
       },
       zanpakuto_wabisuke: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_wabisuke.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_wabisuke_skill'],
@@ -120,16 +120,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_tobiume: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_tobiume.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         ai: {
@@ -138,31 +138,31 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_hozukimaru: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_hozukimaru.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -3
+          attackFrom: -3,
         },
         fullskin: true,
         skills: ['zanpakuto_hozukimaru_skill'],
         ai: {
           basic: {
-            equipValue: 4
-          }
-        }
+            equipValue: 4,
+          },
+        },
       },
       zanpakuto_senbonzakura: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_senbonzakura.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         global: 'zanpakuto_senbonzakura_skill',
@@ -172,9 +172,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_shinso: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_shinso.png',
@@ -192,46 +192,46 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['zanpakuto_shinso_skill', 'zanpakuto_shinso_skill_effect'],
         ai: {
           basic: {
-            equipValue: 3
-          }
-        }
+            equipValue: 3,
+          },
+        },
       },
       zanpakuto_ashisogijizo: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_ashisogijizo.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         skills: ['zanpakuto_ashisogijizo_skill'],
         fullskin: true,
         ai: {
           basic: {
-            equipValue: 4
-          }
-        }
+            equipValue: 4,
+          },
+        },
       },
       zanpakuto_benihime: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_benihime.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         skills: ['zanpakuto_benihime_skill'],
         fullskin: true,
         ai: {
           basic: {
-            equipValue: 3
-          }
-        }
+            equipValue: 3,
+          },
+        },
       },
       zanpakuto_haineko: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_haineko.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         loseDelay: false,
         onLose() {
@@ -244,24 +244,24 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_kyokasuigetsu: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_kyokasuigetsu.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_kyokasuigetsu_skill'],
         ai: {
           basic: {
-            equipValue: 7.5
-          }
-        }
+            equipValue: 7.5,
+          },
+        },
       },
       zanpakuto_suzumebachi: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_suzumebachi.png',
@@ -275,9 +275,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_sogyonokotowari: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_sogyonokotowari.png',
@@ -286,7 +286,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         fullskin: true,
         skills: ['zanpakuto_sogyonokotowari_skill'],
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         ai: {
           equipValue(card, player) {
@@ -294,9 +294,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_gegetsuburi: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_gegetsuburi.png',
@@ -304,21 +304,21 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         subtype: 'equip1',
         fullskin: true,
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         skills: ['zanpakuto_gegetsuburi_skill'],
         ai: {
           basic: {
-            equipValue: 4
-          }
-        }
+            equipValue: 4,
+          },
+        },
       },
       zanpakuto_katenkyokotsu: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_katenkyokotsu.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         ai: {
@@ -327,16 +327,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_kazeshini: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_kazeshini.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -4
+          attackFrom: -4,
         },
         fullskin: true,
         skills: ['zanpakuto_kazeshini_skill'],
@@ -346,281 +346,281 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 2;
           },
           basic: {
-            equipValue: 2
-          }
-        }
+            equipValue: 2,
+          },
+        },
       },
       zanpakuto_ryujinjakka: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_ryujinjakka.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_ryujinjakka_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_suzumushi: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_suzumushi.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_suzumushi_skill'],
         ai: {
           basic: {
-            equipValue: 5.5
-          }
-        }
+            equipValue: 5.5,
+          },
+        },
       },
       zanpakuto_nijibana: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_nijibana.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -3
+          attackFrom: -3,
         },
         fullskin: true,
         skills: ['zanpakuto_nijibana_skill'],
         ai: {
           basic: {
-            equipValue: 3
-          }
-        }
+            equipValue: 3,
+          },
+        },
       },
       zanpakuto_hyorinmaru: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_hyorinmaru.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_hyorinmaru_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_minazuki: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_minazuki.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_minazuki_skill'],
         ai: {
           basic: {
-            equipValue: 3.5
-          }
-        }
+            equipValue: 3.5,
+          },
+        },
       },
       zanpakuto_sakanade: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_sakanade.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_sakanade_skill'],
         ai: {
           basic: {
-            equipValue: 5
-          }
-        }
+            equipValue: 5,
+          },
+        },
       },
       zanpakuto_engetsu: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_engetsu.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_engetsu_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_sodenoshirayuki: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_sodenoshirayuki.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_sodenoshirayuki_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_nozarasizero: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_nozarasizero.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_nozarasizero_skill'],
         ai: {
           basic: {
-            equipValue: 5
-          }
-        }
+            equipValue: 5,
+          },
+        },
       },
       zanpakuto_tengumaru: {
         image: 'ext:BLEACH/files/zanpakuto/temporary.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_tengumaru_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_kinshara: {
         image: 'ext:BLEACH/files/zanpakuto/temporary.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -4
+          attackFrom: -4,
         },
         fullskin: true,
         skills: ['zanpakuto_kinshara_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_mirokumaru: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_mirokumaru.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['zanpakuto_mirokumaru_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_gonryomaru: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_gonryomaru.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_gonryomaru_skill', 'zanpakuto_gonryomaru_effect'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_tachikaze: {
         image: 'ext:BLEACH/files/zanpakuto/zanpakuto_tachikaze.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['zanpakuto_tachikaze_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_sanpokenju: {
         image: 'ext:BLEACH/files/zanpakuto/temporary.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -3
+          attackFrom: -3,
         },
         fullskin: true,
         skills: ['zanpakuto_sanpokenju_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       zanpakuto_nozarashi: {
         image: 'ext:BLEACH/files/zanpakuto/temporary.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -3
+          attackFrom: -3,
         },
         fullskin: true,
         skills: ['zanpakuto_nozarashi_skill'],
         ai: {
           basic: {
-            equipValue: 6
-          }
-        }
+            equipValue: 6,
+          },
+        },
       },
       Stamina: {
         image: 'ext:BLEACH/files/soultree/Stamina.png',
-        fullskin: true
+        fullskin: true,
       },
       Attack: {
         image: 'ext:BLEACH/files/soultree/Attack.png',
-        fullskin: true
+        fullskin: true,
       },
       Defense: {
         image: 'ext:BLEACH/files/soultree/Defense.png',
-        fullskin: true
+        fullskin: true,
       },
       Focus: {
         image: 'ext:BLEACH/files/soultree/Focus.png',
-        fullskin: true
+        fullskin: true,
       },
       SpiriualPressure: {
         image: 'ext:BLEACH/files/soultree/SpiriualPressure.png',
-        fullskin: true
+        fullskin: true,
       },
       bleach_zhangui: {
         image: 'ext:BLEACH/card/bleach_skill_zhangui.png',
-        fullskin: true
+        fullskin: true,
       },
       bleach_yinggui: {
         image: 'ext:BLEACH/card/bleach_skill_yinggui.png',
-        fullskin: true
+        fullskin: true,
       },
       bleach_yangui: {
         image: 'ext:BLEACH/card/bleach_skill_yangui.png',
-        fullskin: true
+        fullskin: true,
       },
       bleach_card_cero: {
         image: 'ext:BLEACH/card/bleach_card_cero.png',
@@ -642,13 +642,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             event._result = { bool: false };
             event.goto(2);
           } else {
-            player.
-            chooseControl('杀', '闪', () => {
-              return get.event('goon');
-            }).
-            set('goon', ['杀', '闪'].randomGet());
+            player
+              .chooseControl('杀', '闪', () => {
+                return get.event('goon');
+              })
+              .set('goon', ['杀', '闪'].randomGet());
           }
-          'step 1';
+          ('step 1');
           if (result.control == '杀') {
             var next = target.chooseToRespond('打出一张杀响应虚闪', { name: 'sha' });
             next.set('ai', (card) => {
@@ -669,25 +669,25 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             });
             next.autochoose = lib.filter.autoRespondShan;
           }
-          'step 2';
+          ('step 2');
           if (result.bool == false) target.damage(event.baseDamage);
         },
         ai: {
           order: 5.2,
           basic: {
             useful: [5, 3, 1],
-            value: [5, 3, 1]
+            value: [5, 3, 1],
           },
           result: {
-            target: -1.5
+            target: -1.5,
           },
           tag: {
             damage: 1,
             respondShan: 1,
-            respondSha: 1
-          }
+            respondSha: 1,
+          },
         },
-        selectTarget: 1
+        selectTarget: 1,
       },
       bleach_card_ramen: {
         image: 'ext:BLEACH/card/bleach_card_ramen.png',
@@ -707,15 +707,15 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           'step 0';
           target.recover(event.baseDamage || 1);
-          'step 1';
+          ('step 1');
           const list = ['bleachMark_leizhe', 'bleachMark_huofen', 'bleachMark_ice', 'bleachMark_weak'].filter((i) => target.hasMark(i));
           if (list.length > 1) {
-            player.
-            chooseControl(list).
-            set('prompt', '请选择你要移除的异常').
-            set('ai', () => list.randomGet());
+            player
+              .chooseControl(list)
+              .set('prompt', '请选择你要移除的异常')
+              .set('ai', () => list.randomGet());
           } else if (list.length == 1) event._result = { bool: true, control: list.shift() };
-          'step 2';
+          ('step 2');
           if (result && result.control) {
             target.removeBleachBuff(result.control, 1);
           }
@@ -727,13 +727,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               let player = get.player();
               if (!game.checkMod(card, player, 'unchanged', 'cardEnabled2', player)) return 2 / (1 + i);
               let fs = game.filterPlayer((current) => {
-                  return get.attitude(player, current) > 0 && current.isDamaged();
-                }),
+                return get.attitude(player, current) > 0 && current.isDamaged();
+              }),
                 damaged = 0,
                 needs = 0;
               fs.forEach((f) => {
-                if (f.hp > 2) damaged++;else
-                needs++;
+                if (f.hp > 2) damaged++;
+                else needs++;
               });
               if (needs && damaged) return 4 * needs + 2 * damaged;
               if (needs + damaged > 1 || player.hasSkillTag('maixie')) return 6;
@@ -744,31 +744,31 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             },
             value(card, player) {
               let fs = game.filterPlayer((current) => {
-                  return get.attitude(get.player(), current) > 0;
-                }),
+                return get.attitude(get.player(), current) > 0;
+              }),
                 damaged = 0,
                 needs = 0;
               fs.forEach((f) => {
                 if (!player.canUse('bleach_card_ramen', f)) return;
-                if (f.hp == 1 || f.hasMark('bleachMark_fire')) needs++;else
-                if (f.hp == 2) damaged++;
+                if (f.hp == 1 || f.hasMark('bleachMark_fire')) needs++;
+                else if (f.hp == 2) damaged++;
               });
-              if (needs && damaged || player.hasSkillTag('maixie')) return Math.max(7, 3.5 * needs + 1.5 * damaged);
+              if ((needs && damaged) || player.hasSkillTag('maixie')) return Math.max(7, 3.5 * needs + 1.5 * damaged);
               if (needs || damaged > 1) return 6;
               if (damaged) return 5.5;
               return Math.max(3.5, 7.2 - player.getDamagedHp());
-            }
+            },
           },
           result: {
             target(player, target) {
               if (target.countMark('bleachMark_fire') > 0 || target.hasSkillTag('maixie')) return 3;
               return 2;
-            }
+            },
           },
           tag: {
-            recover: 1
-          }
-        }
+            recover: 1,
+          },
+        },
       },
       bleach_card_zhengyizhaozhuang: {
         image: 'ext:BLEACH/card/bleach_card_zhengyizhaozhuang.png',
@@ -793,12 +793,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           basic: {
             order: 7,
             useful: 4.5,
-            value: 7.5
+            value: 7.5,
           },
           result: {
-            target: 2
-          }
-        }
+            target: 2,
+          },
+        },
       },
       bleach_card_daorenrongyao: {
         image: 'ext:BLEACH/card/bleach_card_daorenrongyao.png',
@@ -825,7 +825,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             }
           }
           target.chooseButton(['请选择要获得的武器牌', list], true).set('ai', (button) => _status.event.player.getUseValue(button.link));
-          'step 1';
+          ('step 1');
           if (result.bool) {
             target.gain(result.links, 'draw').gaintag = ['g_bleach_daorenrongyao'];
             var list = [];
@@ -842,18 +842,18 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           basic: {
             order: 5.5,
             useful: 2.5,
-            value: 6.5
+            value: 6.5,
           },
           result: {
             target(player, target) {
               if (target.getEquips(1).length) return 0.5;
               return 1;
-            }
+            },
           },
           tag: {
-            draw: 1
-          }
-        }
+            draw: 1,
+          },
+        },
       },
       bleach_card_hougyoku: {
         image: 'ext:BLEACH/card/bleach_card_hougyoku.png',
@@ -863,16 +863,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['bleach_card_hougyoku_skill'],
         ai: {
           basic: {
-            equipValue: 7
-          }
-        }
+            equipValue: 7,
+          },
+        },
       },
       bleach_card_qianda: {
         image: 'ext:BLEACH/card/bleach_card_qianda.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         global: ['bleach_card_zanpakutou_lose', 'bleach_card_zanpakutou_gain'],
@@ -883,9 +883,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 1.5;
           },
           basic: {
-            equipValue: 1.5
-          }
-        }
+            equipValue: 1.5,
+          },
+        },
       },
       bleach_card_tiantaxuan: {
         image: 'ext:BLEACH/card/bleach_card_tiantaxuan.png',
@@ -893,7 +893,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         type: 'equip',
         subtype: 'equip4',
         distance: {
-          globalFrom: -1
+          globalFrom: -1,
         },
         enable: true,
         selectTarget: -1,
@@ -910,9 +910,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 5.5;
           },
           basic: {
-            equipValue: 5.5
-          }
-        }
+            equipValue: 5.5,
+          },
+        },
       },
       bleach_card_zhengyitoutao: {
         image: 'ext:BLEACH/card/bleach_card_zhengyitoutao.png',
@@ -923,13 +923,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         fullskin: true,
         ai: {
           basic: {
-            equipValue: 5.5
+            equipValue: 5.5,
           },
           equipValue(card, player) {
             if (player.needsToDiscard()) return 6.5;
             return 4.5;
-          }
-        }
+          },
+        },
       },
       bleach_card_xuzhijiamian: {
         image: 'ext:BLEACH/card/bleach_card_xuzhijiamian.png',
@@ -940,12 +940,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         fullskin: true,
         ai: {
           basic: {
-            equipValue: 5.5
+            equipValue: 5.5,
           },
           equipValue(card, player) {
             return Math.max(5, 7.2 - player.getDamagedHp());
-          }
-        }
+          },
+        },
       },
       bleach_card_wuweidoupeng: {
         image: 'ext:BLEACH/card/bleach_card_wuweidoupeng.png',
@@ -957,9 +957,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           basic: {
             equipValue: 4.5,
-            useful: 2
-          }
-        }
+            useful: 2,
+          },
+        },
       },
       bleach_card_hushenfu: {
         image: 'ext:BLEACH/card/bleach_card_hushenfu.png',
@@ -978,9 +978,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             value(card, player, index, method) {
               if (player.isDisabled(5)) return 0.01;
               return Math.max(6.3 - player.hp, 1);
-            }
-          }
-        }
+            },
+          },
+        },
       },
       bleach_sai: {
         image: 'ext:BLEACH/card/bleach_sai.png',
@@ -995,15 +995,15 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           'step 0';
           var num = card.number;
-          target.
-          chooseToDiscard('请弃置一张点数不小于' + get.strNumber(num) + '的牌,否则不能使用或打出基本牌至你的回合开始.', 'he', (card) => {
-            return card.number >= _status.event.num;
-          }).
-          set('ai', (card) => {
-            return 8 - get.value(card);
-          }).
-          set('num', num);
-          'step 1';
+          target
+            .chooseToDiscard('请弃置一张点数不小于' + get.strNumber(num) + '的牌,否则不能使用或打出基本牌至你的回合开始.', 'he', (card) => {
+              return card.number >= _status.event.num;
+            })
+            .set('ai', (card) => {
+              return 8 - get.value(card);
+            })
+            .set('num', num);
+          ('step 1');
           if (!result.bool) {
             target.addTempSkill('bleach_sai', { player: 'phaseBegin' });
           }
@@ -1012,17 +1012,17 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           basic: {
             order: 11,
             useful: 2,
-            value: 6
+            value: 6,
           },
           result: {
             target(player, target, cardx) {
               return -1.4;
-            }
+            },
           },
           tag: {
-            loseCard: 1
-          }
-        }
+            loseCard: 1,
+          },
+        },
       },
       bleach_rikujokoro: {
         image: 'ext:BLEACH/card/bleach_rikujokoro.png',
@@ -1042,14 +1042,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           basic: {
             order: 11,
             useful: 2,
-            value: 6
+            value: 6,
           },
           result: {
             target(player, target, cardx) {
               return -(player.countCards('h') - target.countCards('h'));
-            }
-          }
-        }
+            },
+          },
+        },
       },
       bleach_danku: {
         image: 'ext:BLEACH/card/bleach_danku.png',
@@ -1078,11 +1078,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           basic: {
             useful: [6, 4, 3],
-            value: [6, 4, 3]
+            value: [6, 4, 3],
           },
           result: { player: 1 },
-          expose: 0.2
-        }
+          expose: 0.2,
+        },
       },
       bleach_fushibi: {
         image: 'ext:BLEACH/card/bleach_fushibi.png',
@@ -1097,27 +1097,27 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           'step 0';
           target.link(true);
-          'step 1';
+          ('step 1');
           target.chooseToDiscard('he', true);
         },
         ai: {
           basic: {
             order: 7,
             useful: 4,
-            value: 4
+            value: 4,
           },
           result: {
             target(player, target) {
               return -0.7;
-            }
+            },
           },
           tag: {
             loseCard: 1,
             multitarget: 1,
             multineg: 1,
-            norepeat: 1
-          }
-        }
+            norepeat: 1,
+          },
+        },
       },
       bleach_shakkaho: {
         image: 'ext:BLEACH/card/bleach_shakkaho.png',
@@ -1132,8 +1132,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           'step 0';
           if (typeof event.baseDamage != 'number') event.baseDamage = 1;
-          'step 1';
-          if (event.directHit || event.directHit2 || !_status.connectMode && lib.config.skip_shan && !target.hasShan()) {
+          ('step 1');
+          if (event.directHit || event.directHit2 || (!_status.connectMode && lib.config.skip_shan && !target.hasShan())) {
             event._result = { bool: false };
           } else if (event.skipShan) {
             event._result = { bool: true, result: 'shaned' };
@@ -1162,7 +1162,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             });
             next.set('respondTo', [player, card]);
           }
-          'step 2';
+          ('step 2');
           if (!result.bool) {
             target.damage('fire', event.baseDamage || 1);
           }
@@ -1171,91 +1171,93 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           basic: {
             order: 5,
             useful: 2,
-            value: 3
+            value: 3,
           },
           result: {
             target(player, target) {
               return -1.5;
-            }
+            },
           },
           tag: {
             damage: 1,
             fireDamage: 1,
-            natureDamage: 1
-          }
-        }
+            natureDamage: 1,
+          },
+        },
       },
       bleach_miewangzhifu: {
         image: 'ext:BLEACH/card/bleach_miewangzhifu.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['bleach_miewangzhifu_skill'],
         ai: {
           basic: {
-            equipValue: 4.5
-          }
-        }
+            equipValue: 4.5,
+          },
+        },
       },
       soul_card_gangnier: {
         image: 'ext:BLEACH/card/soul_card_gangnier.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         fullskin: true,
         skills: ['soul_card_gangnier_skill'],
         ai: {
           basic: {
-            equipValue: 4
-          }
-        }
+            equipValue: 4,
+          },
+        },
       },
       soul_card_buertegen: {
         image: 'ext:BLEACH/card/soul_card_buertegen.png',
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         fullskin: true,
         skills: ['soul_card_buertegen_skill'],
         ai: {
           basic: {
-            equipValue: 4
-          }
-        }
-      }
+            equipValue: 4,
+          },
+        },
+      },
     },
     skill: {
       g_bleach_cero: {
         trigger: { player: 'discardAfter' },
         forced: true,
         filter(event, player) {
-          if (Array.isArray(event.cards)) for (var i of event.cards) {
-            if (i.name == 'bleach_card_cero') return true;
-          }
+          if (Array.isArray(event.cards))
+            for (var i of event.cards) {
+              if (i.name == 'bleach_card_cero') return true;
+            }
           return false;
         },
         content() {
           var num = 0;
-          if (Array.isArray(trigger.cards)) for (var i of trigger.cards) {
-            if (i.name == 'bleach_card_cero') num++;
-          }
+          if (Array.isArray(trigger.cards))
+            for (var i of trigger.cards) {
+              if (i.name == 'bleach_card_cero') num++;
+            }
           if (num > 0) {
             player.draw(num);
           }
-        }
+        },
       },
       g_bleach_daorenrongyao: {
         trigger: {
           player: 'loseAfter',
           target: 'useCardToTargeted',
-          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
+          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
         },
         silent: true,
         filter(event, player, name) {
@@ -1264,15 +1266,17 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           if (name == 'useCardToTargeted' || ['useCard'].includes(event.parent.name)) {
             if ('equip' != get.type(event.card) || event.player != player) return false;
             var cards = event.cards;
-            if (Array.isArray(cards)) for (var i of cards) {
-              if (hs.includes(i)) return true;
-            }
+            if (Array.isArray(cards))
+              for (var i of cards) {
+                if (hs.includes(i)) return true;
+              }
             return false;
           }
           var cards = event.getl(player).cards2;
-          if (Array.isArray(cards)) for (var i of cards) {
-            if (hs.includes(i)) return true;
-          }
+          if (Array.isArray(cards))
+            for (var i of cards) {
+              if (hs.includes(i)) return true;
+            }
           return false;
         },
         content() {
@@ -1282,13 +1286,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           } else {
             var cards = trigger.getl(player).cards2;
             var hs = player.storage.bleach_daorenrongyao;
-            if (Array.isArray(cards)) for (var i of cards) {
-              if (hs.includes(i)) {
-                if (i.original == 'e' && !player.storage.bleach_daorenrongyao.includes(player.getEquips(1).length)) player.unmarkSkill('g_bleach_daorenrongyao');
-                player.storage.bleach_daorenrongyao.remove(i);
-                game.log('#y【刀刃荣耀】', '将不在为', i, '提供保护');
+            if (Array.isArray(cards))
+              for (var i of cards) {
+                if (hs.includes(i)) {
+                  if (i.original == 'e' && !player.storage.bleach_daorenrongyao.includes(player.getEquips(1).length)) player.unmarkSkill('g_bleach_daorenrongyao');
+                  player.storage.bleach_daorenrongyao.remove(i);
+                  game.log('#y【刀刃荣耀】', '将不在为', i, '提供保护');
+                }
               }
-            }
             if (hs.length == 0) {
               delete player.storage.bleach_daorenrongyao;
             }
@@ -1296,15 +1301,15 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         marktext: '荣',
         intro: {
-          content: '武器栏内的牌不能被弃置'
+          content: '武器栏内的牌不能被弃置',
         },
         mod: {
           canBeDiscarded(card, player, target) {
             if (get.position(card) == 'e' && target.storage.bleach_daorenrongyao && target.storage.bleach_daorenrongyao.includes(card)) {
               return false;
             }
-          }
-        }
+          },
+        },
       },
       bleach_card_hougyoku_skill: {
         equipSkill: true,
@@ -1313,7 +1318,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           'step 0';
           event.list = ['basic', 'trick', 'equip'];
-          'step 1';
+          ('step 1');
           player.chooseControl(event.list).set('prompt', '崩玉:请选择你即将获得的一种类型的牌').ai = () => {
             if (player.hasSkill('bleach_fupo')) return 'equip';
             if (player.countCards('he', { type: 'equip' }) < 2) {
@@ -1321,7 +1326,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             }
             return 'trick';
           };
-          'step 2';
+          ('step 2');
           var card = get.cardPile((card) => get.type(card, 'trick') == result.control);
           if (card) player.gain(card, 'draw');
         },
@@ -1329,18 +1334,18 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           order: 13,
           result: {
-            player: 1
-          }
+            player: 1,
+          },
         },
         mod: {
           canBeDiscarded(card) {
             if (get.position(card) == 'e' && ['equip5'].includes(get.subtype(card)) && card.name == 'bleach_card_hougyoku') return false;
-          }
+          },
         },
         subSkill: {
           give: {
             trigger: {
-              player: ['dyingBegin']
+              player: ['dyingBegin'],
             },
             forced: true,
             filter(event, player) {
@@ -1348,9 +1353,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             },
             content() {
               trigger.source.gain(player.getEquips('bleach_card_hougyoku'), player, 'give', 'bySelf');
-            }
-          }
-        }
+            },
+          },
+        },
       },
       bleach_card_qianda_skill: {
         equipSkill: true,
@@ -1364,14 +1369,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           order: 10.5,
           result: {
-            player: 1
-          }
-        }
+            player: 1,
+          },
+        },
       },
       bleach_card_zanpakutou_lose: {
         trigger: {
           player: 'loseAfter',
-          global: 'loseAsyncAfter'
+          global: 'loseAsyncAfter',
         },
         forced: true,
         _priority: Infinity,
@@ -1390,13 +1395,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               card.init([card.suit, 1, 'bleach_card_qianda']);
             }, card);
           }
-        }
+        },
       },
       //出牌阶段,若你有武将可以*始解*,你可以解放斩魄刀.<font color=gray size=2><br><无名的斩魄刀,即斩魄刀未始解时的名称
       bleach_card_zanpakutou_gain: {
         trigger: {
           player: ['gainAfter', 'equipAfter'],
-          global: 'loseAsyncAfter'
+          global: 'loseAsyncAfter',
         },
         forced: true,
         _priority: Infinity,
@@ -1409,7 +1414,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         forceDie: true,
         content() {
-          if (trigger.name == 'equip') {//QQQ
+          if (trigger.name == 'equip') {
+            //QQQ
             const card = trigger.cards[0];
             game.log(card, '回复为', '#y【浅打】');
             player.removeEquipTrigger(card);
@@ -1429,46 +1435,46 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               }, card);
             }
           }
-        }
+        },
       },
       bleach_card_tiantaxuan_skill: {
         equipSkill: true,
         trigger: {
-          player: 'phaseZhunbeiBegin'
+          player: 'phaseZhunbeiBegin',
         },
         async cost(event, trigger, player) {
-          event.result = await player.
-          chooseTarget(get.prompt('bleach_card_tiantaxuan_skill'), '弃置一名角色区域内一张牌', (card, player, target) => {
-            return target.countDiscardableCards(player, 'hej') > 0;
-          }).
-          set('ai', (target) => {
-            const player = get.player();
-            let att = get.attitude(player, target);
-            if (att > 0 && (target.hasJudge('lebu') || target.hasJudge('bingliang'))) att = Math.sqrt(att);else
-            {
-              att = 0;
-            }
-            return att * lib.card.guohe.ai.result.target(player, target);
-          }).
-          forResult();
+          event.result = await player
+            .chooseTarget(get.prompt('bleach_card_tiantaxuan_skill'), '弃置一名角色区域内一张牌', (card, player, target) => {
+              return target.countDiscardableCards(player, 'hej') > 0;
+            })
+            .set('ai', (target) => {
+              const player = get.player();
+              let att = get.attitude(player, target);
+              if (att > 0 && (target.hasJudge('lebu') || target.hasJudge('bingliang'))) att = Math.sqrt(att);
+              else {
+                att = 0;
+              }
+              return att * lib.card.guohe.ai.result.target(player, target);
+            })
+            .forResult();
         },
         async content(event, trigger, player) {
           await player.loseToDiscardpile(player.getEquip(4));
           player.discardPlayerCard(event.targets[0], 'hej', true);
-        }
+        },
       },
       bleach_card_zhengyitoutao_skill: {
         equipSkill: true,
         mod: {
           maxHandcard(player, num) {
             return num + 2;
-          }
-        }
+          },
+        },
       },
       bleach_card_xuzhijiamian_skill: {
         equipSkill: true,
         trigger: {
-          player: 'damageEnd'
+          player: 'damageEnd',
         },
         check(event, player) {
           return get.attitude(player, event.source) <= 0;
@@ -1476,14 +1482,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         filter(event, player) {
           if (player.hasSkillTag('unequip2')) return false;
           if (
-          event.source &&
-          event.source.hasSkillTag('unequip', false, {
-            name: event.card ? event.card.name : null,
-            target: player,
-            card: event.card
-          }))
-
-          return false;
+            event.source &&
+            event.source.hasSkillTag('unequip', false, {
+              name: event.card ? event.card.name : null,
+              target: player,
+              card: event.card,
+            })
+          )
+            return false;
           return event.source && event.source.isIn() && !player.hasSkill('bleach_card_xuzhijiamian_skill_round');
         },
         logTarget: 'source',
@@ -1493,26 +1499,26 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         subSkill: {
           round: {
-            charlotte: true
-          }
-        }
+            charlotte: true,
+          },
+        },
       },
       bleach_card_wuweidoupeng_skill: {
         equipSkill: true,
         trigger: {
-          player: 'addBleachBuffBegin2'
+          player: 'addBleachBuffBegin2',
         },
         forced: true,
         filter(event, player) {
           if (player.hasSkillTag('unequip2')) return false;
           if (
-          event.player.hasSkillTag('unequip', false, {
-            name: event.card ? event.card.name : null,
-            target: player,
-            card: event.card
-          }))
-
-          return false;
+            event.player.hasSkillTag('unequip', false, {
+              name: event.card ? event.card.name : null,
+              target: player,
+              card: event.card,
+            })
+          )
+            return false;
           for (var i in event.buff) {
             if (!get.bleachBuffCanAdd(i) && get.bleachBuffIsNegetive(i)) {
               return true;
@@ -1528,13 +1534,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             if (!get.bleachBuffCanAdd(buff) && get.bleachBuffIsNegetive(buff)) {
               setToZero.zeroplayer = true;
             }
-          }
-        }
+          },
+        },
       },
       bleach_card_hushenfu_skill: {
         equipSkill: true,
         trigger: {
-          player: 'damageBegin4'
+          player: 'damageBegin4',
         },
         forced: true,
         filter(event, player) {
@@ -1555,7 +1561,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             equipSkill: true,
             trigger: {
               player: 'loseAfter',
-              global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
+              global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
             },
             filter(event, player) {
               if (player.getHp() > 1) return false;
@@ -1571,13 +1577,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               });
             },
             sourceSkill: 'bleach_card_hushenfu_skill',
-            _priority: -25
-          }
-        }
+            _priority: -25,
+          },
+        },
       },
       bleach_sai: {
         trigger: {
-          global: 'dying'
+          global: 'dying',
         },
         forced: true,
         popup: false,
@@ -1587,21 +1593,21 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         mark: true,
         marktext: '塞',
         intro: {
-          content: '不能使用或打出基本牌'
+          content: '不能使用或打出基本牌',
         },
         charlotte: true,
         mod: {
           cardEnabled2(card) {
             if (get.type(card) == 'basic') return false;
-          }
-        }
+          },
+        },
       },
       bleach_rikujokoro: {
         charlotte: true,
         forced: true,
         popup: false,
         trigger: {
-          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'loseAfter', 'gainAfter', 'addToExpansionAfter']
+          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'loseAfter', 'gainAfter', 'addToExpansionAfter'],
         },
         filter(event, player) {
           var target = player.storage.bleach_rikujokoro;
@@ -1623,33 +1629,33 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           effect: {
             target(card, player, target) {
               if (get.tag(card, 'damage')) return [0, -999];
-            }
-          }
+            },
+          },
         },
         charlotte: true,
         mark: true,
         marktext: '牢',
         intro: {
-          content: '不能使用或打出手牌'
+          content: '不能使用或打出手牌',
         },
         mod: {
           cardEnabled2(card, player) {
             if (get.position(card) == 'h') return false;
-          }
-        }
+          },
+        },
       },
       bleach_miewangzhifu_skill: {
         equipSkill: true,
         forced: true,
         trigger: {
-          source: 'damageSource'
+          source: 'damageSource',
         },
         filter(event, player) {
           return event.card && event.card.name == 'sha' && event.player.isIn();
         },
         content() {
           trigger.player.addBleachBuff('bleachMark_lieshang', 1, player);
-        }
+        },
       },
       soul_card_gangnier_skill: {
         equipSkill: true,
@@ -1657,7 +1663,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           return get.attitude(player, event.player) < 0;
         },
         trigger: {
-          player: 'useCardToPlayered'
+          player: 'useCardToPlayered',
         },
         logTarget: 'player',
         filter(event, player) {
@@ -1667,19 +1673,19 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             event.card.name == 'sha' &&
             !game.hasPlayer((current) => {
               return current != event.target && player.inRange(current) && get.distance(player, current) > distance;
-            }));
-
+            })
+          );
         },
         content() {
           trigger.target.damage('nocard');
-        }
+        },
       },
       soul_card_buertegen_skill: {
         equipSkill: true,
         audio: true,
         trigger: {
           player: 'useCardToPlayered',
-          source: 'damageEnd'
+          source: 'damageEnd',
         },
         filter(event) {
           return event.card && event.card.name == 'sha';
@@ -1699,8 +1705,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           unequip: true,
           skillTagFilter(player, tag, arg) {
             if (!arg || arg.name != 'sha') return false;
-          }
-        }
+          },
+        },
       },
       zanpakuto_tenken_skill: {
         audio: true,
@@ -1709,7 +1715,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           return player.canUse('sha', event.target, false) && event.target.isIn() && event.getParent(2).name != 'zanpakuto_tenken_skill';
         },
         trigger: {
-          player: 'shaAfter'
+          player: 'shaAfter',
         },
         forced: true,
         content() {
@@ -1726,18 +1732,18 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 0;
           });
           next.set('goon', goon);
-          'step 1';
+          ('step 1');
           if (result.bool) {
             game.playShiKai(player.name);
             player.useCard(game.createCard({ name: 'sha', nature: trigger.card.nature, suit: trigger.card.suit, number: trigger.card.number }), trigger.targets, false).throw = false;
           }
-        }
+        },
       },
       zanpakuto_zabimaru_skill: {
         equipSkill: true,
         forced: true,
         trigger: {
-          player: 'shaMiss'
+          player: 'shaMiss',
         },
         filter(event, player) {
           return player.countCards('he') > 0;
@@ -1755,16 +1761,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             }
             return 0;
           };
-          'step 1';
+          ('step 1');
           if (result.bool) {
             player.useCard({ name: 'sha' }, result.cards, trigger.target, false, false);
           }
-        }
+        },
       },
       zanpakuto_wabisuke_skill: {
         equipSkill: true,
         trigger: {
-          global: 'damageBegin4'
+          global: 'damageBegin4',
         },
         forced: true,
         filter(event, player) {
@@ -1774,12 +1780,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           player.chat(['可以的话 希望你不要原谅我', '故名为侘助'].randomGet());
           trigger.player.qdie(player);
           game.log(player, '发动了', '#g【处决】', '使', trigger.player, '死亡');
-        }
+        },
       },
       zanpakuto_hozukimaru_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCardToPlayered'
+          player: 'useCardToPlayered',
         },
         filter(event, player) {
           return event.card && event.card.name == 'sha';
@@ -1803,25 +1809,25 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             }
             return -1;
           });
-          'step 1';
+          ('step 1');
           if (result.bool) {
             var suit = result.cards[0].suit;
             var target = trigger.target;
             var num = target.countCards('h', 'shan');
-            target.
-            chooseToDiscard('请弃置一张' + get.translation(suit) + '牌,否则不能使用闪抵消此杀', 'he', (card) => {
-              return card.suit == _status.event.suit;
-            }).
-            set('ai', (card) => {
-              var num = _status.event.num;
-              if (num == 0) return 0;
-              if (card.name == 'shan') return num > 1 ? 2 : 0;
-              return 8 - get.value(card);
-            }).
-            set('num', num).
-            set('suit', suit);
+            target
+              .chooseToDiscard('请弃置一张' + get.translation(suit) + '牌,否则不能使用闪抵消此杀', 'he', (card) => {
+                return card.suit == _status.event.suit;
+              })
+              .set('ai', (card) => {
+                var num = _status.event.num;
+                if (num == 0) return 0;
+                if (card.name == 'shan') return num > 1 ? 2 : 0;
+                return 8 - get.value(card);
+              })
+              .set('num', num)
+              .set('suit', suit);
           } else event.finish();
-          'step 2';
+          ('step 2');
           if (result.bool) {
             if (player.countCards('he')) event.goto(0);
           } else trigger.parent.directHit.add(trigger.target);
@@ -1837,19 +1843,19 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             },
             position: 'hes',
             viewAs: {
-              name: 'tao'
+              name: 'tao',
             },
             prompt: '将【鬼灯丸】当桃使用',
             check(card) {
               return 15 - get.value(card);
-            }
-          }
-        }
+            },
+          },
+        },
       },
       zanpakuto_senbonzakura_skill: {
         trigger: {
           player: 'loseAfter',
-          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
+          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
         },
         filter(event, player) {
           var evt = event.getl(player);
@@ -1865,7 +1871,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             if (get.color(card) == 'red') return 3;
             return 0;
           });
-          'step 1';
+          ('step 1');
           if (result.bool) {
             var evt = trigger.getl(player);
             for (var i = 0; i < evt.es.length; i++) {
@@ -1877,7 +1883,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           } else {
             event.trigger('senbonzakuraJudge');
           }
-        }
+        },
       },
       zanpakuto_shinso_skill: {
         equipSkill: true,
@@ -1888,20 +1894,23 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             var dialog = ui.create.dialog(
               '神枪:选择变化攻击范围',
               [
+                [
+                  [1, '　　　⒈【杀】无次数限制　　　'],
+                  [2, '　　　⒉【杀】的伤害值+1　　　'],
+                ],
+
+                'tdnodes',
+              ],
+
               [
-              [1, '　　　⒈【杀】无次数限制　　　'],
-              [2, '　　　⒉【杀】的伤害值+1　　　']],
+                [
+                  [3, '　　　⒊【杀】不可被响应　　　'],
+                  [4, '　　　⒋【杀】无视防具牌　　　'],
+                  [5, '　　　⒌【杀】可追加下家　　　'],
+                ],
 
-              'tdnodes'],
-
-              [
-              [
-              [3, '　　　⒊【杀】不可被响应　　　'],
-              [4, '　　　⒋【杀】无视防具牌　　　'],
-              [5, '　　　⒌【杀】可追加下家　　　']],
-
-              'tdnodes']
-
+                'tdnodes',
+              ]
             );
             return dialog;
           },
@@ -1927,9 +1936,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                   }
                 }
                 player.markSkill('zanpakuto_shinso_skill');
-              }
+              },
             };
-          }
+          },
         },
         mod: {
           attackRange(player, range) {
@@ -1937,7 +1946,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           },
           cardUsable(card, player, num) {
             if (player.storage.zanpakuto_shinso_skill == 1 && card.name == 'sha') return Infinity;
-          }
+          },
         },
         ai: {
           order: 1,
@@ -1960,15 +1969,15 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 if (player.hasSha() && player.getCardUsable('sha') <= 0) return 1;
                 return 0;
               }
-            }
-          }
+            },
+          },
         },
         intro: {
           name: '神枪',
           content(storage) {
             if (!storage) storage = 1;
             return '<li>攻击范围:' + storage + '<br><li>' + ['你使用【杀】无次数限制.', '你使用的【杀】伤害+1.', '你使用的【杀】不可被响应.', '你使用【杀】无视防具.', '当你使用的【杀】被抵消时,你可以对其下家使用一张【杀】'][storage - 1];
-          }
+          },
         },
         subSkill: {
           backup: {},
@@ -1983,7 +1992,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               if (event.name == 'useCard') {
                 return num == 2 || num == 3;
               }
-              if (player.canUse('sha', event.target.next, false) && (player.hasSha() || _status.connectMode && player.countCards('hs'))) {
+              if (player.canUse('sha', event.target.next, false) && (player.hasSha() || (_status.connectMode && player.countCards('hs')))) {
                 return true;
               }
               return false;
@@ -2001,7 +2010,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                   filterTarget(card, player, target) {
                     return target == get.event('preTarget') && lib.filter.filterTarget.apply(this, arguments);
                   },
-                  addCount: false
+                  addCount: false,
                 });
               } else {
                 if (num == 2) {
@@ -2013,9 +2022,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 }
               }
               game.asyncDelayx();
-            }
-          }
-        }
+            },
+          },
+        },
       },
       zanpakuto_ashisogijizo_skill: {
         equipSkill: true,
@@ -2023,7 +2032,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           return true;
         },
         trigger: {
-          source: 'damageSource'
+          source: 'damageSource',
         },
         filter(event, player) {
           return event.card && event.card.name == 'sha' && event.notLink() && event.player.countCards('he') > 0;
@@ -2033,16 +2042,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           trigger.player.chooseCard('he', true, '选择一张牌交给' + get.translation(player)).set('ai', (card) => {
             return 6 - get.value(card);
           });
-          'step 1';
+          ('step 1');
           if (result.bool) {
             player.gain(result.cards, trigger.player, 'giveAuto');
           }
-          'step 2';
+          ('step 2');
           if (trigger.card.suit == 'spade' && trigger.card.number > 1 && trigger.card.number < 10) {
             player.chat('让被砍到的对象四肢无法动弹 这就是我[疋杀地藏]的能力');
             trigger.player.addBleachBuff('bleachEffect_mabi', 1, player);
           }
-        }
+        },
       },
       zanpakuto_benihime_skill: {
         equipSkill: true,
@@ -2059,9 +2068,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           result: {
             target(player, target) {
               return get.effect(target, { name: 'guohe_copy2' }, player, player);
-            }
-          } //QQQ
-        }
+            },
+          }, //QQQ
+        },
       },
       zanpakuto_haineko_skill: {
         forced: true,
@@ -2069,7 +2078,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         equipSkill: true,
         trigger: {
           player: 'loseAfter',
-          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
+          global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
         },
         filter(event, player) {
           const evt = event.getl(player);
@@ -2082,12 +2091,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               player.draw(2);
             }
           });
-        }
+        },
       },
       zanpakuto_kyokasuigetsu_skill: {
         equipSkill: true,
         trigger: {
-          player: 'loseAfter'
+          player: 'loseAfter',
         },
         forced: true,
         filter(event, player) {
@@ -2100,22 +2109,22 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         usable: 1,
         content() {
           'step 0';
-          player.
-          chooseButton([
-          '镜花水月:是否使用其中的一张牌？',
-          trigger.cards2.filter((i) => {
-            return get.position(i, true) == 'd' && player.hasUseTarget(i);
-          })]
-          ).
-          set('ai', (button) => {
-            return _status.event.player.getUseValue(button.link);
-          });
-          'step 1';
+          player
+            .chooseButton([
+              '镜花水月:是否使用其中的一张牌？',
+              trigger.cards2.filter((i) => {
+                return get.position(i, true) == 'd' && player.hasUseTarget(i);
+              }),
+            ])
+            .set('ai', (button) => {
+              return _status.event.player.getUseValue(button.link);
+            });
+          ('step 1');
           if (result.bool) {
             player.$gain2(result.links[0], false);
             player.chooseUseTarget(true, result.links[0], false);
           } else player.getStat('triggerSkill').zanpakuto_kyokasuigetsu_skill--;
-        }
+        },
       },
       zanpakuto_suzumebachi_skill: {
         equipSkill: true,
@@ -2124,13 +2133,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             for (var i of lib.suit) {
               if (target.hasMark('bleach_fengwen_' + i)) return true;
             }
-          }
-        }
+          },
+        },
       },
       zanpakuto_sogyonokotowari_skill: {
         equipSkill: true,
         trigger: {
-          player: ['useSkillAfter', 'logSkill']
+          player: ['useSkillAfter', 'logSkill'],
         },
         forced: true,
         filter(event, player) {
@@ -2140,7 +2149,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         content() {
           player.draw();
-        }
+        },
       },
       zanpakuto_gegetsuburi_skill: {
         equipSkill: true,
@@ -2148,19 +2157,19 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           return true;
         },
         trigger: {
-          source: ['damageEnd']
+          source: ['damageEnd'],
         },
         filter(event, player) {
           return event.card && event.card.name == 'sha' && event.player.countCards('he');
         },
         content() {
           trigger.player.discard(trigger.player.getCards('he').randomGet());
-        }
+        },
       },
       zanpakuto_kazeshini_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCardToPlayered'
+          player: 'useCardToPlayered',
         },
         filter(event, player) {
           return event.card && event.card.name == 'sha' && event.target.countDiscardableCards(player, 'e') > 0;
@@ -2171,12 +2180,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         async content(event, trigger, player) {
           player.discardPlayerCard(trigger.target, true, 'e').boolline = true;
-        }
+        },
       },
       zanpakuto_ryujinjakka_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCard1'
+          player: 'useCard1',
         },
         filter(event, player) {
           if (event.card.name == 'sha' && !game.hasNature(event.card)) return true;
@@ -2219,18 +2228,18 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               if (arg && arg.card && arg.card.name == 'sha' && arg.target.getEquip(2)) return true;
               return false;
             }
-          }
+          },
         },
         mod: {
           canBeDiscarded(card) {
             if (get.position(card) == 'e' && ['equip1'].includes(get.subtype(card))) return false;
-          }
+          },
         },
         subSkill: {
           fire: {
             trigger: {
               player: 'useCard2',
-              source: 'damageSource'
+              source: 'damageSource',
             },
             forced: true,
             filter(event, player) {
@@ -2242,9 +2251,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               } else {
                 trigger.player.addBleachBuff('bleachMark_fire', 2, player);
               }
-            }
-          }
-        }
+            },
+          },
+        },
       },
       zanpakuto_suzumushi_skill: {
         equipSkill: true,
@@ -2252,14 +2261,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           return get.attitude(player, event.player) <= 0;
         },
         trigger: {
-          source: 'damageSource'
+          source: 'damageSource',
         },
         filter(event, player) {
           return event.player.getHistory('damage').indexOf(event) == 1 && !event.player.hasBleachBuff('bleachEffect_hunluan');
         },
         content() {
           trigger.player.addBleachBuff('bleachEffect_hunluan', 1, player);
-        }
+        },
       },
       zanpakuto_nijibana_skill: {
         equipSkill: true,
@@ -2268,7 +2277,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         selectCard: [2, Infinity],
         position: 'hes',
         viewAs: {
-          name: 'sha'
+          name: 'sha',
         },
         complexCard: true,
         filter(event, player) {
@@ -2280,14 +2289,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           if (player.hasCard((card) => card.name == 'sha') && !player.hasSkill('bleach_nijuan')) return 0;
           if (ui.selected.cards.length == 2) return 0;
           if (
-          _status.event &&
-          _status.event.name == 'chooseToRespond' &&
-          player.hp < 3 &&
-          !player.countCards('hs', (card) => {
-            return card.name != 'tao' && card.name != 'jiu';
-          }))
-
-          return (player.hp > 1 ? 10 : 8) - get.value(card);
+            _status.event &&
+            _status.event.name == 'chooseToRespond' &&
+            player.hp < 3 &&
+            !player.countCards('hs', (card) => {
+              return card.name != 'tao' && card.name != 'jiu';
+            })
+          )
+            return (player.hp > 1 ? 10 : 8) - get.value(card);
           return Math.max(5, 8 - 0.7 * player.hp) - get.value(card);
         },
         ai: {
@@ -2295,40 +2304,40 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           skillTagFilter(player) {
             return player.hasCard((card) => player.hasCard((cardx) => get.type2(cardx) == get.type2(card), 'hes'), 'hes');
           }, //QQQ
-          order: 3.2
-        }
+          order: 3.2,
+        },
       },
       zanpakuto_hyorinmaru_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCard1'
+          player: 'useCard1',
         },
         filter(event, player) {
           return event.card && event.card.name == 'sha' && !game.hasNature(event.card);
         },
         async cost(event, trigger, player) {
-          const control = await player.
-          chooseControl('cancel2').
-          set('prompt', '是否发动【冰轮丸】？').
-          set('choiceList', ['将' + get.translation(trigger.card) + '改为冰冻属性', '将' + get.translation(trigger.card) + '改为冰属性']).
-          set('ai', () => {
-            const player = get.player();
-            let eff = 0;
-            for (var i = 0; i < event.targets.length; i++) {
-              const target = event.targets[i],
-                eff1 = get.damageEffect(target, player, player),
-                eff2 = get.damageEffect(target, player, player, 'bleach_ice');
-              eff += eff2;
-              eff -= eff1;
-            }
-            return eff >= 0 ? ['选择一', '选项二'].randomGet() : 'cancel2';
-          }).
-          forResultControl();
+          const control = await player
+            .chooseControl('cancel2')
+            .set('prompt', '是否发动【冰轮丸】？')
+            .set('choiceList', ['将' + get.translation(trigger.card) + '改为冰冻属性', '将' + get.translation(trigger.card) + '改为冰属性'])
+            .set('ai', () => {
+              const player = get.player();
+              let eff = 0;
+              for (var i = 0; i < event.targets.length; i++) {
+                const target = event.targets[i],
+                  eff1 = get.damageEffect(target, player, player),
+                  eff2 = get.damageEffect(target, player, player, 'bleach_ice');
+                eff += eff2;
+                eff -= eff1;
+              }
+              return eff >= 0 ? ['选择一', '选项二'].randomGet() : 'cancel2';
+            })
+            .forResultControl();
           if (control != 'cancel2')
-          event.result = {
-            bool: true,
-            cost_data: ['选项一', '选项二'].indexOf(control)
-          };
+            event.result = {
+              bool: true,
+              cost_data: ['选项一', '选项二'].indexOf(control),
+            };
         },
         async content(event, trigger, player) {
           game.setNature(trigger.card, `${event.cost_data == 0 ? 'bleach_' : ''}ice`);
@@ -2341,24 +2350,24 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               game.setNature(trigger.card, []);
             });
           }
-        }
+        },
       },
       zanpakuto_minazuki_skill: {
         equipSkill: true,
         trigger: {
-          global: 'recoverEnd'
+          global: 'recoverEnd',
         },
         filter(event, player) {
           return event.source && event.source == player && event.player != player;
         },
         content() {
           player.draw(2);
-        }
+        },
       },
       zanpakuto_sakanade_skill: {
         equipSkill: true,
         trigger: {
-          source: 'damageSource'
+          source: 'damageSource',
         },
         filter(event, player) {
           return event.card && ['sha', 'juedou'].includes(event.card.name) && !event.player.hasSkill('zanpakuto_sakanade_skill_ufin');
@@ -2373,7 +2382,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         subSkill: {
           ufin: {
             trigger: {
-              player: 'phaseBegin'
+              player: 'phaseBegin',
             },
             lastDo: true,
             silent: true,
@@ -2390,16 +2399,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             marktext: '颠',
             intro: {
               name: '欢迎来到颠倒的世界',
-              content: '下回合内所有阶段逆序执行'
-            }
-          }
-        }
+              content: '下回合内所有阶段逆序执行',
+            },
+          },
+        },
       },
       zanpakuto_engetsu_skill: {
         equipSkill: true,
         forced: true,
         trigger: {
-          player: 'useCard1'
+          player: 'useCard1',
         },
         filter(event, player) {
           return event.card.name == 'sha';
@@ -2410,13 +2419,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           'step 0';
           player.loseHp();
-          'step 1';
+          ('step 1');
           trigger.baseDamage++;
           if (!trigger.card.storage) trigger.card.storage = {};
           if (!trigger.card.storage.bleachMark_fire) trigger.card.storage.bleachMark_fire = 0;
           trigger.card.storage.bleachMark_fire++;
           game.log(trigger.card, '附加了1层【烧伤】');
-        }
+        },
       },
       zanpakuto_sodenoshirayuki_skill: {
         equipSkill: true,
@@ -2425,7 +2434,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         position: 'hes',
         viewAs: {
           name: 'sha',
-          nature: 'bleach_ice'
+          nature: 'bleach_ice',
         },
         viewAsFilter(player) {
           if (!player.countCards('hes')) return false;
@@ -2440,21 +2449,21 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             if (arg == 'respond') return false;
             if (!player.countCards('hes')) return false;
           },
-          order: () => get.order({ name: 'sha' }) + 0.5
-        }
+          order: () => get.order({ name: 'sha' }) + 0.5,
+        },
       },
       zanpakuto_nozarasizero_skill: {
         equipSkill: true,
         mod: {
           canBeDiscarded(card) {
             if (get.position(card) == 'e' && ['equip1'].includes(get.subtype(card))) return false;
-          }
-        }
+          },
+        },
       },
       zanpakuto_tengumaru_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCard2'
+          player: 'useCard2',
         },
         forced: true,
         filter(event, player) {
@@ -2468,12 +2477,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             trigger.targets.addArray(players);
             game.log(players, '因', '#g【天狗丸】', '效果被追加为目标');
           }
-        }
+        },
       },
       zanpakuto_kinshara_skill: {
         equipSkill: true,
         trigger: {
-          source: 'damageSource'
+          source: 'damageSource',
         }, //QQQ
         filter(event, player) {
           return event.card && event.card.name == 'sha' && event.player.getExpansions('bleach_zongyue').length;
@@ -2486,26 +2495,26 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           'step 0';
           const target = trigger.player,
             expansions = target.getExpansions('bleach_zongyue');
-          if (target.getExpansions('bleach_zongyue').length == 1) event._result = { bool: true, links: target.getExpansions('bleach_zongyue') };else
-
-          player.chooseCardButton('请选择移去的「纵乐」', target.getExpansions('bleach_zongyue'), true).set('ai', (button) => {
-            const suits = [],
-              suits2 = [];
-            expansions.forEach((i) => (suits.add(i.suit), suits2.push(i.suit)));
-            if (suits2.length > suits.length) {
-              var gett = function (suit) {
-                return expansions.filter((card) => card.suit == suit.suit).length;
-              };
-              if (expansions.sort((b, a) => gett(a) - gett(b))[0] == card) return val + 20;
-            }
-            return val;
-          });
-          'step 1';
+          if (target.getExpansions('bleach_zongyue').length == 1) event._result = { bool: true, links: target.getExpansions('bleach_zongyue') };
+          else
+            player.chooseCardButton('请选择移去的「纵乐」', target.getExpansions('bleach_zongyue'), true).set('ai', (button) => {
+              const suits = [],
+                suits2 = [];
+              expansions.forEach((i) => (suits.add(i.suit), suits2.push(i.suit)));
+              if (suits2.length > suits.length) {
+                var gett = function (suit) {
+                  return expansions.filter((card) => card.suit == suit.suit).length;
+                };
+                if (expansions.sort((b, a) => gett(a) - gett(b))[0] == card) return val + 20;
+              }
+              return val;
+            });
+          ('step 1');
           if (result.bool) {
             trigger.player.loseToDiscardpile(result.links);
             player.draw();
           }
-        }
+        },
       },
       zanpakuto_mirokumaru_skill: {
         equipSkill: true,
@@ -2515,13 +2524,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           },
           targetInRange(card) {
             if (card.name == 'sha' && get.color(card) == 'black') return true;
-          }
-        }
+          },
+        },
       },
       zanpakuto_gonryomaru_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCard1'
+          player: 'useCard1',
         },
         filter(event, player) {
           if (event.card.name == 'sha' && !game.hasNature(event.card)) return true;
@@ -2544,24 +2553,24 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         content() {
           game.setNature(trigger.card, 'stab');
           if (get.itemtype(trigger.card) == 'card') {
-            player.
-            when('useCardAfter').
-            filter((evt) => evt == trigger).
-            then(() => {
-              game.setNature(trigger.card, []);
-            });
+            player
+              .when('useCardAfter')
+              .filter((evt) => evt == trigger)
+              .then(() => {
+                game.setNature(trigger.card, []);
+              });
           }
         },
         mod: {
           suit(card, suit) {
             if (suit == 'club') return 'spade';
-          }
-        }
+          },
+        },
       },
       zanpakuto_gonryomaru_effect: {
         equipSkill: true,
         trigger: {
-          player: 'damageBegin4'
+          player: 'damageBegin4',
         },
         filter(event, player) {
           return event.hasNature('thunder') && !event.source;
@@ -2571,7 +2580,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           trigger.cancel();
           player.restoreSkill('bleach_ligong');
           game.log(player, '重置了技能', '#g【离宫】');
-        }
+        },
       },
       zanpakuto_tachikaze_skill: {
         equipSkill: true,
@@ -2581,12 +2590,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           dialog(event, player) {
             let dialog = ui.create.dialog('断地风:请选择一项', 'hidden');
             dialog.add([
-            [
-            ['draw', '摸至多两张牌,下次使用牌后弃置等量牌'],
-            ['discard', '弃置至多两张牌,下次使用牌后摸等量牌']],
+              [
+                ['draw', '摸至多两张牌,下次使用牌后弃置等量牌'],
+                ['discard', '弃置至多两张牌,下次使用牌后摸等量牌'],
+              ],
 
-            'textbutton']
-            );
+              'textbutton',
+            ]);
             return dialog;
           },
           filter(button, player) {
@@ -2607,7 +2617,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           prompt(links) {
             if (links[0] == 'discard') return '弃置至多两张牌,下次使用牌后摸等量张牌.';
             return '摸至多两张牌,下次使用牌后弃置等量张牌';
-          }
+          },
         },
         subSkill: {
           backup: {},
@@ -2619,20 +2629,20 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               return 6 - get.value(card);
             },
             content() {
-              player.
-              when({ player: 'useCardAfter' }).
-              then(() => {
-                player.draw(num);
-              }).
-              vars({ num: cards.length });
+              player
+                .when({ player: 'useCardAfter' })
+                .then(() => {
+                  player.draw(num);
+                })
+                .vars({ num: cards.length });
             },
             ai: {
               result: {
                 player(player) {
                   return 1.1 - Math.floor(player.countCards('h') / 2);
-                }
-              }
-            }
+                },
+              },
+            },
           },
           draw: {
             audio: 'zanpakuto_tachikaze_skill',
@@ -2640,20 +2650,23 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             selectCard: -1,
             forced: true,
             async content(event, trigger, player) {
-              const { result } = await player.chooseControl(['1', '2', 'cancel2']).set('ai', () => {
-                return [1, 2].randomGet();
-              });
+              const result = await player
+                .chooseControl(['1', '2', 'cancel2'])
+                .set('ai', () => {
+                  return [1, 2].randomGet();
+                })
+                .forResult();
               if (result.control == 'cancel2') {
                 delete player.getStat('skill').zanpakuto_tachikaze_skill;
               } else {
                 const num = result.index + 1;
                 player.draw(num);
-                player.
-                when({ player: 'useCardAfter' }).
-                then(() => {
-                  player.chooseToDiscard('he', true, num);
-                }).
-                vars({ num: num });
+                player
+                  .when({ player: 'useCardAfter' })
+                  .then(() => {
+                    player.chooseToDiscard('he', true, num);
+                  })
+                  .vars({ num: num });
               }
             },
             ai: {
@@ -2663,16 +2676,16 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                   var num = player.countCards('h');
                   if (num % 2 == 1 && num >= 5) fix += 1;
                   return Math.ceil(num / 2 - 0.5) + fix;
-                }
-              }
-            }
-          }
-        }
+                },
+              },
+            },
+          },
+        },
       },
       zanpakuto_sanpokenju_skill: {
         equipSkill: true,
         trigger: {
-          player: ['shaMiss', 'eventNeutralized']
+          player: ['shaMiss', 'eventNeutralized'],
         },
         forced: true,
         audio: true,
@@ -2696,7 +2709,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             }
             return -1;
           });
-          const { result } = await next;
+          const result = await next.forResult();
           if (result.bool) {
             if (event.triggername == 'shaMiss') {
               trigger.untrigger();
@@ -2714,33 +2727,33 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             if (player._zanpakuto_sanpokenju_temp) return;
             player._zanpakuto_sanpokenju_temp = true;
             var bool =
-            get.attitude(player, arg.target) < 0 &&
-            arg.card &&
-            arg.card.name == 'sha' &&
-            player.countCards('h', (card) => {
-              return card != arg.card && (!arg.card.cards || !arg.card.cards.includes(card)) && get.value(card) < 5;
-            }) > 1;
+              get.attitude(player, arg.target) < 0 &&
+              arg.card &&
+              arg.card.name == 'sha' &&
+              player.countCards('h', (card) => {
+                return card != arg.card && (!arg.card.cards || !arg.card.cards.includes(card)) && get.value(card) < 5;
+              }) > 1;
             delete player._zanpakuto_sanpokenju_temp;
             return bool;
-          }
-        }
+          },
+        },
       },
       zanpakuto_nozarashi_skill: {
         equipSkill: true,
         trigger: {
-          player: 'useCard1'
+          player: 'useCard1',
         },
         forced: true,
         filter(event, player) {
-          return event.card && event.card.name == 'sha' || get.tag(event.card, 'damage') && event.cards && event.cards.length == 1 && event.cards.some((card) => card.name == 'sha');
+          return (event.card && event.card.name == 'sha') || (get.tag(event.card, 'damage') && event.cards && event.cards.length == 1 && event.cards.some((card) => card.name == 'sha'));
         },
         content() {
           trigger.baseDamage++;
         },
         ai: {
-          damageBonus: true
-        }
-      }
+          damageBonus: true,
+        },
+      },
     },
     translate: {
       bleach_zhangui: '崭鬼',
@@ -2948,8 +2961,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
       zanpakuto_nozarashi: '野晒',
       zanpakuto_nozarashi_info: '锁定技,你使用的【杀】的伤害+1.',
       zanpakuto_nozarashi_skill: '野晒',
-      zanpakuto_nozarashi_skill_info: '锁定技,你使用的【杀】的伤害+1.'
-    }
+      zanpakuto_nozarashi_skill_info: '锁定技,你使用的【杀】的伤害+1.',
+    },
   };
   for (const i in QQQ.card) {
     const info = QQQ.card[i];

@@ -44471,7 +44471,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							_priority: 7,
 							async content(event, trigger, player) {
 								//QQQ
-								const { result } = await player.chooseTarget('可令任意名目标与你各弃置1张牌.', [1, Infinity], false, (card, player, target) => target != player && trigger.targets.includes(target) && target.countCards('he')).set('ai', (target) => -get.attitude(player, target));
+								const result = await player.chooseTarget('可令任意名目标与你各弃置1张牌.', [1, Infinity], false, (card, player, target) => target != player && trigger.targets.includes(target) && target.countCards('he')).set('ai', (target) => -get.attitude(player, target)).forResult();
 								if (result.targets && result.targets[0]) {
 									for (var i of result.targets) {
 										await i.chooseToDiscard(1, 'he', true);

@@ -2445,11 +2445,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             group: ['sfzhenlie2'],
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player
+                                const result = await player
                                     .chooseTarget('请选择一名角色', (card, player, target) => player != target)
                                     .set('ai', function (target) {
                                         return -get.attitude(player, target);
-                                    });
+                                    }).forResult();
                                 if (result.targets && result.targets[0]) {
                                     await player.gainPlayerCard(result.targets[0].hp, result.targets[0], 'h');
                                     var y = result.targets[0].maxHp - result.targets[0].hp + 1;
@@ -2768,9 +2768,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget(function (card, player, target) {
+                                const result = await player.chooseTarget(function (card, player, target) {
                                     return player != target && target.countCards('he');
-                                });
+                                }).forResult();
                                 if (result.targets && result.targets[0]) {
                                     player.gainPlayerCard(result.targets[0], 'he');
                                     result.targets[0].addTempSkill('rejiuchi', { player: 'phaseBegin' });
@@ -3101,7 +3101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             group: ['sffanxiang_achieve', 'sffanxiang_failed'],
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget(2);
+                                const result = await player.chooseTarget(2).forResult();
                                 if (result.targets && result.targets[0] && result.targets[1]) {
                                     const { result: result1 } = await player.chooseControl('手牌区', '装备区');
                                     if (result1.control == '手牌区') {

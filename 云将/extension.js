@@ -10564,7 +10564,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         if (player.countMark('shhlianhua') < 2 && player.hasSkill('shhlianhua')) list.push('修改【莲华】');
                         if (list.length) {
                             list.push('全部摸牌');
-                            const { result } = await player.chooseControl(list).set('prompt', '冲虚:修改技能并摸1张牌;或摸2张牌');
+                            const result = await player.chooseControl(list).set('prompt', '冲虚:修改技能并摸1张牌;或摸2张牌').forResult();
                             if (result.control != '全部摸牌') {
                                 var skill = result.control == '修改【妙剑】' ? 'miaojian' : 'shhlianhua';
                                 player.addMark(skill, 1, false);
@@ -10595,21 +10595,22 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         for (var i of list) {
                             link.push([i, get.translation(i)]);
                         }
-                        const { result } = await player.chooseButton(['请选择要擦拭的宝物', [link, 'tdnodes']], true).set('ai', function (button) {
-                            if (button.link.name == 'xuanjian') {
-                                if (game.hasPlayer((current) => current.isDamaged() && current.hp < 3 && get.attitude(player, current) > 1)) {
-                                    return 1 + Math.random();
+                        const result = await player.chooseButton(['请选择要擦拭的宝物', [link, 'tdnodes']], true)
+                            .set('ai', function (button) {
+                                if (button.link.name == 'xuanjian') {
+                                    if (game.hasPlayer((current) => current.isDamaged() && current.hp < 3 && get.attitude(player, current) > 1)) {
+                                        return 1 + Math.random();
+                                    }
+                                    return 1;
                                 }
-                                return 1;
-                            }
-                            if (button.link.name == 'wolong') {
-                                if (game.hasPlayer((current) => get.damageEffect(current, player, player, 'fire') > 0)) {
-                                    return 1.2 + Math.random();
+                                if (button.link.name == 'wolong') {
+                                    if (game.hasPlayer((current) => get.damageEffect(current, player, player, 'fire') > 0)) {
+                                        return 1.2 + Math.random();
+                                    }
+                                    return 0.5;
                                 }
-                                return 0.5;
-                            }
-                            return 0.6;
-                        });
+                                return 0.6;
+                            }).forResult();
                         if (result.links && result.links[0]) {
                             switch (result.links[0]) {
                                 case 'wolong':
@@ -10737,7 +10738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     async content(event, trigger, player) {
                         //QQQ
                         game.log(player, '御风飞行成功,获得了#g3分');
-                        const { result } = await player
+                        const result = await player
                             .chooseTarget('请选择【御风】的目标', [1, 3], (card, player, target) => target != player && !target.hasSkill('yufeng2'))
                             .set('ai', function (target) {
                                 var att = -get.attitude(player, target),
@@ -10746,7 +10747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (target.hasJudge('lebu')) attx -= att;
                                 if (target.hasJudge('bingliang')) attx -= att;
                                 return attx / Math.max(2.25, Math.sqrt(target.countCards('h') + 1));
-                            });
+                            }).forResult();
                         if (result.targets && result.targets[0]) {
                             game.log(result.targets, '获得了#y<御风>效果');
                             for (var i of result.targets) {
@@ -10779,10 +10780,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         var cards = Array.from(ui.cardPile.childNodes).randomGets(5);
                         if (cards.length) {
                             player.showCards(cards, get.translation(player) + '整理出了以下经典');
-                            const { result } = await player.chooseTarget('将整理出的经典置于一名角色的武将牌上').set('ai', (target) => {
+                            const result = await player.chooseTarget('将整理出的经典置于一名角色的武将牌上').set('ai', (target) => {
                                 if (target.hasSkill('zhengjing2')) return get.attitude(player, target);
                                 return get.attitude(player, target) * (0.3 * target.countCards('j') - 1);
-                            }); //对目标正价值就乘get.att,负价值就乘-get.att
+                            }).forResult(); //对目标正价值就乘get.att,负价值就乘-get.att
                             if (result.targets && result.targets[0]) {
                                 const { result: result1 } = await player.chooseButton(['将整理出的经典置于一名角色的武将牌上', cards]).set('ai', (button) => 6 - get.value(button.link));
                                 if (result1.links && result1.links[0]) {

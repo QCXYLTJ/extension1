@@ -610,38 +610,40 @@ game.import('extension', function () {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const { result } = await i.chooseToUse({
-                            filterCard(card, player, event) {
-                                return lib.filter.cardSavable(card, player, player1);
-                            },
-                            filterTarget(card, player, target) {
-                                if (!card || target != player1) {
-                                    return false;
-                                }
-                                const info = get.info(card);
-                                if (!info.singleCard || ui.selected.targets.length == 0) {
-                                    const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
-                                    if (mod1 == false) {
+                        const result = await i
+                            .chooseToUse({
+                                filterCard(card, player, event) {
+                                    return lib.filter.cardSavable(card, player, player1);
+                                },
+                                filterTarget(card, player, target) {
+                                    if (!card || target != player1) {
                                         return false;
                                     }
-                                    const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-                                    if (mod2 != 'unchanged') {
-                                        return mod2;
+                                    const info = get.info(card);
+                                    if (!info.singleCard || ui.selected.targets.length == 0) {
+                                        const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                                        if (mod1 == false) {
+                                            return false;
+                                        }
+                                        const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                                        if (mod2 != 'unchanged') {
+                                            return mod2;
+                                        }
                                     }
-                                }
-                                return true;
-                            },
-                            prompt: get.translation(player1) + '濒死,是否帮助？',
-                            ai1() {
-                                return 1;
-                            },
-                            ai2() {
-                                return get.attitude(player1, i);
-                            },
-                            type: 'dying',
-                            targetRequired: true,
-                            dying: player1,
-                        });
+                                    return true;
+                                },
+                                prompt: get.translation(player1) + '濒死,是否帮助？',
+                                ai1() {
+                                    return 1;
+                                },
+                                ai2() {
+                                    return get.attitude(player1, i);
+                                },
+                                type: 'dying',
+                                targetRequired: true,
+                                dying: player1,
+                            })
+                            .forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -1333,7 +1335,7 @@ game.import('extension', function () {
                     },
                     forced: true,
                     async content(event, trigger, player) {
-                        const { result } = await player.chooseToRespond('打出盾抵消本次伤害', (card) => card.name == 'SG_dun');
+                        const result = await player.chooseToRespond('打出盾抵消本次伤害', (card) => card.name == 'SG_dun').forResult();
                         if (result?.cards?.length) {
                             trigger.cancel();
                         } //卡牌没content,choosetouse就会报错,所以只能choosetorespond
@@ -1819,7 +1821,10 @@ game.import('extension', function () {
                                 trigger.baseDamage++;
                             }
                         } else {
-                            const { result } = await player.chooseToDiscard('he', `弃置一张牌,否则此杀无效`).set('ai', (card) => 12 - get.value(card));
+                            const result = await player
+                                .chooseToDiscard('he', `弃置一张牌,否则此杀无效`)
+                                .set('ai', (card) => 12 - get.value(card))
+                                .forResult();
                             if (result?.cards?.length) {
                             } else {
                                 trigger.cancel();
@@ -1846,7 +1851,10 @@ game.import('extension', function () {
                         return bool && player.countCards('he') && event.player.countCards('e');
                     },
                     async content(event, trigger, player) {
-                        const { result } = await player.chooseToDiscard('he', `弃置一张牌并选择其装备区一张牌`).set('ai', (card) => -get.attitude(player, trigger.player) - get.value(card));
+                        const result = await player
+                            .chooseToDiscard('he', `弃置一张牌并选择其装备区一张牌`)
+                            .set('ai', (card) => -get.attitude(player, trigger.player) - get.value(card))
+                            .forResult();
                         if (result?.cards?.length) {
                             const { links } = await player
                                 .chooseButton(['选择其装备区一张牌', trigger.player.getCards('e')])
@@ -2276,7 +2284,7 @@ game.import('extension', function () {
                             }
                         }
                         if (event.target.countCards('hej')) {
-                            const { result } = await player.discardPlayerCard(event.target, 'hej', 'visible');
+                            const result = await player.discardPlayerCard(event.target, 'hej', 'visible').forResult();
                             if (result?.links?.length) {
                                 if (get.type(result.links[0]) == 'equip') {
                                     player.gain(result.links, 'gain2');
@@ -3410,7 +3418,10 @@ game.import('extension', function () {
                     async content(event, trigger, player) {
                         player.removeSkill('SG_gu');
                         if (player.countCards('he')) {
-                            const { result } = await player.chooseToDiscard('弃置一张牌或失去1点体力', 'he').set('ai', (c) => 6 - get.value(c));
+                            const result = await player
+                                .chooseToDiscard('弃置一张牌或失去1点体力', 'he')
+                                .set('ai', (c) => 6 - get.value(c))
+                                .forResult();
                             if (!result.bool) {
                                 player.loseHp();
                             }
@@ -3429,7 +3440,7 @@ game.import('extension', function () {
                         return player.hasCard((c) => c.name == 'SG_jie', 'hs');
                     },
                     async content(event, trigger, player) {
-                        const { result } = await player.chooseToRespond('打出『解』令『蛊』无效并弃置', (card) => card.name == 'SG_jie');
+                        const result = await player.chooseToRespond('打出『解』令『蛊』无效并弃置', (card) => card.name == 'SG_jie').forResult();
                         if (result?.cards?.length) {
                             trigger.cancel();
                         }
@@ -3548,7 +3559,7 @@ game.import('extension', function () {
                             },
                             forced: true,
                             async content(event, trigger, player) {
-                                const { result } = await player.judge('玄天护心镜', (card) => (card.suit == 'heart' ? 2 : -2));
+                                const result = await player.judge('玄天护心镜', (card) => (card.suit == 'heart' ? 2 : -2)).forResult();
                                 if (result.suit == 'heart') {
                                     if (trigger.source && trigger.source != player) {
                                         trigger.player = trigger.source;
@@ -3876,7 +3887,10 @@ game.import('extension', function () {
                     },
                     forced: true,
                     async content(event, trigger, player) {
-                        const { result } = await trigger.player.chooseBool(`令${get.translation(player)}进行一次判定并获得判定牌`).set('ai', () => trigger.player.isFriendsOf(player));
+                        const result = await trigger.player
+                            .chooseBool(`令${get.translation(player)}进行一次判定并获得判定牌`)
+                            .set('ai', () => trigger.player.isFriendsOf(player))
+                            .forResult();
                         if (result?.bool) {
                             const { card } = await player.judge().forResult();
                             player.gain(card, 'gain2');
@@ -5565,7 +5579,10 @@ game.import('extension', function () {
                         return event.card?.name == 'sha' && event.player != player;
                     },
                     async content(event, trigger, player) {
-                        const { result } = await trigger.player.chooseToDiscard('弃置两张牌或令对方回复1点体力且你本回合手牌上限-1', 'he', 2).set('ai', (c) => -get.attitude(player, trigger.player) - get.value(c));
+                        const result = await trigger.player
+                            .chooseToDiscard('弃置两张牌或令对方回复1点体力且你本回合手牌上限-1', 'he', 2)
+                            .set('ai', (c) => -get.attitude(player, trigger.player) - get.value(c))
+                            .forResult();
                         if (result?.cards?.length) {
                         } else {
                             player.recover();
@@ -7358,7 +7375,7 @@ game.import('extension', function () {
                     },
                     selectTarget: 1,
                     async content(event, trigger, player) {
-                        const { result } = await event.target.chooseToRespond({ name: 'SG_dang' });
+                        const result = await event.target.chooseToRespond({ name: 'SG_dang' }).forResult();
                         if (result.bool) {
                             player.useCard({ name: 'sha' }, event.target, false);
                         } else {
@@ -7529,7 +7546,7 @@ game.import('extension', function () {
                     },
                     selectTarget: -1,
                     async content(event, trigger, player) {
-                        const { result } = await event.target.chooseToRespond(2, { name: 'shan' });
+                        const result = await event.target.chooseToRespond(2, { name: 'shan' }).forResult();
                         if (!result.bool) {
                             event.target.loseHp();
                         }
@@ -7686,7 +7703,7 @@ game.import('extension', function () {
                                         ui.cardPile.appendChild(i);
                                     }
                                 }
-                                const { result } = await player.draw(cards.length);
+                                const result = await player.draw(cards.length).forResult();
                                 for (const i of result) {
                                     if (get.type(i) == 'equip') {
                                         player.equip(i);

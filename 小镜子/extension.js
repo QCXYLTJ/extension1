@@ -348,7 +348,7 @@ export default function () {
                             },
                             async content(event, trigger, player) {
                                 player.storage.xjz_qiangrao++;
-                                const { result } = await player.chooseControl().set('controls', trigger.controls).set('choice', trigger.choice).set('dialog', trigger.dialog).set('choiceList', trigger.choiceList).set('prompt', trigger.prompt);
+                                const result = await player.chooseControl().set('controls', trigger.controls).set('choice', trigger.choice).set('dialog', trigger.dialog).set('choiceList', trigger.choiceList).set('prompt', trigger.prompt).forResult();
                                 trigger.result = result;
                             },
                             group: ['xjz_qiangrao_1', 'xjz_qiangrao_2', 'xjz_qiangrao_3', 'xjz_qiangrao_4', 'xjz_qiangrao_5', 'xjz_qiangrao_6'],
@@ -368,7 +368,7 @@ export default function () {
                                     },
                                     async content(event, trigger, player) {
                                         player.storage.xjz_qiangrao++;
-                                        const { result } = await player.chooseButton().set('forced', trigger.forced).set('closeDialog', trigger.closeDialog).set('dialog', trigger.dialog).set('createDialog', trigger.createDialog).set('complexSelect', trigger.complexSelect).set('selectButton', trigger.selectButton).set('filterButton', trigger.filterButton);
+                                        const result = await player.chooseButton().set('forced', trigger.forced).set('closeDialog', trigger.closeDialog).set('dialog', trigger.dialog).set('createDialog', trigger.createDialog).set('complexSelect', trigger.complexSelect).set('selectButton', trigger.selectButton).set('filterButton', trigger.filterButton).forResult();
                                         trigger.result = result;
                                     },
                                 },
@@ -390,7 +390,7 @@ export default function () {
                                     },
                                     async content(event, trigger, player) {
                                         player.storage.xjz_qiangrao++;
-                                        const { result } = await player.chooseTarget().set('forced', trigger.forced).set('selectTarget', trigger.selectTarget).set('dialog', trigger.dialog).set('filterTarget', trigger.filterTarget).set('prompt', trigger.prompt);
+                                        const result = await player.chooseTarget().set('forced', trigger.forced).set('selectTarget', trigger.selectTarget).set('dialog', trigger.dialog).set('filterTarget', trigger.filterTarget).set('prompt', trigger.prompt).forResult();
                                         trigger.result = result;
                                     },
                                 },

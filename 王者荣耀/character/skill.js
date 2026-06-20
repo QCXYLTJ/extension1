@@ -31,7 +31,7 @@ const skills = {
                 },
                 async content(event, trigger, player) {
                     player.removeSkill(event.name);
-                    const { result } = await player
+                    const result = await player
                         .chooseToDiscard(get.prompt2('xinzhanyi'), 'he')
                         .set('chooseonly', true)
                         .set('ai', (card) => {
@@ -39,7 +39,8 @@ const skills = {
                             if (player.getHp() + player.countCards('hs', (card) => player.canSaveCard(card, player)) <= 1) return 0;
                             if (!player.isPhaseUsing() && !player.countCards('h', { type: 'trick' })) return 0;
                             return lib.skill.xinzhanyi.check(card);
-                        });
+                        })
+                        .forResult();
                     if (result.bool) {
                         result.skill = 'xinzhanyi';
                         await player.useResult(result, event);
@@ -1129,7 +1130,7 @@ const skills = {
             for (const npc of game.players.randomGets(num)) {
                 await npc.gain(event.cards.shift());
             }
-            const { result } = await player.draw(num);
+            const result = await player.draw(num).forResult();
             for (const card of result.slice().randomSort()) {
                 if (player.hasUseTarget(card)) {
                     await player.chooseUseTarget(card, true, false);
@@ -2866,7 +2867,7 @@ const skills = {
                 if (history1.length) history1[history1.length - 1].hokshizhibodong = true;
                 if (history2.length) history2[history2.length - 1].hokshizhibodong = true;
             }
-            const { result } = await player
+            const result = await player
                 .chooseControl('1回合', '2回合', '3回合')
                 .set('prompt', '请选择施法时长')
                 .set('ai', function () {
@@ -2880,7 +2881,8 @@ const skills = {
                         }
                     }
                     return Math.max(2, Math.min(safe, 3, game.countPlayer())) - 1;
-                });
+                })
+                .forResult();
             player.storage.hokshizhibodong_mahou = [result.index + 1, result.index + 1];
             player.tempBanSkill('hokshizhibodong', 'roundStart', false);
             player.addTempSkill('hokshizhibodong_mahou', { player: 'die' });
@@ -8108,7 +8110,7 @@ const skills = {
                 skills,
                 skill
             );
-            const { result } = await player
+            const result = await player
                 .chooseButton(event.dialog, true)
                 .set('filterButton', (button) => {
                     const skill = get.event('skill');
@@ -8158,13 +8160,14 @@ const skills = {
                     let index = aiIndex.indexOf(Math.max.apply(null, aiIndex));
                     return skills[index];
                 })
-                .set('closeDialog', true);
+                .set('closeDialog', true)
+                .forResult();
             if (result.bool) {
                 player.changeSkills(result.links, [skill]);
             }
         },
         async content(event, trigger, player) {
-            const { result } = await player
+            const result = await player
                 .chooseTarget(get.prompt2('hokmijijiyi'), function (card, player, target) {
                     return get.info('hokmijijiyi').getClosest(player, target) && target.countGainableCards(player, 'h');
                 })
@@ -8177,7 +8180,8 @@ const skills = {
                         att = Math.sqrt(att);
                     }
                     return att * lib.card.shunshou.ai.result.target(player, target);
-                });
+                })
+                .forResult();
             if (result.bool) {
                 const target = result.targets[0];
                 player.line(target);
@@ -8644,7 +8648,7 @@ const skills = {
                             return target != player && evt.targets.includes(target) && target.isIn();
                         });
                         if (targets.length) {
-                            const { result } = await player
+                            const result = await player
                                 .chooseTarget(true, '对一名不为你的目标角色造成1点伤害', (card, player, target) => {
                                     return _status.event.targets.includes(target);
                                 })
@@ -8652,7 +8656,8 @@ const skills = {
                                     const player = get.player();
                                     return get.damageEffect(target, player, player);
                                 })
-                                .set('targets', targets);
+                                .set('targets', targets)
+                                .forResult();
                             if (result.bool) {
                                 const target = result.targets[0];
                                 target.damage();
@@ -8672,7 +8677,7 @@ const skills = {
                         return get.color(event.card) == get.color(evt.card);
                     },
                     async content(event, trigger, player) {
-                        const { result } = await player
+                        const result = await player
                             .chooseTarget(true, get.prompt2('dcqiangzhi'), (card, player, target) => {
                                 if (target == player) return false;
                                 return target.countDiscardableCards(player, 'he') + player.countDiscardableCards(player, 'he') >= 3;
@@ -8680,7 +8685,8 @@ const skills = {
                             .set('ai', (target) => {
                                 const player = get.player();
                                 return (get.effect(target, { name: 'guohe_copy2' }, player, target) / 2) * (target.countDiscardableCards(player, 'he') >= 2 ? 1.25 : 1) + get.damageEffect(target, player, target) / 3;
-                            });
+                            })
+                            .forResult();
                         if (result.bool) {
                             result.skill = 'dcqiangzhi';
                             player.useResult(result, event);
@@ -8713,7 +8719,7 @@ const skills = {
                         return event.card.name == evt.card.name;
                     },
                     async content(event, trigger, player) {
-                        const { result } = await player
+                        const result = await player
                             .chooseTarget(get.prompt2('dcjiezhen'), function (card, player, target) {
                                 return target != player;
                             })
@@ -8725,7 +8731,8 @@ const skills = {
                                 });
                                 if (!skills.length && target.hasEmptySlot(2)) return 1;
                                 return -0.5 * skills.length;
-                            });
+                            })
+                            .forResult();
                         if (result.bool) {
                             result.skill = 'dcjiezhen';
                             player.useResult(result, event);
@@ -9103,7 +9110,7 @@ const skills = {
                 selectCard: -1,
                 async content(event, trigger, player) {
                     player.tempBanSkill('hokliudaowushu', 'phaseUseAfter', false);
-                    const { result } = await player.draw(3);
+                    const result = await player.draw(3).forResult();
                     const types = result.map((card) => get.type(card)).toUniqued();
                     if (types.length <= 1) return;
                     if (
@@ -9403,7 +9410,7 @@ const skills = {
                             game.log(trigger.card, '的伤害+1');
                             trigger.directHit.addArray(game.filterPlayer());
                             game.log(trigger.card, '不可被响应');
-                            const { result } = await player
+                            const result = await player
                                 .chooseTarget(get.prompt('ruyijingubang_effect'), '为' + get.translation(trigger.card) + '额外指定一个目标', function (card, player, target) {
                                     return !_status.event.sourcex.includes(target) && player.canUse(_status.event.card, target, false);
                                 })
@@ -9412,7 +9419,8 @@ const skills = {
                                     var player = _status.event.player;
                                     return get.effect(target, _status.event.card, player, player);
                                 })
-                                .set('card', trigger.card);
+                                .set('card', trigger.card)
+                                .forResult();
                             if (result.bool) {
                                 player.line(result.targets);
                                 trigger.targets.addArray(result.targets);
@@ -9525,7 +9533,7 @@ const skills = {
                                     game.log(trigger.card, '不可被响应');
                                     break;
                                 case 4:
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseTarget(get.prompt('ruyijingubang_effect'), '为' + get.translation(trigger.card) + '额外指定一个目标', function (card, player, target) {
                                             return !_status.event.sourcex.includes(target) && player.canUse(_status.event.card, target, false);
                                         })
@@ -9534,7 +9542,8 @@ const skills = {
                                             var player = _status.event.player;
                                             return get.effect(target, _status.event.card, player, player);
                                         })
-                                        .set('card', trigger.card);
+                                        .set('card', trigger.card)
+                                        .forResult();
                                     if (result.bool) {
                                         player.line(result.targets);
                                         trigger.targets.addArray(result.targets);
@@ -13339,7 +13348,7 @@ const skills = {
             mbdialog.dialog.classList.add('changeSkill');
             mbdialog.dialog.add([list, 'textbutton']);
             mbdialog.addTip("你发动了<span style='color: #a4dfd5'>雾隐</span>,请选择获得一个隐匿技");
-            const { result } = await player
+            const result = await player
                 .chooseButton(event.dialog, true)
                 .set('ai', function (button) {
                     const skill = button.link;
@@ -13350,7 +13359,8 @@ const skills = {
                             return get.skillRank(skill, 'out');
                     }
                 })
-                .set('closeDialog', true);
+                .set('closeDialog', true)
+                .forResult();
             if (result.bool) {
                 let skill = result.links[0];
                 player.addSkills(skill);
@@ -13838,14 +13848,15 @@ const skills = {
                     .set('prompt', `${get.translation(player)}发动了不屈铁壁,你可以弃置一张牌并获得一张展示牌,若如此做,你与对方回复1点体力`)
                     .forResult();
                 if (bool) {
-                    const { result } = await target
+                    const result = await target
                         .chooseButton(true)
                         .set('ai', function (button) {
                             return get.value(button.link, _status.event.player);
                         })
                         .set('dialog', preResult)
                         .set('closeDialog', false)
-                        .set('dialogdisplay', true);
+                        .set('dialogdisplay', true)
+                        .forResult();
                     dialog.setCaption('不屈铁壁');
                     if (result.bool) {
                         var card;
@@ -15676,7 +15687,7 @@ const skills = {
         },
         async content(event, trigger, player) {
             const cards = [];
-            const { result } = await player
+            const result = await player
                 .chooseTarget(get.prompt2(event.name), [1, 2], function (card, player, target) {
                     return target.countDiscardableCards(player, 'h');
                 })
@@ -15684,12 +15695,13 @@ const skills = {
                     const player = get.player();
                     if (!ui.selected.targets.length) return 1;
                     return -get.attitude(player, target);
-                });
+                })
+                .forResult();
             if (result.bool) {
                 const targets = result.targets.sortBySeat(player);
                 player.tempBanSkill(event.name, false, false);
                 for (const target of targets) {
-                    const { result } = await player.discardPlayerCard(target, 'h', true);
+                    const result = await player.discardPlayerCard(target, 'h', true).forResult();
                     if (result) cards.addArray(result.cards);
                 }
                 if (cards.some((card) => get.type2(card) == 'trick')) trigger.excluded.addArray(trigger.targets);
@@ -15798,7 +15810,7 @@ const skills = {
         },
         async content(event, trigger, player) {
             const cards = [];
-            const { result } = await player
+            const result = await player
                 .chooseTarget(get.prompt2(event.name), [1, 2], function (card, player, target) {
                     return target.countDiscardableCards(player, 'h');
                 })
@@ -15806,12 +15818,13 @@ const skills = {
                     const player = get.player();
                     if (!ui.selected.targets.length) return 1;
                     return -get.attitude(player, target);
-                });
+                })
+                .forResult();
             if (result.bool) {
                 const targets = result.targets.sortBySeat(player);
                 player.tempBanSkill(event.name, false, false);
                 for (const target of targets) {
-                    const { result } = await player.discardPlayerCard(target, true);
+                    const result = await player.discardPlayerCard(target, true).forResult();
                     if (result) cards.addArray(result.cards);
                 }
                 if (cards.some((card) => get.type2(card) == 'trick')) trigger.excluded.addArray(trigger.targets);
@@ -17220,7 +17233,7 @@ const skills = {
                         return [cards.slice(num), cards.slice(0, num)];
                     });
                     next.set('num', hs.length);
-                    const { result } = await next;
+                    const result = await next.forResult();
                     const hand_cards = result.moved[0].removeArray(cards);
                     const show_cards = result.moved[1].removeArray(hs);
                     if (hand_cards.length || show_cards.length) {
@@ -18890,7 +18903,7 @@ const skills = {
                                         mbdialog.dialog.classList.add('changeSkill');
                                         mbdialog.dialog.add([list, 'textbutton']);
                                         mbdialog.addTip(`你发动了<span style='color: #a4dfd5'>铸镜</span>,令${get.translation(target)}失去一个蓄势技`);
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseButton(event.dialog, true)
                                             .set('closeDialog', true)
                                             .set('ai', function (button) {
@@ -18904,7 +18917,8 @@ const skills = {
                                                     default:
                                                         return 1 + Math.random();
                                                 }
-                                            });
+                                            })
+                                            .forResult();
                                         if (result.bool) {
                                             await target.removeSkills(result.links);
                                         }

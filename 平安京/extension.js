@@ -2304,14 +2304,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     //出牌阶段,当你使用第一张基本牌或非延时锦囊牌仅指定一名其他角色为目标后,可额外指定一名角色为目标
                                     async content(event, trigger, player) {
                                         //QQQ
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseControl('无法响应', '额外目标', '目标弃牌')
                                             .set('prompt', '要令' + get.translation(trigger.card) + '获得以下哪种效果？')
                                             .set('ai', function () {
                                                 if (game.players.length > 2) return '额外目标';
                                                 if (trigger.target.countCards('he') > 1) '无法响应';
                                                 return '目标弃牌';
-                                            });
+                                            })
+                                            .forResult();
                                         if (result.control == '无法响应') {
                                             trigger.directHit.addArray(game.players);
                                         }
@@ -2319,11 +2320,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             trigger.target.chooseToDiscard('he', true);
                                         }
                                         if (result.control == '额外目标') {
-                                            const { result: result1 } = await player
+                                            const result1 = await player
                                                 .chooseTarget('为' + get.translation(trigger.card) + '增加目标', (card, player, target) => !trigger.targets.includes(target))
                                                 .set('ai', function (target) {
                                                     return get.effect(target, trigger.card, player, player);
-                                                });
+                                                })
+                                                .forResult();
                                             if (result1.targets && result1.targets[0] && player.hasSkill('kq_c')) {
                                                 trigger.targets.addArray(result1.targets);
                                             }
@@ -3016,12 +3018,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.cardsx = cardsx;
                                 /*player.chooseButton(1,['请选择要使用的杀',event.cardsx],true).set('filterButton',function(button){
-                                return button.link.name=='sha';
-                                          });        
-                               "step 3"
-                               if(result.bool){       
-                               var list=result.links;
-                               for(var i=0;i<list.length;i++){*/
+                return button.link.name=='sha';
+                          });        
+                "step 3"
+                if(result.bool){       
+                var list=result.links;
+                for(var i=0;i<list.length;i++){*/
                                 ('step 2');
                                 if (event.cardsx && event.cardsx.length && target.isAlive()) {
                                     var list = event.cardsx.randomGet();
@@ -4659,7 +4661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .getCards('h')
                                             .map((q) => get.type(q))
                                             .unique();
-                                        const { result } = await player.chooseControl(type);
+                                        const result = await player.chooseControl(type).forResult();
                                         player.discard(
                                             player.getCards('h', function (card) {
                                                 return get.type(card, 'trick') == result.control;
@@ -4694,7 +4696,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .getCards('h')
                                             .map((q) => q.suit)
                                             .unique();
-                                        const { result } = await player.chooseControl(type);
+                                        const result = await player.chooseControl(type).forResult();
                                         player.discard(
                                             player.getCards('h', function (card) {
                                                 return card.suit == result.control;
@@ -5033,7 +5035,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .getCards('h')
                                     .map((q) => get.type(q))
                                     .unique();
-                                const { result } = await player.chooseControl(type);
+                                const result = await player.chooseControl(type).forResult();
                                 var num = player.countCards('h', function (card) {
                                     return get.type(card, 'trick') == result.control;
                                 });
@@ -5042,11 +5044,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.type(card, 'trick') == result.control;
                                     })
                                 );
-                                const { result: result1 } = await player
+                                const result1 = await player
                                     .chooseTarget('选择一名其他角色,令其弃置' + num + '张牌', true, function (card, player, target) {
                                         return target != player;
                                     })
-                                    .set('ai', (t) => -get.attitude(player, t));
+                                    .set('ai', (t) => -get.attitude(player, t))
+                                    .forResult();
                                 if (result1.targets && result1.targets[0]) {
                                     await result1.targets[0].chooseToDiscard('he', num, true);
                                 }
@@ -5079,7 +5082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .getCards('h')
                                             .map((q) => get.type(q))
                                             .unique();
-                                        const { result } = await player.chooseControl(type);
+                                        const result = await player.chooseControl(type).forResult();
                                         var num = player.countCards('h', function (card) {
                                             return get.type(card, 'trick') == result.control;
                                         });
@@ -5088,14 +5091,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.type(card, 'trick') == result.control;
                                             })
                                         );
-                                        const { result: result1 } = await player.chooseTarget('选择一名其他角色,令其弃置' + num + '张牌', true, function (card, player, target) {
-                                            return target != player;
-                                        });
+                                        const result1 = await player
+                                            .chooseTarget('选择一名其他角色,令其弃置' + num + '张牌', true, function (card, player, target) {
+                                                return target != player;
+                                            })
+                                            .forResult();
                                         if (result1.targets && result1.targets[0]) {
-                                            const { result: result2 } = await player.chooseControl('摸', '弃').set('ai', () => {
-                                                if (get.attitude(result1.targets, player) > 0) return '摸';
-                                                return '弃';
-                                            });
+                                            const result2 = await player
+                                                .chooseControl('摸', '弃')
+                                                .set('ai', () => {
+                                                    if (get.attitude(result1.targets, player) > 0) return '摸';
+                                                    return '弃';
+                                                })
+                                                .forResult();
                                             if (result2.control == '摸') {
                                                 result1.targets[0].draw(num);
                                             } else {

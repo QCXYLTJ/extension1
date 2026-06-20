@@ -3781,7 +3781,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (list[0]) {
                                     var dialog = ui.create.dialog('获得其中一张♥️️牌');
                                     dialog.add(list);
-                                    const { result } = await player.chooseButton(dialog).set('ai', (button) => get.value(button.link));
+                                    const result = await player.chooseButton(dialog)
+                                        .set('ai', (button) => get.value(button.link)).forResult();
                                     if (result.links && result.links[0]) {
                                         var num = Math.floor(player.countCards('hej', { suit: 'heart' }) / 2);
                                         player.gain(result.links, 'draw2', 'log');

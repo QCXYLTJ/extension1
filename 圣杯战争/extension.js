@@ -875,7 +875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const { result } = await i.chooseToUse({
+                        const result = await i.chooseToUse({
                             filterCard(card, player, event) {
                                 return lib.filter.cardSavable(card, player, player1);
                             },
@@ -906,7 +906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'dying',
                             targetRequired: true,
                             dying: player1,
-                        });
+                        }).forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -13414,7 +13414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var cards = get.cards(4);
                                             game.cardsGotoOrdering(cards);
                                             ui.updatehl();
-                                            const { result } = await player.chooseToMove()
+                                            const result = await player.chooseToMove()
                                                 .set('list', [['牌堆顶', cards], ['牌堆底']])
                                                 .set('prompt', '垂听:点击将牌移动到牌堆顶或牌堆底')
                                                 .set('processAI', function (list) {
@@ -13433,7 +13433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         top.push(bottom.shift());
                                                     }
                                                     return [top, bottom];
-                                                });
+                                                }).forResult();
                                             var top = result.moved[0];
                                             var bottom = result.moved[1];
                                             top.reverse();

@@ -663,7 +663,7 @@ export let info = {
             .forResult();
           if (cards && cards.length) for (let sha of cards.filter((card) => card.name == 'sha')) await target.useCard(sha, player);
         } else {
-          const { result } = await target.draw(num, 'nodelay');
+          const result = await target.draw(num, 'nodelay').forResult();
           if (!result.some((card) => card.name == 'sha')) player.addTempSkill(event.name + '_draw');
         }
       },
@@ -982,7 +982,8 @@ export let info = {
                         )
                         .set('targets', trigger.targets)
                         .set('card', trigger.card)
-                        .set('num', trigger.cards.length).forResult();
+                        .set('num', trigger.cards.length)
+                        .forResult();
                       if (targets && targets.length) {
                         player.setStorage('dqzw_bingxin_unusable', suits);
                         player.addTempSkill('dqzw_bingxin_unusable');
@@ -2263,7 +2264,8 @@ export let info = {
         const { bool } = await target
           .chooseBool()
           .set('createDialog', [`###是否令${get.translation(player)}发动【${get.skillTranslation(event.name, player)}】？###获得以下牌并令其摸两张牌`, cards])
-          .set('choice', get.attitude(target, player) > 2 ? true : cards.length > 3 && cards.length != player.getCards('h').length).forResult();
+          .set('choice', get.attitude(target, player) > 2 ? true : cards.length > 3 && cards.length != player.getCards('h').length)
+          .forResult();
         if (bool) {
           trigger.cancel();
           player.$give(cards, target);

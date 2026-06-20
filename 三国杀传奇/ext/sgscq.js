@@ -1926,8 +1926,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.draw(num);
 					if (_status.currentPhase) {//QQQ
 						if (get.distance(_status.currentPhase, player) <= 0) {
-							const { result } = await player.chooseBool('是否对' + get.translation(_status.currentPhase) + '造成一点伤害')
-								.set('ai', () => get.attitude(player, _status.currentPhase) < 0);
+							const result = await player.chooseBool('是否对' + get.translation(_status.currentPhase) + '造成一点伤害')
+								.set('ai', () => get.attitude(player, _status.currentPhase) < 0).forResult();
 							if (result.bool) {
 								game.playAudio('../extension/三国杀传奇/audio/character/sgscq_dujin_add1.mp3');
 								_status.currentPhase.damage(1, player);
@@ -1935,11 +1935,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						}
 						else {
 							var num2 = get.distance(_status.currentPhase, player);
-							const { result } = await player.chooseToDiscard(num2, '是否弃置' + get.cnNumber(num2) + '张牌对' + get.translation(_status.currentPhase) + '造成一点伤害')
+							const result = await player.chooseToDiscard(num2, '是否弃置' + get.cnNumber(num2) + '张牌对' + get.translation(_status.currentPhase) + '造成一点伤害')
 								.set('ai', function (card) {
 									if (num2 > 3) return false;
 									return -get.attitude(player, _status.currentPhase) - get.value(card);
-								});
+								}).forResult();
 							if (result.cards && result.cards[0]) {
 								game.playAudio('../extension/三国杀传奇/audio/character/sgscq_dujin_add1.mp3');
 								_status.currentPhase.damage(1, player);
@@ -3975,9 +3975,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				//转换技,阳:你使用牌时,获得目标角色一张牌;阴:你成为牌的目标后,摸一张牌.若此牌为【杀】,则本回合你与其不能对对方使用牌
 				async content(event, trigger, player) {//QQQ
 					if (event.triggername == 'useCard') {
-						const { result } = await player.chooseTarget(1, '请选择一名目标角色的一张牌？',
+						const result = await player.chooseTarget(1, '请选择一名目标角色的一张牌？',
 							(card, player, target) => trigger.targets.includes(target) && target.countCards('he'))
-							.set('ai', (target) => -get.attitude(player, target));
+							.set('ai', (target) => -get.attitude(player, target)).forResult();
 						if (result.targets && result.targets[0]) {
 							const { result: result1 } = await player.gainPlayerCard(result.targets[0], 'he', true);
 							if (result1 && result1.cards && result1.cards[0]) {
@@ -3991,7 +3991,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						}
 					}
 					else {
-						const { result } = await player.chooseBool('是否摸一张牌？');
+						const result = await player.chooseBool('是否摸一张牌？').forResult();
 						if (result.bool) {
 							player.draw();
 							player.changeZhuanhuanji('sczs_juzhan');

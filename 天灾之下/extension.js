@@ -164,7 +164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					game.log(player1, '濒死');
 					_status.dying.unshift(player1);
 					for (const i of game.players) {
-						const { result } = await i.chooseToUse({
+						const result = await i.chooseToUse({
 							filterCard(card, player, event) {
 								return lib.filter.cardSavable(card, player, player1);
 							},
@@ -195,7 +195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							type: 'dying',
 							targetRequired: true,
 							dying: player1,
-						});
+						}).forResult();
 						if (result?.bool) {
 							_status.dying.remove(player1);
 							break;
@@ -17938,13 +17938,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var skill = player.storage.ark_hanmang;
 								if (skill == 0) {
 									var nature = Array.from(lib.nature.keys());
-									const { result } = await player
+									const result = await player
 										.chooseControl(nature, () => {
 											var check = (nature) => get.effect(trigger.target, { name: 'sha', nature: nature }, player, player);
 											nature.sort((a, b) => check(b) - check(a));
 											return nature[0];
 										})
-										.set('prompt', '为' + get.translation(trigger.card) + '附魔一种属性');
+										.set('prompt', '为' + get.translation(trigger.card) + '附魔一种属性').forResult();
 									game.log('为' + get.translation(trigger.card) + '附魔' + result.control);
 									trigger.parent.card.nature = result.control;
 									player.storage.ark_hanmang = 1;

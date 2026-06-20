@@ -722,7 +722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         list.push(i.identity);
                     }
                     for (var i of game.players) {
-                        const { result } = await player.chooseButton(['为' + get.translation(i) + '重新分发身份牌', [list, 'tdnodes']]);
+                        const result = await player.chooseButton(['为' + get.translation(i) + '重新分发身份牌', [list, 'tdnodes']]).forResult();
                         if (result.links && result.links[0]) {
                             list.remove(result.links[0]);
                             i.setIdentity(result.links[0]);
@@ -755,7 +755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     for (var i of game.players) {
                         var a = i.hp;
-                        const { result } = await player.chooseButton(['为' + get.translation(i) + '重新分发武将牌', [list, 'character']]);
+                        const result = await player.chooseButton(['为' + get.translation(i) + '重新分发武将牌', [list, 'character']]).forResult();
                         if (result.links && result.links[0]) {
                             list.remove(result.links[0]);
                             i.zzxsinit(result.links[0]);

@@ -7,7 +7,7 @@ export async function precontent() {
 			game.log(player1, '濒死');
 			_status.dying.unshift(player1);
 			for (const i of game.players) {
-				const { result } = await i.chooseToUse({
+				const result = await i.chooseToUse({
 					filterCard(card, player, event) {
 						return lib.filter.cardSavable(card, player, player1);
 					},
@@ -38,7 +38,7 @@ export async function precontent() {
 					type: 'dying',
 					targetRequired: true,
 					dying: player1,
-				});
+				}).forResult();
 				if (result?.bool) {
 					_status.dying.remove(player1);
 					break;

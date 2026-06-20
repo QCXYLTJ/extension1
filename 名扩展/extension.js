@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../noname.js'
+import { lib, game, ui, get, ai, _status } from '../../noname.js';
 game.import('extension', function (lib, game, ui, get, ai, _status) {
     return {
         name: '名扩展',
@@ -8,14 +8,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 const QQQ = {
                     name: '名扩展',
                     connect: true,
-                    characterSort: {
-                    },
-                    dynamicTranslate: {
-                    },
-                    characterTitle: {
-                    },
-                    characterIntro: {
-                    },
+                    characterSort: {},
+                    dynamicTranslate: {},
+                    characterTitle: {},
+                    characterIntro: {},
                     skill: {
                         界救兵: {
                             trigger: {
@@ -155,7 +151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     num = 2;
                                 }
                                 player.draw(1);
-                                player.maxHp < 1000, player.gainMaxHp(2);
+                                (player.maxHp < 1000, player.gainMaxHp(2));
                             },
                         },
                         破敌: {
@@ -184,14 +180,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (skills.length) {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl(skills)
                                         .set(
                                             'choiceList',
                                             skills.map((i) => '<div class="skill">【' + get.translation(i) + '】</div><div>' + get.skillInfoTranslation(i, player) + '</div>')
                                         )
                                         .set('displayIndex', false)
-                                        .set('prompt', '请选择发动的技能');
+                                        .set('prompt', '请选择发动的技能')
+                                        .forResult();
                                     player.addTempSkill(result.control, 'phaseAfter');
                                 }
                             },
@@ -221,14 +218,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (skills.length) {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl(skills)
                                         .set(
                                             'choiceList',
                                             skills.map((i) => '<div class="skill">【' + get.translation(i) + '】</div><div>' + get.skillInfoTranslation(i, player) + '</div>')
                                         )
                                         .set('displayIndex', false)
-                                        .set('prompt', '请选择发动的技能');
+                                        .set('prompt', '请选择发动的技能')
+                                        .forResult();
                                     player.addTempSkill(result.control, 'phaseAfter');
                                 }
                             },
@@ -254,7 +252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //if(player.countCards('e')>trigger.player.countCards('e')) num++;
                                 if (num > 0) {
                                     player.draw(3);
-                                    player.maxHp < 10000, player.gainMaxHp(2);
+                                    (player.maxHp < 10000, player.gainMaxHp(2));
                                 } else {
                                     player.addMark('liedan', 0);
                                     player.loseHp();
@@ -276,7 +274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     num = 2;
                                 }
                                 player.draw(4);
-                                player.maxHp < 1000, player.gainMaxHp(2);
+                                (player.maxHp < 1000, player.gainMaxHp(2));
                             },
                         },
                         仙救兵: {
@@ -397,14 +395,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (skills.length) {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl(skills)
                                         .set(
                                             'choiceList',
                                             skills.map((i) => '<div class="skill">【' + get.translation(i) + '】</div><div>' + get.skillInfoTranslation(i, player) + '</div>')
                                         )
                                         .set('displayIndex', false)
-                                        .set('prompt', '请选择发动的技能');
+                                        .set('prompt', '请选择发动的技能')
+                                        .forResult();
                                     player.addTempSkill(result.control, 'phaseAfter');
                                 }
                             },
@@ -831,7 +830,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     num = 2;
                                 }
                                 player.draw(5);
-                                player.maxHp < 1000, player.gainMaxHp(2);
+                                (player.maxHp < 1000, player.gainMaxHp(2));
                             },
                         },
                         阴军: {
@@ -1275,7 +1274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     content() {
                                         'step 0';
                                         event.cardname = player.storage.遁世_damage;
-                                        player.maxHp < 1000, player.gainMaxHp(2);
+                                        (player.maxHp < 1000, player.gainMaxHp(2));
                                         player.removeSkill('遁世_damage');
                                         event.target = trigger.source;
                                         event.videoId = lib.status.videoId++;
@@ -1400,10 +1399,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 var num = player.hp + 1;
-                                const { result } = await player.chooseButton(['请选择获得至多' + num + '个技能', [list, 'character'], [skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [0, num]).set('filterButton', (button) => skill.includes(button.link));
+                                const result = await player
+                                    .chooseButton(['请选择获得至多' + num + '个技能', [list, 'character'], [skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [0, num])
+                                    .set('filterButton', (button) => skill.includes(button.link))
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     player.addSkillLog(result.links);
-                                    const { result: result1 } = await player.chooseControl('弃置一张牌并回复一点体力', '失去一点体力并摸一张牌');
+                                    const result1 = await player.chooseControl('弃置一张牌并回复一点体力', '失去一点体力并摸一张牌').forResult();
                                     if (result1.control == '弃置一张牌并回复一点体力') {
                                         await player.chooseToDiscard('he', 1, true);
                                         player.recover();
@@ -1508,6 +1510,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 '醉诗',
                                 '测试',
                             ],
+
                             forced: true,
                             async content(event, trigger, player) {
                                 const skill = Object.keys(lib.skill).filter((i) => {
@@ -1529,7 +1532,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                         )
                                         .set('displayIndex', false)
-                                        .set('prompt', '评鉴:请选择发动的技能').forResult();
+                                        .set('prompt', '评鉴:请选择发动的技能')
+                                        .forResult();
                                     const info = lib.skill[control];
                                     game.log(control);
                                     player.say(control);
@@ -1595,7 +1599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 next.player = player;
                                                 next._trigger = _status.event;
                                                 next.skill = i;
-                                                const { result } = await next.setContent(infox.cost);
+                                                const result = await next.setContent(infox.cost).forResult();
                                                 if (result && result.bool) {
                                                     var next = game.createEvent(i, false);
                                                     next.skill = i;
@@ -1627,7 +1631,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         next._trigger = trigger;
                                         next.triggername = event.triggername;
                                         next.skill = control;
-                                        const { result } = await next.setContent(info.cost);
+                                        const result = await next.setContent(info.cost).forResult();
                                         if (result && result.bool) {
                                             var next = game.createEvent(control, false);
                                             if (targets) next.targets = targets;
@@ -2007,7 +2011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 player.draw(2);
-                                player.maxHp < 1000, player.gainMaxHp(2);
+                                (player.maxHp < 1000, player.gainMaxHp(2));
                                 event.forceDie = true;
                                 if (typeof event.count != 'number') {
                                     // event.count=trigger.cards.length-1;
@@ -3864,7 +3868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.recover(1 - player.hp);
                                 player.addTempSkill('恶');
                                 player.draw(0);
-                                player.maxHp < 1000, player.gainMaxHp(0);
+                                (player.maxHp < 1000, player.gainMaxHp(0));
                             },
                             group: ['恶力_roundcount'],
                         },
@@ -3881,7 +3885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.loseHp(1);
                                 player.draw(0);
-                                player.maxHp < 1000, player.gainMaxHp(0);
+                                (player.maxHp < 1000, player.gainMaxHp(0));
                             },
                             intro: {
                                 content() {
@@ -4026,13 +4030,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.add('　　');
                                     dialog.open();
                                     /*
-                                    event.switchToAuto=function(){
-                                    event.dialog.close();
-                                    event.control.close();
-                                    game.resume();
-                                    _status.imchoosing=false;
-                                    };
-                                    */
+                  event.switchToAuto=function(){
+                  event.dialog.close();
+                  event.control.close();
+                  game.resume();
+                  _status.imchoosing=false;
+                  };
+                  */
                                     event.control = ui.create.control('ok', function (link) {
                                         event.dialog.close();
                                         event.control.close();
@@ -5966,11 +5970,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var list = player.storage.名_化身.map[event.card].slice(0);
                                     event.control = list;
                                     /*
-                                    list.push('返回');
-                                    player.chooseControl(list).set('choice',event.aiChoice).set('ai',function(){
-                                        return _status.event.choice;
-                                    });
-                                    */
+                  list.push('返回');
+                  player.chooseControl(list).set('choice',event.aiChoice).set('ai',function(){
+                      return _status.event.choice;
+                  });
+                  */
                                 } else {
                                     lib.skill.名_化身.removeHuanshen(player, result.links.slice(0));
                                     lib.skill.名_化身.addHuanshens(player, result.links.length);
@@ -6438,7 +6442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 lib.config.all.characters.add('名扩展');
                 lib.config.characters.add('名扩展');
                 for (var i in QQQ.character) {
-                    QQQ.character[i][4].add(`ext:名扩展/image/${i}.jpg`)
+                    QQQ.character[i][4].add(`ext:名扩展/image/${i}.jpg`);
                 }
                 lib.translate['名扩展_character_config'] = `名扩展`;
                 return QQQ;

@@ -22,14 +22,14 @@ const cards = {
       basic: {
         order: 10,
         useful: 8.5,
-        value: 6.2,
+        value: 6.2
       },
       result: {
         target(player, target) {
           return 2;
-        },
-      },
-    },
+        }
+      }
+    }
   },
   Europa_calf: {
     image: 'ext:欧陆风云/image/card/Europa_calf.jpg',
@@ -52,17 +52,17 @@ const cards = {
       basic: {
         order: 10,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
         target(player, target) {
           return get.damageEffect(target, player, target);
-        },
+        }
       },
       tag: {
-        damage: 1.5,
-      },
-    },
+        damage: 1.5
+      }
+    }
   },
   Europa_lamb: {
     image: 'ext:欧陆风云/image/card/Europa_lamb.jpg',
@@ -89,17 +89,17 @@ const cards = {
         value(card, player) {
           if (player.hp > 2) return 10.2;
           return 10.2 - 0.7 * Math.min(3, player.countCards('hs'));
-        },
+        }
       },
       result: {
         target(player, target) {
           return 3;
-        },
+        }
       },
       tag: {
-        draw: 3,
-      },
-    },
+        draw: 3
+      }
+    }
   },
   Europa_rat: {
     image: 'ext:欧陆风云/image/card/Europa_rat.jpg',
@@ -127,17 +127,17 @@ const cards = {
         value(card, player) {
           if (player.hp > 2) return 10.2;
           return 10.2 - 0.7 * Math.min(3, player.countCards('hs'));
-        },
+        }
       },
       result: {
         target(player, target) {
           return 2;
-        },
+        }
       },
       tag: {
-        draw: 3,
-      },
-    },
+        draw: 3
+      }
+    }
   },
   Europa_smallBanana: {
     fullskin: true,
@@ -171,7 +171,7 @@ const cards = {
           }
           if (i == 0) return 7.3;
           return 3;
-        },
+        }
       },
       order() {
         return get.order({ name: 'sha' }) + 0.2;
@@ -179,26 +179,26 @@ const cards = {
       result: {
         target(player, target) {
           return get.recoverEffect(target, target, target);
-        },
-      },
-    },
+        }
+      }
+    }
   },
   Europa_rottenBanana: {
     fullskin: true,
     image: 'ext:欧陆风云/image/card/Europa_rottenBanana.jpg',
     type: 'basic', //QQQ
     global: ['g_Europa_rottenBanana', 'g_Europa_rottenBanana_give'],
-    content() { },
+    content() {},
     ai: {
       value: -5,
       useful: 6,
       result: {
         player(player, target) {
           return -1;
-        },
+        }
       },
-      order: 7.5,
-    },
+      order: 7.5
+    }
   },
   Europa_blameBanana: {
     fullskin: true,
@@ -231,7 +231,7 @@ const cards = {
           }
           if (i == 0) return 7.3;
           return 3;
-        },
+        }
       },
       order() {
         return get.order({ name: 'sha' }) + 0.2;
@@ -239,9 +239,9 @@ const cards = {
       result: {
         target(player, target) {
           return get.recoverEffect(target, target, target);
-        },
-      },
-    },
+        }
+      }
+    }
   },
   Europa_bigBanana: {
     fullskin: true,
@@ -280,7 +280,7 @@ const cards = {
           }
           if (i == 0) return 7.3;
           return 3;
-        },
+        }
       },
       order() {
         return get.order({ name: 'sha' }) + 0.2;
@@ -289,9 +289,9 @@ const cards = {
         target(player, target) {
           if (target && target.isDying()) return 2;
           return get.recoverEffect(target, target, target) * 2;
-        },
-      },
-    },
+        }
+      }
+    }
   },
   Europa_splitBanana: {
     fullskin: true,
@@ -315,7 +315,7 @@ const cards = {
         cards.push(cardx);
       }
       await player.gain(cards);
-    },
+    }
   },
   Europa_mukeladedabiaoge: {
     global: ['g_Europa_mukeladedabiaoge', 'g_Europa_mukeladedabiaoge_discard'],
@@ -337,17 +337,17 @@ const cards = {
       basic: {
         order: 1,
         useful: 0.1,
-        value: 0.1,
+        value: 0.1
       },
       result: {
         player(player, target, card) {
           get.damageEffect(player, target, player);
-        },
+        }
       },
       tag: {
-        damage: 3,
-      },
-    },
+        damage: 3
+      }
+    }
   },
   Europa_fengkuanghouzi: {
     fullskin: true,
@@ -356,10 +356,10 @@ const cards = {
     subtype: 'equip5',
     ai: {
       basic: {
-        equipValue: 6.5,
-      },
+        equipValue: 6.5
+      }
     },
-    skills: ['Europa_fengkuanghouzi_skill'],
+    skills: ['Europa_fengkuanghouzi_skill']
   },
   //万神殿×玩原神殿√
   Europa_wanyuanshendian: {
@@ -370,10 +370,10 @@ const cards = {
     ai: {
       order: 9.5,
       equipValue: 6,
-      basic: { equipValue: 5 },
+      basic: { equipValue: 5 }
     },
     global: 'g_Europa_wanyuanshendian_skill',
-    skills: ['Europa_wanyuanshendian_skill'],
+    skills: ['Europa_wanyuanshendian_skill']
   },
   Europa_gongcheng: {
     fullimage: true,
@@ -399,29 +399,29 @@ const cards = {
       basic: {
         order: 10,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
         player(player, target, card) {
           let cards = [card];
           if (card.cards) cards.addArray(card.cards);
           return (
-            get.damageEffect(target, player, player) +
-            (target.countCards('h', (card) => {
+            get.damageEffect(target, player, player) + (
+            target.countCards('h', (card) => {
               return !cards.includes(card);
             }) >=
-              player.countCards('h', (card) => {
-                return !cards.includes(card);
-              })
-              ? get.damageEffect(player, target, player)
-              : 0)
-          );
-        },
+            player.countCards('h', (card) => {
+              return !cards.includes(card);
+            }) ?
+            get.damageEffect(player, target, player) :
+            0));
+
+        }
       },
       tag: {
-        damage: 1.5,
-      },
-    },
+        damage: 1.5
+      }
+    }
   },
   Europa_aosimanleyuan: {
     fullimage: true,
@@ -430,10 +430,10 @@ const cards = {
     subtype: 'equip5',
     ai: {
       basic: {
-        equipValue: 6.5,
-      },
+        equipValue: 6.5
+      }
     },
-    skills: ['Europa_aosimanleyuan_skill'],
+    skills: ['Europa_aosimanleyuan_skill']
   },
   Europa_yeniqieli: {
     fullimage: true,
@@ -442,7 +442,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'heart',
     distance: {
-      attackFrom: -1,
+      attackFrom: -1
     },
     recastable: true,
     ai: {
@@ -468,11 +468,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_yeniqieli_skill'],
     enable: true,
@@ -486,7 +486,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_renayayongbing: {
     fullimage: true,
@@ -522,11 +522,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -536,7 +536,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_wuerbandapao: {
     fullimage: true,
@@ -545,7 +545,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'heart',
     distance: {
-      attackFrom: -4,
+      attackFrom: -4
     },
     recastable: true,
     ai: {
@@ -571,11 +571,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_wuerbandapao_skill'],
     enable: true,
@@ -588,7 +588,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_junshitandingbao: {
     fullimage: true,
@@ -623,11 +623,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -641,7 +641,7 @@ const cards = {
         cards[0].node.name2.innerText = '科斯坦丁尼耶';
       }
     },
-    toself: true,
+    toself: true
   },
   Europa_diaoduoxichengqiang: {
     fullimage: true,
@@ -676,11 +676,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -693,7 +693,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_faxianxindalu: {
     audio: true,
@@ -711,12 +711,12 @@ const cards = {
       const target = event.targets[0];
       await target.draw(3, 'bottom');
       if (player.countCards('h')) {
-        const { bool, cards } = await player
-          .chooseCard('h', true, '将一张手牌置于牌堆顶')
-          .set('ai', function (card) {
-            return 20 - get.value(card);
-          })
-          .forResult();
+        const { bool, cards } = await player.
+        chooseCard('h', true, '将一张手牌置于牌堆顶').
+        set('ai', function (card) {
+          return 20 - get.value(card);
+        }).
+        forResult();
         if (bool) {
           player.lose(cards, ui.cardPile, 'insert');
         }
@@ -726,15 +726,15 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
-    },
+        draw: 2
+      }
+    }
   },
   Europa_kelakefanchuan: {
     fullimage: true,
@@ -743,7 +743,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'diamond',
     distance: {
-      attackFrom: -6,
+      attackFrom: -6
     },
     ai: {
       basic: {
@@ -768,11 +768,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_kelakefanchuan_skill'],
     enable: true,
@@ -783,7 +783,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_zhiminkuozhang: {
     fullimage: true,
@@ -805,20 +805,20 @@ const cards = {
         player.skip('phaseDraw');
         player.recover();
       } else if (result.color == 'black') {
-        player
-          .when('phaseDrawBegin2')
-          .filter((event) => !event.numFixed)
-          .then(() => {
-            trigger.num += 2;
-            player.loseHp();
-          });
+        player.
+        when('phaseDrawBegin2').
+        filter((event) => !event.numFixed).
+        then(() => {
+          trigger.num += 2;
+          player.loseHp();
+        });
       }
     },
     ai: {
       basic: {
         order: 1,
         useful: 1,
-        value: 4.5,
+        value: 4.5
       },
       result: {
         player(player, target) {
@@ -840,14 +840,14 @@ const cards = {
         target(player, target) {
           if (target.hasJudge('bingliang')) return 0;
           return -1.5 / Math.sqrt(target.countCards('h') + 1);
-        },
-      },
+        }
+      }
     },
     selectTarget: 1,
     content() {
       if (lib.filter.judge(card, player, target) && cards.length && get.position(cards[0], true) == 'o') target.addJudge(card, cards);
     },
-    allowMultiple: false,
+    allowMultiple: false
   },
   Europa_haitu: {
     fullimage: true,
@@ -883,11 +883,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -897,7 +897,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_tenuoqiditelan: {
     fullimage: true,
@@ -933,11 +933,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -947,7 +947,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_tutengzhenshe: {
     fullimage: true,
@@ -963,7 +963,7 @@ const cards = {
       if (target.countCards('h')) {
         target.chooseToDiscard('h', true);
       }
-    },
+    }
   },
   Europa_xiongyingzhanshi: {
     fullimage: true,
@@ -994,11 +994,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_xiongyingzhanshi_skill'],
     enable: true,
@@ -1009,7 +1009,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_pabao: {
     fullimage: true,
@@ -1045,11 +1045,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -1059,7 +1059,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_lisiben: {
     fullimage: true,
@@ -1095,11 +1095,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -1109,7 +1109,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_babalihaidao: {
     fullimage: true,
@@ -1118,7 +1118,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'club',
     distance: {
-      attackFrom: -1,
+      attackFrom: -1
     },
     ai: {
       order: 9,
@@ -1152,7 +1152,7 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
         keepAI: true,
@@ -1165,8 +1165,8 @@ const cards = {
             if (val2 < 0) return 0;
           }
           return -val - val2;
-        },
-      },
+        }
+      }
     },
     skills: ['Europa_babalihaidao_skill'],
     enable: true,
@@ -1177,7 +1177,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_wangshilianyin: {
     audio: true,
@@ -1205,15 +1205,15 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
-    },
+        draw: 2
+      }
+    }
   },
   Europa_shuzuiquan: {
     fullimage: true,
@@ -1231,12 +1231,12 @@ const cards = {
     ai: {
       basic: {
         useful: [3, 4],
-        value: [3, 4],
+        value: [3, 4]
       },
       result: {
-        player: 1,
-      },
-    },
+        player: 1
+      }
+    }
   },
   Europa_dadaniyaerhaixiapao: {
     fullimage: true,
@@ -1271,11 +1271,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -1285,7 +1285,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_suifaqiang: {
     fullimage: true,
@@ -1294,7 +1294,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'club',
     distance: {
-      attackFrom: -3,
+      attackFrom: -3
     },
     ai: {
       basic: {
@@ -1319,11 +1319,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_suifaqiang_skill'],
     enable: true,
@@ -1334,7 +1334,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   //信众抗议
   Europa_xinzhongkangyi: {
@@ -1356,20 +1356,20 @@ const cards = {
       if (num > 0) list.push('选项一');
       if (target.canChangeEuropaReligion()) list.push('选项二');
       if (!list.length) return;
-      const { control } = await target
-        .chooseControl(list)
-        .set('num', num)
-        .set('choiceList', [`受到${num}点无来源伤害`, `摸${num}张牌并转变势力为新教势力`])
-        .set('sourcex', player)
-        .set('ai', () => {
-          const player = get.player(),
-            source = get.event('sourcex');
-          let controls = get.event('controls');
-          if (get.damageEffect(player, player, player) > 0) return '选项一';
-          if (controls.includes('选项二')) return '选项二';
-          return '选项一';
-        })
-        .forResult();
+      const { control } = await target.
+      chooseControl(list).
+      set('num', num).
+      set('choiceList', [`受到${num}点无来源伤害`, `摸${num}张牌并转变势力为新教势力`]).
+      set('sourcex', player).
+      set('ai', () => {
+        const player = get.player(),
+          source = get.event('sourcex');
+        let controls = get.event('controls');
+        if (get.damageEffect(player, player, player) > 0) return '选项一';
+        if (controls.includes('选项二')) return '选项二';
+        return '选项一';
+      }).
+      forResult();
       if (control == '选项一') {
         target.damage(num, 'nosource');
       } else {
@@ -1385,19 +1385,19 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 3.5,
-        value: 3.2,
+        value: 3.2
       },
       result: {
         target(player, target) {
           if (!target.canChangeEuropaReligion()) return get.damageEffect(target, player, target);
           return 2;
-        },
+        }
       },
       tag: {
         damage: 1,
-        draw: 2,
-      },
-    },
+        draw: 2
+      }
+    }
   },
   Europa_gouquan: {
     fullimage: true,
@@ -1427,15 +1427,15 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 3.5,
-        value: 3.2,
+        value: 3.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
-    },
+        draw: 2
+      }
+    }
   },
   Europa_jiaohuangguanmian: {
     fullimage: true,
@@ -1471,11 +1471,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -1485,7 +1485,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_fandigang: {
     fullimage: true,
@@ -1520,11 +1520,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -1534,7 +1534,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_fenyinafan: {
     fullimage: true,
@@ -1553,31 +1553,31 @@ const cards = {
         list = [];
       list.push('选项一');
       if (
-        target.canChangeEuropaReligion() &&
-        target.hasCard(function (card) {
-          return lib.filter.cardDiscardable(card, target, 'Europa_fenyinafan');
-        })
-      )
-        list.push('选项二');
-      const { control } = await target
-        .chooseControl(list)
-        .set('choiceList', [`受到1点火焰伤害`, `转变势力为天主教势力并弃置一张牌`])
-        .set('ai', () => {
-          const player = get.player();
-          if (get.damageEffect(player, player, player, 'fire') > 0) return '选项一';
-          if (list.includes('选项二')) return '选项二';
-          return '选项一';
-        })
-        .forResult();
+      target.canChangeEuropaReligion() &&
+      target.hasCard(function (card) {
+        return lib.filter.cardDiscardable(card, target, 'Europa_fenyinafan');
+      }))
+
+      list.push('选项二');
+      const { control } = await target.
+      chooseControl(list).
+      set('choiceList', [`受到1点火焰伤害`, `转变势力为天主教势力并弃置一张牌`]).
+      set('ai', () => {
+        const player = get.player();
+        if (get.damageEffect(player, player, player, 'fire') > 0) return '选项一';
+        if (list.includes('选项二')) return '选项二';
+        return '选项一';
+      }).
+      forResult();
       if (control == '选项一') {
         await target.damage('fire');
       } else {
         await target.changeEuropaReligion('天主教');
         if (
-          target.hasCard(function (card) {
-            return lib.filter.cardDiscardable(card, target, 'Europa_fenyinafan');
-          }, 'he')
-        ) {
+        target.hasCard(function (card) {
+          return lib.filter.cardDiscardable(card, target, 'Europa_fenyinafan');
+        }, 'he'))
+        {
           await target.chooseToDiscard('he', true);
         }
       }
@@ -1586,17 +1586,17 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 3.5,
-        value: 3.2,
+        value: 3.2
       },
       result: {
-        target: -2.5,
+        target: -2.5
       },
       tag: {
         damage: 1,
         fireDamage: 1,
-        natureDamage: 1,
-      },
-    },
+        natureDamage: 1
+      }
+    }
   },
   Europa_sheji: {
     fullimage: true,
@@ -1619,17 +1619,17 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 3.5,
-        value: 3.2,
+        value: 3.2
       },
       result: {
-        target: -2.5,
+        target: -2.5
       },
       tag: {
         damage: 1,
         fireDamage: 1,
-        natureDamage: 1,
-      },
-    },
+        natureDamage: 1
+      }
+    }
   },
   Europa_maoyu: {
     fullimage: true,
@@ -1652,10 +1652,10 @@ const cards = {
         return 6;
       },
       result: {
-        player: 1,
+        player: 1
       },
-      value: 5,
-    },
+      value: 5
+    }
   },
   Europa_tiandan: {
     fullimage: true,
@@ -1676,17 +1676,17 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 3.5,
-        value: 3.2,
+        value: 3.2
       },
       result: {
-        target: -2.5,
+        target: -2.5
       },
       tag: {
         damage: 1,
         fireDamage: 1,
-        natureDamage: 1,
-      },
-    },
+        natureDamage: 1
+      }
+    }
   },
   Europa_gudian: {
     fullimage: true,
@@ -1701,20 +1701,20 @@ const cards = {
     modTarget: true,
     async content(event, trigger, player) {
       const target = event.target;
-      const { index } = await target
-        .chooseControl()
-        .set('choiceList', [`你使用的下一张【射击】基础伤害+1`, `你使用的下一张【射击】结算次数+1`, `你摸两张牌`])
-        .set('ai', () => {
-          if (
-            player.hasCard(function (card) {
-              return card.name == 'Europa_sheji';
-            })
-          ) {
-            return 1;
-          }
-          return 2;
-        })
-        .forResult();
+      const { index } = await target.
+      chooseControl().
+      set('choiceList', [`你使用的下一张【射击】基础伤害+1`, `你使用的下一张【射击】结算次数+1`, `你摸两张牌`]).
+      set('ai', () => {
+        if (
+        player.hasCard(function (card) {
+          return card.name == 'Europa_sheji';
+        }))
+        {
+          return 1;
+        }
+        return 2;
+      }).
+      forResult();
       switch (index) {
         case 0:
           {
@@ -1728,26 +1728,26 @@ const cards = {
             player.addMark('Europa_gudian_effectCount', 1, false);
           }
           break;
-        case 2: {
-          player.draw(2);
-        }
+        case 2:{
+            player.draw(2);
+          }
       }
     },
     ai: {
       basic: {
         order: 7.2,
         useful: 3.5,
-        value: 3.2,
+        value: 3.2
       },
       result: {
-        target: -2.5,
+        target: -2.5
       },
       tag: {
         damage: 1,
         fireDamage: 1,
-        natureDamage: 1,
-      },
-    },
+        natureDamage: 1
+      }
+    }
   },
   Europa_tangjihede: {
     fullimage: true,
@@ -1787,7 +1787,7 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
         keepAI: true,
@@ -1800,8 +1800,8 @@ const cards = {
             if (val2 < 0) return 0;
           }
           return -val - val2;
-        },
-      },
+        }
+      }
     },
     skills: ['Europa_tangjihede_skill'],
     enable: true,
@@ -1812,7 +1812,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_wudijiandui: {
     fullimage: true,
@@ -1821,7 +1821,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'heart',
     distance: {
-      attackFrom: -6,
+      attackFrom: -6
     },
     ai: {
       basic: {
@@ -1846,11 +1846,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_wudijiandui_skill'],
     enable: true,
@@ -1863,7 +1863,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_qiyi: {
     type: 'trick',
@@ -1885,10 +1885,10 @@ const cards = {
       result: {
         player(player, target) {
           return get.damageEffect(player, player, player);
-        },
+        }
       },
-      order: 7.5,
-    },
+      order: 7.5
+    }
   },
   Europa_qingyunjian: {
     fullimage: true,
@@ -1896,7 +1896,7 @@ const cards = {
     type: 'equip',
     subtype: 'equip1',
     distance: {
-      attackFrom: -1,
+      attackFrom: -1
     },
     ai: {
       basic: {
@@ -1929,7 +1929,7 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
         keepAI: true,
@@ -1943,8 +1943,8 @@ const cards = {
             if (val2 < 0) return 0;
           }
           return -val - val2;
-        },
-      },
+        }
+      }
     },
     skills: ['Europa_qingyunjian_skill1', 'Europa_qingyunjian_skill2'],
     enable: true,
@@ -1957,7 +1957,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_chilong: {
     fullimage: true,
@@ -1965,7 +1965,7 @@ const cards = {
     type: 'equip',
     subtype: 'equip1',
     distance: {
-      attackFrom: -1,
+      attackFrom: -1
     },
     ai: {
       basic: {
@@ -1998,7 +1998,7 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
         keepAI: true,
@@ -2012,8 +2012,8 @@ const cards = {
             if (val2 < 0) return 0;
           }
           return -val - val2;
-        },
-      },
+        }
+      }
     },
     skills: ['Europa_chilong_skill1', 'Europa_chilong_skill2'],
     enable: true,
@@ -2026,7 +2026,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_yupipa: {
     fullimage: true,
@@ -2034,7 +2034,7 @@ const cards = {
     type: 'equip',
     subtype: 'equip1',
     distance: {
-      attackFrom: -4,
+      attackFrom: -4
     },
     ai: {
       basic: {
@@ -2059,11 +2059,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_yupipa_skill'],
     enable: true,
@@ -2076,7 +2076,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_hunyuanzhenzhusan: {
     fullimage: true,
@@ -2106,11 +2106,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_hunyuanzhenzhusan_skill'],
     enable: true,
@@ -2123,7 +2123,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   //出牌阶段，对你使用，你摸一张牌，展示任意张手牌并选择等量名其他角色，这些角色可以依次用一张手牌交换其中一张
   Europa_shangyemaoyi: {
@@ -2142,79 +2142,79 @@ const cards = {
       const target = event.targets[0];
       await target.draw();
       if (player.countCards('h')) {
-        const { bool, targets, cards } = await player
-          .chooseCardTarget({
-            prompt: `展示任意张手牌并选择等量其他角色`,
-            filterCard(card, player) {
-              return true;
-            },
-            selectCard: [1, Infinity],
-            selectTarget() {
-              return ui.selected.cards.length;
-            },
-            filterTarget(card, player, target) {
-              return target != player;
-            },
-            ai1(card) {
-              if (card.name == 'du') return 200;
-              let info = get.info(card);
-              if (info && info.toself) return 10;
-              return get.unuseful(card);
-            },
-            ai2(target) {
-              return get.attitude(player, target);
-            }, //QQQ
-          })
-          .forResult();
+        const { bool, targets, cards } = await player.
+        chooseCardTarget({
+          prompt: `展示任意张手牌并选择等量其他角色`,
+          filterCard(card, player) {
+            return true;
+          },
+          selectCard: [1, Infinity],
+          selectTarget() {
+            return ui.selected.cards.length;
+          },
+          filterTarget(card, player, target) {
+            return target != player;
+          },
+          ai1(card) {
+            if (card.name == 'du') return 200;
+            let info = get.info(card);
+            if (info && info.toself) return 10;
+            return get.unuseful(card);
+          },
+          ai2(target) {
+            return get.attitude(player, target);
+          } //QQQ
+        }).
+        forResult();
         if (bool) {
           await player.showCards(cards);
           const topCards = cards;
           for (const targetx of targets) {
-            const result = await targetx
-              .chooseToMove('你可以交换其中一张牌')
-              .set('list', [
-                ['展示牌', topCards],
-                ['你的手牌', targetx.getCards('h')],
-              ])
-              .set('filterMove', (from, to, moved) => {
-                if (typeof to == 'number') return false;
-                var player = _status.event.player;
-                var hs = player.getCards('h');
-                var changed = hs.filter(function (card) {
-                  return !moved[1].includes(card);
-                });
-                var changed2 = moved[1].filter(function (card) {
-                  return !hs.includes(card);
-                });
-                if (changed.length < 1) return true;
-                var pos1 = moved[0].includes(from.link) ? 0 : 1,
-                  pos2 = moved[0].includes(to.link) ? 0 : 1;
-                if (pos1 == pos2) return true;
-                if (pos1 == 0) {
-                  if (changed.includes(from.link)) return true;
-                  return changed2.includes(to.link);
-                }
-                if (changed2.includes(from.link)) return true;
-                return changed.includes(to.link);
-              })
-              .set('filterOk', (moved) => {
-                const player = get.player();
-                return moved[0].filter((card) => get.owner(card) == player).length == 1;
-              })
-              .set('processAI', function (list) {
-                var cards1 = list[0][1].slice(),
-                  cards2 = list[1][1].slice();
-                var card1 = cards1.sort((a, b) => get.value(b) - get.value(a))[0];
-                var card2 = cards2.sort((a, b) => get.value(a) - get.value(b))[0];
-                if (card1 && card2 && get.value(card1) > get.value(card2)) {
-                  cards1.remove(card1);
-                  cards2.remove(card2);
-                  cards1.push(card2);
-                  cards2.push(card1);
-                }
-                return [cards1, cards2];
-              })
-              .forResult();
+            const result = await targetx.
+            chooseToMove('你可以交换其中一张牌').
+            set('list', [
+            ['展示牌', topCards],
+            ['你的手牌', targetx.getCards('h')]]
+            ).
+            set('filterMove', (from, to, moved) => {
+              if (typeof to == 'number') return false;
+              var player = _status.event.player;
+              var hs = player.getCards('h');
+              var changed = hs.filter(function (card) {
+                return !moved[1].includes(card);
+              });
+              var changed2 = moved[1].filter(function (card) {
+                return !hs.includes(card);
+              });
+              if (changed.length < 1) return true;
+              var pos1 = moved[0].includes(from.link) ? 0 : 1,
+                pos2 = moved[0].includes(to.link) ? 0 : 1;
+              if (pos1 == pos2) return true;
+              if (pos1 == 0) {
+                if (changed.includes(from.link)) return true;
+                return changed2.includes(to.link);
+              }
+              if (changed2.includes(from.link)) return true;
+              return changed.includes(to.link);
+            }).
+            set('filterOk', (moved) => {
+              const player = get.player();
+              return moved[0].filter((card) => get.owner(card) == player).length == 1;
+            }).
+            set('processAI', function (list) {
+              var cards1 = list[0][1].slice(),
+                cards2 = list[1][1].slice();
+              var card1 = cards1.sort((a, b) => get.value(b) - get.value(a))[0];
+              var card2 = cards2.sort((a, b) => get.value(a) - get.value(b))[0];
+              if (card1 && card2 && get.value(card1) > get.value(card2)) {
+                cards1.remove(card1);
+                cards2.remove(card2);
+                cards1.push(card2);
+                cards2.push(card1);
+              }
+              return [cards1, cards2];
+            }).
+            forResult();
             if (result.bool) {
               const lose = result.moved[0].filter((i) => get.owner(i) == targetx);
               const gain = result.moved[1].filter((i) => get.owner(i) != targetx);
@@ -2231,14 +2231,14 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
+        draw: 2
+      }
     },
     subSkill: {
       dis: {
@@ -2247,10 +2247,10 @@ const cards = {
         mod: {
           globalFrom(from, to, distance) {
             return distance - from.countMark('Europa_xiushejijian_dis');
-          },
-        },
-      },
-    },
+          }
+        }
+      }
+    }
   },
   Europa_xiushejijian: {
     audio: true,
@@ -2278,14 +2278,14 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
+        draw: 2
+      }
     },
     subSkill: {
       dis: {
@@ -2294,10 +2294,10 @@ const cards = {
         mod: {
           globalFrom(from, to, distance) {
             return distance - from.countMark('Europa_xiushejijian_dis');
-          },
-        },
-      },
-    },
+          }
+        }
+      }
+    }
   },
   Europa_shan: {
     global: ['g_Europa_shan'],
@@ -2306,16 +2306,16 @@ const cards = {
     image: 'ext:欧陆风云/image/card/Europa_shan.jpg',
     type: 'basic',
     notarget: true,
-    content() { },
+    content() {},
     ai: {
       useful() {
         return 6;
       },
       result: {
-        player: 1,
+        player: 1
       },
-      value: 5,
-    },
+      value: 5
+    }
   },
   Europa_cha: {
     global: ['g_Europa_cha'],
@@ -2349,7 +2349,7 @@ const cards = {
           }
           if (i == 0) return 7.3;
           return 3;
-        },
+        }
       },
       order() {
         return get.order({ name: 'sha' }) + 0.2;
@@ -2357,9 +2357,9 @@ const cards = {
       result: {
         target(player, target) {
           return get.recoverEffect(target, target, target);
-        },
-      },
-    },
+        }
+      }
+    }
   },
   Europa_chuanguoyuxi: {
     fullimage: true,
@@ -2394,11 +2394,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -2408,7 +2408,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_beijing: {
     fullimage: true,
@@ -2443,11 +2443,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -2464,7 +2464,7 @@ const cards = {
         cards[0].node.name2.innerHTML = changed;
       }
     },
-    toself: true,
+    toself: true
   },
   Europa_tankChassis: {
     fullskin: true,
@@ -2494,11 +2494,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card)
+      }
     },
     loseDelay: false,
     enable: true,
@@ -2508,14 +2508,14 @@ const cards = {
     allowMultiple: false,
     content() {
       if (
-        !card?.cards.some((card) => {
-          return get.position(card, true) !== 'o';
-        })
-      ) {
+      !card?.cards.some((card) => {
+        return get.position(card, true) !== 'o';
+      }))
+      {
         target.equip(card);
       }
     },
-    toself: true,
+    toself: true
   },
   Europa_tankChassis_tuanjiexieding: {
     fullskin: true,
@@ -2545,11 +2545,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card)
+      }
     },
     loseDelay: false,
     enable: true,
@@ -2559,14 +2559,14 @@ const cards = {
     allowMultiple: false,
     content() {
       if (
-        !card?.cards.some((card) => {
-          return get.position(card, true) !== 'o';
-        })
-      ) {
+      !card?.cards.some((card) => {
+        return get.position(card, true) !== 'o';
+      }))
+      {
         target.equip(card);
       }
     },
-    toself: true,
+    toself: true
   },
   Europa_tuanjiexiedingyuanzhu: {
     fullimage: true,
@@ -2595,12 +2595,12 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
-      },
-    },
+        target: 2.5
+      }
+    }
   },
   Europa_kaizaokuangwu: {
     fullimage: true,
@@ -2619,15 +2619,15 @@ const cards = {
       list.push('选项一');
       list.push('选项二');
       list.push('背水！');
-      const { control } = await target
-        .chooseControl(list)
-        .set('choiceList', [`摸两张牌`, `令下一张杀伤害+1`, `背水！受到1点无来源伤害同时获得以上两项`])
-        .set('ai', () => {
-          const player = get.player();
-          if (player.hp > 3) return '背水！';
-          return '选项一';
-        })
-        .forResult();
+      const { control } = await target.
+      chooseControl(list).
+      set('choiceList', [`摸两张牌`, `令下一张杀伤害+1`, `背水！受到1点无来源伤害同时获得以上两项`]).
+      set('ai', () => {
+        const player = get.player();
+        if (player.hp > 3) return '背水！';
+        return '选项一';
+      }).
+      forResult();
       if (control == '背水！') {
         await target.damage('nosource');
       }
@@ -2643,15 +2643,15 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
-    },
+        draw: 2
+      }
+    }
   },
   Europa_guofangjunzaiqianjin: {
     type: 'trick',
@@ -2677,10 +2677,10 @@ const cards = {
         target(player, target) {
           const cards = player.getCards('h', 'sha');
           return get.effect(target, { name: 'sha' }, player, player) * cards.length;
-        },
-      },
+        }
+      }
     },
-    selectTarget: 1,
+    selectTarget: 1
   },
   Europa_shenhuofeiya: {
     fullimage: true,
@@ -2714,11 +2714,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -2728,7 +2728,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_qijiaqiang: {
     fullimage: true,
@@ -2737,7 +2737,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'diamond',
     distance: {
-      attackFrom: -2,
+      attackFrom: -2
     },
     ai: {
       basic: {
@@ -2762,11 +2762,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_qijiaqiang_skill'],
     enable: true,
@@ -2779,7 +2779,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_qijiadao: {
     fullimage: true,
@@ -2788,7 +2788,7 @@ const cards = {
     subtype: 'equip1',
     cardcolor: 'spade',
     distance: {
-      attackFrom: -1,
+      attackFrom: -1
     },
     ai: {
       basic: {
@@ -2813,11 +2813,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_qijiadao_skill'],
     enable: true,
@@ -2830,7 +2830,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_tengpai: {
     fullimage: true,
@@ -2861,11 +2861,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_tengpai_skill'],
     enable: true,
@@ -2878,7 +2878,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_changpai: {
     fullimage: true,
@@ -2909,11 +2909,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     skills: ['Europa_changpai_skill'],
     enable: true,
@@ -2926,7 +2926,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_kanmufalin: {
     fullskin: true,
@@ -2948,15 +2948,15 @@ const cards = {
       basic: {
         order: 7.2,
         useful: 4.5,
-        value: 9.2,
+        value: 9.2
       },
       result: {
-        target: 2.5,
+        target: 2.5
       },
       tag: {
-        draw: 2,
-      },
-    },
+        draw: 2
+      }
+    }
   },
   Europa_shachenbao: {
     fullskin: true,
@@ -2991,7 +2991,7 @@ const cards = {
       basic: {
         order: 1,
         useful: 1,
-        value: 4.5,
+        value: 4.5
       },
       result: {
         player(player, target) {
@@ -3013,23 +3013,23 @@ const cards = {
         target(player, target) {
           if (target.hasJudge('bingliang')) return 0;
           return -1.5 / Math.sqrt(target.countCards('h') + 1);
-        },
+        }
       },
       tag: {
-        losehp: 0.5,
-      },
+        losehp: 0.5
+      }
     },
     selectTarget: 1,
     content() {
       if (
-        !card?.cards.some((card) => {
-          return get.position(card, true) !== 'o';
-        })
-      ) {
+      !card?.cards.some((card) => {
+        return get.position(card, true) !== 'o';
+      }))
+      {
         target.addJudge(card, cards);
       }
     },
-    allowMultiple: false,
+    allowMultiple: false
   },
   Europa_kailuo: {
     fullskin: true,
@@ -3064,11 +3064,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -3078,7 +3078,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
+    toself: true
   },
   Europa_yanbaketu: {
     fullskin: true,
@@ -3113,11 +3113,11 @@ const cards = {
           if (method == 'raw') return equipValue;
           if (method == 'raw2') return equipValue - value;
           return Math.max(0.1, equipValue - value);
-        },
+        }
       },
       result: {
-        target: (player, target, card) => get.equipResult(player, target, card.name),
-      },
+        target: (player, target, card) => get.equipResult(player, target, card.name)
+      }
     },
     enable: true,
     selectTarget: -1,
@@ -3127,7 +3127,7 @@ const cards = {
     content() {
       if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
     },
-    toself: true,
-  },
+    toself: true
+  }
 };
 export default cards;

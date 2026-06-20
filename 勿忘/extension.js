@@ -1,5 +1,5 @@
 var line = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-import { lib, game, ui, get, ai, _status } from '../../noname.js'
+import { lib, game, ui, get, ai, _status } from '../../noname.js';
 game.import('extension', function (lib, game, ui, get, ai, _status) {
     return {
         name: '勿忘',
@@ -37,14 +37,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 const QQQ = {
                     name: '勿忘',
                     connect: true,
-                    characterSort: {
-                    },
-                    dynamicTranslate: {
-                    },
-                    characterTitle: {
-                    },
-                    characterIntro: {
-                    },
+                    characterSort: {},
+                    dynamicTranslate: {},
+                    characterTitle: {},
+                    characterIntro: {},
                     skill: {
                         仙化: {
                             audio: 'ext:勿忘/audio:2',
@@ -551,7 +547,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         event.next = event.next.concat(player.storage.shenqi);
                                         player.storage.shenqi = [];
-                                    },//QQQ
+                                    }, //QQQ
                                 },
                                 draw: {
                                     forced: true,
@@ -2009,13 +2005,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域')
+                                        .forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -2805,7 +2802,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var cards = get.cards(7);
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['获得其中任意数量点数之和不大于30的牌', cards], [0, 7])
                                     .set('filterButton', (button) => {
                                         var num = 0;
@@ -2814,7 +2811,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return button.link.number + num < 30;
                                     })
-                                    .set('ai', (button) => get.value(button.link) - button.link.number / 2);
+                                    .set('ai', (button) => get.value(button.link) - button.link.number / 2)
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     player.gain(result.links, 'gain2');
                                 }
@@ -3204,7 +3202,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 player.group = 'shen';
                                 ('step');
-                                player, draw(3);
+                                (player, draw(3));
                             },
                             ai: {
                                 expose: 0.4,
@@ -3409,7 +3407,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 15,
                             enable: 'chooseToUse',
                             filterCard(card) {
-                                return get.type2(card) != 'trick' && get.color(card) == 'red', 'black';
+                                return (get.type2(card) != 'trick' && get.color(card) == 'red', 'black');
                             },
                             filter(event, player) {
                                 return player.hasCard((card) => (get.type2(card) != 'trick' && get.color(card) == 'red', 'black'), 'hes');
@@ -3776,7 +3774,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (!player.storage.ww_hepu.includes(i)) num.push(i);
                                 }
                                 if (num.length) {
-                                    const { result } = await player.chooseControl(num);
+                                    const result = await player.chooseControl(num).forResult();
                                     if (result.control) {
                                         player.popup(result.control);
                                         var card = get.cardPile2((card) => card.number == result.control);
@@ -3810,7 +3808,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = game.players.length;
                                 var cards = get.cards(num);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -3818,7 +3816,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var cards = list[0][1];
                                         const target = trigger.name == 'phaseZhunbei' ? trigger.player : trigger.player.next;
                                         const att = get.attitude(player, target);
-                                        const top = [], bottom = cards;
+                                        const top = [],
+                                            bottom = cards;
                                         for (const i of target.getCards('j')) {
                                             const judge = get.judge(i);
                                             bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -3831,7 +3830,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //给别人观星
+                                    })
+                                    .forResult(); //给别人观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
@@ -3933,8 +3933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     forced: true,
                                     popup: false,
                                 },
-                                delay: {
-                                },
+                                delay: {},
                             },
                             ai: {
                                 order: 1,
@@ -5112,13 +5111,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域')
+                                        .forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -5178,13 +5178,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域')
+                                        .forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -5244,13 +5245,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域')
+                                        .forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -5457,7 +5459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: ['useCard', 'respond'],
                             },
                             filter(event, player) {
-                                return event.card.name == 'sha', 'shan';
+                                return (event.card.name == 'sha', 'shan');
                             },
                             forced: true,
                             content() {
@@ -6876,7 +6878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else if (_status.connectMode) {
                                     list = get.charactersOL(function (i) {
-                                        return lib.character[i][1] != 'wei', 'shu', 'wu', 'qun';
+                                        return (lib.character[i][1] != 'wei', 'shu', 'wu', 'qun');
                                     });
                                     if (get.mode() != 'guozhan') {
                                         list2 = get.charactersOL(function (i) {
@@ -6885,7 +6887,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else {
                                     list = get.gainableCharacters(function (info) {
-                                        return info[1] == 'wei', 'shu', 'wu', 'qun';
+                                        return (info[1] == 'wei', 'shu', 'wu', 'qun');
                                     });
                                     if (get.mode() != 'guozhan') {
                                         list2 = get.gainableCharacters(function (info) {
@@ -8747,7 +8749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 lib.config.all.characters.add('勿忘');
                 lib.config.characters.add('勿忘');
                 for (var i in QQQ.character) {
-                    QQQ.character[i][4].add(`ext:勿忘/image/${i}.jpg`)
+                    QQQ.character[i][4].add(`ext:勿忘/image/${i}.jpg`);
                 }
                 lib.translate['勿忘_character_config'] = `勿忘`;
                 return QQQ;

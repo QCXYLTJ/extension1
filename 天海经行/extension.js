@@ -811,7 +811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = 7;
                                 var cards = get.cards(num);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player.chooseToMove()
+                                const result = await player.chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
                                     .set('processAI', function (list) {
@@ -831,7 +831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    });//给别人观星
+                                    }).forResult();//给别人观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
@@ -5708,7 +5708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {//QQQ
                                 var num = player.hp;
                                 while (num-- > 0) {
-                                    const { result } = await trigger.target.judge('『洛神』', (card) => get.color(card) != 'red' ? 2 : 0);
+                                    const result = await trigger.target.judge('『洛神』', (card) => get.color(card) != 'red' ? 2 : 0).forResult();
                                     if (get.color(result.card) == 'red') break;
                                     trigger.target.gain(result.card, 'gain2');
                                 }

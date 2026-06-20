@@ -1570,7 +1570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     filter: (e, p) => p.countCards('he'),
                                     forced: true,
                                     async content(event, trigger, player) {
-                                        const { result } = await player.chooseCard(true, 'he', '将一张牌置于牌堆顶').set('ai', (c) => 4 - get.value(c)); //QQQ
+                                        const result = await player.chooseCard(true, 'he', '将一张牌置于牌堆顶').set('ai', (c) => 4 - get.value(c)).forResult(); //QQQ
                                         if (result.cards && result.cards[0]) {
                                             ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
                                             game.updateRoundNumber();

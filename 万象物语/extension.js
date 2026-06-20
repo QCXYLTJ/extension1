@@ -8681,7 +8681,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', (target) => -get.attitude(player, target)).forResult();
                                 if (targets && targets[0]) {
                                     player.awakenSkill('RuthlessReload');
-                                    const { result } = await player.chooseToCompare(targets[0]);
+                                    const result = await player.chooseToCompare(targets[0]).forResult();
                                     if (result.tie) {
                                         player.recover();
                                     }

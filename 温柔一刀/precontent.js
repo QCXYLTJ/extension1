@@ -380,19 +380,19 @@ const precontent = async function () {
                 /*
         lib.card.list.some((q)=>q[2]=='火链')
         const { result: { control } } = await player.chooseControl('获得', '替换')
-            .set('ai', (e, p) => ['获得', '替换'].randomGet());
+        .set('ai', (e, p) => ['获得', '替换'].randomGet());
         if (control == '获得') {
         }
         const { result: { cards } } = await player.chooseCard('he', [1, player.countCards('he')])
-            .set('ai', (c) => 6 - get.value(c));
-            if (cards && cards[0]) {
+        .set('ai', (c) => 6 - get.value(c));
+        if (cards && cards[0]) {
         }
         const { result: { targets } } = await player.chooseTarget('对一名角色造成一点伤害', (c, p, t) => p != t)
-            .set('ai', (t) => -get.attitude(player, t));
-            if (targets && targets[0]) {
+        .set('ai', (t) => -get.attitude(player, t));
+        if (targets && targets[0]) {
         }
         const { result: { links } } = await player.chooseButton(['请选择卡牌', list], true, trigger.num)
-            .set('ai', (button) => get.value(button.link));
+        .set('ai', (button) => get.value(button.link));
         if (links && links[0]) {
         }
         */
@@ -409,15 +409,15 @@ const precontent = async function () {
         var num = 20;
         var evt = _status.event;
         while (num-- > 0) {
-            console.log(evt.name);
-            evt = evt.parent;
+        console.log(evt.name);
+        evt = evt.parent;
         }
         Array.from(ui.cardPile.childNodes).some((q) => q.name == 'ywhy_zhizunmojie')
         throw new Error();
         for (const i of player.skills) {
-            if (lib.skill[i].forced) {
-                delete lib.skill[i].forced;
-            }
+        if (lib.skill[i].forced) {
+        delete lib.skill[i].forced;
+        }
         }
         player.node.handcards1.appendChild(game.createCard('轩辕剑'));
         player.addSkill('qianxing');
@@ -435,7 +435,7 @@ const precontent = async function () {
         next.getlx = false;
         var evt = _status.event.getParent('phaseUse');
         if (evt && evt.name == 'phaseUse') {
-            evt.skipped = true;
+        evt.skipped = true;
         }
         throw new Error();
         await player.chooseUseTarget({ name: 'bxyr_duyunliangcao' }, true);
@@ -4342,7 +4342,10 @@ const precontent = async function () {
                         const skip0 = phaselist.randomGet();
                         player.skip(skip0);
                         game.log(`${get.translation(player)}跳过了${get.translation(skip0)}`);
-                        const { result } = await player.chooseTarget('令其随机跳过两个阶段,若其为神势力,则随机跳过四个阶段', (c, p, t) => t != p, [1, game.players.length]).set('ai', (target) => -get.attitude(target, player));
+                        const result = await player
+                            .chooseTarget('令其随机跳过两个阶段,若其为神势力,则随机跳过四个阶段', (c, p, t) => t != p, [1, game.players.length])
+                            .set('ai', (target) => -get.attitude(target, player))
+                            .forResult();
                         if (result.targets && result.targets[0]) {
                             for (const i of result.targets) {
                                 if (i.group == 'shen') {
@@ -4431,12 +4434,16 @@ const precontent = async function () {
                         const card = trigger.card ? trigger.card : trigger.cards[0];
                         player.addToExpansion(trigger.cards, 'giveAuto', player).gaintag.add('QQQ_buqu');
                         if (trigger.source && trigger.source.isFriendsOf(player) && player.getCards('x').some((q) => q.name != card.name)) {
-                            const { result } = await player.chooseBool('令其选择使用你武将牌上与此牌名不同的一张牌').set('ai', () => trigger.source.isFriendsOf(player));
+                            const result = await player
+                                .chooseBool('令其选择使用你武将牌上与此牌名不同的一张牌')
+                                .set('ai', () => trigger.source.isFriendsOf(player))
+                                .forResult();
                             if (result.bool) {
-                                const { result: result1 } = await trigger.source
+                                const result1 = await trigger.source
                                     .chooseButton([`选择使用${get.translation(player)}武将牌上与${get.translation(card)}牌名不同的一张牌`, player.getCards('x')])
                                     .set('filterButton', (button) => button.link.name != card.name)
-                                    .set('ai', (button) => number0(trigger.source.getUseValue(button.link, true, true)) + 10);
+                                    .set('ai', (button) => number0(trigger.source.getUseValue(button.link, true, true)) + 10)
+                                    .forResult();
                                 if (result1.links && result1.links[0]) {
                                     await trigger.source.chooseUseTarget(result1.links[0], false, false, 'nodistance');
                                 }
@@ -4709,7 +4716,10 @@ const precontent = async function () {
                                 trigger.all_excluded = true;
                                 const list = trigger.targets.filter((q) => q.countCards('he'));
                                 for (const i of list) {
-                                    const { result } = await player.chooseButton(['将所有目标角色各一张牌置于牌堆顶', i.getCards('he')], true).set('ai', (button) => -get.attitude(player, i) * get.value(button.link));
+                                    const result = await player
+                                        .chooseButton(['将所有目标角色各一张牌置于牌堆顶', i.getCards('he')], true)
+                                        .set('ai', (button) => -get.attitude(player, i) * get.value(button.link))
+                                        .forResult();
                                     if (result.links && result.links[0]) {
                                         ui.cardPile.insertBefore(result.links[0], ui.cardPile.firstChild);
                                     }
@@ -4739,7 +4749,7 @@ const precontent = async function () {
                     },
                     async content(event, trigger, player) {
                         const num = trigger.player.countCards('h') - trigger.player.getHandcardLimit();
-                        const { result } = await trigger.player.chooseControl(`交给${get.translation(player)}${num}张牌`, `视为${get.translation(player)}对你使用${num}张杀,每造成一次伤害执行一次①选项`);
+                        const result = await trigger.player.chooseControl(`交给${get.translation(player)}${num}张牌`, `视为${get.translation(player)}对你使用${num}张杀,每造成一次伤害执行一次①选项`).forResult();
                         if (result.control == `交给${get.translation(player)}${num}张牌`) {
                             await trigger.player.chooseToGive(player, 'he', num, true);
                         } else {
@@ -4824,7 +4834,10 @@ const precontent = async function () {
                                 }
                             }
                             num++;
-                            const { result } = await i.chooseCard(`交给${get.translation(player)}${num}张牌,增加一项基本数值`, 'he', num).set('ai', (card) => get.attitude(player, i) - get.value(card));
+                            const result = await i
+                                .chooseCard(`交给${get.translation(player)}${num}张牌,增加一项基本数值`, 'he', num)
+                                .set('ai', (card) => get.attitude(player, i) - get.value(card))
+                                .forResult();
                             if (result && result.cards && result.cards[0]) {
                                 if (Math.random() > 0.5) {
                                     game.playAudio('../extension/温柔一刀/audio/你听说过指头女巫吗.mp3');
@@ -4838,20 +4851,23 @@ const precontent = async function () {
                                 } else {
                                     i.give(result.cards, player);
                                 }
-                                const { result: result1 } = await player.chooseButton(['令其增加一项基本数值', [list, 'tdnodes']], true).set('ai', (button) => {
-                                    switch (button.link) {
-                                        case '智力':
-                                            return get.attitude(player, i) * 3.2 * Math.random();
-                                        case '魔力':
-                                            return get.attitude(player, i) * 3.1 * Math.random();
-                                        case '生命':
-                                            return get.attitude(player, i) * 3 * Math.random();
-                                        case '精力':
-                                            return get.attitude(player, i) * 2 * Math.random();
-                                        case '速度':
-                                            return get.attitude(player, i) * 1 * Math.random();
-                                    }
-                                });
+                                const result1 = await player
+                                    .chooseButton(['令其增加一项基本数值', [list, 'tdnodes']], true)
+                                    .set('ai', (button) => {
+                                        switch (button.link) {
+                                            case '智力':
+                                                return get.attitude(player, i) * 3.2 * Math.random();
+                                            case '魔力':
+                                                return get.attitude(player, i) * 3.1 * Math.random();
+                                            case '生命':
+                                                return get.attitude(player, i) * 3 * Math.random();
+                                            case '精力':
+                                                return get.attitude(player, i) * 2 * Math.random();
+                                            case '速度':
+                                                return get.attitude(player, i) * 1 * Math.random();
+                                        }
+                                    })
+                                    .forResult();
                                 if (result1.links && result1.links[0]) {
                                     if (Math.random() > 0.5) {
                                         game.playAudio('../extension/温柔一刀/audio/你现在没有女巫.mp3');
@@ -5240,11 +5256,14 @@ const precontent = async function () {
                                 player.addGaintag(card1, '桴挝');
                                 player.storage.QQQ_fuzhua.addArray(card1);
                             } else {
-                                const { result: cards } = await player.draw();
+                                const cards = await player.draw().forResult();
                                 player.addGaintag(cards, '桴挝');
                                 player.storage.QQQ_fuzhua.addArray(cards);
                             }
-                            const { result } = await player.chooseTarget('弃置其他角色一张牌', (c, p, t) => t.countCards('he')).set('ai', (t) => -get.attitude(player, t));
+                            const result = await player
+                                .chooseTarget('弃置其他角色一张牌', (c, p, t) => t.countCards('he'))
+                                .set('ai', (t) => -get.attitude(player, t))
+                                .forResult();
                             if (result.targets && result.targets[0]) {
                                 await player.discardPlayerCard(result.targets[0], 'he');
                             }
@@ -5839,7 +5858,7 @@ const precontent = async function () {
                         event.target.draw(3);
                         let num = 3;
                         while (num-- > 0) {
-                            const { result } = await player.chooseToCompare(event.target, (card) => card.number);
+                            const result = await player.chooseToCompare(event.target, (card) => card.number).forResult();
                             if (result) {
                                 if (result.num1 >= result.num2) {
                                     await player.useCard({ name: 'sha' }, event.target, false);
@@ -6179,7 +6198,10 @@ const precontent = async function () {
                         //QQQ
                         const card = get.cards(1)[0];
                         player.showCards(card);
-                        const { result } = await player.chooseBool(`是否获得${get.translation(card)}`).set('ai', () => true);
+                        const result = await player
+                            .chooseBool(`是否获得${get.translation(card)}`)
+                            .set('ai', () => true)
+                            .forResult();
                         if (result.bool) {
                             player.gain(card, 'gain2');
                             let num = 2;

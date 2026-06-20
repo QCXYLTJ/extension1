@@ -12,8 +12,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 _priority: 1,
                 forced: true,
                 /*filter:function (event,player){
-                return !event.player.isAlive();   
-                },*/
+        return !event.player.isAlive();   
+        },*/
                 content() {
                     game.playAudio('../extension/将包/audio', trigger.player.name);
                 },
@@ -596,7 +596,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var card = get.cards(4);
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['获得其中任意数量点数之和不大于13的牌', card], [0, card.length])
                                     .set('filterButton', (button) => {
                                         if (ui.selected.buttons[0]) {
@@ -608,7 +608,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return true;
                                     })
-                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number);
+                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number)
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     player.gain(result.links, 'gain2');
                                 }
@@ -3612,6 +3613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if ((player == current.group) != 'emm') return 2;
                                         })
                                     );
+
                                     return num;
                                 },
                             },
@@ -3861,7 +3863,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player
+                                const result = await player
                                     .chooseControl('摸牌', '加伤')
                                     .set('prompt', get.prompt2('fenpo+'))
                                     .set('ai', () => {
@@ -3869,7 +3871,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.tag(trigger.card, 'respondShan') && trigger.target.hasShan()) return '摸牌';
                                         if (get.tag(trigger.card, 'respondSha') && trigger.target.hasSha()) return '摸牌';
                                         return '加伤';
-                                    });
+                                    })
+                                    .forResult();
                                 var nd = trigger.target.countCards('hej');
                                 if (result.control == '摸牌') player.draw(nd);
                                 else trigger.parent.baseDamage += nd;
@@ -4504,7 +4507,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             filter(event, player) {
-                                return get.type(event.card) == 'trick,', 'basic', 'equip';
+                                return (get.type(event.card) == 'trick,', 'basic', 'equip');
                             },
                             content() {
                                 'step 0';
@@ -6888,13 +6891,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域')
+                                        .forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -7568,6 +7572,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return r[e];
                                                 },
                                             ];
+
                                             e = function () {
                                                 return '\\w+';
                                             };
@@ -9154,6 +9159,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     card.init(Object.assign(info, { name: info.source[0] }));
                                                 },
                                             ],
+
                                             skills: [],
                                             distance: {},
                                             ai: {
@@ -9778,7 +9784,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target)).set('ai', (target) => get.effect(target, trigger.card, player, player));
+                                const result = await player
+                                    .chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target))
+                                    .set('ai', (target) => get.effect(target, trigger.card, player, player))
+                                    .forResult();
                                 if (result.targets && result.targets[0]) {
                                     trigger.targets.push(result.targets[0]);
                                 }
@@ -9919,7 +9928,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target)).set('ai', (target) => get.effect(target, trigger.card, player, player));
+                                const result = await player
+                                    .chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target))
+                                    .set('ai', (target) => get.effect(target, trigger.card, player, player))
+                                    .forResult();
                                 if (result.targets && result.targets[0]) {
                                     trigger.targets.push(result.targets[0]);
                                 }
@@ -10323,10 +10335,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.skill.addArray(lib.character[i][3]);
                                     }
                                 }
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['从所有蜀势力武将牌中选择并获得任意个技能', [list, 'character'], [event.skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [0, Infinity])
                                     .set('filterButton', (button) => event.skill.includes(button.link))
-                                    .set('ai', (button) => Math.random());
+                                    .set('ai', (button) => Math.random())
+                                    .forResult();
                                 if (result.links && result.links[0]) {
                                     if (player.isMinHp()) player.recover();
                                     player.addSkillLog(result.links);
@@ -11105,11 +11118,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player
+                                const result = await player
                                     .chooseTarget([1, Infinity], '获得任意名角色各一张牌', function (card, player, target) {
                                         return target != player && target.countCards('h');
                                     })
-                                    .set('ai', (target) => -get.attitude(player, target));
+                                    .set('ai', (target) => -get.attitude(player, target))
+                                    .forResult();
                                 if (result.targets && result.targets[0]) {
                                     for (var i of result.targets) {
                                         await player.gainPlayerCard(i);
@@ -11260,7 +11274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = game.players.length;
                                 var cards = get.cards(num);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -11268,7 +11282,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var cards = list[0][1];
                                         const target = trigger.name == 'phaseZhunbei' ? player : player.next;
                                         const att = get.attitude(player, target);
-                                        const top = [], bottom = cards;
+                                        const top = [],
+                                            bottom = cards;
                                         for (const i of target.getCards('j')) {
                                             const judge = get.judge(i);
                                             bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -11281,7 +11296,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //给别人观星
+                                    })
+                                    .forResult(); //给别人观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

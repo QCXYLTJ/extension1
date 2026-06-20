@@ -10930,7 +10930,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {//QQQ
                                 let num = 9;
                                 while (num-- > 0) {
-                                    const { result } = await player.judge((card) => card.suit == 'spade' ? -1 : 1);
+                                    const result = await player.judge((card) => card.suit == 'spade' ? -1 : 1).forResult();
                                     if (result && result.suit != 'spade') {
                                         await player.useCard(trigger.card, trigger.target, false);
                                     }

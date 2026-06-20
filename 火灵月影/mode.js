@@ -23,24 +23,24 @@ game.addMode(
           if (lib.config.mode_config.chelunzhan?.随机选将) {
             npc.characternum = 9;
             const list = Object.keys(lib.character).randomGets(5);
-            const { links } = await npc
-              .chooseButton(['选择首个出战武将', [list, 'character']], true)
-              .set('ai', (button) => Math.random())
-              .forResult();
+            const { links } = await npc.
+            chooseButton(['选择首个出战武将', [list, 'character']], true).
+            set('ai', (button) => Math.random()).
+            forResult();
             if (links && links[0]) {
               npc.init(links[0]);
             }
           } else {
-            const { links } = await npc
-              .chooseButton(ui.create.characterDialog('选择十个出战武将'), 10, true)
-              .set('ai', (button) => Math.random())
-              .forResult();
+            const { links } = await npc.
+            chooseButton(ui.create.characterDialog('选择十个出战武将'), 10, true).
+            set('ai', (button) => Math.random()).
+            forResult();
             if (links && links[0]) {
               npc.characterlist = links;
-              const { links: links1 } = await npc
-                .chooseButton(['选择首个出战武将', [npc.characterlist, 'character']], true)
-                .set('ai', (button) => Math.random())
-                .forResult();
+              const { links: links1 } = await npc.
+              chooseButton(['选择首个出战武将', [npc.characterlist, 'character']], true).
+              set('ai', (button) => Math.random()).
+              forResult();
               if (links1 && links1[0]) {
                 npc.characterlist.remove(links1[0]);
                 npc.init(links1[0]);
@@ -69,7 +69,7 @@ game.addMode(
           return;
         }
         game.over(game.players[0]?.side == game.me.side);
-      },
+      }
     },
     element: {
       player: {
@@ -79,10 +79,10 @@ game.addMode(
           if (lib.config.mode_config.chelunzhan?.随机选将) {
             if (player.characternum > 0) {
               const list = Object.keys(lib.character).randomGets(5);
-              const { links } = await player
-                .chooseButton(['选择下一个出战武将', [list, 'character']], true)
-                .set('ai', (button) => Math.random())
-                .forResult();
+              const { links } = await player.
+              chooseButton(['选择下一个出战武将', [list, 'character']], true).
+              set('ai', (button) => Math.random()).
+              forResult();
               if (links && links[0]) {
                 player.characternum--;
                 name = links[0];
@@ -90,10 +90,10 @@ game.addMode(
             }
           } else {
             if (player.characterlist?.length) {
-              const { links } = await player
-                .chooseButton(['选择下一个出战武将', [player.characterlist, 'character']], true)
-                .set('ai', (button) => Math.random())
-                .forResult();
+              const { links } = await player.
+              chooseButton(['选择下一个出战武将', [player.characterlist, 'character']], true).
+              set('ai', (button) => Math.random()).
+              forResult();
               if (links && links[0]) {
                 player.characterlist.remove(links[0]);
                 name = links[0];
@@ -119,8 +119,8 @@ game.addMode(
             return;
           }
           game.checkResult();
-        },
-      },
+        }
+      }
     },
     get: {
       rawAttitude(from, to) {
@@ -134,7 +134,7 @@ game.addMode(
           return 10;
         }
         return -10;
-      },
+      }
     },
     skill: {},
     translate: {
@@ -142,8 +142,8 @@ game.addMode(
       fan: '后',
       zhu2: '先手',
       fan2: '后手',
-      chelunzhan: '车轮战',
-    },
+      chelunzhan: '车轮战'
+    }
   },
   {
     translate: '车轮战',
@@ -151,15 +151,15 @@ game.addMode(
       intro: {
         name: '本模式两边各选10个将,每次选择一名武将出战,阵亡后继续挑选下一位武将出战,直到一边武将全部阵亡',
         frequent: true,
-        clear: true,
+        clear: true
       },
       随机选将: {
         name: '<span class=Qmenu>随机选将</span>',
         intro: '开启后,本模式选将逻辑改为————每次阵亡后从五个随机武将里面挑选一个出战',
         init: false,
-        frequent: true,
-      },
-    },
+        frequent: true
+      }
+    }
   }
 );
 lib.mode.chelunzhan.splash = 'ext:火灵月影/image/chelunzhan.jpg';
@@ -198,18 +198,18 @@ game.addMode(
         if (npc == game.me) {
           if (lib.config.mode_config.lingqifusu?.随机选将) {
             const list = Object.keys(lib.character).randomGets(5);
-            const { links } = await npc
-              .chooseButton(['选择出战武将', [list, 'character']], true)
-              .set('ai', (button) => Math.random())
-              .forResult();
+            const { links } = await npc.
+            chooseButton(['选择出战武将', [list, 'character']], true).
+            set('ai', (button) => Math.random()).
+            forResult();
             if (links && links[0]) {
               npc.init(links[0]);
             }
           } else {
-            const { links } = await npc
-              .chooseButton(ui.create.characterDialog('选择出战武将'), true)
-              .set('ai', (button) => Math.random())
-              .forResult();
+            const { links } = await npc.
+            chooseButton(ui.create.characterDialog('选择出战武将'), true).
+            set('ai', (button) => Math.random()).
+            forResult();
             if (links && links[0]) {
               npc.init(links[0]);
             }
@@ -233,7 +233,7 @@ game.addMode(
           return;
         }
         game.over(game.players[0]?.side == game.me.side);
-      },
+      }
     },
     element: {
       player: {
@@ -256,7 +256,7 @@ game.addMode(
             heti: 280,
             dacheng: 360,
             dujie: 450,
-            feisheng: 550,
+            feisheng: 550
           };
           if (!player.jingjie) {
             player.jingjie = 'lianqi';
@@ -275,17 +275,17 @@ game.addMode(
           const index = jingjie.indexOf(player.jingjie);
           const skills = Object.keys(lib.skill).filter((i) => lib.translate[`${i}_info`]);
           const list = skills.randomGets(3);
-          const { control } = await player
-            .chooseControl(list)
-            .set(
-              'choiceList',
-              list.map(function (i) {
-                return `<div class='skill'><${get.translation(i)}></div><div>${get.skillInfoTranslation(i, player)}</div>`;
-              })
-            )
-            .set('displayIndex', false)
-            .set('prompt', `破境:请选择获得的技能`)
-            .forResult();
+          const { control } = await player.
+          chooseControl(list).
+          set(
+            'choiceList',
+            list.map(function (i) {
+              return `<div class='skill'><${get.translation(i)}></div><div>${get.skillInfoTranslation(i, player)}</div>`;
+            })
+          ).
+          set('displayIndex', false).
+          set('prompt', `破境:请选择获得的技能`).
+          forResult();
           player.addSkillLog(control);
           player.jingjie = jingjie[index + 1];
           return player.jingjie;
@@ -302,8 +302,8 @@ game.addMode(
           const index1 = jingjie.indexOf(player.jingjie);
           const index2 = jingjie.indexOf(target.jingjie);
           return index1 - index2;
-        },
-      },
+        }
+      }
     },
     get: {
       rawAttitude(from, to) {
@@ -317,7 +317,7 @@ game.addMode(
           return 10;
         }
         return -10;
-      },
+      }
     },
     skill: {
       // 任意角色体力值每增加1获得2灵力,体力值每扣减1失去1灵力,每获得1牌获得1灵力,每失去1牌失去0.5灵力,每造成一点伤害获得2灵力
@@ -327,7 +327,7 @@ game.addMode(
       _lingqifusu: {
         trigger: {
           player: ['gainEnd', 'loseEnd', 'changeHpEnd'],
-          source: ['damageEnd'],
+          source: ['damageEnd']
         },
         filter(event, player) {
           return player.countMark('_lingqifusu') < player.maxlingli();
@@ -336,7 +336,7 @@ game.addMode(
         intro: {
           content(storage, player) {
             return `当前境界${get.translation(player.jingjie)}<br>当前灵力${storage}`;
-          },
+          }
         },
         async content(event, trigger, player) {
           if (trigger.name == 'gain') {
@@ -366,13 +366,13 @@ game.addMode(
             ai: {
               order: 99,
               result: {
-                player: 99,
-              },
-            },
+                player: 99
+              }
+            }
           },
           2: {
             trigger: {
-              player: ['damageBefore'],
+              player: ['damageBefore']
             },
             forced: true,
             async content(event, trigger, player) {
@@ -394,10 +394,10 @@ game.addMode(
                 }
               }
               trigger.num = Math.round(trigger.num * (num / 100));
-            },
-          },
-        },
-      },
+            }
+          }
+        }
+      }
     },
     translate: {
       xian: '仙',
@@ -415,8 +415,8 @@ game.addMode(
       heti: '合体',
       dacheng: '大乘',
       dujie: '渡劫',
-      feisheng: '飞升',
-    },
+      feisheng: '飞升'
+    }
   },
   {
     translate: '灵气复苏',
@@ -424,13 +424,13 @@ game.addMode(
       intro: {
         name: '本模式有三个阵营<仙/魔/灵>,存活至最后的阵营获得胜利<br>本模式引入灵气机制,所有角色体力上限翻十倍<br>任意角色体力值每增加1获得2灵力,体力值每扣减1失去1灵力,每获得1牌获得1灵力,每失去1牌失去0.5灵力,每造成一点伤害获得2灵力<br>灵力可以增幅攻击力与防御力,境界低的攻击对境界高的修士会大幅衰减<br>若当前灵力达到当前境界上限,则无法继续获得灵力<br>出牌阶段限一次,你可以获得一个技能来突破瓶颈<br>以下为境界与灵力上限对照表<br>境界 当前最大灵力<br>炼气——10<br>筑基——30<br>金丹——60<br>元婴——100<br>化神——150<br>炼虚——210<br>合体——280<br>大乘——360<br>渡劫——450<br>飞升——550',
         frequent: true,
-        clear: true,
+        clear: true
       },
       随机选将: {
         name: '<span class=Qmenu>随机选将</span>',
         intro: '开启后,本模式选将逻辑改为随机选将',
         init: false,
-        frequent: true,
+        frequent: true
       },
       单阵营人数: {
         name: '<span class=Qmenu>单阵营人数</span>',
@@ -441,11 +441,11 @@ game.addMode(
           3: '<span class=Qmenu>3</span>',
           4: '<span class=Qmenu>4</span>',
           5: '<span class=Qmenu>5</span>',
-          6: '<span class=Qmenu>6</span>',
+          6: '<span class=Qmenu>6</span>'
         },
-        frequent: true,
-      },
-    },
+        frequent: true
+      }
+    }
   }
 );
 lib.mode.lingqifusu.splash = 'ext:火灵月影/image/lingqifusu.jpg';
@@ -481,18 +481,18 @@ game.addMode(
         if (npc == game.me) {
           if (lib.config.mode_config.jiguchuanhua?.随机选将) {
             const list = Object.keys(lib.character).randomGets(5);
-            const { links } = await npc
-              .chooseButton(['选择出战武将', [list, 'character']], true)
-              .set('ai', (button) => Math.random())
-              .forResult();
+            const { links } = await npc.
+            chooseButton(['选择出战武将', [list, 'character']], true).
+            set('ai', (button) => Math.random()).
+            forResult();
             if (links && links[0]) {
               npc.init(links[0]);
             }
           } else {
-            const { links } = await npc
-              .chooseButton(ui.create.characterDialog('选择出战武将'), true)
-              .set('ai', (button) => Math.random())
-              .forResult();
+            const { links } = await npc.
+            chooseButton(ui.create.characterDialog('选择出战武将'), true).
+            set('ai', (button) => Math.random()).
+            forResult();
             if (links && links[0]) {
               npc.init(links[0]);
             }
@@ -513,7 +513,7 @@ game.addMode(
         for (const i of game.dead) {
           i.qrevive();
         }
-      },
+      }
     },
     element: {
       player: {
@@ -522,8 +522,8 @@ game.addMode(
           if (!game.players.includes(player) || player.isDead()) {
             player.qrevive();
           }
-        },
-      },
+        }
+      }
     },
     get: {
       rawAttitude(from, to) {
@@ -537,13 +537,13 @@ game.addMode(
           return 10;
         }
         return -10;
-      },
+      }
     },
     skill: {
       // 每队的一号位回合开始时,若本队没有<花>,将牌堆顶一张牌作为<花>加入手牌
       _jiguchuanhua: {
         trigger: {
-          player: ['phaseBegin'],
+          player: ['phaseBegin']
         },
         forced: true,
         filter(event, player) {
@@ -561,7 +561,7 @@ game.addMode(
           // 若被失去的<花>原先所属队伍没有<花>,将牌堆顶一张牌作为<花>,加入一号位手牌
           1: {
             trigger: {
-              player: ['loseAfter'],
+              player: ['loseAfter']
             },
             forced: true,
             filter(event, player) {
@@ -586,12 +586,12 @@ game.addMode(
                   boss.gain(cardx, 'gain2');
                 }
               }
-            },
+            }
           },
           // 任意角色体力值减少时防止之,改为随机弃置一张牌
           2: {
             trigger: {
-              player: ['changeHpBegin', 'dieBegin', 'die'],
+              player: ['changeHpBegin', 'dieBegin', 'die']
             },
             forced: true,
             forceDie: true,
@@ -608,10 +608,10 @@ game.addMode(
                 trigger.cancel();
                 player.randomDiscard('he');
               }
-            },
-          },
-        },
-      },
+            }
+          }
+        }
+      }
     },
     card: {
       // 花
@@ -642,14 +642,14 @@ game.addMode(
         ai: {
           order: 50,
           result: {
-            target: 5,
+            target: 5
           },
           basic: {
             useful: 20,
-            value: 20,
-          },
-        },
-      },
+            value: 20
+          }
+        }
+      }
     },
     translate: {
       long: '龙',
@@ -658,8 +658,8 @@ game.addMode(
       hua_info: '出牌阶段,你可以对下一个友方角色使用,置入目标手牌区内<br>当<花>从一号位经过后续队友重新回到一号位手中后,称为完整传递一次<br>将<花>完整传递累计达到3次的队伍,获得游戏胜利',
       jiguchuanhua: '击鼓传花',
       _jiguchuanhua: '击鼓传花',
-      _jiguchuanhua_info: '每队的一号位回合开始时,若本队没有<花>,将牌堆顶一张牌作为<花>加入手牌<br><花>进入弃牌堆时回复原牌名,且失去者所在队伍弃置一半牌<br>若被失去的<花>原先所属队伍没有<花>,将牌堆顶一张牌作为<花>,加入一号位手牌<br>任意角色体力值减少时防止之,改为随机弃置一张牌',
-    },
+      _jiguchuanhua_info: '每队的一号位回合开始时,若本队没有<花>,将牌堆顶一张牌作为<花>加入手牌<br><花>进入弃牌堆时回复原牌名,且失去者所在队伍弃置一半牌<br>若被失去的<花>原先所属队伍没有<花>,将牌堆顶一张牌作为<花>,加入一号位手牌<br>任意角色体力值减少时防止之,改为随机弃置一张牌'
+    }
   },
   {
     translate: '击鼓传花',
@@ -667,15 +667,15 @@ game.addMode(
       intro: {
         name: '本模式4人一队,总计两队<br>每队的一号位回合开始时,若本队没有<花>,将牌堆顶一张牌作为<花>加入手牌<br><花>进入弃牌堆时回复原牌名,且失去者所在队伍弃置一半牌<br>若被失去的<花>原先所属队伍没有<花>,将牌堆顶一张牌作为<花>,加入一号位手牌<br>任意角色体力值减少时防止之,改为随机弃置一张牌<br>花<br>出牌阶段,你可以对下一个友方角色使用,置入目标手牌区内<br>当<花>从一号位经过后续队友重新回到一号位手中后,称为完整传递一次<br>将<花>完整传递累计达到3次的队伍,获得游戏胜利',
         frequent: true,
-        clear: true,
+        clear: true
       },
       随机选将: {
         name: '<span class=Qmenu>随机选将</span>',
         intro: '开启后,本模式选将逻辑改为随机选将',
         init: false,
-        frequent: true,
-      },
-    },
+        frequent: true
+      }
+    }
   }
 );
 lib.mode.jiguchuanhua.splash = 'ext:火灵月影/image/jiguchuanhua.jpg';
@@ -1219,14 +1219,14 @@ window.shanhe = {
     }
     delete _status.roundStart; // 轮数重置
     _status.globalHistory = [
-      {
-        cardMove: [],
-        custom: [],
-        useCard: [],
-        changeHp: [],
-        everything: [],
-      },
-    ];
+    {
+      cardMove: [],
+      custom: [],
+      useCard: [],
+      changeHp: [],
+      everything: []
+    }];
+
     // 清空全局历史事件
     game.roundNumber = 0;
     ui.arenalog.innerHTML = ''; /*清除历史记录*/
@@ -1500,7 +1500,7 @@ window.shanhe = {
         难度: '3',
         城池数量: '3',
         关卡数量: '3',
-        boss数量: '3',
+        boss数量: '3'
       };
     }
     const config = lib.config.mode_config.shanhetu;
@@ -1527,13 +1527,13 @@ window.shanhe = {
             hujia: Math.ceil(Math.random() * nandu),
             maxHp: Math.ceil(Math.random() * nandu),
             equip: Math.ceil(Math.random() * nandu),
-            card: Math.ceil(Math.random() * nandu),
+            card: Math.ceil(Math.random() * nandu)
           };
         }
       }
     }
     game.saveConfig('shanhe', lib.config.shanhe);
-  },
+  }
 };
 game.addMode(
   'shanhetu',
@@ -1599,7 +1599,7 @@ game.addMode(
         cur_equip: lib.config.shanhe.cur_equip || [], // 当前初始装备
         cur_card: lib.config.shanhe.cur_card || [], // 当前初始手牌
         cur_friend: lib.config.shanhe.cur_friend || [], // 当前队友
-        cur_jinbi: lib.config.shanhe.cur_jinbi || 0, // 当前金币
+        cur_jinbi: lib.config.shanhe.cur_jinbi || 0 // 当前金币
       };
       if (!lib.config.shanhe.chengchi) {
         shanhe.chongzhijilu();
@@ -1635,7 +1635,7 @@ game.addMode(
           } //移除重开再战按钮
           shanhe.jiesuan(bool);
         };
-      },
+      }
     },
     element: {
       player: {
@@ -1644,7 +1644,7 @@ game.addMode(
             return;
           }
           game.checkResult();
-        },
+        }
       },
       content: {
         async phaseLoop(event, trigger, player) {
@@ -1683,10 +1683,10 @@ game.addMode(
               break;
             }
             let findNext = (current) => {
-              let players = game.players
-                .slice(0)
-                .concat(game.dead)
-                .sort((a, b) => parseInt(a.dataset.position) - parseInt(b.dataset.position));
+              let players = game.players.
+              slice(0).
+              concat(game.dead).
+              sort((a, b) => parseInt(a.dataset.position) - parseInt(b.dataset.position));
               let position = parseInt(current.dataset.position);
               for (let i = 0; i < players.length; i++) {
                 if (parseInt(players[i].dataset.position) > position) {
@@ -1697,8 +1697,8 @@ game.addMode(
             };
             event.player = findNext(event.player);
           }
-        },
-      },
+        }
+      }
     },
     get: {
       rawAttitude(from, to) {
@@ -1712,7 +1712,7 @@ game.addMode(
           return 10;
         }
         return -10;
-      },
+      }
     },
     skill: {
       _shanhe_maxhandcard: {
@@ -1721,9 +1721,9 @@ game.addMode(
             if (player == game.me && lib.config.shanhe.cur_maxhandcard > 0) {
               return num + lib.config.shanhe.cur_maxhandcard;
             }
-          },
-        },
-      },
+          }
+        }
+      }
       // 山河册战法库
       // 【资源流】[总数7/35][普通2/11][稀有2/14][史诗2/6][传说1/4]:商店可无限刷新
       // 资源流	普通	赌徒Ⅰ	通过战斗获得的铜币将在50%-200%内随机
@@ -2026,8 +2026,8 @@ game.addMode(
       maxhandcard: '手牌上限',
       equip: '装备',
       card: '初始手牌',
-      friend: '盟友',
-    },
+      friend: '盟友'
+    }
   },
   {
     translate: '山河图',
@@ -2035,7 +2035,7 @@ game.addMode(
       intro: {
         name: '山河图',
         frequent: true,
-        clear: true,
+        clear: true
       },
       难度: {
         name: '<span class=Qmenu>难度</span>',
@@ -2050,8 +2050,8 @@ game.addMode(
           5: '<span class=Qmenu>5</span>',
           6: '<span class=Qmenu>6</span>',
           7: '<span class=Qmenu>7</span>',
-          8: '<span class=Qmenu>8</span>',
-        },
+          8: '<span class=Qmenu>8</span>'
+        }
       },
       城池数量: {
         name: '<span class=Qmenu>城池数量</span>',
@@ -2066,8 +2066,8 @@ game.addMode(
           5: '<span class=Qmenu>5</span>',
           6: '<span class=Qmenu>6</span>',
           7: '<span class=Qmenu>7</span>',
-          8: '<span class=Qmenu>8</span>',
-        },
+          8: '<span class=Qmenu>8</span>'
+        }
       },
       关卡数量: {
         name: '<span class=Qmenu>关卡数量</span>',
@@ -2082,8 +2082,8 @@ game.addMode(
           5: '<span class=Qmenu>5</span>',
           6: '<span class=Qmenu>6</span>',
           7: '<span class=Qmenu>7</span>',
-          8: '<span class=Qmenu>8</span>',
-        },
+          8: '<span class=Qmenu>8</span>'
+        }
       },
       boss数量: {
         name: '<span class=Qmenu>boss数量</span>',
@@ -2098,8 +2098,8 @@ game.addMode(
           5: '<span class=Qmenu>5</span>',
           6: '<span class=Qmenu>6</span>',
           7: '<span class=Qmenu>7</span>',
-          8: '<span class=Qmenu>8</span>',
-        },
+          8: '<span class=Qmenu>8</span>'
+        }
       },
       重置通关记录: {
         name: '<span class=Qmenu>重置通关记录</span>',
@@ -2113,9 +2113,9 @@ game.addMode(
           } else {
             alert('只有在山河图模式下才可以重置通关记录');
           }
-        },
-      },
-    },
+        }
+      }
+    }
   }
 );
 lib.mode.shanhetu.splash = 'ext:火灵月影/image/shanhetu.jpg';

@@ -31488,7 +31488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             //出牌阶段,对你使用.你可以弃置一张牌,判定一次.若不为♠️️,你摸两张牌,随机弃置区域内的两张牌
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await event.targets[0].chooseToDiscard('he', '弃置一张牌,判定一次.若不为♠️️,你摸两张牌,随机弃置区域内的两张牌').set('ai', (card) => 4 - get.value(card));
+                                const result = await event.targets[0].chooseToDiscard('he', '弃置一张牌,判定一次.若不为♠️️,你摸两张牌,随机弃置区域内的两张牌').set('ai', (card) => 4 - get.value(card)).forResult();
                                 if (result.cards && result.cards[0]) {
                                     const { result: result1 } = await event.targets[0].judge(function (card) {
                                         return card.suit == 'spade' ? -1 : 1;

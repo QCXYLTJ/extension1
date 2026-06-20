@@ -425,8 +425,11 @@ export let info = {
           str = `是否令${get.translation(player)}本次摸到的牌可于此阶段弃置？`;
         for (let target of targets) {
           target.line(player, 'green');
-          const { result } = await player.draw('nodelay');
-          const { bool } = await target.chooseBool(str).set('choice', get.attitude(target, player) > 3).forResult();
+          const result = await player.draw('nodelay').forResult();
+          const { bool } = await target
+            .chooseBool(str)
+            .set('choice', get.attitude(target, player) > 3)
+            .forResult();
           if (!bool && result) {
             notdiscard.push(...result);
             target.popup('不弃');
@@ -527,13 +530,13 @@ export let info = {
           .set('judging', trigger.player.judging[0])
           .set('_replace', ok);
 				/*if (next.getDefaultHandlerType) {
-                    let type = next.getDefaultHandlerType();
-                    next.set(type, (next[type] || []).add(function (event, option){
-                        let result = event.result;
-                        if (result && (result.cards && !result.cards.length || result.targets && !result.targets.length))
-                            event.nouse = true;
-                    }));
-                };*/ const { cards, targets, bool } = await next.forResult();
+                        let type = next.getDefaultHandlerType();
+                        next.set(type, (next[type] || []).add(function (event, option){
+                            let result = event.result;
+                            if (result && (result.cards && !result.cards.length || result.targets && !result.targets.length))
+                                event.nouse = true;
+                        }));
+                    };*/ const { cards, targets, bool } = await next.forResult();
         if (bool || (!bool && (!cards || !cards.length || !targets || !targets.length))) {
           if (!bool) {
             let result = await player
@@ -569,7 +572,7 @@ export let info = {
         var num = 3;
         var cards = get.cards(num);
         game.cardsGotoOrdering(cards);
-        const { result } = await player
+        const result = await player
           .chooseToMove()
           .set('list', [['牌堆顶', cards], ['牌堆底']])
           .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -591,7 +594,8 @@ export let info = {
               top.push(bottom.shift());
             }
             return [top, bottom];
-          }); //给别人观星
+          })
+          .forResult(); //给别人观星
         result.moved[0].reverse();
         for (var i of result.moved[0]) {
           ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
