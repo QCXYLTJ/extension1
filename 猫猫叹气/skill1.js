@@ -29168,7 +29168,7 @@ player.chooseToDiscard('he',2,'是否弃置两张牌对'+get.translation(trigger
             return event.player != player && player.hasCard('mym_modaozhitong', 'hs');
         },
         async content(event, trigger, player) {
-            const { result } = await player.chooseToUse(`${get.translation(trigger.player)}即将发动技能【${get.translation(trigger.name)}】,对其使用【魔导之瞳】`, (card, player) => card.name == 'mym_modaozhitong' && lib.filter.cardEnabled(card, player, 'forceEnable'), trigger.player);
+            const result = await player.chooseToUse(`${get.translation(trigger.player)}即将发动技能【${get.translation(trigger.name)}】,对其使用【魔导之瞳】`, (card, player) => card.name == 'mym_modaozhitong' && lib.filter.cardEnabled(card, player, 'forceEnable'), trigger.player).forResult();
             if (result.card) {
                 const name = trigger.skill;
                 const info = lib.skill[name];

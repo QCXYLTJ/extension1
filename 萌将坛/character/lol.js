@@ -498,9 +498,9 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								var str = '是否将装备区里的武器牌替换成';
 								str += get.translation(card);
 								str += '？';
-								const { result } = await player.chooseBool(str).set('ai', function () {
+								const result = await player.chooseBool(str).set('ai', function () {
 									return 1;
-								});
+								}).forResult();
 								bool = result.bool;
 							}
 							if (bool) {
@@ -2586,7 +2586,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						if (!sha.length) hasSha = false;
 						for (const card of sha) {
 							const prompt = '是否立即使用' + get.translation(card) + '？';
-							const { result } = await player.chooseUseTarget(prompt, card, false);
+							const result = await player.chooseUseTarget(prompt, card, false).forResult();
 							if (!result || !result.bool) break;
 						}//QQQ
 					}

@@ -667,9 +667,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 player.addTempSkill('问计_1');
-                                const { result } = await player.chooseTarget('你可以令至多两名其他角色交给你一张牌', [1, 2], function (card, player, target) {
+                                const result = await player.chooseTarget('你可以令至多两名其他角色交给你一张牌', [1, 2], function (card, player, target) {
                                     return target != player && target.countCards('he') > 0;
-                                });
+                                }).forResult();
                                 if (result.targets && result.targets[0]) {
                                     for (var i of result.targets.concat(player.storage.问技_target)) {
                                         const { result: result1 } = await i.chooseCard(`交给${get.translation(player)}1张牌`, true, 'he').set('ai', (card) => get.attitude(player, i) * get.value(card));
@@ -4115,7 +4115,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             check: (event, player) => event.player.isFriendsOf(player),
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseCard('he', true);
+                                const result = await player.chooseCard('he', true).forResult();
                                 if (result.cards && result.cards[0]) {
                                     trigger.player.gain(result.cards, 'giveAuto');
                                     if (trigger.source && trigger.source.countCards('he')) {

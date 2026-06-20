@@ -10424,7 +10424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 if (player.hasCard((c) => get.type(c) == 'delay', 'hej')) {
-                                    const { result } = await player.chooseButton(['弃置一张延时锦囊牌', player.getCards('hej', (c) => get.type(c) == 'delay')]).set('ai', () => 1);
+                                    const result = await player.chooseButton(['弃置一张延时锦囊牌', player.getCards('hej', (c) => get.type(c) == 'delay')]).set('ai', () => 1).forResult();
                                     if (result.links && result.links[0]) {
                                         player.discard(result.links);
                                         player.chooseUseTarget('lg_buwu', true, false);
@@ -31871,7 +31871,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 if (event.targets[0].countCards('he')) {
-                                    const { result } = await player.discardPlayerCard('he', event.targets[0], true);
+                                    const result = await player.discardPlayerCard('he', event.targets[0], true).forResult();
                                     if (result.cards && result.cards[0]) {
                                         if (get.type(result.cards[0]) !== 'trick') {
                                             player.gain(game.createCard('huogong'), 'gain2');
@@ -40471,10 +40471,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var cards = get.cards(player.hp);
                                 player.showCards(cards);
                                 while (cards.length) {
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseButton(['使用其中一张牌,令此牌指定的目标角色各选择获得其中亮出的一张牌', cards])
                                         .set('filterButton', (button) => player.hasUseTarget(button.link, true, true)) //第二个参数是距离,第三个是用牌次数
-                                        .set('ai', (button) => player.getUseValue(button.link) + (lib.card[button.link.name].toself ? 40 : 0));
+                                        .set('ai', (button) => player.getUseValue(button.link) + (lib.card[button.link.name].toself ? 40 : 0)).forResult();
                                     if (result.links && result.links[0]) {
                                         cards.remove(result.links[0]);
                                         const { result: result1 } = await player.chooseUseTarget(result.links[0], true, false);

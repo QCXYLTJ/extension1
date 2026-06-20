@@ -2238,7 +2238,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						},
 						async content(event, trigger, player) {
 							const map = lib.skill.scqhZhinv_jilue_add.map(trigger, player);
-							const { result } = await player
+							const result = await player
 								.chooseBool()
 								.set('map', map)
 								.set('prompt', '是否获得【' + get.translation(map.name) + '】？')
@@ -2247,7 +2247,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 									let map = _status.event.map;
 									if (map && map.ai) return 1;
 									return 0;
-								});
+								}).forResult();
 							if (result.bool) {
 								player.removeMark('charge', 1, false);
 								player.addTempSkill(map.skill, { player: 'phaseBegin' });

@@ -8107,7 +8107,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             //当你受到有来源的伤害后,你可选择一名不为伤害来源的角色,其获得技能铁骑直至回合结束.该角色可以弃置一张牌,视为对伤害来源使用一张【杀】(无距离限制).若其因此【杀】造成了伤害,则你可以回复1点体力或摸一张牌你穿一件衣服
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget(get.prompt2('spxianchou'), (card, player, target) => target != trigger.source).set('ai', (target) => get.attitude(target, player) * Math.sqrt(target.countCards('he')));
+                                const result = await player.chooseTarget(get.prompt2('spxianchou'), (card, player, target) => target != trigger.source)
+                                    .set('ai', (target) => get.attitude(target, player) * Math.sqrt(target.countCards('he'))).forResult();
                                 if (result.targets && result.targets[0]) {
                                     result.targets[0].addTempSkill('retieji');
                                     const { result: result1 } = await result.targets[0].chooseToDiscard('he', '是否弃置一张牌,视为对' + get.translation(trigger.source) + '使用一张【杀】？').set('ai', (card) => -get.attitude(result.targets[0], trigger.source) - get.value(card));

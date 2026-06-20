@@ -3575,7 +3575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.getExpansions('ua_tuntian').length && event.filterCard({ name: 'shunshou' }, player, event);
                             },
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseButton(['你的<田>可转化为【顺手牵羊】', player.getExpansions('ua_tuntian')]).set('ai', (button) => 2);
+                                const result = await player.chooseButton(['你的<田>可转化为【顺手牵羊】', player.getExpansions('ua_tuntian')]).set('ai', (button) => 2).forResult();
                                 if (result.links && result.links[0]) {
                                     await player.chooseUseTarget({ name: 'shunshou' }, result.links, true, false);
                                 }
@@ -6492,7 +6492,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var cards = get.cards(4);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -6511,7 +6511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //自己观星
+                                    }).forResult(); //自己观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
@@ -9254,11 +9254,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var count = trigger.num;
                                 while (count-- > 0) {
                                     player.storage.ua_hengjiang++;
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseTarget(function (card, player, target) {
                                             return target != player;
                                         })
-                                        .set('ai', (t) => -get.attitude(player, t));
+                                        .set('ai', (t) => -get.attitude(player, t)).forResult();
                                     if (result.targets && result.targets[0]) {
                                         result.targets[0].addSkill('ua_hengjiang2');
                                         let ua = player.storage.ua_hengjiang + player.countMark('ua_hengjiang_zd');

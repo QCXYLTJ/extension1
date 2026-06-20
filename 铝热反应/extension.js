@@ -957,7 +957,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (_status.currentPhase) list.add(_status.currentPhase);
 								for (const i of list) {
 									if (i.countCards('he')) {
-										const { result } = await i.chooseToMove()
+										const result = await i.chooseToMove()
 											.set('list', [['你的牌', i.getCards('he')], ['中央区', cards]])
 											.set('prompt', '交换中央区等量的花色各异的牌')
 											.set('processAI', function (list) {
@@ -965,7 +965,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												card.sort((a, b) => get.value(b) - get.value(a));//态度大于0就把价值高的牌放前面
 												var top = card.splice(0, i.countCards('he'));//起始位置,删除元素数量,插入的元素
 												return [top, card];
-											});//自己观星
+											}).forResult();//自己观星
 										for (const j of result.moved[0]) {
 											if (!i.getCards('he').includes(j)) {
 												i.node.handcards1.appendChild(j);
@@ -1636,8 +1636,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							//准备阶段,你可以令以下一至二项数值-1,其余项+<X>,直到你下回合开始:①攻击范围;②使用【杀】的次数;③<>内的数字(<X>为你本次选择的项数)
 							async content(event, trigger, player) {//QQQ
-								const { result } = await player.chooseButton(['令以下一至二项数值-1,其余项+<X>', [['攻击范围', '使用【杀】的次数', '<>内的数字'], 'tdnodes']], [1, 2])
-									.set('ai', (button) => Math.random());
+								const result = await player.chooseButton(['令以下一至二项数值-1,其余项+<X>', [['攻击范围', '使用【杀】的次数', '<>内的数字'], 'tdnodes']], [1, 2])
+									.set('ai', (button) => Math.random()).forResult();
 								if (result.links && result.links[0]) {
 									player.addTempSkill('lr_yunling_effect', { player: 'phaseZhunbeiBegin' });
 									player.say(['隐身于,山岚之境.', '藏匿于,雾霭之心.'].randomGet());

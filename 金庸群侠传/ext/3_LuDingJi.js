@@ -777,7 +777,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         return false;
                     },
                     content: async function (event, trigger, player) {
-                        const { result } = await trigger.targets[0].chooseToCompare(trigger.player);
+                        const result = await trigger.targets[0].chooseToCompare(trigger.player).forResult();
                         if (!result.tie) {
                             if (result.bool) {
                                 const gains = [result.player, result.target].filterInD('od');

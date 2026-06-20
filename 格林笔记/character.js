@@ -895,12 +895,12 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						.forResult();
 					if (targets?.length) {
 						player.line(targets[0], 'thunder');
-						const { result } = await targets[0]
+						const result = await targets[0]
 							.chooseToUse('激励:使用一张杀,否则失去一点体力并获得两层激昂', function (card) {
 								if (card.name != 'sha') return false;
 								return lib.filter.cardEnabled.apply(this, arguments);
 							})
-							.set('addCount', false);
+							.set('addCount', false).forResult();
 						if (result.bool == false) {
 							targets[0].loseHp();
 							targets[0].gl_changeBuff('gl_jiang', 2);

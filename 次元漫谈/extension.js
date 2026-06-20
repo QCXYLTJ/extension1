@@ -22704,7 +22704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var next = player.chooseToCompare(targets[0]);
 										if (!next.fixedResult) next.fixedResult = {};
 										next.fixedResult[player.playerid] = links[0];
-										const { result } = await next;
+										const result = await next.forResult();
 										if (result.bool) {
 											for (var i of [result.player, result.target]) {
 												ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

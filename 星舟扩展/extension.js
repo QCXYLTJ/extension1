@@ -7892,12 +7892,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							charlotte: true,
 							async content(event, trigger, player) {
 								//QQQ
-								const { result } = await player
+								const result = await player
 									.chooseButton(['弃置1种花色的所有牌', [lib.suits, 'vcard']], 1)
 									.set('filterButton', (button) => player.countCards('h', { suit: button.link }) > 0)
 									.set('ai', (button) => {
 										return 6 - player.countCards('h', { suit: button.link });
-									});
+									}).forResult();
 								if (result.links && result.links[0]) {
 									const { result: result1 } = await player
 										.chooseTarget('观看一名其他角色的手牌并弃置其中一种花色的所有牌', (card, player, target) => target != player && target.countCards('h'))
@@ -8087,13 +8087,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (trigger.player.countCards('he')) {
 									choice.push('获得牌');
 								}
-								const { result } = await player
+								const result = await player
 									.chooseControl(choice)
 									.set('prompt', get.prompt2('rexingshang'))
 									.set('ai', function () {
 										if (trigger.player.countCards('he') > 3) return '获得牌';
 										return '回复体力';
-									});
+									}).forResult();
 								if (result.control == '获得牌') {
 									event.togain = trigger.player.getCards('he');
 									player.gain(event.togain, trigger.player, 'giveAuto', 'bySelf');

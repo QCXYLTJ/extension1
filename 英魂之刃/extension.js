@@ -9402,13 +9402,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									forced: true,
 									async content(event, trigger, player) {
 										//QQQ
-										const { result } = await player
+										const result = await player
 											.chooseTarget('选择【火之箭矢】的目标', function (card, player, target) {
 												return target != player;
 											})
 											.set('ai', function (target) {
 												return -get.attitude(player, target);
-											});
+											}).forResult();
 										if (result.targets && result.targets[0]) {
 											const { result: result1 } = await player.chooseCard(1, 'h', { name: 'sha' }, true, '将一张【杀】转化为【火杀】并对目标使用');
 											if (result1 && result1.cards && result1.cards[0]) {

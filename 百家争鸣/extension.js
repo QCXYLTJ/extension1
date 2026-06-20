@@ -4701,7 +4701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 await player.draw();
                                 if (player.countCards('he')) {
-                                    const { result } = await player.chooseToDiscard(true, 'he').set('ai', (card) => card.name == trigger.card.name);
+                                    const result = await player.chooseToDiscard(true, 'he').set('ai', (card) => card.name == trigger.card.name).forResult();
                                     if (result.cards && result.cards[0]) {
                                         if (result.cards[0].name == trigger.card.name) {
                                             player.chat('<div class="text center"><span class=thundertext>你的计谋!被我的【止矢】识破了');

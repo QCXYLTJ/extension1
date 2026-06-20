@@ -2392,7 +2392,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const { result } = await i.chooseToUse({
+                        const result = await i.chooseToUse({
                             filterCard(card, player, event) {
                                 return lib.filter.cardSavable(card, player, player1);
                             },
@@ -2423,7 +2423,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'dying',
                             targetRequired: true,
                             dying: player1,
-                        });
+                        }).forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -9062,10 +9062,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: ['chooseToUse', 'chooseToRespond'],
                             async content(event, trigger, player) {
                                 let evt = event.getParent(2);
-                                const { result } = await player
+                                const result = await player
                                     .chooseTarget(2, '选择拼点目标,并猜测胜负', (card, player, target) => target.countCards('h') && !target.hasSkillTag('noCompareTarget'))
                                     .set('ai', (target) => 20 - get.attitude(player, target))
-                                    .set('targetprompt', ['胜利者', '失败者']);
+                                    .set('targetprompt', ['胜利者', '失败者']).forResult();
                                 if (result.targets && result.targets[0]) {
                                     if (result.targets[0].canCompare(result.targets[1])) {
                                         const { result: result1 } = await result.targets[0].chooseToCompare(result.targets[1]);

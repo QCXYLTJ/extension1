@@ -2561,7 +2561,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.removeSkill('rytuxi_yingzi');
                                 while (trigger.num > 0) {
                                     if (game.hasPlayer((target) => target.countCards('h') && player != target)) {
-                                        const { result } = await player.chooseTarget(`少摸任意的牌,获得其他角色等量张手牌(当前剩余摸牌数:${trigger.num})`, (card, player, target) => target.countCards('h') && player != target, (target) => -get.attitude(player, target));
+                                        const result = await player.chooseTarget(`少摸任意的牌,获得其他角色等量张手牌(当前剩余摸牌数:${trigger.num})`, (card, player, target) => target.countCards('h') && player != target, (target) => -get.attitude(player, target)).forResult();
                                         if (result.targets && result.targets[0]) {
                                             await player.gainPlayerCard(result.targets[0], 'h', true);
                                             trigger.num--;
@@ -3524,7 +3524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var count = trigger.num;
                                 var target = (player == trigger.player ? trigger.source : trigger.player);
                                 while (count-- > 0) {
-                                    const { result } = await player.judge();
+                                    const result = await player.judge().forResult();
                                     if (result.color == 'black' && target) {
                                         await player.gainPlayerCard(target, 'he', true);
                                     }

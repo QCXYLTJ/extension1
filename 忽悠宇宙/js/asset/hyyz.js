@@ -4361,7 +4361,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				return (ui.cardPile.childNodes.length > 1 && player.hasSkill('xtpoai') && game.hasPlayer((current) => current.countCards('ej'))) || player.countCards('h');
 			},
 			async content(event, trigger, player) {
-				const { result } = await player.pileCompare();
+				const result = await player.pileCompare().forResult();
 				if (result.bool) {
 					var cards = [result.player, result.target].filterInD('d');
 					if (cards.length) {

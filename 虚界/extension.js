@@ -2010,7 +2010,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var cards = player.showCards(get.cards(1));
-                                const { result } = await player.chooseTarget('展示一名其他角色的一张手牌', true, (card, player, target) => target != player && target.countCards('h')).set('ai', (target) => target.isEnemiesOf(player));
+                                const result = await player.chooseTarget('展示一名其他角色的一张手牌', true, (card, player, target) => target != player && target.countCards('h')).set('ai', (target) => target.isEnemiesOf(player)).forResult();
                                 if (result.targets && result.targets[0]) {
                                     const { result: result1 } = await player.choosePlayerCard('h', result.targets[0], true);
                                     if (result1.cards && result1.cards[0]) {

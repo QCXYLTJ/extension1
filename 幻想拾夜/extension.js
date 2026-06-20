@@ -702,7 +702,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 6 - get.value(card, player);
                             },
                             async content(event, trigger, player) {
-                                const { result } = await player.discardPlayerCard('he', event.target, true);
+                                const result = await player.discardPlayerCard('he', event.target, true).forResult();
                                 if (result?.links?.length) {
                                     const card = result.links[0];
                                     if (get.type(card) !== 'equip') {

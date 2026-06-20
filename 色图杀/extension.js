@@ -6766,9 +6766,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 const cards = Array.from(ui.discardPile.childNodes).filter((q) => get.subtype(q) == 'equip1');
                                 if (cards[0]) {
-                                    const { result } = await player.chooseButton(['很冰的斧:获得一张武器牌', cards], true).set('ai', function (button) {
+                                    const result = await player.chooseButton(['很冰的斧:获得一张武器牌', cards], true).set('ai', function (button) {
                                         return get.value(button.link);
-                                    });
+                                    }).forResult();
                                     player.removeSkill('很冰的斧');
                                     if (result.links && result.links[0]) {
                                         player.gain(result.links, 'gain2');
@@ -8470,7 +8470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 player.$throwEmotion(trigger.player, 'flower');
                                 const list = ['获得顺手牵羊', '获得五谷丰登'];
-                                const { result } = await trigger.player.chooseControl(list, () => list.randomGet());
+                                const result = await trigger.player.chooseControl(list, () => list.randomGet()).forResult();
                                 if (result.control == '获得顺手牵羊') {
                                     trigger.player.gain(game.createCard('shunshou'), 'gain2');
                                 } else if (result.control == '获得五谷丰登') {
@@ -11481,7 +11481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 const card = trigger.cards;
                                 game.cardsGotoOrdering(card);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', card]])
                                     .set('prompt', '将牌移动到牌堆顶')
@@ -11489,7 +11489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var cards = list[0][1];
                                         cards.sort((a, b) => get.value(b) - get.value(a)); //态度大于0就把价值高的牌放前面
                                         return [cards];
-                                    }); //自己观星
+                                    }).forResult(); //自己观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

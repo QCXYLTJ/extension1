@@ -3312,7 +3312,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return 0;
 					});
 					next.set('prompt', '血侍:弃置一张基本牌并流失一点体力,否则' + get.translation(trigger.card) + '对' + get.translation(trigger.target) + '无效');
-					const { result } = await next;
+					const result = await next.forResult();
 					if (result.bool) {
 						trigger.player.loseHp();
 					} else {

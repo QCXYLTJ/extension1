@@ -355,7 +355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const { result } = await i.chooseToUse({
+                        const result = await i.chooseToUse({
                             filterCard(card, player, event) {
                                 return lib.filter.cardSavable(card, player, player1);
                             },
@@ -386,7 +386,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'dying',
                             targetRequired: true,
                             dying: player1,
-                        });
+                        }).forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -18405,7 +18405,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = 7;
                                 var cards = get.cards(num);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -18426,7 +18426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //给别人观星
+                                    }).forResult();//给别人观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

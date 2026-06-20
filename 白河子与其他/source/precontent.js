@@ -7674,7 +7674,7 @@ export async function precontent(config, pack) {
                     }
                     var dams = {};
                     for (var i = 0; i < 9; i++) {
-                        const { result } = await player.chooseTarget(`世燹:你想将第${i + 1}点火焰伤害分配给谁呢？(若点取消,将不分配剩余的${10 - i}点火焰伤害)`, '已分配:' + targets.map((j) => get.translation(j) + ':' + (dams[j.playerid] || 0) + '点').toString()).set('ai', (target) => {
+                        const result = await player.chooseTarget(`世燹:你想将第${i + 1}点火焰伤害分配给谁呢？(若点取消,将不分配剩余的${10 - i}点火焰伤害)`, '已分配:' + targets.map((j) => get.translation(j) + ':' + (dams[j.playerid] || 0) + '点').toString()).set('ai', (target) => {
                             var eff = get.damageEffect(target, player, player, 'fire'),
                                 d = dams[target.playerid] || 0;
                             if (eff > 0) {
@@ -7683,7 +7683,7 @@ export async function precontent(config, pack) {
                                 return eff;
                             }
                             return eff;
-                        });
+                        }).forResult();
                         if (result.bool) {
                             var target = result.targets[0];
                             dams[target.playerid] = (dams[target.playerid] || 0) + 1;
@@ -9232,7 +9232,7 @@ export async function precontent(config, pack) {
                     }
                     return [listx];
                 });
-                const { result } = await next;
+                const result = await next.forResult();
                 if (!result.bool) return;
                 const resultList = result.moved[0].map((info) => {
                     return parseInt(info.split('|')[0]);
@@ -31605,7 +31605,7 @@ export async function precontent(config, pack) {
                 const target = trigger.target;
                 target.addTempSkill('fengyin');
                 trigger.directHit.add(target);
-                const { result } = await player
+                const result = await player
                     .mini_chooseToMouYi(target)
                     .set('namelist', ['出阵迎战', '拱卫中军', '直取敌营', '扰阵疲敌'])
                     .set('ai', (button) => {
@@ -31615,7 +31615,7 @@ export async function precontent(config, pack) {
                         if (!target.countCards('he') && get.attitude(target, source) <= 0 && button.link[2] == 'db_atk1') return 10;
                         return 1 + Math.random();
                     })
-                    .set('sourceSkill', 'sbtieji');
+                    .set('sourceSkill', 'sbtieji').forResult();
                 if (result.bool) {
                     if (result.player == 'db_def1') player.gainPlayerCard(target, 'he', true);
                     else player.draw(2);

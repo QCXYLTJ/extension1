@@ -3079,7 +3079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await _status.currentPhase
+                                const result = await _status.currentPhase
                                     .chooseControl()
                                     .set('choiceList', ['摸一张牌,防止对' + get.translation(player) + '的伤害', '令' + get.translation(player) + '摸一张牌,此次伤害后终止结算并结束此阶段'])
                                     .set('prompt', '识断:请选择一项')
@@ -3087,7 +3087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.attitude(_status.currentPhase, player) >= 0) return 0;
                                         if (_status.currentPhase.countCards('h', (i) => player.hasValueTarget(i, null, true)) > 1) return 0;
                                         return 1;
-                                    });
+                                    }).forResult();
                                 ('step 2');
                                 if (result.index == 0) {
                                     _status.currentPhase.draw();
@@ -7460,7 +7460,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget([1, Infinity], (card, player, target) => player.inRange(target) && target.countCards('h')).set('ai', (target) => -get.attitude(player, target));
+                                const result = await player.chooseTarget([1, Infinity], (card, player, target) => player.inRange(target) && target.countCards('h')).set('ai', (target) => -get.attitude(player, target)).forResult();
                                 if (result.targets && result.targets[0]) {
                                     var cardx = { number: 0 };
                                     var playerx;

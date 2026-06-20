@@ -24449,7 +24449,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     //QQQ
                     var cards = get.cards(4);
                     game.cardsGotoOrdering(cards);
-                    const { result } = await player
+                    const result = await player
                         .chooseToMove('将两张牌置于牌堆顶', true)
                         .set('list', [['牌堆顶', cards], ['牌堆底']])
                         .set('filterMove', function (from, to, moved) {
@@ -24461,7 +24461,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             var att = get.attitude(player, trigger.player);
                             var cards = list[0][1].sort((a, b) => (get.value(b) - get.value(a)) * att); //给对面烂牌给自己好牌
                             return [cards.splice(0, 2), cards]; //裁剪数组前两个
-                        });
+                        }).forResult();
                     if (result.moved && result.moved[0]) {
                         result.moved[0].reverse();
                         for (var i of result.moved[0]) {
@@ -24489,7 +24489,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             var num = 1;
                             var cards = get.cards(num);
                             game.cardsGotoOrdering(cards);
-                            const { result } = await player
+                            const result = await player
                                 .chooseToMove()
                                 .set('list', [['牌堆顶', cards], ['牌堆底']])
                                 .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -24508,7 +24508,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                         top.push(bottom.shift());
                                     }
                                     return [top, bottom];
-                                }); //自己观星
+                                }).forResult(); //自己观星
                             result.moved[0].reverse();
                             for (var i of result.moved[0]) {
                                 ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

@@ -35911,7 +35911,7 @@ const skill = {
         async cost(event, trigger, player) {
             let num = game.countPlayer((current) => current != player && current.countCards('h') && get.attitude(player, current) <= 0);
             let check = num >= 2;
-            const { result } = await player
+            const result = await player
                 .chooseTarget(
                     get.prompt('shanhai_tuxi'),
                     '获得其他一至两名角色的各一张手牌',
@@ -35926,7 +35926,7 @@ const skill = {
                         return 1 - att;
                     }
                 )
-                .set('aicheck', check);
+                .set('aicheck', check).forResult();
             event.result = result;
         },
         async content(event, trigger, player) {

@@ -5626,7 +5626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (!trigger.player.storage.lqtq_jiaoyi || !trigger.player.storage.lqtq_jiaoyi.length) player.storage.lqtq_jiaoyi3 = trigger.player; //QQQ
 									event.finish();
 								} else {
-									const { result } = await player.chooseTarget(true, '将一名角色变为你的副将').set('ai', (target) => get.attitude(player, target));
+									const result = await player.chooseTarget(true, '将一名角色变为你的副将').set('ai', (target) => get.attitude(player, target)).forResult();
 									if (result.targets && result.targets[0]) {
 										var target = result.targets[0],
 											chaii = [],

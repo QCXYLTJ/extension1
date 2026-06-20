@@ -20888,7 +20888,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return { bool: true, cards: [hs.randomGet()] };
                                     });
                                 next._args.remove('glow_result');
-                                const { result } = await next;
+                                const result = await next.forResult();
                                 const cards = [];
                                 const videoId = lib.status.videoId++;
                                 for (var i = 0; i < targets.length; i++) {

@@ -23820,13 +23820,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         //QQQ
                                         trigger.cancel();
                                         player.line(game.filterPlayer(), 'green');
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseControl('手牌区', '装备区', '判定区')
                                             .set('ai', function () {
                                                 if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                                 return Math.floor(Math.random() * 3);
                                             })
-                                            .set('prompt', '请选择优先获得的区域');
+                                            .set('prompt', '请选择优先获得的区域').forResult();
                                         for (var i of game.filterPlayer()) {
                                             if (i.countCards('hej')) {
                                                 if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -31971,7 +31971,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseButton(['发动〖械变〗的一项', [['浮屠', '梵天', '修罗', '释迦'], 'tdnodes']]).set('ai', function (button) {
+                                const result = await player.chooseButton(['发动〖械变〗的一项', [['浮屠', '梵天', '修罗', '释迦'], 'tdnodes']]).set('ai', function (button) {
                                     if (button.link == '浮屠') return player.countCards('j') * 5;
                                     if (button.link == '梵天') return game.countPlayer((current) => current.isFriendsOf(player)) * 2;
                                     if (button.link == '修罗') {
@@ -31992,7 +31992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return player.needsToDiscard() + game.countPlayer((current) => get.attitude(player, current) < 0 && current.countCards('h'));
                                     }
                                     return false;
-                                });
+                                }).forResult();
                                 if (result.links && result.links[0]) {
                                     if (result.links[0] == '浮屠') {
                                         if (player.countCards('j')) player.gain(player.getCards('j'), 'gain2');
@@ -32002,7 +32002,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (result.links[0] == '梵天') {
                                         player.skip('phaseDraw');
                                         player.addTempSkill('ssr_newxiebian_fantian', { player: 'phaseZhunbeiBegin' });
-                                        const { result } = await player.chooseTarget([1, 2], '获得至多两名角色各一张手牌', (card, player, target) => target != player && target.countCards('h')).set('ai', (target) => -get.attitude(_status.event.player, target));
+                                        const result = await player.chooseTarget([1, 2], '获得至多两名角色各一张手牌', (card, player, target) => target != player && target.countCards('h')).set('ai', (target) => -get.attitude(_status.event.player, target)).forResult();
                                         if (result.targets && result.targets[0]) {
                                             for (var i of result.targets) {
                                                 await player.gainPlayerCard(i, 'h');
@@ -32017,7 +32017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (result.links[0] == '释迦') {
                                         player.skip('phaseDiscard');
                                         player.addTempSkill('ssr_newxiebian_shijia', { player: 'phaseZhunbeiBegin' });
-                                        const { result } = await player.chooseTarget('观看一名角色的手牌并弃置其中一张', 1, (card, player, target) => target.countCards('h')).set('ai', (target) => -get.attitude(player, target));
+                                        const result = await player.chooseTarget('观看一名角色的手牌并弃置其中一张', 1, (card, player, target) => target.countCards('h')).set('ai', (target) => -get.attitude(player, target)).forResult();
                                         if (result.targets && result.targets[0]) {
                                             await player.discardPlayerCard(result.targets[0], 'h', true, 'visible');
                                         }

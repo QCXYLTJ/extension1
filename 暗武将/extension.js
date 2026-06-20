@@ -3443,7 +3443,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         trigger.cancel();
                                     }
                                 } else {
-                                    const { result } = await player.chooseTarget((card, player, tar) => tar != player);
+                                    const result = await player.chooseTarget((card, player, tar) => tar != player).forResult();
                                     if (result.targets && result.targets[0]) {
                                         result.targets[0].draw([1, 2, 3].randomGet());
                                         player.storage.ff_sangu_ps.push(result.targets[0]);

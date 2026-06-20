@@ -2976,7 +2976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         }
                                         if (cards[0]) {
-                                            const { result } = await player.chooseButton([cards], true);
+                                            const result = await player.chooseButton([cards], true).forResult();
                                             if (result.links && result.links[0]) {
                                                 await player.gain(result.links, 'gain2'); //QQQ
                                                 game.log(player, '从弃牌堆获得了', result.links);
@@ -3174,7 +3174,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget(get.prompt2('yin_lingren'), (card, player, target) => trigger.targets.includes(target)).set('ai', (target) => -get.attitude(player, target));
+                                const result = await player.chooseTarget(get.prompt2('yin_lingren'), (card, player, target) => trigger.targets.includes(target)).set('ai', (target) => -get.attitude(player, target)).forResult();
                                 if (result.bool) {
                                     var num = 0;
                                     const result1 = await player
@@ -12029,13 +12029,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域').forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) {
@@ -12089,13 +12089,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 player.line(game.filterPlayer(), 'green');
-                                const { result } = await player
+                                const result = await player
                                     .chooseControl('手牌区', '装备区', '判定区')
                                     .set('ai', function () {
                                         if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                         return Math.floor(Math.random() * 3);
                                     })
-                                    .set('prompt', '请选择优先获得的区域');
+                                    .set('prompt', '请选择优先获得的区域').forResult();
                                 for (var i of game.filterPlayer()) {
                                     if (i.countCards('hej')) {
                                         if (i.countCards(result.control)) {

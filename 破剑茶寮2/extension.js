@@ -688,7 +688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const { result } = await i.chooseToUse({
+                        const result = await i.chooseToUse({
                             filterCard(card, player, event) {
                                 return lib.filter.cardSavable(card, player, player1);
                             },
@@ -719,7 +719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'dying',
                             targetRequired: true,
                             dying: player1,
-                        });
+                        }).forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -8277,10 +8277,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.player != player && player.hasCard('zymjiutiao', 'hs');
                             },
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseToUse(
+                                const result = await player.chooseToUse(
                                     `${get.translation(trigger.player)}即将发动技能【${get.translation(trigger.name)}】,对其使用【魔导之瞳】`,
                                     (card, player) => card.name == 'zymjiutiao' && lib.filter.cardEnabled(card, player, 'forceEnable'),
-                                    trigger.player);
+                                    trigger.player).forResult();
                                 if (result.card) {
                                     const name = trigger.skill;
                                     const info = lib.skill[name];

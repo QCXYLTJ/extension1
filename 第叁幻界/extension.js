@@ -23523,10 +23523,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										skills.addArray(lib.character[i][3]);
 									}
 									if (skills[0]) {
-										const { result } = await player
+										const result = await player
 											.chooseButton(['获得至多2个技能', [list, 'character'], [skills.map((i) => [i, get.translation(i)]), 'tdnodes']], [1, 2])
 											.set('filterButton', (button) => skills.includes(button.link))
-											.set('ai', (button) => Math.random());
+											.set('ai', (button) => Math.random()).forResult();
 										if (result.links && result.links[0]) {
 											player.addSkillLog(result.links);
 										}

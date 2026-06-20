@@ -3706,7 +3706,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           trigger.spgualun = true;
           player.give(give, trigger.player);
           if (player.canCompare(trigger.player)) {
-            const { result } = await player.chooseToCompare(trigger.player);
+            const result = await player.chooseToCompare(trigger.player).forResult();
             if (result) {
               if (result.player) {
                 if (player.getExpansions('spgualun').some((card) => card.suit == result.player.suit)) await player.gain(result.player, 'gain2');
@@ -22297,7 +22297,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
       async content(event, trigger, player) {
         player.draw(trigger.num);
         while (player.countCards('h') > 0 && player.isMaxHandcard(true) && game.countPlayer((current) => current != player && current.isIn())) {
-          const { result } = await player.chooseCardTarget({
+          const result = await player.chooseCardTarget({
             prompt: '将一张手牌交给其他角色',
             filterCard: true,
             filterTarget: lib.filter.notMe,
@@ -22319,7 +22319,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               if (target.hasSkillTag('nogain')) att /= 9;
               return 4 + att;
             },
-          });
+          }).forResult();
           if (result.bool) {
             player.line(result.targets[0], 'green');
             player.give(result.cards, result.targets[0]);

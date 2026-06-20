@@ -2597,7 +2597,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.hp = num;
                                 var cards = get.cards(num);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -2616,7 +2616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //自己观星
+                                    }).forResult(); //自己观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

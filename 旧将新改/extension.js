@@ -4623,10 +4623,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 2,
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseBool('是否获得进入弃牌堆的牌').set('ai', () => {
+                                const result = await player.chooseBool('是否获得进入弃牌堆的牌').set('ai', () => {
                                     if (trigger.cards.length > 1) return true;
                                     return Math.random() > 0.2;
-                                });
+                                }).forResult();
                                 if (result.bool) player.gain(trigger.cards, 'gain2');
                             },
                         },
@@ -17138,7 +17138,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var card = get.cards();
                                 player.showCards(cards);
-                                const { result } = await player.chooseTarget('将此牌置于一名角色判定区', (card, player, target) => target != player && !target.countCards('j', 'caomu'));
+                                const result = await player.chooseTarget('将此牌置于一名角色判定区', (card, player, target) => target != player && !target.countCards('j', 'caomu')).forResult();
                                 if (result.targets && result.targets[0]) {
                                     result.targets[0].addJudge({ name: 'caomu' }, card);
                                 }

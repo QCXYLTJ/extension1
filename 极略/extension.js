@@ -4346,7 +4346,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var card = get.cards(4);
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['获得其中任意数量点数之和不大于13的牌', card], [0, card.length])
                                     .set('filterButton', (button) => {
                                         if (ui.selected.buttons[0]) {
@@ -4358,7 +4358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return true;
                                     })
-                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number);
+                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number).forResult();
                                 if (result.links && result.links[0]) {
                                     player.gain(result.links, 'gain2');
                                 }
@@ -9744,12 +9744,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.getHistory('damage', (evt) => evt.card.storage.juzhan).length && player.getDamagedHp()) {
                                     //这里的card和之前card不相等,但是继承了storage
                                     player.draw(player.getDamagedHp());
-                                    const { result } = await trigger.player
+                                    const result = await trigger.player
                                         .chooseToDiscard(player.getDamagedHp(), 'he')
                                         .set('prompt2', '否则跳过出牌阶段')
                                         .set('ai', function (card) {
                                             return 6 - get.value(card);
-                                        });
+                                        }).forResult();
                                     if (!result.cards || !result.cards[0]) {
                                         trigger.cancel();
                                     }
@@ -17742,13 +17742,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = trigger.num;
                                 while (num-- > 0) {
                                     player.line(game.filterPlayer(), 'green');
-                                    const { result } = await player
+                                    const result = await player
                                         .chooseControl('手牌区', '装备区', '判定区')
                                         .set('ai', function () {
                                             if (game.hasPlayer((current) => current.countCards('j') && current != player && get.attitude(player, current))) return 2;
                                             return Math.floor(Math.random() * 3);
                                         })
-                                        .set('prompt', '请选择优先获得的区域');
+                                        .set('prompt', '请选择优先获得的区域').forResult();
                                     for (var i of game.filterPlayer()) {
                                         if (i.countCards('hej')) {
                                             if (i.countCards(result.control)) player.gain(i.getCards(result.control).randomGet(), 'gain2');
@@ -24419,7 +24419,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.gain(list, 'gain2');
                                 if (list.length < 8) {
-                                    const { result } = await player.chooseTarget(`请选择一名角色受到${8 - list.length}点雷电伤害`, lib.filter.notMe).set('ai', (target) => get.damageEffect(target, player, player, 'thunder'));
+                                    const result = await player.chooseTarget(`请选择一名角色受到${8 - list.length}点雷电伤害`, lib.filter.notMe)
+                                        .set('ai', (target) => get.damageEffect(target, player, player, 'thunder')).forResult();
                                     if (result.targets && result.targets[0]) {
                                         result.targets[0].damage(8 - list.length);
                                     }

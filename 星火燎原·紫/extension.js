@@ -247,7 +247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             //结束阶段,你可以将一张装备牌置入一名角色的装备区.若如此做,其选择一项,你选择另一项:①回复1点体力;②摸两张牌;③弃置距离1以内的一名角色区域内一张牌;④获得技能〖飞影〗直到你的下个回合开始
                             async content(event, trigger, player) {
-                                const { result } = await player.chooseCardTarget({
+                                const result = await player.chooseCardTarget({
                                     prompt: get.prompt2('zi_yuanhu'),
                                     filterCard: (card) => get.type(card) == 'equip',
                                     position: 'he',
@@ -256,7 +256,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     ai1: (card) => 8 - get.value(card),
                                     ai2: (target) => get.attitude(player, target),
-                                });
+                                }).forResult();
                                 if (result.targets && result.targets[0] && result.cards && result.cards[0]) {
                                     result.targets[0].equip(result.cards[0]);
                                     const list = ['回血', '摸牌', '弃牌', '飞影'];
@@ -451,9 +451,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.cardsGotoSpecial(cards);
                                 player.showCards(cards);
                                 while (true) {
-                                    const { result } = await player.chooseButton(['精典:请选择一张拼点牌', cards], true).set('ai', function (button) {
+                                    const result = await player.chooseButton(['精典:请选择一张拼点牌', cards], true).set('ai', function (button) {
                                         return button.link.number;
-                                    });
+                                    }).forResult();
                                     if (result.links && result.links[0]) {
                                         const { result: result1 } = await player.chooseTarget('请选择拼点目标', true, (card, player, target) => target != player).set('ai', (target) => -get.attitude(player, target));
                                         if (result1.targets && result1.targets[0]) {

@@ -18945,7 +18945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }, //QQQ
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseToDiscard('he', '是否弃置一张牌令' + get.translation(trigger.player) + '跳过判定', true);
+                                const result = await player.chooseToDiscard('he', '是否弃置一张牌令' + get.translation(trigger.player) + '跳过判定', true).forResult();
                                 if (result.cards && result.cards[0]) {
                                     trigger.cancel();
                                 }
@@ -20451,7 +20451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var cards = get.cards(5);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -20470,7 +20470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //自己观星
+                                    }).forResult(); //自己观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
@@ -22595,8 +22595,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await trigger.target.chooseToRespond({ name: 'shan' }, '【三板斧】:你需要额外打出1张闪', [1, 2]);
-                                trigger.parent.directHit.push(trigger.target);
+                                const result = await trigger.target.chooseToRespond({ name: 'shan' }, '【三板斧】:你需要额外打出1张闪', [1, 2]);
+                                trigger.parent.directHit.push(trigger.target).forResult();
                                 if (result.cards && result.cards[0]) {
                                     player.damage();
                                     if (result.cards.length > 1) {

@@ -3096,7 +3096,7 @@ const skills = {
                     return ['name', 'name1', 'name2'].some((info) => current[info] && current[info] == 'Europa_tno_xigefulide_mule');
                 });
                 if (mule_targets.length) {
-                    const { result } = await player.chooseCardTarget({
+                    const result = await player.chooseCardTarget({
                         position: 'he',
                         filterCard: true,
                         mule: mule_targets,
@@ -3125,7 +3125,7 @@ const skills = {
                             if (att < 0 && num == 1) return -0.7 * att;
                             return att;
                         },
-                    });
+                    }).forResult();
                     if (result.bool) {
                         await player.give(result.cards, result.targets[0]);
                         player.getHistory('custom').push({ Europa_AfricaViceroy_xitele_shoulieyuanqu_daxiang: true });
@@ -3153,7 +3153,7 @@ const skills = {
                     return ['name', 'name1', 'name2'].some((info) => current[info] && current[info] == 'Europa_tno_xigefulide_mule');
                 });
                 if (mule_targets.length) {
-                    const { result } = await player.chooseCardTarget({
+                    const result = await player.chooseCardTarget({
                         position: 'he',
                         filterCard: true,
                         mule: mule_targets,
@@ -3180,7 +3180,7 @@ const skills = {
                             if (att > 0) return 1.5 * att;
                             return att;
                         },
-                    });
+                    }).forResult();
                     if (result.bool) {
                         await player.give(result.cards, result.targets[0]);
                         player.getHistory('custom').push({ Europa_AfricaViceroy_xitele_shoulieyuanqu_heixingxing: true });
@@ -3230,7 +3230,7 @@ const skills = {
                     return ['name', 'name1', 'name2'].some((info) => current[info] && current[info] == 'Europa_tno_xigefulide_mule');
                 });
                 if (mule_targets.length) {
-                    const { result } = await player.chooseCardTarget({
+                    const result = await player.chooseCardTarget({
                         position: 'he',
                         filterCard: true,
                         mule: mule_targets,
@@ -3259,7 +3259,7 @@ const skills = {
                             if (att < 0 && num == 1) return -0.7 * att;
                             return att;
                         },
-                    });
+                    }).forResult();
                     if (result.bool) {
                         await player.give(result.cards, result.targets[0]);
                         player.getHistory('custom').push({ Europa_AfricaViceroy_xitele_shoulieyuanqu_lingyang: true });

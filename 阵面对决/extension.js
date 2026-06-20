@@ -6442,7 +6442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 var num = game.countPlayer((current) => current.group == 'qun');
                                 var cards = get.cards(num + 1);
-                                const { result } = await player.chooseCardButton(cards, '筮卦:选择一张牌作为' + get.translation(trigger.player) + '的判定结果').set('ai', function (button) {
+                                const result = await player.chooseCardButton(cards, '筮卦:选择一张牌作为' + get.translation(trigger.player) + '的判定结果').set('ai', function (button) {
                                     if (get.attitude(player, trigger.player) > 0) {
                                         return 1 + trigger.judge(button.link);
                                     }
@@ -6450,7 +6450,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1 - trigger.judge(button.link);
                                     }
                                     return 0;
-                                });
+                                }).forResult();
                                 if (result.links && result.links[0]) {
                                     trigger.cancel();
                                     trigger.result = {

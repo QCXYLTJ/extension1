@@ -6542,9 +6542,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     if (bool) {
                         const targetx = targets[0],
                             targety = targetss.remove(targetx)[0];
-                        const { result } = await player.choosePlayerCard(targetx, 'j', true).set('filterButton', function (button) {
+                        const result = await player.choosePlayerCard(targetx, 'j', true).set('filterButton', function (button) {
                             return targety.canAddJudge(button.link);
-                        });
+                        }).forResult();
                         if (result.bool) {
                             var card = result.cards[0];
                             targetx.$give(card, targety);
@@ -6648,7 +6648,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             next.set('filterMove', function (from, to, moved) {
                                 return typeof to != 'number';
                             });
-                            const { result } = await next;
+                            const result = await next.forResult();
                             if (result.bool) {
                                 const hs = result.moved[0].removeArray(player.getCards('h'));
                                 const es = result.moved[1].removeArray(player.getCards('e'));
@@ -7104,7 +7104,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return player.canUse(cardx, trigger.source);
                                 });
                                 if (!cardsx.length) break;
-                                const { result } = await player
+                                const result = await player
                                     .chooseToUse(
                                         function (card, player, event) {
                                             if (!['basic', 'trick'].includes(get.type2(card))) return false;
@@ -7119,7 +7119,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     .set('filterTarget', function (card, player, target) {
                                         if (target != trigger.source) return false;
                                         return lib.filter.filterTarget.apply(this, arguments);
-                                    });
+                                    }).forResult();
                             }
                         },
                     },
@@ -7152,9 +7152,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     const target = event.target;
                     const color = get.color(event.cards[0]);
                     const num = event.cards.length - 1;
-                    const { result } = await target.judge(function (card) {
+                    const result = await target.judge(function (card) {
                         return 0;
-                    });
+                    }).forResult();
                     if (result.color == color) {
                         if (num > 0) target.damage(num);
                         player.draw();
@@ -7234,7 +7234,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     evt.set('ls_weibi', true);
                     var cards = player.getCards('j');
                     var aozhan = player.hasSkill('aozhan');
-                    const { result } = await player
+                    const result = await player
                         .chooseButton(['选择要使用的牌', cards])
                         .set('filterButton', function (button) {
                             return _status.event.cards.includes(button.link);
@@ -7279,7 +7279,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return result;
                             }
                             return 1;
-                        });
+                        }).forResult();
                     if (result.bool && result.links && result.links.length) {
                         var card = result.links[0];
                         var name = card.name,

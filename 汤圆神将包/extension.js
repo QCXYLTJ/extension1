@@ -5716,7 +5716,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = 5;
                                 var cards = get.cards(num);
                                 game.cardsGotoOrdering(cards);
-                                const { result } = await player
+                                const result = await player
                                     .chooseToMove()
                                     .set('list', [['牌堆顶', cards], ['牌堆底']])
                                     .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -5737,7 +5737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             top.push(bottom.shift());
                                         }
                                         return [top, bottom];
-                                    }); //给别人观星
+                                    }).forResult(); //给别人观星
                                 result.moved[0].reverse();
                                 for (var i of result.moved[0]) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
@@ -15169,7 +15169,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget('请选择【恿戈】的目标,其增加' + get.translation(player.countMark('ty_beifa3')) + '点体力上限并摸等量的牌', true, (card, player, target) => target != player && !game.hasPlayer((current) => current != target && current.countCards('h') > target.countCards('h'))).set('ai', (target) => get.attitude(player, target));
+                                const result = await player.chooseTarget('请选择【恿戈】的目标,其增加' + get.translation(player.countMark('ty_beifa3')) + '点体力上限并摸等量的牌', true, (card, player, target) => target != player && !game.hasPlayer((current) => current != target && current.countCards('h') > target.countCards('h'))).set('ai', (target) => get.attitude(player, target)).forResult();
                                 if (result.targets && result.targets[0]) {
                                     result.targets[0].gainMaxHp(player.countMark('ty_beifa3'));
                                     result.targets[0].draw(player.countMark('ty_beifa3'));

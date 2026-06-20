@@ -1448,7 +1448,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 async content(event, trigger, player) {
                     //QQQ
                     player.loseHp();
-                    const { result } = await player.chooseTarget(true, '掉1滴血,来发梦想九连射', (card, player, target) => player != target).set('ai', (target) => -get.attitude(player, target));
+                    const result = await player.chooseTarget(true, '掉1滴血,来发梦想九连射', (card, player, target) => player != target).set('ai', (target) => -get.attitude(player, target)).forResult();
                     if (result.targets && result.targets[0]) {
                         const cards = get.cards(9);
                         const cards1 = cards.filter((q) => q.name == 'sha' && q.nature);
@@ -6734,13 +6734,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     player.awakenSkill('hyym_wuweizhiwei');
                     const num = event.targets.length;
                     player.removeMark('hyym_zhuangshengmengdie', num);
-                    const { result } = await player.chooseButton([`选择并失去${num}个技能`, [player.getSkills(true, false, false), 'tdnodes']], num).set('ai', function (button) {
+                    const result = await player.chooseButton([`选择并失去${num}个技能`, [player.getSkills(true, false, false), 'tdnodes']], num).set('ai', function (button) {
                         if (button.link == 'hyym_zhuxingchuixi') return 5;
                         if (button.link == 'hyym_wuweizhiwei') return 4;
                         if (button.link == 'hyym_baizeenyi') return 3;
                         if (button.link == 'hyym_daofaziran') return 2;
                         return 1;
-                    });
+                    }).forResult();
                     if (result.links && result.links[0]) {
                         player.removeSkill(result.links);
                         game.log(player, `失去了【${get.translation(result.links)}】`);

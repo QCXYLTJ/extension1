@@ -1004,10 +1004,10 @@ const packs = function () {
                 },
                 async cost(event, trigger, player) {
                     const list = Array.from({ length: player.hp + 1 }).map((_, i) => `${i}点`);
-                    const { result } = await player
+                    const result = await player
                         .chooseControl(list)
                         .set('ai', (e, p) => list.randomGet())//QQQ
-                        .set('prompt', get.prompt2('qx_moumo'));
+                        .set('prompt', get.prompt2('qx_moumo')).forResult();
                     event.result = {
                         bool: (result.index > 0),
                         cost_data: result.index,
@@ -3143,7 +3143,7 @@ const packs = function () {
                     const num = trigger.targets.length;
                     player.changeZhuanhuanji(event.name);
                     if (player.storage[event.name]) {
-                        const { result } = await player.draw(num - 1);
+                        const result = await player.draw(num - 1).forResult();
                         await player.turnOver();
                         if (Array.isArray(result) && result.length > player.maxHp) await player.gainMaxHp(result.length - player.maxHp);
                     } else {
@@ -5447,7 +5447,7 @@ const packs = function () {
                         forced: true,
                         forceOut: true,
                         async content(event, trigger, player) {
-                            const { result } = await player.chooseBool('###神隐###<div class="text center">已有至少两名角色受到伤害或失去体力,是否回到游戏？</div>').set('includeOut', true);
+                            const result = await player.chooseBool('###神隐###<div class="text center">已有至少两名角色受到伤害或失去体力,是否回到游戏？</div>').set('includeOut', true).forResult();
                             if (result?.bool) {
                                 player.in();
                             }

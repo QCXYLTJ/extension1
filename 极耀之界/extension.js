@@ -28831,7 +28831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return list.randomGet();
                                 });
                                 next.set('list', list);
-                                const { result } = await next;
+                                const result = await next.forResult();
                                 if (result.control == 'cancel2') await player.loseHp();
                                 else await player.disableEquip(result.control);
                                 if (!player.isIn()) return;
@@ -36748,7 +36748,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .forResult();
                                 if (bool) {
                                     const target = targets[0];
-                                    const { result } = await target.draw('visible');
+                                    const result = await target.draw('visible').forResult();
                                     if (result) {
                                         const card = result[0];
                                         if (get.type(card, null, target) == 'equip') {

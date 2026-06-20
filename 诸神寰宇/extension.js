@@ -11493,7 +11493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 								)
 									return;
-								const { result } = await player
+								const result = await player
 									.chooseTarget(function (card, player, target) {
 										const source = _status.event.source;
 										return target != source;
@@ -11501,7 +11501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('ai', function (target) {
 										return get.damageEffect(target, _status.event.source, player);
 									})
-									.set('source', target);
+									.set('source', target).forResult();
 								if (!result.bool || !result.targets || !result.targets.length) return;
 								target.line(result.targets[0], 'green');
 								const num = Math.max(player.hp, target.hp - result.targets[0].hp);

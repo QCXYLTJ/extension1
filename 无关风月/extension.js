@@ -809,7 +809,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     async content(event, trigger, player) {
                                         var list = Object.keys(lib.character).randomGets(4);
                                         var skill = list.map((q) => lib.character[q][3]).flat();
-                                        const { result } = await player.chooseButton(['请选择获得至多两个技能', [list, 'character'], [skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [1, 2]).set('filterButton', (button) => skill.includes(button.link));
+                                        const result = await player.chooseButton(['请选择获得至多两个技能', [list, 'character'], [skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [1, 2]).set('filterButton', (button) => skill.includes(button.link)).forResult();
                                         if (result.links && result.links[0]) {
                                             player.addSkillLog(result.links);
                                             player.removeSkill('shenhuashen');
@@ -1885,7 +1885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = game.players.length;
                                         var cards = get.cards(num);
                                         game.cardsGotoOrdering(cards);
-                                        const { result } = await player
+                                        const result = await player
                                             .chooseToMove()
                                             .set('list', [['牌堆顶', cards], ['牌堆底']])
                                             .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -1906,7 +1906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     top.push(bottom.shift());
                                                 }
                                                 return [top, bottom]; //此时若att>0,top按价值低到高排列
-                                            }); //给别人观星
+                                            }).forResult(); //给别人观星
                                         result.moved[0].reverse();
                                         for (var i of result.moved[0]) {
                                             ui.cardPile.insertBefore(i, ui.cardPile.firstChild); //若att>0,先插入低价值,再插入高价值

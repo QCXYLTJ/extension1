@@ -15870,7 +15870,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             selectTarget: [1, 2],
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player.chooseTarget('选择要杀的角色', true, (c, p, t) => p != t).set('ai', (target) => -get.attitude(player, target));
+                                const result = await player.chooseTarget('选择要杀的角色', true, (c, p, t) => p != t).set('ai', (target) => -get.attitude(player, target)).forResult();
                                 if (result.targets && result.targets[0]) {
                                     for (var i of event.targets) {
                                         const { result: result1 } = await i.chooseToUse('对' + get.translation(result.targets[0]) + '使用一张杀', { name: 'sha' }, result.targets[0]);
@@ -20418,7 +20418,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var x = player.maxHp - player.hp;
-                                const { result } = await player.judge(function (card) {
+                                const result = await player.judge(function (card) {
                                     switch (card.suit) {
                                         case 'heart':
                                             return player.hp - 1;
@@ -20429,7 +20429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         case 'spade':
                                             return 1;
                                     }
-                                });
+                                }).forResult();
                                 switch (result.suit) {
                                     case 'heart':
                                         trigger.player.draw(player.hp - 1);
@@ -23119,13 +23119,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player
+                                const result = await player
                                     .chooseTarget('选择一名其他角色', function (card, player, target) {
                                         return target != player && target.countCards('h') > 0;
                                     })
                                     .set('ai', function (target) {
                                         return -get.attitude(player, target);
-                                    });
+                                    }).forResult();
                                 if (result.targets && result.targets[0]) {
                                     const { result: result1 } = await player.chooseToCompare(result.targets[0]);
                                     if (result1.bool) {
@@ -35780,7 +35780,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var card = get.cards(4);
-                                const { result } = await player
+                                const result = await player
                                     .chooseButton(['获得其中任意数量点数之和不大于13的牌', card], [0, card.length])
                                     .set('filterButton', (button) => {
                                         if (ui.selected.buttons[0]) {
@@ -35792,7 +35792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return true;
                                     })
-                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number);
+                                    .set('ai', (button) => 2 * get.value(button.link) - button.link.number).forResult();
                                 if (result.links && result.links[0]) {
                                     player.gain(result.links, 'gain2');
                                 }

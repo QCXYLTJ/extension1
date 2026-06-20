@@ -19218,13 +19218,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             async content(event, trigger, player) {
                                 player.draw(3);
-                                const { result } = await player
+                                const result = await player
                                     .chooseTarget([1, 3], get.prompt('血孢'), '选择至多3名其他角色进行拼点', function (card, player, target) {
                                         return target != player && player.canCompare(target);
                                     })
                                     .set('ai', function (target) {
                                         return -get.attitude(player, target);
-                                    });
+                                    }).forResult();
                                 if (result.targets && result.targets[0]) {
                                     for (var i of result.targets) {
                                         const { result: result1 } = await i.chooseToCompare(player);
@@ -23418,10 +23418,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             popup: false,
                             async content(event, trigger, player) {
                                 const num = Math.min(Math.ceil(player.maxHp - player.hp), player.countCards('he'));
-                                const { result } = await player.chooseToDiscard('he', `终止${get.translation(trigger.skill)}的发动`, num).set('ai', (card) => {
+                                const result = await player.chooseToDiscard('he', `终止${get.translation(trigger.skill)}的发动`, num).set('ai', (card) => {
                                     if (trigger.player.isEnemiesOf(player)) return 12 - get.value(card);
                                     return 0;
-                                });
+                                }).forResult();
                                 if (result.bool) {
                                     trigger.player.addTempSkill('dieyuan2', 'phaseEnd');
                                     player.storage.棱镜镭射 -= 1;

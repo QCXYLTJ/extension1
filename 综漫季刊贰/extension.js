@@ -3536,9 +3536,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const cards = get.cards(5);
-                                const { result } = await player.chooseButton(['调整其中1张牌的位置', cards]).set('ai', function (button) {
+                                const result = await player.chooseButton(['调整其中1张牌的位置', cards]).set('ai', function (button) {
                                     return get.value(button.link);
-                                });
+                                }).forResult();
                                 if (result.links && result.links[0]) {
                                     cards.remove(result.links[0]);
                                     const { result: result1 } = await player.chooseControl([0, 1, 2, 3, 4]);
