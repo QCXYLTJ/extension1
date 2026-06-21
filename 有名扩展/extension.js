@@ -4160,6 +4160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                     player.storage.城卒 = true;
+                                    ui.arena.setNumber(game.players.length + 3);
                                     addFellows(3, ['kongmingdementong孔明的门童', 'kongmingdementong孔明的门童', 'kongmingdementong孔明的门童'], { content: '忠臣', color: '#e8e8e8' }, 240);
                                 }
                                 player.useCard(game.createCard('wuhouzhiguan', 'heart', 7), player);
@@ -5432,6 +5433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             fellow.draw(fellow.maxHp);
                                         }
                                     }
+                                    ui.arena.setNumber(game.players.length + 3);
                                     addFellows(3, ['zhanjian战舰', 'zhanjian战舰', 'zhanjian战舰'], { content: '舰船', color: '#8A2BE2' }, 240);
                                 }
                                 player.chooseTarget(get.prompt('驱道')).set('ai', function (target) {
@@ -18823,6 +18825,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         fellow.draw(fellow.maxHp);
                                     }
                                 }
+                                ui.arena.setNumber(game.players.length + 5);
                                 addFellows(5, ['re_machao', 're_zhaoyun', 'guanyu', 'zhangfei', 'huangzhong'], { content: '五虎上将', color: '#800000' });
                                 player.removeSkill('惑谋');
                             },

@@ -10537,6 +10537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								game.mp45('特殊wenyang势若万钧');
+								ui.arena.setNumber(game.players.length + 3);
 								function addFellows(num, namesArr, identityObj = { content: '忠臣', color: '#000000' }, spacing = 120) {
 									for (var i = 0; i < num; i++) {
 										const fellow = game.addFellow(num, namesArr[i]);

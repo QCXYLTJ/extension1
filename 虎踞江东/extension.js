@@ -5772,6 +5772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										fellow.draw(fellow.maxHp);
 									}
 								}
+								ui.arena.setNumber(game.players.length + 4);
 								addFellows(4, list, { content: '侍从', color: '#00FF00' }, 180);
 								player.removeSkill('离宫');
 								player.chooseButton(ui.create.dialog('请选择你要进行替换的两名武将', [femalenames, 'character']), 2);
@@ -11873,6 +11874,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											fellow.draw(fellow.maxHp);
 										}
 									}
+									ui.arena.setNumber(game.players.length + 2);
 									addFellows(2, ['dagongche大攻车', 'dagongche大攻车'], { content: '忠臣', color: '#000000' }, 480);
 								}
 								player.phaseUse();
@@ -15850,6 +15852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										fellow.draw(fellow.maxHp);
 									}
 								}
+								ui.arena.setNumber(game.players.length + 3);
 								addFellows(3, ['xiahoulan夏侯岚', 'guanyinping', 'zhangxingcai'], { content: '阵弈', color: 'ff3366' }, 240);
 								player.removeSkill('阵弈');
 							},

@@ -2536,7 +2536,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 const num1 = trigger.source.countCards('e');
                                 const num2 = num1 + num1;
-                                trigger.source.chooseToDiscard('he', true, num2);
+                                trigger.source?.chooseToDiscard('he', true, num2);
                             },
                             ai: {
                                 maixie_defend: true,
@@ -10362,8 +10362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 player: 'dying',
                             },
-                            content() {
-                                'step 0';
+                            async content(event, trigger, player) {
                                 let list = [];
                                 if (player.hasSkill('zxlongdan')) {
                                     list.push('zxlongdan');
@@ -10392,15 +10391,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (list.length) {
-                                    player.chooseControl(list).set('prompt', '选择移除一项技能');
+                                    const { control } = await player.chooseControl(list).set('prompt', '选择移除一项技能').forResult();
+                                    player.removeSkill(control);
+                                    player.popup(control);
+                                    game.log(player, '移除技能', '【' + get.translation(control) + '】');
+                                    player.recover(1);
+                                    player.loseMaxHp(1);
                                 }
-                                ('step 1');
-                                player.removeSkill(result.control);
-                                player.popup(result.control);
-                                game.log(player, '移除技能', '【' + get.translation(result.control) + '】');
-                                ('step 2');
-                                player.recover(1);
-                                player.loseMaxHp(1);
                             },
                             ai: {
                                 threaten: 1.4,

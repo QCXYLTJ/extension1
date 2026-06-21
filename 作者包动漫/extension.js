@@ -5257,6 +5257,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 player.storage.mr_fs == true;
                                 player.awakenSkill('mr_fs');
+                                ui.arena.setNumber(game.players.length + 1);
                                 const fellow = game.addFellow(null, 'zzb_fsmryi');
                                 fellow.side = player.side;
                                 fellow.identity = player.identity;
@@ -5416,6 +5417,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 player.storage.xm_fs == true;
                                 player.awakenSkill('xm_fs');
+                                ui.arena.setNumber(game.players.length + 3);
                                 let num = 3;
                                 while (num-- > 1) {
                                     const fellow = game.addFellow(null, 'zzb_xmfser');
@@ -5519,6 +5521,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 player.storage.jm_fs == true;
                                 player.awakenSkill('jm_fs');
+                                ui.arena.setNumber(game.players.length + 5);
                                 let num = 5;
                                 while (num-- > 1) {
                                     const fellow = game.addFellow(null, 'zzb_jmfssa');

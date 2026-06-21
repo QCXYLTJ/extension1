@@ -37,7 +37,7 @@ if (QQQ.config.扩展全关) {
   }
 } //扩展全部关闭
 if (QQQ.作者模式) {
-  const Q = ['温柔一刀', '火灵月影', '缺德扩展', '三国全系列', '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', 'EX神将'].unique();
+  const Q = ['温柔一刀', '火灵月影', '缺德扩展', '三国全系列', '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', 'EX神将', '第叁幻界'].unique();
   game.saveConfig('extensions', Q); //扩展修改
 } //扩展修改
 //boot=>(loadJavaScriptExtension/onload)=>loadExtension=>precontent/content
