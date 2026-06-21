@@ -8076,6 +8076,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'damageAfter',
                             },
                             forced: true,
+                            filter(event, player) {
+                                return event.source;
+                            },
                             content() {
                                 let num = [1, 0].randomGet();
                                 trigger.source.loseHp(num);
@@ -8891,28 +8894,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, current) > 0;
                                 });
                             },
-                            content() {
-                                'step 0';
-                                player
-                                    .chooseTarget(get.prompt('exdimenga'), 2, true, function (card, player, target) {
-                                        return target.hp >= 0;
-                                    })
-                                    .set('ai', function (target) {
-                                        return get.attitude(player, target) > 0;
-                                    });
-                                ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
-                                    player.line(result.targets[0], 'green');
-                                    result.targets[0].addSkill('exdimengb');
-                                    result.targets[0].addSkill('exdimengc');
-                                    player.line(result.targets[1], 'green');
-                                    result.targets[1].addSkill('exdimengb');
-                                    result.targets[1].addSkill('exdimengc');
-                                    result.targets[0].draw(0);
-                                    result.targets[1].draw(0);
+                            async content(event, trigger, player) {
+                                const { targets } = await player
+                                    .chooseTarget(get.prompt('exdimenga'), 2, true)
+                                    .set('filterTarget', (c, p, t) => t.hp >= 0)
+                                    .set('ai', (t) => get.attitude(player, t)).forResult();
+                                if (targets?.length) {
+                                    player.removeSkill('exdimenga');
+                                    for (const i of targets) {
+                                        player.line(i, 'green');
+                                        i.addSkill('exdimengb');
+                                        i.addSkill('exdimengc');
+                                        i.draw();
+                                    }
                                 }
-                                ('step 2');
-                                player.removeSkill('exdimenga');
                             },
                         },
                         exdimengb: {

@@ -5513,7 +5513,7 @@ const skills = {
 				if (card.name == 'shan') return num / 64;
 			},
 			aiUseful(player, card, num) {
-				return lib.skill.bleach_juhan.mod.aiValue.apply(this, arguments);
+				if (card.name == 'shan') return num / 64;
 			},
 		},
 		audio: 'ext:BLEACH/skill:2:mp3',

@@ -52594,10 +52594,22 @@ const skill = {
             }
           },
           cardRespondable(card, player) {
-            return lib.skill.mx_baofengxue.cardEnabled.apply(this, arguments);
+            if (card.cards) {
+              for (var i of card.cards) {
+                if (!i.hasGaintag('mx_baofengxue_tag')) return false;
+              }
+            } else if (get.itemtype(card) == 'card') {
+              if (!card.hasGaintag('mx_baofengxue_tag')) return false;
+            }
           },
           cardSavable(card, player) {
-            return lib.skill.mx_baofengxue.cardEnabled.apply(this, arguments);
+            if (card.cards) {
+              for (var i of card.cards) {
+                if (!i.hasGaintag('mx_baofengxue_tag')) return false;
+              }
+            } else if (get.itemtype(card) == 'card') {
+              if (!card.hasGaintag('mx_baofengxue_tag')) return false;
+            }
           },
         },
       },
