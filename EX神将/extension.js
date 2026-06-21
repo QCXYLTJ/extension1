@@ -356,8 +356,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             chooseButton: {
                                 dialog(event, player) {
                                     let list = [];
-                                    if (event.filterCard && event.filterCard({ name: 'sha' }, player, event)) {
-                                    }
                                     for (let i = 0; i < lib.inpile.length; i++) {
                                         if (lib.inpile[i] != 'sha' && lib.card[lib.inpile[i]].type == 'basic' && event.filterCard({ name: lib.inpile[i] }, player, event)) {
                                             list.push(['基本', '', lib.inpile[i]]);
@@ -383,8 +381,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             case 'sha':
                                                 if (button.link[3] == 'fire') {
                                                     return 2.95;
-                                                } else if (button.link[3] == 'fire') {
-                                                    return 2.92;
                                                 }
                                                 return 2.9;
                                             default:
@@ -1984,7 +1980,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 return false;
                             },
-                            forced: true,
                             content() {
                                 game.countPlayer(function (current) {
                                     if (current != player && current.group == 'wu') {
@@ -2448,7 +2443,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 return false;
                             },
-                            forced: true,
                             content() {
                                 const fang = get.cardPile2(function (card) {
                                     return card.suit == 'diamond';
@@ -2861,15 +2855,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         str = str.slice(0, str.length - 1);
                                     }
                                     lib.translate[name + '_info'] = str + ';' + lib.translate[cards[1].name + '_info'];
-                                    try {
-                                        game.addVideo('newcard', null, {
-                                            name: name,
-                                            translate: lib.translate[name],
-                                            info: lib.translate[name + '_info'],
-                                            card: cards[0].name,
-                                            legend: true,
-                                        });
-                                    } catch (e) { }
+                                    game.addVideo('newcard', null, {
+                                        name: name,
+                                        translate: lib.translate[name],
+                                        info: lib.translate[name + '_info'],
+                                        card: cards[0].name,
+                                        legend: true,
+                                    });
                                 }
                                 player.gain(game.createCard({ name: name, suit: cards[0].suit, number: cards[0].number }), 'gain2');
                             },
@@ -2896,10 +2888,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseTarget(get.prompt2('exxibing'), function (card, player, current) {
                                     return current != player && current.countGainableCards(player, 'e') > 0;
                                 }).ai = function (target) {
-                                    let num = get.attitude(_status.event.player, target);
-                                    if (target.isDamaged() && target.getEquip('baiyin') && att > 0) {
-                                        return 2 * num;
-                                    }
                                     return -num;
                                 };
                                 ('step 1');
@@ -2907,8 +2895,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target1 = result.targets[0];
                                     player.line(event.target1, 'exxibing');
                                     player.gainPlayerCard(event.target1, 99, 'e', true);
-                                } else {
-                                    event.finish();
                                 }
                             },
                         },
@@ -3590,7 +3576,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 }
                                 return true;
-                                get.prompt('exzhiji');
                             },
                             content() {
                                 player.chooseToDiscard(999, 'hej', true);
@@ -3699,7 +3684,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.exqiai2 <= 0) {
                                     // player.loseHp();
                                     player.removeSkill('exqiai2');
-                                } else {
                                 }
                             },
                             forced: true,
@@ -4159,6 +4143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.storage.exsu >= 0 && player.storage.exqing >= 0 && player.storage.exba >= 0 && player.storage.exhuang >= 0;
                             },
                             content() {
+                                let bool;
                                 if (player == game.me) {
                                     bool = true;
                                 }
@@ -5267,12 +5252,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.die() && Math.random() <= 0.5;
                                     }
                                     if (player.storage.exdanyao > 10 && player.storage.exdanyao <= 15) {
+                                        let bool;
                                         if (player == game.me) {
                                             bool = true;
                                         }
                                         game.over(bool) && Math.random() <= 0.5;
                                     }
                                     if (player.storage.exdanyao > 15) {
+                                        let bool;
                                         if (player == game.me) {
                                             bool = true;
                                         }
@@ -5344,7 +5331,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (player.storage.exchujidanyao <= 0) {
                                         player.removeSkill('exdanyao');
                                         delete player.storage.exdanyao;
-                                    } else {
                                     }
                                 }
                                 ('step 3');
@@ -5354,7 +5340,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (player.storage.exchujidanyao <= 0) {
                                         player.removeSkill('exdanyao');
                                         delete player.storage.exdanyao;
-                                    } else {
                                     }
                                 }
                             },
@@ -5722,7 +5707,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.addSkill('exjianxiongb');
                                     player.loseMaxHp(1);
                                     game.broadcastAll(function (player) {
-                                        img = document.createElement('div');
+                                        const img = document.createElement('div');
                                         img.setBackgroundImage('extension/EX神将/image/cc2.jpg');
                                         img.style.width = '100%';
                                         img.style.height = '100%';
@@ -5740,7 +5725,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.addSkill('exjianxiongc');
                                     player.loseMaxHp(1);
                                     game.broadcastAll(function (player) {
-                                        img = document.createElement('div');
+                                        const img = document.createElement('div');
                                         img.setBackgroundImage('extension/EX神将/image/cc3.jpg');
                                         img.style.width = '100%';
                                         img.style.height = '100%';
@@ -5758,7 +5743,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.addSkill('exjianxiongd');
                                     player.loseMaxHp(1);
                                     game.broadcastAll(function (player) {
-                                        img = document.createElement('div');
+                                        const img = document.createElement('div');
                                         img.setBackgroundImage('extension/EX神将/image/cc4.jpg');
                                         img.style.width = '100%';
                                         img.style.height = '100%';
@@ -5777,7 +5762,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.loseMaxHp(1);
                                     player.addSkill('exjianxionge');
                                     game.broadcastAll(function (player) {
-                                        img = document.createElement('div');
+                                        const img = document.createElement('div');
                                         img.setBackgroundImage('extension/EX神将/image/cc5.jpg');
                                         img.style.width = '100%';
                                         img.style.height = '100%';
@@ -6563,7 +6548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.removeSkill('exjixi');
                                     player.addSkill('extuntian');
                                     game.broadcastAll(function (player) {
-                                        img = document.createElement('div');
+                                        const img = document.createElement('div');
                                         img.setBackgroundImage('extension/EX神将/image/tuntiandengai.jpg');
                                         img.style.width = '100%';
                                         img.style.height = '100%';
@@ -6579,7 +6564,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.removeSkill('extuntian');
                                     player.addSkill('exjixi');
                                     game.broadcastAll(function (player) {
-                                        img = document.createElement('div');
+                                        const img = document.createElement('div');
                                         img.setBackgroundImage('extension/EX神将/image/jixidengai.jpg');
                                         img.style.width = '100%';
                                         img.style.height = '100%';
@@ -8839,12 +8824,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             group: ['exmojiangx'],
                             content() {
-                                'step 0';
                                 const num1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 8].randomGet();
                                 trigger.num += num1;
-                                ('step 1');
-                                if (trigger.num >= 9) {
-                                }
                             },
                         },
                         exmojianga: {
@@ -8955,8 +8936,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return target.hp >= 0;
                                     })
                                     .set('ai', function (target) {
-                                        const player = _status.event.player;
-                                        return get.attitude(player, current) > 0;
+                                        return get.attitude(player, target) > 0;
                                     });
                                 ('step 1');
                                 if (result.bool && result.targets && result.targets.length) {
@@ -9541,12 +9521,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             content() {
-                                'step 0';
                                 const num2 = [0, 0, 8].randomGet();
                                 trigger.num += num2;
-                                ('step 1');
-                                if (trigger.num >= 9) {
-                                }
                             },
                         },
                         exmojiangx: {
@@ -9742,6 +9718,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     silent: true,
                                     content() {
+                                        let bool;
                                         if (player == game.me) {
                                             bool = true;
                                         }
@@ -9942,6 +9919,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     silent: true,
                                     content() {
+                                        let bool;
                                         if (player == game.me) {
                                             bool = true;
                                         }
@@ -10052,6 +10030,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     silent: true,
                                     content() {
+                                        let bool;
                                         if (player == game.me) {
                                             bool = true;
                                         }
@@ -10093,7 +10072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.num += num1;
                                 ('step 1');
                                 game.broadcastAll(function (player) {
-                                    img = document.createElement('div');
+                                    const img = document.createElement('div');
                                     img.setBackgroundImage('extension/EX神将/image/exyjxs.jpg');
                                     img.style.width = '100%';
                                     img.style.height = '100%';
@@ -10155,7 +10134,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     silent: true,
                                     content() {
                                         game.broadcastAll(function (player) {
-                                            img = document.createElement('div');
+                                            const img = document.createElement('div');
                                             img.setBackgroundImage('extension/EX神将/image/exzcxs.jpg');
                                             img.style.width = '100%';
                                             img.style.height = '100%';
@@ -10175,7 +10154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     silent: true,
                                     content() {
                                         game.broadcastAll(function (player) {
-                                            img = document.createElement('div');
+                                            const img = document.createElement('div');
                                             img.setBackgroundImage('extension/EX神将/image/exzcxs.jpg');
                                             img.style.width = '100%';
                                             img.style.height = '100%';
