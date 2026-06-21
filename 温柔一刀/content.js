@@ -2394,6 +2394,11 @@ const content = async function () {
     zhijie();
     //————————————————————————————————————————————————————————————————————————————————————————————————————浅层检测
     const qianceng = function () {
+      if (lib.card.bazhijing) {
+        lib.card.bazhijing.onLose = function () {
+          player.unmarkAuto('bazhing', player.getStorage('bazhijing'));
+        };
+      }
       if (lib.card.zj_lianjunshengyan) {
         lib.card.zj_lianjunshengyan.selectTarget = function () {
           return [1, 1];
@@ -6226,12 +6231,12 @@ const content = async function () {
           const evt = event.getParent(2);
           const names = lib.inpile.filter((name) => get.type(name) == 'basic' && !player.getStorage('clanshengmo').includes(name)),
             cards = evt.clanshengmo_cards;
-          const links = await player
+          const { links } = await player
             .chooseButton(['剩墨:获得其中一张牌', cards], true)
             .set('ai', (button) => {
               return get.value(button.link);
             })
-            .forResultLinks();
+            .forResult();
           if (!links || !links.length) {
             return;
           }
@@ -6253,12 +6258,12 @@ const content = async function () {
           if (!list.length) {
             return;
           }
-          const links2 = await player
+          const { links: links2 } = await player
             .chooseButton(['视为使用一张未以此法使用过的基本牌', [list, 'vcard']], true)
             .set('ai', (button) => {
               return number0(get.player().getUseValue({ name: button.link[2] }, null, true)) + 1; //QQQ
             })
-            .forResultLinks();
+            .forResult();
           const name = links2[0][2],
             nature = links2[0][3];
           game.broadcastAll(
@@ -6305,14 +6310,13 @@ const content = async function () {
     //————————————————————————————————————————————————————————————————————————————————————————————————————深层检测
     const shenceng = function () {
       if (QQQ.DEEP('lib.skill.dcsbyaozuo.subSkill.ai')) {
-
       }
       if (QQQ.DEEP('lib.skill.dcsbyaozuo.subSkill.ai')) {
         delete lib.skill.dcsbyaozuo.subSkill.ai;
         lib.skill.dcsbyaozuo.subSkill.effect.ai = {
           effect: {
             player(card, player, target) {
-              if (get.is.damageCard(card) && player.hasStorage("dcsbyaozuo_effect", target)) {
+              if (get.is.damageCard(card) && player.hasStorage('dcsbyaozuo_effect', target)) {
                 return 1.5;
               }
             },

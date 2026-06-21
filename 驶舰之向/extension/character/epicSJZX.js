@@ -605,7 +605,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               trigger.directHit.addArray(
                 game.filterPlayer(function (current) {
                   return current != player;
-                })
+                }),
               );
             },
             ai: {
@@ -886,7 +886,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             trigger.directHit.addArray(
               game.filterPlayer(function (current) {
                 return current != player;
-              })
+              }),
             );
           } else {
             trigger.parent.excluded.add(player);
@@ -1928,7 +1928,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                           target: target,
                           card: card,
                         },
-                        true
+                        true,
                       )) &&
                     !target.hasSkillTag('filterDamage', null, {
                       player: player,
@@ -1953,7 +1953,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                   target: target,
                   card: card,
                 },
-                true
+                true,
               )
             )
               return false;
@@ -2011,7 +2011,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     target: target,
                     card: card,
                   },
-                  true
+                  true,
                 )
               )
                 return eff / 1.2;
@@ -2427,7 +2427,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                               target: target,
                               card: card,
                             },
-                            true
+                            true,
                           )) &&
                         !target.hasSkillTag('filterDamage', null, {
                           player: player,
@@ -2452,7 +2452,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                       target: target,
                       card: card,
                     },
-                    true
+                    true,
                   )
                 )
                   return false;
@@ -2510,7 +2510,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         target: target,
                         card: card,
                       },
-                      true
+                      true,
                     )
                   )
                     return eff / 1.2;
@@ -2689,7 +2689,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               trigger.directHit.addArray(
                 game.filterPlayer(function (current) {
                   return current != player && current.hp <= player.hp;
-                })
+                }),
               );
             },
             ai: {
@@ -3088,7 +3088,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                       if (card.name != 'sha') return false;
                       return lib.filter.filterCard.apply(this, arguments);
                     },
-                    `【熯天】:是否对${get.translation(targets)}使用一张杀？`
+                    `【熯天】:是否对${get.translation(targets)}使用一张杀？`,
                   )
                   .set('targetRequired', true)
                   .set('complexSelect', true)
@@ -3195,7 +3195,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             event.targets,
             cardsx,
             event.videoId,
-            player
+            player,
           );
           for (var i of player.storage.bojimrfz.players) {
             i.addSkill(['bojimrfz_mark', 'bojimrfz_eff1']);
@@ -3322,7 +3322,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     if (player == game.me) ui.updatehl();
                   },
                   cards2,
-                  player
+                  player,
                 );
               }
               cards2.forEach((i) => i.delete());
@@ -3397,7 +3397,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     if (player == game.me) ui.updatehl();
                   },
                   cards3,
-                  player
+                  player,
                 );
               }
               cards3.forEach((i) => i.delete());
@@ -3444,7 +3444,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     if (player == game.me) ui.updatehl();
                   },
                   cards2,
-                  player
+                  player,
                 );
               }
               cards2.forEach((i) => i.delete());
@@ -4487,7 +4487,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                   name: 'sha',
                 },
                 '请选择【杀】的目标',
-                false
+                false,
               );
             } else {
               player.addTempSkill('yingxiaomrfz_total', 'useCardAfter');
@@ -4497,7 +4497,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                   nature: event.num == 0 ? 'thunder' : 'fire',
                 },
                 '请选择' + (event.num == 0 ? '雷【杀】' : '火【杀】') + '的目标(下一张使用的牌为:' + (event.num == 0 ? '火【杀】' : '伤害基数为翻倍且无视防具的【杀】') + ')',
-                false
+                false,
               );
             }
             event.num++;
@@ -5186,7 +5186,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             trigger.directHit.addArray(
               game.filterPlayer(function (current) {
                 return current != player && current == trigger.targets[0];
-              })
+              }),
             );
             if (trigger.targets[0].countGainableCards(player, 'h')) {
               player.gainPlayerCard('h', trigger.targets[0], true);
@@ -6033,7 +6033,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                               target: target,
                               card: card,
                             },
-                            true
+                            true,
                           )) &&
                         !target.hasSkillTag('filterDamage', null, {
                           player: player,
@@ -6058,7 +6058,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                       target: target,
                       card: card,
                     },
-                    true
+                    true,
                   )
                 )
                   return false;
@@ -6100,7 +6100,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         target: target,
                         card: card,
                       },
-                      true
+                      true,
                     )
                   )
                     return eff / 1.2;
@@ -7033,7 +7033,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 {
                   name: 'sha',
                 },
-                '请选择【杀】的目标'
+                '请选择【杀】的目标',
               )
               .set('forced', true)
               .set('addCount', false);
@@ -8845,7 +8845,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             if (!list.includes('选项二')) csList[1] = `<span style="opacity:0.5; ">${csList[1]}(不可选:无法对自己使用【乐不思蜀】)</span>`;
             list.push('选项三');
             if (list.length == 0) continue;
-            const control = await target
+            const { control } = await target
               .chooseControl(list)
               .set('choiceList', csList)
               .set('ai', function () {
@@ -8855,7 +8855,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               })
               .set('target', target)
               .set('list', list)
-              .forResultControl();
+              .forResult();
+
             if (!control) continue;
             csn[targets.length - 1] = control;
             targets2.add(target);
@@ -8997,7 +8998,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             let list = ['摸一张牌'];
             if (player.getDamagedHp() > 0) list.push('回复体力');
             list.push('cancel2');
-            const control = await player
+            const { control } = await player
               .chooseControl(list)
               .set('prompt', '【潜踪】:你可以回复一点体力或摸一张牌')
               .set('ai', function () {
@@ -9005,7 +9006,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 if (player.hp < 3) return '回复体力';
                 return '摸一张牌';
               })
-              .forResultControl();
+              .forResult();
+
             if (!control || control == 'cancel2') return;
             switch (control) {
               case '摸一张牌':
@@ -9491,7 +9493,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 trigger.directHit.addArray(
                   game.filterPlayer(function (current) {
                     return current != player && current == trigger.target;
-                  })
+                  }),
                 );
               }
               if (number <= 7) {

@@ -2218,7 +2218,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           player.line(target, 'green');
           let list = lib.config.mode_config.identity.identity.lastItem.slice();
           list.yiiu('zhu').unique();
-          const links = await player
+          const { links } = await player
             .chooseButton(
               [
                 '###预言:请预言其真实身份###<div class="text center">若正确,你获得其1个回合,否则其获得你1个回合</div>',
@@ -2243,7 +2243,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               } else return Math.random();
             })
             .set('target', target)
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           player.addTempSkill('yuyj_skip', 'roundStart');
           let choice = links[0],
@@ -2375,7 +2376,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           player.line(target, 'green');
           let list = lib.config.mode_config.identity.identity.lastItem.slice();
           list.yiiu('zhu').unique();
-          const links = await player
+          const { links } = await player
             .chooseButton(
               [
                 '###预言:请预言其真实身份###<div class="text center">若正确,你获得其1个回合,否则其获得你1个回合</div>',
@@ -2400,7 +2401,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               } else return Math.random();
             })
             .set('target', target)
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           player.addTempSkill('yuyjplus1_skip', 'roundStart');
           let choice = links[0],
@@ -2532,7 +2534,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           player.line(target, 'green');
           let list = lib.config.mode_config.identity.identity.lastItem.slice();
           list.yiiu('zhu').unique();
-          const link = await player
+          const { link } = await player
             .chooseButton(
               [
                 '###预言:请预言其真实身份###<div class="text center">若正确,你获得其1个回合</div>',
@@ -2557,7 +2559,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               } else return Math.random();
             })
             .set('target', target)
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           player.addTempSkill('yuyjplus2_skip', 'roundStart');
           let choice = links[0],
@@ -2688,7 +2691,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           player.line(target, 'green');
           let list = lib.config.mode_config.identity.identity.lastItem.slice();
           list.yiiu('zhu').unique();
-          const links = await player
+          const { links } = await player
             .chooseButton(
               [
                 '###预言:请预言其真实身份###<div class="text center">若正确,你获得其1个回合</div>',
@@ -2713,7 +2716,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               } else return Math.random();
             })
             .set('target', target)
-            .forResultLinks();
+            .forResult();
+
           player.addTempSkill('yuyjplus3_skip', 'roundStart');
           if (!links || !links.length) return;
           let choice = links[0],
@@ -4331,12 +4335,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             dialog.push('<div class="text center">延时牌</div>');
             dialog.push(delays);
           }
-          const links = await player
+          const { links } = await player
             .chooseButton(dialog, false)
             .set('ai', (button) => {
               return get.value(button.link);
             })
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           player.gain(links, 'gain2');
           let mopdx = player.storage.viig[0].getExpansions('iihg_mopd');
@@ -5183,7 +5188,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               }
             }
             game.log(yrarr);
-            const links = await player
+            const { links } = await player
               .chooseButton(['作茧:交换两张牌的位置,你摸数组逆序数改变的值', precar], 2)
               .set('ai', function (button) {
                 const player = _status.event.player,
@@ -5229,7 +5234,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               .set('len', yrlen)
               .set('nixu', yrarr)
               .set('yrs', yrnum)
-              .forResultLinks();
+              .forResult();
+
             if (!links || !links.length) return;
             const ind1 = precar.indexOf(links[0]),
               ind2 = precar.indexOf(links[1]),
@@ -5255,7 +5261,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             }
             return;
           }
-          const links = await player
+          const { links } = await player
             .chooseButton(['作茧:使用点数为<b>' + get.translation(trigger.cards[0].number || '') + '</b>的【' + get.translation(trigger.card.name) + '】替换一张牌张牌', precar], 1)
             .set('ai', function (button) {
               const player = _status.event.player,
@@ -5298,7 +5304,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1 + val - extra;
               }
             })
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           const ind = precar.indexOf(links[0]);
           player.gain(links[0], 'gain2');
@@ -5367,7 +5374,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             dgbix = false,
             fwbox = false;
           if (dgia || dgbi || fwbo) {
-            const linrem = await player
+            const { links: linrem } = await player
               .chooseButton(true, [get.prompt('zojm'), '<div class="text center">请选择移除三张牌,使得牌型符合以下条件:</div><div class="text center">1. 三张牌的点数成等差数列;</div><div class="text center">2. 三张牌的点数成等比数列;</div><div class="text center">3. 三张牌的点数属于斐波那契数列中连续项.</div>', prelos], 3)
               .set('ai', function (button) {
                 const player = _status.event.player,
@@ -5409,7 +5416,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   return 10 - val;
                 }
               })
-              .forResultLinks();
+              .forResult();
+
             if (!linrem || !linrem.length) return;
             const temarrb = Array.from(linrem, (item) => item.number),
               temlen = temarrb.length;
@@ -5437,7 +5445,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           let card;
           if (fwbox) {
             const listc = lib.skill.zojm.getList(player);
-            const linksc = await player
+            const { links: linksc } = await player
               .chooseButton([get.prompt('zojm'), '<div class="text center">将一张牌当以下的一张牌对使用</div>', [listc, 'vcard']])
               .set('ai', function (button) {
                 const card = {
@@ -5454,12 +5462,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   return player.getUseValue(card);
                 return 5 + player.getUseValue(card);
               })
-              .forResultLinks();
+              .forResult();
+
             if (!linksc || !linksc.length) return;
             card = linksc[0];
           } else if (dgiax) {
             const lista = lib.skill.zojm.getList(player).filter((item) => item[0] === '基本');
-            const linksa = await player
+            const { links: linksa } = await player
               .chooseButton([get.prompt('zojm'), '<div class="text center">将一张牌当以下的一张牌使用</div>', [lista, 'vcard']])
               .set('ai', function (button) {
                 const card = {
@@ -5476,12 +5485,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   return player.getUseValue(card);
                 return 5 + player.getUseValue(card);
               })
-              .forResultLinks();
+              .forResult();
+
             if (!linksa || !linksa.length) return;
             card = linksa[0];
           } else if (dgbix) {
             const listb = lib.skill.zojm.getList(player).filter((item) => item[0] === '锦囊');
-            const linksb = await player
+            const { links: linksb } = await player
               .chooseButton([get.prompt('zojm'), '<div class="text center">将一张牌当以下的一张牌对使用</div>', [listb, 'vcard']])
               .set('ai', function (button) {
                 const card = {
@@ -5497,7 +5507,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   return player.getUseValue(card);
                 return 5 + player.getUseValue(card);
               })
-              .forResultLinks();
+              .forResult();
+
             if (!linksb || !linksb.length) return;
             card = linksb[0];
           }
@@ -6662,12 +6673,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             buttonover();
             if (!_status.texn) clearInterval(uubnyids);
           }, 1000);
-          const links = await player
+          const { links } = await player
             .chooseButton(get.prompt('ytui'), ['使用一张牌？', expansion], true)
             .set('ai', function (button) {
               return get.value(button.link);
             })
-            .forResultLinks();
+            .forResult();
+
           _status.texn = false;
           l(links[0].name);
           if (!links || !links.length) return;
@@ -8298,7 +8310,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           event.time = get.utc();
           game.addVideo('showCards', player, ['九转', get.cardsInfo(event.cards)]);
           game.addVideo('delay', null, 2);
-          const links = await player
+          const { links } = await player
             .chooseButton([0, 9], true)
             .set('dialog', event.videoId)
             .set('filterButton', function (button) {
@@ -8316,7 +8328,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               if (player.countCards('h') + ui.selected.buttons.length >= 9) return 0;
               return get.value(button.link, _status.event.player);
             })
-            .forResultLinks();
+            .forResult();
+
           if (!links && !links.length) return;
           game.broadcastAll('closeDialog', event.videoId);
           const cards2 = links;
@@ -9639,7 +9652,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             return lib.skill.yeho.yehoList.includes(name);
           });
           game.log(Array.from(listx, (info) => info[2]));
-          const links = await player
+          const { links } = await player
             .chooseButton(1, ['###' + get.prompt('yeho') + '###<div class="text center">将一张<业火>以你选择的牌名置于一名角色的判定区</div>', [listx, 'vcard']])
             .set('filterButton', (button) => {
               return lib.skill.yeho.yehoList.some((name) => {
@@ -9659,7 +9672,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               return 1;
             })
             .set('cardx', cardx)
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           const card = links[0],
             name = links[0][2];
@@ -11393,7 +11407,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             list,
             dialog
           );
-          const links = await player
+          const { links } = await player
             .chooseButton(1, dialog, true)
             .set('ai', (button) => {
               const player = _status.event.player;
@@ -11423,7 +11437,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               }
               return a + b;
             })
-            .forResultLinks();
+            .forResult();
+
           const y = links[0][2];
           game.log(y);
           const num = Math.ceil(parseInt(y.slice(1)) / 2);
@@ -11737,12 +11752,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             list,
             dialog
           );
-          const links = await player
+          const { links } = await player
             .chooseButton(1, dialog, true)
             .set('ai', function (button) {
               return Math.random();
             })
-            .forResultLinks();
+            .forResult();
+
           let listz;
           switch (links[0][2]) {
             case 'yiana':
@@ -11823,12 +11839,13 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             listy,
             dialogm
           );
-          const links2 = await player
+          const { links: links2 } = await player
             .chooseButton(2, dialogm, true)
             .set('ai', function (button) {
               return listz.includes(button.link[2]);
             })
-            .forResultLinks();
+            .forResult();
+
           let a = 0,
             b = 0,
             c = 0,
@@ -11927,13 +11944,14 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               break;
           }
           ch.yiiu(player.storage._hemk);
-          const links3 = await player
+          const { links: links3 } = await player
             .chooseButton(3, ch, true)
             .set('ai', function (button) {
               return Math.random();
             })
             .set('createDialog', ['和鸣:选择一名和鸣角色', [ch, 'character']])
-            .forResultLinks();
+            .forResult();
+
           event.wujl = links3[0];
           const result = await player
             .chooseTarget(true, '令一名角色获得技能')
@@ -12275,7 +12293,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             list[i] = [i, list[i]];
           }
           if (listx.length === 0) return;
-          const links = await player
+          const { links } = await player
             .chooseButton(['遁世:请选择一项', [list, 'textbutton']])
             .set('forced', true)
             .set('selectButton', 1)
@@ -12285,7 +12303,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               }
               return true;
             })
-            .forResultLinks();
+            .forResult();
+
           if (!links || !links.length) return;
           player.addTempSkill('dyui_round', 'roundStart');
           player.storage.dyui_round.push(links[0]);
@@ -12550,7 +12569,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             return ['basic', 'trick'].includes(get.type(item));
           });
           if (!cardx.length) return;
-          const links = await player
+          const { links } = await player
             .chooseButton(['遁世:选择牌置入装备区', cards], true, 1)
             .set('filterButton', function (button, player, storage) {
               if (player.storage.dyuiy && player.storage.dyuiy.includes(button.link.name)) return false;
@@ -12559,7 +12578,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             .set('ai', (button) => {
               return get.buttonValue(button);
             }) //QQQ
-            .forResultLinks();
+            .forResult();
           if (!links || !links.length) return;
           player.setAvatar('grnk', 'grnka');
           setTimeout(function () {
@@ -12848,7 +12867,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           player.showCards(cards, get.translation(player) + '发动了【度势】');
           if (cards.length) {
             while (numx >= 1) {
-              const links = await player
+              const { links } = await player
                 .chooseButton(['是否使用其中一张牌？还能使用' + numx + '张', cards])
                 .set('filterButton', function (button) {
                   return player.hasUseTarget(button.link);
@@ -12860,7 +12879,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                     return player.getUseValue(card);
                   }
                 })
-                .forResultLinks();
+                .forResult();
+
               if (!links || !links.length) break;
               player.chooseUseTarget(true, links[0], false);
               cards.yiiu(links[0]);
@@ -13142,7 +13162,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           );
           let cards2 = player.getExpansions('mgikli');
           if (cards2.length) {
-            const next = await player
+            const { links: next } = await player
               .chooseButton(['是否获得其中至多' + num + '张牌？', cards2], [1, num])
               .set('ai', function (button) {
                 const player = _status.event.player,
@@ -13156,7 +13176,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 if (card.name == 'wuzhong' || card.name == 'shunshou' || card.name == 'yiyi') return 30;
                 return 10 + val;
               })
-              .forResultLinks();
+              .forResult();
+
             if (!next || !next.length) return;
             await player.gain(next, 'gain2');
           }
@@ -16217,7 +16238,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             event.time = get.utc();
             game.addVideo('showCards', player, ['筑梦', get.cardsInfo(cards)]);
             game.addVideo('delay', null, 2);
-            const links = await player
+            const { links } = await player
               .chooseButton(1)
               .set('dialog', event.videoId)
               .set('filterButton', function (button) {
@@ -16235,7 +16256,8 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 if (player.hp > 1 && player.hasSkill('renxin') && player.hasFriend() && get.type(button.link) === 'equip') return 4 - val;
                 return 8 - val;
               })
-              .forResultLinks();
+              .forResult();
+
             game.broadcastAll('closeDialog', event.videoId);
             if (!links || !links.length) {
               eveend = true;

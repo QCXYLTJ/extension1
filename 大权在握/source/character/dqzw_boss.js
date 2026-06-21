@@ -530,13 +530,13 @@ export let info = {
           .set('judging', trigger.player.judging[0])
           .set('_replace', ok);
 				/*if (next.getDefaultHandlerType) {
-                        let type = next.getDefaultHandlerType();
-                        next.set(type, (next[type] || []).add(function (event, option){
-                            let result = event.result;
-                            if (result && (result.cards && !result.cards.length || result.targets && !result.targets.length))
-                                event.nouse = true;
-                        }));
-                    };*/ const { cards, targets, bool } = await next.forResult();
+                            let type = next.getDefaultHandlerType();
+                            next.set(type, (next[type] || []).add(function (event, option){
+                                let result = event.result;
+                                if (result && (result.cards && !result.cards.length || result.targets && !result.targets.length))
+                                    event.nouse = true;
+                            }));
+                        };*/ const { cards, targets, bool } = await next.forResult();
         if (bool || (!bool && (!cards || !cards.length || !targets || !targets.length))) {
           if (!bool) {
             let result = await player

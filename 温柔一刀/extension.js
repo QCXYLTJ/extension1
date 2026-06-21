@@ -37,7 +37,7 @@ if (QQQ.config.扩展全关) {
   }
 } //扩展全部关闭
 if (QQQ.作者模式) {
-  const Q = ['温柔一刀', '火灵月影', '缺德扩展', '三国全系列', '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', '综漫季刊拾贰'].unique();
+  const Q = ['温柔一刀', '火灵月影', '缺德扩展', '三国全系列', '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', 'EX神将'].unique();
   game.saveConfig('extensions', Q); //扩展修改
 } //扩展修改
 //boot=>(loadJavaScriptExtension/onload)=>loadExtension=>precontent/content
@@ -102,7 +102,7 @@ const boss = function () {
     filter() {
       game.sort();
     },
-    content() {}
+    content() { }
   }; //排座位
   let _me;
   Reflect.defineProperty(game, 'me', {
@@ -206,7 +206,7 @@ const boss = function () {
       cards: []
     },
     gaintag: [],
-    forResult() {}
+    forResult() { }
   };
   game.changeBossQ = function (name) {
     _status.event.forceDie = true;
@@ -746,11 +746,11 @@ game.addMode(
     },
     element: {
       player: {
-        dieAfter() {},
-        out() {}
+        dieAfter() { },
+        out() { }
       },
       content: {
-        die() {}
+        die() { }
       }
     },
     get: {

@@ -2188,7 +2188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         求贤: {
-                            audio: 'ext:EX神将:2',
+                            audio: 'ext:将包:2',
                             trigger: {
                                 player: 'recoverEnd',
                             },
@@ -2320,7 +2320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         择婿: {
-                            audio: 'ext:EX神将:2',
+                            audio: 'ext:将包:2',
                             enable: 'phaseUse',
                             usable: 5,
                             filter(event, player) {
@@ -2352,7 +2352,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         偃甲: {
-                            audio: 'ext:EX神将:2',
+                            audio: 'ext:将包:2',
                             enable: 'phaseUse',
                             usable: 5,
                             filter(event, player) {
@@ -2483,7 +2483,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         休养: {
-                            audio: 'ext:EX神将:1',
+                            audio: 'ext:将包:1',
                             trigger: {
                                 player: 'phaseBegin',
                             },
@@ -2789,7 +2789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         幻崩: {
-                            audio: 'ext:EX神将:1',
+                            audio: 'ext:将包:1',
                             trigger: {
                                 player: 'damageEnd',
                                 source: 'damageEnd',
@@ -2878,7 +2878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         定权: {
-                            audio: 'ext:EX神将:1',
+                            audio: 'ext:将包:1',
                             enable: 'phaseUse',
                             usable: 5,
                             filterTarget(card, player, target) {
@@ -2914,7 +2914,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         衰危: {
-                            audio: 'ext:EX神将:1',
+                            audio: 'ext:将包:1',
                             forced: true,
                             trigger: {
                                 player: 'phaseBefore',
@@ -3129,7 +3129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         魏文: {
-                            audio: 'ext:EX神将:1',
+                            audio: 'ext:将包:1',
                             trigger: {
                                 global: ['turnOverAfter'],
                             },
@@ -3150,7 +3150,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         流放: {
-                            audio: 'ext:EX神将:1',
+                            audio: 'ext:将包:1',
                             trigger: {
                                 global: 'damageEnd',
                             },
@@ -6647,7 +6647,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         失权: {
-                            audio: 'ext:EX神将:2',
+                            audio: 'ext:将包:2',
                             trigger: {
                                 player: 'damageBefore',
                             },

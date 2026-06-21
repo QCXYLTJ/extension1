@@ -9,7 +9,7 @@ const qishuyaojians = {
     level: 4,
     skill: {
       trigger: {
-        source: ['damageBegin1']
+        source: ['damageBegin1'],
       },
       forced: true,
       _priority: 10,
@@ -22,16 +22,17 @@ const qishuyaojians = {
       async content(event, trigger, player) {
         let list = [trigger.num, trigger.nature, player, 'notrigger'];
         list.push(trigger.card ? trigger.card : 'nocard');
-        const targets = await player.
-        chooseTarget(`〖炼金师之力〗:请选择至多2角色对其造成${trigger.num}点${get.translation(trigger.nature)}伤害`, (card, target, player) => {
-          return target != player;
-        }).
-        forResultTargets();
+        const { targets } = await player
+          .chooseTarget(`〖炼金师之力〗:请选择至多2角色对其造成${trigger.num}点${get.translation(trigger.nature)}伤害`, (card, target, player) => {
+            return target != player;
+          })
+          .forResult();
+
         if (targets) {
           for await (let target of targets) target.damage(...list.slice(0));
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_tairuier: {
     translate: '泰瑞尔之力',
@@ -42,7 +43,7 @@ const qishuyaojians = {
     level: 4,
     skill: {
       trigger: {
-        player: ['damageBegin1', 'loseHpBegin', 'useSkill', 'logSkillBegin']
+        player: ['damageBegin1', 'loseHpBegin', 'useSkill', 'logSkillBegin'],
       },
       forced: true, //QQQ
       popup: false, //用silent不会赋值popup
@@ -61,7 +62,7 @@ const qishuyaojians = {
           if (player.isDamaged()) return false;
           if (!get.skillInfoTranslation(skill, player)) return false;
           if (lib.skill.global.includes(skill)) return false;
-          if (!info || info && (info.limited || info.juexingji || info.dutySkill || info.equipSkill || info.cardSkill || info.sub || info.unique || info.runeSkills)) return false;
+          if (!info || (info && (info.limited || info.juexingji || info.dutySkill || info.equipSkill || info.cardSkill || info.sub || info.unique || info.runeSkills))) return false;
           if (info.ai && (info.ai.combo || info.ai.notemp || info.ai.neg)) return false;
           return game.hasPlayer((current) => !current.hasSkill(skill));
         }
@@ -72,21 +73,22 @@ const qishuyaojians = {
           trigger.changeToZero();
         } else {
           let skill = get.sourceSkillFor(trigger.skill);
-          const targets = await player.
-          chooseTarget(1, `〖泰瑞尔之力〗:令一名其他角色获得技能【${get.translation(skill)}】`, (card, player, target) => {
-            if (target == player) return false;
-            return !target.hasSkill(skill);
-          }).
-          set('ai', (target) => {
-            return get.attitude(player, target);
-          }).
-          forResultTargets();
+          const { targets } = await player
+            .chooseTarget(1, `〖泰瑞尔之力〗:令一名其他角色获得技能【${get.translation(skill)}】`, (card, player, target) => {
+              if (target == player) return false;
+              return !target.hasSkill(skill);
+            })
+            .set('ai', (target) => {
+              return get.attitude(player, target);
+            })
+            .forResult();
+
           if (targets) {
             targets[0].addTempSkills(skill, { player: `${skill}After` });
           }
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_hakankouyu: {
     translate: '哈坎的口谕',
@@ -99,7 +101,7 @@ const qishuyaojians = {
     skill: {
       trigger: {
         source: 'damageBegin',
-        player: 'useCardAfter'
+        player: 'useCardAfter',
       },
       forced: true,
       _priority: 10,
@@ -118,8 +120,8 @@ const qishuyaojians = {
       },
       async content(event, trigger, player) {
         let name = trigger.name;
-        if (name == 'damage') game.setNature(trigger, ['poison', 'fire', 'ice', 'thunder'], true);else
-        {
+        if (name == 'damage') game.setNature(trigger, ['poison', 'fire', 'ice', 'thunder'], true);
+        else {
           let storage = player.storage.xjzh_diablo_jianyu,
             remainderTime = storage.get('remainderTime');
           if (remainderTime > 2) {
@@ -134,9 +136,9 @@ const qishuyaojians = {
                 endTime = new Date().getTime(),
                 remainderTime = endTime - startTime;
               player.storage.xjzh_diablo_jianyu = new Map([
-              ['cooldown', remainingTime],
-              ['remainder', remainderTime]]
-              );
+                ['cooldown', remainingTime],
+                ['remainder', remainderTime],
+              ]);
               if (remainingTime <= 0) {
                 clearInterval(xjzh_diablo_jianyuTimer);
                 delete player.storage.xjzh_diablo_jianyu;
@@ -144,8 +146,8 @@ const qishuyaojians = {
             }, 100);
           }
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_wuyexinjie: {
     translate: '无夜星空之戒',
@@ -155,12 +157,12 @@ const qishuyaojians = {
     noTranslate: true,
     level: 4,
     async init(player) {
-      player.xjzhHuixin ? player.xjzhHuixin += 0.1 : player.xjzhHuixin = 0.2;
+      player.xjzhHuixin ? (player.xjzhHuixin += 0.1) : (player.xjzhHuixin = 0.2);
     },
     skill: {
       trigger: {
         player: 'useCardAfter',
-        source: 'damageBegin'
+        source: 'damageBegin',
       },
       forced: true,
       _priority: 10,
@@ -175,12 +177,12 @@ const qishuyaojians = {
       },
       async content(event, trigger, player) {
         let name = trigger.name;
-        if (name == 'useCard') player.draw();else
-        {
+        if (name == 'useCard') player.draw();
+        else {
           trigger.num++;
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_rongjiezhixin: {
     translate: '塞利格的溶解之心',
@@ -194,7 +196,7 @@ const qishuyaojians = {
     },
     skill: {
       trigger: {
-        player: ['damageBegin', 'drawBegin']
+        player: ['damageBegin', 'drawBegin'],
       },
       forced: true,
       _priority: 10,
@@ -202,7 +204,7 @@ const qishuyaojians = {
       mod: {
         maxHandcardBase(player, num) {
           return num + player.getHp(true);
-        }
+        },
       },
       filter(event, player) {
         let name = event.name;
@@ -215,26 +217,27 @@ const qishuyaojians = {
       async content(event, trigger, player) {
         let name = trigger.name;
         if (name == 'damage') {
-          const bool = await player.
-          chooseToDiscard('hes', `〖塞利格的溶解之心〗:弃置${trigger.num + 1}张牌防止之`, trigger.num + 1).
-          set('ai', (card) => {
-            if (_status.event.goon) return 12 - get.value(card);
-            return 0;
-          }).
-          set(
-            'goon',
-            (() => {
-              if (get.damageEffect(player, trigger.source, player) > 0) return true;
-              return false;
-            })()
-          ).
-          forResultBool();
+          const { bool } = await player
+            .chooseToDiscard('hes', `〖塞利格的溶解之心〗:弃置${trigger.num + 1}张牌防止之`, trigger.num + 1)
+            .set('ai', (card) => {
+              if (_status.event.goon) return 12 - get.value(card);
+              return 0;
+            })
+            .set(
+              'goon',
+              (() => {
+                if (get.damageEffect(player, trigger.source, player) > 0) return true;
+                return false;
+              })()
+            )
+            .forResult();
+
           if (bool) trigger.changeToZero();
         } else {
           trigger.num += player.getHp(true);
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_lietiangong: {
     translate: '猎天弓',
@@ -247,7 +250,7 @@ const qishuyaojians = {
     replaceSkill: {
       xjzh_diablo_luanshe: {
         trigger: {
-          player: 'useCard2'
+          player: 'useCard2',
         },
         forced: true,
         _priority: 3,
@@ -281,17 +284,17 @@ const qishuyaojians = {
               }
               if (num > targets - num) return 0.2;
               return 1.5;
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     },
     replaceSkillInfo: {
-      xjzh_diablo_luanshe_info: '锁定技,当你使用【杀】指定目标时,此【杀】增加1-3个且不为你和初始目标的随机额外目标.'
+      xjzh_diablo_luanshe_info: '锁定技,当你使用【杀】指定目标时,此【杀】增加1-3个且不为你和初始目标的随机额外目标.',
     },
     skill: {
       trigger: {
-        source: 'damageAfter'
+        source: 'damageAfter',
       },
       forced: true,
       _priority: 10,
@@ -303,8 +306,8 @@ const qishuyaojians = {
       },
       async content(event, trigger, player) {
         trigger.player.changexjzhBUFF('mumang', 1);
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_mingyunzhiquan: {
     translate: '命运之拳',
@@ -319,16 +322,16 @@ const qishuyaojians = {
     level: 4,
     async init(player) {
       let storage = new Map([
-      ['huixin', get.rand(100, 777)],
-      ['damage', [Math.random(), get.rand(1, 3)]],
-      ['buff', get.rand(100, 518)]]
-      );
-      player.xjzhHuixin ? player.xjzhHuixin += storage.get('huixin') / 1000 : player.xjzhHuixin = 0.1 + storage.get('huixin') / 1000;
+        ['huixin', get.rand(100, 777)],
+        ['damage', [Math.random(), get.rand(1, 3)]],
+        ['buff', get.rand(100, 518)],
+      ]);
+      player.xjzhHuixin ? (player.xjzhHuixin += storage.get('huixin') / 1000) : (player.xjzhHuixin = 0.1 + storage.get('huixin') / 1000);
       player.storage.xjzh_qishu_mingyunzhiquan = storage;
     }, //这个init只有gamestart会init,后面获得不会init
     skill: {
       trigger: {
-        source: 'damageBegin1'
+        source: 'damageBegin1',
       },
       forced: true,
       charlotte: true,
@@ -340,29 +343,29 @@ const qishuyaojians = {
       async content(event, trigger, player) {
         if (!player.storage.xjzh_qishu_mingyunzhiquan) {
           let storage = new Map([
-          ['huixin', get.rand(100, 777)],
-          ['damage', [Math.random(), get.rand(1, 3)]],
-          ['buff', get.rand(100, 518)]]
-          );
-          player.xjzhHuixin ? player.xjzhHuixin += storage.get('huixin') / 1000 : player.xjzhHuixin = 0.1 + storage.get('huixin') / 1000;
+            ['huixin', get.rand(100, 777)],
+            ['damage', [Math.random(), get.rand(1, 3)]],
+            ['buff', get.rand(100, 518)],
+          ]);
+          player.xjzhHuixin ? (player.xjzhHuixin += storage.get('huixin') / 1000) : (player.xjzhHuixin = 0.1 + storage.get('huixin') / 1000);
           player.storage.xjzh_qishu_mingyunzhiquan = storage;
         } //QQQ
         let storage = player.storage.xjzh_qishu_mingyunzhiquan;
         if (Math.random() < storage.get('damage')[0]) trigger.num += storage.get('damage')[1];
-        if (Math.random() < storage.get('buff') / 1000 * (1 + player.xjzhHuixin)) {
-          player.
-          when({ source: 'damageAfter' }).
-          assign({
-            firstDo: true
-          }).
-          then(() => {
-            let deBuff = lib.xjzh_Debuff.randomGet();
-            trigger.player.changexjzhBUFF(deBuff, 1);
-            game.log(player, `因<span style="color: yellow;">〖命运之拳〗</span>触发了会心一击,${get.translation(trigger.player)}获得1层${get.xjzhBUFFtranslate(deBuff)}`);
-          });
+        if (Math.random() < (storage.get('buff') / 1000) * (1 + player.xjzhHuixin)) {
+          player
+            .when({ source: 'damageAfter' })
+            .assign({
+              firstDo: true,
+            })
+            .then(() => {
+              let deBuff = lib.xjzh_Debuff.randomGet();
+              trigger.player.changexjzhBUFF(deBuff, 1);
+              game.log(player, `因<span style="color: yellow;">〖命运之拳〗</span>触发了会心一击,${get.translation(trigger.player)}获得1层${get.xjzhBUFFtranslate(deBuff)}`);
+            });
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_junmao: {
     translate: '谐角之冠',
@@ -399,7 +402,7 @@ const qishuyaojians = {
     },
     skill: {
       trigger: {
-        player: 'changeSkillsAfter'
+        player: 'changeSkillsAfter',
       },
       forced: true,
       charlotte: true,
@@ -436,8 +439,8 @@ const qishuyaojians = {
           }
           player.changeSkills([newSkill], [skill]);
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_tongkuhushou: {
     translate: '痛苦吞食者',
@@ -448,14 +451,14 @@ const qishuyaojians = {
     level: 4,
     skill: {
       trigger: {
-        source: 'damageSource'
+        source: 'damageSource',
       },
       forced: true,
       _priority: 10,
       lastDo: true,
       marktext: '痛',
       intro: {
-        content: '#'
+        content: '#',
       },
       filter(event, player, name) {
         if (!event.cards || !event.cards.length) return false;
@@ -471,8 +474,8 @@ const qishuyaojians = {
             target.clearMark('xjzh_qishu_tongkuhushou');
           }
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_jiandun: {
     translate: '坚毅之盾',
@@ -482,7 +485,7 @@ const qishuyaojians = {
     level: 3,
     skill: {
       trigger: {
-        player: ['damageAfter', 'phaseBegin']
+        player: ['damageAfter', 'phaseBegin'],
       },
       forced: true,
       _priority: 10,
@@ -499,8 +502,8 @@ const qishuyaojians = {
           player.changeHujia(-1);
           player.gainMaxHp();
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_suoding: {
     translate: '锁定目标',
@@ -510,7 +513,7 @@ const qishuyaojians = {
     level: 4,
     skill: {
       trigger: {
-        player: 'useCard'
+        player: 'useCard',
       },
       forced: true,
       _priority: 10,
@@ -520,25 +523,26 @@ const qishuyaojians = {
         return get.type(event.card) != 'delay' && get.type(event.card) != 'equip';
       },
       async content(event, trigger, player) {
-        const targets = await player.
-        chooseTarget(1, `〖锁定目标〗:为${get.translation(trigger.card)}重新指定一个目标并令其额外结算${trigger.targets.length}次`, (card, player, target) => {
-          return player.canUse(_status.event.card, target, false);
-        }).
-        set('ai', (target) => {
-          let trigger = _status.event.getTrigger();
-          let player = get.player();
-          return get.effect(target, trigger.card, player, player);
-        }).
-        set('card', trigger.card).
-        forResultTargets();
+        const { targets } = await player
+          .chooseTarget(1, `〖锁定目标〗:为${get.translation(trigger.card)}重新指定一个目标并令其额外结算${trigger.targets.length}次`, (card, player, target) => {
+            return player.canUse(_status.event.card, target, false);
+          })
+          .set('ai', (target) => {
+            let trigger = _status.event.getTrigger();
+            let player = get.player();
+            return get.effect(target, trigger.card, player, player);
+          })
+          .set('card', trigger.card)
+          .forResult();
+
         if (targets) {
           let num = trigger.targets.length;
           trigger.targets = targets;
           trigger.effectCount += num;
           game.log(trigger.card, '额外结算', num, '次');
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_fenlie: {
     translate: '分裂箭矢',
@@ -551,12 +555,12 @@ const qishuyaojians = {
       2: [2, 350],
       3: [3, 500],
       4: [4, 720],
-      5: [5, 0]
+      5: [5, 0],
     },
     maxUp: 5,
     skill: {
       trigger: {
-        player: 'useCard2'
+        player: 'useCard2',
       },
       forced: true,
       _priority: 9,
@@ -566,10 +570,10 @@ const qishuyaojians = {
         if (info.allowMultiple == false) return false;
         if (event.targets && !info.multitarget) {
           if (
-          game.hasPlayer((current) => {
-            return !event.targets.includes(current) && player.canUse(event.card, current, false);
-          }))
-          {
+            game.hasPlayer((current) => {
+              return !event.targets.includes(current) && player.canUse(event.card, current, false);
+            })
+          ) {
             return true;
           }
         }
@@ -578,25 +582,26 @@ const qishuyaojians = {
       async content(event, trigger, player) {
         let num = lib.xjzh_qishuyaojians.xjzh_qishu_fenlie.status[lib.config.xjzh_qishuyaojians.levelEquip.item.level][0];
         let list = num == 1 ? 1 : [1, Math.min(num, game.players.length - trigger.targets.length)];
-        const targets = await player.
-        chooseTarget(list, `〖分裂箭矢〗:为${get.translation(trigger.card)}额外指定一个目标`, (card, player, target) => {
-          if (_status.event.targets.includes(target)) return false;
-          return player.canUse(_status.event.card, target, false);
-        }).
-        set('ai', (target) => {
-          let trigger = _status.event.getTrigger();
-          let player = _status.event.player;
-          return get.effect(target, trigger.card, player, player);
-        }).
-        set('targets', trigger.targets).
-        set('card', trigger.card).
-        forResultTargets();
+        const { targets } = await player
+          .chooseTarget(list, `〖分裂箭矢〗:为${get.translation(trigger.card)}额外指定一个目标`, (card, player, target) => {
+            if (_status.event.targets.includes(target)) return false;
+            return player.canUse(_status.event.card, target, false);
+          })
+          .set('ai', (target) => {
+            let trigger = _status.event.getTrigger();
+            let player = _status.event.player;
+            return get.effect(target, trigger.card, player, player);
+          })
+          .set('targets', trigger.targets)
+          .set('card', trigger.card)
+          .forResult();
+
         if (targets) {
           trigger.targets.addArray(result.targets);
           game.log(trigger.player, '成为', trigger.card, '的额外目标');
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_waxilidedaogao: {
     translate: '瓦西里的祷告',
@@ -631,7 +636,7 @@ const qishuyaojians = {
     },
     skill: {
       trigger: {
-        global: 'phaseBefore'
+        global: 'phaseBefore',
       },
       forced: true,
       _priority: 10,
@@ -646,8 +651,8 @@ const qishuyaojians = {
         player.changexjzhMp(-(num2 * 10));
         player.recover(num2);
         game.log(player, '将', num2 * 10, '点灵力转化为了', num2, '点体力值');
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_wuyan: {
     translate: '无餍之怒',
@@ -671,7 +676,7 @@ const qishuyaojians = {
       node.innerHTML = get.translation('xjzh_diablo_xiong');
       let skills = lib.character.xjzh_diablo_xiong[3];
       player.addSkill(skills);
-    }
+    },
   },
   xjzh_qishu_fengbaopaoxiao: {
     translate: '风暴咆哮',
@@ -702,9 +707,9 @@ const qishuyaojians = {
         } while (skills.length);
       }
       let num = get.rand(25, 35) / 100;
-      player.xjzhHuixin ? player.xjzhHuixin += 0.5 : player.xjzhHuixin = 0.5;
-      player.xjzhReduce ? player.xjzhReduce += num : player.xjzhReduce = num;
-    }
+      player.xjzhHuixin ? (player.xjzhHuixin += 0.5) : (player.xjzhHuixin = 0.5);
+      player.xjzhReduce ? (player.xjzhReduce += num) : (player.xjzhReduce = num);
+    },
   },
   xjzh_qishu_fenglangkx: {
     translate: '疯狼的狂喜',
@@ -733,7 +738,7 @@ const qishuyaojians = {
     },
     skill: {
       trigger: {
-        player: ['logSkillBegin', 'useSkillBegin']
+        player: ['logSkillBegin', 'useSkillBegin'],
       },
       silent: true,
       _priority: -1,
@@ -746,8 +751,8 @@ const qishuyaojians = {
       },
       async content(event, trigger, player) {
         player.changexjzhMp(20);
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_wumingzhe: {
     translate: '无名者兜帽',
@@ -759,7 +764,7 @@ const qishuyaojians = {
     filter: 'xjzh_diablo_nataya',
     async init(player) {
       if (!get.is.playerNames(player, 'xjzh_diablo_nataya')) return;
-      player.xjzhHuixin ? player.xjzhHuixin += 0.35 : player.xjzhHuixin = 0.35;
+      player.xjzhHuixin ? (player.xjzhHuixin += 0.35) : (player.xjzhHuixin = 0.35);
     },
     skill: {
       mod: {
@@ -768,7 +773,7 @@ const qishuyaojians = {
         },
         targetInRange(card, player, target) {
           if (get.xjzh_deEffect(target)) return true;
-        }
+        },
       },
       ai: {
         viewHandcard: true,
@@ -778,9 +783,9 @@ const qishuyaojians = {
             if (get.xjzh_deEffect(arg)) return true;
             return false;
           }
-        }
-      }
-    }
+        },
+      },
+    },
   },
   xjzh_qishu_daojian: {
     translate: '疾疫刀尖',
@@ -790,7 +795,7 @@ const qishuyaojians = {
     level: 1,
     skill: {
       trigger: {
-        source: 'damageBegin'
+        source: 'damageBegin',
       },
       forced: true,
       _priority: -1,
@@ -803,9 +808,9 @@ const qishuyaojians = {
         game.setNature(trigger, 'poison', true);
       },
       ai: {
-        poisondamage: true
-      }
-    }
+        poisondamage: true,
+      },
+    },
   },
   xjzh_qishu_fuchou: {
     translate: '复仇之笼',
@@ -815,7 +820,7 @@ const qishuyaojians = {
     level: 3,
     skill: {
       trigger: {
-        player: 'damageAfter'
+        player: 'damageAfter',
       },
       forced: true,
       _priority: -1,
@@ -831,20 +836,20 @@ const qishuyaojians = {
         game.log(player, `受到的伤害的${num2}%将被储存起来,数值为`, num * num2);
         if (storage >= 1) {
           let damageNum = Math.round(storage) * 3;
-          const targets = await player.
-          chooseTarget(`〖复仇之笼〗:请选择一名其他角色并对其造成${damageNum}点火焰伤害`, (card, player, target) => {
-            return target != player;
-          }).
-          set('ai', (target) => {
-            return get.damageEffect(target, _status.event.player, _status.event.player, 'fire');
-          });
+          const targets = await player
+            .chooseTarget(`〖复仇之笼〗:请选择一名其他角色并对其造成${damageNum}点火焰伤害`, (card, player, target) => {
+              return target != player;
+            })
+            .set('ai', (target) => {
+              return get.damageEffect(target, _status.event.player, _status.event.player, 'fire');
+            });
           if (targets) {
             targets[0].damage(damageNum, player, 'nocard', 'fire');
             storage = 0;
           }
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_wuqijingtong: {
     translate: '武器精通',
@@ -854,7 +859,7 @@ const qishuyaojians = {
     level: 3,
     skill: {
       trigger: {
-        player: 'equipBegin'
+        player: 'equipBegin',
       },
       forced: true,
       _priority: -1,
@@ -873,13 +878,13 @@ const qishuyaojians = {
             if (!list.includes(i.name)) list.push(i.name);
           }
           if (list.includes(card.name)) return num - 10;
-        }
+        },
       },
       marktext: '剑',
       intro: {
         name: '武器精通',
         content: 'expansion',
-        markcount: 'expansion'
+        markcount: 'expansion',
       },
       filter(event, player) {
         return get.subtype(event.card) == 'equip1';
@@ -907,10 +912,10 @@ const qishuyaojians = {
           if (!list.includes(i.name)) list.push(i.name);
         }
         if (list.includes(trigger.card.name)) event.goto(3);
-        'step 1';
+        ('step 1');
         var cards = game.createCard(trigger.card, trigger.card.suit, trigger.card.number);
         player.addToExpansion(cards, player, 'gain2').gaintag.add('xjzh_qishu_wuqijingtong');
-        'step 2';
+        ('step 2');
         var cards = player.getExpansions('xjzh_qishu_wuqijingtong');
         for (var card of cards) {
           var info = get.info(card);
@@ -919,11 +924,11 @@ const qishuyaojians = {
             player.addSkill(skill);
           }
         }
-        'step 3';
+        ('step 3');
         trigger.cancel(null, null, 'notrigger');
         player.loseToDiscardpile(trigger.card);
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_fangjujingtong: {
     translate: '防具精通',
@@ -933,7 +938,7 @@ const qishuyaojians = {
     level: 3,
     skill: {
       trigger: {
-        player: 'equipBegin'
+        player: 'equipBegin',
       },
       forced: true,
       _priority: -1,
@@ -952,13 +957,13 @@ const qishuyaojians = {
             if (!list.includes(i.name)) list.push(i.name);
           }
           if (list.includes(card.name)) return num - 10;
-        }
+        },
       },
       marktext: '防',
       intro: {
         name: '防具精通',
         content: 'expansion',
-        markcount: 'expansion'
+        markcount: 'expansion',
       },
       filter(event, player) {
         return get.subtype(event.card) == 'equip2';
@@ -986,10 +991,10 @@ const qishuyaojians = {
           if (!list.includes(i.name)) list.push(i.name);
         }
         if (list.includes(trigger.card.name)) event.goto(3);
-        'step 1';
+        ('step 1');
         var cards = game.createCard(trigger.card, trigger.card.suit, trigger.card.number);
         player.addToExpansion(cards, player, 'gain2').gaintag.add('xjzh_qishu_fangjujingtong');
-        'step 2';
+        ('step 2');
         var cards = player.getExpansions('xjzh_qishu_fangjujingtong');
         for (var card of cards) {
           var info = get.info(card);
@@ -998,11 +1003,11 @@ const qishuyaojians = {
             player.addSkill(skill);
           }
         }
-        'step 3';
+        ('step 3');
         trigger.cancel(null, null, 'notrigger');
         player.loseToDiscardpile(trigger.card);
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_binglengjiqiao: {
     translate: '冰冷技巧',
@@ -1013,7 +1018,7 @@ const qishuyaojians = {
     skill: {
       trigger: {
         player: 'damageBegin1',
-        source: 'damageBegin1'
+        source: 'damageBegin1',
       },
       forced: true,
       _priority: -1,
@@ -1029,19 +1034,19 @@ const qishuyaojians = {
           return;
         }
         trigger.changeToZero();
-        'step 1';
+        ('step 1');
         if (!trigger.source || trigger.nosource) return;
         player.useCard({ name: 'sha', nature: 'ice' }, trigger.source, false).set('addCount', false);
         event.finish();
-        'step 2';
+        ('step 2');
         game.xjzh_Criticalstrike(player, trigger.num, 2, null, true);
       },
       ai: {
         effect: {
-          target: -0.7
-        }
-      }
-    }
+          target: -0.7,
+        },
+      },
+    },
   },
   xjzh_qishu_qiyue: {
     translate: '恶念契约',
@@ -1051,7 +1056,7 @@ const qishuyaojians = {
     level: 2,
     skill: {
       trigger: {
-        player: 'phaseBefore'
+        player: 'phaseBefore',
       },
       forced: true,
       _priority: -1,
@@ -1067,29 +1072,29 @@ const qishuyaojians = {
           }
           return 2;
         });
-        'step 1';
+        ('step 1');
         if (result.control != 'cancel2') {
           switch (result.index) {
-            case 0:{
-                player.changeHujia(1);
-                break;
-              }
-            case 1:{
-                player.equip(
-                  get.cardPile(function (cardx) {
-                    return get.subtype(cardx) == 'equip1' && get.info(cardx).distance && get.info(cardx).distance.attackFrom == -2;
-                  })
-                );
-                break;
-              }
-            case 2:{
-                player.draw(2);
-                break;
-              }
+            case 0: {
+              player.changeHujia(1);
+              break;
+            }
+            case 1: {
+              player.equip(
+                get.cardPile(function (cardx) {
+                  return get.subtype(cardx) == 'equip1' && get.info(cardx).distance && get.info(cardx).distance.attackFrom == -2;
+                })
+              );
+              break;
+            }
+            case 2: {
+              player.draw(2);
+              break;
+            }
           }
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_titoushi: {
     translate: '剃头师',
@@ -1099,7 +1104,7 @@ const qishuyaojians = {
     level: 4,
     skill: {
       trigger: {
-        source: 'damageBegin'
+        source: 'damageBegin',
       },
       forced: true,
       _priority: 6,
@@ -1108,7 +1113,7 @@ const qishuyaojians = {
       },
       async content(event, trigger, player) {
         let num = get.rand(20000, 40000);
-        let numx = num / 1000 * 0.07;
+        let numx = (num / 1000) * 0.07;
         let damageNum = Math.round(trigger.num * (1 + numx));
         game.log(trigger.player, '受到', player, '的', '#y〖剃头师〗', '影响', trigger.num, '点伤害将于', num / 1000, 's后转为流失', damageNum, '点体力');
         setTimeout(() => {
@@ -1118,8 +1123,8 @@ const qishuyaojians = {
           }
         }, num);
         trigger.changeToZero();
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_yaojishi: {
     translate: '药剂师',
@@ -1129,7 +1134,7 @@ const qishuyaojians = {
     level: 2,
     skill: {
       trigger: {
-        source: 'damageBegin'
+        source: 'damageBegin',
       },
       forced: true,
       _priority: 7,
@@ -1157,8 +1162,8 @@ const qishuyaojians = {
           game.setNature(trigger, list3, true);
           trigger.num += list3.length;
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_wushitongku: {
     translate: '无视痛苦',
@@ -1168,7 +1173,7 @@ const qishuyaojians = {
     level: 2,
     skill: {
       trigger: {
-        player: 'damageBegin'
+        player: 'damageBegin',
       },
       forced: true,
       _priority: 3,
@@ -1180,8 +1185,8 @@ const qishuyaojians = {
       content() {
         trigger.player.recover(trigger.num);
         trigger.changeToZero();
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_siwanghuanxing: {
     translate: '死亡缓刑',
@@ -1191,7 +1196,7 @@ const qishuyaojians = {
     level: 2,
     skill: {
       trigger: {
-        source: 'damageEnd'
+        source: 'damageEnd',
       },
       forced: true,
       _priority: 2,
@@ -1204,11 +1209,11 @@ const qishuyaojians = {
             trigger.player.changexjzhBUFF(deBuff.randomGet(), 1);
           }
         }
-        'step 1';
+        ('step 1');
         var list = get.xjzhBUFFList(trigger.player, false);
         trigger.player.damage(list.length, player, 'poison', 'nocard');
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_shengmingfusu: {
     translate: '生命复苏',
@@ -1218,7 +1223,7 @@ const qishuyaojians = {
     level: 1,
     skill: {
       trigger: {
-        global: 'recoverBegin'
+        global: 'recoverBegin',
       },
       _priority: 3,
       forced: true,
@@ -1228,8 +1233,8 @@ const qishuyaojians = {
       async content(event, trigger, player) {
         trigger.num++;
         if (trigger.player.isDying()) trigger.num++;
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_heianxuewu: {
     translate: '黑暗血舞',
@@ -1239,7 +1244,7 @@ const qishuyaojians = {
     level: 1,
     skill: {
       trigger: {
-        player: 'useCard'
+        player: 'useCard',
       },
       forced: true,
       _priority: 3,
@@ -1249,13 +1254,13 @@ const qishuyaojians = {
       content() {
         'step 0';
         player.loseHp();
-        'step 1';
+        ('step 1');
         if (!trigger.baseDamage) trigger.baseDamage = 1;
         trigger.baseDamage++;
-        'step 2';
+        ('step 2');
         player.gain(trigger.card, player, 'gain2');
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_jishudanyao: {
     translate: '集束弹药',
@@ -1265,7 +1270,7 @@ const qishuyaojians = {
     level: 1,
     skill: {
       trigger: {
-        player: 'useCard2'
+        player: 'useCard2',
       },
       forced: true,
       _priority: 3,
@@ -1275,8 +1280,8 @@ const qishuyaojians = {
       },
       content() {
         player.changexjzhBUFF('dingshen', 1);
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_talaxia: {
     translate: '塔拉夏之心',
@@ -1286,7 +1291,7 @@ const qishuyaojians = {
     level: 2,
     skill: {
       trigger: {
-        source: 'damageBegin1'
+        source: 'damageBegin1',
       },
       forced: true,
       _priority: 3,
@@ -1302,15 +1307,15 @@ const qishuyaojians = {
       content() {
         'step 0';
         trigger.num++;
-        'step 1';
+        ('step 1');
         var history = player.getAllHistory('sourceDamage', function (evt) {
           return evt && evt.nature;
         });
         var naturex = history[history.length];
         var nature2 = Array.from(lib.nature.keys()).remove(naturex).randomGet();
         if (Math.random() <= Math.random()) player.gain({ name: 'sha', nature: nature2 }, player, 'gain2', 'log');
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_huanji: {
     translate: '还击',
@@ -1320,7 +1325,7 @@ const qishuyaojians = {
     level: 3,
     skill: {
       trigger: {
-        player: ['linkAfter', 'turnOverAfter', 'addJudgeAfter']
+        player: ['linkAfter', 'turnOverAfter', 'addJudgeAfter'],
       },
       forced: true,
       _priority: 4,
@@ -1332,17 +1337,18 @@ const qishuyaojians = {
         } else if (trigger.name == 'turnOver') {
           str = '〖还击〗:请选择令一名其他角色翻面';
         }
-        const targets = await player.
-        chooseTarget(str, (card, player, target) => {
-          if (trigger.name == 'addJudge') {
-            return target.canAddJudge(trigger.cards[0]);
-          }
-          return target != player;
-        }).
-        set('ai', (target) => {
-          return get.attitude(player, target);
-        }).
-        forResultTargets();
+        const { targets } = await player
+          .chooseTarget(str, (card, player, target) => {
+            if (trigger.name == 'addJudge') {
+              return target.canAddJudge(trigger.cards[0]);
+            }
+            return target != player;
+          })
+          .set('ai', (target) => {
+            return get.attitude(player, target);
+          })
+          .forResult();
+
         if (targets) {
           let target = targets[0];
           if (trigger.name == 'addJudge') {
@@ -1353,8 +1359,8 @@ const qishuyaojians = {
             target[trigger.name](true);
           }
         }
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_maoxianmingyun: {
     translate: '冒险命运',
@@ -1364,7 +1370,7 @@ const qishuyaojians = {
     level: 1,
     skill: {
       trigger: {
-        source: 'damageBegin1'
+        source: 'damageBegin1',
       },
       forced: true,
       _priority: 4,
@@ -1373,10 +1379,10 @@ const qishuyaojians = {
         return true;
       },
       content() {
-        if (trigger.num >= 2) trigger.num *= 2;else
-        trigger.changeToZero();
-      }
-    }
+        if (trigger.num >= 2) trigger.num *= 2;
+        else trigger.changeToZero();
+      },
+    },
   },
   xjzh_qishu_chengfa: {
     translate: '惩罚',
@@ -1386,7 +1392,7 @@ const qishuyaojians = {
     level: 2,
     skill: {
       trigger: {
-        player: 'useCardToPlayered'
+        player: 'useCardToPlayered',
       },
       forced: true,
       _priority: 4,
@@ -1397,8 +1403,8 @@ const qishuyaojians = {
       content() {
         var cards = trigger.target.getGainableCards(player, 'hej');
         player.gain(cards.randomGet(), 'log', trigger.target, 'gain2');
-      }
-    }
+      },
+    },
   },
   xjzh_qishu_guimeihuanying: {
     translate: '诡魅幻影',
@@ -1408,7 +1414,7 @@ const qishuyaojians = {
     level: 1,
     skill: {
       trigger: {
-        global: 'useCard'
+        global: 'useCard',
       },
       forced: true,
       _priority: 6,
@@ -1420,9 +1426,9 @@ const qishuyaojians = {
       async content(event, trigger, player) {
         let card = game.createCard(trigger.card.name, trigger.card.number, trigger.card.suit);
         await player.chooseUseTarget(card);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 lib.xjzh_qishuyaojians = qishuyaojians;
 const qishuGet = {
@@ -1481,17 +1487,17 @@ const qishuGet = {
   xjzh_equipInfo(name) {
     if (!lib.xjzh_qishuyaojians[name]) return {};
     return lib.xjzh_qishuyaojians[name] || {};
-  }
+  },
 };
 Object.assign(get, qishuGet);
 const qishuGame = {
   xjzhQishu_saveConfig() {
     'step 0';
     game.saveConfig('xjzh_qishuyaojians', lib.config.xjzh_qishuyaojians);
-    'step 1';
+    ('step 1');
     var list = JSON.stringify(lib.config.xjzh_qishuyaojians);
     var data = '奇术要件存档备份:' + list.slice(0);
-    game.writeFile(lib.init.encode(data), 'extension/仙家之魂/save', '奇术要件存档备份.json', function (err) {});
+    game.writeFile(lib.init.encode(data), 'extension/仙家之魂/save', '奇术要件存档备份.json', function (err) { });
   },
   xjzh_resetQishu() {
     'step 0';
@@ -1519,16 +1525,16 @@ const qishuGame = {
         xjzh_cailiao_wawa: ['针扎娃娃', 0, '安达利尔挑战材料;每一针都是复仇的索取.'],
         xjzh_cailiao_jiasuo: ['焦沙枷锁', 0, '安达利尔挑战材料;牢狱与绞架的天作之合,但愿所有罪人都能带上沉重的铁镣.'],
         xjzh_cailiao_mingyushi: ['冥狱石', 0, '奇术boss强化材料;这块怪石历经漫长岁月的沉淀,喃喃吟诵着古老的亵渎之词.'],
-        xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.']
-      }
+        xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.'],
+      },
     };
-    'step 1';
+    ('step 1');
     var Name = ui.create.div(ui.window, {
       zIndex: '1000',
       left: '0',
       width: '100%',
       top: '0',
-      height: '100%'
+      height: '100%',
     });
     var inputDiv = ui.create.div(Name, {
       left: '50%',
@@ -1538,7 +1544,7 @@ const qishuGame = {
       height: '270px',
       textAlign: 'center',
       backgroundSize: '100%',
-      backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/qishuFiles.png)'
+      backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/qishuFiles.png)',
     });
     var input = ui.create.node('input', inputDiv, {
       top: '110px',
@@ -1547,7 +1553,7 @@ const qishuGame = {
       width: '230px',
       height: '20px',
       background: 'none',
-      borderStyle: 'none'
+      borderStyle: 'none',
     });
     input.id = 'xjzh_qishu_filesName';
     var okBtm = ui.create.div(
@@ -1556,7 +1562,7 @@ const qishuGame = {
         left: '153px',
         width: '100px',
         bottom: '55px',
-        height: '35px'
+        height: '35px',
       },
       function () {
         var value = document.getElementById('xjzh_qishu_filesName').value;
@@ -1572,7 +1578,7 @@ const qishuGame = {
         right: '35px',
         width: '25px',
         top: '42px',
-        height: '25px'
+        height: '25px',
       },
       function () {
         window.xjzhOpenLoading('你点击了取消,已创建玩家名称为<无名玩家>的奇术要件存档');
@@ -1580,7 +1586,7 @@ const qishuGame = {
         Name.delete();
       }
     );
-    'step 2';
+    ('step 2');
     game.xjzhQishu_saveConfig();
   },
   xjzh_levelUp(num) {
@@ -1589,7 +1595,7 @@ const qishuGame = {
     if (!lib.config.xjzh_qishuyaojians.exp) lib.config.xjzh_qishuyaojians.exp = 0;
     if (!num) num = 0;
     lib.config.xjzh_qishuyaojians.exp += num;
-    'step 1';
+    ('step 1');
     const le = lib.config.xjzh_qishuyaojians.level;
     const ex = lib.config.xjzh_qishuyaojians.exp;
     if (le == 100) return [100, 0];
@@ -1598,7 +1604,7 @@ const qishuGame = {
       lib.config.xjzh_qishuyaojians.exp -= le * (100 + 10 * le);
     }
     if (ex >= le * (100 + 10 * le)) this.xjzh_levelUp();
-    'step 2';
+    ('step 2');
     this.xjzhQishu_saveConfig();
     return [lib.config.xjzh_qishuyaojians.level, lib.config.xjzh_qishuyaojians.exp];
   },
@@ -1635,7 +1641,7 @@ const qishuGame = {
         xjzh_cailiao_wawa: ['针扎娃娃', 0, '安达利尔挑战材料;每一针都是复仇的索取.'],
         xjzh_cailiao_jiasuo: ['焦沙枷锁', 0, '安达利尔挑战材料;牢狱与绞架的天作之合,但愿所有罪人都能带上沉重的铁镣.'],
         xjzh_cailiao_mingyushi: ['冥狱石', 0, '奇术boss强化材料;这块怪石历经漫长岁月的沉淀,喃喃吟诵着古老的亵渎之词.'],
-        xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.']
+        xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.'],
       };
     }
     if (typeof arg != 'string') {
@@ -1714,7 +1720,7 @@ const qishuGame = {
       xjzh_cailiao_wawa: ['针扎娃娃', 0, '安达利尔挑战材料;每一针都是复仇的索取.'],
       xjzh_cailiao_jiasuo: ['焦沙枷锁', 0, '安达利尔挑战材料;牢狱与绞架的天作之合,但愿所有罪人都能带上沉重的铁镣.'],
       xjzh_cailiao_mingyushi: ['冥狱石', 0, '奇术boss强化材料;这块怪石历经漫长岁月的沉淀,喃喃吟诵着古老的亵渎之词.'],
-      xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.']
+      xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.'],
     };
     this.xjzhQishu_saveConfig();
     return lib.config.xjzh_qishuyaojians.cailiao;
@@ -1732,9 +1738,9 @@ const qishuGame = {
       if (precede.some((item) => !this.xjzh_hasEquiped(item, playerName))) return `此奇术要件需要先装备${precede.map((item) => get.xjzh_qishuTranslate(item)).join('、')}才能装备.`;
     }
     var filter = info.filter;
-    if (typeof filter == 'string') return playerName == filter;else
-    if (typeof filter == 'object') return filter.includes(playerName);else
-    if (typeof filter == 'function') return filter(playerName);
+    if (typeof filter == 'string') return playerName == filter;
+    else if (typeof filter == 'object') return filter.includes(playerName);
+    else if (typeof filter == 'function') return filter(playerName);
     return true;
   },
   xjzh_changeSuipian(num) {
@@ -1764,7 +1770,7 @@ const qishuGame = {
     if (!lib.config.xjzh_qishuyaojians.levelEquip.item) {
       lib.config.xjzh_qishuyaojians.levelEquip.item = {
         level: 1,
-        exp: 0
+        exp: 0,
       };
     }
     if (!lib.config.xjzh_qishuyaojians.levelEquip.item.level) lib.config.xjzh_qishuyaojians.levelEquip.item.level = 1;
@@ -1946,10 +1952,10 @@ const qishuGame = {
   },
   xjzh_qishuWinner(str, str2) {
     let boxRemove = ui.create.div(ui.window, {
-        zIndex: 10000,
-        width: '100%',
-        height: '100%'
-      }),
+      zIndex: 10000,
+      width: '100%',
+      height: '100%',
+    }),
       obj = ui.create.div('.xjzh-dialog', boxRemove);
     obj.style.transformOrigin = 'center';
     let num = get.rand(0, 5),
@@ -1995,8 +2001,8 @@ const qishuGame = {
           xjzh_cailiao_enianzhixin: 0,
           xjzh_cailiao_gangtie: 0,
           xjzh_cailiao_kongju: 0,
-          xjzh_cailiao_xianxue: 0
-        }
+          xjzh_cailiao_xianxue: 0,
+        },
       };
       let suipian = Math.floor(num2);
       qishuReward.suipian += window.qishumingyushi === true ? suipian * 2 : suipian;
@@ -2218,34 +2224,35 @@ const qishuGame = {
     if (get.xjzh_cailiao('xjzh_cailiao_enianzhixin') < (bool ? 12 : 4)) this.xjzh_forBiddenOne('xjzh_boss_waershen');
     if (get.xjzh_cailiao('xjzh_cailiao_gangtie') < (bool ? 15 : 5)) this.xjzh_forBiddenOne('xjzh_boss_geligaoli');
     if (
-    Object.keys(cailiaoList).
-    filter(function (item) {
-      return ['xjzh_cailiao_nianyedan', 'xjzh_cailiao_kutong'].includes(item);
-    }).
-    some((item) => {
-      return get.xjzh_cailiao(item) < (bool ? 6 : 2);
-    }))
-
-    this.xjzh_forBiddenOne('xjzh_boss_duruier');
+      Object.keys(cailiaoList)
+        .filter(function (item) {
+          return ['xjzh_cailiao_nianyedan', 'xjzh_cailiao_kutong'].includes(item);
+        })
+        .some((item) => {
+          return get.xjzh_cailiao(item) < (bool ? 6 : 2);
+        })
+    )
+      this.xjzh_forBiddenOne('xjzh_boss_duruier');
     if (
-    Object.keys(cailiaoList).
-    filter(function (item) {
-      return ['xjzh_cailiao_wawa', 'xjzh_cailiao_jiasuo'].includes(item);
-    }).
-    some((item) => {
-      return get.xjzh_cailiao(item) < (bool ? 6 : 2);
-    }))
-
-    this.xjzh_forBiddenOne('xjzh_boss_andalier');
+      Object.keys(cailiaoList)
+        .filter(function (item) {
+          return ['xjzh_cailiao_wawa', 'xjzh_cailiao_jiasuo'].includes(item);
+        })
+        .some((item) => {
+          return get.xjzh_cailiao(item) < (bool ? 6 : 2);
+        })
+    )
+      this.xjzh_forBiddenOne('xjzh_boss_andalier');
     if (get.xjzh_cailiao('xjzh_cailiao_kongju') < (bool ? 27 : 9)) this.xjzh_forBiddenOne('xjzh_boss_bingchuanjushou');
     if (get.xjzh_cailiao('xjzh_cailiao_xianxue') < (bool ? 27 : 9)) this.xjzh_forBiddenOne('xjzh_boss_qier');
     if (get.xjzh_cailiao('xjzh_cailiao_shijieshi') < (bool ? 3 : 1)) this.xjzh_forBiddenOne('xjzh_boss_ttshilian');
-  }
+  },
 };
 Object.assign(game, qishuGame);
 const xjzh_equipHutong = [
-['xjzh_huoying_mingren', 'xjzh_huoying_liudaomingren'],
-['xjzh_huoying_zuozhu', 'xjzh_huoying_liudaozuozhu']];
+  ['xjzh_huoying_mingren', 'xjzh_huoying_liudaomingren'],
+  ['xjzh_huoying_zuozhu', 'xjzh_huoying_liudaozuozhu'],
+];
 
 lib.xjzh_equipHutong = xjzh_equipHutong;
 if (!lib.config.xjzh_qishuyaojians) {
@@ -2273,15 +2280,15 @@ if (!lib.config.xjzh_qishuyaojians) {
       xjzh_cailiao_wawa: ['针扎娃娃', 0, '安达利尔挑战材料;每一针都是复仇的索取.'],
       xjzh_cailiao_jiasuo: ['焦沙枷锁', 0, '安达利尔挑战材料;牢狱与绞架的天作之合,但愿所有罪人都能带上沉重的铁镣.'],
       xjzh_cailiao_mingyushi: ['冥狱石', 0, '奇术boss强化材料;这块怪石历经漫长岁月的沉淀,喃喃吟诵着古老的亵渎之词.'],
-      xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.']
-    }
+      xjzh_cailiao_shijieshi: ['世界石碎片', 0, '天堂试炼挑战材料;世界之石破碎之后散落的碎片.'],
+    },
   };
 }
 game.xjzhQishu_saveConfig();
 lib.translate._xjzh_qishu_effect = '奇术要件';
 lib.skill._xjzh_qishu_effect = {
   trigger: {
-    global: 'gameStart'
+    global: 'gameStart',
   },
   silent: true,
   lastDo: true,
@@ -2438,9 +2445,9 @@ lib.skill._xjzh_qishu_effect = {
           lib.skill[newSkill].unique = true;
           if (lib.skill[newSkill].priority === undefined) lib.skill[newSkill].priority = 5;
           if (!lib.skill[newSkill].onremove)
-          lib.skill[newSkill].onremove = (player, skill) => {
-            if (!player.hasSkill(skill)) player.addSkills(skill);
-          };
+            lib.skill[newSkill].onremove = (player, skill) => {
+              if (!player.hasSkill(skill)) player.addSkills(skill);
+            };
           if (item.skillName) {
             lib.translate[newSkill] = item.skillName;
           } else {
@@ -2483,7 +2490,7 @@ lib.skill._xjzh_qishu_effect = {
       qishuyaojians.set(item, equiped);
     }
     player.xjzh_qishuyaojians = qishuyaojians;
-  }
+  },
 };
 if (!lib.config.xjzh_qishufilesOnload) {
   alert('检测到你更新了仙家之魂游戏版本,此版本添加了新的<奇术要件>功能');
@@ -2493,12 +2500,12 @@ if (!lib.config.xjzh_qishufilesOnload) {
 }
 const qishumingyushi = false;
 Reflect.defineProperty(window, 'qishumingyushi', {
-  value: qishumingyushi
+  value: qishumingyushi,
 });
 lib.skill.xjzh_qishu_materialRemove = {
   trigger: {
     global: 'gameStart',
-    player: 'enterGame'
+    player: 'enterGame',
   },
   silent: true,
   firstDo: true,
@@ -2509,9 +2516,9 @@ lib.skill.xjzh_qishu_materialRemove = {
   init(player) {
     if (game.getExtensionConfig('仙家之魂', 'xjzh_qishuBossPower')) {
       if (get.xjzh_cailiao('xjzh_cailiao_mingyushi') > 1)
-      Reflect.defineProperty(window, 'qishumingyushi', {
-        value: true
-      });
+        Reflect.defineProperty(window, 'qishumingyushi', {
+          value: true,
+        });
     }
     if (!player.storage.xjzh_qishu_materialRemove) player.storage.xjzh_qishu_materialRemove = player.getOriginalSkills();
     var qishuRemove = window.setInterval(function () {
@@ -2589,7 +2596,7 @@ lib.skill.xjzh_qishu_materialRemove = {
         break;
     }
     game.log(str);
-  }
+  },
 };
 lib.arenaReady.push(async () => {
   game.xjzh_checkOpenChallenge();
@@ -2618,7 +2625,7 @@ lib.element.player.inits.add(async (player) => {
   if (!qishuEquipsLists.length) return;
   if (!player.isUnderControl(true)) return;
   let names = get.nameList(player)[0],
-    lists = typeof names == 'string' ? player.xjzh_qishuyaojians ? player.xjzh_qishuyaojians.get(names) : [] : [];
+    lists = typeof names == 'string' ? (player.xjzh_qishuyaojians ? player.xjzh_qishuyaojians.get(names) : []) : [];
   if (!player.node.xjzh_equipQishus) {
     var style = {
       left: '-18%',
@@ -2633,7 +2640,7 @@ lib.element.player.inits.add(async (player) => {
       margin: '5px',
       position: 'relative',
       backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/qishuAnniu.png)',
-      backgroundSize: '70%'
+      backgroundSize: '70%',
     };
     var equips = ui.create.div(player, style);
     equips.owner = player;
@@ -2641,15 +2648,15 @@ lib.element.player.inits.add(async (player) => {
     var updateQishu = function (...args) {
       let list, name;
       for (let arg of args) {
-        if (Array.isArray(arg)) list = arg;else
-        if (typeof arg === 'string') name = arg;
+        if (Array.isArray(arg)) list = arg;
+        else if (typeof arg === 'string') name = arg;
       }
       var blank = ui.create.div(ui.window, {
         zIndex: '200',
         top: '0',
         left: '0',
         width: '100%',
-        height: '100%'
+        height: '100%',
       });
       var setSize = function () {
         window.style.height = blank.clientWidth * 0.28 + 'px';
@@ -2671,7 +2678,7 @@ lib.element.player.inits.add(async (player) => {
         fontSize: blank.clientWidth * 0.6 + 'px',
         backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/userInfo.png)',
         backgroundSize: '100%',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       });
       var eixtAnniu = ui.create.div(window, {
         left: '85%',
@@ -2680,7 +2687,7 @@ lib.element.player.inits.add(async (player) => {
         height: '20%',
         backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/exit2.png)',
         backgroundSize: '30%',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       });
       eixtAnniu.listen(removeBlank);
       var playerImage = ui.create.div(window, {
@@ -2690,7 +2697,7 @@ lib.element.player.inits.add(async (player) => {
         width: '23%',
         backgroundSize: '100%',
         backgroundRepeat: 'no-repeat',
-        borderRadius: '20px'
+        borderRadius: '20px',
       });
       playerImage.setBackground(name, 'character');
       if (get.nameList(player).length > 1) {
@@ -2702,10 +2709,10 @@ lib.element.player.inits.add(async (player) => {
           backgroundSize: '100%',
           backgroundRepeat: 'no-repeat',
           borderRadius: '20px',
-          backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/switchAnniu.png)'
+          backgroundImage: 'url(extension/仙家之魂/css/images/qishuyaojian/switchAnniu.png)',
         });
         switchAnniu.listen(function () {
-          names = names == get.nameList(player)[0] ? get.nameList(player)[1] : get.nameList(player)[0], lists = typeof names == 'string' ? player.xjzh_qishuyaojians.get(names) || [] : [];
+          ((names = names == get.nameList(player)[0] ? get.nameList(player)[1] : get.nameList(player)[0]), (lists = typeof names == 'string' ? player.xjzh_qishuyaojians.get(names) || [] : []));
           updateQishu(names, lists);
         });
       }
@@ -2717,7 +2724,7 @@ lib.element.player.inits.add(async (player) => {
         color: 'black',
         textAlign: 'center',
         fontSize: '4%',
-        fontFamily: 'xinwei'
+        fontFamily: 'xinwei',
       });
       text.innerHTML = get.translation(name) + '已装备奇术要件';
       var intro = ui.create.div(blank, {
@@ -2725,7 +2732,7 @@ lib.element.player.inits.add(async (player) => {
         width: '300px',
         textAlign: 'left',
         backgroundColor: '#412812',
-        transition: 'left 0s,top 0s'
+        transition: 'left 0s,top 0s',
       });
       let equipPart1 = ui.create.div(window, {
         left: '37%',
@@ -2733,7 +2740,7 @@ lib.element.player.inits.add(async (player) => {
         width: '17%',
         height: '47%',
         backgroundSize: '100%',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       });
       let equip1 = list[0];
       equipPart1.item = equip1;
@@ -2745,7 +2752,7 @@ lib.element.player.inits.add(async (player) => {
         width: '17%',
         height: '47%',
         backgroundSize: '100%',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       });
       let runeEuips1 = get.xjzh_runeQishuList(equip1);
       if (runeEuips1.length) {
@@ -2761,7 +2768,7 @@ lib.element.player.inits.add(async (player) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            backgroundImage: `url(extension/仙家之魂/css/images/runes/ritualRunes.png)`
+            backgroundImage: `url(extension/仙家之魂/css/images/runes/ritualRunes.png)`,
           });
         }
         if (pray) {
@@ -2774,7 +2781,7 @@ lib.element.player.inits.add(async (player) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            backgroundImage: `url(extension/仙家之魂/css/images/runes/prayRunes.png)`
+            backgroundImage: `url(extension/仙家之魂/css/images/runes/prayRunes.png)`,
           });
         }
       }
@@ -2796,7 +2803,7 @@ lib.element.player.inits.add(async (player) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            backgroundImage: `url(extension/仙家之魂/css/images/runes/ritualRunes.png)`
+            backgroundImage: `url(extension/仙家之魂/css/images/runes/ritualRunes.png)`,
           });
         }
         if (pray) {
@@ -2809,7 +2816,7 @@ lib.element.player.inits.add(async (player) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            backgroundImage: `url(extension/仙家之魂/css/images/runes/prayRunes.png)`
+            backgroundImage: `url(extension/仙家之魂/css/images/runes/prayRunes.png)`,
           });
         }
       }
@@ -2819,7 +2826,7 @@ lib.element.player.inits.add(async (player) => {
         width: '17%',
         height: '47%',
         backgroundSize: '100%',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       });
       var equip3 = list[2];
       equipPart3.item = equip3;
@@ -2839,7 +2846,7 @@ lib.element.player.inits.add(async (player) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            backgroundImage: `url(extension/仙家之魂/css/images/runes/ritualRunes.png)`
+            backgroundImage: `url(extension/仙家之魂/css/images/runes/ritualRunes.png)`,
           });
         }
         if (pray) {
@@ -2852,7 +2859,7 @@ lib.element.player.inits.add(async (player) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            backgroundImage: `url(extension/仙家之魂/css/images/runes/prayRunes.png)`
+            backgroundImage: `url(extension/仙家之魂/css/images/runes/prayRunes.png)`,
           });
         }
       }

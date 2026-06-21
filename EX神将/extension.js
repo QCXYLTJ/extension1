@@ -219,9 +219,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.countCards('he') > 0;
                             },
                             forced: true,
-                            check(card) {
-                                return 10 - get.value(card);
-                            },
                             content() {
                                 'step 0';
                                 player.chooseControl('关羽', '张飞', '赵云', '马超', '黄忠');
@@ -914,9 +911,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 type: ['basic', 'equip', 'delay', 'trick'],
                             },
                             selectCard: 2,
-                            check(card) {
-                                return 10 - get.value(card);
-                            },
                             content() {
                                 'step 0';
                                 player.chooseToDiscard(1, 'he', true);
@@ -981,9 +975,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 type: ['basic', 'equip', 'delay', 'trick'],
                             },
                             selectCard: 1,
-                            check(card) {
-                                return 10 - get.value(card);
-                            },
+                            check(event, player) {
+                                return player.hasCard((c) => get.value(c) < 8, 'he');
+                            },//QQQ
                             content() {
                                 'step 0';
                                 player.chooseToDiscard(1, 'he', true);
@@ -3286,14 +3280,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event[event.name == 'gain' ? 'source' : 'player'];
                             },
                             content() {
-                                'step 0';
                                 player.draw(3);
                                 trigger.player.draw(3);
-                                ('step 1');
-                                trigger.source.clearSkills();
-                                ('step 2');
+                                trigger.source?.clearSkills();
                                 player.removeSkill('exlishang');
-                            },
+                            },//QQQ
                             ai: {
                                 maixie_defend: true,
                                 threaten: 0.9,
@@ -11184,6 +11175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         exzhaoxiangbuqiang_info: '',
                     },
                 };
+                window.ceshiskill = Object.keys(QQQ.skill);
                 lib.config.all.characters.add('EX神将');
                 lib.config.characters.add('EX神将');
                 for (const i in QQQ.character) {
