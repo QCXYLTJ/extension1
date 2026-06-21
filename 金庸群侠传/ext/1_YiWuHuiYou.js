@@ -491,7 +491,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                                     card: card,
                                                     target: target,
                                                 },
-                                                true
+                                                true,
                                             )
                                         )
                                             return 2;
@@ -562,7 +562,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                                     dis,
                                                     game.countPlayer((current) => {
                                                         return current.identity === 'fan';
-                                                    })
+                                                    }),
                                                 )
                                             )
                                                 return 0;
@@ -1250,10 +1250,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 [2, '本回合我会弃置什么牌？'],
                                 [3, '本回合我会对谁造成伤害？'],
                             ];
+
                             let i = 2;
                             while (i) {
                                 i--;
-                                const links = await trigger.player
+                                const { links } = await trigger.player
                                     .chooseButton(
                                         ['请选择一个问题提问', [list, 'textbutton']],
                                         true,
@@ -1262,9 +1263,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                             if (trigger.player.storage.ywhy_fuluan[button.link]) return false;
                                             if (!trigger.player.countCards('h')) return button.link != 2;
                                             return true;
-                                        }
+                                        },
                                     )
-                                    .forResultLinks();
+                                    .forResult();
+
                                 game.log(trigger.player, '向', player, '提问<', list[links[0]][1], '>');
                                 const index = links[0];
                                 let answer;
@@ -1315,7 +1317,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                                 evt.cards &&
                                                 evt.cards.filter((item) => {
                                                     return item.name == ans;
-                                                })
+                                                }),
                                         );
                                         break;
                                     case '3':
@@ -1330,7 +1332,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             }
                             if (num == 2) trigger.player.draw(2);
                             else if (num == 0) {
-                                const cards = await trigger.player.chooseToDiscard(2, 'he').forResultCards();
+                                const { cards } = await trigger.player.chooseToDiscard(2, 'he').forResult();
                                 if (!cards) trigger.player.loseHp();
                             }
                             trigger.player.unmarkSkill('ywhy_fuluan');
@@ -1414,7 +1416,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             [0, '本轮谁会死亡？'],
                             [1, '本轮谁会击杀角色？'],
                         ];
-                        const links = await target.chooseButton(['请选择一个问题提问', [list, 'textbutton']], true, () => 1 - Math.random()).forResultLinks();
+                        const { links } = await target.chooseButton(['请选择一个问题提问', [list, 'textbutton']], true, () => 1 - Math.random()).forResult();
                         game.log(target, '向', player, '提问<', list[links[0]][1], '>');
                         const index = links[0];
                         let answer = [game.filterPlayer().randomGet(), [game.filterPlayer().randomGet(), game.filterPlayer().randomGet()]][index];
@@ -1515,7 +1517,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                         player.$throwordered2(_status.guhuoNode);
                                     },
                                     trigger.cards[0],
-                                    player
+                                    player,
                                 );
                                 event.onEnd01 = function () {
                                     _status.guhuoNode.removeEventListener('webkitTransitionEnd', _status.event.onEnd01);
@@ -1592,7 +1594,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 if (!ui.css.ywhy_wanmu_unseen) {
                                     ui.css.ywhy_wanmu_unseen = lib.init.sheet(
                                         //'.handcards.ywhy_wanmu_unseen>.card[data-card-type="trick"]:not(*[data-card-multitarget="1"])>*,'+
-                                        '.handcards.ywhy_wanmu_unseen>.card[data-card-name]>*{visibility:hidden !important}'
+                                        '.handcards.ywhy_wanmu_unseen>.card[data-card-name]>*{visibility:hidden !important}',
                                     );
                                 }
                                 lib.init.sheet('.handcards.ywhy_wanmu_unseen>.card.decade-card[data-card-name] {background-image: url(extension/金庸群侠传/character/yuanban/ywhy_sudaji.jpg) !important;background-position: center;background-size: cover !important;}');
@@ -1820,7 +1822,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                                 return false;
                                             }
                                         }
-                                    }).forResult();
+                                    })
+                                    .forResult();
                                 if (cards) {
                                     target.line(player);
                                     target.give(cards, player);
@@ -2304,7 +2307,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 [1, event.count],
                                 function (card, player, target) {
                                     return player != target && target.countCards('h') > 1;
-                                }
+                                },
                             )
                             .set('ai', function (target) {
                                 var player = _status.event.player;
@@ -2593,7 +2596,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                             if (player.getStorage('ywhy_rumo_phase').includes(name)) return false;
                                             if (event.filterCard && event.filterCard({ name: name, cards: [card] })) return true;
                                             return false;
-                                        })
+                                        }),
                                     ) > 0
                                 );
                             },
@@ -3063,7 +3066,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         }
                         let damageNum = damageList.length;
                         while (damageNum > 0) {
-                            const targets = await player
+                            const { targets } = await player
                                 .chooseTarget(`〖水漫〗:对一名其他角色造成一点伤害点伤害,剩余${damageNum}点伤害待分配`, (card, player, target) => {
                                     let history = target.getHistory('damage', (evt) => {
                                         return evt && evt.parent.name == 'ywhy_shuiman';
@@ -3074,7 +3077,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 .set('ai', (target) => {
                                     return get.damageEffect(target, _status.event.player, _status.event.player);
                                 })
-                                .forResultTargets();
+                                .forResult();
+
                             if (targets) {
                                 await targets[0].damage(1, player, 'nocard');
                                 damageNum -= 1;
@@ -3536,12 +3540,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         for (var i = 1; i <= num; i++) {
                             list.push(i);
                         }
-                        const control = await trigger.player
+                        const { control } = await trigger.player
                             .chooseControl(list)
                             .set('ai', () => {
                                 return list.randomGet();
                             })
-                            .forResultControl();
+                            .forResult();
+
                         if (control) {
                             target.removeMark('ywhy_dingqing_mark', control);
                             trigger.effectCount += control;
@@ -6878,7 +6883,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 //trigger.player.phaseDraw();
                                 //trigger.player.addSkill("ywhy_haike_phase");
                                 let list = [];
-                                (used = false), (dred = false);
+                                ((used = false), (dred = false));
                                 for (var i of trigger.phaseList) {
                                     list.push(i);
                                     if (/phaseUse/.test(i) && !used) {
@@ -7056,6 +7061,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             ['club', geturl(club)],
                             ['diamond', geturl(diamond)],
                         ];
+
                         var natures = lib.inpile_nature.slice(0);
                         natures.remove('kami');
                         natures.add('none');
@@ -7067,6 +7073,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             ['5-8', '5-8'],
                             ['9-K', '9-K'],
                         ];
+
                         var getType = function (str) {
                             var suits = ['spade', 'heart', 'club', 'diamond'];
                             if (suits.includes(str)) return 'suit';
@@ -7368,7 +7375,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                             game.log(player, '的身份是', '#g' + get.translation(identity2 + '2'));
                                         },
                                         this,
-                                        this.identity
+                                        this.identity,
                                     );
                                 }
                                 game.checkResult();
@@ -7935,8 +7942,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         //player.skip("phaseJudge");
                         //player.skip("phaseUse");
                     },
-                },
-                //2022专属法老-霸天
+                }, //2022专属法老-霸天
                 ywhy_yinfeng: {
                     enable: 'phaseUse',
                     usable: 1,
@@ -8545,7 +8551,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 'targets',
                                 game.filterPlayer(function (current) {
                                     return current != player && !recover.includes(current) && current.isDamaged();
-                                })
+                                }),
                             );
                         ('step 1');
                         if (result.bool) {
@@ -8595,7 +8601,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 'targets',
                                 game.filterPlayer(function (current) {
                                     return current != player && !damaged.includes(current);
-                                })
+                                }),
                             )
                             .set('ai', function (target) {
                                 var player = _status.event.player;
@@ -9178,6 +9184,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             ['club', geturl(club)],
                             ['diamond', geturl(diamond)],
                         ];
+
                         var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
                         for (var i = 0; i < numbers.length; i++) {
                             numbers[i] = [numbers[i], get.strNumber(numbers[i])];
@@ -10130,7 +10137,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         trigger.directHit.addArray(
                             game.filterPlayer(function (current) {
                                 return current != player;
-                            })
+                            }),
                         );
                     },
                 },
@@ -10745,7 +10752,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                         list.add(i[2]);
                                     }
                                     return list;
-                                })(result.links)
+                                })(result.links),
                             );
                         }
                     },
@@ -10866,9 +10873,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     return list.some((name) => {
                                         return str.includes(name);
                                     });
-                                })
+                                }),
                             ),
                         ];
+
                         if (!skillList.length) {
                             player.say('没有符合条件的技能');
                             return;
@@ -10883,12 +10891,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         });
                         let num = Math.min(list.length, lib.skill.ywhy_youli.getInfo(player)[0]);
                         let dialog = ui.create.dialog(`游历:请选择至多<span style=\"color: #eb1100\">${get.translation(num)}</span>个技能`, [skillList, 'vcard'], 'hidden');
-                        const links = await player
+                        const { links } = await player
                             .chooseButton(dialog, true, num == 1 ? 1 : [0, num])
                             .set('ai', (button) => {
                                 return get.skillRank(button.link[2]);
                             })
-                            .forResultLinks();
+                            .forResult();
+
                         if (links) {
                             for await (let skill of links) {
                                 player.addTempSkills(skill[2], { player: 'phaseUseBegin' });
@@ -11377,29 +11386,34 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             [1, 2],
                             [2, 1],
                         ],
+
                         4: [
                             [1, 4],
                             [2, 2],
                             [4, 1],
                         ],
+
                         6: [
                             [1, 6],
                             [2, 3],
                             [3, 2],
                             [6, 1],
                         ],
+
                         8: [
                             [1, 8],
                             [2, 4],
                             [4, 2],
                             [8, 1],
                         ],
+
                         10: [
                             [1, 10],
                             [2, 5],
                             [5, 2],
                             [10, 1],
                         ],
+
                         12: [
                             [1, 12],
                             [2, 6],
@@ -11555,7 +11569,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     return card.number == cardx[i].number / 2;
                                 }),
                                 player,
-                                'giveAuto'
+                                'giveAuto',
                             );
                         }
                     },
@@ -11613,11 +11627,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     },
                     content() {
                         'step 0';
-                        player
-                            .chooseToDiscard('he', get.prompt2(event.name))
-                            .set('ai', function (card) {
-                                return 5 - get.value(card);
-                            });
+                        player.chooseToDiscard('he', get.prompt2(event.name)).set('ai', function (card) {
+                            return 5 - get.value(card);
+                        });
                         ('step 1');
                         if (result && result.bool) {
                             if (!player.hasSkill('ywhy_zuiquan3')) {
@@ -11796,6 +11808,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     return i.suit == 'spade';
                                 }) > 0
                             );
+
                         if (name == 'wanjian')
                             return (
                                 player.countCards('hs', function (i) {
@@ -11803,6 +11816,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     return i.suit == 'heart';
                                 }) > 0
                             );
+
                         return false;
                     },
                 },
@@ -13185,8 +13199,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             return false;
                         return player.hasMark('ywhy_shenduan_zhenxiong');
                     },
-                    prepare(cards, player, targets) {
-                    },
+                    prepare(cards, player, targets) { },
                     prompt() {
                         var player = _status.event.player;
                         var list = game.filterPlayer(function (current) {
@@ -13367,7 +13380,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             target.discard(
                                 target.getCards('j', function (card) {
                                     return (card.viewAs || card.name) != 'jydiy_yungongliaoshang';
-                                })
+                                }),
                             );
                         }
                     },
@@ -13638,7 +13651,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     cards: cards,
                                 },
                                 player,
-                                _status.event.parent
+                                _status.event.parent,
                             );
                         },
                         check(button) {
@@ -14034,143 +14047,143 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_jian');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_jian');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_dao_info =
                             '刀伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dao');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dao');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_rui_info =
                             '锐伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_rui');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_rui');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_dun_info =
                             '钝伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dun');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dun');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_yi_info =
                             '缢伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_yi');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_yi');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_qiang_info =
                             '枪伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_qiang');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_qiang');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_shao_info =
                             '烧伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_shao');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_shao');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_dong_info =
                             '冻伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dong');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dong');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_dian_info =
                             '电伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dian');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_dian');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_xie_info =
                             '邪伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_xie');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_xie');
-                                })
+                                }),
                             );
                         lib.translate.ywhy_yangu_du_info =
                             '毒伤:' +
                             get.translation(
                                 game.countPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_du');
-                                })
+                                }),
                             ) +
                             '名角色:' +
                             get.translation(
                                 game.filterPlayer(function (current) {
                                     return current.hasMark('ywhy_yangu_du');
-                                })
+                                }),
                             );
                         var choiceList = ui.create.dialog([list, 'vcard'], 'hidden', '灭迹:请选择移除一类伤害');
                         //在卡牌下方显示场上验骨信息
@@ -14182,13 +14195,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_jian');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_jian');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_dao')
                                 str +=
@@ -14196,13 +14209,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dao');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dao');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_rui')
                                 str +=
@@ -14210,13 +14223,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_rui');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_rui');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_dun')
                                 str +=
@@ -14224,13 +14237,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dun');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dun');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_yi')
                                 str +=
@@ -14238,13 +14251,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_yi');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_yi');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_qiang')
                                 str +=
@@ -14252,13 +14265,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_qiang');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_qiang');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_shao')
                                 str +=
@@ -14266,13 +14279,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_shao');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_shao');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_dong')
                                 str +=
@@ -14280,13 +14293,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dong');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dong');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_dian')
                                 str +=
@@ -14294,13 +14307,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dian');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_dian');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_xie')
                                 str +=
@@ -14308,13 +14321,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_xie');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_xie');
-                                        })
+                                        }),
                                     );
                             if (list[i] == 'ywhy_yangu_du')
                                 str +=
@@ -14322,13 +14335,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     get.translation(
                                         game.countPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_du');
-                                        })
+                                        }),
                                     ) +
                                     '名角色:' +
                                     get.translation(
                                         game.filterPlayer(function (current) {
                                             return current.hasMark('ywhy_yangu_du');
-                                        })
+                                        }),
                                     );
                             str += '</div>';
                             choiceList.add(str);
@@ -15567,7 +15580,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             },
                             function (target) {
                                 return lib.skill.ywhy_langshi.checkx(_status.event.player, target);
-                            }
+                            },
                         );
                         ('step 1');
                         if (result.bool) {
@@ -15905,7 +15918,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                         },
                                         target,
                                         card,
-                                        target == targets[0] && cards.length == 1
+                                        target == targets[0] && cards.length == 1,
                                     );
                                     if (target == targets[0] && cards.length == 1) {
                                         if (card.clone && (card.clone.parentNode == target.parentNode || card.clone.parentNode == ui.arena)) {
@@ -16476,8 +16489,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             })
                             .set('ai', function (card) {
                                 return 7 - get.value(card);
-                            })
-                            ('step 1');
+                            })('step 1');
                         if (result.bool) {
                             var list = get
                                 .gainableCharacters(function (info, name) {
@@ -16797,6 +16809,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             ['e', '所有角色弃置黑色装备牌'],
                             ['j', '所有角色弃置判定区的延时锦囊牌'],
                         ];
+
                         const next = player.chooseButton([get.prompt2(event.name), [list, 'vcard'], [list2, 'textbutton']]);
                         next.set('forced', true);
                         next.set('selectButton', [2, 2]);
@@ -17339,7 +17352,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             targets[0],
                             targets[1],
                             targets[1].identityShown,
-                            targets[0].identityShown
+                            targets[0].identityShown,
                         );
                         player.storage.ywhy_kuangzheng = true;
                         player.awakenSkill('ywhy_kuangzheng');
@@ -17905,7 +17918,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                             nature: j,
                                         },
                                         player,
-                                        event
+                                        event,
                                     )
                                 )
                                     list.push(['基本', '', 'sha', j]);
@@ -18088,7 +18101,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     return list[0];
                                 }
                                 return list;
-                            })()
+                            })(),
                         );
                         next.set('ai', function (card) {
                             if (!_status.event.cardResult.includes(card)) return 0;
@@ -18756,6 +18769,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 player.addMark('qibuduanchanghong');
                             },
                         ];
+
                         for (var i of result.links) {
                             game.log(event.c, '选择了', '#g【绝剑】', '的', '#y选项' + get.cnNumber(i + 1, true));
                             map[i](trigger, player, event);
@@ -21143,7 +21157,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     player.hiddenSkills.remove(skill);
                                 },
                                 this,
-                                skill
+                                skill,
                             );
                             this.checkConflict(skill);
                             delete this.tempSkills[skill];
@@ -21789,7 +21803,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 cards: event.cards,
                             },
                             event.player,
-                            event.player
+                            event.player,
                         );
                         if (event.player == player && get.attitude(player, event.target) < 0) {
                             return juedou - fakecard > 0;
@@ -22703,7 +22717,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         }
                         let dialog = ['将一张牌置于牌堆前5张任意位置?', [numbers, 'tdnodes']];
                         dialog.push([cards, 'vcard']);
-                        const links = await player
+                        const { links } = await player
                             .chooseButton(dialog)
                             .set('complexSelect', true)
                             .set('filterButton', (button) => {
@@ -22726,7 +22740,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             .set('ai', (button) => {
                                 return Math.floor(Math.random() * 5);
                             })
-                            .forResultLinks();
+                            .forResult();
+
                         if (links) {
                             let num = links.filter((name) => typeof name == 'number')[0];
                             let cardx = links.filter((name) => typeof name != 'number')[0];
@@ -22877,7 +22892,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 function (card, playerx, targetx) {
                                     return event.targetss.includes(targetx);
                                 },
-                                true
+                                true,
                             )
                             .set('ai', function (target) {
                                 return target == event.targetss[event.num1] ? -1 : 1;
@@ -23612,7 +23627,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 },
                                 function (target) {
                                     return target.getExpansions('ywhy_yuxiang_mark').length;
-                                }
+                                },
                             );
                         }
                         ('step 1');
