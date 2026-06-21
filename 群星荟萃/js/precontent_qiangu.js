@@ -1095,7 +1095,7 @@ const packs = function () {
                 trigger: { player: ['phaseUseBegin', 'damageEnd'] },
                 forced: true,
                 async content(event, trigger, player) {
-                    const cards1 = await player.draw().forResult();
+                    const { cards: cards1 } = await player.draw().forResult();
                     const cards2 = await player
                         .chooseToDiscard(
                             'he',

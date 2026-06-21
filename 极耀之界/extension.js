@@ -36748,9 +36748,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .forResult();
                                 if (bool) {
                                     const target = targets[0];
-                                    const result = await target.draw('visible').forResult();
-                                    if (result) {
-                                        const card = result[0];
+                                    const { cards } = await target.draw('visible').forResult();
+                                    if (cards) {
+                                        const card = cards[0];
                                         if (get.type(card, null, target) == 'equip') {
                                             if (target.getCards('h').includes(card) && target.hasUseTarget(card)) {
                                                 const { bool } = await target.chooseUseTarget(card, true, 'nopopup').forResult();

@@ -3791,21 +3791,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             popup: false,
                             filter(event, player) {
-                                if (!(player.storage.extunshimark && player.storage.extunshimark.isIn() && event.num > 0)) {
-                                    return false;
-                                }
-                                if (event.name == 'damage') {
-                                    return true;
-                                }
-                                return player.storage.extunshimark.isDamaged();
+                                return player.storage.exfanshi2?.isIn() && event.num > 0;
                             },
                             content() {
-                                'step 0';
-                                'step 1';
-                                player.markSkill('extunshimark');
-                                const target = player.storage.extunshimark;
+                                player.markSkill('exfanshi2');
+                                const target = player.storage.exfanshi2;
                                 player.line(target, 'green');
-                                target[trigger.name](trigger.num, 'nosource');
+                                target.damage(trigger.num, 'nosource');
                             },
                         },
                         extunshimark: {
@@ -3933,24 +3925,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter(event, player) {
                                 return player.storage.extunshiaaa >= 3;
                             },
-                            content() {
-                                'step 0';
+                            async content(event, trigger, player) {
                                 player.storage.extunshiaaa -= 3;
                                 player.markSkill('extunshiaaa');
                                 player.recover(1);
                                 let num = player.maxHp - player.hp;
                                 player.draw(num);
-                                ('step 1');
-                                player
-                                    .chooseTarget(function (card, player, target) {
-                                        return target != player;
-                                    })
-                                    .set('ai', function (target) {
-                                        const player = _status.event.player;
-                                        return get.damageEffect(target, player, player);
-                                    });
-                                ('step 2');
-                                result.targets[0].addSkill('extunshimark');
+                                const { targets } = await player
+                                    .chooseTarget('令一名角色获得负面吞噬')
+                                    .set('filterTarget', (c, p, t) => p != t)
+                                    .set('ai', (t) => -get.attitude(player, t)).forResult();
+                                if (targets?.length) {
+                                    targets[0].addSkill('extunshimark');
+                                }
                             },
                         },
                         extunshixxx: {
@@ -3982,21 +3969,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 //QQQ
-                                const { result } = await player
+                                const { targets } = await player
                                     .chooseTarget((card, player, target) => target != player)
                                     .set('ai', (t) => {
                                         if (t.isFriendsOf(player)) {
                                             return Math.abs(t.countCards('h') - player.countCards('h')) > 1;
                                         }
                                         return t.countCards('h') - player.countCards('h') > 1;
-                                    });
-                                if (result.targets && result.targets[0]) {
-                                    const num1 = result.targets[0].countCards('h');
+                                    }).forResult();
+                                if (targets?.length) {
+                                    const num1 = targets[0].countCards('h');
                                     const num2 = player.countCards('h');
                                     if (num1 > num2) {
                                         player.drawTo(num1);
                                     } else {
-                                        result.targets[0].drawTo(num2);
+                                        targets[0].drawTo(num2);
                                     }
                                     trigger.cancel();
                                 }
@@ -4189,18 +4176,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 player: 'phaseBefore',
                             },
-                            content() {
-                                'step 0';
-                                player
+                            async content(event, trigger, player) {
+                                const { targets } = await player
                                     .chooseTarget(function (card, player, target) {
                                         return target != player;
                                     })
                                     .set('ai', function (target) {
                                         const player = _status.event.player;
                                         return get.damageEffect(target, player, player);
-                                    });
-                                ('step 1');
-                                result.targets[0].addTempSkill('exraosheb');
+                                    }).forResult();
+                                if (targets?.length) {
+                                    targets[0].addTempSkill('exraosheb');
+                                }
                             },
                         },
                         exraosheb: {
@@ -4686,22 +4673,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 player: 'phaseEnd',
                             },
-                            content() {
-                                'step 0';
-                                player
-                                    .chooseTarget(function (card, player, target) {
-                                        return target != player;
-                                    })
-                                    .set('ai', function (target) {
-                                        const player = _status.event.player;
-                                        return get.damageEffect(target, player, player);
-                                    });
-                                ('step 1');
-                                let num = player.storage.exhuangtian;
-                                result.targets[0].loseHp(Math.ceil(num / 2));
-                                player.recover(Math.ceil(num / 2));
-                                player.storage.exhuangtian -= num;
-                                player.markSkill('exhuangtian');
+                            async content(event, trigger, player) {
+                                const { targets } = await player
+                                    .chooseTarget('令一名角色失去体力')
+                                    .set('filterTarget', (c, p, t) => p != t)
+                                    .set('ai', (t) => -get.attitude(player, t)).forResult();
+                                if (targets?.length) {
+                                    let num = player.storage.exhuangtian;
+                                    targets[0].loseHp(Math.ceil(num / 2));
+                                    player.recover(Math.ceil(num / 2));
+                                    player.storage.exhuangtian -= num;
+                                    player.markSkill('exhuangtian');
+                                }
                             },
                         },
                         exhuangtian: {
@@ -5671,7 +5654,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         exxionglue: {
-                            group: ['exbbbbb'],
                             audio: 'ext:EX神将/audio:1',
                             mark: true,
                             marktext: '略',
@@ -5780,16 +5762,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 trigger.num++;
                                 player.removeSkill('exxieling');
-                            },
-                        },
-                        exbbbbb: {
-                            audio: 'ext:EX神将/audio:1',
-                            trigger: {
-                                global: 'gameStart',
-                            },
-                            forced: true,
-                            content() {
-                                player.addSkill('exjijiao');
                             },
                         },
                         exleimingxx: {
@@ -5914,7 +5886,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.removeSkill('exjiangjiang');
                                     player.removeSkill('exzhibazhiba');
                                     player.removeSkill('exhunzihunzi');
-                                    player.addSkill('exsunben');
                                 }
                             },
                         },
@@ -10886,8 +10857,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         exxionglue_info: '全场每累计使用锦囊牌十次,人物角色便会向上进化一级.(每升一级,失去一点体力上限并回复一点体力,获得一个相应的技能,最高为五阶)',
                         exxieling: '挟令',
                         exxieling_info: '限定技.若自己的体力值为全场最低,自己造成的伤害＋1.(四级可获得)',
-                        exbbbbb: '雄略',
-                        exbbbbb_info: '',
                         exleimingxx: '雷鸣',
                         exleimingxx_info: '',
                         exfangzhux: '决绝',

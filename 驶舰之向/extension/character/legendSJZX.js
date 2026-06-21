@@ -19563,8 +19563,8 @@ game.import('character', function () {
                 if (bool) return;
                 targets[0].damage();
               } else {
-                const result = await player.draw().forResult();
-                result[0].addGaintag('newhuangxiangmrfzx');
+                const { cards } = await player.draw().forResult();
+                cards[0].addGaintag('newhuangxiangmrfzx');
               }
             },
           },

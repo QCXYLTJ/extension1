@@ -9546,9 +9546,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 }
               }
               if (num == 0) return;
-              const result = await player.draw(num);
-              if (!result.result) return;
-              for (var i of result.result) {
+              const { cards } = await player.draw(num).forResult();
+              for (var i of cards) {
                 i.addGaintag('chaozaimrfz');
                 i.storage.chaozaimrfz = true;
               }
@@ -9574,8 +9573,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
         forced: true,
         trigger: { player: 'phaseUseBegin' },
         async content(event, trigger, player) {
-          const result = await player.draw(3);
-          let cards = result.result;
+          const { cards } = await player.draw(3).forResult();
           if (!cards) return;
           var red = 0;
           for (var i of cards) {
@@ -10093,9 +10091,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           if (player.getStat('damage') != undefined) {
             if (player.countCards('he') > 0) player.chooseToDiscard('he', true, `【医者】:请选择弃置一张牌`);
           } else {
-            const result = await player.draw(2);
-            if (!result) return;
-            var cards = result.result;
+            const { cards } = await player.draw(2).forResult();
             for (var i of cards) {
               var num = i.number;
               if (i.suit == 'heart' && num >= 2 && num <= 9) {

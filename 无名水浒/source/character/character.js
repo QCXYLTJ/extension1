@@ -1621,9 +1621,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 async content(event, trigger, player) {
                     player.awakenSkill(event.name);
                     player.storage.shchennu = true;
-                    const result = await player.draw(4).forResult();
-                    const cards = result.filter((card) => card.name != 'sha');
-                    player.discard(cards);
+                    const { cards } = await player.draw(4).forResult();
+                    const cards1 = cards.filter((card) => card.name != 'sha');
+                    player.discard(cards1);
                     player
                         .when('phaseUseEnd')
                         .assign({
@@ -3313,11 +3313,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     source: 'damageSource',
                 },
                 async content(event, trigger, player) {
-                    const result = await player.draw(3).forResult();
-                    if (player.getCards('h', (card) => result.includes(card))) {
+                    const { cards: cards1 } = await player.draw(3).forResult();
+                    if (player.getCards('h', (card) => cards1.includes(card))) {
                         const { cards } = await player
                             .chooseCard(true, (card, player, target) => {
-                                return result.includes(card);
+                                return cards1.includes(card);
                             })
                             .set('ai', (card) => {
                                 return -get.value(card);
@@ -10485,13 +10485,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 usable: 1,
                 async content(event, trigger, player) {
-                    const result = await player.draw(2).forResult();
-                    if (!player.getCards('h', (card) => result.includes(card))) return;
+                    const { cards: cards1 } = await player.draw(2).forResult();
+                    if (!player.getCards('h', (card) => cards1.includes(card))) return;
                     const { bool, cards, targets } = await player
                         .chooseCardTarget({
                             forced: true,
                             filterCard(card) {
-                                return result.includes(card);
+                                return cards1.includes(card);
                             },
                             filterTarget(card, player, target) {
                                 return target != player;

@@ -3143,9 +3143,11 @@ const packs = function () {
                     const num = trigger.targets.length;
                     player.changeZhuanhuanji(event.name);
                     if (player.storage[event.name]) {
-                        const result = await player.draw(num - 1).forResult();
+                        const { cards } = await player.draw(num - 1).forResult();
                         await player.turnOver();
-                        if (Array.isArray(result) && result.length > player.maxHp) await player.gainMaxHp(result.length - player.maxHp);
+                        if (Array.isArray(cards) && cards.length > player.maxHp) {
+                            await player.gainMaxHp(cards.length - player.maxHp);
+                        }
                     } else {
                         let cards = get.bottomCards(num, true);
                         const types = cards

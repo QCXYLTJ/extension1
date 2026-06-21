@@ -5258,8 +5258,8 @@ game.import('character', function () {
 					return player.isDamaged();
 				},
 				async content(event, trigger, player) {
-					const evt = await player.draw();
-					const card = evt.result[0];
+					const { cards } = await player.draw().forResult();
+					const card = cards[0];
 					const history = player.getAllHistory('useCard');
 					if (!history.length) return;
 					let card2 = history[history.length - 1].card;
@@ -6112,8 +6112,7 @@ game.import('character', function () {
 				audio: 'ext:仙家之魂/audio/skill:2',
 				async content(event, trigger, player) {
 					trigger.nowuxiee = true;
-					const evt = await player.draw();
-					const cards = evt.result;
+					const { cards } = await player.draw().forResult();
 					player.addGaintag(cards, 'xjzh_sanguo_qicai');
 				},
 			},
@@ -13246,12 +13245,12 @@ game.import('character', function () {
 				audio: 'ext:仙家之魂/audio/skill:2',
 				async content(event, trigger, player) {
 					let target = event.targets[0],
-						cards = target.getCards('h');
-					await target.discard(cards);
-					let evt = await target.draw(cards.length * 2),
+						cards1 = target.getCards('h');
+					await target.discard(cards1);
+					const { cards } = await target.draw(cards.length * 2).forResult(),
 						list = [],
 						num = 0;
-					for (let card of evt.result) {
+					for (let card of cards) {
 						if (card.suit == 'heart') num++;
 					}
 					let drawNum = num - target.getDamagedHp(true);
@@ -13304,11 +13303,11 @@ game.import('character', function () {
 				audio: 'ext:仙家之魂/audio/skill:3',
 				async content(event, trigger, player) {
 					await player.loseHp();
-					const evt = await player.draw(player.getDamagedHp(true) + 1);
-					const cards = evt.result.filter((card) => get.type(card) == 'equip');
-					if (!cards.length) return;
+					const { cards } = await player.draw(player.getDamagedHp(true) + 1).forResult();
+					const cards1 = cards.filter((card) => get.type(card) == 'equip');
+					if (!cards1.length) return;
 					const { bool, links } = await player
-						.chooseCardButton([1, cards.length], cards, '〖恶来〗:请选择并弃置任意张装备牌')
+						.chooseCardButton([1, cards1.length], cards1, '〖恶来〗:请选择并弃置任意张装备牌')
 						.set('ai', function (button) {
 							return 8 - get.value(button.link);
 						})
@@ -20136,8 +20135,7 @@ game.import('character', function () {
 					return history.length && history.length % 2 == 0;
 				},
 				async content(event, trigger, player) {
-					let evt = await player.draw();
-					let cards = evt.result;
+					const { cards } = await player.draw().forResult();
 					player.addGaintag(cards, 'xjzh_poe_sangzhong');
 				},
 			},
@@ -20643,19 +20641,19 @@ game.import('character', function () {
 					return player.storage.xjzh_wzry_huange && !event.numFixed;
 				},
 				async content(event, trigger, player) {
-					const evt = await player.draw(trigger.num);
+					const { cards } = await player.draw(trigger.num).forResult();
 					if (player.storage.xjzh_wzry_huange) {
 						let str = `【逐浪】:选择至多${trigger.num}张牌交给${get.translation(player.storage.xjzh_wzry_huange)}`;
-						const { cards } = await player
-							.chooseCardButton(evt.result, [Math.ceil(trigger.num / 2), trigger.num], str, true)
+						const { links } = await player
+							.chooseCardButton(cards, [Math.ceil(trigger.num / 2), trigger.num], str, true)
 							.set('ai', (button) => {
 								return 8 - get.value(button.link);
 							})
 							.forResult();
 
-						if (cards) {
+						if (links) {
 							let target = player.storage.xjzh_wzry_huange;
-							target.gain(cards, player, 'draw');
+							target.gain(links, player, 'draw');
 							player.recover();
 							target.recover();
 						}
@@ -22842,9 +22840,9 @@ game.import('character', function () {
 					player.loseHp();
 					player.draw(2);
 					for (const npc of game.players) {
-						const result = await npc.draw().forResult();
-						if (result && result[0]?.name == 'tao') {
-							player.gain(result, 'gain2');
+						const { cards } = await npc.draw().forResult();
+						if (cards && cards[0]?.name == 'tao') {
+							player.gain(cards, 'gain2');
 						}
 					}
 				},

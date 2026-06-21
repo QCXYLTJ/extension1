@@ -12882,10 +12882,10 @@ const skills = {
         usable: 1,
         async content(event, trigger, player) {
             get.info('Europa_tianchaojizhi').Europa_Mark(player, 5);
-            const result = await player.draw(3).forResult();
-            await player.showCards(result);
+            const { cards: cards1 } = await player.draw(3).forResult();
+            await player.showCards(cards1);
             if (!game.hasPlayer((current) => current.hasSkill('Europa_qiulong'))) {
-                const cards = result.filter((res) => get.type2(res, false) == 'trick').length;
+                const cards = cards1.filter((res) => get.type2(res, false) == 'trick').length;
                 if (!cards.length) return;
                 var enemy = game.countPlayer(function (current) {
                     return current != player && get.damageEffect(current, player, player) > 0;

@@ -3286,8 +3286,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 async content(event, trigger, player) {
                     let num = trigger.num;
                     while (num > 0) {
-                        let drawEvent = await player.draw(Math.max(1, player.getDamagedHp()));
-                        if (drawEvent.result) player.chooseToDiscard('he', true);
+                        const { cards } = await player.draw(Math.max(1, player.getDamagedHp())).forResult();
+                        if (cards?.length) {
+                            player.chooseToDiscard('he', true);
+                        }
                         num--;
                     }
                 },
@@ -8354,9 +8356,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 forced: true,
                 async content(event, trigger, player) {
-                    let { result } = await player.draw(Math.floor(Math.LOG2E * Math.log(game.roundNumber + 1)));
+                    const { cards: cards1 } = await player.draw(Math.floor(Math.LOG2E * Math.log(game.roundNumber + 1))).forResult();
                     const { cards } = await player
-                        .chooseCard(`选择将${result.length}张牌置于武将牌上`, true, result.length, 'hes')
+                        .chooseCard(`选择将${cards1.length}张牌置于武将牌上`, true, cards1.length, 'hes')
                         .set('ai', (card) => {
                             let val = get.value(card);
                             return 6 - val;
@@ -9615,12 +9617,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             game.log('触发了吞狗');
                             const { bool, targets } = await player.chooseTarget('选择一名角色摸' + (player.maxHp - player.getStorage('rgxtungou').length ? player.maxHp - player.getStorage('rgxtungou').length : '个🔨') + '张牌', true).forResult();
                             if (bool && player.maxHp - player.getStorage('rgxtungou').length) {
-                                let drawEvent = await targets[0].draw(player.maxHp - player.getStorage('rgxtungou').length);
-                                let result = drawEvent.result;
-                                if (result.length && result.some((card) => !player.getStorage('rgxtungou').includes(card.suit))) {
+                                const { cards } = await targets[0].draw(player.maxHp - player.getStorage('rgxtungou').length).forResult();
+                                if (cards.length && cards.some((card) => !player.getStorage('rgxtungou').includes(card.suit))) {
                                     let next = targetD[0].damage(target);
                                     next.num += lib.suit.length - player.getStorage('rgxtungou').length;
-                                    result.forEach((card) => {
+                                    cards.forEach((card) => {
                                         if (!player.getStorage('rgxtungou').includes(card.suit)) player.getStorage('rgxtungou').push(card.suit);
                                     });
                                     await next;
@@ -9671,15 +9672,14 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 async content(event, trigger, player) {
                     const { bool, targets } = await player.chooseTarget('选择一名角色摸' + (player.maxHp - player.getStorage('rgxtungou').length ? player.maxHp - player.getStorage('rgxtungou').length : '个🔨') + '张牌', true).forResult();
                     if (bool) {
-                        let drawEvent = await targets[0].draw(player.maxHp - player.getStorage('rgxtungou').length);
-                        let result = drawEvent.result;
-                        if (result.length && result.some((card) => !player.getStorage('rgxtungou').includes(card.suit))) {
+                        const { cards } = await targets[0].draw(player.maxHp - player.getStorage('rgxtungou').length).forResult();
+                        if (cards.length && cards.some((card) => !player.getStorage('rgxtungou').includes(card.suit))) {
                             if (trigger.source == player) {
                                 trigger.num += lib.suit.length - player.getStorage('rgxtungou').length;
                             } else {
                                 trigger.num -= lib.suit.length - player.getStorage('rgxtungou').length;
                             }
-                            result.forEach((card) => {
+                            cards.forEach((card) => {
                                 if (!player.getStorage('rgxtungou').includes(card.suit)) player.getStorage('rgxtungou').push(card.suit);
                             });
                         }
@@ -9691,11 +9691,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     global: 'dying',
                 },
                 async content(event, trigger, player) {
-                    let drawEvent = await player.draw(player.getStorage('rgxtungou').length + 1);
+                    const { cards } = await player.draw(player.getStorage('rgxtungou').length + 1).forResult();
                     let recover = async () => {
                         let player2;
                         if (trigger.player == player) {
-                            player.addGaintag(drawEvent.result, 'rgxximing');
+                            player.addGaintag(cards, 'rgxximing');
                             player2 = player;
                         } else {
                             player2 = trigger.player;
@@ -11275,9 +11275,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 async content(event, trigger, player) {
                     let process = async () => {
-                        let { result } = await player.draw();
-                        await player.showCards(result);
-                        if (get.color(result[0]) == 'red') {
+                        const { cards } = await player.draw().forResult();
+                        await player.showCards(cards);
+                        if (get.color(cards[0]) == 'red') {
                             await trigger.source.damage(trigger.num);
                         } else {
                             if (trigger.source.countCards('hej')) await player.discardPlayerCard(trigger.source, 'hej', true, 'visible');
@@ -11554,15 +11554,15 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             rgx_tianxing_info: '出牌阶段限一次,你可以令一名其他角色在其下个出牌阶段开始时,进行一次判定.其需弃置与判定牌类型不同的牌.若其本次未弃置牌,则受到等同于其体力值点伤害',
             rgxtgspcaocao: '糊曹操',
             rgxzhucheng: '筑城',
+            rgxzhucheng_info: '回合开始前,若你的手牌数与体力值不等,你可以将手牌摸至/弃至与体力值相等.若如此做,你获得等同于两者之差的护甲',
             rgxceji: '策计',
             rgxpingguan: '平关',
             rgxchongqi: '冲骑',
+            rgxchongqi_info: '当你使用一张【杀】指定一名与你距离为1目标后,你可以弃置其手牌和装备区各一张牌',
             rgxjvejun: '决军',
-            rgxzhucheng_info: '回合开始前,若你的手牌数与体力值不等,你可以将手牌摸至/弃至与体力值相等.若如此做,你获得等同于两者之差的护甲',
+            rgxjvejun_info: '锁定技,当你造成或受到一点伤害后,你摸X张牌,弃置一张牌.(X为你已损失体力值且至少为1)',
             rgxceji_info: '出牌阶段限一次,你可以选择两名手牌数不等的其他角色,手牌较少的角色对手牌较多的视为使用一张无距离限制的【杀】.若此杀命中,受伤角色须将手牌弃至与伤害来源相同',
             rgxpingguan_info: '主公技,觉醒技,一名角色回合结束时,若当前回合角色击杀了角色且你的护甲数不小于势力数,你减一点上限,回复一点体力或摸两张牌,失去<筑城>,获得技能<决军>与<冲骑>',
-            rgxchongqi_info: '当你使用一张【杀】指定一名与你距离为1目标后,你可以弃置其手牌和装备区各一张牌',
-            rgxjvejun_info: '锁定技,当你造成或受到一点伤害后,你摸X张牌,弃置一张牌.(X为你已损失体力值且至少为1)',
             rgxyaolu: '摇橹',
             rgxyaolu_info:
                 '出牌阶段限一次,你可以进行一次判定流程.\

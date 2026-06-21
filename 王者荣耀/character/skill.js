@@ -1130,8 +1130,8 @@ const skills = {
             for (const npc of game.players.randomGets(num)) {
                 await npc.gain(event.cards.shift());
             }
-            const result = await player.draw(num).forResult();
-            for (const card of result.slice().randomSort()) {
+            const { cards } = await player.draw(num).forResult();
+            for (const card of cards.slice().randomSort()) {
                 if (player.hasUseTarget(card)) {
                     await player.chooseUseTarget(card, true, false);
                 }
@@ -9110,8 +9110,8 @@ const skills = {
                 selectCard: -1,
                 async content(event, trigger, player) {
                     player.tempBanSkill('hokliudaowushu', 'phaseUseAfter', false);
-                    const result = await player.draw(3).forResult();
-                    const types = result.map((card) => get.type(card)).toUniqued();
+                    const { cards } = await player.draw(3).forResult();
+                    const types = cards.map((card) => get.type(card)).toUniqued();
                     if (types.length <= 1) return;
                     if (
                         player.hasCard(function (card) {
@@ -9826,8 +9826,8 @@ const skills = {
             }).length;
         },
         async content(event, trigger, player) {
-            const result = await player.draw().forResult();
-            await player.igniteCards(result);
+            const { cards } = await player.draw().forResult();
+            await player.igniteCards(cards);
         },
         group: 'hokchengjiesheji_use',
         subSkill: {

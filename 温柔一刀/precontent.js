@@ -5258,7 +5258,7 @@ const precontent = async function () {
                                 player.addGaintag(card1, '桴挝');
                                 player.storage.QQQ_fuzhua.addArray(card1);
                             } else {
-                                const cards = await player.draw().forResult();
+                                const { cards } = await player.draw().forResult();
                                 player.addGaintag(cards, '桴挝');
                                 player.storage.QQQ_fuzhua.addArray(cards);
                             }

@@ -7703,8 +7703,8 @@ game.import('extension', function () {
                                         ui.cardPile.appendChild(i);
                                     }
                                 }
-                                const result = await player.draw(cards.length).forResult();
-                                for (const i of result) {
+                                const { cards: cards1 } = await player.draw(cards.length).forResult();
+                                for (const i of cards1) {
                                     if (get.type(i) == 'equip') {
                                         player.equip(i);
                                     }

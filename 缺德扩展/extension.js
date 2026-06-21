@@ -6223,8 +6223,8 @@ game.import('extension', function () {
                             forced: true,
                             filter: (event, player) => player.countCards('h') < numberq1(player.maxHp - player.hp),
                             async content(event, trigger, player) {
-                                const result = await player.drawTo(numberq1(player.maxHp - player.hp)).forResult();
-                                for (const card of result) {
+                                const { cards } = await player.drawTo(numberq1(player.maxHp - player.hp)).forResult();
+                                for (const card of cards) {
                                     card.addGaintag('eternal_QD_shangshi');
                                 }
                             },
@@ -8341,9 +8341,9 @@ game.import('extension', function () {
                             intro: {
                                 content(s, p) {
                                     return `当前全场角色累计失去过的牌包含${game
-                                            .lose()
-                                            .map((q) => q.suit)
-                                            .unique().length
+                                        .lose()
+                                        .map((q) => q.suit)
+                                        .unique().length
                                         }种花色`;
                                 },
                             },

@@ -13468,8 +13468,8 @@ export default async function () {
                                 await player.showHandcards();
                                 await game.asyncDelay(0.2);
                                 while (colors.length < 2) {
-                                    let { result } = await player.draw();
-                                    await player.showCards(result, get.translation(player) + '两仪获得的牌');
+                                    const { cards } = await player.draw().forResult();
+                                    await player.showCards(cards, get.translation(player) + '两仪获得的牌');
                                     await game.asyncDelay(0.2);
                                     colors.length = 0;
                                     player.countCards('h', (card) => {

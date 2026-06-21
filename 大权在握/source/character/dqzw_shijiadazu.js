@@ -663,8 +663,8 @@ export let info = {
             .forResult();
           if (cards && cards.length) for (let sha of cards.filter((card) => card.name == 'sha')) await target.useCard(sha, player);
         } else {
-          const result = await target.draw(num, 'nodelay').forResult();
-          if (!result.some((card) => card.name == 'sha')) player.addTempSkill(event.name + '_draw');
+          const { cards } = await target.draw(num, 'nodelay').forResult();
+          if (!cards.some((card) => card.name == 'sha')) player.addTempSkill(event.name + '_draw');
         }
       },
       subSkill: {
