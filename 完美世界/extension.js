@@ -3574,7 +3574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     choice = '选项二';
                                     choiceList[0] = '<span style="opacity:0.5">' + choiceList[0] + '</span>';
                                 }
-                                const control = await target
+                                const { control } = await target
                                     .chooseControl(function () {
                                         return _status.event.choice;
                                     })
@@ -3582,7 +3582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('choiceList', choiceList)
                                     .set('choice', choice)
                                     .set('prompt', '〖一念花开〗：选择其中一项')
-                                    .forResultControl();
+                                    .forResult();
                                 if (control == '选项一') {
                                     await target.discard(target.getCards('he').randomGets(5));
                                 } else {
@@ -6593,13 +6593,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     const str2 = '摸三张牌';
                                     const choiceList = [str1, str2];
                                     const choices = ['选项一', '选项二'];
-                                    const control = await player
+                                    const { control } = await player
                                         .chooseControl()
                                         .set('controls', choices)
                                         .set('choiceList', choiceList)
                                         .set('prompt', '〖不死契约〗')
                                         .set('prompt2', `为${get.translation(target)}选择其中一项`)
-                                        .forResultControl();
+                                        .forResult();
                                     if (control == '选项一') {
                                         await target.gainMaxHp();
                                         await target.recover();

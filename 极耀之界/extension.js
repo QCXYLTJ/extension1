@@ -4588,7 +4588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .forResult();
                                     if (result.bool) {
                                         const target = result.targets[0];
-                                        const cards = await player
+                                        const { cards } = await player
                                             .choosePlayerCard(target, true, 'hej', [1, num], `选择弃置${get.translation(target)}区域内的牌`)
                                             .set('filterButton', (button) => {
                                                 const card = button.link,
@@ -4605,7 +4605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 if (get.attitude(_status.event.player, _status.event.target) > 0) return -val;
                                                 return val;
                                             })
-                                            .forResultCards();
+                                            .forResult();
                                         num -= cards.length;
                                         const index = lose_list.find((item) => item[0] == target);
                                         if (!index) {

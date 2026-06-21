@@ -10149,7 +10149,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 async content(event, trigger, player) {
                     const list = ['多摸', '少摸', 'cancel2'];
-                    const control = await player
+                    const { control } = await player
                         .chooseControl(list)
                         .set('ai', () => {
                             const player = get.player();
@@ -10157,7 +10157,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return '多摸';
                         })
                         .set('prompt', get.prompt2('shbitong'))
-                        .forResultControl();
+                        .forResult();
                     if (control == '多摸') {
                         trigger.num++;
                     } else if (control == '少摸') {

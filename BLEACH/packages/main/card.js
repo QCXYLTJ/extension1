@@ -2316,7 +2316,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           return event.card && event.card.name == 'sha' && !game.hasNature(event.card);
         },
         async cost(event, trigger, player) {
-          const control = await player
+          const { control } = await player
             .chooseControl('cancel2')
             .set('prompt', '是否发动【冰轮丸】？')
             .set('choiceList', ['将' + get.translation(trigger.card) + '改为冰冻属性', '将' + get.translation(trigger.card) + '改为冰属性'])
@@ -2332,7 +2332,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               }
               return eff >= 0 ? ['选择一', '选项二'].randomGet() : 'cancel2';
             })
-            .forResultControl();
+            .forResult();
           if (control != 'cancel2')
             event.result = {
               bool: true,

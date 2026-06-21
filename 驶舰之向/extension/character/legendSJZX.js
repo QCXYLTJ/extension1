@@ -17437,7 +17437,7 @@ game.import('character', function () {
             list.add(`横置武将牌,${get.translation(player)}本回合不能再对你使用此技能`);
             list2.add('选项三');
           } else list.add(`<span style="opacity:0.5">横置武将牌,${get.translation(player)}本回合不能再对你使用此技能(不可选:已被横置)</span>`);
-          var control = await target
+          var { control } = await target
             .chooseControl(list2)
             .set('choiceList', list)
             .set('ai', function () {
@@ -17453,7 +17453,7 @@ game.import('character', function () {
             })
             .set('target', event.target)
             .set('list', list2)
-            .forResultControl();
+            .forResult();
           if (!control) return;
           switch (control) {
             case '选项一':
@@ -17469,10 +17469,10 @@ game.import('character', function () {
             case '选项二':
               let skillList = lib.skill.newzhidianmrfz.getSkillsList(event, target);
               if (skillList.length) {
-                var control = await player
+                var { control } = await player
                   .chooseControl(skillList)
                   .set('prompt', `选择${get.translation(target)}武将牌上的一个技能并令其失效`)
-                  .forResultControl();
+                  .forResult();
                 target.disableSkill('newzhidianmrfz_disable', control);
                 target.addTempSkill('newzhidianmrfz_disable', {
                   player: 'phaseAfter',
@@ -17869,7 +17869,7 @@ game.import('character', function () {
               if (player.getDamagedHp() > 0) {
                 list.push('选项二');
               } else chooseList[1] = '<span style="opacity:0.5">' + chooseList[2] + '(不可选:已损失体力值为零)</span>';
-              const control =
+              const { control } =
                 list.length == 1
                   ? player.draw(num)
                   : await player
@@ -17882,7 +17882,7 @@ game.import('character', function () {
                       return '选项一';
                     })
                     .set('list', list)
-                    .forResultControl();
+                    .forResult();
               if (!control) return;
               switch (control) {
                 case '选项一':

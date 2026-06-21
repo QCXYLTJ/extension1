@@ -7431,13 +7431,13 @@ const skills = {
                     player.awakenSkill('hokfengshen');
                     game.log(player, '成功完成使命');
                     await player.addSkills('huandao');
-                    const targets = await player
+                    const { targets } = await player
                         .chooseTarget(true, `你发动了<span class="yellowtext">${get.translation(event.name)}</span>,请选择令一名角色获得${get.skillTipsInfo(get.translation('zuoxing'), get.skillInfoTranslation('zuoxing'))}.`)
                         .set('ai', function (target) {
                             const player = get.player();
                             return get.attitude(player, target);
                         })
-                        .forResultTargets();
+                        .forResult();
                     const target = targets[0];
                     player.line(target);
                     target.setStorage('zuoxing', player);
@@ -12883,7 +12883,7 @@ const skills = {
                             })
                         )
                             continue;
-                        const bool = await target
+                        const { bool } = await target
                             .chooseBool()
                             .set('prompt', `###${get.prompt('hokchuanliubuxi', trigger.player)}###你可以令${get.translation(trigger.player)}将你的所有手牌当做${get.translation(trigger.card)}使用`)
                             .set('ai', function () {
@@ -12892,7 +12892,7 @@ const skills = {
                                 if (player.countCards('h') > 2) return 0;
                                 return get.attitude(player, trigger.player) > 0;
                             })
-                            .forResultBool();
+                            .forResult();
                         if (bool) {
                             let skill_owner = type == 'basic' ? target : player,
                                 skill_loger = type == 'basic' ? player : target;

@@ -11485,7 +11485,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							async content(event, trigger, player) {
 								const target = event.target;
-								const bool = await player.chooseToCompare(target).forResultBool();
+								const { bool } = await player.chooseToCompare(target).forResult();
 								if (!bool) return void (await player.damage(target));
 								if (
 									!game.hasPlayer(function (player) {

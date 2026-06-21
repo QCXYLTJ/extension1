@@ -917,13 +917,13 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								}
 							}
 							if (list.length) {
-								const control = await player
+								const { control } = await player
 									.chooseControl(list, '取消')
 									.set('prompt', get.prompt2('scqhPcr_juebing'))
 									.set('ai', () => {
 										return 0;
 									})
-									.forResultControl();
+									.forResult();
 								event.result = {
 									bool: control !== '取消',
 									cost_data: control,

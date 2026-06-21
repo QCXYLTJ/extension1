@@ -3544,7 +3544,7 @@ const skills = {
 			return true;
 		},
 		async cost(event, trigger, player) {
-			const control = await player
+			const { control } = await player
 				.chooseControl('cancel2')
 				.set('choiceList', ['回复1点体力', '对' + get.translation(trigger.player) + '施加1层裂伤'])
 				.set('prompt', get.prompt('bleach_zhuangsui', trigger.player))
@@ -3563,7 +3563,7 @@ const skills = {
 						return '选项二';
 					})()
 				)
-				.forResultControl();
+				.forResult();
 			if (control === 'cancel2') event.result = { bool: false };
 			else
 				event.result = {
@@ -5567,7 +5567,7 @@ const skills = {
 			const current = num1 > num2 ? player : target;
 			let count = num1 > num2 ? num1 : num2;
 			while (cards.some((card) => current.hasUseTarget(card, false, false)) && count > 0) {
-				const links = await current
+				const { links } = await current
 					.chooseButton(['龙拳:使用其中一张牌', cards])
 					.set('filterButton', (button) => {
 						const player = get.player(),
@@ -5577,7 +5577,7 @@ const skills = {
 					.set('ai', (button) => {
 						return get.value(button.link);
 					})
-					.forResultLinks();
+					.forResult();
 				if (!links || !links.length) {
 					(current === player ? target : player).draw();
 					break;
@@ -12873,7 +12873,7 @@ const skills = {
 				if (!info || info.charlotte || get.skillInfoTranslation(skill, player).length == 0) return false;
 				return true;
 			});
-			const control = await player
+			const { control } = await player
 				.chooseControl(skills, 'cancel2')
 				.set(
 					'choiceList',
@@ -12897,7 +12897,7 @@ const skills = {
 					if (player.hasSkill('bleach_baishi', null, false, false)) return 'bleach_baishi';
 					return Math.random() < 0.75 ? 'cancel2' : choices.randomGet();
 				})
-				.forResultControl();
+				.forResult();
 			event.result = { bool: true, cost_data: control, skill_popup: false };
 		},
 		async content(event, trigger, player) {
@@ -19197,7 +19197,7 @@ const skills = {
 		async cost(event, trigger, player) {
 			const expansions = player.getExpansions('bleach_yinyi_x');
 			const list = [3, 4, 5].filter((i) => expansions.length >= i).map((i) => get.cnNumber(i, true));
-			const control = await player
+			const { control } = await player
 				.chooseControl(list, 'cancel2', () => {
 					const player = get.player(),
 						controls = get.event('controls').slice(0).reverse();
@@ -19209,7 +19209,7 @@ const skills = {
 					return 'cancel2';
 				})
 				.set('prompt', '###【斯安威斯坦】:移去任意张「翼」,执行一个额外回合？###该回合内你使用第X张牌后结束出牌阶段,且【杀】没有距离和次数限制(X为你移去牌数).')
-				.forResultControl();
+				.forResult();
 			if (control != 'cancel2') {
 				const index = ['三', '四', '五'].indexOf(control) + 3;
 				const cards = player.getExpansions('bleach_yinyi_x').randomGets(index);

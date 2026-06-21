@@ -5210,7 +5210,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						}
 						return lib.suit.randomGet();
 					});
-					next.forResultControl();
+					next.forResult();
 					('step 1');
 					var suit = result.control || 'cancel2';
 					if (suit == 'cancel2') event.finish();

@@ -24909,7 +24909,7 @@ export let info = {
           prompt2: '你可以将其中一张同名牌置入弃牌堆,若如此做,重置〖摧险〗并令此牌伤害值+2',
           content: async function (event, trigger, player) {
             const cards = trigger.cards.filter((card) => card.name == trigger.card.name);
-            const links =
+            const { links } =
               cards.length == 1
                 ? cards
                 : await player
@@ -24918,7 +24918,7 @@ export let info = {
                     const trigger = _status.event.getTrigger();
                     return button.link.name == trigger.card.name;
                   })
-                  .forResultLinks();
+                  .forResult();
             game.log(player, '将', links, '置入了弃牌堆');
             await game.cardsDiscard(links);
             lib.skill.dqzw_cuixian_backup.init(player, 'dqzw_cuixian_backup');

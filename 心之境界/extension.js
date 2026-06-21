@@ -1332,12 +1332,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(info[2]) == 'basic' && player.hasUseTarget({ name: info[2], nature: info[3] }, null, true);
                                 });
                                 if (num < 2 && num + cards.length > 1 && list.length) {
-                                    const links = await player
+                                    const { links } = await player
                                         .chooseButton(['是否视为使用一张基本牌？', [list, 'vcard']])
                                         .set('ai', (button) => {
                                             return get.player().getUseValue({ name: button.link[2], nature: button.link[3] });
                                         })
-                                        .forResultLinks();
+                                        .forResult();
                                     if (!links?.length) return;
                                     await player.chooseUseTarget({ name: links[0][2], nature: links[0][3] }, true);
                                 }

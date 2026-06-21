@@ -9036,7 +9036,7 @@ const skills = {
                     next.judge2 = function (result) {
                         return result.bool == false ? true : false;
                     };
-                    const bool = await next.forResultBool();
+                    const { bool } = await next.forResult();
                     if (bool == false) {
                         await player.loseMaxHp();
                         player.loseHp();
@@ -17140,14 +17140,14 @@ const skills = {
             useCardEvent.animate = false;
             await useCardEvent;
             if (event.targets[0].hasHistory('sourceDamage', (evt) => evt.getParent(event.name) == event)) {
-                const bool = await player
+                const { bool } = await player
                     .chooseBool(`你可以对${get.translation(event.targets[0])}造成1点伤害`)
                     .set('ai', () => {
                         const player = get.player(),
                             targets = get.event().parent.targets;
                         return get.damageEffect(targets[0], player, player) > 0;
                     })
-                    .forResultBool();
+                    .forResult();
                 if (bool) await event.targets[0].damage();
             }
         },
@@ -18544,7 +18544,7 @@ const skills = {
         async content(event, trigger, player) {
             await player.loseHp();
             const num = player.getDamagedHp() + 2;
-            const suit = await player
+            const { control } = await player
                 .chooseControl(lib.suit)
                 .set('prompt', `选择一个花色,你亮出牌堆顶的${num}张牌,随后你获得与指定花色不同花色的所有牌.`)
                 .set('ai', function () {
@@ -18552,11 +18552,11 @@ const skills = {
                     const controls = get.event('controls');
                     return controls[get.rand(0, controls.length - 1)];
                 })
-                .forResultControl();
+                .forResult();
             let cards = get.cards(num);
             await game.cardsGotoOrdering(cards);
             await player.showCards(cards);
-            cards = cards.filter((i) => i.suit != suit); //QQQ
+            cards = cards.filter((i) => i.suit != control); //QQQ
             if (cards.length) await player.gain(cards, 'gain2');
         },
         ai: {
@@ -18954,11 +18954,11 @@ const skills = {
             return event.player != player;
         },
         async cost(event, trigger, player) {
-            const control = await player
+            const { control } = await player
                 .chooseControl('cancel2')
                 .set('choiceList', [`获得${get.translation(trigger.player)}装备栏中的宝物牌并摸一张牌.`, `重铸你除宝物以外的装备牌,从牌堆中随机获取一张宝物牌.`])
                 .set('prompt', get.prompt2(event.name.slice(0, -5)))
-                .forResultControl();
+                .forResult();
             if (control != 'cancel2') event.result = { bool: true, cost_data: { control } };
         },
         logTarget: 'player',
@@ -19437,13 +19437,13 @@ const skills = {
         },
         async cost(event, trigger, player) {
             const list = ['basic', 'trick', 'equip', '无', 'cancel2'];
-            const control = await player
+            const { control } = await player
                 .chooseControl(list, function () {
                     let controls = get.event('controls').slice();
                     return controls[get.rand(0, controls.length - 1)];
                 })
                 .set('prompt', get.prompt2(event.name.slice(0, -5)))
-                .forResultControl();
+                .forResult();
             if (control != 'cancel2') event.result = { bool: true, cost_data: { control } };
         },
         logTarget: 'player',
@@ -19507,13 +19507,13 @@ const skills = {
             player.addTempSkill('Europa_xunshan_used', 'phaseUseAfter');
             const list = ['basic', 'trick', 'equip'].removeArray(player.getStorage('Europa_xunshan_used').map((info) => info[1]));
             if (!list.length) return;
-            const control = await player
+            const { control } = await player
                 .chooseControl(list, function () {
                     let controls = get.event('controls');
                     return controls[get.rand(0, controls.length - 1)];
                 })
                 .set('prompt', `声明一种本回合未声明的类型,并令${get.translation(target)}对你使用其手牌中所有该类型的牌`)
-                .forResultControl();
+                .forResult();
             if (!player.storage.Europa_xunshan_used) player.storage.Europa_xunshan_used = [];
             player.storage.Europa_xunshan_used.push([target, control]);
             const cards = target.getCards('h', (card) => get.type(card) == control),
