@@ -11284,7 +11284,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             //—————————————————————————————————————————————————————————————————————————————卡牌包
             game.import('card', function (lib, game, ui, get, ai, _status) {
                 const QQQ = {
-                    name: 'QQQQQQ',
+                    name: 'EX神将',
                     connect: true,
                     card: {
                         exxiansip: {
@@ -11705,9 +11705,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     const info = QQQ.card[i];
                     if (!info.image) {
                         if (info.fullskin) {
-                            info.image = `ext:QQQQQQ/image/${i}.png`;
+                            info.image = `ext:EX神将/image/${i}.png`;
                         } else {
-                            info.image = `ext:QQQQQQ/image/${i}.jpg`;
+                            info.image = `ext:EX神将/image/${i}.jpg`;
                         }
                     }
                     lib.inpile.add(i);
@@ -11716,9 +11716,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     lib.card.list.push([lib.suits.randomGet(), lib.number.randomGet(), i]);
                 }
-                lib.config.all.cards.add('QQQQQQ');
-                lib.config.cards.add('QQQQQQ');
-                lib.translate.QQQQQQ_card_config = 'QQQQQQ';
+                lib.config.all.cards.add('EX神将');
+                lib.config.cards.add('EX神将');
+                lib.translate.EX神将_card_config = 'EX神将';
                 return QQQ;
             });
         },
