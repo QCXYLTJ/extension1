@@ -1,10 +1,10 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_ybgz };
 /**
  * 掌管添加至国战
  */
 const YBSL_ybgz = function () {
-	var packages = [
+	const packages = [
 		'ybslj',
 		'ybxh',
 		'ybdd',
@@ -25,9 +25,9 @@ const YBSL_ybgz = function () {
 		lib.characterGuozhanFilter = [];
 	}
 	// lib.characterGuozhanFilter.addArray(packages)
-	for (var pack of packages) {
+	for (const pack of packages) {
 		if (lib.characterPack[pack]) {
-			if (Object.keys(lib.characterPack[pack]).length > 0) {
+			if (Object.keys(lib.characterPack[pack]).length) {
 				lib.characterGuozhanFilter.add(pack);
 			}
 		}

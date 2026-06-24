@@ -1,11 +1,10 @@
-'use strict';
-
+﻿'use strict';
 import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 import { typeimage } from '../packages/function.js';
 export async function cyyydsgs() {
 	{
 		//穿越也要打三国杀 前置必要代码
-		//技能等级的必要代码（后续可能没用了
+		//技能等级的必要代码(后续可能没用了
 		{
 			//等级
 			/**
@@ -15,8 +14,12 @@ export async function cyyydsgs() {
 			 * @returns 获取技能的等级
 			 */
 			get.YB_skill_lv = function (skill, player) {
-				if (!lib.skill[skill].cyyydsgs) return 0;
-				if (!player.YB_skill_lv || !player.YB_skill_lv[skill]) return 1;
+				if (!lib.skill[skill].cyyydsgs) {
+					return 0;
+				}
+				if (!player.YB_skill_lv || !player.YB_skill_lv[skill]) {
+					return 1;
+				}
 				return player.YB_skill_lv[skill] - 0;
 			};
 			// get.YB_source_character = function(target){
@@ -29,20 +32,20 @@ export async function cyyydsgs() {
 			 */
 			get.YB_character_lv = function (name) {
 				if (Array.isArray(lib.character[name])) {
-					var infoy = lib.character[name][4];
-					for (var infox of infoy) {
+					const infoy = lib.character[name][4];
+					for (const infox of infoy) {
 						if (infox.startsWith('YB_character_lv:')) {
-							var str = infox.slice(16);
+							let str = infox.slice(16);
 							return str;
 						}
 					}
 				} else if (lib.character[name].YB_character_lv) {
 					return lib.character[name].YB_character_lv;
 				} else {
-					var infoy = lib.character[name][4];
-					for (var infox of infoy) {
+					const infoy = lib.character[name][4];
+					for (const infox of infoy) {
 						if (infox.startsWith('YB_character_lv:')) {
-							var str = infox.slice(16);
+							let str = infox.slice(16);
 							return str;
 						}
 					}
@@ -55,19 +58,25 @@ export async function cyyydsgs() {
 			 * @returns 增加标记
 			 */
 			lib.element.player.YB_addMark = function (mark, num, type) {
-				if (!num) var num = 1;
-				var next = game.createEvent('YB_addMark', false);
+				if (!num) {
+					const num = 1;
+				}
+				const next = game.createEvent('YB_addMark', false);
 				next.player = this;
 				next.mark = mark;
 				next.number = num;
-				if (!type) var type = null;
+				if (!type) {
+					const type = null;
+				}
 				next.YB_type = type;
 				next.setContent('YB_addMark');
 				// next.trigger('YB_addMark_'+mark)
 				return next;
 			};
 			lib.element.content.YB_addMark = function () {
-				if (num == 0) return;
+				if (num == 0) {
+					return;
+				}
 				if (!player.hasSkill(event.mark)) {
 					player.addSkill(event.mark);
 				}
@@ -83,19 +92,25 @@ export async function cyyydsgs() {
 			 * @returns 失去标记
 			 */
 			lib.element.player.YB_removeMark = function (mark, num, type) {
-				if (!num) var num = 1;
-				var next = game.createEvent('YB_removeMark', false);
+				if (!num) {
+					const num = 1;
+				}
+				const next = game.createEvent('YB_removeMark', false);
 				next.player = this;
 				next.mark = mark;
 				next.number = num;
-				if (!type) var type = null;
+				if (!type) {
+					const type = null;
+				}
 				next.YB_type = type;
 				next.setContent('YB_removeMark');
 				// next.trigger('YB_removeMark_'+mark)
 				return next;
 			};
 			lib.element.content.YB_removeMark = function () {
-				if (num == 0) return;
+				if (num == 0) {
+					return;
+				}
 				player.removeMark(event.mark, event.number);
 				event.trigger('YB_removeMark_' + event.mark);
 				// next;
@@ -106,7 +121,7 @@ export async function cyyydsgs() {
 		}
 		//创建岩属性
 		{
-			//（岩属性释义：非官方概念；受到岩属性伤害时，若受伤者装备区内没有牌，此伤害+1。)
+			//(岩属性释义:非官方概念;受到岩属性伤害时,若受伤者装备区内没有牌,此伤害+1.)
 			game.addNature('YB_rock');
 			game.addNature('YB_rock', '岩', {
 				linked: true,
@@ -123,7 +138,7 @@ export async function cyyydsgs() {
 				ruleSkill: true,
 				shaRelated: true,
 				firstDo: true,
-				filter: function (event, player) {
+				filter(event, player) {
 					return event.hasNature('YB_rock') && event.num > 0 && !event.player.countCards('e');
 				},
 				content() {
@@ -133,8 +148,10 @@ export async function cyyydsgs() {
 			lib.skill.YB_rockdamage = {
 				ai: {
 					result: {
-						target: function (player, target) {
-							if (!target.countCards('e')) return -3;
+						target(player, target) {
+							if (!target.countCards('e')) {
+								return -3;
+							}
 							return -1.5;
 						},
 					},
@@ -154,18 +171,21 @@ export async function cyyydsgs() {
 					player: 'changeSkillsAfter',
 				},
 				forced: true,
-				filter: function (event, player) {
+				filter(event, player) {
 					return event.addSkill.some(function (skill) {
 						return lib.skill[skill].cyyydsgs;
 					});
 				},
 				silent: true,
 				content() {
-					console.log(trigger.addSkill);
-					if (!player.YB_skill_lv) player.YB_skill_lv = {};
+					if (!player.YB_skill_lv) {
+						player.YB_skill_lv = {};
+					}
 					trigger.addSkill.some(function (skill) {
 						if (lib.skill[skill].cyyydsgs) {
-							if (!player.YB_skill_lv[skill]) player.YB_skill_lv[skill] = 1;
+							if (!player.YB_skill_lv[skill]) {
+								player.YB_skill_lv[skill] = 1;
+							}
 						}
 					});
 				},
@@ -175,9 +195,9 @@ export async function cyyydsgs() {
 	//导入穿越也要打三国杀
 	{
 		/** @type { importCharacterConfig } */
-		var cyyydsgs = {
+		const cyyydsgs = {
 			name: 'cyyydsgs',
-			connect: false, //该武将包是否可以联机（必填）
+			connect: false, //该武将包是否可以联机(必填)
 			characterSort: {
 				cyyydsgs: {
 					miwusenlin: ['cyyydsgs_leimoying', 'cyyydsgs_yanmoteng', 'cyyydsgs_fengmolang'],
@@ -212,13 +232,14 @@ export async function cyyydsgs() {
 			characterIntro: {},
 			characterFilter: {},
 			characterTitle: {},
-
 			skill: {
 				cyyydsgs_leishan: {
 					cyyydsgs: true,
 					audio: 'ext:夜白神略/audio/character:1',
 					usable(skill, player) {
-						if (player.YB_skill_lv[skill] < 5) return 1;
+						if (player.YB_skill_lv[skill] < 5) {
+							return 1;
+						}
 						return 2;
 					},
 					enable: 'phaseUse',
@@ -227,18 +248,25 @@ export async function cyyydsgs() {
 					},
 					position: 'he',
 					selectCard() {
-						var player = _status.event.player;
-						var num = get.YB_skill_lv('cyyydsgs_leishan', player);
-						if (num < 2) return 1;
-						else if (num < 4) return [1, 2];
-						else return [1, 3];
+						const player = _status.event.player;
+						const num = get.YB_skill_lv('cyyydsgs_leishan', player);
+						if (num < 2) {
+							return 1;
+						} else if (num < 4) {
+							return [1, 2];
+						} else {
+							return [1, 3];
+						}
 					},
 					filterCard: true,
 					selectTarget() {
-						var player = _status.event.player;
-						var num = get.YB_skill_lv('cyyydsgs_leishan', player);
-						if (num < 3) return ui.selected.cards.length;
-						else return [1, ui.selected.cards.length];
+						const player = _status.event.player;
+						const num = get.YB_skill_lv('cyyydsgs_leishan', player);
+						if (num < 3) {
+							return ui.selected.cards.length;
+						} else {
+							return [1, ui.selected.cards.length];
+						}
 					},
 					filterTarget(card, player, target) {
 						return target != player;
@@ -257,9 +285,11 @@ export async function cyyydsgs() {
 						order: 2,
 						result: {
 							player: 1,
-							target: function (player, target) {
-								var num = ui.selected.cards.length;
-								if (num == ui.selected.targets.length) return -2;
+							target(player, target) {
+								const num = ui.selected.cards.length;
+								if (num == ui.selected.targets.length) {
+									return -2;
+								}
 								return -num * 2;
 							},
 						},
@@ -273,30 +303,39 @@ export async function cyyydsgs() {
 						player: 'damageBegin3',
 					},
 					filter(event, player, name) {
-						var num = get.YB_skill_lv('cyyydsgs_jilei', player);
-						if (!event.hasNature('thunder')) return false;
-						if (name == 'damageBegin3') return num < 5;
-						else if (num < 3) return player.isDamaged();
+						const num = get.YB_skill_lv('cyyydsgs_jilei', player);
+						if (!event.hasNature('thunder')) {
+							return false;
+						}
+						if (name == 'damageBegin3') {
+							return num < 5;
+						} else if (num < 3) {
+							return player.isDamaged();
+						}
 						return true;
 					},
 					getIndex(event, player, name) {
-						if (name == 'damageBegin3') return 1;
-						else {
-							var num = get.YB_skill_lv('cyyydsgs_jilei', player);
-							if (num < 2) return 1;
-							else return event.num;
+						if (name == 'damageBegin3') {
+							return 1;
+						} else {
+							const num = get.YB_skill_lv('cyyydsgs_jilei', player);
+							if (num < 2) {
+								return 1;
+							} else {
+								return event.num;
+							}
 						}
 					},
 					async cost(event, trigger, player) {
-						let num = trigger.num;
+						const num = trigger.num;
 						event.result = { bool: false, cost_data: { draw_card: false, recover_hp: false } };
 						if (event.triggername == 'damageBegin3') {
-							var next = await player
+							const next = await player
 								.chooseBool()
 								.set('ai', function () {
 									const player = get.player();
-									// const { target, num1, num2 } = get.event().getParent();
-									var target = player;
+									// const { target, num1, num2 } = get.event().parent;
+									const target = player;
 									const att = get.attitude(player, target);
 									const choices = get.event().controls.slice();
 									const eff1 = get.recoverEffect(target, player, player);
@@ -321,13 +360,13 @@ export async function cyyydsgs() {
 								if (controls.length == 1) {
 									result = { control: controls[0] };
 								} else {
-									var next = player.chooseControl(controls);
+									const next = player.chooseControl(controls);
 									next.set('ai', function () {
 										const player = get.player();
-										// const { target, num1, num2 } = get.event().getParent();
-										var target = player;
-										var num1 = 1;
-										var num2 = 1;
+										// const { target, num1, num2 } = get.event().parent;
+										const target = player;
+										const num1 = 1;
+										const num2 = 1;
 										const att = get.attitude(player, target);
 										const choices = get.event().controls.slice();
 										const eff1 = get.recoverEffect(target, player, player);
@@ -347,17 +386,16 @@ export async function cyyydsgs() {
 									next.set('prompt2', get.YB_prompt2('cyyydsgs_jilei', null, player));
 									result = await next.forResult();
 								}
-
 								if (result?.control != 'cancel2') {
 									event.result.bool = true;
 									event.result.cost_data[result.control] = true;
 								}
 							} else {
-								var result = await player
+								let result = await player
 									.chooseBool()
 									.set('ai', function () {
 										const player = get.player();
-										const { target, num1, num2 } = get.event().getParent();
+										const { target, num1, num2 } = get.event().parent;
 										const att = get.attitude(player, target);
 										const choices = get.event().controls.slice();
 										const eff1 = get.recoverEffect(target, player, player);
@@ -372,7 +410,9 @@ export async function cyyydsgs() {
 										//	 return "cancel2";
 										// }
 										// return choices.randomGet();
-										if (eff1 + eff2 > 0) return true;
+										if (eff1 + eff2 > 0) {
+											return true;
+										}
 										return false;
 									})
 									.set('prompt', get.prompt('cyyydsgs_jilei'))
@@ -390,12 +430,16 @@ export async function cyyydsgs() {
 					},
 					async content(event, trigger, player) {
 						if (event.triggername == 'damageBegin3') {
-							let num = trigger.num;
+							const num = trigger.num;
 							trigger.cancel();
 							await player.draw(num);
 						} else {
-							if (event.cost_data.recover_hp) await player.recover();
-							if (event.cost_data.draw_card) await player.draw();
+							if (event.cost_data.recover_hp) {
+								await player.recover();
+							}
+							if (event.cost_data.draw_card) {
+								await player.draw();
+							}
 						}
 					},
 				},
@@ -408,11 +452,13 @@ export async function cyyydsgs() {
 						global: 'phaseJieshuBegin',
 					},
 					filter(event, player, name) {
-						if (name == 'phaseJieshuBegin' && _status.currentPhase != player) return get.YB_skill_lv('cyyydsgs_shengzhang', player) == 5;
+						if (name == 'phaseJieshuBegin' && _status.currentPhase != player) {
+							return get.YB_skill_lv('cyyydsgs_shengzhang', player) == 5;
+						}
 						return true;
 					},
 					async content(event, trigger, player) {
-						var num = get.YB_skill_lv('cyyydsgs_shengzhang', player);
+						const num = get.YB_skill_lv('cyyydsgs_shengzhang', player);
 						await player.recover();
 						await player.draw(Math.ceil(Math.sqrt(num - 1)));
 					},
@@ -426,11 +472,15 @@ export async function cyyydsgs() {
 						return true;
 					},
 					selectTarget() {
-						var player = get.player();
-						var num = get.YB_skill_lv('cyyydsgs_huakai', player);
-						if (num <= 2) return 1;
-						else if (num <= 4) return [1, 2];
-						else return [1, 3];
+						const player = get.player();
+						const num = get.YB_skill_lv('cyyydsgs_huakai', player);
+						if (num <= 2) {
+							return 1;
+						} else if (num <= 4) {
+							return [1, 2];
+						} else {
+							return [1, 3];
+						}
 					},
 					filterTarget(card, player, target) {
 						return target != player && target.isIn();
@@ -453,16 +503,18 @@ export async function cyyydsgs() {
 								source: 'damageEnd',
 							},
 							filter(event, player) {
-								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
-								if (event.player == player || !event.player.isIn()) return false;
+								const num = get.YB_skill_lv('cyyydsgs_huakai', player);
+								if (event.player == player || !event.player.isIn()) {
+									return false;
+								}
 								return num >= 2;
 							},
-							prompt2: '当你对其他角色造成伤害时，你可以令其获得一枚“花粉”。',
+							prompt2: '当你对其他角色造成伤害时,你可以令其获得一枚<花粉>',
 							content() {
 								player.line(trigger.player, 'yellow');
 								trigger.player.YB_addMark('buff_cyyydsgs_huafen', 1, 'cyyydsgs_huakai_damage');
 							},
-							check: function (event, player) {
+							check(event, player) {
 								return get.attitude(player, event.player) < 0;
 							},
 						},
@@ -472,14 +524,13 @@ export async function cyyydsgs() {
 								global: 'YB_removeMark_buff_cyyydsgs_huafen',
 							},
 							filter(event, player) {
-								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
+								const num = get.YB_skill_lv('cyyydsgs_huakai', player);
 								return num > 3;
 							},
 							async cost(event, trigger, player) {
-								var target = trigger.player;
-								console.log(trigger);
+								const target = trigger.player;
 								event.result = await player
-									.choosePlayerCard('其他角色移除“花粉”时，你可以获得其一张牌', target, 'he')
+									.choosePlayerCard('其他角色移除<花粉>时,你可以获得其一张牌', target, 'he')
 									.set('ai', (button) => {
 										let val = get.buttonValue(button);
 										if (get.event().att > 0) {
@@ -491,7 +542,7 @@ export async function cyyydsgs() {
 									.forResult();
 							},
 							content() {
-								var target = trigger.player;
+								const target = trigger.player;
 								player.gain(event.cards, target, 'giveAuto', 'bySelf');
 							},
 						},
@@ -501,16 +552,18 @@ export async function cyyydsgs() {
 								player: 'recoverBegin',
 							},
 							filter(event, player) {
-								var players = game.countPlayer(function (c) {
+								const players = game.countPlayer(function (c) {
 									return !c.countMark('buff_cyyydsgs_huafen') && c.isIn();
 								});
-								if (players.length == 0) return false;
-								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
+								if (players.length == 0) {
+									return false;
+								}
+								const num = get.YB_skill_lv('cyyydsgs_huakai', player);
 								return num >= 3;
 							},
 							async cost(event, trigger, player) {
 								event.result = await player
-									.chooseTarget(1, '当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。')
+									.chooseTarget(1, '当你回复体力时,你可以移除场上一枚<花粉>,令回复值+1')
 									.set('filterTarget', function (card, player, target) {
 										return target.countMark('buff_cyyydsgs_huafen') > 0;
 									})
@@ -539,7 +592,7 @@ export async function cyyydsgs() {
 					charlotte: true,
 					marktext: '粉',
 					intro: {
-						content: '锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。',
+						content: '锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力',
 					},
 					trigger: {
 						player: 'phaseZhunbeiBegin',
@@ -549,7 +602,7 @@ export async function cyyydsgs() {
 					},
 					async content(event, trigger, player) {
 						player.YB_removeMark('buff_cyyydsgs_huafen', 1, 'buff_cyyydsgs_huafen');
-						var result = await player
+						let result = await player
 							.chooseToDiscard('he', get.prompt('cyyydsgs_huafen'))
 							.set('ai', function (card) {
 								return 9 - get.value(card);
@@ -568,21 +621,26 @@ export async function cyyydsgs() {
 						player: ['phaseDrawBegin', 'loseAfter', 'YB_removeMark_buff_cyyydsgs_fengdun'],
 					},
 					filter(event, player, name) {
-						var num = get.YB_skill_lv('cyyydsgs_fengxing', player);
-						if (name == 'phaseDrawBegin') return true;
-						else if (name == 'loseAfter') {
-							if (event.type == 'discard') return num >= 3;
+						const num = get.YB_skill_lv('cyyydsgs_fengxing', player);
+						if (name == 'phaseDrawBegin') {
+							return true;
+						} else if (name == 'loseAfter') {
+							if (event.type == 'discard') {
+								return num >= 3;
+							}
 						} else {
-							// var evt = event.getParent();
+							// var evt = event.parent;
 							// if(evt.skill =='buff_cyyydsgs_fengdun')return num==5;
 							// console.log(event)
 							// console.log(event.YB_type)
-							// console.log(event.getParent())
-							if (event.YB_type == 'buff_cyyydsgs_water') return num == 5;
+							// console.log(event.parent)
+							if (event.YB_type == 'buff_cyyydsgs_water') {
+								return num == 5;
+							}
 						}
 					},
 					async content(event, trigger, player) {
-						var num = get.YB_skill_lv('cyyydsgs_fengxing', player);
+						const num = get.YB_skill_lv('cyyydsgs_fengxing', player);
 						if (event.triggername == 'phaseDrawBegin') {
 							trigger.num += Math.ceil((num + 1) / 2);
 						} else if (event.triggername == 'loseAfter') {
@@ -597,14 +655,17 @@ export async function cyyydsgs() {
 					charlotte: true,
 					marktext: '盾',
 					intro: {
-						content: '锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。',
+						content: '锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>',
 					},
 					trigger: {
 						player: ['damageBegin3', 'YB_addMark_buff_cyyydsgs_fengdun'],
 					},
 					filter(event, player, name) {
-						if (name == 'damageBegin3') return event.hasNature('fire');
-						else if (player.countMark('buff_cyyydsgs_fengdun') > Math.max(player.maxHp, 1)) return true;
+						if (name == 'damageBegin3') {
+							return event.hasNature('fire');
+						} else if (player.countMark('buff_cyyydsgs_fengdun') > Math.max(player.maxHp, 1)) {
+							return true;
+						}
 					},
 					forced: true,
 					async content(event, trigger, player) {
@@ -612,12 +673,11 @@ export async function cyyydsgs() {
 							player.YB_removeMark('buff_cyyydsgs_fengdun', 1, 'buff_cyyydsgs_damage');
 							trigger.cancel();
 						} else {
-							var numx = player.countMark('buff_cyyydsgs_fengdun') - Math.max(player.maxHp, 1);
+							let numx = player.countMark('buff_cyyydsgs_fengdun') - Math.max(player.maxHp, 1);
 							player.YB_removeMark('buff_cyyydsgs_fengdun', numx, 'buff_cyyydsgs_water');
 						}
 					},
 					// subSkill:{
-
 					// },
 				},
 				cyyydsgs_xuanfeng: {
@@ -642,7 +702,6 @@ export async function cyyydsgs() {
 					// },
 					// content(){
 					// 	'step 0'
-
 					// },
 					// content(){
 					// 	'step 0'
@@ -672,11 +731,10 @@ export async function cyyydsgs() {
 					// 	var num = get.YB_skill_lv('cyyydsgs_xuanfeng',player);
 					// 	if(event.target1.isIn()&&num>=3){
 					// 		var str = '是否对'+get.translation(event.target1)+'造成一点伤害？'
-					// 		if(num==3)str+='然后放弃后续执行。'
-					// 		if(num==4)str+='每次发动此技能限一次。'
+					// 		if(num==3)str+='然后放弃后续执行'
+					// 		if(num==4)str+='每次发动此技能限一次'
 					// 		player.chooseBool(str)
 					// 	}
-
 					// 	// event.result = await player.chooseTarget([1,2],get.YB_prompt2('cyyydsgs_xuanfeng',null,player),true).set('filterTarget',function(card,player,target){
 					// 	// 	return target.countCards("he") > 0&&target!=player&&target.hasCard(card => lib.filter.canBeDiscarded(card, player, target), "he");
 					// 	// }).set('ai',function(target){
@@ -691,52 +749,54 @@ export async function cyyydsgs() {
 						player: ['phaseDiscardAfter', 'YB_removeMark_buff_cyyydsgs_fengdun'],
 					},
 					filter(event, player, name) {
-						var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+						const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 						if (event.name == 'phaseDiscard') {
-							var cards = [];
+							const cards = [];
 							player.getHistory('lose', function (evt) {
 								if (evt && evt.type == 'discard' && evt.getParent('phaseDiscard') == event && evt.hs) {
 									cards.addArray(evt.hs);
 								}
 							});
-							return cards.length > 0;
+							return cards.length;
 						} else {
 							return num >= 3 && event.YB_type == 'buff_cyyydsgs_damage';
 						}
 					},
 					async cost(event, trigger, player) {
-						var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+						const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 						event.result = await player
 							.chooseTarget([1, 2], get.YB_prompt2('cyyydsgs_xuanfeng', null, player), true)
 							.set('filterTarget', function (card, player, target) {
 								return target != player;
 							})
 							.set('ai', function (target) {
-								var player = _status.event.player;
-								var att = get.attitude(player, target);
-								var numx = get.damageEffect(target, player, player, 'YB_wind');
+								const player = _status.event.player;
+								const att = get.attitude(player, target);
+								let numx = get.damageEffect(target, player, player, 'YB_wind');
 								return numx > 0;
 							})
 							.forResult();
 					},
 					async content(event, trigger, player) {
-						var targets = event.targets;
-						let num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+						const targets = event.targets;
+						const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 						if (targets.length) {
-							for (var target of targets) {
+							for (const target of targets) {
 								if (target.isIn()) {
 									await target.damage('YB_wind');
 									if (num >= 2) {
-										var numx = Math.ceil((num - 1) / 2);
-										if (numx > 1) numx = [1, numx];
+										let numx = Math.ceil((num - 1) / 2);
+										if (numx > 1) {
+											numx = [1, numx];
+										}
 										await player.discardPlayerCard('he', target, numx);
 									}
 								}
 							}
 						}
 					},
-					//当你造成不包含风属性的非传导伤害或使用不包含风属性的伤害卡牌时，
-					// 你可以移除一枚“风盾”，令此事件附着风属性。
+					//当你造成不包含风属性的非传导伤害或使用不包含风属性的伤害卡牌时,
+					// 你可以移除一枚<风盾>,令此事件附着风属性.
 					group: ['cyyydsgs_xuanfeng_wind'],
 					subSkill: {
 						wind: {
@@ -746,9 +806,13 @@ export async function cyyydsgs() {
 								source: ['damageBegin1'],
 							},
 							filter(event, player, name) {
-								var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
-								if (num < 5) return false;
-								if (player.countMark('buff_cyyydsgs_fengdun') <= 0) return false;
+								const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+								if (num < 5) {
+									return false;
+								}
+								if (player.countMark('buff_cyyydsgs_fengdun') <= 0) {
+									return false;
+								}
 								if (name == 'useCard1') {
 									return !game.hasNature(event.card, 'YB_wind');
 								} else {
@@ -756,13 +820,13 @@ export async function cyyydsgs() {
 								}
 							},
 							prompt2() {
-								return '移除一枚“风盾”，令此事件附着风属性';
+								return '移除一枚<风盾>,令此事件附着风属性';
 							},
 							content() {
 								'step 0';
 								player.YB_removeMark('buff_cyyydsgs_fengdun', 1, 'cyyydsgs_xuanfeng_nowind');
 								('step 1');
-								var natures = trigger.nature;
+								let natures = trigger.nature;
 								if (nature != null) {
 									// if(!Array.isArray(nature)){
 									// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
@@ -772,8 +836,7 @@ export async function cyyydsgs() {
 									}
 								}
 								game.setNature(trigger, nature == null ? 'YB_wind' : natures + '|YB_wind');
-
-								var next = game.createEvent('cyyydsgs_xuanfeng_nowind');
+								const next = game.createEvent('cyyydsgs_xuanfeng_nowind');
 								event.next.remove(next);
 								trigger.after.push(next);
 								next.setContent(function () {
@@ -783,7 +846,6 @@ export async function cyyydsgs() {
 						},
 					},
 				},
-
 				//磐石龟
 			},
 			card: {},
@@ -804,122 +866,107 @@ export async function cyyydsgs() {
 				lv3_cyyydsgs_leimoyingwang: '三阶雷魔鹰王',
 				lv4_cyyydsgs_leimoyingwang: '四阶雷魔鹰王',
 				lv5_cyyydsgs_leimoyingwang: '五阶雷魔鹰王',
-
 				cyyydsgs_leishan: '雷闪',
-				cyyydsgs_leishan_info: '出牌阶段限一次，你可以弃置一张牌，对一名其他角色造成一点雷电伤害。',
-				cyyydsgs_leishan_info_1: '出牌阶段限一次，你可以弃置一张牌，对一名其他角色造成一点雷电伤害。',
-				cyyydsgs_leishan_info_2: '出牌阶段限一次，你可以弃置一至两张牌，对等量名其他角色造成一点雷电伤害。',
-				cyyydsgs_leishan_info_3: '出牌阶段限一次，你可以弃置一至两张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
-				cyyydsgs_leishan_info_4: '出牌阶段限一次，你可以弃置一至三张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
-				cyyydsgs_leishan_info_5: '出牌阶段限两次，你可以弃置一至三张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
-
+				cyyydsgs_leishan_info: '出牌阶段限一次,你可以弃置一张牌,对一名其他角色造成一点雷电伤害',
+				cyyydsgs_leishan_info_1: '出牌阶段限一次,你可以弃置一张牌,对一名其他角色造成一点雷电伤害',
+				cyyydsgs_leishan_info_2: '出牌阶段限一次,你可以弃置一至两张牌,对等量名其他角色造成一点雷电伤害',
+				cyyydsgs_leishan_info_3: '出牌阶段限一次,你可以弃置一至两张牌,对等量名其他角色造成一点雷电伤害,或对一名其他角色造成等量点雷电伤害',
+				cyyydsgs_leishan_info_4: '出牌阶段限一次,你可以弃置一至三张牌,对等量名其他角色造成一点雷电伤害,或对一名其他角色造成等量点雷电伤害',
+				cyyydsgs_leishan_info_5: '出牌阶段限两次,你可以弃置一至三张牌,对等量名其他角色造成一点雷电伤害,或对一名其他角色造成等量点雷电伤害',
 				cyyydsgs_jilei: '汲雷',
-				cyyydsgs_jilei_info: '当你造成雷属性伤害后，你可以恢复一点体力。',
-				cyyydsgs_jilei_info_1: '当你造成雷属性伤害后，你可以恢复一点体力。',
-				cyyydsgs_jilei_info_2: '每当你造成一点雷属性伤害后，你可以恢复一点体力。',
-				cyyydsgs_jilei_info_3: '每当你造成一点雷属性伤害后，你可以恢复一点体力或摸一张牌。',
-				cyyydsgs_jilei_info_4: '每当你造成一点雷属性伤害后，你可以恢复一点体力并摸一张牌。',
-				cyyydsgs_jilei_info_5: '每当你造成一点雷属性伤害后，你可以恢复一点体力并摸一张牌；当你受到雷属性伤害时，你可以防止之，改为摸等量张牌。',
+				cyyydsgs_jilei_info: '当你造成雷属性伤害后,你可以回复一点体力',
+				cyyydsgs_jilei_info_1: '当你造成雷属性伤害后,你可以回复一点体力',
+				cyyydsgs_jilei_info_2: '每当你造成一点雷属性伤害后,你可以回复一点体力',
+				cyyydsgs_jilei_info_3: '每当你造成一点雷属性伤害后,你可以回复一点体力或摸一张牌',
+				cyyydsgs_jilei_info_4: '每当你造成一点雷属性伤害后,你可以回复一点体力并摸一张牌',
+				cyyydsgs_jilei_info_5: '每当你造成一点雷属性伤害后,你可以回复一点体力并摸一张牌;当你受到雷属性伤害时,你可以防止之,改为摸等量张牌',
 				//魇魔藤和魇魔花
 				cyyydsgs_yanmoteng: '魇魔藤',
 				cyyydsgs_yanmohua: '魇魔花',
-
 				cyyydsgs_shengzhang: '生长',
-				cyyydsgs_shengzhang_info: '锁定技，准备阶段，你恢复一点体力。',
-				cyyydsgs_shengzhang_info_1: '锁定技，准备阶段，你恢复一点体力。',
-				cyyydsgs_shengzhang_info_2: '锁定技，准备阶段，你恢复一点体力并摸一张牌。',
-				cyyydsgs_shengzhang_info_3: '锁定技，准备阶段，你恢复一点体力并摸两张牌。',
-				cyyydsgs_shengzhang_info_4: '锁定技，准备阶段或结束阶段，你恢复一点体力并摸两张牌。',
-				cyyydsgs_shengzhang_info_5: '锁定技，准备阶段或场上角色的结束阶段，你恢复一点体力并摸两张牌。',
-
+				cyyydsgs_shengzhang_info: '锁定技,准备阶段,你回复一点体力',
+				cyyydsgs_shengzhang_info_1: '锁定技,准备阶段,你回复一点体力',
+				cyyydsgs_shengzhang_info_2: '锁定技,准备阶段,你回复一点体力并摸一张牌',
+				cyyydsgs_shengzhang_info_3: '锁定技,准备阶段,你回复一点体力并摸两张牌',
+				cyyydsgs_shengzhang_info_4: '锁定技,准备阶段或结束阶段,你回复一点体力并摸两张牌',
+				cyyydsgs_shengzhang_info_5: '锁定技,准备阶段或场上角色的结束阶段,你回复一点体力并摸两张牌',
 				cyyydsgs_huakai: '花开',
-				cyyydsgs_huakai_info: '出牌阶段限一次，你可以令一名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）。',
-				cyyydsgs_huakai_info_1: '出牌阶段限一次，你可以令一名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）。',
-				cyyydsgs_huakai_info_2: '出牌阶段限一次，你可以令一名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”。',
-				cyyydsgs_huakai_info_3: '出牌阶段限一次，你可以令一至两名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”；当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。',
-				cyyydsgs_huakai_info_4: '出牌阶段限一次，你可以令一至两名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”；其他角色移除“花粉”时，你可以获得其一张牌；当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。',
-				cyyydsgs_huakai_info_5: '出牌阶段限一次，你可以令一至三名其他角色获得一枚“花粉”（锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力）；当你对其他角色造成伤害时，你可以令其获得一枚“花粉”；其他角色移除“花粉”时，你可以获得其一张牌；当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。',
-
+				cyyydsgs_huakai_info: '出牌阶段限一次,你可以令一名其他角色获得一枚<花粉>(锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力)',
+				cyyydsgs_huakai_info_1: '出牌阶段限一次,你可以令一名其他角色获得一枚<花粉>(锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力)',
+				cyyydsgs_huakai_info_2: '出牌阶段限一次,你可以令一名其他角色获得一枚<花粉>(锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力);当你对其他角色造成伤害时,你可以令其获得一枚<花粉>',
+				cyyydsgs_huakai_info_3: '出牌阶段限一次,你可以令一至两名其他角色获得一枚<花粉>(锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力);当你对其他角色造成伤害时,你可以令其获得一枚<花粉>;当你回复体力时,你可以移除场上一枚<花粉>,令回复值+1',
+				cyyydsgs_huakai_info_4: '出牌阶段限一次,你可以令一至两名其他角色获得一枚<花粉>(锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力);当你对其他角色造成伤害时,你可以令其获得一枚<花粉>;其他角色移除<花粉>时,你可以获得其一张牌;当你回复体力时,你可以移除场上一枚<花粉>,令回复值+1',
+				cyyydsgs_huakai_info_5: '出牌阶段限一次,你可以令一至三名其他角色获得一枚<花粉>(锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力);当你对其他角色造成伤害时,你可以令其获得一枚<花粉>;其他角色移除<花粉>时,你可以获得其一张牌;当你回复体力时,你可以移除场上一枚<花粉>,令回复值+1',
 				buff_cyyydsgs_huafen: '花粉',
-				buff_cyyydsgs_huafen_info: '锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。',
-
+				buff_cyyydsgs_huafen_info: '锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力',
 				//风魔狼和风魔狼王
 				cyyydsgs_fengmolang: '风魔狼',
 				cyyydsgs_fengmolangwang: '风魔狼王',
 				cyyydsgs_fengxing: '风行',
-				cyyydsgs_fengxing_info: '锁定技，摸牌阶段，你多摸一张牌。',
-				cyyydsgs_fengxing_info_1: '锁定技，摸牌阶段，你多摸一张牌。',
-				cyyydsgs_fengxing_info_2: '锁定技，摸牌阶段，你多摸两张牌。',
-				cyyydsgs_fengxing_info_3: '锁定技，摸牌阶段，你多摸两张牌；当你弃置牌后，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）。',
-				cyyydsgs_fengxing_info_4: '锁定技，摸牌阶段，你多摸三张牌；当你弃置牌后，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）。',
-				cyyydsgs_fengxing_info_5: '锁定技，摸牌阶段，你多摸三张牌；当你弃置牌后，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）；当你因溢出而移除“风盾”时，你摸两张牌。',
-
+				cyyydsgs_fengxing_info: '锁定技,摸牌阶段,你多摸一张牌',
+				cyyydsgs_fengxing_info_1: '锁定技,摸牌阶段,你多摸一张牌',
+				cyyydsgs_fengxing_info_2: '锁定技,摸牌阶段,你多摸两张牌',
+				cyyydsgs_fengxing_info_3: '锁定技,摸牌阶段,你多摸两张牌;当你弃置牌后,你获得一个<风盾>(锁定技,受到火属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>)',
+				cyyydsgs_fengxing_info_4: '锁定技,摸牌阶段,你多摸三张牌;当你弃置牌后,你获得一个<风盾>(锁定技,受到火属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>)',
+				cyyydsgs_fengxing_info_5: '锁定技,摸牌阶段,你多摸三张牌;当你弃置牌后,你获得一个<风盾>(锁定技,受到火属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>);当你因溢出而移除<风盾>时,你摸两张牌',
 				buff_cyyydsgs_fengdun: '风盾',
-				buff_cyyydsgs_fengdun_info: '锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。',
-
+				buff_cyyydsgs_fengdun_info: '锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>',
 				cyyydsgs_xuanfeng: '旋风',
-				cyyydsgs_xuanfeng_info: '弃牌阶段结束时，若你本阶段弃置过牌，你可以对至多两名其他角色各造成一点风属性伤害。',
-				cyyydsgs_xuanfeng_info_1: '弃牌阶段结束时，若你本阶段弃置过牌，你可以对至多两名其他角色各造成一点风属性伤害。',
-				cyyydsgs_xuanfeng_info_2: '弃牌阶段结束时，若你本阶段弃置过牌，你可以对至多两名其他角色各造成一点风属性伤害，伤害之后，你可以弃置该目标一张牌。',
-				cyyydsgs_xuanfeng_info_3: '弃牌阶段结束时，若你本阶段弃置过牌，或当你因抵消伤害移除“风盾”后，你可以对至多两名其他角色各造成一点风属性伤害，伤害之后，你可以弃置该目标一张牌。',
-				cyyydsgs_xuanfeng_info_4: '弃牌阶段结束时，若你本阶段弃置过牌，或当你因抵消伤害移除“风盾”后，你可以对至多两名其他角色各造成一点风属性伤害，伤害之后，你可以弃置该目标至多两张牌。',
-				cyyydsgs_xuanfeng_info_5: '弃牌阶段结束时，若你本阶段弃置过牌，或当你因抵消伤害移除“风盾”后，你可以对至多两名其他角色各造成一点风属性伤害，伤害之后，你可以弃置该目标至多两张牌；当你造成不包含风属性的非传导伤害，你可以移除一枚“风盾”，令此事件附着风属性。',
-				//若因此弃置的牌花色达到4种，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）
-				// cyyydsgs_xuanfeng_info:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色各一张牌。',
-				// cyyydsgs_xuanfeng_info_1:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色各一张牌。',
-				// cyyydsgs_xuanfeng_info_2:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌。',
-				// cyyydsgs_xuanfeng_info_3:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌，每次执行时，你可以对该目标造成一点伤害，然后放弃后续执行。',
-				// cyyydsgs_xuanfeng_info_4:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌，每次执行时，你可以对该目标造成一点伤害，每次发动此技能限一次。',
-				// cyyydsgs_xuanfeng_info_5:'出牌阶段结束时，你可以弃置两张牌，然后依次弃置至多两名角色共计至多两张牌，每次执行时，你可以对该目标造成一点伤害。',
-
+				cyyydsgs_xuanfeng_info: '弃牌阶段结束时,若你本阶段弃置过牌,你可以对至多两名其他角色各造成一点风属性伤害',
+				cyyydsgs_xuanfeng_info_1: '弃牌阶段结束时,若你本阶段弃置过牌,你可以对至多两名其他角色各造成一点风属性伤害',
+				cyyydsgs_xuanfeng_info_2: '弃牌阶段结束时,若你本阶段弃置过牌,你可以对至多两名其他角色各造成一点风属性伤害,伤害之后,你可以弃置该目标一张牌',
+				cyyydsgs_xuanfeng_info_3: '弃牌阶段结束时,若你本阶段弃置过牌,或当你因抵消伤害移除<风盾>后,你可以对至多两名其他角色各造成一点风属性伤害,伤害之后,你可以弃置该目标一张牌',
+				cyyydsgs_xuanfeng_info_4: '弃牌阶段结束时,若你本阶段弃置过牌,或当你因抵消伤害移除<风盾>后,你可以对至多两名其他角色各造成一点风属性伤害,伤害之后,你可以弃置该目标至多两张牌',
+				cyyydsgs_xuanfeng_info_5: '弃牌阶段结束时,若你本阶段弃置过牌,或当你因抵消伤害移除<风盾>后,你可以对至多两名其他角色各造成一点风属性伤害,伤害之后,你可以弃置该目标至多两张牌;当你造成不包含风属性的非传导伤害,你可以移除一枚<风盾>,令此事件附着风属性',
+				//若因此弃置的牌花色达到4种,你获得一个<风盾>(锁定技,受到火属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>)
+				// cyyydsgs_xuanfeng_info:'出牌阶段结束时,你可以弃置两张牌,然后依次弃置至多两名角色各一张牌',
+				// cyyydsgs_xuanfeng_info_1:'出牌阶段结束时,你可以弃置两张牌,然后依次弃置至多两名角色各一张牌',
+				// cyyydsgs_xuanfeng_info_2:'出牌阶段结束时,你可以弃置两张牌,然后依次弃置至多两名角色共计至多两张牌',
+				// cyyydsgs_xuanfeng_info_3:'出牌阶段结束时,你可以弃置两张牌,然后依次弃置至多两名角色共计至多两张牌,每次执行时,你可以对该目标造成一点伤害,然后放弃后续执行',
+				// cyyydsgs_xuanfeng_info_4:'出牌阶段结束时,你可以弃置两张牌,然后依次弃置至多两名角色共计至多两张牌,每次执行时,你可以对该目标造成一点伤害,每次发动此技能限一次',
+				// cyyydsgs_xuanfeng_info_5:'出牌阶段结束时,你可以弃置两张牌,然后依次弃置至多两名角色共计至多两张牌,每次执行时,你可以对该目标造成一点伤害',
 				//乱石荒原副本
 				//磐石龟
 				cyyydsgs_panshigui: '磐石龟',
-
 				cyyydsgs_jianshi: '坚石',
-				cyyydsgs_jianshi_info: '锁定技，结束阶段，你获得一点护甲（至多为5）。',
-				cyyydsgs_jianshi_info_1: '锁定技，结束阶段，你获得一点护甲（至多为5）。',
-				cyyydsgs_jianshi_info_2: '锁定技，结束阶段，你获得一点护甲（至多为5）并摸一张牌。',
-				cyyydsgs_jianshi_info_3: '锁定技，结束阶段，你获得一点护甲（至多为5）并摸一张牌；当你失去护甲后，你摸一张牌。',
-				cyyydsgs_jianshi_info_4: '锁定技，结束阶段，你获得一点护甲（至多为5）并摸两张牌；当你失去护甲后，你摸一张牌。',
-				cyyydsgs_jianshi_info_5: '锁定技，结束阶段，你获得两点护甲（至多为5）并摸两张牌；当你失去护甲后，你摸一张牌。',
-
+				cyyydsgs_jianshi_info: '锁定技,结束阶段,你获得一点护甲(至多为5)',
+				cyyydsgs_jianshi_info_1: '锁定技,结束阶段,你获得一点护甲(至多为5)',
+				cyyydsgs_jianshi_info_2: '锁定技,结束阶段,你获得一点护甲(至多为5)并摸一张牌',
+				cyyydsgs_jianshi_info_3: '锁定技,结束阶段,你获得一点护甲(至多为5)并摸一张牌;当你失去护甲后,你摸一张牌',
+				cyyydsgs_jianshi_info_4: '锁定技,结束阶段,你获得一点护甲(至多为5)并摸两张牌;当你失去护甲后,你摸一张牌',
+				cyyydsgs_jianshi_info_5: '锁定技,结束阶段,你获得两点护甲(至多为5)并摸两张牌;当你失去护甲后,你摸一张牌',
 				//岩刺蛇和岩刺蛇王
 				cyyydsgs_yancishan: '岩刺蛇',
 				cyyydsgs_yancishanwang: '岩刺蛇王',
-
 				cyyydsgs_yanbeng: '岩崩',
-				cyyydsgs_yanbeng_info: '出牌阶段限一次，你可以翻面，并对一名其他角色造成一点岩属性伤害（若你存在“蛇绞”对象，此技能不能发动）。',
-				cyyydsgs_yanbeng_info_1: '出牌阶段限一次，你可以翻面，并对一名其他角色造成一点岩属性伤害（若你存在“蛇绞”对象，此技能不能发动）。',
-				cyyydsgs_yanbeng_info_2: '出牌阶段限一次，你可以翻面，并对一至两名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能不能发动）。',
-				cyyydsgs_yanbeng_info_3: '出牌阶段限一次，你可以翻面，并对一至两名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对其发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”），然后若其被“蛇绞”，你弃置其一张牌。',
-				cyyydsgs_yanbeng_info_4: '出牌阶段限一次，你可以翻面，并对一至三名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对其发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”），然后若其被“蛇绞”，你弃置其一张牌。',
-				cyyydsgs_yanbeng_info_5: '出牌阶段限一次，你可以翻面，并对一至三名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对其发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”），然后你弃置其一张牌。',
-
+				cyyydsgs_yanbeng_info: '出牌阶段限一次,你可以翻面,并对一名其他角色造成一点岩属性伤害(若你存在<蛇绞>对象,此技能不能发动)',
+				cyyydsgs_yanbeng_info_1: '出牌阶段限一次,你可以翻面,并对一名其他角色造成一点岩属性伤害(若你存在<蛇绞>对象,此技能不能发动)',
+				cyyydsgs_yanbeng_info_2: '出牌阶段限一次,你可以翻面,并对一至两名其他角色造成一点岩属性伤害(若包含多名角色,这些角色需体力值均小于你)(若你存在<蛇绞>对象,此技能不能发动)',
+				cyyydsgs_yanbeng_info_3: '出牌阶段限一次,你可以翻面,并对一至两名其他角色造成一点岩属性伤害(若包含多名角色,这些角色需体力值均小于你)(若你存在<蛇绞>对象,此技能只能对其发动;你对<蛇绞>目标发动〖岩崩〗时,不翻面改为解除<蛇绞>),然后若其被<蛇绞>,你弃置其一张牌',
+				cyyydsgs_yanbeng_info_4: '出牌阶段限一次,你可以翻面,并对一至三名其他角色造成一点岩属性伤害(若包含多名角色,这些角色需体力值均小于你)(若你存在<蛇绞>对象,此技能只能对其发动;你对<蛇绞>目标发动〖岩崩〗时,不翻面改为解除<蛇绞>),然后若其被<蛇绞>,你弃置其一张牌',
+				cyyydsgs_yanbeng_info_5: '出牌阶段限一次,你可以翻面,并对一至三名其他角色造成一点岩属性伤害(若包含多名角色,这些角色需体力值均小于你)(若你存在<蛇绞>对象,此技能只能对其发动;你对<蛇绞>目标发动〖岩崩〗时,不翻面改为解除<蛇绞>),然后你弃置其一张牌',
 				cyyydsgs_shejiao: '蛇绞',
-				cyyydsgs_shejiao_info: '出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）。',
-				cyyydsgs_shejiao_info_1: '出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）。',
-				cyyydsgs_shejiao_info_2: '出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色结束阶段，你可弃置其一张牌。',
-				cyyydsgs_shejiao_info_3: '出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
-				cyyydsgs_shejiao_info_4: '出牌阶段限一次，你可以指定一名其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色受到的伤害均附加岩属性；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
-				cyyydsgs_shejiao_info_5: '出牌阶段限一次，你可以指定一至三名其他角色（若包含多名角色，这些角色需体力值均小于你），令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，若“蛇绞”你的角色存在，你不能使用手牌。）；被你“蛇绞”的角色受到的伤害均附加岩属性；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
-
+				cyyydsgs_shejiao_info: '出牌阶段限一次,你可以指定一名体力值小于你的其他角色,令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,若<蛇绞>你的角色存在,你不能使用手牌.)',
+				cyyydsgs_shejiao_info_1: '出牌阶段限一次,你可以指定一名体力值小于你的其他角色,令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,若<蛇绞>你的角色存在,你不能使用手牌.)',
+				cyyydsgs_shejiao_info_2: '出牌阶段限一次,你可以指定一名体力值小于你的其他角色,令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,若<蛇绞>你的角色存在,你不能使用手牌.);被你<蛇绞>的角色结束阶段,你可弃置其一张牌',
+				cyyydsgs_shejiao_info_3: '出牌阶段限一次,你可以指定一名体力值小于你的其他角色,令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,若<蛇绞>你的角色存在,你不能使用手牌.);被你<蛇绞>的角色结束阶段,你可弃置其一张牌或令其失去一点体力',
+				cyyydsgs_shejiao_info_4: '出牌阶段限一次,你可以指定一名其他角色,令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,若<蛇绞>你的角色存在,你不能使用手牌.);被你<蛇绞>的角色受到的伤害均附加岩属性;被你<蛇绞>的角色结束阶段,你可弃置其一张牌或令其失去一点体力',
+				cyyydsgs_shejiao_info_5: '出牌阶段限一次,你可以指定一至三名其他角色(若包含多名角色,这些角色需体力值均小于你),令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,若<蛇绞>你的角色存在,你不能使用手牌.);被你<蛇绞>的角色受到的伤害均附加岩属性;被你<蛇绞>的角色结束阶段,你可弃置其一张牌或令其失去一点体力',
 				//风蚀鹫
 				//一技能也是风行的说
 			},
 			dynamicTranslate: {
 				// cyyydsgs_leishan:function(){},
 			},
-
 			perfectPair: {},
-			//夜白自创的一些小功能）
+			//夜白自创的一些小功能)
 			characterCitetext: {},
 			characterUndertext: {},
 			accessoryPacket: {}, //附属将包
 			characterLightextParent: {},
 			characterLightext: {},
 		};
-		for (var i in cyyydsgs.skill) {
+		for (let i in cyyydsgs.skill) {
 			if (cyyydsgs.skill[i].cyyydsgs) {
 				cyyydsgs.translate[i + '_info'] = `
 					<p><span class="clickable-text" onclick="
@@ -927,54 +974,57 @@ export async function cyyydsgs() {
 						if (!element.dataset.num) {
 							element.dataset.num = 1;
 						} else {
-							element.dataset.num = lib.translate['${i}' + '_info_' + (parseInt(element.dataset.num) + 1).toString()]?(parseInt(element.dataset.num) + 1).toString():'1';
-
+							element.dataset.num = lib.translate['${i}_info_' + (parseInt(element.dataset.num) + 1).toString()]?(parseInt(element.dataset.num) + 1).toString():'1';
 						}
-						var text = lib.translate['${i}' + '_info_' + element.dataset.num];
-						element.textContent = get.cnNumber(element.dataset.num) + '阶：' + text;
+						var text = lib.translate['${i}_info_' + element.dataset.num];
+						element.textContent = get.cnNumber(element.dataset.num) + '阶:' + text;
 					" oncontextmenu="
 						var element = this;
 						if (!element.dataset.num) {
 							element.dataset.num = 1;
 						} else {
-							element.dataset.num = lib.translate['${i}' + '_info_' + (parseInt(element.dataset.num) + 1).toString()]?(parseInt(element.dataset.num) + 1).toString():'1';
-
+							element.dataset.num = lib.translate['${i}_info_' + (parseInt(element.dataset.num) + 1).toString()]?(parseInt(element.dataset.num) + 1).toString():'1';
 						}
-						var text = lib.translate['${i}' + '_info_' + element.dataset.num];
-						element.textContent = get.cnNumber(element.dataset.num) + '阶：' + text;
+						var text = lib.translate['${i}_info_' + element.dataset.num];
+						element.textContent = get.cnNumber(element.dataset.num) + '阶:' + text;
 					">点此预览全部描述</span></p>
 				`;
 				cyyydsgs.dynamicTranslate[i] = (function (iVal) {
 					// 使用立即函数捕获i的当前值
 					return function (player) {
-						var num = get.YB_skill_lv(iVal, player);
-						return '<span class = yellowtext>' + get.cnNumber(num) + '阶：</span>' + cyyydsgs.translate[iVal + '_info_' + num];
+						const num = get.YB_skill_lv(iVal, player);
+						return '<span class = yellowtext>' + get.cnNumber(num) + '阶:</span>' + cyyydsgs.translate[iVal + '_info_' + num];
 					};
 				})(i);
 				if (!cyyydsgs.skill[i].init) {
 					cyyydsgs.skill[i].init = (function (iVal) {
 						return function (player, iVal) {
-							if (!player.YB_skill_lv) player.YB_skill_lv = {};
-							if (!get.YB_character_lv(player.name)) player.YB_skill_lv[iVal] = 1;
-							else return (player.YB_skill_lv[iVal] = get.YB_character_lv(player.name));
+							if (!player.YB_skill_lv) {
+								player.YB_skill_lv = {};
+							}
+							if (!get.YB_character_lv(player.name)) {
+								player.YB_skill_lv[iVal] = 1;
+							} else {
+								return (player.YB_skill_lv[iVal] = get.YB_character_lv(player.name));
+							}
 						};
 					})(i);
 				}
 				if (!cyyydsgs.skill[i].mark) {
-					let node = cyyydsgs.skill[i];
+					const node = cyyydsgs.skill[i];
 					node.mark = cyyydsgs.translate[i].charAt(0);
 					node.intro = {};
 					node.intro.markcount = (function (iVal) {
 						return function (storage, player, iVal) {
-							var num = get.YB_skill_lv(iVal, player);
+							const num = get.YB_skill_lv(iVal, player);
 							return num;
 						};
 					})(i);
 					node.intro.name = cyyydsgs.translate[i];
 					node.intro.content = (function (iVal) {
 						return function (storage, player, iVal) {
-							var num = get.YB_skill_lv(iVal, player);
-							return '<span class = yellowtext>' + get.cnNumber(num) + '阶：</span>' + cyyydsgs.translate[iVal + '_info_' + num];
+							const num = get.YB_skill_lv(iVal, player);
+							return '<span class = yellowtext>' + get.cnNumber(num) + '阶:</span>' + cyyydsgs.translate[iVal + '_info_' + num];
 						};
 					})(i);
 				}
@@ -985,33 +1035,33 @@ export async function cyyydsgs() {
 		//	 }
 		// }
 		typeimage(cyyydsgs, 'cyyydsgs');
-		for (var i in cyyydsgs.card) {
-			if (!cyyydsgs.card[i].image) cyyydsgs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		for (let i in cyyydsgs.card) {
+			if (!cyyydsgs.card[i].image) {
+				cyyydsgs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+			}
 		}
-
 		// lib.config.all.characters.add('cyyydsgs');
-		lib.translate['cyyydsgs_character_config'] = '<span class="yellowtext">武将觉醒</span>';
+		lib.translate.cyyydsgs_character_config = '<span class="yellowtext">武将觉醒</span>';
 		// game.import('character',cyyydsgs);
 	}
 	//导入 新版将魂觉醒
-
 	{
-		var buff_jhjx_huafen = get.poptip({
+		const buff_jhjx_huafen = get.poptip({
 			id: 'buff2_jhjx_huafen',
 			name: '花粉',
 			type: 'character',
-			info: `锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。`,
+			info: `锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力.`,
 		});
-		var buff_jhjx_fengdun = get.poptip({
+		const buff_jhjx_fengdun = get.poptip({
 			id: 'buff2_jhjx_fengdun',
 			name: '风盾',
 			type: 'character',
-			info: `锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。`,
+			info: `锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>.`,
 		});
 		/** @type { importCharacterConfig } */
-		var jhjx = {
+		const jhjx = {
 			name: 'jhjx',
-			connect: true, //该武将包是否可以联机（必填）
+			connect: true, //该武将包是否可以联机(必填)
 			characterSort: {
 				jhjx: {
 					jhjx_miwusenlin: ['jhjx_leimoying', 'jhjx_yanmohua', 'jhjx_fengmolang'],
@@ -1024,11 +1074,9 @@ export async function cyyydsgs() {
 				jhjx_leimoying: ['none', 'qun', 3, ['jhjx_leishan', 'jhjx_jilei'], ['rankAdd:epic', 'rankS:a', 'name:null|null']],
 				jhjx_yanmohua: ['none', 'qun', 4, ['jhjx_shengzhang', 'jhjx_huakai'], ['rankAdd:epic', 'rankS:a', 'name:null|null']],
 				jhjx_fengmolang: ['none', 'qun', 3, ['jhjx_fengxing', 'jhjx_xuanfeng'], ['rankAdd:epic', 'rankS:a', 'name:null|null']],
-
 				jhjx_panshigui: ['none', 'qun', 5, ['jhjx_jianshi', 'jhjx_zhendang'], ['rankAdd:epic', 'rankS:a', 'name:null|null']],
 				jhjx_yancishan: ['none', 'qun', '2/3/1', ['jhjx_yanbeng', 'jhjx_shejiao'], ['rankAdd:legend', 'rankS:s', 'name:null|null']],
 				jhjx_fengshijiu: ['none', 'qun', 3, ['jhjx_fengxing', 'jhjx_yanhuì'], ['rankAdd:epic', 'rankS:a', 'name:null|null']],
-
 				jhjx_leizaimo: ['none', 'qun', 3, ['jhjx_leizai'], ['rankAdd:rare', 'rankS:b', 'name:null|null']],
 				jhjx_hongzaimo: ['none', 'qun', 3, ['jhjx_hongzai'], ['rankAdd:rare', 'rankS:b', 'name:null|null']],
 				jhjx_rongzaimo: ['none', 'qun', 3, ['jhjx_rongzai'], ['rankAdd:rare', 'rankS:b', 'name:null|null']],
@@ -1039,7 +1087,6 @@ export async function cyyydsgs() {
 			characterIntro: {},
 			characterFilter: {},
 			characterTitle: {},
-
 			skill: {
 				//迷雾森林
 				//雷魔鹰
@@ -1083,16 +1130,20 @@ export async function cyyydsgs() {
 						natureDamage: true,
 						thunderDamage: true,
 						result: {
-							player: function (player, target) {
-								var num = ui.selected.cards.length;
-								var num2 = get.damageEffect(player, player, player, 'thunder');
-								if (num == ui.selected.targets.length) return num2;
+							player(player, target) {
+								const num = ui.selected.cards.length;
+								const num2 = get.damageEffect(player, player, player, 'thunder');
+								if (num == ui.selected.targets.length) {
+									return num2;
+								}
 								return num * num2;
 							},
-							target: function (player, target) {
-								var num = ui.selected.cards.length;
-								var num2 = get.damageEffect(player, player, target, 'thunder');
-								if (num == ui.selected.targets.length) return num2;
+							target(player, target) {
+								const num = ui.selected.cards.length;
+								const num2 = get.damageEffect(player, player, target, 'thunder');
+								if (num == ui.selected.targets.length) {
+									return num2;
+								}
 								return num * num2;
 							},
 						},
@@ -1106,7 +1157,9 @@ export async function cyyydsgs() {
 						// player:'damageBegin3',
 					},
 					filter(event, player, name) {
-						if (!event.hasNature('thunder')) return false;
+						if (!event.hasNature('thunder')) {
+							return false;
+						}
 						return true;
 					},
 					getIndex(event, player, name) {
@@ -1115,7 +1168,7 @@ export async function cyyydsgs() {
 					async cost(event, trigger, player) {
 						// let num = trigger.num;
 						event.result = { bool: false, cost_data: { draw_card: false, recover_hp: false } };
-						var result = null;
+						let result = null;
 						const controls = ['draw_card'];
 						if (player.isDamaged()) {
 							event.num2 = Math.min(event.num2, player.getDamagedHp());
@@ -1125,13 +1178,13 @@ export async function cyyydsgs() {
 						if (controls.length == 1) {
 							result = { control: controls[0] };
 						} else {
-							var next = player.chooseControl(controls);
+							const next = player.chooseControl(controls);
 							next.set('ai', function () {
 								const player = get.player();
-								// const { target, num1, num2 } = get.event().getParent();
-								var target = player;
-								var num1 = 1;
-								var num2 = 1;
+								// const { target, num1, num2 } = get.event().parent;
+								const target = player;
+								const num1 = 1;
+								const num2 = 1;
 								const att = get.attitude(player, target);
 								const choices = get.event().controls.slice();
 								const eff1 = get.recoverEffect(target, player, player);
@@ -1151,15 +1204,18 @@ export async function cyyydsgs() {
 							next.set('prompt2', get.YB_prompt2('jhjx_jilei', null, player));
 							result = await next.forResult();
 						}
-
 						if (result?.control != 'cancel2') {
 							event.result.bool = true;
 							event.result.cost_data[result.control] = true;
 						}
 					},
 					async content(event, trigger, player) {
-						if (event.cost_data.recover_hp) await player.recover();
-						if (event.cost_data.draw_card) await player.draw();
+						if (event.cost_data.recover_hp) {
+							await player.recover();
+						}
+						if (event.cost_data.draw_card) {
+							await player.draw();
+						}
 					},
 				},
 				//魇魔花
@@ -1212,12 +1268,12 @@ export async function cyyydsgs() {
 							filter(event, player) {
 								return true;
 							},
-							prompt2: '当你对其他角色造成伤害时，你可以令其获得一枚“花粉”。',
+							prompt2: '当你对其他角色造成伤害时,你可以令其获得一枚<花粉>',
 							content() {
 								player.line(trigger.player, 'yellow');
 								trigger.player.YB_addMark('buff_jhjx_huafen', 1, 'jhjx_huakai_damage');
 							},
-							check: function (event, player) {
+							check(event, player) {
 								return get.attitude(player, event.player) < 0;
 							},
 						},
@@ -1230,10 +1286,9 @@ export async function cyyydsgs() {
 								return false;
 							},
 							async cost(event, trigger, player) {
-								var target = trigger.player;
-								console.log(trigger);
+								const target = trigger.player;
 								event.result = await player
-									.choosePlayerCard('其他角色移除“花粉”时，你可以获得其一张牌', target, 'he')
+									.choosePlayerCard('其他角色移除<花粉>时,你可以获得其一张牌', target, 'he')
 									.set('ai', (button) => {
 										let val = get.buttonValue(button);
 										if (get.event().att > 0) {
@@ -1245,7 +1300,7 @@ export async function cyyydsgs() {
 									.forResult();
 							},
 							content() {
-								var target = trigger.player;
+								const target = trigger.player;
 								player.gain(event.cards, target, 'giveAuto', 'bySelf');
 							},
 						},
@@ -1255,15 +1310,17 @@ export async function cyyydsgs() {
 								player: 'recoverBegin',
 							},
 							filter(event, player) {
-								var players = game.countPlayer(function (c) {
+								const players = game.countPlayer(function (c) {
 									return !c.countMark('buff_jhjx_huafen') && c.isIn();
 								});
-								if (players.length == 0) return false;
+								if (players.length == 0) {
+									return false;
+								}
 								return true;
 							},
 							async cost(event, trigger, player) {
 								event.result = await player
-									.chooseTarget(1, '当你恢复体力时，你可以移除场上一枚“花粉”，令恢复值+1。')
+									.chooseTarget(1, '当你回复体力时,你可以移除场上一枚<花粉>,令回复值+1')
 									.set('filterTarget', function (card, player, target) {
 										return target.countMark('buff_jhjx_huafen') > 0;
 									})
@@ -1295,7 +1352,7 @@ export async function cyyydsgs() {
 					charlotte: true,
 					marktext: '粉',
 					intro: {
-						content: '锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。',
+						content: '锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力',
 					},
 					trigger: {
 						player: 'phaseZhunbeiBegin',
@@ -1305,7 +1362,7 @@ export async function cyyydsgs() {
 					},
 					async content(event, trigger, player) {
 						player.YB_removeMark('buff_jhjx_huafen', 1, 'buff_jhjx_huafen');
-						var result = await player
+						let result = await player
 							.chooseToDiscard('he', get.prompt('jhjx_huafen'))
 							.set('ai', function (card) {
 								return 9 - get.value(card);
@@ -1328,16 +1385,19 @@ export async function cyyydsgs() {
 					},
 					filter(event, player, name) {
 						// var num = get.YB_skill_lv('cyyydsgs_fengxing',player);
-						if (name == 'phaseDrawBegin') return true;
-						else {
-							if (event.type == 'discard' && event.getd(player)) return true;
+						if (name == 'phaseDrawBegin') {
+							return true;
+						} else {
+							if (event.type == 'discard' && event.getd(player)) {
+								return true;
+							}
 						}
 						// else {
-						// 	// var evt = event.getParent();
+						// 	// var evt = event.parent;
 						// 	// if(evt.skill =='buff_cyyydsgs_fengdun')return num==5;
 						// 	// console.log(event)
 						// 	// console.log(event.YB_type)
-						// 	// console.log(event.getParent())
+						// 	// console.log(event.parent)
 						// 	if(event.YB_type=='buff_cyyydsgs_water')return num==5;
 						// }
 					},
@@ -1360,14 +1420,17 @@ export async function cyyydsgs() {
 					charlotte: true,
 					marktext: '盾',
 					intro: {
-						content: '锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。',
+						content: '锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>',
 					},
 					trigger: {
 						player: ['damageBegin3', 'YB_addMark_buff_jhjx_fengdun'],
 					},
 					filter(event, player, name) {
-						if (name == 'damageBegin3') return event.hasNature();
-						else if (player.countMark('buff_jhjx_fengdun') > Math.max(player.maxHp, 1)) return true;
+						if (name == 'damageBegin3') {
+							return event.hasNature();
+						} else if (player.countMark('buff_jhjx_fengdun') > Math.max(player.maxHp, 1)) {
+							return true;
+						}
 					},
 					forced: true,
 					async content(event, trigger, player) {
@@ -1375,7 +1438,7 @@ export async function cyyydsgs() {
 							player.YB_removeMark('buff_jhjx_fengdun', 1, 'buff_jhjx_damage');
 							trigger.cancel();
 						} else {
-							var numx = player.countMark('buff_jhjx_fengdun') - Math.max(player.maxHp, 1);
+							let numx = player.countMark('buff_jhjx_fengdun') - Math.max(player.maxHp, 1);
 							player.YB_removeMark('buff_jhjx_fengdun', numx, 'buff_jhjx_water');
 						}
 					},
@@ -1389,13 +1452,13 @@ export async function cyyydsgs() {
 					},
 					filter(event, player, name) {
 						if (event.name == 'phaseDiscard') {
-							var cards = [];
+							const cards = [];
 							player.getHistory('lose', function (evt) {
 								if (evt && evt.type == 'discard' && evt.getParent('phaseDiscard') == event && evt.hs) {
 									cards.addArray(evt.hs);
 								}
 							});
-							return cards.length > 0;
+							return cards.length;
 						} else {
 							return event.YB_type == 'buff_jhjx_damage';
 						}
@@ -1407,18 +1470,18 @@ export async function cyyydsgs() {
 								return target != player;
 							})
 							.set('ai', function (target) {
-								var player = _status.event.player;
-								var att = get.attitude(player, target);
-								var numx = get.damageEffect(target, player, player, 'YB_wind');
+								const player = _status.event.player;
+								const att = get.attitude(player, target);
+								let numx = get.damageEffect(target, player, player, 'YB_wind');
 								return numx > 0;
 							})
 							.forResult();
 					},
 					async content(event, trigger, player) {
-						var targets = event.targets;
-						let num = get.YB_skill_lv('jhjx_xuanfeng', player);
+						const targets = event.targets;
+						const num = get.YB_skill_lv('jhjx_xuanfeng', player);
 						if (targets.length) {
-							for (var target of targets) {
+							for (const target of targets) {
 								if (target.isIn()) {
 									await target.damage('YB_wind');
 									await player.discardPlayerCard('he', target, 'he', 1);
@@ -1426,8 +1489,8 @@ export async function cyyydsgs() {
 							}
 						}
 					},
-					//当你造成不包含风属性的非传导伤害或使用不包含风属性的伤害卡牌时，
-					// 你可以移除一枚“风盾”，令此事件附着风属性。
+					//当你造成不包含风属性的非传导伤害或使用不包含风属性的伤害卡牌时,
+					// 你可以移除一枚<风盾>,令此事件附着风属性.
 					// group:['jhjx_xuanfeng_wind'],
 					subSkill: {
 						wind: {
@@ -1437,7 +1500,9 @@ export async function cyyydsgs() {
 								source: ['damageBegin1'],
 							},
 							filter(event, player, name) {
-								if (player.countMark('buff_jhjx_fengdun') <= 0) return false;
+								if (player.countMark('buff_jhjx_fengdun') <= 0) {
+									return false;
+								}
 								if (name == 'useCard1') {
 									return !game.hasNature(event.card, 'YB_wind');
 								} else {
@@ -1445,13 +1510,13 @@ export async function cyyydsgs() {
 								}
 							},
 							prompt2() {
-								return '移除一枚“风盾”，令此事件附着风属性';
+								return '移除一枚<风盾>,令此事件附着风属性';
 							},
 							content() {
 								'step 0';
 								player.YB_removeMark('buff_jhjx_fengdun', 1, 'jhjx_xuanfeng_nowind');
 								('step 1');
-								var natures = trigger.nature;
+								let natures = trigger.nature;
 								if (nature != null) {
 									// if(!Array.isArray(nature)){
 									// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
@@ -1461,8 +1526,7 @@ export async function cyyydsgs() {
 									}
 								}
 								game.setNature(trigger, nature == null ? 'YB_wind' : natures + '|YB_wind');
-
-								var next = game.createEvent('jhjx_xuanfeng_nowind');
+								const next = game.createEvent('jhjx_xuanfeng_nowind');
 								event.next.remove(next);
 								trigger.after.push(next);
 								next.setContent(function () {
@@ -1482,7 +1546,9 @@ export async function cyyydsgs() {
 						// player:'changeHujiaAfter',
 					},
 					filter(event, player, name) {
-						if (name == 'phaseJieshuBegin') return true;
+						if (name == 'phaseJieshuBegin') {
+							return true;
+						}
 						return event.num < 0;
 					},
 					async content(event, trigger, player) {
@@ -1504,7 +1570,6 @@ export async function cyyydsgs() {
 						// return target.countCards('hej');
 					},
 					// multitarget:false,
-
 					selectTarget: [1, 2],
 					// async content(event,trigger,player){
 					// 	await player.damage();
@@ -1517,7 +1582,7 @@ export async function cyyydsgs() {
 					// 		}
 					// 	}
 					// },
-					contentBefore: function () {
+					contentBefore() {
 						player.damage();
 					},
 					content() {
@@ -1526,10 +1591,10 @@ export async function cyyydsgs() {
 					ai: {
 						order: 8,
 						result: {
-							player: function (player, target) {
+							player(player, target) {
 								return get.damageEffect(player, player, player) + player.hp + player.hujia - 2;
 							},
-							target: function (player, target) {
+							target(player, target) {
 								return lib.card.guohe.ai.result.target(player, target);
 							},
 						},
@@ -1554,22 +1619,29 @@ export async function cyyydsgs() {
 					// 	return [1,2];
 					// },
 					selectTarget() {
-						var player = _status.event.player;
+						const player = _status.event.player;
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 							return -1;
-						} else return [1, 2];
+						} else {
+							return [1, 2];
+						}
 					},
 					filterTarget(card, player, target) {
-						var str = [];
+						let str = [];
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
-							if (!player.storage.jhjx_shejiao.includes(target)) return false;
-							else str.push('蛇绞');
+							if (!player.storage.jhjx_shejiao.includes(target)) {
+								return false;
+							} else {
+								str.push('蛇绞');
+							}
 							// else target.prompt('蛇绞');
 						} else if (ui.selected.targets.length) {
-							if (ui.selected.targets[0].hp >= player) return false;
-							else {
-								if (target.hp >= player.hp) return false;
-								else {
+							if (ui.selected.targets[0].hp >= player) {
+								return false;
+							} else {
+								if (target.hp >= player.hp) {
+									return false;
+								} else {
 									str.push('可压制');
 								}
 							}
@@ -1585,7 +1657,7 @@ export async function cyyydsgs() {
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 							// await player.YB_jiechushejiao();
 							await lib.skill.jhjx_shejiao.YB_jiechushejiao(player);
-							for (let target of event.targets) {
+							for (const target of event.targets) {
 								await player.discardPlayerCard('he', target, true, 1);
 							}
 							// await event.YB_jiechushejiao==true;
@@ -1602,7 +1674,7 @@ export async function cyyydsgs() {
 						natureDamage: true,
 						YB_rockDamage: true,
 						result: {
-							player: function (player, target) {
+							player(player, target) {
 								if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 									return get.damageEffect(player, player, player, 'YB_rock');
 								} else {
@@ -1611,8 +1683,8 @@ export async function cyyydsgs() {
 								// var num2 = get.damageEffect(player, player, player,'YB_rock');
 								// return num2;
 							},
-							target: function (player, target) {
-								var num2 = get.damageEffect(player, player, target, 'YB_rock');
+							target(player, target) {
+								const num2 = get.damageEffect(player, player, target, 'YB_rock');
 								return num2;
 							},
 						},
@@ -1631,7 +1703,9 @@ export async function cyyydsgs() {
 						lib.skill.jhjx_shejiao.YB_shejiao(player, target);
 					},
 					YB_shejiao(player, target) {
-						if (!player.storage.jhjx_shejiao) player.storage.jhjx_shejiao = [];
+						if (!player.storage.jhjx_shejiao) {
+							player.storage.jhjx_shejiao = [];
+						}
 						player.storage.jhjx_shejiao.push(target);
 						target.addAdditionalSkills('jhjx_shejiao', 'jhjx_shejiao_mark', true);
 						// target.addMark('jhjx_shejiao',1,true)
@@ -1641,7 +1715,7 @@ export async function cyyydsgs() {
 					YB_jiechushejiao(player) {
 						if (player.storage.jhjx_shejiao) {
 							if (player.storage.jhjx_shejiao.length) {
-								for (let target of player.storage.jhjx_shejiao) {
+								for (const target of player.storage.jhjx_shejiao) {
 									// target.unmarkSkill('jhjx_shejiao_mark');
 									target.removeAdditionalSkills('jhjx_shejiao', 'jhjx_shejiao_mark', true);
 								}
@@ -1649,13 +1723,13 @@ export async function cyyydsgs() {
 							delete player.storage.jhjx_shejiao;
 						}
 					},
-					onremove: function (player) {
+					onremove(player) {
 						lib.skill.jhjx_shejiao.YB_jiechushejiao(player);
 					},
 					ai: {
 						order: 8,
 						result: {
-							target: function (player, target) {
+							target(player, target) {
 								return -10;
 							},
 						},
@@ -1675,17 +1749,17 @@ export async function cyyydsgs() {
 							filter(event, player) {
 								return player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.includes(event.player) && event.player.isIn();
 							},
-							prompt2: function (event, player) {
-								var str = '被你蛇绞的' + get.translation(event.player) + '的结束阶段，是否弃置其一张牌或令其失去一点体力。';
+							prompt2(event, player) {
+								let str = '被你蛇绞的' + get.translation(event.player) + '的结束阶段,是否弃置其一张牌或令其失去一点体力';
 								return str;
 							},
 							async cost(event, trigger, player) {
-								var controls = ['弃置一张牌', '失去一点体力', 'cancel2'];
-								var target = trigger.player;
+								const controls = ['弃置一张牌', '失去一点体力', 'cancel2'];
+								const target = trigger.player;
 								if (!target.hasCard((card) => lib.filter.canBeDiscarded(card, player, target), 'he')) {
 									controls.remove('弃置一张牌');
 								}
-								var result = await player.chooseControl(controls).set('prompt', get.prompt2(event.skill)).forResult();
+								let result = await player.chooseControl(controls).set('prompt', get.prompt2(event.skill)).forResult();
 								if (result.control != 'cancel2') {
 									event.result = {
 										bool: true,
@@ -1694,7 +1768,7 @@ export async function cyyydsgs() {
 								}
 							},
 							content() {
-								var target = trigger.player;
+								const target = trigger.player;
 								if (event.cost_data == '弃置一张牌') {
 									player.discardPlayerCard('he', player, true, 1);
 								} else {
@@ -1707,8 +1781,8 @@ export async function cyyydsgs() {
 							marktext: '绞',
 							intro: {
 								name: '蛇绞',
-								content: function (storage, player) {
-									var source;
+								content(storage, player) {
+									let source;
 									game.countPlayer(function (current) {
 										if (current.storage.jhjx_shejiao && current.storage.jhjx_shejiao.includes(player)) {
 											source = current;
@@ -1721,7 +1795,7 @@ export async function cyyydsgs() {
 							},
 							mod: {
 								cardEnabled2(card, player) {
-									var source;
+									let source;
 									game.countPlayer(function (current) {
 										if (current.storage.jhjx_shejiao && current.storage.jhjx_shejiao.includes(player)) {
 											source = current;
@@ -1747,8 +1821,10 @@ export async function cyyydsgs() {
 						return get.color(card) == 'red';
 					},
 					selectCard() {
-						var player = _status.event.player;
-						if (player.countMark('buff_jhjx_fengdun') > 0) return [0, 1];
+						const player = _status.event.player;
+						if (player.countMark('buff_jhjx_fengdun') > 0) {
+							return [0, 1];
+						}
 						return 1;
 					},
 					position: 'hes',
@@ -1791,10 +1867,10 @@ export async function cyyydsgs() {
 					trigger: {
 						global: 'phaseZhunbeiBegin',
 					},
-					check: function (event, player) {
+					check(event, player) {
 						return get.attitude(player, event.player) <= 0;
 					},
-					content: function () {
+					content() {
 						trigger.player.executeDelayCardEffect('shandian');
 					},
 					ai: {
@@ -1809,10 +1885,10 @@ export async function cyyydsgs() {
 					trigger: {
 						global: 'phaseZhunbeiBegin',
 					},
-					check: function (event, player) {
+					check(event, player) {
 						return get.attitude(player, event.player) <= 0;
 					},
-					content: function () {
+					content() {
 						trigger.player.executeDelayCardEffect('hongshui');
 					},
 					ai: {
@@ -1827,10 +1903,10 @@ export async function cyyydsgs() {
 					trigger: {
 						global: 'phaseZhunbeiBegin',
 					},
-					check: function (event, player) {
+					check(event, player) {
 						return get.attitude(player, event.player) <= 0;
 					},
-					content: function () {
+					content() {
 						trigger.player.executeDelayCardEffect('huoshan');
 					},
 					ai: {
@@ -1845,10 +1921,10 @@ export async function cyyydsgs() {
 					trigger: {
 						global: 'phaseZhunbeiBegin',
 					},
-					check: function (event, player) {
+					check(event, player) {
 						return get.attitude(player, event.player) <= 0;
 					},
-					content: function () {
+					content() {
 						trigger.player.executeDelayCardEffect('jhjx_bingbao');
 					},
 					ai: {
@@ -1863,10 +1939,10 @@ export async function cyyydsgs() {
 					trigger: {
 						global: 'phaseZhunbeiBegin',
 					},
-					check: function (event, player) {
+					check(event, player) {
 						return get.attitude(player, event.player) <= 0;
 					},
-					content: function () {
+					content() {
 						trigger.player.executeDelayCardEffect('jhjx_dizhen');
 					},
 					ai: {
@@ -1882,7 +1958,9 @@ export async function cyyydsgs() {
 						global: 'damageBegin3',
 					},
 					filter(event, player) {
-						if (!event.source) return true;
+						if (!event.source) {
+							return true;
+						}
 					},
 					forced: true,
 					async content(event, trigger, player) {
@@ -1899,14 +1977,13 @@ export async function cyyydsgs() {
 						return event.name != 'phase' || game.phaseNumber == 0;
 					},
 					forced: true,
-					locked: false,
 					async content(event, trigger, player) {
-						let list = ['jhjx_leizaimo', 'jhjx_hongzaimo', 'jhjx_rongzaimo', 'jhjx_baozaimo', 'jhjx_dizaimo'];
-						var cards = [];
+						const list = ['jhjx_leizaimo', 'jhjx_hongzaimo', 'jhjx_rongzaimo', 'jhjx_baozaimo', 'jhjx_dizaimo'];
+						const cards = [];
 						// _status.characterlist.removeArray(list);
 						for (let i = 0; i < list.length; i++) {
-							var name = list[i];
-							var card = {
+							const name = list[i];
+							const card = {
 								fullimage: true,
 								image: 'character:' + name,
 								type: 'equip',
@@ -1922,17 +1999,19 @@ export async function cyyydsgs() {
 								modTarget: true,
 								allowMultiple: false,
 								// content: lib.element.content.equipCard,
-								content: function () {
+								content() {
 									'step 0';
 									if (cards.length && get.position(cards[0], true) == 'o') {
 										event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
 										player.chooseControl(event.list1).set('prompt', '请选择将【' + get.translation(event.skill) + '】当做哪种装备');
-									} else (event, finish());
+									} else {
+										(event, finish());
+									}
 									('step 1');
 									if (result.control) {
-										var num = result.index + 1;
-										var name = 'ybsl_107xiaohu' + num;
-										var tag = get.YB_tag(cards[0]);
+										const num = result.index + 1;
+										const name = 'ybsl_107xiaohu' + num;
+										const tag = get.YB_tag(cards[0]);
 										cards[0].YB_init([cards[0].suit, cards[0].number, name, cards[0].nature, tag]);
 										player.equip(cards[0]);
 									}
@@ -1941,22 +2020,22 @@ export async function cyyydsgs() {
 								ai: {},
 								skills: [],
 							};
-							var info = lib.character[name];
-							var maxHp = get.infoMaxHp(info[2]);
+							const info = lib.character[name];
+							const maxHp = get.infoMaxHp(info[2]);
 							if (maxHp != 1) {
 								card.distance = { attackFrom: 1 - maxHp };
 							}
-							var skills = info[3];
-							var str = '锁定技。';
+							const skills = info[3];
+							let str = '锁定技';
 							if (skills.length) {
 								card.skills.addArray(skills);
 								str += '你视为拥有技能';
-								for (var skill of skills) {
+								for (const skill of skills) {
 									str += '〖' + get.translation(skill) + '〗';
 									str += '、';
 								}
 								str = str.slice(0, str.length - 1);
-								str += '；';
+								str += ';';
 								card.ai.equipValue = function (card, player) {
 									let val = maxHp;
 									if (player.hasSkill('qiexie')) {
@@ -1969,14 +2048,14 @@ export async function cyyydsgs() {
 							}
 							lib.translate['YB_characterToCard_' + name] = lib.translate[name];
 							lib.translate['YB_characterToCard_' + name + '_info'] = str;
-							var append = '';
+							let append = '';
 							if (skills.length) {
-								for (var skill of skills) {
+								for (const skill of skills) {
 									// console.log(skill)
 									if (lib.skill[skill].nobracket) {
 										append += '<div class="skilln">' + get.translation(skill) + '</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + '</span></div><br><br>';
 									} else {
-										var translation = lib.translate[skill + '_ab'] || get.translation(skill).slice(0, 2);
+										const translation = lib.translate[skill + '_ab'] || get.translation(skill).slice(0, 2);
 										append += '<div class="skill">【' + translation + '】</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + '</span></div><br><br>';
 									}
 								}
@@ -1984,12 +2063,12 @@ export async function cyyydsgs() {
 							}
 							lib.translate['YB_characterToCard_' + name + '_append'] = append;
 							lib.card['YB_characterToCard_' + name] = card;
-							var cardx = game.YB_createCard('YB_characterToCard_' + name, null, null);
+							const cardx = game.YB_createCard('YB_characterToCard_' + name, null, null);
 							cards.push(cardx);
 						}
-						for (var z = 0; z < cards.length; z++) {
-							var type = 'equip' + (z + 1);
-							const cardv = get.autoViewAs(cards[z]);
+						for (let z = 0; z < cards.length; z++) {
+							const type = 'equip' + (z + 1);
+							const cardv = cards[z];
 							cardv.subtypes = [type];
 							await player.equip(cardv);
 						}
@@ -2024,7 +2103,7 @@ export async function cyyydsgs() {
 					selectTarget: [-1, -1],
 					toself: true,
 					judge(card) {
-						if (get.suit(card) === 'spade' && get.number(card) > 1 && get.number(card) < 10) {
+						if (card.suit === 'spade' && card.number > 1 && card.number < 10) {
 							return -5;
 						}
 						return 1;
@@ -2053,10 +2132,10 @@ export async function cyyydsgs() {
 						},
 						result: {
 							target(player, target) {
-								var num = game.countPlayer(function (current) {
+								const num = game.countPlayer(function (current) {
 									//var skills=current.getSkills();
-									for (var j = 0; j < current.skills.length; j++) {
-										var rejudge = get.tag(current.skills[j], 'rejudge', current);
+									for (let j = 0; j < current.skills.length; j++) {
+										const rejudge = get.tag(current.skills[j], 'rejudge', current);
 										if (rejudge !== undefined) {
 											if (get.attitude(target, current) > 0 && get.attitude(current, target) > 0) {
 												return rejudge;
@@ -2070,12 +2149,12 @@ export async function cyyydsgs() {
 									return num;
 								}
 								if (num === 0) {
-									var mode = get.mode();
+									const mode = get.mode();
 									if (mode === 'identity') {
 										if (target.identity === 'nei') {
 											return 1;
 										}
-										var situ = get.situation();
+										const situ = get.situation();
 										if (target.identity === 'fan') {
 											if (situ > 1) {
 												return 1;
@@ -2136,7 +2215,7 @@ export async function cyyydsgs() {
 					selectTarget: [-1, -1],
 					toself: true,
 					judge(card) {
-						if (get.suit(card) === 'diamond' && get.number(card) > 1 && get.number(card) < 10) {
+						if (card.suit === 'diamond' && card.number > 1 && card.number < 10) {
 							return -5;
 						}
 						return 1;
@@ -2165,10 +2244,10 @@ export async function cyyydsgs() {
 						},
 						result: {
 							target(player, target) {
-								var num = game.countPlayer(function (current) {
+								const num = game.countPlayer(function (current) {
 									//var skills=current.getSkills();
-									for (var j = 0; j < current.skills.length; j++) {
-										var rejudge = get.tag(current.skills[j], 'rejudge', current);
+									for (let j = 0; j < current.skills.length; j++) {
+										const rejudge = get.tag(current.skills[j], 'rejudge', current);
 										if (rejudge !== undefined) {
 											if (get.attitude(target, current) > 0 && get.attitude(current, target) > 0) {
 												return rejudge;
@@ -2182,12 +2261,12 @@ export async function cyyydsgs() {
 									return num;
 								}
 								if (num === 0) {
-									var mode = get.mode();
+									const mode = get.mode();
 									if (mode === 'identity') {
 										if (target.identity === 'nei') {
 											return 1;
 										}
-										var situ = get.situation();
+										const situ = get.situation();
 										if (target.identity === 'fan') {
 											if (situ > 1) {
 												return 1;
@@ -2239,95 +2318,89 @@ export async function cyyydsgs() {
 				//雷魔鹰
 				jhjx_leimoying: '雷魔鹰',
 				jhjx_leishan: '雷闪',
-				jhjx_leishan_info: '出牌阶段限一次，你可以弃置一至两张牌，对等量名其他角色造成一点雷电伤害，或对一名其他角色造成等量点雷电伤害。',
+				jhjx_leishan_info: '出牌阶段限一次,你可以弃置一至两张牌,对等量名其他角色造成一点雷电伤害,或对一名其他角色造成等量点雷电伤害',
 				jhjx_jilei: '汲雷',
-				jhjx_jilei_info: '每当你造成一点雷属性伤害后，你可以恢复一点体力或摸一张牌。',
+				jhjx_jilei_info: '每当你造成一点雷属性伤害后,你可以回复一点体力或摸一张牌',
 				//魇魔花
 				jhjx_yanmohua: '魇魔花',
 				jhjx_shengzhang: '生长',
-				jhjx_shengzhang_info: '锁定技，准备阶段，你恢复一点体力并摸两张牌。',
+				jhjx_shengzhang_info: '锁定技,准备阶段,你回复一点体力并摸两张牌',
 				jhjx_huakai: '花开',
-				jhjx_huakai_info: '出牌阶段限一次，你可以令一至两名其他角色获得一枚“' + buff_jhjx_huafen + '”；当你对其他角色造成伤害时，你可以令其获得一枚“' + buff_jhjx_huafen + '”；当你恢复体力时，你可以移除场上一枚“' + buff_jhjx_huafen + '”，令恢复值+1。',
+				jhjx_huakai_info: '出牌阶段限一次,你可以令一至两名其他角色获得一枚<' + buff_jhjx_huafen + '>;当你对其他角色造成伤害时,你可以令其获得一枚<' + buff_jhjx_huafen + '>;当你回复体力时,你可以移除场上一枚<' + buff_jhjx_huafen + '>,令回复值+1',
 				buff_jhjx_huafen: '花粉',
-				buff_jhjx_huafen_info: '锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。',
+				buff_jhjx_huafen_info: '锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力',
 				vcard_buff_jhjx_huafen: '花粉',
-				vcard_buff_jhjx_huafen_info: '锁定技，准备阶段，移除一枚“花粉”，然后弃置一张牌或失去一点体力。',
+				vcard_buff_jhjx_huafen_info: '锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力',
 				//风魔狼
 				jhjx_fengmolang: '风魔狼',
 				jhjx_fengxing: '风行',
-				jhjx_fengxing_info: '锁定技，摸牌阶段，你多摸两张牌；当你弃置牌后，你获得一个“' + buff_jhjx_fengdun + '”。',
+				jhjx_fengxing_info: '锁定技,摸牌阶段,你多摸两张牌;当你弃置牌后,你获得一个<' + buff_jhjx_fengdun + '>',
 				buff_jhjx_fengdun: '风盾',
-				buff_jhjx_fengdun_info: '锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。',
+				buff_jhjx_fengdun_info: '锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>',
 				jhjx_xuanfeng: '旋风',
-				jhjx_xuanfeng_info: '弃牌阶段结束时，若你本阶段弃置过牌，或当你因抵消伤害移除“' + buff_jhjx_fengdun + '”后，你可以对至多两名其他角色各造成一点风属性伤害，伤害之后，你可以弃置该目标一张牌。',
-				//若因此弃置的牌花色达到4种，你获得一个“风盾”（锁定技，受到火属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”）
+				jhjx_xuanfeng_info: '弃牌阶段结束时,若你本阶段弃置过牌,或当你因抵消伤害移除<' + buff_jhjx_fengdun + '>后,你可以对至多两名其他角色各造成一点风属性伤害,伤害之后,你可以弃置该目标一张牌',
+				//若因此弃置的牌花色达到4种,你获得一个<风盾>(锁定技,受到火属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>)
 				vcard_buff_jhjx_fengdun: '风盾',
-				vcard_buff_jhjx_fengdun_info: '锁定技，受到属性伤害时，移除一枚“风盾”并防止之；当你获得风盾后，若大于体力上限且大于1，则移除超出的“风盾”。',
+				vcard_buff_jhjx_fengdun_info: '锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>',
 				//乱石荒原副本
 				jhjx_luanshihuangyuan: '乱石荒原',
 				//磐石龟
 				jhjx_panshigui: '磐石龟',
-
 				jhjx_jianshi: '坚石',
-				jhjx_jianshi_info: '锁定技，结束阶段，你获得一点护甲（至多为5）并摸一张牌；当你失去护甲后，你摸一张牌。',
+				jhjx_jianshi_info: '锁定技,结束阶段,你获得一点护甲(至多为5)并摸一张牌;当你失去护甲后,你摸一张牌',
 				jhjx_zhendang: '震荡',
-				jhjx_zhendang_info: '出牌阶段限一次，你可以对自己造成一点伤害，并弃置至多两名角色区域内各一张牌。',
+				jhjx_zhendang_info: '出牌阶段限一次,你可以对自己造成一点伤害,并弃置至多两名角色区域内各一张牌',
 				//岩刺蛇
 				jhjx_yancishan: '岩刺蛇',
-
 				jhjx_yanbeng: '岩崩',
-				jhjx_yanbeng_info: '出牌阶段限一次，你可以翻面，并对一至两名其他角色造成一点岩属性伤害（若包含多名角色，这些角色需体力值均小于你）（若你存在“蛇绞”对象，此技能只能对全体蛇绞对象发动；你对“蛇绞”目标发动〖岩崩〗时，不翻面改为解除“蛇绞”，然后你弃置其一张牌）。',
-
+				jhjx_yanbeng_info: '出牌阶段限一次,你可以翻面,并对一至两名其他角色造成一点岩属性伤害(若包含多名角色,这些角色需体力值均小于你)(若你存在<蛇绞>对象,此技能只能对全体蛇绞对象发动;你对<蛇绞>目标发动〖岩崩〗时,不翻面改为解除<蛇绞>,然后你弃置其一张牌)',
 				jhjx_shejiao: '蛇绞',
-				jhjx_shejiao_info: '出牌阶段限一次，你可以指定一名体力值小于你的其他角色，令其被你“蛇绞”直到你下个出牌阶段开始（锁定技，“蛇绞”你的角色的回合内，你不能使用或打出手牌。）；被你“蛇绞”的角色结束阶段，你可弃置其一张牌或令其失去一点体力。',
-
+				jhjx_shejiao_info: '出牌阶段限一次,你可以指定一名体力值小于你的其他角色,令其被你<蛇绞>直到你下个出牌阶段开始(锁定技,<蛇绞>你的角色的回合内,你不能使用或打出手牌.);被你<蛇绞>的角色结束阶段,你可弃置其一张牌或令其失去一点体力',
 				//风蚀鹫
 				jhjx_fengshijiu: '风蚀鹫',
 				//一技能也是风行的说
 				jhjx_yanhuì: '岩喙',
-				jhjx_yanhuì_info: '你可以将一张红色牌或一枚“' + buff_jhjx_fengdun + '”当岩属性【杀】使用或打出。',
+				jhjx_yanhuì_info: '你可以将一张红色牌或一枚<' + buff_jhjx_fengdun + '>当岩属性【杀】使用或打出',
 				//天灾劫境
 				jhjx_tianzaijiejing: '天灾劫境',
 				//雷灾魔
 				jhjx_leizaimo: '雷灾魔',
 				jhjx_leizai: '雷灾',
-				jhjx_leizai_info: '场上角色的准备阶段，你可以令其进行【闪电】判定。',
+				jhjx_leizai_info: '场上角色的准备阶段,你可以令其进行【闪电】判定',
 				//洪灾魔
 				jhjx_hongzaimo: '洪灾魔',
 				jhjx_hongzai: '洪灾',
-				jhjx_hongzai_info: '场上角色的准备阶段，你可以令其进行【洪水】判定。',
+				jhjx_hongzai_info: '场上角色的准备阶段,你可以令其进行【洪水】判定',
 				//熔灾魔
 				jhjx_rongzaimo: '熔灾魔',
 				jhjx_rongzai: '熔灾',
-				jhjx_rongzai_info: '场上角色的准备阶段，你可以令其进行【火山】判定。',
+				jhjx_rongzai_info: '场上角色的准备阶段,你可以令其进行【火山】判定',
 				//雹灾魔
 				jhjx_baozaimo: '雹灾魔',
 				jhjx_baozai: '雹灾',
-				jhjx_baozai_info: '场上角色的准备阶段，你可以令其进行【冰雹】判定。',
+				jhjx_baozai_info: '场上角色的准备阶段,你可以令其进行【冰雹】判定',
 				jhjx_bingbao: '冰雹',
-				jhjx_bingbao_info: '出牌阶段，对自己使用。若判定结果为黑桃2~9，则目标角色受到3点冰冻伤害。若判定不为黑桃2~9，将之移动到下家的判定区里。',
+				jhjx_bingbao_info: '出牌阶段,对自己使用.若判定结果为♠️️️2~9,则目标角色受到3点冰冻伤害.若判定不为♠️️️2~9,将之移动到下家的判定区里',
 				//地灾魔
 				jhjx_dizaimo: '地灾魔',
 				jhjx_dizai: '地灾',
-				jhjx_dizai_info: '场上角色的准备阶段，你可以令其进行【地震】判定。',
+				jhjx_dizai_info: '场上角色的准备阶段,你可以令其进行【地震】判定',
 				jhjx_dizhen: '地震',
-				jhjx_dizhen_info: '出牌阶段，对自己使用。若判定结果为方块2~9，则目标角色受到3点岩属性伤害。若判定不为方片2~9，将之移动到下家的判定区里。',
-
+				jhjx_dizhen_info: '出牌阶段,对自己使用.若判定结果为♦️️️2~9,则目标角色受到3点岩属性伤害.若判定不为♦️️️2~9,将之移动到下家的判定区里',
 				//灾厄使者
 				jhjx_zaieshizhe: '灾厄使者',
 				jhjx_zaiyuan: '灾源',
-				jhjx_zaiyuan_info: '锁定技，场上有角色受到无来源伤害时，将来源改为你。',
+				jhjx_zaiyuan_info: '锁定技,场上有角色受到无来源伤害时,将来源改为你',
 				jhjx_huanmo: '唤魔',
-				jhjx_huanmo_info: '游戏开始时，你将每种灾魔各一只置入你的装备区（当这些牌进入弃牌堆时，将其在当前回合角色的下家位置召唤，由你操控。）',
+				jhjx_huanmo_info: '游戏开始时,你将每种灾魔各一只置入你的装备区(当这些牌进入弃牌堆时,将其在当前回合角色的下家位置召唤,由你操控.)',
 				//人祸劫境
 				jhjx_renhuojiejing: '人祸劫境',
 			},
 			dynamicTranslate: {
 				// cyyydsgs_leishan:function(){},
 			},
-
 			perfectPair: {},
-			//夜白自创的一些小功能）
+			//夜白自创的一些小功能)
 			characterCitetext: {},
 			characterUndertext: {},
 			accessoryPacket: {}, //附属将包
@@ -2335,10 +2408,12 @@ export async function cyyydsgs() {
 			characterLightext: {},
 		};
 		typeimage(jhjx, 'jhjx');
-		for (var i in jhjx.card) {
-			if (!jhjx.card[i].image) jhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		for (let i in jhjx.card) {
+			if (!jhjx.card[i].image) {
+				jhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+			}
 		}
-		lib.translate['jhjx_character_config'] = '<span class="yellowtext">将魂觉醒</span>';
+		lib.translate.jhjx_character_config = '<span class="yellowtext">将魂觉醒</span>';
 		game.import('character', jhjx);
 	}
 }

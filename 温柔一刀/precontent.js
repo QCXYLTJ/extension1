@@ -85,9 +85,12 @@ cards.splice//i.discard()
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 npm install
 npm install -g jscodeshift
+npm install prettier
+npm install eslint
 npm install @babel/parser @babel/traverse @babel/generator @babel/types
 jscodeshift -t var-to-const-let.js . --extensions js --verbose=2
 npx eslint . --ext .js,.jsx,.ts,.tsx --fix
+
 
 
 

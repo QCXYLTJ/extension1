@@ -1,14 +1,14 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_starmap };
 /**
  * 此处适配子虚流云的星图功能
- * 还没有全部加上，因为子虚也在鸽
+ * 还没有全部加上,因为子虚也在鸽
  */
 const YBSL_starmap = function () {
 	{
 		//流云乱入
 		lib.arenaReady.push(function () {
-			if (lib.zxlyrelationship)
+			if (lib.zxlyrelationship) {
 				lib.zxlyrelationship.YB_memory = {
 					ybsl_001sunlisong: {
 						friendly: {
@@ -35,6 +35,7 @@ const YBSL_starmap = function () {
 						neutral: {},
 					},
 				};
+			}
 			// relationship
 			// YB_memory:{
 			// 	ybsl_001sunlisong:{

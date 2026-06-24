@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_ybslf };
 /**
  * 夜白的自建函数
@@ -6,14 +6,13 @@ export { YBSL_ybslf };
 const YBSL_ybslf = function () {
 	{
 		//----------自定义函数
-
 		/**
-		 * 创建一个分配卡牌的事件。
-		 * - 遍历输入的元素，根据类型自动识别并赋值给 `cards`、`str` 和 `num`。
-		 * - 将 `cards` 中的 `num` 张牌分配给场上角色，分配时的提示信息为 `str`。
+		 * 创建一个分配卡牌的事件.
+		 * - 遍历输入的元素,根据类型自动识别并赋值给 `cards`、`str` 和 `num`.
+		 * - 将 `cards` 中的 `num` 张牌分配给场上角色,分配时的提示信息为 `str`.
 		 *
-		 * @param {...*} args - 输入的元素（可以是卡牌组、字符串、数字，顺序不固定）。
-		 * @returns {Object} - 返回创建的事件对象。
+		 * @param {...*} args - 输入的元素(可以是卡牌组、字符串、数字,顺序不固定).
+		 * @returns {Object} - 返回创建的事件对象.
 		 *
 		 * @example
 		 * const cards = [{ id: 1, name: '杀' }, { id: 2, name: '闪' }];
@@ -28,29 +27,29 @@ const YBSL_ybslf = function () {
 			let fun = function (card, player, target) {
 				return true;
 			};
-			// 遍历输入的元素，根据类型赋值
+			// 遍历输入的元素,根据类型赋值
 			args.forEach((arg) => {
 				if (typeof arg === 'object') {
-					cards = arg; // 如果是数组，赋值给 cards
+					cards = arg; // 如果是数组,赋值给 cards
 				} else if (typeof arg === 'string') {
-					if (arg.startsWith('tag:')) {
+					if (arg && arg.startsWith('tag:')) {
 						tag = arg.slice(4);
 					} else {
 						str = arg;
 					}
-					// str = arg; // 如果是字符串，赋值给 str
+					// str = arg; // 如果是字符串,赋值给 str
 				} else if (typeof arg === 'number') {
-					num = arg; // 如果是数字，赋值给 num
+					num = arg; // 如果是数字,赋值给 num
 				} else if (typeof arg === 'function') {
 					fun = arg;
 				}
 			});
-			// 如果 num 未提供，则默认为 cards.length
+			// 如果 num 未提供,则默认为 cards.length
 			if (!num) {
 				num = cards.length;
 			}
 			// 创建事件
-			var next = game.createEvent('YB_yiji', false);
+			const next = game.createEvent('YB_yiji', false);
 			next.player = this;
 			next.cards = cards;
 			next.number = num;
@@ -71,31 +70,40 @@ const YBSL_ybslf = function () {
 				function (card, player, target) {
 					return true;
 				};
-			if (_status.connectMode)
+			if (_status.connectMode) {
 				game.broadcastAll(function () {
 					_status.noclearcountdown = true;
 				});
-			let given_map = {};
-			if (!cards.length) return;
+			}
+			const given_map = {};
+			if (!cards.length) {
+				return;
+			}
 			// event.goto -> do while
 			do {
 				const { bool, links } =
 					cards.length == 1
 						? { links: cards.slice(0), bool: true }
 						: await player
-								.chooseCardButton(str + '请选择要分配的牌。还可以分配' + (cards.length - num2) + '张牌', true, cards, [1, cards.length - num2])
+								.chooseCardButton(str + '请选择要分配的牌.还可以分配' + (cards.length - num2) + '张牌', true, cards, [1, cards.length - num2])
 								.set('ai', () => {
-									if (ui.selected.buttons.length == 0) return 1;
+									if (ui.selected.buttons.length == 0) {
+										return 1;
+									}
 									return 0;
 								})
 								.forResult();
-				if (!bool) return;
+				if (!bool) {
+					return;
+				}
 				cards.removeArray(links);
-				let togive = links.slice(0);
+				const togive = links.slice(0);
 				const { targets } = await player
 					.chooseTarget('选择一名角色获得' + get.translation(links), true)
 					.set('filterTarget', (card, player, target) => {
-						if (fun) return fun(card, player, target);
+						if (fun) {
+							return fun(card, player, target);
+						}
 						return true;
 					})
 					.set('ai', (target) => {
@@ -113,7 +121,9 @@ const YBSL_ybslf = function () {
 				if (targets.length) {
 					const id = targets[0].playerid,
 						map = given_map;
-					if (!map[id]) map[id] = [];
+					if (!map[id]) {
+						map[id] = [];
+					}
 					map[id].addArray(togive);
 				}
 			} while (cards.length > num2);
@@ -127,7 +137,9 @@ const YBSL_ybslf = function () {
 			for (const i in given_map) {
 				const source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
 				player.line(source, 'green');
-				if (player !== source && (get.mode() !== 'identity' || player.identity !== 'nei')) player.addExpose(0.2);
+				if (player !== source && (get.mode() !== 'identity' || player.identity !== 'nei')) {
+					player.addExpose(0.2);
+				}
 				list.push([source, given_map[i]]);
 			}
 			game.loseAsync({
@@ -139,15 +151,15 @@ const YBSL_ybslf = function () {
 			event.result = list;
 		};
 		/**
-		 * 创建一个分配卡牌的事件。
-		 * - 遍历输入的元素，根据类型自动识别并赋值给 `cards`、`boolyb`、`str` 和 `num`。
-		 * - 将 `cards` 中的 `num` 张牌分配给场上角色，分配时的提示信息为 `str`。
-		 * - `boolyb` 是一个布尔值，用于控制某些逻辑。
-		 * - `boolyb` 是一个布尔值，若为true，则仅从输入卡牌中分配，否则从全部手牌中分配
-		 * - fun 是一个函数，用于筛选被分配的目标
+		 * 创建一个分配卡牌的事件.
+		 * - 遍历输入的元素,根据类型自动识别并赋值给 `cards`、`boolyb`、`str` 和 `num`.
+		 * - 将 `cards` 中的 `num` 张牌分配给场上角色,分配时的提示信息为 `str`.
+		 * - `boolyb` 是一个布尔值,用于控制某些逻辑.
+		 * - `boolyb` 是一个布尔值,若为true,则仅从输入卡牌中分配,否则从全部手牌中分配
+		 * - fun 是一个函数,用于筛选被分配的目标
 		 *
-		 * @param {...*} args - 输入的元素（可以是卡牌组、布尔值、字符串、数字，顺序不固定）。
-		 * @returns {Object} - 返回创建的事件对象。
+		 * @param {...*} args - 输入的元素(可以是卡牌组、布尔值、字符串、数字,顺序不固定).
+		 * @returns {Object} - 返回创建的事件对象.
 		 *
 		 * @example
 		 * const cards = [{ id: 1, name: '杀' }, { id: 2, name: '闪' }];
@@ -162,27 +174,27 @@ const YBSL_ybslf = function () {
 			let filterTarget = function () {
 				return true;
 			};
-			// 遍历输入的元素，根据类型赋值
+			// 遍历输入的元素,根据类型赋值
 			args.forEach((arg) => {
 				if (typeof arg === 'object') {
-					cards = arg; // 如果是数组，赋值给 cards
+					cards = arg; // 如果是数组,赋值给 cards
 				} else if (typeof arg === 'string') {
-					str = arg; // 如果是字符串，赋值给 str
+					str = arg; // 如果是字符串,赋值给 str
 				} else if (typeof arg === 'number') {
-					num = arg; // 如果是数字，赋值给 num
+					num = arg; // 如果是数字,赋值给 num
 				} else if (Array.isArray(arg)) {
-					num = arg; // 如果是数字，赋值给 num
+					num = arg; // 如果是数字,赋值给 num
 				} else if (typeof arg === 'boolean') {
-					boolyb = arg; // 如果是数字，赋值给 num
+					boolyb = arg; // 如果是数字,赋值给 num
 				} else if (typeof arg === 'function') {
-					filterTarget = arg; // 如果是数字，赋值给 num
+					filterTarget = arg; // 如果是数字,赋值给 num
 				}
 			});
-			// 如果 num 未提供，则默认为 cards.length
+			// 如果 num 未提供,则默认为 cards.length
 			if (!num) {
 				num = [1, cards.length];
 			}
-			var next = game.createEvent('YB_liangying', false);
+			const next = game.createEvent('YB_liangying', false);
 			next.player = this;
 			next.cards = cards;
 			next.number = num;
@@ -197,11 +209,11 @@ const YBSL_ybslf = function () {
 			// const draws = Array.from(cards)
 			// player.logSkill("reliangying");
 			if (Array.isArray(event.number)) {
-				var mine = event.number[0];
-				var maxe = event.number[1];
+				const mine = event.number[0];
+				const maxe = event.number[1];
 			} else {
-				var mine = event.number;
-				var maxe = event.number;
+				const mine = event.number;
+				const maxe = event.number;
 			}
 			const max = Math.min(
 				maxe,
@@ -212,26 +224,32 @@ const YBSL_ybslf = function () {
 			// await player.draw(num);
 			let list = [];
 			// let given_map = {};
-			let listx = [];
-			if (_status.connectMode) game.broadcastAll(() => (_status.noclearcountdown = true));
-			while (max - list.length > 0) {
+			const listx = [];
+			if (_status.connectMode) {
+				game.broadcastAll(() => (_status.noclearcountdown = true));
+			}
+			while (max - list.length) {
 				const { bool, cards, targets } = await player
 					.chooseCardTarget({
-						prompt: event.str + '：将' + get.cnNumber(min) + '至' + get.cnNumber(max) + '张牌分配给任意角色',
+						prompt: event.str + ':将' + get.cnNumber(min) + '至' + get.cnNumber(max) + '张牌分配给任意角色',
 						position: 'he',
 						animate: false,
 						filterCard(card, player) {
-							// if(event.boolyb==true)return event.cards.includes(card)&&!get.event().list.some(listx => listx == card);
+							// if(event.boolyb==true)return event.cards && event.cards.includes(card)&&!get.event().list.some(listx => listx == card);
 							// return !get.event().list.some(listx => listx == card);
-							if (event.boolyb == true) return event.cards.includes(card) && !get.event().list.some((list) => list[1] == card);
+							if (event.boolyb == true) {
+								return event.cards && event.cards.includes(card) && !get.event().list.some((list) => list[1] == card);
+							}
 							return !get.event().list.some((list) => list[1] == card);
 						},
 						// selectCard(){return max - listx.length},
-						filterTarget: function (card, player, target) {
+						filterTarget(card, player, target) {
 							return event.filterTarget(card, player, target);
 						},
 						ai1(card) {
-							if (card.name == 'shan') return 1;
+							if (card.name == 'shan') {
+								return 1;
+							}
 							return Math.random();
 						},
 						ai2(target) {
@@ -251,7 +269,9 @@ const YBSL_ybslf = function () {
 					list.push([targets[0], cards[0]]);
 					// list.push([targets[0], cards]);
 					player.addGaintag(cards, 'olsujian_given');
-				} else break;
+				} else {
+					break;
+				}
 			}
 			if (_status.connectMode) {
 				game.broadcastAll(() => {
@@ -288,7 +308,7 @@ const YBSL_ybslf = function () {
 		 */
 		lib.element.player.YB_wugu = function (cards, str, targets) {
 			//暂时作废
-			var next = game.createEvent('YB_wugu', false);
+			const next = game.createEvent('YB_wugu', false);
 			next.player = this;
 			next.cards = cards;
 			next.setContent('YB_wugu');
@@ -297,22 +317,21 @@ const YBSL_ybslf = function () {
 			return next;
 		};
 		// lib.element.content.YB_wugu = async function(event, trigger, player){
-
 		// }
 		lib.element.content.YB_wugu = async function (event, trigger, player) {
 			//暂时作废
-			var cards = event.cards;
-			var str = event.str;
-			var targets = event.targets;
+			let cards = event.cards;
+			let str = event.str;
+			const targets = event.targets;
 			ui.clear();
-			var dialog = ui.create.dialog(str, cards, true);
+			const dialog = ui.create.dialog(str, cards, true);
 			_status.dieClose.push(dialog);
 			dialog.videoId = lib.status.videoId++;
 			game.addVideo('cardDialog', null, [str, get.cardsInfo(cards), dialog.videoId]);
-			event.getParent().preResult = dialog.videoId;
+			event.parent.preResult = dialog.videoId;
 			game.broadcast(
 				function (cards, id) {
-					var dialog = ui.create.dialog(str, cards, true);
+					const dialog = ui.create.dialog(str, cards, true);
 					_status.dieClose.push(dialog);
 					dialog.videoId = id;
 				},
@@ -337,12 +356,11 @@ const YBSL_ybslf = function () {
 		// 	return false;
 		// }
 		//----------换行点
-		//至子虚：从这往下到截止的地方，别忘CV过去，这是关联函数。
+		//至子虚:从这往下到截止的地方,别忘CV过去,这是关联函数.
 		//----------获取同族角色
-
 		/**
 		 * 判断`player`的同族角色
-		 * - 若`bool`为true，则包括自己，否则不包括自己
+		 * - 若`bool`为true,则包括自己,否则不包括自己
 		 * - 返回同族角色数组
 		 *
 		 * @param {Player} player - 角色
@@ -352,19 +370,22 @@ const YBSL_ybslf = function () {
 		 * @example
 		 */
 		get.YB_clan = function (player, bool) {
-			var list = [];
+			let list = [];
 			game.hasPlayer2((current) => {
-				if (current == player && bool) list.push(current);
-				else if (player.getClan().some((i) => current.getClan().includes(i)) && current != player) list.push(current);
+				if (current == player && bool) {
+					list.push(current);
+				} else if (player.getClan().some((i) => current.getClan().includes(i)) && current != player) {
+					list.push(current);
+				}
 				//player.getClan().some(i => target.getClan().includes(i))
 			});
 			return list;
 		};
 		//获取目标的出限一技能
 		get.YB_pu1 = function (player) {
-			var skills = player.getSkills(null, false, false);
-			var skills2 = game.expandSkills(skills);
-			var skills3 = skills2.filter(function (i) {
+			let skills = player.getSkills(null, false, false);
+			const skills2 = game.expandSkills(skills);
+			const skills3 = skills2.filter(function (i) {
 				if (lib.skill[i].enable && lib.skill[i].enable == 'phaseUse' && lib.skill[i].usable) {
 					if (typeof lib.skill[i].usable == 'number') {
 						return lib.skill[i].usable == 1;
@@ -373,10 +394,13 @@ const YBSL_ybslf = function () {
 					}
 				}
 			});
-			if (skills3) return skills3;
-			else return [];
+			if (skills3) {
+				return skills3;
+			} else {
+				return [];
+			}
 		};
-		//至子虚：复制到这里截止
+		//至子虚:复制到这里截止
 		//全技能库的出限一的夜白式筛选
 		// get.YB_allpu1 = function(player){
 		// 	var skills=[];
@@ -387,20 +411,24 @@ const YBSL_ybslf = function () {
 		// }
 		//---------此处函数抄自子虚扩展↓
 		lib.element.player.getClan = function (unseen) {
-			var list = [];
+			let list = [];
 			if (unseen || !this.isUnseen(0)) {
-				let info = lib.character[this.name1];
+				const info = lib.character[this.name1];
 				if (info && info[4]) {
 					for (let i of info[4]) {
-						if (typeof i == 'string' && i.startsWith('clan:')) list.add(i.slice(5));
+						if (typeof i == 'string' && i.startsWith('clan:')) {
+							list.add(i.slice(5));
+						}
 					}
 				}
 			}
 			if (this.name2 && (unseen || !this.isUnseen(1))) {
-				let info = lib.character[this.name2];
+				const info = lib.character[this.name2];
 				if (info && info[4]) {
 					for (let i of info[4]) {
-						if (typeof i == 'string' && i.startsWith('clan:')) list.add(i.slice(5));
+						if (typeof i == 'string' && i.startsWith('clan:')) {
+							list.add(i.slice(5));
+						}
 					}
 				}
 			}
@@ -408,7 +436,6 @@ const YBSL_ybslf = function () {
 		};
 		//---------此处函数抄自子虚扩展↑
 		// get.YB_damageCancel(){
-
 		// }
 		//点燃卡牌与吸收卡牌火焰
 		{
@@ -420,7 +447,7 @@ const YBSL_ybslf = function () {
 			 * @returns
 			 */
 			get.YB_noflames = function (list) {
-				var list2 = Array.from(list).filter((c) => !c.storage.YB_flames);
+				const list2 = Array.from(list).filter((c) => !c.storage.YB_flames);
 				return list2;
 			};
 			/**
@@ -431,7 +458,7 @@ const YBSL_ybslf = function () {
 			 * @returns
 			 */
 			get.YB_flames = function (list) {
-				var list2 = Array.from(list).filter((c) => c.storage.YB_flames);
+				const list2 = Array.from(list).filter((c) => c.storage.YB_flames);
 				return list2;
 			};
 			/**
@@ -440,7 +467,7 @@ const YBSL_ybslf = function () {
 			 * @param {*} list
 			 */
 			game.YB_fire = function (list) {
-				var list2 = Array.from(list);
+				const list2 = Array.from(list);
 				list2.forEach((c) => {
 					if (!c.storage.YB_flames) {
 						c.storage.YB_flames = true;
@@ -454,7 +481,7 @@ const YBSL_ybslf = function () {
 			 * @param {*} list
 			 */
 			game.YB_nofire = function (list) {
-				var list2 = Array.from(list);
+				const list2 = Array.from(list);
 				list2.forEach((c) => {
 					if (c.storage.YB_flames) {
 						delete c.storage.YB_flames;
@@ -469,8 +496,7 @@ const YBSL_ybslf = function () {
 			 * @param {*} list
 			 */
 			lib.element.player.YB_nofire = function (list) {
-				var list2 = Array.from(list),
-					num = [];
+				let list2 = Array.from(list), num = [];
 				list2.forEach((c) => {
 					if (c.storage.YB_flames) {
 						delete c.storage.YB_flames;
@@ -481,8 +507,8 @@ const YBSL_ybslf = function () {
 				// if(this.storage.ybsl_ptchiling)this.storage.ybsl_ptchiling=0;
 				// this.storage.ybsl_ptchiling+=num;
 				this.addMark('ybsl_ptchiling', num.length, false);
-				var cards = get.translation(num);
-				game.log(this, '吸收了', '#y' + cards, `的火焰，获得了共计<span style=\'color:yellow\'>${num.length}</span>枚`, '#g' + '火焰', '。');
+				let cards = get.translation(num);
+				game.log(this, '吸收了', '#y' + cards, `的火焰,获得了共计<span style=\'color:yellow\'>${num.length}</span>枚`, '#g火焰', '');
 			};
 			/**
 			 * 夜白神庞统相关函数
@@ -511,18 +537,18 @@ const YBSL_ybslf = function () {
 			//AB技//势极技
 			lib.skill._ybsl_shiji = {
 				firstDo: true,
-				direct: true,
+				forced: true,
 				ruleSkill: true,
 				trigger: {
 					player: ['useSkill', 'logSkillBegin', 'useCard', 'respond'],
 				},
-				filter: function (event, player) {
-					let skill = get.sourceSkillFor(event);
+				filter(event, player) {
+					const skill = get.sourceSkillFor(event);
 					// if(skill)game.log(skill)
 					return lib.skill[skill]?.YB_shiji;
 				},
-				content: function () {
-					let skill = get.sourceSkillFor(trigger);
+				content() {
+					const skill = get.sourceSkillFor(trigger);
 					if (lib.skill[skill].YB_shiji == 'yin') {
 						if (player.hasSkill('ybsl_shiji_yang')) {
 							player.YB_shiji();
@@ -537,110 +563,118 @@ const YBSL_ybslf = function () {
 				},
 			};
 			lib.element.player.YB_shiji = function (i) {
-				// arguments.length > 0
-				var str = i ? 'yin' : 'yang';
+				// arguments.length
+				let str = i ? 'yin' : 'yang';
 				game.log(this, '重置了', i ? '#g势极技阴极' : '#g势极技阳极');
 				this.removeSkill('ybsl_shiji_' + str);
 			};
 			lib.skill.ybsl_shiji_yin = {
 				// onremove:true,
 				charlotte: true,
-				skillBlocker: function (skill, player) {
+				skillBlocker(skill, player) {
 					return lib.skill[skill].YB_shiji && lib.skill[skill].YB_shiji == 'yin';
 				},
-				init: function (player, skill) {
+				init(player, skill) {
 					player.addSkillBlocker(skill);
 				},
-				onremove: function (player, skill) {
+				onremove(player, skill) {
 					player.removeSkillBlocker(skill);
 				},
 				mark: true,
 				marktext: '<span class=thundertext>势</span>',
 				intro: {
 					name: '势极技',
-					content: '本回合不能使用势极技<span class=thundertext>阴极</span>。',
+					content: '本回合不能使用势极技<span class=thundertext>阴极</span>',
 				},
 			};
 			lib.skill.ybsl_shiji_yang = {
-				onremove: true,
 				charlotte: true,
-				skillBlocker: function (skill, player) {
+				skillBlocker(skill, player) {
 					return lib.skill[skill].YB_shiji && lib.skill[skill].YB_shiji == 'yang';
 				},
-				init: function (player, skill) {
+				init(player, skill) {
 					player.addSkillBlocker(skill);
 				},
-				onremove: function (player, skill) {
+				onremove(player, skill) {
 					player.removeSkillBlocker(skill);
 				},
 				mark: true,
 				marktext: '<span class=firetext>势</span>',
 				intro: {
 					name: '势极技',
-					content: '本回合不能使用势极技<span class=firetext>阳极</span>。',
+					content: '本回合不能使用势极技<span class=firetext>阳极</span>',
 				},
 			};
 		}
 		get.YB_key = function (list) {
-			var list2 = [];
-			for (var i in list) {
+			const list2 = [];
+			for (let i in list) {
 				list2.push(i);
 			}
 			return list2;
 		};
 		//如下
 		/**
-		 * 临时获得标记用的子技能并获得标记，若没有对应的子技能会当场创建该自己能
+		 * 临时获得标记用的子技能并获得标记,若没有对应的子技能会当场创建该自己能
 		 * @param { skill } skill - 此参数输入技能id
 		 * @param { num } num - 此参数输入获得的标记数
 		 */
 		lib.element.player.YB_temp = function (skill, num) {
-			var num = num || 1;
-			if (!lib.skill[skill]) lib.skill[skill] = { onremove: true, charlotte: true };
+			let num = num || 1;
+			if (!lib.skill[skill]) {
+				lib.skill[skill] = { charlotte: true };
+			}
 			this.addTempSkill(skill);
 			this.addMark(skill, num);
 		};
 		/**
-		 * 临时获得标记用的子技能并静默获得标记，若没有对应的子技能会当场创建该自己能
+		 * 临时获得标记用的子技能并静默获得标记,若没有对应的子技能会当场创建该自己能
 		 * @param { skill } skill - 此参数输入技能id
 		 * @param { num } num - 此参数输入获得的标记数
 		 */
 		lib.element.player.YB_tempx = function (skill, num) {
-			var num = num || 1;
-			if (!lib.skill[skill]) lib.skill[skill] = { onremove: true, charlotte: true };
+			let num = num || 1;
+			if (!lib.skill[skill]) {
+				lib.skill[skill] = { charlotte: true };
+			}
 			this.addTempSkill(skill);
 			this.addMark(skill, num, false);
 		};
 		/**
-		 * 临时获得标记用的子技能并显示该技能标记，若没有对应的子技能会当场创建该自己能
+		 * 临时获得标记用的子技能并显示该技能标记,若没有对应的子技能会当场创建该自己能
 		 * @param { skill } skill - 此参数输入技能id
 		 * @param { num } num - 此参数输入获得的标记数
 		 */
 		lib.element.player.YB_tempy = function (skill, num) {
-			var num = num || 1;
-			if (!lib.skill[skill]) lib.skill[skill] = { onremove: true, charlotte: true };
+			let num = num || 1;
+			if (!lib.skill[skill]) {
+				lib.skill[skill] = { charlotte: true };
+			}
 			this.addTempSkill(skill);
 			this.markSkill(skill);
 		};
-
 		lib.element.player.YB_tempz = function (skill, keys) {
-			if (!lib.skill[skill]) lib.skill[skill] = { onremove: true, charlotte: true };
-
+			if (!lib.skill[skill]) {
+				lib.skill[skill] = { charlotte: true };
+			}
 			this.addTempSkill(skill);
-			if (!this.storage[skill]) this.storage[skill] = [];
+			if (!this.storage[skill]) {
+				this.storage[skill] = [];
+			}
 			if (Array.isArray(keys)) {
 				this.storage[skill].addArray(keys);
-			} else this.storage[skill].push(keys);
+			} else {
+				this.storage[skill].push(keys);
+			}
 			this.markSkill(skill);
 			// if(!lib.skill[skill].intro){
 			// 	lib.skill[skill].intro={
-
 			// 	};
 			// }
 		};
 		//-----------改变血量至
 		lib.element.player.YB_HpTo = function (num) {
-			var next = game.createEvent('YB_HpTo', false);
+			const next = game.createEvent('YB_HpTo', false);
 			next.num = num;
 			next.player = this;
 			next.setContent('YB_HpTo');
@@ -674,11 +708,10 @@ const YBSL_ybslf = function () {
 			next.setContent('YB_button');
 			return next;
 		}
-		//[{suit:'花色'},{spade:'黑桃'}]
+		//[{suit:'花色'},{spade:'♠️️️'}]
 		lib.element.content.YB_button = function(){
 			'step 0'
 			var list6666=event.list6666,title=event.title;
-			
 			var switchToAuto=function(){
 				_status.imchoosing=false;
 				// var listn=['普通'].concat(lib.inpile_nature);
@@ -702,7 +735,7 @@ const YBSL_ybslf = function () {
 				if(!event._result) event._result={};
 				var dialog=ui.create.dialog('<font size=6><b>'+title[0]+'</b></font>','forcebutton','hidden');
 				dialog.add(title[1]);
-				// var dialog=ui.create.dialog('你声明一个花色和类型，然后亮出牌堆顶三张牌，获得与你描述相符的牌。<br>若有两项皆满足的牌，你回复一点体力。','forcebutton','hidden');
+				// var dialog=ui.create.dialog('你声明一个花色和类型,然后亮出牌堆顶三张牌,获得与你描述相符的牌.<br>若有两项皆满足的牌,你回复一点体力','forcebutton','hidden');
 				event.dialog=dialog;
 				for (var yb01 of list6666){
 					var k=get.YB_cobo(yb01[0]);
@@ -746,7 +779,6 @@ const YBSL_ybslf = function () {
 					}
 					dialog.content.appendChild(table);
 				}
-				
 				// dialog.addText('类型');
 				// var table2=document.createElement('div');
 				// table2.classList.add('add-setting');
@@ -779,7 +811,6 @@ const YBSL_ybslf = function () {
 				// dialog.content.appendChild(table2);
 				dialog.add('　　');
 				event.dialog.open();
-				
 				if(!event.switchToAuto){
 					event.switchToAuto=function(){
 						event._result={
@@ -799,10 +830,8 @@ const YBSL_ybslf = function () {
 						_status.imchoosing=false;
 					};
 				}
-				
 				if(event.ok){
 					event.control=event.ok;
-					
 				}
 				else {
 					event.control=ui.create.control('ok',function(link){
@@ -811,7 +840,7 @@ const YBSL_ybslf = function () {
 							var k=get.YB_cobo(yb04[0]);
 							// var title2=yb03[0][k];
 							// var zs=get.YB_cobo(yb04[1]);
-							if(!result[k]) return;//此行切换注释，可令按钮无视选项，直接确定
+							if(!result[k]) return;//此行切换注释,可令按钮无视选项,直接确定
 						}
 						// if(!result.type||!result.suit) return;
 						// else{
@@ -829,7 +858,7 @@ const YBSL_ybslf = function () {
 						// var k=get.YB_cobo(yb04[0]);
 						// // var title2=yb03[0][k];
 						// // var zs=get.YB_cobo(yb04[1]);
-						// if(!result[k]) return;//此行切换注释，可令按钮无视选项，直接确定
+						// if(!result[k]) return;//此行切换注释,可令按钮无视选项,直接确定
 					// }
 					// // if(!result.type||!result.suit) return;
 					// // else{
@@ -842,7 +871,6 @@ const YBSL_ybslf = function () {
 				// });
 				for(var i=0;i<event.dialog.buttons.length;i++){
 					event.dialog.buttons[i].classList.add('selectable');
-
 				}
 				game.pause();
 				game.countChoose();
@@ -864,11 +892,15 @@ const YBSL_ybslf = function () {
 		*/
 		//----------涉猎任意张
 		lib.element.player.YB_shelie = function (num, i, log) {
-			var next = game.createEvent('YB_shelie', false);
+			const next = game.createEvent('YB_shelie', false);
 			next.num = num;
 			next.i = '涉猎';
-			if (i && i !== true) next.i = i;
-			if (i == true || log == true) next.k = true;
+			if (i && i !== true) {
+				next.i = i;
+			}
+			if (i == true || log == true) {
+				next.k = true;
+			}
 			next.player = this;
 			next.setContent('YB_shelie');
 			return next;
@@ -880,11 +912,11 @@ const YBSL_ybslf = function () {
 			event.videoId = lib.status.videoId++;
 			game.broadcastAll(
 				function (player, id, cards) {
-					var str = event.i;
+					let str = event.i;
 					if (player == game.me && !_status.auto) {
-						str += '：获取花色各不相同的牌';
+						str += ':获取花色各不相同的牌';
 					}
-					var dialog = ui.create.dialog(str, cards);
+					const dialog = ui.create.dialog(str, cards);
 					dialog.videoId = id;
 				},
 				player,
@@ -895,18 +927,22 @@ const YBSL_ybslf = function () {
 			game.addVideo('showCards', player, [event.i, get.cardsInfo(event.cards)]);
 			game.addVideo('delay', null, 2);
 			('step 1');
-			var list = [];
-			for (var i of cards) list.add(get.suit(i, false));
-			if (event.k == true) {
-				var k = list.length;
-			} else {
-				var k = [0, Infinity];
+			let list = [];
+			for (const i of cards) {
+				list.add(i.suit);
 			}
-			var next = player.chooseButton(k, true);
+			if (event.k == true) {
+				let k = list.length;
+			} else {
+				let k = [0, Infinity];
+			}
+			const next = player.chooseButton(k, true);
 			next.set('dialog', event.videoId);
 			next.set('filterButton', function (button) {
-				for (var i = 0; i < ui.selected.buttons.length; i++) {
-					if (get.suit(ui.selected.buttons[i].link) == get.suit(button.link)) return false;
+				for (let i = 0; i < ui.selected.buttons.length; i++) {
+					if (ui.selected.buttons[i].link.suit == button.link.suit) {
+						return false;
+					}
 				}
 				return true;
 			});
@@ -919,18 +955,17 @@ const YBSL_ybslf = function () {
 			} else {
 				event.finish();
 			}
-			var time = 1000 - (get.utc() - event.time);
+			const time = 1000 - (get.utc() - event.time);
 			if (time > 0) {
-				game.delay(0, time);
 			}
 			('step 3');
 			game.broadcastAll('closeDialog', event.videoId);
-			var cards2 = event.cards2;
+			const cards2 = event.cards2;
 			player.gain(cards2, 'log', 'gain2');
 		};
 		//-------------扶汉函数
 		lib.element.player.YB_fuhan = function (i, type) {
-			var next = game.createEvent('YB_fuhan', false);
+			const next = game.createEvent('YB_fuhan', false);
 			next.player = this;
 			if (i != 'old' && i != 'tw') {
 				next.groupa = i[0];
@@ -970,14 +1005,14 @@ const YBSL_ybslf = function () {
 				event.goto(5);
 			}
 			('step 1');
-			var list;
+			let list;
 			if (!event.numb) {
 				event.numb = 2;
 			}
 			if (_status.characterlist) {
 				list = [];
-				for (var i = 0; i < _status.characterlist.length; i++) {
-					var name = _status.characterlist[i];
+				for (let i = 0; i < _status.characterlist.length; i++) {
+					let name = _status.characterlist[i];
 					if (event.sex.includes(lib.character[name][0])) {
 						if (!event.groupa) {
 							list.push(name);
@@ -995,32 +1030,38 @@ const YBSL_ybslf = function () {
 					return event.groupa.includes(info[1]) && event.sex.includes(info[0]);
 				});
 			}
-			var players = game.players.concat(game.dead);
-			for (var i = 0; i < players.length; i++) {
+			const players = game.players.concat(game.dead);
+			for (let i = 0; i < players.length; i++) {
 				list.remove(players[i].name);
 				list.remove(players[i].name1);
 				list.remove(players[i].name2);
 			}
 			if (event.zhu == 'zhu') {
-				for (var z of list) {
-					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) event.band.add(z);
+				for (const z of list) {
+					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) {
+						event.band.add(z);
+					}
 				}
 			} else if (event.zhu == 'nozhu') {
-				for (var z of list) {
-					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) event.band.add(z);
+				for (const z of list) {
+					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) {
+						event.band.add(z);
+					}
 				}
 			}
-			if (event.band.length > 0) {
-				for (var j of event.band) {
-					if (list.includes(j)) list.remove(j); //应用数据band
+			if (event.band.length) {
+				for (const j of event.band) {
+					if (list.includes(j)) {
+						list.remove(j);
+					} //应用数据band
 				}
 			}
 			list = list.randomGets(event.numa); //应用数据numa
-			var skills = [];
-			for (var i of list) {
+			let skills = [];
+			for (const i of list) {
 				skills.addArray(
 					(lib.character[i][3] || []).filter(function (skill) {
-						var info = get.info(skill);
+						const info = get.info(skill);
 						return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.dutySkill;
 					}),
 				);
@@ -1032,43 +1073,55 @@ const YBSL_ybslf = function () {
 			if (player.isUnderControl()) {
 				game.swapPlayerAuto(player);
 			}
-			var switchToAuto = function () {
+			const switchToAuto = function () {
 				_status.imchoosing = false;
 				event._result = {
 					bool: true,
 					skills: skills.randomGets(2),
 				};
-				if (event.dialog) event.dialog.close();
-				if (event.control) event.control.close();
+				if (event.dialog) {
+					event.dialog.close();
+				}
+				if (event.control) {
+					event.control.close();
+				}
 			};
-			var tara = get.cnNumber(event.numb); //翻译大写数字
-			var chooseButton = function (list, skills) {
-				var event = _status.event;
-				if (!event._result) event._result = {};
+			const tara = get.cnNumber(event.numb); //翻译大写数字
+			const chooseButton = function (list, skills) {
+				const event = _status.event;
+				if (!event._result) {
+					event._result = {};
+				}
 				event._result.skills = [];
-				var rSkill = event._result.skills;
-				var dialog = ui.create.dialog('请选择获得至多' + tara + '个技能', [list, 'character'], 'hidden');
+				const rSkill = event._result.skills;
+				const dialog = ui.create.dialog('请选择获得至多' + tara + '个技能', [list, 'character'], 'hidden');
 				event.dialog = dialog;
-				var table = document.createElement('div');
+				const table = document.createElement('div');
 				table.classList.add('add-setting');
 				table.style.margin = '0';
 				table.style.width = '100%';
 				table.style.position = 'relative';
-				for (var i = 0; i < skills.length; i++) {
-					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
+				for (let i = 0; i < skills.length; i++) {
+					const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.link = skills[i];
 					table.appendChild(td);
 					td.innerHTML = '<span>' + get.translation(skills[i]) + '</span>';
 					td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
-						if (_status.dragged) return;
-						if (_status.justdragged) return;
+						if (_status.dragged) {
+							return;
+						}
+						if (_status.justdragged) {
+							return;
+						}
 						_status.tempNoButton = true;
 						setTimeout(function () {
 							_status.tempNoButton = false;
 						}, 500);
-						var link = this.link;
+						const link = this.link;
 						if (!this.classList.contains('bluebg')) {
-							if (rSkill.length >= event.numb) return;
+							if (rSkill.length >= event.numb) {
+								return;
+							}
 							rSkill.add(link);
 							this.classList.add('bluebg');
 						} else {
@@ -1080,7 +1133,6 @@ const YBSL_ybslf = function () {
 				dialog.content.appendChild(table);
 				dialog.add('　　');
 				dialog.open();
-
 				event.switchToAuto = function () {
 					event.dialog.close();
 					event.control.close();
@@ -1093,7 +1145,7 @@ const YBSL_ybslf = function () {
 					game.resume();
 					_status.imchoosing = false;
 				});
-				for (var i = 0; i < event.dialog.buttons.length; i++) {
+				for (let i = 0; i < event.dialog.buttons.length; i++) {
 					event.dialog.buttons[i].classList.add('selectable');
 				}
 				game.pause();
@@ -1109,17 +1161,21 @@ const YBSL_ybslf = function () {
 				switchToAuto();
 			}
 			('step 2');
-			var map = event.result || result;
+			const map = event.result || result;
 			// if (map && map.skills && map.skills.length) {
-			// 	for (var i of map.skills) player.addSkillLog(i);
+			// 	for (const i of map.skills) player.addSkillLog(i);
 			// }
 			player.addSkills(map.skills);
 			game.broadcastAll(function (list) {
 				game.expandSkills(list);
-				for (var i of list) {
-					var info = lib.skill[i];
-					if (!info) continue;
-					if (!info.audioname2) info.audioname2 = {};
+				for (const i of list) {
+					const info = lib.skill[i];
+					if (!info) {
+						continue;
+					}
+					if (!info.audioname2) {
+						info.audioname2 = {};
+					}
 					info.audioname2.old_yuanshu = 'weidi';
 				}
 			}, map.skills);
@@ -1127,14 +1183,14 @@ const YBSL_ybslf = function () {
 			event.finish();
 			('step 3');
 			event.num = event.numa;
-			var list;
+			let list;
 			if (!event.numb) {
 				event.numb = player.name1 || player.name;
 			}
 			if (_status.characterlist) {
 				list = [];
-				for (var i = 0; i < _status.characterlist.length; i++) {
-					var name = _status.characterlist[i];
+				for (let i = 0; i < _status.characterlist.length; i++) {
+					let name = _status.characterlist[i];
 					if (event.sex.includes(lib.character[name][0])) {
 						if (!event.groupa) {
 							list.push(name);
@@ -1152,29 +1208,35 @@ const YBSL_ybslf = function () {
 					return event.groupa.includes(info[1]) && event.sex.includes(info[0]);
 				});
 			}
-			var players = game.players.concat(game.dead);
-			for (var i = 0; i < players.length; i++) {
+			const players = game.players.concat(game.dead);
+			for (let i = 0; i < players.length; i++) {
 				list.remove(players[i].name);
 				list.remove(players[i].name1);
 				list.remove(players[i].name2);
 			}
 			if (event.zhu == 'zhu') {
-				for (var z of list) {
-					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) event.band.add(z);
+				for (const z of list) {
+					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) {
+						event.band.add(z);
+					}
 				}
 			} else if (event.zhu == 'nozhu') {
-				for (var z of list) {
-					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) event.band.add(z);
+				for (const z of list) {
+					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) {
+						event.band.add(z);
+					}
 				}
 			}
-			if (event.band.length > 0) {
-				for (var j of event.band) {
-					if (list.includes(j)) list.remove(j); //应用数据band
+			if (event.band.length) {
+				for (const j of event.band) {
+					if (list.includes(j)) {
+						list.remove(j);
+					} //应用数据band
 				}
 			}
 			// var dialog=ui.create.dialog();
 			// dialog.add([list.randomGets(5),'character']);
-			var kkk = get.translation(event.numb);
+			const kkk = get.translation(event.numb);
 			player
 				.chooseButton(true)
 				.set('ai', function (button) {
@@ -1194,8 +1256,8 @@ const YBSL_ybslf = function () {
 			event.num = event.numa;
 			if (_status.characterlist) {
 				list = [];
-				for (var i = 0; i < _status.characterlist.length; i++) {
-					var name = _status.characterlist[i];
+				for (let i = 0; i < _status.characterlist.length; i++) {
+					let name = _status.characterlist[i];
 					if (event.sex.includes(lib.character[name][0])) {
 						if (!event.groupa) {
 							list.push(name);
@@ -1213,31 +1275,37 @@ const YBSL_ybslf = function () {
 					return event.groupa.includes(info[1]) && event.sex.includes(info[0]);
 				});
 			}
-			var players = game.players.concat(game.dead);
-			for (var i = 0; i < players.length; i++) {
+			const players = game.players.concat(game.dead);
+			for (let i = 0; i < players.length; i++) {
 				list.remove(players[i].name);
 				list.remove(players[i].name1);
 				list.remove(players[i].name2);
 			}
 			if (event.zhu == 'zhu') {
-				for (var z of list) {
-					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) event.band.add(z);
+				for (const z of list) {
+					if (!lib.character[z][4] || !lib.character[z][4].includes('zhu')) {
+						event.band.add(z);
+					}
 				}
 			} else if (event.zhu == 'nozhu') {
-				for (var z of list) {
-					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) event.band.add(z);
+				for (const z of list) {
+					if (lib.character[z][4] && lib.character[z][4].includes('zhu')) {
+						event.band.add(z);
+					}
 				}
 			}
-			if (event.band.length > 0) {
-				for (var j of event.band) {
-					if (list.includes(j)) list.remove(j); //应用数据band
+			if (event.band.length) {
+				for (const j of event.band) {
+					if (list.includes(j)) {
+						list.remove(j);
+					} //应用数据band
 				}
 			}
-			var ttt = get.translation(event.numb);
-			player.chooseButton([ttt + '：选择获得一张武将牌上的所有技能', [list.randomGets(event.num), 'character']], true);
+			const ttt = get.translation(event.numb);
+			player.chooseButton([ttt + ':选择获得一张武将牌上的所有技能', [list.randomGets(event.num), 'character']], true);
 			('step 6');
 			if (result.bool) {
-				var name = result.links[0];
+				let name = result.links[0];
 				player.flashAvatar(event.numb, name);
 				game.log(player, '获得了', '#y' + get.translation(name), '的所有技能');
 				player.addSkill(lib.character[name][3]);
@@ -1246,65 +1314,68 @@ const YBSL_ybslf = function () {
 		};
 		//-------------逐个翻译
 		get.YB_tobo = function (cards) {
-			var list = [];
-			for (var i of cards) {
+			let list = [];
+			for (const i of cards) {
 				list.push(get.translation(i));
 			}
 			return list;
 		};
 		//------------紧密贴合的逐个翻译
 		get.YB_tobo2 = function (cards) {
-			var list = '';
-			for (var i of cards) {
+			let list = '';
+			for (const i of cards) {
 				list += get.translation(i);
 			}
 			return list;
 		};
 		//------------中文顿号分隔的的逐个翻译
 		get.YB_tobo3 = function (cards) {
-			var list = '';
-			for (var i of cards) {
-				if (i != cards[0]) list += '、';
+			let list = '';
+			for (const i of cards) {
+				if (i != cards[0]) {
+					list += '、';
+				}
 				list += get.translation(i);
 			}
 			return list;
 		};
-		//-------------解码（划掉）翻译
+		//-------------解码(划掉)翻译
 		get.YB_map = function (list, map) {
-			var list2 = [];
-			for (var i of list) {
+			const list2 = [];
+			for (const i of list) {
 				list2.push(map[i]);
 			}
 			return list2;
 		};
-		//-----------判断一个卡组，懒得介绍自己悟
+		//-----------判断一个卡组,懒得介绍自己悟
 		get.YB_suit = function (cards, i) {
-			let atk = get[i] || get.suit;
-			var list2 = [];
-			for (var k of cards) {
-				if (list2.length == 0 || !list2.includes(atk(k))) list2.add(atk(k));
+			const atk = get[i] || get.suit;
+			const list2 = [];
+			for (let k of cards) {
+				if (list2.length == 0 || !list2.includes(atk(k))) {
+					list2.add(atk(k));
+				}
 			}
 			return list2;
 		};
 		//-------------包装
 		get.YB_cobo = function (map) {
-			var list = [];
-			for (var i in map) {
+			let list = [];
+			for (let i in map) {
 				list.push(i);
 			}
 			return list;
 		};
-
 		//--------所有卡牌类型
 		get.YB_type = function () {
-			var type = [];
-			var list = {};
-			var listk = [];
-			var listn = [];
-			for (var i of lib.inpile) {
+			const type = [];
+			let list = {};
+			const listk = [];
+			const listn = [];
+			for (const i of lib.inpile) {
 				if (event[get.type2(i)] != true) {
 					type.add(get.translation(get.type2(i)));
-					var n = get.type2(i);
+					const n = get.type2(i);
 					list[n] = get.type2(i);
 					listn.add(n);
 					listk.add([n, get.translation(get.type2(i))]);
@@ -1315,14 +1386,14 @@ const YBSL_ybslf = function () {
 		};
 		//--------输入卡牌组的类型
 		get.YB_type2 = function (cards) {
-			var type = [];
-			var list = {};
-			var listk = [];
-			var listn = [];
-			for (var i of cards) {
+			const type = [];
+			let list = {};
+			const listk = [];
+			const listn = [];
+			for (const i of cards) {
 				if (!listn.length || !listn.includes(get.type2(i))) {
 					type.add(get.translation(get.type2(i)));
-					var n = get.type2(i);
+					const n = get.type2(i);
 					list[n] = get.type2(i);
 					listn.add(n);
 					listk.add([n, get.translation(get.type2(i))]);
@@ -1331,8 +1402,8 @@ const YBSL_ybslf = function () {
 			}
 			return listk;
 		};
-		//-------------重铸函数（需输入要重铸的牌）
-		//-------------本体已经有重铸函数了，player.recast(cards)即可
+		//-------------重铸函数(需输入要重铸的牌)
+		//-------------本体已经有重铸函数了,player.recast(cards)即可
 		lib.element.player.YB_chongzhu = function (card) {
 			//暂时作废
 			'step 0';
@@ -1350,56 +1421,62 @@ const YBSL_ybslf = function () {
 		lib.element.player.YB_sblijian = function (list) {
 			game.countPlayer(function (current) {
 				//计算游戏中的每个玩家
-				if (list.contains(current)) {
-					var targetx = list.slice().sortBySeat(current)[1];
-					var card = { name: 'juedou', isCard: true };
-					if (current.canUse(card, targetx)) current.useCard(card, targetx);
+				if (list.includes(current)) {
+					const targetx = list.slice().sortBySeat(current)[1];
+					let card = { name: 'juedou' };
+					if (current.canUse(card, targetx)) {
+						current.useCard(card, targetx);
+					}
 				}
 			});
 		};
-		//-------------将手牌数调整至num，num不能不写
+		//-------------将手牌数调整至num,num不能不写
 		lib.element.player.YB_changeHandCard = function (num) {
 			'step 0';
-			var num22 = this.countCards('h');
+			const num22 = this.countCards('h');
 			if (num22 > num) {
 				this.chooseToDiscard('h', num22 - num, true);
 			} else if (num22 < num) {
 				this.draw(num - num22);
 			}
 		};
-		//----------执行：重铸手中一种花色的所有牌
+		//----------执行:重铸手中一种花色的所有牌
 		lib.element.content.YB_chooseToChongzhu = function () {
 			'step 0';
 			event.list = [];
-			var cards = player.getCards('h');
-			var suits = get.YB_suit(cards);
+			let cards = player.getCards('h');
+			const suits = get.YB_suit(cards);
 			player.showCards(cards);
-			for (var k = 0; k < suits.length; k++) {
+			for (let k = 0; k < suits.length; k++) {
 				event.list.add([suits[k], []]);
-				for (var j of cards) {
-					if (get.suit(j) == suits[k]) event.list[k][1].add(j);
+				for (const j of cards) {
+					if (j.suit == suits[k]) {
+						event.list[k][1].add(j);
+					}
 				}
 			}
-			var list = [],
-				list6 = [];
-			for (var h = 0; h < event.list.length; h++) {
+			let list = [], list6 = [];
+			for (let h = 0; h < event.list.length; h++) {
 				list.add(get.translation(event.list[h][0] + '2'));
-				list6.add([get.translation(event.list[h][0] + '2') + '：', get.translation(event.list[h][1])]);
+				list6.add([get.translation(event.list[h][0] + '2') + ':', get.translation(event.list[h][1])]);
 			}
-			if (!list.length) event.finish();
-			else player.chooseControl(list).set('choiceList', list6).set('prompt', '请选择重铸一种花色的所有牌');
+			if (!list.length) {
+				event.finish();
+			} else {
+				player.chooseControl(list).set('choiceList', list6).set('prompt', '请选择重铸一种花色的所有牌');
+			}
 			('step 1');
 			player.recast(event.list[result.index][1]);
 		};
 		//----------------中流
 		lib.element.player.YB_zhongliu = function () {
-			var player = this;
-			var skills = player.getStockSkills(true, true);
+			const player = this;
+			let skills = player.getStockSkills(true, true);
 			game.expandSkills(skills);
-			var resetSkills = [];
-			var suffixs = ['used', 'round', 'block', 'blocker'];
-			for (var skill of skills) {
-				var info = get.info(skill);
+			const resetSkills = [];
+			const suffixs = ['used', 'round', 'block', 'blocker'];
+			for (const skill of skills) {
+				const info = get.info(skill);
 				if (typeof info.usable == 'number') {
 					if (player.hasSkill('counttrigger') && player.storage.counttrigger[skill] && player.storage.counttrigger[skill] >= 1) {
 						delete player.storage.counttrigger[skill];
@@ -1417,11 +1494,11 @@ const YBSL_ybslf = function () {
 				if (player.storage[`temp_ban_${skill}`]) {
 					delete player.storage[`temp_ban_${skill}`];
 				}
-				if (player.awakenedSkills.contains(skill)) {
+				if (player.awakenedSkills.includes(skill)) {
 					player.restoreSkill(skill);
 					resetSkills.add(skill);
 				}
-				for (var suffix of suffixs) {
+				for (const suffix of suffixs) {
 					if (player.hasSkill(skill + '_' + suffix)) {
 						player.removeSkill(skill + '_' + suffix);
 						resetSkills.add(skill);
@@ -1429,21 +1506,23 @@ const YBSL_ybslf = function () {
 				}
 			}
 			if (resetSkills.length) {
-				var str = '';
-				for (var i of resetSkills) {
+				let str = '';
+				for (const i of resetSkills) {
 					str += '【' + get.translation(i) + '】、';
 				}
 				game.log(player, '重置了技能', '#g' + str.slice(0, -1));
 			}
 		};
 		lib.element.player.YB_zhongliuSkills = function (skills) {
-			var player = this;
-			if (typeof skills == 'string') skills = [skills];
+			const player = this;
+			if (typeof skills == 'string') {
+				skills = [skills];
+			}
 			game.expandSkills(skills);
-			var resetSkills = [];
-			var suffixs = ['used', 'round', 'block', 'blocker'];
-			for (var skill of skills) {
-				var info = get.info(skill);
+			const resetSkills = [];
+			const suffixs = ['used', 'round', 'block', 'blocker'];
+			for (const skill of skills) {
+				const info = get.info(skill);
 				if (typeof info.usable == 'number') {
 					if (player.hasSkill('counttrigger') && player.storage.counttrigger[skill] && player.storage.counttrigger[skill] >= 1) {
 						delete player.storage.counttrigger[skill];
@@ -1461,11 +1540,11 @@ const YBSL_ybslf = function () {
 				if (player.storage[`temp_ban_${skill}`]) {
 					delete player.storage[`temp_ban_${skill}`];
 				}
-				if (player.awakenedSkills.contains(skill)) {
+				if (player.awakenedSkills.includes(skill)) {
 					player.restoreSkill(skill);
 					resetSkills.add(skill);
 				}
-				for (var suffix of suffixs) {
+				for (const suffix of suffixs) {
 					if (player.hasSkill(skill + '_' + suffix)) {
 						player.removeSkill(skill + '_' + suffix);
 						resetSkills.add(skill);
@@ -1473,8 +1552,8 @@ const YBSL_ybslf = function () {
 				}
 			}
 			if (resetSkills.length) {
-				var str = '';
-				for (var i of resetSkills) {
+				let str = '';
+				for (const i of resetSkills) {
 					str += '【' + get.translation(i) + '】、';
 				}
 				game.log(player, '重置了技能', '#g' + str.slice(0, -1));
@@ -1482,10 +1561,10 @@ const YBSL_ybslf = function () {
 		};
 		//-------------角色集合从主视角按座位排序
 		get.YB_1234 = function (list) {
-			var list2 = [];
+			const list2 = [];
 			game.countPlayer(function (current) {
 				//计算游戏中的每个玩家
-				if (list.contains(current)) {
+				if (list.includes(current)) {
 					list2.push(current);
 				}
 			});
@@ -1493,10 +1572,10 @@ const YBSL_ybslf = function () {
 		};
 		//-------------获取其已发动限定技
 		get.North_bmh_chizhang = function (player) {
-			var list = [];
-			var skills = player.getOriginalSkills();
-			for (var i = 0; i < skills.length; i++) {
-				if (lib.skill[skills[i]].limited && player.awakenedSkills.contains(skills[i])) {
+			let list = [];
+			let skills = player.getOriginalSkills();
+			for (let i = 0; i < skills.length; i++) {
+				if (lib.skill[skills[i]].limited && player.awakenedSkills.includes(skills[i])) {
 					list.push(skills[i]);
 				}
 			}
@@ -1504,15 +1583,11 @@ const YBSL_ybslf = function () {
 		};
 		//---------------突袭价值
 		get.YB_tuxivalue = function (player) {
-			var player = player;
-			var check,
-				i,
-				num = 0,
-				num2 = 0,
-				players = game.filterPlayer();
-			for (i = 0; i < players.length; i++) {
+			const player = player;
+			let check, i, num = 0, num2 = 0, players = game.filterPlayer();
+			for (let i = 0; i < players.length; i++) {
 				if (player != players[i] && players[i].countCards('h')) {
-					var att = get.attitude(player, players[i]);
+					const att = get.attitude(player, players[i]);
 					if (att <= 0) {
 						num++;
 					}
@@ -1521,21 +1596,20 @@ const YBSL_ybslf = function () {
 					}
 				}
 			}
-			if (num >= 2 && num2 > 0) check = true;
-			else check = false;
+			if (num >= 2 && num2 > 0) {
+				check = true;
+			} else {
+				check = false;
+			}
 			return check;
 		};
 		get.YB_tuxi2value = function (player, numx) {
-			var player = player;
-			var numx = numx || 2;
-			var check,
-				i,
-				num = 0,
-				num2 = 0,
-				players = game.filterPlayer();
-			for (i = 0; i < players.length; i++) {
+			const player = player;
+			const numx = numx || 2;
+			let check, i, num = 0, num2 = 0, players = game.filterPlayer();
+			for (let i = 0; i < players.length; i++) {
 				if (player != players[i] && players[i].countCards('h')) {
-					var att = get.attitude(player, players[i]);
+					const att = get.attitude(player, players[i]);
 					if (att <= 0) {
 						num++;
 					}
@@ -1544,14 +1618,17 @@ const YBSL_ybslf = function () {
 					}
 				}
 			}
-			if (num >= numx && num2 > 0) check = true;
-			else check = false;
+			if (num >= numx && num2 > 0) {
+				check = true;
+			} else {
+				check = false;
+			}
 			return check;
 		};
 		//---------------移牌价值
 		get.YB_movevalue = function (player) {
-			var player = player;
-			var check;
+			const player = player;
+			let check;
 			if (!player.canMoveCard(true)) {
 				check = false;
 			} else {
@@ -1573,17 +1650,16 @@ const YBSL_ybslf = function () {
 		//--------当前步骤立即选择并输出结果
 		// get.YB_comeon=function(list){
 		// 'step 0'
-
 		// }
 		//--------------升级指定技能--------------//
 		lib.element.player.YB_levelUp = function (str) {
-			for (var i of str) {
+			for (const i of str) {
 				lib.skill[i].levelUp(this);
 			}
 		};
 		//-------------按钮翻页
 		lib.element.player.YB_control = function (control, num, str) {
-			var next = game.createEvent('YB_control', false);
+			const next = game.createEvent('YB_control', false);
 			next.player = this;
 			next.list = control;
 			if (typeof num == 'number') {
@@ -1598,35 +1674,40 @@ const YBSL_ybslf = function () {
 		lib.element.content.YB_control = function () {
 			'step 0';
 			event.num = 1;
-			if (!event.numb) event.numb = 8;
-			if (event.ai == undefined)
+			if (!event.numb) {
+				event.numb = 8;
+			}
+			if (event.ai == undefined) {
 				event.ai = function (control) {
 					return 0;
 					// return true;
 				};
-			if (!event.isMine()) event.goto(2);
+			}
+			if (!event.isMine()) {
+				event.goto(2);
+			}
 			('step 1');
-			var kd = event.numb; //定义宽度
-			var ss = event.list.length;
-			var qy = ss % kd; //技能数除kd余数
+			const kd = event.numb; //定义宽度
+			const ss = event.list.length;
+			const qy = ss % kd; //技能数除kd余数
 			if (event.num * kd > ss) {
-				var sl = qy;
+				const sl = qy;
 			} else {
-				var sl = kd;
+				const sl = kd;
 			} //定义这一页的数量
-			var list = []; //定义集合
+			let list = []; //定义集合
 			if (event.num > 1) {
 				list.push('上页');
 			}
-			for (var i = 0; i < sl; i++) {
-				var t = (event.num - 1) * kd + i;
+			for (let i = 0; i < sl; i++) {
+				const t = (event.num - 1) * kd + i;
 				list.push(event.list[t]);
 			}
 			if (ss > kd * event.num) {
 				list.push('下页');
 			}
 			list.push('cancel2');
-			var str = event.str ? event.str : '<span class=yellowtext>请选择一项：</span>';
+			let str = event.str ? event.str : '<span class=yellowtext>请选择一项:</span>';
 			player.chooseControl(list).set('prompt', str);
 			('step 2');
 			if (result.control == '上页') {
@@ -1636,8 +1717,8 @@ const YBSL_ybslf = function () {
 				event.num++;
 				event.goto(1);
 			} else if (!event.isMine()) {
-				var list = [];
-				for (var i = 0; i < event.list.length; i++) {
+				let list = [];
+				for (let i = 0; i < event.list.length; i++) {
 					list.push(event.list[i]);
 				}
 				list.push('cancel2');
@@ -1651,13 +1732,15 @@ const YBSL_ybslf = function () {
 		// }
 		//-------------隅泣函数
 		lib.element.player.YB_yuqi = function (i, target) {
-			var next = game.createEvent('YB_yuqi', false);
+			const next = game.createEvent('YB_yuqi', false);
 			next.player = this;
 			// if(get.itemtype(i)=='select'){
 			next.list2 = i;
 			// }
 			// else{next.list2=['隅泣',3,1,1];}
-			if (target) next.target = target;
+			if (target) {
+				next.target = target;
+			}
 			// next.log=log;//技能说明
 			// next.numa=numa;//展示数量
 			// next.numb=numb;//对方数量
@@ -1672,45 +1755,54 @@ const YBSL_ybslf = function () {
 				event.target = player;
 				// if(trigger.player)event.target=trigger.player;
 			}
-			var cards = get.cards(event.list[1]);
+			let cards = get.cards(event.list[1]);
 			event.cards = cards;
 			game.cardsGotoOrdering(cards);
-			var str = event.list[0];
-			str += '（若对话框显示不完整，可下滑操作）';
-			var next = player.chooseToMove(true, str);
-			next.set('list', [['牌堆顶的牌', cards], ['交给' + get.translation(event.target) + '（至少一张' + (event.list[2] > 1 ? '，至多' + get.cnNumber(event.list[2]) + '张' : '') + '）'], ['交给自己（至多' + get.cnNumber(event.list[3]) + '张）']]);
+			let str = event.list[0];
+			str += '(若对话框显示不完整,可下滑操作)';
+			const next = player.chooseToMove(true, str);
+			next.set('list', [['牌堆顶的牌', cards], ['交给' + get.translation(event.target) + '(至少一张' + (event.list[2] > 1 ? ',至多' + get.cnNumber(event.list[2]) + '张' : '') + ')'], ['交给自己(至多' + get.cnNumber(event.list[3]) + '张)']]);
 			next.set('filterMove', function (from, to, moved) {
-				var info = event.list2;
-				if (to == 1) return moved[1].length < info[2];
-				if (to == 2) return moved[2].length < info[3];
+				const info = event.list2;
+				if (to == 1) {
+					return moved[1].length < info[2];
+				}
+				if (to == 2) {
+					return moved[2].length < info[3];
+				}
 				return true;
 			});
 			next.set('processAI', function (list) {
-				var cards = list[0][1].slice(0).sort(function (a, b) {
-						return get.value(b, 'raw') - get.value(a, 'raw');
-					}),
-					player = _status.event.player,
-					target = event.target;
-				var info = event.list2;
-				var cards1 = cards.splice(0, Math.min(info[3], cards.length - 1));
-				var card2;
-				if (get.attitude(player, target) > 0) card2 = cards.shift();
-				else card2 = cards.pop();
+				let cards = list[0][1].slice(0).sort(function (a, b) {
+                            return get.value(b, 'raw') - get.value(a, 'raw');
+                        }),
+                    player = _status.event.player,
+                    target = event.target;
+				const info = event.list2;
+				const cards1 = cards.splice(0, Math.min(info[3], cards.length - 1));
+				let card2;
+				if (get.attitude(player, target) > 0) {
+					card2 = cards.shift();
+				} else {
+					card2 = cards.pop();
+				}
 				return [cards, [card2], cards1];
 			});
 			next.set('filterOk', function (moved) {
-				return moved[1].length > 0;
+				return moved[1].length;
 			});
 			('step 1');
 			if (result.bool) {
-				var moved = result.moved;
+				const moved = result.moved;
 				cards.removeArray(moved[1]);
 				cards.removeArray(moved[2]);
 				while (cards.length) {
 					ui.cardPile.insertBefore(cards.pop().fix(), ui.cardPile.firstChild);
 				}
-				var list = [[event.target, moved[1]]];
-				if (moved[2].length) list.push([player, moved[2]]);
+				let list = [[event.target, moved[1]]];
+				if (moved[2].length) {
+					list.push([player, moved[2]]);
+				}
 				game.loseAsync({
 					gain_list: list,
 					giver: player,
@@ -1718,32 +1810,35 @@ const YBSL_ybslf = function () {
 				}).setContent('gaincardMultiple');
 			}
 		};
-		//-------------24点（搬运自福瑞拓展）
+		//-------------24点(搬运自福瑞拓展)
 		lib.element.player.FY_24 = function (cards, log) {
-			var next = game.createEvent('FY_24', false);
+			const next = game.createEvent('FY_24', false);
 			next.player = this;
 			next.list2 = cards;
 			next.log = '算演';
-			if (log) next.log = log;
+			if (log) {
+				next.log = log;
+			}
 			next.setContent('FY_24');
 			return next;
 		};
 		lib.element.content.FY_24 = function () {
 			'step 0';
-			var cards = event.list2;
+			let cards = event.list2;
 			game.cardsGotoOrdering(cards);
 			event.cards = cards;
-			var dialog = ui.create.dialog(event.log, cards, true);
+			const dialog = ui.create.dialog(event.log, cards, true);
 			event.dialog = dialog;
 			event.list2 = [];
-			for (var i = 0; i < event.cards.length; i++) {
-				event.list2.push(get.number(event.cards[i]));
-			}
+			if (Array.isArray(event.cards))
+				for (const i of event.cards) {
+					event.list2.push(i.number);
+				}
 			event.list2.sort(function (a, b) {
 				return a - b;
 			});
 			if (!event.isMine()) {
-				player.popup('计算成功！');
+				player.popup('计算成功!');
 				player.gain(cards, 'gain2').gaintag.add('delta_sy');
 				player.addTempSkill('delta_sy_1');
 				event.dialog.close();
@@ -1751,7 +1846,7 @@ const YBSL_ybslf = function () {
 			}
 			('step 1');
 			event.list = [];
-			for (var i = 0; i < event.list2.length; i++) {
+			for (let i = 0; i < event.list2.length; i++) {
 				event.list.push(event.list2[i]);
 			}
 			event.log = '';
@@ -1760,7 +1855,7 @@ const YBSL_ybslf = function () {
 			('step 3');
 			event.num1 = result.control;
 			event.list.splice(event.list.indexOf(event.num1), 1);
-			player.chooseControl(event.list).set('prompt', '刚才选择了' + event.num1 + '，请选择要算的第二个数字');
+			player.chooseControl(event.list).set('prompt', '刚才选择了' + event.num1 + ',请选择要算的第二个数字');
 			('step 4');
 			event.num2 = result.control;
 			event.list.splice(event.list.indexOf(event.num2), 1);
@@ -1768,30 +1863,30 @@ const YBSL_ybslf = function () {
 			('step 5');
 			if (result.control == '+') {
 				event.count = event.num1 + event.num2;
-				var log = event.num1 + ' + ' + event.num2 + ' = ' + event.count;
+				const log = event.num1 + +event.num2 + ' = ' + event.count;
 				event.log += log;
 			}
 			if (result.control == '-') {
-				var num = event.num1 - event.num2;
+				let num = event.num1 - event.num2;
 				if (num > 0) {
 					event.count = num;
-					var log = event.num1 + ' - ' + event.num2 + ' = ' + event.count;
+					const log = event.num1 + ' - ' + event.num2 + ' = ' + event.count;
 					event.log += log;
 				} else {
 					event.count = -num;
-					var log = event.num2 + ' - ' + event.num1 + ' = ' + event.count;
+					const log = event.num2 + ' - ' + event.num1 + ' = ' + event.count;
 					event.log += log;
 				}
 			}
 			if (result.control == '*') {
 				event.count = event.num1 * event.num2;
-				var log = event.num1 + ' * ' + event.num2 + ' = ' + event.count;
+				const log = event.num1 + ' * ' + event.num2 + ' = ' + event.count;
 				event.log += log;
 			}
 			if (result.control == '/') {
-				var result = event.num1 / event.num2;
+				const result = event.num1 / event.num2;
 				event.count = result;
-				var log = event.num1 + ' / ' + event.num2 + ' = ' + event.count;
+				const log = event.num1 + ' / ' + event.num2 + ' = ' + event.count;
 				event.log += log;
 			}
 			if (result.control == '重做') {
@@ -1804,26 +1899,26 @@ const YBSL_ybslf = function () {
 			event.list.push(event.count);
 			('step 7');
 			if (event.list.length != 1) {
-				event.log += ' ；<br> ';
+				event.log += ' ;<br> ';
 				event.goto(2);
 			} else if (Math.abs(event.list[0] - 24) < 0.0001) {
 				event.goto(8);
 			} else {
 				player.popup(event.log + '算错了');
-				game.log('本次计算展示数字为：<span class=bluetext>' + event.list2 + '</span>，计算公式如下<br><span class=yellowtext> ' + event.log + '，但是计算错误~ </span>');
+				game.log('本次计算展示数字为:<span class=bluetext>' + event.list2 + '</span>,计算公式如下<br><span class=yellowtext> ' + event.log + ',但是计算错误~ </span>');
 				event.goto(1);
 			}
 			('step 8');
 			if (event.list.length == 1 && Math.abs(event.list[0] - 24) < 0.0001) {
-				player.popup('成功！');
+				player.popup('成功!');
 				event._result = { FY_24: 'victoey' };
-				game.log('本次计算展示数字为：<span class=bluetext>' + event.list2 + '</span>，计算公式如下<br><span class=yellowtext> ' + event.log + ' ，计算正确！</span>');
+				game.log('本次计算展示数字为:<span class=bluetext>' + event.list2 + '</span>,计算公式如下<br><span class=yellowtext> ' + event.log + ' ,计算正确!</span>');
 				event.dialog.close();
 				event.goto(9);
 			} else {
-				player.popup('失败！');
+				player.popup('失败!');
 				event._result = { FY_24: 'defeat' };
-				game.log('本次计算展示数字为：<span class=bluetext>' + event.list2 + '</span>，但是未能成功计算');
+				game.log('本次计算展示数字为:<span class=bluetext>' + event.list2 + '</span>,但是未能成功计算');
 				event.dialog.close();
 				event.goto(9);
 			}
@@ -1847,36 +1942,35 @@ const YBSL_ybslf = function () {
 				fullimage: true,
 				image: 'character:' + get.pinyin(str),
 			};
-			var card = game.creatCard('YB_' + get.pinyin(str));
+			let card = game.creatCard('YB_' + get.pinyin(str));
 			player.$gain2(card);
 			game.log(this, '摸了摸', str);
 		};
 		//-------------翻牌小游戏
 		lib.element.player.YB_playTurnCard = function () {
-			var next = game.createEvent('YB_playTurnCard', false);
+			const next = game.createEvent('YB_playTurnCard', false);
 			next.player = this;
 			next.setContent('YB_playTurnCard');
 			return next;
 		};
 		lib.element.content.YB_playTurnCard = function () {
-			//没写呢，别急
+			//没写呢,别急
 		};
-
 		//-------------命名
-		//-------------这部分作废，因为我没抄明白，bug连连，还不想删
+		//-------------这部分作废,因为我没抄明白,bug连连,还不想删
 		lib.element.player.YB_name = function () {
-			var next = game.createEvent('YB_name', false);
+			const next = game.createEvent('YB_name', false);
 			next.player = this;
 			next.setContent('YB_name');
 			return next;
 		};
 		lib.element.content.YB_name = function () {
 			'step 0';
-			var dialog = ui.create.dialog(false);
+			const dialog = ui.create.dialog(false);
 			dialog.add('【命名】<br>请输入你要命的名~');
 			dialog.add('\u6211\u7279\u610f\u6ca1\u5220\u5e72\u51c0\uff0c\u8fd9\u6837\u4f60\u624d\u4f1a\u77e5\u9053\uff0c\u539f\u6765\u6211\u6284\u4e86\u9b54\u738b');
-			var div = document.createElement('div');
-			var input = div.appendChild(document.createElement('input'));
+			const div = document.createElement('div');
+			const input = div.appendChild(document.createElement('input'));
 			input.type = 'text';
 			input.setAttribute('maxlength', '20');
 			input.addEventListener('keydown', (e) => {
@@ -1890,18 +1984,18 @@ const YBSL_ybslf = function () {
 			event.dialog = dialog;
 			event.input = input;
 			('step 1');
-			var { dialog, input } = event;
-			var clickFun = () => {
+			const { dialog, input } = event;
+			const clickFun = () => {
 				/* 移除dialog */
 				dialog.remove();
-				var value = input.value;
+				const value = input.value;
 				event.text = input.value;
 				game.resume();
 			};
 			if (event.isMine()) {
 				dialog.open();
 				game.pause();
-				var button = ui.create.control('确定', () => {
+				const button = ui.create.control('确定', () => {
 					if (!input.value) {
 						return alert('输入不能为空');
 						input.value = '';
@@ -1920,15 +2014,18 @@ const YBSL_ybslf = function () {
 		};
 		//-------------钫酸酱的文本输入
 		lib.element.player.FY_chooseText = function chooseText() {
-			var next = game.createEvent('FY_chooseText');
-			for (var i = 0; i < arguments.length; i++) {
+			const next = game.createEvent('FY_chooseText');
+			for (let i = 0; i < arguments.length; i++) {
 				if (typeof arguments[i] == 'boolean') {
 					next.forced = arguments[i];
 				} else if (Array.isArray(arguments[i])) {
 					next.filterText = arguments[i];
 				} else if (typeof arguments[i] == 'function') {
-					if (next.ai) next.filterText = arguments[i];
-					else next.ai = arguments[i];
+					if (next.ai) {
+						next.filterText = arguments[i];
+					} else {
+						next.ai = arguments[i];
+					}
 				} else if (typeof arguments[i] == 'string') {
 					get.evtprompt(next, arguments[i]);
 				} else if (get.itemtype(arguments[i]) == 'dialog') {
@@ -1936,7 +2033,9 @@ const YBSL_ybslf = function () {
 				} else if (typeof arguments[i] == 'number') {
 					next.max = arguments[i];
 				}
-				if (next.forced == undefined) next.forced = false;
+				if (next.forced == undefined) {
+					next.forced = false;
+				}
 			}
 			next.player = this;
 			next.setContent('FY_chooseText');
@@ -1973,12 +2072,12 @@ const YBSL_ybslf = function () {
 				game.pause();
 				game.countChoose();
 				event.choosing = true;
-				var button = ui.create.control('确定', () => {
+				const button = ui.create.control('确定', () => {
 					if (event.filterText) {
 						if (typeof event.filterText == 'function') {
 							event.filterText = event.filterText();
 						}
-						if (!event.filterText.contains(input.value)) {
+						if (!event.filterText.includes(input.value)) {
 							return alert('您输入的内容不合要求');
 						}
 					}
@@ -1987,7 +2086,7 @@ const YBSL_ybslf = function () {
 					doClose();
 				});
 				if (!event.forced) {
-					var cancel = ui.create.control('取消', () => {
+					const cancel = ui.create.control('取消', () => {
 						event.result.bool = false;
 						doClose();
 					});
@@ -1998,7 +2097,9 @@ const YBSL_ybslf = function () {
 				};
 				const doClose = () => {
 					button.remove();
-					if (cancel) cancel.remove();
+					if (cancel) {
+						cancel.remove();
+					}
 					game.resume();
 				};
 			} else if (event.isOnline()) {
@@ -2009,18 +2110,22 @@ const YBSL_ybslf = function () {
 			('step 1');
 			if (event.result == 'ai') {
 				if (event.ai) {
-					event.value = event.ai(event.getParent(), player);
+					event.value = event.ai(event.parent, player);
 				}
 				event.result = {};
 				event.result.bool = event.value != -1 || event.forced;
-				if (event.result.bool) event.result.text = event.value;
+				if (event.result.bool) {
+					event.result.text = event.value;
+				}
 			}
 			_status.imchoosing = false;
 			event.choosing = false;
-			if (event.dialog) event.dialog.close();
+			if (event.dialog) {
+				event.dialog.close();
+			}
 			event.resume();
 		};
-		//-------------夜白很愤怒！
+		//-------------夜白很愤怒!
 		game.YB_createCard = function (name, suit, number, nature, tag) {
 			if (typeof name == 'object') {
 				nature = name.nature;
@@ -2031,7 +2136,7 @@ const YBSL_ybslf = function () {
 			if (typeof name != 'string') {
 				name = 'sha';
 			}
-			var noclick = false;
+			let noclick = false;
 			if (suit == 'noclick') {
 				noclick = true;
 				suit = null;
@@ -2052,7 +2157,7 @@ const YBSL_ybslf = function () {
 			if (typeof number != 'number' && typeof number != 'string') {
 				number = Math.ceil(Math.random() * 13);
 			}
-			var card;
+			let card;
 			if (noclick) {
 				card = ui.create.card(ui.special, 'noclick', true);
 			} else {
@@ -2062,11 +2167,11 @@ const YBSL_ybslf = function () {
 			return card.init([suit, number, name, nature, tag]);
 		};
 		get.YB_tag = function (card) {
-			var tags = [];
+			const tags = [];
 			if (!_status.cardtag) {
 				_status.cardtag = {};
 			}
-			for (var m in _status.cardtag) {
+			for (const m in _status.cardtag) {
 				if (_status.cardtag[m].includes(card.cardid)) {
 					tags.add(m);
 				}
@@ -2074,12 +2179,12 @@ const YBSL_ybslf = function () {
 			return tags;
 		};
 		lib.element.card.YB_init = function (...objects) {
-			let id = this.cardid;
+			const id = this.cardid;
 			this.init(...objects);
 			this.cardid = id;
 		};
-		//--------函数演示，定向火焰伤害
-		//--------未知bug，禁止使用
+		//--------函数演示,定向火焰伤害
+		//--------未知bug,禁止使用
 		// lib.element.player.YB_toFire=function(targets,numb){
 		// if(numb&&typeof numb=='string')var numa=numb;
 		// else {
@@ -2090,7 +2195,7 @@ const YBSL_ybslf = function () {
 		// }
 		// else targets.damage('fire',num,this)
 		// }
-		// //--------函数演示，定向指定伤害
+		// //--------函数演示,定向指定伤害
 		// lib.element.player.YB_toDamage=function(targets,natures,numb){
 		// if(natures&&typeof natures=='string'&&(get.itemtype(natures[0])=='nature'||natures[0]=='recover'||natures[0]=='jueqing'))var nature=natures;
 		// else if(!natures||get.itemtype(natures)=='nature'||natures=='revover'||natures=='jueqing'){
@@ -2125,8 +2230,8 @@ const YBSL_ybslf = function () {
 		// content:'mark',
 		// },
 		// }
-		// //--------清退（清除其他角色的怒焰）（单填true,或false则各流失一点，填false+true则根据标记数流失）
-		// //--------清退（我是个sb）（不填则仅移除，填false则流失1，填true则根据标记数流失）
+		// //--------清退(清除其他角色的怒焰)(单填true,或false则各流失一点,填false+true则根据标记数流失)
+		// //--------清退(我是个sb)(不填则仅移除,填false则流失1,填true则根据标记数流失)
 		// lib.element.player.YB_qingtui=function(str){
 		// var player=this;
 		// game.countPlayer(function(current){
@@ -2135,7 +2240,7 @@ const YBSL_ybslf = function () {
 		// list.push(current);
 		// }
 		// player.line(list,'thunder')
-		// for (var i of list){
+		// for (const i of list){
 		// i.YB_yinbaofire(str);
 		// }
 		// })
@@ -2167,23 +2272,23 @@ const YBSL_ybslf = function () {
 		// //-------------结阵相关
 		// _status.yb_jiezhenPlayers={}//此集合记录所有阵列及其成员
 		// _status.yb_zhenyanPlayers={}//此集合记录所有阵列的阵眼
-		// //判断输入的角色是否已加入阵列，若为是则输出角色所处阵列，否则输出true
+		// //判断输入的角色是否已加入阵列,若为是则输出角色所处阵列,否则输出true
 		// get.YB_jiezhen=function(player){//-----------二级
 		// var list=_status.yb_jiezhenPlayers;
 		// for(var i in list){
-		// if(i&&list[i].contains(player)){
+		// if(i&&list[i].includes(player)){
 		// return i;
 		// }
 		// }
 		// return true;
 		// }
-		// //判断输入的角色是否为阵眼，若为否则输出阵眼序号，否则输出true
+		// //判断输入的角色是否为阵眼,若为否则输出阵眼序号,否则输出true
 		// get.YB_zhenyan=function(player){//-----------三级
 		// if(get.YB_jiezhen(player)==true)return false;
 		// var list=_status.yb_jiezhenPlayers;
 		// var list2=_status.yb_zhenyanPlayers;
 		// for(var i in list){
-		// if(i&&list[i].contains(player)){
+		// if(i&&list[i].includes(player)){
 		// var k=i;
 		// }
 		// }
@@ -2196,7 +2301,7 @@ const YBSL_ybslf = function () {
 		// var list=_status.yb_jiezhenPlayers;
 		// var list2=_status.yb_zhenyanPlayers;
 		// for(var i in list){
-		// if(i&&list[i].contains(player)){
+		// if(i&&list[i].includes(player)){
 		// var k=i;
 		// }
 		// }
@@ -2230,7 +2335,7 @@ const YBSL_ybslf = function () {
 		// var list=_status.yb_jiezhenPlayers;
 		// var list2=_status.yb_zhenyanPlayers;
 		// for(var i in list){
-		// if(i&&list[i].contains(player)){
+		// if(i&&list[i].includes(player)){
 		// var k=i;
 		// }
 		// }
@@ -2245,7 +2350,7 @@ const YBSL_ybslf = function () {
 		// if(x!=true&&y!=true&&x==y)return true;
 		// return false;
 		// }
-		// //一行代码让输入的角色结阵，不输入阵名则随机用一个武将技能翻译作为阵名
+		// //一行代码让输入的角色结阵,不输入阵名则随机用一个武将技能翻译作为阵名
 		// lib.element.player.YB_jiezhen=function(ii,str){//-----------三级
 		// var player=this;
 		// // 'step 0'
@@ -2283,7 +2388,7 @@ const YBSL_ybslf = function () {
 		// for(var st=1;st<list5.length;st++){
 		// list6.push(list5[st])
 		// }
-		// game.log(player,'与',list6,'结成了'+str+'阵，阵眼是',player)
+		// game.log(player,'与',list6,'结成了'+str+'阵,阵眼是',player)
 		// _status.yb_zhenyanPlayers[str]='0';
 		// }
 		// //解除阵列
@@ -2304,7 +2409,7 @@ const YBSL_ybslf = function () {
 		// if(!str)event.str=get.YB_jiezhen(this);
 		// if(str!=true){
 		// if(get.YB_zhenyan(this)!=true){
-		// game.log(this,'将'+str+'阵的阵眼改成了',this,'。')
+		// game.log(this,'将'+str+'阵的阵眼改成了',this,'')
 		// _status.yb_zhenyanPlayers[str]=get.YB_jiezhen_num(this);
 		// }
 		// }
@@ -2338,7 +2443,7 @@ const YBSL_ybslf = function () {
 		// delay:false,
 		// charlotte:true,
 		// prompt:function (player){
-		// if(get.YB_jiezhen(player)==true)return '请选择两名其他角色，与他们结成阵列。';
+		// if(get.YB_jiezhen(player)==true)return '请选择两名其他角色,与他们结成阵列';
 		// return '是否将阵眼转移给自己？';
 		// },
 		// filter:function(event,player){
@@ -2361,7 +2466,7 @@ const YBSL_ybslf = function () {
 		// content:function(){
 		// 'step 0'
 		// if(targets){
-		// player.FY_chooseText().set('prompt','请为此阵命名。不输入直接确定会出错，点取消则会随机取名。');
+		// player.FY_chooseText().set('prompt','请为此阵命名.不输入直接确定会出错,点取消则会随机取名');
 		// event.list=[];
 		// for(var i of targets){
 		// event.list.push(i);
@@ -2409,7 +2514,7 @@ const YBSL_ybslf = function () {
 		// content:function(event,player,storage,name,skill){
 		// var list=get.YB_jiezhen(player);
 		// var list2=get.YB_zhenyan2(player);
-		// return list+'阵，成员包括'+get.YB_tobo3(get.YB_jiezhenPlayers(list))+'，阵眼是'+get.translation(list2.name);
+		// return list+'阵,成员包括'+get.YB_tobo3(get.YB_jiezhenPlayers(list))+',阵眼是'+get.translation(list2.name);
 		// }
 		// },
 		// ai:{
@@ -2447,7 +2552,7 @@ const YBSL_ybslf = function () {
 		// return false;
 		// },
 		// content:function(){
-		// game.log(trigger.source,'触发了阵内伤害豁免，防止了对',player,'的伤害。')
+		// game.log(trigger.source,'触发了阵内伤害豁免,防止了对',player,'的伤害')
 		// trigger.cancel();
 		// },
 		// ai:{
@@ -2487,7 +2592,7 @@ const YBSL_ybslf = function () {
 		// for(var k of list){
 		// k.unmarkSkill('_ybsc_jiezhen');
 		// }
-		// game.log(this,'阵亡，'+str+'阵被迫解除。')
+		// game.log(this,'阵亡,'+str+'阵被迫解除')
 		// delete _status.yb_jiezhenPlayers[str];
 		// delete _status.yb_zhenyanPlayers[str];
 		// },
@@ -2498,7 +2603,9 @@ const YBSL_ybslf = function () {
 		get.YB_chongzhijiList = function (player, skill) {
 			if (!player.storage[skill + '_chongzhijiList']) {
 				player.storage[skill + '_chongzhijiList'] = [];
-				if (lib.skill[skill].chongzhijiList) player.storage[skill + '_chongzhijiList'] = lib.skill[skill].chongzhijiList;
+				if (lib.skill[skill].chongzhijiList) {
+					player.storage[skill + '_chongzhijiList'] = lib.skill[skill].chongzhijiList;
+				}
 			}
 			return player.storage[skill + '_chongzhijiList'];
 		};
@@ -2506,7 +2613,7 @@ const YBSL_ybslf = function () {
 			if (!player.storage[skill] || player.storage[skill].length == 0) {
 				player.storage[skill] = [];
 				if (player.storage[skill + '_chongzhijiList']) {
-					for (var i = 0; i < player.storage[skill + '_chongzhijiList'].length; i++) {
+					for (let i = 0; i < player.storage[skill + '_chongzhijiList'].length; i++) {
 						player.storage[skill].add(player.storage[skill + '_chongzhijiList'][i]);
 					}
 				}
@@ -2521,26 +2628,27 @@ const YBSL_ybslf = function () {
 		get.YB_cardMaxLose = function (target) {
 			// if(!target.isMaxHandcard(true))var num=1;
 			// else{
-			var players = game.filterPlayer((c) => c != target);
-			var numb = 0;
-			for (var i of players) {
-				if (i.countCards('h') > numb) numb = i.countCards('h');
+			const players = game.filterPlayer((c) => c != target);
+			let numb = 0;
+			for (const i of players) {
+				if (i.countCards('h') > numb) {
+					numb = i.countCards('h');
+				}
 			}
 			return target.countCards('h') + 1 - numb;
 			// }
 		};
 		lib.element.player.YB_recover = function (num) {
-			var next = game.createEvent('YB_recover');
+			const next = game.createEvent('YB_recover');
 			next.player = this;
 			next.num = num;
 			next.setContent('YB_recover');
 			return next;
 		};
 		lib.element.content.YB_recover = function () {
-			var n1 = num,
-				n2 = player.getDamagedHp();
+			const n1 = num, n2 = player.getDamagedHp();
 			if (n1 > n2) {
-				var n3 = n1 - n2;
+				const n3 = n1 - n2;
 				player.recover(n2);
 				player.gainMaxHp(n3);
 			} else {
@@ -2561,7 +2669,7 @@ const YBSL_ybslf = function () {
 		 * @returns
 		 */
 		lib.element.player.YB_exchange = function () {
-			var next = game.createEvent('YB_exchange');
+			const next = game.createEvent('YB_exchange');
 			next.player = this;
 			next.setContent(function () {
 				'step 0';
@@ -2583,20 +2691,25 @@ const YBSL_ybslf = function () {
 		 * @param {属性的字符串} nature 需要加进去的属性
 		 */
 		game.YB_addNature = function (trigger, nature) {
-			var natures = trigger.nature;
+			let natures = trigger.nature;
 			// if (natures!=null) {
 			if (natures == null || natures == '' || natures == undefined) {
 				natures = [];
 			}
 			if (!Array.isArray(natures)) {
 				if (typeof natures == 'string') {
-					if (natures.includes('|')) natures = natures.split('|').filter((item) => item !== '');
-					else natures = [natures];
+					if (natures.includes('|')) {
+						natures = natures.split('|').filter((item) => item !== '');
+					} else {
+						natures = [natures];
+					}
 				}
 			}
-			if (!natures.includes(nature)) natures.push(nature);
+			if (!natures.includes(nature)) {
+				natures.push(nature);
+			}
 			if (Array.isArray(natures)) {
-				var naturex = natures.join('|');
+				const naturex = natures.join('|');
 			}
 			// }
 			game.setNature(trigger, naturex);
@@ -2610,27 +2723,30 @@ const YBSL_ybslf = function () {
 				// console.log(character,lib.character[character].img)
 				return lib.character[character].img;
 			} else if (lib.character[character][4]) {
-				var infoy = lib.character[character][4];
+				const infoy = lib.character[character][4];
 				// console.log(infoy)
-				for (var infox of infoy) {
+				for (const infox of infoy) {
 					// console.log(infox)
 					if (infox.startsWith('ext:')) {
-						var sta = infox.slice(4);
+						const sta = infox.slice(4);
 						// console.log('ext',sta)
 						return sta;
 						// pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
 					} else if (infox.startsWith('img:')) {
-						var sta = infox.slice(4);
+						const sta = infox.slice(4);
 						// console.log('img',sta)
 						return sta;
 						// return infox.slice(4);
-					} else return `image/character/${character}.jpg`;
+					} else {
+						return `image/character/${character}.jpg`;
+					}
 				}
-			} else return `image/character/${character}.jpg`;
+			} else {
+				return `image/character/${character}.jpg`;
+			}
 		};
 	}
-
-	//封装：将武将牌制成游戏牌
+	//封装:将武将牌制成游戏牌
 	//没写完呢
 	{
 		//暂时作废
@@ -2687,7 +2803,7 @@ const YBSL_ybslf = function () {
 				list.remove("锁定技");
 				return list.length == 0;
 			});
-			var str = "锁定技。";
+			var str = "锁定技.";
 			if (skills.length) {
 				card.skills.addArray(skills);
 				str += "你视为拥有技能";
@@ -2696,7 +2812,7 @@ const YBSL_ybslf = function () {
 					str += "、";
 				}
 				str = str.slice(0, str.length - 1);
-				str += "；";
+				str += ";";
 				card.ai.equipValue = function (card, player) {
 					let val = maxHp;
 					val *= 0.6;
@@ -2706,7 +2822,7 @@ const YBSL_ybslf = function () {
 			if(remove){
 				if(remove.translate)str+=remove.translate;
 			}
-			// str += "此牌离开你的装备区后，改为置入剩余武将牌牌堆。";
+			// str += "此牌离开你的装备区后,改为置入剩余武将牌牌堆.";
 			lib.translate["YB_characterToCard_" + name + "_info"] = str;
 			var append = "";
 			if (skills.length) {
@@ -2731,9 +2847,9 @@ const YBSL_ybslf = function () {
 		//----------自定义函数3
 		//摸指定要求的牌
 		lib.element.player.YB_drawCard = function () {
-			var next = game.createEvent('YB_drawCard');
+			const next = game.createEvent('YB_drawCard');
 			next.player = this;
-			for (var i = 0; i < arguments.length; i++) {
+			for (let i = 0; i < arguments.length; i++) {
 				if (typeof arguments[i] === 'number') {
 					next.num = arguments[i];
 				} else if (typeof arguments[i] === 'function') {
@@ -2741,7 +2857,7 @@ const YBSL_ybslf = function () {
 					next.filter = Array.from(arguments).slice(i + 1);
 					break;
 				} else if (typeof arguments[i] === 'object' && !Array.isArray(arguments[i])) {
-					var ctrl = arguments[i];
+					const ctrl = arguments[i];
 					next.fun = (function getCards() {
 						return function (num) {
 							if (typeof num != 'number') {
@@ -2750,12 +2866,12 @@ const YBSL_ybslf = function () {
 							if (num <= 0) {
 								return [];
 							}
-							var list = [];
+							let list = [];
 							if (num > 0) {
-								for (var i of ui.cardPile.childNodes) {
-									var types = Object.keys(ctrl);
-									for (var type in ctrl) {
-										var typename = ctrl[type];
+								for (const i of ui.cardPile.childNodes) {
+									const types = Object.keys(ctrl);
+									for (const type in ctrl) {
+										const typename = ctrl[type];
 										if (type != 'bkts') {
 											if (type == 'tag') {
 												if (typename.startsWith('!')) {
@@ -2795,10 +2911,8 @@ const YBSL_ybslf = function () {
 					break;
 				}
 			}
-
 			next.setContent(function () {
 				'step 0';
-				console.log(event.fun);
 				player.draw(num, event.filter).set('otherGetCards', event.fun).gaintag = event.gaintag || [];
 			});
 			return next;
@@ -2811,8 +2925,8 @@ const YBSL_ybslf = function () {
 			if (lib.character[name].YB_mjz) {
 				return lib.character[name].YB_mjz;
 			} else {
-				var infox = lib.character[name][4];
-				for (var i in infox) {
+				const infox = lib.character[name][4];
+				for (let i in infox) {
 					if (infox[i].startsWith('YB_mjz:')) {
 						return infox[i].slice(7);
 					}
@@ -2824,20 +2938,19 @@ const YBSL_ybslf = function () {
 	//-----------转换卡牌
 	{
 		lib.element.player.YB_zhuanhuanCard = function (card) {
-			var next = game.createEvent('YB_zhuanhuanCard');
+			const next = game.createEvent('YB_zhuanhuanCard');
 			next.player = this;
 			next.card = card;
 			next.setContent(function () {
 				'step 0';
 				event.trigger('YB_zhuanhuanCard');
 				('step 1');
-
 				game.broadcastAll(
 					function (card, player) {
 						if (!card.storage || !card.storage.zhuanhuanNum) {
 							card.storage.zhuanhuanNum = 0;
 						}
-						var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+						let num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
 						if (card.storage.zhuanhuanList[num]) {
 							game.log(player, '转换了', card);
 							// card.storage.zhuanhuanNum==card.storage.zhuanhuanList.length-1?card.storage.zhuanhuanNum=0:card.storage.zhuanhuanNum++;
@@ -2850,7 +2963,7 @@ const YBSL_ybslf = function () {
 			});
 		};
 		get.zhuanhuanCard = function (card) {
-			if (card.storage.zhuanhuanList && card.storage.zhuanhuanList.length > 0) {
+			if (card.storage.zhuanhuanList && card.storage.zhuanhuanList.length) {
 				return true;
 			} else {
 				return lib.card[card.name].zhuanhuanList;

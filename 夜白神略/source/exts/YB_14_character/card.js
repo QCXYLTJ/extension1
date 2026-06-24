@@ -1,7 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { card };
-
-/** @type { importCharacterConfig['card'] } */
+/** @type { importCharacterConfig.card } */
 const card = {
 	ybsl_zhaosanmusi: {
 		audio: 'ext:夜白神略/audio/card:true',
@@ -11,19 +10,22 @@ const card = {
 		selectTarget: -1,
 		// cardcolor:'red',
 		toself: true,
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return target == player;
 		},
 		modTarget: true,
-		content: function () {
+		content() {
 			'step 0';
-			var list = ['摸三弃四', '弃三摸四'];
+			const list = ['摸三弃四', '弃三摸四'];
 			target
 				.chooseControl(list)
-				.set('prompt', '请选择摸三弃四，还是弃三摸四')
+				.set('prompt', '请选择摸三弃四,还是弃三摸四')
 				.set('ai', function (control) {
-					if (target.countCards('h') > 6) return 0;
-					else return 1;
+					if (target.countCards('h') > 6) {
+						return 0;
+					} else {
+						return 1;
+					}
 				});
 			('step 1');
 			if (result.control == '摸三弃四') {
@@ -32,11 +34,16 @@ const card = {
 			('step 2');
 			('step 3');
 			target.chooseCard('h', 3).set('ai', function (card) {
-				if (target.isPhaseUsing()) return -get.useful(card);
-				else return -get.value(card);
+				if (target.isPhaseUsing()) {
+					return -get.useful(card);
+				} else {
+					return -get.value(card);
+				}
 			});
 			('step 4');
-			if (result.cards) target.discard(result.cards);
+			if (result.cards) {
+				target.discard(result.cards);
+			}
 			('step 5');
 			target.draw(4);
 			event.finish();
@@ -44,11 +51,16 @@ const card = {
 			target.draw(3);
 			('step 7');
 			target.chooseCard('h', 4).set('ai', function (card) {
-				if (target.isPhaseUsing()) return -get.useful(card);
-				else return -get.value(card);
+				if (target.isPhaseUsing()) {
+					return -get.useful(card);
+				} else {
+					return -get.value(card);
+				}
 			});
 			('step 8');
-			if (result.cards) target.discard(result.cards);
+			if (result.cards) {
+				target.discard(result.cards);
+			}
 		},
 		ai: {
 			basic: {
@@ -65,7 +77,6 @@ const card = {
 			},
 		},
 	},
-
 	ybsl_ptchiling1: {
 		// cardimage:'ybsl_ptchiling3',
 		ai: {
@@ -119,7 +130,7 @@ const card = {
 		selectTarget: [-1, -1],
 		toself: true,
 		judge(card) {
-			if (get.suit(card) == 'diamond') {
+			if (card.suit == 'diamond') {
 				return 0;
 			}
 			return 2;

@@ -1,6 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { card };
-/** @type { importCardConfig['card'] } */
+/** @type { importCardConfig.card } */
 const card = {
 	ybsl_qingfengshan: {
 		bingzhu: ['庞统'],
@@ -77,24 +77,37 @@ const card = {
 		reverseOrder: true,
 		content() {
 			'step 0';
-			if (typeof event.shaRequired != 'number' || !event.shaRequired || event.shaRequired < 0) event.shaRequired = 1;
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
+			if (typeof event.shaRequired != 'number' || !event.shaRequired || event.shaRequired < 0) {
+				event.shaRequired = 1;
+			}
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
 			('step 1');
-			if (event.directHit) event._result = { bool: false };
-			else {
-				var next = target.chooseToRespond();
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
+				const next = target.chooseToRespond();
 				next.set('filterCard', function (card, player) {
-					if (get.name(card) != 'sha') return false;
+					if (card.name != 'sha') {
+						return false;
+					}
 					return lib.filter.cardRespondable(card, player);
 				});
 				if (event.shaRequired > 1) {
 					next.set('prompt2', '共需打出' + event.shaRequired + '张杀');
 				}
 				next.set('ai', function (card) {
-					var evt = _status.event.getParent();
-					if (get.damageEffect(evt.target, evt.player, evt.target, 'ice') >= 0) return 0;
-					if (evt.player.hasSkillTag('notricksource')) return 0;
-					if (evt.target.hasSkillTag('notrick')) return 0;
+					const evt = _status.event.parent;
+					if (get.damageEffect(evt.target, evt.player, evt.target, 'ice') >= 0) {
+						return 0;
+					}
+					if (evt.player.hasSkillTag('notricksource')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('notrick')) {
+						return 0;
+					}
 					return get.order(card);
 				});
 				next.set('respondTo', [player, card]);
@@ -105,14 +118,17 @@ const card = {
 				target.damage('ice');
 			} else {
 				event.shaRequired--;
-				if (event.shaRequired > 0) event.goto(1);
+				if (event.shaRequired > 0) {
+					event.goto(1);
+				}
 			}
 		},
 		ai: {
 			wuxie(target, card, player, viewer, status) {
-				let att = get.attitude(viewer, target),
-					eff = get.effect(target, card, player, target);
-				if (Math.abs(att) < 1 || status * eff * att >= 0) return 0;
+				const att = get.attitude(viewer, target), eff = get.effect(target, card, player, target);
+				if (Math.abs(att) < 1 || status * eff * att >= 0) {
+					return 0;
+				}
 				let evt = _status.event.getParent('useCard'),
 					pri = 1,
 					bonus = player.hasSkillTag('damageBonus', true, {
@@ -124,43 +140,62 @@ const card = {
 						return tar.isZhu || tar === game.boss || tar === game.trueZhu || tar === game.falseZhu;
 					},
 					canSha = function (tar, blur) {
-						let known = tar.getKnownCards(viewer);
-						if (!blur)
+						const known = tar.getKnownCards(viewer);
+						if (!blur) {
 							return known.some((card) => {
-								let name = get.name(card, tar);
+								const name = card.name;
 								return (name === 'sha' || name === 'hufu' || name === 'yuchanqian') && lib.filter.cardRespondable(card, tar);
 							});
-						if (tar.countCards('hs', (i) => !known.includes(i)) > 4.67 - (2 * tar.hp) / tar.maxHp) return true;
-						if (!tar.hasSkillTag('respondSha', true, 'respond', true)) return false;
-						if (tar.hp <= damage) return false;
-						if (tar.hp <= damage + 1) return isZhu(tar);
+						}
+						if (tar.countCards('hs', (i) => !known.includes(i)) > 4.67 - (2 * tar.hp) / tar.maxHp) {
+							return true;
+						}
+						if (!tar.hasSkillTag('respondSha', true, 'respond', true)) {
+							return false;
+						}
+						if (tar.hp <= damage) {
+							return false;
+						}
+						if (tar.hp <= damage + 1) {
+							return isZhu(tar);
+						}
 						return true;
 					},
 					self = false;
-				if (canSha(target)) return 0;
+				if (canSha(target)) {
+					return 0;
+				}
 				if (
 					bonus &&
 					!viewer.hasSkillTag('filterDamage', null, {
 						player: player,
 						card: card,
 					})
-				)
+				) {
 					damage = 2;
+				}
 				if ((viewer.hp <= damage || (viewer.hp <= damage + 1 && isZhu(viewer))) && !canSha(viewer)) {
-					if (viewer === target) return status;
+					if (viewer === target) {
+						return status;
+					}
 					let fv = true;
-					if (evt && evt.targets)
+					if (evt && evt.targets) {
 						for (let i of evt.targets) {
 							if (fv) {
-								if (target === i) fv = false;
+								if (target === i) {
+									fv = false;
+								}
 								continue;
 							}
 							if (viewer == i) {
-								if (isZhu(viewer)) return 0;
+								if (isZhu(viewer)) {
+									return 0;
+								}
 								self = true;
 								break;
 							}
 						}
+					}
 				}
 				let maySha = canSha(target, true);
 				if (
@@ -169,36 +204,60 @@ const card = {
 						player: player,
 						card: card,
 					})
-				)
+				) {
 					damage = 2;
-				else damage = 1;
+				} else {
+					damage = 1;
+				}
 				if (isZhu(target)) {
 					if (eff < 0) {
-						if (target.hp <= damage + 1 || (!maySha && target.hp <= damage + 2)) return 1;
-						if (maySha && target.hp > damage + 2) return 0;
-						else if (maySha || target.hp > damage + 2) pri = 3;
-						else pri = 4;
-					} else if (target.hp > damage + 1) pri = 2;
-					else return 0;
-				} else if (self) return 0;
-				else if (eff < 0) {
-					if (!maySha && target.hp <= damage) pri = 5;
-					else if (maySha) return 0;
-					else if (target.hp > damage + 1) pri = 2;
-					else if (target.hp === damage + 1) pri = 3;
-					else pri = 4;
-				} else if (target.hp <= damage) return 0;
+						if (target.hp <= damage + 1 || (!maySha && target.hp <= damage + 2)) {
+							return 1;
+						}
+						if (maySha && target.hp > damage + 2) {
+							return 0;
+						} else if (maySha || target.hp > damage + 2) {
+							pri = 3;
+						} else {
+							pri = 4;
+						}
+					} else if (target.hp > damage + 1) {
+						pri = 2;
+					} else {
+						return 0;
+					}
+				} else if (self) {
+					return 0;
+				} else if (eff < 0) {
+					if (!maySha && target.hp <= damage) {
+						pri = 5;
+					} else if (maySha) {
+						return 0;
+					} else if (target.hp > damage + 1) {
+						pri = 2;
+					} else if (target.hp === damage + 1) {
+						pri = 3;
+					} else {
+						pri = 4;
+					}
+				} else if (target.hp <= damage) {
+					return 0;
+				}
 				let find = false;
-				if (evt && evt.targets)
+				if (evt && evt.targets) {
 					for (let i = 0; i < evt.targets.length; i++) {
 						if (!find) {
-							if (evt.targets[i] === target) find = true;
+							if (evt.targets[i] === target) {
+								find = true;
+							}
 							continue;
 						}
 						let att1 = get.attitude(viewer, evt.targets[i]),
 							eff1 = get.effect(evt.targets[i], card, player, evt.targets[i]),
 							temp = 1;
-						if (Math.abs(att1) < 1 || att1 * eff1 >= 0 || canSha(evt.targets[i])) continue;
+						if (Math.abs(att1) < 1 || att1 * eff1 >= 0 || canSha(evt.targets[i])) {
+							continue;
+						}
 						maySha = canSha(evt.targets[i], true);
 						if (
 							bonus &&
@@ -206,26 +265,49 @@ const card = {
 								player: player,
 								card: card,
 							})
-						)
+						) {
 							damage = 2;
-						else damage = 1;
+						} else {
+							damage = 1;
+						}
 						if (isZhu(evt.targets[i])) {
 							if (eff1 < 0) {
-								if (evt.targets[i].hp <= damage + 1 || (!maySha && evt.targets[i].hp <= damage + 2)) return 0;
-								if (maySha && evt.targets[i].hp > damage + 2) continue;
-								if (maySha || evt.targets[i].hp > damage + 2) temp = 3;
-								else temp = 4;
-							} else if (evt.targets[i].hp > damage + 1) temp = 2;
-							else continue;
+								if (evt.targets[i].hp <= damage + 1 || (!maySha && evt.targets[i].hp <= damage + 2)) {
+									return 0;
+								}
+								if (maySha && evt.targets[i].hp > damage + 2) {
+									continue;
+								}
+								if (maySha || evt.targets[i].hp > damage + 2) {
+									temp = 3;
+								} else {
+									temp = 4;
+								}
+							} else if (evt.targets[i].hp > damage + 1) {
+								temp = 2;
+							} else {
+								continue;
+							}
 						} else if (eff1 < 0) {
-							if (!maySha && evt.targets[i].hp <= damage) temp = 5;
-							else if (maySha) continue;
-							else if (evt.targets[i].hp > damage + 1) temp = 2;
-							else if (evt.targets[i].hp === damage + 1) temp = 3;
-							else temp = 4;
-						} else if (evt.targets[i].hp > damage + 1) temp = 2;
-						if (temp > pri) return 0;
+							if (!maySha && evt.targets[i].hp <= damage) {
+								temp = 5;
+							} else if (maySha) {
+								continue;
+							} else if (evt.targets[i].hp > damage + 1) {
+								temp = 2;
+							} else if (evt.targets[i].hp === damage + 1) {
+								temp = 3;
+							} else {
+								temp = 4;
+							}
+						} else if (evt.targets[i].hp > damage + 1) {
+							temp = 2;
+						}
+						if (temp > pri) {
+							return 0;
+						}
 					}
+				}
 				return 1;
 			},
 			basic: {
@@ -235,60 +317,104 @@ const card = {
 			},
 			result: {
 				player(player, target) {
-					if (player._nanman_temp || player.hasSkillTag('jueqing', false, target)) return 0;
-					if (target.hp > 2 || (target.hp > 1 && !target.isZhu && target != game.boss && target != game.trueZhu && target != game.falseZhu)) return 0;
+					if (player._nanman_temp || player.hasSkillTag('jueqing', false, target)) {
+						return 0;
+					}
+					if (target.hp > 2 || (target.hp > 1 && !target.isZhu && target != game.boss && target != game.trueZhu && target != game.falseZhu)) {
+						return 0;
+					}
 					player._nanman_temp = true;
-					let eff = get.effect(target, new lib.element.VCard({ name: 'nanman' }), player, target);
+					const eff = get.effect(target, new lib.element.VCard({ name: 'nanman' }), player, target);
 					delete player._nanman_temp;
-					if (eff >= 0) return 0;
-					if (target.hp > 1 && target.hasSkillTag('respondSha', true, 'respond', true)) return 0;
-					let known = target.getKnownCards(player);
+					if (eff >= 0) {
+						return 0;
+					}
+					if (target.hp > 1 && target.hasSkillTag('respondSha', true, 'respond', true)) {
+						return 0;
+					}
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
-							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') return lib.filter.cardRespondable(card, target);
-							if (name === 'wuxie') return lib.filter.cardEnabled(card, target, 'forceEnable');
+							const name = card.name;
+							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') {
+								return lib.filter.cardRespondable(card, target);
+							}
+							if (name === 'wuxie') {
+								return lib.filter.cardEnabled(card, target, 'forceEnable');
+							}
 						})
-					)
+					) {
 						return 0;
-					if (target.hp > 1 || target.countCards('hs', (i) => !known.includes(i)) > 4.67 - (2 * target.hp) / target.maxHp) return 0;
+					}
+					if (target.hp > 1 || target.countCards('hs', (i) => !known.includes(i)) > 4.67 - (2 * target.hp) / target.maxHp) {
+						return 0;
+					}
 					let res = 0,
 						att = get.sgnAttitude(player, target);
 					res -= att * (0.8 * target.countCards('hs') + 0.6 * target.countCards('e') + 3.6);
-					if (get.mode() === 'identity' && target.identity === 'fan') res += 2.4;
-					if ((get.mode() === 'guozhan' && player.identity !== 'ye' && player.identity === target.identity) || (get.mode() === 'identity' && player.identity === 'zhu' && (target.identity === 'zhong' || target.identity === 'mingzhong'))) res -= 0.8 * player.countCards('he');
+					if (get.mode() === 'identity' && target.identity === 'fan') {
+						res += 2.4;
+					}
+					if ((get.mode() === 'guozhan' && player.identity !== 'ye' && player.identity === target.identity) || (get.mode() === 'identity' && player.identity === 'zhu' && (target.identity === 'zhong' || target.identity === 'mingzhong'))) {
+						res -= 0.8 * player.countCards('he');
+					}
 					return res;
 				},
 				target(player, target) {
-					let zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
+					const zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
 					if (!lib.filter.cardRespondable({ name: 'sha' }, target)) {
 						if (zhu) {
-							if (target.hp < 2) return -99;
-							if (target.hp === 2) return -3.6;
+							if (target.hp < 2) {
+								return -99;
+							}
+							if (target.hp === 2) {
+								return -3.6;
+							}
 						}
 						return -2;
 					}
-					let known = target.getKnownCards(player);
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
-							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') return lib.filter.cardRespondable(card, target);
-							if (name === 'wuxie') return lib.filter.cardEnabled(card, target, 'forceEnable');
+							const name = card.name;
+							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') {
+								return lib.filter.cardRespondable(card, target);
+							}
+							if (name === 'wuxie') {
+								return lib.filter.cardEnabled(card, target, 'forceEnable');
+							}
 						})
-					)
+					) {
 						return -1.2;
-					let nh = target.countCards('hs', (i) => !known.includes(i));
+					}
+					const nh = target.countCards('hs', (i) => !known.includes(i));
 					if (zhu && target.hp <= 1) {
-						if (nh === 0) return -99;
-						if (nh === 1) return -60;
-						if (nh === 2) return -36;
-						if (nh === 3) return -12;
-						if (nh === 4) return -8;
+						if (nh === 0) {
+							return -99;
+						}
+						if (nh === 1) {
+							return -60;
+						}
+						if (nh === 2) {
+							return -36;
+						}
+						if (nh === 3) {
+							return -12;
+						}
+						if (nh === 4) {
+							return -8;
+						}
 						return -5;
 					}
-					if (target.hasSkillTag('respondSha', true, 'respond', true)) return -1.35;
-					if (!nh) return -2;
-					if (nh === 1) return -1.8;
+					if (target.hasSkillTag('respondSha', true, 'respond', true)) {
+						return -1.35;
+					}
+					if (!nh) {
+						return -2;
+					}
+					if (nh === 1) {
+						return -1.8;
+					}
 					return -1.5;
 				},
 			},
@@ -316,24 +442,37 @@ const card = {
 		},
 		content() {
 			'step 0';
-			if (typeof event.shanRequired != 'number' || !event.shanRequired || event.shanRequired < 0) event.shanRequired = 1;
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
+			if (typeof event.shanRequired != 'number' || !event.shanRequired || event.shanRequired < 0) {
+				event.shanRequired = 1;
+			}
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
 			('step 1');
-			if (event.directHit) event._result = { bool: false };
-			else {
-				var next = target.chooseToRespond();
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
+				const next = target.chooseToRespond();
 				next.set('filterCard', function (card, player) {
-					if (get.name(card) != 'shan') return false;
+					if (card.name != 'shan') {
+						return false;
+					}
 					return lib.filter.cardRespondable(card, player);
 				});
 				if (event.shanRequired > 1) {
 					next.set('prompt2', '共需打出' + event.shanRequired + '张闪');
 				}
 				next.set('ai', function (card) {
-					var evt = _status.event.getParent();
-					if (get.damageEffect(evt.target, evt.player, evt.target, 'YB_wind') >= 0) return 0;
-					if (evt.player.hasSkillTag('notricksource')) return 0;
-					if (evt.target.hasSkillTag('notrick')) return 0;
+					const evt = _status.event.parent;
+					if (get.damageEffect(evt.target, evt.player, evt.target, 'YB_wind') >= 0) {
+						return 0;
+					}
+					if (evt.player.hasSkillTag('notricksource')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('notrick')) {
+						return 0;
+					}
 					if (evt.target.hasSkillTag('noShan')) {
 						return -1;
 					}
@@ -347,14 +486,17 @@ const card = {
 				target.damage('YB_wind');
 			} else {
 				event.shanRequired--;
-				if (event.shanRequired > 0) event.goto(1);
+				if (event.shanRequired > 0) {
+					event.goto(1);
+				}
 			}
 		},
 		ai: {
 			wuxie(target, card, player, viewer, status) {
-				let att = get.attitude(viewer, target),
-					eff = get.effect(target, card, player, target);
-				if (Math.abs(att) < 1 || status * eff * att >= 0) return 0;
+				const att = get.attitude(viewer, target), eff = get.effect(target, card, player, target);
+				if (Math.abs(att) < 1 || status * eff * att >= 0) {
+					return 0;
+				}
 				let evt = _status.event.getParent('useCard'),
 					pri = 1,
 					bonus = player.hasSkillTag('damageBonus', true, {
@@ -366,43 +508,62 @@ const card = {
 						return tar.isZhu || tar === game.boss || tar === game.trueZhu || tar === game.falseZhu;
 					},
 					canShan = function (tar, blur) {
-						let known = tar.getKnownCards(viewer);
-						if (!blur)
+						const known = tar.getKnownCards(viewer);
+						if (!blur) {
 							return known.some((card) => {
-								let name = get.name(card, tar);
+								const name = card.name;
 								return (name === 'shan' || name === 'hufu') && lib.filter.cardRespondable(card, tar);
 							});
-						if (tar.countCards('hs', (i) => !known.includes(i)) > 3.67 - (2 * tar.hp) / tar.maxHp) return true;
-						if (!tar.hasSkillTag('respondShan', true, 'respond', true)) return false;
-						if (tar.hp <= damage) return false;
-						if (tar.hp <= damage + 1) return isZhu(tar);
+						}
+						if (tar.countCards('hs', (i) => !known.includes(i)) > 3.67 - (2 * tar.hp) / tar.maxHp) {
+							return true;
+						}
+						if (!tar.hasSkillTag('respondShan', true, 'respond', true)) {
+							return false;
+						}
+						if (tar.hp <= damage) {
+							return false;
+						}
+						if (tar.hp <= damage + 1) {
+							return isZhu(tar);
+						}
 						return true;
 					},
 					self = false;
-				if (canShan(target)) return 0;
+				if (canShan(target)) {
+					return 0;
+				}
 				if (
 					bonus &&
 					!viewer.hasSkillTag('filterDamage', null, {
 						player: player,
 						card: card,
 					})
-				)
+				) {
 					damage = 2;
+				}
 				if ((viewer.hp <= damage || (viewer.hp <= damage + 1 && isZhu(viewer))) && !canShan(viewer)) {
-					if (viewer === target) return status;
+					if (viewer === target) {
+						return status;
+					}
 					let fv = true;
-					if (evt && evt.targets)
+					if (evt && evt.targets) {
 						for (let i of evt.targets) {
 							if (fv) {
-								if (target === i) fv = false;
+								if (target === i) {
+									fv = false;
+								}
 								continue;
 							}
 							if (viewer == i) {
-								if (isZhu(viewer)) return 0;
+								if (isZhu(viewer)) {
+									return 0;
+								}
 								self = true;
 								break;
 							}
 						}
+					}
 				}
 				let mayShan = canShan(target, true);
 				if (
@@ -411,36 +572,60 @@ const card = {
 						player: player,
 						card: card,
 					})
-				)
+				) {
 					damage = 2;
-				else damage = 1;
+				} else {
+					damage = 1;
+				}
 				if (isZhu(target)) {
 					if (eff < 0) {
-						if (target.hp <= damage + 1 || (!mayShan && target.hp <= damage + 2)) return 1;
-						if (mayShan && target.hp > damage + 2) return 0;
-						else if (mayShan || target.hp > damage + 2) pri = 3;
-						else pri = 4;
-					} else if (target.hp > damage + 1) pri = 2;
-					else return 0;
-				} else if (self) return 0;
-				else if (eff < 0) {
-					if (!mayShan && target.hp <= damage) pri = 5;
-					else if (mayShan) return 0;
-					else if (target.hp > damage + 1) pri = 2;
-					else if (target.hp === damage + 1) pri = 3;
-					else pri = 4;
-				} else if (target.hp <= damage) return 0;
+						if (target.hp <= damage + 1 || (!mayShan && target.hp <= damage + 2)) {
+							return 1;
+						}
+						if (mayShan && target.hp > damage + 2) {
+							return 0;
+						} else if (mayShan || target.hp > damage + 2) {
+							pri = 3;
+						} else {
+							pri = 4;
+						}
+					} else if (target.hp > damage + 1) {
+						pri = 2;
+					} else {
+						return 0;
+					}
+				} else if (self) {
+					return 0;
+				} else if (eff < 0) {
+					if (!mayShan && target.hp <= damage) {
+						pri = 5;
+					} else if (mayShan) {
+						return 0;
+					} else if (target.hp > damage + 1) {
+						pri = 2;
+					} else if (target.hp === damage + 1) {
+						pri = 3;
+					} else {
+						pri = 4;
+					}
+				} else if (target.hp <= damage) {
+					return 0;
+				}
 				let find = false;
-				if (evt && evt.targets)
+				if (evt && evt.targets) {
 					for (let i = 0; i < evt.targets.length; i++) {
 						if (!find) {
-							if (evt.targets[i] === target) find = true;
+							if (evt.targets[i] === target) {
+								find = true;
+							}
 							continue;
 						}
 						let att1 = get.attitude(viewer, evt.targets[i]),
 							eff1 = get.effect(evt.targets[i], card, player, evt.targets[i]),
 							temp = 1;
-						if (Math.abs(att1) < 1 || att1 * eff1 >= 0 || canShan(evt.targets[i])) continue;
+						if (Math.abs(att1) < 1 || att1 * eff1 >= 0 || canShan(evt.targets[i])) {
+							continue;
+						}
 						mayShan = canShan(evt.targets[i], true);
 						if (
 							bonus &&
@@ -448,26 +633,49 @@ const card = {
 								player: player,
 								card: card,
 							})
-						)
+						) {
 							damage = 2;
-						else damage = 1;
+						} else {
+							damage = 1;
+						}
 						if (isZhu(evt.targets[i])) {
 							if (eff1 < 0) {
-								if (evt.targets[i].hp <= damage + 1 || (!mayShan && evt.targets[i].hp <= damage + 2)) return 0;
-								if (mayShan && evt.targets[i].hp > damage + 2) continue;
-								if (mayShan || evt.targets[i].hp > damage + 2) temp = 3;
-								else temp = 4;
-							} else if (evt.targets[i].hp > damage + 1) temp = 2;
-							else continue;
+								if (evt.targets[i].hp <= damage + 1 || (!mayShan && evt.targets[i].hp <= damage + 2)) {
+									return 0;
+								}
+								if (mayShan && evt.targets[i].hp > damage + 2) {
+									continue;
+								}
+								if (mayShan || evt.targets[i].hp > damage + 2) {
+									temp = 3;
+								} else {
+									temp = 4;
+								}
+							} else if (evt.targets[i].hp > damage + 1) {
+								temp = 2;
+							} else {
+								continue;
+							}
 						} else if (eff1 < 0) {
-							if (!mayShan && evt.targets[i].hp <= damage) temp = 5;
-							else if (mayShan) continue;
-							else if (evt.targets[i].hp > damage + 1) temp = 2;
-							else if (evt.targets[i].hp === damage + 1) temp = 3;
-							else temp = 4;
-						} else if (evt.targets[i].hp > damage + 1) temp = 2;
-						if (temp > pri) return 0;
+							if (!mayShan && evt.targets[i].hp <= damage) {
+								temp = 5;
+							} else if (mayShan) {
+								continue;
+							} else if (evt.targets[i].hp > damage + 1) {
+								temp = 2;
+							} else if (evt.targets[i].hp === damage + 1) {
+								temp = 3;
+							} else {
+								temp = 4;
+							}
+						} else if (evt.targets[i].hp > damage + 1) {
+							temp = 2;
+						}
+						if (temp > pri) {
+							return 0;
+						}
 					}
+				}
 				return 1;
 			},
 			basic: {
@@ -477,59 +685,101 @@ const card = {
 			},
 			result: {
 				player(player, target) {
-					if (player._wanjian_temp || player.hasSkillTag('jueqing', false, target)) return 0;
-					if (target.hp > 2 || (target.hp > 1 && !target.isZhu && target != game.boss && target != game.trueZhu && target != game.falseZhu)) return 0;
+					if (player._wanjian_temp || player.hasSkillTag('jueqing', false, target)) {
+						return 0;
+					}
+					if (target.hp > 2 || (target.hp > 1 && !target.isZhu && target != game.boss && target != game.trueZhu && target != game.falseZhu)) {
+						return 0;
+					}
 					player._wanjian_temp = true;
-					let eff = get.effect(target, new lib.element.VCard({ name: 'wanjian' }), player, target);
+					const eff = get.effect(target, new lib.element.VCard({ name: 'wanjian' }), player, target);
 					delete player._wanjian_temp;
-					if (eff >= 0) return 0;
-					if (target.hp > 1 && target.hasSkillTag('respondShan', true, 'respond', true)) return 0;
-					let known = target.getKnownCards(player);
+					if (eff >= 0) {
+						return 0;
+					}
+					if (target.hp > 1 && target.hasSkillTag('respondShan', true, 'respond', true)) {
+						return 0;
+					}
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
-							if (name === 'shan' || name === 'hufu') return lib.filter.cardRespondable(card, target);
-							if (name === 'wuxie') return lib.filter.cardEnabled(card, target, 'forceEnable');
+							const name = card.name;
+							if (name === 'shan' || name === 'hufu') {
+								return lib.filter.cardRespondable(card, target);
+							}
+							if (name === 'wuxie') {
+								return lib.filter.cardEnabled(card, target, 'forceEnable');
+							}
 						})
-					)
+					) {
 						return 0;
-					if (target.hp > 1 || target.countCards('hs', (i) => !known.includes(i)) > 3.67 - (2 * target.hp) / target.maxHp) return 0;
+					}
+					if (target.hp > 1 || target.countCards('hs', (i) => !known.includes(i)) > 3.67 - (2 * target.hp) / target.maxHp) {
+						return 0;
+					}
 					let res = 0,
 						att = get.sgnAttitude(player, target);
 					res -= att * (0.8 * target.countCards('hs') + 0.6 * target.countCards('e') + 3.6);
-					if (get.mode() === 'identity' && target.identity === 'fan') res += 2.4;
-					if ((get.mode() === 'guozhan' && player.identity !== 'ye' && player.identity === target.identity) || (get.mode() === 'identity' && player.identity === 'zhu' && (target.identity === 'zhong' || target.identity === 'mingzhong'))) res -= 0.8 * player.countCards('he');
+					if (get.mode() === 'identity' && target.identity === 'fan') {
+						res += 2.4;
+					}
+					if ((get.mode() === 'guozhan' && player.identity !== 'ye' && player.identity === target.identity) || (get.mode() === 'identity' && player.identity === 'zhu' && (target.identity === 'zhong' || target.identity === 'mingzhong'))) {
+						res -= 0.8 * player.countCards('he');
+					}
 					return res;
 				},
 				target(player, target) {
-					let zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
+					const zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
 					if (!lib.filter.cardRespondable({ name: 'shan' }, target)) {
 						if (zhu) {
-							if (target.hp < 2) return -99;
-							if (target.hp === 2) return -3.6;
+							if (target.hp < 2) {
+								return -99;
+							}
+							if (target.hp === 2) {
+								return -3.6;
+							}
 						}
 						return -2;
 					}
-					let known = target.getKnownCards(player);
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
-							if (name === 'shan' || name === 'hufu') return lib.filter.cardRespondable(card, target);
-							if (name === 'wuxie') return lib.filter.cardEnabled(card, target, 'forceEnable');
+							const name = card.name;
+							if (name === 'shan' || name === 'hufu') {
+								return lib.filter.cardRespondable(card, target);
+							}
+							if (name === 'wuxie') {
+								return lib.filter.cardEnabled(card, target, 'forceEnable');
+							}
 						})
-					)
+					) {
 						return -1.2;
-					let nh = target.countCards('hs', (i) => !known.includes(i));
+					}
+					const nh = target.countCards('hs', (i) => !known.includes(i));
 					if (zhu && target.hp <= 1) {
-						if (nh === 0) return -99;
-						if (nh === 1) return -60;
-						if (nh === 2) return -36;
-						if (nh === 3) return -8;
+						if (nh === 0) {
+							return -99;
+						}
+						if (nh === 1) {
+							return -60;
+						}
+						if (nh === 2) {
+							return -36;
+						}
+						if (nh === 3) {
+							return -8;
+						}
 						return -5;
 					}
-					if (target.hasSkillTag('respondShan', true, 'respond', true)) return -1.35;
-					if (!nh) return -2;
-					if (nh === 1) return -1.65;
+					if (target.hasSkillTag('respondShan', true, 'respond', true)) {
+						return -1.35;
+					}
+					if (!nh) {
+						return -2;
+					}
+					if (nh === 1) {
+						return -1.65;
+					}
 					return -1.5;
 				},
 			},
@@ -544,12 +794,11 @@ const card = {
 			},
 		},
 	},
-
 	ybsl_ji: {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null];
 			}
@@ -557,25 +806,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_ji_info'];
+				return lib.translate.ybsl_ji_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_ji.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
-			var list2 = ['极'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_ji.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['极'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -596,7 +844,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null];
 			}
@@ -604,25 +852,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_yi_info'];
+				return lib.translate.ybsl_yi_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_yi.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
-			var list2 = ['阳', '阴'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_yi.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['阳', '阴'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -643,7 +890,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null, null];
 			}
@@ -651,25 +898,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_cai_info'];
+				return lib.translate.ybsl_cai_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_cai.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
-			var list2 = ['天', '地', '人'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_cai.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['天', '地', '人'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -690,7 +936,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null, null, null];
 			}
@@ -698,25 +944,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_xiang_info'];
+				return lib.translate.ybsl_xiang_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_xiang.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
-			var list2 = ['春', '夏', '秋', '冬'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_xiang.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['春', '夏', '秋', '冬'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -737,7 +982,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null];
 			}
@@ -745,32 +990,31 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_hua_info'];
+				return lib.translate.ybsl_hua_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_hua.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_hua.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
 			// var list2 = ['极'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += get.cnNumber(i + 1, true);
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
 				}
 				str += str2;
 			}
-			str += '此牌转换时，若此时为最后一项，使用者可以增加一项任意牌。（同一张化至多九项）';
+			str += '此牌转换时,若此时为最后一项,使用者可以增加一项任意牌.(同一张化至多九项)';
 			return str;
 		},
 		ai: {

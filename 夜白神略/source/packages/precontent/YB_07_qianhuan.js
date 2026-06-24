@@ -1,12 +1,12 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_qianhuan };
 /**
- * 此处控制千幻适配（目前因为我也没皮肤，就暂时停用了
- * 再想启用也要做适配，因为我代码结构也大变样
+ * 此处控制千幻适配(目前因为我也没皮肤,就暂时停用了
+ * 再想启用也要做适配,因为我代码结构也大变样
  */
 const YBSL_qianhuan = function () {
-	//（目前来说没啥用了，毕竟我也不放皮肤了）
-	// //（先注释了，以后再说）
+	//(目前来说没啥用了,毕竟我也不放皮肤了)
+	// //(先注释了,以后再说)
 	{
 		// 千幻换肤相关
 		if (!lib.qhlypkg) {
@@ -20,7 +20,7 @@ const YBSL_qianhuan = function () {
 		// 	"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
 		// 	// 'YB_one'
 		// ]
-		var packagesx = {
+		const packagesx = {
 			ybslj: 'ybsl001',
 			ybart: 'ybsl001',
 			ybxh: 'ybsl003',
@@ -35,10 +35,10 @@ const YBSL_qianhuan = function () {
 			jhjx: 'jhjx',
 		};
 		// var listxxxxx= [];
-		for (var i in packagesx) {
+		for (const i in packagesx) {
 			lib.qhlypkg.push({
-				isExt: true, //是否是扩展，一般填true
-				filterCharacter: function (name) {
+				isExt: true, //是否是扩展,一般填true
+				filterCharacter(name) {
 					// var qianzhui=[
 					// 	'dzsl_','dzsp_','ybsl_','ybsp_','db_ybsl_','db_ybsp_',
 					// 	'ybslshen_','sgsh_','ssj_ybxh_','North_','ybnb_','ybart_',
@@ -47,11 +47,13 @@ const YBSL_qianhuan = function () {
 					// for(var i=0;i<qianzhui.length;i++){
 					// 	if(name.indexOf(qianzhui[i])==0) return true;
 					// }
-					if (lib.characterPack[i][name]) return true;
-					//判断此ID的武将是否属于此皮肤包。推荐用前缀判断。
-					//在这里不判断直接返回true是很没有武德的行为，可能覆盖别人的扩展配置。
+					if (lib.characterPack[i][name]) {
+						return true;
+					}
+					//判断此ID的武将是否属于此皮肤包.推荐用前缀判断.
+					//在这里不判断直接返回true是很没有武德的行为,可能覆盖别人的扩展配置.
 				},
-				prefix: `extension/夜白神略/image/${packagesx[i]}/`, //原皮前缀，标识原皮肤的位置。
+				prefix: `extension/夜白神略/image/${packagesx[i]}/`, //原皮前缀,标识原皮肤的位置.
 				skin: {
 					standard: 'extension/夜白神略/skin/', //可切换普通皮肤的前缀
 				},
@@ -60,7 +62,7 @@ const YBSL_qianhuan = function () {
 			});
 		}
 		// lib.qhlypkg.push({
-		// 	isExt:true,//是否是扩展，一般填true
+		// 	isExt:true,//是否是扩展,一般填true
 		// 	filterCharacter:function(name){
 		// 		// var qianzhui=[
 		// 		// 	'dzsl_','dzsp_','ybsl_','ybsp_','db_ybsl_','db_ybsp_',
@@ -70,11 +72,10 @@ const YBSL_qianhuan = function () {
 		// 		// for(var i=0;i<qianzhui.length;i++){
 		// 		// 	if(name.indexOf(qianzhui[i])==0) return true;
 		// 		// }
-
-		// 		//判断此ID的武将是否属于此皮肤包。推荐用前缀判断。
-		// 		//在这里不判断直接返回true是很没有武德的行为，可能覆盖别人的扩展配置。
+		// 		//判断此ID的武将是否属于此皮肤包.推荐用前缀判断.
+		// 		//在这里不判断直接返回true是很没有武德的行为,可能覆盖别人的扩展配置.
 		// 	},
-		// 	// prefix:'extension/夜白神略/image/character/',//原皮前缀，标识原皮肤的位置。
+		// 	// prefix:'extension/夜白神略/image/character/',//原皮前缀,标识原皮肤的位置.
 		// 	skin:{
 		// 		standard:'extension/夜白神略/skin/standard/',//可切换普通皮肤的前缀
 		// 	},

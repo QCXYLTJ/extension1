@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 export { sgczk };
 // export const type = "mode";
 // /**
@@ -8,16 +8,15 @@ export { sgczk };
 //     return {
 //         name: 'sgczk',
 //         game:{
-
 //         },
 //     }
 // }
-var sgczk = function () {
+const sgczk = function () {
 	game.addMode(
 		'sgczk',
 		{
 			name: 'sgczk',
-			start: function () {},
+			start() {},
 		},
 		{
 			translate: '三国策战卡',

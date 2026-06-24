@@ -1,10 +1,10 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 import { YB_tujian } from '../../pile/ybtujian.js';
 import { YBSL_characterIntro } from '../function.js';
 export { YB_11_cardBrowser };
 /**
- * 新模式光速撤销，看看搞一个新乱斗模式
- * 再次更改计划，用于新模式
+ * 新模式光速撤销,看看搞一个新乱斗模式
+ * 再次更改计划,用于新模式
  * 现计划用于rpg设计
  * 原用于卡包浏览
  */
@@ -24,9 +24,9 @@ const YB_11_cardBrowser = function () {
 		game.addMode(
 			'YB_6attack',
 			{
-				start: function () {
+				start() {
 					'step 0';
-					var dialog = ui.create.div('.yb6attack');
+					const dialog = ui.create.div('.yb6attack');
 					// this.parentNode.insertBefore(dialog, this.nextSibling);
 					// dialog.innerHTML='12312';
 					dialog.innerHTML = '<br><div class="yb6attack_title">夜白神略</div>';
@@ -34,7 +34,7 @@ const YB_11_cardBrowser = function () {
 					ui.create.dialog(dialog);
 					('step 1');
 				},
-				init: function () {},
+				init() {},
 			},
 			{
 				translate: 'rpg模拟器',
@@ -47,7 +47,6 @@ const YB_11_cardBrowser = function () {
 		// 	init(){},
 		// 	content:{
 		// 		submode: "normal",
-
 		// 	},
 		// }
 	}
@@ -69,18 +68,18 @@ const YB_11_cardBrowser = function () {
 		// 				normal: '经典',
 		// 			},
 		// 			restart: true,
-		// 			frequent: true,
-		// 			intro: '很可惜，只有我哟~'
+		// 			forced: true,
+		// 			intro: '很可惜,只有我哟~'
 		// 		},
 		// 	},
-		// 	onremove: function () {
+		// 	onremove () {
 		// 		game.clearModeConfig('YB_mode');
 		// 	}
 		// })
 		// image: ['extension/夜白神略/YB_mode.jpg']
 	}
 	if (false) {
-		var packages = [
+		const packages = [
 			'ybslj',
 			'ybxh',
 			'ybdd',
@@ -97,18 +96,18 @@ const YB_11_cardBrowser = function () {
 			'jhjx',
 			// 'YB_one'
 		];
-		for (var pack of packages) {
-			for (var name in lib.characterPack[pack]) {
+		for (const pack of packages) {
+			for (const name in lib.characterPack[pack]) {
 				YB_tujian[name] = {
 					version: YBSL_characterIntro(name),
 					players: [name],
-					info: function () {
-						var info = '';
-						for (var j in lib.characterPack[pack][name][3]) {
-							info += '<span class="bluetext">' + lib.translate[lib.characterPack[pack][name][3][j]] + '</span>：' + lib.translate[lib.characterPack[pack][name][3][j] + '_info'] + '<br>';
+					info() {
+						let info = '';
+						for (let j in lib.characterPack[pack][name][3]) {
+							info += '<span class="bluetext">' + lib.translate[lib.characterPack[pack][name][3][j]] + '</span>:' + lib.translate[lib.characterPack[pack][name][3][j] + '_info'] + '<br>';
 							if (lib.skill[j].derivation) {
-								for (var k in lib.skill[j].derivation) {
-									info += '<span class="bluetext">' + lib.translate[lib.skill[j].derivation[k]] + '</span>：' + lib.translate[lib.skill[j].derivation[k] + '_info'] + '<br>';
+								for (const k in lib.skill[j].derivation) {
+									info += '<span class="bluetext">' + lib.translate[lib.skill[j].derivation[k]] + '</span>:' + lib.translate[lib.skill[j].derivation[k] + '_info'] + '<br>';
 								}
 							}
 						}
@@ -120,44 +119,54 @@ const YB_11_cardBrowser = function () {
 			}
 		}
 		if (lib.config.YB_look == 1) {
-			if (!lib.config.extension_文武英杰_enable)
+			if (!lib.config.extension_文武英杰_enable) {
 				game.wwyj_showNewtujian = function () {
-					var dialog = ui.create.dialog('hidden');
+					const dialog = ui.create.dialog('hidden');
 					dialog.style.height = 'calc(70%)';
 					dialog.style.width = 'calc(70%)';
 					dialog.style.left = '155px';
 					dialog.style.top = '60px';
 					dialog.classList.add('popped');
 					dialog.classList.add('static');
-					var list_newtujian = [];
-					for (var i in YB_tujian) {
+					const list_newtujian = [];
+					for (let i in YB_tujian) {
 						list_newtujian.push({
 							data: i,
 							info: YB_tujian[i],
 						});
 					}
-					var interval = setInterval(function () {
-						var num = 20;
-						if (num > list_newtujian.length) num = list_newtujian.length;
-						for (var i = 0; i < num; i++) {
-							var data = list_newtujian[0].data;
-							var info = list_newtujian[0].info;
-							var list = [];
-							var list1 = [];
+					const interval = setInterval(function () {
+						let num = 20;
+						if (num > list_newtujian.length) {
+							num = list_newtujian.length;
+						}
+						for (let i = 0; i < num; i++) {
+							const data = list_newtujian[0].data;
+							let info = list_newtujian[0].info;
+							const list = [];
+							const list1 = [];
 							if (info.players.length) {
-								for (var j = 0; j < info.players.length; j++) {
-									if (lib.character[info.players[j]] != undefined) list.push(info.players[j]);
+								for (let j = 0; j < info.players.length; j++) {
+									if (lib.character[info.players[j]] != undefined) {
+										list.push(info.players[j]);
+									}
 								}
 							}
-							if (list.length) dialog.addSmall([list, 'character']);
+							if (list.length) {
+								dialog.addSmall([list, 'character']);
+							}
 							dialog.addText(data + '   (' + info.version + ')<br>', false);
 							dialog.addText('<li>' + info.info, false);
 							if (info.cards.length) {
-								for (var j = 0; j < info.cards.length; j++) {
-									if (lib.card[info.cards[j]] != undefined) list1.push(info.cards[j]);
+								for (let j = 0; j < info.cards.length; j++) {
+									if (lib.card[info.cards[j]] != undefined) {
+										list1.push(info.cards[j]);
+									}
 								}
 							}
-							if (list1.length) dialog.addSmall([list1, 'vcard']);
+							if (list1.length) {
+								dialog.addSmall([list1, 'vcard']);
+							}
 							list_newtujian.remove(list_newtujian[0]);
 							if (list_newtujian.length == 0) {
 								clearInterval(interval);
@@ -165,7 +174,7 @@ const YB_11_cardBrowser = function () {
 						}
 					}, 100);
 					ui.window.appendChild(dialog);
-					var div = ui.create.div('.menubutton.round', '×', function () {
+					const div = ui.create.div('.menubutton.round', '×', function () {
 						clearInterval(interval);
 						dialog.delete();
 						ui.window.removeChild(this);
@@ -176,16 +185,17 @@ const YB_11_cardBrowser = function () {
 					div.style.zIndex = 1000;
 					ui.window.appendChild(div);
 				};
+			}
 			if (config.wwyj_newtujianicon) {
 				lib.skill._wwyj_newtujianicon = {
 					trigger: { global: 'gameStart' },
 					forced: true,
 					charlotte: true,
 					_priority: 2020,
-					content: function () {
+					content() {
 						if (event.isMine()) {
 							game.broadcastAll(function (player) {
-								var Animation = ui.create.div();
+								const Animation = ui.create.div();
 								Animation.setBackgroundImage('extension/文武英杰/wwyj_newtujianicon.png');
 								Animation.style.left = '62%';
 								Animation.style.top = 'calc(80% - 90px)';
@@ -209,12 +219,12 @@ const YB_11_cardBrowser = function () {
 		}
 	}
 	if (false) {
-		if (lib.brawl)
+		if (lib.brawl) {
 			lib.brawl.YB_wuhunjuexing = {
 				name: '武魂觉醒',
 				mode: 'identity',
-				intro: ['杀死所有其他角色，成为最后的存活者', '所有角色改为四血白板，依靠对局行为获得魂力。魂力达到阈值可以增加属性以及获得魂技'],
-				showcase: function (init) {
+				intro: ['击杀所有其他角色,成为最后的存活者', '所有角色改为四血白板,依靠对局行为获得魂力.魂力达到阈值可以增加属性以及获得魂技'],
+				showcase(init) {
 					if (init) {
 						this.nodes = [];
 					} else {
@@ -222,18 +232,18 @@ const YB_11_cardBrowser = function () {
 							this.nodes.shift().remove();
 						}
 					}
-					var lx = this.offsetWidth / 2 - 120;
-					var ly = Math.min(lx, this.offsetHeight / 2 - 60);
-					var setPos = function (node) {
-						var i = node.index;
-						var deg = (Math.PI / 4) * i;
-						var dx = Math.round(lx * Math.cos(deg));
-						var dy = Math.round(ly * Math.sin(deg));
+					const lx = this.offsetWidth / 2 - 120;
+					const ly = Math.min(lx, this.offsetHeight / 2 - 60);
+					const setPos = function (node) {
+						let i = node.index;
+						const deg = (Math.PI / 4) * i;
+						const dx = Math.round(lx * Math.cos(deg));
+						const dy = Math.round(ly * Math.sin(deg));
 						node.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
 					};
-					var characterz = ['guyong', 'litong', 'mazhong', 'fuwan', 'chengpu', 'liaohua', 'xinxianying', 'liuyu'];
-					for (var i = 0; i < 8; i++) {
-						var node = ui.create.player(null, true);
+					const characterz = ['guyong', 'litong', 'mazhong', 'fuwan', 'chengpu', 'liaohua', 'xinxianying', 'liuyu'];
+					for (let i = 0; i < 8; i++) {
+						const node = ui.create.player(null, true);
 						this.nodes.push(node);
 						node.init(characterz[i]);
 						node.classList.add('minskin');
@@ -249,9 +259,9 @@ const YB_11_cardBrowser = function () {
 						setPos(node);
 						this.appendChild(node);
 					}
-					var nodes = this.nodes;
+					const nodes = this.nodes;
 					this.showcaseinterval = setInterval(function () {
-						for (var i = 0; i < nodes.length; i++) {
+						for (let i = 0; i < nodes.length; i++) {
 							nodes[i].index++;
 							if (nodes[i].index > 7) {
 								nodes[i].index = 0;
@@ -260,13 +270,13 @@ const YB_11_cardBrowser = function () {
 						}
 					}, 1000);
 				},
-				init: function () {
+				init() {
 					lib.element.player.YB_hunliLevel;
 					lib.element.player.addHunli = function (num) {
-						var player = this;
-						var numb = player.YB_hunliLevel;
+						let player = this;
+						const numb = player.YB_hunliLevel;
 						if (player.countMark('_YB_hunli') >= player.YB_maxHunli(numb)) {
-							var str = numb >= 9 ? '魂力达到了世间巅峰' : '魂力达到了上限，请吸收魂环';
+							const str = numb >= 9 ? '魂力达到了世间巅峰' : '魂力达到了上限,请吸收魂环';
 							game.log(player, str);
 						} else {
 							if (player.YB_maxHunli(numb) - player.countMark('_YB_hunli') < num) {
@@ -276,13 +286,15 @@ const YB_11_cardBrowser = function () {
 						}
 					};
 					lib.element.player.YB_maxHunli = function (numb) {
-						var player = this;
-						var num = numb || player.YB_hunliLevel || 0;
-						var list = [10, 30, 60, 100, 150, 210, 280, 360, 450, 550];
+						let player = this;
+						let num = numb || player.YB_hunliLevel || 0;
+						const list = [10, 30, 60, 100, 150, 210, 280, 360, 450, 550];
 						return list[num];
 					};
 					lib.element.player.YB_hunliLevelUp = function () {
-						if (!player.YB_hunliLevel) player.YB_hunliLevel = 0;
+						if (!player.YB_hunliLevel) {
+							player.YB_hunliLevel = 0;
+						}
 						player.YB_hunliLevel++;
 					};
 					lib.skill._YB_hunli = {
@@ -291,7 +303,7 @@ const YB_11_cardBrowser = function () {
 						intro: {
 							name: '魂力',
 							content(storage, player, skill) {
-								var numb = player.YB_hunliLevel;
+								const numb = player.YB_hunliLevel;
 								return '<li>当前魂力<li>' + player.countMark('_YB_hunli') + '/' + player.YB_maxHunli(numb);
 							},
 						},
@@ -299,12 +311,12 @@ const YB_11_cardBrowser = function () {
 				},
 				content: {
 					submode: 'normal',
-					chooseCharacterBefore: function () {
+					chooseCharacterBefore() {
 						game.identityVideoName = '武魂觉醒';
-						var skills = [];
-						var banned = ['xinfu_guhuo', 'reguhuo', 'jixi', 'duanchang', 'huashen', 'xinsheng', 'rehuashen', 'rexinsheng', 'jinqu', 'nzry_binglve', 'nzry_huaiju', 'nzry_yili', 'nzry_zhenglun', 'nzry_mingren', 'nzry_zhenliang', 'drlt_qingce', 'new_wuhun', 'qixing', 'kuangfeng', 'dawu', 'baonu', 'wumou', 'ol_wuqian', 'ol_shenfen', 'renjie', 'jilue', 'nzry_junlve', 'nzry_dinghuo', 'drlt_duorui', 'chuanxin', 'cunsi', 'jueqing', 'huilei', 'paiyi', 'fuhun', 'zhuiyi', 'olddanshou', 'yanzhu', 'juexiang', 'jiexun', 'bizhuan', 'tongbo', 'xinfu_zhanji', 'xinfu_jijun', 'xinfu_fangtong', 'xinfu_qianchong', 'pdgyinshi', 'shuliang', 'zongkui', 'guju', 'bmcanshi', 'dingpan', 'xinfu_lingren', 'new_luoyan', 'junwei', 'gxlianhua', 'qizhou', 'fenyue', 'dianhu', 'linglong', 'fenxin', 'mouduan', 'cuorui', 'xinmanjuan', 'xinfu_jianjie', 'jianjie_faq', 'new_meibu', 'xinfu_xingzhao', 'jici', 'xianfu', 'fenyong', 'xuehen', 'midao', 'yishe', 'yinbing', 'juedi', 'bushi', 'xinfu_dianhua', 'xinfu_falu', 'xinfu_zhenyi', 'lskuizhu', 'pingjian', 'xjshijian', 'fentian', 'zhiri', 'xindan', 'xinzhengnan', 'xinfu_xiaode', 'komari_xueshang', 'qiaosi_map'];
-						var characters = [];
-						for (var name in lib.character) {
+						const skills = [];
+						const banned = ['xinfu_guhuo', 'reguhuo', 'jixi', 'duanchang', 'huashen', 'xinsheng', 'rehuashen', 'rexinsheng', 'jinqu', 'nzry_binglve', 'nzry_huaiju', 'nzry_yili', 'nzry_zhenglun', 'nzry_mingren', 'nzry_zhenliang', 'drlt_qingce', 'new_wuhun', 'qixing', 'kuangfeng', 'dawu', 'baonu', 'wumou', 'ol_wuqian', 'ol_shenfen', 'renjie', 'jilue', 'nzry_junlve', 'nzry_dinghuo', 'drlt_duorui', 'chuanxin', 'cunsi', 'jueqing', 'huilei', 'paiyi', 'fuhun', 'zhuiyi', 'olddanshou', 'yanzhu', 'juexiang', 'jiexun', 'bizhuan', 'tongbo', 'xinfu_zhanji', 'xinfu_jijun', 'xinfu_fangtong', 'xinfu_qianchong', 'pdgyinshi', 'shuliang', 'zongkui', 'guju', 'bmcanshi', 'dingpan', 'xinfu_lingren', 'new_luoyan', 'junwei', 'gxlianhua', 'qizhou', 'fenyue', 'dianhu', 'linglong', 'fenxin', 'mouduan', 'cuorui', 'xinmanjuan', 'xinfu_jianjie', 'jianjie_faq', 'new_meibu', 'xinfu_xingzhao', 'jici', 'xianfu', 'fenyong', 'xuehen', 'midao', 'yishe', 'yinbing', 'juedi', 'bushi', 'xinfu_dianhua', 'xinfu_falu', 'xinfu_zhenyi', 'lskuizhu', 'pingjian', 'xjshijian', 'fentian', 'zhiri', 'xindan', 'xinzhengnan', 'xinfu_xiaode', 'komari_xueshang', 'qiaosi_map'];
+						const characters = [];
+						for (const name in lib.character) {
 							if (!lib.character[name]) {
 								continue;
 							}
@@ -314,16 +326,16 @@ const YB_11_cardBrowser = function () {
 							if (name.indexOf('old_') == 0) {
 								continue;
 							}
-							var skillsx = lib.character[name][3].slice(0);
+							const skillsx = lib.character[name][3].slice(0);
 							lib.character[name].hp = 4;
 							lib.character[name].maxHp = 4;
 							lib.character[name].hujia = 0;
 							lib.character[name].skills = [];
 							lib.character[name].hasHiddenSkill = false;
 							characters.push(name);
-							var list = skillsx.slice(0);
-							for (var j = 0; j < skillsx.length; j++) {
-								var info = get.info(skillsx[j]);
+							const list = skillsx.slice(0);
+							for (let j = 0; j < skillsx.length; j++) {
+								let info = get.info(skillsx[j]);
 								if (!info) {
 									skillsx.splice(j, 1);
 									list.splice(j--, 1);
@@ -335,11 +347,11 @@ const YB_11_cardBrowser = function () {
 									list.addArray(info.derivation);
 								}
 							}
-							for (var j = 0; j < list.length; j++) {
+							for (let j = 0; j < list.length; j++) {
 								if (skills.includes(list[j]) || banned.includes(list[j])) {
 									continue;
 								}
-								var info = get.info(list[j]);
+								let info = get.info(list[j]);
 								if (!info || info.zhuSkill || info.juexingji || info.charlotte || info.limited || info.hiddenSkill || info.dutySkill || info.groupSkill || (info.ai && info.ai.combo)) {
 									continue;
 								}
@@ -347,7 +359,7 @@ const YB_11_cardBrowser = function () {
 							}
 						}
 						_status.characterlist = characters;
-						var pack = {
+						const pack = {
 							skills: skills,
 							pack: {
 								card: {
@@ -356,14 +368,14 @@ const YB_11_cardBrowser = function () {
 										cardimage: 'toulianghuanzhu',
 										recastable: true,
 										type: 'trick',
-										filterTarget: function (card, player, target) {
-											return target.skillH.length > 0;
+										filterTarget(card, player, target) {
+											return target.skillH.length;
 										},
-										content: function () {
+										content() {
 											target.removeSkillH(target.skillH.randomGet());
-											var skills = lib.huanhuazhizhan.skills;
+											const skills = lib.huanhuazhizhan.skills;
 											skills.randomSort();
-											for (var i = 0; i < skills.length; i++) {
+											for (let i = 0; i < skills.length; i++) {
 												if (!target.skillH.includes(skills[i])) {
 													target.addSkillH(skills[i]);
 													break;
@@ -373,7 +385,7 @@ const YB_11_cardBrowser = function () {
 										ai: {
 											order: 10,
 											result: {
-												target: function () {
+												target() {
 													return 0.5 - Math.random();
 												},
 											},
@@ -383,10 +395,10 @@ const YB_11_cardBrowser = function () {
 										enable: true,
 										cardimage: 'fudichouxin',
 										type: 'trick',
-										filterTarget: function (card, player, target) {
-											return target.skillH.length > 0;
+										filterTarget(card, player, target) {
+											return target.skillH.length;
 										},
-										content: function () {
+										content() {
 											target.removeSkillH(target.skillH.randomGet());
 										},
 										ai: {
@@ -426,10 +438,10 @@ const YB_11_cardBrowser = function () {
 										trigger: { source: 'damage' },
 										forced: true,
 										popup: false,
-										filter: function (event, player) {
+										filter(event, player) {
 											return event.player == player._toKill;
 										},
-										content: function () {
+										content() {
 											game.log(player, '对击杀目标造成了伤害');
 											player.changeLingli(trigger.num);
 										},
@@ -440,27 +452,27 @@ const YB_11_cardBrowser = function () {
 										popup: '聚灵',
 										intro: {
 											name: '灵力',
-											content: '当前灵力点数：# / 5',
+											content: '当前灵力点数:# / 5',
 										},
 										trigger: {
 											player: 'phaseBeginStart',
 										},
 										prompt: '是否消耗2点灵力获得一个技能？',
-										filter: function (event, player) {
+										filter(event, player) {
 											return player.storage._lingli > 1;
 										},
-										check: function (event, player) {
+										check(event, player) {
 											return player.skillH.length < 3;
 										},
-										content: function () {
+										content() {
 											'step 0';
 											player.changeLingli(-2);
 											('step 1');
 											event.skills = lib.huanhuazhizhan.skills;
-											var skills = event.skills;
+											const skills = event.skills;
 											skills.randomSort();
-											var list = [];
-											for (var i = 0; i < skills[i].length; i++) {
+											const list = [];
+											for (let i = 0; i < skills[i].length; i++) {
 												if (!player.skillH.includes(skills[i])) {
 													list.push(skills[i]);
 												}
@@ -476,7 +488,7 @@ const YB_11_cardBrowser = function () {
 												list.push('刷新');
 											}
 											event.list = list;
-											var dialog = game.getSkillDialog(event.list, '选择获得一个技能');
+											const dialog = game.getSkillDialog(event.list, '选择获得一个技能');
 											player.chooseControl(event.list).set('ai', function () {
 												return 0;
 											}).dialog = dialog;
@@ -502,19 +514,19 @@ const YB_11_cardBrowser = function () {
 										trigger: { global: 'roundStart' },
 										forced: true,
 										popup: false,
-										filter: function (event, player) {
+										filter(event, player) {
 											return _status._aozhan != true && game.roundNumber > 1;
 										},
-										content: function () {
+										content() {
 											player.changeLingli(1);
 										},
 									},
 									_lingli_draw: {
 										enable: 'phaseUse',
-										filter: function (event, player) {
+										filter(event, player) {
 											return player.storage._lingli > 0;
 										},
-										content: function () {
+										content() {
 											player.changeLingli(-1);
 											player.draw();
 										},
@@ -522,7 +534,7 @@ const YB_11_cardBrowser = function () {
 										ai: {
 											order: 10,
 											result: {
-												player: function (player) {
+												player(player) {
 													return player.storage._lingli - 2 * (3 - player.skillH.length) > 0 ? 1 : 0;
 												},
 											},
@@ -532,10 +544,10 @@ const YB_11_cardBrowser = function () {
 										trigger: { target: 'useCardToTargeted' },
 										forced: true,
 										popup: false,
-										filter: function (event, player) {
-											return event.card.name == 'tao' && player == event.player._toSave;
+										filter(event, player) {
+											return event.card && event.card.name == 'tao' && player == event.player._toSave;
 										},
-										content: function () {
+										content() {
 											game.log(trigger.player, '帮助了保护目标');
 											trigger.player.changeLingli(1);
 										},
@@ -545,27 +557,26 @@ const YB_11_cardBrowser = function () {
 										forced: true,
 										forceDie: true,
 										popup: false,
-										filter: function (event, player) {
+										filter(event, player) {
 											return (_status._aozhan && !player.getStat('damage') && player.isAlive()) || event._lastDead != undefined;
 										},
-										content: function () {
+										content() {
 											'step 0';
 											if (_status._aozhan && !player.getStat('damage')) {
 												player.loseHp();
 												player.changeLingli(1);
-												game.log(player, '本回合内未造成伤害，触发死战模式惩罚');
+												game.log(player, '本回合内未造成伤害,触发死战模式惩罚');
 											}
 											if (trigger._lastDead == undefined) {
 												event.goto(2);
 											}
 											('step 1');
-											var type = get.rand(1, 8);
+											const type = get.rand(1, 8);
 											event.type = type;
 											trigger._lastDead.playerfocus(1200);
 											player.$fullscreenpop('乾坤八卦·' + ['离', '坎', '乾', '震', '兑', '艮', '巽', '坤'][type - 1], get.groupnature(trigger._lastDead.group, 'raw'));
-											game.delay(1.5);
 											('step 2');
-											var type = event.type;
+											const type = event.type;
 											switch (type) {
 												case 1: {
 													game.countPlayer(function (current) {
@@ -586,7 +597,7 @@ const YB_11_cardBrowser = function () {
 												}
 												case 4: {
 													game.countPlayer(function (current) {
-														var he = current.getCards('he');
+														const he = current.getCards('he');
 														if (he.length) {
 															current.discard(he.randomGet()).delay = false;
 														}
@@ -600,9 +611,9 @@ const YB_11_cardBrowser = function () {
 													break;
 												}
 												case 6: {
-													var cards = [];
+													let cards = [];
 													game.countPlayer(function (current) {
-														var card = get.cardPile(function (card) {
+														const card = get.cardPile(function (card) {
 															return !cards.includes(card) && get.type(card) == 'equip';
 														});
 														if (card) {
@@ -616,9 +627,9 @@ const YB_11_cardBrowser = function () {
 												case 7: {
 													game.countPlayer(function (current) {
 														if (current.skillH.length < 3) {
-															var skills = lib.huanhuazhizhan.skills;
+															const skills = lib.huanhuazhizhan.skills;
 															skills.randomSort();
-															for (var i = 0; i < skills.length; i++) {
+															for (let i = 0; i < skills.length; i++) {
 																if (!current.skillH.includes(skills[i])) {
 																	current.addSkillH(skills[i]);
 																	break;
@@ -654,13 +665,13 @@ const YB_11_cardBrowser = function () {
 									},
 									hhzz_noCard: {
 										mod: {
-											cardEnabled: function () {
+											cardEnabled() {
 												return false;
 											},
-											cardSavable: function () {
+											cardSavable() {
 												return false;
 											},
-											cardRespondable: function () {
+											cardRespondable() {
 												return false;
 											},
 										},
@@ -669,21 +680,20 @@ const YB_11_cardBrowser = function () {
 										trigger: { player: 'die' },
 										forced: true,
 										forceDie: true,
-										skillAnimation: true,
 										logTarget: 'source',
-										filter: function (event, player) {
+										filter(event, player) {
 											return event.source != undefined;
 										},
-										content: function () {
-											var source = trigger.source;
-											var cards = source.getCards('he');
+										content() {
+											const source = trigger.source;
+											let cards = source.getCards('he');
 											if (cards.length) {
 												source.discard(cards);
 											}
 										},
 										ai: {
 											effect: {
-												target: function (card, player, target) {
+												target(card, player, target) {
 													if (get.tag(card, 'damage')) {
 														return [-5, 0];
 													}
@@ -695,25 +705,24 @@ const YB_11_cardBrowser = function () {
 										trigger: { player: 'die' },
 										forced: true,
 										forceDie: true,
-										skillAnimation: true,
 										logTarget: 'source',
-										filter: function (event, player) {
+										filter(event, player) {
 											return event.source != undefined;
 										},
-										content: function () {
-											var source = trigger.source;
-											var cards = source.getCards('he');
+										content() {
+											const source = trigger.source;
+											let cards = source.getCards('he');
 											if (cards.length) {
 												source.discard(cards);
 											}
-											var skills = source.skillH;
+											const skills = source.skillH;
 											if (skills.length) {
 												source.removeSkillH(skills.randomGet());
 											}
 										},
 										ai: {
 											effect: {
-												target: function (card, player, target) {
+												target(card, player, target) {
 													if (get.tag(card, 'damage')) {
 														return [-5, 0];
 													}
@@ -724,20 +733,20 @@ const YB_11_cardBrowser = function () {
 									hhzz_zhencang: {
 										trigger: { player: 'die' },
 										forced: true,
-										filter: function (event, player) {
+										filter(event, player) {
 											return event.source != undefined;
 										},
 										forceDie: true,
 										logTarget: 'source',
-										content: function () {
-											var source = trigger.source;
+										content() {
+											const source = trigger.source;
 											source.draw();
 											if (source.skillH.length == 3) {
 												source.removeSkillH(source.skillH.randomGet());
 											}
-											var skills = lib.huanhuazhizhan.skills;
+											const skills = lib.huanhuazhizhan.skills;
 											skills.randomSort();
-											for (var i = 0; i < skills.length; i++) {
+											for (let i = 0; i < skills.length; i++) {
 												if (!source.skillH.includes(skills[i])) {
 													source.addSkillH(skills[i]);
 													break;
@@ -750,18 +759,18 @@ const YB_11_cardBrowser = function () {
 										forced: true,
 										forceDie: true,
 										logTarget: 'source',
-										filter: function (event, player) {
+										filter(event, player) {
 											return event.source != undefined;
 										},
-										content: function () {
-											var source = trigger.source;
+										content() {
+											const source = trigger.source;
 											source.draw(3);
 											if (source.skillH.length == 3) {
 												source.removeSkillH(source.skillH.randomGet());
 											}
-											var skills = lib.huanhuazhizhan.skills;
+											const skills = lib.huanhuazhizhan.skills;
 											skills.randomSort();
-											for (var i = 0; i < skills.length; i++) {
+											for (let i = 0; i < skills.length; i++) {
 												if (!source.skillH.includes(skills[i])) {
 													source.addSkillH(skills[i]);
 													break;
@@ -773,18 +782,18 @@ const YB_11_cardBrowser = function () {
 										trigger: { player: 'damage' },
 										forced: true,
 										logTarget: 'source',
-										filter: function (event, player) {
+										filter(event, player) {
 											return event.source != undefined && player.countCards('he') > 0;
 										},
-										content: function () {
-											var cards = player.getCards('he');
+										content() {
+											let cards = player.getCards('he');
 											cards.randomSort();
 											cards = cards.slice(0, trigger.num);
 											trigger.source.gain('give', cards, player);
 										},
 										ai: {
 											effect: {
-												target: function (card, player, target) {
+												target(card, player, target) {
 													if (get.tag(card, 'damage')) {
 														return [15, 0];
 													}
@@ -802,26 +811,26 @@ const YB_11_cardBrowser = function () {
 									hhzz_zhencang: '珍藏',
 									hhzz_huizhen: '汇珍',
 									hhzz_jubao: '聚宝',
-									hhzz_huilei_info: '锁定技，杀死你的角色弃置所有的牌。',
-									hhzz_youlian_info: '锁定技，杀死你的角色弃置所有牌并随机失去一个技能。',
-									hhzz_zhencang_info: '锁定技，杀死你的角色摸一张牌并随机获得一个技能(已满则先随机移除一个)。',
-									hhzz_huizhen_info: '锁定技，杀死你的角色摸三张牌并随机获得一个技能(已满则先随机移除一个)。',
-									hhzz_jubao_info: '锁定技，当你受到伤害的点数确定时，伤害来源随机获得你区域内的X张牌（X为伤害点数）。',
+									hhzz_huilei_info: '锁定技,击杀你的角色弃置所有的牌',
+									hhzz_youlian_info: '锁定技,击杀你的角色弃置所有牌并随机失去一个技能',
+									hhzz_zhencang_info: '锁定技,击杀你的角色摸一张牌并随机获得一个技能(已满则先随机移除一个)',
+									hhzz_huizhen_info: '锁定技,击杀你的角色摸三张牌并随机获得一个技能(已满则先随机移除一个)',
+									hhzz_jubao_info: '锁定技,当你受到伤害的点数确定时,伤害来源随机获得你区域内的X张牌(X为伤害点数)',
 									hhzz_shiona: '汐奈',
 									hhzz_kanade: '立华奏',
 									hhzz_takaramono1: '坚实宝箱',
 									hhzz_takaramono2: '普通宝箱',
 									hhzz_toulianghuanzhu: '偷梁换柱',
 									hhzz_fudichouxin: '釜底抽薪',
-									hhzz_toulianghuanzhu_info: '出牌阶段，对一名角色使用，随机更换其一个技能。可重铸。',
-									hhzz_fudichouxin_info: '出牌阶段，对一名角色使用，随机弃置其一个技能。',
+									hhzz_toulianghuanzhu_info: '出牌阶段,对一名角色使用,随机更换其一个技能.可重铸',
+									hhzz_fudichouxin_info: '出牌阶段,对一名角色使用,随机弃置其一个技能',
 									nei: ' ',
 									nei2: ' ',
-									刷新_info: '消耗1点灵力值，刷新上述技能。',
+									刷新_info: '消耗1点灵力值,刷新上述技能',
 								},
 							},
 							get: {
-								rawAttitude: function (from, to) {
+								rawAttitude(from, to) {
 									if (from == to || to == from._toSave) {
 										return 10;
 									}
@@ -832,10 +841,10 @@ const YB_11_cardBrowser = function () {
 								},
 							},
 							eltc: {
-								gameDraw: function () {
-									var end = player;
-									var numx;
-									var num = function (player) {
+								gameDraw() {
+									const end = player;
+									let numx;
+									let num = function (player) {
 										return player._hSeat > 5 ? 5 : 4;
 									};
 									do {
@@ -853,17 +862,17 @@ const YB_11_cardBrowser = function () {
 								},
 							},
 							eltp: {
-								addSkillH: function (skill) {
+								addSkillH(skill) {
 									this.skillH.add(skill);
 									this.addSkillLog.apply(this, arguments);
 								},
-								removeSkillH: function (skill) {
+								removeSkillH(skill) {
 									this.skillH.remove(skill);
 									game.log(this, '失去了技能', '#g【' + get.translation(skill) + '】');
 									this.removeSkill(skill);
 								},
-								dieAfter: function () {
-									var evt = _status.event.getParent('phase');
+								dieAfter() {
+									const evt = _status.event.getParent('phase');
 									if (evt) {
 										evt._lastDead = this;
 									}
@@ -871,19 +880,19 @@ const YB_11_cardBrowser = function () {
 										game.over(game.me.isAlive());
 									}
 								},
-								$dieAfter: function () {},
-								hasUnknown: function () {
+								$dieAfter() {},
+								hasUnknown() {
 									return false;
 								},
-								isUnknown: function () {
+								isUnknown() {
 									return false;
 								},
-								getEnemies: function () {
-									var list = game.playerx();
+								getEnemies() {
+									const list = game.playerx();
 									list.remove(this);
 									return list;
 								},
-								dieAfter2: function (source) {
+								dieAfter2(source) {
 									if (source && this.name.indexOf('hhzz_') != 0) {
 										if (source._toKill == this) {
 											game.log(source, '击杀目标成功');
@@ -892,11 +901,11 @@ const YB_11_cardBrowser = function () {
 										source.changeLingli(this == source._toKill ? 3 : 2);
 									}
 									if (!_status._aozhan) {
-										var that = this;
+										const that = this;
 										game.countPlayer(function (current) {
 											if (current._toSave == that) {
 												game.log(current, '保护失败');
-												var cards = current.getCards('he');
+												let cards = current.getCards('he');
 												if (cards.length) {
 													current.discard(cards.randomGets(4));
 												}
@@ -904,8 +913,8 @@ const YB_11_cardBrowser = function () {
 										});
 									}
 								},
-								logAi: function () {},
-								changeLingli: function (num) {
+								logAi() {},
+								changeLingli(num) {
 									if (typeof num != 'number') {
 										num = 1;
 									}
@@ -932,7 +941,7 @@ const YB_11_cardBrowser = function () {
 								},
 							},
 							game: {
-								playerx: function () {
+								playerx() {
 									return game.filterPlayer(function (current) {
 										if (current.name.indexOf('hhzz_') == 0) {
 											return;
@@ -940,7 +949,7 @@ const YB_11_cardBrowser = function () {
 										return true;
 									});
 								},
-								randomMission: function () {
+								randomMission() {
 									if (_status._aozhan) {
 										return;
 									}
@@ -950,41 +959,41 @@ const YB_11_cardBrowser = function () {
 											ui.time3.style.display = 'none';
 										}
 									}
-									var players = game.playerx();
-									for (var i = 0; i < players.length; i++) {
-										var player = players[i];
-										var list = players.slice(0).randomSort();
+									const players = game.playerx();
+									for (let i = 0; i < players.length; i++) {
+										let player = players[i];
+										const list = players.slice(0).randomSort();
 										list.remove(player);
 										player._toKill = list[0];
 										player._toSave = list[1];
 									}
-									ui.huanhuazhizhan.innerHTML = '击杀' + get.translation(game.me._toKill) + '，保护' + get.translation(game.me._toSave);
+									ui.huanhuazhizhan.innerHTML = '击杀' + get.translation(game.me._toKill) + ',保护' + get.translation(game.me._toSave);
 								},
-								getSkillDialog: function (skills, prompt) {
-									var dialog = ui.create.dialog('hidden', 'forcebutton');
+								getSkillDialog(skills, prompt) {
+									const dialog = ui.create.dialog('hidden', 'forcebutton');
 									if (prompt) {
 										dialog.addText(prompt);
 									}
-									for (var i = 0; i < skills.length; i++) {
+									for (let i = 0; i < skills.length; i++) {
 										dialog.add('<div class="popup pointerdiv" style="width:80%;display:inline-block"><div class="skill">【' + get.translation(skills[i]) + '】</div><div>' + lib.translate[skills[i] + '_info'] + '</div></div>');
 									}
 									dialog.addText(' <br> ');
 									return dialog;
 								},
-								chooseCharacter: function () {
-									var next = game.createEvent('chooseCharacter');
+								chooseCharacter() {
+									const next = game.createEvent('chooseCharacter');
 									next.showConfig = true;
 									next.setContent(function () {
 										'step 0';
 										game.zhu = game.players.randomGet();
-										var i = 1;
-										var current = game.zhu;
+										let i = 1;
+										let current = game.zhu;
 										while (true) {
 											current.skillH = [];
 											current._hSeat = i;
 											current.identity = 'nei';
 											current.setNickname(get.cnNumber(i, true) + '号位');
-											for (var ii in lib.huanhuazhizhan.eltp) {
+											for (const ii in lib.huanhuazhizhan.eltp) {
 												current[ii] = lib.huanhuazhizhan.eltp[ii];
 											}
 											current = current.next;
@@ -997,11 +1006,11 @@ const YB_11_cardBrowser = function () {
 										game.me.chooseButton(['请选择角色形象', [_status.characterlist.randomRemove(5), 'character']], true).onfree = true;
 										('step 1');
 										game.me.init(result.links[0]);
-										var list = ['xiandeng', 'shulv', 'xisheng'];
+										const list = ['xiandeng', 'shulv', 'xisheng'];
 										game.me.chooseControl(list).dialog = game.getSkillDialog(list, '选择要获得的初始技能');
 										('step 2');
-										var list = ['_lingli', '_lingli_round', '_lingli_draw', '_lingli_save', '_hhzz_qiankunbagua', '_lingli_damage'];
-										for (var i = 0; i < list.length; i++) {
+										const list = ['_lingli', '_lingli_round', '_lingli_draw', '_lingli_save', '_hhzz_qiankunbagua', '_lingli_damage'];
+										for (let i = 0; i < list.length; i++) {
 											game.addGlobalSkill(list[i]);
 										}
 										game.me.addSkillH(result.control);
@@ -1016,8 +1025,8 @@ const YB_11_cardBrowser = function () {
 										game.showIdentity(true);
 										('step 3');
 										game.randomMission();
-										var list = [game.createCard('hhzz_fudichouxin'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu')];
-										for (var i = 0; i < list.length; i++) {
+										const list = [game.createCard('hhzz_fudichouxin'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu')];
+										for (let i = 0; i < list.length; i++) {
 											ui.cardPile.insertBefore(list[i], ui.cardPile.childNodes[get.rand(ui.cardPile.childElementCount)]);
 										}
 										game.updateRoundNumber();
@@ -1035,19 +1044,15 @@ const YB_11_cardBrowser = function () {
 													popup: '聚灵',
 													intro: {
 														name: '灵力',
-														content: '当前灵力点数：# / 5',
+														content: '当前灵力点数:# / 5',
 													},
 												},
 												_lingli_round: {},
 												_lingli_draw: {},
 												_lingli_save: {},
 												hhzz_noCard: {},
-												hhzz_huilei: {
-													skillAnimation: true,
-												},
-												hhzz_youlian: {
-													skillAnimation: true,
-												},
+												hhzz_huilei: {},
+												hhzz_youlian: {},
 												hhzz_zhencang: {},
 												hhzz_huizhen: {},
 												hhzz_jubao: {},
@@ -1095,11 +1100,11 @@ const YB_11_cardBrowser = function () {
 												hhzz_zhencang: '珍藏',
 												hhzz_huizhen: '汇珍',
 												hhzz_jubao: '聚宝',
-												hhzz_huilei_info: '锁定技，杀死你的角色弃置所有的牌。',
-												hhzz_youlian_info: '锁定技，杀死你的角色弃置所有牌并随机失去一个技能。',
-												hhzz_zhencang_info: '锁定技，杀死你的角色摸一张牌并随机获得一个技能(已满则先随机移除一个)。',
-												hhzz_huizhen_info: '锁定技，杀死你的角色摸三张牌并随机获得一个技能(已满则先随机移除一个)。',
-												hhzz_jubao_info: '锁定技，当你受到伤害的点数确定时，伤害来源随机获得你区域内的X张牌（X为伤害点数）。',
+												hhzz_huilei_info: '锁定技,击杀你的角色弃置所有的牌',
+												hhzz_youlian_info: '锁定技,击杀你的角色弃置所有牌并随机失去一个技能',
+												hhzz_zhencang_info: '锁定技,击杀你的角色摸一张牌并随机获得一个技能(已满则先随机移除一个)',
+												hhzz_huizhen_info: '锁定技,击杀你的角色摸三张牌并随机获得一个技能(已满则先随机移除一个)',
+												hhzz_jubao_info: '锁定技,当你受到伤害的点数确定时,伤害来源随机获得你区域内的X张牌(X为伤害点数)',
 												nei: ' ',
 												nei2: ' ',
 												hhzz_shiona: '汐奈',
@@ -1108,30 +1113,30 @@ const YB_11_cardBrowser = function () {
 												hhzz_takaramono2: '普通宝箱',
 												hhzz_toulianghuanzhu: '偷梁换柱',
 												hhzz_fudichouxin: '釜底抽薪',
-												hhzz_toulianghuanzhu_info: '出牌阶段，对一名角色使用，随机更换其一个技能。可重铸。',
-												hhzz_fudichouxin_info: '出牌阶段，对一名角色使用，随机弃置其一个技能。',
+												hhzz_toulianghuanzhu_info: '出牌阶段,对一名角色使用,随机更换其一个技能.可重铸',
+												hhzz_fudichouxin_info: '出牌阶段,对一名角色使用,随机弃置其一个技能',
 											},
 										});
 									});
 								},
 							},
 						};
-						var func = function (pack) {
-							for (var i in pack.pack) {
-								for (var j in pack.pack[i]) {
+						const func = function (pack) {
+							for (let i in pack.pack) {
+								for (let j in pack.pack[i]) {
 									lib[i][j] = pack.pack[i][j];
 								}
 							}
-							for (var i in pack.eltc) {
+							for (let i in pack.eltc) {
 								lib.element.content[i] = pack.eltc[i];
 							}
-							for (var i in pack.eltp) {
+							for (let i in pack.eltp) {
 								lib.element.player[i] = pack.eltp[i];
 							}
-							for (var i in pack.game) {
+							for (let i in pack.game) {
 								game[i] = pack.game[i];
 							}
-							for (var i in pack.get) {
+							for (let i in pack.get) {
 								get[i] = pack.get[i];
 							}
 							lib.huanhuazhizhan = pack;
@@ -1140,5 +1145,6 @@ const YB_11_cardBrowser = function () {
 					},
 				},
 			};
+		}
 	}
 };

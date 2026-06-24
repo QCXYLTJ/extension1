@@ -1,7 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { skill };
-
-/** @type { importCharacterConfig['skill'] } */
+/** @type { importCharacterConfig.skill } */
 const skill = {
 	//---------------六艺篇
 	// '_ybsl_sixart':{
@@ -61,7 +60,7 @@ const skill = {
 	// 		//player.storage._ybsl_artlist.push(cards);失败的写法
 	// 		game.log(player,'将',get.cnNumber(cards.length),'张牌置入了六艺区');
 	// 		player.addMark('_ybsl_sixart',cards.length);
-	// 		player.updateMarks();
+	//
 	// 		'step 1'
 	// 		if(player.countCards('s',function(card){return card.hasGaintag('_ybsl_sixart')})>2){
 	// 			player.addTempSkill('ybsl_master',{player:'phaseBeginStart'});
@@ -102,13 +101,12 @@ const skill = {
 	// 	ruleSkill:true,
 	// 	filter:function(event,player){
 	// 		return player.getHistory('lose',function(evt){
-	// 			if(evt.getParent()!=event) return false;
+	// 			if(evt.parent!=event) return false;
 	// 			for(var i in evt.gaintag_map){
 	// 				if(evt.gaintag_map[i].includes('_ybsl_sixart')) return true;
 	// 			}
 	// 			return false;
 	// 		}).length>0;
-
 	// 		//var evt=event.getl(player);
 	// 		//return evt&&evt.player==player&&evt.cards('s',function(card){return card.hasGaintag('_ybsl_sixart')})&&evt.cards('s',function(card){return card.hasGaintag('_ybsl_sixart')}).length>0;
 	// 	},
@@ -116,7 +114,7 @@ const skill = {
 	// 		'step 0'
 	// 		var cards=trigger.cards.filter(function(card){
 	// 			return player.getHistory('lose',function(evt){
-	// 				if(evt.getParent()!=event) return false;
+	// 				if(evt.parent!=event) return false;
 	// 				for(var i in evt.gaintag_map){
 	// 					if(evt.gaintag_map[i].includes('_ybsl_sixart')) return true;
 	// 				}
@@ -125,7 +123,7 @@ const skill = {
 	// 		});
 	// 		//player.storage._ybsl_artlist.remove(cards);
 	// 		player.removeMark('_ybsl_sixart',cards.length);
-	// 		player.updateMarks();
+	//
 	// 		if(player.hasSkill('ybsl_master')){
 	// 			game.log('调试1',cards.length);
 	// 			player.draw(cards.length);
@@ -133,7 +131,6 @@ const skill = {
 	// 	},
 	// },
 	// 'ybsl_master':{charlotte:true,},
-
 	//-----------------六艺应用
 	yb013_shanwu: {
 		inherit: 'yb017_shanwu',
@@ -167,30 +164,36 @@ const skill = {
 					ybold_018zhangqing: 'yb018_shanwu',
 				},
 				enable: ['chooseToUse', 'chooseToRespond'],
-				filterCard: function (card) {
+				filterCard(card, player) {
 					return card.hasGaintag('_ybsl_sixart');
 				},
 				viewAs: { name: 'sha' },
-				viewAsFilter: function (player) {
-					if (!player.countCards('s')) return false;
+				viewAsFilter(player) {
+					if (!player.countCards('s')) {
+						return false;
+					}
 				},
 				position: 's',
 				prompt: '将一张六艺牌当杀使用或打出',
-				check: function () {
+				check() {
 					return 1;
 				},
 				ai: {
 					effect: {
-						target: function (card, player, target, current) {
-							if (get.tag(card, 'respondSha') && current < 0) return 0.6;
+						target(card, player, target, current) {
+							if (get.tag(card, 'respondSha') && current < 0) {
+								return 0.6;
+							}
 						},
 					},
 					respondSha: true,
 					sixartSkill: true,
-					skillTagFilter: function (player) {
-						if (!player.countCards('s')) return false;
+					skillTagFilter(player) {
+						if (!player.countCards('s')) {
+							return false;
+						}
 					},
-					order: function () {
+					order() {
 						return get.order({ name: 'sha' }) + 0.1;
 					},
 					useful: -1,
@@ -208,27 +211,33 @@ const skill = {
 					ybold_018zhangqing: 'yb018_shanwu',
 				},
 				enable: ['chooseToRespond', 'chooseToUse'],
-				filterCard: function (card) {
+				filterCard(card, player) {
 					return card.hasGaintag('_ybsl_sixart');
 				},
 				viewAs: { name: 'shan' },
 				prompt: '将一张六艺牌当闪使用或打出',
-				check: function () {
+				check() {
 					return 1;
 				},
 				position: 's',
-				viewAsFilter: function (player) {
-					if (!player.countCards('s')) return false;
+				viewAsFilter(player) {
+					if (!player.countCards('s')) {
+						return false;
+					}
 				},
 				ai: {
 					sixartSkill: true,
 					respondShan: true,
-					skillTagFilter: function (player) {
-						if (!player.countCards('s')) return false;
+					skillTagFilter(player) {
+						if (!player.countCards('s')) {
+							return false;
+						}
 					},
 					effect: {
-						target: function (card, player, target, current) {
-							if (get.tag(card, 'respondShan') && current < 0) return 0.6;
+						target(card, player, target, current) {
+							if (get.tag(card, 'respondShan') && current < 0) {
+								return 0.6;
+							}
 						},
 					},
 					order: 4,
@@ -246,34 +255,34 @@ const skill = {
 	yb017_luming: {
 		audio: 'dz017_zhushi_shibai',
 		enable: 'phaseUse',
-		viewAsFilter: function (player) {
+		viewAsFilter(player) {
 			return player.countCards('hs') > 0;
 		},
 		viewAs: { name: 'ybsl_lumingqianzhuan' },
-		filterCard: function (card, player) {
-			var suit = get.suit(card);
-			var list = player.storage.yb017_luming_block;
-			for (var i = 0; i < list.length; i++) {
+		filterCard(card, player) {
+			const suit = card.suit;
+			let list = player.storage.yb017_luming_block;
+			for (let i = 0; i < list.length; i++) {
 				if (suit == list[i]) {
 					return false;
 				}
 			}
 			return true;
 		},
-		prompt: function (player) {
-			var player = _status.event.player;
-			var str = '是否将一张手牌当【鹿鸣千转】使用？';
+		prompt(player) {
+			player = _status.event.player;
+			let str = '是否将一张手牌当【鹿鸣千转】使用？';
 			if (!player.storage.yb017_luming_block == []) {
-				str += '<br>不能使用以下花色：';
+				str += '<br>不能使用以下花色:';
 				str += get.translation(player.storage.yb017_luming_block);
 			}
 			return str;
 		},
 		position: 'hs',
-		check: function (card) {
+		check(card) {
 			return 7 - get.value(card);
 		},
-		reset: function (player) {
+		reset(player) {
 			player.addTempSkill('yb017_luming_block');
 			player.storage.yb017_luming_block = [];
 			game.log(player, '重置了鹿鸣的花色');
@@ -282,16 +291,16 @@ const skill = {
 		mark: true,
 		marktext: '鹿',
 		intro: {
-			content: function (storage, player) {
-				var str = '已用过';
-				var list = player.storage.yb017_luming_block;
-				for (var i = 0; i < list.length; i++) {
+			content(storage, player) {
+				let str = '已用过';
+				let list = player.storage.yb017_luming_block;
+				for (let i = 0; i < list.length; i++) {
 					str += get.translation(list[i]);
 				}
 				return str;
 			},
 		},
-		init: function (player) {
+		init(player) {
 			lib.skill.yb017_luming.reset(player);
 		},
 		derivation: ['ybsl_lumingqianzhuan'],
@@ -299,30 +308,28 @@ const skill = {
 			2: {
 				trigger: { player: 'useCard' },
 				silent: true,
-				filter: function (event, player) {
+				filter(event, player) {
 					return event.skill == 'yb017_luming' /*&&Array.isArray(event.respondTo)*/;
-					game.log(Array.isArray(event.respondTo));
 				},
-				content: function () {
+				content() {
 					player.storage.yb017_luming_block.push(trigger.card.suit);
 					game.log(player, '的鹿鸣记录了', trigger.card.suit);
 				},
 			},
 			block: {
-				onremove: function (player) {
+				onremove(player) {
 					lib.skill.yb017_luming.reset(player);
 				},
 			},
 			reset: {
 				charlotte: true,
 				forced: true,
-				direct: true,
 				trigger: {
 					global: 'phaseBefore',
 					player: ['phaseUseBefore', 'phaseUseAfter', 'enterGame'],
 					source: ['die'],
 				},
-				content: function () {
+				content() {
 					lib.skill.yb017_luming.reset(player);
 				},
 			},
@@ -337,10 +344,10 @@ const skill = {
 		intro: {
 			content: '已经征服了$',
 		},
-		filter: function (event, player) {
+		filter(event, player) {
 			return (!player.storage.yb017_zhengxiong || !player.storage.yb017_zhengxiong.includes(event.player)) && event.player.hasSex('male');
 		},
-		content: function () {
+		content() {
 			'step 0';
 			player.draw(2);
 			player.storage.yb017_zhengxiong.add(trigger.player);
@@ -359,10 +366,9 @@ const skill = {
 				player.loseToSpecial(result.cards, '_ybsl_sixart').gaintag = ['_ybsl_sixart'];
 				game.log(player, '将', get.cnNumber(1), '张牌置入了六艺区');
 				player.addMark('_ybsl_sixart', 1);
-				player.updateMarks();
 			}
 		},
-		init: function (player, skill) {
+		init(player, skill) {
 			player.storage.yb017_zhengxiong = [];
 		},
 		group: 'yb017_zhengxiong_buff',
@@ -372,16 +378,14 @@ const skill = {
 				trigger: {
 					global: 'phaseBegin',
 				},
-				direct: true,
 				forced: true,
 				charlotte: true,
-				content: function () {
+				content() {
 					player.storage.yb017_zhengxiong = [];
 				},
-				sub: true,
 			},
 			block: {
-				onremove: function (player) {
+				onremove(player) {
 					player.storage.yb017_zhengxiong = [];
 				},
 			},
@@ -393,26 +397,22 @@ const skill = {
 		enable: 'phaseUse',
 		usable: 1,
 		filterCard: true,
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return target != player && target.countCards('he') > 0;
-		},
-		check: function (card) {
-			//主动技选牌ai，括号里参数是card
-			return 7 - get.value(card); //弃置价值小于4的牌
 		},
 		ai: {
 			threaten: 1.1, //嘲讽值
 			expose: 1,
-			order: 8, //主动技使用的先后，杀是3，酒是3.2。这个技能排在最前面
+			order: 8, //主动技使用的先后,杀是3,酒是3.2.这个技能排在最前面
 			result: {
 				//主动技的收益
-				target: function (player, target) {
+				target(player, target) {
 					return -1;
 				},
 			},
 		},
-		filter: function (event, player) {
-			var max = 6;
+		filter(event, player) {
+			const max = 6;
 			return (
 				player.countCards('h') > 0 &&
 				player.countCards('s', function (card) {
@@ -420,32 +420,36 @@ const skill = {
 				}) < max
 			);
 		},
-		selectCard: function () {
-			var player = _status.event.player;
-			if (!player.hasSkillTag('sixartSkill')) return 1;
-			var max = 6;
-			var num =
+		selectCard() {
+			const player = _status.event.player;
+			if (!player.hasSkillTag('sixartSkill')) {
+				return 1;
+			}
+			const max = 6;
+			const num =
 				max -
 				player.countCards('s', function (card) {
 					return card.hasGaintag('_ybsl_sixart');
 				});
 			return [1, num];
 		},
-		selectTarget: function () {
+		selectTarget() {
 			if (ui.selected.targets.length > ui.selected.cards.length) {
 				game.uncheck('target');
 			}
 			return ui.selected.cards.length;
 		},
 		position: 'h',
-		check: function (card) {
+		check(card) {
 			return 6 - get.value(card);
 		},
-		content: function () {
+		content() {
 			'step 0';
 			if (target.countCards('he') >= 1) {
 				player.choosePlayerCard(target, 'he', true);
-			} else event.goto(4);
+			} else {
+				event.goto(4);
+			}
 			('step 1');
 			player.showCards(result.cards);
 			event.cards2 = result.cards;
@@ -454,7 +458,6 @@ const skill = {
 			target.loseToSpecial(event.cards2, '_ybsl_sixart', player).visible = true;
 			game.log(player, '将', target, '的', get.cnNumber(1), '张牌置入了六艺区');
 			player.addMark('_ybsl_sixart', 1);
-			player.updateMarks();
 			if (
 				player.countCards('s', function (card) {
 					return card.hasGaintag('_ybsl_sixart');
@@ -470,14 +473,14 @@ const skill = {
 			player: 'phaseJieshuBegin',
 		},
 		prompt: '是否弃置六艺区所有牌？',
-		filter: function (event, player) {
+		filter(event, player) {
 			return (
 				player.countCards('s', function (card) {
 					return card.hasGaintag('_ybsl_sixart');
 				}) > 0
 			);
 		},
-		content: function () {
+		content() {
 			'step 0';
 			event.num = player.countCards('s', function (card) {
 				return card.hasGaintag('_ybsl_sixart');
@@ -488,22 +491,28 @@ const skill = {
 			('step 1');
 			player.discard(event.cards);
 			player.removeMark('_ybsl_sixart', event.num);
-			player.updateMarks();
 			if (player.hasSkill('ybsl_master')) {
 				game.log('调试2', event.num);
 				player.draw(event.num);
 			}
 			('step 2');
-			if (event.num >= 1) player.draw();
+			if (event.num >= 1) {
+				player.draw();
+			}
 			('step 3');
-			if (event.num >= 2) player.recover();
+			if (event.num >= 2) {
+				player.recover();
+			}
 			('step 4');
-			if (event.num >= 3) player.gainMaxHp();
+			if (event.num >= 3) {
+				player.gainMaxHp();
+			}
 			('step 5');
-			if (event.num >= 4)
-				player.chooseTarget([1, 3], lib.filter.notMe, '选择至多三名其他角色，依次弃置其各一张牌。').set('ai', function (target) {
+			if (event.num >= 4) {
+				player.chooseTarget([1, 3], lib.filter.notMe, '选择至多三名其他角色,依次弃置其各一张牌').set('ai', function (target) {
 					return -get.attitude(_status.event.player, target);
 				});
+			}
 			('step 6');
 			if (result.targets) {
 				event.targets = result.targets;
@@ -515,7 +524,7 @@ const skill = {
 			event.numb = 0;
 			('step 8');
 			event.numb++;
-			if (event.targets.length > 0 && event.targets[0].countCards('he') >= 1) {
+			if (event.targets.length && event.targets[0].countCards('he') >= 1) {
 				player.discardPlayerCard(event.targets[0], 'he', true);
 			} else {
 				event.goto(11);
@@ -546,16 +555,21 @@ const skill = {
 			('step 13');
 			if (result.bool) {
 				game.log(result.targets[0], event.cards, event.cards.length);
-				for (var i = 0; i < event.cards.length; i++) {
-					result.targets[0].gain(event.cards[i], 'gain2');
+				if (Array.isArray(event.cards)) {
+					for (const i of event.cards) {
+						result.targets[0].gain(i, 'gain2');
+					}
 				}
 			}
 		},
-		check: function (event, player) {
-			//触发技ai，括号里参数是event,plater
-			if (player.hasSkill('ybsl_master'))
-				return true; //如果你有精艺就发动
-			else return false; //否则不发动
+		check(event, player) {
+			//触发技ai,括号里参数是event,plater
+			if (player.hasSkill('ybsl_master')) {
+				return true;
+			} //如果你有精艺就发动
+			else {
+				return false;
+			} //否则不发动
 		},
 		ai: {
 			sixartSkill: true,
@@ -567,7 +581,7 @@ const skill = {
 		audio: 'ext:夜白神略/audio/character:1',
 		enable: 'chooseToUse',
 		derivation: ['_ybsl_sixart', 'ybsl_master'],
-		filter: function (event, player) {
+		filter(event, player) {
 			return (
 				event.type != 'wuxie' &&
 				player.countCards('s', function (card) {
@@ -575,7 +589,7 @@ const skill = {
 				}) > 0
 			);
 		},
-		hiddenCard: function (player, name) {
+		hiddenCard(player, name) {
 			return (
 				!player.getStorage('yb014_shifu_block').includes(name) &&
 				player.countCards('s', function (card) {
@@ -584,52 +598,61 @@ const skill = {
 				lib.inpile.includes(name)
 			);
 		},
-		init: function (player) {
-			if (!player.storage.yb014_shifu_block) player.storage.yb014_shifu_block = [];
+		init(player) {
+			if (!player.storage.yb014_shifu_block) {
+				player.storage.yb014_shifu_block = [];
+			}
 		},
-		onremove: true,
 		chooseButton: {
-			dialog: function (event, player) {
-				var list = [];
-				for (var i = 0; i < lib.inpile.length; i++) {
-					var name = lib.inpile[i];
-					if (player.storage.yb014_shifu_block && player.storage.yb014_shifu_block.includes(name)) continue;
-					if (get.type(name) == 'trick') list.push(['锦囊', '', name]);
+			dialog(event, player) {
+				let list = [];
+				for (let i = 0; i < lib.inpile.length; i++) {
+					const name = lib.inpile[i];
+					if (player.storage.yb014_shifu_block && player.storage.yb014_shifu_block.includes(name)) {
+						continue;
+					}
+					if (get.type(name) == 'trick') {
+						list.push(['锦囊', '', name]);
+					}
 				}
 				if (list.length == 0) {
 					return ui.create.dialog('诗赋已无可用牌');
 				}
 				return ui.create.dialog('诗赋', [list, 'vcard']);
 			},
-			filter: function (button, player) {
-				return _status.event.getParent().filterCard({ name: button.link[2] }, player, _status.event.getParent());
+			filter(button, player) {
+				return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
 			},
-			check: function (button) {
-				var player = _status.event.player;
-				if (button.link[2] == 'wugu') return 0;
-				var effect = player.getUseValue(button.link[2]);
-				if (effect > 0) return effect;
+			check(button) {
+				const player = _status.event.player;
+				if (button.link[2] == 'wugu') {
+					return 0;
+				}
+				const effect = player.getUseValue(button.link[2]);
+				if (effect > 0) {
+					return effect;
+				}
 				return 0;
 			},
-			backup: function (links, player) {
+			backup(links, player) {
 				return {
-					filterCard: function (card, player) {
+					filterCard(card, player) {
 						return card.hasGaintag('_ybsl_sixart');
 					},
 					audio: 'yb014_shifu',
 					selectCard: 1,
 					popname: true,
-					check: function (card) {
+					check(card) {
 						return 6 - get.value(card);
 					},
 					position: 's',
 					viewAs: { name: links[0][2], nature: links[0][3] },
-					onuse: function (result, player) {
+					onuse(result, player) {
 						player.storage.yb014_shifu_block.add(result.card.name);
 					},
 				};
 			},
-			prompt: function (links, player) {
+			prompt(links, player) {
 				return '将一张六艺牌当作【' + get.translation(links[0][2]) + '】使用';
 			},
 		},
@@ -637,10 +660,9 @@ const skill = {
 			sixartSkill: true,
 			order: 4,
 			result: {
-				player: function (player) {
-					var allshown = true,
-						players = game.filterPlayer();
-					for (var i = 0; i < players.length; i++) {
+				player(player) {
+					let allshown = true, players = game.filterPlayer();
+					for (let i = 0; i < players.length; i++) {
 						if (players[i].ai.shown == 0) {
 							allshown = false;
 						}
@@ -648,7 +670,9 @@ const skill = {
 							return 1;
 						}
 					}
-					if (allshown) return 1;
+					if (allshown) {
+						return 1;
+					}
 					return 0;
 				},
 			},
@@ -660,7 +684,7 @@ const skill = {
 		audio: 'yb014_shifu',
 		enable: 'chooseToUse',
 		prompt: '将一张六艺牌当做【无懈可击】使用',
-		viewAsFilter: function (player) {
+		viewAsFilter(player) {
 			return (
 				!player.getStorage('yb014_shifu_block').includes('wuxie') &&
 				player.countCards('s', function (card) {
@@ -668,10 +692,10 @@ const skill = {
 				})
 			);
 		},
-		onuse: function (result, player) {
+		onuse(result, player) {
 			player.storage.yb014_shifu_block.add('wuxie');
 		},
-		filterCard: function (card, player) {
+		filterCard(card, player) {
 			return card.hasGaintag('_ybsl_sixart');
 		},
 		position: 's',
@@ -680,12 +704,12 @@ const skill = {
 	},
 	yb014_shifu_backup: {},
 	yb014_shifu2: {
-		direct: true,
+		forced: true,
 		charlotte: true,
 		trigger: {
 			player: ['useCardAfter', 'damageAfter', 'phaseBegin'],
 		},
-		content: function () {
+		content() {
 			'step 0';
 			event.num = 11;
 			if (event.triggername == 'useCardAfter') {
@@ -696,20 +720,22 @@ const skill = {
 					event.num = 7;
 				}
 			}
-			if (event.triggername == 'phaseBegin') event.num = 6;
+			if (event.triggername == 'phaseBegin') {
+				event.num = 6;
+			}
 			('step 1');
 			player.addMark('yb014_shifu2', event.num);
-			var list = ['moon', 'clam', 'lightning', 'wind', 'flame'];
-			var list6 = [];
-			for (var i of list) {
+			let list = ['moon', 'clam', 'lightning', 'wind', 'flame'];
+			const list6 = [];
+			for (const i of list) {
 				list6.push('ybsl_' + i);
 			}
 			event.list = list;
 			event.list3 = list6;
 			('step 2');
-			var list7 = event.list;
-			var list2 = event.list3;
-			for (var j of list7) {
+			const list7 = event.list;
+			const list2 = event.list3;
+			for (let j of list7) {
 				// game.log(player.storage.yb014_shifu2);
 				// game.log(player.storage['ybsl_'+j+'_lv']+1);
 				// game.log(game.checkMod(event,player,0,'ybsl'+j+'Mod',player));
@@ -737,7 +763,7 @@ const skill = {
 				}
 			}
 		},
-		init: function (player, skill) {
+		init(player, skill) {
 			player.storage.yb014_shifu99 = ['', '', '', '', '', ''];
 			player.addMark('ybsl_moon_lv');
 			player.addMark('ybsl_clam_lv');
@@ -754,98 +780,98 @@ const skill = {
 		marktext: '诗',
 		intro: {
 			name: '诗篇',
-			content: function (storage, player, skill) {
-				var str = '';
-				var list6 = player.storage.yb014_shifu99;
-				var list = {
+			content(storage, player, skill) {
+				let str = '';
+				const list6 = player.storage.yb014_shifu99;
+				let list = {
 					moon: {
-						0: '①〖决堰〗（陆抗）',
-						1: '<br>②〖伪伤〗（key宫泽谦吾）',
-						2: '<br>③〖游凤〗（key凤千早）',
-						3: '<br>④〖止啼〗（手杀神张辽）',
-						4: '<br>⑤〖浮萍〗（夏侯令女）',
-						5: '<br>⑥〖均步〗（key凤咲夜）/〖烈武〗（key凤千早）',
-						6: '<br>⑦〖弥笃〗（胡昭）',
-						7: '<br>⑧〖贤望〗（胡昭）/〖奋锐〗（霍峻）',
+						0: '①〖决堰〗(陆抗)',
+						1: '<br>②〖伪伤〗(key宫泽谦吾)',
+						2: '<br>③〖游凤〗(key凤千早)',
+						3: '<br>④〖止啼〗(手杀神张辽)',
+						4: '<br>⑤〖浮萍〗(夏侯令女)',
+						5: '<br>⑥〖均步〗(key凤咲夜)/〖烈武〗(key凤千早)',
+						6: '<br>⑦〖弥笃〗(胡昭)',
+						7: '<br>⑧〖贤望〗(胡昭)/〖奋锐〗(霍峻)',
 					},
 					clam: {
-						0: '①〖武圣〗（界关羽）+〖倾国〗（界甄姬）',
-						1: '<br>②〖龙胆〗（界赵云）',
-						2: '<br>③〖善断〗+〖义烈〗（ol周处）',
-						3: '<br>④〖急救〗（华佗）+〖连环〗（界庞统）',
-						4: '<br>⑤〖火计〗+〖看破〗（手杀卧龙）',
-						5: '<br>⑥〖矫诏〗+〖殚心〗（界郭皇后）',
-						6: '<br>⑦〖龙魂〗（神赵云）',
-						7: '<br>⑧〖双掣〗（key三枝二木）',
+						0: '①〖武圣〗(界关羽)+〖倾国〗(界甄姬)',
+						1: '<br>②〖龙胆〗(界赵云)',
+						2: '<br>③〖善断〗+〖义烈〗(ol周处)',
+						3: '<br>④〖急救〗(华佗)+〖连环〗(界庞统)',
+						4: '<br>⑤〖火计〗+〖看破〗(手杀卧龙)',
+						5: '<br>⑥〖矫诏〗+〖殚心〗(界郭皇后)',
+						6: '<br>⑦〖龙魂〗(神赵云)',
+						7: '<br>⑧〖双掣〗(key三枝二木)',
 					},
 					lightning: {
-						0: '①〖符咒〗（DIY张宁）',
-						1: '<br>②〖鬼道〗（DIY张宁）',
-						2: '<br>③〖太平〗（DIY张宁）',
-						3: '<br>④〖筹策〗（戏志才）',
-						4: '<br>⑤〖屯田〗（ol界邓艾）',
-						5: '<br>⑥〖暴球〗（key枣铃）',
-						6: '<br>⑦〖八阵〗（卧龙）',
-						7: '<br>⑧〖吉境〗（王荣）',
+						0: '①〖符咒〗(DIY张宁)',
+						1: '<br>②〖鬼道〗(DIY张宁)',
+						2: '<br>③〖太平〗(DIY张宁)',
+						3: '<br>④〖筹策〗(戏志才)',
+						4: '<br>⑤〖屯田〗(ol界邓艾)',
+						5: '<br>⑥〖暴球〗(key枣铃)',
+						6: '<br>⑦〖八阵〗(卧龙)',
+						7: '<br>⑧〖吉境〗(王荣)',
 					},
 					wind: {
-						0: '①〖制衡〗（界孙权）',
-						1: '<br>②〖法箓〗+〖真仪〗（张琪瑛）',
-						2: '<br>③〖会输〗（全不会解）',
-						3: '<br>④〖易输〗（全不会解）',
-						4: '<br>⑤〖点化〗（张琪瑛）',
-						5: '<br>⑥〖淑武〗（key七濑留美）',
-						6: '<br>⑦〖苦肉〗（黄盖）/〖募兵〗（SP张辽已觉醒）',
-						7: '<br>⑧〖敏思〗（王荣）/〖巧思〗（马均）',
+						0: '①〖制衡〗(界孙权)',
+						1: '<br>②〖法箓〗+〖真仪〗(张琪瑛)',
+						2: '<br>③〖会输〗(全不会解)',
+						3: '<br>④〖易输〗(全不会解)',
+						4: '<br>⑤〖点化〗(张琪瑛)',
+						5: '<br>⑥〖淑武〗(key七濑留美)',
+						6: '<br>⑦〖苦肉〗(黄盖)/〖募兵〗(SP张辽已觉醒)',
+						7: '<br>⑧〖敏思〗(王荣)/〖巧思〗(马均)',
 					},
 					flame: {
-						0: '①〖锋略〗（荀谌）',
-						1: '<br>②〖天义〗（太史慈）+〖探虎〗（星SP吕蒙）',
-						2: '<br>③〖烈刃〗（手杀祝融）',
-						3: '<br>④〖专对〗（秦宓）',
-						4: '<br>⑤〖明伐〗（手杀羊祜）+〖大喝〗（星SP张飞）',
-						5: '<br>⑥〖酣战〗（界太史慈）/〖天辩〗（秦宓）',
-						6: '<br>⑦〖咆哮〗（界张飞）/〖陷阵〗（界高顺）',
-						7: '<br>⑧〖除害〗（周处）',
+						0: '①〖锋略〗(荀谌)',
+						1: '<br>②〖天义〗(太史慈)+〖探虎〗(星SP吕蒙)',
+						2: '<br>③〖烈刃〗(手杀祝融)',
+						3: '<br>④〖专对〗(秦宓)',
+						4: '<br>⑤〖明伐〗(手杀羊祜)+〖大喝〗(星SP张飞)',
+						5: '<br>⑥〖酣战〗(界太史慈)/〖天辩〗(秦宓)',
+						6: '<br>⑦〖咆哮〗(界张飞)/〖陷阵〗(界高顺)',
+						7: '<br>⑧〖除害〗(周处)',
 					},
 				};
 				if (player.storage.yb014_shifu99[0] == 'sakuya_junbu') {
-					list.moon[5] = '<br>⑥〖均步〗（key凤咲夜）/<span style="text-decoration: line-through;">〖烈武〗（key凤千早）</span>';
+					list.moon[5] = '<br>⑥〖均步〗(key凤咲夜)/<span style="text-decoration: line-through;">〖烈武〗(key凤千早)</span>';
 				} else if (player.storage.yb014_shifu99[0] == 'chihaya_liewu') {
-					list.moon[5] = '<br>⑥<span style="text-decoration: line-through;">〖均步〗（key凤咲夜）</span>/〖烈武〗（key凤千早）';
+					list.moon[5] = '<br>⑥<span style="text-decoration: line-through;">〖均步〗(key凤咲夜)</span>/〖烈武〗(key凤千早)';
 				}
 				if (player.storage.yb014_shifu99[1] == 'xianwang') {
-					list.moon[7] = '<br>⑧〖贤望〗（胡昭）/<span style="text-decoration: line-through;">〖奋锐〗（霍峻）</span>';
+					list.moon[7] = '<br>⑧〖贤望〗(胡昭)/<span style="text-decoration: line-through;">〖奋锐〗(霍峻)</span>';
 				} else if (player.storage.yb014_shifu99[1] == 'fenrui') {
-					list.moon[7] = '<br>⑧<span style="text-decoration: line-through;">〖贤望〗（胡昭）</span>/〖奋锐〗（霍峻）';
+					list.moon[7] = '<br>⑧<span style="text-decoration: line-through;">〖贤望〗(胡昭)</span>/〖奋锐〗(霍峻)';
 				}
 				if (player.storage.yb014_shifu99[2] == 'kurou') {
-					list.wind[6] = '<br>⑦〖苦肉〗（黄盖）/<span style="text-decoration: line-through;">〖募兵〗（SP张辽已觉醒）</span>';
+					list.wind[6] = '<br>⑦〖苦肉〗(黄盖)/<span style="text-decoration: line-through;">〖募兵〗(SP张辽已觉醒)</span>';
 				} else if (player.storage.yb014_shifu99[2] == 'mubing') {
-					list.wind[6] = '<br>⑦<span style="text-decoration: line-through;">〖苦肉〗（黄盖）</span>/〖募兵〗（SP张辽已觉醒）';
+					list.wind[6] = '<br>⑦<span style="text-decoration: line-through;">〖苦肉〗(黄盖)</span>/〖募兵〗(SP张辽已觉醒)';
 				}
 				if (player.storage.yb014_shifu99[3] == 'minsi') {
-					list.wind[7] = '<br>⑧〖敏思〗（王荣）/<span style="text-decoration: line-through;">〖巧思〗（马均）</span>';
+					list.wind[7] = '<br>⑧〖敏思〗(王荣)/<span style="text-decoration: line-through;">〖巧思〗(马均)</span>';
 				} else if (player.storage.yb014_shifu99[3] == 'qiaosi') {
-					list.wind[7] = '<br>⑧<span style="text-decoration: line-through;">〖敏思〗（王荣）</span>/〖巧思〗（马均）';
+					list.wind[7] = '<br>⑧<span style="text-decoration: line-through;">〖敏思〗(王荣)</span>/〖巧思〗(马均)';
 				}
 				if (player.storage.yb014_shifu99[4] == 'hanzhan') {
-					list.flame[5] = '<br>⑥〖酣战〗（界太史慈）/<span style="text-decoration: line-through;">〖天辩〗（秦宓）</span>';
+					list.flame[5] = '<br>⑥〖酣战〗(界太史慈)/<span style="text-decoration: line-through;">〖天辩〗(秦宓)</span>';
 				} else if (player.storage.yb014_shifu99[4] == 'tianbian') {
-					list.flame[5] = '<br>⑥<span style="text-decoration: line-through;">〖酣战〗（界太史慈）</span>/〖天辩〗（秦宓）';
+					list.flame[5] = '<br>⑥<span style="text-decoration: line-through;">〖酣战〗(界太史慈)</span>/〖天辩〗(秦宓)';
 				}
 				if (player.storage.yb014_shifu99[5] == 'olpaoxiao') {
-					list.flame[6] = '<br>⑦〖咆哮〗（界张飞）/<span style="text-decoration: line-through;">〖陷阵〗（界高顺）</span>';
+					list.flame[6] = '<br>⑦〖咆哮〗(界张飞)/<span style="text-decoration: line-through;">〖陷阵〗(界高顺)</span>';
 				} else if (player.storage.yb014_shifu99[5] == 'decadexianzhen') {
-					list.flame[6] = '<br>⑦<span style="text-decoration: line-through;">〖咆哮〗（界张飞）</span>/〖陷阵〗（界高顺）';
+					list.flame[6] = '<br>⑦<span style="text-decoration: line-through;">〖咆哮〗(界张飞)</span>/〖陷阵〗(界高顺)';
 				}
-				for (var i in list) {
-					var j = 'ybsl_' + i;
-					var k = 'ybmyx_' + i;
+				for (let i in list) {
+					let j = 'ybsl_' + i;
+					const k = 'ybmyx_' + i;
 					if (player.storage[j].includes('key')) {
 						((str += '<br>主流派<br>'), (str += player.storage[j + '_lv'] + '---' + player.storage.yb014_shifu2 + '/' + (player.storage[j + '_lv'] + 1) * game.checkMod(event, player, 0, 'ybsl' + i + 'Mod', player) + '<br>'));
-						for (var q = 0; q < 8; q++) {
-							var numa = player.storage['ybsl_' + i + '_lv'];
+						for (let q = 0; q < 8; q++) {
+							const numa = player.storage['ybsl_' + i + '_lv'];
 							if (q < numa) {
 								list[i][q] = '<span class=yellowtext>' + list[i][q] + '</span>';
 							} else {
@@ -856,8 +882,8 @@ const skill = {
 					} else if (player.storage[j].includes('sec')) {
 						str += '<br>支流派<br>';
 						str += player.storage[j + '_lv'] + '---' + player.storage.yb014_shifu2 + '/' + (player.storage[j + '_lv'] + 1) * game.checkMod(event, player, 0, 'ybsl' + i + 'Mod', player) + '<br>';
-						for (var p = 0; p < 5; p++) {
-							var numb = player.storage['ybsl_' + i + '_lv'];
+						for (let p = 0; p < 5; p++) {
+							const numb = player.storage['ybsl_' + i + '_lv'];
 							if (p < numb) {
 								list[i][p] = '<span class=yellowtext>' + list[i][p] + '</span>';
 							} else {
@@ -875,32 +901,39 @@ const skill = {
 	ybsl_moon: {
 		charlotte: true,
 		mod: {
-			ybslmoonMod: function (event, player, num) {
-				var str = Infinity;
-				if (player.storage.ybsl_moon.includes('key')) str = 50;
-				if (player.storage.ybsl_moon.includes('sec')) str = 35;
+			ybslmoonMod(event, player, num) {
+				let str = Infinity;
+				if (player.storage.ybsl_moon.includes('key')) {
+					str = 50;
+				}
+				if (player.storage.ybsl_moon.includes('sec')) {
+					str = 35;
+				}
 				return num + str;
 			},
-			ybslmoonlvMod: function (event, player, num) {
-				var str = 0;
-				if (player.storage.ybsl_moon.includes('key')) str = 8;
-				else if (player.storage.ybsl_moon.includes('sec')) str = 5;
+			ybslmoonlvMod(event, player, num) {
+				let str = 0;
+				if (player.storage.ybsl_moon.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_moon.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
-		up: function (player) {
-			var next = game.createEvent('yb014_shifu2', false);
+		up(player) {
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_moon.upc);
 		},
-		upc: function () {
+		upc() {
 			'step 0';
 			event.num = 0;
 			event.list66 = [];
-			//if(!['key','sec'].contains(player.storage.ybsl_moon[0])){event.finish();}//若不在主支线中，则截断，禁止升级
+			//if(!['key','sec'].includes(player.storage.ybsl_moon[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('drlt_jueyan');
@@ -919,30 +952,30 @@ const skill = {
 					break;
 				case 5:
 					if (player.storage.yb014_shifu99[0] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
-									'烈武：' + get.translation('chihaya_liewu_info'),
+									'烈武:' + get.translation('chihaya_liewu_info'),
 									function () {
 										event.list66.push('chihaya_liewu');
 										player.storage.yb014_shifu99[0] = 'chihaya_liewu';
 									},
 								],
 								[
-									'均步：' + get.translation('sakuya_junbu_info'),
+									'均步:' + get.translation('sakuya_junbu_info'),
 									function () {
 										event.list66.push('sakuya_junbu');
 										player.storage.yb014_shifu99[0] = 'sakuya_junbu';
 									},
 								],
 							);
-							for (var i = 0; i < list.length; i++) {
+							for (let i = 0; i < list.length; i++) {
 								list2.push(list[i][1]);
 								list[i] = list[i][0];
 							}
@@ -960,30 +993,30 @@ const skill = {
 					break;
 				case 7:
 					if (player.storage.yb014_shifu99[1] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
-									'贤望：' + get.translation('xianwang_info'),
+									'贤望:' + get.translation('xianwang_info'),
 									function () {
 										event.list66.push('xianwang');
 										player.storage.yb014_shifu99[1] = 'xianwang';
 									},
 								],
 								[
-									'奋锐：' + get.translation('fenrui_info'),
+									'奋锐:' + get.translation('fenrui_info'),
 									function () {
 										event.list66.push('fenrui');
 										player.storage.yb014_shifu99[1] = 'fenrui';
 									},
 								],
 							);
-							for (var i = 0; i < list.length; i++) {
+							for (let i = 0; i < list.length; i++) {
 								list2.push(list[i][1]);
 								list[i] = list[i][0];
 							}
@@ -1012,32 +1045,39 @@ const skill = {
 	ybsl_clam: {
 		charlotte: true,
 		mod: {
-			ybslclamMod: function (event, player, num) {
-				var str = Infinity;
-				if (player.storage.ybsl_clam.includes('key')) str = 40;
-				if (player.storage.ybsl_clam.includes('sec')) str = 28;
+			ybslclamMod(event, player, num) {
+				let str = Infinity;
+				if (player.storage.ybsl_clam.includes('key')) {
+					str = 40;
+				}
+				if (player.storage.ybsl_clam.includes('sec')) {
+					str = 28;
+				}
 				return num + str;
 			},
-			ybslclamlvMod: function (event, player, num) {
-				var str = 0;
-				if (player.storage.ybsl_clam.includes('key')) str = 8;
-				else if (player.storage.ybsl_clam.includes('sec')) str = 5;
+			ybslclamlvMod(event, player, num) {
+				let str = 0;
+				if (player.storage.ybsl_clam.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_clam.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
-		up: function (player) {
-			var next = game.createEvent('yb014_shifu2', false);
+		up(player) {
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_clam.upc);
 		},
-		upc: function () {
+		upc() {
 			'step 0';
 			event.num = 0;
 			event.list66 = [];
-			//if(!['key','sec'].contains(player.storage.ybsl_clam[0])){event.finish();}//若不在主支线中，则截断，禁止升级
+			//if(!['key','sec'].includes(player.storage.ybsl_clam[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('new_rewusheng', 'reqingguo');
@@ -1077,32 +1117,39 @@ const skill = {
 	ybsl_lightning: {
 		charlotte: true,
 		mod: {
-			ybsllightningMod: function (event, player, num) {
-				var str = Infinity;
-				if (player.storage.ybsl_lightning.includes('key')) str = 40;
-				if (player.storage.ybsl_lightning.includes('sec')) str = 28;
+			ybsllightningMod(event, player, num) {
+				let str = Infinity;
+				if (player.storage.ybsl_lightning.includes('key')) {
+					str = 40;
+				}
+				if (player.storage.ybsl_lightning.includes('sec')) {
+					str = 28;
+				}
 				return num + str;
 			},
-			ybsllightninglvMod: function (event, player, num) {
-				var str = 0;
-				if (player.storage.ybsl_lightning.includes('key')) str = 8;
-				else if (player.storage.ybsl_lightning.includes('sec')) str = 5;
+			ybsllightninglvMod(event, player, num) {
+				let str = 0;
+				if (player.storage.ybsl_lightning.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_lightning.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
-		up: function (player) {
-			var next = game.createEvent('yb014_shifu2', false);
+		up(player) {
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_lightning.upc);
 		},
-		upc: function () {
+		upc() {
 			'step 0';
 			event.num = 0;
 			event.list66 = [];
-			//if(!['key','sec'].contains(player.storage.ybsl_lightning[0])){event.finish();}//若不在主支线中，则截断，禁止升级
+			//if(!['key','sec'].includes(player.storage.ybsl_lightning[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('nsfuzhou');
@@ -1142,32 +1189,39 @@ const skill = {
 	ybsl_wind: {
 		charlotte: true,
 		mod: {
-			ybslwindMod: function (event, player, num) {
-				var str = Infinity;
-				if (player.storage.ybsl_wind.includes('key')) str = 50;
-				if (player.storage.ybsl_wind.includes('sec')) str = 35;
+			ybslwindMod(event, player, num) {
+				let str = Infinity;
+				if (player.storage.ybsl_wind.includes('key')) {
+					str = 50;
+				}
+				if (player.storage.ybsl_wind.includes('sec')) {
+					str = 35;
+				}
 				return num + str;
 			},
-			ybslwindlvMod: function (event, player, num) {
-				var str = 0;
-				if (player.storage.ybsl_wind.includes('key')) str = 8;
-				else if (player.storage.ybsl_wind.includes('sec')) str = 5;
+			ybslwindlvMod(event, player, num) {
+				let str = 0;
+				if (player.storage.ybsl_wind.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_wind.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
-		up: function (player) {
-			var next = game.createEvent('yb014_shifu2', false);
+		up(player) {
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_wind.upc);
 		},
-		upc: function () {
+		upc() {
 			'step 0';
 			event.num = 0;
 			event.list66 = [];
-			//if(!['key','sec'].contains(player.storage.ybsl_wind[0])){event.finish();}//若不在主支线中，则截断，禁止升级
+			//if(!['key','sec'].includes(player.storage.ybsl_wind[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('rezhiheng');
@@ -1189,23 +1243,23 @@ const skill = {
 					break;
 				case 6:
 					if (player.storage.yb014_shifu99[2] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
-									'苦肉：' + get.translation('kurou_info'),
+									'苦肉:' + get.translation('kurou_info'),
 									function () {
 										event.list66.push('kurou');
 										player.storage.yb014_shifu99[2] = 'kurou';
 									},
 								],
 								[
-									'募兵：' + get.translation('mubing_rewrite_info'),
+									'募兵:' + get.translation('mubing_rewrite_info'),
 									function () {
 										event.list66.push('mubing');
 										player.storage.mubing2 = true;
@@ -1214,7 +1268,7 @@ const skill = {
 									},
 								],
 							);
-							for (var i = 0; i < list.length; i++) {
+							for (let i = 0; i < list.length; i++) {
 								list2.push(list[i][1]);
 								list[i] = list[i][0];
 							}
@@ -1229,30 +1283,30 @@ const skill = {
 					break;
 				case 7:
 					if (player.storage.yb014_shifu99[3] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
-									'敏思：' + get.translation('minsi_info'),
+									'敏思:' + get.translation('minsi_info'),
 									function () {
 										event.list66.push('minsi');
 										player.storage.yb014_shifu99[3] = 'minsi';
 									},
 								],
 								[
-									'巧思：' + get.translation('qiaosi_info'),
+									'巧思:' + get.translation('qiaosi_info'),
 									function () {
 										event.list66.push('qiaosi');
 										player.storage.yb014_shifu99[3] = 'qiaosi';
 									},
 								],
 							);
-							for (var i = 0; i < list.length; i++) {
+							for (let i = 0; i < list.length; i++) {
 								list2.push(list[i][1]);
 								list[i] = list[i][0];
 							}
@@ -1280,32 +1334,39 @@ const skill = {
 	ybsl_flame: {
 		charlotte: true,
 		mod: {
-			ybslflameMod: function (event, player, num) {
-				var str = Infinity;
-				if (player.storage.ybsl_flame.includes('key')) str = 20;
-				if (player.storage.ybsl_flame.includes('sec')) str = 14;
+			ybslflameMod(event, player, num) {
+				let str = Infinity;
+				if (player.storage.ybsl_flame.includes('key')) {
+					str = 20;
+				}
+				if (player.storage.ybsl_flame.includes('sec')) {
+					str = 14;
+				}
 				return num + str;
 			},
-			ybslflamelvMod: function (event, player, num) {
-				var str = 0;
-				if (player.storage.ybsl_flame.includes('key')) str = 8;
-				else if (player.storage.ybsl_flame.includes('sec')) str = 5;
+			ybslflamelvMod(event, player, num) {
+				let str = 0;
+				if (player.storage.ybsl_flame.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_flame.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
-		up: function (player) {
-			var next = game.createEvent('yb014_shifu2', false);
+		up(player) {
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_flame.upc);
 		},
-		upc: function () {
+		upc() {
 			'step 0';
 			event.num = 0;
 			event.list66 = [];
-			//if(!['key','sec'].contains(player.storage.ybsl_flame[0])){event.finish();}//若不在主支线中，则截断，禁止升级
+			//if(!['key','sec'].includes(player.storage.ybsl_flame[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('refenglve');
@@ -1324,30 +1385,30 @@ const skill = {
 					break;
 				case 5:
 					if (player.storage.yb014_shifu99[4] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
-									'酣战：' + get.translation('hanzhan_info'),
+									'酣战:' + get.translation('hanzhan_info'),
 									function () {
 										event.list66.push('hanzhan');
 										player.storage.yb014_shifu99[4] = 'hanzhan';
 									},
 								],
 								[
-									'天辩：' + get.translation('tianbian_info'),
+									'天辩:' + get.translation('tianbian_info'),
 									function () {
 										event.list66.push('tianbian');
 										player.storage.yb014_shifu99[4] = 'tianbian';
 									},
 								],
 							);
-							for (var i = 0; i < list.length; i++) {
+							for (let i = 0; i < list.length; i++) {
 								list2.push(list[i][1]);
 								list[i] = list[i][0];
 							}
@@ -1362,30 +1423,30 @@ const skill = {
 					break;
 				case 6:
 					if (player.storage.yb014_shifu99[5] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
-									'咆哮：' + get.translation('olpaoxiao_info'),
+									'咆哮:' + get.translation('olpaoxiao_info'),
 									function () {
 										event.list66.push('olpaoxiao');
 										player.storage.yb014_shifu99[5] = 'olpaoxiao';
 									},
 								],
 								[
-									'陷阵：' + get.translation('decadexianzhen_info'),
+									'陷阵:' + get.translation('decadexianzhen_info'),
 									function () {
 										event.list66.push('decadexianzhen');
 										player.storage.yb014_shifu99[5] = 'decadexianzhen';
 									},
 								],
 							);
-							for (var i = 0; i < list.length; i++) {
+							for (let i = 0; i < list.length; i++) {
 								list2.push(list[i][1]);
 								list[i] = list[i][0];
 							}
@@ -1420,18 +1481,16 @@ const skill = {
 	yb014_huanlei: {
 		audio: 'ext:夜白神略/audio/character:2',
 		enable: 'phaseUse',
-		filter: function (event, player) {
+		filter(event, player) {
 			return player.storage.yb014_shifu_block.length > 3;
 		},
 		limited: true,
-		skillAnimation: true,
-		animationColor: 'YB_snow',
-		content: function () {
+		content() {
 			'step 0';
 			player.awakenSkill('yb014_huanlei');
 			player.addSkill('yb014_shifu2');
 			event.list66 = ['moon', 'clam', 'lightning', 'wind', 'flame'];
-			for (var p of event.list66) {
+			for (let p of event.list66) {
 				player.storage['ybsl_' + p] = [];
 				// player.addMark('ybsl_'+p+'_lv');
 			}
@@ -1441,42 +1500,42 @@ const skill = {
 			/*for(var i of list99){
 				list.push('ybmyx_'+i);
 			}*/
-			var list2 = ['moon', 'clam', 'clam', 'lightning', 'lightning', 'wind', 'flame', 'flame', 'flame', 'flame'];
-			var list = list2.randomGets(player.storage.yb014_shifu_block.length);
+			const list2 = ['moon', 'clam', 'clam', 'lightning', 'lightning', 'wind', 'flame', 'flame', 'flame', 'flame'];
+			let list = list2.randomGets(player.storage.yb014_shifu_block.length);
 			list = list.map(function (i) {
 				return ['', '', 'ybmyx_' + i];
 			});
 			/*颜色快速提取
-			'ybsl_cuixing_spade':'<span style=\'color:#28e3ce\'>淬星</span>',淡蓝色
-			'ybsl_cuixing_heart':'<span style=\'color:#fff600\'>淬星</span>',比较亮的黄色
-			'ybsl_cuixing_club':'<span style=\'color:#a900ff\'>淬星</span>',比较暗的紫色
-			'ybsl_cuixing_diamond':'<span style=\'color:#ff0000\'>淬星</span>',刺眼的红色
+			'ybsl_cuixing_spade':'<span style=\'color: #28e3ce\'>淬星</span>',淡蓝色
+			'ybsl_cuixing_heart':'<span style=\'color: #fff600\'>淬星</span>',比较亮的黄色
+			'ybsl_cuixing_club':'<span style=\'color: #a900ff\'>淬星</span>',比较暗的紫色
+			'ybsl_cuixing_diamond':'<span style=\'color: #ff0000\'>淬星</span>',刺眼的红色
 			*/
-			var next = player.chooseToMove('请依次选择作为主流派和支流派的线路');
+			const next = player.chooseToMove('请依次选择作为主流派和支流派的线路');
 			next.set('list', [
 				[
-					'主流派和支流派一样时，将加快主流派升级速度<bt>当前主流派为' + get.translation(list2[0]) + '，支流派为' + get.translation(list2[1]) + '。',
+					'主流派和支流派一样时,将加快主流派升级速度<bt>当前主流派为' + get.translation(list2[0]) + ',支流派为' + get.translation(list2[1]) + '',
 					[list, 'vcard'],
 					function (list) {
-						var list2 = list.map(function (i) {
+						const list2 = list.map(function (i) {
 							return get.translation(i[2]);
 						});
-						return '操作方法：将主流派调整至第一位，支流派调整至第二位';
+						return '操作方法:将主流派调整至第一位,支流派调整至第二位';
 					},
 				],
 			]);
 			('step 2');
 			if (result.bool) {
-				var list1 = event.list66;
+				const list1 = event.list66;
 				list = list1.map(function (i) {
 					return ['', '', 'ybsl_' + i];
 				});
-				var list2 = result.moved[0].map(function (i) {
+				const list2 = result.moved[0].map(function (i) {
 					return i[2];
 				}); //输出调序结果
-				var list3 = [];
-				var x = 1;
-				for (var y of list1) {
+				const list3 = [];
+				let x = 1;
+				for (const y of list1) {
 					if (list2[0] == 'ybmyx_' + y) {
 						player.storage['ybsl_' + y].push('key');
 					}
@@ -1485,10 +1544,12 @@ const skill = {
 						x = 2;
 					}
 				}
-				var str = '#g';
-				for (var j = 0; j < x; j++) {
+				let str = '#g';
+				for (let j = 0; j < x; j++) {
 					str += get.translation(list2[j]);
-					if (j < x - 1) str += '/';
+					if (j < x - 1) {
+						str += '/';
+					}
 				}
 				game.log(player, '#g【还酹】', '主、支流派依次为', str);
 			}
