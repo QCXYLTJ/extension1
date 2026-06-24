@@ -233,7 +233,7 @@ const content = async function () {
                 player.skills.add(skill);
               },
               player,
-              skill
+              skill,
             );
           }
         }
@@ -368,7 +368,7 @@ const content = async function () {
           }
         },
         VCard,
-        player
+        player,
       );
       const cards = player.vcardsMap?.equips;
       if (cards && cards.includes(VCard)) {
@@ -395,7 +395,7 @@ const content = async function () {
         },
         player,
         card,
-        cards
+        cards,
       );
       game.addVideo('addVirtualEquip', player, [get.vcardInfo(card), get.cardsInfo(cards)]);
       player.vcardsMap?.equips.push(card);
@@ -609,7 +609,7 @@ const content = async function () {
                 info.chooseButton.check ||
                 function () {
                   return 0;
-                }
+                },
               );
               if (event.id) {
                 next._parent_id = event.id;
@@ -628,14 +628,14 @@ const content = async function () {
                 info.chooseButton.check ||
                 function () {
                   return 1;
-                }
+                },
               );
               next.set(
                 'filterButton',
                 info.chooseButton.filter ||
                 function () {
                   return true;
-                }
+                },
               );
               next.set('selectButton', info.chooseButton.select || 1);
               next.set('complexSelect', info.chooseButton.complexSelect !== false);
@@ -671,7 +671,7 @@ const content = async function () {
                 lib.skill[skill].audio = audio;
               },
               event.buttoned + '_backup',
-              lib.skill[event.buttoned + '_backup'].audio
+              lib.skill[event.buttoned + '_backup'].audio,
             );
           }
           event.backup(event.buttoned + '_backup');
@@ -847,7 +847,7 @@ const content = async function () {
                 info.chooseButton.check ||
                 function () {
                   return 0;
-                }
+                },
               );
             } else {
               let next = player.chooseButton(dialog);
@@ -862,14 +862,14 @@ const content = async function () {
                 info.chooseButton.check ||
                 function () {
                   return 1;
-                }
+                },
               );
               next.set(
                 'filterButton',
                 info.chooseButton.filter ||
                 function () {
                   return true;
-                }
+                },
               );
               next.set('selectButton', info.chooseButton.select || 1);
               next.set('filterOk', info.chooseButton.filterOk || (() => true));
@@ -900,7 +900,7 @@ const content = async function () {
                 lib.skill[skill].audio = audio;
               },
               event.buttoned + '_backup',
-              lib.skill[event.buttoned + '_backup'].audio
+              lib.skill[event.buttoned + '_backup'].audio,
             );
           }
           event.backup(event.buttoned + '_backup');
@@ -1153,7 +1153,7 @@ const content = async function () {
           _status.videoDuration = 1;
           updateDuration();
         },
-        true
+        true,
       );
       const slow = ui.create.system(
         '减速',
@@ -1161,7 +1161,7 @@ const content = async function () {
           _status.videoDuration *= 1.5;
           updateDuration();
         },
-        true
+        true,
       );
       const fast = ui.create.system(
         '加速',
@@ -1169,7 +1169,7 @@ const content = async function () {
           _status.videoDuration /= 1.5;
           updateDuration();
         },
-        true
+        true,
       );
       const updateDuration = function () {
         atempo.innerHTML = `原速(当前${Math.round(100 / _status.videoDuration) / 100}倍速)`;
@@ -1750,7 +1750,7 @@ const content = async function () {
           }
         },
         natures,
-        player
+        player,
       );
       const numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
       player.$damagepop(-numx, natures[0]);
@@ -1991,7 +1991,7 @@ const content = async function () {
         subSkill: {
           1: {
             trigger: {
-              global: 'gameDrawBefore',
+              global: ['gameDrawBefore'],
             },
             forced: true,
             silent: true,
@@ -2257,7 +2257,7 @@ const content = async function () {
                   }, 500);
                 };
               })(es[i], lib.skill.lingjianduanzao.process([card, es[i]]), i == es.length - 1),
-              (i - delayed) * 200
+              (i - delayed) * 200,
             );
           }
           target.$gain2(cards);
@@ -3170,7 +3170,7 @@ const content = async function () {
                   target: target,
                   card: card,
                 },
-                true
+                true,
               )
             ) {
               return -2;
@@ -3189,7 +3189,7 @@ const content = async function () {
                   target: target,
                   card: card,
                 },
-                true
+                true,
               )
             ) {
               return 0;
@@ -3398,7 +3398,7 @@ const content = async function () {
                 card: new lib.element.VCard('sha'),
                 jiu: true,
               },
-              true
+              true,
             )
               ? 0.6
               : 1.2;
@@ -3706,7 +3706,7 @@ const content = async function () {
               .set('sourceTargets', [target])
               .set(
                 'aimTargets',
-                game.players.filter((current) => current != target && current.canAddJudge({ name: 'lebu' }))
+                game.players.filter((current) => current != target && current.canAddJudge({ name: 'lebu' })),
               )
               .set('prompt', `移动${get.translation(target)}的一张【乐不思蜀】`);
           } else {
@@ -3944,7 +3944,7 @@ const content = async function () {
                     }
                   }
                   return '牌堆底';
-                })()
+                })(),
               );
           }
           ('step 3');
@@ -3964,7 +3964,7 @@ const content = async function () {
                     return current.canAddJudge(card);
                   }
                   return false;
-                })
+                }),
               )
               .set('ai', (target) => {
                 let player = _status.event.player;
@@ -3980,7 +3980,7 @@ const content = async function () {
                         cards: [card],
                       },
                       target,
-                      target
+                      target,
                     ))
                 );
               })
@@ -4104,7 +4104,7 @@ const content = async function () {
             .set('max', trigger.target.countDiscardableCards(player, 'he'))
             .set(
               'goon',
-              get.attitude(player, trigger.target) < 0
+              get.attitude(player, trigger.target) < 0,
             )('step 1');
           if (result.bool) {
             let num = result.cards.length;
@@ -4227,7 +4227,7 @@ const content = async function () {
                           return b[1] - a[1];
                         });
                       return list[0][0];
-                    })()
+                    })(),
                   );
               }
             })
@@ -4982,7 +4982,7 @@ const content = async function () {
                   bool: cs,
                   cards: cards,
                 };
-              })()
+              })(),
             );
           if (result.bool) {
             player.loseToDiscardpile(result.links);
@@ -5030,7 +5030,7 @@ const content = async function () {
                   }
                   return target == player ? target.countDiscardableCards(target, 'he') : target.countCards('he');
                 },
-                true
+                true,
               )
               .set('ai', (target) => {
                 let player = _status.event.player,
@@ -5070,7 +5070,7 @@ const content = async function () {
                   .set('prompt', '知否:请选择一项')
                   .set(
                     'choiceList',
-                    choiceList.map((str) => '令' + get.translation(target) + str)
+                    choiceList.map((str) => '令' + get.translation(target) + str),
                   )
                   .set('ai', () => {
                     let player = _status.event.player;
@@ -5334,7 +5334,7 @@ const content = async function () {
                             '】</div><div>' +
                             get.skillInfoTranslation(i, player) +
                             '</div>`;
-              })
+              }),
             )
             .set('displayIndex', false)
             .set('prompt', '蹈节:失去一个锁定技,或点<取消>失去1点体力')
@@ -5520,7 +5520,7 @@ const content = async function () {
                 (cardx, player, target) => {
                   return target.canAddJudge({ name: 'dczixi_' + get.event('cardname') });
                 },
-                true
+                true,
               )
               .set('ai', (target) => {
                 const player = get.event('player'),
@@ -5603,7 +5603,7 @@ const content = async function () {
                       dialog.push(
                         i.getCards('e', function (card) {
                           return get.color(card) == event.color;
-                        })
+                        }),
                       );
                     }
                     const result2 = await player
@@ -5692,7 +5692,7 @@ const content = async function () {
                       dialog.push(
                         i.getCards('e', function (card) {
                           return get.color(card) == event.color;
-                        })
+                        }),
                       );
                     }
                     const result2 = await player
@@ -6102,7 +6102,7 @@ const content = async function () {
                         cards: [card],
                       },
                       player,
-                      player
+                      player,
                     ) * get.sgn(get.attitude(player, owner));
                 } else {
                   result = -(get.value(card, owner) - 0.01) * get.sgn(get.attitude(player, owner));
@@ -6277,7 +6277,7 @@ const content = async function () {
             },
             name,
             nature,
-            links[0]
+            links[0],
           );
           evt.set('_backupevent', 'clanshengmo_backup');
           evt.backup('clanshengmo_backup');
@@ -6385,7 +6385,7 @@ const content = async function () {
                         'use',
                         target.getCards('h', (i) => {
                           return i.hasGaintag('sha_notshan');
-                        })
+                        }),
                       ) ||
                       trigger.player.hasSkillTag(
                         'directHit_ai',
@@ -6394,7 +6394,7 @@ const content = async function () {
                           target: target,
                           card: trigger.card,
                         },
-                        true
+                        true,
                       )
                     ) {
                       if (
@@ -6410,7 +6410,7 @@ const content = async function () {
                     }
                   }
                   return false;
-                })()
+                })(),
               );
             if (!event.target.isUnderControl(true) && !event.target.isOnline()) {
               game.delayx();
@@ -6892,7 +6892,7 @@ const content = async function () {
             },
             target,
             event.card,
-            target == targets[0] && cards.length == 1
+            target == targets[0] && cards.length == 1,
           );
           if (target == targets[0] && cards.length == 1) {
             if (event.card.clone && (event.card.clone.parentNode == target.parentNode || event.card.clone.parentNode == ui.arena)) {
@@ -6923,39 +6923,53 @@ const content = async function () {
       }; //当前体力值修改,可以负血
       Reflect.defineProperty(lib.element.player, 'recover', {
         get() {
-          return function () {
-            let next = game.createEvent('recover');
+          return function (params) {
+            const next = game.createEvent('recover');
             next.player = this;
-            let nocard, nosource;
+            let nocard = false;
+            let nosource = false;
+            const args = [...arguments];
             const event = _status.event;
-            for (let i = 0; i < arguments.length; i++) {
-              if (get.itemtype(arguments[i]) == 'cards') {
-                next.cards = arguments[i].slice(0);
-              } else if (get.itemtype(arguments[i]) == 'card') {
-                next.card = arguments[i];
-              } else if (get.itemtype(arguments[i]) == 'player') {
-                next.source = arguments[i];
-              } else if (typeof arguments[i] == 'object' && arguments[i] && arguments[i].name) {
-                next.card = arguments[i];
-              } else if (typeof arguments[i] == 'number') {
-                next.num = arguments[i];
-              } else if (arguments[i] == 'nocard') {
+            if (args.length === 1 && typeof params == 'object' && params !== null && get.itemtype(params) == null) {
+              Object.assign(next, params);
+              if (params.nocard != null) {
+                delete next.nocard;
                 nocard = true;
-              } else if (arguments[i] == 'nosource') {
+              }
+              if (params.nosource != null) {
+                delete next.nosource;
                 nosource = true;
               }
+            } else {
+              for (const arg of args) {
+                if (get.itemtype(arg) == 'cards') {
+                  next.cards = arg.slice(0);
+                } else if (get.itemtype(arg) == 'card') {
+                  next.card = arg;
+                } else if (get.itemtype(arg) == 'player') {
+                  next.source = arg;
+                } else if (typeof arg == 'object' && arg && arg.name) {
+                  next.card = arg;
+                } else if (typeof arg == 'number') {
+                  next.num = arg;
+                } else if (arg == 'nocard') {
+                  nocard = true;
+                } else if (arg == 'nosource') {
+                  nosource = true;
+                }
+              }
             }
-            if (next.card == undefined && !nocard) {
+            if (next.card == void 0 && !nocard) {
               next.card = event.card;
             }
-            if (next.cards == undefined && !nocard) {
+            if (next.cards == void 0 && !nocard) {
               next.cards = event.cards;
             }
-            if (next.source == undefined && !nosource) {
+            if (next.source == void 0 && !nosource) {
               next.source = event.customSource || event.player;
             }
-            if (next.num == undefined) {
-              next.num = numberq1(event.baseDamage) + numberq0(event.extraDamage);
+            if (next.num == void 0) {
+              next.num = (event.baseDamage || 1) + (event.extraDamage || 0);
             }
             next.filterStop = function () {
               if (this.num <= 0) {
@@ -6971,24 +6985,28 @@ const content = async function () {
         },
         set() { },
       }); //血量可以超上限
-      lib.element.content.recoverQ = function () {
-        if (lib.config.background_audio) {
-          game.playAudio('effect/recover');
-        }
-        game.broadcast(function () {
-          if (lib.config.background_audio) {
-            game.playAudio('effect/recover');
-          }
-        });
+      lib.element.content.recoverQ = async function (event, trigger, player) {
+        const { num } = event;
         if (num > 0) {
-          player.changeHp(num, false);
-          game.broadcastAll(function (player) {
+          delete event.filterStop;
+          if (lib.config.background_audio) {
+            game.playAudio('effect', 'recover');
+          }
+          game.broadcast(() => {
+            if (lib.config.background_audio) {
+              game.playAudio('effect', 'recover');
+            }
+          });
+          game.broadcastAll((player2) => {
             if (lib.config.animation && !lib.config.low_performance) {
-              player.$recover();
+              player2.$recover();
             }
           }, player);
           player.$damagepop(num, 'wood');
           game.log(player, `回复了${get.cnNumber(num)}点体力`);
+          await player.changeHp(num, false);
+        } else {
+          event._triggered = null;
         }
       }; //回血可以超上限
       lib.element.content.changeHp = function () {
@@ -7057,7 +7075,7 @@ const content = async function () {
           this,
           this.hp,
           this.maxHp,
-          this.hujia
+          this.hujia,
         );
         if (!_status.video) {
           if (this.hujia) {
@@ -7596,7 +7614,7 @@ const content = async function () {
                     (evt) => {
                       return evt.name == 'damage' && evt.player == player;
                     },
-                    event
+                    event,
                   )
                   .indexOf(event) == 0
               );
@@ -8641,7 +8659,7 @@ const content = async function () {
                     }
                   }
                 },
-                emotion == 'flower' || emotion == 'egg' ? 500 : 5000
+                emotion == 'flower' || emotion == 'egg' ? 500 : 5000,
               );
             };
             let td;
@@ -9282,7 +9300,7 @@ const content = async function () {
             uiintro.add('选择装备');
             uiintro.addSmall(
               Array.from(node.childNodes).filter((node) => !node.classList.contains('feichu')),
-              true
+              true,
             );
             uiintro.clickintro = true;
             ui.control.hide();
@@ -9322,7 +9340,7 @@ const content = async function () {
                   ui.click.ok(ui.confirm.firstChild);
                 }
               },
-              buttoncontainer
+              buttoncontainer,
             );
             confirmbutton.style.position = 'relative';
             setTimeout(function () {

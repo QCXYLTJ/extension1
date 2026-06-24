@@ -363,7 +363,7 @@ const precontent = async function () {
             trigger: {
                 global: [
                     // 'chooseToUseBefore',
-                    // 'gameStart',
+                    'gameStart',
                     // 'chooseButtonBefore',
                     // 'chooseControlBefore'
                     // 'chooseCharacterBefore'
@@ -398,15 +398,12 @@ const precontent = async function () {
         if (links && links[0]) {
         }
         */
-                game.me.gain(
-                    game.createCard({
-                        name: 'sha',
-                        suit: 'none',
-                        number: 3,
-                        nature: 'gold',
-                    }),
-                    'gain2'
-                );
+                // Reflect.defineProperty(game.me, 'hp', {
+                //     get() {
+                //         return 4;
+                //     },
+                //     set(v) { debugger; },
+                // });
                 /*
         var num = 20;
         var evt = _status.event;
