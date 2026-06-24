@@ -2218,7 +2218,7 @@ const skill = {
             nature: button.link[3],
           },
           null,
-          true
+          true,
         );
         return number0(num) + 10;
       },
@@ -2631,7 +2631,7 @@ const skill = {
         if (moved[1].length) {
           player.gain(
             moved[1].filter((q) => !card2.includes(q)),
-            'gain2'
+            'gain2',
           );
         }
       }
@@ -3762,7 +3762,7 @@ const skill = {
                   nature: button.link[3],
                 },
                 null,
-                true
+                true,
               );
               if (['wuzhong', 'dongzhuxianji'].includes(button.link[2])) {
                 return number0(num) * 4 + 10;
@@ -3803,7 +3803,7 @@ const skill = {
                 cards,
                 true,
                 false,
-                'nodistance'
+                'nodistance',
               );
             } else {
               evt.untrigger();
@@ -3865,7 +3865,7 @@ const skill = {
             nature: button.link[3],
           },
           null,
-          true
+          true,
         );
         return number0(num) + 10;
       },
@@ -3954,7 +3954,7 @@ const skill = {
                 nature: button.link[3],
               },
               null,
-              true
+              true,
             );
             if (['wuzhong', 'dongzhuxianji'].includes(button.link[2])) {
               return number0(num) * 2 + 10;
@@ -4228,7 +4228,7 @@ const skill = {
       trigger.parent.targets.addArray(
         game.players.filter((target) => {
           return !trigger.targets.includes(target);
-        })
+        }),
       );
       trigger.player
         .when('useCardAfter')
@@ -4864,7 +4864,7 @@ const skill = {
             nature: button.link[3],
           },
           null,
-          true
+          true,
         );
         return number0(num) + 10;
       },
@@ -5326,7 +5326,7 @@ const skill = {
                     nature: button.link[3],
                   },
                   true,
-                  true
+                  true,
                 );
                 if (button.link[2] == 'jiu') {
                   return 999 * (99 + num);
@@ -5364,7 +5364,7 @@ const skill = {
                   },
                   true,
                   true,
-                  'nodistance'
+                  'nodistance',
                 ); //强制使用有次数限制无距离限制
               } else {
                 evt.untrigger();
@@ -5887,7 +5887,7 @@ const skill = {
                 result.links,
                 true,
                 false,
-                'nodistance'
+                'nodistance',
               ); //无距离次数限制
             } else {
               evt.untrigger();
@@ -6074,7 +6074,7 @@ const skill = {
             nature: button.link[3],
           },
           null,
-          true
+          true,
         );
         return number0(num) + 10;
       },
@@ -6416,7 +6416,7 @@ const skill = {
                     nature: button.link[3],
                   },
                   null,
-                  true
+                  true,
                 );
                 return number0(num) + 10;
               })
@@ -6449,7 +6449,7 @@ const skill = {
                   },
                   true,
                   false,
-                  'nodistance'
+                  'nodistance',
                 ); //无距离次数限制
               } else {
                 evt.untrigger();

@@ -9,7 +9,6 @@ export default {
 	quoteProps: "as-needed",
 	semi: true,
 	tabWidth: 4,
-	trailingComma: "es5",
 	useTabs: true,
 	trailingComma: "all",
 };
