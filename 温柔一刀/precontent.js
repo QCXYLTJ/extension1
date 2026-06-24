@@ -19,6 +19,7 @@
                    QQQQQQQQQ                                           QQQQQQQQQ                                           QQQQQQQQQ
 */
 //-------------------------------------------------------备忘录0
+////.+\n\s*//.+\n\s*//.+\n\s*//.+\n\s*//.+\n\s*//.+\n\s*//.+
 /*
 game.me.gain(game.createCard('shuidan'), 'gain2');
 MaxHp
