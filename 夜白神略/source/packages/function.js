@@ -544,19 +544,19 @@ const nodeintro = function (node, simple, evt) {
 			table.style.margin = '0';
 			table.style.width = '100%';
 			table.style.position = 'relative';
-			let listi = ['wine', 'shoe'];
+			let listi1 = ['wine', 'shoe'];
 			if (game.me.storage.zhuSkill_shanli) {
-				listi = ['yuxisx', 'jiasuo'];
+				listi1 = ['yuxisx', 'jiasuo'];
 			}
-			for (let i = 0; i < listi.length; i++) {
+			for (let i = 0; i < listi1.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
 				if (_status.throwEmotionWait) {
 					td.classList.add('exclude');
 				}
-				td.link = listi[i];
+				td.link = listi1[i];
 				table.appendChild(td);
-				td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
+				td.innerHTML = '<span>' + get.translation(listi1[i]) + '</span>';
 				td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', click);
 			}
 			uiintro.content.appendChild(table);
