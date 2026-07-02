@@ -156,7 +156,7 @@ const nodeintro = function (node, simple, evt) {
 	if (node.classList.contains('player') && !node.name) {
 		return uiintro;
 	}
-	let i, translation, intro, str;
+	let i, translation, intro, str, showCardIntro;
 	if (node._nointro) {
 		return;
 	}
@@ -412,15 +412,13 @@ const nodeintro = function (node, simple, evt) {
 			td.innerHTML = node.phaseNumber;
 			tr.appendChild(td);
 			td = document.createElement('td');
-			(function () {
-				num = 0;
-				for (let j = 0; j < node.stat.length; j++) {
-					if (typeof node.stat[j].damage == 'number') {
-						num += node.stat[j].damage;
-					}
+			let num = 0;
+			for (let j = 0; j < node.stat.length; j++) {
+				if (typeof node.stat[j].damage == 'number') {
+					num += node.stat[j].damage;
 				}
-				td.innerHTML = num;
-			})();
+			}
+			td.innerHTML = num;
 			tr.appendChild(td);
 			table.style.width = 'calc(100% - 20px)';
 			table.style.marginLeft = '10px';
@@ -444,8 +442,8 @@ const nodeintro = function (node, simple, evt) {
 			for (let i = 0; i < js.length; i++) {
 				if (js[i].viewAs && js[i].viewAs != js[i].name) {
 					let html = js[i].outerHTML;
-					let cardInfo = lib.card[js[i].viewAs],
-						showCardIntro = true;
+					let cardInfo = lib.card[js[i].viewAs];
+					showCardIntro = true;
 					if (cardInfo.blankCard) {
 						const cardOwner = get.owner(js[i]);
 						if (cardOwner && !cardOwner.isUnderControl(true)) {

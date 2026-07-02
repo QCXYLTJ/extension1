@@ -5,63 +5,46 @@ export { YBSL_rank };
  */
 const YBSL_rank = function () {
 	const packages = ['ybslj', 'ybxh', 'ybdd', 'ybgod', 'ybslc', 'ybart', 'ybnew1', 'ybmjz', 'yhky', 'sgstrxs', 'ybMagic', 'ybnew3', 'cyyydsgs', 'jhjx'];
-	{
-	}
-	{
-		lib.arenaReady.push(function () {
-			for (const pack of packages) {
-				for (const name in lib.characterPack[pack]) {
-					const infoy = lib.characterPack[pack][name][4];
-					for (const infox of infoy) {
-						if (infox.startsWith('rankAdd:')) {
-							const rarity = infox.slice(8);
-							if (lib.rank.rarity[rarity]) {
-								lib.rank.rarity[rarity].add(name);
-							}
-						}
-						if (infox.startsWith('rankS:')) {
-							const infoz = infox.slice(6);
-							if (lib.rank[infoz]) {
-								lib.rank[infoz].add(name);
-							}
-						}
-					}
-					if (lib.characterPack[pack][name].rankAdd) {
-						const rarity = lib.characterPack[pack][name].rankAdd;
+	lib.arenaReady.push(function () {
+		for (const pack of packages) {
+			for (const name in lib.characterPack[pack]) {
+				const infoy = lib.characterPack[pack][name][4];
+				for (const infox of infoy) {
+					if (infox.startsWith('rankAdd:')) {
+						const rarity = infox.slice(8);
 						if (lib.rank.rarity[rarity]) {
 							lib.rank.rarity[rarity].add(name);
 						}
-						const rarityS = lib.characterPack[pack][name].rankS;
-						if (lib.rank[rarityS]) {
-							lib.rank[rarityS].add(name);
+					}
+					if (infox.startsWith('rankS:')) {
+						const infoz = infox.slice(6);
+						if (lib.rank[infoz]) {
+							lib.rank[infoz].add(name);
 						}
 					}
 				}
-			}
-		});
-	}
-	{
-		lib.arenaReady.push(function () {
-			for (const pack of packages) {
-				for (const name in lib.characterPack[pack]) {
-					const infoy = lib.characterPack[pack][name][4];
-					for (const infox of infoy) {
-						if (infox.startsWith('linkTo:')) {
-							const char = infox.slice(7);
-
-							const char2 = get.sourceCharacter(char);
-							if (!lib.characterReplace[char2]) {
-								lib.characterReplace[char2] = [char2];
-							}
-							if (!lib.characterReplace[char2].includes(name)) {
-								lib.characterReplace[char2].push(name);
-							}
-						}
+				if (lib.characterPack[pack][name].rankAdd) {
+					const rarity = lib.characterPack[pack][name].rankAdd;
+					if (lib.rank.rarity[rarity]) {
+						lib.rank.rarity[rarity].add(name);
 					}
-					if (lib.characterPack[pack][name].linkTo) {
-						const linkTo = lib.characterPack[pack][name].linkTo;
+					const rarityS = lib.characterPack[pack][name].rankS;
+					if (lib.rank[rarityS]) {
+						lib.rank[rarityS].add(name);
+					}
+				}
+			}
+		}
+	});
+	lib.arenaReady.push(function () {
+		for (const pack of packages) {
+			for (const name in lib.characterPack[pack]) {
+				const infoy = lib.characterPack[pack][name][4];
+				for (const infox of infoy) {
+					if (infox.startsWith('linkTo:')) {
+						const char = infox.slice(7);
 
-						const char2 = get.sourceCharacter(linkTo);
+						const char2 = get.sourceCharacter(char);
 						if (!lib.characterReplace[char2]) {
 							lib.characterReplace[char2] = [char2];
 						}
@@ -70,28 +53,32 @@ const YBSL_rank = function () {
 						}
 					}
 				}
+				if (lib.characterPack[pack][name].linkTo) {
+					const linkTo = lib.characterPack[pack][name].linkTo;
+
+					const char2 = get.sourceCharacter(linkTo);
+					if (!lib.characterReplace[char2]) {
+						lib.characterReplace[char2] = [char2];
+					}
+					if (!lib.characterReplace[char2].includes(name)) {
+						lib.characterReplace[char2].push(name);
+					}
+				}
 			}
-		});
-	}
-	{
-		const gxcfbool = lib.config.YB_guixiecifu;
-		const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+		}
+	});
+	const gxcfbool = lib.config.YB_guixiecifu;
+	const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
 
-		const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e';
-	}
-	{
-		const whjxbool = lib.config.YB_wuhunjuexing;
-		const booltext = whjxbool ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
-
-		const btnColor = whjxbool ? '#4CAF50' : '#9e9e9e';
-
-		let whjxstr = `
+	const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e';
+	const whjxbool = lib.config.YB_wuhunjuexing;
+	let whjxstr = `
 			开局每名角色觉醒武魂()
 			<br>随游戏进行,获得魂力,达到瓶颈之后,准备阶段可以发动猎魂,选择想要觉醒的方向:转化,过牌,辅助,卖血等,然后用南华天书般的系统摇几个技能供玩家选择,可以放弃选择,下次再选.魂力达到瓶颈后不会升级,但会积累,最高积累到下次升级的瓶颈.
 			<br>其他的有待设定
 			<br>点击下方按钮可以开启或关闭武魂觉醒系统(调整后需重置游戏方可生效)
 		`;
-		whjxstr += `
+	whjxstr += `
 			<div style="position:relative;display:inline-block;width:200px;">
 				<button id="wuhunBtn"
 						onclick="
@@ -107,9 +94,8 @@ const YBSL_rank = function () {
 			</div>
 		`;
 
-		if (typeof lib !== 'undefined' && lib.config) {
-			lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
-		}
+	if (typeof lib !== 'undefined' && lib.config) {
+		lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
 	}
 	/**
  * 开局根据初始列表设定重置列表
