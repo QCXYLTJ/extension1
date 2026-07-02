@@ -37,7 +37,9 @@ if (QQQ.config.扩展全关) {
   }
 } //扩展全部关闭
 if (QQQ.作者模式) {
-  const Q = ['温柔一刀', '火灵月影', '缺德扩展', '三国全系列', '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', 'EX神将', '第叁幻界'].unique();
+  const Q = ['3D精选', '欢乐卡牌', '玩点论杀', '杀海拾遗',
+    '温柔一刀', '火灵月影', '缺德扩展', '三国全系列',
+    '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', 'EX神将', '第叁幻界'].unique();
   game.saveConfig('extensions', Q); //扩展修改
 } //扩展修改
 //boot=>(loadJavaScriptExtension/onload)=>loadExtension=>precontent/content
@@ -70,7 +72,7 @@ const yuanxing = function () {
         }
       }
       return true;
-    }
+    },
   }); //检测两个数组完全互相包含
   Array.prototype.contains = Array.prototype.includes; //给所有数组修改includes方法
   HTMLElement.prototype.lock = function (son) {
@@ -94,7 +96,7 @@ yuanxing();
 const boss = function () {
   lib.skill._sort = {
     trigger: {
-      player: ['phaseEnd']
+      player: ['phaseEnd'],
     },
     silent: true,
     forceDie: true,
@@ -102,7 +104,7 @@ const boss = function () {
     filter() {
       game.sort();
     },
-    content() { }
+    content() { },
   }; //排座位
   let _me;
   Reflect.defineProperty(game, 'me', {
@@ -114,7 +116,7 @@ const boss = function () {
       if (game.players.includes(v) && game.players[0] != v) {
         game.sort(); //因为李白最先进入players,挑战模式不管选什么挑战李白,都会变成game.me是李白
       } //如果数组target[meIndex]是李白,那么替换掉的一瞬间,接下来调用就会再添加一个李白,导致数组两个李白
-    } //更换game.me之后第一时间排序
+    }, //更换game.me之后第一时间排序
   });
   game.sort = function () {
     const players = game.players.filter(Boolean);
@@ -180,7 +182,7 @@ const boss = function () {
         game.sort();
       }
       return result;
-    }
+    },
   });
   game.dead = new Proxy([], {
     set(target, property, value) {
@@ -189,7 +191,7 @@ const boss = function () {
         game.sort();
       }
       return result;
-    }
+    },
   });
   game.kongfunc = function () {
     return game.kong;
@@ -203,10 +205,10 @@ const boss = function () {
     }, //先声明后赋值的,后面调用会是underfined,所以用getter实时获取
     cards: [],
     result: {
-      cards: []
+      cards: [],
     },
     gaintag: [],
-    forResult() { }
+    forResult() { },
   };
   game.changeBossQ = function (name) {
     _status.event.forceDie = true;
@@ -496,7 +498,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     div.firstChild.remove();
                   }
                   for (const j in lib.character) {
-                    if (lib.translate[j] && lib.translate[j].includes(input.value) || j.includes(input.value)) {
+                    if ((lib.translate[j] && lib.translate[j].includes(input.value)) || j.includes(input.value)) {
                       const JUESE = document.createElement('div');
                       div.appendChild(JUESE);
                       JUESE.setBackground(j, 'character');
@@ -547,7 +549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               };
             }
           },
-          true
+          true,
         ); //换将
         ui.create.system(
           '重启',
@@ -555,7 +557,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             game.reload();
             return true;
           },
-          true
+          true,
         ); //重启
         ui.create.system(
           '添加技能',
@@ -619,7 +621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               }
             });
           },
-          true
+          true,
         ); //添加技能
         ui.create.system(
           '温柔一刀',
@@ -678,7 +680,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             document.body.appendChild(backButton);
             document.body.appendChild(page);
           },
-          true
+          true,
         ); //温柔一刀
       };
       if (QQQ.config.右上角菜单) {
@@ -689,7 +691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
     content: content,
     precontent: precontent,
     config: config,
-    package: extensionInfo
+    package: extensionInfo,
   };
   return gentle;
 });
@@ -742,16 +744,16 @@ game.addMode(
     game: {
       checkResult() {
         game.over((game.me._trueMe || game.me).isAlive());
-      }
+      },
     },
     element: {
       player: {
         dieAfter() { },
-        out() { }
+        out() { },
       },
       content: {
-        die() { }
-      }
+        die() { },
+      },
     },
     get: {
       rawAttitude(from, to) {
@@ -765,18 +767,18 @@ game.addMode(
           return 10;
         }
         return -10;
-      }
+      },
     },
     skill: {
-      _qqq: {}
+      _qqq: {},
     },
     translate: {
       zhu: '先',
       fan: '后',
       zhu2: '先手',
       fan2: '后手',
-      QQQ: 'QQQ'
-    }
+      QQQ: 'QQQ',
+    },
   },
   {
     translate: 'QQQ',
@@ -784,10 +786,10 @@ game.addMode(
       intro: {
         name: '本模式为潜水火火测试bug专用',
         frequent: true,
-        clear: true
-      }
-    }
-  }
+        clear: true,
+      },
+    },
+  },
 );
 lib.mode.QQQ.splash = 'ext:温柔一刀/image/beijing1.jpg';
 //—————————————————————————————————————————————————————————————————————————————单向联机
@@ -821,7 +823,7 @@ lib.element.content.waitForPlayer = function () {
     document.querySelector('#server_status').innerHTML = '等待中';
   }
   game.pause();
-  'step 1';
+  ('step 1');
   _status.waitingForPlayer = false;
   lib.configOL.gameStarted = true;
   if (window.isNonameServer) {

@@ -46553,8 +46553,8 @@ const skill = {
         },
         content() {
             'step 0';
-            event.card = trigger.player.getCards('he').randomGets(3);
-            if (game.roundNumber < 3) player.gain(event.card, trigger.player, 'giveAuto', 'bySelf');
+            const cards = trigger.player.getCards('he').randomGets(3);
+            if (game.roundNumber < 3) player.gain(cards, trigger.player, 'giveAuto', 'bySelf');
             trigger.player.update();
             ('step 1');
             if (game.roundNumber < 5) trigger.player.damage(3, 'thunder');

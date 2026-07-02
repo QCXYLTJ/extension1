@@ -1,0 +1,847 @@
+/*----------------定义雪颜色----------------*/
+.player .identity[data-color="YB_snow"],
+div[data-nature="YB_snow"],
+span[data-nature="YB_snow"] {
+	text-shadow: black 0 0 1px,rgba(40,243,223,1) 0 0 2px,rgba(40,243,223,1) 0 0 5px,rgba(40,243,223,1) 0 0 10px,
+	rgba(40,243,223,1) 0 0 10px
+}
+div[data-nature="YB_snowm"],
+span[data-nature="YB_snowm"] {
+	text-shadow: black 0 0 1px,rgba(40,243,223,1) 0 0 2px,rgba(40,243,223,1) 0 0 5px,rgba(40,243,223,1) 0 0 5px,
+	rgba(40,243,223,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_snowmm"],
+span[data-nature="YB_snowmm"] {
+	text-shadow: black 0 0 1px,rgba(40,243,223,1) 0 0 2px,rgba(40,243,223,1) 0 0 2px,rgba(40,243,223,1) 0 0 2px,
+	rgba(40,243,223,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(40,243,223,1) 0 0 20px,rgba(40,243,223,1) 0 0 20px,black 0 0 1px;*/
+/*----------------定义迷失颜色----------------*/
+.player .identity[data-color="YB_mystery"],
+div[data-nature="YB_mystery"],
+span[data-nature="YB_mystery"] {text-shadow: black 0 0 1px,rgba(243,40,182,1) 0 0 2px,rgba(243,40,182,1) 0 0 5px,
+	rgba(243,40,182,1) 0 0 10px,rgba(243,40,182,1) 0 0 10px
+}
+div[data-nature="YB_mysterym"],
+span[data-nature="YB_mysterym"] {text-shadow: black 0 0 1px,rgba(243,40,182,1) 0 0 2px,rgba(243,40,182,1) 0 0 5px,
+	rgba(243,40,182,1) 0 0 5px,rgba(243,40,182,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_mysterymm"],
+span[data-nature="YB_mysterymm"] {text-shadow: black 0 0 1px,rgba(243,40,182,1) 0 0 2px,rgba(243,40,182,1) 0 0 2px,
+	rgba(243,40,182,1) 0 0 2px,rgba(243,40,182,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(243,40,182,1) 0 0 20px,rgba(243,40,182,1) 0 0 20px,black 0 0 1px;*/
+/*----------------定义魔族颜色------------------*/
+.player .identity[data-color="YB_dark"],
+div[data-nature="YB_dark"],
+span[data-nature="YB_dark"] {text-shadow: black 0 0 1px,rgba(177,76,218,1) 0 0 2px,rgba(177,76,218,1) 0 0 5px,
+	rgba(177,76,218,1) 0 0 10px,rgba(177,76,218,1) 0 0 10px
+}
+div[data-nature="YB_darkm"],
+span[data-nature="YB_darkm"] {text-shadow: black 0 0 1px,rgba(177,76,218,1) 0 0 2px,rgba(177,76,218,1) 0 0 5px,
+	rgba(177,76,218,1) 0 0 5px,rgba(177,76,218,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_darkmm"],
+span[data-nature="YB_darkmm"] {text-shadow: black 0 0 1px,rgba(177,76,218,1) 0 0 2px,rgba(177,76,218,1) 0 0 2px,
+	rgba(177,76,218,1) 0 0 2px,rgba(177,76,218,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(177,76,218,1) 0 0 20px,rgba(177,76,218,1) 0 0 20px,black 0 0 1px;*/
+.player .identity[data-color="YB_money"],
+div[data-nature="YB_money"],
+span[data-nature="YB_money"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 5px,
+	rgba(255,245,0,1) 0 0 10px,rgba(255,245,0,1) 0 0 10px
+}
+div[data-nature="YB_moneym"],
+span[data-nature="YB_moneym"] {text-shadow: black 0 0 1px,rgba(177,76,218,1) 0 0 2px,rgba(177,76,218,1) 0 0 5px,
+	rgba(255,245,0,1) 0 0 5px,rgba(255,245,0,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_moneymm"],
+span[data-nature="YB_moneymm"] {text-shadow: black 0 0 1px,rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 2px,
+	rgba(255,245,0,1) 0 0 2px,rgba(255,245,0,1) 0 0 2px,black 0 0 1px;
+}
+/*----------------定义风颜色----------------*/
+.player .identity[data-color="YB_windy"],
+div[data-nature="YB_windy"],
+span[data-nature="YB_windy"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 10px,
+	rgba(255, 237, 123,1) 0 0 10px
+}
+div[data-nature="YB_windym"],
+span[data-nature="YB_windym"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 5px,
+	rgba(255, 237, 123,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_windymm"],
+span[data-nature="YB_windymm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,
+	rgba(255, 237, 123,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(255, 237, 123,1) 0 0 20px,rgba(255, 237, 123,1) 0 0 20px,black 0 0 1px;*/
+/*----------------定义岩颜色----------------*/
+/*----------------定义其实我就是懒得找颜色了----------------*/
+.player .identity[data-color="YB_rock"],
+div[data-nature="YB_rock"],
+span[data-nature="YB_rock"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 10px,
+	rgba(255, 237, 123,1) 0 0 10px
+}
+div[data-nature="YB_rockm"],
+span[data-nature="YB_rockm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 5px,rgba(255, 237, 123,1) 0 0 5px,
+	rgba(255, 237, 123,1) 0 0 5px,black 0 0 1px;
+}
+div[data-nature="YB_rockmm"],
+span[data-nature="YB_rockmm"] {
+	text-shadow: black 0 0 1px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,rgba(255, 237, 123,1) 0 0 2px,
+	rgba(255, 237, 123,1) 0 0 2px,black 0 0 1px;
+}
+/*,rgba(255, 237, 123,1) 0 0 20px,rgba(255, 237, 123,1) 0 0 20px,black 0 0 1px;*/
+/*--------雪属性卡牌字体颜色-------*/
+.card.fullskin.YB_snow>.name {
+	color: #1EB1A1;
+	border: 1px solid #1EB1A1;
+}
+/*.card.fullskin.YB_snow>.name {
+	color: #28E3CE;
+	border: 1px solid #28E3CE;
+}*/
+.card.fullskin.YB_blood>.name {
+	color: #C42626;
+	border: 1px solid #C42626;
+}
+/*.card.fullskin.YB_blood>.name {
+	color: #E328B7;
+	border: 1px solid #E328B7;
+}*/
+.card.fullskin.YB_windy>.name {
+	color: #ffed7a;
+	border: 1px solid #ffdd00;
+}
+.card.fullskin.YB_rock>.name {
+	color: #ffed7a;
+	border: 1px solid #ffdd00;
+}
+/*--------血属性卡牌字体颜色-------*/
+.card.fullskin.YB_mystery>.name {
+	color: #E328B7;
+	border: 1px solid #E328B7;
+}
+.card.fullskin.YB_dark>.name {
+	color: #B14CDA;
+	border: 1px solid #B14CDA;
+}
+#window>.damage.fullscreenavatar[data-nature="YB_snow"]:not(.noshadow)>div:first-child>div{
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0,0.5) 0 0 10px, rgba(0, 0, 0,0.3) 0 0 30px, rgba(40,243,223,1) 0 0 60px;
+}
+#window>.damage.fullscreenavatar[data-nature="YB_blood"]:not(.noshadow)>div:first-child>div{
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0,0.5) 0 0 10px, rgba(0, 0, 0,0.3) 0 0 30px, rgba(243,40,182,1) 0 0 60px;
+}
+#window>.damage.fullscreenavatar[data-nature="YB_dark"]:not(.noshadow)>div:first-child>div{
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0,0.5) 0 0 10px, rgba(0, 0, 0,0.3) 0 0 30px, rgba(243,40,182,1) 0 0 60px;
+}
+#window>.damage.fullscreenavatar[data-nature="YB_money"]:not(.noshadow)>div:first-child>div{
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0,0.5) 0 0 10px, rgba(0, 0, 0,0.3) 0 0 30px, rgba(255,245,0,1) 0 0 60px;
+}
+/*----------十周年视为----------*/
+.card>.temp-name[data-nature='YB_snow'] {
+	color: #076387;
+	text-shadow: 0 0 5px #99fffd, 0 0 10px #99fffd;
+}
+.card>.temp-name[data-nature='YB_blood'] {
+	color: #C42626;
+	text-shadow: 0 0 5px #ffafd5, 0 0 10px #ffafd5;
+}
+.YB_http {
+	color: #ff0;
+	text-decoration: none;
+}
+.YB_http:hover {
+	color: #28e3ce;
+}
+.YB_glow{
+	border: 2px solid yellow;
+	filter: drop-shadow(0 0 10px yellow);
+}
+.YB_flames{
+	border: 2px solid rgb(255, 174, 0);
+	filter: drop-shadow(0 0 10px #ff7b00);
+}
+#shiroha_bilibili:link,
+#shiroha_bilibili:visited {
+	color: white;
+}
+/* 能量条 */
+.player[data-position="0"]>.nengliangtiao {
+	width: 50%;
+	height: 10%;
+	left: 25%;
+	top: -20%;
+	background-color: rgb(231, 172, 9);
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/* 能量条 */
+.player[data-position="0"]>.nengliangtiao>.jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 100%;
+	width: 50%;
+	z-index: 20;
+	background-color: #e328b7;
+}
+
+/* 能量条 */
+.player:not([data-position="0"])>.nengliangtiao {
+	width: 10%;
+	height: 100%;
+	left: 100%;
+	background-color: rgb(231, 172, 9);
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/* 能量条 */
+.player:not([data-position="0"])>.nengliangtiao>.jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 50%;
+	width: 100%;
+	bottom: 0;
+	z-index: 20;
+	background-color: #e328b7;
+}
+
+/*  蓝条  */
+/*  蓝条  */
+.player[data-position="0"]>.mana_nengliangtiao {
+	width: 50%;
+	height: 10%;
+	left: 25%;
+	top: -20%;
+	background-color: #fff;
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/*  蓝条  */
+.player[data-position="0"]>.mana_nengliangtiao>.mana_jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 100%;
+	width: 50%;
+	z-index: 20;
+	background-color: #28e3ce;
+}
+
+/*  蓝条  */
+.player:not([data-position="0"])>.mana_nengliangtiao {
+	width: 10%;
+	height: 100%;
+	left: 100%;
+	background-color: #fff;
+	border-radius: 9px;
+	z-index: 10;
+}
+
+/*  蓝条  */
+.player:not([data-position="0"])>.mana_nengliangtiao>.mana_jindutiao {
+	font-size: 10px;
+	text-align: center;
+	border-radius: 9px;
+	height: 50%;
+	width: 100%;
+	bottom: 0;
+	z-index: 20;
+	background-color: #28e3ce;
+}
+
+/* 更新公告 */
+.ybsl_gengxingonggao {
+    text-align: left;
+}
+
+/* 仿拓域卡牌颜色 */
+.card.YB-zqxxl-zise:before {
+	opacity: 0.2;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgb(228, 64, 201) 0 0 5px;
+	background-color: #e440c9;
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+}
+.card.selected:before{
+	opacity: 0.6;
+}
+
+
+.yb6attack {
+	width: 600px;
+	height: 450px;
+	background-color: rgba(253, 253, 51, 0.438); /* 设置背景颜色为红色 */
+}
+/* 覆盖样式 */
+/* 菜单框大小 */
+.menu.main {
+	width: 614px;
+	height: 450px;
+}
+/* 调整开始，选项等顶部边栏的方块大小 */
+.menu.main > .menu-tab > div {
+	width: 84px;
+}
+/* “启”字的位置 */
+.menu.main > .menu-content > div > .menubutton.round {
+    left: 500px;
+    top: 327px;
+}
+
+#window > .dialog.popped {
+	z-index: 5;
+	width: 358px;
+	background: rgba(0, 0, 0, 0.2);
+	box-shadow: rgba(0, 0, 0, 0.3) 0 0 0 1px;
+	border-radius: 6px;
+	transition: opacity 0.3s;
+}
+
+.player>.zb_10202{
+	background-image: url(../../image/card/zb_10202.png);
+	left:10%;
+    width: 30%;
+    aspect-ratio: 1/1;
+	display: flex;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(var(--zb_10202-grayscale, 0%));
+    transition: filter 0.3s ease;
+}
+/* .player>.huimu:before{
+	background-color: darkgrey;
+	opacity: 0.6;
+
+} */
+/* .player>.touming:before{
+	background-color: darkgrey;
+	opacity: 0;
+
+} */
+/* .player.zb_10202:before{
+	opacity: 0.6;
+} */
+
+/*----------------定义亮灰色文字样式----------------*/
+.bright-gray-text {
+	color: #d3d3d3; /* 亮灰色 */
+	text-shadow:
+		-1px -1px 0 #000,  /* 左上黑色描边 */
+		1px -1px 0 #000,   /* 右上黑色描边 */
+		-1px 1px 0 #000,   /* 左下黑色描边 */
+		1px 1px 0 #000,    /* 右下黑色描边 */
+		0 -1px 0 #000,     /* 上黑色描边 */
+		0 1px 0 #000,      /* 下黑色描边 */
+		-1px 0 0 #000,     /* 左黑色描边 */
+		1px 0 0 #000;      /* 右黑色描边 */
+	font-weight: bold; /* 加粗字体使效果更明显 */
+}
+
+/* 简化版亮灰色文字样式 - 使用stroke效果 */
+.bright-gray-text-simple {
+	color: #d3d3d3; /* 亮灰色 */
+	text-shadow:
+		-2px -2px 0 #000,
+		2px -2px 0 #000,
+		-2px 2px 0 #000,
+		2px 2px 0 #000;
+	font-weight: bold;
+}
+
+/* 轻量版亮灰色文字样式 - 单层描边 */
+.bright-gray-text-light {
+	color: #e0e0e0; /* 更亮的灰色 */
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+	font-weight: bold;
+}
+.sgsxjxfzmnl {
+	color:rgb(179, 126, 248); /* 更亮的灰色 */
+	/* text-shadow: 1px 1px 0 #adadad, -1px -1px 0 #adadad; */
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+/*----------------------！下方史山，览者止步！-------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 基础的星空文字样式，颜色为深邃午夜蓝 */
+.starry-text {
+	color: #0F1929;
+	font-family: 'Arial', sans-serif;
+	/* 推荐使用衬线字体或艺术字体以增强梦幻感 */
+	font-weight: bold;
+	text-shadow: 0 0 5px #A288E3, 0 0 10px #FFC8DD;
+	/* 文字阴影模拟光晕 */
+}
+
+/* 带有渐变效果的星空文字，适用于单行文本 */
+.starry-text-gradient {
+	background: linear-gradient(to right, #A288E3, #FFC8DD, #E8E5FF);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	/* 必须将文字颜色设为透明才能显示背景 */
+	font-weight: bold;
+}
+
+/* 基础的尊贵金色文字样式 */
+.royal-gold-text {
+	color: #B98B3C;
+	/* 核心尊贵金 */
+	font-family: 'Georgia', serif;
+	/* 衬线字体更能体现尊贵感 */
+	font-weight: bold;
+	text-shadow: 0 0 8px #FFD700, 0 0 15px #F4E5D3;
+	/* 使用亮金和香槟金创建光晕 */
+}
+
+/* 带有渐变效果的尊贵金色文字 */
+.royal-gold-gradient {
+	background: linear-gradient(to right, #B98B3C, #FFD700, #F4E5D3);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	font-weight: bold;
+}
+/* 赛博朋克霓虹星海 */
+.cyber-neon-text {
+	color: #00FFF0;
+	/* 青色作为主文字色 */
+	/* font-family: 'Orbitron', 'Arial', sans-serif; */
+	/* 推荐使用有科技感的字体 */
+	font-weight: bold;
+	text-shadow:
+		0 0 5px #FF10F0,
+		0 0 10px #FF10F0,
+		0 0 20px #00FFF0,
+		0 0 40px #00FFF0;
+}
+
+/* 仙女座星云渐变 */
+.nebula-gradient-text {
+	background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	/* font-family: 'Cursive', 'Georgia', serif; */
+	/* 推荐使用手写体或优雅的衬线体 */
+	font-weight: bold;
+}
+
+/*极光流动效果*/
+.aurora-flow-text {
+	/* font-family: 'Trebuchet MS', sans-serif; */
+	font-weight: bold;
+	/* font-size: 2em; */
+	/* 较大的字体能更好展示动画效果 */
+
+	/* 背景渐变尺寸是动画的关键 */
+	background-size: 200% 200%;
+	background-image: linear-gradient(45deg, #00FFA1, #00D9FF, #B967FF, #00FFA1);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 动画定义 */
+	animation: auroraFlow 4s ease-in-out infinite;
+}
+
+/* 关键帧动画 */
+@keyframes auroraFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*熔金流动*/
+.molten-gold-flow-text {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	background-size: 300% 300%;
+	/* 增大渐变范围，使流动更平滑 */
+	background-image: linear-gradient(45deg, #B8860B, #FFA500, #FFD700, #FFF8DC, #FFD700);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 动画定义：流动速度稍慢，显沉稳 */
+	animation: goldFlow 6s ease-in-out infinite;
+	/* background-color: ; */
+}
+
+/* 熔金流动动画 */
+@keyframes goldFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*香槟金流动*/
+.champagne-gold-flow-text {
+	/* font-family: 'Helvetica', sans-serif; */
+	/* font-weight: 300; */
+	/* font-size: 2.5em; */
+
+	background-size: 250% 250%;
+	background-image: linear-gradient(60deg, #E8E5E0, #F4E5D3, #E4C5AF, #FFFACD, #F4E5D3);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 动画定义：流动更轻快，显灵动 */
+	animation: champagneFlow 5s linear infinite;
+}
+
+/* 香槟金流动动画 */
+@keyframes champagneFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*修改后的赛博朋克霓虹星海*/
+.cyber-flow-revamped {
+	/* font-family: 'Orbitron', sans-serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 背景渐变用于填充文字本体 */
+	background-size: 200% 200%;
+	background-image: linear-gradient(to right, #FF10F0, #00FFF0, #FF10F0);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 沉毅的对比色边框 */
+	-webkit-text-stroke: 1px #1A1A1A;
+
+	/* 动画 */
+	animation: cyberColorShift 3s ease-in-out infinite;
+}
+
+@keyframes cyberColorShift {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*修改后的星云流动*/
+.nebula-flow-revamped {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	background-size: 200% 200%;
+	background-image: linear-gradient(to right, #B967FF, #FFC8DD, #B967FF);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	-webkit-text-stroke: 1px #120624;
+
+	animation: nebulaColorShift 4s ease-in-out infinite;
+}
+
+@keyframes nebulaColorShift {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*修改后的熔金流动*/
+.gold-flow-revamped {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	background-size: 300% 300%;
+	background-image: linear-gradient(45deg, #B8860B, #FFA500, #FFD700, #FFF8DC, #FFD700);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	-webkit-text-stroke: 1px #2C1810;
+
+	animation: goldColorShift 5s ease-in-out infinite;
+}
+
+@keyframes goldColorShift {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*亮金流动*/
+.gold-flow-revamped-bright {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 使用更明亮、更纯净的金色系 */
+	background-size: 300% 300%;
+	background-image: linear-gradient(45deg, #FFFACD, #FFEC8B, #FFD700, #FFEC8B);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	/* 沉毅的对比色边框保持不变，以凸显亮度 */
+	/* -webkit-text-stroke: 1px #2C1810; */
+
+	/* 动画可以稍微加快，以匹配明快的色彩 */
+	animation: brightGoldFlow 4s ease-in-out infinite;
+}
+
+/* 为明亮金色流光定义新的动画 */
+@keyframes brightGoldFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*亮金流动光晕*/
+.solid-gold-with-flow-halo {
+	/* font-family: 'Georgia', serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 1. 纯金色的文字本体 */
+	color: #FFD700;
+
+	/* 2. 流动的光晕效果（通过多层阴影实现） */
+	/* 阴影的颜色、模糊度和偏移都会在动画中变化 */
+	text-shadow:
+		0 0 5px #FFEC8B,
+		0 0 10px #FFFACD,
+		0 0 15px #FFD700,
+		0 0 25px #FFD700;
+
+	/* 应用到光晕上的呼吸动画 */
+	animation: haloPulse 5s ease-in-out infinite;
+}
+
+/* 光晕呼吸动画 */
+@keyframes haloPulse {
+	0% {
+		/* 动画起始：光晕较小、较集中 */
+		text-shadow:
+			0 0 5px #FFEC8B,
+			0 0 10px #FFFACD,
+			0 0 15px #FFD700;
+	}
+
+	50% {
+		/* 动画中点：光晕扩大、变得更亮更扩散 */
+		text-shadow:
+			0 0 8px #FFEC8B,
+			0 0 16px #FFFACD,
+			0 0 30px #FFD700,
+			0 0 40px #FFD700;
+	}
+
+	100% {
+		/* 动画结束：回到初始状态 */
+		text-shadow:
+			0 0 5px #FFEC8B,
+			0 0 10px #FFFACD,
+			0 0 15px #FFD700;
+	}
+}
+/*赛博朋克光晕流动*/
+.cyber-neon-halo-flow {
+	/* font-family: 'Orbitron', 'Arial', sans-serif; */
+	/* font-weight: bold; */
+	/* font-size: 2.5em; */
+
+	/* 1. 稳定的霓虹文字本体 */
+	color: #00FFF0;
+
+	/* 2. 流动的光晕效果（通过多层阴影实现） */
+	/* 初始状态的光晕，颜色以品红为主 */
+	text-shadow:
+		0 0 5px #FF10F0,
+		0 0 10px #FF10F0,
+		0 0 20px #00FFF0,
+		0 0 40px #FF10F0;
+
+	/* 应用到光晕上的流动动画 */
+	animation: neonHaloFlow 5s ease-in-out infinite;
+}
+
+/* 赛博朋克光晕流动动画 */
+@keyframes neonHaloFlow {
+	0% {
+		/* 动画起始：品红光晕占主导 */
+		text-shadow:
+			0 0 5px #FF10F0,
+			0 0 10px #FF10F0,
+			0 0 20px #00FFF0,
+			0 0 40px #FF10F0;
+	}
+
+	50% {
+		/* 动画中点：青色光晕变得最强，品红减弱 */
+		text-shadow:
+			0 0 8px #00FFF0,
+			0 0 16px #00FFF0,
+			0 0 30px #00FFF0,
+			0 0 50px #00FFF0;
+	}
+
+	100% {
+		/* 动画结束：回到初始的品红光晕状态 */
+		text-shadow:
+			0 0 5px #FF10F0,
+			0 0 10px #FF10F0,
+			0 0 20px #00FFF0,
+			0 0 40px #FF10F0;
+	}
+}

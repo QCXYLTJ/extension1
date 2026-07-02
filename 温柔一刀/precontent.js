@@ -19,6 +19,7 @@
                    QQQQQQQQQ                                           QQQQQQQQQ                                           QQQQQQQQQ
 */
 //-------------------------------------------------------备忘录0
+////.+\n\s*//.+\n\s*//.+\n\s*//.+\n\s*//.+\n\s*//.+\n\s*//.+
 /*
 game.me.gain(game.createCard('shuidan'), 'gain2');
 MaxHp
@@ -85,9 +86,12 @@ cards.splice//i.discard()
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 npm install
 npm install -g jscodeshift
+npm install prettier
+npm install eslint
 npm install @babel/parser @babel/traverse @babel/generator @babel/types
 jscodeshift -t var-to-const-let.js . --extensions js --verbose=2
 npx eslint . --ext .js,.jsx,.ts,.tsx --fix
+
 
 
 
@@ -363,7 +367,7 @@ const precontent = async function () {
             trigger: {
                 global: [
                     // 'chooseToUseBefore',
-                    // 'gameStart',
+                    'gameStart',
                     // 'chooseButtonBefore',
                     // 'chooseControlBefore'
                     // 'chooseCharacterBefore'
@@ -398,15 +402,12 @@ const precontent = async function () {
         if (links && links[0]) {
         }
         */
-                game.me.gain(
-                    game.createCard({
-                        name: 'sha',
-                        suit: 'none',
-                        number: 3,
-                        nature: 'gold',
-                    }),
-                    'gain2'
-                );
+                // Reflect.defineProperty(game.me, 'hp', {
+                //     get() {
+                //         return 4;
+                //     },
+                //     set(v) { debugger; },
+                // });
                 /*
         var num = 20;
         var evt = _status.event;
