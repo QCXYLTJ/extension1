@@ -8,21 +8,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
     content(config, pack) {
       ui.gl_wider = true;
       galgame.text.chaoxiao = [
-      'gl_shuiguai:呦？孱弱的小宝宝需要我的祝福嘛~',
-      'choose:菜菜,救救~:你才是小宝宝嘞!',
-      {
-        avatar: 'gl_shuiguai',
-        text(event) {
-          if (event.chooses.includes('菜菜,救救~')) {
-            if (!lib.config.mode_config.xiangqv) lib.config.mode_config.xiangqv = {};
-            lib.config.mode_config.xiangqv.complexity = 'simple';
-            game.saveConfig('mode_config', lib.config.mode_config);
-            return '哈哈,那可爱的小宝宝~可要加油哦♡';
-          } else {
-            return '好吧,就让我看看你还能嘴硬到什么时候~';
+        'gl_shuiguai:呦？孱弱的小宝宝需要我的祝福嘛~',
+        'choose:菜菜,救救~:你才是小宝宝嘞!',
+        {
+          avatar: 'gl_shuiguai',
+          text(event) {
+            if (event.chooses.includes('菜菜,救救~')) {
+              if (!lib.config.mode_config.xiangqv) lib.config.mode_config.xiangqv = {};
+              lib.config.mode_config.xiangqv.complexity = 'simple';
+              game.saveConfig('mode_config', lib.config.mode_config);
+              return '哈哈,那可爱的小宝宝~可要加油哦♡';
+            } else {
+              return '好吧,就让我看看你还能嘴硬到什么时候~';
+            }
           }
-        }
-      }];
+        }];
 
       //统一设置一下内容
       var changeCharacter = function (character, name) {
@@ -595,8 +595,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               } else if (dialog.currentcapt2 && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt, true)) {
                 dialog.buttons[i].classList.add('nodisplay');
               } else if (dialog.currentgroup == 'double') {
-                if (dialog.buttons[i]._changeGroup || dialog.buttons[i].group == 'ye') dialog.buttons[i].classList.remove('nodisplay');else
-                dialog.buttons[i].classList.add('nodisplay');
+                if (dialog.buttons[i]._changeGroup || dialog.buttons[i].group == 'ye') dialog.buttons[i].classList.remove('nodisplay'); else
+                  dialog.buttons[i].classList.add('nodisplay');
               } else {
                 if (dialog.buttons[i]._changeGroup || dialog.buttons[i].group == 'ye' || dialog.buttons[i].group != dialog.currentgroup) {
                   dialog.buttons[i].classList.add('nodisplay');
@@ -1187,7 +1187,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           filter() {
             game.sort();
           },
-          content() {}
+          content() { }
         }; //排座位
         let _me;
         Reflect.defineProperty(game, 'me', {
@@ -1291,7 +1291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             cards: []
           },
           gaintag: [],
-          forResult() {}
+          forResult() { }
         };
         game.changeBossQ = function (name) {
           _status.event.forceDie = true;
@@ -1389,7 +1389,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           const clonedObj = {};
           visited.set(obj, clonedObj);
           for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
+            if (obj.hasOwn(key)) {
               clonedObj[key] = deepClone(obj[key], visited);
             }
           }
@@ -1510,8 +1510,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             node.link = list[i];
           }
         },
-        visualMenu() {},
-        onclick() {}
+        visualMenu() { },
+        onclick() { }
       }, //QQQ
       book: {
         name: '<img src="extension/格林笔记/book.png"/>',

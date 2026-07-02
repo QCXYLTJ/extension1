@@ -15509,7 +15509,7 @@ const skills = {
                     .set('map', event.given_map)
                     .set('filterTarget', (card, player, target) => {
                         if (target.hasClan('穆斯林')) return false;
-                        return target != player && !get.event('map').hasOwnProperty(target.playerid);
+                        return target != player && !get.event('map').hasOwn(target.playerid);
                     })
                     .set('ai', (target) => {
                         const att = get.attitude(_status.event.player, target);
@@ -15529,7 +15529,7 @@ const skills = {
                     if (!map[id]) map[id] = [];
                     map[id].addArray(event.togive);
                 }
-                if (musilin.every((target) => event.given_map.hasOwnProperty(target.playerid))) break;
+                if (musilin.every((target) => event.given_map.hasOwn(target.playerid))) break;
             } while (cards.length);
             if (_status.connectMode) {
                 game.broadcastAll(function () {

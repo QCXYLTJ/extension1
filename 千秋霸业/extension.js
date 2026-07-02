@@ -6926,7 +6926,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           const clonedObj = {};
           visited.set(obj, clonedObj);
           for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
+            if (obj.hasOwn(key)) {
               clonedObj[key] = deepClone(obj[key], visited);
             }
           }
@@ -7673,10 +7673,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                 }
                 target.
-                chooseControl('basic', 'trick', 'equip', function () {
-                  return choice;
-                }).
-                set('prompt', '选择一种类别');
+                  chooseControl('basic', 'trick', 'equip', function () {
+                    return choice;
+                  }).
+                  set('prompt', '选择一种类别');
                 'step 1';
                 var list = get.inpile(result.control, 'trick');
                 list = list.randomGets(3);
@@ -7730,8 +7730,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   target(player, target) {
                     var num1 = target.countCards('h');
                     var num2 = target.hp;
-                    if (num1 == 0 || num2 < 2) return 2;else
-                    return 1;
+                    if (num1 == 0 || num2 < 2) return 2; else
+                      return 1;
                   }
                 }
               },
@@ -8147,10 +8147,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 'step 1';
                 event.targets = game.
-                filterPlayer(function (current) {
-                  return current.isMaxHp();
-                }).
-                sortBySeat();
+                  filterPlayer(function (current) {
+                    return current.isMaxHp();
+                  }).
+                  sortBySeat();
                 player.line(event.targets);
                 'step 2';
                 if (event.targets.length) {
@@ -8396,17 +8396,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                 }
                 switch (cards.length) {
-                  case 1:{
-                      target.$gain(cards[0]);
-                      break;
-                    }
-                  case 2:{
-                      target.$gain(cards[0]);
-                      setTimeout(function () {
-                        target.$gain(cards[1]);
-                      }, 250);
-                      break;
-                    }
+                  case 1: {
+                    target.$gain(cards[0]);
+                    break;
+                  }
+                  case 2: {
+                    target.$gain(cards[0]);
+                    setTimeout(function () {
+                      target.$gain(cards[1]);
+                    }, 250);
+                    break;
+                  }
                 }
                 event.cards = cards;
                 'step 1';
@@ -8464,12 +8464,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     var e5 = target.getEquip(5);
                     if (e5 && e5.name == 'muniu' && e5.cards && e5.cards.length > 1) return -1;
                     if (
-                    target.countCards('e', function (card) {
-                      return get.value(card, target) <= 0;
-                    }) ||
-                    target.hasSkillTag('noe'))
+                      target.countCards('e', function (card) {
+                        return get.value(card, target) <= 0;
+                      }) ||
+                      target.hasSkillTag('noe'))
 
-                    return 1;
+                      return 1;
                     return 0;
                   }
                 }
@@ -9396,8 +9396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           if (!info.image) {
             if (info.fullskin) {
               info.image = `ext:千秋霸业/image/${i}.png`;
-            } else
-            {
+            } else {
               info.image = `ext:千秋霸业/image/${i}.jpg`;
             }
           }

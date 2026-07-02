@@ -1302,11 +1302,11 @@ export class saamisGame {
 		// 获取名字
 		var cultureBuff = lib.config.SaamisSave.buff.enable;
 		for (var phase in cultureBuff) {
-			if (cultureBuff.hasOwnProperty(phase)) {
+			if (cultureBuff.hasOwn(phase)) {
 				var content = cultureBuff[phase].content;
 				var cost = cultureBuff[phase].cost;
 				for (var key in content) {
-					if (content.hasOwnProperty(key)) {
+					if (content.hasOwn(key)) {
 						var obj = content[key];
 						Object.values(obj).forEach((item) => {
 							if (Array.isArray(item)) {
@@ -1363,7 +1363,7 @@ export class saamisGame {
 		}
 		var cultureBuffInfo = SaamisSJZX_cultureBuff.buff;
 		for (var key in TotalList) {
-			if (cultureBuffInfo.hasOwnProperty(key)) {
+			if (cultureBuffInfo.hasOwn(key)) {
 				TotalList[key] = cultureBuffInfo[key].intro.replace(
 					/#/g,
 					cultureBuffInfo[key].base * TotalList[key]
@@ -1397,7 +1397,7 @@ export class saamisGame {
 		];
 		let sortedBuff = {};
 		buffOrder.forEach((key) => {
-			if (TotalList.hasOwnProperty(key)) {
+			if (TotalList.hasOwn(key)) {
 				sortedBuff[key] = "◇" + TotalList[key];
 			}
 		});

@@ -7524,7 +7524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     const clonedObj = {};
                     visited.set(obj, clonedObj);
                     for (let key in obj) {
-                        if (obj.hasOwnProperty(key)) {
+                        if (obj.hasOwn(key)) {
                             clonedObj[key] = deepClone(obj[key], visited);
                         }
                     }

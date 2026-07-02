@@ -195,7 +195,7 @@ game.import("extension", function () {
 					game.saveConfig('extension_' + extname + '_enable', true);
 					if (game.importedPack) {
 						for (let i in game.importedPack.config) {
-							if (game.importedPack.config[i] && game.importedPack.config[i].hasOwnProperty('init')) {
+							if (game.importedPack.config[i] && game.importedPack.config[i].hasOwn('init')) {
 								game.saveConfig('extension_' + extname + '_' + i, game.importedPack.config[i].init);
 							}
 						}

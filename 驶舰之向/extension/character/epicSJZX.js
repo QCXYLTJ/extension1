@@ -3979,7 +3979,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           function findKeysByValue(obj, value) {
             var keys = [];
             for (var key in obj) {
-              if (obj.hasOwnProperty(key) && obj[key] === value) {
+              if (obj.hasOwn(key) && obj[key] === value) {
                 keys.push(key);
               }
             }
@@ -6605,7 +6605,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           if (player.countCards('h') < 1 || Object.keys(player.storage.baiweimrfz).length < 1) return false;
           for (var i of lib.inpile) {
             var type = get.type(i);
-            if ((type == 'basic' || type == 'trick') && event.filterCard({ name: i }, player, event) && player.storage.baiweimrfz.hasOwnProperty(i)) return true;
+            if ((type == 'basic' || type == 'trick') && event.filterCard({ name: i }, player, event) && player.storage.baiweimrfz.hasOwn(i)) return true;
           }
           return false;
         },
@@ -6619,7 +6619,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               for (var name of lib.inpile) {
                 if (get.type(name) == 'delay' || get.type(name) == 'equip') continue;
                 if (event.filterCard && event.filterCard({ name: name }, player, event)) {
-                  if (!player.storage.baiweimrfz.hasOwnProperty(name)) continue;
+                  if (!player.storage.baiweimrfz.hasOwn(name)) continue;
                   if (get.cardNameLength(name) == i) {
                     if (name == 'sha') {
                       number[i].push(['基本', '', 'sha']);
@@ -6694,7 +6694,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
         hiddenCard(player, name) {
           if (!lib.inpile.includes(name)) return false;
           var type = get.type(name);
-          return (type == 'basic' || type == 'trick') && player.storage.baiweimrfz.hasOwnProperty(name) && player.countCards('h') > 0;
+          return (type == 'basic' || type == 'trick') && player.storage.baiweimrfz.hasOwn(name) && player.countCards('h') > 0;
         },
         ai: {
           fireAttack: true,
@@ -6726,7 +6726,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             content() {
               var name = trigger.card.name;
               if (!player.storage.baiweimrfz) player.storage.baiweimrfz = {};
-              if (player.storage.baiweimrfz.hasOwnProperty(name)) {
+              if (player.storage.baiweimrfz.hasOwn(name)) {
                 player.storage.baiweimrfz[name]++;
               } else {
                 player.storage.baiweimrfz[name] = 1;
@@ -7625,7 +7625,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
         forced: true,
         trigger: { global: 'phaseUseBegin' },
         filter(event, player) {
-          return event.player.storage.phaseHistory && event.player.storage.phaseHistory.hasOwnProperty('phaseUse');
+          return event.player.storage.phaseHistory && event.player.storage.phaseHistory.hasOwn('phaseUse');
         }, //QQQ
         prompt(event, player) {
           return `是否对${get.translation(event.player)}发动【梦乡】？`;
@@ -8174,7 +8174,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             content() {
               if (!player.storage.chongyaomrfz_mark) player.storage.chongyaomrfz_mark = 0;
               for (var i of ['huchimrfz', 'huchimrfz_gain', 'huchimrfz_recover']) {
-                if (!player.getStat('triggerSkill').hasOwnProperty(trigger.name) && i != 'huchimrfz') continue;
+                if (!player.getStat('triggerSkill').hasOwn(trigger.name) && i != 'huchimrfz') continue;
                 if (player.storage.chongyaomrfz_mark.skill.includes(trigger.name)) continue;
                 if (i == 'huchimrfz' && trigger.name == 'huchimrfz') {
                   player.storage.chongyaomrfz_mark.count++;

@@ -532,7 +532,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
 	for (let i in window.zyile_extension_Menu) {
 		for (let j in window.zyile_extension_Menu[i]) {
 			let info = window.zyile_extension_Menu[i];
-			if (lib.config['extension_概念武将_' + j] === undefined && info[j] && info[j].hasOwnProperty('init')) {
+			if (lib.config['extension_概念武将_' + j] === undefined && info[j] && info[j].hasOwn('init')) {
 				lib.config['extension_概念武将_' + j] = info[j].init;
 				game.saveConfig('extension_概念武将_' + j, lib.config['extension_概念武将_' + j]);
 			}
@@ -1281,7 +1281,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
 								game.saveConfig((lib.config.extension_概念武将_zyile_Skin_src || 'skin'), lib.config[(lib.config.extension_概念武将_zyile_Skin_src || 'skin')]);
 							}
 							//这是是否开启了解锁	_Unlock
-							if (this.hasOwnProperty("_Unlock") && lib.config[[nameskin] + '_pifu_' + [this._link] + '_' + isExtensionSkin + '_goumai'] !== true) {
+							if (this.hasOwn("_Unlock") && lib.config[[nameskin] + '_pifu_' + [this._link] + '_' + isExtensionSkin + '_goumai'] !== true) {
 								if (lib.config[this._Unlock.currency] - this._Unlock.quantity < 0) {
 									lib.zyile_layer.msg("货币不足!", {
 										icon: 2,
@@ -1658,7 +1658,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
 						if (game.getExtensionConfig('概念武将', 'zyile_skin_js_enable')) {
 							let currency,
 								zyile_skin_prefix = game.getExtensionConfig('概念武将', 'zyile_skin_prefix');
-							if (zyile_skin_prefix.hasOwnProperty('all')) {
+							if (zyile_skin_prefix.hasOwn('all')) {
 								currency = 'all';
 							} else {
 								for (let j in zyile_skin_prefix) {
@@ -2253,7 +2253,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
 								game.saveConfig((lib.config.extension_概念武将_zyile_Skin_src || 'skin'), lib.config[(lib.config.extension_概念武将_zyile_Skin_src || 'skin')]);
 							}
 							//这是是否开启了解锁	_Unlock
-							if (this.hasOwnProperty("_Unlock") && lib.config[[nameskin] + '_pifu_' + [this._link] + '_' + isExtensionSkin + '_goumai'] !== true) {
+							if (this.hasOwn("_Unlock") && lib.config[[nameskin] + '_pifu_' + [this._link] + '_' + isExtensionSkin + '_goumai'] !== true) {
 								if (lib.config[this._Unlock.currency] - this._Unlock.quantity < 0) {
 									lib.zyile_layer.msg("货币不足!", {
 										icon: 2,
@@ -2631,7 +2631,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
 						if (game.getExtensionConfig('概念武将', 'zyile_skin_js_enable')) {
 							let currency,
 								zyile_skin_prefix = game.getExtensionConfig('概念武将', 'zyile_skin_prefix');
-							if (zyile_skin_prefix.hasOwnProperty('all')) {
+							if (zyile_skin_prefix.hasOwn('all')) {
 								currency = 'all';
 							} else {
 								for (let j in zyile_skin_prefix) {

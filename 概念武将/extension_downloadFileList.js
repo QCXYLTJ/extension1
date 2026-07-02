@@ -139,7 +139,7 @@ window.zyile_content.push(function (lib, game, ui, get, ai, _status, config) {
     for (let i in window.zyile_extension_Menu) {
         for (let j in window.zyile_extension_Menu[i]) {
             let info = window.zyile_extension_Menu[i];
-            if (lib.config['extension_概念武将_' + j] === undefined && info[j] && info[j].hasOwnProperty('init')) {
+            if (lib.config['extension_概念武将_' + j] === undefined && info[j] && info[j].hasOwn('init')) {
                 lib.config['extension_概念武将_' + j] = info[j].init;
                 game.saveConfig('extension_概念武将_' + j, lib.config['extension_概念武将_' + j]);
             }

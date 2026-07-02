@@ -53,7 +53,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status) {
     for (var i in window.zyile_extension_Menu) {
         for (var j in window.zyile_extension_Menu[i]) {
             var info = window.zyile_extension_Menu[i];
-            if (lib.config['extension_概念武将_' + j] === undefined && info[j] && info[j].hasOwnProperty('init')) {
+            if (lib.config['extension_概念武将_' + j] === undefined && info[j] && info[j].hasOwn('init')) {
                 lib.config['extension_概念武将_' + j] = info[j].init;
                 game.saveConfig('extension_概念武将_' + j, lib.config['extension_概念武将_' + j]);
             }

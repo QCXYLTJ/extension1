@@ -765,7 +765,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
                                             } else {
                                                 ui.create.zyile_node('span.#zyile_button_div2', ui.create.zyile_node(node, 'span.#zyile_button_div1', { top: 0 }));
                                                 let initx = true;
-                                                if (config[i].hasOwnProperty('initx')) this.classList.toggle('zyile_menu_skin_on', config[i].initx), initx = false;
+                                                if (config[i].hasOwn('initx')) this.classList.toggle('zyile_menu_skin_on', config[i].initx), initx = false;
                                                 if (initx && (lib.config['extension_' + this.extname + '_' + i] || config[i].init)) node.classList.add('zyile_menu_skin_on');
                                                 node.onclick = function (e) {
                                                     if (this.classList.contains('disabled')) return;
@@ -1049,7 +1049,7 @@ window.zyile_import = function (lib, game, ui, get, ai, _status, config) {
                                                     if (game.importExtension(zip.generate({ type: 'arraybuffer' }), function () {
                                                         let config = zip.config;
                                                         for (var j in config) {
-                                                            if (config && config[j].hasOwnProperty('init')) {
+                                                            if (config && config[j].hasOwn('init')) {
                                                                 game.saveConfig('extension_' + i + '_' + j, config[j].init);
                                                             }
                                                         }

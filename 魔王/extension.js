@@ -48,7 +48,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     const clonedObj = {};
                     visited.set(obj, clonedObj);
                     for (let key in obj) {
-                        if (obj.hasOwnProperty(key)) {
+                        if (obj.hasOwn(key)) {
                             clonedObj[key] = deepClone(obj[key], visited);
                         }
                     }
@@ -8652,7 +8652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     filter(event, player) {
                                         for (var i of lib.character[player.name][3]) {
-                                            if (player.disabledSkills.hasOwnProperty(i)) return true;
+                                            if (player.disabledSkills.hasOwn(i)) return true;
                                         }
                                         return false;
                                     },

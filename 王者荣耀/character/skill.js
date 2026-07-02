@@ -19343,7 +19343,7 @@ const skills = {
                     const list = player
                         .getStorage('hokshanlinqiyuan')
                         .filter((character) => {
-                            return lib.character.hasOwnProperty(character);
+                            return lib.character.hasOwn(character);
                         })
                         .randomGets(hs.length);
                     game.broadcastAll(
@@ -19439,7 +19439,7 @@ const skills = {
                         var list = player
                             .getStorage('hokshanlinqiyuan')
                             .filter((character) => {
-                                if (!lib.character.hasOwnProperty(character)) return false;
+                                if (!lib.character.hasOwn(character)) return false;
                                 return !player.countCards('h', function (card) {
                                     return get.type(card) == 'special_character' && card.name.includes(character);
                                 });
@@ -19468,7 +19468,7 @@ const skills = {
                         var list = player
                             .getStorage('hokshanlinqiyuan')
                             .filter((character) => {
-                                if (!lib.character.hasOwnProperty(character)) return false;
+                                if (!lib.character.hasOwn(character)) return false;
                                 return !player.countCards('h', function (card) {
                                     return get.type(card) == 'special_character' && card.name.includes(character);
                                 });

@@ -10,7 +10,7 @@ Note: use of embedded <style> is not recommended when using media queries, becau
 // true prototypal inheritance (http://javascript.crockford.com/prototypal.html)
 if (typeof Object.create !== 'function') {
   Object.create = function (o) {
-    function F() {}
+    function F() { }
     F.prototype = o;
     return new F();
   };
@@ -76,8 +76,7 @@ var domReady = function () {
     (function () {
       if (document.readyState !== 'loading') {
         init();
-      } else
-      {
+      } else {
         setTimeout(arguments.callee, 10);
       }
     })();
@@ -112,7 +111,7 @@ var cssHelper = function () {
     FINAL_SEMICOLONS: /;\}/g,
     NOT_WHITESPACE: /\S+/g
   };
-  var parsed,parsing = false;
+  var parsed, parsing = false;
   var waiting = [];
   var wait = function (fn) {
     if (typeof fn === 'function') {
@@ -161,12 +160,11 @@ var cssHelper = function () {
     r.onreadystatechange = function () {
       if (r.readyState === 4 && !done) {
         if (!r.status && location.protocol === 'file:' ||
-        r.status >= 200 && r.status < 300 ||
-        r.status === 304 ||
-        navigator.userAgent.indexOf('Safari') > -1 && typeof r.status === 'undefined') {
+          r.status >= 200 && r.status < 300 ||
+          r.status === 304 ||
+          navigator.userAgent.indexOf('Safari') > -1 && typeof r.status === 'undefined') {
           fnSuccess(r.responseText);
-        } else
-        {
+        } else {
           fnFailure();
         }
         document.documentElement.style.cursor = '';
@@ -186,14 +184,13 @@ var cssHelper = function () {
   var objects = {
     stylesheet(el) {
       var o = {};
-      var amqs = [],mqls = [],rs = [],rsw = [];
+      var amqs = [], mqls = [], rs = [], rsw = [];
       var s = el.cssHelperText;
       // add attribute media queries
       var attr = el.getAttribute('media');
       if (attr) {
         var qts = attr.toLowerCase().split(',');
-      } else
-      {
+      } else {
         var qts = ['all']; // imply 'all'
       }
       for (var i = 0; i < qts.length; i++) {
@@ -207,8 +204,7 @@ var cssHelper = function () {
             var mql = objects.mediaQueryList(blocks[i], o);
             rs = rs.concat(mql.getRules());
             mqls[mqls.length] = mql;
-          } else
-          {// regular rule set, page context (@page) or font description (@font-face)
+          } else {// regular rule set, page context (@page) or font description (@font-face)
             rs[rs.length] = rsw[rsw.length] = objects.rule(blocks[i], o, null);
           }
         }
@@ -236,7 +232,7 @@ var cssHelper = function () {
       var idx = s.indexOf('{');
       var lt = s.substring(0, idx);
       s = s.substring(idx + 1, s.length - 1);
-      var mqs = [],rs = [];
+      var mqs = [], rs = [];
       // add media queries
       var qts = lt.toLowerCase().substring(7).split(',');
       for (var i = 0; i < qts.length; i++) {// parse each media query
@@ -269,11 +265,10 @@ var cssHelper = function () {
       var mql, stsh;
       if (listOrSheet.type === 'mediaQueryList') {
         mql = listOrSheet;
-      } else
-      {
+      } else {
         stsh = listOrSheet;
       }
-      var not = false,type;
+      var not = false, type;
       var expr = [];
       var valid = true;
       var tokens = s.match(regExp.NOT_WHITESPACE);
@@ -285,16 +280,16 @@ var cssHelper = function () {
             not = true;
           }
         } else
-        if (!type) {// media type
-          type = token;
-        } else
-        if (token.charAt(0) === '(') {// media feature expression
-          var pair = token.substring(1, token.length - 1).split(':');
-          expr[expr.length] = {
-            mediaFeature: pair[0],
-            value: pair[1] || null
-          };
-        }
+          if (!type) {// media type
+            type = token;
+          } else
+            if (token.charAt(0) === '(') {// media feature expression
+              var pair = token.substring(1, token.length - 1).split(':');
+              expr[expr.length] = {
+                mediaFeature: pair[0],
+                value: pair[1] || null
+              };
+            }
       }
       return {
         getQueryText() {
@@ -471,8 +466,7 @@ var cssHelper = function () {
       for (i = 0; i < linked.length; i++) {
         processLink(linked[i]);
       }
-    } else
-    {
+    } else {
       finish();
     }
   };
@@ -496,15 +490,13 @@ var cssHelper = function () {
     if (collections[name] !== null) {
       if (types[name] === 'array') {
         return collections[name] = collections[name].concat(v);
-      } else
-      {
+      } else {
         var c = collections[name];
         for (var n in v) {
-          if (v.hasOwnProperty(n)) {
+          if (v.hasOwn(n)) {
             if (!c[n]) {
               c[n] = v[n];
-            } else
-            {
+            } else {
               c[n] = c[n].concat(v[n]);
             }
           }
@@ -526,11 +518,11 @@ var cssHelper = function () {
     if (typeof window.innerWidth != 'undefined') {
       return window['inner' + d];
     } else
-    if (typeof document.documentElement !== 'undefined' &&
-    typeof document.documentElement.clientWidth !== 'undefined' &&
-    document.documentElement.clientWidth != 0) {
-      return document.documentElement['client' + d];
-    }
+      if (typeof document.documentElement !== 'undefined' &&
+        typeof document.documentElement.clientWidth !== 'undefined' &&
+        document.documentElement.clientWidth != 0) {
+        return document.documentElement['client' + d];
+      }
   };
   // public static functions
   return {
@@ -545,8 +537,7 @@ var cssHelper = function () {
       }
       if (null !== styleEl) {
         el = styleEl;
-      } else
-      {
+      } else {
         el = document.createElement('style');
         el.setAttribute('type', 'text/css');
         el.setAttribute('id', styleElId);
@@ -555,8 +546,7 @@ var cssHelper = function () {
       }
       if (el.styleSheet) {// IE
         el.styleSheet.cssText += s;
-      } else
-      {
+      } else {
         el.appendChild(document.createTextNode(s));
       }
       el.addedWithCssHelper = true;
@@ -564,33 +554,30 @@ var cssHelper = function () {
         cssHelper.parsed(function (parsed) {
           var o = parseEmbedded(el, s);
           for (var n in o) {
-            if (o.hasOwnProperty(n)) {
+            if (o.hasOwn(n)) {
               addToCollection(n, o[n]);
             }
           }
           broadcast('newStyleParsed', el);
         });
-      } else
-      {
+      } else {
         el.parsingDisallowed = true;
       }
       return el;
     },
     removeStyle(el) {
       if (el.parentNode)
-      return el.parentNode.removeChild(el);
+        return el.parentNode.removeChild(el);
     },
     parsed(fn) {
       if (parsing) {
         wait(fn);
-      } else
-      {
+      } else {
         if (typeof parsed !== 'undefined') {
           if (typeof fn === 'function') {
             fn(parsed);
           }
-        } else
-        {
+        } else {
           wait(fn);
           parse();
         }
@@ -672,7 +659,7 @@ domReady(function enableCssMediaQueries() {
     var el = document.createElement('div');
     el.id = id;
     var style = cssHelper.addStyle('@media all and (width) { #' + id +
-    ' { width: 1px !important; } }', [], false); // false means don't parse this temp style
+      ' { width: 1px !important; } }', [], false); // false means don't parse this temp style
     document.body.appendChild(el);
     var ret = el.offsetWidth === 1;
     style.parentNode.removeChild(style);
@@ -685,7 +672,7 @@ domReady(function enableCssMediaQueries() {
   var createMeter = function () {// create measuring element
     meter = document.createElement('div');
     meter.style.cssText = 'position:absolute;top:-9999em;left:-9999em;' +
-    'margin:0;border:none;padding:0;width:1em;font-size:1em;'; // cssText is needed for IE, works for the others
+      'margin:0;border:none;padding:0;width:1em;font-size:1em;'; // cssText is needed for IE, works for the others
     document.body.appendChild(meter);
     // meter must have browser default font size of 16px
     if (meter.offsetWidth !== 16) {
@@ -711,22 +698,21 @@ domReady(function enableCssMediaQueries() {
         valueType = 'length';
         amount = measure(value);
       } else
-      if (regExp.RESOLUTION_UNIT.exec(value)) {
-        valueType = 'resolution';
-        amount = parseInt(value, 10);
-        var unit = value.substring((amount + '').length);
-      } else
-      if (regExp.ASPECT_RATIO.exec(value)) {
-        valueType = 'aspect-ratio';
-        amount = value.split('/');
-      } else
-      if (regExp.ABSOLUTE_VALUE) {
-        valueType = 'absolute';
-        amount = value;
-      } else
-      {
-        valueType = 'unknown';
-      }
+        if (regExp.RESOLUTION_UNIT.exec(value)) {
+          valueType = 'resolution';
+          amount = parseInt(value, 10);
+          var unit = value.substring((amount + '').length);
+        } else
+          if (regExp.ASPECT_RATIO.exec(value)) {
+            valueType = 'aspect-ratio';
+            amount = value.split('/');
+          } else
+            if (regExp.ABSOLUTE_VALUE) {
+              valueType = 'absolute';
+              amount = value;
+            } else {
+              valueType = 'unknown';
+            }
     }
     var width, height;
     if ('device-width' === feature.substring(l - 12, l)) {// screen width
@@ -734,133 +720,115 @@ domReady(function enableCssMediaQueries() {
       if (value !== null) {
         if (valueType === 'length') {
           return min && width >= amount || max && width < amount || !min && !max && width === amount;
-        } else
-        {
+        } else {
           return false;
         }
-      } else
-      {// test width without value
+      } else {// test width without value
         return width > 0;
       }
     } else
-    if ('device-height' === feature.substring(l - 13, l)) {// screen height
-      height = screen.height;
-      if (value !== null) {
-        if (valueType === 'length') {
-          return min && height >= amount || max && height < amount || !min && !max && height === amount;
-        } else
-        {
-          return false;
+      if ('device-height' === feature.substring(l - 13, l)) {// screen height
+        height = screen.height;
+        if (value !== null) {
+          if (valueType === 'length') {
+            return min && height >= amount || max && height < amount || !min && !max && height === amount;
+          } else {
+            return false;
+          }
+        } else {// test height without value
+          return height > 0;
         }
       } else
-      {// test height without value
-        return height > 0;
-      }
-    } else
-    if ('width' === feature.substring(l - 5, l)) {// viewport width
-      width = document.documentElement.clientWidth || document.body.clientWidth; // the latter for IE quirks mode
-      if (value !== null) {
-        if (valueType === 'length') {
-          return min && width >= amount || max && width < amount || !min && !max && width === amount;
+        if ('width' === feature.substring(l - 5, l)) {// viewport width
+          width = document.documentElement.clientWidth || document.body.clientWidth; // the latter for IE quirks mode
+          if (value !== null) {
+            if (valueType === 'length') {
+              return min && width >= amount || max && width < amount || !min && !max && width === amount;
+            } else {
+              return false;
+            }
+          } else {// test width without value
+            return width > 0;
+          }
         } else
-        {
-          return false;
-        }
-      } else
-      {// test width without value
-        return width > 0;
-      }
-    } else
-    if ('height' === feature.substring(l - 6, l)) {// viewport height
-      height = document.documentElement.clientHeight || document.body.clientHeight; // the latter for IE quirks mode
-      if (value !== null) {
-        if (valueType === 'length') {
-          return min && height >= amount || max && height < amount || !min && !max && height === amount;
-        } else
-        {
-          return false;
-        }
-      } else
-      {// test height without value
-        return height > 0;
-      }
-    } else
-    if ('orientation' === feature.substring(l - 11, l)) {// orientation
-      width = document.documentElement.clientWidth || document.body.clientWidth; // the latter for IE quirks mode
-      height = document.documentElement.clientHeight || document.body.clientHeight; // the latter for IE quirks mode
-      if (valueType === 'absolute') {
-        return amount === 'portrait' ? width <= height : width > height;
-      } else
-      {
-        return false;
-      }
-    } else
-    if ('aspect-ratio' === feature.substring(l - 12, l)) {// window aspect ratio
-      width = document.documentElement.clientWidth || document.body.clientWidth; // the latter for IE quirks mode
-      height = document.documentElement.clientHeight || document.body.clientHeight; // the latter for IE quirks mode
-      var curRatio = width / height;
-      var ratio = amount[1] / amount[0];
-      if (valueType === 'aspect-ratio') {
-        return min && curRatio >= ratio || max && curRatio < ratio || !min && !max && curRatio === ratio;
-      } else
-      {
-        return false;
-      }
-    } else
-    if ('device-aspect-ratio' === feature.substring(l - 19, l)) {// screen aspect ratio
-      return valueType === 'aspect-ratio' && screen.width * amount[1] === screen.height * amount[0];
-    } else
-    if ('color-index' === feature.substring(l - 11, l)) {// number of colors
-      var colors = Math.pow(2, screen.colorDepth);
-      if (value !== null) {
-        if (valueType === 'absolute') {
-          return min && colors >= amount || max && colors < amount || !min && !max && colors === amount;
-        } else
-        {
-          return false;
-        }
-      } else
-      {// test height without value
-        return colors > 0;
-      }
-    } else
-    if ('color' === feature.substring(l - 5, l)) {// bits per color component
-      var color = screen.colorDepth;
-      if (value !== null) {
-        if (valueType === 'absolute') {
-          return min && color >= amount || max && color < amount || !min && !max && color === amount;
-        } else
-        {
-          return false;
-        }
-      } else
-      {// test height without value
-        return color > 0;
-      }
-    } else
-    if ('resolution' === feature.substring(l - 10, l)) {
-      var res;
-      if (unit === 'dpcm') {
-        res = measure('1cm');
-      } else
-      {
-        res = measure('1in');
-      }
-      if (value !== null) {
-        if (valueType === 'resolution') {
-          return min && res >= amount || max && res < amount || !min && !max && res === amount;
-        } else
-        {
-          return false;
-        }
-      } else
-      {// test height without value
-        return res > 0;
-      }
-    } else
-    {
-      return false;
-    }
+          if ('height' === feature.substring(l - 6, l)) {// viewport height
+            height = document.documentElement.clientHeight || document.body.clientHeight; // the latter for IE quirks mode
+            if (value !== null) {
+              if (valueType === 'length') {
+                return min && height >= amount || max && height < amount || !min && !max && height === amount;
+              } else {
+                return false;
+              }
+            } else {// test height without value
+              return height > 0;
+            }
+          } else
+            if ('orientation' === feature.substring(l - 11, l)) {// orientation
+              width = document.documentElement.clientWidth || document.body.clientWidth; // the latter for IE quirks mode
+              height = document.documentElement.clientHeight || document.body.clientHeight; // the latter for IE quirks mode
+              if (valueType === 'absolute') {
+                return amount === 'portrait' ? width <= height : width > height;
+              } else {
+                return false;
+              }
+            } else
+              if ('aspect-ratio' === feature.substring(l - 12, l)) {// window aspect ratio
+                width = document.documentElement.clientWidth || document.body.clientWidth; // the latter for IE quirks mode
+                height = document.documentElement.clientHeight || document.body.clientHeight; // the latter for IE quirks mode
+                var curRatio = width / height;
+                var ratio = amount[1] / amount[0];
+                if (valueType === 'aspect-ratio') {
+                  return min && curRatio >= ratio || max && curRatio < ratio || !min && !max && curRatio === ratio;
+                } else {
+                  return false;
+                }
+              } else
+                if ('device-aspect-ratio' === feature.substring(l - 19, l)) {// screen aspect ratio
+                  return valueType === 'aspect-ratio' && screen.width * amount[1] === screen.height * amount[0];
+                } else
+                  if ('color-index' === feature.substring(l - 11, l)) {// number of colors
+                    var colors = Math.pow(2, screen.colorDepth);
+                    if (value !== null) {
+                      if (valueType === 'absolute') {
+                        return min && colors >= amount || max && colors < amount || !min && !max && colors === amount;
+                      } else {
+                        return false;
+                      }
+                    } else {// test height without value
+                      return colors > 0;
+                    }
+                  } else
+                    if ('color' === feature.substring(l - 5, l)) {// bits per color component
+                      var color = screen.colorDepth;
+                      if (value !== null) {
+                        if (valueType === 'absolute') {
+                          return min && color >= amount || max && color < amount || !min && !max && color === amount;
+                        } else {
+                          return false;
+                        }
+                      } else {// test height without value
+                        return color > 0;
+                      }
+                    } else
+                      if ('resolution' === feature.substring(l - 10, l)) {
+                        var res;
+                        if (unit === 'dpcm') {
+                          res = measure('1cm');
+                        } else {
+                          res = measure('1in');
+                        }
+                        if (value !== null) {
+                          if (valueType === 'resolution') {
+                            return min && res >= amount || max && res < amount || !min && !max && res === amount;
+                          } else {
+                            return false;
+                          }
+                        } else {// test height without value
+                          return res > 0;
+                        }
+                      } else {
+                        return false;
+                      }
   };
   var testMediaQuery = function (mq) {
     var test = mq.getValid();
@@ -898,9 +866,9 @@ domReady(function enableCssMediaQueries() {
         t[type] = true;
       }
     }
-    var s = [],c = 0;
+    var s = [], c = 0;
     for (var n in t) {
-      if (t.hasOwnProperty(n)) {
+      if (t.hasOwn(n)) {
         if (c > 0) {
           s[c++] = ',';
         }
@@ -925,9 +893,9 @@ domReady(function enableCssMediaQueries() {
         t[amqs[i].getMediaType()] = amqs[i].getExpressions().length > 0;
       }
     }
-    var ts = [],tswe = [];
+    var ts = [], tswe = [];
     for (var n in t) {
-      if (t.hasOwnProperty(n)) {
+      if (t.hasOwn(n)) {
         ts[ts.length] = n;
         if (t[n]) {
           tswe[tswe.length] = n;
@@ -944,8 +912,7 @@ domReady(function enableCssMediaQueries() {
     if (allPassed) {
       // If 'all' in media attribute passed the test, then test all @media types in linked CSS and create style with those types.
       testMediaQueryLists(mqls);
-    } else
-    {
+    } else {
       // Or else, test only media attribute types that passed the test and also 'all'.
       // For positive '@media all', create style with attribute types that passed their test.
       testMediaQueryLists(mqls, ts);
@@ -965,8 +932,7 @@ domReady(function enableCssMediaQueries() {
       setTimeout(function () {
         cssHelper.broadcast('cssMediaQueriesTested');
       }, 100);
-    } else
-    {
+    } else {
       cssHelper.broadcast('cssMediaQueriesTested');
     }
   };
@@ -1004,15 +970,14 @@ domReady(function enableCssMediaQueries() {
         timer = setTimeout(function () {
           if (!nativeSupport()) {
             test();
-          } else
-          {
+          } else {
             cssHelper.broadcast('cssMediaQueriesTested');
           }
         }, 500);
       }
     };
     window.onresize = function () {
-      var x = window.onresize || function () {}; // save original
+      var x = window.onresize || function () { }; // save original
       return function () {
         x();
         resizeHandler();
@@ -1046,8 +1011,7 @@ domReady(function enableCssMediaQueries() {
       });
       createMeter();
       test();
-    } else
-    {
+    } else {
       docEl.style.marginLeft = ''; // undo visibility hidden
     }
     checkForResize();
@@ -1056,4 +1020,4 @@ domReady(function enableCssMediaQueries() {
 // bonus: hotfix for IE6 SP1 (bug KB823727)
 try {
   document.execCommand('BackgroundImageCache', false, true);
-} catch (e) {}
+} catch (e) { }

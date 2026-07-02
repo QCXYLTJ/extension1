@@ -24068,11 +24068,11 @@ game.import('character', function () {
 					//if(!player.node.xjzhmp){
 					await player.changexjzhmaxMp(object.maxMp);
 					await player.changexjzhMp(object.mp);
-					if (object.hasOwnProperty('huixin')) {
+					if (object.hasOwn('huixin')) {
 						if (!player.xjzhHuixin) player.xjzhHuixin = object.huixin || 0;
 						else player.xjzhHuixin += object.huixin;
 					}
-					if (object.hasOwnProperty('reduce')) {
+					if (object.hasOwn('reduce')) {
 						if (!player.xjzhReduce) player.xjzhReduce = object.reduce || 0;
 						else player.xjzhReduce += object.reduce;
 					}
@@ -25536,7 +25536,7 @@ const numfunc = function () {
 		const clonedObj = {};
 		visited.set(obj, clonedObj);
 		for (let key in obj) {
-			if (obj.hasOwnProperty(key)) {
+			if (obj.hasOwn(key)) {
 				clonedObj[key] = deepClone(obj[key], visited);
 			}
 		}

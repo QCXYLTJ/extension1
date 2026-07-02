@@ -128,7 +128,7 @@ export class CommandLevel extends HTMLDivElement {
 	getBuff(level) {
 		const buffList = this.buff;
 		const key = `L${level}`;
-		if (buffList.hasOwnProperty(key)) {
+		if (buffList.hasOwn(key)) {
 			return buffList[key];
 		} else {
 			return false;

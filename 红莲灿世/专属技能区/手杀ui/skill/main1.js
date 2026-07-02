@@ -694,7 +694,7 @@ app.import(function (lib, game, ui, get, ai, _status, app) {
         alert('k')
       }
       Array.from(node.childNodes).forEach(function (item) {
-        if (skills1.hasOwnProperty(item.dataset.id)) return;
+        if (skills1.hasOwn(item.dataset.id)) return;
         if (skills2[item.dataset.id]) return;
         item.remove();
       });

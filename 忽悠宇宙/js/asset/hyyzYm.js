@@ -14843,7 +14843,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             var keys = ['filterTarget', 'selectTarget', 'ai'];
             for (var key of keys) delete next[key];
             for (var i in trigger) {
-              if (!next.hasOwnProperty(i)) next[i] = trigger[i];
+              if (!next.hasOwn(i)) next[i] = trigger[i];
             }
             next.cardx = card;
             next.filterTargetx = trigger.filterTarget || (() => false);

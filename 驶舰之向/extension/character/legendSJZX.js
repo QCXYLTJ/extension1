@@ -18257,7 +18257,7 @@ game.import('character', function () {
               var selected = ui.selected.targets,
                 base = _status.event.targetx.hp;
               var total = Object.values(selected).reduce((accumulator, currentValue) => {
-                if (currentValue.hasOwnProperty('hp')) {
+                if (currentValue.hasOwn('hp')) {
                   return accumulator + currentValue.hp;
                 }
                 return accumulator;

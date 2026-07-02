@@ -7215,9 +7215,9 @@ export async function precontent(config, pack) {
                                 lib[key][name] = mode[key][name];
                             });
                         };
-                        if (mode.hasOwnProperty('card')) onload('card');
-                        if (mode.hasOwnProperty('skill')) onload('skill');
-                        if (mode.hasOwnProperty('translate')) onload('translate');
+                        if (mode.hasOwn('card')) onload('card');
+                        if (mode.hasOwn('skill')) onload('skill');
+                        if (mode.hasOwn('translate')) onload('translate');
                         game.finishCards();
                     });
                 }
@@ -43142,7 +43142,7 @@ export async function precontent(config, pack) {
             const clonedObj = {};
             visited.set(obj, clonedObj);
             for (let key in obj) {
-                if (obj.hasOwnProperty(key)) {
+                if (obj.hasOwn(key)) {
                     clonedObj[key] = deepClone(obj[key], visited);
                 }
             }

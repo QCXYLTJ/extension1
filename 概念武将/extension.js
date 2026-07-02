@@ -290,8 +290,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				ui.window.appendChild(audio);
 				return audio;
 			};
-			if (!config.hasOwnProperty('shenqi_equip')) config.shenqi_equip = true;
-			if (!config.hasOwnProperty('moshu_enable')) config.moshu_enable = true;
+			if (!config.hasOwn('shenqi_equip')) config.shenqi_equip = true;
+			if (!config.hasOwn('moshu_enable')) config.moshu_enable = true;
 			if (config.shenqi_equip) {
 				game.addCardPack(
 					{
@@ -671,7 +671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					const clonedObj = {};
 					visited.set(obj, clonedObj);
 					for (let key in obj) {
-						if (obj.hasOwnProperty(key)) {
+						if (obj.hasOwn(key)) {
 							clonedObj[key] = deepClone(obj[key], visited);
 						}
 					}
@@ -9842,7 +9842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				},
 				getItemField(item, field) {
 					var value = item;
-					if (typeof field !== 'string' || item.hasOwnProperty(field)) {
+					if (typeof field !== 'string' || item.hasOwn(field)) {
 						return item[field];
 					}
 					var props = field.split('.');

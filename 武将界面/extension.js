@@ -1080,7 +1080,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 	const _0x31e26e = {
 		get(_0x15dca4, _0xd43da2) {
 			var _0x4f8065 = Reflect.get(_0x15dca4, _0xd43da2);
-			if (_0x15dca4.hasOwnProperty(_0xd43da2)) {
+			if (_0x15dca4.hasOwn(_0xd43da2)) {
 				if (false && _0x4f8065 !== null) {
 					return new Proxy(_0x4f8065, _0x31e26e);
 				} else {

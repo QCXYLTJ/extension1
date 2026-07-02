@@ -338,7 +338,7 @@ export let mrfzfuc = {
 		let total = 0;
 		for (let m in obj) {
 			if (mode && m !== mode) continue;
-			if (obj[m].hasOwnProperty('data')) {
+			if (obj[m].hasOwn('data')) {
 				for (let role in obj[m].data) {
 					if (Array.isArray(obj[m].data[role])) {
 						if (!result || result === 'win') total += obj[m].data[role][0];
@@ -618,7 +618,7 @@ export let mrfzfuc = {
 					continue;
 				}
 				let audioValue, refer;
-				if (typeof skillsList[key].audio === 'string' && skillsList.hasOwnProperty(skillsList[key].audio)) {
+				if (typeof skillsList[key].audio === 'string' && skillsList.hasOwn(skillsList[key].audio)) {
 					refer = skillsList[key].audio;
 				}
 				let skillName = typeof refer === 'string' ? refer : key;
@@ -633,7 +633,7 @@ export let mrfzfuc = {
 				if (typeof audioValue === 'number') {
 					//自定义配音
 					for (let key2 in lib.config.audioSetSJZX) {
-						if (lib.config.audioSetSJZX.hasOwnProperty(key2)) {
+						if (lib.config.audioSetSJZX.hasOwn(key2)) {
 							var skills = lib.config.audioSetSJZX[key2].skills;
 							for (var i = 0; i < skills.length; i++) {
 								if (skills[i].includes(skillName)) {
@@ -870,7 +870,7 @@ export let mrfzfuc = {
 			if (!card) return;
 			for (var i = 0; i < card.length; i++) {
 				var name = get.translation(card[i]);
-				if (get.info(card[i]).hasOwnProperty('skills')) {
+				if (get.info(card[i]).hasOwn('skills')) {
 					var info = get.info(card[i]).skills;
 					for (var j = 0; j < info.length; j++) {
 						var info2 = get.skillInfoTranslation(info[j]);

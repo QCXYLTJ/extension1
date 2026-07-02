@@ -22,7 +22,7 @@ export class CrazyGet {
     static testProp(obj) {
         // 遍历对象的属性,并使用自定义的log函数打印键值对
         for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
+            if (obj.hasOwn(key)) {
                 const value = obj[key];
                 game.log(key, value);
             }
