@@ -4033,7 +4033,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 var delay = 8400 - (get.utc() - event.time);
                                 if (delay > 0) {
-                                    event.delay2 = true;
                                     event.dialog = ui.create.dialog(get.translation(player) + '正在擦拭宝物..' + (_status.connectMode ? '' : '<br>(点击屏幕可跳过等待)'));
                                     event.videoId = lib.status.videoId++;
                                     game.broadcast('createDialog', event.videoId, get.translation(player) + '正在擦拭宝物..');
@@ -4058,12 +4057,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.card = result.links[0];
                                 ('step 2');
-                                if (event.delay2) {
-                                    delete event.custom.replace.window;
-                                    event.dialog.close();
-                                    game.addVideo('cardDialog', null, event.videoId);
-                                    game.broadcast('closeDialog', event.videoId);
-                                }
                                 player.$throw(event.card);
                                 event.insert(lib.skill.xinfu_pingcai[event.card.name], {
                                     player: player,
@@ -4503,7 +4496,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 player.removeMark('baonu', 8);
                                 player.draw();
                                 player.gainMaxHp(2);
@@ -4522,22 +4514,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                                 ('step 4');
                                 if (event.targets3.length) {
                                     var target = event.targets3.shift();
                                     target.chooseToDiscard(18, 'h', true).delay = false;
-                                    if (target.countCards('h')) event.delay = true;
                                 }
                                 ('step 5');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(4);
                                 ('step 6');
                                 player.turnOver();

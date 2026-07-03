@@ -9224,7 +9224,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 content() {
                     'step 0';
                     player.loseHp();
-                    event.delay = false;
                     event.targets = game.filterPlayer();
                     event.targets.remove(player);
                     event.targets.sort(lib.sort.seat);

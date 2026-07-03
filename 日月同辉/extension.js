@@ -1420,20 +1420,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 3'
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 'step 4'
-                                event.delay = false;
                                 if (event.targets.length) event.goto(3);
                                 'step 5'
                                 if (event.targets3.length) {
                                     event.current = event.targets3.shift();
-                                    if (event.current.countCards('h')) event.delay = true;
                                     event.current.discard(event.current.getCards('h')).delay = false;
                                 }
                                 'step 6'
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(5);
                             },
                             ai: {

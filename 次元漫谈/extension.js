@@ -14735,7 +14735,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							line: 'water',
 							content() {
 								'step 0';
-								event.delay = false;
 								player.$skill('天地乖离初开之星');
 								player.storage.rain_acgn_fgo_jiErJiaMeiShi_guaiLi = true;
 								event.num = player.countCards('e');
@@ -14755,20 +14754,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								if (event.targets.length) {
 									event.current = event.targets.shift();
-									if (event.current.countCards('e')) event.delay = true;
 									event.current.discard(event.current.getCards('e')).delay = false;
 								}
 								('step 3');
-								event.delay = false;
 								if (event.targets.length) event.goto(2);
 								('step 4');
 								if (event.targets3.length) {
 									var target = event.targets3.shift();
 									target.chooseToDiscard(event.num, 'h', true).delay = false;
-									if (target.countCards('h')) event.delay = true;
 								}
 								('step 5');
-								event.delay = false;
 								if (event.targets3.length) event.goto(4);
 							},
 							ai: {
@@ -17276,7 +17271,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								event.delay = false;
 								player.$skill('狂澜怒涛·恶灵左府');
 								player.storage.rain_acgn_fgo_luWuDaoMan_kuangLanNuTao = true;
 								('step 1');

@@ -5061,16 +5061,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.node.avatar.setBackgroundImage('extension/英雄外传/image/gyp3.jpg');
 								}
 								('step 2');
-								event.delay = false;
 								for (var i = 0; i < targets.length; i++) {
 									if (!targets[i].isLinked()) {
 										targets[i].link(true);
-										event.delay = true;
 									}
 								}
 								('step 3');
-								if (event.delay) {
-								}
 								('step 4');
 								targets[0].damage('fire', 'nocard');
 							},

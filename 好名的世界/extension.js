@@ -878,18 +878,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 list[0].draw();
                                             } else {
                                                 game.asyncDraw(list);
-                                                event.delay = true;
                                             }
                                         }
                                         ('step 1');
                                         var list = game.filterPlayer(function (current) {
                                             return current.hasSkill('hm_zhangjun_3', null, null, false);
                                         });
-                                        //player.draw(1);
                                         game.countPlayer(function (current) {
                                             if (list.includes(current)) current.removeSkill('hm_zhangjun_3');
                                         });
-                                        if (event.delay) game.delayx();
                                     },
                                 },
                                 7: {
@@ -2583,11 +2580,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var list = game.filterPlayer(function (current) {
                                             return current.hasSkill('youzi_gongsun_1', null, null, false);
                                         });
-                                        //player.draw(1);
                                         game.countPlayer(function (current) {
                                             if (list.includes(current)) current.removeSkill('youzi_gongsun_1');
                                         });
-                                        if (event.delay) game.delayx();
                                     },
                                 },
                             },

@@ -5661,7 +5661,6 @@ const skill = {
         },
         content() {
             'step 0';
-            event.delay = false;
             event.targets = game.filterPlayer();
             event.targets.remove(player);
             event.targets.sort(lib.sort.seat);
@@ -5676,20 +5675,16 @@ const skill = {
             ('step 2');
             if (event.targets.length) {
                 event.current = event.targets.shift();
-                if (event.current.countCards('e')) event.delay = true;
                 event.current.discard(event.current.getCards('e')).delay = false;
             }
             ('step 3');
-            event.delay = false;
             if (event.targets.length) event.goto(2);
             ('step 4');
             if (event.targets3.length) {
                 var target = event.targets3.shift();
                 target.chooseToDiscard(4, 'h', true).delay = false;
-                if (target.countCards('h')) event.delay = true;
             }
             ('step 5');
-            event.delay = false;
             if (event.targets3.length) event.goto(4);
             ('step 6');
             player.turnOver();
@@ -25739,7 +25734,6 @@ const skill = {
             if (trigger.name == 'phaseJieshu') {
                 var delay = 8400 - (get.utc() - event.time);
                 if (delay > 0) {
-                    event.delay2 = true;
                     event.dialog = ui.create.dialog(get.translation(player) + '正在绘图...' + (_status.connectMode ? '' : '<br>(点击屏幕可跳过等待)'));
                     event.videoId = lib.status.videoId++;
                     game.broadcast('createDialog', event.videoId, get.translation(player) + '正在绘图...');
@@ -25785,12 +25779,6 @@ const skill = {
                 .set('prompt2', '你需临摹其中一张牌,临摹的不为基本牌时将会强化.');
             ('step 2');
             if (trigger.name == 'phaseJieshu') {
-                if (event.delay2) {
-                    delete event.custom.replace.window;
-                    event.dialog.close();
-                    game.addVideo('cardDialog', null, event.videoId);
-                    game.broadcast('closeDialog', event.videoId);
-                }
                 var huihua = ['huihua_dayijia', 'huihua_baoyang', 'huihua_nanshengtouxiang', 'huihua_nvshengtouxiang', 'huihua_tongrenmanhua', 'huihua_bidongmao', 'huihua_bijibenruqin', 'huihua_yangguangnantou', 'huihua_tuidao', 'huihua_longyi', 'huihua_maoerleimu', 'huihua_kuanyijiedai', 'huihua_katujinji', 'huihua_shunshoulinmo', 'huihua_dongfengshishenzhen', 'huihua_hejiaankang', 'huihua_taqing', 'huihua_qiuxuetu', 'huihua_liuleliule', 'huihua_biaolibuyi', 'huihua_shenshouzuoqi', 'huihua_shenyanhuang', 'huihua_shikongxiewang', 'huihua_huxiaoshengfeng', 'huihua_chitianshitongren', 'huihua_gaizaorensheng', 'huihua_daojian', 'huihua_dahuangfeng', 'huihua_liti', 'huihua_longzhulinmo', 'huihua_aojiao', 'huihua_nielian', 'huihua_tongnianjiyi', 'huihua_youhuo', 'huihua_diyutianshen', 'huihua_tongxinweimin'],
                     tuhui = [];
                 if (player.storage.huihuatu) {
@@ -41128,7 +41116,6 @@ player.chooseToDiscard('he',2,'是否弃置两张牌对'+get.translation(trigger
             ('step 3');
             var delay = 8400 - (get.utc() - event.time);
             if (delay > 0) {
-                event.delay2 = true;
                 event.dialog = ui.create.dialog(get.translation(player) + '与' + get.translation(target) + '正在涩涩...' + (_status.connectMode ? '' : '<br>(点击屏幕可立即高潮并结束涩涩)'));
                 event.videoId = lib.status.videoId++;
                 game.broadcast('createDialog', get.translation(player) + '与' + get.translation(target) + '正在涩涩...');
@@ -41153,12 +41140,6 @@ player.chooseToDiscard('he',2,'是否弃置两张牌对'+get.translation(trigger
                 game.log(player, '与', target, '涩涩中……');
             }
             ('step 4');
-            if (event.delay2) {
-                delete event.custom.replace.window;
-                event.dialog.close();
-                game.addVideo('cardDialog', null, event.videoId);
-                game.broadcast('closeDialog', event.videoId);
-            }
             player.recover();
             game.asyncDraw([player, target], 2);
         },

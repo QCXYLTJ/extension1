@@ -1359,29 +1359,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.finish();
                             },
                         },
-                        /*"xu_yongjin2":{
-                            forced:true,
-                            trigger:{
-                                player:"useCardAfter",
-                            },
-                            filter:function(event,player){
-                            if(event.parent.name=='xu_yongjin2') return false;
-                    var card=game.createCard(event.card.name,event.card.suit,event.card.number,event.card.nature);
-                    for(var i=0;i<event.targets.length;i++){
-                                    if(event.targets[i].isAlive()&&player.canUse({name:event.card.name},event.targets[i],false,false)) return true;
-                                }
-                    return false;
-                },
-                            content:function (){
-                    var card=game.createCard(trigger.card.name,trigger.card.suit,trigger.card.number,trigger.card.nature);
-                                var next=player.useCard(card,trigger.targets,false,'noai');
-                                next.set('addCount',false);
-                                next.set('animate',false);
-                                next.set('audio', false);
-                                next.set('nopopup',true);
-                                        player.actionHistory[player.actionHistory.length-1].useCard.pop();
-                },
-                        },*/
                         xu_baiban: {
                             trigger: {
                                 global: 'gameStart',
@@ -1390,7 +1367,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);

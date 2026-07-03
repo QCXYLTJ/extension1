@@ -15453,7 +15453,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 usable: 1,
                 content() {
                     'step 0';
-                    event.delay = false;
                     var num = 6 - (player.maxHp - player.hp);
                     if (num < 0) {
                         num = 0;

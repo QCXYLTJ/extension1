@@ -19084,7 +19084,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.broadcastAll(function (player) {
                                     player.getStat().skill.gui_qianyaozhen = 0;
                                 }, player);
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);

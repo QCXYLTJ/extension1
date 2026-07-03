@@ -35795,17 +35795,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             line: 'fire',
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 for (let i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
-                                        event.delay = true;
                                     }
                                 }
                                 ('step 1');
-                                if (event.delay) {
-                                }
-                                ('step 2');
                                 targets[0].damage('fire', 'nocard');
                             },
                             ai: {
@@ -36702,7 +36697,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 3');
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                             },
                             popup: false,
@@ -45492,7 +45486,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);

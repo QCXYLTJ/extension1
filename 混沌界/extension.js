@@ -2907,16 +2907,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.loseHp();
                                 ('step 1');
-                                event.delay = false;
                                 for (var i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
-                                        event.delay = true;
                                     }
                                 }
                                 ('step 2');
-                                if (event.delay) {
-                                }
                                 ('step 3');
                                 targets[0].damage('fire');
                             },
@@ -5356,11 +5352,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             line: true,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 for (var i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
-                                        event.delay = true;
                                     } else {
                                         targets[i].link(false);
                                         event.finish();
@@ -5390,8 +5384,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.cancel();
                                 }
                                 ('step 3');
-                                if (event.delay) {
-                                }
                             },
                             ai: {
                                 threaten: 1.5,

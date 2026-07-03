@@ -116,7 +116,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     } else {
                         game.log(player, '亮出了', event.cards);
                     }
-                    game.delayx(event.delay_time || 2.5);
                     game.addVideo('showCards', player, [event.str, get.cardsInfo(event.cards)]);
                     ('step 1');
                     game.broadcast('closeDialog', event.dialogid);

@@ -69089,7 +69089,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								event.delay = false;
 								player.removeMark('dshj_baonu', game.countPlayer() - 1);
 								event.targets = game.filterPlayer();
 								event.count = event.targets.length - 1;
@@ -69106,7 +69105,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								if (event.targets.length) {
 									event.current = event.targets.shift();
-									if (event.current.countCards('e')) event.delay = true;
 									event.current.discard(event.current.getCards('e')).delay = false;
 								}
 								('step 3');
@@ -69117,7 +69115,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									var num1 = Math.ceil(target.countCards('h') / 2);
 									var num2 = Math.max(4, num1);
 									target.chooseToDiscard(num2, 'h', true).delay = false;
-									if (target.countCards('h')) event.delay = true;
 								}
 								('step 5');
 								if (event.targets3.length) event.goto(4);

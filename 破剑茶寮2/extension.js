@@ -18181,7 +18181,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 player.storage.zymbaiguiyexing = true;
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);

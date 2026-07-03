@@ -5623,7 +5623,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (event.targets.length) {
                                             event.current = event.targets.shift();
                                             event.current.showHandcards();
-                                            if (event.current.countCards('h')) event.delay = true;
                                             event.current.discard(event.current.getCards('h', { color: 'black' })).delay = false;
                                         }
                                         ('step 2');
@@ -5632,7 +5631,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             target.chooseToDiscard('h', { color: 'red' }).set('ai', function (card) {
                                                 return 6 - get.value(card);
                                             }).delay = false;
-                                            if (target.countCards('h')) event.delay = true;
                                         }
                                     },
                                 },

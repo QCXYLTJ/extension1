@@ -7389,7 +7389,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 player.removeMark('xinbaonu', 2);
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
@@ -7405,22 +7404,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                                 ('step 4');
                                 if (event.targets3.length) {
                                     var target = event.targets3.shift();
                                     target.chooseToDiscard(Infinity, 'he', true).delay = false;
-                                    if (target.countCards('h')) event.delay = true;
                                 }
                                 ('step 5');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(4);
                             },
                             ai: {

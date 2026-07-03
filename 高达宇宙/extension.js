@@ -3034,7 +3034,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -4974,16 +4973,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             line: 'fire',
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 for (var i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
-                                        event.delay = true;
                                     }
                                 }
                                 ('step 1');
-                                if (event.delay) {
-                                }
                                 ('step 2');
                                 targets[0].damage(2, 'fire', 'nocard');
                             },

@@ -4674,7 +4674,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 content() {
                     'step 0';
-                    event.delay = false;
                     event.targets = game.filterPlayer();
                     event.targets.remove(player);
                     event.targets.sort(lib.sort.seat);
@@ -4691,7 +4690,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         var num = player.countMark('bjnuyong');
                         var target = event.targets3.shift();
                         target.chooseToDiscard(num, 'h', true).delay = false;
-                        if (target.countCards('h')) event.delay = true;
                         player.removeMark('bjnuyong', num);
                         player.draw(num);
                     }

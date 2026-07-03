@@ -9110,7 +9110,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -9650,7 +9649,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -9668,7 +9666,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.targets3.length) {
                                     var num = player.countMark('yfmycz');
                                     var target = event.targets3.shift();
-                                    if (target.countCards('h')) event.delay = true;
                                     player.removeMark('yfmycz', 2);
                                 }
                                 ('step 3');
@@ -9711,7 +9708,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '斩',
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -9727,7 +9723,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.targets3.length) {
                                     var num = player.countMark('yfmycz');
                                     var target = event.targets3.shift();
-                                    if (target.countCards('h')) event.delay = true;
                                     player.removeMark('yfmycz', 1);
                                 }
                             },

@@ -20,7 +20,6 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					player.awakenSkill(event.name);
 					player.loseHp(2);
-					event.delay = false;
 					event.targets = targets.sort(lib.sort.seat);
 					event.targets1 = event.targets.slice(0);
 					event.targets2 = event.targets.slice(0);

@@ -86,7 +86,6 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         var vcards = [['事件', '', event.jy_changjin]];
         event.dialog = ui.create.dialog('<div class="text center">当前事件' + (_status.connectMode ? '' : '<br>（点击屏幕可跳过等待）'), [vcards, 'vcard']);
         var delay = 2000;
-        event.delay2 = true;
         game.pause();
         event.jy_changjing_delayed = true;
         setTimeout(function () {
@@ -134,19 +133,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           ui.jy_changjin.innerHTML = _status.jy_changjin_translate;
           ui.jy_changjin.style.display = '';
         }
-        //if(!ui.jy_changjin) ui.jy_changjin=ui.create.div('.jy_changjin.left',ui.window);
-        //ui.jy_changjin.innerHTML=_status.jy_changjin_translate;
-        //ui.jy_changjin.show();
         if (ui.time3) ui.time3.style.display = 'none';
         game.me.$fullscreenpop(_status.jy_changjin_translate, lib.skill[event.jy_changjin].color || 'fire');
-        //if(lib.config.image_background&&lib.config.image_background!='default'&&lib.config.image_background.indexOf('custom_')!=0){
         ui.background.setBackgroundImage('extension/金庸群侠传/changjing/' + event.jy_changjin + '.jpg');
-        //};
         'step 4';
-        if (event.delay2) {
-          delete event.custom.replace.window;
-          event.dialog.close();
-        }
         'step 5';
         if (game.me && game.me.isAlive()) {
           //此处为显示当前场景技的标记，方便玩家查看当前场景技能。若不想显示，可以注释下面两行代码。
@@ -394,12 +384,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (!target) return;
             if (isLink) return;
             if (
-            target.hasSkillTag('filterDamage', null, {
-              player: player,
-              card: card
-            }))
+              target.hasSkillTag('filterDamage', null, {
+                player: player,
+                card: card
+              }))
 
-            return;
+              return;
             if (game.hasNature(card) || get.tag(card, 'natureDamage')) return [1, 0, 1, -1.5];
           }
         }
@@ -435,13 +425,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         });
         if (targets.length > 1) {
           player.
-          chooseTarget(true, '小镜湖:请选择一名队友', function (card, player, target) {
-            return _status.event.list.includes(target);
-          }).
-          set('ai', function (target) {
-            return -get.attitude(player, target);
-          }).
-          set('list', targets);
+            chooseTarget(true, '小镜湖:请选择一名队友', function (card, player, target) {
+              return _status.event.list.includes(target);
+            }).
+            set('ai', function (target) {
+              return -get.attitude(player, target);
+            }).
+            set('list', targets);
         } else if (targets.length == 1) {
           event._result = { bool: true, targets: targets };
         } else {
@@ -522,12 +512,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           if (!player.needsToDiscard()) return 0;
           const evt = _status.event;
           if (!evt.jycj_xiannao_choice)
-          evt.jycj_xiannao_choice = lib.skill.jycj_xiannao.getResult(
-            player.getCards('he', function (card) {
-              if (card.number == 1) return false;
-              return lib.filter.cardDiscardable(card, player, 'jycj_xiannao');
-            })
-          );
+            evt.jycj_xiannao_choice = lib.skill.jycj_xiannao.getResult(
+              player.getCards('he', function (card) {
+                if (card.number == 1) return false;
+                return lib.filter.cardDiscardable(card, player, 'jycj_xiannao');
+              })
+            );
           if (!evt.jycj_xiannao_choice.includes(cardx)) return 0;
           return 1;
         });
@@ -693,12 +683,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (!_status.jycj_duizhi.includes(player)) return;
             if (!get.tag(card, 'damage')) return;
             if (
-            target.hasSkillTag('filterDamage', null, {
-              player: player,
-              card: card
-            }))
+              target.hasSkillTag('filterDamage', null, {
+                player: player,
+                card: card
+              }))
 
-            return;
+              return;
             if (get.jy_nameCNBool(player, ['慕容博', '萧远山'], true)) return [1, 0, 1, -1.5];
           }
         }
@@ -1201,11 +1191,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
       filter(event, player) {
         if (player.identity != 'zhu') return false;
         if (
-        !game.hasPlayer(function (current) {
-          return current != player && current.group == player.group;
-        }))
+          !game.hasPlayer(function (current) {
+            return current != player && current.group == player.group;
+          }))
 
-        return false;
+          return false;
         return !event.jycj_danei_sha && (event.type != 'phase' || !player.hasSkill('jycj_danei_sha3'));
       },
       enable: ['chooseToUse', 'chooseToRespond'],
@@ -1222,11 +1212,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         skillTagFilter(player) {
           if (player.identity != 'zhu') return false;
           if (
-          !game.hasPlayer(function (current) {
-            return current != player && current.group == player.group;
-          }))
+            !game.hasPlayer(function (current) {
+              return current != player && current.group == player.group;
+            }))
 
-          return false;
+            return false;
         }
       }
     },
@@ -1468,12 +1458,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (!get.tag(card, 'damage')) return;
             if (get.jy_nameCNBool(player, ['萧峰', '乔峰', '绝萧峰', '乔峰阿朱'], true)) return;
             if (
-            target.hasSkillTag('filterDamage', null, {
-              player: player,
-              card: card
-            }))
+              target.hasSkillTag('filterDamage', null, {
+                player: player,
+                card: card
+              }))
 
-            return;
+              return;
             var group1 = get.jy_group(player);
             var group2 = get.jy_group(target);
             if (group1 == 'hanren' && group2 == 'yizu') return [1, 0, 1, -1.5];

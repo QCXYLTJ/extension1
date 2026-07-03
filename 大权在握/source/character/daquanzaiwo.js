@@ -15611,7 +15611,6 @@ export let info = {
         next.getlx = false;
         next.relatedEvent = event.parent;
         if (player == game.me) {
-          event.delayed = true;
         } else {
           next.delay = false;
         }
@@ -15620,24 +15619,13 @@ export let info = {
         next.getlx = false;
         next.relatedEvent = event.parent;
         if (target == game.me) {
-          event.delayed = true;
         } else {
           next.delay = false;
         }
         ('step 3');
-        if (!event.delayed) 'step 4';
+        'step 4';
         target.gain(event.cards1.filterInD('o')).set('getlx', false);
         player.gain(event.cards2).set('getlx', false);
-        /*event.cards2.forEach(function (card) {
-            if (get.position(card, true) == 'o') {
-                if (card.viewAs || get.type(card) == 'delay') {
-                    if (card.viewAs) player.addJudge({name: card.viewAs}, [card]);
-                    else player.addJudge(card);
-                } else {
-                    player.equip(card);
-                }
-            }
-        });*/
         ('step 5');
       },
       global: 'dqzw_huangu_global',

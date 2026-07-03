@@ -14203,7 +14203,6 @@ const skill = {
             'step 0';
             var chat = ['人族会本能地害怕一些东西,因此我不需要做什么.', '都给本主神跪下!', '神的威严,岂是你能冒犯的？'].randomGet();
             player.say(chat);
-            event.delay = false;
             event.targets = game.filterPlayer();
             event.targets.remove(player);
             event.targets.sort(lib.sort.seat);

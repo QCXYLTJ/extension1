@@ -31533,7 +31533,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.awakenSkill('minishenfen');
                                 player.loseHp(3);
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -31548,22 +31547,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                                 ('step 4');
                                 if (event.targets3.length) {
                                     var target = event.targets3.shift();
                                     target.chooseToDiscard(4, 'h', true).delay = false;
-                                    if (target.countCards('h')) event.delay = true;
                                 }
                                 ('step 5');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(4);
                             },
                             ai: {

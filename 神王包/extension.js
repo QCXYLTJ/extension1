@@ -3780,7 +3780,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 2,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 player.removeMark('baonu', 0);
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
@@ -11931,7 +11930,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 var delay = 8400 - (get.utc() - event.time);
                                 if (delay > 0) {
-                                    event.delay2 = true;
                                     event.dialog = ui.create.dialog(get.translation(player) + '正在擦拭宝物...' + (_status.connectMode ? '' : '<br>(点击屏幕可跳过等待)'));
                                     event.videoId = lib.status.videoId++;
                                     game.broadcast('createDialog', event.videoId, get.translation(player) + '正在擦拭宝物...');
@@ -11948,12 +11946,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.card = result.links[0];
                                 ('step 2');
-                                if (event.delay2) {
-                                    delete event.custom.replace.window;
-                                    event.dialog.close();
-                                    game.addVideo('cardDialog', null, event.videoId);
-                                    game.broadcast('closeDialog', event.videoId);
-                                }
                                 player.$throw(event.card);
                                 event.insert(lib.skill.swyuanlong[event.card.name], {
                                     player: player,

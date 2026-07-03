@@ -4861,16 +4861,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             line: 'fire',
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 for (var i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
                                     }
                                 }
                                 ('step 1');
-                                if (event.delay) {
-                                }
-                                ('step 2');
                                 for (var i = 0; i < targets.length; i++) {
                                     targets[i].damage(1, 'fire');
                                 }

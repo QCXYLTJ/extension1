@@ -2634,7 +2634,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											else targets[i].damage('fire', 'nocard');
 										} else targets[i].damage('fire', cards.length, 'nocard');
 									}
-									event.delay = true;
 								}
 								if (cards.length > 1 && player.storage.jszyyy == false) player.damage('fire', cards.length - 1, 'nocard');
 								('step 3');
@@ -2723,10 +2722,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							multiline: true,
 							line: 'fire',
 							content() {
-								event.delay = false;
 								for (var i = 0; i < targets.length; i++) {
 									targets[i].damage('fire', 1, 'nocard');
-									event.delay = true;
 								}
 							},
 							ai: {

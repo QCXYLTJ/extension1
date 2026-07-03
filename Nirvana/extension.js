@@ -14799,7 +14799,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             else targets[i].damage('fire', 'nocard');
                                         } else targets[i].damage('fire', cards.length, 'nocard');
                                     }
-                                    event.delay = true;
                                 }
                                 if (cards.length > 1) player.damage('fire', cards.length - 1, 'nocard');
                             },
@@ -21152,7 +21151,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 var map = {};
                                 var list = [];
                                 var num1 = Math.min(8, player.countMark('szdl_baonu'));
@@ -21191,23 +21189,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 4');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                                 ('step 5');
                                 if (event.targets3.length) {
                                     var target = event.targets3.shift();
                                     var x = target.countCards('h');
                                     target.chooseToDiscard(x, 'h', true).delay = false;
-                                    if (target.countCards('h')) event.delay = true;
                                 }
                                 ('step 6');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(4);
                                 ('step 7');
                                 player.turnOver();

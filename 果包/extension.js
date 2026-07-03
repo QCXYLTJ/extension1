@@ -6039,16 +6039,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.say('这炽热的鲜血,是父亲～');
                                 game.playAudio('../extension/果包/audio/wu4.mp3');
                                 ('step 2');
-                                event.delay = false;
                                 for (var i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
-                                        event.delay = true;
                                     }
                                 }
                                 ('step 3');
-                                if (event.delay) {
-                                }
                                 ('step 4');
                                 targets[0].damage('fire', 'nocard');
                             },

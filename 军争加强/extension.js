@@ -4404,8 +4404,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             line: 'fire',
                             content() {
                                 'step 0';
-                                if (event.delay) {
-                                }
                                 player.loseHp();
                                 ('step 1');
                                 if (!player.storage.jz_芳魂) {

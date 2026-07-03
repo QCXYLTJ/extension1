@@ -1224,9 +1224,6 @@ export async function precontent(config, pack) {
         }
         ('step 10');
         if (event.effectedCount < event.effectCount) {
-            if (document.getElementsByClassName('thrown').length) {
-                if (event.delayx !== false && get.info(event.card, false).finalDelay !== false) game.delayx();
-            }
             event.goto(6);
         }
         ('step 11');
@@ -1236,9 +1233,7 @@ export async function precontent(config, pack) {
         if (event._result) {
             event.result = event._result;
         }
-        //delete player.using;
         if (document.getElementsByClassName('thrown').length) {
-            if (event.delayx !== false && get.info(event.card, false).finalDelay !== false) game.delayx();
         } else {
             event.finish();
         }
@@ -9912,7 +9907,6 @@ export async function precontent(config, pack) {
                         player.give(hs, trigger.player);
                         trigger.cancel();
                         ('step 1');
-                        event.delay = false;
                         trigger.player.gainMaxHp(2, true);
                         var x = 2 - trigger.player.hp;
                         trigger.player.recover(x);
@@ -12892,7 +12886,6 @@ export async function precontent(config, pack) {
                     trigger.targets.addArray(event.targets);
                 }
                 ('step 4');
-                event.delay = false;
                 event.targets = trigger.targets;
                 event.targets.sort(lib.sort.seat);
                 event.targets2 = event.targets.slice(0);
@@ -14662,7 +14655,6 @@ export async function precontent(config, pack) {
                         event.finish();
                         break;
                     case '送福利':
-                        event.delay = false;
                         break;
                     default:
                         event.finish();
@@ -17832,7 +17824,6 @@ export async function precontent(config, pack) {
             },
             content() {
                 'step 0';
-                event.delay = false;
                 event.targets = game.filterPlayer();
                 event.targets.sort(lib.sort.seat);
                 player.line(event.targets, 'fire');
@@ -18631,7 +18622,6 @@ export async function precontent(config, pack) {
             },
             content() {
                 'step 0';
-                event.delay = false;
                 event.targets = game.filterPlayer((i) => player.inRange(i) && i.countCards('he'));
                 event.targets.sort(lib.sort.seat);
                 player.line(event.targets, 'fire');
@@ -25814,7 +25804,6 @@ export async function precontent(config, pack) {
             },
             content() {
                 'step 0';
-                //event.delay=false;
                 player.chooseUseTarget({ name: 'dongzhuxianji', storage: { nowuxie: true } }, true);
                 event.targets = lib.skill.syr_tangye.logTarget(trigger, player);
                 event.targets2 = event.targets.slice(0);
@@ -26024,7 +26013,6 @@ export async function precontent(config, pack) {
                 ('step 1');
                 if (!result.bool) event.finish();
                 else {
-                    event.delay = false;
                     event.targets = result.targets;
                     event.targets.sort(lib.sort.seat);
                     if (event.targets.some((i) => i != player)) player.addExpose(0.05);
@@ -26200,7 +26188,6 @@ export async function precontent(config, pack) {
             trigger: { player: 'damageEnd' },
             content() {
                 'step 0';
-                event.delay = false;
                 event.targets = game.filterPlayer((i) => i != player);
                 event.targets = event.targets.sort(lib.sort.seat).concat(player);
                 event.targets2 = event.targets.remove(player).slice(0);
@@ -26274,7 +26261,6 @@ export async function precontent(config, pack) {
             forced: true,
             content() {
                 'step 0';
-                event.delay = false;
                 event.targets = trigger.targets;
                 event.targets2 = event.targets.slice(0);
                 ('step 1');
@@ -27471,7 +27457,6 @@ export async function precontent(config, pack) {
                 var xiang = get.cardPile('zhanxiang', true);
                 player.equip(xiang);
                 ('step 1');
-                event.delay = false;
                 event.targets = game.filterPlayer();
                 event.targets.sort(lib.sort.seat);
                 player.line(event.targets, 'fire');
@@ -27554,7 +27539,6 @@ export async function precontent(config, pack) {
                     content() {
                         'step 0';
                         trigger.nowuxie = true;
-                        event.delay = false;
                         event.targets = trigger.targets;
                         player.line(event.targets, 'fire');
                         event.targets2 = event.targets.slice(0);
@@ -28212,7 +28196,6 @@ export async function precontent(config, pack) {
                 ('step 2');
                 if (!result.bool) event.finish();
                 else {
-                    event.delay = false;
                     event.targets.sort(lib.sort.seat);
                     event.targets2 = event.targets.slice(0);
                     event.cards = [];
@@ -33113,7 +33096,6 @@ export async function precontent(config, pack) {
                 ('step 3');
                 var delay = 8400 - (get.utc() - event.time);
                 if (delay > 0) {
-                    event.delay2 = true;
                     event.dialog = ui.create.dialog(get.translation(player) + '与' + get.translation(target) + '正在涩涩...' + (_status.connectMode ? '' : '<br>(点击屏幕可立即高潮并结束涩涩)'));
                     event.videoId = lib.status.videoId++;
                     game.broadcast('createDialog', get.translation(player) + '与' + get.translation(target) + '正在涩涩...');
@@ -33138,12 +33120,6 @@ export async function precontent(config, pack) {
                     game.log(player, '与', target, '涩涩中……');
                 }
                 ('step 4');
-                if (event.delay2) {
-                    delete event.custom.replace.window;
-                    event.dialog.close();
-                    game.addVideo('cardDialog', null, event.videoId);
-                    game.broadcast('closeDialog', event.videoId);
-                }
                 player.recover();
                 game.asyncDraw([player, target], 2);
             },
@@ -34242,7 +34218,6 @@ export async function precontent(config, pack) {
                 return false;
             },
             content() {
-                event.delay = false;
                 for (var i = 1; i < 7; i++) {
                     if (player.hasEmptySlot(i)) {
                         var sub = 'equip' + i,

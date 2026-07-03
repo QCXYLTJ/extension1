@@ -156,7 +156,6 @@ game.import('extension', function () {
                             usable: 1,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -8670,7 +8669,6 @@ game.import('extension', function () {
                             },
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 player.removeMark('集军_1', 36);
                                 ('step 0');
                                 player.chooseTarget(get.prompt('方统'), function (card, player, target) {

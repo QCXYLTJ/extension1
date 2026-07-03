@@ -8889,7 +8889,6 @@ const skills = {
 		},
 		gainMultiple() {
 			'step 0';
-			event.delayed = false;
 			event.num = 0;
 			event.cards = [];
 			('step 1');
@@ -8900,14 +8899,12 @@ const skills = {
 			('step 2');
 			if (result.bool) {
 				event.cards.addArray(result.cards);
-				if (num == targets.length - 1) event.delayed = true;
 			}
 			event.num++;
 			if (event.num < targets.length) {
 				event.goto(1);
 			}
 			('step 3');
-			if (!event.delayed) game.delay();
 		},
 		content() {
 			'step 0';

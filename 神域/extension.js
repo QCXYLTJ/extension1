@@ -4644,7 +4644,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -4659,11 +4658,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                                 ('step 4');
                                 if (event.targets3.length) {
@@ -4671,7 +4668,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.chooseToDiscard(target.countCards('h'), 'h', true).delay = false;
                                 }
                                 ('step 5');
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(4);
                                 ('step 6');
                                 player.disableEquip('equip1');

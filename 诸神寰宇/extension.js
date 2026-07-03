@@ -14455,7 +14455,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								event.delay = false;
 								player.removeMark('zshy_kuangbao', game.countPlayer() - 1);
 								event.targets = game.filterPlayer();
 								event.count = event.targets.length - 1;
@@ -14472,11 +14471,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								if (event.targets.length) {
 									event.current = event.targets.shift();
-									if (event.current.countCards('e')) event.delay = true;
 									event.current.discard(event.current.getCards('e')).delay = false;
 								}
 								('step 3');
-								event.delay = false;
 								if (event.targets.length) event.goto(2);
 								('step 4');
 								if (event.targets3.length) {
@@ -14484,7 +14481,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target.discard(target.getCards('h'), true);
 								}
 								('step 5');
-								event.delay = false;
 								if (event.targets3.length) event.goto(4);
 								('step 6');
 								var num3 = game.countPlayer(function (current) {

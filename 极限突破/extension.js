@@ -261,7 +261,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 player.loseHp(3);
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -276,13 +275,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) {
-                                        event.delay = true;
-                                    }
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                event.delay = false;
                                 if (event.targets.length) {
                                     event.goto(2);
                                 }
@@ -290,12 +285,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.targets3.length) {
                                     let target = event.targets3.shift();
                                     target.chooseToDiscard(30, 'h', true).delay = false;
-                                    if (target.countCards('h')) {
-                                        event.delay = true;
-                                    }
                                 }
                                 ('step 5');
-                                event.delay = false;
                                 if (event.targets3.length) {
                                     event.goto(4);
                                 }
@@ -329,7 +320,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             limited: true,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 player.loseHp(3);
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
@@ -345,13 +335,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) {
-                                        event.delay = true;
-                                    }
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                event.delay = false;
                                 if (event.targets.length) {
                                     event.goto(2);
                                 }
@@ -359,12 +345,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.targets3.length) {
                                     let target = event.targets3.shift();
                                     target.chooseToDiscard(99, 'h', true).delay = false;
-                                    if (target.countCards('h')) {
-                                        event.delay = true;
-                                    }
                                 }
                                 ('step 5');
-                                event.delay = false;
                                 if (event.targets3.length) {
                                     event.goto(4);
                                 }

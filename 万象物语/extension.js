@@ -10465,8 +10465,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.redo();
                                         }
                                         ('step 2');
-                                        if (event.delay) {
-                                        }
                                     },
                                     forced: true,
                                 },

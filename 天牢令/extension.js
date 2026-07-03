@@ -6598,7 +6598,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 event.targets = game.filterPlayer();
                                 event.targets.remove(player);
                                 event.targets.sort(lib.sort.seat);
@@ -6613,22 +6612,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (event.targets.length) {
                                     event.current = event.targets.shift();
-                                    if (event.current.countCards('e')) event.delay = true;
                                     event.current.discard(event.current.getCards('e')).delay = false;
                                 }
                                 ('step 3');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets.length) event.goto(2);
                                 ('step 4');
                                 if (event.targets3.length) {
                                     var target = event.targets3.shift();
                                     target.chooseToDiscard(Infinity, 'h', true).delay = false;
-                                    if (target.countCards('h')) event.delay = true;
                                 }
                                 ('step 5');
-                                if (event.delay) game.delay(0.5);
-                                event.delay = false;
                                 if (event.targets3.length) event.goto(4);
                             },
                             ai: {
@@ -23108,16 +23101,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             line: 'fire',
                             content() {
                                 'step 0';
-                                event.delay = false;
                                 for (var i = 0; i < targets.length; i++) {
                                     if (!targets[i].isLinked()) {
                                         targets[i].link(true);
-                                        event.delay = true;
                                     }
                                 }
                                 ('step 1');
-                                if (event.delay) {
-                                }
                                 ('step 2');
                                 if (targets.length == 1) {
                                     num = player.getDamagedHp() + 1;
