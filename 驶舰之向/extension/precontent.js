@@ -110,7 +110,7 @@ export let PRECONTENT = function (config) {
 	if (!lib.config.AchList_mrfz) lib.config.AchList_mrfz = {};
 	for (var key in mrfzfuc.AchList) {
 		var name = mrfzfuc.AchList[key].name2;
-		if (!lib.config.AchList_mrfz.hasOwn(name)) {
+		if (!Object.hasOwn(lib.config.AchList_mrfz, name)) {
 			lib.config.AchList_mrfz[name] = lib.config[name] == undefined ? false : lib.config[name];
 		}
 	}
@@ -152,7 +152,7 @@ export let PRECONTENT = function (config) {
 				delete player.storage.phaseHistory;
 			} else {
 				var history = player.storage.phaseHistory;
-				if (history.hasOwn(trigger.name)) {
+				if (Object.hasOwn(history, trigger.name)) {
 					player.storage.phaseHistory[trigger.name] = history[trigger.name]++;
 				} else {
 					player.storage.phaseHistory[trigger.name] = 1;

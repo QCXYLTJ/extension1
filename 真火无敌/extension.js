@@ -1456,7 +1456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 const skills = player.getSkills(true, true, false).removeArray(skills2).concat(lib.skill.global);
                                 function assign1(info2, info1) {
                                     Object.keys(info2).forEach(function (key2) {
-                                        if (info2.hasOwn(key2) && !['trigger', 'enable', 'intro', 'prompt', 'prompt2', 'audio', 'audioname'].includes(key2) && !['boolean', 'number'].includes(typeof info2[key2])) {
+                                        if (Object.hasOwn(info2, key2) && !['trigger', 'enable', 'intro', 'prompt', 'prompt2', 'audio', 'audioname'].includes(key2) && !['boolean', 'number'].includes(typeof info2[key2])) {
                                             if (typeof info2[key2] === 'object' && info2[key2] !== null) {
                                                 info1[key2] = {};
                                                 assign1(info2[key2], info1[key2]);
@@ -2349,7 +2349,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     const clonedObj = {};
                     visited.set(obj, clonedObj);
                     for (const key in obj) {
-                        if (obj.hasOwn(key)) {
+                        if (Object.hasOwn(obj, key)) {
                             clonedObj[key] = deepClone(obj[key], visited);
                         }
                     }
@@ -3141,7 +3141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player
                                                 .getHistory('custom')
                                                 .filter(function (evt) {
-                                                    return evt && evt.hasOwn('ymyaoguangjian_skill_card');
+                                                    return evt && Object.hasOwn(evt, 'ymyaoguangjian_skill_card');
                                                 })
                                                 .map((evt) => evt.ymyaoguangjian_skill_card)
                                                 .flat(Infinity)
@@ -3296,7 +3296,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player
                                                 .getHistory('custom')
                                                 .filter(function (evt) {
-                                                    return evt && evt.hasOwn('ymwangshusan_skill_card');
+                                                    return evt && Object.hasOwn(evt, 'ymwangshusan_skill_card');
                                                 })
                                                 .map((evt) => evt.ymwangshusan_skill_card)
                                                 .flat(Infinity)

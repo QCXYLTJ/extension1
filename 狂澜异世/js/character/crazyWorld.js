@@ -5934,7 +5934,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 getSkill(player, num) {
                     let skills = [];
                     for (var i in lib.character) {
-                        if (!lib.character[i].hasOwn(3)) continue;
+                        if (!Object.hasOwn(lib.character[i], 3)) continue;
                         for (let j = 0; j < lib.character[i][3].length; j++) {
                             let info = lib.skill[lib.character[i][3][j]];
                             if (player.hasSkill(info)) continue;
@@ -6133,7 +6133,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 getSkill(player, num) {
                     let skills = [];
                     for (var i in lib.character) {
-                        if (!lib.character[i].hasOwn(3)) continue;
+                        if (!Object.hasOwn(lib.character[i], 3)) continue;
                         for (let j = 0; j < lib.character[i][3].length; j++) {
                             let info = lib.skill[lib.character[i][3][j]];
                             if (player.hasSkill(info)) continue;
@@ -6614,7 +6614,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 getSkill(player, num) {
                     let skills = [];
                     for (var i in lib.character) {
-                        if (!lib.character[i].hasOwn(3)) continue;
+                        if (!Object.hasOwn(lib.character[i], 3)) continue;
                         for (let j = 0; j < lib.character[i][3].length; j++) {
                             let info = lib.skill[lib.character[i][3][j]];
                             if (player.hasSkill(info)) continue;

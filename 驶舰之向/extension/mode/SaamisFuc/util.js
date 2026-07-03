@@ -187,10 +187,10 @@ export class SaamisU {
 			}
 		}
 		Object.keys(cultureBuff).forEach((phase) => {
-			if (cultureBuff.hasOwn(phase)) {
+			if (Object.hasOwn(cultureBuff, phase)) {
 				var content = cultureBuff[phase].content;
 				Object.keys(content).forEach((key) => {
-					if (content.hasOwn(key)) {
+					if (Object.hasOwn(content, key)) {
 						var obj = content[key];
 						Object.values(obj).forEach(processArray);
 					}

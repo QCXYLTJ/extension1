@@ -2005,9 +2005,6 @@ const skills = {
 			player: 'phaseJieshuBegin',
 		},
 		filter(event, player) {
-			// const list = [];
-			/* game.players.concat(game.dead).forEach(cur => list.add(cur.group));
-	  if (player.getAllHistory('useSkill', evt => evt.skill === 'PSfushi').length >= list.length) return false; */
 			return player.countMark('fanghun') >= 0;
 		},
 		characterList() {
@@ -2025,14 +2022,13 @@ const skills = {
 				if (pack) {
 					let allPack = [];
 					for (let a in lib.characterPack) {
-						//lib.characterPack  所有武将包
-						if (lib.characterPack.hasOwn(a)) allPack.push(a);
+						if (Object.hasOwn(lib.characterPack, a)) allPack.push(a);
 					}
 					return allPack;
 				} else {
 					let allList = [];
 					for (let b in lib.character) {
-						if (lib.character.hasOwn(b)) allList.push(b);
+						if (Object.hasOwn(lib.character, b)) allList.push(b);
 					}
 					return allList;
 				}
@@ -2042,7 +2038,7 @@ const skills = {
 				let listx = [];
 				for (var i of uname) {
 					for (let j in lib.characterPack) {
-						if (lib.characterPack.hasOwn(j)) {
+						if (Object.hasOwn(lib.characterPack, j)) {
 							if (removeHTML(lib.translate[`${j}_character_config`]) === i || (lib.translate[`${j}_character_config`].includes('extension/') && lib.translate[`${j}_character_config`].includes(i))) {
 								//lib.translate[`${j}_character_config`] 武将包翻译名
 								listx.push(j);
@@ -2065,7 +2061,7 @@ const skills = {
 			for (let k of pack) {
 				//提取武将包的武将id,放入list数组
 				for (let l in lib.characterPack[k]) {
-					if (lib.characterPack[k].hasOwn(l)) list.push(l);
+					if (Object.hasOwn(lib.characterPack[k], l)) list.push(l);
 				}
 			}
 			list.addArray(lib.config.extension_PS武将_PSaddCharacter);

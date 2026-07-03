@@ -30,7 +30,7 @@ export let CONTENT = function (config, pack) {
 			teleixiyamrfz: ["teleixiyamrfz", "mowangmrfz"],
 		};
 		for (var key in repChar) {
-			if (repChar.hasOwn(key)) {
+			if (Object.hasOwn(repChar, key)) {
 				lib.characterReplace[key] = repChar[key];
 			}
 		}

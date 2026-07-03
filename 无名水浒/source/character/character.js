@@ -1461,7 +1461,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                         event.given_map = {};
                         if (!cards.length) return;
-                        if (!game.hasPlayer((current) => current != player && !event.given_map.hasOwn(current.playerid))) return;
+                        if (!game.hasPlayer((current) => current != player && !Object.hasOwn(event.given_map, current.playerid))) return;
                         // event.goto -> do while
                         do {
                             const {
@@ -1490,7 +1490,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .set('enemy', get.value(event.togive[0], player, 'raw') < 0)
                                 .set('filterTarget', (card, player, target) => {
-                                    return target != player && !event.given_map.hasOwn(target.playerid);
+                                    return target != player && !Object.hasOwn(event.given_map, target.playerid);
                                 })
                                 .forResult();
                             if (targets.length) {
@@ -1499,7 +1499,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 if (!map[id]) map[id] = [];
                                 map[id].addArray(event.togive);
                             }
-                        } while (cards.length && game.hasPlayer((current) => current != player && !event.given_map.hasOwn(current.playerid)));
+                        } while (cards.length && game.hasPlayer((current) => current != player && !Object.hasOwn(event.given_map, current.playerid)));
                         if (_status.connectMode) {
                             game.broadcastAll(function () {
                                 delete _status.noclearcountdown;

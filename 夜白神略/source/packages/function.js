@@ -28,7 +28,7 @@ const mergeObjects = function (...objects) {
 		if (currentObj && Object.keys(currentObj).length) {
 			// 遍历当前对象的键值对
 			for (const subKey in currentObj) {
-				if (result.hasOwn(subKey)) {
+				if (Object.hasOwn(result, subKey)) {
 					// 如果目标对象中已经存在该键,则拼接值
 					result[subKey] = result[subKey] + '<br>' + currentObj[subKey];
 				} else {
@@ -54,7 +54,7 @@ const YB_characterIntro = function (str1, str2, str3, str4) {
 		if (Object.keys(currentObj).length) {
 			// 遍历当前对象的键值对
 			for (const subKey in currentObj) {
-				if (result.hasOwn(subKey)) {
+				if (Object.hasOwn(result, subKey)) {
 					// 如果目标对象中已经存在该键,则拼接值
 					result[subKey] = result[subKey] + '<br>' + currentObj[subKey];
 				} else {
@@ -69,11 +69,11 @@ const YB_characterIntro = function (str1, str2, str3, str4) {
 	});
 	// 处理 str4 中没有对应键的情况
 	for (const key in result) {
-		if (!str4.hasOwn(key)) {
+		if (!Object.hasOwn(str4, key)) {
 			// 调用 YBSL_characterIntro 函数生成对应的值
 			const generatedValue = YBSL_characterIntro(key);
 			// 将生成的值拼接到结果中
-			if (result.hasOwn(key)) {
+			if (Object.hasOwn(result, key)) {
 				result[key] = result[key] + '<br>' + generatedValue;
 			} else {
 				result[key] = generatedValue;

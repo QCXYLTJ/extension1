@@ -1138,7 +1138,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                             while (event.Q === null || event.Q.trim() === '') {
                                                 event.Q = prompt('请输入角色名称:');
                                             }
-                                            if (lib.character.hasOwn(event.Q)) {
+                                            if (Object.hasOwn(lib.character, event.Q)) {
                                                 event.Q = prompt('角色名称已存在,请重新输入一个不同的名称:');
                                             } // 如果名称已存在,提示用户重新输入
                                             var nameRegex = /^[a-zA-Z\u4e00-\u9fa5]+$/;
@@ -1215,7 +1215,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                                     晋: 'jin',
                                                     神: 'shen',
                                                 };
-                                                if (specificFactions.hasOwn(event.faction)) {
+                                                if (Object.hasOwn(specificFactions, event.faction)) {
                                                     // 如果是特定势力名称,则转换为拼音
                                                     player.storage.势力 = specificFactions[event.faction];
                                                     player.storage.体力++;

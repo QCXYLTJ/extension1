@@ -92,8 +92,8 @@ npm install @babel/parser @babel/traverse @babel/generator @babel/types
 jscodeshift -t var-to-const-let.js . --extensions js --verbose=2
 npx eslint . --ext .js,.jsx,.ts,.tsx --fix
 
-
-
+//([^(!&\s|)]*)\.hasOwn\(([^)]*)\)
+//Object.hasOwn($1,$2)
 
 
 
@@ -280,7 +280,7 @@ const numfunc = function () {
         const clonedObj = {};
         visited.set(obj, clonedObj);
         for (const key in obj) {
-            if (obj.hasOwn(key)) {
+            if (Object.hasOwn(obj, key)) {
                 clonedObj[key] = deepClone(obj[key], visited);
             }
         }
@@ -9179,7 +9179,7 @@ const numfunc = function () {
                     const clonedObj = {};
                     visited.set(obj, clonedObj);
                     for (let key in obj) {
-                        if (obj.hasOwn(key)) {
+                        if (Object.hasOwn(obj, key)) {
                             clonedObj[key] = deepClone(obj[key], visited);
                         }
                     }

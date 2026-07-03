@@ -2282,15 +2282,15 @@ export let info = {
     },
     dqzw_lianjie: {
       init(player, skill) {
-        if (get.mode() != 'versus' && (!lib.card.hasOwn('yuanjun') || !lib.card.hasOwn('tunliang'))) {
+        if (get.mode() != 'versus' && (!Object.hasOwn(lib.card, 'yuanjun') || !Object.hasOwn(lib.card, 'tunliang'))) {
           game.loadModeAsync('versus', function (mode) {
             var onload = function (key) {
               Object.keys(mode[key]).forEach(function (name) {
                 lib[key][name] = mode[key][name];
               });
             };
-            if (mode.hasOwn('card')) onload('card');
-            if (mode.hasOwn('translate')) onload('translate');
+            if (Object.hasOwn(mode, 'card')) onload('card');
+            if (Object.hasOwn(mode, 'translate')) onload('translate');
             game.finishCards();
           });
         }
@@ -2304,7 +2304,7 @@ export let info = {
           num = 1 + player.countMark('dqzw_lianjie_extra');
         for (var index = action.length - 1; index >= 0; index--) {
           var history = action[index];
-          if (history.hasOwn('useSkill')) num -= history.useSkill.filter((evt) => evt.skill == 'dqzw_lianjie').length;
+          if (Object.hasOwn(history, 'useSkill')) num -= history.useSkill.filter((evt) => evt.skill == 'dqzw_lianjie').length;
           if (history.isRound) break;
         }
         return num && event.getParent(4).name != 'dqzw_lianjie';
@@ -2442,7 +2442,7 @@ export let info = {
             var num = 1 + player.countMark('dqzw_lianjie_extra');
             for (var index = action.length - 1; index >= 0; index--) {
               var history = action[index];
-              if (history.hasOwn('useSkill')) num -= history.useSkill.filter((evt) => evt.skill == 'dqzw_qingjiao_lianjie').length;
+              if (Object.hasOwn(history, 'useSkill')) num -= history.useSkill.filter((evt) => evt.skill == 'dqzw_qingjiao_lianjie').length;
               if (history.isRound) break;
             }
             return num && event.getParent(4).name != 'dqzw_qingjiao_lianjie' && bool1 && bool2;
@@ -2594,7 +2594,7 @@ export let info = {
         if (get.color(trigger.card) != get.color(card)) {
           if (trigger.addCount !== false) {
             trigger.addCount = false;
-            if (player.stat.at(-1).card.hasOwn(trigger.card.name)) {
+            if (Object.hasOwn(player.stat.at(-1).card, trigger.card.name)) {
               player.stat.at(-1).card[trigger.card.name]--;
             }
           }
@@ -3574,7 +3574,7 @@ export let info = {
         if (!['basic', 'trick'].includes(type)) return false;
         if (player.hasHistory('useCard', (evt) => evt.skill == backup && get.cardNameLength(evt.card.name) == length)) return false;
         if (player.hasHistory('respond', (evt) => evt.skill == backup && get.cardNameLength(evt.card.name) == length)) return false;
-        if (tag && lib.skill[skill].hasOwn(tag)) return lib.skill[skill][tag](player, name).length;
+        if (tag && Object.hasOwn(lib.skill[skill], tag)) return lib.skill[skill][tag](player, name).length;
         return lib.skill[skill].filterPlus(player, name).length || lib.skill[skill].filterReduce(player, name).length;
       },
       filterPlus(player, name) {
@@ -14505,8 +14505,8 @@ export let info = {
                 }
               });
             };
-            if (mode.hasOwn('skill')) onload('skill');
-            if (mode.hasOwn('translate')) onload('translate');
+            if (Object.hasOwn(mode, 'skill')) onload('skill');
+            if (Object.hasOwn(mode, 'translate')) onload('translate');
             game.finishCards();
           });
         }
@@ -14947,7 +14947,7 @@ export let info = {
           target
             .getCards('h', (card) => card.hasGaintag('visible_yuzhu') && lib.filter.canBeDiscarded(card, player, target))
             .forEach(function (card) {
-              if (map.hasOwn(card.suit)) map[card.suit]++;
+              if (Object.hasOwn(map, card.suit)) map[card.suit]++;
             });
         });
         if (Object.keys(map).some((key) => map[key] >= 3)) {

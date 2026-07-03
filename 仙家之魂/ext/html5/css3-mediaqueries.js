@@ -493,7 +493,7 @@ var cssHelper = function () {
       } else {
         var c = collections[name];
         for (var n in v) {
-          if (v.hasOwn(n)) {
+          if (Object.hasOwn(v, n)) {
             if (!c[n]) {
               c[n] = v[n];
             } else {
@@ -554,7 +554,7 @@ var cssHelper = function () {
         cssHelper.parsed(function (parsed) {
           var o = parseEmbedded(el, s);
           for (var n in o) {
-            if (o.hasOwn(n)) {
+            if (Object.hasOwn(o, n)) {
               addToCollection(n, o[n]);
             }
           }
@@ -868,7 +868,7 @@ domReady(function enableCssMediaQueries() {
     }
     var s = [], c = 0;
     for (var n in t) {
-      if (t.hasOwn(n)) {
+      if (Object.hasOwn(t, n)) {
         if (c > 0) {
           s[c++] = ',';
         }
@@ -895,7 +895,7 @@ domReady(function enableCssMediaQueries() {
     }
     var ts = [], tswe = [];
     for (var n in t) {
-      if (t.hasOwn(n)) {
+      if (Object.hasOwn(t, n)) {
         ts[ts.length] = n;
         if (t[n]) {
           tswe[tswe.length] = n;
