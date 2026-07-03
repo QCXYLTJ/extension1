@@ -388,7 +388,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									mark: true,
 									intro: {
-										content(dialog, player) {
+										mark(dialog, content, player) {
 											return '当你使用' + get.translation(player.storage.Xqin_jiheng_effect) + '时,重置武将牌';
 										},
 									},
