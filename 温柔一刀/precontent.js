@@ -92,7 +92,7 @@ npm install @babel/parser @babel/traverse @babel/generator @babel/types
 jscodeshift -t var-to-const-let.js . --extensions js --verbose=2
 npx eslint . --ext .js,.jsx,.ts,.tsx --fix
 
-//([^(!&\s|)]*)\.hasOwn\(([^)]*)\)
+//([^(!\s&|)]*)(?<!\bObject\b)\.hasOwn\(([^)]*)\)
 //Object.hasOwn($1,$2)
 
 
