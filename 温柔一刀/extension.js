@@ -281,9 +281,7 @@ const extensionInfo = await lib.init.promises.json(`extension/温柔一刀/info.
 game.import('extension', function (lib, game, ui, get, ai, _status) {
   const gentle = {
     name: '温柔一刀',
-    init() {
-      debugger;
-    },
+    init() { },
     arenaReady() {
       console.time('温柔一刀arenaReady');
       console.log(Object.keys(lib.skill).length, 'lib.arenaReady', 'skill');
