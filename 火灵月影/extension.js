@@ -1835,24 +1835,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         continue;
                                     }
                                     list.push(['', get.translation(lib.card[i].type), i]);
-                                    if (namecapt.indexOf(getCapt(i)) == -1) {
-                                        namecapt.push(getCapt(i));
-                                    }
                                 }
                             } else {
                                 const groupCount = {};
                                 for (const i in lib.character) {
                                     list.push(i);
-                                    if (get.is.double(i)) {
-                                        groups.add('double');
-                                    } else {
-                                        const group = lib.character[i][1];
-                                        groupCount[group] ??= 0;
-                                        groupCount[group]++;
-                                    }
-                                    if (namecapt.indexOf(getCapt(i)) == -1) {
-                                        namecapt.push(getCapt(i));
-                                    }
+                                    const group = lib.character[i][1];
+                                    groupCount[group] ??= 0;
+                                    groupCount[group]++;
                                 }
                                 for (const [group, count] of Object.entries(groupCount)) {
                                     if (count > 20) {
@@ -1935,6 +1925,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             dialog.currentcaptnode2.touchlink.classList.remove('active');
                                         }
                                     }
+                                    if (dialog.currentgroupnode) {
+                                        dialog.currentgroupnode.classList.remove('thundertext');
+                                    }
                                     dialog.currentcapt2 = this.link;
                                     dialog.currentcaptnode2 = this;
                                     this.classList.add('thundertext');
@@ -1944,8 +1937,22 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         packsource.innerHTML = this.innerHTML;
                                         packsource.classList.add('thundertext');
                                     }
-                                    const listx = dialog.currentcapt2 == '最近' ? get.config('recentCharacter') : lib.config.favouriteCharacter;
-                                    dialog.add([listx.filter((c) => lib.character[c]), 'character']);
+
+                                    let listx;
+                                    switch (dialog.currentcapt2) {
+                                        case '最近': {
+                                            listx = get.config('recentCharacter').filter((c) => lib.character[c]);
+                                        } break;
+                                        case '收藏': {
+                                            listx = lib.config.favouriteCharacter.filter((c) => lib.character[c]);
+                                        } break;
+                                        default: {
+                                            listx = Object.keys(lib.characterPack[dialog.currentcapt2]);
+                                        }
+                                    }
+                                    if (listx.length) {
+                                        dialog.add([listx, 'character']);
+                                    }
                                     for (const btn of dialog.buttons) {
                                         btn.classList.add('selectable');
                                         btn.group = lib.character[btn.link][1];
@@ -2016,6 +2023,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         dialog.currentgroupnode = null;
                                         node2.classList.remove('thundertext');
                                     } else {
+                                        if (dialog.currentcaptnode2) {
+                                            dialog.currentcaptnode2.classList.remove('thundertext');
+                                            if (dialog.currentcaptnode2.touchlink) {
+                                                dialog.currentcaptnode2.touchlink.classList.remove('active');
+                                            }
+                                        }
                                         if (dialog.currentgroupnode) {
                                             dialog.currentgroupnode.classList.remove('thundertext');
                                         }
@@ -2023,7 +2036,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         dialog.currentgroupnode = node2;
                                         node2.classList.add('thundertext');
                                         const listx = characterlist.filter((c) => lib.character[c].group == link2);
-                                        dialog.add([listx, 'character']);
+                                        if (listx.length) {
+                                            dialog.add([listx, 'character']);
+                                        }
                                         for (const btn of dialog.buttons) {
                                             btn.classList.add('selectable');
                                             btn.group = lib.character[btn.link][1];
@@ -2165,8 +2180,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         span.touchlink = ui.create.div(filternode.firstChild, clickCaptNode, '.menubutton.large', span.innerHTML);
                                         span.touchlink.link = span;
                                     }
-                                } //所有武将包加入
-                            }
+                                } //所有武将包按钮
+                            }//所有武将包按钮监听
 
                             let groupSort;
                             if (thisiscard) {
