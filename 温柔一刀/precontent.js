@@ -452,6 +452,44 @@ const precontent = async function () {
         console.time('温柔一刀onfree');
         //—————————————————————————————————————————————————————————————————————————————boss技能替换
         const skilltihuan = function () {
+            lib.skill.sanshou_skill = {
+                audio: 'sanshou',
+                inherit: 'sanshou',
+                filter(event, player) {
+                    return !player.hasSkillTag('unequip2');
+                },
+                ai: {
+                    effect: {
+                        target(card, player, target) {
+                            if (
+                                target.hasSkillTag('unequip2') ||
+                                player.hasSkillTag('unequip', false, {
+                                    name: card ? card.name : null,
+                                    target: target,
+                                    card: card,
+                                })
+                            ) {
+                                return;
+                            }
+                            if (card.name == 'shandian' || card.name == 'fulei') {
+                                return [0, 0.1];
+                            }
+                            if (!get.tag(card, 'damage')) {
+                                return;
+                            }
+                            var types = [],
+                                bool = 0;
+                            types.addArray(game.getGlobalHistory('useCard').map((evt) => get.type2(evt.card)));
+                            if (!types.includes(get.type2(card))) {
+                                bool = 1;
+                            }
+                            if (types.length < 2) {
+                                return Math.min(1, 0.4 + (types.length + bool) * 0.2);
+                            }
+                        },
+                    },
+                },
+            };
             lib.skill.jiwu = {
                 mod: {
                     aiOrder(player, card, num) {
