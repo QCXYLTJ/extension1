@@ -700,9 +700,7 @@ const precontent = async function () {
                         event.finish();
                     }
                     ('step 1');
-                    let list = game.players;
-                    list.remove(player);
-                    list.sort(lib.sort.seat);
+                    let list = game.players.filter((c) => c != player);
                     const list2 = [];
                     for (let i = 0; i < list.length; i++) {
                         list2.push(0);
