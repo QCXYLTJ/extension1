@@ -1855,7 +1855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 for (const [group, count] of Object.entries(groupCount)) {
-                                    if (count > 30) {
+                                    if (count > 20) {
                                         groups.add(group);
                                     }
                                 }
