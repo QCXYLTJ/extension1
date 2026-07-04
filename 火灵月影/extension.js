@@ -1840,19 +1840,26 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                             } else {
+                                const groupCount = {};
                                 for (const i in lib.character) {
                                     list.push(i);
                                     if (get.is.double(i)) {
                                         groups.add('double');
                                     } else {
-                                        groups.add(lib.character[i][1]);
+                                        const group = lib.character[i][1];
+                                        groupCount[group] ??= 0;
+                                        groupCount[group]++;
                                     }
                                     if (namecapt.indexOf(getCapt(i)) == -1) {
                                         namecapt.push(getCapt(i));
                                     }
                                 }
+                                for (const [group, count] of Object.entries(groupCount)) {
+                                    if (count > 30) {
+                                        groups.add(group);
+                                    }
+                                }
                             } //势力加入
-
                             namecapt.sort((a, b) => (a > b ? 1 : -1));
                             groups.sort(lib.sort.group);
                             if (!thisiscard) {
