@@ -3185,12 +3185,16 @@ const precontent = async function () {
 
                                 let listx;
                                 switch (dialog.currentcapt2) {
-                                    case '最近': {
-                                        listx = get.config('recentCharacter').filter((c) => lib.character[c]);
-                                    } break;
-                                    case '收藏': {
-                                        listx = lib.config.favouriteCharacter.filter((c) => lib.character[c]);
-                                    } break;
+                                    case '最近':
+                                        {
+                                            listx = get.config('recentCharacter').filter((c) => lib.character[c]);
+                                        }
+                                        break;
+                                    case '收藏':
+                                        {
+                                            listx = lib.config.favouriteCharacter.filter((c) => lib.character[c]);
+                                        }
+                                        break;
                                     default: {
                                         listx = Object.keys(lib.characterPack[dialog.currentcapt2]);
                                     }
@@ -3426,7 +3430,7 @@ const precontent = async function () {
                                     span.touchlink.link = span;
                                 }
                             } //所有武将包按钮
-                        }//所有武将包按钮监听
+                        } //所有武将包按钮监听
 
                         let groupSort;
                         if (thisiscard) {
@@ -3513,17 +3517,32 @@ const precontent = async function () {
                         find.style.display = 'inline';
 
                         const updateFind = () => {
-                            const { value } = input;
-                            const reg = new RegExp(value);
-                            for (const btn of dialog.buttons) {
-                                if (reg.test(get.translation(btn.link)) || reg.test(get.translation(btn.link + '_ab'))) {
-                                    btn.classList.remove('nodisplay');
-                                } else {
-                                    btn.classList.add('nodisplay');
+                            while (dialog.buttons.length) {
+                                dialog.buttons[0].remove();
+                                dialog.buttons.shift();
+                            }
+                            if (dialog.currentcaptnode2) {
+                                dialog.currentcaptnode2.classList.remove('thundertext');
+                                if (dialog.currentcaptnode2.touchlink) {
+                                    dialog.currentcaptnode2.touchlink.classList.remove('active');
                                 }
                             }
+                            if (dialog.currentgroupnode) {
+                                dialog.currentgroupnode.classList.remove('thundertext');
+                            }
+                            const { value } = input;
+                            const reg = new RegExp(value);
+                            const listx = characterlist.filter((c) => reg.test(get.translation(c)) || reg.test(get.translation(c + '_ab')));
+                            if (listx.length) {
+                                dialog.add([listx, 'character']);
+                            }
+                            for (const btn of dialog.buttons) {
+                                btn.classList.add('selectable');
+                                btn.group = lib.character[btn.link][1];
+                                btn.capt = getCapt(btn.link);
+                            }
                             updatePagination();
-                        };
+                        }; //搜索按钮监听
 
                         find.addEventListener('click', updateFind);
                         input.addEventListener('keydown', (e) => {
