@@ -133,6 +133,11 @@ const boss = function () {
     if (bool) {
       deads.forEach((player) => {
         player.classList.add('removing', 'hidden');
+        if (!player.deadposition) {
+          const num = Number(player.dataset.position);
+          player.deadposition = num;
+          player.dataset.position = num - 1;
+        }
       });
     } //隐藏死亡角色
     playerx.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
@@ -179,7 +184,7 @@ const boss = function () {
     }); //修改previousSeat
     game.players.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
     return true;
-  };
+  };//当回合死亡角色会导致下回合是下下家,因为下家的座位号和自己相同了
   game.players = new Proxy([], {
     set(target, property, value) {
       const result = Reflect.set(target, property, value);

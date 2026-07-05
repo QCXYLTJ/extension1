@@ -1772,6 +1772,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           if (bool) {
             deads.forEach((player) => {
               player.classList.add('removing', 'hidden');
+              if (!player.deadposition) {
+                const num = Number(player.dataset.position);
+                player.deadposition = num;
+                player.dataset.position = num - 1;
+              }
             });
           } //隐藏死亡角色
           playerx.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));

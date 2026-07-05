@@ -202,7 +202,7 @@ export async function content(config, pack) {
         click = arguments[i];
       }
       /*else if(typeof arguments[i]=='string'){
-      	str=arguments[i];
+        str=arguments[i];
       }*/
     }
     window.addEventListener(
@@ -290,14 +290,14 @@ export async function content(config, pack) {
   //代码借鉴自《扩展ol》
   game.xjzh_showFps = function (id) {
     var requestAnimationFrame =
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback) {
-      window.setTimeout(callback, 1000 / 60);
-    };
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function (callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
     var div;
     if (document.getElementById(id) == undefined) {
       div = document.createElement('div');
@@ -390,9 +390,9 @@ export async function content(config, pack) {
   //代码借鉴自《金庸群侠传》
   game.playXH = function (fn, dir, sex) {
     if (lib.config.background_speak) {
-      if (dir && sex) game.playAudio(dir, sex, fn);else
-      if (dir) game.playAudio(dir, fn);else
-      game.playAudio('../extension/仙家之魂/audio/skill', fn);
+      if (dir && sex) game.playAudio(dir, sex, fn); else
+        if (dir) game.playAudio(dir, fn); else
+          game.playAudio('../extension/仙家之魂/audio/skill', fn);
     }
   };
   // ---------------------------------------背景音乐------------------------------------------//
@@ -533,8 +533,8 @@ export async function content(config, pack) {
       if (typeof arguments[i] == 'string') {
         next.prompt = arguments[i];
       } else if (typeof arguments[i] == 'function') {
-        if (!next.func) next.func = arguments[i];else
-        next.ai = arguments[i];
+        if (!next.func) next.func = arguments[i]; else
+          next.ai = arguments[i];
       } else if (typeof arguments[i] == 'number') {
         next.selectButton = [arguments[i], arguments[i]];
       } else if (get.itemtype(arguments[i]) == 'select') {
@@ -580,9 +580,9 @@ export async function content(config, pack) {
     }
     if (!event.prompt) {
       var str = '请选择获得';
-      if (range[0] == range[1]) str += get.cnNumber(range[0]);else
-      if (range[1] == Infinity) str += '至少' + get.cnNumber(range[0]);else
-      str += get.cnNumber(range[0]) + '至' + get.cnNumber(range[1]);
+      if (range[0] == range[1]) str += get.cnNumber(range[0]); else
+        if (range[1] == Infinity) str += '至少' + get.cnNumber(range[0]); else
+          str += get.cnNumber(range[0]) + '至' + get.cnNumber(range[1]);
       str += '项技能';
       event.prompt = str;
     }
@@ -649,9 +649,9 @@ export async function content(config, pack) {
       num,
       nodead;
     for (const argument of args) {
-      if (typeof argument == 'string' || Array.isArray(argument)) name = argument;else
-      if (typeof argument == 'number') num = argument;else
-      if (typeof argument == 'boolean') nodead = argument;
+      if (typeof argument == 'string' || Array.isArray(argument)) name = argument; else
+        if (typeof argument == 'number') num = argument; else
+          if (typeof argument == 'boolean') nodead = argument;
     }
     if (Array.isArray(name)) {
       for (let target of name) {
@@ -684,9 +684,9 @@ export async function content(config, pack) {
   lib.element.player.xjzh_zhaohuan = function (...args) {
     let name, draw, hpList;
     for (const arg of args) {
-      if (typeof arg == 'string') name = arg;else
-      if (typeof arg == 'number') draw = argument;else
-      if (Array.isArray(arg)) hpList = argument;
+      if (typeof arg == 'string') name = arg; else
+        if (typeof arg == 'number') draw = argument; else
+          if (Array.isArray(arg)) hpList = argument;
     }
     let next = game.createEvent('xjzh_zhaohuan', false),
       event = _status.event;
@@ -709,7 +709,7 @@ export async function content(config, pack) {
       filter() {
         game.sort();
       },
-      content() {}
+      content() { }
     }; //排座位
     let _me;
     Reflect.defineProperty(game, 'me', {
@@ -733,6 +733,11 @@ export async function content(config, pack) {
       if (bool) {
         deads.forEach((player) => {
           player.classList.add('removing', 'hidden');
+          if (!player.deadposition) {
+            const num = Number(player.dataset.position);
+            player.deadposition = num;
+            player.dataset.position = num - 1;
+          }
         });
       } //隐藏死亡角色
       playerx.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
@@ -813,7 +818,7 @@ export async function content(config, pack) {
         cards: []
       },
       gaintag: [],
-      forResult() {}
+      forResult() { }
     };
     game.changeBossQ = function (name) {
       _status.event.forceDie = true;
@@ -874,11 +879,11 @@ export async function content(config, pack) {
   game.xjzh_Criticalstrike = async function (...args) {
     let player, num, num2, bool;
     for (let arg of args) {
-      if (get.itemtype(arg) == 'player') player = arg;else
-      if (typeof arg == 'number') {
-        if (typeof num == 'number') num2 = arg;else
-        num = arg;
-      } else if (typeof arg == 'boolean') bool = arg;
+      if (get.itemtype(arg) == 'player') player = arg; else
+        if (typeof arg == 'number') {
+          if (typeof num == 'number') num2 = arg; else
+            num = arg;
+        } else if (typeof arg == 'boolean') bool = arg;
     }
     if (bool) num = 1;
     let trigger = _status.event.getTrigger();
