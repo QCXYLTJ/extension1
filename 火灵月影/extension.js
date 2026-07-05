@@ -9463,10 +9463,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 const nature = Array.from(lib.nature.keys()).randomGet();
                                                 await npc.damage(nature);
                                             }
-                                            await npc.turnOver(true);
-                                            if (!npc.isTurnedOver()) {
-                                                await game.HL_mp4('HL_tiandao');
-                                                await npc.qdie(player);
+                                            if (npc.isAlive()) {
+                                                await npc.turnOver(true);
+                                                if (!npc.isTurnedOver()) {
+                                                    await game.HL_mp4('HL_tiandao');
+                                                    await npc.qdie(player);
+                                                }
                                             }
                                         }
                                     }
