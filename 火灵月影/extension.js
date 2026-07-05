@@ -9033,6 +9033,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         // 出牌阶段,你可以[弃置一张点数为3的牌/失去一点体力],然后召唤/复活一个【狂三分身】(最多4个)
                         // 非精灵角色回合开始时,你可使用一张点数为3的牌,若此牌对其造成伤害,跳过其回合
                         HL_kekedi: {
+                            init(player) {
+                                player.when({ global: 'gameStart' }).then(() => player.classList.add('kuangsan')); //游戏开始前加不上
+                            },
                             enable: 'phaseUse',
                             usable: 4,
                             check(card) {
