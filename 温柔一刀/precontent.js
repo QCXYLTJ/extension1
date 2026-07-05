@@ -5909,25 +5909,6 @@ const precontent = async function () {
                         player: ['damageEnd'],
                     },
                     forced: true,
-                    init(player) {
-                        let num = 4;
-                        Reflect.defineProperty(player, 'maxHp', {
-                            get() {
-                                return Math.max(1, num);
-                            },
-                            set(v) {
-                                num = v;
-                            },
-                        }); //扣减体力上限抗性
-                        player.getExpansions = function () {
-                            return get.cards(3);
-                        };
-                        player.addToExpansion = function () {
-                            const card = get.cards()[0];
-                            player.gain(card, 'gain2');
-                            return card;
-                        };
-                    },
                     async content(event, trigger, player) {
                         const list = [];
                         for (let i in lib.skill) {
