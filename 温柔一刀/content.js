@@ -2396,8 +2396,8 @@ const content = async function () {
     const qianceng = function () {
       if (lib.card.yunvyuanshen) {
         lib.card.yunvyuanshen.content = async function (event, trigger, player) {
-          const card = event.card,
-            cards = event.cards,
+          let card = event.card;
+          const cards = event.cards,
             target = event.target;
           target.storage.yunvyuanshen_skill = game.createCard('yunvyuanshen');
           target.addSkill('yunvyuanshen_skill');
