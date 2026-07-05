@@ -35380,8 +35380,8 @@ const skill = {
           player: 'useCard',
         },
         filter(event, player) {
-          return true;
-        },
+          return event.target;
+        },//QQQ
         content() {
           trigger.target.damage('fire');
           trigger.target.damage('fire');
