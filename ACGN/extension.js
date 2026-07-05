@@ -3,6 +3,342 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
     return {
         name: 'ACGN',
         content(config, pack) {
+            //—————————————————————————————————————————————————————————————————————————————解构魔改本体函数
+            const mogai = function () {
+                lib.element.player.dyingResult = async function () {
+                    const player1 = this;
+                    game.log(player1, '濒死');
+                    _status.dying.unshift(player1);
+                    for (const i of game.players) {
+                        const result = await i.chooseToUse({
+                            filterCard(card, player, event) {
+                                return lib.filter.cardSavable(card, player, player1);
+                            },
+                            filterTarget(card, player, target) {
+                                if (!card || target != player1) {
+                                    return false;
+                                }
+                                const info = get.info(card);
+                                if (!info.singleCard || ui.selected.targets.length == 0) {
+                                    const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                                    if (mod1 == false) {
+                                        return false;
+                                    }
+                                    const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                                    if (mod2 != 'unchanged') {
+                                        return mod2;
+                                    }
+                                }
+                                return true;
+                            },
+                            prompt: get.translation(player1) + '濒死,是否帮助？',
+                            ai1() {
+                                return 1;
+                            },
+                            ai2() {
+                                return get.attitude(player1, i);
+                            },
+                            type: 'dying',
+                            targetRequired: true,
+                            dying: player1,
+                        }).forResult();
+                        if (result?.bool) {
+                            _status.dying.remove(player1);
+                            break;
+                        }
+                    }
+                    if (_status.dying.includes(player1)) {
+                        await player1.die();
+                    }
+                    return player1;
+                }; //濒死结算
+                lib.element.player.yinni = function () {
+                    const player = this;
+                    player.storage.rawHp = player.hp;
+                    player.storage.rawMaxHp = player.maxHp;
+                    if (player.skills.length) {
+                        if (!player.hiddenSkills) {
+                            player.hiddenSkills = [];
+                        }
+                        for (const i of player.skills.slice()) {
+                            player.removeSkill(i);
+                            player.hiddenSkills.add(i);
+                        }
+                    }
+                    player.classList.add('unseen');
+                    player.name = 'unknown';
+                    player.sex = 'male';
+                    player.storage.nohp = true;
+                    player.node.hp.hide();
+                    player.addSkill('g_hidden_ai');
+                    player.hp = 1;
+                    player.maxHp = 1;
+                    player.update();
+                    return player;
+                }; //隐匿函数
+                lib.element.player.qreinit = function (name) {
+                    const player = this;
+                    const info = lib.character[name];
+                    player.name1 = name;
+                    player.name = name;
+                    player.sex = info.sex;
+                    player.changeGroup(info.group, false);
+                    for (const i of info.skills) {
+                        player.addSkill(i);
+                    }
+                    player.maxHp = get.infoMaxHp(info.maxHp);
+                    player.hp = player.maxHp;
+                    game.addVideo('reinit3', player, {
+                        name: name,
+                        hp: player.maxHp,
+                        avatar2: player.name2 == name,
+                    });
+                    player.smoothAvatar(false);
+                    player.node.avatar.setBackground(name, 'character');
+                    player.node.name.innerHTML = get.translation(name);
+                    player.update();
+                    return player;
+                }; //变身
+                lib.element.player.quseCard = async function (card, targets, cards) {
+                    const player = this;
+                    if (typeof card == 'string') {
+                        card = { name: card };
+                    }
+                    const name = card.name;
+                    const info = lib.card[name];
+                    if (!cards) {
+                        cards = [card];
+                    }
+                    const skill = _status.event.skill;
+                    if (info.contentBefore) {
+                        const next = game.createEvent(name + 'ContentBefore', false);
+                        if (next.parent) {
+                            next.parent.stocktargets = targets;
+                        }
+                        next.targets = targets;
+                        next.card = card;
+                        next.cards = cards;
+                        next.player = player;
+                        next.skill = skill;
+                        next.type = 'precard';
+                        next.forceDie = true;
+                        await next.setContent(info.contentBefore);
+                    }
+                    if (!info.multitarget) {
+                        for (const target of targets) {
+                            if (target && target.isDead()) return;
+                            if (info.notarget) return;
+                            const next = game.createEvent(name, false);
+                            if (next.parent) {
+                                next.parent.directHit = [];
+                            }
+                            next.targets = targets;
+                            next.target = target;
+                            next.card = card;
+                            if (info.type == 'delay') {
+                                next.card = {
+                                    name: name,
+                                    cards: cards,
+                                };
+                            }
+                            next.cards = cards;
+                            next.player = player;
+                            next.type = 'card';
+                            next.skill = skill;
+                            next.baseDamage = Math.max(numberq1(info.baseDamage));
+                            next.forceDie = true;
+                            next.directHit = true;
+                            await next.setContent(info.content);
+                        }
+                    } else {
+                        if (info.notarget) return;
+                        const next = game.createEvent(name, false);
+                        if (next.parent) {
+                            next.parent.directHit = [];
+                        }
+                        next.targets = targets;
+                        next.target = targets[0];
+                        next.card = card;
+                        if (info.type == 'delay') {
+                            next.card = {
+                                name: name,
+                                cards: cards,
+                            };
+                        }
+                        next.cards = cards;
+                        next.player = player;
+                        next.type = 'card';
+                        next.skill = skill;
+                        next.baseDamage = Math.max(numberq1(info.baseDamage));
+                        next.forceDie = true;
+                        next.directHit = true;
+                        await next.setContent(info.content);
+                    }
+                    if (info.contentAfter) {
+                        const next = game.createEvent(name + 'ContentAfter', false);
+                        next.targets = targets;
+                        next.card = card;
+                        next.cards = cards;
+                        next.player = player;
+                        next.skill = skill;
+                        next.type = 'postcard';
+                        next.forceDie = true;
+                        await next.setContent(info.contentAfter);
+                    }
+                    return player;
+                }; //解构用牌
+                lib.element.player.qrevive = function () {
+                    const player = this;
+                    if (player.parentNode != ui.arena) {
+                        ui.arena.appendChild(player);
+                    } //防止被移除节点
+                    player.classList.remove('removing', 'hidden', 'dead');
+                    game.log(player, '复活');
+                    player.maxHp = Math.max(lib.character[player.name]?.maxHp || 0, player.maxHp || 0);
+                    player.hp = player.maxHp;
+                    game.addVideo('revive', player);
+                    player.removeAttribute('style');
+                    player.node.avatar.style.transform = '';
+                    player.node.avatar2.style.transform = '';
+                    player.node.hp.show();
+                    player.node.equips.show();
+                    player.node.count.show();
+                    player.update();
+                    game.players.add(player);
+                    game.dead.remove(player);
+                    player.draw(Math.min(player.maxHp, 20));
+                    return player;
+                }; //复活函数
+                lib.element.player.zhenshang = function (num, source, nature) {
+                    const player = this;
+                    let str = '受到了';
+                    if (source) {
+                        str += `来自<span class='bluetext'>${source == player ? '自己' : get.translation(source)}</span>的`;
+                    }
+                    str += get.cnNumber(num) + '点';
+                    if (nature) {
+                        str += get.translation(nature) + '属性';
+                    }
+                    str += '伤害';
+                    game.log(player, str);
+                    const stat = player.stat;
+                    const statx = stat[stat.length - 1];
+                    if (!statx.damaged) {
+                        statx.damaged = num;
+                    } else {
+                        statx.damaged += num;
+                    }
+                    if (source) {
+                        const stat = source.stat;
+                        const statx = stat[stat.length - 1];
+                        if (!statx.damage) {
+                            statx.damage = num;
+                        } else {
+                            statx.damage += num;
+                        }
+                    }
+                    player.hp -= num;
+                    player.update();
+                    player.$damage(source);
+                    var natures = (nature || '').split(lib.natureSeparator);
+                    game.broadcastAll(
+                        function (natures, player) {
+                            if (lib.config.animation && !lib.config.low_performance) {
+                                if (natures.includes('fire')) {
+                                    player.$fire();
+                                }
+                                if (natures.includes('thunder')) {
+                                    player.$thunder();
+                                }
+                            }
+                        },
+                        natures,
+                        player
+                    );
+                    var numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
+                    player.$damagepop(-numx, natures[0]);
+                    if (player.hp <= 0 && player.isAlive()) {
+                        player.dying({ source: source });
+                    }
+                    return player;
+                }; //真实伤害
+                lib.element.player.qequip = function (card) {
+                    const player = this;
+                    if (Array.isArray(card)) {
+                        for (const i of card) {
+                            player.qequip(i);
+                        }
+                    } else if (card) {
+                        if (card[card.cardSymbol]) {
+                            const owner = get.owner(card);
+                            const vcard = card[card.cardSymbol];
+                            if (owner) {
+                                owner.vcardsMap?.equips.remove(vcard);
+                            }
+                            player.vcardsMap?.equips.add(vcard);
+                        } else {
+                            const vcard = new lib.element.VCard(card);
+                            const cardSymbol = Symbol('card');
+                            card.cardSymbol = cardSymbol;
+                            card[cardSymbol] = vcard;
+                            player.vcardsMap?.equips.push(vcard);
+                        }
+                        player.node.equips.appendChild(card);
+                        card.style.transform = '';
+                        card.node.name2.innerHTML = `${get.translation(card.suit)}${card.number} ${get.translation(card.name)}`;
+                        const info = lib.card[card.name];
+                        if (info && info.skills) {
+                            for (const i of info.skills) {
+                                player.addSkillTrigger(i);
+                            }
+                        }
+                    }
+                    return player;
+                };
+                lib.element.player.qdie = function (source) {
+                    const player = this;
+                    player.qdie1(source);
+                    player.qdie2(source);
+                    player.qdie3(source);
+                    return player;
+                }; //可以触发死亡相关时机,但是死亡无法避免//直接正常堆叠事件即可.如果await每个qdie123事件,那么外部就必须await qdie了,否则就卡掉
+                lib.element.player.qdie1 = function (source) {
+                    const player = this;
+                    const next = game.createEvent('diex1', false);
+                    next.source = source;
+                    next.player = player;
+                    next._triggered = null;
+                    next.setContent(async function (event, trigger, player) {
+                        await event.trigger('dieBefore');
+                        await event.trigger('dieBegin');
+                    });
+                    return next;
+                }; //触发死亡前相关时机//不能用async,不然会卡掉后续事件,不能await那个setcontent
+                lib.element.player.qdie2 = function (source) {
+                    const player = this;
+                    const next = game.createEvent('diex2', false);
+                    next.source = source;
+                    next.player = player;
+                    next._triggered = null;
+                    next.restMap = { type: null, count: null, audio: null };
+                    next.excludeMark = [];
+                    next.setContent('die');
+                    return next;
+                }; //斩杀
+                lib.element.player.qdie3 = function (source) {
+                    const player = this;
+                    const next = game.createEvent('diex3', false);
+                    next.source = source;
+                    next.player = player;
+                    next._triggered = null;
+                    next.setContent(async function (event, trigger, player) {
+                        await event.trigger('dieEnd');
+                        await event.trigger('dieAfter');
+                    });
+                    return next;
+                }; //触发死亡后相关时机
+            }; //解构魔改本体函数
+            mogai();
             {
                 //css文件
                 lib.init.css('extension/ACGN', 'bxyr');
@@ -923,38 +1259,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 lib.element.content.equipLink = function () {
                     event.trigger('equipLinkBegin');
                     return next;
-                };
-                //隐匿函数
-                lib.element.player.yinni = function () {
-                    if (this.name == 'unknown') {
-                        return false;
-                    }
-                    const next = game.createEvent('yinni');
-                    next.player = this;
-                    next.setContent('yinni');
-                    return next;
-                };
-                lib.element.content.yinni = function () {
-                    player.storage.rawHp = player.hp;
-                    player.storage.rawMaxHp = player.maxHp;
-                    if (player.skills.length) {
-                        if (!player.hiddenSkills) {
-                            player.hiddenSkills = [];
-                        }
-                        for (const i of player.skills.slice()) {
-                            player.removeSkill(i);
-                            player.hiddenSkills.add(i);
-                        }
-                    }
-                    player.classList.add('unseen');
-                    player.name = 'unknown';
-                    player.sex = 'male';
-                    player.storage.nohp = true;
-                    player.node.hp.hide();
-                    player.addSkill('g_hidden_ai');
-                    player.hp = 1;
-                    player.maxHp = 1;
-                    player.update();
                 };
                 //骰子函数
                 lib.element.player.throwDice = function (num) {

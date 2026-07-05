@@ -2394,6 +2394,22 @@ const content = async function () {
     zhijie();
     //————————————————————————————————————————————————————————————————————————————————————————————————————浅层检测
     const qianceng = function () {
+      if (lib.card.yunvyuanshen) {
+        lib.card.yunvyuanshen.content = async function (event, trigger, player) {
+          const card = event.card,
+            cards = event.cards,
+            target = event.target;
+          target.storage.yunvyuanshen_skill = game.createCard('yunvyuanshen');
+          target.addSkill('yunvyuanshen_skill');
+          if (cards && cards.length) {
+            card = cards[0];
+          }
+          if (target === targets[0] && card.clone && (card.clone.parentNode === player.parentNode || card.clone.parentNode === ui.arena)) {
+            card.clone.moveDelete(target);
+            game.addVideo('gain2', target, get.cardsInfo([card]));
+          }
+        };
+      }
       if (lib.card.bazhijing) {
         lib.card.bazhijing.onLose = function () {
           player.unmarkAuto('bazhing', player.getStorage('bazhijing'));
