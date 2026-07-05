@@ -1,6 +1,7 @@
 /* 隐匿角色背景图片 */
 body>#window>#arena>.player.fullskin.unseen>.avatar {
 	background-image: url(./image/hidden_image.jpg) !important;
+	opacity: 1 !important;
 	/*import才能覆盖内联样式原背景图*/
 }
 
