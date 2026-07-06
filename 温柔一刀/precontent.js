@@ -3061,7 +3061,7 @@ const precontent = async function () {
                 get() {
                     return function () {
                         let filter, str, noclick, thisiscard, seperate, expandall, onlypack, heightset, characterx;
-                        const recentCharacter = get.config('recentCharacter').filter((c) => lib.character[c]) || [];
+                        const recentCharacter = get.config('recentCharacter')?.filter((c) => lib.character[c]) || [];
                         for (const arg of arguments) {
                             if (arg === 'thisiscard') {
                                 thisiscard = true;
