@@ -1785,7 +1785,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     get() {
                         return function () {
                             let filter, str, noclick, thisiscard, seperate, expandall, onlypack, heightset, characterx;
-                            const recentCharacter = get.config('recentCharacter') || [];
+                            const recentCharacter = get.config('recentCharacter').filter((c) => lib.character[c]) || [];
                             for (const arg of arguments) {
                                 if (arg === 'thisiscard') {
                                     thisiscard = true;
@@ -1948,7 +1948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     switch (dialog.currentcapt2) {
                                         case '最近':
                                             {
-                                                listx = recentCharacter.filter((c) => lib.character[c]);
+                                                listx = recentCharacter;
                                             }
                                             break;
                                         case '收藏':
@@ -2365,7 +2365,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.add([list, 'vcard'], noclick);
                                 }
                             } else {
-                                dialog.add([recentCharacter.filter((c) => lib.character[c]), 'character']);
+                                if (recentCharacter.length) {
+                                    dialog.add([recentCharacter, 'character']);
+                                }
                             } //将所有武将生成div
 
                             dialog.add(ui.create.div('.placeholder'));
