@@ -4174,7 +4174,9 @@ const skill = {
       } else event.finish();
       ('step 2');
       if (result.bool) {
-        if (!player.countCards('hej', { suit: 'diamond' })) _status.currentPhase.disableEquip(['equip1', 'equip2', 'equip3', 'equip4', 'equip5'].randomGet());
+        if (!player.countCards('hej', { suit: 'diamond' })) {
+          _status.currentPhase?.disableEquip(['equip1', 'equip2', 'equip3', 'equip4', 'equip5'].randomGet());
+        }
         event.target.draw();
         event.target.give(result.cards, player, true);
       } else {

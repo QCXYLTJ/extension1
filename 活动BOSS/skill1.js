@@ -37255,6 +37255,7 @@ const skill = {
     firstDo: true,
     superCharlotte: true,
     ruleSkill: true,
+    mode: ['boss'],
     content() {
       'step 0';
       if (game.me == game.boss) {
