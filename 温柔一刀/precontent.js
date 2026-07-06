@@ -3061,6 +3061,7 @@ const precontent = async function () {
                 get() {
                     return function () {
                         let filter, str, noclick, thisiscard, seperate, expandall, onlypack, heightset, characterx;
+                        const recentCharacter = get.config('recentCharacter') || [];
                         for (const arg of arguments) {
                             if (arg === 'thisiscard') {
                                 thisiscard = true;
@@ -3223,7 +3224,7 @@ const precontent = async function () {
                                 switch (dialog.currentcapt2) {
                                     case '最近':
                                         {
-                                            listx = get.config('recentCharacter').filter((c) => lib.character[c]);
+                                            listx = recentCharacter.filter((c) => lib.character[c]);
                                         }
                                         break;
                                     case '收藏':
@@ -3640,7 +3641,7 @@ const precontent = async function () {
                                 dialog.add([list, 'vcard'], noclick);
                             }
                         } else {
-                            dialog.add([get.config('recentCharacter').filter((c) => lib.character[c]), 'character']);
+                            dialog.add([recentCharacter.filter((c) => lib.character[c]), 'character']);
                         } //将所有武将生成div
 
                         dialog.add(ui.create.div('.placeholder'));
