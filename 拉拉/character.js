@@ -10291,7 +10291,6 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                         } else {
                                             await player.recover();
                                         }
-                                        await game.asyncDelay();
                                     }
                                 }
                             },

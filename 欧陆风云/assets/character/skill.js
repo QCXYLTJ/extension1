@@ -7651,7 +7651,6 @@ const skills = {
                                     const { bool, cards } = await player.choosePlayerCard(target, 'h', true).forResult();
                                     if (bool) {
                                         await player.chooseControl('ok').set('dialog', [get.translation(target) + '的一张手牌', cards]);
-                                        await game.asyncDelay();
                                     }
                                 } while (targets.length);
                             });
@@ -10742,7 +10741,6 @@ const skills = {
             if (get.owner(card)) get.owner(card).$give(card, player, false);
             else {
                 player.$gain2(card, false);
-                game.asyncDelay();
             }
             player.equip(card);
         },
@@ -13498,7 +13496,6 @@ const skills = {
                     if (bool) {
                         respondedTargets.push(target);
                         if (!trigger.targets.includes(target)) nonnonTargetResponded = true;
-                        await game.asyncDelay();
                     } else if (trigger.targets.includes(target)) unrespondedTargets.push(target);
                 }
             }
@@ -15267,7 +15264,6 @@ const skills = {
                 .forResult();
             if (bool) {
                 const card = get.cardPile(links[0][2], 'field') || game.createCard2(links[0][2]);
-                await game.asyncDelay();
                 await player.gain(card, 'gain2');
                 await player.equip(card);
             }
@@ -18187,7 +18183,6 @@ const skills = {
                     if (event.triggername != 'useCardAfter') {
                         player.storage.Europa_qinwang_check = player.storage.Europa_qinwang_check.map((info) => (info[0] == trigger.card ? [info[0], true] : info));
                     } else {
-                        await game.asyncDelay();
                         const list = player.getStorage('Europa_qinwang_check').find((list) => list[0] == trigger.card);
                         if (list[1] === true) {
                             await player.draw();

@@ -234,7 +234,6 @@ const skills = {
                         .forResult();
                     if (bool) {
                         target.$throw(cards);
-                        await game.asyncDelay();
                         player.addJudge({ name: links[0][2] }, cards);
                     }
                 }
@@ -1225,7 +1224,6 @@ const skills = {
                 .forResult();
         },
         async content(event, trigger, player) {
-            if (!event.isMine() && !event.isOnline()) await game.asyncDelay();
             player.tempBanSkill(event.name, 'roundStart', false);
             if (trigger.targets.includes(event.targets[0])) {
                 trigger.targets.removeArray(event.targets);
@@ -2109,7 +2107,6 @@ const skills = {
                     return true;
                 },
                 async content(event, trigger, player) {
-                    if (trigger.delay == false) await game.asyncDelay();
                     const { bool, links } = await player
                         .chooseButton()
                         .set('closeDialog', get.info('hoktianrenheyi').chooseButton.dialog(event, player))
@@ -3667,7 +3664,6 @@ const skills = {
                 },
                 async content(event, trigger, player) {
                     const fangtian = game.createCard('fangtian', 'diamond', 12);
-                    await game.asyncDelay();
                     if (!player.getEquips('fangtian').length) await player.equip(fangtian);
                 },
             },
@@ -4483,7 +4479,6 @@ const skills = {
                                         evt[key].cards = [];
                                         if (evt[key].target) evt[key].target = null;
                                         if (evt[key].targets) evt[key].targets = [];
-                                        await game.asyncDelay();
                                         evt.redo();
                                         return;
                                     }
@@ -7152,7 +7147,6 @@ const skills = {
                     return event.card && event.card.name == 'sha';
                 },
                 async content(event, trigger, player) {
-                    await game.asyncDelay();
                     if (!player.storage.hoksheshenwangsi) get.info('hoksheshenwangsi').initList(player);
                     let skills = player.storage.hoksheshenwangsi.randomGets(3);
                     if (!skills.length) return;
@@ -7593,7 +7587,6 @@ const skills = {
                 }
             }
             game.log(player, '的', get.position(link) == 'h' ? '一张手牌' : event.cost_data.cards, '被移动给了', target);
-            await game.asyncDelay();
             const { index } = await player
                 .chooseControl('伤害来源', '受伤角色')
                 .set('prompt', `你发动了${get.translation(event.name)},请选择成为此次伤害的伤害来源,或受伤角色.`)
@@ -11234,7 +11227,6 @@ const skills = {
                             player.node.avatar2.setBackground(player.name2, 'character');
                         }
                     }, player);
-                    await game.asyncDelay();
                     event.trigger('restEnd');
                     if (!event.restTargets) event.restTargets = [];
                     event.restTargets.add(player);
@@ -12902,7 +12894,6 @@ const skills = {
                             trigger.cards = hs;
                             trigger.card.cards = trigger.cards;
                             owner.$give(hs, trigger.player, false);
-                            await game.asyncDelay();
                             return;
                             break;
                         }
@@ -13313,7 +13304,6 @@ const skills = {
                 });
                 game.updateRoundNumber();
             }
-            await game.asyncDelay();
             const targets = lose_list
                 .map((i) => i[0])
                 .filter((j) => player.canUse({ name: 'wugu' }, j, false))
@@ -13800,7 +13790,6 @@ const skills = {
         },
         async content(event, trigger, player) {
             player.awakenSkill(event.name);
-            game.asyncDelay();
             ui.clear();
             var cards = get.cards(3);
             var dialog = ui.create.dialog('不屈铁壁', cards, true);
@@ -13921,7 +13910,6 @@ const skills = {
                         game.log(target, '选择了', button.link);
                     }
                 }
-                game.asyncDelay();
             }
             var dialog = get.idDialog(preResult);
             if (!dialog) {
@@ -14999,7 +14987,6 @@ const skills = {
             const card = get.cardPile('hokzhisan', 'field') || game.createCard2('hokzhisan', 'heart', 6);
             if (get.owner(card)) get.owner(card).$give(card, player, false);
             else player.$gain2(card, false);
-            await game.asyncDelay();
             await player.equip(card);
         },
         group: 'hokwanyunluo_use',
@@ -16334,7 +16321,6 @@ const skills = {
         async content(event, trigger, player) {
             const targets = event.targets;
             player.tempBanSkill(event.name, false, false);
-            if (!event.isMine() && !event.isOnline()) await game.asyncDelay();
             game.log(targets, '成为了', trigger.card, '的额外目标');
             trigger.parent.targets.addArray(targets);
         },
@@ -16462,7 +16448,6 @@ const skills = {
                     for (const target of targets) {
                         for (const puppet of puppets) {
                             if (puppet.canUse(card, target, false, false)) await puppet.useCard(card, target, false);
-                            await game.asyncDelay();
                         }
                     }
                 },
@@ -17376,7 +17361,6 @@ const skills = {
                     return player.getCards('he').some((card) => cards.includes(card));
                 },
                 async cost(event, trigger, player) {
-                    if (trigger.delay == false) await game.asyncDelay();
                     const cards = trigger.getg(player);
                     if (!player.countCards('h')) return;
                     event.result = await player
@@ -17432,7 +17416,6 @@ const skills = {
                     }
                 },
                 async content(event, trigger, player) {
-                    if (trigger.delay == false) await game.asyncDelay();
                     await player.gain(event.cost_data.links, 'gain2');
                     player.loseHp();
                 },

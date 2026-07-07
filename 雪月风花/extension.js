@@ -3049,7 +3049,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (cards) {
                                         cards.forEach((card) => ui.cardPile.appendChild(card));
                                         game.updateRoundNumber();
-                                        await game.asyncDelay();
                                         let num = Math.min(20, player.maxHp + game.roundNumber) + 2;
                                         while (num > 0) {
                                             let list = [];
@@ -5010,7 +5009,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     const cards = player.getCards('h');
                                     cards.forEach((card) => ui.cardPile.appendChild(card));
                                     game.updateRoundNumber();
-                                    await game.asyncDelayx();
                                     let pile = [];
                                     for (let i = 0; i < ui.cardPile.childNodes.length; i++) pile.push(ui.cardPile.childNodes[i]);
                                     let dialog = ui.create.dialog('获得' + num + '张牌', 'hidden');
@@ -5896,7 +5894,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             player.addTempSkill(name, { player: ['phaseDiscardAfter', 'phaseAfter'] });
                                             player.markAuto('蝶祈,蝶起,蝶绮', name);
                                             player.popup(name, 'thunder');
-                                            await game.asyncDelayx();
                                         }
                                     }
                                 },
@@ -5928,7 +5925,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     player.addTempSkill(name, { player: ['phaseDiscardAfter', 'phaseAfter'] });
                                                     player.markAuto('蝶祈,蝶起,蝶绮', name);
                                                     player.popup(name, 'thunder');
-                                                    await game.asyncDelayx();
                                                 }
                                             }
                                         },

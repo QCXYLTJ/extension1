@@ -9249,12 +9249,8 @@ export async function precontent(config, pack) {
                         game.swapSeat(list[0], list[1], false);
                     }
                 }, toSwapList);
-                await game.asyncDelay();
                 var evt = trigger.parent;
                 evt._isStandardLoop = false;
-                //evt.cancel(true,true,'notrigger');
-                // await trigger.cancel(true,true,'notrigger');
-                await game.asyncDelay();
                 var p = get.min(
                     game.filterPlayer(),
                     (a) => {
@@ -29751,7 +29747,6 @@ export async function precontent(config, pack) {
                     const target = targets[0];
                     player.line(target, 'fire');
                     lib.skill.minijianjie.addMark('huoji', player, target);
-                    await game.asyncDelayx();
                     if (game.hasPlayer((current) => current != target)) {
                         const { bool, targets } = await player
                             .chooseTarget(
@@ -29768,7 +29763,6 @@ export async function precontent(config, pack) {
                             const targetx = targets[0];
                             player.line(targetx, 'thunder');
                             lib.skill.minijianjie.addMark('lianhuan', player, targetx);
-                            await game.asyncDelayx();
                         }
                     }
                 }
@@ -29848,7 +29842,6 @@ export async function precontent(config, pack) {
                             mark = mark == '龙印' ? 'huoji' : 'lianhuan';
                             skill.removeMark(mark, player, targets[0]);
                             skill.addMark(mark, player, targets[1]);
-                            await game.asyncDelayx();
                         }
                     },
                     ai: {
@@ -29881,7 +29874,6 @@ export async function precontent(config, pack) {
                                 const target = targets[0];
                                 player.line(target, 'fire');
                                 lib.skill.minijianjie.addMark('huoji', player, target);
-                                await game.asyncDelayx();
                             }
                         }
                         if (lib.skill.minijianjie.hasMark('lianhuan', player, trigger.player)) {
@@ -29893,7 +29885,6 @@ export async function precontent(config, pack) {
                                 const target = targets[0];
                                 player.line(target, 'thunder');
                                 lib.skill.minijianjie.addMark('lianhuan', player, target);
-                                await game.asyncDelayx();
                             }
                         }
                     },

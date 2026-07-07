@@ -5421,7 +5421,6 @@ const content = async function () {
             player: ['phaseUseAfter'],
             global: ['roundStart'],
           });
-          await game.asyncDelayx();
         };
       }
       if (lib.skill.pingjian) {

@@ -21475,7 +21475,6 @@ export default async function () {
                                 target.popup('公开了手牌');
                                 await player.viewHandcards(target);
                                 player.storage.radiance_kaicheng.add(target);
-                                await game.asyncDelay();
                             }
                         }
                         if (game.hasPlayer((target) => target != player && !player.storage.radiance_kaicheng.includes(target))) {

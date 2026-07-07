@@ -22618,7 +22618,6 @@ export let info = {
               );
             }
           }
-          await game.asyncDelayx();
         }
         if (game.hasPlayer((target) => target.countCards('h') > 0)) {
           const dialog = ui.create.dialog('廓明:选择要明置的牌', 'hidden');

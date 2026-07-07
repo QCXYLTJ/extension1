@@ -16795,7 +16795,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 player.addTempSkill('tx_fhlt_tianze_1');
                                 await trigger.player.damage('thunder');
-                                await game.asyncDelayx();
                             },
                             group: 'tx_fhlt_tianze_2',
                             subSkill: {
@@ -36719,7 +36718,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (result.bool) {
                                         const card = result.links[0];
                                         player.$gain2(card, false);
-                                        await game.asyncDelayx();
                                         await player.chooseUseTarget(true, card, false);
                                     }
                                 }
@@ -36875,7 +36873,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 const num = Math.abs(event.targets[0].countCards('e') - event.targets[1].countCards('e'));
                                 await event.targets[0].swapEquip(event.targets[1]);
-                                await game.asyncDelayx();
                                 if (player.getDamagedHp() < num && player.countCards('e')) await player.chooseToDiscard('he', Math.min(2, num), true);
                             },
                         },

@@ -22744,7 +22744,6 @@ const skill = {
             });
             player.popup(get.cnNumber(top.length) + '上' + get.cnNumber(bottom.length) + '下');
             game.log(player, '将' + get.cnNumber(top.length) + '张牌置于牌堆顶');
-            game.asyncDelayx();
         },
         ai: {
             threaten: 1.2,
@@ -40839,7 +40838,6 @@ const skill = {
         async content(event, trigger, player) {
             player.gainMultiple(event.targets);
             trigger.changeToZero();
-            game.asyncDelay();
         },
         ai: {
             threaten: 2,

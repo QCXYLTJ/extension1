@@ -30384,7 +30384,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     const target = targets[0];
                                     player.line(target, 'fire');
                                     lib.skill.minijianjie.addMark('huoji', player, target);
-                                    await game.asyncDelayx();
                                     if (game.hasPlayer((current) => current != target)) {
                                         const { bool, targets } = await player
                                             .chooseTarget(
@@ -30401,7 +30400,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             const targetx = targets[0];
                                             player.line(targetx, 'thunder');
                                             lib.skill.minijianjie.addMark('lianhuan', player, targetx);
-                                            await game.asyncDelayx();
                                         }
                                     }
                                 }
@@ -30481,7 +30479,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             mark = mark == '龙印' ? 'huoji' : 'lianhuan';
                                             skill.removeMark(mark, player, targets[0]);
                                             skill.addMark(mark, player, targets[1]);
-                                            await game.asyncDelayx();
                                         }
                                     },
                                     ai: {
@@ -30514,7 +30511,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 const target = targets[0];
                                                 player.line(target, 'fire');
                                                 lib.skill.minijianjie.addMark('huoji', player, target);
-                                                await game.asyncDelayx();
                                             }
                                         }
                                         if (lib.skill.minijianjie.hasMark('lianhuan', player, trigger.player)) {
@@ -30526,7 +30522,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 const target = targets[0];
                                                 player.line(target, 'thunder');
                                                 lib.skill.minijianjie.addMark('lianhuan', player, target);
-                                                await game.asyncDelayx();
                                             }
                                         }
                                     },

@@ -5079,7 +5079,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 player.popup(get.cnNumber(top.length) + '上' + get.cnNumber(bottom.length) + '下');
                                 game.log(player, '将' + get.cnNumber(top.length) + '张牌置于牌堆顶');
-                                game.asyncDelayx();
                                 player.draw('bottom', 2);
                                 player.changeHujia();
                                 player.recover();
