@@ -43,18 +43,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             if (player.isUnderControl()) {
               game.modeSwapPlayer(player);
             }
-            var createDialog = function (player, id) {
+            const createDialog = function (player, id) {
               if (player == event.player) {
                 return;
               }
-              var str = get.translation(player) + '正在选择特权加点<br>';
-              for (var i = 1; i < 5; i++) {
+              let str = get.translation(player) + '正在选择特权加点<br>';
+              for (let i = 1; i < 5; i++) {
                 str += get.translation('xflevel' + i);
                 str += '　　';
               }
               ui.create.dialog(str, 'forcebutton').videoId = id;
             };
-            var switchToAuto = function () {
+            const switchToAuto = function () {
               game.pause();
               game.countChoose();
               setTimeout(function () {
@@ -82,8 +82,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.resume();
               }, 500);
             };
-            var chooseButton = function (player) {
-              var event = _status.event;
+            const chooseButton = function (player) {
+              const event = _status.event;
               player = event.player;
               event.status = {
                 回复: 0,
@@ -105,10 +105,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               event.dialog = ui.create.dialog(event.str, 'forcebutton', 'hidden');
               event.dialog.addText('<li>点击下方的按钮,可以增加对应特权的等级;或选择默认加点.', false);
               event.dialog.open();
-              for (var i in event.status) {
+              for (let i in event.status) {
                 event.dialog.content.childNodes[0].innerHTML = event.dialog.content.childNodes[0].innerHTML.replace(i, event.status[i]);
               }
-              for (var i = 0; i < event.dialog.buttons.length; i++) {
+              for (let i = 0; i < event.dialog.buttons.length; i++) {
                 event.dialog.buttons[i].classList.add('pointerdiv');
               }
               event.switchToAuto = function () {
@@ -126,7 +126,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 _status.imchoosing = false;
               };
               event.control = ui.create.control('回复', '减伤', '加伤', '摸牌', function (link) {
-                var event = _status.event;
+                const event = _status.event;
                 if (event.finishedx.includes(link)) {
                   return;
                 }
@@ -146,15 +146,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (event.powers[link] >= 65) {
                   event.powers[link] = 65;
                   event.status[link] = 5;
-                  var str = event.str.slice(0);
-                  for (var i in event.status) {
+                  let str = event.str.slice(0);
+                  for (let i in event.status) {
                     str = str.replace(i, event.status[i]);
                   }
                   event.dialog.content.childNodes[0].innerHTML = str;
                   event.finishedx.push(link);
                 } else {
-                  var str = event.str.slice(0);
-                  for (var i in event.status) {
+                  let str = event.str.slice(0);
+                  for (let i in event.status) {
                     str = str.replace(i, event.status[i]);
                   }
                   event.dialog.content.childNodes[0].innerHTML = str;
@@ -217,7 +217,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.resume();
                 _status.imchoosing = false;
               });
-              for (var i = 0; i < event.dialog.buttons.length; i++) {
+              for (let i = 0; i < event.dialog.buttons.length; i++) {
                 event.dialog.buttons[i].classList.add('selectable');
               }
               game.pause();
@@ -236,7 +236,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             ('step 2');
             game.broadcastAll('closeDialog', event.videoId);
             if (player.storage._HD_buff) {
-              var storage = player.storage._HD_buff;
+              const storage = player.storage._HD_buff;
             }
             if (storage[0] && storage[0] != 0) {
               player.addSkill('levelBuffXf_hF');
@@ -256,8 +256,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           intro: {
             name: '五阶特权',
             content(storage, player) {
-              var storage = [];
-              for (var i = 0; i < 4; i++) {
+              const storage = [];
+              for (let i = 0; i < 4; i++) {
                 if (player.storage._HD_buff[i]) {
                   storage[i] = player.storage._HD_buff[i];
                 } else {
@@ -304,7 +304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (player.identity == 'zhu') {
                   return false;
                 }
-                var numa = Math.random();
+                const numa = Math.random();
                 return player.storage._HD_buff && numa <= player.storage._HD_buff[0] && player.isDamaged();
               },
               content() {
@@ -325,7 +325,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (player.identity == 'zhu') {
                   return false;
                 }
-                var numa = Math.random();
+                const numa = Math.random();
                 return player.storage._HD_buff && numa <= player.storage._HD_buff[1];
               }, //QQQ
               trigger: {
@@ -352,7 +352,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (_status.currentPhase != player) {
                   return false;
                 }
-                var numa = Math.random();
+                const numa = Math.random();
                 return numa <= player.storage._HD_buff[2];
               },
               trigger: {
@@ -379,7 +379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (player.identity == 'zhu') {
                   return false;
                 }
-                var numa = Math.random();
+                const numa = Math.random();
                 return numa <= player.storage._HD_buff[3];
               },
               trigger: {
@@ -548,7 +548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           },
           content() {
             player.storage._HD_zhuangbei = true;
-            var card = get.cardPile2(function (card) {
+            const card = get.cardPile2(function (card) {
               return !player.hasCard(card) && get.type(card) == 'equip' && player.hasUseTarget(card);
             });
             if (card) {
@@ -696,7 +696,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             if (event.player == player || !event.cards || player.getCards('h').length == 0 || event.giver || event['bySelf'] != true || event.parent.name == '_yongjian_zengyu' || (player.name1 != 'hzc_zuoci' && player.name2 != 'hzc_zuoci')) {
               return false;
             }
-            for (var i of player.getCards('h')) {
+            for (let i of player.getCards('h')) {
               if (event.cards.includes(i)) {
                 return true;
               }
@@ -714,9 +714,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               (player.name1 == 'hzc_zuoci' || player.name2 == 'hzc_zuoci')
             );
           } else {
-            var es = player.getCards('e');
+            const es = player.getCards('e');
             if (event.cards) {
-              var isContains = event.cards.filter((card) => es.includes(card));
+              const isContains = event.cards.filter((card) => es.includes(card));
             }
             if (!es || !isContains || (isContains && isContains.length == 0) || (player.name1 != 'hzc_zuoci' && player.name2 != 'hzc_zuoci')) {
               return false;
@@ -731,12 +731,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 return isContains;
               }
             }
-            var evt = event.getl(player);
+            let evt = event.getl(player);
             return evt && evt.player == player && evt.es && evt.es.length;
           }
         },
         content() {
-          var name = event.triggername;
+          const name = event.triggername;
           if (name == 'gainBefore' || name == 'loseBefore') {
             trigger.cards.removeArray(player.getCards('h'));
           } else {
@@ -761,11 +761,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         forced: true,
         silent: true,
         filter(event, player, name) {
-          var es = player.getCards('e', function (card) {
+          const es = player.getCards('e', function (card) {
             return card.name == 'dw_ruyijingubang';
           });
           if (event.cards) {
-            var isContains = event.cards.filter((card) => es.includes(card));
+            const isContains = event.cards.filter((card) => es.includes(card));
           }
           if (!es || !isContains || (isContains && isContains.length == 0) || !player.hasSkill('dw_ruyi')) {
             return false;
@@ -780,7 +780,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               return isContains;
             }
           }
-          var evt = event.getl(player);
+          let evt = event.getl(player);
           return evt && evt.player == player && evt.es && evt.es.length;
         },
         content() {
@@ -788,7 +788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         },
         mod: {
           canBeGained(card, player, target, name, now) {
-            var player2 = game.findPlayer(function (player) {
+            const player2 = game.findPlayer(function (player) {
               return player.hasSkill('dw_ruyi');
             });
             if (!player2) {
@@ -799,7 +799,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }
           },
           canBeDiscarded(card, player, target, name, now) {
-            var player2 = game.findPlayer(function (player) {
+            const player2 = game.findPlayer(function (player) {
               return player.hasSkill('dw_ruyi');
             });
             if (!player2) {
@@ -811,8 +811,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           },
         },
       };
-      var initCSS = function () {
-        var url = 'extension/活动BOSS';
+      const initCSS = function () {
+        const url = 'extension/活动BOSS';
         lib.init.css(url, 'extension');
         lib.init.css(url, 'button_ol');
       };
@@ -821,14 +821,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         if (!this.isUnderControl(true)) {
           return;
         }
-        var info = lib.skill[skillname];
+        const info = lib.skill[skillname];
         if (!info) {
           return;
         }
         if (info.clickable) {
-          var button = ui.create.div('.TLAo-shunfaanniu', this);
+          const button = ui.create.div('.TLAo-shunfaanniu', this);
           button.innerHTML = get.translation(skillname);
-          var player = this;
+          let player = this;
           button.listen(function () {
             if (player.hasSkill(skillname, true, true, false)) {
               if (info.clickable) {
@@ -903,9 +903,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         },
       };
       game.washCardSP = function () {
-        var cards = get.cards(ui.cardPile.childElementCount + 1);
+        const cards = get.cards(ui.cardPile.childElementCount + 1);
         if (Array.isArray(cards)) {
-          for (var i of cards) {
+          for (let i of cards) {
             ui.cardPile.insertBefore(i, ui.cardPile.childNodes[get.rand(ui.cardPile.childElementCount)]);
           }
         }
@@ -981,8 +981,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'muniu') {
                 node.remove();
               }
@@ -1006,31 +1006,31 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.add('qihuan_du');
             lib.inpile.add('qihuan_cibi');
             lib.inpile.add('qihuan_yinyi');
-            var list = [3, 5, 7, 8];
-            for (var i = 0; i < 12; i++) {
-              var card = game.createCard2('qihuan_du', ['spade', 'club'].randomGet(), list[i]);
+            let list = [3, 5, 7, 8];
+            for (let i = 0; i < 12; i++) {
+              const card = game.createCard2('qihuan_du', ['spade', 'club'].randomGet(), list[i]);
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
               game.broadcastAll(function () {
                 lib.inpile.add('qihuan_du');
               });
             }
-            var card1 = game.createCard2('qihuan_yinyi', 'spade', 6);
+            const card1 = game.createCard2('qihuan_yinyi', 'spade', 6);
             ui.cardPile.insertBefore(card1, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
-            var card2 = game.createCard2('qihuan_yinyi', 'club', 6);
+            const card2 = game.createCard2('qihuan_yinyi', 'club', 6);
             ui.cardPile.insertBefore(card2, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
             game.broadcastAll(function () {
               lib.inpile.add('qihuan_yinyi');
             });
-            var card3 = game.createCard2('qihuan_cibi', 'spade', 2);
+            const card3 = game.createCard2('qihuan_cibi', 'spade', 2);
             ui.cardPile.insertBefore(card3, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
-            var card4 = game.createCard2('qihuan_cibi', 'spade', 9);
+            const card4 = game.createCard2('qihuan_cibi', 'spade', 9);
             ui.cardPile.insertBefore(card4, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
             game.broadcastAll(function () {
               lib.inpile.add('qihuan_cibi');
             });
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1051,16 +1051,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.inpile.add('nsdzz_baozhu');
             lib.inpile.sort(lib.sort.card);
-            var list = [3, 4, 5, 6, 7, 8];
-            for (var i = 0; i < 25; i++) {
-              var card = game.createCard2('nsdzz_baozhu', 'heart', list[i]);
+            let list = [3, 4, 5, 6, 7, 8];
+            for (let i = 0; i < 25; i++) {
+              const card = game.createCard2('nsdzz_baozhu', 'heart', list[i]);
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
               game.broadcastAll(function () {
                 lib.inpile.add('nsdzz_baozhu');
               });
             }
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (Math.random() >= 0.6) {
                 node.addGaintag('nsdzz_nianpaix');
               }
@@ -1099,8 +1099,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1123,8 +1123,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1158,9 +1158,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('muniu');
             lib.inpile.addArray(['hulaoguan_boss_wushuangfangtianji', 'hulaoguan_boss_shufazijinguan', 'hulaoguan_boss_hongmianbaihuapao', 'hulaoguan_boss_linglongshimandai', 'hulaoguan_boss_lianjunshengyan']);
             lib.inpile.sort(lib.sort.card);
-            var equiplist = [];
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            const equiplist = [];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'bagua') {
                 node.init([node.suit, node.number, 'hulaoguan_boss_linglongshimandai']);
                 equiplist.push(node);
@@ -1203,8 +1203,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1227,8 +1227,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1252,8 +1252,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1281,8 +1281,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1308,8 +1308,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1334,8 +1334,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'zhuge') {
                 node.classList.remove('fullskin');
                 node.init([node.suit, node.number, 'liannu']);
@@ -1365,8 +1365,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1386,8 +1386,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1408,8 +1408,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1434,8 +1434,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1453,8 +1453,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'muniu') {
                 node.remove();
               }
@@ -1480,8 +1480,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1505,8 +1505,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.inpile.remove('muniu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'muniu') {
                 node.remove();
               }
@@ -1521,8 +1521,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           init() {
             event.skill = ['qlzdj_bingli', 'qlzdj_liangcao', 'qlzdj_shiqi'];
             event.num = 0;
-            for (var i = 0; i < event.skill.length; i++) {
-              var node = event.skill[i];
+            for (let i = 0; i < event.skill.length; i++) {
+              const node = event.skill[i];
               if (Math.random() >= event.num) {
                 game.addGlobalSkill(node);
                 if ((event.num = 0)) {
@@ -1543,8 +1543,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1572,8 +1572,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1595,8 +1595,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             _status.additionalReward = function () {
               return 500;
             };
-            for (var i = 0; i < ui.cardPile.childNodes.length; i++) {
-              var card = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childNodes.length; i++) {
+              const card = ui.cardPile.childNodes[i];
               if (get.type(card) == 'equip') {
                 game.cardsGotoSpecial(card);
               }
@@ -1625,8 +1625,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1656,8 +1656,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1688,16 +1688,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.add('liannu');
             lib.inpile.add('lzzd_zongzi');
             lib.inpile.sort(lib.sort.card);
-            var list = [3, 4, 5, 6, 7, 8];
-            for (var i = 0; i < 20; i++) {
-              var card = game.createCard2('lzzd_zongzi', 'heart', list[i]);
+            let list = [3, 4, 5, 6, 7, 8];
+            for (let i = 0; i < 20; i++) {
+              const card = game.createCard2('lzzd_zongzi', 'heart', list[i]);
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
               game.broadcastAll(function () {
                 lib.inpile.add('lzzd_zongzi');
               });
             }
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1723,8 +1723,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'zhuge') {
                 node.classList.remove('fullskin');
                 node.init([node.suit, node.number, 'liannu']);
@@ -1750,8 +1750,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('zhuge');
             lib.inpile.add('liannu');
             lib.inpile.sort(lib.sort.card);
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'lebu' || node.name == 'bingliang' || node.name == 'muniu') {
                 node.remove();
               }
@@ -1774,8 +1774,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             game.addGlobalSkill('sw_shendie');
             game.addGlobalSkill('sw_shensha');
             game.addGlobalSkill('swzs_die');
-            var list = ['lebu', 'bingliang'];
-            for (var i of game.players) {
+            let list = ['lebu', 'bingliang'];
+            for (let i of game.players) {
               switch (i.name1) {
                 case 'shen_guanyu': {
                   i.equip(game.createCard2('guilongzhanyuedao', 'spade', 5));
@@ -1870,8 +1870,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('jiedao');
             lib.inpile.add('sadouchengbing');
             lib.inpile.add('yihuajiemu');
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-              var node = ui.cardPile.childNodes[i];
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+              const node = ui.cardPile.childNodes[i];
               if (node.name == 'wuzhong') {
                 node.init([node.suit, node.number, 'sadouchengbing']);
               } else if (node.name == 'jiedao') {
@@ -1884,13 +1884,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.remove('lebu');
             lib.inpile.remove('bingliang');
             lib.inpile.remove('muniu');
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
               if (ui.cardPile.childNodes[i].name == 'lebu' || ui.cardPile.childNodes[i].name == 'bingliang') {
                 ui.cardPile.childNodes[i].remove();
                 break;
               }
             }
-            for (var i = 0; i < ui.cardPile.childElementCount; i++) {
+            for (let i = 0; i < ui.cardPile.childElementCount; i++) {
               if (ui.cardPile.childNodes[i].name == 'muniu') {
                 ui.cardPile.childNodes[i].remove();
                 break;
@@ -10648,7 +10648,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
       const numfunc = function () {
         if (!lib.number) {
           lib.number = [];
-          for (var i = 1; i < 14; i++) {
+          for (let i = 1; i < 14; i++) {
             lib.number.add(i);
           }
         } //添加lib.number
@@ -10694,7 +10694,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           }
           const clonedObj = {};
           visited.set(obj, clonedObj);
-          for (let key in obj) {
+          for (const key in obj) {
             if (Object.hasOwn(obj, key)) {
               clonedObj[key] = deepClone(obj[key], visited);
             }
@@ -10932,7 +10932,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               ai: {
                 equipValue(card, player) {
-                  var num = 4 + (player.getEnemies().length - 1);
+                  let num = 4 + (player.getEnemies().length - 1);
                   return Math.min(num, 6);
                 },
                 basic: {
@@ -10968,7 +10968,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               ai: {
                 equipValue(card, player) {
-                  var num = 7.5 + player.getDamagedHp() / 5;
+                  let num = 7.5 + player.getDamagedHp() / 5;
                   return Math.min(num, 9.5);
                 },
                 basic: {
@@ -11174,7 +11174,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               selectTarget: 1,
               content() {
                 'step 0';
-                var num = [1, 2].randomGet();
+                let num = [1, 2].randomGet();
                 target.damage(num).type = 'hezong_shangyangbianfa';
               },
               ai: {
@@ -11199,7 +11199,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               type: 'trick',
               filterTarget(card, player, target) {
                 return target.getSkills(null, false, false).filter(function (skill) {
-                  var info = get.info(skill);
+                  const info = get.info(skill);
                   return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                 }).length;
               },
@@ -11210,18 +11210,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 event.skills = [];
                 if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                  var skills = target.getSkills(null, false, false).filter(function (skill) {
-                    var info = get.info(skill);
+                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                    const info = get.info(skill);
                     return (player.getFriends().includes(target) || target == player ? info : info && info.ai && info.ai.neg) && target.storage.nianshou_lingli_skill.includes(skill) && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
                 } else {
-                  var skills = target.getSkills(null, false, false).filter(function (skill) {
-                    var info = get.info(skill);
+                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                    const info = get.info(skill);
                     return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
                   target.addMark('nianshou_lingli_skill_extra', 1);
                 }
-                for (var i = 0; i < skills.length; i++) {
+                for (let i = 0; i < skills.length; i++) {
                   event.skills.push(skills[i]);
                 }
                 event.skill = event.skills.randomGet();
@@ -11234,8 +11234,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 target.update();
                 ('step 1');
                 if (event.skill) {
-                  var list = [];
-                  for (var i in lib.character) {
+                  let list = [];
+                  for (let i in lib.character) {
                     if (lib.character[i][4].includes('boss')) {
                       continue;
                     }
@@ -11246,19 +11246,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   if (!event.skills2) {
                     event.skills2 = [];
-                    for (var i of list) {
+                    for (let i of list) {
                       event.skills2.addArray(
                         (lib.character[i][3] || []).filter(function (skill) {
-                          var info = get.info(skill);
+                          const info = get.info(skill);
                           return (player.getFriends().includes(target) || target == player ? info : info && info.ai && info.ai.neg) && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                         }),
                       );
                     }
                   }
-                  var skills = event.skills2;
+                  const skills = event.skills2;
                   skills.randomSort();
-                  var list = [];
-                  for (var i = 0; i < skills[i].length; i++) {
+                  let list = [];
+                  for (let i = 0; i < skills[i].length; i++) {
                     if (!target.storage.nianshou_lingli_skill.includes(skills[i]) && !list.includes(skills[i]) && !target.getSkills(null, false, false).includes(skills[i]) && !get.skillInfoTranslation(skills[i], player).length == 0) {
                       list.push(skills[i]);
                     }
@@ -11284,8 +11284,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 result: {
                   target(player, target) {
                     if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                      var skills = target.getSkills(null, false, false).filter(function (skill) {
-                        var info = get.info(skill);
+                      const skills = target.getSkills(null, false, false).filter(function (skill) {
+                        const info = get.info(skill);
                         return target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length && target.storage.nianshou_lingli_skill.includes(skill) && info && info.ai && info.ai.neg && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                       });
                       if (target.storage.nianshou_lingli_skill.length == skills.length) {
@@ -11305,13 +11305,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               audio: true,
               type: 'trick',
               filterTarget(card, player, target) {
-                return (
-                  target != player &&
-                  target.getSkills(null, false, false).filter(function (skill) {
-                    var info = get.info(skill);
-                    return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
-                  }).length
-                );
+                return (target != player && target.getSkills(null, false, false).filter(function (skill) {
+                  const info = get.info(skill);
+                  return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
+                }).length);
               },
               content() {
                 if (!target.storage.nianshou_lingli_skill) {
@@ -11319,18 +11316,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 event.skills = [];
                 if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                  var skills = target.getSkills(null, false, false).filter(function (skill) {
-                    var info = get.info(skill);
+                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                    const info = get.info(skill);
                     return target.storage.nianshou_lingli_skill.includes(skill) && info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
                 } else {
-                  var skills = target.getSkills(null, false, false).filter(function (skill) {
-                    var info = get.info(skill);
+                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                    const info = get.info(skill);
                     return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
                   target.addMark('nianshou_lingli_skill_extra', 1);
                 }
-                for (var i = 0; i < skills.length; i++) {
+                for (let i = 0; i < skills.length; i++) {
                   event.skills.push(skills[i]);
                 }
                 event.skill = event.skills.randomGet();
@@ -11352,8 +11349,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 result: {
                   target(player, target) {
                     if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                      var skills = target.getSkills(null, false, false).filter(function (skill) {
-                        var info = get.info(skill);
+                      const skills = target.getSkills(null, false, false).filter(function (skill) {
+                        const info = get.info(skill);
                         return target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length && target.storage.nianshou_lingli_skill.includes(skill) && info && info.ai && info.ai.neg && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                       });
                       return target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length ? (Math.random() <= skills.length / target.storage.nianshou_lingli_skill.length ? 1 : -1) : -1;
@@ -11390,7 +11387,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 order: 2.1,
                 result: {
                   target(player, target) {
-                    var n = 0;
+                    let n = 0;
                     if (target.storage.nianshou_baozhu_skill) {
                       n = target.storage.nianshou_baozhu_skill;
                     }
@@ -11411,7 +11408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return get.order({ name: 'sha' }) - 0.1;
                 },
                 equipValue(card, player) {
-                  var result = (function () {
+                  let result = (function () {
                     if (
                       !game.hasPlayer(function (current) {
                         return get.distance(player, current) <= 1 && player.canUse('sha', current) && get.effect(current, { name: 'sha' }, player, player) > 0;
@@ -11424,7 +11421,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         return 10;
                       }
                     }
-                    var num = player.countCards('h', 'sha');
+                    let num = player.countCards('h', 'sha');
                     if (num > 1) {
                       return 6 + num;
                     }
@@ -11654,8 +11651,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (!target.storage.hzc_haoshouqiongjing) {
                   target.storage.hzc_haoshouqiongjing = [];
                 }
-                var list = [];
-                for (var i in lib.character) {
+                let list = [];
+                for (let i in lib.character) {
                   if (lib.character[i][4].includes('boss')) {
                     continue;
                   }
@@ -11665,21 +11662,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   list.push(i);
                 }
                 if (!skills) {
-                  var skills = [];
-                  for (var i of list) {
+                  const skills = [];
+                  for (let i of list) {
                     skills.addArray(
                       (lib.character[i][3] || []).filter(function (skill) {
-                        var info = get.info(skill);
+                        const info = get.info(skill);
                         return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill;
                       }),
                     );
                   }
                 }
                 event.num = target.storage.hzc_haoshouqiongjing.length;
-                var num1 = 10 * (event.num + 1);
-                var num2 = num1 + 10;
-                var list2 = [];
-                for (var i in lib.skill) {
+                const num1 = 10 * (event.num + 1);
+                const num2 = num1 + 10;
+                const list2 = [];
+                for (let i in lib.skill) {
                   if (!skills.includes(i)) {
                     continue;
                   }
@@ -11689,13 +11686,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   if (!get.translation(i, 'info') || get.translation(i + '_info').length == 0) {
                     continue;
                   }
-                  var leng = get.translation(i + '_info').replace(new RegExp('<(\S*?)[^>]*>.*?|<.*? />', 'gi'), '').length;
+                  const leng = get.translation(i + '_info').replace(new RegExp('<(\S*?)[^>]*>.*?|<.*? />', 'gi'), '').length;
                   if (leng >= num1 && leng <= num2) {
                     list2.add(i);
                   }
                 }
-                var func = function (list2) {
-                  var info = get.info(list2);
+                const func = function (list2) {
+                  const info = get.info(list2);
                   if (!info || info.unique || info.limited || info.juexingji || info.charlotte || info.zhuSkill || info.hiddenSkill || info.dutySkill) {
                     return false;
                   }
@@ -11710,22 +11707,22 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return get.max(list, get.skillRank, 'item');
                 };
                 if (event.isMine()) {
-                  var dialog = ui.create.dialog('forcebutton');
+                  const dialog = ui.create.dialog('forcebutton');
                   dialog.add('皓首穷经:选择获得一项技能');
-                  var clickItem = function () {
+                  const clickItem = function () {
                     _status.event._result = this.link;
                     dialog.close();
                     game.resume();
                   };
-                  for (var i = 0; i < list.length; i++) {
+                  for (let i = 0; i < list.length; i++) {
                     if (lib.translate[list[i] + '_info']) {
-                      var translation = get.translation(list[i]);
+                      let translation = get.translation(list[i]);
                       if (translation[0] == '新' && translation.length == 3) {
                         translation = translation.slice(1, 3);
                       } else {
                         translation = translation.slice(0, 2);
                       }
-                      var item = dialog.add('<div class="popup pointerdiv" style="width:100%;display:inline-block"><div class="skill">【' + translation + '】</div><div>' + lib.translate[list[i] + '_info'] + '</div></div>');
+                      const item = dialog.add('<div class="popup pointerdiv" style="width:100%;display:inline-block"><div class="skill">【' + translation + '】</div><div>' + lib.translate[list[i] + '_info'] + '</div></div>');
                       item.firstChild.addEventListener('click', clickItem);
                       item.firstChild.link = list[i];
                     }
@@ -11743,10 +11740,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 ('step 1');
                 _status.imchoosing = false;
-                var link = result;
+                const link = result;
                 target.storage.hzc_haoshouqiongjing.add(link);
                 if (target.storage.hzc_haoshouqiongjing.length >= 4) {
-                  var skill = target.storage.hzc_haoshouqiongjing.slice(target.storage.hzc_haoshouqiongjing.length - 4);
+                  const skill = target.storage.hzc_haoshouqiongjing.slice(target.storage.hzc_haoshouqiongjing.length - 4);
                   target.removeSkill(skill[0]);
                 }
                 target.addSkillLog(link);
@@ -11756,7 +11753,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 basic: {
                   order: 12,
                   useful() {
-                    var player = _status.event.player;
+                    let player = _status.event.player;
                     if (player.name1 != 'hzc_zuoci' && player.name2 != 'hzc_zuoci') {
                       return 6;
                     }
@@ -11799,8 +11796,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               ai: {
                 basic: {
                   useful() {
-                    var player = _status.event.player;
-                    for (var i = 0; i < game.dead.length; i++) {
+                    let player = _status.event.player;
+                    for (let i = 0; i < game.dead.length; i++) {
                       if (get.attitude(player, game.dead[i]) > 1) {
                         return 8;
                       }
@@ -11808,7 +11805,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return 0;
                   },
                   value(card, player) {
-                    for (var i = 0; i < game.dead.length; i++) {
+                    for (let i = 0; i < game.dead.length; i++) {
                       if (get.attitude(player, game.dead[i]) > 1) {
                         return 12;
                       }
@@ -11817,7 +11814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   },
                 },
                 order(card, player) {
-                  for (var i = 0; i < game.dead.length; i++) {
+                  for (let i = 0; i < game.dead.length; i++) {
                     if (get.attitude(player, game.dead[i]) > 3) {
                       return 7;
                     }
@@ -11826,7 +11823,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 },
                 result: {
                   player(player) {
-                    for (var i = 0; i < game.dead.length; i++) {
+                    for (let i = 0; i < game.dead.length; i++) {
                       if (get.attitude(player, game.dead[i]) > 3) {
                         return 2;
                       }
@@ -11912,7 +11909,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   if (get.damageEffect(player, player, player, 'fire') >= 0) {
                     return 10;
                   }
-                  var num =
+                  let num =
                     3 -
                     game.countPlayer(function (current) {
                       return get.attitude(current, player) < 0;
@@ -11949,12 +11946,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 return target.countCards('h') + target.countCards('h') > 1;
               },
               content() {
-                var cards = player.getCards('h').concat(target.getCards('h'));
-                var list1 = [];
-                var list2 = [];
-                var list = [list1, list2];
+                const cards = player.getCards('h').concat(target.getCards('h'));
+                const list1 = [];
+                const list2 = [];
+                let list = [list1, list2];
                 if (Array.isArray(cards)) {
-                  for (var i of cards) {
+                  for (let i of cards) {
                     list.randomGet().push(i);
                   }
                 }
@@ -11975,8 +11972,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 },
                 result: {
                   target(player, target) {
-                    var ph = player.countCards('h') - 1;
-                    var th = target.countCards('h');
+                    const ph = player.countCards('h') - 1;
+                    const th = target.countCards('h');
                     return ph - th;
                   },
                 },
@@ -12004,10 +12001,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 },
                 result: {
                   target(player, target) {
-                    var ph = player.hp;
-                    var pm = player.maxHp;
-                    var th = target.hp;
-                    var tm = target.maxHp;
+                    const ph = player.hp;
+                    const pm = player.maxHp;
+                    const th = target.hp;
+                    const tm = target.maxHp;
                     if (ph == pm && th == tm) {
                       return 0;
                     }
@@ -12063,9 +12060,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (target != player) {
                   target.link(false);
                 } else if (typeof result.control == 'string') {
-                  var index = result.control.indexOf('回');
-                  var draw = parseInt(result.control.slice(1, index));
-                  var recover = parseInt(result.control.slice(index + 1));
+                  const index = result.control.indexOf('回');
+                  const draw = parseInt(result.control.slice(1, index));
+                  const recover = parseInt(result.control.slice(index + 1));
                   if (draw) {
                     target.draw(draw);
                   }
@@ -12121,9 +12118,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               type: 'equip',
               subtype: 'equip2',
               onLose() {
-                var next = game.createEvent('qihuan_yinyi_lose');
+                const next = game.createEvent('qihuan_yinyi_lose');
                 event.next.remove(next);
-                var evt = event.parent;
+                let evt = event.parent;
                 if (evt.getlx === false) {
                   evt = evt.parent;
                 }
