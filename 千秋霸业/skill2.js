@@ -37328,12 +37328,12 @@ const skill = {
         return get.value(button.link);
       });
       ('step 2');
-      event.cards = result.links;
-      ('step 3');
-      var card = event.cards[0];
-      player.storage.lg_jianjing.push(card);
-      target.$throw(card, 1000);
-      target.randomDiscard('hej');
+      if (result.links?.length) {
+        var card = result.links[0];
+        player.storage.lg_jianjing.push(card);
+        target.$throw(card, 1000);
+        target.randomDiscard('hej');
+      }//QQQ
     },
     global: ['lg_jianjing_lose'],
     subSkill: {
