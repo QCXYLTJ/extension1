@@ -339,8 +339,8 @@ const skill = {
           if (lib.skill.xn_yaoli_sha.filterx(trigger, player) == true) {
             player
               .chooseTarget('为' + get.translation(trigger.card) + '指定一个额外目标', function (card, player, target) {
-                var evt = _status.event.getTrigger(),
-                  player = trigger.player;
+                var evt = _status.event.getTrigger();
+                player = trigger.player;
                 return !evt.targets.includes(target) && lib.filter.filterTarget(evt.card, player, target);
               })
               .set('ai', function (target) {
@@ -36925,7 +36925,7 @@ const skill = {
       player: 'useCard',
     },
     filter(event, player, name) {
-      boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
+      const boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
       return boss_wenzuo.includes(player.name) && get.color(event.card) == 'black' && player.identity != 'cai';
     },
     forced: true,
@@ -36940,7 +36940,7 @@ const skill = {
       player: 'useCard',
     },
     filter(event, player, name) {
-      boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
+      const boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
       return boss_mouding.includes(player.name) && get.type2(event.card) == 'trick' && player.identity != 'cai';
     },
     forced: true,
@@ -36953,7 +36953,7 @@ const skill = {
   tsld_jinguo: {
     trigger: { source: 'damageBegin1' },
     filter(event, player, name) {
-      boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
+      const boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
       return boss_jinguo.includes(player.name) && event.player.sex == 'male' && player.identity != 'cai';
     },
     forced: true,
@@ -36968,7 +36968,7 @@ const skill = {
       player: 'useCard',
     },
     filter(event, player, name) {
-      boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
+      const boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
       for (var i = 0; i < ui.discardPile.childElementCount; i++) {
         if (ui.discardPile.childNodes[i].name == event.card.name) {
           return false;
@@ -36986,7 +36986,7 @@ const skill = {
   tsld_shenjiang: {
     trigger: { source: 'damageBegin1' },
     filter(event, player, name) {
-      boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
+      const boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
       return boss_shenjiang.includes(player.name) && event.player.group != player.group && player.identity != 'cai';
     },
     forced: true,
@@ -37004,7 +37004,7 @@ const skill = {
     charlotte: true,
     ruleSkill: true,
     filter(event, player, name) {
-      boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
+      const boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
       return boss_shenshou.includes(player.name) && (event.animate == 'draw' || event.parent.name == 'draw') && player.identity != 'cai';
     },
     content() {
@@ -37017,7 +37017,7 @@ const skill = {
     charlotte: true,
     ruleSkill: true,
     filter(event, player, name) {
-      boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
+      const boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
       return (
         boss_baigui.includes(player.name) &&
         game.hasPlayer(function (current) {
@@ -37045,7 +37045,7 @@ const skill = {
     charlotte: true,
     ruleSkill: true,
     filter(event, player, name) {
-      boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
+      const boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
       return boss_shenhua.includes(player.name) && !player.storage.tsld_shenhua && player.identity != 'cai';
     },
     content() {
@@ -43755,20 +43755,19 @@ const skill = {
     },
     forced: true,
     filter(event, player) {
-      if (!player.storage.longzhou_xuntan) {
-        player.storage.longzhou_xuntan = 0;
-      }
-      if (event.num > 0) {
-        player.storage.longzhou_xuntan += event.num;
-      }
-      return event.num > 0 && player.storage.longzhou_xuntan != 0 && (Math.floor(player.storage.longzhou_xuntan + event.num) / 5 - Math.floor(player.storage.longzhou_xuntan) / 5 >= 1 || player.storage.longzhou_xuntan % 5 == 0) && !_status.dying.length;
+      return event.num > 0;
     },
-    content() {
-      const evt = _status.event.getParent('phase');
-      if (evt && evt.name) {
-        evt.finish();
+    async content(event, trigger, player) {
+      player.storage.longzhou_xuntan ??= 0;
+      player.storage.longzhou_xuntan += trigger.num;
+      while (player.storage.longzhou_xuntan > 5) {
+        player.storage.longzhou_xuntan -= 5;
+        const evt = _status.event.getParent('phase');
+        if (evt && evt.name) {
+          evt.finish();
+        }
+        await player.phase('nodelay');
       }
-      player.phase('nodelay');
     },
   },
   longzhou_wanshe: {
