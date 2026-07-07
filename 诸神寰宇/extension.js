@@ -11885,7 +11885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.markSkill('zshy_kanpo');
 								}
 							},
-							content: function* (event, map) {
+							async content(event, map) {
 								var player = map.player,
 									storage = player.storage.zshy_kanpo;
 								player.markSkill('zshy_kanpo');
@@ -11915,7 +11915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.controls = [ui.create.control(controls.concat(['清除选择', 'stayleft']))];
 								};
 								if (event.isMine()) func();
-								var result = yield player
+								var result = await player
 									.chooseButton(['看破:是否记录至多7个牌名？', [list, 'vcard']], [1, 7], false)
 									.set('ai', function (button) {
 										if (ui.selected.buttons.length >= 7) return 0;

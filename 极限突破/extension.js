@@ -7107,7 +7107,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             getNumber: 7,
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 const player = map.player;
                                 const storage = player.getStorage('jxtp_kanpo').slice();
                                 if (storage.length) {
@@ -7154,7 +7154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else if (event.isOnline()) {
                                     event.player.send(func);
                                 }
-                                let result = yield player
+                                let result = await player
                                     .chooseButton(['看破:是否记录七个牌名？', [list, 'vcard']], [1, 7], true)
                                     .set('ai', function (button) {
                                         switch (button.link[2]) {
@@ -14801,14 +14801,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             logTarget: 'player',
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 let player = map.player,
                                     trigger = map.trigger,
                                     target = trigger.player;
                                 let cards = get.cards(1);
-                                yield game.cardsDiscard(cards);
+                                await game.cardsDiscard(cards);
                                 player.showCards(cards, get.translation(player) + '发动了【州贤】');
-                                let result = yield target
+                                let result = await target
                                     .chooseToDiscard(2, 'h', '州贤:弃置两张与展示牌相同类别的手牌,或令此牌对' + get.translation(player) + '无效', (card, player) => {
                                         return _status.event.cards.some((cardx) => get.type2(cardx) == get.type2(card));
                                     })
@@ -15003,7 +15003,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.name != 'phase' || game.phaseNumber == 0;
                             },
                             forced: true,
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 const player = map.player,
                                     trigger = map.trigger;
                                 if (trigger.name != 'phaseZhunbei') {
@@ -15012,7 +15012,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (trigger.name != 'phase' || game.phaseNumber == 0) {
                                         result = { index: get.rand(0, 2) };
                                     } else {
-                                        result = yield player
+                                        result = await player
                                             .chooseControl()
                                             .set('choiceList', choiceList)
                                             .set('ai', () => get.rand(0, 2));
@@ -15036,7 +15036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 targets = targets.filter((target) => target != player && target.countCards('h'));
                                 if (targets.length) {
-                                    let result = yield player
+                                    let result = await player
                                         .chooseTarget(
                                             '请选择【诡谋】的目标',
                                             '观看一名可选择的角色的手牌并将其中两张牌交给另一名其他角色或令其失去2点体力',
@@ -15052,7 +15052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (result.bool) {
                                         let target = result.targets[0];
                                         player.addExpose(0.3);
-                                        const result2 = yield player
+                                        const result2 = await player
                                             .choosePlayerCard(2, target, 'he', 'visible', true)
                                             .set('ai', (button) => {
                                                 return get.value(button.link);
@@ -15065,7 +15065,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (!game.hasPlayer((targetx) => targetx != player && targetx != target)) {
                                                 result3 = { bool: false };
                                             } else {
-                                                result3 = yield player
+                                                result3 = await player
                                                     .chooseTarget('是否令另一名角色获得' + get.translation(cards) + '？', (card, player, target) => {
                                                         return target != _status.event.target;
                                                     })

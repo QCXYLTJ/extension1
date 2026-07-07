@@ -16499,9 +16499,9 @@ const skill = {
                     viewAs: { name: links[0][2] },
                     filterCard: () => false,
                     selectCard: -1,
-                    *precontent(event, map) {
+                    async precontent(event, map) {
                         const player = map.player;
-                        const result = yield player.choosePlayerCard(player, 'ej', '请选择' + get.translation(event.result.card) + '转化的卡牌').set('ai', (button) => {
+                        const result = await player.choosePlayerCard(player, 'ej', '请选择' + get.translation(event.result.card) + '转化的卡牌').set('ai', (button) => {
                             return get.value(button.link) * (get.position(button.link) == 'e' ? -1 : 1);
                         });
                         if (result.cards) {
@@ -16533,7 +16533,7 @@ const skill = {
                     return event.skill == 'shanhe_lieshi_backup';
                 },
                 forced: true,
-                *content(event, map) {
+                async content(event, map) {
                     const player = map.player,
                         trigger = map.trigger,
                         target = trigger.targets[0];
@@ -16568,7 +16568,7 @@ const skill = {
                         }
                     }
                     if (choice.length) {
-                        const result = yield player
+                        const result = await player
                             .chooseControl(choice)
                             .set('choiceList', choiceList)
                             .set('ai', () => {
@@ -18348,7 +18348,7 @@ const skill = {
             }
             return event.target.getHp() <= 2 || player.getDamagedHp() > 1 || !player.hasCard({ color: 'black' }, 'hes');
         },
-        content: function* (event, map) {
+        async content(event, map) {
             var player = map.player,
                 trigger = map.trigger,
                 result = map.result;
@@ -18482,7 +18482,7 @@ const skill = {
                 }
             }
             if (withme) {
-                result = yield next;
+                result = await next;
                 if (_status.connectMode) {
                     game.me.unwait(result, game.me);
                 } else {
@@ -18497,12 +18497,12 @@ const skill = {
             }
             if (withol && !event.resultOL) {
                 game.pause();
-                yield null;
+                await null;
             }
             if (ai_targets.length) {
                 withai = true;
                 game.pause();
-                yield null;
+                await null;
             }
             if (_status.connectMode) {
                 for (var i of [player, target]) {
@@ -18593,7 +18593,7 @@ const skill = {
                 event.finish();
                 return;
             }
-            result = yield player
+            result = await player
                 .chooseTarget(`狼蹈:为${get.translation(trigger.card)}额外指定至多${get.cnNumber(extraTargetNum)}个目标`, (card, player, target) => {
                     return !_status.event.targets.includes(target) && player.canUse(_status.event.card, target);
                 })
@@ -26240,7 +26240,7 @@ const skill = {
             return target && target.isIn();
         },
         forced: true,
-        content: function* (event, map) {
+        async content(event, map) {
             var player = map.player,
                 trigger = map.trigger;
             if (!trigger.card || !trigger.cards || !trigger.cards.length) {
@@ -26272,7 +26272,7 @@ const skill = {
                 trigger: { global: 'phaseEnd' },
                 forced: true,
                 popup: false,
-                content: function* (event, map) {
+                async content(event, map) {
                     var player = map.player;
                     var mapx = {};
                     var history = player.getHistory('damage').concat(player.getHistory('sourceDamage'));
@@ -26312,7 +26312,7 @@ const skill = {
                         if (list.length == 1) {
                             result = { bool: true, links: [['', '', list[0]]] };
                         } else {
-                            result = yield player
+                            result = await player
                                 .chooseButton([`畜鸣:请选择要对${get.translation(current)}使用的牌`, [list, 'vcard']], true)
                                 .set('ai', (button) => {
                                     var player = get.player();

@@ -3258,7 +3258,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
       filterTarget(card, player, target) {
         return target.countCards('h') <= player.countCards('h') + 1 && player.canCompare(target) && !player.storage.mengsiling.includes(target);
       },
-      content: function* (event, map) {
+      async content(event, map) {
         const player = map.player,
           target = event.targets[0];
         player.storage.mengsiling.push(target);
@@ -3270,11 +3270,11 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             player.storage.mengsiling = [];
           });
         player.draw();
-        const result = yield player.chooseToCompare(target);
+        const result = await player.chooseToCompare(target);
         if (result.bool) {
           player.useCard({ name: 'zhibi' }, [target]);
           let result2;
-          if (target.countCards('h')) result2 = yield player.discardPlayerCard('弃置其一张牌,否则对其造成1点伤害', target, 'he').set('ai', (card) => false);
+          if (target.countCards('h')) result2 = await player.discardPlayerCard('弃置其一张牌,否则对其造成1点伤害', target, 'he').set('ai', (card) => false);
           else result2 = { bool: false };
           if (!result2.bool) target.damage();
         }
@@ -3555,14 +3555,14 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
       filterTarget(card, player, target) {
         return player.canCompare(target);
       },
-      content: function* (event, map) {
+      async content(event, map) {
         var player = map.player,
           trigger = map.trigger,
           target = event.target;
-        const result = yield player.chooseToCompare(target);
+        const result = await player.chooseToCompare(target);
         if (result.bool) {
           if (player.hasDisabledSlot() || target.hasDisabledSlot()) {
-            const result2 = yield player
+            const result2 = await player
               .chooseControl('摸一张牌', '回复装备栏')
               .set('prompt', '借鉴:令你们')
               .set('ai', () => (Math.random() > 0.3 ? '回复装备栏' : '摸一张牌'));
@@ -3600,7 +3600,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             }
           }
           if (list.length) {
-            const result3 = yield player
+            const result3 = await player
               .chooseButton([`视为使用一张字数为<span class='firetext'>${num}</span>的基本牌或普通锦囊牌？`, [list, 'vcard']])
               .set('num', num)
               .set('filterButton', function (button) {
@@ -22988,7 +22988,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           },
           charlotte: true,
           forced: true,
-          content: function* (event, map) {
+          async content(event, map) {
             const player = map.player,
               cards = player.getCards('h');
             if (player.countCards('h')) {
@@ -22996,7 +22996,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               if (cards.length == 1) {
                 result = { bool: true, moved: [cards] };
               } else {
-                result = yield player
+                result = await player
                   .chooseToMove('渡陨:将牌按顺序置于牌堆顶', true)
                   .set('list', [['牌堆顶', cards]])
                   .set('reverse', _status.currentPhase && _status.currentPhase.next ? get.attitude(player, _status.currentPhase.next) > 0 : false)

@@ -133,8 +133,7 @@ export async function content(config, pack) {
       'step 2';
       if (result.bool) {
         var dead = result.targets[0];
-        if (dead.hasSkill('zq_huanhundan_die') || _status.zq_huanhundan && _status.zq_huanhundan.includes(dead)) event.finish();else
-        {
+        if (dead.hasSkill('zq_huanhundan_die') || _status.zq_huanhundan && _status.zq_huanhundan.includes(dead)) event.finish(); else {
           dead.revive();
           if (!_status.zq_huanhundan) _status.zq_huanhundan = [];
           _status.zq_huanhundan.add(dead);
@@ -221,13 +220,12 @@ export async function content(config, pack) {
               if (target.hp > 2 || nd == 0) return 0;
               if (target.hp == 2) {
                 if (
-                game.hasPlayer(function (current) {
-                  if (target != current && get.attitude(target, current) >= 3) {
-                    if (current.hp <= 1) return true;
-                    if ((mode == 'identity' || mode == 'versus' || mode == 'chess') && current.identity == 'zhu' && current.hp <= 2) return true;
-                  }
-                }))
-                {
+                  game.hasPlayer(function (current) {
+                    if (target != current && get.attitude(target, current) >= 3) {
+                      if (current.hp <= 1) return true;
+                      if ((mode == 'identity' || mode == 'versus' || mode == 'chess') && current.identity == 'zhu' && current.hp <= 2) return true;
+                    }
+                  })) {
                   return 0;
                 }
               }
@@ -262,16 +260,16 @@ export async function content(config, pack) {
     }
   };
   if (lib.skill.qiexie_destroy)
-  lib.skill.qiexie_destroy.content = function () {
-    for (var card of trigger.cards) {
-      if (card.name.indexOf('qiexie_') == 0) {
-        card._destroy = true;
-        game.log(card, '被放回武将牌堆');
-        var name = card.name.slice(7);
-        if (lib.character[name] && _status.characterlist && Array.isArray(_status.characterlist)) _status.characterlist.add(name);
+    lib.skill.qiexie_destroy.content = function () {
+      for (var card of trigger.cards) {
+        if (card.name.indexOf('qiexie_') == 0) {
+          card._destroy = true;
+          game.log(card, '被放回武将牌堆');
+          var name = card.name.slice(7);
+          if (lib.character[name] && _status.characterlist && Array.isArray(_status.characterlist)) _status.characterlist.add(name);
+        }
       }
-    }
-  };
+    };
   if (lib.skill.lqhc_chuqiao) {
     lib.skill.lqhc_chuqiao.content = function () {
       'step 0';
@@ -280,22 +278,21 @@ export async function content(config, pack) {
           return true;
         });
       } else
-      player.chooseToDiscard([1, Infinity], 'he', '###是否发动【出鞘】？###弃置任意张牌,并摸等量的牌.').set('ai', function (card) {
-        return 6 - get.value(card);
-      });
+        player.chooseToDiscard([1, Infinity], 'he', '###是否发动【出鞘】？###弃置任意张牌,并摸等量的牌.').set('ai', function (card) {
+          return 6 - get.value(card);
+        });
       'step 1';
       if (result.bool) {
         player.addTempSkill('lqhc_chuqiao_use', ['dieEnd', 'phaseAfter']);
-        if (!result.cards || !result.cards.length) player.drawTo(5);else
-        {
+        if (!result.cards || !result.cards.length) player.drawTo(5); else {
           player.draw(result.cards.length);
           player.
-          chooseTarget('可以弃置最多' + get.translation(result.cards.length) + '名角色各一张牌.', [1, result.cards.length], function (card, player, target) {
-            return player != target && target.countDiscardableCards(player, 'he');
-          }).
-          set('ai', function (target) {
-            return -get.attitude(_status.event.player, target);
-          });
+            chooseTarget('可以弃置最多' + get.translation(result.cards.length) + '名角色各一张牌.', [1, result.cards.length], function (card, player, target) {
+              return player != target && target.countDiscardableCards(player, 'he');
+            }).
+            set('ai', function (target) {
+              return -get.attitude(_status.event.player, target);
+            });
         }
       } else event.finish();
       'step 2';
@@ -353,21 +350,21 @@ export async function content(config, pack) {
         player.draw();
         'step 1';
         player.
-        chooseToDiscard(`###${get.prompt(event.name, trigger.targets)}###弃置一~三张手牌,目标弃置等量的牌`, [1, 3]).
-        set('ai', function (card) {
-          if (_status.event.friend) return 0;
-          var mx = 0,
-            num = (ui.selected.cards || []).length + 1,
-            player = _status.event.player,
-            targets = _status.event.getTrigger().targets;
-          mx = get.max(targets, (i) => Math.max(i.hp + i.hujia, i.countDiscardableCards(i, 'he')));
-          if (num > mx) return 0;
-          return 6 + 4 * (get.color(card) != 'red') - get.value(card);
-        }).
-        set(
-          'friend',
-          trigger.targets.some((i) => get.attitude(player, i) > 0)
-        );
+          chooseToDiscard(`###${get.prompt(event.name, trigger.targets)}###弃置一~三张手牌,目标弃置等量的牌`, [1, 3]).
+          set('ai', function (card) {
+            if (_status.event.friend) return 0;
+            var mx = 0,
+              num = (ui.selected.cards || []).length + 1,
+              player = _status.event.player,
+              targets = _status.event.getTrigger().targets;
+            mx = get.max(targets, (i) => Math.max(i.hp + i.hujia, i.countDiscardableCards(i, 'he')));
+            if (num > mx) return 0;
+            return 6 + 4 * (get.color(card) != 'red') - get.value(card);
+          }).
+          set(
+            'friend',
+            trigger.targets.some((i) => get.attitude(player, i) > 0)
+          );
         'step 2';
         if (!result.bool) {
           event.finish();
@@ -375,9 +372,9 @@ export async function content(config, pack) {
         }
         event.cnt = result.cards.length;
         trigger.targets.
-        slice().
-        sortBySeat().
-        forEach((p) => p.chooseToDiscard('he', true, event.cnt));
+          slice().
+          sortBySeat().
+          forEach((p) => p.chooseToDiscard('he', true, event.cnt));
         trigger.parent.baseDamage += event.cnt;
         player.addTempSkill('jlsg_syqj_wusheng_buff', ['phaseChange', 'phaseAfter']);
         player.addMark('jlsg_syqj_wusheng_buff', event.cnt);
@@ -471,40 +468,40 @@ export async function content(config, pack) {
   }
   if (lib.skill.jlsg_fengying && lib.skill.syr_fengying) lib.skill.jlsg_fengying.content = lib.skill.syr_fengying.content;
   if (lib.skill.lqtq_baihe)
-  lib.skill.lqtq_baihe.content = function () {
-    'step 0';
-    if (trigger.name == 'phaseUse' && player.sex == 'female') {
-      player.chat('今天白天也要百合~');
-    }
-    'step 1';
-    trigger.cancel();
-  };
+    lib.skill.lqtq_baihe.content = function () {
+      'step 0';
+      if (trigger.name == 'phaseUse' && player.sex == 'female') {
+        player.chat('今天白天也要百合~');
+      }
+      'step 1';
+      trigger.cancel();
+    };
   if (lib.skill.yxsdili && lib.skill.yxsdili.ai && lib.skill.yxsdili.ai.effect) delete lib.skill.yxsdili.ai.effect;
   if (lib.skill.kyouko_rongzhu)
-  lib.skill.kyouko_rongzhu.content = function () {
-    'step 0';
-    player.draw();
-    'step 1';
-    var target = trigger.player;
-    if (player.countCards('he') > 0 && target.isIn()) {
-      player.chooseCard('he', true, '将一张牌交给' + get.translation(target));
-    } else event.finish();
-    'step 2';
-    if (result.bool) {
-      player.give(result.cards, trigger.player);
-      var target = _status.currentPhase;
-      var name;
-      if (target == player) {
-        name = 'kyouko_rongzhu_me';
-        player.addTempSkill(name);
-        player.addMark(name, 1, false);
-      } else if (target == trigger.player) {
-        name = 'kyouko_rongzhu_notme';
-        target.addTempSkill(name);
-        target.addMark(name, 1, false);
+    lib.skill.kyouko_rongzhu.content = function () {
+      'step 0';
+      player.draw();
+      'step 1';
+      var target = trigger.player;
+      if (player.countCards('he') > 0 && target.isIn()) {
+        player.chooseCard('he', true, '将一张牌交给' + get.translation(target));
+      } else event.finish();
+      'step 2';
+      if (result.bool) {
+        player.give(result.cards, trigger.player);
+        var target = _status.currentPhase;
+        var name;
+        if (target == player) {
+          name = 'kyouko_rongzhu_me';
+          player.addTempSkill(name);
+          player.addMark(name, 1, false);
+        } else if (target == trigger.player) {
+          name = 'kyouko_rongzhu_notme';
+          target.addTempSkill(name);
+          target.addMark(name, 1, false);
+        }
       }
-    }
-  };
+    };
   if (lib.skill.dqzw_boss_jiyue) {
     lib.skill.dqzw_boss_jiyue = {
       enable: 'phaseUse',
@@ -533,18 +530,18 @@ export async function content(config, pack) {
         event.dcard = Math.floor(target.countCards('h') / 2);
         event.dhandcard = target.countCards('h');
         player.
-        chooseControl(`获得其${event.dcard}张牌`, `将手牌䃼至${event.dhandcard}张`).
-        set('_target', target).
-        set('dcard', event.dcard).
-        set('dhandcard', event.dhandcard).
-        set('ai', function () {
-          let target = _status.event._target,
-            player = _status.event.player,
-            dcard = _status.event.dcard,
-            dhandcard = _status.event.dhandcard;
-          if (dcard > dhandcard) return 0;
-          return 1;
-        });
+          chooseControl(`获得其${event.dcard}张牌`, `将手牌䃼至${event.dhandcard}张`).
+          set('_target', target).
+          set('dcard', event.dcard).
+          set('dhandcard', event.dhandcard).
+          set('ai', function () {
+            let target = _status.event._target,
+              player = _status.event.player,
+              dcard = _status.event.dcard,
+              dhandcard = _status.event.dhandcard;
+            if (dcard > dhandcard) return 0;
+            return 1;
+          });
         'step 2';
         switch (result.index) {
           case 0:
@@ -594,10 +591,10 @@ export async function content(config, pack) {
             let list = player.getFriends(true);
             if (list) {
               list = list.
-              sort((a, b) => {
-                return a.seatNum - b.seatNum;
-              }).
-              slice(list.indexOf(player));
+                sort((a, b) => {
+                  return a.seatNum - b.seatNum;
+                }).
+                slice(list.indexOf(player));
               let num = list.reduce((pre, cur) => {
                 return (
                   pre +
@@ -662,53 +659,53 @@ export async function content(config, pack) {
       }
     };
     lib.translate.dqzw_boss_shangyue_info = '出牌阶段限一次,你可观看并获得一名敌方角色的三张手牌(不足则全获得).',
-    lib.skill.dqzw_boss_guanchao = {
-      enable: 'phaseUse',
-      usable: 1,
-      selectTarget: -1,
-      filter(_event, player) {
-        return game.hasPlayer((target) => {
+      lib.skill.dqzw_boss_guanchao = {
+        enable: 'phaseUse',
+        usable: 1,
+        selectTarget: -1,
+        filter(_event, player) {
+          return game.hasPlayer((target) => {
+            return target.isEnemiesOf(player) && target.countCards('h');
+          });
+        },
+        filterTarget(_event, player, target) {
           return target.isEnemiesOf(player) && target.countCards('h');
-        });
-      },
-      filterTarget(_event, player, target) {
-        return target.isEnemiesOf(player) && target.countCards('h');
-      },
-      content() {
-        'step 0';
-        target.addExpose(0.6);
-        target.
-        chooseCard(
-          `请选择要展示并令
+        },
+        content() {
+          'step 0';
+          target.addExpose(0.6);
+          target.
+            chooseCard(
+              `请选择要展示并令
                     ${get.translation(player)}
                     获得的牌
                     `,
-          true
-        ).
-        set('ai', (card) => {
-          return -get.value(card);
-        });
-        'step 1';
-        target.showCards(
-          result.cards,
-          `
+              true
+            ).
+            set('ai', (card) => {
+              return -get.value(card);
+            });
+          'step 1';
+          target.showCards(
+            result.cards,
+            `
                     观潮
                     <br>
                     ${get.translation(target)}展示的牌
                     `
-        );
-        'step 2';
-        player.gain(result.cards, target, 'gain2');
-      },
-      ai: {
-        order: 11,
-        expose: 0.6,
-        threaten: () => game.countPlayer() / 2 + 0.5,
-        result: {
-          player: 1
+          );
+          'step 2';
+          player.gain(result.cards, target, 'gain2');
+        },
+        ai: {
+          order: 11,
+          expose: 0.6,
+          threaten: () => game.countPlayer() / 2 + 0.5,
+          result: {
+            player: 1
+          }
         }
-      }
-    };
+      };
     lib.skill.dqzw_boss_yingui = {
       mod: {
         aiOrder(player, card, num) {
@@ -728,12 +725,12 @@ export async function content(config, pack) {
           let card = get.cardPile('jiu');
           if (card) player.gain(card, 'gain2');
         } else
-        player.useCard(
-          {
-            name: 'kaihua'
-          },
-          player
-        );
+          player.useCard(
+            {
+              name: 'kaihua'
+            },
+            player
+          );
       },
       ai: { threaten: 1.1 }
     };
@@ -755,8 +752,8 @@ export async function content(config, pack) {
         player.getHistory('useCard', (evt) => {
           let color = get.color(evt.card);
           if (color == 'none') return;
-          if (!map[color]) map[color] = 1;else
-          map[color]++;
+          if (!map[color]) map[color] = 1; else
+            map[color]++;
         });
         return Math.min(...Object.values(map));
       },
@@ -770,8 +767,8 @@ export async function content(config, pack) {
         player.getHistory('useCard', (evt) => {
           let color = get.color(evt.card);
           if (color == 'none') return;
-          if (!map[color]) map[color] = 1;else
-          map[color]++;
+          if (!map[color]) map[color] = 1; else
+            map[color]++;
         });
         player.draw(Math.min(...Object.values(map)));
       },
@@ -798,20 +795,20 @@ export async function content(config, pack) {
         if (player.getStorage(event.name).length > 3) {
           player.unmarkAuto(event.name, player.getStorage(event.name));
           player.
-          chooseTarget(true, `请选择【${get.translation(event.name)}】的目标`, '弃置一名角色的一张牌', function (_event, player, target) {
-            return target.countDiscardableCards(player, 'he') > 0;
-          }).
-          set('ai', function (target) {
-            let player = _status.event.player;
-            return get.effect(
-              target,
-              {
-                name: 'guohe_copy2'
-              },
-              player,
-              player
-            );
-          });
+            chooseTarget(true, `请选择【${get.translation(event.name)}】的目标`, '弃置一名角色的一张牌', function (_event, player, target) {
+              return target.countDiscardableCards(player, 'he') > 0;
+            }).
+            set('ai', function (target) {
+              let player = _status.event.player;
+              return get.effect(
+                target,
+                {
+                  name: 'guohe_copy2'
+                },
+                player,
+                player
+              );
+            });
         }
         'step 1';
         if (result.bool) {
@@ -830,17 +827,17 @@ export async function content(config, pack) {
       mod: {
         cardUsable(card, player, num) {
           if (
-          player.getFriends(true).reduce((pre, cur) => {
-            return pre + cur.countCards('h');
-          }, 0) /
-          player.getFriends(true).length >
-          player.getEnemies().reduce((pre, cur) => {
-            return pre + cur.countCards('h');
-          }, 0) /
-          player.getEnemies().length &&
-          card.name == 'sha')
+            player.getFriends(true).reduce((pre, cur) => {
+              return pre + cur.countCards('h');
+            }, 0) /
+            player.getFriends(true).length >
+            player.getEnemies().reduce((pre, cur) => {
+              return pre + cur.countCards('h');
+            }, 0) /
+            player.getEnemies().length &&
+            card.name == 'sha')
 
-          return Infinity;
+            return Infinity;
         }
       },
       ai: { threaten: 1.1 }
@@ -873,36 +870,36 @@ export async function content(config, pack) {
         let list = ['弃置所有手牌令' + get.translation(player) + '回复1点体力', '弃置所有手牌并摸等量的牌'],
           option = ['回血', '制衡'];
         target.
-        chooseControl(...option, 'cancel2').
-        set('choiceList', list).
-        set('prompt', get.prompt(event.name)).
-        set('target', player).
-        set('ai', () => {
-          let target = _status.event.target,
-            player = _status.event.player,
-            canSave =
-            player.canSave(target) ||
-            player.countCards('hs', (card) => {
-              let info = get.info(card);
-              if (!info.singleCard) {
-                let mod = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
-                if (mod == false) return false;
-                mod = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-                if (mod != 'unchanged') return mod;
-              }
-              return lib.filter.cardSavable(card, player, target);
-            }) >=
-            -target.hp + 1;
-          if (!canSave && (target.hp >= -1 || target.isZhu)) return '回血';
-          if (
-          !canSave &&
-          player.getCards('h').every((card) => {
-            return 6 - get.value(card);
-          }))
+          chooseControl(...option, 'cancel2').
+          set('choiceList', list).
+          set('prompt', get.prompt(event.name)).
+          set('target', player).
+          set('ai', () => {
+            let target = _status.event.target,
+              player = _status.event.player,
+              canSave =
+                player.canSave(target) ||
+                player.countCards('hs', (card) => {
+                  let info = get.info(card);
+                  if (!info.singleCard) {
+                    let mod = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                    if (mod == false) return false;
+                    mod = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                    if (mod != 'unchanged') return mod;
+                  }
+                  return lib.filter.cardSavable(card, player, target);
+                }) >=
+                -target.hp + 1;
+            if (!canSave && (target.hp >= -1 || target.isZhu)) return '回血';
+            if (
+              !canSave &&
+              player.getCards('h').every((card) => {
+                return 6 - get.value(card);
+              }))
 
-          return '制衡';
-          return 'cancel2';
-        });
+              return '制衡';
+            return 'cancel2';
+          });
         event.target = target;
         'step 2';
         if (!result || !result.control || result.control == 'cancel2') {
@@ -971,13 +968,13 @@ export async function content(config, pack) {
           return lib.skill[name] && !lib.skill[name].notGainableSkill;
         });
         if (skills.length)
-        player.
-        chooseControl(skills).
-        set('prompt', '选择获得' + get.translation(target) + '的一个技能').
-        set('choice', (get.attitude(player, target) <= 0 ? get.max : get.min)(skills, get.skillRank, 'item')).
-        set('ai', function () {
-          return _status.event.choice;
-        });
+          player.
+            chooseControl(skills).
+            set('prompt', '选择获得' + get.translation(target) + '的一个技能').
+            set('choice', (get.attitude(player, target) <= 0 ? get.max : get.min)(skills, get.skillRank, 'item')).
+            set('ai', function () {
+              return _status.event.choice;
+            });
         'step 1';
         if (result.control) player.addSkillLog(result.control);
       }
@@ -1093,323 +1090,246 @@ export async function content(config, pack) {
   lib.translate.syr_tanchenchi_chisuiyu = '痴';
   lib.translate.syr_tanchenchi_bao = '报';
   if (lib.skill.minijijing)
-  lib.skill.minijijing.content = function () {
-    'step 0';
-    player.judge();
-    'step 1';
-    var num = result.number,
-      cards = player.getDiscardableCards(player, 'he', (i) => get.value(i) < 10);
-    if (!cards.length) event.finish();else
-    {
-      cards.sort((a, b) => a.number - b.number);
-      var card = cards.find((i) => i.number >= num);
-      if (card) cards = [card];else
-      if (cards.length > 1 && cards[0].number + cards[1].number >= num) cards.splice(1);else
-      cards = [];
-      player.
-      chooseToDiscard('是否弃置任意张点数之和不小于' + get.cnNumber(num) + '的牌并回复1点体力？', 'he').
-      set('selectCard', function () {
-        var num = 0;
-        for (var i = 0; i < ui.selected.cards.length; i++) {
-          num += ui.selected.cards[i].number;
-        }
-        if (num >= _status.event.num) return ui.selected.cards.length;
-        return ui.selected.cards.length + 2;
-      }).
-      set('ai', function (card) {
-        var player = _status.event.player;
-        if (get.recoverEffect(player) <= 0) return 0;
-        if (card.name == 'du' && !player.hasSkillTag('nodu') && get.effect(player, { name: 'losehp' }, player, player) < 0) return 0;
-        if (_status.event.cards.length) return Number(_status.event.cards.includes(card));
-        return 9 - get.value(card);
-      }).
-      set('num', num).
-      set('cards', cards).
-      set('complexCard', true);
-    }
-    'step 2';
-    if (result.bool) player.recover();
-  };
+    lib.skill.minijijing.content = function () {
+      'step 0';
+      player.judge();
+      'step 1';
+      var num = result.number,
+        cards = player.getDiscardableCards(player, 'he', (i) => get.value(i) < 10);
+      if (!cards.length) event.finish(); else {
+        cards.sort((a, b) => a.number - b.number);
+        var card = cards.find((i) => i.number >= num);
+        if (card) cards = [card]; else
+          if (cards.length > 1 && cards[0].number + cards[1].number >= num) cards.splice(1); else
+            cards = [];
+        player.
+          chooseToDiscard('是否弃置任意张点数之和不小于' + get.cnNumber(num) + '的牌并回复1点体力？', 'he').
+          set('selectCard', function () {
+            var num = 0;
+            for (var i = 0; i < ui.selected.cards.length; i++) {
+              num += ui.selected.cards[i].number;
+            }
+            if (num >= _status.event.num) return ui.selected.cards.length;
+            return ui.selected.cards.length + 2;
+          }).
+          set('ai', function (card) {
+            var player = _status.event.player;
+            if (get.recoverEffect(player) <= 0) return 0;
+            if (card.name == 'du' && !player.hasSkillTag('nodu') && get.effect(player, { name: 'losehp' }, player, player) < 0) return 0;
+            if (_status.event.cards.length) return Number(_status.event.cards.includes(card));
+            return 9 - get.value(card);
+          }).
+          set('num', num).
+          set('cards', cards).
+          set('complexCard', true);
+      }
+      'step 2';
+      if (result.bool) player.recover();
+    };
   if (lib.skill.boss_zhankai && lib.skill.boss_zhankai.mode) delete lib.skill.boss_zhankai.mode;
   if (lib.skill.boss_shenji && lib.skill.boss_shenji.mode) delete lib.skill.boss_shenji.mode;
   if (lib.skill.minixingshang && lib.skill.minixingshang.audioname2) lib.skill.minixingshang.audioname2.syr_huayingongzhu = 'lingren_xingshang';
   if (lib.skill.minijianxiong && lib.skill.minijianxiong.audioname2) lib.skill.minijianxiong.audioname2.syr_huayingongzhu = 'lingren_jianxiong';
   if (lib.skill.DIY_lingren)
-  lib.skill.DIY_lingren = {
-    audio: 'ext:白河子与其他/audio/skill:6',
-    enable: 'phaseUse',
-    delay: false,
-    usable: 1,
-    *content(event, map) {
-      var player = map.player;
-      player.draw();
-      yield player.showHandcards();
-      var list = ['红色', '黑色'];
-      if (player.countCards('h', { color: 'red' }) == 0) list.remove('红色');
-      if (player.countCards('h', { color: 'black' }) == 0) list.remove('黑色');
-      var result = yield player.chooseControl(list).set('ai', function () {
-        var player = _status.event.player;
-        if (player.countCards('h', { color: 'red' }) >= player.countCards('h', { color: 'black' })) return '红色';
-        return '黑色';
-      });
-      var cards;
-      if (!result) return;
-      if (result.control == '红色') {
-        yield cards = player.getCards('h', { color: 'red' });
-      } else {
-        yield cards = player.getCards('h', { color: 'black' });
-      }
-      for (var i = 0; i < cards.length; i++) {
-        var hs = [];
-        hs.push(cards[i]);
-        if (player.hasUseTarget({ name: 'sha' }, false, false)) yield player.chooseUseTarget('凌人:将' + get.translation(cards[i]) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance');else
-        break;
-      }
-    },
-    ai: {
-      maixie: true,
-      maixie_hp: true,
-      maixie_defend: true,
-      effect: {
-        target(card, player, target) {
-          if (get.tag(card, 'damage')) {
-            if (player.hasSkillTag('jueqing', false, target)) return [1, -2];
-            if (!target.hasFriend() && player != target) return;
-            if (target.hp >= 4) return [1, 2];
-            if (target.hp == 3) return [1, 1.5];
-            if (target.hp == 2) return [1, 0.5];
-          }
+    lib.skill.DIY_lingren = {
+      audio: 'ext:白河子与其他/audio/skill:6',
+      enable: 'phaseUse',
+      delay: false,
+      usable: 1,
+      async content(event, map) {
+        var player = map.player;
+        player.draw();
+        await player.showHandcards();
+        var list = ['红色', '黑色'];
+        if (player.countCards('h', { color: 'red' }) == 0) list.remove('红色');
+        if (player.countCards('h', { color: 'black' }) == 0) list.remove('黑色');
+        var result = await player.chooseControl(list).set('ai', function () {
+          var player = _status.event.player;
+          if (player.countCards('h', { color: 'red' }) >= player.countCards('h', { color: 'black' })) return '红色';
+          return '黑色';
+        });
+        var cards;
+        if (!result) return;
+        if (result.control == '红色') {
+          await cards = player.getCards('h', { color: 'red' });
+        } else {
+          await cards = player.getCards('h', { color: 'black' });
+        }
+        for (var i = 0; i < cards.length; i++) {
+          var hs = [];
+          hs.push(cards[i]);
+          if (player.hasUseTarget({ name: 'sha' }, false, false)) await player.chooseUseTarget('凌人:将' + get.translation(cards[i]) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance'); else
+            break;
         }
       },
-      order: 7.1,
-      result: {
-        player: 1
-      }
-    },
-    group: 'DIY_lingren_damage',
-    subSkill: {
-      damage: {
-        trigger: {
-          player: 'damageAfter'
-        },
-        prompt() {
-          return get.prompt('DIY_lingren');
-        },
-        *content(event, map) {
-          var player = map.player;
-          player.draw();
-          yield player.showHandcards();
-          var list = ['红色', '黑色'];
-          if (player.countCards('h', { color: 'red' }) == 0) list.remove('红色');
-          if (player.countCards('h', { color: 'black' }) == 0) list.remove('黑色');
-          var result = yield player.chooseControl(list).set('ai', function () {
-            var player = _status.event.player;
-            if (player.countCards('h', { color: 'red' }) > player.countCards('h', { color: 'black' })) return '红色';
-            return '黑色';
-          });
-          var cards;
-          if (!result) return;
-          if (result.control == '红色') {
-            yield cards = player.getCards('h', { color: 'red' });
-          } else {
-            yield cards = player.getCards('h', { color: 'black' });
-          }
-          for (var i = 0; i < cards.length; i++) {
-            var hs = [];
-            hs.push(cards[i]);
-            if (player.hasUseTarget({ name: 'sha' }, false, false)) yield player.chooseUseTarget('凌人:将' + get.translation(cards[i]) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance');else
-            break;
+      ai: {
+        maixie: true,
+        maixie_hp: true,
+        maixie_defend: true,
+        effect: {
+          target(card, player, target) {
+            if (get.tag(card, 'damage')) {
+              if (player.hasSkillTag('jueqing', false, target)) return [1, -2];
+              if (!target.hasFriend() && player != target) return;
+              if (target.hp >= 4) return [1, 2];
+              if (target.hp == 3) return [1, 1.5];
+              if (target.hp == 2) return [1, 0.5];
+            }
           }
         },
-        sub: true
+        order: 7.1,
+        result: {
+          player: 1
+        }
+      },
+      group: 'DIY_lingren_damage',
+      subSkill: {
+        damage: {
+          trigger: {
+            player: 'damageAfter'
+          },
+          prompt() {
+            return get.prompt('DIY_lingren');
+          },
+          async content(event, map) {
+            var player = map.player;
+            player.draw();
+            await player.showHandcards();
+            var list = ['红色', '黑色'];
+            if (player.countCards('h', { color: 'red' }) == 0) list.remove('红色');
+            if (player.countCards('h', { color: 'black' }) == 0) list.remove('黑色');
+            var result = await player.chooseControl(list).set('ai', function () {
+              var player = _status.event.player;
+              if (player.countCards('h', { color: 'red' }) > player.countCards('h', { color: 'black' })) return '红色';
+              return '黑色';
+            });
+            var cards;
+            if (!result) return;
+            if (result.control == '红色') {
+              await cards = player.getCards('h', { color: 'red' });
+            } else {
+              await cards = player.getCards('h', { color: 'black' });
+            }
+            for (var i = 0; i < cards.length; i++) {
+              var hs = [];
+              hs.push(cards[i]);
+              if (player.hasUseTarget({ name: 'sha' }, false, false)) await player.chooseUseTarget('凌人:将' + get.translation(cards[i]) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance'); else
+                break;
+            }
+          },
+          sub: true
+        }
       }
-    }
-  };
+    };
   if (lib.skill.g_jinlianzhu)
-  lib.skill.g_jinlianzhu.filter = function (event, player) {
-    if (!lib.filter.targetEnabled({ name: 'jinlianzhu' }, player, event.player)) return false;
-    return player.hasUsableCard('jinlianzhu');
-  };
+    lib.skill.g_jinlianzhu.filter = function (event, player) {
+      if (!lib.filter.targetEnabled({ name: 'jinlianzhu' }, player, event.player)) return false;
+      return player.hasUsableCard('jinlianzhu');
+    };
   if (lib.skill.minihuanshu)
-  lib.skill.minihuanshu.GainContent = async function (length, num, player) {
-    if (!_status.Mbaby_zuoci_card_css) {
-      _status.Mbaby_zuoci_card_css = true;
-      game.broadcastAll(() => {
-        /*神左慈幻术卡牌颜色*/
-        lib.init.sheet(['.card.minihuanshu-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color: #0000FF;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
-        /*神左慈幻化卡牌颜色*/
-        lib.init.sheet(['.card.minihuanhua-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color:yellow;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
-      });
-    }
-    game.addGlobalSkill('minihuanshu_gain');
-    while (num > 0) {
-      num--;
-      let gains = [],
-        count = 0;
-      const sum = Math.min(length, player.maxHp * 2 - player.countCards('h', (card) => card.minihuanshu));
-      if (sum > 0) {
-        while (sum - count > 0) {
-          count++;
-          const cardy = lib.card.list.randomGet();
-          if (cardy) gains.push(game.createCard2(cardy[2], cardy[0], cardy[1], cardy[3]));else
-          break;
-        }
-        if (gains.length) {
-          game.broadcastAll((cards) => {
-            for (const card of cards) {
-              card.minihuanshu = true;
-              card.classList.add('minihuanshu-glow');
-            }
-          }, gains);
-          await player.gain(gains, 'draw');
-          game.log(player, '获得了', '#y' + get.cnNumber(gains.length) + '张', '#g<幻化>牌');
-        }
+    lib.skill.minihuanshu.GainContent = async function (length, num, player) {
+      if (!_status.Mbaby_zuoci_card_css) {
+        _status.Mbaby_zuoci_card_css = true;
+        game.broadcastAll(() => {
+          /*神左慈幻术卡牌颜色*/
+          lib.init.sheet(['.card.minihuanshu-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color: #0000FF;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
+          /*神左慈幻化卡牌颜色*/
+          lib.init.sheet(['.card.minihuanhua-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color:yellow;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
+        });
       }
-      if (length - gains.length > 0) await player.draw(length - gains.length);
-    }
-  };
-  if (lib.card.hyym_shenmililiang)
-  lib.card.hyym_shenmililiang.content = function () {
-    'step 0';
-    if (!game.hasPlayer((i) => !i.hasSkill('hyym_shenmililiangx') && i != player)) event.finish();else
-
-    player.
-    chooseTarget(true, '请选择一名其他角色', function (card, player, target) {
-      return !target.hasSkill('hyym_shenmililiangx') && target != player;
-    }).
-    set('ai', function (target) {
-      if (Math.min(get.attitude(player, target), get.attitude(target, player)) > 0.1) return false;
-      var cur = _status.currentPhase;
-      if (cur && cur.isPhaseUsing() && !cur.hasSkill('hyym_shenmililiangx') && Math.min(get.attitude(player, cur), get.attitude(cur, player)) <= 0.1) return Number(target == cur);
-      return get.threaten(target, player);
-    }).animate = false;
-    'step 1';
-    if (result.bool) {
-      result.targets[0].addSkill('hyym_shenmililiangx');
-    }
-  };
-  if (lib.skill.minilonghun)
-  lib.skill.minilonghun = {
-    audio: 'relonghun',
-    enable: ['chooseToUse', 'chooseToRespond'],
-    prompt: '将♥️️牌当做桃,♦️️牌当做火杀,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出',
-    viewAs(cards, player) {
-      var name = false;
-      var nature = null;
-      switch (cards[0]?.suit) {
-        case 'club':
-          name = 'shan';
-          break;
-        case 'diamond':
-          name = 'sha';
-          nature = 'fire';
-          break;
-        case 'spade':
-          name = 'wuxie';
-          break;
-        case 'heart':
-          name = 'tao';
-          break;
-      }
-      if (name) return { name: name, nature: nature };
-      return null;
-    },
-    mod: {
-      aiValue(player, card, num) {
-        var card2 = lib.skill.minilonghun.viewAs([card], player);
-        if (card2 && (card2.name != card.name || card2.nature != card.nature)) num = Math.max(num, get.value(card2, player) + 0.1);
-        return num;
-      }
-    },
-    check(card) {
-      var player = _status.event.player;
-      var eff = 0;
-      if (ui.selected.cards && ui.selected.cards.length) {
-        if (ui.selected.cards[0].suit != card.suit) return 0;
-        if (get.color(ui.selected.cards[0], player) == 'black') {
-          if (_status.currentPhase) eff = get.effect(_status.currentPhase, { name: 'shunshou_copy2' }, player, player);
-          if (eff <= 0) return 0;
-        } else eff = get.effect(player, { name: 'wuzhong', player, player }) / 2;
-      }
-      if (_status.event.type == 'phase') {
-        var max = 0;
-        var name2;
-        var list = ['sha', 'tao'];
-        var map = { sha: 'diamond', tao: 'heart' };
-        var huosha = player.getUseValue({ name: 'sha', nature: 'fire' }, true, true);
-        if (player.hasSkill('syr_shuangjian') && huosha > 0) huosha = Math.max(huosha, 20);
-        for (var i = 0; i < list.length; i++) {
-          var name = list[i],
-            val = player.getUseValue({ name: name, nature: name == 'sha' ? 'fire' : null }, true, true);
-          if (name == 'sha') val = huosha;
-          if (
-          player.countCards('hes', function (card) {
-            return (get.value(card) || 0) < eff + val && card.suit == map[name];
-          }) > 0 &&
-          val > 0)
-          {
-            var temp = get.order({ name: name, nature: name == 'sha' ? 'fire' : null });
-            if (temp > max) {
-              max = temp;
-              name2 = map[name];
-            }
+      game.addGlobalSkill('minihuanshu_gain');
+      while (num > 0) {
+        num--;
+        let gains = [],
+          count = 0;
+        const sum = Math.min(length, player.maxHp * 2 - player.countCards('h', (card) => card.minihuanshu));
+        if (sum > 0) {
+          while (sum - count > 0) {
+            count++;
+            const cardy = lib.card.list.randomGet();
+            if (cardy) gains.push(game.createCard2(cardy[2], cardy[0], cardy[1], cardy[3])); else
+              break;
+          }
+          if (gains.length) {
+            game.broadcastAll((cards) => {
+              for (const card of cards) {
+                card.minihuanshu = true;
+                card.classList.add('minihuanshu-glow');
+              }
+            }, gains);
+            await player.gain(gains, 'draw');
+            game.log(player, '获得了', '#y' + get.cnNumber(gains.length) + '张', '#g<幻化>牌');
           }
         }
-        if (name2 == card.suit) {
-          //if(player.hasSkill('syr_shuangjian')&&name2=='diamond') return 0;
-          return eff + (name2 == 'diamond' ? huosha - get.value(card) : 20 - get.value(card));
-        }
-        return 0;
+        if (length - gains.length > 0) await player.draw(length - gains.length);
       }
-      return eff + 1;
-    },
-    selectCard: [1, 2],
-    complexCard: true,
-    position: 'hes',
-    filterCard(card, player, event) {
-      if (ui.selected.cards.length) return card.suit == ui.selected.cards[0].suit;
-      event = event || _status.event;
-      var filter = event._backup.filterCard;
-      var name = card.suit;
-      if (name == 'club' && filter({ name: 'shan', cards: [card] }, player, event)) return true;
-      if (name == 'diamond' && filter({ name: 'sha', cards: [card], nature: 'fire' }, player, event)) return true;
-      if (name == 'spade' && filter({ name: 'wuxie', cards: [card] }, player, event)) return true;
-      if (name == 'heart' && filter({ name: 'tao', cards: [card] }, player, event)) return true;
-      return false;
-    },
-    filter(event, player) {
-      var filter = event.filterCard;
-      if (filter({ name: 'sha', nature: 'fire' }, player, event) && player.countCards('hes', { suit: 'diamond' })) return true;
-      if (filter({ name: 'shan' }, player, event) && player.countCards('hes', { suit: 'club' })) return true;
-      if (filter({ name: 'tao' }, player, event) && player.countCards('hes', { suit: 'heart' })) return true;
-      if (filter({ name: 'wuxie' }, player, event) && player.countCards('hes', { suit: 'spade' })) return true;
-      return false;
-    },
-    ai: {
-      threaten: 2,
-      respondSha: true,
-      respondShan: true,
-      //让系统知道角色<有杀><有闪>
-      skillTagFilter(player, tag) {
-        var name;
-        switch (tag) {
-          case 'respondSha':
-            name = 'diamond';
+    };
+  if (lib.card.hyym_shenmililiang)
+    lib.card.hyym_shenmililiang.content = function () {
+      'step 0';
+      if (!game.hasPlayer((i) => !i.hasSkill('hyym_shenmililiangx') && i != player)) event.finish(); else
+
+        player.
+          chooseTarget(true, '请选择一名其他角色', function (card, player, target) {
+            return !target.hasSkill('hyym_shenmililiangx') && target != player;
+          }).
+          set('ai', function (target) {
+            if (Math.min(get.attitude(player, target), get.attitude(target, player)) > 0.1) return false;
+            var cur = _status.currentPhase;
+            if (cur && cur.isPhaseUsing() && !cur.hasSkill('hyym_shenmililiangx') && Math.min(get.attitude(player, cur), get.attitude(cur, player)) <= 0.1) return Number(target == cur);
+            return get.threaten(target, player);
+          }).animate = false;
+      'step 1';
+      if (result.bool) {
+        result.targets[0].addSkill('hyym_shenmililiangx');
+      }
+    };
+  if (lib.skill.minilonghun)
+    lib.skill.minilonghun = {
+      audio: 'relonghun',
+      enable: ['chooseToUse', 'chooseToRespond'],
+      prompt: '将♥️️牌当做桃,♦️️牌当做火杀,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出',
+      viewAs(cards, player) {
+        var name = false;
+        var nature = null;
+        switch (cards[0]?.suit) {
+          case 'club':
+            name = 'shan';
             break;
-          case 'respondShan':
-            name = 'club';
+          case 'diamond':
+            name = 'sha';
+            nature = 'fire';
             break;
-          case 'save':
-            name = 'heart';
+          case 'spade':
+            name = 'wuxie';
+            break;
+          case 'heart':
+            name = 'tao';
             break;
         }
-        if (!player.countCards('hes', { suit: name })) return false;
+        if (name) return { name: name, nature: nature };
+        return null;
       },
-      order(item, player) {
-        if (player && _status.event.type == 'phase') {
-          if (player.hasSkill('syr_shuangjian')) return 10;
-          var eff = get.effect(player, { name: 'wuzhong', player, player }) / 2;
+      mod: {
+        aiValue(player, card, num) {
+          var card2 = lib.skill.minilonghun.viewAs([card], player);
+          if (card2 && (card2.name != card.name || card2.nature != card.nature)) num = Math.max(num, get.value(card2, player) + 0.1);
+          return num;
+        }
+      },
+      check(card) {
+        var player = _status.event.player;
+        var eff = 0;
+        if (ui.selected.cards && ui.selected.cards.length) {
+          if (ui.selected.cards[0].suit != card.suit) return 0;
+          if (get.color(ui.selected.cards[0], player) == 'black') {
+            if (_status.currentPhase) eff = get.effect(_status.currentPhase, { name: 'shunshou_copy2' }, player, player);
+            if (eff <= 0) return 0;
+          } else eff = get.effect(player, { name: 'wuzhong', player, player }) / 2;
+        }
+        if (_status.event.type == 'phase') {
           var max = 0;
+          var name2;
           var list = ['sha', 'tao'];
           var map = { sha: 'diamond', tao: 'heart' };
           var huosha = player.getUseValue({ name: 'sha', nature: 'fire' }, true, true);
@@ -1419,77 +1339,151 @@ export async function content(config, pack) {
               val = player.getUseValue({ name: name, nature: name == 'sha' ? 'fire' : null }, true, true);
             if (name == 'sha') val = huosha;
             if (
-            player.countCards('hes', function (card) {
-              return (get.value(card) || 0) < eff + val && card.suit == map[name];
-            }) > 0 &&
-            val > 0)
-            {
+              player.countCards('hes', function (card) {
+                return (get.value(card) || 0) < eff + val && card.suit == map[name];
+              }) > 0 &&
+              val > 0) {
               var temp = get.order({ name: name, nature: name == 'sha' ? 'fire' : null });
-              if (temp > max) max = temp;
+              if (temp > max) {
+                max = temp;
+                name2 = map[name];
+              }
             }
           }
-          if (max > 0) max++;
-          return max;
+          if (name2 == card.suit) {
+            //if(player.hasSkill('syr_shuangjian')&&name2=='diamond') return 0;
+            return eff + (name2 == 'diamond' ? huosha - get.value(card) : 20 - get.value(card));
+          }
+          return 0;
         }
-        return 6;
-      }
-    },
-    hiddenCard(player, name) {
-      if (name == 'wuxie' && _status.connectMode && player.countCards('hes') > 0) return true;
-      if (name == 'wuxie') return player.countCards('hes', { suit: 'spade' }) > 0;
-      if (name == 'tao') return player.countCards('hes', { suit: 'heart' }) > 0;
-    },
-    group: ['minilonghun_num', 'minilonghun_gain'],
-    subSkill: {
-      num: {
-        charlotte: true,
-        trigger: { player: 'useCard' },
-        filter(event, player) {
-          return event.skill == 'minilonghun' && ['sha', 'tao'].includes(event.card.name) && event.cards && event.cards.length == 2;
+        return eff + 1;
+      },
+      selectCard: [1, 2],
+      complexCard: true,
+      position: 'hes',
+      filterCard(card, player, event) {
+        if (ui.selected.cards.length) return card.suit == ui.selected.cards[0].suit;
+        event = event || _status.event;
+        var filter = event._backup.filterCard;
+        var name = card.suit;
+        if (name == 'club' && filter({ name: 'shan', cards: [card] }, player, event)) return true;
+        if (name == 'diamond' && filter({ name: 'sha', cards: [card], nature: 'fire' }, player, event)) return true;
+        if (name == 'spade' && filter({ name: 'wuxie', cards: [card] }, player, event)) return true;
+        if (name == 'heart' && filter({ name: 'tao', cards: [card] }, player, event)) return true;
+        return false;
+      },
+      filter(event, player) {
+        var filter = event.filterCard;
+        if (filter({ name: 'sha', nature: 'fire' }, player, event) && player.countCards('hes', { suit: 'diamond' })) return true;
+        if (filter({ name: 'shan' }, player, event) && player.countCards('hes', { suit: 'club' })) return true;
+        if (filter({ name: 'tao' }, player, event) && player.countCards('hes', { suit: 'heart' })) return true;
+        if (filter({ name: 'wuxie' }, player, event) && player.countCards('hes', { suit: 'spade' })) return true;
+        return false;
+      },
+      ai: {
+        threaten: 2,
+        respondSha: true,
+        respondShan: true,
+        //让系统知道角色<有杀><有闪>
+        skillTagFilter(player, tag) {
+          var name;
+          switch (tag) {
+            case 'respondSha':
+              name = 'diamond';
+              break;
+            case 'respondShan':
+              name = 'club';
+              break;
+            case 'save':
+              name = 'heart';
+              break;
+          }
+          if (!player.countCards('hes', { suit: name })) return false;
         },
-        forced: true,
-        popup: false,
-        content() {
-          trigger.baseDamage++;
-          player.draw();
+        order(item, player) {
+          if (player && _status.event.type == 'phase') {
+            if (player.hasSkill('syr_shuangjian')) return 10;
+            var eff = get.effect(player, { name: 'wuzhong', player, player }) / 2;
+            var max = 0;
+            var list = ['sha', 'tao'];
+            var map = { sha: 'diamond', tao: 'heart' };
+            var huosha = player.getUseValue({ name: 'sha', nature: 'fire' }, true, true);
+            if (player.hasSkill('syr_shuangjian') && huosha > 0) huosha = Math.max(huosha, 20);
+            for (var i = 0; i < list.length; i++) {
+              var name = list[i],
+                val = player.getUseValue({ name: name, nature: name == 'sha' ? 'fire' : null }, true, true);
+              if (name == 'sha') val = huosha;
+              if (
+                player.countCards('hes', function (card) {
+                  return (get.value(card) || 0) < eff + val && card.suit == map[name];
+                }) > 0 &&
+                val > 0) {
+                var temp = get.order({ name: name, nature: name == 'sha' ? 'fire' : null });
+                if (temp > max) max = temp;
+              }
+            }
+            if (max > 0) max++;
+            return max;
+          }
+          return 6;
         }
       },
-      gain: {
-        charlotte: true,
-        trigger: { player: ['useCardAfter', 'respondAfter'] },
-        autodelay(event) {
-          return event.name == 'respond' ? 0.5 : false;
+      hiddenCard(player, name) {
+        if (name == 'wuxie' && _status.connectMode && player.countCards('hes') > 0) return true;
+        if (name == 'wuxie') return player.countCards('hes', { suit: 'spade' }) > 0;
+        if (name == 'tao') return player.countCards('hes', { suit: 'heart' }) > 0;
+      },
+      group: ['minilonghun_num', 'minilonghun_gain'],
+      subSkill: {
+        num: {
+          charlotte: true,
+          trigger: { player: 'useCard' },
+          filter(event, player) {
+            return event.skill == 'minilonghun' && ['sha', 'tao'].includes(event.card.name) && event.cards && event.cards.length == 2;
+          },
+          forced: true,
+          popup: false,
+          content() {
+            trigger.baseDamage++;
+            player.draw();
+          }
         },
-        filter(event, player) {
-          return event.skill == 'minilonghun' && ['shan', 'wuxie'].includes(event.card.name) && event.cards && event.cards.length == 2 && _status.currentPhase && _status.currentPhase != player && _status.currentPhase.countGainableCards(player, 'he');
-        },
-        logTarget: () => _status.currentPhase,
-        forced: true,
-        popup: false,
-        content() {
-          player.line(_status.currentPhase, 'green');
-          player.gainPlayerCard(_status.currentPhase, 'he', true);
+        gain: {
+          charlotte: true,
+          trigger: { player: ['useCardAfter', 'respondAfter'] },
+          autodelay(event) {
+            return event.name == 'respond' ? 0.5 : false;
+          },
+          filter(event, player) {
+            return event.skill == 'minilonghun' && ['shan', 'wuxie'].includes(event.card.name) && event.cards && event.cards.length == 2 && _status.currentPhase && _status.currentPhase != player && _status.currentPhase.countGainableCards(player, 'he');
+          },
+          logTarget: () => _status.currentPhase,
+          forced: true,
+          popup: false,
+          content() {
+            player.line(_status.currentPhase, 'green');
+            player.gainPlayerCard(_status.currentPhase, 'he', true);
+          }
         }
       }
-    }
-  };
+    };
   if (lib.skill.wechatmoulvenum)
-  lib.skill.wechatmoulvenum.intro = {
-    name: '谋略值',
-    content: '当前拥有#点' + get.yuriIntroduce('wechatmoulvenum')
-  };
+    lib.skill.wechatmoulvenum.intro = {
+      name: '谋略值',
+      content: '当前拥有#点' + get.yuriIntroduce('wechatmoulvenum')
+    };
   if (lib.skill.wechatmiaoji)
-  lib.skill.wechatmiaoji.chooseButton.check = function (button) {
-    var evt = _status.event,
-      player = evt.player;
-    if (evt.parent.type != 'phase') return 1;
-    return player.getUseValue({ name: button.link[2], nature: button.link[3] });
-  };
+    lib.skill.wechatmiaoji.chooseButton.check = function (button) {
+      var evt = _status.event,
+        player = evt.player;
+      if (evt.parent.type != 'phase') return 1;
+      return player.getUseValue({ name: button.link[2], nature: button.link[3] });
+    };
   if (lib.skill.ysjqisha)
-  lib.skill.ysjqisha.filter = function (event, player) {
-    if (get.itemtype(event.source) != 'player' || event._notrigger.includes(event.player)) return false;
-    return event.source != player && event.source.isIn() || event.player != player && event.player.isIn();
-  };
+    lib.skill.ysjqisha.filter = function (event, player) {
+      if (get.itemtype(event.source) != 'player' || event._notrigger.includes(event.player)) return false;
+      return event.source != player && event.source.isIn() || event.player != player && event.player.isIn();
+    };
   lib.skill.time_stop_effect = {
     mod: {
       cardEnabled(card) {
@@ -1551,11 +1545,11 @@ export async function content(config, pack) {
     intro: {
       content(storage, player, skill) {
         var list = player.getSkills(null, false, false).filter(function (i) {
-            return lib.skill.baiban.skillBlocker(i, player);
-          }),
+          return lib.skill.baiban.skillBlocker(i, player);
+        }),
           str;
-        if (list.length) str = '<li>失效技能:' + get.translation(list);else
-        str = '<li>无失效技能';
+        if (list.length) str = '<li>失效技能:' + get.translation(list); else
+          str = '<li>无失效技能';
         return str += '<li>时停效果将会持续' + get.cnNumber(player.storage.time_stop_effect) + '个回合.';
       }
     }
@@ -1568,62 +1562,62 @@ export async function content(config, pack) {
   if (lib.skill.dshj_LExuxiang) lib.skill.dshj_LExuxiang.ai = {};
   if (lib.skill.dshj_douzhen && lib.skill.dshj_douzhen.ai) lib.skill.dshj_douzhen.ai.threaten = 5;
   if (lib.skill.g_hyym_F5)
-  lib.skill.g_hyym_F5.content = function () {
-    player.
-    chooseToUse(get.prompt('hyym_F5', player).replace(/发动/, '使用'), function (card, player) {
-      if (card.name != 'hyym_F5') return false;
-      return lib.filter.cardEnabled(card, player, 'forceEnable');
-    }).
-    set('ai1', function (card) {
-      if (_status.event.player.name == 'syr_aosheng' && card.name == 'syr_ASHR') return 0;
-      return true;
-    }).
-    set(
-      'ai2',
-      function (target) {
-        let player = _status.event.player;
-        let evt = _status.event.getParent(4);
-        return get.attitude(player, _status.currentPhase) < 0 && get.effect(player, evt.card, evt.player, player) < 0 && (player.hp > 1 || player.hasCard((card) => card.name == 'jiu' || card.name == 'tao' || card.name == 'xiaomijiu' || card.name == 'nverhong' || card.name == 'fuhuobi', 'hs')) || player == _status.currentPhase && player.countCards('hs', (card) => game.filterPlayer((play) => player.canUse(card, play, true, true)).length > 0) == 0 && (get.effect(player, evt.card, evt.player, player) < 0 && player != evt.player && (player.hp > 1 || player.hasCard((card) => card.name == 'jiu' || card.name == 'tao' || card.name == 'xiaomijiu' || card.name == 'nverhong' || card.name == 'fuhuobi', 'hs')) || player == evt.player && player.countCards('h') - player.getHandcardLimit() >= 3);
-      } /* .player,-1 */
-    ).targetRequired = false;
-  };
+    lib.skill.g_hyym_F5.content = function () {
+      player.
+        chooseToUse(get.prompt('hyym_F5', player).replace(/发动/, '使用'), function (card, player) {
+          if (card.name != 'hyym_F5') return false;
+          return lib.filter.cardEnabled(card, player, 'forceEnable');
+        }).
+        set('ai1', function (card) {
+          if (_status.event.player.name == 'syr_aosheng' && card.name == 'syr_ASHR') return 0;
+          return true;
+        }).
+        set(
+          'ai2',
+          function (target) {
+            let player = _status.event.player;
+            let evt = _status.event.getParent(4);
+            return get.attitude(player, _status.currentPhase) < 0 && get.effect(player, evt.card, evt.player, player) < 0 && (player.hp > 1 || player.hasCard((card) => card.name == 'jiu' || card.name == 'tao' || card.name == 'xiaomijiu' || card.name == 'nverhong' || card.name == 'fuhuobi', 'hs')) || player == _status.currentPhase && player.countCards('hs', (card) => game.filterPlayer((play) => player.canUse(card, play, true, true)).length > 0) == 0 && (get.effect(player, evt.card, evt.player, player) < 0 && player != evt.player && (player.hp > 1 || player.hasCard((card) => card.name == 'jiu' || card.name == 'tao' || card.name == 'xiaomijiu' || card.name == 'nverhong' || card.name == 'fuhuobi', 'hs')) || player == evt.player && player.countCards('h') - player.getHandcardLimit() >= 3);
+          } /* .player,-1 */
+        ).targetRequired = false;
+    };
   if (lib.skill.bol_shanshan_skill)
-  lib.skill.bol_shanshan_skill.content = function () {
-    'step 0';
-    var card = trigger.card;
-    if (trigger.name == 'phaseJudge' && card.viewAs) card = { name: card.viewAs };
-    var next = player.chooseToUse();
-    next.set('prompt', '是否使用【闪闪】？');
-    next.set('prompt2', '抵消' + (trigger.name != 'phaseJudge' ? get.translation(trigger.player) + '对你使用的' : '') + get.translation(card) + (trigger.name != 'phaseJudge' ? '' : '的判定效果'));
-    next.set('filterCard', function (card, player) {
-      if (card.name != 'bol_shanshan') return false;
-      return lib.filter.cardEnabled(card, player, 'forceEnable');
-    });
-    next.set('respondTo', [trigger.player, trigger.card]);
-    next.set('goon', -get.effect(player, card, trigger.player, player));
-    next.set('ai1', function (card) {
-      if (_status.event.player.name == 'syr_aosheng' && card.name == 'syr_ASHR') return 0;
-      return _status.event.goon;
-    });
-    'step 1';
-    if (result.bool && trigger.name == 'phaseJudge' && [trigger.card].filterInD().length) player.gain([trigger.card].filterInD(), 'gain2');
-  };
+    lib.skill.bol_shanshan_skill.content = function () {
+      'step 0';
+      var card = trigger.card;
+      if (trigger.name == 'phaseJudge' && card.viewAs) card = { name: card.viewAs };
+      var next = player.chooseToUse();
+      next.set('prompt', '是否使用【闪闪】？');
+      next.set('prompt2', '抵消' + (trigger.name != 'phaseJudge' ? get.translation(trigger.player) + '对你使用的' : '') + get.translation(card) + (trigger.name != 'phaseJudge' ? '' : '的判定效果'));
+      next.set('filterCard', function (card, player) {
+        if (card.name != 'bol_shanshan') return false;
+        return lib.filter.cardEnabled(card, player, 'forceEnable');
+      });
+      next.set('respondTo', [trigger.player, trigger.card]);
+      next.set('goon', -get.effect(player, card, trigger.player, player));
+      next.set('ai1', function (card) {
+        if (_status.event.player.name == 'syr_aosheng' && card.name == 'syr_ASHR') return 0;
+        return _status.event.goon;
+      });
+      'step 1';
+      if (result.bool && trigger.name == 'phaseJudge' && [trigger.card].filterInD().length) player.gain([trigger.card].filterInD(), 'gain2');
+    };
   if (lib.skill.qmm_jinchan2)
-  lib.skill.qmm_jinchan2.content = function () {
-    event.jinchan = { evt: trigger };
-    var next = player.chooseToUse();
-    next.set('prompt', '是否使用【金蟾】响应' + get.translation(trigger.player) + '使用的' + get.translation(trigger.card) + '？');
-    next.set('filterCard', function (card, player) {
-      if (card.name != 'qmm_jinchan') return false;
-      return lib.filter.cardEnabled(card, player, 'forceEnable');
-    });
-    next.set('respondTo', [trigger.player, trigger.card]);
-    next.set('goon', -get.effect(player, trigger.card, trigger.player, player));
-    next.set('ai1', function (card) {
-      if (_status.event.player.name == 'syr_aosheng' && card.name == 'syr_ASHR') return 0;
-      return _status.event.goon;
-    });
-  };
+    lib.skill.qmm_jinchan2.content = function () {
+      event.jinchan = { evt: trigger };
+      var next = player.chooseToUse();
+      next.set('prompt', '是否使用【金蟾】响应' + get.translation(trigger.player) + '使用的' + get.translation(trigger.card) + '？');
+      next.set('filterCard', function (card, player) {
+        if (card.name != 'qmm_jinchan') return false;
+        return lib.filter.cardEnabled(card, player, 'forceEnable');
+      });
+      next.set('respondTo', [trigger.player, trigger.card]);
+      next.set('goon', -get.effect(player, trigger.card, trigger.player, player));
+      next.set('ai1', function (card) {
+        if (_status.event.player.name == 'syr_aosheng' && card.name == 'syr_ASHR') return 0;
+        return _status.event.goon;
+      });
+    };
   lib.skill.xwjh_publicmark_huoxue = {
     mark: true,
     markimage: 'extension/白河子与其他/image/icon/xwjh_icon_huoxue.jpg',
@@ -1736,7 +1730,7 @@ export async function content(config, pack) {
         if (card.name == 'sha') return Infinity;
       }
     },
-    init(player) {},
+    init(player) { },
     trigger: {
       player: ['phaseAfter']
     },
@@ -1839,199 +1833,199 @@ export async function content(config, pack) {
           name: '征战后宫',
           intro: '试试看武将们能否打赢羸弱的后宫!',
           scenes: [
-          {
-            name: '孙皓后宫',
-            intro: '试试看和两位队友一起挑战孙皓后宫吧!',
-            players: [
-            { name: 'random', name2: 'none', identity: 'fan', position: 5, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 6, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'dc_tengfanglan', name2: 'tengfanglan', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'zhangyao', name2: 'none', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'zhangxuan', name2: 'none', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
-
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          },
-          {
-            name: '孙权后宫',
-            intro: '试试看和两位队友一起挑战孙权后宫吧!',
-            players: [
-            { name: 'yuanji', name2: 'none', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 're_bulianshi', name2: 'dc_bulianshi', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'panshu', name2: 're_panshu', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
-
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          },
-          {
-            name: '曹操后宫',
-            intro: '试试看和三位队友一起挑战曹操后宫(外加邹氏、郑浑)吧!',
-            players: [
-            { name: 'tw_bianfuren', name2: 'ol_bianfuren', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'dingshangwan', name2: 'none', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'Mbaby_dufuren', name2: 'yinfuren', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'zhenghun', name2: 're_zoushi', identity: 'zhong', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
-
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          },
-          {
-            name: '曹丕后宫',
-            intro: '试试看和三位队友一起挑战曹丕后宫吧!',
-            players: [
-            { name: 'guozhao', name2: 'none', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'duanqiaoxiao', name2: 'none', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'xuelingyun', name2: 'tianshangyi', identity: 'zhong', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'xian_zhenji', name2: 'sb_zhenji', identity: 'zhu', position: 1, hp: 5, maxHp: 5, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['lingsheji', 'club', '12']], judges: [] }],
-
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          },
-          {
-            name: '关索后宫',
-            intro: '试试看和三位队友一起挑战关索后宫吧!',
-            players: [
-            { name: 'Mbaby_baosanniang', name2: 'baosanniang', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['qinglong', 'spade', 5]], judges: [] },
-            { name: 'sp_huaman', name2: 'xin_baosanniang', identity: 'zhong', position: 2, hp: 3, maxHp: 3, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'wangtao', name2: 'huaman', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'wangyue', name2: 'Mbaby_huaman', identity: 'zhong', position: 3, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
-
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          },
-          {
-            name: '长坂战神后宫',
-            intro: '试试看和三位队友一起挑战那位被周善打掉兜鍪的长坂假神以及另一位带他七进七出长坂坡的长坂真神的后宫(包括没成的和杜撰的)吧!',
-            players: [
-            { name: 'tw_mayunlu', name2: 'zhouyi', identity: 'zhu', position: 1, hp: 3, maxHp: 5, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['guanshi', 'diamond', 5]], judges: [] },
-            { name: 'zhangjinyun', name2: 'none', identity: 'zhong', position: 2, hp: 2, maxHp: 3, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'old_zhangxingcai', name2: 'none', identity: 'zhong', position: 3, hp: 2, maxHp: 3, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'fanyufeng', name2: 'mayunlu', identity: 'zhong', position: 4, hp: 3, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['guanshi', 'diamond', 5]], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
-
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          },
-          {
-            name: '刘备后宫',
-            intro: '试试看和三位队友一起挑战刘备后宫(外加两兄弟和孔明)吧!',
-            players: [
             {
-              name: 'mifuren',
-              name2: 'jlsgsoul_sp_zhugeliang',
-              identity: 'zhu',
-              position: 2,
-              hp: 8,
-              maxHp: 8,
-              linked: false,
-              turnedover: false,
-              playercontrol: false,
-              handcards: [],
-              equips: [
-              ['zhuge', 'club', 1],
-              ['rewrite_bagua', 'club', 2],
-              ['zhanxiang', 'heart', 13],
-              ['muniu', 'diamond', 5]],
+              name: '孙皓后宫',
+              intro: '试试看和两位队友一起挑战孙皓后宫吧!',
+              players: [
+                { name: 'random', name2: 'none', identity: 'fan', position: 5, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 6, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'dc_tengfanglan', name2: 'tengfanglan', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'zhangyao', name2: 'none', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'zhangxuan', name2: 'none', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
 
-              judges: []
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
             },
             {
-              name: 'shen_zhangfei',
-              name2: 'ganfurenmifuren',
-              identity: 'zhong',
-              position: 2,
-              hp: 4,
-              maxHp: 4,
-              linked: false,
-              turnedover: false,
-              playercontrol: false,
-              handcards: [],
-              equips: [
-              ['zhangba', 'spade', 12],
-              ['rewrite_bagua', 'spade', 2]],
+              name: '孙权后宫',
+              intro: '试试看和两位队友一起挑战孙权后宫吧!',
+              players: [
+                { name: 'yuanji', name2: 'none', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 're_bulianshi', name2: 'dc_bulianshi', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'panshu', name2: 're_panshu', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
 
-              judges: []
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
             },
             {
-              name: 'jlsgsoul_sunshangxiang',
-              name2: 'sb_sunshangxiang',
-              identity: 'zhong',
-              position: 3,
-              hp: 4,
-              maxHp: 4,
-              linked: false,
-              turnedover: false,
-              playercontrol: false,
-              handcards: [],
-              equips: [
-              ['tmxk_jishengong', 'heart', 5],
-              ['baihuaqun', 'spade', 2],
-              ['changandajian_equip3', 'heart', 10],
-              ['changandajian_equip4', 'heart', 10],
-              ['changandajian_equip5', 'heart', 10],
-              ['changandajian_equip6', 'heart', 10]],
+              name: '曹操后宫',
+              intro: '试试看和三位队友一起挑战曹操后宫(外加邹氏、郑浑)吧!',
+              players: [
+                { name: 'tw_bianfuren', name2: 'ol_bianfuren', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'dingshangwan', name2: 'none', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'Mbaby_dufuren', name2: 'yinfuren', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'zhenghun', name2: 're_zoushi', identity: 'zhong', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
 
-              judges: []
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
             },
             {
-              name: 'jlsgsk_wuxian',
-              name2: 'tw_shen_guanyu',
-              identity: 'zhong',
-              position: 4,
-              hp: 4,
-              maxHp: 4,
-              linked: false,
-              turnedover: false,
-              playercontrol: false,
-              handcards: [],
-              equips: [
-              ['guilongzhanyuedao', 'spade', 5],
-              ['dilu', 'club', 5],
-              ['chitu', 'heart', 5]],
+              name: '曹丕后宫',
+              intro: '试试看和三位队友一起挑战曹丕后宫吧!',
+              players: [
+                { name: 'guozhao', name2: 'none', identity: 'zhong', position: 2, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'duanqiaoxiao', name2: 'none', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'xuelingyun', name2: 'tianshangyi', identity: 'zhong', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'xian_zhenji', name2: 'sb_zhenji', identity: 'zhu', position: 1, hp: 5, maxHp: 5, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['lingsheji', 'club', '12']], judges: [] }],
 
-              judges: []
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
             },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
+            {
+              name: '关索后宫',
+              intro: '试试看和三位队友一起挑战关索后宫吧!',
+              players: [
+                { name: 'Mbaby_baosanniang', name2: 'baosanniang', identity: 'zhu', position: 1, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['qinglong', 'spade', 5]], judges: [] },
+                { name: 'sp_huaman', name2: 'xin_baosanniang', identity: 'zhong', position: 2, hp: 3, maxHp: 3, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'wangtao', name2: 'huaman', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'wangyue', name2: 'Mbaby_huaman', identity: 'zhong', position: 3, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
 
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          }],
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
+            },
+            {
+              name: '长坂战神后宫',
+              intro: '试试看和三位队友一起挑战那位被周善打掉兜鍪的长坂假神以及另一位带他七进七出长坂坡的长坂真神的后宫(包括没成的和杜撰的)吧!',
+              players: [
+                { name: 'tw_mayunlu', name2: 'zhouyi', identity: 'zhu', position: 1, hp: 3, maxHp: 5, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['guanshi', 'diamond', 5]], judges: [] },
+                { name: 'zhangjinyun', name2: 'none', identity: 'zhong', position: 2, hp: 2, maxHp: 3, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'old_zhangxingcai', name2: 'none', identity: 'zhong', position: 3, hp: 2, maxHp: 3, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'fanyufeng', name2: 'mayunlu', identity: 'zhong', position: 4, hp: 3, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [['guanshi', 'diamond', 5]], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
+
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
+            },
+            {
+              name: '刘备后宫',
+              intro: '试试看和三位队友一起挑战刘备后宫(外加两兄弟和孔明)吧!',
+              players: [
+                {
+                  name: 'mifuren',
+                  name2: 'jlsgsoul_sp_zhugeliang',
+                  identity: 'zhu',
+                  position: 2,
+                  hp: 8,
+                  maxHp: 8,
+                  linked: false,
+                  turnedover: false,
+                  playercontrol: false,
+                  handcards: [],
+                  equips: [
+                    ['zhuge', 'club', 1],
+                    ['rewrite_bagua', 'club', 2],
+                    ['zhanxiang', 'heart', 13],
+                    ['muniu', 'diamond', 5]],
+
+                  judges: []
+                },
+                {
+                  name: 'shen_zhangfei',
+                  name2: 'ganfurenmifuren',
+                  identity: 'zhong',
+                  position: 2,
+                  hp: 4,
+                  maxHp: 4,
+                  linked: false,
+                  turnedover: false,
+                  playercontrol: false,
+                  handcards: [],
+                  equips: [
+                    ['zhangba', 'spade', 12],
+                    ['rewrite_bagua', 'spade', 2]],
+
+                  judges: []
+                },
+                {
+                  name: 'jlsgsoul_sunshangxiang',
+                  name2: 'sb_sunshangxiang',
+                  identity: 'zhong',
+                  position: 3,
+                  hp: 4,
+                  maxHp: 4,
+                  linked: false,
+                  turnedover: false,
+                  playercontrol: false,
+                  handcards: [],
+                  equips: [
+                    ['tmxk_jishengong', 'heart', 5],
+                    ['baihuaqun', 'spade', 2],
+                    ['changandajian_equip3', 'heart', 10],
+                    ['changandajian_equip4', 'heart', 10],
+                    ['changandajian_equip5', 'heart', 10],
+                    ['changandajian_equip6', 'heart', 10]],
+
+                  judges: []
+                },
+                {
+                  name: 'jlsgsk_wuxian',
+                  name2: 'tw_shen_guanyu',
+                  identity: 'zhong',
+                  position: 4,
+                  hp: 4,
+                  maxHp: 4,
+                  linked: false,
+                  turnedover: false,
+                  playercontrol: false,
+                  handcards: [],
+                  equips: [
+                    ['guilongzhanyuedao', 'spade', 5],
+                    ['dilu', 'club', 5],
+                    ['chitu', 'heart', 5]],
+
+                  judges: []
+                },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
+
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
+            }],
 
           mode: 'normal',
           level: 6
@@ -2050,24 +2044,24 @@ export async function content(config, pack) {
           name: '名著内战',
           intro: '<三国演义>与<西游记>之间的较量!',
           scenes: [
-          {
-            name: '名著内战',
-            intro: '<三国演义>与<西游记>之间的较量!',
-            players: [
-            { name: 'syr_sunwukong', name2: 'sunwukong', identity: 'zhu', position: 1, hp: 5, maxHp: 5, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'zerong', name2: 'bug_zhangsong', identity: 'zhong', position: 2, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'xingdaorong', name2: 're_xuzhu', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'shamoke', name2: 'quyi', identity: 'zhong', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
-            { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
+            {
+              name: '名著内战',
+              intro: '<三国演义>与<西游记>之间的较量!',
+              players: [
+                { name: 'syr_sunwukong', name2: 'sunwukong', identity: 'zhu', position: 1, hp: 5, maxHp: 5, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'zerong', name2: 'bug_zhangsong', identity: 'zhong', position: 2, hp: 4, maxHp: 4, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'xingdaorong', name2: 're_xuzhu', identity: 'zhong', position: 3, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'shamoke', name2: 'quyi', identity: 'zhong', position: 4, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: false, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] },
+                { name: 'random', name2: 'none', identity: 'fan', position: 0, hp: null, maxHp: null, linked: false, turnedover: false, playercontrol: true, handcards: [], equips: [], judges: [] }],
 
-            cardPileTop: [],
-            cardPileBottom: [],
-            discardPile: [],
-            gameDraw: true
-          }],
+              cardPileTop: [],
+              cardPileBottom: [],
+              discardPile: [],
+              gameDraw: true
+            }],
 
           mode: 'normal',
           level: 0

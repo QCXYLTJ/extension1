@@ -304,7 +304,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					});
 				},
 				forced: true,
-				content: function* (event, map) {
+				async content(event, map) {
 					const player = map.player;
 					const choices = [];
 					const choiceList = ['令一名角色将手牌数摸或弃置至与其体力值相同', '令一名角色将体力回复或失去至与其手牌数相同'];
@@ -317,7 +317,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						});
 					if (choices.length == 1) result = { control: choices[0] };
 					else
-						result = yield player
+						result = await player
 							.chooseControl(choices, 'cancel2')
 							.set('choiceList', choiceList)
 							.set('prompt', get.prompt('dcxunjie'))
@@ -364,7 +364,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					if (choices.length == 1) {
 						prompt = `###${get.prompt('dcxunjie')}###<div class="text center">${choiceList[index]}</div>`;
 					} else prompt = `###殉节:请选择一名角色###<div class="text center">${choiceList[index].replace('一名', '该')}</div>`;
-					result = yield player
+					result = await player
 						.chooseTarget(prompt)
 						.set('ai', (target) => {
 							const player = get.player(),

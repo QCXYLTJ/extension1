@@ -27734,8 +27734,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 intro: {
                     name: '迷惘',
                     content: '哪边是真!哪边是假？',
-                    /*content: "expansion",
-                    markcount: "expansion",*/
                 },
                 trigger: {
                     player: ['gainAfter', 'loseAfter'],

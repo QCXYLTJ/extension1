@@ -17463,7 +17463,7 @@ export let info = {
               .set('judge2', function (result) {
                 return result.bool ? true : false;
               })
-              .set('callback', function* (event, arg) {
+              .set('callback', async function (event, arg) {
                 const player = arg.player,
                   result = event.judgeResult;
                 if (result.color == 'black' && get.position(result.card, true) == 'o' && player.hasUseTarget({ name: 'shandian' })) {
@@ -17592,7 +17592,7 @@ export let info = {
         return prompt.slice(0, -1);
       },
       check: (card) => (ui.selected.cards.length ? 8 : 6) - get.value(card),
-      content: function* (event, arg) {
+      async content(event, arg) {
         const player = arg.player,
           storage = player.storage[event.name];
         storage.effect.forEach(function (value, index) {
@@ -17606,20 +17606,20 @@ export let info = {
         });
       },
       effect: [
-        function* (event, arg) {
+        async function (event, arg) {
           game.log(arg.player, '执行了', '#g【节桢】', '的', '#y第一项');
           const storage = arg.player.storage.dqzw_jiezhen;
           if (storage.effect.length > 1) storage.effect[0].addArray(storage.effect.splice(1, 1)[0]);
         },
-        function* (event, arg) {
+        async function (event, arg) {
           game.log(arg.player, '执行了', '#g【节桢】', '的', '#y第二项');
           game.asyncDraw(game.filterPlayer((target) => target.isMinHandcard()));
         },
-        function* (event, arg) {
+        async function (event, arg) {
           game.log(arg.player, '执行了', '#g【节桢】', '的', '#y第三项');
           arg.player.addTempSkill('dqzw_jiezhen_viewAs');
         },
-        function* (event, arg) {
+        async function (event, arg) {
           game.log(arg.player, '执行了', '#g【节桢】', '的', '#y第四项');
           const target = game.findPlayer((target) => target.isMaxHp(true));
           if (target) target.loseHp();
@@ -17974,14 +17974,14 @@ export let info = {
       selectTarget: () => [1, get.player().hp],
       multitarget: true,
       multiline: true,
-      content: function* (event, arg) {
+      async content(event, arg) {
         let index = 0;
         const filter = [(card) => card.name == 'sha', (card) => get.color(card) == 'black', (card) => get.subtype(card) == 'equip1'];
         const player = arg.player,
           targets = arg.targets.sortBySeat(),
           discards = [];
         for (const target of targets) {
-          const result = yield player.discardPlayerCard(target, true, 'he').set('delay', false);
+          const result = await player.discardPlayerCard(target, true, 'he').set('delay', false);
           discards.addArray(result.links);
         }
         for (const func of filter) {
@@ -17989,12 +17989,12 @@ export let info = {
             const next = game.createEvent('dqzw_hanqi_effect', false);
             next.player = player;
             next.setContent(lib.skill[event.name].effect[index++]);
-            yield next;
+            await next;
           }
         }
       },
       effect: [
-        function* (event, arg) {
+        async function (event, arg) {
           const player = arg.player,
             cards = [];
           ['shan', 'tao'].forEach(function (name) {
@@ -18003,25 +18003,25 @@ export let info = {
           });
           if (cards.length) player.gain(cards, 'gain2');
         },
-        function* (event, arg) {
+        async function (event, arg) {
           const player = arg.player;
           if (player.hasCard((card) => player.canRecast(card), 'he')) {
-            const result = yield player.chooseCard('悍骑:选择要重铸的牌', [1, player.hp], lib.filter.cardRecastable).set('ai', function (card) {
+            const result = await player.chooseCard('悍骑:选择要重铸的牌', [1, player.hp], lib.filter.cardRecastable).set('ai', function (card) {
               return 5 - get.value(card);
             });
             if (result.bool) player.recast(result.cards);
           }
         },
-        function* (event, arg) {
+        async function (event, arg) {
           const player = arg.player;
-          const result = yield player.chooseTarget('悍骑:选择要受到伤害的目标', [1, player.hp]).set('ai', function (target) {
+          const result = await player.chooseTarget('悍骑:选择要受到伤害的目标', [1, player.hp]).set('ai', function (target) {
             const player = get.player();
             return get.damageEffect(target, player, player);
           });
           if (result.bool) {
             const targets = result.targets.sortBySeat();
             player.line(targets);
-            for (const target of targets) yield target.damage('nocard');
+            for (const target of targets) await target.damage('nocard');
           }
           player.draw(Math.min(player.hp, 20));
         },
@@ -21286,11 +21286,11 @@ export let info = {
           popname: true,
           filterCard: () => false,
           selectCard: -1,
-          precontent: function* (event, arg) {
+          async precontent(event, arg) {
             const player = arg.player,
               cards = player.getExpansions('dqzw_bianqing');
-            yield player.lose(cards, ui.special);
-            yield player.addToExpansion(cards.randomSort()).gaintag.add('dqzw_bianqing');
+            await player.lose(cards, ui.special);
+            await player.addToExpansion(cards.randomSort()).gaintag.add('dqzw_bianqing');
           },
         },
       },
@@ -21406,16 +21406,16 @@ export let info = {
       selectTarget: [1, 4],
       multitarget: true,
       multiline: true,
-      content: function* (event, arg) {
+      async content(event, arg) {
         const player = arg.player,
           targets = arg.targets.sortBySeat();
         for (const target of targets) {
-          const result = yield target.chooseCard('清蹈:交给' + get.translation(player) + '一张牌', 'he', true);
-          yield target.give(result.cards, player);
+          const result = await target.chooseCard('清蹈:交给' + get.translation(player) + '一张牌', 'he', true);
+          await target.give(result.cards, player);
         }
         for (const target of targets) {
-          const result = yield player.chooseCard('清蹈:交给' + get.translation(target) + '一张手牌', 'h', true);
-          yield player.give(result.cards, target);
+          const result = await player.chooseCard('清蹈:交给' + get.translation(target) + '一张手牌', 'h', true);
+          await player.give(result.cards, target);
         }
       },
       ai: {
@@ -22785,7 +22785,7 @@ export let info = {
           prepare(cards, player, targets) {
             const source = targets.find((target) => target.hasSkill('dqzw_pingdang'));
           },
-          content: function* (event, arg) {
+          async content(event, arg) {
             const targets = arg.targets.sortBySeat();
             for (const target of targets) target.link();
           },
@@ -22925,7 +22925,7 @@ export let info = {
           },
           filterCard: () => false,
           selectCard: -1,
-          precontent: function* (event, arg) {
+          async precontent(event, arg) {
             const cards = lib.skill.dqzw_yirong_view_backup.cards;
             const player = arg.player,
               owner = get.owner(cards[0]),
@@ -23831,7 +23831,7 @@ export let info = {
               next.set('judge2', function (result) {
                 return result.bool ? true : false;
               });
-              next.set('callback', function* (event, arg) {
+              next.set('callback', async function (event, arg) {
                 const player = arg.player,
                   result = event.judgeResult;
                 if (result.bool) {
@@ -23839,7 +23839,7 @@ export let info = {
                   const next = player.chooseBool('博览:是否继续进行判定？');
                   if (lib.skill[skill].check(event, player)) next.set('frequentSkill', skill);
                   next.set('ai', () => false);
-                  const result = yield next;
+                  const result = await next;
                   event.parent._result = { bool: result.bool };
                 } else {
                   event.parent._result = { bool: false };
@@ -23865,11 +23865,11 @@ export let info = {
           },
           filterCard: lib.filter.cardDiscardable,
           position: 'he',
-          precontent: function* (event, arg) {
+          async precontent(event, arg) {
             const cards = lib.skill.dqzw_bolan_backup.cards;
             const player = arg.player,
               result = event.result;
-            yield player.discard(result.cards).set('discarder', player);
+            await player.discard(result.cards).set('discarder', player);
             result.card = cards[0];
             result.cards = cards;
           },
@@ -24490,7 +24490,7 @@ export let info = {
             filterCard: () => false,
             selectCard: -1,
             viewAs: { name: links[0][2], nature: links[0][3] },
-            precontent: function* (event, arg) {
+            async precontent(event, arg) {
               const player = arg.player,
                 info = lib.skill[event.name.slice(4)];
               player.showHandcards(get.translation(player) + '发动了【德泽】');
@@ -24680,10 +24680,10 @@ export let info = {
             player.line(targets, 'green');
           },
           prompt: '令其中一名角色观看你的手牌,若你手牌中有其手牌中存在的点数,你翻面并于下次翻回时回复1点体力,否则其重铸所有手牌',
-          content: function* (event, arg) {
+          async content(event, arg) {
             const player = arg.player,
               target = arg.target;
-            if (player.countCards('h')) yield target.viewCards(get.translation(player) + '的手牌', player.getCards('h'));
+            if (player.countCards('h')) await target.viewCards(get.translation(player) + '的手牌', player.getCards('h'));
             const pns = player
               .getCards('h')
               .map((card) => card.number)
@@ -25157,7 +25157,7 @@ export let info = {
               if (use && use.name == 'phaseUse') use.skipped = true;
               phase.num = phase.phaseList.length;
               phase.next.unshift(
-                game.createEvent('showPhaseEnd', false, { next: [] }).setContent(function* (event, arg) {
+                game.createEvent('showPhaseEnd', false, { next: [] }).setContent(async function (event, arg) {
                   game.log('回合已强制结束');
                 })
               );

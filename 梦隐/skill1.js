@@ -2852,10 +2852,10 @@ const skill = {
             player: 'showCharacterAfter',
         },
         forced: true,
-        content: function* (event, map) {
+        async content(event, map) {
             const player = map.player;
             let result;
-            result = yield player.chooseTarget(get.prompt2('mx_mosalianmian')).set('ai', (target) => {
+            result = await player.chooseTarget(get.prompt2('mx_mosalianmian')).set('ai', (target) => {
                 const att = get.attitude(get.player(), target) / 2;
                 const delta = 5 - target.countCards('h');
                 let fix = 1;
@@ -2881,7 +2881,7 @@ const skill = {
             const target = result.targets[0];
             const delta = 5 - target.countCards('h');
             if (delta != 0) {
-                yield target[delta > 0 ? 'draw' : 'chooseToDiscard'](Math.abs(delta), true);
+                await target[delta > 0 ? 'draw' : 'chooseToDiscard'](Math.abs(delta), true);
             }
             target.showHandcards();
             const hs = target.getCards('h');
@@ -2906,7 +2906,7 @@ const skill = {
                 });
             });
             if (!list.length) return event.finish();
-            result = yield target.chooseButton(['视为使用其中一张牌？', [list, 'vcard']]).set('ai', (button) => {
+            result = await target.chooseButton(['视为使用其中一张牌？', [list, 'vcard']]).set('ai', (button) => {
                 return get.player().getUseValue({ name: button.link[2] });
             });
             if (result.bool) {
@@ -20864,14 +20864,14 @@ const skill = {
             else str += `摸${get.cnNumber(-delt)}张牌`;
             return `${str},令一名角色对另一名角色视为使用一张【逐近弃远】`;
         },
-        content: function* (event, map) {
+        async content(event, map) {
             var player = map.player;
-            if (player.countCards('h') < player.seatNum) yield player.drawTo(player.seatNum);
+            if (player.countCards('h') < player.seatNum) await player.drawTo(player.seatNum);
             if (game.countPlayer() < 2) {
                 event.finish();
                 return;
             }
-            var result = yield player
+            var result = await player
                 .chooseTarget('选择目标', true, 2, (card, player, target) => {
                     var sha = new lib.element.VCard({ name: 'zhujinqiyuan' });
                     if (ui.selected.targets.length) {
@@ -33501,13 +33501,13 @@ const skill = {
         filter(event, player) {
             return game.hasPlayer((i) => i != player);
         },
-        content: function* (event, map) {
+        async content(event, map) {
             var player = map.player,
                 trigger = map.trigger;
             var targets = game.filterPlayer((i) => i != player);
             for (var target of targets) {
                 var att = get.attitude(target, player);
-                var result = yield target
+                var result = await target
                     .chooseCard(2, 'he', `是否交给${get.translation(player)}两张牌？`, `若选择是,希卡蕾弃置一张牌`)
                     .set('att', att)
                     .set('ai', (card) => {
@@ -39141,13 +39141,13 @@ const skill = {
                 check(card) {
                     return 6 - get.value(card);
                 },
-                precontent: function* (event, map) {
+                async precontent(event, map) {
                     var player = map.player;
                     var targets = game.filterPlayer((current) => current.hasSkill('mx_qiulongzhiniao'));
                     var result;
                     if (targets.length) result = { bool: true, targets: targets };
                     else
-                        result = yield player
+                        result = await player
                             .chooseTarget('发动此技能', true, (card, player, target) => {
                                 return get.event('targets').includes(target);
                             })

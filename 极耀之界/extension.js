@@ -12078,14 +12078,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 return num > 0;
                             },
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 var player = map.player,
                                     trigger = map.trigger;
                                 var targets = player == trigger.player ? (trigger.targets ? trigger.targets.slice(0) : [trigger.target]) : [trigger.player];
                                 if (!trigger.fixedResult) trigger.fixedResult = {};
                                 while (targets.length) {
                                     var target = targets.shift();
-                                    var result = yield player
+                                    var result = await player
                                         .choosePlayerCard(target, 'he')
                                         .set('prompt', get.prompt(event.name, target))
                                         .set('prompt2', '选择' + get.translation(target) + '的一张牌作为其拼点牌')
@@ -24407,14 +24407,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'phaseDrawEnd',
                             },
                             forced: true,
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 var player = map.player;
                                 var choiceList = ['摸1张牌和手牌上限+1;', '重铸1张牌,且出牌阶段你使用【杀】的次数上限和攻击范围+1'],
                                     list = ['cancel2'];
                                 if (player.countCards('he', (card) => player.canRecast(card))) list.unshift('重铸,+1');
                                 else choiceList[1] = '<span style="opacity:0.5">' + choiceList[1] + '</span>';
                                 list.unshift('摸牌,-1');
-                                var result = yield player
+                                var result = await player
                                     .chooseControl(list)
                                     .set('ai', () => {
                                         var player = _status.event.player;
@@ -24430,7 +24430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.draw();
                                         lib.skill.手牌上限.change(player, 1);
                                     } else {
-                                        var result2 = yield player.chooseCard('he', '将驰:请重铸一张牌', true, (card, player) => player.canRecast(card));
+                                        var result2 = await player.chooseCard('he', '将驰:请重铸一张牌', true, (card, player) => player.canRecast(card));
                                         if (result2.bool) {
                                             player.recast(result2.cards);
                                             lib.skill.出杀次数.change(player, 1);
@@ -36567,7 +36567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         tx_fh_jiangchi: {
                             inherit: 'oljiangchi',
                             audio: 'oljiangchi',
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 var player = map.player;
                                 var choiceList = ['摸一张牌', '摸两张牌,本回合使用【杀】的次数上限-1,且【杀】不计入手牌上限', '重铸一张牌,本回合使用【杀】无距离限制,且使用【杀】的次数上限+1'],
                                     list = ['cancel2'];
@@ -36575,7 +36575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else choiceList[1] = '<spanstyle="opacity:0.5">' + choiceList[1] + '</span>';
                                 list.unshift('摸二');
                                 list.unshift('摸一');
-                                var result = yield player
+                                var result = await player
                                     .chooseControl(list)
                                     .set('ai', () => {
                                         var player = _status.event.player;
@@ -36595,7 +36595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.addMark('oljiangchi_less', 1, false);
                                     }
                                     if (result.control == '重铸') {
-                                        var result2 = yield player.chooseCard('he', '将驰:请重铸一张牌', true, (card, player) => player.canRecast(card));
+                                        var result2 = await player.chooseCard('he', '将驰:请重铸一张牌', true, (card, player) => player.canRecast(card));
                                         if (result2.bool) {
                                             player.recast(result2.cards);
                                             player.addTempSkill('oljiangchi_more');
@@ -38141,10 +38141,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.hasZhuSkill('kpjx_bazhu', event.player);
                             },
                             forced: true,
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 var player = map.player,
                                     trigger = map.trigger;
-                                var result = yield player.chooseBool('是否发动【霸主】,对' + get.translation(trigger.player) + '造成一点伤害？然后此回合结束,' + get.translation(trigger.player) + '回复1点体力').set('choice', get.attitude(trigger.player, player) > 0);
+                                var result = await player.chooseBool('是否发动【霸主】,对' + get.translation(trigger.player) + '造成一点伤害？然后此回合结束,' + get.translation(trigger.player) + '回复1点体力').set('choice', get.attitude(trigger.player, player) > 0);
                                 if (result.bool) {
                                     trigger.player.damage();
                                 }

@@ -5311,10 +5311,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.getHistory('gain', (evt) => evt.getParent(event.name) == event).length + player.getHistory('lose', (evt) => evt.getParent(event.name) == event).length;
                             },
                             forced: true,
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 var player = map.player;
                                 var trigger = map.trigger;
-                                var result = yield player
+                                var result = await player
                                     .chooseTarget(get.prompt('genm_zhuri'), '与一名角色进行拼点,若你赢,你可以使用其中的一张拼点牌;若你没赢,你失去1点体力或令此技能于本回合失效', (card, player, target) => {
                                         return player.canCompare(target);
                                     })
@@ -5333,12 +5333,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 if (result.bool) {
                                     var target = result.targets[0];
-                                    var result2 = yield player.chooseToCompare(target);
+                                    var result2 = await player.chooseToCompare(target);
                                     if (result2.bool) {
                                         var cards = [result2.player, result2.target].filterInD('d');
                                         cards = cards.filter((card) => player.hasUseTarget(card));
                                         if (cards.length) {
-                                            var result3 = yield player.chooseButton(['是否使用其中的牌？', cards]).set('ai', (button) => _status.event.player.getUseValue(button.link));
+                                            var result3 = await player.chooseButton(['是否使用其中的牌？', cards]).set('ai', (button) => _status.event.player.getUseValue(button.link));
                                             if (result3.bool) {
                                                 var card = result3.links[0];
                                                 player.$gain2(card, false);
@@ -5347,7 +5347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     } else {
                                         var list = lib.skill.genm_ranji.getList(trigger);
-                                        var result3 = yield player
+                                        var result3 = await player
                                             .chooseControl('失去体力', '技能失效')
                                             .set('prompt', '逐日:失去1点体力,或令此技能于本回合失效')
                                             .set('ai', () => {
@@ -5403,7 +5403,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (num == player.getHp()) return true;
                                 return player.getHandcardLimit() - player.countCards('h') >= 3 && player.getDamagedHp() >= 2;
                             },
-                            content: function* (event, map) {
+                            async content(event, map) {
                                 var player = map.player;
                                 var trigger = map.trigger;
                                 player.awakenSkill('genm_ranji');
@@ -5416,7 +5416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (!num1) result = { index: 1 };
                                     else if (player.isHealthy()) result = { index: 0 };
                                     else {
-                                        result = yield player
+                                        result = await player
                                             .chooseControl('手牌数', '体力值')
                                             .set('choiceList', [num1 < 0 ? `摸${get.cnNumber(-num1)}张牌` : `弃置${get.cnNumber(num1)}张牌`, `回复${player.getDamagedHp()}点体力`])
                                             .set('ai', () => {

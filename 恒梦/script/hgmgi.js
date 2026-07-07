@@ -14108,7 +14108,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
         },
         forced: true,
         seatRelated: true,
-        content: function* (event, map) {
+        async content(event, map) {
           const player = map.player,
             storage = player.storage.yuuibujt;
           const sum = storage[0] < player.hp ? player.hp : storage[0];
@@ -14145,7 +14145,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
           };
           if (event.isMine()) func();
           else if (event.isOnline()) event.player.send(func);
-          const result = yield player
+          const result = await player
             .chooseButton(['遇事不决:是否记录至多' + get.cnNumber(sum) + '个牌名？', [list, 'vcard']], [1, sum], false)
             .set('ai', function (button) {
               switch (button.link[2]) {

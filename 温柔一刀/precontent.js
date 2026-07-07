@@ -109,7 +109,7 @@ function \(.*\) \{\n\s*\}//function \(.*\) \{ \}//= () => { }
 logSkill
 \.filterCard\(\{([^),]*)\)//.filterCard({$1,player)
 event, step, source, 
-: function//content*\\content: function*\\以及？:
+: function//content*\\async content\\以及？:
 (?<!classList)(?<!window)(?<!arena)(?<!cardPile)\.contains\(//.includes(
 audio:\s*\[\s*('[^']*'),\s*(\d+)\s*\],//audio:$1,
 audio:\s*\[('[^']*')\],//audio:$1,

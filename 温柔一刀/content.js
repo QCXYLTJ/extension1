@@ -2398,7 +2398,8 @@ const content = async function () {
         lib.card.yunvyuanshen.content = async function (event, trigger, player) {
           let card = event.card;
           const cards = event.cards,
-            target = event.target, targets = event.targets;
+            target = event.target,
+            targets = event.targets;
           target.storage.yunvyuanshen_skill = game.createCard('yunvyuanshen');
           target.addSkill('yunvyuanshen_skill');
           if (cards && cards.length) {
@@ -4941,11 +4942,11 @@ const content = async function () {
         };
       } //适配黄盖
       if (lib.skill.dczhifou) {
-        lib.skill.dczhifou.content = function* (event, map) {
+        lib.skill.dczhifou.content = async function (event, map) {
           let player = map.player,
             cards = player.getExpansions('dclingxi');
           let num = player.getHistory('useSkill', (evt) => evt.skill == 'dczhifou').length + 1;
-          let result = yield player
+          let result = await player
             .chooseButton(['###' + get.prompt('dczhifou') + `###移去至少${get.cnNumber(num)}张武将牌上的<翼>`, cards], [num, cards.length])
             .set('ai', (button) => {
               if (!_status.event.res.bool) {
@@ -5033,7 +5034,7 @@ const content = async function () {
               str += '、';
             }
             str = str.slice(0, -1);
-            const result2 = yield player
+            const result2 = await player
               .chooseTarget(
                 '知否:令一名角色执行以下一项',
                 str,
@@ -5081,7 +5082,7 @@ const content = async function () {
               } else if (list.length == 1) {
                 result3 = { control: list[0] };
               } else {
-                result3 = yield player
+                result3 = await player
                   .chooseControl(list)
                   .set('prompt', '知否:请选择一项')
                   .set(
@@ -5105,7 +5106,7 @@ const content = async function () {
               switch (result3.control) {
                 case '置入<翼>':
                   player.addTempSkill('dczhifou_0');
-                  const result4 = yield target.chooseCard('he', choiceList[0], true);
+                  const result4 = await target.chooseCard('he', choiceList[0], true);
                   if (result4.bool) {
                     player.addToExpansion(result4.cards, target, 'give').gaintag.add('dclingxi');
                   }
@@ -5124,10 +5125,10 @@ const content = async function () {
         };
       } //知否AI修改
       if (lib.skill.dclingxi) {
-        lib.skill.dclingxi.content = function* (event, map) {
+        lib.skill.dclingxi.content = async function (event, map) {
           let player = map.player,
             num = player.maxHp;
-          let result = yield player
+          let result = await player
             .chooseCard(get.prompt('dclingxi'), `将至多${get.cnNumber(num)}张牌称为<翼>置于武将牌上`, 'he', [1, num])
             .set('ai', (card) => {
               const player = _status.event.player;
@@ -5229,9 +5230,9 @@ const content = async function () {
         };
       } //奸雄bug修改
       if (lib.skill.dddzhishu) {
-        lib.skill.dddzhishu.content = function* (event, map) {
+        lib.skill.dddzhishu.content = async function (event, map) {
           const player = map.player;
-          let result = yield player.moveCard();
+          let result = await player.moveCard();
           if (result.targets) {
             const targets = result.targets;
             const guohe = new lib.element.VCard({

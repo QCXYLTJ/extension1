@@ -5619,7 +5619,7 @@ export async function precontent(config, pack) {
                         if (event.name == 'die' && event.player.name != 'syr_tongming') return false;
                         return player.hasMark('syr_shenshi_paoluo') && game.hasPlayer((i) => i.name == 'syr_tongming');
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             num = player.countMark('syr_shenshi_paoluo');
                         var list = [];
@@ -5635,7 +5635,7 @@ export async function precontent(config, pack) {
                             var fire = list.filter((i) => tm.canUse({ name: i, nature: 'fire' }, player, false, false)).randomGet();
                             if (!fire) break;
                             var card = game.createCard2({ name: fire, nature: 'fire' });
-                            yield tm.useCard(card, player, 'noai');
+                            await tm.useCard(card, player, 'noai');
                         }
                         if (num > player.hp) player.removeMark('syr_shenshi_paoluo', 1);
                         else player.addMark('syr_shenshi_paoluo', num);
@@ -5660,7 +5660,7 @@ export async function precontent(config, pack) {
                         if (event.name == 'die' && event.player.name != 'syr_tongming') return false;
                         return player.hasMark('syr_shenshi_zuhai') && (player.countCards('he') || game.hasPlayer((i) => i.name == 'syr_tongming'));
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             num = player.countMark('syr_shenshi_zuhai');
                         var cards = player.getCards('he').randomGets(num),
@@ -5680,11 +5680,11 @@ export async function precontent(config, pack) {
                             dis.randomSort();
                             for (var i = 0; i < len; i++) {
                                 targets[i].gain(dis[i], player);
-                                yield player.$giveAuto(dis[i], targets[i]);
+                                await player.$giveAuto(dis[i], targets[i]);
                             }
                         }
                         var tm = game.findPlayer((i) => i.name == 'syr_tongming');
-                        if (tm && tm.isIn()) yield player.voiddamage(tm, num);
+                        if (tm && tm.isIn()) await player.voiddamage(tm, num);
                         if (num > player.hp) player.removeMark('syr_shenshi_zuhai', 1);
                         else player.addMark('syr_shenshi_zuhai', player.hp);
                     },
@@ -5708,14 +5708,14 @@ export async function precontent(config, pack) {
                         if (event.name == 'die' && event.player.name != 'syr_tongming') return false;
                         return player.hasMark('syr_shenshi_chaipen');
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             num = player.countMark('syr_shenshi_chaipen'),
                             es = player.getCards('e');
-                        if (es && es.length) yield player.discard(es, 'notBySelf');
-                        yield player.loseHp(num);
+                        if (es && es.length) await player.discard(es, 'notBySelf');
+                        await player.loseHp(num);
                         var hs = player.countCards('h') - player.getHandcardLimit();
-                        if (hs > 0) yield player.randomDiscard(hs);
+                        if (hs > 0) await player.randomDiscard(hs);
                         if (num > player.hp) player.removeMark('syr_shenshi_chaipen', 1);
                         else player.addMark('syr_shenshi_chaipen', player.hp);
                     },
@@ -5739,15 +5739,15 @@ export async function precontent(config, pack) {
                         if (event.name == 'die' && event.player.name != 'syr_tongming') return false;
                         return player.hasMark('syr_shenshi_kuxin') && game.hasPlayer((i) => i != player);
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             num = player.countMark('syr_shenshi_kuxin'),
                             card = { name: 'sha', nature: 'stab' };
                         for (var i = 0; i < num; i++) {
                             var o = game.filterPlayer((i) => i != player && i.canUse(card, player, false, false)).randomGet();
                             if (o && o.isIn() && o.canUse(card, player, false, false)) {
-                                yield o.addTempSkill('scschiyan', { global: ['useCardAfter', 'phaseBegin'] });
-                                yield o.useCard(card, player, 'noai');
+                                await o.addTempSkill('scschiyan', { global: ['useCardAfter', 'phaseBegin'] });
+                                await o.useCard(card, player, 'noai');
                             }
                         }
                         if (num > player.hp) player.removeMark('syr_shenshi_kuxin', 1);
@@ -5781,31 +5781,31 @@ export async function precontent(config, pack) {
             filterTarget(card, player, target) {
                 return target != player && target.countCards('h') > 0;
             },
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player,
                     target = event.target;
-                yield player.real_swsy({ name: 'tmxk_mozhongfengyin' }, target);
-                var result = yield target.chooseCard(true);
+                await player.real_swsy({ name: 'tmxk_mozhongfengyin' }, target);
+                var result = await target.chooseCard(true);
                 var cardx = result.cards[0];
                 var suit = cardx.suit;
                 event.cardx = cardx;
                 event.suit = suit;
-                yield target.showCards(cardx);
+                await target.showCards(cardx);
                 if (player.countCards('he')) {
-                    result = yield player.chooseToGive(target, (i) => i.suit != suit, 'he', get.prompt('syr_huixin'), '交给' + get.translation(target) + '一张非' + get.translation(suit) + '牌').set('ai', (card) => 10 - get.value(card));
+                    result = await player.chooseToGive(target, (i) => i.suit != suit, 'he', get.prompt('syr_huixin'), '交给' + get.translation(target) + '一张非' + get.translation(suit) + '牌').set('ai', (card) => 10 - get.value(card));
                     if (result.bool) {
                         var B = game.filterPlayer((i) => i != target && get.distance(player, i) <= 1).randomGet();
                         var hps = [player.hp, target.hp, B.hp].sort((a, b) => a - b);
                         var X = Math.max(hps[2] - hps[0], 1);
-                        result = yield player.chooseControlList(true, ['令' + get.translation(B) + '创造并对' + get.translation(target) + '使用一张伤害基数为' + X + '的【水水水!】', '令' + get.translation(B) + '对' + get.translation(target) + '造成' + X + '点虚无伤害'], (event, player) => {
+                        result = await player.chooseControlList(true, ['令' + get.translation(B) + '创造并对' + get.translation(target) + '使用一张伤害基数为' + X + '的【水水水!】', '令' + get.translation(B) + '对' + get.translation(target) + '造成' + X + '点虚无伤害'], (event, player) => {
                             if (target.hp <= X) return 1;
                             if (get.effect(target, { name: 'syr_shuishuishui' }, B, player) > 0) return 0;
                             return 1;
                         });
                         if (result.index == 0) {
                             var card = game.createCard2('syr_shuishuishui');
-                            yield B.useCard(card, target, 'noai').set('baseDamage', X);
-                        } else yield target.voiddamage(B, X);
+                            await B.useCard(card, target, 'noai').set('baseDamage', X);
+                        } else await target.voiddamage(B, X);
                         if (target && target.isAlive()) player.voiddamage(B);
                     }
                 }
@@ -9033,9 +9033,9 @@ export async function precontent(config, pack) {
                 if (player.isPhaseUsing()) list.addArray(['dqzw_boss_boss_jiyue', 'dcchanjuan']);
                 return list.toString() != player.storage.syr_chanxiang.toString();
             },
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player;
-                yield player.removeAdditionalSkill('syr_chanxiang');
+                await player.removeAdditionalSkill('syr_chanxiang');
                 var list = player.hp > player.maxHp / 2 ? ['dqzw_boss_yuanyue'] : ['dqzw_boss_canyue'];
                 if (player.isPhaseUsing()) list.addArray(['dqzw_boss_boss_jiyue', 'dcchanjuan']);
                 player.addAdditionalSkill('syr_chanxiang', (player.storage.syr_chanxiang = list));
@@ -9065,7 +9065,7 @@ export async function precontent(config, pack) {
                 }
                 return event.name != 'phase' || game.phaseNumber == 0;
             },
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player;
                 if (map.trigger.name == 'phaseZhunbei') {
                     const targets = game.players.slice().concat(game.dead);
@@ -9076,7 +9076,7 @@ export async function precontent(config, pack) {
                     var list = ['qmm_yuebing', 'qmm_yutu', 'qmm_yueguijiu', 'qmm_jinchan'],
                         cards = [];
                     for (var i = 0; i < 4; i++) cards.push(get.cardPile(list[i], true));
-                    yield player.gain(cards, 'gain2');
+                    await player.gain(cards, 'gain2');
                     var cards = player.getCards('h');
                     player.addGaintag(cards, 'syr_xianmiao_tag');
                     player.markAuto('syr_xianmiao', cards);
@@ -17995,7 +17995,7 @@ export async function precontent(config, pack) {
             trigger: { player: ['phaseZhunbeiBegin', 'phaseJieshuBegin'] },
             forced: true,
             preHidden: true,
-            content: function* (event, map) {
+            async content(event, map) {
                 const player = map.player;
                 const num = Math.min(game.countPlayer() <= 2 ? 3 : 5);
                 const goon = player.getExpansions('minireguanxing').length < num;
@@ -18006,7 +18006,7 @@ export async function precontent(config, pack) {
                     list.push(['置于武将牌上的<星>']);
                     str += ',并可以将一张牌称为<星>置于武将牌上';
                 }
-                let result = yield player
+                let result = await player
                     .chooseToMove()
                     .set('filterMove', (from, to, moved) => {
                         if (moved[2] && !moved[2].includes(from.link)) {
@@ -18128,10 +18128,10 @@ export async function precontent(config, pack) {
                         return player.getExpansions('minireguanxing').length > num;
                     },
                     forced: true,
-                    content: function* (event, map) {
+                    async content(event, map) {
                         const player = map.player,
                             num = player.getExpansions('minireguanxing').length - Math.min(game.countPlayer() <= 2 ? 3 : 5);
-                        let result = yield player.chooseButton(['观星:请移去' + get.cnNumber(num) + '张多余的<星>', player.getExpansions('minireguanxing')], true, num);
+                        let result = await player.chooseButton(['观星:请移去' + get.cnNumber(num) + '张多余的<星>', player.getExpansions('minireguanxing')], true, num);
                         if (result.bool) player.loseToDiscardpile(result.links);
                     },
                 },
@@ -18675,13 +18675,13 @@ export async function precontent(config, pack) {
             forced: true,
             trigger: { global: 'useCard1' },
             filter: (event, player) => event.player.hp <= player.hp && get.type2(event.card) == 'trick' && !get.is.convertedCard(event.card),
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player,
                     target = map.trigger.player;
-                if (player.countMark('syr_bore') < 5) yield player.addMark('syr_bore', 1, false);
+                if (player.countMark('syr_bore') < 5) await player.addMark('syr_bore', 1, false);
                 if (target != player) {
-                    yield target.draw();
-                    var result = yield player.gainPlayerCard(target, 'hes');
+                    await target.draw();
+                    var result = await player.gainPlayerCard(target, 'hes');
                     if (result.bool) player.addExpose(0.15);
                 }
             },
@@ -21143,15 +21143,15 @@ export async function precontent(config, pack) {
                 if (evt && evt.name == 'phaseDraw') return false;
                 return true;
             },
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player,
                     trigger = map.trigger;
                 var cards = trigger.getg(player).filter((i) => get.owner(i) == player && get.position(i) == 'h');
                 player.showCards(cards);
-                if (player.isDamaged()) yield player.recover();
-                else yield player.gainMaxHp(true);
+                if (player.isDamaged()) await player.recover();
+                else await player.gainMaxHp(true);
                 if (cards.length == 1 && ['基本', '食物'].includes(get.translation(get.type(cards[0])))) {
-                    var result = yield player
+                    var result = await player
                         .chooseTarget(
                             '烈善:视为对任意一名角色使用一张【黯然销魂饭】',
                             (card, player, target) => {
@@ -21601,14 +21601,14 @@ export async function precontent(config, pack) {
         syr_moyin: {
             trigger: { player: 'phaseUseBegin' },
             forced: true,
-            *content(event, map) {
+            async content(event, map) {
                 var players = game.filterPlayer().sortBySeat();
                 for (var i of players) {
                     //QQ
                     var cards = Array.from(ui.discardPile.childNodes).filter((card) => get.type(card) == 'trick');
                     if (!cards.length) break;
-                    var result = yield i.chooseButton(['魔瘾:获得一张普通锦囊牌', cards], true).set('ai', get.buttonValue);
-                    if (result.bool) yield i.gain(result.links, 'gain2');
+                    var result = await i.chooseButton(['魔瘾:获得一张普通锦囊牌', cards], true).set('ai', get.buttonValue);
+                    if (result.bool) await i.gain(result.links, 'gain2');
                 }
             },
             group: 'syr_moyin_draw',
@@ -28907,7 +28907,7 @@ export async function precontent(config, pack) {
                     filter(event, player) {
                         return event.skill == 'syr_shuixi';
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             trigger = map.trigger;
                         if (trigger.cards && trigger.cards.length) {
@@ -28919,13 +28919,13 @@ export async function precontent(config, pack) {
                             })
                                 ? trigger.cards.reduce((sum, card) => sum + get.cardNameLength(card), 0)
                                 : X;
-                            yield player.draw(num);
+                            await player.draw(num);
                             if (trigger.targets && trigger.targets.length) {
                                 var targets = trigger.targets.filter((i) => i.isIn()).sortBySeat();
                                 for (var i = 0; i < targets.length; i++) {
                                     var t = targets[i];
                                     if (t.isIn() && t.countCards('h')) {
-                                        yield t.showCards('h');
+                                        await t.showCards('h');
                                         player
                                             .gainPlayerCard(t, [1, X], '水袭:获得' + get.translation(t) + '至多' + X + '张颜色相同的手牌,这些牌本回合内视为【水水水!】', 'visible')
                                             .set('filterButton', function (button) {
@@ -29153,13 +29153,13 @@ export async function precontent(config, pack) {
                     forced: true,
                     round: 1,
                     trigger: { global: 'phaseJieshuBegin' },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player;
                         var ms = game.filterPlayer((i) => i.hasSex('male')),
                             x = ms.length;
                         if (x > 0) {
-                            yield player.gainMaxHp(x, true);
-                            yield player.recover(x);
+                            await player.gainMaxHp(x, true);
+                            await player.recover(x);
                         }
                         var lis = [],
                             a = ['lqym_xieyin', 'lqtz_xumou', 'lqtz_heiya', 'jxtp_gx_chongyingshenfu', 'gx_chongyingshenfu', 'txhj_chongyingshenfu', 'xdz_chongyinshenfux', 'jianxiong', 'rejianxiong', 'yxs_fanji', 'naxiang', 'new_wuhun', 'twwuhun', 'wuhun', 'ningbin', 'yishan', 'shiyong', 'duodao', 'zyexin', 'yuzhang', 'shiina_qingshen', 'nsqingde', 'ns_chuanshu2', 'nstaiping_nh', 'xicai', 'yiyong', 'xinmingshi', 'mjzuici', 'spguixiu', 'reluanzhan', 'fanghun', 'tuifeng', 'ranshang', 'bushi', 'xinfu_zhenyi', 'dcjinjin', 'dczimu', 'xinlvli'];
@@ -29175,7 +29175,7 @@ export async function precontent(config, pack) {
                         }
                         if (lis.length) {
                             var links = lis.randomGets(3);
-                            yield links.forEach((i) => player.addSkillLog(i));
+                            await links.forEach((i) => player.addSkillLog(i));
                         }
                         var cs = [];
                         if (ms.length) {
@@ -29195,7 +29195,7 @@ export async function precontent(config, pack) {
                                         }
                                     }
                                     cs[cs.length - 1] = cards;
-                                    if (cards) yield m.gain(cards, 'gain2');
+                                    if (cards) await m.gain(cards, 'gain2');
                                 }
                             }
                             for (var i = 0; i < ms.length; i++) {
@@ -29203,7 +29203,7 @@ export async function precontent(config, pack) {
                                     c = cs[i];
                                 if (!m.isIn() || !c.length) continue;
                                 while (c.some((card) => lib.filter.targetEnabled3(card, m, player))) {
-                                    var result = yield m
+                                    var result = await m
                                         .chooseToUse(
                                             function (card, player, event) {
                                                 if (!_status.event.c.includes(card)) return false;
@@ -29234,23 +29234,23 @@ export async function precontent(config, pack) {
                     forced: true,
                     round: 1,
                     trigger: { global: 'phaseJieshuEnd' },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player;
                         var s = game.countPlayer((i) => i.hasSex('male'));
                         if (s) player.loseMaxHp(s, true);
                         var skills = player.getSkills(null, false, false).remove('syr_yexi');
                         if (skills.length) player.removeSkills(skills);
-                        yield;
+                        await;
                         var players = game.filterPlayer(),
                             cards;
                         for (var i of players) {
                             //QQ
                             var cards = i.getCards('hej', { number: '11' });
-                            if (cards) yield player.gain(i, cards, 'give', 'bySelf');
+                            if (cards) await player.gain(i, cards, 'give', 'bySelf');
                         }
-                        yield player.phaseJudge();
-                        yield player.addTempSkill('syr_yexi_buff', 'phaseUseEnd');
-                        yield player.phaseUse();
+                        await player.phaseJudge();
+                        await player.addTempSkill('syr_yexi_buff', 'phaseUseEnd');
+                        await player.phaseUse();
                         player.phaseDiscard();
                     },
                 },
@@ -29326,7 +29326,7 @@ export async function precontent(config, pack) {
                     forced: true,
                     firstDo: true,
                     _priority: Infinity,
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             trigger = map.trigger;
                         player.awakenSkill('syr_suwei');
@@ -29335,10 +29335,10 @@ export async function precontent(config, pack) {
                         trigger.untrigger();
                         player.maxHp = 3;
                         player.hp = 3;
-                        yield player.update();
-                        yield player.phaseDraw();
-                        yield player.phaseDraw();
-                        yield player.phaseDraw();
+                        await player.update();
+                        await player.phaseDraw();
+                        await player.phaseDraw();
+                        await player.phaseDraw();
                         var cards = player.getCards('hej'),
                             targets = player.getEnemies().sortBySeat();
                         if (cards.length && targets.length) {
@@ -29356,7 +29356,7 @@ export async function precontent(config, pack) {
                             dis.randomSort();
                             for (var i = 0; i < len; i++) {
                                 targets[i].gain(dis[i], player);
-                                yield player.$giveAuto(dis[i], targets[i]);
+                                await player.$giveAuto(dis[i], targets[i]);
                             }
                         }
                         var disables = [];
@@ -29365,13 +29365,13 @@ export async function precontent(config, pack) {
                                 disables.push(i);
                             }
                         }
-                        if (disables.length) yield player.disableEquip(disables);
+                        if (disables.length) await player.disableEquip(disables);
                         var js = get.typeCard('delay');
                         for (var i = 0; i < js.length; i++) {
                             var card = game.createCard2(js[i], null, [11, 13].randomGet());
-                            if (player.canAddJudge(card)) yield player.addJudge(card);
+                            if (player.canAddJudge(card)) await player.addJudge(card);
                         }
-                        yield player.addSkillLog('syr_yexi');
+                        await player.addSkillLog('syr_yexi');
                     },
                 },
             },
@@ -29460,14 +29460,14 @@ export async function precontent(config, pack) {
             enable: 'phaseUse',
             delay: false,
             usable: 1,
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player;
                 player.draw();
-                yield player.showHandcards();
+                await player.showHandcards();
                 var list = ['红色', '黑色'];
                 if (player.countCards('h', { color: 'red' }) == 0) list.remove('红色');
                 if (player.countCards('h', { color: 'black' }) == 0) list.remove('黑色');
-                var result = yield player.chooseControl(list).set('ai', function () {
+                var result = await player.chooseControl(list).set('ai', function () {
                     var player = _status.event.player;
                     if (player.countCards('h', { color: 'red' }) >= player.countCards('h', { color: 'black' })) return '红色';
                     return '黑色';
@@ -29475,9 +29475,9 @@ export async function precontent(config, pack) {
                 var cards;
                 if (!result) return;
                 if (result.control == '红色') {
-                    yield (cards = player.getCards('h', { color: 'red' }));
+                    await (cards = player.getCards('h', { color: 'red' }));
                 } else {
-                    yield (cards = player.getCards('h', { color: 'black' }));
+                    await (cards = player.getCards('h', { color: 'black' }));
                 }
                 if (Array.isArray(cards))
                     for (var i of cards) {
@@ -29485,7 +29485,7 @@ export async function precontent(config, pack) {
                         var hs = [];
                         hs.push(i);
                         if (player.hasUseTarget({ name: 'sha' }, false, false)) {
-                            yield player.chooseUseTarget('凌人:将' + get.translation(i) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance');
+                            await player.chooseUseTarget('凌人:将' + get.translation(i) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance');
                         } else break;
                     }
             },
@@ -29518,14 +29518,14 @@ export async function precontent(config, pack) {
                     prompt() {
                         return get.prompt('DIY_lingren');
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player;
                         player.draw();
-                        yield player.showHandcards();
+                        await player.showHandcards();
                         var list = ['红色', '黑色'];
                         if (player.countCards('h', { color: 'red' }) == 0) list.remove('红色');
                         if (player.countCards('h', { color: 'black' }) == 0) list.remove('黑色');
-                        var result = yield player.chooseControl(list).set('ai', function () {
+                        var result = await player.chooseControl(list).set('ai', function () {
                             var player = _status.event.player;
                             if (player.countCards('h', { color: 'red' }) > player.countCards('h', { color: 'black' })) return '红色';
                             return '黑色';
@@ -29533,9 +29533,9 @@ export async function precontent(config, pack) {
                         var cards;
                         if (!result) return;
                         if (result.control == '红色') {
-                            yield (cards = player.getCards('h', { color: 'red' }));
+                            await (cards = player.getCards('h', { color: 'red' }));
                         } else {
-                            yield (cards = player.getCards('h', { color: 'black' }));
+                            await (cards = player.getCards('h', { color: 'black' }));
                         }
                         if (Array.isArray(cards))
                             for (var i of cards) {
@@ -29543,7 +29543,7 @@ export async function precontent(config, pack) {
                                 var hs = [];
                                 hs.push(i);
                                 if (player.hasUseTarget({ name: 'sha' }, false, false)) {
-                                    yield player.chooseUseTarget('凌人:将' + get.translation(i) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance');
+                                    await player.chooseUseTarget('凌人:将' + get.translation(i) + '当做【杀】使用', 'sha', hs, true, false, 'nodistance');
                                 } else break;
                             }
                     },
@@ -30481,18 +30481,18 @@ export async function precontent(config, pack) {
                 return event.player != player || event.name == 'phase';
             },
             forced: true,
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player,
                     players = [player, map.trigger.player];
                 var id = Number(Math.random() < 0.5);
                 player.chat(['独立而不改,周行而不殆.', '致虚极,守静笃,万物并作,吾以观其复.'][id]);
                 for (var i of players) {
-                    yield lib.skill.minihuanshu.GainContent(1 + !i.group, 1, i);
+                    await lib.skill.minihuanshu.GainContent(1 + !i.group, 1, i);
                 } //QQQ
                 while (true) {
                     var cards = player.getCards('h', (i) => i.minihuanshu && player.hasUseTarget(i, false, false));
                     if (!cards.length) break;
-                    var result = yield player.chooseToUse('道生:使用一张幻术牌', (i, player) => i.minihuanshu && player.hasUseTarget(i, false, false), lib.filter.targetEnabledx).set('addCount', false);
+                    var result = await player.chooseToUse('道生:使用一张幻术牌', (i, player) => i.minihuanshu && player.hasUseTarget(i, false, false), lib.filter.targetEnabledx).set('addCount', false);
                     if (!result.bool) break;
                 }
             },
@@ -30534,10 +30534,10 @@ export async function precontent(config, pack) {
                         return event.player != player && (event.card.cards || []).some((i) => i.minihuanshu) && ['basic', 'trick'].includes(get.type(event.card)) && player.hasUseTarget(event.card, false, false);
                     },
                     forced: true,
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             trigger = map.trigger;
-                        var result = yield player.chooseUseTarget(trigger.card, false, 'nodistance');
+                        var result = await player.chooseUseTarget(trigger.card, false, 'nodistance');
                         if (!result.bool) player.getStat('triggerSkill').syr_daosheng_use--;
                     },
                 },
@@ -30722,13 +30722,13 @@ export async function precontent(config, pack) {
                     filter(event, player) {
                         return game.countPlayer() > 2 && player.getStorage('syr_pinming_eqian').includes(event.target);
                     },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             target = map.trigger.target,
                             targets = game.filterPlayer((i) => i != player && i != target);
                         targets.sortBySeat();
                         for (var i = 0; i < targets.length; i++) {
-                            var result = yield targets[i]
+                            var result = await targets[i]
                                 .chooseToDiscard(`###${get.prompt(event.name)}###弃置一张牌,否则直到你下回合结束,你与${get.translation(player)}计算与对方的距离各自+1`)
                                 .set('ai', function (card) {
                                     if (_status.event.friend) return 0;
@@ -30738,7 +30738,7 @@ export async function precontent(config, pack) {
                                     return (40 * Math.random()) / c - get.value(card);
                                 })
                                 .set('friend', get.attitude(targets[i], player) > 0);
-                            if (result.bool) yield targets[i].addExpose(0.2);
+                            if (result.bool) await targets[i].addExpose(0.2);
                             else {
                                 player.addSkill('syr_pinming_distance');
                                 if (!player.storage.syr_pinming_distance) player.storage.syr_pinming_distance = {};
@@ -30752,7 +30752,7 @@ export async function precontent(config, pack) {
                                 if (typeof targets[i].storage.syr_pinming_distance[id1] != 'number') targets[i].storage.syr_pinming_distance[id1] = 0;
                                 targets[i].storage.syr_pinming_distance[id1]++;
                                 targets[i].markSkill('syr_pinming_distance');
-                                yield targets[i].addSkill('syr_pinming_nodistance');
+                                await targets[i].addSkill('syr_pinming_nodistance');
                             }
                         }
                     },
@@ -31199,7 +31199,7 @@ export async function precontent(config, pack) {
                 return game.hasPlayer((i) => i.getEquips(1).some((j) => lib.filter.canBeGained(j, player, i)));
             },
             check: () => true,
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player;
                 player.awakenSkill('syr_daolai');
                 player.chat('天不生我南越越,厨界万古如长夜!');
@@ -31233,9 +31233,9 @@ export async function precontent(config, pack) {
                         for (var w = 36; w; w -= g[w].number) cards.push(g[w]);
                     }
                 }
-                yield player.gain(cards, 'gain2');
+                await player.gain(cards, 'gain2');
                 var card = game.createCard2('syr_nanyue_zhantiandao');
-                yield player.equip(card);
+                await player.equip(card);
                 player.addSkill('syr_daolai_maxhs');
                 player.addMark('syr_daolai_maxhs', cards.length, false);
             },
@@ -32303,13 +32303,13 @@ export async function precontent(config, pack) {
                 guixin: {
                     forced: true,
                     trigger: { global: 'loseHpEnd' },
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             num = game.countPlayer();
                         player.turnOver();
-                        yield player.draw(num);
+                        await player.draw(num);
                         for (var i = 0; i < num; i++) {
-                            var result = yield player.chooseToUse('失蝠:你可以使用一张牌(无次数限制)');
+                            var result = await player.chooseToUse('失蝠:你可以使用一张牌(无次数限制)');
                             if (!result.bool) break;
                         }
                     },
@@ -32524,20 +32524,20 @@ export async function precontent(config, pack) {
             subSkill: {
                 achieve: {
                     forced: true,
-                    *content(event, map) {
+                    async content(event, map) {
                         var player = map.player,
                             num = game.countPlayer();
-                        yield player.awakenSkill('syr_kexian');
+                        await player.awakenSkill('syr_kexian');
                         player.gain(_status.fh_cardPile, 'gain2');
-                        yield player.draw(num);
+                        await player.draw(num);
                         var players = game.filterPlayer().sortBySeat();
                         for (var i of players) {
                             if (!i.isIn()) continue;
                             i.gainMaxHp(true);
-                            yield i.recover();
+                            await i.recover();
                         }
                         if (!_status.characterlist && lib.skill.syr_shen_pingjian) {
-                            yield lib.skill.syr_shen_pingjian.initList();
+                            await lib.skill.syr_shen_pingjian.initList();
                         }
                         var list = [];
                         var skills = [];
@@ -32575,7 +32575,7 @@ export async function precontent(config, pack) {
                             for (var i of players) {
                                 if (!skills.length) break;
                                 if (!i.isIn()) continue;
-                                var result = yield player
+                                var result = await player
                                     .chooseControl(skills, true)
                                     .set('dialog', ['请选择要令' + get.translation(i) + '获得的技能', [list, 'character']])
                                     .set('ai', function () {
@@ -32590,7 +32590,7 @@ export async function precontent(config, pack) {
                                     .set('goon', get.attitude(player, i) > 0);
                                 if (result && result.control) {
                                     skills.remove(result.control);
-                                    yield i.addSkillLog(result.control);
+                                    await i.addSkillLog(result.control);
                                 }
                             }
                         }
@@ -32727,7 +32727,7 @@ export async function precontent(config, pack) {
             forced: true,
             logTarget: 'player',
             usable: 1,
-            *content(event, map) {
+            async content(event, map) {
                 const player = map.player,
                     trigger = map.trigger,
                     target = trigger.player;
@@ -32737,7 +32737,7 @@ export async function precontent(config, pack) {
                     player.phaseUse();
                 });
                 let targets = trigger.targets.slice();
-                yield player.draw(targets.length);
+                await player.draw(targets.length);
                 targets.sortBySeat(_status.currentPhase || target);
                 targets.remove(player);
                 player
@@ -32947,22 +32947,22 @@ export async function precontent(config, pack) {
         syr_wuhua: {
             limited: true,
             enable: 'phaseUse',
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player;
                 player.awakenSkill('syr_wuhua');
                 player.addSkill('syr_wuhua_jinlong');
-                yield player.disableJudge();
+                await player.disableJudge();
                 var list = [];
                 for (var i = 1; i < 6; i++) {
                     for (var j = 0; j < player.countDisabledSlot(i); j++) {
                         list.push(i);
                     }
                 }
-                if (list.length) yield player.enableEquip(list);
+                if (list.length) await player.enableEquip(list);
                 if (player.countCards('e')) {
-                    var result = yield player.chooseCard('物化:销毁掉装备区里的任意张牌', [0, Infinity], 'e').set('ai', (card) => 1);
+                    var result = await player.chooseCard('物化:销毁掉装备区里的任意张牌', [0, Infinity], 'e').set('ai', (card) => 1);
                     if (result.bool && result.cards && result.cards.length) {
-                        for (var i of result.cards) yield i.selfDestroy();
+                        for (var i of result.cards) await i.selfDestroy();
                     }
                 }
                 var es = [];
@@ -32977,7 +32977,7 @@ export async function precontent(config, pack) {
                     var sub = es.filter((j) => lib.card[j] && lib.card[j].subtype == 'equip' + i);
                     while (player.hasEmptySlot(i)) {
                         var dialog = ui.create.dialog(`选择一张${get.translation('equip' + i)}置入你的装备区`, [sub.map((j) => ['装备', '', j]), 'vcard'], 'hidden');
-                        var result = yield player
+                        var result = await player
                             .chooseButton(dialog, true)
                             .set('sub', sub)
                             .set('ai', function (button) {
@@ -33000,7 +33000,7 @@ export async function precontent(config, pack) {
                             });
                         if (result.bool) {
                             var card = game.createCard2(result.buttons[0].link[2]);
-                            yield player.equip(card);
+                            await player.equip(card);
                         }
                     }
                 }
@@ -33008,13 +33008,13 @@ export async function precontent(config, pack) {
                     var info = get.info(i),
                         skills = info.skills,
                         distance = info.distance;
-                    if (skills) yield player.addSkillLog(skills);
+                    if (skills) await player.addSkillLog(skills);
                     if (distance) {
                         if (distance.attackFrom) player._syr_wuhua_attackFrom = (player._syr_wuhua_attackFrom || 0) + distance.attackFrom;
                         if (distance.globalFrom) player._syr_wuhua_globalFrom = (player._syr_wuhua_globalFrom || 0) + distance.globalFrom;
                         if (distance.globalTo) player._syr_wuhua_globalTo = (player._syr_wuhua_globalTo || 0) + distance.globalTo;
                     }
-                    yield i.selfDestroy();
+                    await i.selfDestroy();
                 }
             },
             subSkill: {
@@ -33172,7 +33172,7 @@ export async function precontent(config, pack) {
                     })(event, she);
                 });
             },
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player,
                     trigger = map.trigger;
                 var she = game.findPlayer((she) => {
@@ -33194,7 +33194,7 @@ export async function precontent(config, pack) {
                         var cardName = get.typeCard('delay').filter((i) => lib.card[i] && lib.card[i].judge && she.canAddJudge({ name: i })); //QQQ
                         if (!cardName || !cardName.length) break;
                         cardName = cardName.includes('bingliang') ? 'bingliang' : cardName.randomGet();
-                        yield she.addJudge({ name: cardName }, cardx);
+                        await she.addJudge({ name: cardName }, cardx);
                     }
                 }
             },
@@ -34681,13 +34681,13 @@ export async function precontent(config, pack) {
                     check(card) {
                         return 6 - get.value(card);
                     },
-                    precontent: function* (event, map) {
+                    async precontent(event, map) {
                         var player = map.player;
                         var targets = game.filterPlayer((current) => current.hasSkill('jsrghuozhong'));
                         var result;
                         if (targets.length) result = { bool: true, targets: targets };
                         else
-                            result = yield player
+                            result = await player
                                 .chooseTarget('请选择一名传教士,发动其的【惑众】', true, (card, player, target) => {
                                     return get.event('targets').includes(target);
                                 })
@@ -34725,7 +34725,7 @@ export async function precontent(config, pack) {
             filter(event, player) {
                 return event.name != 'phase' || game.phaseNumber == 0;
             },
-            *content(event, map) {
+            async content(event, map) {
                 var targets = game.filterPlayer(),
                     player = map.player;
                 targets.sortBySeat(game.findPlayer2((current) => current.seatNum == 1, true));
@@ -34735,7 +34735,7 @@ export async function precontent(config, pack) {
                     if (!cardName || !cardName.length) continue;
                     cardName = cardName.randomGet();
                     var card = game.createCard2(cardName);
-                    yield i.useCard(card, i, 'noai');
+                    await i.useCard(card, i, 'noai');
                 }
             },
             group: ['syr_tanchenchi_tan', 'syr_tanchenchi_chen', 'syr_tanchenchi_chi', 'syr_tanchenchi_chisuiyu', 'syr_tanchenchi_bao'],
@@ -39089,17 +39089,17 @@ export async function precontent(config, pack) {
                 var att2 = get.attitude(player, event.player);
                 return (att1 > 0 && att2 <= 0) || (att1 >= 0 && att2 < 0);
             },
-            *content(event, map) {
+            async content(event, map) {
                 var player = map.player,
                     trigger = map.trigger;
                 var target = trigger.player,
                     target2 = trigger.source;
-                yield target.showHandcards();
+                await target.showHandcards();
                 var hejs = target.getCards('hej', { color: 'red' });
                 if (hejs.length) {
-                    yield target.discard(hejs);
+                    await target.discard(hejs);
                     var x = Math.max(hejs.length, 3);
-                    yield player.draw(x);
+                    await player.draw(x);
                     player.chooseToGive(target2, true, 'he', x);
                 }
             },
@@ -46362,15 +46362,15 @@ export async function precontent(config, pack) {
                         return target == player;
                     },
                     modTarget: true,
-                    *content(event, map) {
+                    async content(event, map) {
                         var target = map.target;
                         target.chooseDrawRecover();
                         target.addSkill('syr_nanyue_anranx');
-                        yield target.addMark('syr_nanyue_anranx', 1, false);
+                        await target.addMark('syr_nanyue_anranx', 1, false);
                         var targets = game.filterPlayer((i) => i != target && i.name == 'syr_nanyue');
                         for (var i = 0; i < targets.length; i++) {
                             targets[i].addSkill('syr_nanyue_anranx');
-                            yield targets[i].addMark('syr_nanyue_anranx', 1, false);
+                            await targets[i].addMark('syr_nanyue_anranx', 1, false);
                         }
                     },
                     ai: {

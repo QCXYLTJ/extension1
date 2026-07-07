@@ -1710,9 +1710,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}) > 0 && event.num > 0;
 				},
 				forced: true,
-				content: function* (event, map) {
+				async content(event, map) {
 					let player = map.player, trigger = map.trigger;
-					var result = yield player.chooseCardTarget({
+					var result = await player.chooseCardTarget({
 						filterCard(card, player) {
 							return card.suit == 'spade' && lib.filter.cardDiscardable(card, player);
 						},
@@ -1733,11 +1733,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					if (result.cards) {
 						trigger.cancel();
 						let player = map.player, target = result.targets[0], card = result.cards[0];
-						if (target && target.isIn()) yield target.addJudge({ name: 'shandian' }, [card]);
+						if (target && target.isIn()) await target.addJudge({ name: 'shandian' }, [card]);
 						else {
-							yield player.lose(card, ui.cardPile, 'insert');
+							await player.lose(card, ui.cardPile, 'insert');
 							game.log(player, '将', card, '盖在了牌堆顶.')
-							yield player.draw('bottom');
+							await player.draw('bottom');
 						}
 					}
 				},

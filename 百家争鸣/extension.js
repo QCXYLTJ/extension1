@@ -79,7 +79,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             if (callback) {
                                 callback(false);
                             }
-                        }
+                        },
                     );
                     return;
                 }
@@ -115,12 +115,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             namefilter,
                             process,
-                            errorContinue
+                            errorContinue,
                         );
                     },
                     namefilter,
                     process,
-                    errorContinue
+                    errorContinue,
                 );
             };
             game.bjzmHasExtension = function (str) {
@@ -1253,7 +1253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     event.cards,
                                     event.videoId,
-                                    player
+                                    player,
                                 );
                                 ('step 4');
                                 game.broadcastAll('closeDialog', event.videoId);
@@ -1264,7 +1264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return player.canUse({ name: 'wugu' }, target);
                                         },
                                         '虫瘕:请选择【五谷丰登】的目标',
-                                        true
+                                        true,
                                     )
                                     .set('ai', function (target) {
                                         var player = _status.event.player;
@@ -1291,7 +1291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         dialog.videoId = id;
                                     },
                                     cards,
-                                    dialog.videoId
+                                    dialog.videoId,
                                 );
                                 ('step 7');
                                 if (event.list.length && event.cards.length) {
@@ -1358,7 +1358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (lib.translate[name + '_ab']) return lib.translate[name + '_ab'];
                                         return get.translation(name);
                                     })(current),
-                                    capt
+                                    capt,
                                 );
                                 if (event.cards.length) event.goto(7);
                                 else {
@@ -1420,80 +1420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*
-      Al_qianxi:{
-                            audio:'ext:百家争鸣:2',
-                            trigger:{
-                                player:"phaseZhunbeiBegin",
-                            },
-                            filter:function(event,player){
-                                return player.countCards('he');
-                            },
-                            direct:true,
-                            content:function(){
-                                'step 0'
-                                player.chooseCardTarget({
-                                    position:'he',
-                                    filterCard:lib.filter.cardDiscardable,
-                                    filterTarget:function(card,player,target){
-                                        return true;
-                                    },
-                                    selectTarget:2,
-                                    ai1:function(card){
-                                        return 8-get.value(card);
-                                    },
-                                    prompt:get.prompt2('Al_qianxi'),
-                                });
-                                'step 1'
-                                if(result.bool){
-                                    player.discard(result.cards);
-                                    player.chooseControl(list);
-                                }
-                            },
-                            subSkill:{
-                                effect:{
-                                    mark:true,
-                                    intro:{
-                                        content:function(storage,player){
-                                        },
-                                    },
-                                    trigger:{
-                                        player:['phaseJudgeBefore','phaseDrawBefore','phaseUseBefore','phaseDiscardBefore'],
-                                    },
-                                    direct:true,
-                                    filter:function(event,player){
-                                        var info=player.storage.Al_qianxi;
-                                        return player==_status.currentPhase&&info.phase==event.name&&info.player;
-                                    },
-                                    content:function(){
-                                    },
-                                },
-                            },
-                        },
-      Al_panxi:{
-                            audio:'ext:百家争鸣:2',
-                            trigger:{
-                                global:['phaseJudgeBefore','phaseDrawBefore','phaseUseBefore','phaseDiscardBefore'],
-                            },
-                            filter:function(event,player){
-                                return event.player!=_status.currentPhase;
-                            },
-                            content:function(){
-                                'step 0'
-                                if(event.name=='phaseDraw') str1='摸一张牌并交给'+get.translation(trigger.player)+'三张牌,其跳过改为你执行之';
-                                else str1='摸一张牌并交给'+get.translation(trigger.player)+'两张牌,其跳过改为你执行之';
-                                str2='从牌堆底摸三张牌并交给'+get.translation(trigger.player)+'至少两张牌';
-                                player.chooseControl('选项一','选项二','cancel2').set('choiceList',[
-                                    str1,
-                                    str2,
-                                ]);
-                                'step 1'
-                                if(result.control!='cancel2'){
-                                }
-                                else event.finish();
-                            },
-                        },
-                        */
+
                         Al_zhengshu: {
                             audio: 'ext:百家争鸣:2',
                             trigger: {
@@ -2277,7 +2204,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return val < 0 || (val <= 4 && card.number >= 11);
                                     }, 'h')
                                         ? button.link.number
-                                        : 0
+                                        : 0,
                                 );
                                 ('step 1');
                                 if (result.bool && result.links && result.links.length) {
@@ -2628,7 +2555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         'rintim@selftest.skill_thunderTest': {
                             // Delete
                         },
-                        /*谋晦:锁定技,一名角色体力值变化后,若你与其体力值数量关系发生变化,你摸一张牌.*/
+
                         taohui_Angel: {
                             group: 'taohui_Angel_1',
                             forced: true,
@@ -2707,8 +2634,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }, //QQQ
                             },
                         },
-                        /*韬养:一名角色进入濒死状态时,你可弃置X张颜色相同的牌并令其回复2点体力(X为其体力上限且至多为5).
-                        出牌阶段每名角色限一次,你可弃置两张颜色相同的牌令一名角色回复一点体力.*/
+
                         taoyang_Angel: {
                             trigger: {
                                 global: 'dying',
@@ -2762,9 +2688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 2: {},
                             },
                         },
-                        /*兵略:回合开始时,你可摸两张牌并指定一名其他角色,你弃置至少两张牌,
-                         若你弃置的牌包含:两种颜色:你弃置其一张牌;三种类别:本回合其受到的伤害+1;
-                         四种花色:直到你下回合开始其不能使用此次你弃置的类别的牌.*/
+
                         binglue_Angel: {
                             trigger: {
                                 player: 'phaseBegin',
@@ -3391,7 +3315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.draw(
                                             game.filterPlayer((current) => {
                                                 current.maxHp - current.hp > 0;
-                                            }).length
+                                            }).length,
                                         );
                                     },
                                 },
@@ -3786,7 +3710,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             game.swapSeat(player, i[0]);
                                         },
                                         player,
-                                        i[0]
+                                        i[0],
                                     );
                                     player.draw(player.seatNum);
                                     player.storage.hengchen_Angel1 = 0;
@@ -4273,7 +4197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card, player, target) {
                                             return player != target && x != target;
                                         },
-                                        true
+                                        true,
                                     )
                                     .set('forceDie', true);
                                 ('step 1');
@@ -4343,8 +4267,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*嬉政:锁定技,你的伤害牌均视为无次数限制的【酒】且不计入手牌上限.
-                        当你回复体力后,你摸两张牌;当你受到伤害后,你弃置一张牌.你的回合结束时,若你的手牌数大于体力值,你失去一点体力.*/
+
                         xizheng_Angel: {
                             init(player) {
                                 player.storage.xizheng = [];
@@ -4491,7 +4414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             (event, player, target) => {
                                                 return player != target;
                                             },
-                                            true
+                                            true,
                                         )
                                         .set('ai', function (target) {
                                             var player = _status.event.player;
@@ -4701,7 +4624,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 await player.draw();
                                 if (player.countCards('he')) {
-                                    const result = await player.chooseToDiscard(true, 'he').set('ai', (card) => card.name == trigger.card.name).forResult();
+                                    const result = await player
+                                        .chooseToDiscard(true, 'he')
+                                        .set('ai', (card) => card.name == trigger.card.name)
+                                        .forResult();
                                     if (result.cards && result.cards[0]) {
                                         if (result.cards[0].name == trigger.card.name) {
                                             player.chat('<div class="text center"><span class=thundertext>你的计谋!被我的【止矢】识破了');
@@ -5530,7 +5456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         function (button) {
                                             return _status.event.player.hasUseTarget({ name: button.link[2], nature: button.link[3] });
-                                        }
+                                        },
                                     );
                                 }
                                 ('step 2');
@@ -5780,12 +5706,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return get.attitude(player, event.player) < 0;
                             },
                         },
-                        /*嫪毐 3/3
-                        ★伪寺:锁定技,当你失去黑色牌后,你亮出牌堆顶一张牌,若此牌为黑色,你获得此牌.
-                        ★蕲乱:出牌阶段开始时,你可展示一名其他角色全部手牌,若其中红色牌数不少于黑色牌数,
-                               则本回合其受到的伤害+1;否则你弃置其中全部红色牌.
-                        ★借势:出牌阶段,若你的手牌中有黑色牌,你可弃置所有黑色手牌令一名其他角色观看你的手牌并获得其中一张牌,
-                               你对其攻击范围内至多x名其他角色造各成一点伤害,你摸一张牌.x为你因此弃牌数.*/
+
                         bjzm伪寺old: {
                             trigger: {
                                 player: 'loseAfter',
@@ -6251,7 +6172,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 source: 'gainAfter',
                             },
-                            audio: 'ext:百家争鸣/audio:2',//QQQ
+                            audio: 'ext:百家争鸣/audio:2', //QQQ
                             filter(event, player) {
                                 return event.player != player && event.bySelf != true;
                             },
@@ -6288,10 +6209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*赵茄 4/4 好大喜功
-                        窥阵:准备阶段,你可以观看一名角色的手牌,若其中有【杀】,该角色对你依次使用这些【杀】,若你未因此受到伤害,
-                             你可以获得其中一种花色的所有牌;若其中没有【杀】,你可以令其中一种花色的牌不能被使用、打出或弃置直到该角色回合结束.
-                        议攻:转换技:一名角色的出牌阶段结束时,若其手牌数小于体力值,你可以:阳:令其获得一张【杀】;阴:获得一张【闪】.*/
+
                         bjzm窥阵: {
                             trigger: { player: 'phaseZhunbeiBegin' },
                             content() {
@@ -6341,7 +6259,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (result.bool && result.links && result.links.length) {
                                         event.target.give(
                                             event.target.getCards('h', (c) => c.suit == result.links[0].suit),
-                                            player
+                                            player,
                                         );
                                     } else {
                                         event.finish();
@@ -6401,22 +6319,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             //frequent:true,
                         },
-                        /*孙叔敖 清风惠政 999
-                        佐霸:每名角色限一次,一名角色使用伤害类锦囊牌时,你可令此牌伤害基数+1或额外结算一次,
-                             若<佐霸>对所有角色均发动过,你回复一点体力,失去<佐霸>,获得并重置<俭道>.
-                        俭道:每名角色限一次,当你仅一张牌进入弃牌堆后,你将之交给一名角色.若此牌类别不为基本,
-                             其本回合不能使用牌,为装备,其移动场上一张牌.若<俭道>对所有角色均发动过,
-                             增加一点体力上限,失去<俭道>,获得并重置<佐霸>.
-                        服义:每回合限一次,准备阶段,你可以令一名角色获得一张伤害类锦囊牌.
-                             结束阶段,你可以弃置一张牌并令一名角色获得一名其他角色一张牌.*/
+
                         bjzm佐霸: {},
                         bjzm俭道: {},
                         bjzm服义: {},
-                        /*莽攻折名  剧辛
-                旧知:锁定技,每当一名其他角色对你使用伤害类牌后/你对一名其他角色使用伤害类牌后,你令你或其摸一张牌,
-                     若其手牌数不小于你,你视为对其使用一张【顺手牵羊】,若其手牌数小于你,其视为对你使用一张【过河拆桥】.
-                冒进:当你指定一名其他角色为唯一目标使用的非伤害类锦囊牌结算完毕后,你可以令你与其同时展示任意张手牌,
-                     以此法展示牌数量多的角色将其以此法展示的牌当作一张【杀】对对方使用,若你与其以此法展示牌数相同,则弃置这些牌.*/
+
                         bjzm旧知: {
                             trigger: { global: 'useCardAfter' },
                             filter(event, player) {
@@ -6556,11 +6463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*伯牙&子期 3/3 高山流水
-                    弦音:当你使用一张非装备牌后,你可以进行判定,若花色与此牌相同,你可以选择一项并重复该流程:
-                         1.将判定牌交给一名其他角色并摸一张牌;2.回复1点体力;3.移动场上与判定牌花色相同的牌.
-                         否则,你令<弦音>本回合失效,或与一名其他角色各失去1点体力.
-                    心印:判定生效前,你可以打出你于本回合获得的牌替换之.*/
+
                         bjzm弦音: {
                             trigger: { player: 'useCardAfter' },
                             filter(event, player) {
@@ -6803,11 +6706,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*騺勇定策  廉颇  160
-                固垒:锁定技,当你不于你的摸牌阶段获得牌后,你须交给一名其他角色X张牌并令你下个摸牌阶段摸牌数+X(X为你以此法获得的牌数);
-                     当你于回合外失去牌后,若你上个摸牌阶段摸牌数小于二,你执行一个额外的摸牌阶段.
-                矍騺:摸牌阶段开始时,你可以少摸任意张牌,并弃置一名其他角色等量张牌,若如此做,
-                     你与其视为在对方攻击范围内直至你或其第一次受到对方造成的伤害且当你/其下次成为其/你使用牌的唯一目标后,你将手牌数调整至与其相等.*/
+
                         bjzm固垒: {
                             trigger: { player: 'gainAfter' },
                             filter(event, player) {
@@ -6985,9 +6884,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*膺拳霸佐  蹇叔
-                        哭师:一名其他角色使用伤害类牌时,若你本回合未对其发动过此技能,你可以令其对你造成一点伤害,若此牌造成伤害,
-                             你与其各回复一点体力,否则你可以对场上至多X名体力值不小于你的角色造成一点伤害(X为你已损失体力值).*/
+
                         bjzm哭师: {
                             trigger: { global: 'useCardAfter' },
                             filter(event, player) {
@@ -7047,13 +6944,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*西门豹 信诚于民 3/3
-                     old除巫:一名其他角色的出牌阶段开始时,若其手牌数大于体力上限,你可以令其将其大于体力上限张牌分配给其他角色.
-                     old治邺:锁定技,轮次结束时,你摸X张牌,并对至多X名角色各造成一点伤害.若X大于你当前体力值,
-                             <除巫>下轮失效(X为你本轮发动<除巫>的次数).
-                        除巫:一名其他角色的准备阶段,若其手牌数大于体力上限,你可以弃置其大于体力上限张手牌,你可以将之交给手牌数唯一最少的角色.
-                        治邺:锁定技,轮次结束时,你摸X张牌,并对X名角色各造成一点伤害,若X大于你当前体力值,
-                             你失去<除巫>并将X改为1(X为你本轮发动<除巫>的次数).*/
+
                         bjzm除巫: {
                             audio: 'ext:百家争鸣/audio:' + [1, 2].randomGet(),
                             trigger: { global: 'phaseZhunbeiBegin' },
@@ -7213,11 +7104,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*范蠡 3/3
-                        革局:每轮开始时,你可失去一点体力,将一名角色的行动顺序插入到另一名角色之前.
-                        功隐:锁定技,你不在体力值大于你的角色的攻击范围内.
-                        归商:出牌阶段每名角色每个区域限一次,你可将你任意区域内一张牌移入一名其他角色对应区域内,
-                             你获得其此区域内一张其他牌(无牌则改为你摸一张牌).*/
+
                         bjzm革局: {
                             trigger: { global: 'roundStart' },
                             forced: true,
@@ -7431,9 +7318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             position: 'hej',
                             discard: false,
                         },
-                        /*杨朱 一毛不拔 3/3
-                        利己:锁定技,以你为目标/你使用以下牌指定目标额外结算一次:【桃】/【过河拆桥】/【无中生有】/【顺手牵羊】.
-                        拒损:每回合第一次有一名角色手牌进入弃牌堆后,你可以令其获得之,若如此做,其本回合不能再使用与此牌类型相同的牌.*/
+
                         bjzm利己: {
                             trigger: {
                                 target: 'useCardToTargeted',
@@ -7504,11 +7389,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*齐一万物  田骈   155
-                        贵齐:出牌阶段每名其他角色限一次,你可以令一名其他角色摸X张牌,若其手牌数为全场最大,
-                             你弃置其区域内X+1张牌(X为其装备区牌数且至少为1).
-                        立公:每当一名角色使用一张装备牌后,你摸一张牌;当一名其他角色失去装备区的牌后,
-                             若其装备区牌数小于你,其视为对你使用一张不计入次数的【杀】.*/
+
                         bjzm贵齐: {
                             init(player) {
                                 player.storage.bjzm贵齐 = [];
@@ -7576,10 +7457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*公尚过 3/3 造於精微
-                        承墨:当有装备牌进入你的装备区后,你可以将此牌当作任意牌使用(每种牌名限一次,用完重置);
-                        墨门:锁定技,当有装备牌离开你的装备区时你将其交给一名其他角色
-                        翟重:每回合限一次,当有一名其他角色使用伤害类牌时,你可以重铸一张非装备牌.*/
+
                         bjzm承墨: {
                             trigger: { player: 'equipAfter' },
                             init(player) {
@@ -7668,7 +7546,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             nature: result.links[0][3],
                                             cards: cards,
                                         },
-                                        false
+                                        false,
                                     );
                                 } else event.finish();
                                 ('step 3');
@@ -7734,10 +7612,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             usable: 1,
                         },
-                        /*韩然 4/4 韩桓惠王
-                        谍疲:出牌阶段,你可弃置一张手牌你废除一名其他角色一个装备栏并将牌堆顶一张牌扣置于其武将牌上.
-                             一名角色回合开始时,其可弃置一名角色一张<谍疲>牌,若此<谍疲>牌为黑色则其回复该角色一个装备栏.
-                        独断:锁定技,一张红色<谍疲>牌被弃置后,你摸一张牌并回复一点体力;一张黑色<谍疲>牌被弃置后,当前回合角色对你造成一点伤害.*/
+
                         bjzm谍疲: {
                             enable: 'phaseUse',
                             filterCard(card) {
@@ -7864,10 +7739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                         },
                         bjzm独断: {},
-                        /*白起 4/4 挫南摧北
-                        远袭:锁定技,你使用的【杀】无距离限制;不在你攻击范围内的角色不能响应你使用的牌.
-                        俘屠:你对一名其他角色造成伤害后,你可获得其一张牌本回合你的手牌上限-1;
-                             你因此获得的牌本回合不计入手牌上限和使用次数;本回合你使用因此获得的牌后,若你的体力值为场上最大值,你失去一点体力.*/
+
                         bjzm远袭: {
                             forced: true,
                             mod: {
@@ -7885,13 +7757,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return !player.inRange(current);
-                                    })
+                                    }),
                                 );
                                 //万箭不能使用
                                 trigger.parent.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return !player.inRange(current);
-                                    })
+                                    }),
                                 );
                             },
                             ai: {
@@ -7986,7 +7858,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return get.distance(player, current, 'absolute') >= player.getAttackRange();
-                                    })
+                                    }),
                                 );
                             },
                             ai: {
@@ -8005,11 +7877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*詹何 户晓天机 3/3
-                        演辩:每轮限一次,其他角色的回合开始时,你可以将一张牌置于牌堆顶并猜测该角色本回合是否会使用基本牌.猜对至少一项,你摸两张牌;
-                             至少两项,你回复一点体力;至少三项,牌堆顶的两张牌始终对你可见直至下次发动此技能.
-                        理喻:每回合限一次,当你需要使用一种类别的牌时,你可以展示牌堆顶两张牌,若有与之类别相同的牌,
-                             你获得之,你视为使用之*/
+
                         bjzm演辩: {
                             trigger: { global: 'phaseBegin' },
                             filter(event, player) {
@@ -8181,7 +8049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                     cards: [card],
                                                                 },
                                                                 evt.player,
-                                                                evt
+                                                                evt,
                                                             )) ||
                                                         (evt.filterCard &&
                                                             evt.filterCard(
@@ -8190,12 +8058,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                     cards: [card],
                                                                 },
                                                                 evt.player,
-                                                                evt
+                                                                evt,
                                                             ))
                                                     );
                                                 }
                                                 return evt.filterCard(card, evt.player, evt);
-                                            })
+                                            }),
                                         )
                                         .set('ai', function (button) {
                                             var evt = _status.event.getParent(3);
@@ -8220,7 +8088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 lib.skill.bjzm理喻_backup.prompt = '选择' + get.translation(result) + '的目标';
                                             },
                                             result.links[0],
-                                            name
+                                            name,
                                         );
                                         evt.set('_backupevent', 'bjzm理喻_backup');
                                         evt.backup('bjzm理喻_backup');
@@ -8414,7 +8282,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                     cards: [card],
                                                                 },
                                                                 evt.player,
-                                                                evt
+                                                                evt,
                                                             )) ||
                                                         (evt.filterCard &&
                                                             evt.filterCard(
@@ -8423,12 +8291,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                     cards: [card],
                                                                 },
                                                                 evt.player,
-                                                                evt
+                                                                evt,
                                                             ))
                                                     );
                                                 }
                                                 return evt.filterCard(card, evt.player, evt);
-                                            })
+                                            }),
                                         )
                                         .set('ai', function (button) {
                                             var evt = _status.event.getParent(3);
@@ -8453,7 +8321,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 lib.skill.bjzm理喻_backup.prompt = '选择' + get.translation(result) + '的目标';
                                             },
                                             result.links[0],
-                                            name
+                                            name,
                                         );
                                         evt.set('_backupevent', 'bjzm理喻_backup');
                                         evt.backup('bjzm理喻_backup');
@@ -8498,10 +8366,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             selectCard: -1,
                         },
-                        /*左丘明 3/3 经臣史祖 150
-                        失明:出牌阶段开始时,你将全部基本牌和普通锦囊牌扣置于武将牌上并随机打乱顺序;出牌阶段结束时你获得这些牌.
-                        盲著:出牌阶段,若你有<失明>牌,你可声明一个基本牌或普通锦囊牌的牌名视为你使用此牌(无次数限制),此牌结算后你展示一张<失明>牌,
-                             若此牌与你声明的牌名相同则你弃置此牌并摸2张牌且本回合你的手牌上限+1;不同则你获得此牌并摸一张牌失去一点体力. */
+
                         bjzm失明: {
                             trigger: { player: 'phaseUseBegin' },
                             filter(event, player) {
@@ -8511,7 +8376,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player
                                     .addToExpansion(
                                         player.getCards('h', (c) => get.type(c) == 'basic' || get.type(c) == 'trick'),
-                                        'gain2'
+                                        'gain2',
                                     )
                                     .gaintag.add('bjzm失明');
                             },
@@ -8664,7 +8529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 player.loseToSpecial(
                                     player.getCards('h', (c) => get.type(c) == 'basic' || get.type(c) == 'trick'),
-                                    'bjzm失明'
+                                    'bjzm失明',
                                 ).visible = false;
                             },
                             forced: true,
@@ -8684,7 +8549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.getCards('s', function (card) {
                                         return card.hasGaintag('bjzm失明');
                                     }),
-                                    'gain2'
+                                    'gain2',
                                 );
                             },
                             forced: true,
@@ -8797,12 +8662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*羊斟 3/3 贪羹败国
-                        御政:锁定技,你计算与其他角色的距离-X(X为你的手牌数).
-                        飨士:你攻击范围内一名其他角色每回合第一次获得牌后,若此时不为你或其回合内,你令当前回合角色选择:1.交给你一张牌;2.获得一枚<羹>标记.
-                        羹弑:出牌阶段,你可弃置一张牌并指定一名有<羹>标记的角色,
-                             其移除一枚<羹>标记并判定且若判定牌花色与上一张进入弃牌堆的牌花色不同则你对其造成一点伤害否则其弃置你一张牌,
-                             其重复此流程直至其没有<羹>标记.*/
+
                         bjzm御政: {
                             mod: {
                                 globalFrom(from, to, distance) {
@@ -8885,10 +8745,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*王翦 4/4
-                        精军:你使用一张【杀】时,你可弃置一张牌.锁定技,你使用【杀】造成的伤害基数为X;
-                             你使用的【杀】造成伤害后,本回合你的攻击距离+1(X为本回合你已失去手牌的类别数且至少为1).
-                        扫乱:你使用的【杀】结算后,你可对你攻击范围内至多X名未成为过此【杀】目标的其他角色再次使用此【杀】.(X为本回合你已失去牌的类别数).*/
+
                         bjzm精军: {
                             trigger: { player: 'useCard' },
                             filter(event, player) {
@@ -8987,10 +8844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*夫差  4/4
-                        雪恨:锁定技,弃牌阶段结束时,若你已受伤,你弃置一名体力值大于你的角色X张牌(X为你弃牌阶段弃置的牌的数量).
-                        恃霸:锁定技,当你造成/受到伤害时,若你体力值/手牌数/装备数有一项为全场最大,你令该伤害增加或减少Y(Y为三项之中你符合条件的数量).
-                        遗害:当一名因你造成的伤害而进入濒死状态的其他角色脱离濒死状态时,其可以将手牌数,体力值,装备牌之中的一项调整至与你相等.*/
+
                         bjzm雪恨: {
                             trigger: { player: 'phaseDiscardAfter' },
                             filter(event, player) {
@@ -9096,9 +8950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*告子 言谈甚辩 999
-                        形喻:每回合每个分支限一次,你可以将一张【闪】/【无懈可击】当作基本牌/普通锦囊牌使用.
-                        绝论:锁定技,你使用牌无距离限制.若你每回合使用的第一张牌未被响应,你摸两张牌.*/
+
                         bjzm形喻: {
                             enable: ['chooseToUse'],
                             usable: 1,
@@ -9268,7 +9120,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     list.addArray(
                                         i.getHistory('useCard', function (evt) {
                                             return evt.respondTo && evt.respondTo[1] == event.card;
-                                        })
+                                        }),
                                     );
                                 }
                                 if (list.length) {
@@ -9293,10 +9145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*志胜霜霰  李牧 4/4
-                        御边:锁定技,当你造成伤害后,你弃置一张牌;当你每回合第一次使用或打出一种花色的牌后,你摸一张牌.
-                        受谗:锁定技,你的弃牌阶段改为将手牌数调整至X张(X为本回合出牌阶段你摸牌数与弃牌数的差且至少为1),
-                             若你未因此弃置牌,你失去一点体力,否则你摸X张牌.*/
+
                         bjzm御边: {
                             trigger: { source: 'damageAfter' },
                             filter(event, player) {
@@ -9354,11 +9203,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*肥义 3/3
-                        推革:一名角色使用一张装备牌后,你可失去一点体力根据此牌副类别执行:武器牌:其与你交替共摸x张牌(x为其攻击范围内角色数);
-                             防具牌:其增加一点体力上限并回复一点体力;进攻马:其获得其计算距离不大于1的角色各一张牌;防御马:其手牌上限+1.
-                        佐政:一名角色回合开始时,你可展示并交给其一张牌,本回合其使用或打出与此牌花色相同的牌后,
-                             你摸一张牌,若其不为你则你交给其一张牌;若其为你则本回合你的手牌上限+1.*/
+
                         bjzm推革: {
                             trigger: { global: 'useCardAfter' },
                             filter(event, player) {
@@ -9522,11 +9367,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             silent: true,
                         },
-                        /*屈原 大义如镜 999
-                        见疏:出牌阶段,你可以展示一张手牌并选择一名角色,进行一次判定并将判定牌交给其.若你展示的牌与判定牌花色相同,
-                             其摸两张牌并获得你展示的牌;不同,你将一张牌置于牌堆顶.(每名角色每阶段限以此法获得你的牌一次).
-                        泪尽:锁定技,你死亡后,令你脱离过濒死状态的角色各摸一张牌并回复一点体力;
-                             令你进入濒死状态的角色各弃一张牌并失去一点体力.令一名其他角色获得<见疏>.*/
+
                         bjzm见疏: {
                             enable: 'phaseUse',
                             init(player) {
@@ -9677,13 +9518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result.targets[0].addSkill('bjzm见疏');
                             },
                         },
-                        /*虞公 3/3
-                        据虞:其他角色使用牌指定其距离大于X的一名角色为目标时(X为其计算与你距离),你可以选择一项:
-                             1.取消之,你代替该角色成为目标;2.令其交给你一张非锦囊牌.
-                        剑璧:锁定技,你的手牌上限翻倍;你成为其他角色使用牌的目标后,来源须交给你一张装备牌并摸一张牌,
-                             否则视为你对其使用一张【杀】(此【杀】有距离限制).
-                     old剑璧:锁定技,你的手牌上限翻倍;你成为其他角色使用牌的目标后,来源选择一项:
-                             1.交给你一张装备牌,其摸一张牌;2.视为你对其使用一张【杀】(此【杀】有距离限制).*/
+
                         bjzm据虞: {
                             trigger: { global: 'useCardToTarget' },
                             filter(event, player) {
@@ -9825,11 +9660,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*无所阿避  石奢
-                        纵父:每回合限一次,当一名其他角色造成伤害时,你可以展示对方的手牌,若其手牌中不包含任意一种你手牌中的花色,
-                             你可以交给其一种其没有的花色的所有手牌并对其造成一点伤害.
-                        自系:一名角色的回合结束时,若你于此回合未造成过伤害,你可以失去一点体力并获得你手牌中不包含的花色的牌各一张,
-                             若你手牌数与体力值均不为全场最大,你回复一点体力.*/
+
                         bjzm纵父: {
                             trigger: { global: 'damageEnd' },
                             filter(event, player) {
@@ -9921,7 +9752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (const suit of suits) {
                                     player.gain(
                                         get.randomCards(1, (c) => c.suit == suit),
-                                        'gain2'
+                                        'gain2',
                                     );
                                 }
                                 ('step 1');
@@ -9930,9 +9761,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*宋钘-严然好说-3/3
-                        崇俭:锁定技,每回合每名角色限一次,一名计算与你距离一以内的角色的牌因弃置进入弃牌堆后,你与其各摸一张牌.
-                        论天:牌堆顶的牌始终对你可见.若你有手牌,你可以将牌堆顶的牌如手牌般使用,你弃置两张与此牌类别不同的牌.*/
+
                         bjzm崇俭old: {
                             trigger: {
                                 global: 'loseAfter',
@@ -10077,7 +9906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (_status.event.skill && get.itemtype(card) == 'card' && card.hasGaintag('bjzm论天')) return false;
                                 },
                             },
-                            /*mark:true,*/
+
                             intro: {
                                 content(storage, player) {
                                     var event = _status.event;
@@ -10199,7 +10028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                 cards: [card],
                                                             },
                                                             evt.player,
-                                                            evt
+                                                            evt,
                                                         )) ||
                                                     (evt.filterCard &&
                                                         evt.filterCard(
@@ -10208,12 +10037,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                 cards: [card],
                                                             },
                                                             evt.player,
-                                                            evt
+                                                            evt,
                                                         ))
                                                 );
                                             }
                                             return evt.filterCard(card, evt.player, evt);
-                                        })
+                                        }),
                                     )
                                     .set('ai', function (button) {
                                         var evt = _status.event.getParent(3);
@@ -10240,7 +10069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         cards: [card],
                                                     },
                                                     evt.player,
-                                                    evt
+                                                    evt,
                                                 )
                                                 ? 'sha'
                                                 : 'shan';
@@ -10252,7 +10081,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 lib.skill.bjzm论天_backup.prompt = '选择' + get.translation(result) + '的目标';
                                             },
                                             result.links[0],
-                                            name
+                                            name,
                                         );
                                         evt.set('_backupevent', 'bjzm论天_backup');
                                         evt.backup('bjzm论天_backup');
@@ -10297,10 +10126,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             selectCard: -1,
                         },
-                        /*曹沫 4/4
-                        连挫:锁定技,当你失去牌后,你获得一枚<挫>标记;当你受到一点伤害后,你获得两枚<挫>标记.
-                        劫刺:你使用的牌指定目标后,你可移除三枚<挫>标记令其中一名目标角色不可响应此牌,
-                             受到此牌伤害的目标角色交给你一张牌;未受到此牌伤害的目标角色弃置一张牌.*/
+
                         bjzm连挫: {
                             marktext: '挫',
                             intro: {
@@ -10420,13 +10246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*寡过知非  蘧瑗
-                        弗治:出牌阶段开始时,你可以摸至多X张牌(X为场上其他角色数)并将等量张牌分别交给等量名其他角色,
-                             这些角色使用以此法获得的牌不计入次数且无距离限制.
-                        弗治:出牌阶段开始时,你可以摸至多X张牌(X为场上其他角色数)并将等量张牌分别交给等量名其他角色,
-                             这些角色使用牌无次数与距离限制直至其以此法获得的牌离开其区域.
-                        知非:结束阶段,若你于本回合未使用过伤害类牌,你回复一点体力(若体力值满则改为摸两张牌)
-                             并可以对一名本回合成为过你出牌目标的其他角色造成一点伤害.*/
+
                         bjzm弗治: {
                             trigger: { player: 'phaseUseBegin' },
                             content() {
@@ -10540,11 +10360,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*惠谋万世 狐偃 3/3
-                        扫乱:出牌阶段,你可弃置一张牌.当你的牌被弃置后,你可弃置一名其他角色一个区域内一张牌,
-                             若其此区域内牌数不大于你,你摸两张牌且本局游戏你不能对该角色此区域发动此技能.
-                        勤王:每回合回合结束时,你可指定一名角色,你亮出牌堆顶一张牌,若其能使用此牌则其使用之,
-                             你重复此流程共X次(X为本回合你弃置其他角色的牌数).*/
+
                         bjzm扫乱: {
                             enable: 'phaseUse',
                             filterCard(card) {
@@ -10786,13 +10602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*劝功及尊 触龙 3/3   参考 裴秀
-                        徐谢:锁定技,转换技,准备阶段,你依次重铸所有手牌,你:阳:摸X张牌;阴:弃X张牌
-                             (X为你因此次重铸失去牌中点数相同的牌数且至少为1).若X为1,则本回合结束时,你额外发动一次此技能.
-                        劝质:出牌阶段限一次,你可以与一名其他角色拼点并记录此次拼点出现的点数,若你赢,
-                             你指定一个你拼点牌的约数或倍数你从弃牌堆中随机获得一张此点数的牌;
-                             若你没赢,你额外发动一次<徐谢>.若你记录的所有点数无重复且没有公约数,
-                             本回合此技能可发动次数+1;否则,你清除所有记录点数.*/
+
                         bjzm徐谢: {
                             trigger: { player: 'phaseZhunbeiBegin' },
                             filter(event, player) {
@@ -10891,7 +10701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 player.gain(
                                     get.randomCards(1, (c) => c.number == result.control),
-                                    'gain2'
+                                    'gain2',
                                 );
                                 ('step 3');
                                 var bool;
@@ -10918,10 +10728,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 3,
                             },
                         },
-                        /*郤芮&吕甥 4/4
-                        非议:出牌阶段,你可以将一张黑色牌当做【借刀杀人】使用;你使用【借刀杀人】可以指定装备区有牌的其他角色为目标.
-                        浅谋:每回合每种牌名限一次,当你使用锦囊牌指定目标或你成为锦囊牌的目标后,你可以令你或其中一个目标从牌堆中获得一张【杀】或【闪】.
-                     old浅谋:你使用锦囊牌指定目标后,你可以令你或其中一个目标从牌堆中获得一张【杀】或【闪】.*/
+
                         bjzm非议: {
                             enable: 'phaseUse',
                             filterCard(card, player) {
@@ -10979,13 +10786,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.storage.bjzm浅谋.push('【杀】');
                                     event.target.gain(
                                         get.randomCards(1, (c) => c.name == 'sha'),
-                                        'cardPile'
+                                        'cardPile',
                                     );
                                 } else {
                                     player.storage.bjzm浅谋.push('【闪】');
                                     event.target.gain(
                                         get.randomCards(1, (c) => c.name == 'shan'),
-                                        'cardPile'
+                                        'cardPile',
                                     );
                                 }
                             },
@@ -11021,22 +10828,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.control == '【杀】') {
                                     event.target.gain(
                                         get.randomCards(1, (c) => c.name == 'sha'),
-                                        'cardPile'
+                                        'cardPile',
                                     );
                                 } else {
                                     event.target.gain(
                                         get.randomCards(1, (c) => c.name == 'shan'),
-                                        'cardPile'
+                                        'cardPile',
                                     );
                                 }
                             },
                             forced: true,
                         },
-                        /*嬴异人 3/3  称号:秦庄襄王
-                        质嗣:当你成为一名角色使用牌的目标后或当你使用的牌指定一名角色为目标后,若你未记录与其相同的势力,你记录之.
-                        积势:锁定技,体力值大于你的角色对你造成伤害时,若你已标记其势力且你有牌,其防止此伤害并获得你一张牌.
-                        谋周:出牌阶段开始时,你可跳过此阶段并取消记录任意个势力,本回合结束时,你令一名角色摸等量张牌并令其执行一个出牌阶段.
-                             此阶段内,除其外的角色的牌进入弃牌堆时,其获得之;其他角色受到一点伤害后,你获得其一张牌.*/
+
                         bjzm质嗣: {
                             trigger: {
                                 target: 'useCardToPlayered',
@@ -11211,15 +11014,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*楚穆王 熊商臣 4  50
-                        宴探:出牌阶段限一次,你可以交给一名角色一张牌,其选择是否令你摸两张牌,若其选择否,此技能本回合改为出牌阶段限两次.
-                        逼弑:当一名其他角色从你的区域内获得牌时,其获得一枚<弑>.有<弑>的角色回合开始时,你可以弃置其一枚<弑>,
-                             若其手牌数小于你,其将手牌数摸至与你相等(至多摸五张)且本回合不能指定你为出牌目标;
-                             若其手牌数大于你,其失去X点体力(X为你与其的手牌数之差且至多为3).
-                     old宴探:出牌阶段限一次,你可以交给一名角色任意张牌,其可以令你摸两张牌.
-                     old逼弑:当一名其他角色从你的区域内获得牌时,其获得一枚<弑>.有<弑>的角色回合开始时,你可以弃置其一枚<弑>,
-                             若其手牌数小于你,其将手牌数摸至与你相等且本回合不能指定你为出牌目标;
-                             若其手牌数不小于你,其失去X点体力(X为你与其的手牌数之差且至多为2).*/
+
                         bjzm宴探: {
                             enable: 'phaseUse',
                             filterTarget(card, player, target) {
@@ -11346,12 +11141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*柳下惠 3/3 坐怀不乱
-                        和德:锁定技,你于摸牌阶段外获得牌后,你将等量张牌置于武将牌上,称为<典>.
-                        止祀:每回合每名角色第一次使用或打出<典>中包含的花色的牌时,你可交给其一张此花色的<典>其选择:
-                             1.此牌失效;2.你获得其一张牌摸一张牌.
-                        典刑:每轮每种牌名限一次,当你需要使用一张牌时,
-                             你可以弃置X张<典>将牌堆顶一张牌当作此牌使用或打出且不计入次数(X为本回合你已发动此技能次数).*/
+
                         bjzm和德: {
                             trigger: { player: 'gainAfter' },
                             filter(event, player) {
@@ -11546,16 +11336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 threaten: 1.9,
                             },
                         },
-                        /*孟胜 5/5 为墨不绝
-                        赴死:每回合限一次,其他角色使用牌指定你为目标时,其选择一项:
-                                 1.将此牌与其区域内两张牌关联,令你无法响应此牌;
-                                 2.将所有手牌锁定,你获得其指定你的牌并将其与该角色区域内一张牌关联.
-                        大义:每回合限一次,当有关联牌进入弃牌堆时你可以解除其关联,并获得其中一张锁定牌,令一名角色获得另一张锁定牌.
-                        不绝:你的回合外,你可以打出你手牌区的锁定牌;当你阵亡时选择一名角色获得技能<不绝>.*/
-                        /*曹刿 3/3 一鼓作气
-                        气竭:其他角色回合开始时,若你在其攻击范围内,你可以弃置一张牌,若如此做,
-                             场上不为其的角色每于本回合使用或打出一张牌,其本回合造成伤害的伤害基数-1.
-                        论战:准备阶段,你可以亮出牌堆顶三张牌并获得其中的红色牌.你因<论战>或于回合外获得的牌不计入手牌上限.*/
+
                         bjzm气竭: {
                             trigger: { global: 'phaseBegin' },
                             filter(event, player) {
@@ -11686,7 +11467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.showCards(event.cards, get.translation(player) + '展示了堆顶三张牌');
                                 var next = player.gain(
                                     event.cards.filter((card) => get.color(card) == 'red'),
-                                    'gain2'
+                                    'gain2',
                                 );
                                 event.cards = next.cards;
                                 if (!event.cards || !event.cards.length) event.finish();
@@ -11723,11 +11504,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm论战.addArray(trigger.cards);
                             },
                         },
-                        /*起伐无道 华耦 4/4   参考 田豫
-                        戈逼:出牌阶段限一次,你可以选择一名其他角色并依次视为对其与你与其之间的任意名角色使用【决斗】,
-                             若如此做,你防止你因此受到的伤害并在这些牌结算后摸2X张牌(X为此牌造成的伤害次数).
-                        辞宴:锁定技,结束阶段,攻击范围内含有你的其他角色依次选择是否让你摸一张牌,若其选择是,
-                             且其本回合受到过你造成的伤害,其可以令你失去一点体力并终止此技能结算.*/
+
                         bjzm戈逼: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -11735,11 +11512,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return target !== player;
                             },
                             aiJudge(card, player, target, bool, choices) {
-                                var left3 = false, right3 = false;
+                                var left3 = false,
+                                    right3 = false;
                                 var eff_left = 0,
                                     eff_right = 0;
-                                let left = [], right = [];
-                                let left2 = player.previous, right2 = player.next;
+                                let left = [],
+                                    right = [];
+                                let left2 = player.previous,
+                                    right2 = player.next;
                                 while (left2 && ![target, player].includes(left2) && right2 && ![target, player].includes(right2)) {
                                     left.push(left2);
                                     right.push(right2);
@@ -11780,8 +11560,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var choices = [];
-                                let left = [], right = [];
-                                let left2 = player.previous, right2 = player.next;
+                                let left = [],
+                                    right = [];
+                                let left2 = player.previous,
+                                    right2 = player.next;
                                 while (left2 && ![target, player].includes(left2) && right2 && ![target, player].includes(right2)) {
                                     left.push(left2);
                                     right.push(right2);
@@ -11843,7 +11625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (!card || card.name != 'juedou') return false;
                                         var evtx = evt.getParent('useCard');
                                         return evtx.card == card && evtx.parent == event;
-                                    }).length
+                                    }).length,
                                 );
                                 ('step 6');
                                 game.log('【戈迫】摸牌');
@@ -11922,10 +11704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.targets.length) event.goto(1);
                             },
                         },
-                        /*郑旦 3/3 姿艳蛊心
-                        习仪:每回合限一次,其他角色的牌被弃置时,你可以展示牌堆顶一张牌并将此牌交给该角色,你获得其中此颜色的牌.
-                        献魅:出牌阶段每名角色限一次,你可将一张非装备牌置于一名其他角色武将牌上称之为<魅>.
-                        颜惑:锁定技,你的回合开始时,有<魅>的角色获得其<魅>牌;有<魅>的角色不能使用或打出与其<魅>牌名相同的牌.*/
+
                         bjzm习仪: {
                             trigger: { global: 'discardAfter' },
                             usable: 1,
@@ -12083,10 +11862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '魅',
                             intro: { content: 'cards', onunmark: 'throw' },
                         },
-                        /*孔圉 3/3 不耻下问
-                        敏学:每当有牌不因此技能被弃置时,若你有与此牌花色相同的牌,你可以获得这些牌并弃置一张牌视为你使用弃牌堆中一张普通锦囊牌,
-                             若你的武将牌上没有此牌名的牌,你随机从弃牌堆中将一张此牌名的牌置于武将牌上.
-                        文谓:锁定技,每轮开始时,你将牌堆顶X张牌和随机至多X张<敏学>牌随机混合后置于牌堆顶,你弃置剩余<敏学>牌(X为场上角色数).*/
+
                         bjzm敏学: {
                             trigger: { global: 'discardAfter' },
                             marktext: '敏学',
@@ -12144,7 +11920,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     name: button.link[2],
                                                     nature: button.link[3],
                                                 });
-                                            }
+                                            },
                                         );
                                     } else event.finish();
                                 } else event.finish();
@@ -12155,7 +11931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: result.links[0][2],
                                             nature: result.links[0][3],
                                         },
-                                        false
+                                        false,
                                     );
                                     if (!player.hasMark('bjzm敏学')) {
                                         var cards = get.randomCards(1, result.links[0][2], 'discardPile');
@@ -12209,10 +11985,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*孟母 3/3 教化别分
-                        迁居:回合结束时,你可以令一名角色与另一名角色交换位置,其获得其攻击范围内此时手牌数不小于其的角色各一张牌,
-                             你摸X张牌(X为其因此获得牌数).
-                        断机:每回合每名角色第一次使用或打出牌响应一张牌时,你可弃置一张牌令其使用或打出的牌失效.*/
+
                         bjzm迁居: {
                             trigger: { player: 'phaseAfter' },
                             //trigger:{global:"roundStart"},
@@ -12287,11 +12060,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             //usable:1,
                         },
-                        /*禽滑釐 3/3
-                        程筑:当你获得牌后,你可以将其中的非装备牌任意分配置于任意角色武将牌上称之为<械>(每名角色武将牌上每种类别的<械>只能有一张).
-                        习工:锁定技,当有牌因弃置进入弃牌堆时,你获得这些牌,你弃置等量张牌.
-                        械助:有<械>的角色成为与其<械>类别相同的牌的目标时,其可弃置此<械>牌使此牌对其无效;
-                             一名角色使用的基本牌或普通锦囊牌指定目标后,若其有此类别的<械>牌,其可弃置此<械>牌使此牌不可被响应.*/
+
                         bjzm程筑: {
                             trigger: { player: 'gainAfter' },
                             filter(event, player) {
@@ -12442,11 +12211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                         },
-                        /*以国无违  臧文仲
-                        请如:每回合限一次,当一名其他角色不指定你为唯一目标使用伤害类牌时,
-                             你可以交给使用者一张牌将此牌的使用者改为你并摸两张牌,若此牌未造成伤害,此技能失效直至你下回合结束.
-                        阻焚:每轮限一次,当一名其他角色不因【杀】而受到伤害时,你可以防止此伤害,若如此做,本轮所有角色于摸牌阶段摸牌数+1.
-                        告籴:当一名其他角色于其回合内获得第三张牌时,你可以展示一张牌并令其使用一张与此牌类别相同的牌,否则其须交给你一张牌.*/
+
                         bjzm请如: {
                             trigger: { global: 'useCardBegin' },
                             prompt(event, player) {
@@ -12564,13 +12329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.player.give(result.cards, player);
                             },
                         },
-                        /*吾丘鸠 ️8/8 击无不碎
-                        巨力:锁定技,当你使用牌指定一名其他角色为唯一目标时,若你本回合未造成过伤害,
-                             你令另一名其他角色选择是否成为该牌的额外目标,若其选择否,你使用的这张牌不能被响应且伤害+1.
-                        竭战:锁定技,当你造成伤害时,若你体力值为全场最大,你减一点体力上限并摸一张牌.
-                     old巨力:锁定技,当你使用牌指定一名其他角色为唯一目标时,你令另一名其他角色选择是否成为该牌的额外目标,
-                             若其选择否,你使用的这张牌不能被响应且伤害+1.
-                     old战竭:锁定技,当你造成伤害时,若你体力值不为全场最大,你失去一点体力上限.*/
+
                         bjzm巨力: {
                             trigger: { player: 'useCardToTarget' },
                             filter(event, player) {
@@ -12701,11 +12460,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 delete player.storage.bjzm巨力2;
                             },
                         },
-                        /*虚陨悲孽  更羸
-                        知疮:其他角色的回合限一次,当当前回合角色造成伤害时,若其已受伤,
-                             你可以观看其手牌并将其中至多X张牌标记为<疮>且本回合不计入其手牌上限(仅你可见)(X为其已失去的体力且至多为3);
-                             当该角色失去<疮>时,你摸等量的牌;你对有<疮>的角色使用牌无次数与距离限制.
-                        惊弓: 当你对一名其他角色使用【杀】时,若其有<疮>,其弃置所有<疮>.*/
+
                         bjzm知疮: {
                             init(player) {
                                 player.storage.bjzm知疮list = [];
@@ -12821,12 +12576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.target.discard(trigger.target.storage.bjzm知疮list);
                             },
                         },
-                        /*盖聂(1)-4/4 设计者:玉龙为君
-                        剑术:出牌阶段限一次,你可与一名角色进行拼点,若你赢且你的拼点牌的类别为:锦囊,本回合其非锁定技失效;
-                             装备,废弃或回复其一个装备栏;基本,其无法响应你本回合使用的牌.
-                        剑意:锁定技,当你拼点时,你令你的牌点数永久+1(最多+5).
-                        剑气:每回合限一次,当你使用【杀】造成伤害后,若该杀点数大于X(X为目标角色手牌数与体力值之和),
-                             则你将<剑术>修改为每回合限两次,且本次出牌阶段你可以多出一张【杀】.*/
+
                         bjzm剑术: {
                             init(player) {
                                 player.storage.bjzm剑气 = 1;
@@ -12995,15 +12745,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*②	公输班(5)-3/3 设计者:八千云月
-                    求械:其他角色出牌阶段限一次,其可以弃置一张非伤害牌,从弃牌堆获得同类别的输出牌,你从弃牌堆获得一张不同类别的非输出牌.
-                    云纵:你于回合外获得牌时,可将其置于一名角色武将牌上称为"材",并令其装备一张你指定位置的随机装备牌(此牌无法被除其以为的角色弃置),
-                         武将牌上有材的角色可以将材如手牌般使用或打出,同时弃置其以此法获得的装备,一名角色拥有不少于五张材时,其获得技能【登城】
-                    云纵:你于回合外获得牌时,你可声明一个装备牌的副类别,你将此次获得的<一张>牌置于一名角色武将牌上称为<材>,
-                         同时令其从牌堆中随机获得一张此副类别的装备牌.锁定技,因此技能获得的装备牌不能被除你以为的角色弃置;
-                         有<材>的角色可以如手牌般使用或打出其<材>牌;一名角色使用或打出一张<材>后,你弃置其与此<材>同时获得的装备牌;
-                         有<不少于>5张<材>的角色视为拥有<登城>技能.
-                    登城:你使用牌无距离限制,且点数大于上一张时,你摸一张牌*/
+
                         bjzm求械: {
                             trigger: { global: 'phaseUseBegin' },
                             forced: true,
@@ -13025,7 +12767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     trigger.player.gain(
                                         get.randomCards(1, (card) => get.tag(card, 'damage') > 0 && get.type2(card) == get.type2(result.cards[0]), 'discardPile'),
-                                        'gain2'
+                                        'gain2',
                                     );
                                     var cards = get.randomCards(1, (card) => !get.tag(card, 'damage'), 'discardPile');
                                     if (cards && cards.length) player.gain(cards, 'gain2');
@@ -13119,7 +12861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.addAuto(
                                         player.getCards('s', function (card) {
                                             return card.hasGaintag('bjzm云纵');
-                                        })
+                                        }),
                                     );
                                     for (let object of player.storage.bjzm云纵) {
                                         if (!object.target) continue;
@@ -13204,12 +12946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*魏冉 4/4 权焰滔天 330+
-                    权焰:出牌阶段,你可以选择一项:1.将所有红牌置于你的武将牌上称为<焰>,你每使用一张牌弃一张<焰>,
-                         若你有<焰>,你使用牌无距离限制且无法被响应;2.将所有黑牌置于一名其他角色的武将牌上称为<覆>,有<覆>的角色视为拥有<倾覆>.
-                    识杀:一名其他角色回合内,当你失去牌数达到三张你回一点体力或摸两张牌,令一名其他角色获得场上所有<覆>,
-                         其本回合只能打出或使用<覆>;你的回合结束阶段,你可以弃置三张<焰>对一名其他角色造成两点伤害.
-                    倾覆:你受到属性伤害＋1;若<魏冉>在场,你每次受到伤害时弃置一张<覆>以及<魏冉>的一张手牌.*/
+
                         bjzm权焰: {
                             derivation: ['bjzm倾覆'],
                             trigger: { player: 'phaseUseBegin' },
@@ -13406,16 +13143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '覆',
                             intro: { content: 'cards', onunmark: 'throw' },
                         },
-                        /*
-                         * 1级 缝合代码行数不超过20行的简单代码,最多改个数字参数,
-                         * 2级 可以缝合超过20行的但逻辑不复杂的代码
-                         * 3级 缝合超过45行的代码,20-45行逻辑复杂的代码
-                         * 4级 缝合超过80行的代码 多技能联动,
-                         * 5级 可以通过借鉴写出复杂难度武将,能够改编左慈,升级左慈
-                         * 6级 熟练掌握本体框架,知道本体70%武将函数,能写出联机框架,以及简单模式
-                         * 7级 精通本体框架,能写出中等偏上的模式和非常复杂的武将
-                         * 8级  超出本体框架范围,能独立写出马钧这样 的武将,创新武将皆可实现,和复杂模式
-                         * 9级 终极大佬,能实现任意客户需求但,能写出十周年的这样的扩展的存在*/
+
                         标记一轮初始化: {
                             trigger: {
                                 global: 'roundStart',
@@ -13597,13 +13325,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*荀况 3/3
-                性恶:出牌阶段限一次,你可展示两张牌令每名其他角色展示一张牌,你弃置展示牌中一种你展示牌中包含颜色的所有牌,
-                     因此失去牌奇偶数与你相同的角色获得<恶>标记直到你下回合开始.有<恶>的角色使用牌指定有<恶>的角色为唯一目标时,
-                     其摸一张牌;有<恶>的角色每回合对没有<恶>的角色使用的第一张牌不可被响应.
-                制天:当有牌从你的判定区进入弃牌堆时,你可以将这张牌改为任意牌并使用(每种牌名限一次).
-                天人:每名角色每回合第一次对你使用牌时,你进行判定,若判定牌与此牌类别相同,此牌对你失效;
-                     否则你将此牌视为随机一张延时类锦囊牌置入你的判定区*/
+
                         bjzm性恶: {
                             enable: 'phaseUse',
                             selectCard: 2,
@@ -13764,7 +13486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: button.link[2],
                                             nature: button.link[3],
                                         });
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -13773,7 +13495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: result.links[0][2],
                                             nature: result.links[0][3],
                                         },
-                                        false
+                                        false,
                                     );
                                     var lists = [];
                                     for (const list of player.storage.bjzm制天) {
@@ -13822,7 +13544,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.excluded.addArray(
                                         game.filterPlayer(function (current) {
                                             return current == player;
-                                        })
+                                        }),
                                     );
                                 } else {
                                     var list = [];
@@ -13843,13 +13565,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.getHistory('custom').push({ bjzm天人: true });
                             },
                         },
-                        /*申不害 3/3
-                变术:锁定技,你存活时,所有角色获得<术治>.
-                阴术:每回合限一次,你可使用一张牌同时与两名角色进行拼点,拼点赢的角色获得牌堆顶的一张牌,
-                     拼点输的角色手牌中非基本牌点数＋6持续至你的下回合结束,若你单次拼赢次数为2,你可以将两张非锦囊牌作为任意非延时锦囊使用,
-                     为1,你将阴术改为每回合限两次,为0,你流失一点体力并结束出牌阶段.
-                集权:锁定技,你使用的非基本牌点数均视为1.
-                *术治:你的回合内使用的非基本牌点数之和不得大于15.*/
+
                         bjzm变术: {
                             trigger: { global: ['gameStart'] },
                             forced: true,
@@ -14187,13 +13903,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*计然 4/4 授计平吴
-                七计:觉醒技,一名角色的出牌阶段,你可以弃置一张牌并从牌堆中获得一张单体锦囊牌(每种牌名限一次),
-                     你可将此牌交给当前回合角色,其需交给你一张不为该牌的非基本牌或弃两张牌.当你第七次发动此技能后,
-                     你减一点体力上限,获得<三绝>.
-                平吴:每回合限一次,你可以将一张非锦囊牌名改为普通锦囊牌名(每种牌名限一次,若你已用完所有牌名则重置此技能).
-                三绝:当你使用一张锦囊牌后,你可以将一名角色区域内一张牌置于你的武将牌上称为<绝>;出牌阶段,
-                     你可弃置三张<绝>令一名角色失去一点体力.*/
+
                         bjzm七计: {
                             derivation: 'bjzm三绝',
                             juexingji: true,
@@ -14420,13 +14130,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*樗里疾 4/4 一招智囊
-                抵进:锁定技,你回合开始前和出牌阶段开始时,若你有【战车】,你选择一名其他角色获得<迫>,你与其的距离为1,
-                     你使用单体非延时锦囊的牌指定其他角色为目标时可以令其成为额外目标,其使用单体非延时锦囊的牌指定自己为目标时你成为额外目标,
-                     当你受到其伤害时你弃置其一张牌;有<迫>的角色受到来自你的第二次伤害时,其移去<迫>且你摸一张牌(此技能最多使场上存在两枚<迫>).
-                撤围:没有<迫>的其他角色回合开始时,其可以选择交给你两张牌并将<迫>移动到另一名没有<迫>的其他角色的武将牌上,
-                     若你下个回合开始时,该<迫>已被移动,则其获得一个<迫>.
-                战车:回合开始时,你可以弃置一张装备牌或两张非装备牌,获得【战车】.*/
+
                         bjzm抵进: {
                             trigger: { player: ['phaseBefore', 'phaseUseBegin'] },
                             forced: true,
@@ -14712,12 +14416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return '你可以使此' + get.translation(event.card) + '牌增加额外目标(所增加的目标为有‘迫’的角色)';
                             },
                         },
-                        /*陈轸 3/3  称号:权挟游间
-                说纵:出牌阶段限x次(x为场上势力数),你可以与一名武将牌未横置的角色拼点.
-                诈救:当你成为其他角色使用牌的目标时,你可以与其拼点,若你没赢则所有武将牌横置的角色同时选择一项
-                     执行被选择数量多的一项并重置选择此项的角色的武将牌:1.此牌对你无效;2.你无法响应此牌.
-                避陷:锁定技,你拼点后,若你没赢,你令一名角色横置武将牌,你令一名武将牌横置的角色摸一张牌.
-             old避陷:锁定技,你拼点后,若你没赢,你令与你拼点的角色横置武将牌,你令一名武将牌横置的角色摸一张牌.*/
+
                         bjzm说纵: {
                             enable: 'phaseUse',
                             filter(event, player) {
@@ -14834,7 +14533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.directHit.addArray(
                                         game.filterPlayer(function (current) {
                                             return current == player;
-                                        })
+                                        }),
                                     );
                                 }
                             },
@@ -14922,9 +14621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*公孙衍-3/3-纵相犀首
-                纵局:锁定技,牌堆顶X张牌始终对你可见,每回合【杀】首次进入弃牌堆后,你以任意顺序调换这些牌(X为本回合进入弃牌堆的牌数).
-                着子:结束阶段,你可摸牌直到获得基本牌,此牌视为【无懈可击】.*/
+
                         bjzm纵局: {
                             init(player, skill) {
                                 player.storage.bjzm纵局X = 0;
@@ -14990,7 +14687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             list2.remove(card);
                                         }
                                     },
-                                    trigger
+                                    trigger,
                                 );
                                 event.list1 = list1.concat(list2);
                                 if (list1.length != 0 || list2.length != 0) {
@@ -15019,7 +14716,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player = _status.event.player;
                                         const target = _status.currentPhase?.next || player;
                                         const att = get.attitude(player, target);
-                                        const top = [], bottom = cards;
+                                        const top = [],
+                                            bottom = cards;
                                         for (const i of target.getCards('j')) {
                                             const judge = get.judge(i);
                                             bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -15087,10 +14785,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*栾书 4/4
-                争利:其他角色摸牌阶段开始时,你可以进行一次判定,若为红色,其少摸一张牌;若为黑色,其弃一张牌,
-                     该角色摸牌阶段结束时若你的手牌数不为全场最多,你摸一张牌.
-                护权:你的准备阶段,你可以记录你现在的体力值与手牌数,你的下个准备阶段开始时,你可以翻面并将体力值与手牌数回复至与记录时相等.*/
+
                         bjzm争利: {
                             trigger: { global: 'phaseDrawBegin' },
                             check(event, player) {
@@ -15167,10 +14862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             prompt: '你可以翻面并将体力值与手牌数回复至与记录时相等',
                         },
-                        /*乐毅-5/5-推兵破雠
-                连踏:当你使用一张基本牌或普通锦囊牌后,你可将此牌置于武将牌上,称之为<功>.
-                功忌:锁定技,你使用牌造成的伤害为X且至多为3;你的手牌上限+X.回合外,若你的<功>牌数不少于4则你不能使用牌.每回合结束时,
-                     若你有<功>,你展示并获得牌堆顶一张牌,若<功>中没有此牌花色则你失去一点体力,否则你弃置所有<功>牌(X为你的<功>牌数). */
+
                         bjzm连踏: {
                             init(player) {
                                 if (!player.storage.bjzm功忌X) player.storage.bjzm功忌X = 0;
@@ -15244,11 +14936,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                             },
                         },
-                        /*商鞅 变法驱胜 战国-秦 999
-                酿法:你使用一种花色的牌结算完毕后,若你武将牌上没有此花色的牌,将之置于你的武将牌上并增加一点体力上限.
-                     若你武将牌上有每种花色,你失去此技能获得<拓疆>.
-                拓疆:锁定技,你获得的牌改为置于武将牌上且你每回合只能使用武将牌上的牌且每种花色限一次.你每以此法使用一张,你的攻击范围便+1且摸一张牌.
-                决却:锁定技,若你攻击范围内包括所有角色,将攻击范围减至0,并对其他角色各造成一点伤害.*/
+
                         bjzm酿法: {
                             derivation: ['bjzm拓疆'],
                             marktext: '法',
@@ -15257,7 +14945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.addAuto(
                                         player.getCards('s', function (card) {
                                             return card.hasGaintag('bjzm酿法');
-                                        })
+                                        }),
                                     );
                                     var content;
                                     var targets = game.filterPlayer(function (current) {
@@ -15430,9 +15118,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: ['useCardAfter', 'enterGame'],
                                 //global: "gameStart",
                             },
-                            /*filter (event, player) {
-                        return !(player.storage.inRangeTargets && player.storage.inRangeTargets.length == game.players.length - 1);
-                    },*/
+
                             content() {
                                 'step 0';
                                 var targets = game.filterPlayer(function (current) {
@@ -15453,12 +15139,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*尸镬忠言 茅焦 3/3
-                亢谏:每回合限一次,当一名其他角色受到来源不为你的伤害时,若伤害来源没有<质>,你可以摸一张红色牌并与伤害来源拼点,
-                     若你赢,你摸一张牌,令此伤害-1,并令其获得一枚<质>;若你没赢且目标没有<质>,你令目标获得一枚<质>.
-                趋镬:锁定技,你与没有<质>的角色距离为1;有<质>的角色与你的距离为1.
-                伏质:准备阶段,你可以弃置任意张红色手牌并弃置至多X名有<质>的角色的<质>与红色手牌,你与这些角色将手牌摸至体力值,
-                     这些角色本回合不能使用或打出以此法获得的手牌(X为你以此法弃置的手牌数且至少为1).*/
+
                         bjzm亢谏: {
                             usable: 1,
                             trigger: { global: 'damageBegin' },
@@ -15473,8 +15154,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card) {
                                             return get.color(card) == 'red';
                                         },
-                                        'gain2'
-                                    )
+                                        'gain2',
+                                    ),
                                 );
                                 player.chooseToCompare(trigger.source);
                                 ('step 1');
@@ -15537,7 +15218,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.countCards('h', { color: 'red' }),
                                     game.filterPlayer(function (current) {
                                         return current.hasMark('bjzm亢谏');
-                                    }).length
+                                    }).length,
                                 );
                                 player.chooseToDiscard([1, X], true, function (card) {
                                     return get.color(card) == 'red';
@@ -15585,11 +15266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*和光同尘 列御寇 3/3
-                【玄同】​:游戏开始时,你将牌堆顶的牌依次扣置于其他角色武将牌上称为<化>;当<化>进入弃牌堆,
-                         或每轮首次有不同类型的牌结算完成时,你令一名角色摸一张牌.
-                【齐真】:每回合限一次,其他角色的任一主要阶段(判定阶段、摸牌阶段、出牌阶段、弃牌阶段)结束时,
-                         你可以移去一张<化>令一名角色执行一个额外的主要阶段(每轮每种阶段限一次).*/
+
                         bjzm玄同游戏开始时: {
                             trigger: { global: 'gameStart' },
                             forced: true,
@@ -15735,13 +15412,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.useSkill('bjzm玄同');
                             },
                         },
-                        /*端木赐 3/3 瑚琏之器
-             old导势:出牌阶段限X次(X为5-本局游戏轮数且至少为1),你可以与一名此阶段未以此技能选择过的角色拼点,
-                     若你赢,其视为对其攻击范围内你指定的一名角色随机使用一张伤害类卡牌;若你没赢,本回合此技能失效.
-                导势:出牌阶段限X次(X为5-本局游戏轮数),你可以与一名本轮未以此技能选定过的角色拼点,
-                     若你赢,你摸一张牌并令其视为对你指定的一名角色随机使用一张伤害类卡牌;若你没赢,本回合此技能失效.
-                采辞:当你拼点牌亮出时,若该牌为红色且点数:小于Y,你可令点数翻倍;
-                     大于Y,取消本次拼点你没赢或目标赢的效果(Y为你体力值与装备区牌数之和).*/
+
                         bjzm导势: {
                             init(player) {
                                 player.storage.bjzm导势 = [];
@@ -16007,11 +15678,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 0.2,
                             },
                         },
-                        /*不法先王  邓析
-                难旧:每名其他角色的出牌阶段开始时,你可以交给其至多两张牌,其以此法获得的牌本回合不计入手牌数,
-                     若如此做,其本回合使用与这些牌颜色相同的牌时,其须交给你一张牌.
-                两可:每名角色的弃牌阶段结束时,若其此时体力值小于/不小于你,你可以将X张牌当作任意一张基本/普通锦囊牌对其打出(X为其手牌数且至少为1).
-                揽讼:当你于回合外不因使用而失去牌时,你摸Y张牌(Y为你此次失去牌的数量÷2且向上取整).*/
+
                         bjzm难旧: {
                             trigger: { global: 'phaseUseBegin' },
                             filter(event, player) {
@@ -16167,7 +15834,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     nature: button.link[3],
                                                 },
                                                 player,
-                                                player
+                                                player,
                                             );
                                         },
                                         function (button) {
@@ -16176,9 +15843,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     name: button.link[2],
                                                     nature: button.link[3],
                                                 },
-                                                trigger.player
+                                                trigger.player,
                                             );
-                                        }
+                                        },
                                     );
                                 } else event.finish();
                                 ('step 2');
@@ -16189,7 +15856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: result.links[0][2],
                                             nature: result.links[0][3],
                                         },
-                                        trigger.player
+                                        trigger.player,
                                     );
                                 }
                                 ('step 3');
@@ -16215,11 +15882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw(X);
                             },
                         },
-                        /*赵姬-妖冶娇容 3/3
-                ★弄政:锁定技,出牌阶段开始时,你获得全部<暗乱>牌;若你本局游戏执行过出牌阶段,你于回合外只能如手牌般使用或打出<暗乱>牌.
-                ★暗乱:出牌阶段限一次,你可将至多X张手牌置于武将牌上(仅自己可见),视为你使用一张无距离限制的基本牌(X为场上角色数).
-                ★荡帏:一名其他角色获得牌时,若其与你距离为1,其可交给你一张黑色牌其多摸一张牌;
-                       一名其他角色受到伤害后,若你与其距离为1,你可交给伤害来源一张黑色牌.*/
+
                         bjzm弄政: {
                             trigger: { player: 'phaseUseBegin' },
                             filter(event, player) {
@@ -16235,7 +15898,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.getCards('s', function (card) {
                                         return card.hasGaintag('bjzm暗乱');
                                     }),
-                                    'gain2'
+                                    'gain2',
                                 ).log = false;
                             },
                             forced: true,
@@ -16315,14 +15978,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     name: button.link[2],
                                                     nature: button.link[3],
                                                 },
-                                                false
+                                                false,
                                             ) && lib.filter.cardUsable({ name: button.link[2] }, player, _status.event.getParent('chooseToUse'))
                                         ); //判断能否使用杀
-                                    }
+                                    },
                                 );
-                                /*next.set('filterButton',function (button) {
-                            return player.hasUseTarget({name:button.link[2]});
-                        })*/
+
                                 ('step 2');
                                 if (result.bool) {
                                     player.chooseUseTarget(
@@ -16331,7 +15992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             nature: result.links[0][3],
                                         },
                                         true,
-                                        'nodistance'
+                                        'nodistance',
                                     ); //第二个参数false为不计入杀的次数
                                 }
                             },
@@ -16391,10 +16052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             prompt: '一名其他角色受到伤害后,若你与其距离为1,你可交给伤害来源一张黑色牌.',
                         },
-                        /*治戎监吏  王子成父 x4
-                避奔:锁定技,当你翻面时,你摸一张牌.当你的武将牌反面朝上时,你视为拥有<追袭>.
-                侍怠:锁定技,每名其他角色回合的出牌阶段开始时,你弃置一张牌,若你以此法弃置了红色牌,你摸一张牌;若你以此法弃置了黑色牌,
-                     你视为对当前回合角色使用一张【杀】,若你的武将牌正面朝上,你翻面;若你的武将牌反面朝上且此【杀】造成了伤害,你翻面并摸一张牌.*/
+
                         bjzm避奔: {
                             trigger: { player: 'turnOverAfter' },
                             forced: true,
@@ -16461,11 +16119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*孙膑 刖黥镂韬 999
-                计护:每轮每名角色限一次,当一名角色进入濒死状态后,你可以弃置一张手牌,视为对其伤害来源使用一张【杀】.
-                     此牌造成伤害时,改为弃置其伤害来源两张牌并令其回复一点体力.若该角色因此脱离濒死状态,将这些牌交给该角色.
-                齐进:出牌阶段,若你仅有一张手牌,你可以将此牌当做一张普通锦囊牌使用(每种牌名每回合限一次).
-                     你本阶段以此法使用的第X张锦囊牌结算完毕后,你回复一点体力或对一名角色造成一点伤害此技能本回合无效(X为你的体力值).*/
+
                         bjzm计护: {
                             trigger: { global: 'dyingBefore' },
                             init(player, skill) {
@@ -16672,9 +16326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 customHistory[0].bjzm齐进2 = false;
                             },
                         },
-                        /*忠疆瘳域 蒙武 体力值:4/4
-                【征从】:锁定技,你每回合第一次使用或打出一张与你的装备区内牌颜色均不相同的牌时,你将牌堆顶一张牌置于你的武将牌上并称之为<御>.
-                【伐城】:每回合限一次,当场上一名角色体力值发生变化时,你可移去一张<御>,令此数值+1或-1,你分配牌堆顶的两张牌.*/
+
                         bjzm征从: {
                             trigger: { player: ['useCard', 'respond'] },
                             usable: 1,
@@ -16791,14 +16443,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*卧薪尝胆 勾践 2/2
-                屈忍:出牌阶段/当你成为其他角色的牌的目标时,若你的<胆>少于2,你可以回复1点体力/防止之,获得1枚<胆>.
-                     结束阶段,若你本回合造成过伤害,你可移除1枚<胆>.你摸牌阶段少摸<胆>数量的牌,将牌堆顶等量牌置于武将牌上.
-                矢志:出牌阶段限X次,你可摸1张牌并重铸任意张牌(X为<胆>的数量).
-                还仇:觉醒技,摸牌阶段结束时,若你因<屈忍>而少摸的牌数大于5,你增加两点体力上限、回复两点体力、
-                     你摸摸牌阶段曾少摸<胆>数量的牌、失去<屈忍>并将<矢志>描述中的X设为2.
-             old还仇:觉醒技,摸牌阶段结束时,若你因<屈忍>而少摸的牌数大于5,你增加两点体力上限、回复两点体力、
-                     获得武将牌上的牌、失去<屈忍>并将<矢志>描述中的X设为2.*/
+
                         bjzm屈忍: {
                             enable: 'phaseUse',
                             filter(event, player) {
@@ -16930,10 +16575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             //ai:{combo:'jibing'},
                         },
-                        /*为法而然  李离 ♡
-                过听:每回合限一次,当一名角色造成伤害时,你可以重铸一张牌令此牌伤害+1,若此牌目标体力值小于你,
-                     你失去一点体力,否则你摸X张牌(X为你已损失体力)回复一点体力.
-                伏刎:限定技,出牌阶段,你可以令一名其他角色获得<过听>你失去<过听>,若如此做,你与其互换体力值与手牌.*/
+
                         bjzm过听: {
                             trigger: { global: 'damageBegin' },
                             check(event, player) {
@@ -16995,22 +16637,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*张仪3/3
-                险谑:锁定技,你与一名角色拼点后,若其没赢则你获得其拼点牌若其没有<谑>则你将你的拼点牌置于其武将牌上称之为<谑>;
-                     赢的角色可将一张牌当做【杀】对没赢的角色使用.
-                游说:出牌阶段每名角色限一次,你可与一名没有<谑>的角色拼点.
-                敌纵:一名有<谑>的角色的武将牌状态每回合第一次变化时,你可摸一张牌你与其拼点,若其没赢则其取消此次状态变化并弃置其<谑>牌.
-                     有<谑>的角色一次获得不少于2张牌后,你可令一名没有<谑>的角色摸一张牌.*/
+
                         bjzm险谑: {
                             trigger: {
                                 player: ['chooseToCompareAfter', 'compareMultipleAfter'],
                                 target: ['chooseToCompareAfter', 'compareMultipleAfter'],
                             },
                             forced: true,
-                            /*filter (event, player) {
-                                      var evt = event.getParent('bjzm敌纵');
-                        return !evt.name;
-                    },*/
+
                             content() {
                                 'step 0';
                                 if (!trigger.result) {
@@ -17148,15 +16782,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*成得臣 4/4
-             old氏勋:锁定技,你的摸牌阶段改为观看牌堆顶五张牌,你获得其中任意张牌并将剩余牌置于武将牌上称之为<勋>;
-                     当你造成一点伤害后,你将牌堆顶一张牌置于武将牌上称之为<勋>.回合结束时,你弃置全部<勋>.
-             old骁狂:你使用的基本牌或普通锦囊牌不因此技能结算后,你可弃置等同此牌目标数张<勋>(不足则全弃并失去一点体力)
-                     令此牌对此牌目标额外结算一次;当你一次失去全部<勋>时,你可失去一点体力并摸等量张牌.
-                氏勋:锁定技,你的摸牌阶段改为观看牌堆顶五张牌,你获得其中任意张牌并将剩余牌置于武将牌上称之为<勋>;
-                     当你造成一点伤害后,你将牌堆顶一张牌置于武将牌上称之为<勋>.
-                骁狂:你使用的基本牌或普通锦囊牌不因此技能结算后,你置等同此牌目标数张<勋>(不足则不弃)
-                     ;当你一次失去全部<勋>时,你失去一点体力选择一项:1.令此牌对此牌目标额外结算一次,2.你摸等量张牌.*/
+
                         bjzm氏勋: {
                             init(player, skill) {
                                 if (!player.storage[skill]) player.storage[skill] = [];
@@ -17393,10 +17019,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*庆忌 果劲万敌 999
-                雄力:锁定技,轮次开始时,你将(4)分配给以下选项:【杀】的次数限制;【杀】的目标数;攻击距离;【杀】的伤害值.
-                敬勇:锁定技,回合结束时,若你本回合造成的伤害值大于1,你摸X张牌并令()+X.
-                     若你因对一名角色造成伤害而令其进入濒死状态,()数值-X.(X为伤害总值)*/
+
                         bjzm雄力: {
                             trigger: { global: 'roundStart' },
                             forced: true,
@@ -17540,12 +17163,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*协克并御 犀武＆暴鸢
-                携虏:出牌阶段限一次,你可以视为对一名其他角色使用一张不计入次数且无距离限制的【杀】,
-                     若此【杀】未造成伤害,你失去一点体力,否则你可以令一名角色从弃牌堆中获得一张伤害类牌.
-                峙异:锁定技,每名角色的回合结束时,若你的体力值于此回合内变化过,你弃一张手牌并摸两张与你弃置的牌类别不同的牌.
-                袭败:锁定技,当你进入濒死状态时,你装备区内所有牌返回手牌并将体力值回复至X点,
-                     将武将牌替换为<暴鸢>失去<联擒>(X为场上存活阵营数).*/
+
                         bjzm携虏: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -17581,7 +17199,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card) {
                                             return get.tag(card, 'damage');
                                         },
-                                        'discardPile'
+                                        'discardPile',
                                     );
                                     if (cards) {
                                         result.targets[0].gain(cards, 'gain2');
@@ -17654,14 +17272,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.removeSkill('bjzm联擒');
                             },
                         },
-                        /*庞涓 戈室妒虐 999
-                陷膑:其他角色对你造成伤害后,你可令其获得一用枚<能>标记其将手牌弃至一张,你获得其中X张牌.
-                     你回合开始时,每名角色依次弃置全部<能>标记并视为你对其使用等量张无视防具的【杀】(X为其<能>标记数).
-                嫉能:锁定技,若你使用【杀】未对目标角色造成伤害,其摸一张牌;以你为目标的【杀】未对你造成伤害则你获得此【杀】并弃置其一张牌.
-             old陷膑:其他角色对你造成伤害后,你可令其获得一枚<能>标记并令其保留一张手牌将其余牌交给你.
-                     你下回合开始时,每名角色依次弃置全部<能>标记并视为你对其使用等量张无视防具的【杀】.(X为其<能>标记数).
-             old嫉能:锁定技,你使用的【杀】对目标角色造成伤害后你获得其一张牌,否则其摸一张牌;
-                     以你为目标的【杀】未对你造成伤害则你获得此【杀】并弃置其一张牌.*/
+
                         bjzm陷膑: {
                             trigger: { player: 'damageAfter' },
                             check(event, player) {
@@ -17898,14 +17509,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 0.2,
                             },
                         },
-                        /*吕不韦 筹筴天幸 战国-秦 999
-                奇货:锁定技,你本回合使用过的花色不计入此回合内的手牌上限.
-             old献姬:回合开始时,你可以使用一张牌并令此牌目标各摸一张牌.若这些角色的手牌均大于你,你令其回复一点体力.
-             old拜封:限定技,出牌阶段,你可以令所有角色依次选择一项:
-                     令你摸一张牌并交给你一张牌;受到一点伤害且你计算与其距离改为1.你依次使用你所有能使用的手牌.
-                献姬:回合开始时,你可以使用一张牌并令此牌目标各摸一张牌.其中手牌数不小于你的角色,回复一点体力.
-                拜封:限定技,出牌阶段开始时,若你的手牌数不小于你当前体力值的两倍,你可以令所有角色依次选择一项:
-                     令你摸一张牌并交给你一张牌;受到一点伤害且你计算与其距离改为1.*/
+
                         bjzm奇货: {
                             audio: 'ext:百家争鸣/audio:' + [1, 2].randomGet(),
                             trigger: { player: 'phaseDiscardBefore' },
@@ -18175,16 +17779,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*祝聃 4/4
-             old酣战:你使用的【杀】可以额外选择X名目标.你对其他角色造成伤害时你可以弃置一张非基本牌令此伤害+1
-                     (X为游戏开始你的体力值与你当前体力值之差).
-             old藐命:限定技,出牌阶段开始时,你可以将体力上限减少至一你摸X张牌,你获得<激莽>且你的手牌上限+X,
-                     本阶段你对体力值大于你的角色造成伤害后,若其未因此进入濒死状态,其失去体力值至1.
-             old激莽:锁定技,你的锦囊牌只能当任意基本牌使用或打出.
-                酣战:你对其他角色造成伤害时,你可弃置一张非基本牌令此伤害+1.你计算与其他角色的距离-x(x为游戏开始时你的体力值与你当前体力值之差).
-                藐命:限定技,出牌阶段开始时,你可将体力上限减少至1你摸x张牌,你获得<激莽>技能且你的手牌上限+x,
-                     本阶段你对体力值大于你的角色造成伤害后,其将体力失去至1点.(x为游戏开始时你的体力值与你当前体力值之差).
-                激莽:锁定技,你手牌中的非基本牌只能当任意基本牌使用或打出.*/
+
                         bjzm酣战: {
                             init(player) {
                                 player.storage.gameStartHp = 4;
@@ -18566,13 +18161,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*眉间尺 4/4
-                悟剑:一名角色使用装备牌时,若此牌不为坐骑牌,你可以弃置X张牌并失去一点体力,你获得该装备牌上的所有技能(X为你发动此技能的次数).
-                易首:限定技,出牌阶段/你进入濒死状态时,你可以将你的体力值变为两点,将你的武将牌替换为<客>并保留<悟剑>获得的所有技能.
-                客 2/2
-                孑身:出牌阶段限两次,你可以废除你的一个装备栏.当你的装备栏被废除时,你摸两张牌.
-                刺君:锁定技,你的装备牌均视为【杀】且不计入手牌上限;你的回合内,若你未使用过锦囊牌,
-                     你的所有锦囊牌均视为【决斗】.你与其他角色计算距离-X(X为你已废除的装备栏数).*/
+
                         bjzm悟剑: {
                             trigger: { global: 'useCard' },
                             filter(event, player) {
@@ -18758,17 +18347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*忍羹寝默 乐羊
-             old羹啜:已受伤的其他角色的弃牌阶段结束时,你可以观看其所有手牌,若其中有伤害类牌,
-                     你弃置之并视为其对你使用一张不计入次数的【杀】;若其中有非基本牌,你摸一张牌.
-             old谤盈:一名角色的结束阶段,若你此时手牌数＆体力值不小于此回合开始时你的手牌数＆体力值,
-                     你可以从弃牌堆中获得此回合内所有进入弃牌堆的伤害类牌并失去一点体力.
-                羹啜:其他角色的弃牌阶段结束时,你可以观看其手牌,若其中有伤害类牌,
-                     你弃置之并视为你对其使用一张无距离限制的【杀】,且若其中没有非基本牌,你摸一张牌;
-                     若其中没有伤害类牌,其可以观看你的手牌并视为对你使用一张【杀】.
-            old2谤盈:一名角色的结束阶段,你可以失去一点体力并从弃牌堆中获得此回合内所有进入弃牌堆的伤害类牌.
-                谤盈:一名其他角色的结束阶段,你可以失去一点体力并从弃牌堆中获得此回合内所有进入弃牌堆的伤害类牌.
-        */
+
                         bjzm羹啜: {
                             trigger: { global: 'phaseDiscardAfter' },
                             check(event, player) {
@@ -18879,13 +18458,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.loseHp();
                             },
                         },
-                        /*宋襄公 - 宋兹甫 体力值:3/6
-           old【义师】:准备阶段,你可以摸至多两张牌并交给等量的已受伤角色各一张,若其手牌数大于体力值则需交给你两张牌.
-           old【修仁】:锁定技,你与体力值小于你的角色对彼此造成伤害时,防止之;体力值小于你的已受伤角色获得你的牌时,
-                        若你的体力值大于3,则你减1点体力上限令其回复1点体力.
-           old2【义师】:准备阶段,你可以摸至多两张牌并交给等量的已受伤角色,若其手牌数大于体力值则你回复1点体力.
-               【义师】:准备阶段,你可以摸至多两张牌并交给等量的已受伤角色,若其手牌数大于体力值则其回复1点体力.
-               【修仁】:锁定技,体力值小于你的角色对你造成的伤害-1.*/
+
                         bjzm义师: {
                             trigger: { player: 'phaseZhunbeiBegin' },
                             check(event, player) {
@@ -19224,10 +18797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*墨翟  天德科圣 4/4
-                兼爱:每回合限一次,当你于回合外获得牌/回复体力值时,你可以指定一名角色获得等量的牌/回复等量的体力值.
-                非攻:限定技,你的回合结束时,你可以将弃牌堆中所有的非伤害类牌洗入牌堆,将等量的伤害类牌从牌堆移入弃牌堆.
-                墨兵:摸牌阶段开始时,你可以跳过此阶段并亮出弃牌堆中随机五张牌,选择其中三张获得并将其余两张以任意顺序置于牌堆顶.*/
+
                         bjzm兼爱: {
                             trigger: { player: ['gainEnd', 'recoverEnd'] },
                             forced: true,
@@ -19272,7 +18842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return !get.tag(card, 'damage');
                                     },
-                                    'discardPile'
+                                    'discardPile',
                                 );
                                 game.cardsGotoOrdering(event.cards);
                                 ('step 1');
@@ -19281,7 +18851,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return get.tag(card, 'damage');
                                     },
-                                    'cardPile'
+                                    'cardPile',
                                 );
                                 if (Array.isArray(event.cards))
                                     for (var i of event.cards) {
@@ -19299,7 +18869,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return !get.tag(card, 'damage');
                                     },
-                                    'discardPile'
+                                    'discardPile',
                                 );
                                 if (cards.length > 9) {
                                     return true;
@@ -19331,7 +18901,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return true;
                                     },
-                                    'discardPile'
+                                    'discardPile',
                                 );
                                 game.cardsGotoOrdering(cards);
                                 var next = player.chooseToMove(true);
@@ -19342,15 +18912,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (list) {
                                         var cards = list[0][1],
                                             player = _status.event.player;
-                                        const top = [], bottom = cards;
+                                        const top = [],
+                                            bottom = cards;
                                         for (const i of player.getCards('j')) {
                                             const judge = get.judge(i);
-                                            bottom.sort((a, b) => (judge(b) - judge(a))); //价值高的牌放前面
+                                            bottom.sort((a, b) => judge(b) - judge(a)); //价值高的牌放前面
                                             if (bottom.length) {
                                                 top.push(bottom.shift());
                                             }
                                         }
-                                        bottom.sort((a, b) => (get.value(b) - get.value(a))); //把价值高的牌放前面
+                                        bottom.sort((a, b) => get.value(b) - get.value(a)); //把价值高的牌放前面
                                         while (bottom.length) {
                                             top.push(bottom.shift());
                                         }
@@ -19371,13 +18942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.updateRoundNumber();
                             },
                         },
-                        /*百里奚 999 五羖大夫
-                霸戎:每回合每个选项限一次,当你对其他角色造成伤害后/受到其他角色造成的伤害后,你选择一项:
-                     1.你获得该角色一张牌且其他角色计算与你的距离-1;2.你交给该角色一张牌且其他角色计算与你的距离+1.直到下轮开始.
-                当谋:出牌阶段开始时,你可以弃置至多X名角色各一张手牌,这些角色可以将以此法弃置的牌交给你,
-                     若如此做,该角色视为对你使用一张【杀】.你每以此法受到一次伤害,本回合<霸戎>可发动次数便+1(X为攻击范围内包含你的角色数).
-             old当谋:出牌阶段开始时,你可以弃置至多X名角色各一张手牌,这些角色可以将以此法弃置的牌交给你,
-                     若如此做,该角色视为对你使用一张【杀】(X为攻击范围内包含你的角色数).*/
+
                         bjzm霸戎: {
                             trigger: {
                                 player: 'damageAfter',
@@ -19633,11 +19198,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*豫让 4/4
-                舍刺:当你使用的基本牌或普通锦囊牌指定其他角色为目标后,你可废除一个装备栏你摸2张牌;
-                     当你使用的基本牌或普通锦囊牌造成伤害时,你可失去一点体力令此牌伤害+1.
-                受恩:锁定技,当你获得牌后,你可一张牌当作【杀】使用;你无视其他角色装备区内你已废除的装备栏内的牌;
-                     其他角色响应你使用的基本牌或普通锦囊牌时须先弃置x/2张牌(向下取整).x为你已废除装备栏数.*/
+
                         bjzm舍刺: {
                             trigger: { player: 'useCardToPlayered' },
                             //trigger:{player: "useCardAfter"},
@@ -19769,7 +19330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     name: 'sha',
                                                 },
                                                 player,
-                                                player
+                                                player,
                                             ) > 0;
                                         return effect * (1 / target.countCards('h'));
                                     },
@@ -19817,11 +19378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 map.baseDamage++;
                             },
                         },
-                        /*田单-齐-4/4
-                牛阵:你使用的【杀】指定唯一目标后,你可弃置任意张牌,你指定等量名角色成为此【杀】额外目标.
-                     若你因此弃置大于一张牌则此【杀】视为火【杀】.
-           (旧)武复:锁定技,转换技,当你对其他角色造成一点伤害后,阳:你获得其一张牌(若其没有牌则改为摸一张牌);阴:本回合你的手牌上限+1.
-                武复:锁定技,转换技,当你对其他角色造成一点伤害后,阳:你获得其一张牌(若其没有牌则改为摸一张牌);阴:你横置其武将牌且本回合你的手牌上限+1.*/
+
                         bjzm牛阵: {
                             trigger: { player: 'useCardToPlayered' },
                             forced: true,
@@ -19857,7 +19414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         nature: 'fire',
                                                     },
                                                     player,
-                                                    player
+                                                    player,
                                                 ) > 0
                                             );
                                         })
@@ -19915,11 +19472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 lib.skill.标记初始化.initializeStorage(skill, 0, player, 'phase');
                             },
                         },
-                        /*魏齐   倚势陷忠 战国-魏  999
-                害良:锁定技,每回合限一次,你于回合外造成伤害时, 令此伤害+1你弃置一张牌.
-                     你的回合内,其他角色失去手牌后,你获得之并令其将一张红色牌当作【杀】对你使用.
-                遣和:每回合限一次,当其他角色对你造成伤害后,你可以摸一张牌并选择一项:
-                     令一名其他角色回复一点体力;视为对伤害来源使用了一张【杀】.*/
+
                         bjzm害良: {
                             trigger: { global: 'loseEnd' },
                             usable: 1,
@@ -20012,24 +19565,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             usable: 1,
                         },
-                        /*攘雄之策  甘茂
-                壤誓(旧):锁定技,出牌阶段开始时,你选择一种类别(其他角色不可见),当你使用为此类别/不为此类别的牌时,
-                     你摸一张牌并令此牌不计入次数且不可被响应/弃一张牌并获得一张与你使用的牌类别不同的牌.结束阶段,
-                     你选择一种本回合你未以此法选择过的类别(其他角色不可见),当你成为此类别/不为此类别的牌的目标时,
-                     你弃一张牌并令此牌无效/不可响应此牌获得之.
-                     1锁定技,出牌阶段开始时,你选择一种类别,当你使用为此类别的牌时,你摸一张牌并令此牌不计入次数,
-                     使用不为此类别的牌时,你弃一张牌并获得一张与你使用的牌类别不同的牌.
-                     2锁定技,结束阶段,你选择一种本回合你未以此法选择过的类别(其他角色不可见),当你成为此类别的牌的目标时,
-                     你弃一张牌并令此牌无效,成为不为此类别的牌的目标时,你不可响应此牌获得之.
-                壤誓:锁定技,出牌阶段开始时,你选择一种类别(其他角色不可见),当你使用为此类别/不为此类别的牌时,
-                     你摸一张牌并令此牌不计入次数/弃一张牌并获得一张与你使用的牌类别不同的牌.结束阶段,
-                     你选择一种本回合你未以此法选择过的类别(其他角色不可见),当你成为此类别/不为此类别的牌的目标时,
-                     你弃置一张与此牌类别相同的牌令此牌无效/不可响应此牌摸一张牌.
-                壤誓:锁定技,出牌阶段开始时,你选择一种类别(其他角色不可见),当你使用为此类别/不为此类别的牌时,
-                     你摸一张牌并令此牌不计入次数/弃两张牌并获得一张与你使用的牌类别不同的牌.结束阶段,
-                     你选择一种本回合你未以此法选择过的类别(其他角色不可见),当你成为此类别/不为此类别的牌的目标时,
-                     你弃置一张与此牌类别相同的牌令此牌无效/不可响应此牌摸一张牌(每回合每项限一次).
-                     */
+
                         bjzm壤誓: {
                             mark: true,
                             marktext: '壤誓',
@@ -20095,7 +19631,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return get.type2(trigger.card) != get.type2(card);
                                     },
-                                    'cardPile'
+                                    'cardPile',
                                 );
                                 if (cards) {
                                     player.gain(cards, 'gain2', 'log');
@@ -20143,13 +19679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*苏秦 3/3
-                ★说盟:出牌阶段限一次,你可亮出任意张牌,你指定等量名武将牌未横置的角色,这些角色依次选择:
-                      1.获得其中一张牌并横置武将牌;2.你摸一张牌.
-                ★合纵(旧):锁定技,你的武将牌始终横置;武将牌横置的角色不因此获得牌时,其他武将牌横置的角色各摸一张牌.
-                ★联击(旧):当你使用的【杀】指定目标后,你可令所有武将牌横置的角色选择:1.重置武将牌并交给你一张牌;2.弃置一张牌并使此牌伤害+1.
-                 合纵:锁定技,你的武将牌始终横置;武将牌横置的角色不因此技能获得牌时,其他武将牌横置的角色依次摸一张牌,其中手牌数不为场上最少的角色弃置一张牌.
-        ★联击:当你使用的【杀】指定目标后,你可令所有武将牌横置的角色依次选择:1.重置武将牌你摸一张牌;2.弃置一张牌令此【杀】目标须多使用一张【闪】才能抵消此【杀】. */
+
                         bjzm说盟: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -20345,15 +19875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 1;
                             },
                         },
-                        /*严拊敌背  内史腾
-           申吏(旧):出牌阶段开始时,你可以声明一个非装备牌牌名并摸一张牌,此牌视为你声明的牌名的牌直至此牌离开你区域(不可被响应且无距离、次数限制),
-                     当此牌即将进入弃牌堆时,你改为将其放到牌堆顶并摸两张牌.
-                申吏:出牌阶段开始时,你可以声明一个牌名并从牌堆或弃牌堆中获得一张该牌名的牌,此牌不可被响应且无距离、次数限制,
-                     当此牌即将进入弃牌堆时,你改为将其放到牌堆顶并摸两张牌.
-                驻辖:锁定技,当你于回合内摸牌时,改为从牌堆底摸牌.每当你于出牌阶段使用牌时,你从牌堆顶亮出一张牌,
-                     若此牌与你使用的牌花色或类别相同,你获得之.
-                申吏:出牌阶段开始时,你可以声明一个牌名并摸一张牌,此牌视为你声明的牌名的牌直至此牌离开你区域(无次数限制),
-                     当此牌即将进入弃牌堆时,你改为将其放到牌堆顶.*/
+
                         bjzm申吏: {
                             trigger: { player: 'phaseUseBegin' },
                             content() {
@@ -20383,7 +19905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: button.link[2],
                                             nature: button.link[3],
                                         });
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -20510,7 +20032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: button.link[2],
                                             nature: button.link[3],
                                         });
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -20603,11 +20125,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //player.draw(2);
                             },
                         },
-                        /*公孙无知 乱常政变 4/4
-                协歹:其他角色的回合结束时,若其于此回合对其他角色造成了伤害,你可以令这些角色/该角色随机使用一张武器牌.
-                     你可以使用一张【杀】或普通锦囊牌(以此法使用的牌无距离限制).且此牌目标改为这些角色.
-                袭篡:锁定技,你的♣️️牌均视为【借刀杀人】且你的【借刀杀人】修改为:
-                     <出牌阶段,对一名武器栏有牌的角色使用.令该角色视为对另一名角色使用一张【杀】,你获得其武器栏的牌.>*/
+
                         bjzm协歹: {
                             trigger: { global: 'phaseJieshuBegin' },
                             filter(event, player) {
@@ -20828,13 +20346,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*文种  3
-                伐术(旧):你可以弃置任意张黑色牌,根据你弃置的牌数执行以下效果:①一张:视为你使用一张【酒】;
-                     ②两张:视为你使用一张【顺手牵羊】③三张及以上:视为你使用一张【南蛮入侵】.
-                伐术:每回合限一次,你可以弃置任意张黑色牌,根据你弃置的牌数执行以下效果:①一张:视为你使用一张【酒】;②两张:视为你使用一张【顺手牵羊】③三张及以上:视为你使用一张【南蛮入侵】.
-                代政(旧):出牌阶段限一次,你可以弃置任意张红色手牌并摸2X张牌.(X为你以此法弃置的牌数)
-                代政:出牌阶段限一次,你可以弃置所有张红色手牌并摸2X张黑色牌.(X为你以此法弃置的牌数)
-                伏剑:锁定技,你没有弃牌阶段.回合结束时,若你的手牌数大于你的体力值,你失去一点体力.*/
+
                         bjzm伐术: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -20920,7 +20432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return get.color(card) == 'black';
                                     },
-                                    'cardPile'
+                                    'cardPile',
                                 );
                                 if (cards.length) player.gain(cards, 'log', 'draw');
                             },
@@ -21003,7 +20515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return get.color(card) == 'black';
                                     },
-                                    'cardPile'
+                                    'cardPile',
                                 );
                                 if (cards) player.gain(cards, 'log', 'gain2');
                             },
@@ -21022,11 +20534,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*大成至圣  孔丘 3/3
-                身教:每名角色限一次,当你对一名角色使用的目标唯一的牌结算后或当一名角色对你使用的目标唯一的牌结算后,
-                     你可以结束当前阶段,你摸两张牌并执行一个额外的出牌阶段且你于此阶段内计算与其的距离为1.
-                唤徒:限定技,出牌阶段,你可以减少一点体力上限并失去<身教>技能,你随机将场上、牌堆、弃牌堆里的72张牌标记为<徒>.
-                     当一张有<徒>标记的牌进入弃牌堆时,此牌失去<徒>标记你摸一张牌.*/
+
                         bjzm身教: {
                             trigger: { global: 'useCardToTargeted' },
                             init(player, skill) {
@@ -21060,9 +20568,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm身教2 = event.target;
                                 player.addTempSkill('bjzm身教2');
                                 //player.phaseUse();
-                                /*if (player.stat[player.stat.length - 1].card.sha > 0) {
-                            player.stat[player.stat.length - 1].card.sha--;
-                        }*/
+
                                 var next = player.phaseUse();
                                 event.next.remove(next);
                                 trigger.getParent('phase').next.push(next);
@@ -21167,12 +20673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*绝孝纯忠 伍子胥
-                父雠:锁定技,你的体力上限始终等于你的手牌数且最少不小于一.当你增加一点体力上限时,你回复一点体力.
-                白头:觉醒技,你扣减体力上限后,若此时你的体力上限为全场最低,你将手牌补至五张,并获得<鞭尸>.
-                鞭尸:当一名其他角色进入濒死状态时,你可以对其造成X+1点伤害,若其因此死亡,你摸X张牌,若你没有<陷谗>,
-                     则获得之(X为已死亡的角色数).
-                陷谗:锁定技,当你于回合外不因此技能失去牌时,你须弃置等同于你手牌数量的一半的手牌(向下取整).*/
+
                         bjzm父雠: {
                             trigger: {
                                 player: ['loseAfter', 'gainAfter'],
@@ -21275,10 +20776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*以身见贤  侯嬴   参考 慕容龙城(金庸)
-                寒荐:出牌阶段开始时,你可以令一名角色从弃牌堆中获得一张伤害类牌并视为对你选择的另一名角色使用一张相同牌名的牌,
-                     因此技能获得的牌被使用时无距离、次数限制且不可被响应.
-                刭北:结束阶段,你摸X张牌(X为本回合发动过技能的角色数且至多为4),若于本回合内有角色受到过伤害,你失去一点体力. */
+
                         bjzm寒荐: {
                             trigger: { player: 'phaseUseBegin' },
                             filter(event, player) {
@@ -21288,7 +20786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return get.tag(card, 'damage');
                                     },
-                                    'discardPile'
+                                    'discardPile',
                                 ).length;
                             },
                             content() {
@@ -21313,7 +20811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card) {
                                             return get.tag(card, 'damage');
                                         },
-                                        'discardPile'
+                                        'discardPile',
                                     );
                                     if (cards) event.target1.gain(cards, 'log', 'gain2');
                                     event.target1.storage.card == cards[0];
@@ -21377,11 +20875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm刭北技能次数.push(trigger.player);
                             },
                         },
-                        /*司马错 夺魏先劳   战国-秦  4/4
-                        奇攻:当你成为普通锦囊牌或【杀】的目标后,你可以弃置场上的一张牌.若弃置的是你区域的牌,你对此牌使用者造成一点伤害.
-                        助佐:每回合限一次,一名角色使用【杀】指定目标后,若目标不为你,你可以选择一项:
-                             1.令此【杀】伤害+1将牌堆顶的牌置入你的判定区(红色当【乐不思蜀】;黑色当【兵粮寸断】);
-                             2.令此【杀】需用两张【闪】抵消,你弃置1张牌;背水:失去一点体力.*/
+
                         bjzm奇攻: {
                             trigger: { target: 'useCardToTargeted' },
                             filter(event, player) {
@@ -21494,9 +20988,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             //direct:true,
                             usable: 1,
                         },
-                        /*要离   居义不利   春秋-吴 4血
-                        自间:出牌阶段限一次,你可以失去一点体力并与一名其他角色拼点.赢的角色对没赢的角色造成一点伤害.若你没赢,摸四张牌.
-                        绝刺:锁定技,你于摸牌阶段外获得牌时,若你已损失体力,你对一名其他角色造成一点伤害,你弃置X张手牌.(X为你已损失体力值)*/
+
                         bjzm自间: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -21551,11 +21043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*西施 3/3   参考司马师的【景略】
-                      old赴间:每轮开始时,你可观看一名其他角色的手牌并标记其中一张牌(操作与标记仅你可见).此牌被其他角色使用或打出时,你对使用者造成1点伤害.
-                         赴间:每轮开始时,你可观看一名其他角色的手牌并标记其中一张牌(操作与标记仅你可见).
-                              你攻击范围内的其他角色使用或打出<赴间>牌后,你视为对其使用一张【杀】.
-                        ★沉鱼:锁定技,回合结束时,你摸x张牌;一张<赴间>牌进入弃牌堆时取消标记发动一次<赴间>.x为场上<赴间>标记牌数.*/
+
                         bjzm赴间: {
                             init(player, skill) {
                                 if (!player.storage.bjzm赴间3) player.storage.bjzm赴间3 = [];
@@ -21813,11 +21301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                             },
                         },
-                        /*相倾九州 范雎-3/3
-                     old栈连:你每失去一张红色牌时,你可令一名角色获得一枚<栈>标记.
-                        栈连:你每因使用或打出而失去一张红色牌时,你可令一名角色获得一枚<栈>标记.
-                        辎转:锁定技,有<栈>的角色使用或打出一张牌后,你移除其一枚<栈>标记并摸一张牌,你交给其一张牌.
-                             有<栈>的角色计算与其他角色的距离为-X;其他角色计算与有<栈>的角色的距离+1(X为该角色的<栈>标记数).*/
+
                         bjzm栈连: {
                             trigger: { player: 'loseAfter' },
                             filter(event, player) {
@@ -21980,9 +21464,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.num1 > 0) event.goto(1);
                             },
                         },
-                        /*泛识股肱  贾佗
-                恭持:锁定技,每回合每项各限一次,当你被指定为出牌目标时,若此牌为:
-                     基本牌,此牌对你造成的效果数值翻倍;锦囊牌,你获得之;装备牌,你摸两张牌.*/
+
                         bjzm恭持: {
                             trigger: { target: 'useCardToPlayered' },
                             init(player, skill) {
@@ -22028,10 +21510,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm恭持 = [0, 0, 0];
                             },
                         },
-                        /*冬日之日  赵衰 ♡
-                        煦和:一名其他角色的出牌阶段开始时,你可以交给其任意张颜色相同的牌,其对自己造成一点伤害.
-                        慧举:每轮游戏开始时,你可以指定一名其他角色,当其于本轮游戏内造成/受到伤害时,你摸两张牌/回复一点体力,
-                             若本轮内此技能效果发动次数大于三次,此技能失效直至下轮游戏开始.*/
+
                         bjzm煦和: {
                             trigger: { global: 'phaseUseBegin' },
                             filter(event, player) {
@@ -22156,10 +21635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*灵姑浮 4血
-                        击趾:当你对一名其他角色造成伤害时,若你装备区里有牌,你选择一项:1.弃置其两张牌;2.其下次获得牌时,你取消之.
-                        舞戈:限定技,出牌阶段,你可以从牌堆中随机获得并使用X张装备牌(X为你的手牌数且至多为5),
-                             本回合其他角色无法响应你使用的牌且你使用【杀】的次数+1.*/
+
                         bjzm击趾: {
                             trigger: { source: 'damageEnd' },
                             filter(event, player) {
@@ -22215,7 +21691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (card) {
                                         return get.type(card) == 'equip';
                                     },
-                                    'cardPile'
+                                    'cardPile',
                                 );
                                 if (cards) player.gain(cards, 'log', 'gain2');
                                 player.addTempSkill('bjzm舞戈2');
@@ -22237,7 +21713,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return current != player;
-                                    })
+                                    }),
                                 );
                             },
                             ai: {
@@ -22252,11 +21728,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*舌戈化帛  苏代
-                        晓利:一名其他角色的出牌阶段,当其第一次对其他角色使用牌时,你可以与其各摸一张牌并拼点,若你赢,
-                             你取消此牌并获得之;若你没赢,此牌的目标改为你.
-                        息伐:每回合限一次,当你被指定为使用牌的唯一目标时,若此牌的使用者手牌数不大于你,你可以令其摸一张牌,
-                             此牌结算完成后,若你的手牌数或体力值因此发生变化,你摸一张牌并从弃牌堆里获得这张牌.*/
+
                         bjzm晓利: {
                             trigger: { global: 'useCardToTarget' },
                             filter(event, player) {
@@ -22331,15 +21803,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*实神安形  界越女
-                        参考:神甘宁,诸葛亮
-                        追形:锁定技,当有牌于你的回合内不因此技能即将进入弃牌堆时,你将这些牌置于武将牌上,称之为<形>,你摸等量张牌,
-                             你可使用其中<形>牌中不包含的类别牌(不计次数);若其中没有<形>中不包含的类别的牌,
-                             你摸一张牌弃置一张牌你结束此阶段.
-                        逐影:每阶段开始时,你可以弃置一张本回合你未弃置过的花色的牌视为你使用一张无距离限制的【杀】,若此【杀】造成伤害,
-                             你于当前阶段结束后额外执行一次此阶段;否则,你结束此阶段.
-                        天成:锁定技,结束阶段,你将<形>中任意张花色均不同牌以任意顺序置于牌堆顶,你展示剩余的<形>牌并将这些牌以随机顺序置入牌堆底,
-                             你弃置所有因此进入牌堆底的类别的手牌,若你因此未弃置牌,你获得因此进入牌堆底的牌.*/
+
                         bjzm界追形: {
                             //trigger: {player: ['useCardEnd', 'respondEnd']},
                             trigger: { global: ['loseAfter', 'discardAfter', 'cardsDiscardAfter'] },
@@ -22398,7 +21862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.addAuto(
                                         player.getCards('s', function (card) {
                                             return card.hasGaintag('bjzm界追形');
-                                        })
+                                        }),
                                     );
                                 },
                                 markcount(storage, player) {
@@ -22463,7 +21927,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var cards = list[1][1],
                                         target = _status.event.player.next;
                                     const att = get.attitude(player, target);
-                                    const top = [], bottom = cards;
+                                    const top = [],
+                                        bottom = cards;
                                     for (const i of target.getCards('j')) {
                                         const judge = get.judge(i);
                                         bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -22662,15 +22127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 delete player.storage.bjzm界逐影额外执行一次此阶段;
                             },
                         },
-                        /*实神安形  越女
-                      追形(旧):锁定技,当有牌于你的回合内不因此技能即将进入弃牌堆时,你将这些牌置于武将牌上,称之为<形>,你摸等量张牌,
-                             你可立即使用其中<形>牌中不包含的类别牌(不计次数);若其中没有<形>中不包含的类别的牌,你摸一张牌你结束此阶段.
-                        追形:锁定技,当有牌于你的回合内不因此技能即将进入弃牌堆时,你将这些牌置于武将牌上,称之为<形>,若此牌不为第一次进入<形>,
-                             你可立即使用其中<形>牌中不包含的类别牌(不计次数);若其中没有<形>中不包含的类别的牌,你结束此阶段.
-                        逐影:每个你本回合未发动过此技能的阶段开始时,你可以弃置一张本回合你未弃置过的花色的牌视为你使用一张无距离限制的【杀】,
-                             若此【杀】造成伤害,你于当前阶段结束后额外执行一次此阶段;否则,你结束此阶段.
-                        天成:锁定技,结束阶段,你将<形>中任意张花色均不同牌以任意顺序置于牌堆顶,你展示剩余的<形>牌并将这些牌以随机顺序置入牌堆底,
-                             你弃置所有因此进入牌堆底的类别的手牌,若你因此未弃置牌,你获得因此进入牌堆底的牌.*/
+
                         bjzm追形: {
                             //trigger: {player: ['useCardEnd', 'respondEnd']},
                             trigger: { global: ['loseAfter', 'discardAfter', 'cardsDiscardAfter'] },
@@ -22801,7 +22258,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var cards = list[1][1],
                                         target = _status.event.player.next;
                                     const att = get.attitude(player, target);
-                                    const top = [], bottom = cards;
+                                    const top = [],
+                                        bottom = cards;
                                     for (const i of target.getCards('j')) {
                                         const judge = get.judge(i);
                                         bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -23036,13 +22494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 delete player.storage.bjzm逐影额外执行一次此阶段;
                             },
                         },
-                        /*功蚕白老  蒙骜
-                        征围:每回合限一次,当你于回合内使用牌指定一名其他角色为唯一目标时,若其武将牌上没有<征>,
-                             你可以摸一张牌并将一张手牌置于其武将牌上称之为<征>.有<征>的角色的回合开始时,你摸两张牌,选择一项令其执行:
-                             1.弃置<征>并视为对你使用一张【杀】,若此【杀】被闪避,其跳过出牌阶段 2.获得<征>并视为你对其使用一张【杀】,
-                             若此【杀】造成伤害,其跳过摸牌阶段.
-                        忠仕:锁定技,每轮游戏开始时,你摸X张牌展示所有手牌(X为当前游戏轮数+1且至多为5),若其中有点数相同的牌,
-                             你失去一点体力并弃置这些牌.*/
+
                         bjzm征围: {
                             trigger: { player: 'useCardToTarget' },
                             filter(event, player) {
@@ -23189,9 +22641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*赳勇冠世   魏犨
-                        擒貘:当你指定一名本回合你未对其发动过此技能的其他角色为唯一目标使用牌/响应一名本回合你未对其发动过此技能的其他角色指定你为唯一目标使用的牌时,
-                             你可以对其造成一点火焰伤害观看其手牌并展示其中一张牌,若此牌为黑色,你摸一张牌;若此牌为红色,你弃置此牌.*/
+
                         bjzm擒貘: {
                             init(player, skill) {
                                 if (!player.storage[skill]) player.storage[skill] = [];
@@ -23243,10 +22693,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm擒貘 = [];
                             },
                         },
-                        /*赂礼亡建  后胜
-                        厚赂:一名角色的出牌阶段限一次,其可以将一张牌置于你的武将牌上并称之为<赂>并摸两张牌.
-                        贿亡:准备阶段,你可以选择一种颜色并获得武将牌上所有该颜色的<赂>若你因此法获得的牌数不小于二,
-                             你失去一点体力,本回合你使用不为此颜色的牌时摸一张牌.*/
+
                         bjzm厚赂2: {
                             global: 'bjzm厚赂',
                         },
@@ -23366,14 +22813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw();
                             },
                         },
-                        /*李冰
-                        筑堰:当你于回合外因使用、打出或弃置而失去牌时,你可以将这些牌置于<堰>中.每回合限一次,当一名其他角色对你使用牌时,
-                             你可以选择以下任意项:1.弃置一张相同类别的<堰>使此牌失效 2.弃置一张相同花色的<堰>并获得此牌.
-                        治水:出牌阶段开始时,你可以用任意张手牌替换等量张<堰>.结束阶段,若场上的<堰>大于你的体力上限,
-                             你须从<堰>中获得牌直至<堰>的数量与你的体力上限相等.
-                        永丰:锁定技,当你死亡时,你将你所有手牌置于<堰>中,你操控<堰>进行游戏,且修改并获得<筑堰>.
-                        筑堰(改):每回合限一次,当一名其他角色使用牌时,你可以选择以下任意项:1.弃置一张相同类别的<堰>使此牌失效
-                                  2.弃置一张相同花色的<堰>并将此牌置于<堰>中.当此技能效果结算完成后若<堰>中没有牌,则此区域废除.*/
+
                         bjzm筑堰: {
                             init(player, skill) {
                                 if (!player.storage[skill]) player.storage[skill] = [];
@@ -23739,16 +23179,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*宽谐忠儒  华元
-                        弭兵:每回合限一次,当一名其他角色指定另一名角色为唯一目标使用牌时,你可以交给使用者一张牌使此牌无效,若此牌为伤害类牌,
-                             你失去一点体力并获得之,否则你摸一张牌.
-                        羹讴:出牌阶段开始时,你可以弃置任意张牌视为使用一张【五谷丰登】并可以少选X名目标(X为你弃置的牌数),
-                             此牌结算后未成为此牌目标的角色须交给你一张牌,其选择一项:1.对你使用一张【杀】 2.失去一点体力.
-                        奔伐:锁定技,当你体力值减少时,你翻面,若此时为你的回合内,你回复一点体力;若此时为其他角色的回合,
-                             此回合结束时你可以对当前回合角色使用一张单体伤害类牌.
-                    (改)奔伐:锁定技,当你体力值减少时,你翻面,若此时为你的回合内,你回复一点体力;若此时为其他角色的回合,
-                             此回合结束时你可以对当前回合角色使用一张单体伤害类牌,若此牌造成伤害你翻至正面.
-                        诚馈:当你进入濒死状态时,你可以展示所有手牌并弃置其中所有伤害类牌(至少一张),将体力值回复至一点.*/
+
                         bjzm弭兵: {
                             trigger: { global: 'useCardToTarget' },
                             usable: 1,
@@ -23865,7 +23296,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card, player, event) {
                                                 return card.name == 'sha';
                                             },
-                                            '对' + get.translation(player) + '使用一张杀'
+                                            '对' + get.translation(player) + '使用一张杀',
                                         )
                                         .set('nodistance', true)
                                         .set('targetRequired', true)
@@ -23906,7 +23337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card, player, event) {
                                             return get.tag(card, 'damage') > 0 && card.name != 'nanman' && card.name != 'wanjian';
                                         },
-                                        '对' + get.translation(trigger.player) + '使用一张杀'
+                                        '对' + get.translation(trigger.player) + '使用一张杀',
                                     )
                                     .set('targetRequired', true)
                                     .set('complexSelect', true)
@@ -23950,22 +23381,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.discard(
                                     player.getCards('h', function (card) {
                                         return get.tag(card, 'damage') > 0;
-                                    })
+                                    }),
                                 );
                                 ('step 2');
                                 player.recover(1 - trigger.player.hp);
                             },
                         },
-                        /*楚庄王  熊旅
-                        鸣辨:锁定技,结束阶段,若你本回合未造成伤害,你将你每个空置的装备区均随机获得并使用一张装备牌;若你本回合未对其他角色使用过牌,
-                             你令所有角色各摸一张牌,因此获得牌的其他角色可依次交给你一张牌;若你本回合未使用过牌,你重铸所有手牌并摸X张牌
-                             (X为你的体力上限)(每项每局游戏限一次).
-                        觊鼎:锁定技,准备阶段,若你手牌数为全场最多,你本回合跳过判定阶段与弃牌阶段,且结束阶段你将手牌数调整至与准备阶段相同,
-                             你于出牌阶段使用你手牌中类别最多的牌无次数限制且不可被响应.
-                             (削)
-                        觊鼎:锁定技,准备阶段,若你手牌数为全场最多,你本回合跳过判定阶段,你于出牌阶段使用你手牌中类别最多的牌无次数限制;
-                             结束阶段你将手牌数调整至与准备阶段相同.
-                             */
+
                         bjzm鸣辨: {
                             trigger: { player: 'phaseJieshuBegin' },
                             forced: true,
@@ -24102,7 +23524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             // return value1 - value2;//升序
                                             return value2 - value1; //升序
                                         };
-                                    })('count')
+                                    })('count'),
                                 );
                                 player.storage.bjzm觊鼎无次数限制且不可被响应type = sort[0].type;
                                 return player.isPhaseUsing() && player.storage.bjzm觊鼎无次数限制且不可被响应type && get.type(event.card) == player.storage.bjzm觊鼎无次数限制且不可被响应type;
@@ -24123,17 +23545,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*郑庄公  姬寤生
-                   伐逆(旧):准备阶段,你可以令一名其他角色交给你一张牌将一张牌置于武将牌上称之为<庭>,若如此做,
-                             本回合你使用与<庭>类别相同的牌无次数与距离限制.出牌阶段结束时,你将武将牌上的<庭>置于弃牌堆.
-                   违庭(旧):觉醒技,弃牌阶段开始时,若你本回合未发动过<伐逆>的后续效果,你跳过弃牌阶段,扣一点体力上限,失去<伐逆>,获得<霸启>.
-                   霸启(旧):准备阶段,你可以弃置至多三张不同类别的牌,本回合你摸牌数+2X(X为你以此法弃置的牌数).
-                             结束阶段,你从牌堆中获得你本回合未以此法弃置的类别的牌各一张.
-                        伐逆:准备阶段,你可以令一名其他角色交给你一张牌你将一张牌置于你的武将牌上称之为<庭>,若如此做,
-                             本回合你使用与<庭>类别相同的牌无次数与距离限制且不可被响应.你的回合结束时,你获得你武将牌上的<庭>.
-                        违庭:觉醒技,结束阶段,若你本回合使用与<庭>类别不同的牌造成过伤害,你失去<伐逆>,获得<霸启>.
-                        霸启:锁定技,准备阶段,你须弃置至多三张不同类别的牌,本回合你摸牌数加2X(X为你以此法弃置的牌数).
-                             结束阶段,你令一名角色从牌堆中获得你本回合未以此法弃置的类别的牌各一张.*/
+
                         bjzm伐逆: {
                             init(player) {
                                 if (!player.storage.bjzm伐逆) player.storage.bjzm伐逆 = [];
@@ -24561,11 +23973,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*赵武灵王  赵雍    参考真火无敌的孙尚香
-                        御匈:锁定技,摸牌阶段,你多摸X张牌(X为与你距离为1的角色数).
-                        胡骑:出牌阶段限一次,你可以将手牌中一张装备牌当作任意一张装备牌使用并弃置一张牌.
-                        胡骑2: 出牌阶段限一次,将一张装备牌永久转化为任意一张装备牌
-                        马术:锁定技,你计算与其他角色的距离-1.*/
+
                         bjzm御匈: {
                             trigger: {
                                 player: 'phaseDrawBegin',
@@ -24683,7 +24091,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                             suit: cards[0].suit,
                                                             number: cards[0].number,
                                                         }).name
-                                                        ]
+                                                        ],
                                                     );
                                                     delete lib.card[
                                                         cards[0].init({
@@ -24852,13 +24260,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 },
                             },
-                            /*ai:{
-                                order:9,
-                                result:{
-                                    player:1
-                                },
-                                threaten:2,
-                            }*/
                         },
                         bjzm马术: {
                             mod: {
@@ -24867,15 +24268,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*孤赴诠忠 申包胥
-                        1.当一名角色进入濒死状态时,你可以展示自己的手牌,令当前回合角色弃置你一张牌,若此牌为:红色,该角色将体力值回复至一点,
-                          黑色,你摸两张牌.
-                        2.结束阶段,你可以展示自己的手牌,令当前回合角色弃置你一张牌,若此牌为:红色,你可以令一名角色回复一点体力;
-                          黑色,你摸两张牌.
-                        哭庭:每回合限一次,当一名角色进入濒死状态时/结束阶段,你可以展示自己的手牌,令当前回合角色弃置你一张牌,若此牌为:
-                             红色,该角色将体力值回复至一点/你可以令一名角色回复一点体力;黑色,你摸两张牌.
-                        战兴:每回合限一次,当你于摸牌阶段外获得牌时,你可以视为对一名其他角色使用一张不计入次数的【杀】,
-                             若此【杀】造成伤害,你可以令一名角色回复一点体力.*/
+
                         bjzm哭庭: {
                             trigger: { global: 'dying' },
                             filter(event, player) {
@@ -25019,12 +24412,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*知贤不进  公叔痤
-                        谦逐:(旧)出牌阶段限一次,当你对一名其他角色使用牌时,你可以令其摸一张牌,若如此做,其下回合无法使用与其以此法摸的牌颜色相同的牌,
-                             且其下回合的弃牌阶段开始时,你获得其手牌中与此牌颜色相同的牌.
-                        终荐:(旧)结束阶段,你可以令一名角色摸一张牌,其回复一点体力且下回合使用与此牌颜色相同的牌无次数限制且不可被响应.
-                        谦逐:出牌阶段限一次,当你对一名其他角色使用牌时,你可以令其摸一张牌,若如此做,其下回合无法使用与其以此法摸的牌颜色相同的牌,且其下回合的弃牌阶段结束时,你获得其手牌中所有与此牌颜色相同的牌.
-                        终荐:结束阶段,你可以令一名角色摸一张牌,其回复一点体力且下回合使用与此牌颜色相同的牌无次数限制.*/
+
                         bjzm谦逐: {
                             trigger: { player: 'useCardToTarget' },
                             filter(event, player) {
@@ -25112,17 +24500,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         bjzm终荐无次数限制且不可被响应: {
-                            /*trigger: {player: "useCardToTarget"},
-                            forced: true,
-                            filter (event, player) {
-                                return player.isPhaseUsing() && player.storage.bjzm终荐color && get.color(event.card) == player.storage.bjzm终荐color;
-                            },
-                            content () {
-                                trigger.parent.directHit.push(trigger.target);
-                                trigger.directHit.addArray(game.filterPlayer(function (current) {
-                                    return current != player;
-                                }));
-                            },*/
                             mod: {
                                 //无次数限制
                                 cardUsable(card) {
@@ -25131,12 +24508,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*孟尝君  田文
-                        鸣盗:每回合限一次,当你进入一名其他角色的攻击范围时,你可以弃置一张牌视为使用一张与你弃置的牌类别相同的牌,
-                             若此牌结算完成后你不在该角色的攻击范围内,你摸两张牌,否则你下回合不能使用与此牌类别相同的牌.
-                        环图:锁定技,当你使用或打出牌时,若此牌的目标与你上一张牌的目标不同且指定唯一目标,你摸一张牌并令此牌不可被响应.
-                        揽侠:出牌阶段限一次,你可以摸一张牌并交给一名其他角色一张牌; 当一名其他角色从你的区域内获得牌时,
-                             其可以令其他角色本轮计算与你的距离时+X(X为其获得的牌数),其下次摸牌时多摸一张牌.*/
+
                         bjzm鸣盗: {
                             trigger: { global: 'useCardAfter' },
                             filter(event, player) {
@@ -25210,7 +24582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     name: button.link[2],
                                                     nature: button.link[3],
                                                 },
-                                                player
+                                                player,
                                             ) ||
                                             game.hasPlayer(function (current) {
                                                 return player.canUse(
@@ -25218,7 +24590,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         name: button.link[2],
                                                         nature: button.link[3],
                                                     },
-                                                    current
+                                                    current,
                                                 );
                                             })
                                         );
@@ -25305,9 +24677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                /*if (trigger.player == player) {
-                                    player.removeSkill('bjzm揽侠计算与你的距离');
-                                }*/
+
                                 'step 1';
                                 for (var i = 0; i < player.storage.bjzm鸣盗不在范围内targets.length; i++) {
                                     if (player.storage.bjzm鸣盗不在范围内targets[i].inRange(player) && player.storage.bjzm鸣盗不在范围内targets[i].isIn()) {
@@ -25325,13 +24695,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         bjzm鸣盗不能使用牌: {
                             mod: {
-                                /*cardEnabled (card, player) {
-                                    return false;
-                                },
-                                //濒死也不让出桃
-                                cardSavable (card, player) {
-                                   return false;
-                                },*/
                                 //这个函数相当于上面两个函数相加
                                 cardEnabled2(card, player) {
                                     if (player.isPhaseUsing() && player.storage.bjzm鸣盗不能使用type) {
@@ -25359,7 +24722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return current != player;
-                                    })
+                                    }),
                                 );
                                 player.draw();
                             },
@@ -25431,10 +24794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.num++;
                             },
                         },
-                        /*千金买义  冯谖
-                        弹铗:锁定技,当你于回合外不因此技能获得牌时,你多摸一张牌.
-                        市义:出牌阶段限一次,你可以令一名其他角色交给你一张牌,弃置一张牌令至多X名其他角色获得一个<义>标记并各摸一张牌(X为你的体力值).
-                        义迎:有<义>的角色回合开始时,其须选择一项:1.摸一张牌并交给你一张牌 2.弃置一张牌.*/
+
                         bjzm弹铗: {
                             trigger: {
                                 player: 'gainAfter',
@@ -25520,10 +24880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //delete player.storage.bjzm义迎;
                             },
                         },
-                        /*信陵君  魏无忌
-                        窃符:每轮限一次,当一名角色使用单体伤害类牌结算完毕后,你可以令其依次对相同目标使用手牌中所有【杀】.
-                        纵却:当你于回合内第一次对一名其他角色使用【杀】时,目标的攻击范围内的其他角色可以依次交给你一张牌,并在此技能结束前选择以下未被选择的一项:
-                             1.令此【杀】不可被响应 2.令此【杀】伤害+1. 3.令此【杀】不计入次数*/
+
                         bjzm窃符: {
                             trigger: { global: 'useCardAfter' },
                             filter(event, player) {
@@ -25547,7 +24904,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 cards: [card],
                                             },
                                             trigger.targets[0],
-                                            false
+                                            false,
                                         )
                                     );
                                 });
@@ -25673,10 +25030,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.players.length && event.players[0].isIn()) event.goto(1);
                             },
                         },
-                        /*平原君  赵胜
-                        围破:每回合限一次,当一名角色不因此技能而受到伤害时,若其:1.未被横置,你可以摸一张牌并将其横置
-                             2.被横置,你可以弃一张牌并对其造成一点伤害.
-                        援使:每回合限一次,当你获得牌后,你可以令当前回合角色摸一张牌,你可以复原一名角色的武将牌.*/
+
                         bjzm围破: {
                             trigger: { global: 'damageEnd' },
                             filter(event, player) {
@@ -25734,9 +25088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target1.turnOver(false);
                             },
                         },
-                        /*淫富为殃  庆封
-                        隙吞:每回合限一次,当一名角色被指定为单体伤害类牌的目标时,你可以与此牌的使用者各摸一张牌.本回合的结束阶段,
-                             若此牌造成伤害,你可以令一名于本回合造成过伤害的其他角色交给你一张牌,若其手牌数小于你,你可以对其造成一点伤害.*/
+
                         bjzm隙吞: {
                             trigger: { global: 'useCardToTargeted' },
                             filter(event, player) {
@@ -25809,11 +25161,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 delete player.storage.bjzm隙吞player;
                             },
                         },
-                        /*弑君篡史  崔杼
-                        僭刺:每回合限一次,当你被指定为伤害类牌的目标时,你可以交给此牌的使用者一张牌并视为对其使用一张刺【杀】,
-                             若此【杀】造成伤害,你摸一张牌其立即结束回合,否则你令此牌失效并失去一点体力.
-                        篡史:当你不因此技能造成伤害时,你可以令另一名其他角色代替你成为造成此伤害的来源,若其有牌且手牌数不小于你,
-                             其须交给你一张牌,否则你对其造成一点伤害.*/
+
                         bjzm僭刺: {
                             trigger: { target: 'useCardToTarget' },
                             usable: 1,
@@ -25903,12 +25251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.gain(result.cards, event.target, 'giveAuto');
                             },
                         },
-                        /*受禅代庖  子之
-                        决代:限定技,一名体力上限大于你的其他角色的准备阶段,你可以将体力上限至与其相同,回复所有体力摸X张牌
-                            (X为你以此法增加的体力上限数).该角色的结束阶段,你可以交给其一张牌并执行一个额外回合.
-                        乱政:出牌阶段限一次,你可以指定一名其他角色并令至多Y+2名其他角色选择一项:1.弃置一张牌并视为对其使用一张【杀】
-                             2.受到你造成的一点伤害(Y为你本轮发动此技能的次数).此技能结算后若因此技能受到伤害的角色数大于你的体力值,
-                             你失去一点体力.*/
+
                         bjzm决代: {
                             limited: true,
                             trigger: { global: 'phaseZhunbeiBegin' },
@@ -26040,10 +25383,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*横暴勇烈    阖闾  参考星张郃
-                        刺篡:出牌阶段限一次,你可以令一名其他角色视为对另一名体力值/手牌数大于你的角色使用一张【杀】.
-                             若此【杀】造成伤害,你与目标交换体力值/手牌;若此【杀】未造成伤害,你与目标交换手牌/体力值.
-                        专武:当你使用红【杀】时,你可以多指定一名角色为目标.当你使用【杀】造成伤害时,你可以失去一点体力值使此杀伤害+1.*/
+
                         bjzm刺篡: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -26093,10 +25433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*1.出牌阶段限一次,你可以令一名其他角色视为对另一名体力值数大于你的角色使用一张【杀】.
-                            此【杀】造成伤害,你与目标交换体力值;若此【杀】未造成伤害,你与目标交换手牌
-                          2.出牌阶段限一次,你可以令一名其他角色视为对另一名手牌数大于你的角色使用一张【杀】.
-                            此【杀】造成伤害,你与目标交换手牌;若此【杀】未造成伤害,你与目标交换体力值*/
+
                         bjzm刺篡_1: {
                             filterCard() {
                                 return false;
@@ -26274,13 +25611,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.loseHp();
                             },
                         },
-                        /*十二拜上卿  甘罗
-                        威谏:出牌阶段限一次,你可以与一名体力值不小于你的角色拼点,若你赢,你可以弃置其一张牌并选择一项令其执行:
-                             1.失去一点体力 2.视为对你指定的另一名角色使用一张无距离限制的【杀】;若你没赢,其可以对你使用一张【杀】.
-                        间纵:每回合限一次,当你攻击范围内一名其他角色成为【杀】的目标时,你可令目标与另一名角色各摸一张牌同时展示一张牌,
-                             若颜色相同则你获得这些牌并视为该角色对目标使用一张无视距离的【杀】.
-                     old间纵:每回合限一次,当你攻击范围内的其他角色被指定为【杀】的目标时,
-                             你可以令另一名角色交给你一张牌并视为其对目标使用一张无距离限制的【杀】.*/
+
                         bjzm威谏: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -26307,7 +25638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card, player, event) {
                                                 return card.name == 'sha';
                                             },
-                                            '对' + get.translation(player) + '使用一张杀'
+                                            '对' + get.translation(player) + '使用一张杀',
                                         )
                                         .set('targetRequired', true)
                                         .set('complexSelect', true)
@@ -26416,12 +25747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target1.useCard({ name: 'sha' }, trigger.target);
                             },
                         },
-                        /*夏日之日  赵盾
-                        烈畏:锁定技,体力值不大于你的角色不可响应你使用的牌.出牌阶段,当你造成伤害后,
-                             你立即结束此阶段且若造成伤害的牌在弃牌堆中,你获得之.弃牌阶段开始时,你摸X张牌,
-                             若你手牌数为全场最大,你跳过弃牌阶段(X为本回合使用或打出过牌的角色数量).
-                        弑令:当你对一名其他角色使用单体伤害类牌时,你可以指定一名其他角色视为其使用之,
-                             若此牌造成伤害,你可以获得其或目标的一张牌.*/
+
                         bjzm烈畏: {
                             trigger: { player: 'useCard' },
                             forced: true,
@@ -26429,7 +25755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return current != player && current.hp <= player.hp;
-                                    })
+                                    }),
                                 );
                             },
                             group: ['bjzm烈畏当你造成伤害后', 'bjzm烈畏弃牌阶段开始时'],
@@ -26527,9 +25853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*毁家纾难  斗谷于菟
-                        毁纾:出牌阶段限一次,你可以弃置任意张手牌,令一名其他角色摸等量张牌/你重铸装备区所有牌并将这些牌交给一名其他角色,
-                             若于你发动此技能前其 手牌数/装备区牌数 小于你,你与其各摸X张牌(X为你以此法弃置的牌类别数且至多为2).*/
+
                         bjzm毁纾: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -26537,14 +25861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //player.storage.bjzm毁纾handcards = player.countCards('h');
                                 return player.countCards('he') > 0;
                             },
-                            /*filterCard:true,
-                            selectCard:[1,Infinity],
-                            check:function(card){
-                                if(!game.hasPlayer(function(current){
-                                    return current!=_status.event.player&&get.attitude(_status.event.player,current)>0;
-                                })) return 0;
-                                return 6-get.value(card);
-                            },*/
+
                             content() {
                                 'step 0';
                                 event.ynum = player.countCards('h');
@@ -26638,15 +25955,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //delete player.storage.bjzm毁纾num;
                             },
                         },
-                        /*胁君之谏  鬻拳 4/5
-                        直刖:每轮限一次,当一名其他角色被指定为【杀】的目标时,若使用者不为你,你可以代替其成为此【杀】的目标.
-                             当一名其他角色对你造成伤害时,其可防止之并摸一张牌.当一名其他角色使用【杀】对你造成伤害后,你可以选择一项:
-                             1.与其各扣一点体力上限 2.摸X张牌(X为你本轮成为伤害类牌的目标的次数).
-                        败拒:其他角色的回合结束时,若其于本回合未造成伤害,你可以失去一点体力,对其造成一点伤害并获得其一张牌,
-                             若此时你体力上限为全场最低,你加一点体力上限并回复一点体力,失去此技能.*/
+
                         bjzm直刖: {
                             trigger: { global: 'useCardToTarget' },
-                            round: 1,//QQQ
+                            round: 1, //QQQ
                             filter(event, player) {
                                 if (event.target == player || event.player == player) return false;
                                 return event.card.name == 'sha';
@@ -26754,12 +26066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                         },
-                        /*权诈相济  祭足
-                        胁立:限定技,当你受到一名不在你攻击范围内的角色造成的伤害/对一名在你攻击范围内的其他角色造成伤害时,
-                             你可以令一名角色加一点体力上限,回复一点体力并摸两张牌,若该角色不为你,其手牌一直对你可见.
-                        疾虑:当一名体力上限不小于你的角色进入濒死状态时,你可以选择一项:1.令其体力值回复至一点,你与其互换体力值与所有手牌,
-                             你失去此技能 2.你交给其一张牌,其无法使用与此牌颜色相同的牌直至其脱离濒死状态,若其因此死亡,<胁立>视为未发动过,
-                             否则你失去一点体力并获得其所有与此牌颜色相同的牌.*/
+
                         bjzm胁立: {
                             limited: true,
                             trigger: { player: 'damageAfter', source: 'damageAfter' },
@@ -26806,9 +26113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: 'phaseUse',
                             usable: 100,
                             charlotte: true,
-                            /*filter:function (event,player) {
-                                return player.storage.bjzm看牌target;
-                            },*/
+
                             content() {
                                 if (player.storage.bjzm看牌target) {
                                     player.viewHandcards(player.storage.bjzm看牌target);
@@ -26892,7 +26197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.color(card) == get.color(player.storage.bjzm疾虑是否死了card);
                                             }),
                                             player,
-                                            'giveAuto'
+                                            'giveAuto',
                                         );
                                     } else {
                                         return;
@@ -26931,10 +26236,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*bjzm伯嚭
-                        贪傲:其他角色的出牌阶段开始时,若你的手牌数小于你的体力值,其可以交给你一张手牌并获得一枚<贿>,其可以令你扣一点体力上限.
-                        赂护:当一名有<贿>的角色受到伤害时,你可以弃置其一枚<贿>,获得其一张牌并防止此伤害.
-                        罪忠:锁定技,摸牌阶段,你改为获得没有<贿>的其他角色各一张手牌. */
+
                         bjzm贪傲: {
                             audio: 'ext:百家争鸣/audio:' + [1, 2].randomGet(),
                             trigger: { global: 'phaseUseBegin' },
@@ -27012,11 +26314,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*义不帝秦 鲁仲连
-                        俶傥:锁定技,当你被指定为【杀】或锦囊牌的目标时,若你手牌数:1.不大于这张牌的字数,你摸X+1张牌
-                             2.大于这张牌的字数,你弃置X张牌并取消之(X为你手牌数与此牌字数之差).
-                        解缔:每回合限一次,当你攻击范围内的一名其他角色被指定为单体伤害类牌的目标时,且若此牌的使用者不为你,你可以与此牌的使用者拼点,
-                             若你赢,你取消此牌的效果且你可以据此牌的字数发动一次<俶傥>;若你没赢,本场游戏你不能再与相同角色拼点.*/
+
                         bjzm俶傥: {
                             audio: 'ext:百家争鸣/audio:' + [1, 2].randomGet(),
                             trigger: { target: 'useCardToPlayered' },
@@ -27088,12 +26386,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 expose: 0.2,
                             },
                         },
-                        /*唐雎
-                        使秦:使命技,出牌阶段限一次,你可以与一名角色拼点,若你赢,你对其造成一点伤害,否则其对你造成一点伤害.
-                        成功:出牌阶段,若你已受伤且有一名其他已受伤角色的体力值与你相等,你失去X点体力上限(X为你已损失的体力值)并获得<士怒>.
-                        失败:若你于使命达成前进入濒死状态,你失去一点体力上限.
-                        士怒:限定技,你可以流失X点体力并对一名其他角色造成等量伤害(X为你当前体力值),若此角色未因此死亡,
-                        你回复一点体力且下回合开始时<士怒>视为未发动过.*/
+
                         bjzm使秦: {
                             dutySkill: true,
                             enable: 'phaseUse',
@@ -27250,10 +26543,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*不论动义  费无极
-                        嫉诬:当手牌数大于你的其他角色回合开始时,你可以令其选择一项:1.交给你X/2张牌(向上取整)并令你此技能失效直至你下回合开始
-                        2.弃置X张牌并视为对你使用一张【杀】(X为其与你手牌数差).
-                        姻秽:每回合限一次,当一名其他角色对另一名角色使用牌时,你可以弃一张牌并取消之,改为其对该角色造成一点伤害.*/
+
                         bjzm嫉诬: {
                             trigger: { global: 'phaseZhunbeiBegin' },
                             filter(event, player) {
@@ -27312,10 +26602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             usable: 1,
                         },
-                        /*伏计背赵 楼缓＆赵郝
-                        主媾:每回合限一次,当一名角色于其回合内使用伤害类牌时,你可以摸一张牌/弃一张牌,若此牌造成伤害,你弃两张牌/摸两张牌.
-                        伏计:一名角色的结束阶段,若你于此回合发动过<主媾>,你可以弃置你本回合通过<主媾>获得的牌并获得一张与
-                             <主媾>发动时机对应的使用的伤害类牌同名的牌.*/
+
                         bjzm主媾: {
                             trigger: { global: 'useCardToTarget' },
                             filter(event, player) {
@@ -27457,13 +26744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*料策其工  虞卿   长平之战
-                        斥媾:每回合限一次,当一名其他角色于其回合内使用牌时,你可以弃置一张与此牌类型相同的牌并将此牌的目标改为你,
-                             若你因此受到伤害,你可以从弃牌堆中获得一张你指定类别的牌.
-                        困著:当你进入濒死状态时,你可以弃置两张不同类别的牌将体力值回复至一点,你获得<蹑蹻>并失去<斥媾>直至下回合开始.
-                        蹑蹻:锁定技,你不计入距离和座次计算,不能使用牌且不能成为任何牌的目标.当你失去此技能的第一个回合开始时,
-                             若你此时体力值不为全场最小,你本回合摸牌阶段改为获取全场手牌数小于你或不小于你的角色各一张牌.
-                             蹑蹻其实就是国战调虎离山的效果  参考云无月的莲境*/
+
                         bjzm斥媾: {
                             trigger: { global: 'useCardToPlayered' },
                             usable: 1,
@@ -27643,13 +26924,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm_fengyin = 'bjzm蹑蹻';
                             },
                         },
-                        /*鲁难未已  庆父  乱臣贼子
-                        谋篡:每回合限一次,当一名体力值大于你的角色使用【杀】或锦囊牌指定你为目标时,你可以展示一张牌,
-                             其选择一项:1.弃置所有与此牌类型相同的牌 2.受到你造成的一点伤害.
-                    (改)谋篡:每回合限一次,当一名体力值不小于你的角色使用【杀】或锦囊牌指定你为目标时,你可以展示一张牌,
-                             其选择一项:1.弃置所有与此牌类型相同的牌(至少一张) 2.受到你造成的一点伤害.
-                        难鲁:锁定技,游戏开始时,将5张【南蛮入侵】与5张【万箭齐发】加入牌堆.每当一张【南蛮入侵】或【万箭齐发】被使用或置入弃牌堆时,
-                             你摸一张牌.当你死亡时,你移除牌堆与弃牌堆中所有【南蛮入侵】与【万箭齐发】.*/
+
                         bjzm谋篡: {
                             trigger: { target: 'useCardToTargeted' },
                             usable: 1,
@@ -27772,10 +27047,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 deleteTheCardGlobally(cardPile, ['nanman', 'wanjian']);
                             },
                         },
-                        /*虎状豺声  斗越椒
-                        傲狠:当你使用红色牌对一名其他角色造成伤害时,你可以令此伤害+1,目标角色下次对你造成伤害+1(不可叠加).
-                        矢斗:出牌阶段限一次,你可以将一张红色牌当作一张无距离限制且不计入次数的【杀】打出,若此牌为非基本牌,
-                        则此【杀】不可被响应.*/
+
                         bjzm傲狠: {
                             trigger: {
                                 source: 'damageBegin',
@@ -27871,11 +27143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm矢斗防止三刀 = false;
                             },
                         },
-                        /*舍身尽节  先轸
-                        歼秦:当你造成伤害时,你可以弃置受伤角色任意张牌,选择一项:1.弃X张牌(X为你与其手牌差) 2.受到其造成的一点伤害.
-                        唾君:准备阶段,你可以令一名其他角色交给你一张牌并对其造成一点伤害,结束阶段,你将所有手牌交给该角色,可以选择一项:
-                        1.回复一个装备栏并从弃牌堆中使用一张对应副类别的装备牌 2.回复一点体力.
-                        免胄:锁定技,当你受到伤害时,若你有装备栏未废除,你须废除一个装备栏,可以弃置一名其他角色对应装备栏里的牌.*/
+
                         bjzm歼秦: {
                             trigger: { source: 'damageEnd' },
                             filter(event, player) {
@@ -28043,14 +27311,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*果势壮勇  李信
-                     old少勇:每回合限一次,当你受到伤害后,你可以失去一点体力,若对你造成伤害的角色体力值大于你,你使其攻击范围变为0并废除其一个装备栏;
-                             若对你造成伤害的角色体力值不大于你,你摸等同于其体力值的牌并对其造成一点伤害.
-                     old克信:每回合限一次,当你造成伤害后,你可以弃置一张牌视为对同一角色使用一张【杀】,若此牌造成伤害,
-                             你摸X张牌(X为你本回合已使用过的手牌数),否则其可以使用一张【杀】.
-                        少勇:每回合限一次,当你受到伤害后,你可以失去一点体力,摸等同于伤害来源体力值的牌并对其造成一点伤害.
-                        克信:每回合限一次,当你造成伤害后,你可以弃置一张牌视为对相同角色使用一张【杀】并摸X张牌
-                            (X为你本回合已使用过的手牌数),若此【杀】未造成伤害,其可以对你使用一张无距离限制且不计入次数的【杀】.*/
+
                         bjzm少勇: {
                             trigger: { player: 'damageAfter' },
                             usable: 1,
@@ -28232,10 +27493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                             },
                         },
-                        /*御秦雄楚 项燕
-                        雄破:锁定技,当你使用【杀】或【决斗】造成伤害时,你失去一点体力并令此伤害+1,你摸等同于伤害数值的牌.
-                        危倾:觉醒技,当你体力值为全场最小时,你回复一点体力并摸X张牌(X为攻击范围内含有你的角色数),失去<雄破>,获得<归猝>.
-                        归猝:锁定技,出牌阶段结束时,若你本回合未造成过伤害,你失去一点体力上限,将手牌摸至体力上限并跳过弃牌阶段.*/
+
                         bjzm雄破: {
                             trigger: { source: 'damageBegin1' },
                             filter(event, player) {
@@ -28298,13 +27556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                         },
-                        /*范献子  范鞅
-                         *婪欺:锁定技,出牌阶段,当你不因此技能获得牌时,你摸一张牌,若你手牌上限大于0,你本回合手牌上限-1.
-                         *党伐: 你的第一个准备阶段,你须交给一名其他角色一个<世交>标记
-                         *①你的出牌阶段,当你对除你与有<世交>的角色以外的角色使用牌时,有<世交>的角色可以交给你一张牌,
-                         *  若你区域内有与之相同类型的牌,则此牌本回合不计入你的手牌数.
-                         *②有<世交>的角色的出牌阶段,当有<世交>的角色对除你与其以外的角色使用牌时,你可以交给其一张牌,
-                         * 若有<世交>的角色区域内有与之相同类型的牌,则此牌本回合不计入有<世交>角色的手牌数. */
+
                         bjzm婪欺: {
                             //locked:true,
                             subSkill: {
@@ -28469,7 +27721,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 }
                                             })
                                             .concat(result.targets),
-                                        'green'
+                                        'green',
                                     );
                                     target.addSkill('bjzm党伐_mark');
                                 } else event.finish();
@@ -28624,11 +27876,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*韩景侯  韩虔
-                                    术治:锁定技,你的回合内,当你使用牌指定一名其他角色为目标时,若其为此牌的唯一目标,你将该牌置于其武将牌上称为<术>.
-                                         有<术>的角色的弃牌阶段结束时,你按照置入顺序从前到后依次对其使用<术>,若你不在场,则将这张<术>置入弃牌堆.
-                                    隐断:当你使用锦囊牌时,若此牌目标大于1,你可以改为指定任意名角色为此牌目标.
-                                    一技能参考手杀傅佥 二技能可能能参考董允*/
+
                         bjzm术治: {
                             marktext: '术',
                             audio: 2,
@@ -28747,10 +27995,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*中行文子  中行寅
-                                    赋铁:出牌阶段限一次,你可以展示牌堆顶的牌,选择你攻击范围内至多X名其他角色并依次获得这些角色区域内与之类型相同的各一张牌(X为你的体力值).
-                                    集铩:锁定技,当你于回合内从其他角色区域内获得牌时,若其体力值:不小于你,你弃置一张牌;小于你,此牌本回合不计入你的手牌数.
-                                    仇忿:结束阶段,若你手牌数不小于你的体力值,你可以弃置Y张牌并视为对你攻击范围内至多Y+1名角色使用一张【杀】(Y为你手牌数与体力值的差).*/
+
                         bjzm赋铁: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -28898,12 +28143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*任贤改法  魏斯
-                        任才:摸牌阶段开始时,你可以跳过此阶段并亮出牌堆顶的三张牌,获得其中一种颜色的所有牌,若你获得的牌为:
-                             黑色,本回合你获得<改兵>;红色,本回合你获得<修法>.
-                        解乱:锁定技,当你跳过一个阶段时,你须移动场上一张牌,若你手牌数不为全场最少,你弃置一张牌.
-                        改兵:你使用的【杀】可以多指定一个目标.
-                        修法:出牌阶段限一次,你可以打出所有红色手牌视为使用一张非延时性锦囊牌.*/
+
                         bjzm任才: {
                             trigger: { player: 'phaseDrawBefore' },
                             forced: true,
@@ -28928,7 +28168,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     player,
                                     event.videoId,
-                                    event.cards
+                                    event.cards,
                                 );
                                 event.time = get.utc();
                                 game.addVideo('showCards', player, ['任才', get.cardsInfo(event.cards)]);
@@ -29131,9 +28371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 threaten: 1.6,
                             },
                         },
-                        /*赵烈侯  赵籍
-                        割智:当你成为【杀】的目标后,你可以将(x+1)张牌置于牌堆顶,视为使用一张【闪】(x本回合你使用该技能的次数).
-                        腹敌:锁定技,当与你距离为一的角色对你使用【杀】时,你失去一点体力并将手牌补至五张.*/
+
                         bjzm割智: {
                             enable: 'chooseToUse',
                             filterCard() {
@@ -29147,56 +28385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.countCards('he') > 0;
                             },
                             position: 'he',
-                            /*content:function(event,player){
-                                            "step 0"
-                                                                                                                                                                          player.lose(cards,ui.cardPile,'insert');
-                                            player.$throw(cards,1000);
-                                            game.log(player,'将',cards,'置于牌堆顶');
-                                            "step 1"
-                                            player.storage.bjzm割智++;
-                                            // event.result='shaned';
-                                            // event.parent.delayx=false;
-                                            // game.delay(0.5);
-                                        },*/
-                            /*onuse:function(result,player){
-                                            player.storage.junktaoluan2.add(result.cards[0].suit);
-                                            var event = _status.event;
-                                            //选择的卡在event.result.cards中
-                                            var evt=_status.event.getParent('phase');
-                                            if(evt&&evt.name=='phase'&&!evt.junktaoluan){
-                                                var next=game.createEvent('taoluan_clear');
-                                                _status.event.next.remove(next);
-                                                evt.after.push(next);
-                                                evt.junktaoluan=true;
-                                                next.player=player;
-                                                next.setContent(function(){
-                                                    //player.storage.junktaoluan=[];
-                                                    player.storage.junktaoluan2=[];
-                                                });
-                                            }
-                                            player.storage.junktaoluan.add('shan');
-                                        },*/
-                            /*onuse:function(event,player){
-                                            "step 0"
-                                            var evt=_status.event.getParent('phase');
-                                            //失败无法将牌置于对顶
-                                            if(evt&&evt.name=='phase'){
-                                                var next=game.createEvent('bjzm割智');
-                                                _status.event.next.remove(next);
-                                                evt.after.push(next);
-                                                next.player=player;
-                                                next.cards=event.cards;
-                                                next.setContent(function(){
-                                                                                                      var cards1 = game.createCard(cards);
-                                                                                                      player.lose(cards1,ui.cardPile,'insert');
-                                                    //player.$throw(cards,1000);
-                                                    game.log(player,'将',event.cards,'置于牌堆顶');
-                                                });
-                                            }
-                                            player.storage.bjzm割智++;
-                                            event.result='shaned';
-                                            event.parent.delayx=false;
-                                                                                 },*/
+
                             onuse(event, player) {
                                 'step 0';
                                 player.$throw(event.cards, 1000);
@@ -29259,22 +28448,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 var num = 1 + player.storage.bjzm割智;
-                                player
-                                    .chooseCard(num, 'he', get.prompt2('bjzm割智', trigger.player))
-                                    .set('ai', function (card) {
-                                        if (player.storage.bjzm割智 === 1) {
-                                            return 0;
-                                        }
-                                        if (_status.event.effect >= 0) {
-                                            var val = get.value(card);
-                                            if (val < 0) {
-                                            }
-                                            return 10 - val;
-                                            return _status.event.effect - val;
-                                        }
+                                player.chooseCard(num, 'he', get.prompt2('bjzm割智', trigger.player)).set('ai', function (card) {
+                                    if (player.storage.bjzm割智 === 1) {
                                         return 0;
-                                    })
-                                    ('step 1');
+                                    }
+                                    if (_status.event.effect >= 0) {
+                                        var val = get.value(card);
+                                        if (val < 0) {
+                                        }
+                                        return 10 - val;
+                                        return _status.event.effect - val;
+                                    }
+                                    return 0;
+                                })('step 1');
                                 if (result.bool && result.cards) {
                                     event.cards = result.cards;
                                     //取消杀的所有目标
@@ -29326,10 +28512,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.countCards('h') <= 2 && !player.hasShan() && player.hp != 1;
                             },
                         },
-                        /*极武致亡  智瑶  参考新杀丁原
-                                    复霸:锁定技,游戏开始时,你可以分别交给至多三名其他角色各一枚<卿>.出牌阶段开始时,你可以弃置一张牌并移动一个<卿>.
-                                    威迫:每回合限一次,你可以弃置一张牌,回复一点体力值并选择一项:1.令有<卿>的角色各摸一张牌.2.弃置有<卿>的角色各一张牌.
-                                    错叹:你的回合结束时,有<卿>的角色可以弃置一张牌,视为对你使用一张【杀】,若此【杀】造成了伤害,你加一点体力上限.*/
+
                         bjzm复霸: {
                             audio: 2,
                             trigger: {
@@ -29413,7 +28596,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     }
                                                 })
                                                 .concat(result.targets),
-                                            'green'
+                                            'green',
                                         );
                                     } else {
                                         player.chooseTarget('选择要移动标记的角色', true, function (card, player, target) {
@@ -29569,11 +28752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm错叹杀 = false;
                             },
                         },
-                        /*南子
-                                    *惑淫:每回合限一次,当你被指定为【杀】或【决斗】的目标时,你可以将此牌转移给除使用者以外的一名其他角色,
-                                    * 若其体力值因此减少,你与伤害来源各摸一张牌,否则你弃置一张牌;当你体力值为全场唯一最小时,你回复一点体力,失去此技能,并获得<惧泣>.
-                                     惧泣:当你被指定为伤害类牌的目标时,若你有未废除的装备栏,你须废除一个装备栏,并随机弃置场上一名其他角色的装备区里一张牌.
-                                     * 若该角色不为使用者,其翻面,否则你摸X张牌(X为你已损失体力值). */
+
                         bjzm惑淫: {
                             audio: 2,
                             //audioname:["re_daqiao","daxiaoqiao"],
@@ -29775,10 +28954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*bjzm公孙龙
-                                    *坚白:每回合限一次,你可以将一张牌当作任意牌使用或打出,若此时不为你的回合,则你与当前回合角色拼点,
-                                    *若你赢,你获得其拼点牌,否则此技能失效直至你下回合开始.
-                                     诡辩:锁定技,当你与一名其他角色拼点时,你令你的拼点牌点数+X(X为你与其手牌数之差). */
+
                         bjzm坚白: {
                             //enable:["phaseUse"],
                             enable: ['chooseToUse'],
@@ -29982,11 +29158,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.log(player, '的拼点牌点数+' + X);
                             },
                         },
-                        /*李兑
-                                    *囚君:出牌阶段限一次,你可以对一名体力值不小于你的其他角色造成一点伤害,将其区域内一张牌置于其判定区视为【兵粮寸断】.
-                                     自谋:每回合限一次,当你被指定为出牌目标时,你可以使目标+1,且若此牌结算完毕后你没有因此受到伤害,你摸X张牌(X为使用者的体力值),
-                                     * 否则你对使用者造成等量伤害.
-                                     权罢:锁定技,结束阶段,若你已受伤且体力值与手牌数均为全场最小,你死亡. */
+
                         bjzm囚君: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -30096,8 +29268,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                         },
                         //王龁   你回合外使用牌也计入在内
-                        /*屡攻:锁定技,当你使用牌时,若你本回合未使用过与此牌花色相同的牌,此牌不计入次数且不可被响应;
-                                    若此牌点数不小于你使用的上一张牌,你摸一张牌;若以上两项均满足,此牌伤害+1.*/
+
                         bjzm屡攻: {
                             trigger: {
                                 player: 'useCard1',
@@ -30200,10 +29371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjzm屡攻两项均满足 = false;
                             },
                         },
-                        /*许行
-                                    *并耕:出牌阶段限一次,你可以选择场上一名手牌数最小的角色与体力值最大的角色,分别将两名角色的手牌数或体力值调整至与自己相同,
-                                    * 若这两名角色中有你,你将手牌数摸至与全场手牌数最大的角色相同.
-                                     不二:你的回合结束时,你可以记录一张手牌的牌名,你的所有牌都可以当作该牌打出直至你下回合开始. */
+
                         bjzm并耕: {
                             audio: 'ext:百家争鸣/audio:1',
                             //将角色的手牌数调整至与自己相同
@@ -30500,14 +29668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player: 1,
                                 },
                             },
-                            content() {
-                                /*if (player.hasSkill("bjzm不二当作该牌使用")) {
-                                                player.removeSkill("bjzm不二当作该牌使用");
-                                            } else {
-                                                player.addSkill("bjzm不二当作该牌使用");
-                                            }
-                                            player.chooseToRespond();*/
-                            },
+                            content() { },
                         },
                         bjzm不二传递事件card: {},
                         bjzm不二当作该牌使用: {
@@ -30527,11 +29688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*赵奢
-                        *据险:每回合限一次,当你/一名其他角色响应一名其他角色/你对你/其使用的牌时,若你使用或打出的牌点数不小于其使用或打出的牌,
-                        *你可以获得其使用或打出的牌,此回合出牌阶段结束时,你可以弃置这张牌并视为对其使用一张不可被响应且不计入次数的【杀】.
-                        #知明:结束阶段,你可以猜测一名其他角色于其回合内使用的第一张牌的类型(猜测结果仅你可见),若你猜对,
-                        *你可以视为使用一张无距离限制的【杀】并摸X张牌(X为你的体力值). */
+
                         bjzm据险: {
                             trigger: {
                                 global: ['useCard', 'respond'],
@@ -30760,10 +29917,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw(Math.min(player.hp, 20));
                             },
                         },
-                        /*毛遂
-                            *自荐:出牌阶段限一次,你可以观看牌堆顶的两张牌并将其中一张交给一名其他角色,其可以令你从牌堆底摸一张牌可以立即使用此牌,
-                                  若此牌造成了伤害,此技能本回合视为未发动过.
-                             胆说:当其他角色于你的回合内受到伤害时,你可以用牌堆顶上的牌与其拼点,若你赢,你获得这两张拼点牌,否则你弃一张牌. */
+
                         bjzm自荐: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -30880,11 +30034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*冯亭
-                                * 抗命:每回合限一次,当你被指定为【杀】或伤害类锦囊牌的目标时,你可以重铸一张牌.
-                                  献城:当你于回合外失去牌时,你可以将这些牌置于你的武将牌上,称为<献>.一名体力值不小于你的角色回合结束时,
-                                  若其于此回合对另一名角色造成过伤害,你可以分别交给这两名角色各一张<献>.有<献>的角色的回合内只能对有<献>的角色使用牌直至<献>离开其区域.
-                                    */
+
                         bjzm抗命: {
                             trigger: {
                                 target: 'useCardToTargeted',
@@ -31154,12 +30304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*狼瞫
-                                *免义:每回合限一次,当一名其他角色对你造成伤害时,你可以摸两张牌并交给其一张牌,防止此伤害,本回合的结束阶段,
-                                * 若其本回合未对除你与其以外的角色使用牌,你失去一点体力.
-                                 勇烈:出牌阶段限一次,你可以扣一点体力上限并视为使用任意一张锦囊牌,若此牌未造成伤害,你选择一项:1.摸X张牌(X为你已损体力值)
-                                *  2.对其中一名目标造成一点伤害.
-                                */
+
                         bjzm免义: {
                             trigger: {
                                 player: 'damageBefore',
@@ -31297,7 +30442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             nature: result.links[0][3],
                                         },
                                         true,
-                                        false
+                                        false,
                                     );
                                 } else {
                                     event.finish();
@@ -31358,10 +30503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         // ------------------------------------------
-                        /*郭开
-                          趋附:锁定技,游戏开始时,你选择一名其他角色,令其获得一枚<湣>标记.
-                        * 谗陷:出牌阶段限一次,你可以交给有<湣>的角色一张牌,你令其对其攻击范围内的另一名角色造成一点伤害,
-                        * 你摸X张牌(X为场上受伤的角色数且至多为4),若有<湣>的角色手牌数不大于你,你可以令其失去一点体力.*/
+
                         bjzm_qufu: {
                             audio: 'ext:百家争鸣:2',
                             trigger: {
@@ -31592,8 +30734,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     event.targets[0].addMark('bjzm_xunshu_mark', 1);
                                     //两个技能互相删除调用从而实现多次技能实现
-                                    /*player.removeSkill("bjzm_xunshu");
-                                            player.addSkill("bjzm_xunshu2");*/
                                 }
                                 //储存拼点胜负
                                 player.storage.bjzm_xunshuBool = result.bool;
@@ -31733,9 +30873,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     //给建贤1储存结果
                                     player.storage.bjzm_jianxian = result.control;
                                     //出现bug
-                                    /*card._modValue=function(){
-                                                return 0;
-                                            };*/
+
                                     if (result.control == '优') {
                                         player.removeMark('bjzm_you_mark');
                                         //让此牌对你失效
@@ -31744,7 +30882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         trigger.excluded.addArray(
                                             game.filterPlayer(function (current) {
                                                 return current == player;
-                                            })
+                                            }),
                                         );
                                         //trigger.cancel();
                                         if (get.itemtype(trigger.cards) == 'cards' && get.position(trigger.cards[0], true) == 'o') {
@@ -31771,7 +30909,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         trigger.directHit.addArray(
                                             game.filterPlayer(function (current) {
                                                 return current == player;
-                                            })
+                                            }),
                                         );
                                         //添加bjzm_jianxian1技能
                                         //player.addTempSkill("bjzm_jianxian1","phaseUseAfter");
@@ -31852,7 +30990,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         bjzm_jianxian: {},
                         //赵括
-                        /*空谈:准备阶段/结束阶段,你可以视为使用一张基本牌(本回合你使用过的基本牌除外),若有角色体力值因此牌发生过变化,你弃一张牌.*/
+
                         bzjm_kongtan: {
                             trigger: {
                                 player: ['phaseZhunbeiBegin', 'phaseJieshuBegin'],
@@ -31883,27 +31021,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     bjzm_list.remove(name);
                                 });
-                                /*player.getHistory('respond',function(evt){
-                                            if(get.type(evt.card)!='basic') return;
-                                            var name=evt.card.name;
-                                            if(name=='sha'){
-                                                var nature=evt.card.nature;
-                                                if (nature == 'fire') {
-                                                    name='huosha';
-                                                }else if (nature == 'thunder') {
-                                                    name='leisha';
-                                                }else if (nature == 'kami') {
-                                                    name='kamisha';
-                                                }else if (nature == 'ice') {
-                                                    name='icesha';
-                                                }else if (nature == 'stab') {
-                                                    name = 'cisha';
-                                                } else {
-                                                    name='sha';
-                                                }
-                                            }
-                                            list.remove(name);
-                                        });*/
+
                                 player.chooseButton(
                                     [
                                         '是否发动【空谈】？:选择要使用的牌,视为使用一张【基本牌】',
@@ -31926,7 +31044,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: button.link[2],
                                             nature: button.link[3],
                                         });
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -31935,7 +31053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             name: result.links[0][2],
                                             nature: result.links[0][3],
                                         },
-                                        false
+                                        false,
                                     ); //第二个参数false为不计入杀的次数
                                     if (result.links[0][2] == 'tao' && player.countCards('he') > 0) {
                                         player.chooseToDiscard('he', 1, true);
@@ -31988,13 +31106,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 var flag = false;
-                                /*//获得玩家所有的手牌
-                                        var player_cards = player.getCards('h');
-                                        for (var i = 0; i < player_cards.length; i++) {
-                                            if (player_cards[i].name == event.card.name) {
-                                                flag = true;
-                                            }
-                                        }*/
+
                                 //获得玩家单个回合所用的所有卡牌
                                 var cards_use = player.getHistory('useCard');
                                 if (cards_use) {
@@ -32083,9 +31195,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var equips_bj = trigger.player.getCards('e').length;
                                 if (count_sha > equips_bj) count_sha = equips_bj;
                                 player.chooseToDiscard(count_sha == 1 ? 1 : [1, count_sha], 'h', { name: 'sha' }, get.prompt('bjzm_duoqi')).set('ai', function (card) {
-                                    /*var player=_status.event.player;
-                                            if(player.isTurnedOver()) return -1;
-                                            return (player.hp*player.hp)-get.value(card);*/
                                     return get.value(card);
                                 });
                                 ('step 1');
@@ -32355,30 +31464,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.draw(1);
                                 //参考黄承彦
-                                /*else event.finish();
-                                        'step 2'
-                                        game.updateRoundNumber();
-                                        var suits=[],map={},hs=target.getCards('h');
-                                        if(hs.length){
-                                            for(var i of hs){
-                                                if(!lib.filter.canBeDiscarded(i,player,target,'guanxu')) continue;
-                                                var suit=i.suit;
-                                                if(!map[suit]) map[suit]=1;
-                                                else map[suit]++;
-                                                if(map[suit]>2) suits.add(suit);
-                                            }
-                                            var next=player.discardPlayerCard(target,3,'visible','h');
-                                            next.set('suits',suits);
-                                            next.set('filterButton',function(button){
-                                                var suit=button.link.suit;
-                                                if(!ui.selected.buttons.length) return _status.event.suits.includes(suit);
-                                                return suit==ui.selected.buttons[0].link.suit
-                                            });
-                                            if(suits.length) next.set('forced',true);
-                                        }*/
                             },
                         },
-                        /*献鹄:每回合限一次,当你于回合外失去牌后,你可以将这些牌交给当前回合角色,令其选择一项:1.弃置两张牌 2.令你摸一张牌.*/
+
                         bjzm_xiangu: {
                             trigger: {
                                 player: 'loseAfter',
@@ -32518,7 +31606,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.directHit.addArray(
                                         game.filterPlayer(function (current) {
                                             return current != player;
-                                        })
+                                        }),
                                     );
                                     //如果是伤害类牌
                                     if (get.tag(player.storage.bjzm_jimieCard, 'damage') > 0) {
@@ -32710,10 +31798,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return get.attitude(player, event.player) < 0;
                             },
                         },
-                        /*袭破走东胡  秦开
-                                质戈:当你对一名其他角色使用【杀】或单体锦囊牌时,你可以多选择另一名你距离为1的角色为目标,
-                                该角色不可响应此牌且若其手牌数不大于你,你可以获得其一张牌.
-                                追歼:锁定技,当你对一名其他角色造成伤害后,你始终与其距离为1.*/
+
                         bjzm_质戈: {
                             trigger: {
                                 player: 'useCard2',
@@ -32812,10 +31897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*血搏邯郸  李谈 ♡
-                                义搏:锁定技,出牌阶段开始时,你须选择一项:1.失去一点体力 2.扣一点体力上限,你摸两张牌并可以横置一名其他角色.
-                                侠决:出牌阶段限一次,你可以将武将牌横置并视为对一名其他角色使用一张无距离限制且不可被响应的【杀】(不计入次数),
-                                若该角色在你的攻击范围内,其下回合不能对你使用牌,且其下回合的结束阶段其对你造成一点火焰伤害.*/
+
                         //李淡参考严颜
                         bjzm义搏: {
                             trigger: {
@@ -32953,10 +32035,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         //暴鸢
-                        /*联擒:当你对一名其他角色使用【杀】时,你可以选择另一名角色,其视为对目标使用一张无距离限制的【杀】,
-                                若其使用的【杀】造成伤害,你摸两张牌.
-                                孤走:锁定技,当你体力值小于游戏轮数时,你的所有装备牌视为【杀】,你以此法转化的【杀】无距离限制且不可被响应.
-                                */
+
                         bjzm联擒: {
                             trigger: {
                                 player: 'shaBegin',
@@ -32991,12 +32070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     var target = result.targets[0];
                                     target.addTempSkill('bjzm联擒_ai', 'chooseToUseEnd');
-                                    /*target.chooseToUse('是否再对'+get.translation(trigger.target)+'使用一张【杀】？',function(card,player,event){
-                                                if(card.name!='sha') return false;
-                                                return lib.filter.filterCard.apply(this,arguments);
-                                            },trigger.target,-1).set('addCount',false).set('oncard',function(){
-                                                _status.event.directHit.addArray(game.players);
-                                            });*/
+
                                     game.log(get.translation(target) + '对' + get.translation(trigger.target) + '使用了一张【杀】');
                                     target.useCard({ name: 'sha' }, trigger.target).set('addCount', false);
                                     target.storage.bjzm联擒 = player;
@@ -33086,9 +32160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         // 晋鄙
-                        /*嚄唶:锁定技,当你受到伤害后,若伤害值:为1,你摸一张牌可以立即使用一张牌;大于1,你弃等同于伤害值数量的牌.
-                                疑符:每回合限一次,当你/一名其他角色对一名其他角色/你使用牌时,你可以展示一张牌,
-                                其所有与该牌颜色不同的牌均视为【杀】直至本回合结束.*/
+
                         bjzm嚄唶: {
                             trigger: {
                                 player: 'damageAfter',
@@ -33177,9 +32249,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     init(player) {
                                         if (!player.storage.bjzm疑符_bool) player.storage.bjzm疑符_bool = true;
                                     },
-                                    /*filter (event, player) {
-                                                return !player.storage.bjzm疑符_bool;
-                                            },*/
+
                                     forced: true,
                                     content() {
                                         player.storage.bjzm疑符_bool = true;
@@ -33203,12 +32273,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         //骊姬
-                        /*媚拨:出牌阶段限一次,你可以获得一名男性角色一张牌,令其观看你选择的其攻击范围内另一名角色的手牌并弃置其中
-                                       所有【杀】和伤害类锦囊牌,若弃置的牌数:1.为0,你受到其造成的一点伤害 2.大于0且小于X,
-                                       其对该角色造成一点伤害 3.不小于X,你对这两名角色各造成一点伤害(X为你的体力值).
-                                  更储:觉醒技,当你<媚拨>中执行过两项分支时,你增加一点体力上限,回复一点体力,并修改<媚拨>.
-                                  媚拨(改):出牌阶段限一次,你可以观看一名男性角色的手牌并弃置其中一种花色的所有牌,你对其造成一点伤害,
-                                            摸等同于其弃置牌数量的牌.*/
+
                         bjzm媚拨: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -33343,9 +32408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         //孟明视
-                        /*整溃:锁定技,当你受到伤害后,你回复两点体力.
-                                  屡败:出牌阶段,当你使用的【杀】或伤害类锦囊牌没有造成伤害时,你可以对自己造成1点伤害并获得这张牌.
-                                  绝胜:觉醒技,当你的体力值等于体力上限时,你将<整溃>修改为 :<锁定技,你的回合内,当你受到伤害时你摸一张牌>.*/
+
                         bjzm整溃: {
                             trigger: {
                                 player: 'damageAfter',
@@ -33375,20 +32438,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 return get.tag(event.card, 'damage') > 0; //&&player===event.player
                             },
-                            /*'step 0'
-                                        player.chooseBool(get.prompt2('bjzm屡败'), '是否发动【屡败】？').set('ai', function () {
-                                            if (player.hp > 3 && get.type(trigger.cards[0]) != 'basic') return true;
-                                            return false;
-                                        });
-                                        'step 1'
-                                        if (result.bool) {
-                                            player.damage();
-                                            if (get.itemtype(trigger.cards) == 'cards' && get.position(trigger.cards[0], true) == 'o') {
-                                                player.gain(trigger.cards, "gain2");
-                                            }
-                                        } else {
-                                            game.log("取消了屡败技能");
-                                        }*/
+
                             content() {
                                 player.damage();
                                 if (get.itemtype(trigger.cards) == 'cards' && get.position(trigger.cards[0], true) == 'o') {
@@ -33431,18 +32481,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'damageAfter',
                             },
                             forced: true,
-                            /*filter (event, player) {
-                                        return event.player===player;
-                                    },*/
+
                             content() {
                                 player.draw(1);
                             },
                         },
-                        /*调弓号猿  养由基
-                                穿杨:你使用【杀】无距离限制.当你使用【杀】时,你可以进行一次判定,若判定牌为红色,此杀伤害+1且不可被响应,
-                                     否则你可以弃置目标一张牌并摸一张牌.
-                                夺箭:当你被指定为【杀】的目标后,你可以将这张【杀】置于你的武将牌上并称之为<箭>.你的回合内,
-                                     当你的判定牌生效时,你可以打出一张<箭>替换之.*/
+
                         bjzm穿杨: {
                             shaRelated: true,
                             mod: {
@@ -33597,18 +32641,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*田穰苴
-                        诛宠:你的回合外,当其他角色从另一名角色的区域内获得牌时,你可以对其造成一点伤害,若其因此进入濒死状态,你摸两张牌.
-                        屈兵:每轮限两次,其他角色回合开始时你可以选择一项:1.弃一张牌并获得一张【酒】.2.交给其一张【酒】并对其造成一点伤害.
-                        拒饮:锁定技,你不能使用【酒】.*/
+
                         bjzm诛宠: {
                             trigger: {
                                 global: 'gainEnd',
                             },
                             usable: 1,
-                            /*filter (event, player) {
-                                                                              return event.player!==player&&event.relatedLose&&player.storage.bjzm诛宠_bool;
-                                    },*/
+
                             filter(event, player) {
                                 return event.player !== player && event.relatedLose;
                             },
@@ -33648,9 +32687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     init(player) {
                                         if (!player.storage.bjzm诛宠_bool) player.storage.bjzm诛宠_bool = true;
                                     },
-                                    /*filter (event, player) {
-                                                return !player.storage.bjzm诛宠_bool;
-                                            },*/
+
                                     forced: true,
                                     content() {
                                         player.storage.bjzm诛宠_bool = true;
@@ -33710,7 +32747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 (function () {
                                                     if (get.attitude(player, trigger.player) >= 0) return false;
                                                     return true;
-                                                })()
+                                                })(),
                                             );
                                     } else {
                                         player.chooseToDiscard(1, true, '弃一张牌并获得一张【酒】').set('ai', function (card) {
@@ -33888,7 +32925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     }
                                                     event.dialog.content.childNodes[0].innerHTML = str;
                                                 }
-                                            })
+                                            }),
                                         );
                                     for (var i = 0; i < event.dialog.buttons.length; i++) {
                                         event.dialog.buttons[i].classList.add('selectable');
@@ -34029,10 +33066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*苍苍苍淇   扩展策划师  5血  神
-                出资:出牌阶段限一次,你可以将一张牌交给一名其他角色,其摸两张且可以将一张手牌交给你.
-                选稿:游戏开始时,你召唤无名杀中的一名武将当你的随从,若随从死亡你失去一点体力,且可再次召唤.
-                辩论:出牌阶段限一次,你可以与一名角色拼点,若你赢,获得其两张牌,若你输,则你弃置一张牌.*/
+
                         bjzm出资: {
                             enable: 'phaseUse',
                         },
@@ -35401,12 +34435,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         Al_chongjia_info: '出牌阶段限一次,你可以将一张黑色牌置于牌堆底,视为使用一张改为亮出任意名角色各一张手牌且仅指定等量名角色为目标的【五谷丰登】.',
                         Al_duhui: '蠹慧',
                         Al_duhui_info: '每回合限一次,你获得牌前,你可以观看牌堆底一张牌且可代替之,若为♠️️且无角色濒死,你可以分配1点伤害.',
-                        /*
-      Al_qianxi:"倩兮",
-      Al_qianxi_info:"回合开始时,你可以弃置一张牌并选择两名角色,交换他们的一个阶段,其依次选择是否交给你一张牌.",
-      Al_panxi:"盼兮",
-      Al_panxi_info:"当有角色即将于其回合外执行阶段时,你可选择:1.你摸一张牌并交给其两张牌(若此阶段为摸牌阶段则改为<你交给其三张牌>)其跳过此阶段,你执行一个额外的该阶段;2.你从牌堆底摸三张牌并交给其至少两张牌.",
-                        */
+
                         Al_zhengshu: '征树',
                         Al_zhengshu_info: '锁定技,游戏开始时,你视为对你攻击范围内与攻击范围外各一名其他角色(无合法目标则不选)使用一张【杀】,将因此受到伤害的角色名字分别顶替进<支绌>中的括号.',
                         Al_zhichu: '支绌',
@@ -35710,8 +34739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /*围魏救赵:一名角色受到【杀】的伤害后结算完毕后,你可以使用此牌.你视为对其伤害来源使用一张【杀】.
-                                  此牌造成伤害时,改为弃置其伤害来源两张牌并令其回复一点体力.*/
+
                         bjzm围魏救赵skill: {
                             equipSkill: true,
                             trigger: { global: 'damageAfter' },
@@ -35767,7 +34795,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*当你使用【杀】对有防具的角色造成伤害后,你对其再造成一点伤害.*/
+
                         bjzm浑铁枪skill: {
                             equipSkill: true,
                             trigger: { source: 'damageAfter' },
@@ -35797,7 +34825,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*当你受到【杀】造成的伤害后,若此【杀】仍在弃牌堆里,你获得之.*/
+
                         bjzm皮甲skill: {
                             usable: 10, //避免无限套娃
                             equipSkill: true,

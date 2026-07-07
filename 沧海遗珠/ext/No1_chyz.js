@@ -3802,17 +3802,17 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							var cards = player.getExpansions('ybcxch_lingxi_yuping');
 							return get.YB_suit(cards, 'type2') && get.YB_suit(cards, 'type2').length >= 3;
 						},
-						content: function* (event, map) {
+						async content(event, map) {
 							let player = map.player,
 								trigger = map.trigger;
 							var cards = event.player.getExpansions('ybcxch_lingxi_yuping');
-							var result = yield player
+							var result = await player
 								.chooseTarget(1, true)
 								.set('prompt', '将所有的<玉娉>交给1名角色')
 								.set('ai', function (target) {
 									return get.attitude(_status.event.player, target);
 								});
-							yield result.targets[0].gain(cards, 'gain2');
+							await result.targets[0].gain(cards, 'gain2');
 							game.log(player, '将', cards, '交给了', result.targets[0]);
 						},
 					},
@@ -3842,7 +3842,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					return false;
 				},
 				forced: true,
-				content: function* (event, map) {
+				async content(event, map) {
 					let player = map.player,
 						trigger = map.trigger;
 					var cards = event.player.getExpansions('ybcxch_lingxi_tingniao');
@@ -3853,7 +3853,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						str += '牌';
 					}
 					str += '无效';
-					var result = yield player
+					var result = await player
 						.chooseCardButton(str, 3, cards)
 						.set('filterButton', function (button) {
 							var suit = button.link.suit;
@@ -3874,12 +3874,12 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							}
 						});
 					if (result.links) {
-						yield player.discard(result.links);
+						await player.discard(result.links);
 						if (event.triggername != 'useCard') {
-							yield trigger.cancel();
+							await trigger.cancel();
 						} else {
-							// yield trigger.parent.excluded.add(trigger.targets[0]);
-							yield trigger.targets.remove(trigger.targets[0]);
+							// await trigger.parent.excluded.add(trigger.targets[0]);
+							await trigger.targets.remove(trigger.targets[0]);
 						}
 					}
 				},
@@ -4068,7 +4068,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						filter(event, player) {
 							return event.card && event.card.ybshh_qingsi;
 						},
-						content: function* (event, map) {
+						async content(event, map) {
 							let player = map.player,
 								trigger = map.trigger;
 							let naturn = player.getHistory('sourceDamage', function (evt) {
@@ -4078,8 +4078,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								: 'thunder';
 							var targets = trigger.targets.sortBySeat();
 							for (var i of targets) {
-								if (i.isIn()) yield player.discardPlayerCard('he', i, true);
-								if (i.isIn()) yield player.useCard({ name: 'sha', nature: naturn }, i, 'ybshh_qingsi', false);
+								if (i.isIn()) await player.discardPlayerCard('he', i, true);
+								if (i.isIn()) await player.useCard({ name: 'sha', nature: naturn }, i, 'ybshh_qingsi', false);
 							}
 						},
 					},
@@ -4225,13 +4225,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							// player.storage.ybgz_gongshu_del=leng1;
 							return leng1 == leng2;
 						},
-						content: function* (event, map) {
+						async content(event, map) {
 							let trigger = map.trigger,
 								player = map.player;
-							yield player.draw(player.countCards('h') > 4 ? 1 : 2);
+							await player.draw(player.countCards('h') > 4 ? 1 : 2);
 							//(若此时你的手牌数不大于4,则改为摸2张).
-							yield delete player.getStat('skill').ybgz_shujian;
-							// yield player.removeSkill('ybgz_shujian_used');
+							await delete player.getStat('skill').ybgz_shujian;
+							// await player.removeSkill('ybgz_shujian_used');
 						},
 					},
 					del: {
@@ -4601,13 +4601,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.storage.yblf_zhenzhi = [];
 				},
 				group: 'yblf_zhenzhi_buff',
-				content: function* (event, map) {
+				async content(event, map) {
 					let trigger = map.trigger,
 						player = map.player;
-					if (!player.storage.yblf_zhenzhi) yield (player.storage.yblf_zhenzhi = []);
+					if (!player.storage.yblf_zhenzhi) await (player.storage.yblf_zhenzhi = []);
 					// var num = player.storage.yblf_zhenzhi.length||0;
 					if (event.triggername == 'phaseZhunbeiBegin') {
-						var result = yield player
+						var result = await player
 							.chooseTarget([0, 6])
 							.set('filterTarget', function (card, player, target) {
 								return target.countCards('he') > 0;
@@ -4622,18 +4622,18 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (result.bool) {
 							let targets = result.targets;
 							for (var i of targets) {
-								yield player.storage.yblf_zhenzhi.push(i);
-								yield player.gainPlayerCard('he', i, true);
+								await player.storage.yblf_zhenzhi.push(i);
+								await player.gainPlayerCard('he', i, true);
 							}
 							for (var k of targets) {
-								yield k.chooseToDiscard(2, true, 'he');
+								await k.chooseToDiscard(2, true, 'he');
 							}
 							let num = player.storage.yblf_zhenzhi.length || 0;
-							yield player.draw(6 - num);
+							await player.draw(6 - num);
 						}
 					} else {
 						let num = player.storage.yblf_zhenzhi.length || 0;
-						var result = yield player
+						var result = await player
 							.chooseTarget([0, 6 - num])
 							.set('filterTarget', function (card, player, target) {
 								// return target.countCards('he')>0;
@@ -4649,13 +4649,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (result.bool) {
 							let targets = result.targets;
 							for (var i of targets) {
-								yield player.storage.yblf_zhenzhi.push(i);
-								yield player.discardPlayerCard('he', i, true);
+								await player.storage.yblf_zhenzhi.push(i);
+								await player.discardPlayerCard('he', i, true);
 							}
 							for (var k of targets) {
-								yield k.loseHp(2);
+								await k.loseHp(2);
 							}
-							yield player.draw(num);
+							await player.draw(num);
 						}
 					}
 				},

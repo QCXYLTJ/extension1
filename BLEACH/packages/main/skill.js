@@ -12732,15 +12732,15 @@ const skills = {
 		filterTarget(card, player, target) {
 			return player.canCompare(target);
 		},
-		content: function* (event, map) {
+		async content(event, map) {
 			var player = map.player;
 			var target = map.target;
-			var result = yield player.chooseToCompare(target);
+			var result = await player.chooseToCompare(target);
 			if (result.bool) {
 				var cards = [result.player, result.target].filterInD('d');
 				cards = cards.filter((card) => player.hasUseTarget(card));
 				if (cards.length) {
-					var result2 = yield player.chooseButton(['是否使用其中一张牌？', cards]).set('ai', (button) => _status.event.player.getUseValue(button.link));
+					var result2 = await player.chooseButton(['是否使用其中一张牌？', cards]).set('ai', (button) => _status.event.player.getUseValue(button.link));
 					if (result2.bool) {
 						var card = result2.links[0];
 						player.$gain2(card, false);
@@ -12748,7 +12748,7 @@ const skills = {
 					}
 				}
 			}
-			var result3 = yield player
+			var result3 = await player
 				.chooseControl('bleach_shunhong', 'bleach_fengwen')
 				.set('prompt', '获得其中一个技能直到回合结束')
 				.set('ai', () => 'bleach_shunhong');

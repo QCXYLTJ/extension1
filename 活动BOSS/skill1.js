@@ -6030,7 +6030,7 @@ const skill = {
       return player.getHandcardLimit() - player.countCards('h') >= 3 || player.getDamagedHp() >= 2;
     },
     limited: true,
-    content: function* (event, map) {
+    async content(event, map) {
       var player = map.player;
       var trigger = map.trigger;
       player.awakenSkill('shanhe_ranji');
@@ -6052,7 +6052,7 @@ const skill = {
         } else if (player.isHealthy()) {
           result = { index: 0 };
         } else {
-          result = yield player
+          result = await player
             .chooseControl('手牌数', '体力值')
             .set('choiceList', [num1 < 0 ? '摸' + get.cnNumber(-num1) + '张牌' : '弃置' + get.cnNumber(num1) + '张牌', '回复' + player.getDamagedHp() + '点体力'])
             .set('ai', () => {
@@ -6066,12 +6066,12 @@ const skill = {
         }
         if (result.index == 0) {
           if (num1 < 0) {
-            yield player.drawTo(player.getHandcardLimit());
+            await player.drawTo(player.getHandcardLimit());
           } else {
-            yield player.chooseToDiscard(num1, 'h', true);
+            await player.chooseToDiscard(num1, 'h', true);
           }
         } else {
-          yield (player.hp = player.maxHp);
+          await (player.hp = player.maxHp);
         }
       }
       player.addSkill('shanhe_ranji_norecover');

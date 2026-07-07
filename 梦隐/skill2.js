@@ -14405,12 +14405,12 @@ const skill = {
       return event.isFirstTarget && event.targets.length == 1 && event.target.isIn();
     },
     forced: true,
-    content: function* (event, map) {
+    async content(event, map) {
       var player = map.player,
         trigger = map.trigger,
         target = trigger.target;
       var colors = Object.keys(lib.color).remove('none');
-      var result = yield player
+      var result = await player
         .chooseControl(colors, 'cancel2')
         .set('prompt', get.prompt('mx_shengming'))
         .set('prompt2', `声明一种颜色并令${get.translation(trigger.target)}弃置任意张牌`)
@@ -14443,7 +14443,7 @@ const skill = {
       game.log(player, '声明了', color);
       var prompt = `主啊,生命的喜悦<br/><br/>${get.translation(player)}声明了${get.translation(color)}`,
         prompt2 = `请弃置至多四张牌`;
-      yield target
+      await target
         .chooseToDiscard(prompt, prompt2, [1, 4], 'he', true)
         .set('ai', (card) => {
           var color = get.event('color'),
@@ -14454,7 +14454,7 @@ const skill = {
         })
         .set('color', color);
       if (target.countCards('he'))
-        result = yield player
+        result = await player
           .choosePlayerCard(target, 'he', true)
           .set('ai', (button) => {
             var color = get.event('color'),
@@ -34277,7 +34277,7 @@ const skill = {
     },
     popname: true,
     ignoreMod: true,
-    precontent: function* (event, map) {
+    async precontent(event, map) {
       var player = map.player;
       var evt = event.parent;
       if (evt.dialog && typeof evt.dialog == 'object') evt.dialog.close();
@@ -49211,7 +49211,7 @@ const skill = {
       return false;
     },
     forced: true,
-    content: function* (event, map) {
+    async content(event, map) {
       var player = map.player;
       var list = get.inpileVCardList((info) => {
         if (info[0] != 'trick') return false;
@@ -49219,7 +49219,7 @@ const skill = {
         return !player.hasStorage('mx_tasha', name) && player.hasUseTarget({ name: name });
       });
       if (list.length) {
-        var result = yield player.chooseButton(['选择其中的一张普通锦囊牌', [list, 'vcard']], true).set('ai', (button) => {
+        var result = await player.chooseButton(['选择其中的一张普通锦囊牌', [list, 'vcard']], true).set('ai', (button) => {
           return get.player().getUseValue({ name: button.link[2] });
         });
         if (result.bool) {
