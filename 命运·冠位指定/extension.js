@@ -584,38 +584,40 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                game.log(player1, '濒死');
                _status.dying.unshift(player1);
                for (const i of game.players) {
-                  const result = await i.chooseToUse({
-                     filterCard(card, player, event) {
-                        return lib.filter.cardSavable(card, player, player1);
-                     },
-                     filterTarget(card, player, target) {
-                        if (!card || target != player1) {
-                           return false;
-                        }
-                        const info = get.info(card);
-                        if (!info.singleCard || ui.selected.targets.length == 0) {
-                           const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
-                           if (mod1 == false) {
+                  const result = await i
+                     .chooseToUse({
+                        filterCard(card, player, event) {
+                           return lib.filter.cardSavable(card, player, player1);
+                        },
+                        filterTarget(card, player, target) {
+                           if (!card || target != player1) {
                               return false;
                            }
-                           const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-                           if (mod2 != 'unchanged') {
-                              return mod2;
+                           const info = get.info(card);
+                           if (!info.singleCard || ui.selected.targets.length == 0) {
+                              const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                              if (mod1 == false) {
+                                 return false;
+                              }
+                              const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                              if (mod2 != 'unchanged') {
+                                 return mod2;
+                              }
                            }
-                        }
-                        return true;
-                     },
-                     prompt: get.translation(player1) + '濒死,是否帮助？',
-                     ai1() {
-                        return 1;
-                     },
-                     ai2() {
-                        return get.attitude(player1, i);
-                     },
-                     type: 'dying',
-                     targetRequired: true,
-                     dying: player1,
-                  }).forResult();
+                           return true;
+                        },
+                        prompt: get.translation(player1) + '濒死,是否帮助？',
+                        ai1() {
+                           return 1;
+                        },
+                        ai2() {
+                           return get.attitude(player1, i);
+                        },
+                        type: 'dying',
+                        targetRequired: true,
+                        dying: player1,
+                     })
+                     .forResult();
                   if (result?.bool) {
                      _status.dying.remove(player1);
                      break;
@@ -827,7 +829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      }
                   },
                   natures,
-                  player
+                  player,
                );
                var numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
                player.$damagepop(-numx, natures[0]);
@@ -1061,41 +1063,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                      },
                   },
-                  /*        F_wswdd:{
-                           image:'ext:命运·冠位指定/card/F_wswdd.jpg',
-                           fullimage:true,
-                           type:"basic",
-                           toself:true,
-                           popname:"无敌",
-                           enable:function(card,player){
-                             return true;
-                                              },
-                           selectTarget:-1,
-                           filterTarget:function(card,player,target){
-                             return target==player;
-                                              },
-                           modTarget:function(card,player,target){
-                             return target.isPhaseUsing();
-                                              },
-                           content:function(){
-                           player.addFateBuff('Fate_Invincible');
-                                              },
-                        ai:{
-                           basic:{
-                           order:function(card,player){
-                           return 10;
-                                                      },
-                           useful:[99,99,99,100],
-                           value:[99,99,99,100],
-                                                  },
-                           result:{
-                           target:1.3,
-                                                  },
-                           tag:{
-                              iorz:1,
-                                                  },
-                                              },
-                                              },*/
+
                   //礼装x
                   F_ysdft: {
                      image: 'ext:命运·冠位指定/card/F_ysdft.jpg',
@@ -1796,7 +1764,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             function () { },
             function () {
                alert('FBI WARNING 状态数据导入失败');
-            }
+            },
          );
          lib.init.js(
             'extension/命运·冠位指定/chess.js',
@@ -1804,7 +1772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             function () { },
             function () {
                alert('FBI WARNING 升阶素材数据导入失败');
-            }
+            },
          );
          lib.init.js(
             'extension/命运·冠位指定/class.js',
@@ -1812,7 +1780,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             function () { },
             function () {
                alert('FBI WARNING 圣杯阶级数据导入失败');
-            }
+            },
          );
          lib.init.js(
             'extension/命运·冠位指定/ground.js',
@@ -1820,7 +1788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             function () { },
             function () {
                alert('FBI WARNING 场地数据导入失败');
-            }
+            },
          );
          game.import('character', function () {
             var k9 = {
@@ -2261,50 +2229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                      },
                   },
-                  /*               KasugoH1:{
-                                     nobracket:true,
-                                     trigger:{
-                                     global:["damageBegin","loseHpBegin","loseMaxHpBegin"],
-                                        },
-                                     forced:true,
-                                     popup:false,
-                                     filter:function (event,player){
-                                     var target=game.findPlayer(function(current){
-                                     return current.name=='Fate_KasugoSR';
-                                      });
-                                     if(event.player.name=='Fate_KasugoSR') return true;
-                                     return false;
-                                      },
-                                     content:function (){
-                                     "step 0"        
-                                     var target=game.findPlayer(function(current){
-                                     return current.name=='Fate_KasugoSR';
-                                        });
-                                     if(trigger.name=='damage') event.goto(1);
-                                     if(trigger.name=='loseHp') event.goto(2);
-                                     if(trigger.name=='loseMaxHp') event.goto(3);
-                                      "step 1"
-                                     if(trigger.source){
-                                     player.damage(trigger.num,trigger.nature,trigger.source);
-                                      }
-                                     else{
-                                     player.damage(trigger.num,trigger.nature,'nosource');
-                                      }
-                                     trigger.cancel();
-                                     event.finish();
-                                     "step 2"
-                                     player.loseHp(trigger.num);
-                                     trigger.cancel();
-                                     event.finish();
-                                     "step 3"
-                                     player.loseMaxHp(trigger.num);
-                                     trigger.cancel();
-                                     event.finish();
-                                        },
-                                 ai:{
-                                     threaten:2,
-                                      },
-                                 },*/
+
                   KasugoSRd: {
                      _priority: 2,
                      trigger: {
@@ -3414,7 +3339,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                       target: target,
                                                       card: card,
                                                    },
-                                                   true
+                                                   true,
                                                 )) &&
                                              !target.hasSkillTag('filterDamage', null, {
                                                 player: player,
@@ -3439,7 +3364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                           target: target,
                                           card: card,
                                        },
-                                       true
+                                       true,
                                     )
                                  )
                                     return false;
@@ -3497,7 +3422,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                              target: target,
                                              card: card,
                                           },
-                                          true
+                                          true,
                                        )
                                     )
                                        return eff / 1.2;
@@ -4043,7 +3968,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         trigger.parent.excluded.addArray(
                            game.filterPlayer(function (current) {
                               return true;
-                           })
+                           }),
                         );
                         player.storage.GilgameshCaster3Dis = false;
                      },
@@ -4751,8 +4676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               },
                               position: 'he',
                               viewAs: { name: links[0][2], nature: links[0][3] },
-                              onuse(result, player) {
-                              },
+                              onuse(result, player) { },
                            };
                         },
                         prompt(links, player) {
@@ -5509,7 +5433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         var enemies = player.getEnemies().randomGet();
                         enemies.addFateBuff('Fate_Charmstatus', 1);
                         if (num == 0) player.recover();
-                     },//QQQ
+                     }, //QQQ
                      ai: {
                         order: 10,
                         threaten(player, target) {
@@ -7363,284 +7287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      },
                   },
                   //Power by Honest
-                  /*KiyohimeEX:{
-                   nobracket:true,  
-                 audio:"ext:命运·冠位指定/audio:true",
-                     enable:"phaseUse",
-                     audio:"ext:命运·冠位指定/audio:true",
-                     NobleP:true,
-                     unique:true,
-                     filter:function(event,player){
-                        return player.storage.Fate_np>=100&&player.storage.Fate_np<200&&!player.storage.EXCD;
-                     },
-                     content:function(){
-                        "step 0"
-                        player.storage.EXCD=1;
-                        player.clearNp();
-                        "step 1"
-                        for(var i=0;i<game.players.length;i++){ 
-                if(game.players[i]==player) continue; 
-                game.players[i].damage()
-                        game.players[i].storage.Fate_Burn+=10
-                        game.players[i].addSkill('Fate_Burn')
-                        game.players[i].markSkill('Fate_Burn')
-                        if(Math.random()<0.2){
-                        game.players[i].storage.Fate_Stunstatus+=1
-                        game.players[i].addSkill('Fate_Stunstatus')
-                        game.players[i].markSkill('Fate_Stunstatus')
-                        }
-                       }
-                     },
-                     ai:{
-                        order:13,
-                        threaten:function(player,target){
-                     if(target.storage.Fate_np>99) return 2; 						return 1.4;
-                  },
-                        result:{ 
-                           player:2,
-                           target:-1,
-                        }, 
-                     },
-                     group:['KiyohimeEX_1'],
-                     subSkill:{
-                        1:{
-                      audio:'KiyohimeEX',
-                           enable:"phaseUse",
-                           NobleP:true,
-                           audio:'AtalantaAlterEX',
-                           filter:function(event,player){
-                              return player.storage.Fate_np>=200&&!player.storage.EXCD;
-                           },
-                           content:function(){
-                              "step 0"
-                              player.storage.EXCD=1;
-                              player.clearNp();
-                              "step 1"
-                              for(var i=0;i<game.players.length;i++){ 
-                        if(game.players[i]==player) continue; 
-                        game.players[i].damage()
-                        game.players[i].storage.Fate_Burn+=10
-                        game.players[i].addSkill('Fate_Burn')
-                        game.players[i].markSkill('Fate_Burn')
-                        if(Math.random()<0.4){
-                        game.players[i].storage.Fate_Stunstatus+=1
-                        game.players[i].addSkill('Fate_Stunstatus')
-                        game.players[i].markSkill('Fate_Stunstatus')
-                         }
-                        }
-                           },
-                           ai:{
-                           threaten:function(player,target){
-                     if(target.storage.Fate_np>99) return 2; 						return 1.4;
-                  },
-                              basic:{
-                                 order:10,
-                                 value:4,
-                                 useful:1,
-                              },
-                              result:{ 
-                                 player:2,
-                                 target:-1,
-                              }, 
-                           },
-                        },
-                     },
-                  },
-                  Kiyohime1:{
-                   nobracket:true, 
-                audio:"ext:命运·冠位指定/audio:2",
-                   enable:"phaseUse",
-                   content:function (){ 
-                   player.storage.Fate_Defenseup+=3;
-                   player.addSkill('Fate_Defenseup');
-                   player.markSkill('Fate_Defenseup');
-                   player.storage.Skill1CD=3;
-                     }
-                  },
-                  Kiyohime2:{
-                  nobracket:true,  
-                   enable:"phaseUse",
-                audio:"ext:命运·冠位指定/audio:2",
-                  filterTarget:lib.filter.notMe,
-                     content:function (){ 
-                     target.storage.Fate_Defensedown+=3;
-                     target.addSkill('Fate_Defensedown');
-                     target.markSkill('Fate_Defensedown');
-                     target.addFateBuff('Fate_Attackup',3);
-                     player.storage.Skill2CD=3;
-                     }
-                  },
-                  Kiyohime3:{ 
-                  nobracket:true,   
-                  enable:"phaseUse",
-                audio:"ext:命运·冠位指定/audio:2",
-                   filter:function(event,player){
-                return !player.storage.Skill3CD;
-                },  
-                   content:function (){ 
-                   game.clearFateBuff(player,false,false);
-                   player.storage.Skill3CD=3;
-                   }
-                  },    
-                AnneBonnyEX:{
-                nobracket:true,
-               unique:true,
-                  },
-                AnneBonny1:{
-                  nobracket:true,   
-                  },
-                AnneBonny2:{
-                   nobracket:true,  
-                  },
-                  AnneBonny3:{
-                  nobracket:true,
-                  trigger:{
-                               player:"phaseAfter",
-                           },
-                           unique:true,
-                           locked:true,
-                           forced:true,
-                           onremove:function (player){
-                               player.$throw(player.storage.AnneBonny3_cards,1000);
-                               for(var i=0;i<player.storage.AnneBonny3_cards.length;i++){
-                                   ui.discardPile.appendChild(player.storage.AnneBonny3_cards[i]);
-                               }
-                               game.log(player,'弃置了',player.storage.AnneBonny3_cards);
-                               delete player.storage.AnneBonny3_cards;
-                               delete player.storage.AnneBonny3_hp;
-                               delete player.storage.AnneBonny3_maxHp;
-                           },
-                           check:function (event,player){
-                               var num1=0;
-                               var num2=0;
-                               var hp=player.storage.AnneBonny3_hp;
-                               var cards1=player.storage.AnneBonny3_cards;
-                               var cards2=player.getCards('h');
-                               var check=_status.event.player==player;
-                               for (var i = 0; i < cards1.length; i++){
-                                   num1+=check?get.value(cards1[i]):get.useful(cards1[i]);
-                               }
-                               for (var i = 0; i < cards2.length; i++){
-                                   num2+=check?get.value(cards2[i]):get.useful(cards2[i]);
-                               }
-                               num1+=2*hp;
-                               num2+=2*player.hp;
-                               if (num1-num2>0) return true;
-                               return false;
-                           },
-                           content:function (){
-                               var hp=player.storage.AnneBonny3_hp;
-                               var maxHp=player.storage.AnneBonny3_maxHp;
-                               var cards=player.storage.AnneBonny3_cards;
-                               player.storage.AnneBonny3_hp=player.hp;
-                               player.storage.AnneBonny3_maxHp=player.maxHp;
-                               player.storage.AnneBonny3_cards=player.getCards('h');
-                               game.addVideo('storage',player,['cards',get.cardsInfo( player.storage.AnneBonny3_cards),'cards']);
-                               player.lose(player.getCards('h'),ui.special);
-                               player.hp=hp;
-                               player.maxHp=maxHp;
-                               player.gain(cards);
-                               player.update();
-                               game.broadcastAll(function(player){
-                                   if(!player._AnneBonny3_mark) return;
-                                   if(player._AnneBonny3_mark.name=='正'){
-                                   player.setAvatar('Fate_AnneBonny','Fate_MaryRead');
-                                   game.broadcastAll(function(user){
-                                    lib.translate['Fate_AnneBonny'] = lib.translate["Fate_MaryRead"];
-                                    user.node.name.innerHTML = get.slimName(user.name);
-                                 }, player);
-                                       player._AnneBonny3_mark.name='反';
-                                       player._AnneBonny3_mark.firstChild.innerHTML='反';
-                                       player._AnneBonny3_mark.info.mark=function(dialog,content,player){
-                                           if(player==game.me||player.isUnderControl()){
-                                               dialog.addText('当前为玛丽·里德 安妮·伯妮体力:'+player.storage.AnneBonny3_hp+' 体力上限:'+player.storage.AnneBonny3_maxHp+' 手牌:');
-                                               if(player.storage.AnneBonny3_cards.length){
-                                                   dialog.addSmall(player.storage.AnneBonny3_cards);
-                                               } else{
-                                                   dialog.addText('无')
-                                               }
-                                           }
-                                           else{
-                                               return '当前为玛丽·里德 安妮·伯妮体力:'+player.storage.AnneBonny3_hp+' 体力上限:'+player.storage.AnneBonny3_maxHp+' 手牌:'+player.storage.AnneBonny3_cards.length;
-                                           }
-                                       };
-                                   } else{
-                                   player.setAvatar('Fate_AnneBonny','Fate_AnneBonny');
-                                   game.broadcastAll(function(user){
-                                    lib.translate['Fate_AnneBonny'] = lib.translate["Fate_AnneBonny_rc"];
-                                    user.node.name.innerHTML = get.slimName(user.name);
-                                 }, player);
-                                       player._AnneBonny3_mark.name='正';
-                                       player._AnneBonny3_mark.firstChild.innerHTML='正';
-                                       player._AnneBonny3_mark.info.mark=function(dialog,content,player){
-                                           if(player==game.me||player.isUnderControl()){
-                                               dialog.addText('当前为安妮·伯妮 玛丽·里德体力:'+player.storage.AnneBonny3_hp+' 体力上限:'+player.storage.AnneBonny3_maxHp+' 手牌:');
-                                               if(player.storage.AnneBonny3_cards.length){
-                                                   dialog.addSmall(player.storage.AnneBonny3_cards);
-                                               } else{
-                                                   dialog.addText('无')
-                                               }
-                                           }
-                                           else{
-                                               return '当前为安妮·伯妮 玛丽·里德体力:'+player.storage.AnneBonny3_hp+' 体力上限:'+player.storage.AnneBonny3_maxHp+' 手牌:'+player.storage.AnneBonny3_cards.length;
-                                           }
-                                       };
-                                   }
-                               },player);
-                           },
-                           group:["AnneBonny32","AnneBonny3_init"],
-                       },
-                       "AnneBonny32":{
-                           trigger:{
-                             target:"shaBegin",
-                           },
-                           popup:false,
-                           filter:function(event,player){
-                           for(var i=0;i<player.storage.AnneBonny3_cards.length;i++){
-                           if(player.storage.AnneBonny3_cards[i].name=='sha') return true;
-                           }
-                                              return false;
-                           },
-                           content:function (){
-                           'step 0'
-                              if ((get.translation(player.name)=='安妮·伯妮'||get.translation(player.name2)=='安妮·伯妮')){player.popup('双刀援护')}else{player.popup('急速射击')}
-                           'step 1'
-                           for(var i=0;i<player.storage.AnneBonny3_cards.length;i++){
-                           if(player.storage.AnneBonny3_cards[i].name=='sha'){player.storage.AnneBonny3_cards.remove(player.storage.AnneBonny3_cards[i]);
-                           player.useCard({name:'sha'},trigger.player,false);
-                           if ((get.translation(player.name)=='安妮·伯妮'||get.translation(player.name2)=='安妮·伯妮')){event.redo()}
-                           }
-               }
-                                                          },
-                       },
-                       "AnneBonny3_init":{
-                           trigger:{
-                               global:"gameStart",
-                           },
-                           forced:true,
-                           popup:false,
-                           content:function (){
-                               player.storage.AnneBonny3_hp=player.hp;
-                               player.storage.AnneBonny3_maxHp=player.maxHp;
-                               var cards=get.cards(4);
-                               player.storage.AnneBonny3_cards=cards;
-                               player.$gain2(cards);
-                               game.broadcastAll(function(player){
-                                   player._AnneBonny3_mark=player.mark('正',{
-                                       mark:function(dialog,content,player){
-                                           if(player==game.me||player.isUnderControl()){
-                                               dialog.addText('当前为安妮·伯妮 玛丽·里德体力:'+player.storage.AnneBonny3_hp+' 体力上限:'+player.storage.AnneBonny3_maxHp+' 手牌:');
-                                               dialog.addSmall(player.storage.AnneBonny3_cards);
-                                           }
-                                           else{
-                                               return '当前为安妮·伯妮 玛丽·里德体力:'+player.storage.AnneBonny3_hp+' 体力上限:'+player.storage.AnneBonny3_maxHp+' 手牌:'+player.storage.AnneBonny3_cards.length;
-                                           }
-                                       },
-                                   });
-                               },player);
-                               player._AnneBonny3_mark.skill='配合';
-                           },   
-                  },*/
+
                   GorgonEX: {
                      nobracket: true,
                      enable: 'phaseUse',
@@ -9852,7 +9499,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               result: {
                                  player: 1,
                               },
-                           },//QQQ
+                           }, //QQQ
                         },
                      },
                   },
@@ -10571,305 +10218,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                      },
                   },
                   //Power by Honest
-                  /*MordredEX:{
-                  nobracket:true, 
-               enable:"phaseUse",
-                   audio:"ext:命运·冠位指定/audio:true",
-               unique:true,
-               NobleP:true,
-                   filter:function(event,player){
-                        var targetscount=[];					
-                        for(var i=0;i<game.players.length;i++){
-               if(game.players[i]==player) continue;
-               if(!game.players[i].isOut()){
-                   if(get.distance(player,game.players[i],'attack')<=1){
-                       targetscount.push(game.players[i]);
-                   }
-               }
-           }       
-                        targetscount.remove(player);
-                              return targetscount.length>0&&player.storage.Fate_np>=100&&player.storage.Fate_np<200&&!player.storage.EXCD;
-                     },
-                     forced:true,
-       content:function (){                
-           "step 0"
-        player.clearNp();
-        player.storage.EXCD=1;
-                        var targets=[];					
-                        for(var i=0;i<game.players.length;i++){
-               if(game.players[i]==player) continue;
-               if(!game.players[i].isOut()){
-                   if(get.distance(player,game.players[i],'attack')<=1){
-                       targets.push(game.players[i]);
-                   }
-               }
-           }       
-                        targets.remove(player);
-                        targets.sort(lib.sort.seat);
-                        event.targets=targets;
-                        event.num=0;
-                        "step 1"
-                     if(event.num<event.targets.length){
-                           event.target=event.targets[event.num];
-                           if(player.isMaxHandcard(true)&&player.hasSkill('Mordred1')){
-                           var dgnb=2;						
-                     if (get.translation(event.target.name).indexOf('亚瑟')>=0||get.translation(event.target.name).indexOf('阿尔托莉雅')>=0){
-                           dgnb++;
-                           event.target.damage(dgnb);						
-                           game.log(player,'对',event.target,'特攻');
-                           }else{
-                           event.target.damage(dgnb);
-                           }
-                              event.num++;
-                              event.redo();
-                           }else{
-                           if(event.target.countCards('h','shan')>0){
-                              var next=event.target.chooseToRespond({name:'shan'});
-                  next.set('ai',function(card){
-                     return 11-get.value(card);
-                  });
-                  next.autochoose=lib.filter.autoRespondShan;
-                           }
-                           else{						
-                           var dgnb=2;						
-                     if (get.translation(event.target.name).indexOf('亚瑟')>=0||get.translation(event.target.name).indexOf('阿尔托莉雅')>=0){
-                           dgnb++;
-                           event.target.damage(dgnb);						
-                           game.log(player,'对',event.target,'特攻');
-                           }else{
-                           event.target.damage(dgnb);
-                           }
-                              event.num++;
-                              event.redo();
-                           }								
-                           }
-                        }
-                        else{
-                           event.finish();
-                        }
-                        "step 2"
-                        if(result.bool){
-                        if(result.bool==true){
-                           event.num++;
-                           event.goto(1);
-                        }
-                        else{
-                        var dgnb=2;						
-                     if (get.translation(event.target.name).indexOf('亚瑟')>=0||get.translation(event.target.name).indexOf('阿尔托莉雅')>=0){
-                           dgnb++;
-                           event.target.damage(dgnb);						
-                           game.log(player,'对',event.target,'特攻');
-                           }else{
-                           event.target.damage(dgnb);
-                           }
-                              event.num++;
-                           event.goto(1);
-                             }
-                        }
-                     },
-       ai:{
-         order:13,
-         threaten:function(player,target){
-                     if(target.storage.Fate_np>99) return 2; 						return 1.4;
-                  },
-         result:{
-            player:function (player){
-               return 1;
-            },
-         },
-         },
-                       group:['MordredEX_1'],
-                     subSkill:{
-                        1:{
-                      audio:"MordredEX",
-                         enable:"phaseUse",
-                         NobleP:true,
-                           filter:function(event,player){
-                           var targetscount=[];					
-                        for(var i=0;i<game.players.length;i++){
-               if(game.players[i]==player) continue;
-               if(!game.players[i].isOut()){
-                   if(get.distance(player,game.players[i],'attack')<=1){
-                       targetscount.push(game.players[i]);
-                   }
-               }
-           }       
-                        targetscount.remove(player);
-                              return targetscount.length>0&&player.storage.Fate_np>=200&&!player.storage.EXCD;
-                           },
-                           forced:true,
-       content:function (){            
-          "step 0"
-          player.clearNp();
-          player.storage.EXCD=1;
-                        var targets=[];					
-                        for(var i=0;i<game.players.length;i++){
-               if(game.players[i]==player) continue;
-               if(!game.players[i].isOut()){
-                   if(get.distance(player,game.players[i],'attack')<=1){
-                       targets.push(game.players[i]);
-                   }
-               }
-           }       
-                        targets.remove(player);
-                        targets.sort(lib.sort.seat);
-                        event.targets=targets;
-                        event.num=0;
-                        "step 1"
-                        if(event.num<event.targets.length){
-                           event.target=event.targets[event.num];
-                           if(player.isMaxHandcard(true)&&player.hasSkill('Mordred1')){
-                           event.target.damage(2);
-                              event.num++;
-                              event.redo();
-                           }else{
-                           if(event.target.countCards('h','shan')>0){
-                              var next=event.target.chooseToRespond({name:'shan'});
-                  next.set('ai',function(card){
-                     return 11-get.value(card);
-                  });
-                  next.autochoose=lib.filter.autoRespondShan;
-                           }
-                           else{
-                           event.target.damage(2);
-                              event.num++;
-                              event.redo();
-                           }								
-                           }
-                        }
-                        else{
-                        player.changeNp(12);
-                        game.log(player,'的NP回复');
-                           event.finish();
-                        }
-                        "step 2"
-                        if(result.bool){
-                           event.num++;
-                           event.goto(1);
-                        }
-                        else{
-                           event.target.damage(2);
-                              event.num++;
-                           event.goto(1);
-                        }
-                     },
-                      ai:{
-                        order:13,
-                        threaten:function(player,target){
-                     if(target.storage.Fate_np>99) return 2; 						return 1.4;
-                  },
-                        result:{
-                           player:function (player){
-               return 1;
-                           },
-                        },
-                     },
-                        },
-                       },                  
-                     },        
-                  Mordred1:{
-                     nobracket:true,
-                     mod:{
-                wuxieRespondable:function(card,player,target){
-                     if(card.name=='juedou') return false;
-                  }
-               },				
-                     },        
-                  Mordred2:{
-                     nobracket:true,
-                     trigger:{player:'loseEnd'},
-                     audio:"ext:命运·冠位指定/audio:2",
-               frequent:true,
-               filter:function(event,player){
-                  if(player.countCards('h',{type:'basic'})>0) return false;
-                  for(var i=0;i<event.cards.length;i++){
-                     if(event.cards[i].original=='h') return true;
-                  }
-                  return false;
-               },
-               content:function(){
-                  var card=get.cardPile(function(card){
-                     if(get.type(card)=='basic') return true;
-                     return false;
-                  },'cardPile');
-                          if(card){
-                        player.gain(card,'gain2','log');
-                          }
-               },
-                ai:{
-                  threaten:0.8,
-                  effect:{
-                     target:function(card){
-                        if(card.name=='guohe'||card.name=='liuxinghuoyu') return 0.5;
-                     }
-                  },
-                  noh:true,
-                  skillTagFilter:function(player,tag){
-                     if(tag=='noh'){
-                        if(player.countCards('h')!=1) return false;
-                     }
-                  }
-               },
-               group:["Mordred2_1","Mordred2_2"],
-               subSkill:{
-               2:{
-               trigger:{
-               source:"damageBegin",
-               },
-               audio:"ext:命运·冠位指定/audio:true",
-               forced:true,
-               filter:function(event,player){
-                        return event.player.storage.Mordred2_1&&event.card&&event.card.name=='sha';
-                     },
-               content:function (){     
-               trigger.num++;
-               }
-               },
-               1:{
-               trigger:{
-               player:"phaseBegin",
-               },
-               audio:"ext:命运·冠位指定/audio:true",
-               forced:true,
-               popup:false,
-               filter:function(event,player){
-                        return game.players.length>=2||player.storage.Mordred2_1;
-                     },
-               content:function (){      
-               'step 0'    
-               if (player.storage.Mordred2_1&&player.storage.Mordred2_1.isAlive()){
-             var target=player.storage.Mordred2_1;
-                        target.unmarkSkill('Mordred2_1');
-                        delete target.storage.Mordred2_1;
-                        delete player.storage.Mordred2_1;
-                        }
-             'step 1'
-             if (game.players.length>=2){
-               var list=game.filterPlayer(function(target){
-               return player!=target;
-              });
-               var target=list.randomGet();
-               player.line(target);
-               target.markSkillCharacter('Mordred2_1',player,'破绽',''+get.translation(player)+'通过直感看出你的破绽');
-               target.storage.Mordred2_1=true;
-               player.storage.Mordred2_1=target;
-              }
-             }
-               }
-               }
-                     },        
-                  Mordred3:{
-                     nobracket:true,
-                     enable:"phaseUse",
-                     usable:1,
-                     audio:"ext:命运·冠位指定/audio:2",
-                     content:function(){
-                     player.changeNp(16);
-                     game.clearFateBuff(player,false,false);
-                     player.unMad();   
-                     game.log(player,'解除弱体状态');  
-                     }
-                     },*/
+
                   JeanneAlterEX: {
                      nobracket: true,
                      trigger: {
@@ -11203,7 +10552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                               },
                               order: 10,
                               expose: 0.2,
-                           },//QQQ
+                           }, //QQQ
                         },
                      },
                   },
@@ -20047,7 +19396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         player.storage[skill] = false;
                      },
                   },
-                  /*——————————特异点—————————*/
+
                   kulb_tf: {
                      nobracket: true,
                      audio: 'ext:命运·冠位指定/audio:2',
@@ -20569,36 +19918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   AtalantaAlter2_info: 'Rank EX</span><br>你造成伤害后回复等量HP 回合外受到伤害时你可以标记该英灵 直到你回合结束时你对其使用牌无限制',
                   AtalantaAlter3: '野兽的逻辑',
                   AtalantaAlter3_info: 'Rank B</span><br>发动后避免一次伤害 生效后才能再次发动',
-							/*KiyohimeEX:"转身火生三昧",
-               KiyohimeEX_1:'<span class="bluetext"style="color: #F9F900">转身火生三昧</span>',
-               KiyohimeEX_info:'Rank EX'+'<br></span> 对人<span style=\"color:black\">宝具</span>(自身) <span class="bluetext"style="color: #AA0000">◎'+'<br></span>对敌方全体进行强力攻击赋予灼伤状态10回合低概率赋予眩晕状态<br><span class="bluetext"style="color: #F9F900">最大解放'+'</span><br>提高赋予眩晕状态概率',
-               Kiyohime1:'变化',
-               Kiyohime1_info:'Rank C'+'</span><br>出牌阶段限一次 你选择一名非主公的英灵发动 本回合你与其交换身份牌',   
-               Kiyohime2:'跟踪',
-               Kiyohime2_info:'Rank B'+'</span><br>选择一名其他英灵发动 本回合内你与其距离为1',                    
-               Kiyohime3:'焰色接吻',
-               Kiyohime3_info:'Rank A'+'</span><br>你判定后若结果为红色 你可以选择一名其他英灵对其造成1点火焰伤害',
-               AnneBonnyEX:"比翼连理",
-               AnneBonnyEX_1:'<span class="bluetext"style="color: #F9F900">比翼连理</span>',
-               AnneBonnyEX_info:'Rank C+'+'<br></span> 对人<span style=\"color:black\">宝具</span> <span class="bluetext"style="color: #AA0000">◎'+'<br></span>对敌方造成自身HP越少威力越高的强大攻击<br><span class="bluetext"style="color: #F9F900">最大解放'+'</span><br>附加自身已损失HP所占百分比',
-               AnneBonny1:'航海',
-               AnneBonny1_info:'Rank A+'+'</span><br>出牌开始时 展示牌堆顶5张牌 使用其中的装备牌/锦囊牌 那之后 本回合不能使用牌',   
-               AnneBonny2:'射击',
-               AnneBonny2_info:'Rank C'+'</span><br>对其他英灵使用【杀】造成伤害时 概率触发弱点攻击 伤害翻倍',                    
-               AnneBonny3:'配合',
-               AnneBonny32:'配合',
-               AnneBonny3_init:'配合',
-               AnneBonny3_info:'Rank C'+'</span><br>锁定技 回合结束时切换至里德/安妮状态 安妮和里德拥有独立的HP、体力上限和手牌 <li>当你成为【杀】的目标时 你可以移除里状态的一张【杀】 视为对该【杀】使用者使用一张【杀】 若此时为里德状态且可以再移除【杀】 则再次执行',
-               MordredEX:"对吾华丽父王的叛逆",
-               MordredEX_1:'<span class="bluetext"style="color: #F9F900">对吾华丽父王的叛逆</span>',
-               MordredEX_info:'Rank EX'+'<br></span> 对军<span style=\"color:black\">宝具</span> <span class="bluetext"style="color: #AA0000">◎'+'<br></span>对攻击范围内的所有英灵发动强力攻击(可以被【闪】响应) 对亚瑟特攻(包括所有职介和形态的阿尔托莉雅以及身为男性的亚瑟)<br><span class="bluetext"style="color: #F9F900">最大解放'+'</span><br>伤害提高 自身的NP少量提升',
-               Mordred1:'魔力放出',
-               Mordred1_info:'Rank A'+'</span><br>锁定技 你使用的【决斗】不会被无懈可击 当你发动[对吾华丽父王的叛逆]时 若你的手牌为场上唯一最多的 则所有英灵不能用【闪】响应',   
-               Mordred2:'直感',
-               Mordred2_info:'Rank B'+'</span><br>每回合一定概率看出其他英灵的破绽 当你失去手牌里最后一张基本牌时 你从牌堆·弃牌堆随机获取一张基本牌',                    
-               Mordred3:'隐藏不贞的头盔',
-               Mordred3_info:'Rank EX'+'</span><br>解除自身的不良状态 提升NP',
-               */ HassaniSabbahEX: '死告天使',
+                  HassaniSabbahEX: '死告天使',
                   HassaniSabbahEX_1: '<span class="bluetext"style="color: #F9F900">死告天使</span>',
                   HassaniSabbahEX_info: 'Rank C<br></span> 对人<span style=\"color:black\">宝具</span> <span class="bluetext"style="color: #AA0000">◎<br></span>对敌方单体发动超强大的攻击 高概率即死效果<br><span class="bluetext"style="color: #F9F900">最大解放</span><br>即死效果概率提升',
                   HassaniSabbah1: '战斗续行',
@@ -21435,25 +20755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                9: '<li><span style="color:red">Buster</span>:对其造成伤害加一</font>',
             },
          },
-         /*        "k9_6":{"name":"<b><li>【英灵召唤】</b>",
-               clear:true
-             },
-                 "k9_7":{
-               name:"<li><font color=silver>[点击查看详细内容]</font>",
-               init:"1",
-               intro:"点我查看详细内容",
-               item:{
-                 "1":" ",
-                 "2":"<b>>><font color=#1E90FF>英灵召唤</font>>>",
-                 "3":"<li>开启英灵召唤游戏中会出现召唤卡池</font>",
-                 "4":"<li>卡池分别有:指令/限定/剧情/礼装 </font>",
-                 "5":"<li>新出的英灵 会加入限定卡池 记得进群更新o</font>",
-                 "6":"<li>常驻剧情卡池 但是剧情英灵从者有很多没更新到以后会补全</font>",
-                 "7":"<li>英灵召唤 获得召唤卡 使用可以召唤出来英灵参加战斗(只限本局)相同英灵场上只能有一个</font>",
-                 "8":"<li>装备礼装会获得对自身获得增益效果</font>",
-                 "9":"<li>〖注意〗:EX礼装是指定英灵才能使用的且只能通过卡池获取</font>"
-                 }
-             },*/
+
          k9_5: {
             name: '<b><li>【灵基再临】</b>',
             clear: true,
@@ -21574,60 +20876,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
          author: 'k9/欧尼斯特·渣诚/黎庶',
          version: '1.44',
          changeLog: '<br><br><br><b>命运·冠位指定</b><br><div style="text-align:left;"><br>『1.42版本』<br><br>q群:909382235</div>',
-         /*更新日志
-         //v1.0
-         更新泳装迦摩和凯特·库·米可科尔
-         //v1.1  2023.09.24
-         更新仇凛灵基再临 修复一些bug
-         //v1.2  2023.09.26
-         更新兽尼禄
-         泳装迦摩灵基再临
-         //v1.21  2023.09.26
-         更新水骑呆 修复兽尼禄职阶不显示问题 
-         //v1.22  2023.09.29
-         更新阿瓦隆女士
-         //v1.3  2023.10.7
-         更新卡池分别为指令卡池 剧情卡池 限定卡池 礼装卡池
-         更新概念礼装 更新了一些功能
-         //1.31  2023.10.10
-         更新杀狐
-         下调了所有英灵血量
-         //1.4  2023.10.14
-         加入了剧情Fgo第一章 特异点 F
-         燃烧的冬木市 目前只更新了两个关卡且是教学模式只能用玛修作战
-         之前玛修技能丢失  重做了玛修
-         减少了增益卡牌的数量
-         修复 丑阶 边框出错问题
-         删除了np值会在无关此扩展武将上显示问题
-         //1.41 2023.10.18
-         优化英灵评级
-         更新迦摩灵基 增加迦摩宝具吟唱动画
-         修复小部分英灵 红魔放 蓝魔放 绿魔放 的问题
-         修复伊什塔尔第二阶段灵基问题
-         修复玛修宝具满np不释放问题
-         优化灵基再临 去除了受伤摸牌等
-         优化了界面
-         //1.43.1  2023.12.08
-         更新 伊莉雅Caster 伊莉雅Archer 阿尔托莉雅Lancer
-        『无敌』卡牌移除
-        『补魔』卡牌获得Np-10
-         补充英灵死亡语音
-         补充英灵特性
-         分类职阶
-         //1.44  2023.12.25
-         修复:
-         部分英灵技能丢失问题
-         安妮[3]对自身毅力状态异常
-         秦良玉[3]对自身毅力状态异常
-         霍恩海姆[3]对目标毅力状态异常
-         调整:
-         斯卡哈EX对敌方单体眩晕/EX对自身获得无敌状态(1回合)
-         伊莉雅Caster[2]游戏开始后 废弃判定区 场上每个英灵判定一次 你摸2张牌 获得5Np/每轮限X次 你可以视为使用或打出一张杀、闪、酒、无懈  X为你的当前HP值 这才是Caster嘛!
-         伊莉雅Archer[1.3]1.出牌阶段 展示全部手牌 对敌方单体使用手牌数量的杀/你使用杀造成伤害时 30%几率令伤害翻倍 1%几率秒杀目标或清空其技能 10%几率令目标翻面或横置 10%几率令目标失去x点HP (x为目标已损HP)我觉得是一波小加强
-         3.距离你3以内的英灵出杀时 你可以令此杀强中 你摸2张牌/锁定技 你的攻击范围+X 你使用【杀】的次数上限+X 你的【杀】可以指定至多X个目标(X为游戏轮数)这搭配无敌呀!不愧是伊莉雅 
-         更新 穹妹 悠酱
-         移除英灵召唤系统
-         */
       },
    };
 });

@@ -16,10 +16,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.translate.wwyjsha = '杀';
             lib.translate.wwyjsha2 = '杀';
             lib.groupnature.wwyjsha = 'wwyjsha';
-            /*十周年UI武将名背景*/
+
             var tenUi = document.createElement('style');
             tenUi.innerHTML = ".player>.camp-zone[data-camp='wwyjsha']>.camp-back {background: linear-gradient(to bottom, rgb(204,0,204), rgb(136,0,204), rgb(102,0,204));}";
-            /*十周年UI势力*/
+
             tenUi.innerHTML += ".player>.camp-zone[data-camp='wwyjsha']>.camp-name {text-shadow: 0 0 5px rgb(255, 0, 204), 0 0 10px rgb(255, 0, 204), 0 0 15px rgb(255, 0, 204);}";
             document.head.appendChild(tenUi);
             if (config.wwyj_changeGroup) {
@@ -767,29 +767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             Animation2.style.WebkitClipPath = 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';
                             //ui.window.appendChild(Animation2);
                             //ui.refresh(Animation2);
-                            /*  name2 = document.createElement('div');
-                                          name2.innerHTML=trigger.player.node.name.innerHTML;	
-                                          name2.style.backgroundSize='cover';
-                                          name2.style.width = '240px';
-                                      name2.style.height = '320px';  					 				 	     		 	    
-                                          //name2.style.width='100%';
-                                      //name2.style.height='100%';				 
-                                      name2.style.top = 'calc(34.5% - 90px)';
-                                      name2.style.left='62%';					 		 									 			 	
-                                      name2.style['font-size']='36px';			   
-                                        name2.style['font-family']='xingkai';
-                                        //name2.style['text-align']='center';
-                                        name2.style['z-index']='55';//顶层		     	 
-                                       // name2.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';	
-                                        //name2.style.webkitFilter="grayscale(100%)";//去色
-                                      //name2.style.filter="grayscale(100%)";	
-                                      name2.style.clipPath='polygon(0 0, 100% 0, 100% 65.5%, 0 25.5%)';//斜面裁切from十周年UI
-                                      name2.style.WebkitClipPath= 'polygon(0 0, 100% 0, 100% 65.5%, 0 25.5%)';
-                                      setTimeout(function(){
-                                    //	ui.window.removeChild(name2);
-                                 name2.delete();	            
-                            },2400);	  	
-                            */
+
                             var Animation3 = ui.create.div();
                             Animation3.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;
                             Animation3.style.right = '20%';
@@ -808,28 +786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             Animation3.style.WebkitClipPath = 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';
                             //ui.window.appendChild(Animation3);
                             //ui.refresh(Animation3);
-                            /* name3 = document.createElement('div');
-                                         name3.innerHTML=trigger.player.node.name.innerHTML;	
-                                         name3.style.backgroundSize='cover';
-                                         name3.style.width = '240px';
-                                     name3.style.height = '320px';  					 				 	     	 	    
-                                         //name3.style.width='100%';
-                                     //name3.style.height='100%';				 
-                                     name3.style.top = 'calc(42.5% - 90px)';
-                                     name3.style.left='58%';					 		 									 			 	
-                                     name3.style['font-size']='36px';			   
-                                       name3.style['font-family']='xingkai';
-                                       //name3.style['text-align']='center';
-                                       name3.style['z-index']='55';//顶层		     	 		     	
-                                       //name3.style.webkitFilter="grayscale(100%)";//去色
-                                     //name3.style.filter="grayscale(100%)";
-                                     name3.style.clipPath= 'polygon(0 26%, 100% 61%, 0 100%, 0 100%)';//斜面裁切from十周年UI
-                                     name3.style.WebkitClipPath= 'polygon(0 26%, 100% 61%, 0 100%, 0 100%)';
-                                     setTimeout(function(){
-                                          //ui.window.removeChild(name3);
-                                name3.delete();	            
-                           },2400);	  	
-                           */
+
                             setTimeout(function () {
                                 //ui.window.appendChild(name2);
                                 //ui.refresh(name2);
@@ -849,14 +806,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 Animation3.style.transition = 'all 0.8s';
                                 //	name3.style.transform='translate(-8px)';
                                 //	name3.style.transition = 'all 0.8s';
-                                /*	setInterval(
-                                   function () {                                              
-                                       Animation2.style.left = Animation2.offsetLeft + 25 + "px";
-                                       Animation2.style.top = Animation2.offsetTop - 10 + "px";
-                                       Animation3.style.left = Animation3.offsetLeft - 25 + "px";
-                                       Animation3.style.top = Animation3.offsetTop + 10 + "px";
-                                   },
-                                   50);*/
                             }, 1200);
                             setTimeout(function () {
                                 ui.window.removeChild(Animation);
@@ -1012,9 +961,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     Animation.style.left = (document.body.clientWidth - 120) / 2.5 + 'px';
                                     Animation.style.top = '25%';
                                     ui.window.appendChild(Animation);
-                                    /*Animation.style.left= "8%";
-                                    Animation.style.top = "25%";
-                                    player.appendChild(Animation);*/
                                 }
                                 setTimeout(function () {
                                     ui.window.removeChild(Animation);
@@ -1513,7 +1459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 function (target) {
                                     if (player.countCards('h') < target.countCards('h')) return -get.attitude(player, target);
                                     return get.attitude(player, target);
-                                }
+                                },
                             );
                             ('step 1');
                             if (result.bool) {
@@ -1589,10 +1535,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function () {
                                                 AnimationClick();
                                             },
-                                            Math.floor(Math.random() * 3000)
+                                            Math.floor(Math.random() * 3000),
                                         );
                                 },
-                                true
+                                true,
                             );
                             player.node.handcards2.addEventListener(
                                 'DOMSubtreeModified',
@@ -1602,10 +1548,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function () {
                                                 AnimationClick();
                                             },
-                                            Math.floor(Math.random() * 3000)
+                                            Math.floor(Math.random() * 3000),
                                         );
                                 },
-                                true
+                                true,
                             );
                         }
                     }
@@ -1918,9 +1864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 div.style.cursor = 'pointer';
                 div.style.borderRadius = '5px';
                 //技能皮肤:
-                /*if(lib.config.extension_文武英杰_wwyjwjl_showSS==true&&lib.skillSkin_character!=undefined&&lib.skillSkin_character.includes(name)){
-                    div.style['box-shadow']='rgba(0, 0, 0, 0.2) 0 0 0 1px,rgba(75,255,0,0.4) 0 0 5px, rgba(75,255,0,0.4) 0 0 12px, rgba(75,255,0,0.8) 0 0 15px';
-                };*/
+
                 //能否联机:
                 if (bool == true && lib.config.extension_文武英杰_wwyjwjl_showLJ == true) {
                     div.node.hp.style.zIndex = 1;
@@ -2438,10 +2382,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (!lib.connectBanned.includes(characterButtons[0]) && lib.characterPack.wenwuyingjie != undefined && name != 'wenwuyingjie') bool = true;
                                     var characterButton = game.wwyjwjl_createButton(characterButtons[0], bool);
                                     characterButton.link = characterButtons[0];
-                                    /*characterButton.onclick=function(){
-                                    if(lib.wwyjs_jswj_character[this.link]==undefined||
-                                    (lib.wwyjs_jswj_character[this.link]!=undefined&&lib.config.wwyjs_jswj[this.link]==true)) ui.click.charactercard(this.link,this);
-                                };*/
+
                                     if (name == '凉茶') characterButton.style.display = 'none';
                                     packCharacter.appendChild(characterButton);
                                     characterButtons.remove(characterButtons[0]);
@@ -2449,7 +2390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (characterButtons.length == 0) clearInterval(interval);
                             }, 100);
                         },
-                        lib.config.extension_文武英杰_wwyjwjl_load == true ? 10 : 300
+                        lib.config.extension_文武英杰_wwyjwjl_load == true ? 10 : 300,
                     );
                 }
                 var style1 = {
@@ -2468,101 +2409,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     '-webkit-animation': 'fadelogIn .4s',
                 };
                 //帖子连接:
-                /*if(characterPackInfo.wenwuyingjie!=undefined&&characterPackInfo.wenwuyingjie.url!=undefined){
-                    var urls=characterPackInfo.wenwuyingjie.url;
-                    var num1=0;
-                    for(var i in urls){
-                        var button1=ui.create.div('.menu');
-                        for(var j in style1){
-                            button1.style[j]=style1[j];
-                        };
-                        button1.style.right=(3+135*num1)+'px';
-                        button1.style.transition='opacity 0.5s';
-                        ui.window.appendChild(button1);
-                        if(lib.config.button_press){
-                            button1.addEventListener(lib.config.touchscreen?'touchstart':'mousedown',function(){
-                                this.style.transform='scale(0.95)';
-                            });
-                            button1.addEventListener(lib.config.touchscreen?'touchend':'mouseup',function(){
-                                this.style.transform='';
-                            });
-                        };
-                        if(i.indexOf('官网')!=-1){
-                            button1.style['font-size']='25px';
-                            button1.style['line-height']='40px';
-                            button1.innerHTML=i;
-                        }else{
-                            button1.innerHTML='设计贴<br>'+i;
-                        };
-                        button1.link=urls[i];
-                        button1.onclick=function(){
-                            if(this.link=='已删贴'){
-                                game.say1('设计贴已被删除');
-                            }else{
-                                game.open(this.link);
-                            };
-                        };
-                        dialog1[num1]=button1;
-                        num1++;
-                    };
-                };
-                */
-                /*if(name=='凉茶'){
-                    game.say1('需加载卡牌较多,默认隐藏所有卡牌,稍等后点击选择条件即可显示');
-                };*/
+
                 var div = ui.create.div('');
                 div.style.height = 'calc(100%)';
                 div.style.width = 'calc(100%)';
                 div.style.left = '0px';
                 div.style.top = '0px';
                 //禁用:
-                /*if(lib.wwyjprogram&&lib.wwyjprogram.character&&lib.characterPack.wenwuyingjie){
-                    var forbid=ui.create.div();
-                    forbid.classList.add('popped');
-                    forbid.classList.add('static');
-                    forbid.style.height='34px';
-                    forbid.style.width='85px';
-                    forbid.style.bottom='2px';
-                    forbid.style.right='5px';
-                    forbid.style.borderRadius='5px';
-                    forbid.style['text-align']='center';
-                    forbid.style['font-size']='25px';
-                    forbid.style['line-height']='34px';
-                    forbid.style['font-family']="'STXinwei','xinwei'";
-                    forbid.style['background-image']='linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))';
-                    forbid.style['box-shadow']='rgba(0, 0, 0, 0.4) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px';
-                    forbid.style.cursor='pointer';
-                    forbid.style['background-image']='linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4))';
-                    //forbid.style['z-index']=22;
-                    if(lib.config['extension_文武英杰_'+name]==true){
-                        forbid.innerHTML='<span style="color:white;text-shadow:black 0 0 2px;">禁用中</span>';
-                        forbid.style.backgroundColor="rgb(255, 0, 0)";
-                    }else{
-                        forbid.innerHTML='<span style="color:white;text-shadow:black 0 0 2px;">启用中</span>';
-                        forbid.style.backgroundColor="rgb(0, 255, 0)";
-                    };
-                    forbid.link=name;
-                    forbid.link1=node;
-                    forbid.onclick=function(){
-                        var name=this.link;
-                        var node=this.link1;
-                        if(this.innerHTML=='<span style="color:white;text-shadow:black 0 0 2px;">禁用中</span>'){
-                            game.saveConfig('extension_文武英杰_'+name,false);
-                            this.innerHTML='<span style="color:white;text-shadow:black 0 0 2px;">启用中</span>';
-                            forbid.style.backgroundColor="rgb(0, 255, 0)";
-                            node.classList.remove('off');
-                            //game.say1('启用'+lib.characterPack.wenwuyingjie+'包成功');
-                        }else{
-                            game.saveConfig('extension_文武英杰_'+name,true);
-                            this.innerHTML='<span style="color:white;text-shadow:black 0 0 2px;">禁用中</span>';
-                            forbid.style.backgroundColor="rgb(255, 0, 0)";
-                            node.classList.add('off');
-                            //game.say1('禁用'+lib.characterPack.wenwuyingjie+'包成功');
-                        };
-                    };
-                    packName.appendChild(forbid); 
-                };
-                */
+
                 var func1 = function () {
                     ui.system.style.display = '';
                     //ui.menuContainer.style.display='';
@@ -3217,88 +3071,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 threaten: 0.5,
                             },
                         },
-                        /*	
-                          //以下写法的BUG在于不论有没人展示闪都能使用闪,故不得不换写法
-                        wwyj_shengbei_shan:{				
-                              prompt:'当你需要使用【闪】时,你可以展示一张【闪】,若其他男性角色展示一张【闪】,视为你使用之',
-                              enable:'chooseToUse',
-                              usable:1,
-                              filter:function (event,player){					
-                                  return player.countCards('h','shan')&&game.hasPlayer(function(current){
-                          return player!=current&&current.countCards('h');
-                      }); 
-                              },			
-                              filterCard:function (){return false},
-                   selectCard:-1,
-                   onuse:function (result,player){
-                   },
-                   viewAsFilter:function (player){
-                   return player.countCards('h','shan')&&game.hasPlayer(function(current){
-                          return current.countCards('h');
-                      });               
-                   },	
-                              viewAs:{name:'shan'},				
-                              ai:{
-                                  order:5,
-                                  threaten:1.5,
-                                  respondShan:true,
-                              }
-                          },	
-                          "wwyj_shengbei_shan2":{
-                              trigger:{player:['useCardBefore','respondBefore']},
-                              forced:true,
-                              popup:false,
-                              filter:function (event,player){
-                                  return player.countCards('h','shan')&&event.skill=='wwyj_shengbei_shan'&&game.hasPlayer(function(current){
-                          return player!=current&&current.countCards('h');
-                      });                                          
-                              },
-                              content:function (){					
-                      'step 0'		
-                      event.num=0;       
-                      event.targets=game.filterPlayer(function(current){
-                          return player!=current&&current.countCards('h');
-                      }); 
-                      player.chooseCard('展示一张【闪】','h',1,function(card){
-                             return card.name=='shan';
-                          }).ai=function(card){			   
-                             return get.value(card);
-                          };  
-                      'step 1' 
-                      if(result.bool){
-                          player.showCards(result.cards);
-                          player.say('圣杯在此,尔等速速俯首称臣');
-                          game.playwwyj('wwyj_shengbei1');
-                          event.goto(2);
-                      }else{
-                          event.finish();
-                      }
-                      'step 2' 
-                      if(event.num<event.targets.length){               
-                          event.targets[event.num].chooseCard('展示一张【闪】','h',1,function(card){
-                             return card.name=='shan';
-                          }).ai=function(card){			   
-                             if(get.attitude(event.targets[event.num],player)<=0) return 0;
-                             return 12-get.value(card);
-                          };   
-                       }
-                       else{
-                           event.finish();
-                       }
-                       'step 3'      
-                      if(result.bool){           
-                         event.targets[event.num].line(player,'green'); 		        
-                         event.targets[event.num].showCards(result.cards[0]);           	     
-                         game.log(event.targets[event.num],'展示了一张',result.cards[0]);
-                         event.finish();
-                      }
-                      else{
-                         event.num++;
-                         event.goto(2);
-                      }                              
-                              },
-                          },
-                          */
+
                         wwyj_shengbei_rshan: {
                             trigger: {
                                 player: 'chooseToRespondBegin',
@@ -3371,9 +3144,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             init(player) {
                                 player.storage.wwyj_rongyao = [];
                             },
-                            /* filter:function (event,player){
-                     return player.countCards('h');
-                 }, */
+
                             marktext: '耀',
                             content() {
                                 var cards = get.cards(player.getDamagedHp());
@@ -3582,31 +3353,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.player.chat(chat);
                                 }
                                 //player.recover();
-                                /* "step 2"
-                                              var list=[];
-                                              list.push('失去体力');
-                                              if(trigger.player.isDamaged()) list.push('回复体力');
-                                              list.push('cancel2')
-                                              player.chooseControl(list).set('prompt','你要令'+get.translation(trigger.player)+'做什么呢？').set('ai',function(){
-                                                  var player=_status.event.player,target=_status.event.getTrigger().player;
-                                                  var att=get.attitude(player,target),eff=get.recoverEffect(target,player,player);
-                                                  if(target.isDamaged()&&att>2&&eff>0) return '回复体力';
-                                                  if(att<-2&&eff<=0) return '失去体力';
-                                                  return 'cancel2';
-                                              });
-                                              "step 3"
-                                              if(result.control=='回复体力'){
-                                                  var target=trigger.player;
-                                                  var chat=["姑娘谬赞.","桃之夭夭,灼灼其华.","所谓伊人,在水一方."].randomGet();
-                                                  target.recover();
-                                                  player.chat(chat);
-                                              }
-                                              if(result.control=='失去体力'){
-                                                  var target=trigger.player;
-                                                  var chat=["卿本佳人,奈何助贼.","与姑娘道不同,难相知.","如此言语,徒增姑娘烦恼."].randomGet();
-                                                  target.loseHp();
-                                                  player.chat(chat);
-                                              }*/
                             },
                         },
                         wwyj_zhiguo2: {
@@ -3699,50 +3445,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                         },
-                        /* wwyj_qingyan:{
-                               enable:"phaseUse",
-                               audio:"ext:阳光包/audio:2",
-                               filterCard:function (card){
-                                   return card.name=='jiu';
-                               },
-                               selectCard:function (){
-                                   return [0,1];
-                               },
-                               filterTarget:function (card,player,target){
-                                   if(target.hasSkill('wwyj_qingyan_off')) return false;
-                                   return target==player||target.sex=="female";
-                               },
-                               content:function (){
-                                   "step 0"
-                                   var chat=["品拟飞仙,情殊流俗.","才逾苏小,貌并王嫱.","韵中生韵,香外生香."].randomGet();
-                                   player.chat(chat);
-                                   if(cards.length==0){
-                                       player.loseHp();
-                                   }
-                                   "step 1"
-                                   target.addTempSkill('wwyj_qingyan_off');
-                                   target.draw(3);
-                               },
-                               check:function (card){
-                                   return 10-get.value(card);
-                               },
-                               ai:{
-                                   order:8.5,
-                                   result:{
-                                       target:function (player,target){
-                                           if(!ui.selected.cards.length){
-                                               if(player.hp<3) return 0;
-                                           }
-                                           return 1;
-                                       },
-                                   },
-                               },
-                               subSkill:{
-                                  off:{
-                                      sub:true,
-                                  }
-                               }
-                           },*/
+
                         wwyj_fanxing: {
                             enable: 'phaseUse',
                             audio: ['luanji', 2],
@@ -3753,38 +3456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.$fullscreenpop('箭雨流星', 'fire');
                                 event.num = Math.min(7, player.storage.wwyj_huayue.length);
-                                /* 
-                                //手动式:
-                                  'step 1'                  
-                                   player.chooseCardButton(player.storage.wwyj_huayue,1,'选择获得其中的一张<星>牌',true).set('filterButton',function(button){                                                                           						
-                                       return true;
-                                   }).set('ai',function(button){
-                                       return get.value(button.link);
-                                   });      										
-                                   'step 2'    
-                                   if(result.bool){
-                                       event.num--;
-                                       player.$throw(result.links[0]);						
-                                       player.storage.wwyj_huayue.remove(result.links[0]);
-                                       game.cardsDiscard(result.links[0]);
-                                       if(player.storage.wwyj_huayue.length<=0){
-                                           player.unmarkSkill('wwyj_huayue');
-                                       }
-                                       var list=game.filterPlayer(function(current){ 
-                                           return player.canUse('wanjian',current); 
-                                       });                 
-                                       list.sortBySeat(); 
-                                       player.useCard({name:'wanjian'},list); 		          			
-                                   }       
-                                   else event.finish();                
-                                 'step 3'                            
-                               if(event.num>0){                                                                                                                                                   
-                                   event.goto(1);
-                               }
-                               else{
-                                   event.finish();      
-                               } 
-                               */
+
                                 ('step 1');
                                 var list = [];
                                 var cards = player.getStorage('wwyj_huayue');
@@ -3916,10 +3588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 player: 'phaseBegin',
                             },
-                            /*check:function (event,player){                                      
-                                if(player.storage.wwyj_shengming.length<6) return 0;
-                                return 1;
-                            }, */
+
                             forced: true,
                             audio: 'oljiangchi',
                             filter(event, player) {
@@ -3938,7 +3607,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (target) {
                                         if (!target.isEmpty(1) && get.attitude(player, target) > 0) return 0;
                                         return get.attitude(player, target) > 0;
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -4210,10 +3879,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.groups.add(i.group); //用push会将重复的都列出来
                                     }
                                 }
-                                /*player.chooseControl(event.groups).set('ai',function(){
-                                        return event.groups.randomGet();
-                                    }
-                                ).set('prompt',get.prompt('wwyj_guozhan')).set('prompt2',get.translation('wwyj_guozhan_info'));	*/
+
                                 player
                                     .chooseButton(true, [[event.groups, 'vcard']])
                                     .set('filterButton', function (button) {
@@ -4241,10 +3907,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     //if(result.control){
                                     //player.markSkill('wwyj_guozhan');
-                                    /*player.storage.wwyj_guozhan=result.control;
-                                    //player.storage.wwyj_guozhan.push(result.control);
-                                    player.popup(result.control);
-                                    game.log(player,'选择了'+get.translation(result.control));	*/
+
                                     player.storage.wwyj_guozhan.add(result.links[0][2]);
                                     //player.storage.wwyj_guozhan=result.links[0][2];
                                     player.popup(result.links[0][2]);
@@ -4553,10 +4216,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.targets[event.num].init(event.dialog.buttons[0].link);
                                         event.finish();
                                     } else {
-                                        /* player.chooseButton(ui.create.dialog('请您选择一张武将牌替换'+get.translation(event.targets[event.num])+'的武将牌',[event.list1,'character'],true),function(button){                 
-                                             return Math.random();
-                                              // return get.rank(button.link,true);
-                                         });  */ //另一种写法
+                                        //另一种写法
                                         player.chooseButton(event.dialog, true).ai = function (button) {
                                             if (get.attitude(player, event.targets[event.num]) > 0) {
                                                 return get.rank(button.link, true);
@@ -4797,7 +4457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             'targets',
                                             game.filterPlayer(function (current) {
                                                 return player != current && trigger.source != current && player.canUse({ name: 'taoyuan', cards: result.cards }, current);
-                                            })
+                                            }),
                                         ); //from jinyongqunxiazhuan's qtpz_quanzhen
                                     }
                                 }
@@ -5384,11 +5044,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.wwyj_zangyue = [];
                                 player.unmarkSkill('wwyj_zangyue');
                             },
-                            /*intro:{
-                                content:function (suit){
-                                    return get.translation(suit);
-                                },
-                            }, */
+
                             intro: {
                                 content(storage, player, skill) {
                                     return '选择了' + get.translation(player.storage.wwyj_zangyue);
@@ -5520,11 +5176,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                     //点数连续的一组数:
-                                    /*var bs=ui.selected.buttons;
-                                    if(!bs.length)return true;
-                                    var ns=bs.map(function(i){return i.link.number});
-                                    return [Math.min.apply(Math,ns)-1,Math.max.apply(Math,ns)+1].includes(button.link.number);
-                                    */
                                 });
                                 ('step 2');
                                 if (result.bool) {
@@ -6048,7 +5699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     function (target) {
                                         return -get.attitude(player, target);
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -6231,7 +5882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     function (target) {
                                         return get.attitude(player, target) < 0;
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -6282,14 +5933,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 },
                             },
-                            /*mod:{
-                                cardUsable:function(card){								
-                                    return Infinity;
-                                },
-                                targetInRange:function(){
-                                    return true;
-                                },
-                            },*/
                         },
                         wwyj_qinyan: {
                             audio: 'ext:文武英杰/audio:2',
@@ -6385,7 +6028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (target) {
                                         if (player.countCards('h') < 3) return get.attitude(player, target) <= 0;
                                         return Math.random();
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -6624,7 +6267,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (target.hp < 3 && get.attitude(player, target) > 0) return 0;
                                         if (player.hp < 2) return Math.random();
                                         return get.attitude(player, target) <= 0;
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -6846,19 +6489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 order: 5,
                             },
                         },
-                        /*	"_wwyj_gonggao":{		
-                                trigger:{
-                                    global:"roundStart",
-                                },
-                                forced:true,
-                                popup:true,
-                                filter:function (event,player){           
-                                    return player.hasSkill('wwyj_gonggao1');			
-                                },                               
-                                content:function (){
-                                    player.removeSkill("wwyj_gonggao1");
-                                },
-                            },*/
+
                         wwyj_gainian: {
                             audio: 'ext:文武英杰/audio:2',
                             enable: 'phaseUse',
@@ -7007,17 +6638,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i = 0; i < game.dead.length && game.dead[i].name != button.link; i++);
                                         return get.attitude(_status.event.player, game.dead[i]);
                                     });
-                                    /*随机复活:
-                                    var list=[];
-                               var list2;
-                               for(var i=0;i<game.dead.length;i++){
-                               list.push(game.dead[i]);			
-                               }																
-                               list2=list.randomGet();			
-                                   player.line(list2,'green');
-                               list2.revive(list2.maxHp);				
-                               list2.draw(list2.maxHp);
-                               */
                                 }
                                 ('step 3');
                                 if (result.bool) {
@@ -7043,44 +6663,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             },
                                             player,
                                             dead,
-                                            dead.identityShown
+                                            dead.identityShown,
                                         );
                                     }
                                 }
-                                /*全场大涅涅槃:
-                                  event.num=0;      
-                                  event.targets=game.filterPlayer(function(current){
-                                      return current.isAlive();
-                                  }); 
-                                  event.targets.sort(lib.sort.seat);
-                                  'step 2' 
-                              if(event.num<event.targets.length){  
-                                 player.line(event.targets[event.num],'green');
-                                 event.targets[event.num].discard(event.targets[event.num].getCards('hej')); 
-                                 event.targets[event.num].link(false);
-                                 event.targets[event.num].turnOver(false);
-                                 event.targets[event.num].draw(4);
-                                 event.targets[event.num].recover(event.targets[event.num].maxHp-event.targets[event.num].hp);
-                                 event.num++;
-                                 event.redo();
-                               }
-                               else{
-                                   event.goto(3);
-                               }
-                               'step 3' 
-                              game.broadcastAll(function(player){
-                                  var list=[];
-                                  for(var i=0;i<game.dead.length;i++){
-                                  list.push(game.dead[i]);			
-                                  }																
-                              for(var i=0;i<list.length;i++){
-                                  player.line(list[i],'green');
-                                  list[i].revive(list[i].maxHp);				
-                                  list[i].draw(4);
-                                  player.draw();
-                                  }
-                                  }, player);	
-                                  */
                             },
                         },
                         wwyj_liusha: {
@@ -7166,23 +6752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*"wwyj_fenghua1":{                     
-                                shaRelated:true,
-                                trigger:{player:'useCardToPlayered'},				
-                                filter:function(event,player){
-                                    return event.card && event.card.name=='sha';
-                                },
-                                logTarget:'target',
-                                check:function (event,player){
-                                if(get.attitude(player,event.target)<0&&event.target.isTurnedOver()) return 1;
-                        return get.attitude(player,event.target)<0;
-                    },
-                                audio:["jueqing",2], 				                
-                                content:function (){        
-                           // trigger.directHit=true;     
-                              trigger.parent.directHit.add(trigger.target);
-                    },
-                            },*/
+
                         wwyj_fenghua: {
                             audio: ['lieren', 2],
                             usable: 1,
@@ -7916,21 +7486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         wwyj_qiaoji2: {
                             charlotte: true,
                         },
-                        /*  "wwyj_qiaoji2":{
-                          audio:"ext:文武英杰/audio:1",
-                           trigger:{
-                            player:"damageEnd",
-                       },
-                            forced:true,
-                            popup:false,
-                               filter:function (event,player){
-                                 return player.countCards('h')&&event.card.name=='sha';
-                        },
-                       content:function (){
-                           trigger.source.say('吃了我的给我吐出来');
-                           player.chooseToDiscard('h',true);		
-                       },				
-                              },			*/
+
                         wwyj_qiaoji: {
                             audio: ['yingzi', 2],
                             trigger: {
@@ -8317,9 +7873,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: { player: 'phaseDrawBegin2' },
                             forced: true,
                             filter(event, player) {
-                                /*return game.hasPlayer(function(current){
-                        return current.sex=='female';
-                     });  */
                                 return player.isAlive();
                             },
                             mod: {
@@ -8536,9 +8089,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player
                                         .chooseCardButton(event.cards, 1, '弃置' + get.translation(event.target) + '装备区的一张防具牌或防御马或宝物牌', true)
                                         .set('filterButton', function (button) {
-                                            /*return game.hasPlayer(function(current){
-                                            return player.canUse(button.link,current);
-                                        });*/
                                             return true;
                                         })
                                         .set('ai', function (button) {
@@ -8590,9 +8140,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player
                                         .chooseCardButton(event.cards, 1, '弃置' + get.translation(event.target) + '装备区的一张武器牌或进攻马', true)
                                         .set('filterButton', function (button) {
-                                            /*return game.hasPlayer(function(current){
-                                            return player.canUse(button.link,current);
-                                        });*/
                                             return true;
                                         })
                                         .set('ai', function (button) {
@@ -8844,9 +8391,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter(event, player) {
                                 return player.isAlive();
                             },
-                            /* check:function (card){
-                     return 6-get.value(card);
-                 },*/
+
                             content() {
                                 'step 0';
                                 // target.gain(cards,player);
@@ -9151,8 +8696,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         viewAs: { name: links[0][2], nature: links[0][3], suit: null, number: null },
                                         popname: true,
                                         ignoreMod: true,
-                                        precontent() {
-                                        },
+                                        precontent() { },
                                     };
                                 },
                                 prompt(links, player) {
@@ -9401,12 +8945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 } else event.finish();
                                 ('step 3');
-                                /* player.chooseCardButton('理论:选择放在牌堆顶的牌,先选择的在上',2,event.cards,true); 
-                                     'step 4' 
-                                 for(var i=1;i>=0;i--){ 
-                                     event.cards.remove(result.buttons[i].link); 
-                                     ui.cardPile.insertBefore(result.buttons[i].link,ui.cardPile.firstChild); 
-                                 } */
+
                                 player.chooseCardButton('将这' + get.cnNumber(event.num) + '张牌置于牌堆顶', event.cards, true).set('ai', function (button) {
                                     return 10 - get.value(button.link);
                                 });
@@ -9480,7 +9019,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     function (target) {
                                         return -get.attitude(player, target);
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -9584,31 +9123,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 player.flashAvatar('wwyj_qianzhui', result.control);
                                 game.log(player, '获得了技能', '#g【' + get.translation(result.control) + '】');
-                                /* 
-                                  //  原技能:                   
-                                    'step 0'
-                                    player.line(trigger.player,'green');   
-                                    player.$fullscreenpop('( •̥́ ㉨ •̀ू )','fire');    
-                                    player.removeSkill('wwyj_qiandao');
-                                    player.removeSkill('wwyj_yingguai');
-                                    'step 1'    
-                            var name=trigger.player.name;                      
-                           //方法一:
-                        //   var list=[];
-                             //var skills=lib.character[name][3];
-                             //for(var j=0;j<skills.length;j++){
-                            // if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&!lib.skill[skills[j]].unique){
-                           //if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]){
-                          //  list.push(skills[j]);
-                           //  }
-                             //}
-                           // player.addSkill(list);
-                           //方法二:
-                           var skills=lib.character[name][3].slice(0);
-                           player.addSkill(skills);
-                           player.markCharacter(name,null,true,true);      
-                           player.storage.wwyj_qianzhui=true;
-                           player.awakenSkill('wwyj_qianzhui');        */
                             },
                             ai: {
                                 order: 5,
@@ -9630,7 +9144,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     function (target) {
                                         return -get.attitude(player, target);
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -10076,7 +9590,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     function (target) {
                                         if (player.countCards('h') < target.countCards('h')) return -get.attitude(player, target);
                                         return get.attitude(player, target);
-                                    }
+                                    },
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -10172,13 +9686,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('createDialog', ['选美:请选择一名佳丽当你的伴侣', [list.randomGets(5), 'character']]);
                                 ('step 1');
                                 if (result.bool) {
-                                    /* if(lib.config.mode=='guozhan'){
-                                           player.replaceFujiang(result.links[0]);                  
-                                     }
-                                     else{                  
-                                           player.addFujiang(result.links[0]);                         
-                                     } 
-                                     */
                                     player.flashAvatar('wwyj_fengliu', result.links[0]);
                                     player.unmark(player.storage.wwyj_fengliu + '_charactermark');
                                     var name = result.links[0];
@@ -10400,7 +9907,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         get.cardPile(function (card) {
                                             return card.name == result.links[0][2];
                                         }),
-                                        'gain2'
+                                        'gain2',
                                     );
                                 } else {
                                     event.finish();
@@ -10438,30 +9945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 event.current = player.next;
                                 //player.removeSkill('wwyj_huikeng');
-                                /* 	game.broadcastAll(function(player){       	
-                                        var Animation = ui.create.div();
-                                        //Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;
-                                        Animation.setBackgroundImage('extension/文武英杰/wwyj_huikeng.gif'); 						
-                                                  Animation.style.backgroundSize='cover';
-                                                  Animation.style.backgroundPosition='center';
-                                                  Animation.style["z-index"] = 7;						
-                                                  Animation.style.width = (120/715)*document.body.clientHeight + "px";
-                                                  Animation.style.height= (120/715)*document.body.clientHeight + "px";						
-                                                  if(player==game.me){						
-                                                      Animation.style.left= (document.body.clientWidth-120)/2+"px";
-                                                      Animation.style.top = "50%";
-                                                      ui.window.appendChild(Animation);
-                                                  }
-                                                  else {
-                                                  Animation.style.left= (document.body.clientWidth-120)/2+"px";
-                                                      Animation.style.top = "50%";
-                                                      ui.window.appendChild(Animation);
-                                                  }												         
-                                                  setTimeout(function(){
-                              Animation.delete();
-                          },4500);
-                                      },player);
-                                      */
+
                                 ('step 1');
                                 event.list = get.gainableCharacters(function (info) {
                                     return info[2] >= 0;
@@ -10499,13 +9983,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.current.hp = a;
                                     event.current.update();
                                     event.list.remove(result.buttons[0].link);
-                                    /*   var button;  
-                                       for(var i=0;i<event.dialog.buttons.length;i++){  
-                                           if(event.dialog.buttons[i].link==result.buttons[0].link){  
-                                               button=event.dialog.buttons[i];                           
-                                           }  
-                                       }   
-                                       if(button) event.dialog.buttons.remove(button);    */
                                 } else {
                                     event.finish();
                                 }
@@ -10525,20 +10002,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
-                        /*  "wwyj_ancha2":{
-                             audio:"ext:文武英杰/audio:1",
-                             trigger:{
-                                 player:"changeHp",
-                             },                  
-                             frequent:true,         
-                             _priority:2020,            
-                             filter:function (event,player){
-                     return !player.hasSkill('wwyj_huikeng')&&player.hp<2;
-                 },
-                             content:function (){                        
-                                 player.addSkill('wwyj_huikeng');                           
-                             },
-                             },*/
+
                         wwyj_ancha: {
                             audio: 'ext:文武英杰/audio:1',
                             trigger: {
@@ -10619,9 +10083,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         Animation.style.left = (document.body.clientWidth - 120) / 2.5 + 'px';
                                         Animation.style.top = '25%';
                                         ui.window.appendChild(Animation);
-                                        /*Animation.style.left= "8%";
-                                        Animation.style.top = "25%";
-                                        player.appendChild(Animation);*/
                                     }
                                     setTimeout(function () {
                                         ui.window.removeChild(Animation);
@@ -11503,7 +10964,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     onremove() {
                         game.clearModeConfig('wenwuyingjiepicture');
                     },
-                }
+                },
             );
             image: ['extension/文武英杰/image/wenwuyingjiepicture.jpg'];
         },
@@ -11679,11 +11140,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                 },
             },
-            /*"wwyjtujian":{
-                  name:"<b><p align=center><span style=\"font-size:18px\">-------图鉴模式-------</span>",
-                  clear:true,
-                  nopointer:true,
-              },*/
+
             wwyj_tujian: {
                 name: '图鉴模式',
                 init: '1',

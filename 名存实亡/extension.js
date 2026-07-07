@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../noname.js'
+import { lib, game, ui, get, ai, _status } from '../../noname.js';
 game.import('extension', function (lib, game, ui, get, ai, _status) {
 	return {
 		name: '名存实亡',
@@ -20,7 +20,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						},
 						this,
 						target,
-						config
+						config,
 					);
 					game.addVideo('line', this, [target.dataset.position, config]);
 					game.linexyrgbl(target, config, true);
@@ -1200,7 +1200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									function (target) {
 										return -get.attitude(_status.event.player, target);
-									}
+									},
 								);
 								('step 1');
 								if (result.bool) {
@@ -1811,7 +1811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						starnijian: {
 							trigger: {
 								player: 'chooseCardBegin',
-							},//QQQ
+							}, //QQQ
 							forced: true,
 							audio: 'ext:名存实亡/audio:2',
 							filter(event, player) {
@@ -2616,7 +2616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									function (button) {
 										return _status.event.player.hasUseTarget({ name: button.link[2], nature: button.link[3] });
-									}
+									},
 								);
 								('step 1');
 								if (!result.bool) player.draw(2);
@@ -2706,7 +2706,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									function (target) {
 										return -get.attitude(player, target);
-									}
+									},
 								);
 								('step 1');
 								if (result.bool) {
@@ -2814,7 +2814,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							check: (event, player) => event.targets.some((Q) => Q.isFriendsOf(player)),
 							async content(event, trigger, player) {
 								//QQQ
-								const result = await player.chooseTarget((c, p, t) => t.countCards('hej')).set('ai', (target) => 10 - get.attitude(player, target)).forResult();
+								const result = await player
+									.chooseTarget((c, p, t) => t.countCards('hej'))
+									.set('ai', (target) => 10 - get.attitude(player, target))
+									.forResult();
 								if (result.targets && result.targets[0]) {
 									const { result: result1 } = await player.chooseTarget().set('ai', (target) => -get.attitude(player, target));
 									if (result1.targets && result1.targets[0]) {
@@ -4295,7 +4298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return ai.get.equipValue(button.link);
 											}
 										},
-										targets[0]
+										targets[0],
 									);
 								} else {
 									event.finish();
@@ -6084,7 +6087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return card != player.getEquip('pyzhuren_diamond');
 									},
 									get.prompt(event.name, trigger.player),
-									'弃置一张牌,令即将对其造成的伤害+1'
+									'弃置一张牌,令即将对其造成的伤害+1',
 								);
 								next.ai = function (card) {
 									if (_status.event.goon) return 6 - get.value(card);
@@ -6096,7 +6099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									!trigger.player.hasSkillTag('filterDamage', null, {
 										player: player,
 										card: trigger.card,
-									})
+									}),
 								);
 								('step 1');
 								if (result.bool) trigger.num++;
@@ -6649,7 +6652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return target == source || target == source.storage.昭l烈;
 											},
 											true,
-											'选择一个目标获得' + get.translation(event.basic)
+											'选择一个目标获得' + get.translation(event.basic),
 										)
 										.set('ai', function (target) {
 											return get.attitude(_status.event.player, target);
@@ -6816,7 +6819,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							usable: 1,
 							async content(event, trigger, player) {
 								//QQQ
-								const result = await player.chooseTarget('对一名角色造成1点伤害').set('ai', (target) => -get.attitude(player, target)).forResult();
+								const result = await player
+									.chooseTarget('对一名角色造成1点伤害')
+									.set('ai', (target) => -get.attitude(player, target))
+									.forResult();
 								if (result.targets && result.targets[0]) {
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage();
@@ -6833,7 +6839,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							usable: 1,
 							async content(event, trigger, player) {
 								//QQQ
-								const result = await player.chooseTarget('弃置一名其他角色一张牌', (c, p, t) => t.countCards('he')).set('ai', (target) => -get.attitude(player, target)).forResult();
+								const result = await player
+									.chooseTarget('弃置一名其他角色一张牌', (c, p, t) => t.countCards('he'))
+									.set('ai', (target) => -get.attitude(player, target))
+									.forResult();
 								if (result.targets && result.targets[0]) {
 									player.line(result.targets[0], 'green');
 									player.discardPlayerCard(result.targets[0], true, 'he');
@@ -6941,7 +6950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											ui.create.dialog('攻心', cards).videoId = id;
 										},
 										cards,
-										event.videoId
+										event.videoId,
 									);
 								}
 								event.dialog = ui.create.dialog('攻心', cards);
@@ -7678,11 +7687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:名存实亡/audio:2',
 							enable: 'phaseUse',
 							usable: 2,
-							/*filterCard:true,
-							selectCard:[0,4],
-							check:function(card){
-								return 5-get.value(card);
-							},*/
+
 							filterTarget(card, player, target) {
 								//return target!=player&&target.countCards('h')>0;
 								return target != player;
@@ -7780,9 +7785,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.chooseTarget(get.prompt('劫營'), function (card, player, target) {
 											return target.storage.劫營 == undefined;
 										}).ai = function (target) {
-											/*if(target.countCards('j',{name:'lebu'})>0) return -get.attitude(player,target);
-											if(target.countCards('h')>target.hp) return get.attitude(player,target);
-											if(target.countCards('h')<target.hp) return -get.attitude(player,target);*/
 											return -1;
 										};
 										('step 1');
@@ -8420,8 +8422,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								var num = 7;
 								while (num-- > 0) {
-									const result = await player.chooseButton(['选择一名角色对其使用牌堆的1张牌', Array.from(ui.cardPile.childNodes).slice(0, 7)])
-										.set('ai', (button) => player.getUseValue(button.link)).forResult();
+									const result = await player
+										.chooseButton(['选择一名角色对其使用牌堆的1张牌', Array.from(ui.cardPile.childNodes).slice(0, 7)])
+										.set('ai', (button) => player.getUseValue(button.link))
+										.forResult();
 									if (result.links && result.links[0]) {
 										game.cardsGotoOrdering(result.links);
 										await player.chooseUseTarget(result.links[0], true, false);
@@ -8629,7 +8633,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (event.control) event.control.close();
 									const target = trigger.player.next;
 									const att = get.attitude(player, target);
-									const top = [], bottom = cards;
+									const top = [],
+										bottom = cards;
 									for (const i of target.getCards('j')) {
 										const judge = get.judge(i);
 										bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -9102,7 +9107,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (event.control) event.control.close();
 									const target = trigger.player.next;
 									const att = get.attitude(player, target);
-									const top = [], bottom = cards;
+									const top = [],
+										bottom = cards;
 									for (const i of target.getCards('j')) {
 										const judge = get.judge(i);
 										bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -9302,7 +9308,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (event.control) event.control.close();
 									const target = trigger.player;
 									const att = get.attitude(player, target);
-									const top = [], bottom = cards;
+									const top = [],
+										bottom = cards;
 									for (const i of target.getCards('j')) {
 										const judge = get.judge(i);
 										bottom.sort((a, b) => (judge(b) - judge(a)) * att); //态度大于0价值高的牌放前面
@@ -9959,7 +9966,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('ai', function (target) {
 										return -get.attitude(player, target);
-									}).forResult();
+									})
+									.forResult();
 								if (targets.length) {
 									player.useCard({ name: 'sha' }, targets[0], false);
 								}
@@ -10516,7 +10524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										result.targets[0],
 										'he',
 										player.countCards('he', (card) => get.type(card) == 'equip'),
-										true
+										true,
 									);
 									player.useCard({ name: 'sha' }, result.targets[0], false);
 								}
@@ -11273,7 +11281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				lib.config.all.characters.add('名存实亡');
 				lib.config.characters.add('名存实亡');
 				for (var i in QQQ.character) {
-					QQQ.character[i][4].add(`ext:名存实亡/image/${i}.jpg`)
+					QQQ.character[i][4].add(`ext:名存实亡/image/${i}.jpg`);
 				}
 				lib.translate['名存实亡_character_config'] = `名存实亡`;
 				return QQQ;

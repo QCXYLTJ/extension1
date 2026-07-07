@@ -10,38 +10,40 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const result = await i.chooseToUse({
-                            filterCard(card, player, event) {
-                                return lib.filter.cardSavable(card, player, player1);
-                            },
-                            filterTarget(card, player, target) {
-                                if (!card || target != player1) {
-                                    return false;
-                                }
-                                const info = get.info(card);
-                                if (!info.singleCard || ui.selected.targets.length == 0) {
-                                    const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
-                                    if (mod1 == false) {
+                        const result = await i
+                            .chooseToUse({
+                                filterCard(card, player, event) {
+                                    return lib.filter.cardSavable(card, player, player1);
+                                },
+                                filterTarget(card, player, target) {
+                                    if (!card || target != player1) {
                                         return false;
                                     }
-                                    const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-                                    if (mod2 != 'unchanged') {
-                                        return mod2;
+                                    const info = get.info(card);
+                                    if (!info.singleCard || ui.selected.targets.length == 0) {
+                                        const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                                        if (mod1 == false) {
+                                            return false;
+                                        }
+                                        const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                                        if (mod2 != 'unchanged') {
+                                            return mod2;
+                                        }
                                     }
-                                }
-                                return true;
-                            },
-                            prompt: get.translation(player1) + '濒死,是否帮助？',
-                            ai1() {
-                                return 1;
-                            },
-                            ai2() {
-                                return get.attitude(player1, i);
-                            },
-                            type: 'dying',
-                            targetRequired: true,
-                            dying: player1,
-                        }).forResult();
+                                    return true;
+                                },
+                                prompt: get.translation(player1) + '濒死,是否帮助？',
+                                ai1() {
+                                    return 1;
+                                },
+                                ai2() {
+                                    return get.attitude(player1, i);
+                                },
+                                type: 'dying',
+                                targetRequired: true,
+                                dying: player1,
+                            })
+                            .forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
@@ -253,7 +255,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }
                         },
                         natures,
-                        player
+                        player,
                     );
                     var numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
                     player.$damagepop(-numx, natures[0]);
@@ -594,7 +596,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                 target: target,
                                                                 card: card,
                                                             },
-                                                            true
+                                                            true,
                                                         )) &&
                                                     !target.hasSkillTag('filterDamage', null, {
                                                         player: player,
@@ -619,7 +621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 target: target,
                                                 card: card,
                                             },
-                                            true
+                                            true,
                                         )
                                     )
                                         return false;
@@ -701,7 +703,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     target: target,
                                                     card: card,
                                                 },
-                                                true
+                                                true,
                                             )
                                         )
                                             return eff / 1.2;
@@ -3660,7 +3662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i = 0; i < game.dead.length && game.dead[i].name != button.link; i++);
                                         return get.attitude(_status.event.player, game.dead[i]);
                                     },
-                                    true
+                                    true,
                                 );
                                 ('step 1');
                                 if (result.bool) {
@@ -4268,8 +4270,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return target != player && target.countCards('h');
                             },
                             selectTarget: -1,
-                            content() {
-                            },
+                            content() { },
                             ai: {
                                 basic: {
                                     order: 1,
@@ -5536,7 +5537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card) {
                                             return card.name && card.name == 'sha';
                                         },
-                                        `【菠萝】:是否为${get.translation(target)}打出一张【杀】.`
+                                        `【菠萝】:是否为${get.translation(target)}打出一张【杀】.`,
                                     )
                                     .set('ai', function (card) {
                                         if (event.att > 0) {
@@ -6643,7 +6644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function () {
                                             return true;
                                         },
-                                        `是否将${get.translation(cards)}留在手上.`
+                                        `是否将${get.translation(cards)}留在手上.`,
                                     );
                                 }
                                 ('step 2');
@@ -7197,7 +7198,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         function (card, player, target) {
                                             return target.sex == 'female';
-                                        }
+                                        },
                                     );
                                 } else {
                                     event.finish();
@@ -9076,8 +9077,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             selectTarget: -1,
                             async content(event, trigger, player) {
-                                const { links } = await player.chooseButton(['将一名已死亡的角色炸掉', game.dead])
-                                    .set('ai', (button) => 20 - get.attitude(player, button.link)).forResult();
+                                const { links } = await player
+                                    .chooseButton(['将一名已死亡的角色炸掉', game.dead])
+                                    .set('ai', (button) => 20 - get.attitude(player, button.link))
+                                    .forResult();
                                 if (links && links[0]) {
                                     links[0].bxyr_jieshihuanhun = true;
                                 }
@@ -9643,7 +9646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.targets?.length) {
                                     result.targets[0].draw(3);
                                     target.die();
-                                }//QQQ
+                                } //QQQ
                             },
                             ai: {
                                 basic: {
@@ -10324,7 +10327,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -10368,7 +10371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 );
                             },
                         },
@@ -10625,15 +10628,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     _status.imchoosing = false;
                                     if (event.dialog) event.dialog.close();
                                     if (event.control) event.control.close();
-                                    const top = [], bottom = cards;
+                                    const top = [],
+                                        bottom = cards;
                                     for (const i of player.getCards('j')) {
                                         const judge = get.judge(i);
-                                        bottom.sort((a, b) => (judge(b) - judge(a))); //价值高的牌放前面
+                                        bottom.sort((a, b) => judge(b) - judge(a)); //价值高的牌放前面
                                         if (bottom.length) {
                                             top.push(bottom.shift());
                                         }
                                     }
-                                    bottom.sort((a, b) => (get.value(b) - get.value(a))); //把价值高的牌放前面
+                                    bottom.sort((a, b) => get.value(b) - get.value(a)); //把价值高的牌放前面
                                     while (bottom.length) {
                                         top.push(bottom.shift());
                                     }
@@ -10799,7 +10803,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             content() {
-                                player.chooseToUse({ name: 'sha' }, '银月枪:是否对攻击范围内的一名目标使用一张杀', target)
+                                player.chooseToUse({ name: 'sha' }, '银月枪:是否对攻击范围内的一名目标使用一张杀', target);
                             },
                         },
                         //舞踏扇
@@ -11036,7 +11040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 cardSavable(card, player) {
                                     if (card.name == 'shan' && _status.event.skill != 'yr_gangsuolian_skill') return false;
-                                },//QQQ
+                                }, //QQQ
                             },
                         },
                         //姬神弓
@@ -11461,15 +11465,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     _status.imchoosing = false;
                                     if (event.dialog) event.dialog.close();
                                     if (event.control) event.control.close();
-                                    const top = [], bottom = cards;
+                                    const top = [],
+                                        bottom = cards;
                                     for (const i of player.getCards('j')) {
                                         const judge = get.judge(i);
-                                        bottom.sort((a, b) => (judge(b) - judge(a))); //价值高的牌放前面
+                                        bottom.sort((a, b) => judge(b) - judge(a)); //价值高的牌放前面
                                         if (bottom.length) {
                                             top.push(bottom.shift());
                                         }
                                     }
-                                    bottom.sort((a, b) => (get.value(b) - get.value(a))); //把价值高的牌放前面
+                                    bottom.sort((a, b) => get.value(b) - get.value(a)); //把价值高的牌放前面
                                     while (bottom.length) {
                                         top.push(bottom.shift());
                                     }
@@ -11786,7 +11791,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 );
                             },
                         },
@@ -11815,7 +11820,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 );
                             },
                         },
@@ -12665,7 +12670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -12774,7 +12779,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -12886,7 +12891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -12908,7 +12913,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -13658,7 +13663,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         target: target,
                                                         card: card,
                                                     },
-                                                    true
+                                                    true,
                                                 )
                                             )
                                                 return false;
@@ -13716,7 +13721,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                             target: target,
                                                             card: card,
                                                         },
-                                                        true
+                                                        true,
                                                     )
                                                 )
                                                     return eff / 1.2;
@@ -15434,7 +15439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.target,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15456,7 +15461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15521,7 +15526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 global: 'phaseDiscardAfter',
                             },
-                            _priority: -Infinity,//QQQ
+                            _priority: -Infinity, //QQQ
                             popup: false,
                             forced: true,
                             content() {
@@ -15550,7 +15555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15572,7 +15577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15645,7 +15650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15669,7 +15674,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15706,7 +15711,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15729,7 +15734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15766,7 +15771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15788,7 +15793,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15810,7 +15815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15854,7 +15859,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15877,7 +15882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15917,7 +15922,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -15950,7 +15955,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                                     },
                                     trigger.player,
-                                    -1
+                                    -1,
                                 ).targetRequired = true;
                             },
                         },
@@ -16040,7 +16045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         bxyr_quanxiang: '劝降',
                         bxyr_shuigong_bg: '水',
                         bxyr_shuigong: '水攻',
-                        bxyr_shuigong_info: '令目标展示一张牌,你可以弃置一张同花色牌令其翻面',//QQQ
+                        bxyr_shuigong_info: '令目标展示一张牌,你可以弃置一张同花色牌令其翻面', //QQQ
                         bxyr_touxi_bg: '襲',
                         bxyr_touxi: '偷袭',
                         bxyr_wangmeizhike2_bg: '梅',
@@ -18760,7 +18765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                                 target: target,
                                                                 card: card,
                                                             },
-                                                            true
+                                                            true,
                                                         )) &&
                                                     !target.hasSkillTag('filterDamage', null, {
                                                         player: player,
@@ -18785,7 +18790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 target: target,
                                                 card: card,
                                             },
-                                            true
+                                            true,
                                         )
                                     )
                                         return false;
@@ -18851,7 +18856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     target: target,
                                                     card: card,
                                                 },
-                                                true
+                                                true,
                                             )
                                         )
                                             return eff / 1.2;
@@ -19725,7 +19730,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     if (player == game.me) ui.updatehl();
                                                 },
                                                 cards2,
-                                                player
+                                                player,
                                             );
                                         }
                                         cards2.forEach((i) => i.delete());
@@ -19844,7 +19849,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     if (player == game.me) ui.updatehl();
                                                 },
                                                 cards2,
-                                                player
+                                                player,
                                             );
                                         }
                                         cards2.forEach((i) => i.delete());
@@ -20122,7 +20127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             nobracket: true,
                             trigger: { global: ['useCard'] },
                             filter(event, player) {
-                                return (event.card) || event.cards.length == 0;
+                                return event.card || event.cards.length == 0;
                                 return false;
                             },
                             forced: true,
@@ -20646,7 +20651,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return (target == player || target == trigger.player) && target.yuansu_aruno('water');
                                     })
                                     .set('ai', function (target) {
-                                        /*            if(get.effect(trigger.target,trigger.card,trigger.player,player)<0&&get.attitude(player,target)<=0) return 3;*/
                                         if (get.attitude(player, trigger.player) < 0) return 3;
                                         return 0;
                                     });
@@ -21573,7 +21577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (ui.cardPile.firstChild.name == 'shan') return 0;
                                         return -2;
                                     },
-                                }//QQQ
+                                }, //QQQ
                             },
                         },
                         acgn_danyuezhuanpo: {
@@ -22171,7 +22175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (button) {
                                                 return true;
                                             },
-                                            '灵牌:请选择获得一张.'
+                                            '灵牌:请选择获得一张.',
                                         )
                                         .set('complexCard', true)
                                         .set('ai', function (card) {
@@ -22228,7 +22232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     game.swapSeat(target1, target2);
                                                 },
                                                 player,
-                                                player.previous
+                                                player.previous,
                                             );
                                         }
                                         if (player.acgn_bukeshiyidefeixiang == '顺时针') {
@@ -22237,7 +22241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     game.swapSeat(target1, target2);
                                                 },
                                                 player,
-                                                player.next
+                                                player.next,
                                             );
                                         }
                                     },
@@ -22265,7 +22269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card) {
                                                 return true;
                                             },
-                                            '请扣置一张手牌.'
+                                            '请扣置一张手牌.',
                                         )
                                         .set('complexCard', true)
                                         .set('ai', function (card) {
@@ -22375,7 +22379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card) {
                                             return lib.acgn_guizehuajue && lib.acgn_guizehuajue.includes(card);
                                         },
-                                        '请选择拼点牌.'
+                                        '请选择拼点牌.',
                                     )
                                     .set('complexCard', true)
                                     .set('ai', function (card) {
@@ -22535,7 +22539,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return true;
                                         },
-                                        `请选择${event.list[1]}张类别相同的牌.`
+                                        `请选择${event.list[1]}张类别相同的牌.`,
                                     )
                                     .set('complexCard', true)
                                     .set('ai', function (card) {
@@ -22562,7 +22566,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return max == card.number;
                                         },
-                                        `请选择${event.list[2]}张点数最大的的牌.`
+                                        `请选择${event.list[2]}张点数最大的的牌.`,
                                     )
                                     .set('complexCard', true)
                                     .set('ai', function (card) {
@@ -22589,7 +22593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return min == card.number;
                                         },
-                                        `请选择${event.list[3]}张点数最小的的牌.`
+                                        `请选择${event.list[3]}张点数最小的的牌.`,
                                     )
                                     .set('complexCard', true)
                                     .set('ai', function (card) {
@@ -22771,7 +22775,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     forced: true,
                                     filter(event, player) {
-                                        return event.card && event.card.name == 'sha' && event.card.cards && event.card.cards.length && (event.card.name != event.card.cards[0].name);
+                                        return event.card && event.card.name == 'sha' && event.card.cards && event.card.cards.length && event.card.name != event.card.cards[0].name;
                                     },
                                     content() {
                                         player.draw();
@@ -22906,11 +22910,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 source: 'damageBefore',
                             },
                             forced: true,
-                            /*
-                                filter:function (event,player){  
-                                    return !event.yuansushanghai||!.扩散.includes(event.yuansushanghaileixing);
-                                },
-                                */
+
                             content() {
                                 player.removeSkill('acgn_dapiwanshi_buff');
                                 trigger.num++;
@@ -23322,7 +23322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             ui.create.dialog('千金', cards).videoId = id;
                                         },
                                         cards,
-                                        event.videoId
+                                        event.videoId,
                                     );
                                 }
                                 if (cards[0]) {
@@ -23336,7 +23336,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('dialog', event.videoId)
                                         .set('ai', function (button) {
                                             return 1;
-                                        }).forResult();
+                                        })
+                                        .forResult();
                                     if (result.links && result.links[0]) {
                                         event.card = result.links[0];
                                         player.gain(event.card, event.target);
@@ -23468,7 +23469,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     filter(event, player) {
                                         if (event.num && (player.storage.acgn_zenghendehuangyan_zhen > 0 || player.storage.acgn_zenghendehuangyan_shan > 0)) return true;
-                                        if (event.card && !event.num && event.targets.includes(player)) return (event.card) || (event.cards.length == 0 && (player.storage.acgn_zenghendehuangyan_zhen > 0 || player.storage.acgn_zenghendehuangyan_shan > 0));
+                                        if (event.card && !event.num && event.targets.includes(player)) return event.card || (event.cards.length == 0 && (player.storage.acgn_zenghendehuangyan_zhen > 0 || player.storage.acgn_zenghendehuangyan_shan > 0));
                                         return false;
                                     },
                                     forced: true,
@@ -23561,7 +23562,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return true;
                                         },
-                                        '爱、谎言、终结:将一张牌至于武将牌上称之为<谎>'
+                                        '爱、谎言、终结:将一张牌至于武将牌上称之为<谎>',
                                     )
                                     .set('ai', function (card) {
                                         return 1;
@@ -24117,10 +24118,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.useSkill('acgn_shiduodemonv');
                             },
                             dutySkill: true,
-                            /*  trigger:{
-                                  global:"gameDrawAfter",
-                                  player:"enterGame",
-                              },*/
+
                             forced: true,
                             audio: 2,
                             filter(event, player) {
@@ -25918,7 +25916,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     target: target,
                                                     card: card,
                                                 },
-                                                true
+                                                true,
                                             )
                                         )
                                             return eff / 1.2;
@@ -26326,14 +26324,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.current.addTempClass('target');
                                             player.line(event.current, 'green');
                                             if (event.current.countCards('he') && player.isAlive()) {
-                                                event.current
-                                                    .chooseToDiscard({ color: 'black' }, 'he', '是否弃置一张黑色牌让' + get.translation(player) + '回复一点体力')
-                                                    .set('ai', function (card) {
-                                                        if (get.attitude(player, event.current) > 0 && player.maxHp > player.hp) {
-                                                            return 7 - get.value(card);
-                                                        }//QQQ
-                                                        return -1;
-                                                    });
+                                                event.current.chooseToDiscard({ color: 'black' }, 'he', '是否弃置一张黑色牌让' + get.translation(player) + '回复一点体力').set('ai', function (card) {
+                                                    if (get.attitude(player, event.current) > 0 && player.maxHp > player.hp) {
+                                                        return 7 - get.value(card);
+                                                    } //QQQ
+                                                    return -1;
+                                                });
                                             }
                                         } else {
                                             event.finish();
@@ -27515,10 +27511,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.storage.acgn_fengjiezhu_feng.length < 1) {
                                     player.removeSkill('acgn_fengjiezhu_feng');
                                 }
-                                /*		player.storage.acgn_fengjiezhu_feng2--;
-                                    if(player.storage.acgn_fengjiezhu_feng2<=0){
-                                        player.removeSkill('acgn_fengjiezhu_feng');
-                                    }*/
                             },
                         },
                         acgn_fengjiezhu_bi: {
@@ -27834,38 +27826,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('norestore', true);
                                 next.set('_backupevent', 'acgn_huanshuguan');
                                 next.backup('acgn_huanshuguan');
-                                /*
-                                       player.chooseCardTarget({
-                                            position:'hes',
-                                            filterCard:function(card){
-                                                return card.name=='bxyr_kong'&&lib.filter.cardDiscardable.apply(this,arguments);
-                                            },
-                                            filterTarget:function(card,player,target){
-                                           if(player.canUse(trigger.card.name,target)) return true;
-                                             },
-                                            prompt:get.prompt('acgn_huaxingzhizhong')+'<br><font size="2">'+`将一张【空】当做${get.translation(trigger.card)}使用</font>`,
-                                            ai1:function(card,target,player){
-                                              return 7-get.value(card);
-                                },
-                                            ai2:function(target){
-                                                                var player=_status.event.player,att=get.attitude(player,target);
-                                    return get.effect(target,{name:trigger.card.name},player);
-                                            },
-                                        });
-                                         "step 1"
-                                        if(result.bool){
-                                        game.log('shshwhhh');
-                                        var card=result.cards[0];
-                                        var name=result.cards[0].name;
-                                        var nature=result.cards[0].nature;
-                                        event.card2=card;
-                                            card.name=trigger.card.name;
-                                            card.nature=trigger.card.nature;
-                                            card.isCard=false;
-                                       player.useCard(card,result.cards[0],result.targets,false);
-                                        event.card2.name=name;
-                                        event.card2.nature=nature;
-                                    }*/
                             },
                             ai: {
                                 threaten: 1.2,
@@ -27996,7 +27956,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card) {
                                                 return cards.includes(card);
                                             },
-                                            `未来记载:请选择要对${get.translation(player.acgn_weilaijizai_targets[event.num2])}使用的【${get.translation(player.acgn_weilaijizai_cards[event.num2])}】`
+                                            `未来记载:请选择要对${get.translation(player.acgn_weilaijizai_targets[event.num2])}使用的【${get.translation(player.acgn_weilaijizai_cards[event.num2])}】`,
                                         )
                                         .set('ai', function (card) {
                                             return 1;
@@ -28660,7 +28620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     function (card) {
                                                         return card.suit == 'heart';
                                                     },
-                                                    `神罰:是否交给${get.translation(player)}一张♥️️牌`
+                                                    `神罰:是否交给${get.translation(player)}一张♥️️牌`,
                                                 )
                                                 .set('ai', function (card) {
                                                     if (get.attitude(source, player) > 0) return -1;
@@ -28756,9 +28716,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             ai: {
                                 save: true,
-                                /*      skillTagFilter:function (player){
-                                          return false;
-                                      },*/
+
                                 order: 4,
                                 result: {
                                     player(player) {
@@ -28816,10 +28774,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.getParent(1).name != 'acgn_xuezu_roundStart';
                             },
                             content() {
-                                /*原因技能或卡牌
-                                game.log(trigger.getParent(2).name);
-                                伤害类别
-                                game.log(trigger.getParent(1).name);*/
                                 trigger.cancel();
                                 _status.dying.remove(player);
                                 game.broadcast(function (list) {
@@ -29994,13 +29948,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 player.awakenSkill('acgn_shuizhihuxi_yizhixing_shengshengliuzhuan');
                                 while (player.acgn_kamadotanjirou_modosu-- > 0) {
-                                    const result = await player.judge(function (card) {
-                                        if (!player.sslz) return 20 - card.number;
-                                        if (player.sslz && player.sslz[player.sslz.length - 1] - card.number < 0) {
-                                            return 4;
-                                        }
-                                        return 0.5;
-                                    }).forResult();
+                                    const result = await player
+                                        .judge(function (card) {
+                                            if (!player.sslz) return 20 - card.number;
+                                            if (player.sslz && player.sslz[player.sslz.length - 1] - card.number < 0) {
+                                                return 4;
+                                            }
+                                            return 0.5;
+                                        })
+                                        .forResult();
                                     if (result.card) {
                                         if (!player.sslz) {
                                             player.sslz = [];
@@ -32721,7 +32677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.directHit.addArray(
                                     game.filterPlayer(function (current) {
                                         return current != player && current.isLinked();
-                                    })
+                                    }),
                                 );
                             },
                             ai: {
@@ -33235,7 +33191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (card.name != 'sha') return false;
                                             return lib.filter.filterCard.apply(this, arguments);
                                         },
-                                        `落樱:对${get.translation(player)}使用一张杀,或令其弃置你的一张牌`
+                                        `落樱:对${get.translation(player)}使用一张杀,或令其弃置你的一张牌`,
                                     )
                                     .set('targetRequired', true)
                                     .set('complexSelect', true)
@@ -33326,7 +33282,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 var name = button.link[2];
                                                 return 1;
                                             },
-                                            true
+                                            true,
                                         )
                                         .set('card', event.card);
                                 }
@@ -33495,7 +33451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 var name = button.link[2];
                                                 return 1;
                                             },
-                                            true
+                                            true,
                                         )
                                         .set('card', event.card);
                                 }
@@ -34391,7 +34347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             audio: 2,
                             filter(event, player) {
-                                return event.card && event.card.cards && event.card.cards.length && (event.card.name != event.card.cards[0].name);
+                                return event.card && event.card.cards && event.card.cards.length && event.card.name != event.card.cards[0].name;
                             },
                             content() {
                                 player.draw();
@@ -34559,7 +34515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     cards.push(
                                         get.cardPile(function (card) {
                                             return !cards.includes(card) && get.subtype(card) == type[i] && !player.isDisabled(get.subtype(card));
-                                        })
+                                        }),
                                     );
                                 }
                                 if (cards.length) {
@@ -34666,7 +34622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 player.addSkillTrigger(i);
                                             }
                                         }
-                                        const cards = player.getCards('e', { subtype: get.subtype(card) });//没有trigger.card
+                                        const cards = player.getCards('e', { subtype: get.subtype(card) }); //没有trigger.card
                                         const num = cards.length - 2;
                                         if (num > 0) {
                                             const { links } = await player.chooseButton(['选择弃置', cards], num, true).forResult();
@@ -34858,7 +34814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 function (card) {
                                                     return card != _status.event.card;
                                                 },
-                                                'he'
+                                                'he',
                                             )
                                             .set('card', card);
                                     if (player.hasSkill('acgn_qunzhongchendian')) {
@@ -35007,16 +34963,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             filter(event, player, name) {
                                 if (event.player.countCards('h') <= 0) return false;
-                                /*       var hs=event.player.getCards('h');
-                                        for(var i=0;i<hs.length;i++){
-                                            if(lib.filter.filterCard(hs[i],event.player)){
-                                        if(hs[i].name=='sha'&&player.getStat().card.sha>0){
-                                        }
-                                 else{
-                                             return false;
-                                             }
-                                                       }
-                                                   }*/
+
                                 return event.player != player && event.player.sex == player.sex;
                             },
                             content() {
@@ -36308,9 +36255,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 2,
                             enable: 'phaseUse',
                             filter(event, player) {
-                                /*        var num=1+player.maxHp-player.hp;
-                                        if((player.getStat().skill.acgn_liguan||0)>=num) return false;
-                                */
                                 return true;
                             },
                             filterTarget(card, player, target) {
@@ -36523,7 +36467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return 1;
                                         },
-                                        true
+                                        true,
                                     )
                                     .set('card', event.card);
                                 ('step 2');
@@ -36936,7 +36880,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             hiddenCard(player, name) {
-                                /*				if(ui.cardPile.childNodes[0].name=='wuxie'||ui.cardPile.childNodes[0].name=='caochuanjiejian') return true;				*/
                                 return false;
                             },
                         },
@@ -37396,12 +37339,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 await player.chooseToDiscard(true, 'he', 1).set('prompt', '千机:请弃置一张牌');
                                 if (skill.length) {
-                                    const result = await player.chooseButton(['请选择获得两个〖千机形态〗', [skill, 'tdnodes']], 2).set('ai', function (button) {
-                                        if (button.link == 'acgn_qianji_tu') return 9;
-                                        if (button.link == 'acgn_qianji_min' && trigger.player == player) return 9;
-                                        if (button.link == 'acgn_qianji_jian' && trigger.player != player && player.countCards('h') > 5) return 9;
-                                        return Math.random();
-                                    }).forResult();
+                                    const result = await player
+                                        .chooseButton(['请选择获得两个〖千机形态〗', [skill, 'tdnodes']], 2)
+                                        .set('ai', function (button) {
+                                            if (button.link == 'acgn_qianji_tu') return 9;
+                                            if (button.link == 'acgn_qianji_min' && trigger.player == player) return 9;
+                                            if (button.link == 'acgn_qianji_jian' && trigger.player != player && player.countCards('h') > 5) return 9;
+                                            return Math.random();
+                                        })
+                                        .forResult();
                                     if (result.links && result.links[0]) {
                                         for (var i of result.links) {
                                             game.log(player, `选择获得【千机-${get.translation(i)}】`);
@@ -39307,67 +39253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             check(card) {
                                 var player = _status.event.player;
-                                /*       if(game.hasPlayer(function(current2){
-                                   var skills=['acgn_jielv_bukebeipan','acgn_jielv_bukeqiman','acgn_jielv_bukebaoli','acgn_jielv_bukewangxing','acgn_jielv_bukeweiyan','acgn_jielv_bukechenlun'];
-                                       var num=0;
-                               for(var j=0;j<skills.length;j++){
-                                   if(current2.hasSkill(skills[j])){
-                                       num++;
-                                   }
-                               }
-                                   var att=get.attitude(player,current2,player);
-                                       if(att>0&&current2.countCards('h',{name:'sha'})>2&&num<3&&!current2.hasSkill('acgn_jielv_bukechenlun')){
-                               return ui.selected.cards.length==num+1;
-                               }
-                                       if(att>0(current2.countCards('h',{name:'nanman'})>0||current2.countCards('h',{name:'wangjian'})>0||current2.countCards('h',{name:'bxyr_shiruyuji'})>0)&&num<4&&!current2.hasSkill('acgn_jielv_bukebeipan')&&current2!=player){
-                                       return 5.5-num;
-                                       }
-                                       if(att<0&&num<5&&!game.hasPlayer(function(current){
-                                   return current!=current2&&get.attitude(current,current2,current2)>0;
-                               })&&game.hasPlayer(function(current){
-                                   return current!=player&&get.attitude(current,player,player)>0;
-                               })&&!current2.hasSkill('acgn_jielv_bukebaoli')){
-                               return ui.selected.cards.length==num+1;
-                                       }
-                                       if(att>0&&num<5&&current2==player&&game.players.length==2&&!game.hasPlayer(function(current){
-                                   return current!=current2&&get.attitude(current,current2,current2)>0;
-                               })&&!current2.hasSkill('acgn_jielv_bukebaoli')){
-                               return ui.selected.cards.length==num+1;
-                                       }
-                                       if(att>0&&num<2&&!current2.hasSkill('acgn_jielv_bukeqiman')){
-                               return current2.maxHp-1;
-                                       }
-                                       if(num<3&&!current2.hasSkill('acgn_jielv_bukewangxing')&&current2.hp>4){
-                               return ui.selected.cards.length==num+1;
-                                       }
-                               var num2=0;
-                                       var skill=[];
-                                   if(current2.name&&lib.character[current2.name]){
-                                   for(var i=0;i<lib.character[current2.name][3].length;i++){
-                                   if(current2.hasSkill(lib.character[current2.name][3][i])){
-                                       skill.push(lib.character[current2.name][3][i]);
-                                   }
-                                   }
-                                   }
-                                   if(current2.name2&&lib.character[current2.name2]){
-                                   for(var i=0;i<lib.character[player.name2][3].length;i++){
-                                   if(current2.hasSkill(lib.character[current2.name2][3][i])){
-                                       skill.push(lib.character[current2.name2][3][i]);
-                                   }
-                                   }
-                                   }
-                               for(var i=0;i<skill.length;i++){
-                                   if(lib.translate[skill[i]+'_info'].indexOf('视为')
-                               !=-1||lib.translate[skill[i]+'_info'].indexOf('当做')
-                               !=-1||lib.translate[skill[i]+'_info'].indexOf('当【')
-                               !=-1){
-                               return ui.selected.cards.length==num+1;
-                               }
-                               }
-                                       if(att<0&&num<4&&!current2.hasSkill('acgn_jielv_bukeweiyan')&&num2>0){
-                               return ui.selected.cards.length==num+1;
-                                       }
-                                       })) return 0;*/
+
                                 var num1 = [8, 0, 0].randomGet();
                                 var num2 = [6, 0, 0].randomGet();
                                 switch (ui.selected.cards.length) {
@@ -39668,7 +39554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             nobracket: true,
                             trigger: { global: ['useCard'] },
                             filter(event, player) {
-                                if (event.player == player || event.targets.includes(player)) return (event.card) || event.cards.length == 0;
+                                if (event.player == player || event.targets.includes(player)) return event.card || event.cards.length == 0;
                                 return false;
                             },
                             audio: 4,
@@ -40159,7 +40045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card, player, target) {
                                                 return list.includes(target);
                                             },
-                                            '【掠易】<br><div class="text center">选择一名角色获得其展示的牌.'
+                                            '【掠易】<br><div class="text center">选择一名角色获得其展示的牌.',
                                         )
                                         .set('ai', function (target) {
                                             var player = _status.event.player;
@@ -40327,7 +40213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     player,
                                     event.videoId,
-                                    event.cards
+                                    event.cards,
                                 );
                                 event.time = get.utc();
                                 game.addVideo('showCards', player, ['自谱', get.cardsInfo(event.cards)]);
@@ -41036,7 +40922,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             init(player) {
                                 player.storage.acgn_huanzang = false;
                             },
-                            //  
+                            //
                             audio: 2,
                             trigger: {
                                 global: 'dieBegin',
@@ -41071,7 +40957,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card, player, target) {
                                                 return target != trigger.player;
                                             },
-                                            get.prompt2('acgn_huanzang')
+                                            get.prompt2('acgn_huanzang'),
                                         )
                                         .set('ai', function (target) {
                                             var player = _status.event.player;
@@ -42345,7 +42231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             game.swapSeat(player, target);
                                         },
                                         player,
-                                        target
+                                        target,
                                     );
                                     player.draw(player.hp + game.dead.length);
                                 }
@@ -42436,9 +42322,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         //【天野雪辉】
                         acgn_cunshan: {
-                            /*  trigger:{
-                                  player:"useCardToTarget",
-                              },*/
                             trigger: {
                                 player: 'useCardToPlayered',
                             },
@@ -42721,7 +42604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         },
                                         target,
-                                        card
+                                        card,
                                     );
                                     target.addTempSkill('acgn_seyu1', { player: 'phaseAfter' });
                                 }
@@ -42876,7 +42759,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card) {
                                             return true;
                                         },
-                                        `贪婪:是否交给${get.translation(player)}一张牌`
+                                        `贪婪:是否交给${get.translation(player)}一张牌`,
                                     )
                                     .set('ai', function (card) {
                                         var att = get.attitude(_status.event.player, trigger.source);
@@ -42923,7 +42806,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card) {
                                                 return true;
                                             },
-                                            `枉法:交给${get.translation(player)}0-2张牌`
+                                            `枉法:交给${get.translation(player)}0-2张牌`,
                                         )
                                         .set('ai', function (card) {
                                             var att = get.attitude(player, targets[event.i]);
@@ -43266,7 +43149,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                             return name == ui.cardPile.childNodes[ui.cardPile.childNodes.length - 1].name ? 1 : 0.1;
                                         },
-                                        true
+                                        true,
                                     )
                                     .set('card', event.card);
                                 ('step 1');
@@ -43979,7 +43862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card, player, target) {
                                                 return true;
                                             },
-                                            `【美丽】<br>令一名角色摸${event.kazu}张牌.`
+                                            `【美丽】<br>令一名角色摸${event.kazu}张牌.`,
                                         )
                                         .set('ai', function (target) {
                                             return get.attitude(_status.event.player, target) > 0 ? get.attitude(_status.event.player, target) : 0.2;
@@ -44016,7 +43899,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             function (card, player, target) {
                                                 return true;
                                             },
-                                            `【丑恶】<br>令一名角色弃置${event.kazu}张牌.`
+                                            `【丑恶】<br>令一名角色弃置${event.kazu}张牌.`,
                                         )
                                         .set('ai', function (target) {
                                             return get.attitude(_status.event.player, target) < 0 ? get.attitude(_status.event.player, target) : 0.2;
@@ -44515,7 +44398,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     player,
                                     event.videoId,
-                                    event.cards
+                                    event.cards,
                                 );
                                 event.time = get.utc();
                                 game.addVideo('showCards', player, ['破军歌姬', get.cardsInfo(event.cards)]);
@@ -45818,7 +45701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                             cards: [card],
                                                         },
                                                         evt.player,
-                                                        evt
+                                                        evt,
                                                     ) ||
                                                     evt.filterCard(
                                                         {
@@ -45826,12 +45709,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                             cards: [card],
                                                         },
                                                         evt.player,
-                                                        evt
+                                                        evt,
                                                     )
                                                 );
                                             }
                                             return evt.filterCard(card, evt.player, evt);
-                                        })
+                                        }),
                                     )
                                     .set('ai', function (button) {
                                         var evt = _status.event.getParent(3);
@@ -45856,7 +45739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 cards: [card],
                                             },
                                             evt.player,
-                                            evt
+                                            evt,
                                         )
                                             ? 'sha'
                                             : 'shan';
@@ -45868,7 +45751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 lib.skill.aocai_backup.prompt = `选择${get.translation(result)}的目标`;
                                             },
                                             result.links[0],
-                                            name
+                                            name,
                                         );
                                         evt.set('_backupevent', 'aocai_backup');
                                         evt.backup('aocai_backup');
@@ -46611,10 +46494,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         acgn_dapiwanshi: '大辟万死',
                         acgn_dapiwanshi_info: "限定技,出牌阶段,你可以向上取整失去一半的体力值并增加等量的体力上限,你本回合下次造成伤害时,该伤害+1且令其附着X点<span style='color: #7FFFD4'>风元素</span>量( X为已损失体力值).",
                         acgn_chonggou: '天使重构',
-                        /*acgn_chonggou_info:'你使用【闪】以外的非转化唯一实体的基本牌或普通锦囊牌结算后进入弃牌堆后,你可以将此牌置入你的缓兵区.<br>若该牌为基本牌则该牌［重整回合:2]<br>若该牌为锦囊牌则该牌［重整回合:3].',*/
+
                         acgn_chonggou_info: '你使用非转化唯一实体的基本牌或普通锦囊牌结算后进入弃牌堆后,你可以将此牌置入你的缓兵区.<br>若该牌为基本牌则该牌［重整回合:2]<br>若该牌为锦囊牌则该牌［重整回合:3].',
                         acgn_liguan: '理冠',
-                        /*acgn_liguan_info:'出牌阶段限X次(X为你已损失体力值＋1),你可以将缓兵区内［重整回合:0］的一张牌移置一名其他角色的缓兵区,你可以摸一张牌或视为对其使用一张冰【杀】',*/
+
                         acgn_liguan_info: '出牌阶段,你可以将缓兵区内［重整回合:0］的一张牌移置一名其他角色的缓兵区,你可以摸一张牌或视为对其使用一张冰【杀】',
                         //不以使用离开缓兵区的牌,重整回合数不会变.
                         acgn_heixing: '黑星',
@@ -47374,14 +47257,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         acgn_zouyue_yanwuwuxiu_info: '锁定技,你的摸牌阶段,你随机获得一张【乐不思蜀】或【安居乐业】.<br>一名角色成为【乐不思蜀】或【安居乐业】的目标时,其获得一张【影】.',
                         acgn_ciyin_gongchoujiaoying: '赐饮·觥筹交映',
                         acgn_ciyin_gongchoujiaoying_info: '每名角色的准备阶段,你可以[弃置/交给其]一张[基本/装备]牌,你获得1点蓄力值摸一张牌并令其视为使用一张【酒】并跳过下个弃牌阶段.',
-                        /*
-                        acgn_emo:'恶魔',
-                        acgn_emo_info:'锁定技,其他角色出牌阶段开始时,你摸一张牌或弃置一张手牌,你展示所有手牌,若:手牌颜色均相同,你视为对当前回合角色使用一张无视防具的【杀】:否则你弃置一张手牌.',
-                        acgn_wangguan:'救世之王冠',
-                        acgn_wangguan_info:'觉醒技,你的准备阶段,若你没有手牌或你的体力值不大于1,你减少2点体力上限,体力回复至上限,获得技能【天使】.',
-                        acgn_tianshi:'天使',
-                        acgn_tianshi_info:'每轮限一次,当一名角色回合开始时,若其已损失体力,你可以令其回复1点体力并摸两张牌,若如此做,【恶魔】失效直到你的下个回合开始.',
-                        */
+
                         acgn_juemietianshi: '绝灭天使',
                         acgn_juemietianshi_info: '出牌阶段你可以将一张【杀】置入你的缓兵区【重整回合:1】,令此牌点数改为0.<br>你的回合开始时,令你缓兵区内所有牌点数＋1.<br>你的出牌阶段开始时,将牌堆顶一张牌置入你的缓兵区【重整回合:2】,令此牌点数改为1.<br>你缓兵区的【杀】视为光【杀】.',
                         acgn_paoguan: '炮冠',

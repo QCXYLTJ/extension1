@@ -74,7 +74,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				},
 				function () {
 					alert('卡牌未能成功导入');
-				}
+				},
 			);
 			game.import('character', function (lib, game, ui, get, ai, _status) {
 				const QQQ = {
@@ -1255,7 +1255,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (get.distance(player, trigger.player, 'attack') > 2) {
 									return;
 								}
-								player.chooseToUse({ name: 'sha' }, `补刀:是否对${get.translation(trigger.player)}使用一张杀？`, trigger.player)
+								player.chooseToUse({ name: 'sha' }, `补刀:是否对${get.translation(trigger.player)}使用一张杀？`, trigger.player);
 							},
 						},
 						//孙权
@@ -2731,7 +2731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									game.filterPlayer(function (current) {
 										return player.canUse({ name: name }, current);
 									}),
-									'noai'
+									'noai',
 								);
 							},
 						},
@@ -2975,44 +2975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 							},
 						},
-						/*
-						旧肃军(结束阶段摸二张,使用一张装备牌.)
-						taolue:{
-									 mod:{
-										 maxHandcard:function(player,num){
-											 return num+3;
-									 },
-								 },
-								 audio:2,
-						 trigger:{
-							 player:'phaseJieshuBegin',
-						 },
-						 content:function(){
-							 'step 0'
-							 player.draw(2);
-							'step 1'
-							 player.chooseCard('h',true,'选择要使用的装备牌').set('ai',function(card){
-								 if(get.type(card)=='equip'){
-									 return 5-get.value(card);
-								 }
-								 return -get.value(card);
-							 }).set('filterCard',lib.filter.cardDiscardable);
-							 'step 2'
-							 if(result.bool&&result.cards.length){
-								 if(get.type(result.cards[0])=='equip'&&!player.isDisabled(get.subtype(result.cards[0]))){
-									 player.chooseUseTarget(result.cards[0],true,'nopopup');
-								 }
-							 }
-						 },
-						 ai:{
-							 effect:{
-								 target:function(card,player,target){
-									 if(card.name=='guiyoujie') return [0,1];
-								 },
-							 },
-						 },
-					 },
-					 */
+
 						//狄仁杰
 						jiujian: {
 							enable: 'phaseUse',
@@ -3123,60 +3086,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 							},
 						},
-						/*jiujian:{
-							enable:'phaseUse',
-							usable:1,
-							filterCard:true,
-							filterTarget:function(card,player,target){
-								return target.countCards('h')>0&&get.distance(player,target)<=99;
-							},
-							check:function(card){
-								return 7-get.value(card);
-							},
-							position:'he',
-							content:function(){
-								'step 0'
-								var hs=target.getCards('h');
-								if(hs.length){
-									event.card=hs.randomGet();
-									player.gain(event.card,target);
-									target.$giveAuto(event.card,player);
-								}
-								else{
-									event.finish();
-								}
-								'step 1'
-								var source=target;
-								player.chooseTarget('选择一个目标送出'+get.translation(event.card),function(card,player,target){
-									return target!=player;
-								}).ai=function(target){
-									var att=get.attitude(player,target);
-									if(att>3&&player.countCards('h')>target.countCards('h')){
-										return att;
-									}
-									return 0;
-								}
-								'step 2'
-								if(result.bool){
-									result.targets[0].gain(card,player);
-									player.$give(1,result.targets[0]);
-									player.line(result.targets,'green');
-								}
-							},
-							ai:{
-								order:9,
-								result:{
-									target:-1,
-									player:function(player,target){
-										if(get.attitude(player,target)>0){
-											return 0;
-										}
-										return 1;
-									}
-								},
-							},
-						},
-					*/
+
 						yxsshentan: {
 							audio: 'ext:英雄外传/audio:2',
 							enable: 'chooseToUse',
@@ -3210,27 +3120,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 							},
 						},
-						/* 治妄 yxssuji:{
-						 trigger:{global:'gainEnd'},
-						 filter:function(event,player){
-							 return event.player!=player&&!(event.parent.name=='draw'&&event.getParent(2).name=='phaseDraw')&&event.player.countCards('h');
-						 },
-						 forced:false,
-						 logTarget:'player',
-						 content:function(){
-							 var evt=trigger.getParent('yxssuji');
-							 if(evt&&evt.name=='yxssuji'){
-								 trigger.player.uninit();
-								 trigger.player.init('');
-							 }
-							 var hs=trigger.player.getCards('h');
-							 if(hs.length){
-								 trigger.player.discard(hs.randomGet());
-							 }
-						 },
-			 subSkill:{planetarian:{}},
-					 },
-			 */
+
 						//福尔摩斯
 						yxsjiean: {
 							trigger: { source: 'damageEnd' },
@@ -3652,7 +3542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								},
 								threaten: 1.3,
-							},//QQQ
+							}, //QQQ
 						},
 						yxsbuqu: {
 							audio: 'ext:英雄外传/audio:2',
@@ -3904,7 +3794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											})
 											.concat(result.targets),
-										'green'
+										'green',
 									);
 									target.addSkill('yxsshehun2');
 								} else event.finish();
@@ -4156,13 +4046,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return Math.min(5, target.maxHp) - target.countCards('h');
 										}
 										return att / 3;
-									}
+									},
 								);
 								('step 1');
 								if (result.bool) {
-									/*var nm=player.maxHp-1-player.countCards('h');
-									   if(nm>0) player.draw(nm);
-									}*/
 									for (var i = 0; i < result.targets.length; i++) {
 										//player.drawTo(Math.min(5,result.targets[i].maxHp));
 										var num = 5 - result.targets[i].hp;
@@ -4248,7 +4135,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												num -= get.effect(i, trigger.card, trigger.player, player);
 											}
 											return num;
-										})()
+										})(),
 									)
 									.setHiddenSkill(event.name);
 								('step 1');
@@ -4394,10 +4281,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yxswucan2: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//果大乔去衣11
 						yxsguose: {
@@ -4535,32 +4418,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return distance - 999;
 								},
 							},
-							/*ai:{
-								 effect:{
-									 target:function (card,player,target){
-							 if(target.countCards('he')==0) return;
-							 if(card.name!='sha') return;
-							 var min=1;
-							 var friend=get.attitude(player,target)>0;
-							 var vcard={name:'shacopy',nature:card.nature,suit:card.suit};
-							 var players=game.filterPlayer();
-							 for(var i=0;i<players.length;i++){
-								 if(player!=i&&
-									 get.attitude(target,i)<0&&
-									 target.canUse(card,i)){
-									 if(!friend) return 0;
-									 if(ai.get.effect(i,vcard,player,player)>0){
-										 if(!player.canUse(card,players[0])){
-											 return [0,0.1];
-										 }
-										 min=0;
-									 }
-								 }
-							 }
-							 return min;
-						 },
-								 },
-							 },*/
 						},
 						yywucan7: {
 							audio: 'ext:英雄外传/audio:2',
@@ -4625,10 +4482,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan72: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//徐氏去衣
 						yxsfuzhu: {
@@ -4917,10 +4770,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan2: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//去衣关银屏
 						yywucan001: {
@@ -4995,10 +4844,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0012: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						yxswuji: {
 							audio: 'ext:英雄外传/audio:2',
@@ -5250,7 +5095,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										return card.number + num <= _status.event.num;
 									},
-									'he'
+									'he',
 								);
 								next.set('num', num);
 								next.set('complexCard', true);
@@ -5288,7 +5133,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return list[0];
 										}
 										return list;
-									})()
+									})(),
 								);
 								next.set('ai', function (card) {
 									if (!_status.event.cardResult.includes(card)) return 0;
@@ -5408,10 +5253,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0032: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//王元姬去衣
 						yxsyanxi: {
@@ -5459,7 +5300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									str,
 									event.videoId,
-									event.cards
+									event.cards,
 								);
 								game.addVideo('showCards', player, [str, get.cardsInfo(event.cards)]);
 								('step 1');
@@ -5738,10 +5579,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0022: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//夏侯氏去衣
 						yxs_qiaoshi: {
@@ -5787,7 +5624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								var next = player.chooseToDiscard(get.prompt('yxs_yanyu'), get.translation('yxs_yanyu_info'), 'he')
+								var next = player.chooseToDiscard(get.prompt('yxs_yanyu'), get.translation('yxs_yanyu_info'), 'he');
 								if (player == trigger.player) {
 									next.set(
 										'goon',
@@ -5814,7 +5651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											}
 											return map;
-										})()
+										})(),
 									);
 									next.set('ai', function (card) {
 										var map = _status.event.goon;
@@ -6060,10 +5897,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0042: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//卑弥呼去衣
 						yxsbingzhao: {
@@ -6401,10 +6234,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0052: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//郭照去衣
 						yxspianchong: {
@@ -6759,10 +6588,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0062: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//吴国太去衣
 						yxsganlu: {
@@ -6944,10 +6769,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0072: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//周妃去衣
 						yxsliangyin: {
@@ -7175,10 +6996,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0082: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						yxskuangbi: {
 							audio: 'ext:英雄外传/audio:2',
@@ -7602,10 +7419,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan0092: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//伏皇后去衣
 						yxszhuikong: {
@@ -7688,7 +7501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return name != 'sha' && get.type(name) == 'basic';
 											},
 											'h',
-											'交给' + get.translation(player) + '一张不为【杀】的基本牌,或成为此杀的额外目标且不可响应此【杀】'
+											'交给' + get.translation(player) + '一张不为【杀】的基本牌,或成为此杀的额外目标且不可响应此【杀】',
 										)
 										.set('ai', function (card) {
 											return get.attitude(target, _status.event.sourcex) >= 0 ? 1 : -1;
@@ -7814,10 +7627,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00102: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//王异去衣
 						yxszhenlie: {
@@ -8021,10 +7830,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00112: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//吕玲绮去衣
 						yxsguowu: {
@@ -8215,32 +8020,29 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								'step 0';
-								player
-									.gainPlayerCard(get.prompt('yxsliyu', trigger.player), trigger.player, 'hej', 'visibleMove')
-									.set('ai', function (button) {
-										//QQQ
-										var player = _status.event.player;
-										var evt = _status.event.target;
-										if (get.attitude(player, evt) > 0 && get.position(button.link) == 'j') return 4 + get.value(button.link);
-										if (get.type(button.link) == 'equip') {
-											if (
-												get.attitude(player, evt) > 0 &&
-												game.hasPlayer(function (current) {
-													return player.canUse({ name: 'juedou' }, current) && current != evt.target && get.effect(current, { name: 'juedou' }, player, player) > 2;
-												})
-											) {
-												return 5;
-											} else if (
-												game.hasPlayer(function (current) {
-													return player.canUse({ name: 'juedou' }, current) && current != evt && current != player && get.effect(current, { name: 'juedou' }, player, player) < 0;
-												})
-											) {
-												return 1;
-											} else return 4;
-										}
-										return 3;
-									})
-									('step 1');
+								player.gainPlayerCard(get.prompt('yxsliyu', trigger.player), trigger.player, 'hej', 'visibleMove').set('ai', function (button) {
+									//QQQ
+									var player = _status.event.player;
+									var evt = _status.event.target;
+									if (get.attitude(player, evt) > 0 && get.position(button.link) == 'j') return 4 + get.value(button.link);
+									if (get.type(button.link) == 'equip') {
+										if (
+											get.attitude(player, evt) > 0 &&
+											game.hasPlayer(function (current) {
+												return player.canUse({ name: 'juedou' }, current) && current != evt.target && get.effect(current, { name: 'juedou' }, player, player) > 2;
+											})
+										) {
+											return 5;
+										} else if (
+											game.hasPlayer(function (current) {
+												return player.canUse({ name: 'juedou' }, current) && current != evt && current != player && get.effect(current, { name: 'juedou' }, player, player) < 0;
+											})
+										) {
+											return 1;
+										} else return 4;
+									}
+									return 3;
+								})('step 1');
 								if (result.bool) {
 									if (get.type(result.cards[0]) != 'equip') {
 										trigger.player.draw();
@@ -8261,7 +8063,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													var evt = _status.event.parent;
 													return evt.player.canUse({ name: 'juedou' }, target) && target != _status.event.player;
 												},
-												`请选择一名角色,视为${get.translation(player)}对其使用【决斗】`
+												`请选择一名角色,视为${get.translation(player)}对其使用【决斗】`,
 											)
 											.set('ai', function (target) {
 												var evt = _status.event.parent;
@@ -8327,10 +8129,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00122: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//貂蝉去衣11
 						yxslijian: {
@@ -8467,10 +8265,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00142: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//小乔去衣
 						yxstianxiang: {
@@ -8537,7 +8331,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return 1;
 												}
 											},
-											[`令${get.translation(target)}受到伤害来源对其造成的1点伤害,摸等同于其已掉血量的牌,并令你穿1件衣服`, `令${get.translation(target)}失去1点体力`]
+											[`令${get.translation(target)}受到伤害来源对其造成的1点伤害,摸等同于其已掉血量的牌,并令你穿1件衣服`, `令${get.translation(target)}失去1点体力`],
 										)
 										.set('target', target);
 									trigger.cancel();
@@ -8716,10 +8510,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00152: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//唐姬去衣
 						yxsjielie: {
@@ -8909,10 +8699,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00162: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//俾斯麦11
 						yxsdetong: {
@@ -9116,11 +8902,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//trigger.player.discard(trigger.player.getCards('he'));
 								//player.recover();
 								//trigger.player.recover();
-								/*var tp=player.getDamagedHp();
-									if(tp>=0) {
-								   var nm=player.maxHp-player.countCards('h');
-								   if(nm>0) player.draw(nm);
-								   }*/
 							},
 						},
 						yxsjuezi: {
@@ -9172,9 +8953,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									//trigger.player.discard(player.countCards('h')/2);
 									player.chooseToDiscard('h', Math.floor(player.countCards('h') / 2), true);
 								}
-								/*else{
-									player.removeSkill('yxssheshi2');
-								}*/
 							},
 						},
 						//路易十六11
@@ -9338,9 +9116,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'phaseJieshuBegin',
 							},
 							audio: 'ext:英雄外传/audio:2',
-							/*filter:function(event,player){
-								return player.hp<=2;
-							},*/
+
 							content() {
 								'step 0';
 								player.draw(2);
@@ -9534,35 +9310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw();
 							},
 						},
-						/*group: ['yxsheiya_clear'],
-						  subSkill:{
-							  clear:{
-								  trigger:{player:['phaseZhunbeiBegin','dieBegin']},
-								  forced:true,
-								  filter:function(event,player){
-									  var num=game.countPlayer(function(current){
-										  return current.hasSkill('yxsheiya2');
-									  });
-									  if(!num) return false;
-									  if(event.name=='die') return true;
-									  return num>0;
-								  },
-								  content:function(){
-									  'step 0'
-									  var list=game.filterPlayer(function(current){
-										  return current.hasSkill('yxsheiya2');
-									  });
-									  list.sortBySeat();
-									  event.list=list;
-									  player.line(list,'green');
-									  'step 1'
-									  if(event.list.length){
-										  event.list.shift().removeSkill('yxsheiya2');
-										  event.redo();
-									  }
-								  }
-							  }
-						  },*/
+
 						yxsfannv: {
 							audio: 'ext:英雄外传/audio:2',
 							trigger: { global: 'shaBegin' },
@@ -9682,7 +9430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'ext:英雄外传/audio:2',
 							trigger: { global: 'phaseUseBegin' },
 							filter(event, player) {
-								return /*(get.mode()!='guozhan'||event.player!=player)&&*/ event.player.isAlive() && player.countCards('h') > 0 && player.countMark('yywucan00902') < 2;
+								return event.player.isAlive() && player.countCards('h') > 0 && player.countMark('yywucan00902') < 2;
 							},
 							forced: true,
 							preHidden: true,
@@ -9764,7 +9512,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw(
 									game.countPlayer2(function (current) {
 										return (current.getStat('kill') || 0) * (current == player ? 3 : 1);
-									})
+									}),
 								);
 								var chat = ['你根本满足不了我~', '只有这点能耐吗？'].randomGet();
 								player.say(chat);
@@ -9789,7 +9537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									trigger: { global: 'dying' },
 									forced: true,
 									filter(event, player) {
-										return /*get.mode()!='guozhan'&&*/ player != event.source;
+										return player != event.source;
 									},
 									content() {
 										player.draw();
@@ -9860,10 +9608,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00902: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//灵雎
 						yxsfenxin: {
@@ -9917,7 +9661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									player,
 									trigger.player,
-									trigger.player.identityShown
+									trigger.player.identityShown,
 								);
 								player.line(trigger.player, 'green');
 								//player.storage.yxsfenxin=true;
@@ -10121,10 +9865,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00912: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//祝融
 						yxsjuxiang: {
@@ -10132,13 +9872,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							audio: 'yxsjuxiang1',
 							group: ['yxsjuxiang1', 'yxsjuxiang2'],
 							preHidden: ['yxsjuxiang1', 'yxsjuxiang2'],
-							/*ai:{
-								effect:{
-									target:function(card){
-										if(card.name=='nanman') return [0,1];
-									}
-								}
-							}*/
 						},
 						yxsjuxiang1: {
 							audio: 'ext:英雄外传/audio:2',
@@ -10295,7 +10028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												target: target,
 												card: card,
 											},
-											true
+											true,
 										)
 									)
 										return 0;
@@ -10339,7 +10072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return card.name != 'sha' && get.value(card, player) < 6.3;
 												}, 'hs')
 												? 1
-												: 0
+												: 0,
 										) > 1
 											? -1
 											: 1)
@@ -10405,10 +10138,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00922: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//曹婴
 						yxslingren: {
@@ -10848,10 +10577,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00952: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//蔡夫人
 						yxsqieting: {
@@ -10925,7 +10650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.removeMark('yywucan00962', 1);
 									}
 									var target = _status.currentPhase;
-									player.gainPlayerCard(target, 'he', get.prompt('yxsqieting', target))
+									player.gainPlayerCard(target, 'he', get.prompt('yxsqieting', target));
 									player.chooseToUse();
 								} else {
 									if (result.control == 'draw_card') {
@@ -11129,10 +10854,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00962: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//杨艳
 						yxsxuanbei: {
@@ -11328,10 +11049,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00972: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//诸葛果
 						yxsqirang: {
@@ -11564,10 +11281,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yywucan00982: {
 							//marktext:'无惨',
 							mark: false,
-							/*intro:{
-								name:'无惨',
-								content:'可怜可怜我吧~',
-							},*/
 						},
 						//魅魔
 						yxssaoyu: {
@@ -11733,7 +11446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.showIdentity();
 									},
 									player,
-									trigger.player
+									trigger.player,
 								);
 							},
 						},
@@ -11773,7 +11486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										target.setIdentity('cai');
 									},
 									player,
-									trigger.player
+									trigger.player,
 								);
 								('step 1');
 								player.addMark('yxsyfd');
@@ -11801,10 +11514,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						yxsyfd: {
 							marktext: '计数',
 							mark: true,
-							/*intro:{
-								'name2':'计数',
-								content:'法老的诅咒...',
-							},*/
 						},
 						//终结者技能
 						yxssihai: {
@@ -11890,9 +11599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							trigger: {
 								player: 'phaseJieshuBegin',
 							},
-							/*filter:function (event,player){            
-					return (event.source!=undefined);        
-				},*/
+
 							check(event, player) {
 								return event.player.identity != 'nei' && get.attitude(player, event.player) > 0;
 							},
@@ -12197,102 +11904,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 							},
 						},
-						/*yxsherowash:{
-									trigger:{player:'phaseAfter'},
-									forced:true,
-									content:function(){
-										game.boss==!current.hasMark('yxssangshi');
-										game.over(game.me==game.boss);
-									},
-									temp:true,
-								},
-								yxshero:{
-									unique:true,
-									trigger:{player:'changeHp',global:'yxsherowash'},
-									forced:true,
-									_priority:100,
-									fixed:true,
-									audio:2,
-									mode:['identity','guozhan'],
-									init:function(player){
-										if(get.mode()=='boss'&&player==game.boss){
-											lib.onwash.push(function(){
-												if(!_status.yxsherowash){
-													_status.yxsherowash=true;
-													_status.event.parent.trigger('yxsherowash');
-												}
-												else{
-													_status.event.player.addSkill('yxsherowash');
-												}
-											});
-											for(var i in lib.card){
-												if(lib.card[i].subtype=='equip1') lib.card[i].chongzhu=false;
-											}
-										}
-									},
-									filter:function(event,player){
-										return 	current.hasMark('yxssangshi')>=1||_status.yxsherowash;
-									},
-									content:function(){
-										'step 0'
-										if(player.hp>6){
-										}
-										'step 1'
-										player.chooseControl('终极猎手','恶魔剑客',function(){
-											if(Math.random()<0.5) return '终极猎手';
-											return '恶魔剑客';
-										}).set('prompt','选择一个猎手');
-										'step 2'
-										var hp=player.hp;
-										player.removeSkill('yxshero',true);
-										if(result.control=='终极猎手'){
-											player.init('yxs_ylsd');
-										}
-										else{
-											player.init('yxs_ksl');
-										}
-										if(hp>6){
-											player.maxHp=hp;
-											player.hp=hp;
-										}
-										player.update();
-										ui.clear();
-										if(player.isLinked()) player.link();
-										if(player.isTurnedOver()) player.turnOver();
-										player.discard(player.getCards('j'));
-										'step 3'
-										while(_status.event.name!='phaseLoop'){
-											_status.event=_status.event.parent;
-										}
-										game.resetSkills();
-										_status.paused=false;
-										_status.event.player=player;
-										_status.event.step=0;
-										if(game.bossinfo){
-											game.bossinfo.loopType=1;
-											_status.roundStart=game.boss;
-										}
-									},
-									ai:{
-										effect:{
-											target:function(card,player,target){
-												if(get.tag(card,'damage')||get.tag(card,'loseHp')){
-													if(player.hp==5){
-														if(game.players.length<4) return [0,5];
-														var num=0
-														for(var i=0;i<game.players.length;i++){
-															if(i!=game.boss&&i.hp==1){
-																num++;
-															}
-														}
-														if(num>1) return [0,2];
-														if(num&&Math.random()<0.7) return [0,1];
-													}
-												}
-											}
-										}
-									}
-								},	*/
+
 						yxshero: {
 							trigger: { global: 'phaseZhunbeiBegin' },
 							forced: true,
@@ -12378,10 +11990,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						//计数标签(每轮限几次)
 						yxsjishu: {
 							mark: false,
-							/*intro:{
-								name:'计数',
-								content:'可怜',
-							},*/
 						},
 						//凯瑟琳二世
 						yxspingquan: {
@@ -12633,7 +12241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							content() {
-								player.chooseToUse({ name: 'sha' }, `凌戮:是否对${get.translation(trigger.player)}使用一张杀？`, trigger.player)
+								player.chooseToUse({ name: 'sha' }, `凌戮:是否对${get.translation(trigger.player)}使用一张杀？`, trigger.player);
 								player.addTempSkill('yxslinglu2', 'shaAfter');
 								player.addTempSkill('yxslinglu3');
 							},
@@ -12921,7 +12529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											}
 											return lib.filter.filterTarget.apply(this, arguments);
-										}
+										},
 									)
 									.set('ai2', function () {
 										return get.effect_use.apply(this, arguments) + 0.01;

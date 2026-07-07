@@ -317,7 +317,7 @@ export async function precontent(config, pack) {
                 }
             },
             this.playerid,
-            str
+            str,
         );
         if (time && typeof time == 'number') game.delay(time);
     };
@@ -902,7 +902,7 @@ export async function precontent(config, pack) {
                     card: next.card,
                     targets: next.targets,
                 },
-                true
+                true,
             )
         ) {
             var postAi = get.info(next.card).postAi;
@@ -961,7 +961,7 @@ export async function precontent(config, pack) {
                     game.playCardAudio(card, player);
                 },
                 player,
-                card
+                card,
             );
         event.id = get.id();
         if (!Array.isArray(event.excluded)) event.excluded = [];
@@ -1375,7 +1375,7 @@ export async function precontent(config, pack) {
                     if (!_status.event.targets.includes(target)) return false;
                     if (!_status.event.nodistance && !lib.filter.targetInRange(card, player, target)) return false;
                     return lib.filter.targetEnabledx(card, player, target);
-                }
+                },
             );
             next.set('ai', event.ai || get.effect_use);
             next.set('selectTarget', event.selectTarget || lib.filter.selectTarget);
@@ -1475,7 +1475,7 @@ export async function precontent(config, pack) {
                     }
                 },
                 this,
-                skill
+                skill,
             );
             this.checkConflict(skill);
             if (info) {
@@ -1530,7 +1530,7 @@ export async function precontent(config, pack) {
             ...skill.map((i) => {
                 if (popup === true) this.popup(i);
                 return '#g【' + get.translation(i) + '】';
-            })
+            }),
         );
     };
     if (game.videoContent) {
@@ -1595,7 +1595,7 @@ export async function precontent(config, pack) {
                 },
                 this,
                 listV,
-                list
+                list,
             );
         }
         for (var i in this.marks) {
@@ -1875,7 +1875,7 @@ export async function precontent(config, pack) {
                 },
                 this,
                 listV,
-                list
+                list,
             );
         }
         for (var i in this.marks) {
@@ -2000,7 +2000,7 @@ export async function precontent(config, pack) {
                             name: 'damage',
                         },
                         player,
-                        player
+                        player,
                     );
                     eff = get.translation(player) + '对' + get.translation(trigger.target) + '造成1点伤害对' + get.translation(player) + '的效果是' + eff;
                     player.chat(eff);
@@ -2295,7 +2295,7 @@ export async function precontent(config, pack) {
                                     if (player.identityShown || target == game.me) target.setIdentity();
                                 },
                                 player,
-                                target
+                                target,
                             );
                             if (target.isZhu || game.zhu == target) {
                                 (game.zhu = player).isZhu = true;
@@ -3084,7 +3084,7 @@ export async function precontent(config, pack) {
                                 .set('ai', () => {
                                     return _status.event.goon;
                                 })
-                                .set('goon', /*get.attitude(player,target)<1*/ get.effect(target, { name: 'shunshou_copy2' }, player, player) > 0);
+                                .set('goon', get.effect(target, { name: 'shunshou_copy2' }, player, player) > 0);
                         ('step 1');
                         if (result.bool) {
                             player.gainPlayerCard(target, 'he', true);
@@ -3120,7 +3120,7 @@ export async function precontent(config, pack) {
                                     .set('ai', () => {
                                         return _status.event.goon;
                                     })
-                                    .set('goon', /*get.attitude(player,target)<1*/ get.effect(target, { name: 'shunshou_copy2' }, player, player) > 0);
+                                    .set('goon', get.effect(target, { name: 'shunshou_copy2' }, player, player) > 0);
                         } else event._result = { bool: false };
                         ('step 1');
                         if (result.bool) {
@@ -4089,7 +4089,7 @@ export async function precontent(config, pack) {
                         this,
                         this.hp,
                         this.maxHp,
-                        this.hujia
+                        this.hujia,
                     );
                     this.$update(...arguments);
                     this._syr_xuanpin = { hp: this.hp, maxHp: this.maxHp, hujia: this.hujia };
@@ -5969,7 +5969,7 @@ export async function precontent(config, pack) {
                         trigger.directHit.addArray(
                             game.filterPlayer(function (current) {
                                 return current != player;
-                            })
+                            }),
                         );
                         trigger.baseDamage++;
                         var goon = false;
@@ -6069,7 +6069,7 @@ export async function precontent(config, pack) {
                     })
                     .set(
                         'friend',
-                        trigger.targets.some((i) => get.attitude(player, i) > 0)
+                        trigger.targets.some((i) => get.attitude(player, i) > 0),
                     );
                 ('step 2');
                 if (!result.bool) {
@@ -6209,7 +6209,7 @@ export async function precontent(config, pack) {
                                     //if(player==game.me) ui.updatehl();
                                 },
                                 cards3,
-                                player
+                                player,
                             );
                         }
                         cards3.forEach((i) => _status.renku.remove(i));
@@ -6459,7 +6459,7 @@ export async function precontent(config, pack) {
                         this,
                         this.hp,
                         this.maxHp,
-                        this.hujia
+                        this.hujia,
                     );
                     this.$update(...arguments);
                     this._syr_xuanpin = { hp: this.hp, maxHp: this.maxHp, hujia: this.hujia };
@@ -6903,7 +6903,7 @@ export async function precontent(config, pack) {
                 effect: {
                     target(card, player, target) {
                         if (player == target && player.hasSkillTag('noturn') && card.name == 'hsshenqi_nengliangzhiguang') {
-							/*if(!ui.selected.cards.length||ui.selected.cards[0].name!='syr_ASHR'||player.countCards('e','syr_ASHR')>1)*/ return [5, 5];
+                            return [5, 5];
                             return 0;
                         }
                         if (['losehp'].includes(card.name) || get.type(card) == 'delay') return 'zerotarget';
@@ -6921,7 +6921,7 @@ export async function precontent(config, pack) {
                                     target: target,
                                     card: card,
                                 },
-                                true
+                                true,
                             ) || 0);
                         var canAlive = target.hasCard(function (i) {
                             return i.name == 'syr_ASHR' && target.canRecast(i);
@@ -6943,7 +6943,7 @@ export async function precontent(config, pack) {
                     },
                     player(card, player, target, current) {
                         if (player.hasSkillTag('noturn') && current > 0 && card.name && card.name.indexOf('hsshenqi') == 0) {
-							/*if(!ui.selected.cards.length||ui.selected.cards[0].name!='syr_ASHR'||player.countCards('e','syr_ASHR')>1)*/ return [5, 1];
+                            return [5, 1];
                             return -1;
                         }
                     },
@@ -7007,7 +7007,7 @@ export async function precontent(config, pack) {
                             return lib.filter.cardEnabled(card, player, 'forceEnable');
                         },
                         trigger.player,
-                        -1
+                        -1,
                     )
                     .set('cardname', trigger.card.name)
                     .set('ai1', function (card) {
@@ -7068,7 +7068,7 @@ export async function precontent(config, pack) {
                         return lib.filter.cardEnabled(card, player, 'forceEnable');
                     },
                     trigger.player,
-                    -1
+                    -1,
                 ).targetRequired = true;
             },
         },
@@ -7669,16 +7669,19 @@ export async function precontent(config, pack) {
                     }
                     var dams = {};
                     for (var i = 0; i < 9; i++) {
-                        const result = await player.chooseTarget(`世燹:你想将第${i + 1}点火焰伤害分配给谁呢？(若点取消,将不分配剩余的${10 - i}点火焰伤害)`, '已分配:' + targets.map((j) => get.translation(j) + ':' + (dams[j.playerid] || 0) + '点').toString()).set('ai', (target) => {
-                            var eff = get.damageEffect(target, player, player, 'fire'),
-                                d = dams[target.playerid] || 0;
-                            if (eff > 0) {
-                                if (d >= target.hp + target.hujia + target.countMark('_fr_broken')) return eff * 0.01;
-                                if (d > 0 && get.attitude(player, target) > 0) return 0;
+                        const result = await player
+                            .chooseTarget(`世燹:你想将第${i + 1}点火焰伤害分配给谁呢？(若点取消,将不分配剩余的${10 - i}点火焰伤害)`, '已分配:' + targets.map((j) => get.translation(j) + ':' + (dams[j.playerid] || 0) + '点').toString())
+                            .set('ai', (target) => {
+                                var eff = get.damageEffect(target, player, player, 'fire'),
+                                    d = dams[target.playerid] || 0;
+                                if (eff > 0) {
+                                    if (d >= target.hp + target.hujia + target.countMark('_fr_broken')) return eff * 0.01;
+                                    if (d > 0 && get.attitude(player, target) > 0) return 0;
+                                    return eff;
+                                }
                                 return eff;
-                            }
-                            return eff;
-                        }).forResult();
+                            })
+                            .forResult();
                         if (result.bool) {
                             var target = result.targets[0];
                             dams[target.playerid] = (dams[target.playerid] || 0) + 1;
@@ -7840,8 +7843,8 @@ export async function precontent(config, pack) {
                             storage: { syr_zhenfeng: true },
                         },
                         player,
-                        event
-                    )
+                        event,
+                    ),
                 );
             },
             onChooseToUse(event) {
@@ -7899,7 +7902,7 @@ export async function precontent(config, pack) {
                                 storage: { syr_zhenfeng: true },
                             },
                             player,
-                            event
+                            event,
                         );
                     });
                     return ui.create.dialog('针锋', [list, 'vcard']);
@@ -7912,7 +7915,7 @@ export async function precontent(config, pack) {
                             storage: { syr_zhenfeng: true },
                         },
                         player,
-                        _status.event.parent
+                        _status.event.parent,
                     );
                 },
                 check(button) {
@@ -8074,7 +8077,7 @@ export async function precontent(config, pack) {
                                         cards: [a],
                                     },
                                     player,
-                                    player
+                                    player,
                                 );
                                 if (efff > 0) val1 = 0.5;
                                 else if (efff == 0) val1 = 0;
@@ -8088,7 +8091,7 @@ export async function precontent(config, pack) {
                                         cards: [b],
                                     },
                                     player,
-                                    player
+                                    player,
                                 );
                                 if (efff > 0) val2 = 0.5;
                                 else if (efff == 0) val2 = 0;
@@ -8159,7 +8162,7 @@ export async function precontent(config, pack) {
                                 cards: [card],
                             },
                             player,
-                            player
+                            player,
                         );
                         return efff < 0;
                     }) &&
@@ -8543,7 +8546,7 @@ export async function precontent(config, pack) {
                     ${get.translation(player)}
                     获得的牌
                     `,
-                        true
+                        true,
                     )
                     .set('ai', (card) => {
                         return -get.value(card);
@@ -8555,7 +8558,7 @@ export async function precontent(config, pack) {
                     观潮
                     <br>
                     ${get.translation(target)}展示的牌
-                    `
+                    `,
                 );
                 ('step 2');
                 player.gain(result.cards, target, 'gain2');
@@ -8592,7 +8595,7 @@ export async function precontent(config, pack) {
                         {
                             name: 'kaihua',
                         },
-                        player
+                        player,
                     );
             },
             ai: { threaten: 1.1 },
@@ -8669,7 +8672,7 @@ export async function precontent(config, pack) {
                                     name: 'guohe_copy2',
                                 },
                                 player,
-                                player
+                                player,
                             );
                         });
                 }
@@ -8953,8 +8956,8 @@ export async function precontent(config, pack) {
                         5,
                         game.countPlayer2(function (current) {
                             return current.getHistory('damage').length;
-                        }) + (player.hasSkill('minidoumao') ? 1 : 2)
-                    )
+                        }) + (player.hasSkill('minidoumao') ? 1 : 2),
+                    ),
                 );
             },
         },
@@ -9257,7 +9260,7 @@ export async function precontent(config, pack) {
                         if (typeof a.seatNum == 'number') return a.seatNum;
                         return 0;
                     },
-                    'item'
+                    'item',
                 );
                 game.phaseLoop(p);
             },
@@ -10168,7 +10171,7 @@ export async function precontent(config, pack) {
                 threaten: 1.2,
             },
         },
-        fuhan2: { /*audio:'ext:白河子与其他/audio/skill:true'*/ audio: true },
+        fuhan2: { audio: true },
         hlgongxin: {
             audio: 'gongxin',
             trigger: {
@@ -10198,7 +10201,7 @@ export async function precontent(config, pack) {
                             ui.create.dialog('攻心', cards).videoId = id;
                         },
                         cards,
-                        event.videoId
+                        event.videoId,
                     );
                 }
                 event.dialog = ui.create.dialog('攻心', cards);
@@ -10647,7 +10650,7 @@ export async function precontent(config, pack) {
                         function (card, player, event) {
                             return card.name == 'tao';
                         },
-                        '守情:对' + get.translation(target) + '使用一张【桃】'
+                        '守情:对' + get.translation(target) + '使用一张【桃】',
                     )
                     .set('targetRequired', true)
                     .set('complexSelect', true)
@@ -10656,7 +10659,7 @@ export async function precontent(config, pack) {
                     })
                     .set(
                         'sourcex',
-                        target
+                        target,
                     )('step 1');
                 if (result.bool) {
                     player.addSkill('syr_shouqing3');
@@ -11702,7 +11705,7 @@ export async function precontent(config, pack) {
                         } else
                             player.markAuto(
                                 'syr_liegong',
-                                trigger.cards.map((i) => i.suit)
+                                trigger.cards.map((i) => i.suit),
                             );
                     },
                 },
@@ -12480,7 +12483,7 @@ export async function precontent(config, pack) {
                                     target: target,
                                     card: card,
                                 },
-                                false
+                                false,
                             )
                         )
                             return [1.5, 0.5];
@@ -12495,7 +12498,7 @@ export async function precontent(config, pack) {
                                     target: target,
                                     card: card,
                                 },
-                                false
+                                false,
                             )
                         )
                             return [1.5, 1.5];
@@ -12804,7 +12807,7 @@ export async function precontent(config, pack) {
                             game.expandSkills(current.getSkills()).some((i) => {
                                 var info = get.info(i);
                                 return info && !info.charlotte && info.ai && (info.ai.maixie || info.ai.maixie_hp || info.ai.maixie_defend);
-                            })
+                            }),
                     );
                     var hasSha = player.hasCard({ name: 'sha', color: 'none' }, 'hes');
                     if (maixie_enemy) {
@@ -12860,7 +12863,7 @@ export async function precontent(config, pack) {
                             var player = _status.event.player;
                             return !_status.event.targets.includes(target) && lib.filter.targetEnabled2(_status.event.card, player, target);
                         },
-                        [1, 4]
+                        [1, 4],
                     )
                     .set('prompt2', prompt2)
                     .set('ai', function (target) {
@@ -13883,7 +13886,7 @@ export async function precontent(config, pack) {
                         game.swapSeat(target1, target2);
                     },
                     player,
-                    target
+                    target,
                 );
             },
             ai: {
@@ -14174,7 +14177,7 @@ export async function precontent(config, pack) {
                                     lib.filter.cardEnabled(card, player) &&
                                     game.hasPlayer(function (target) {
                                         return target != player && get.effect(target, card, player, player) > 0 && !player.canUse(card, target, true, true);
-                                    })
+                                    }),
                             )
                         )
                             return 0;
@@ -14625,7 +14628,7 @@ export async function precontent(config, pack) {
                                 if (list.includes('弃牌') && get.value(target.getCards('he')) < target.countCards('he') * 8) return '弃牌';
                                 if (player.isPhaseUsing() && player.getCardUsable('sha') == Infinity && player.hasSha() && player.canUse('sha', target, true, true) && damageNum < target.hp + target.hujia) return '加伤';
                                 return '送福利';
-                            })()
+                            })(),
                         )
                         .set('choiceList', choiceList);
                 }
@@ -15737,7 +15740,7 @@ export async function precontent(config, pack) {
                                     function (card, player, event) {
                                         return lib.filter.filterCard.apply(this, arguments);
                                     },
-                                    '同协:是否对' + get.translation(target) + '使用一张牌？'
+                                    '同协:是否对' + get.translation(target) + '使用一张牌？',
                                 )
                                 .set('targetRequired', true)
                                 .set('complexSelect', true)
@@ -16568,7 +16571,7 @@ export async function precontent(config, pack) {
                                     cards: [card],
                                 },
                                 player,
-                                player
+                                player,
                             );
                         if (!player.getExpansions('syr_baolie').some((i) => lib.skill.syr_quanzhii.myType(i) == type2)) eff = 20;
                         if (get.attitude(_status.event.player, get.owner(button.link)) > 0) return eff - val;
@@ -16960,7 +16963,7 @@ export async function precontent(config, pack) {
                                     }
                                     event.dialog.content.childNodes[0].innerHTML = str;
                                 }
-                            })
+                            }),
                         );
                     for (var i = 0; i < event.dialog.buttons.length; i++) {
                         event.dialog.buttons[i].classList.add('selectable');
@@ -17177,7 +17180,7 @@ export async function precontent(config, pack) {
                 trigger.directHit.addArray(
                     game.filterPlayer(function (current) {
                         return current != player && current.isFriendsOf(player);
-                    })
+                    }),
                 );
             },
             group: 'syr_guozhen_baiban',
@@ -17489,7 +17492,7 @@ export async function precontent(config, pack) {
                     2,
                     game.countPlayer(function (current) {
                         return current.hasSex('female');
-                    })
+                    }),
                 );
             },
             mod: {
@@ -17500,7 +17503,7 @@ export async function precontent(config, pack) {
                             2,
                             game.countPlayer(function (current) {
                                 return current.hasSex('female');
-                            })
+                            }),
                         )
                     );
                 },
@@ -17512,7 +17515,7 @@ export async function precontent(config, pack) {
                                 2,
                                 game.countPlayer(function (current) {
                                     return current.hasSex('female');
-                                })
+                                }),
                             )
                         );
                 },
@@ -17522,13 +17525,13 @@ export async function precontent(config, pack) {
                 markcount: () =>
                     Math.min(
                         2,
-                        game.countPlayer((i) => i.hasSex('female'))
+                        game.countPlayer((i) => i.hasSex('female')),
                     ),
                 content() {
                     var str = '拥有';
                     str += Math.min(
                         2,
-                        game.countPlayer((i) => i.hasSex('female'))
+                        game.countPlayer((i) => i.hasSex('female')),
                     );
                     str += '层+1效果';
                     return str;
@@ -17746,7 +17749,7 @@ export async function precontent(config, pack) {
                                     }
                                     event.dialog.content.childNodes[0].innerHTML = str;
                                 }
-                            })
+                            }),
                         );
                     for (var i = 0; i < event.dialog.buttons.length; i++) {
                         event.dialog.buttons[i].classList.add('selectable');
@@ -18073,7 +18076,7 @@ export async function precontent(config, pack) {
                 var cards = player.getExpansions(skill);
                 if (cards.length) player.loseToDiscardpile(cards);
             },
-            group: ['minireguanxing_gain' /*,'minireguanxing_lose'*/],
+            group: ['minireguanxing_gain'],
             subSkill: {
                 gain: {
                     audio: 'guanxing',
@@ -18113,7 +18116,7 @@ export async function precontent(config, pack) {
                     nobracket: true,
                     mod: {
                         cardUsable(card, player, num) {
-                            if (card.name != 'sha' /*||player.getEquips('zhuge').length||player.hasSkill('zhuge_skill',null,false)*/ || !player.hasEmptySlot(1)) return;
+                            if (card.name != 'sha' || !player.hasEmptySlot(1)) return;
                             //if(get.is.versus()||get.is.changban()) return num+3;
                             return Infinity;
                         },
@@ -18238,28 +18241,12 @@ export async function precontent(config, pack) {
                     var card = get.cardPile(get.typeCard('trick').randomGet(), true);
                     player.gain(card, 'gain2');
                 } else {
-                    /*player.addTempSkill('syr_jichen_buff');
-          trigger.syr_jichen_buff=player;*/
                     trigger.effectCount++;
                 }
             },
             subSkill: {
                 basic: { charlotte: true },
                 trick: { charlotte: true },
-                /*buff:{
-            trigger:{global:'useCardToTargeted'},
-            forced:true,
-            charlotte:true,
-            popup:false,
-            lastDo:true,
-            filter:function(event,player){
-                return (event.parent.syr_jichen_buff==player&&event.targets.length==event.parent.triggeredTargets4.length);
-            },
-            content:function(){
-                trigger.parent.targets=trigger.parent.targets.concat(trigger.targets);
-                trigger.parent.triggeredTargets4=trigger.parent.triggeredTargets4.concat(trigger.targets);
-            },
-        },*/
             },
             ai: {
                 threaten: 2,
@@ -18441,7 +18428,7 @@ export async function precontent(config, pack) {
                             function (card, player, target) {
                                 return get.distance(player, target) <= 1;
                             },
-                            true
+                            true,
                         )
                         .set('ai', function (target) {
                             var player = _status.event.player,
@@ -18457,7 +18444,7 @@ export async function precontent(config, pack) {
                             function (card, player, target) {
                                 return get.distance(player, target) <= 1;
                             },
-                            true
+                            true,
                         )
                         .set('ai', function (target) {
                             var player = _status.event.player;
@@ -19108,11 +19095,7 @@ export async function precontent(config, pack) {
                                     if (cards.length) {
                                         var sum = cards.filter((i) => get.tag(i, 'save')).length,
                                             val = get.value(cards);
-                                        /*var sum=0,val;
-                  for(var i=0; i<cards.length; i++){
-                  if(get.tag(i,'save')) sum++;
-                  val+=get.value(i);
-                  }*/
+
                                         if ((sum && sum >= player.hp / 2) || val + cost >= 0 || (val * 2 + cost >= 0 && player.canSave(player))) return '选项一';
                                     }
                                     return '选项二';
@@ -19238,10 +19221,7 @@ export async function precontent(config, pack) {
                             let info = lib.skill[skill];
                             if (info) info.unique = info.charlotte = info.superCharlotte = info.fixed = true;
                         };
-                        /*var info=lib.character[player.name],skills=[];
-            if(info) skills=info[3];
-            //                                if(player.name1!=undefined&&lib.character[player.name1]) skills=skills.concat(lib.character[player.name1][3]);
-            if(player.name2!=undefined&&lib.character[player.name2]) skills=skills.concat(lib.character[player.name2][3]);*/
+
                         var skills = player.getStockSkills(true, true, true);
                         if (skills.length) {
                             for (var i = 0; i < skills.length; i++) {
@@ -20719,7 +20699,7 @@ export async function precontent(config, pack) {
                         nature: 'fire',
                     },
                     '请选择火【杀】的目标(' + (event.num == 9 ? '⑨' : event.num) + '/9)',
-                    false
+                    false,
                 );
                 ('step 2');
                 if (result.bool && event.num < 9) event.goto(1);
@@ -20846,7 +20826,7 @@ export async function precontent(config, pack) {
                     function (target) {
                         if (!check) return 0;
                         return 1 - get.attitude(_status.event.player, target);
-                    }
+                    },
                 );
                 ('step 1');
                 if (result.bool) {
@@ -21157,7 +21137,7 @@ export async function precontent(config, pack) {
                             (card, player, target) => {
                                 return lib.filter.targetEnabled2({ name: 'syr_nanyue_anran' }, player, target);
                             },
-                            true
+                            true,
                         )
                         .set('ai', (target) => {
                             var player = _status.event.player;
@@ -21340,7 +21320,7 @@ export async function precontent(config, pack) {
                                         cards: [js[i]],
                                     },
                                     player,
-                                    player
+                                    player,
                                 );
                             if (target.hasSkill(lib.skill.syr_guang.nice)) eff += 20 * sign;
                             if (eff <= 0 && game.hasPlayer((i) => player != i && target != i && get.distance(player, i) == maxD && get.attitude(player, i) > 0 && i.maxHp >= game.countPlayer())) return eff;
@@ -21831,7 +21811,7 @@ export async function precontent(config, pack) {
                             var player = _status.event.player;
                             return !_status.event.targets.includes(target) && lib.filter.targetEnabled2(_status.event.card, player, target);
                         },
-                        [1, num]
+                        [1, num],
                     )
                     .set('prompt2', prompt2)
                     .set('ai', function (target) {
@@ -21882,9 +21862,7 @@ export async function precontent(config, pack) {
                         }
                         return event.winner == player;
                     },
-                    /*prompt:function(){
-              return '彩虹:是否摸'+get.cnNumber(game.roundNumber-1)+'张牌？';
-          },*/
+
                     forced: true,
                     content() {
                         player.draw(Math.min(game.roundNumber - 1, 5));
@@ -22276,7 +22254,7 @@ export async function precontent(config, pack) {
                                 addTable(list1, true);
                             }
                             return dialog;
-                        })(trigger, player)
+                        })(trigger, player),
                     )
                     .set('ai', function (button) {
                         var player = _status.event.player;
@@ -22943,7 +22921,7 @@ export async function precontent(config, pack) {
                                 9 +
                                 Math.min(
                                     player.countCards('hs', (i) => get.type2(i) == 'trick' && player.hasValueTarget(i)),
-                                    3
+                                    3,
                                 );
                         if (sub && (!player.storage.lianjing_roundcount || game.roundNumber - player.storage.lianjing_roundcount >= 2) && get.subtype(cardx) == sub) eff += 15;
                         if (!eff) eff = 5;
@@ -22964,7 +22942,7 @@ export async function precontent(config, pack) {
                                 9 +
                                 Math.min(
                                     player.countCards('hs', (i) => get.type2(i) == 'trick' && player.hasValueTarget(i)),
-                                    3
+                                    3,
                                 );
                         if (
                             sub &&
@@ -22992,7 +22970,7 @@ export async function precontent(config, pack) {
                                     9 +
                                     Math.min(
                                         player.countCards('hs', (i) => get.type2(i) == 'trick' && player.hasValueTarget(i)),
-                                        3
+                                        3,
                                     );
                             if (get.subtype(evt.card) && (!player.storage.lianjing_roundcount || game.roundNumber - player.storage.lianjing_roundcount >= 2) && get.subtype(evt.card) == get.subtype(card)) eff += 15;
                         }
@@ -23054,7 +23032,7 @@ export async function precontent(config, pack) {
                                 cards: [card],
                             },
                             player,
-                            player
+                            player,
                         );
                     if (player.isLinked()) eff2 += get.effect(player, { name: 'tiesuo' }, player, player);
                     if (player.isTurnedOver()) eff2 += 25;
@@ -23068,7 +23046,7 @@ export async function precontent(config, pack) {
                                     cards: [card],
                                 },
                                 player,
-                                player
+                                player,
                             );
                         if (target.isLinked()) eff2 += get.effect(target, { name: 'tiesuo' }, player, player);
                         if (target.isTurnedOver()) eff2 += 25;
@@ -23108,7 +23086,7 @@ export async function precontent(config, pack) {
                                         cards: [card],
                                     },
                                     player,
-                                    target
+                                    target,
                                 );
                             if (player != target)
                                 for (var card of target.getCards('j'))
@@ -23119,7 +23097,7 @@ export async function precontent(config, pack) {
                                             cards: [card],
                                         },
                                         player,
-                                        target
+                                        target,
                                     );
                         }
                         if (num > 5) {
@@ -23703,7 +23681,7 @@ export async function precontent(config, pack) {
                     player.storage.syr_pingjian.use.push('minipoxi', 'miniminsi', 'minirexianzhou');
                     //                            player.storage.syr_pingjian.use.push('zhongdun','seira_yuanying','noname_zhuyuan','anying','shizuku_sizhi','jiehuo','huodan','jinlin','duijue','yuzuru_quji','hxunzhi');
                     player.storage.syr_pingjian.dam.push('rebaobian', 'oldjiebing', 'guixin', 'dccaixia', 'dcsilun', 'rangjie', 'new_reyiji', 'yachai', 'dcfangdu', 'dcshibei', 'jilei', 'yashi', 'oldyimou', 'dcyuanmo', 'dcfumou', 'sbzongshi', 'zhichi', 'sbzhichi', 'fangzhu', 'twjieyu', 'luochong', 'qingxian', 'refankui', 'oljieming', 'rejieming', 'benyu', 'sbqiaoshi', 'spxianchou');
-                    player.storage.syr_pingjian.dam.push('spyinzhi', 'hlfangzhu', 'miniguixin', 'minijianxiong', 'minisbjianxiong' /*,'boss_lingqu','boss_abi'*/);
+                    player.storage.syr_pingjian.dam.push('spyinzhi', 'hlfangzhu', 'miniguixin', 'minijianxiong', 'minisbjianxiong');
                     //                            player.storage.syr_pingjian.dam.push('ningxian','chajue','yaoji','yaoyi','sunohara_jianren');
                     player.storage.syr_pingjian.js.push('dcnuanhui', 'oljuanxia', 'dcaishou', 'dcfuxue', 'dcpingxi', 'caiyi', 'fenrui', 'xiangshu', 'rekuangcai', 'zhuihuan', 'suizheng', 'decadejingce', 'mozhi', 'spfangzong', 'olzhiji', 'decadezhenjun', 'drlt_zhengu', 'rezaiqi', 'rebiluan', 'twshelie', 'dcmanzhi');
                     //player.storage.syr_pingjian.js.push('boss_xiaoshou','boss_jiushou','boss_qiangzheng','boss_lianyu','boss_xuechi','boss_didong');
@@ -23938,64 +23916,7 @@ export async function precontent(config, pack) {
                 }
             },
         },
-        /*syr_geming:{
-        init2:function(player){
-            game.broadcastAll(function(player){
-                player._syr_geming_mark=player.mark('恐义',{
-                    content:'拥有技能〖神躯〗、〖破锐〗和〖鞬出〗'
-                });
-            },player);
-            player.addAdditionalSkill('syr_geming',['shenqu','dcporui','rejianchu']);
-        },
-        onremove:function(player){
-            game.broadcastAll(function(player){
-                if(player._syr_geming_mark){
-                    player._syr_geming_mark.delete();
-                    delete player._syr_geming_mark;
-                }
-            },player);
-            player.removeAdditionalSkill('syr_geming');
-        },
-        trigger:{player:'phaseBegin'},
-        forced:true,
-        unique:true,
-        forceunique:true,
-        filter:function(event,player){
-            return player._syr_geming_mark&&player._syr_geming_mark.name=='恐义';
-        },
-        content:function(){
-            game.broadcastAll(function(player){
-                if(!player._syr_geming_mark) return;
-                player._syr_geming_mark.name='裏格';
-                player._syr_geming_mark.skill='裏格';
-                player._syr_geming_mark.firstChild.innerHTML='裏格';
-                player._syr_geming_mark.info.content='拥有技能〖隐世〗、〖神速〗和〖灵涌〗';
-            },player);
-            player.addAdditionalSkill('syr_geming',['xinfu_pdgyingshi','gzshensu','dddlingyong']);
-        },
-        group:'syr_geming2',
-        derivation:['shenqu','dcporui','rejianchu','xinfu_pdgyingshi','gzshensu','dddlingyong'],
-    },
-    syr_geming2:{
-        trigger:{player:'phaseEnd'},
-        forced:true,
-        unique:true,
-        forceunique:true,
-        filter:function(event,player){
-            return player._syr_geming_mark&&player._syr_geming_mark.name=='裏格';
-        },
-        direct:true,
-        content:function(){
-            game.broadcastAll(function(player){
-                if(!player._syr_geming_mark) return;
-                player._syr_geming_mark.name='恐义';
-                player._syr_geming_mark.skill='恐义';
-                player._syr_geming_mark.firstChild.innerHTML='恐义';
-                player._syr_geming_mark.info.content='拥有技能〖神躯〗、〖破锐〗和〖鞬出〗';
-            },player);
-            player.addAdditionalSkill('syr_geming',['shenqu','dcporui','rejianchu']);
-        }
-    },*/
+
         syr_porui: {
             audio: 'dcporui',
             trigger: { global: 'phaseJieshuBegin' },
@@ -24093,14 +24014,7 @@ export async function precontent(config, pack) {
                 threaten: 3.8,
             },
         },
-        /*syr_jianxi:{
-        shaRelated:true,
-        trigger:{player:'useCardToPlayered'},
-        filter:function(event,player){
-            return event.card && event.card.name=='sha'&&event.target.countCards('he')>0;
-        },
-        direct:true,
-    },*/
+
         jlsg_tianzi: {
             srlose: true,
             audio: 'ext:白河子与其他/audio/skill:1',
@@ -24337,19 +24251,7 @@ export async function precontent(config, pack) {
                     player.addExpose(0.3);
                 }
             },
-            /*mark:true,
-      intro:{
-          content:function(storage,player){
-              var storage=player.storage.syr_eshi;
-              if(!storage) return '无记录';
-              var str='';
-              for(var i in storage){
-                  str+='<li>'+i+':';
-                  str+=storage[i];
-              }
-              return str;
-          },
-      },*/
+
             ai: { threaten: 2 },
             group: ['syr_eshi_init', 'syr_eshi_count'],
             subSkill: {
@@ -24521,7 +24423,7 @@ export async function precontent(config, pack) {
                         game.dead.remove(targetd);
                     },
                     player,
-                    targetd
+                    targetd,
                 );
                 game.log('【✘', targetd, '魂飞魄散】');
             },
@@ -24658,13 +24560,13 @@ export async function precontent(config, pack) {
                             get
                                 .typeCard('delay')
                                 .filter((i) => lib.card[i] && lib.card[i].judge)
-                                .randomGet()
+                                .randomGet(),
                         );
                         evt.target.executeDelayCardEffect(
                             get
                                 .typeCard('delay')
                                 .filter((i) => lib.card[i] && lib.card[i].judge)
-                                .randomGet()
+                                .randomGet(),
                         );
                     }
                 });
@@ -24726,7 +24628,7 @@ export async function precontent(config, pack) {
                     await player.recast(player.getCards('h'));
                     await player.give(
                         player.getCards('h', (i) => !['du', 'dshj_zhadan'].includes(i.name)),
-                        trigger.player
+                        trigger.player,
                     );
                     player.turnOver();
                     player.link(true);
@@ -26088,7 +25990,7 @@ export async function precontent(config, pack) {
                 var evt = event.getParent(2);
                 event.parent.orderingCards.remove(event.judgeResult.card);
                 evt.cards.push(event.judgeResult.card);
-                if (event.parent.result.bool /*&&player.maxHp<10*/) {
+                if (event.parent.result.bool) {
                     evt.suits.push(event.parent.result.suit);
                     player.gainMaxHp();
                     player.chooseBool('是否继续发动【慧识】？').set('frequentSkill', 'syr_huishi');
@@ -26225,7 +26127,7 @@ export async function precontent(config, pack) {
                                         target: target,
                                         card: card,
                                     },
-                                    true
+                                    true,
                                 );
                             if (num >= target.hp + target.hujia) return [1, 1];
                             //if(!target.hasUnknown()) return [Math.min(num/2,1),target.hp+target.hujia-0.5];
@@ -26499,7 +26401,7 @@ export async function precontent(config, pack) {
                         distance +
                         Math.min(
                             5,
-                            to.countCards('he', (card) => card.hasGaintag('dcshuangjia_tag'))
+                            to.countCards('he', (card) => card.hasGaintag('dcshuangjia_tag')),
                         )
                     );
                 };
@@ -26924,7 +26826,7 @@ export async function precontent(config, pack) {
                                     return att + att3;
                                 }
                                 return att;
-                            }
+                            },
                         );
                         ('step 1');
                         if (result.bool) {
@@ -27098,7 +27000,7 @@ export async function precontent(config, pack) {
                                     target: target,
                                     card: card,
                                 },
-                                true
+                                true,
                             ) || 0);
                         if (dl) {
                             if (player.hasSkillTag('jueqing', false, target) || target.getStat('triggerSkill').syr_xujie) return [1, -2];
@@ -27389,7 +27291,7 @@ export async function precontent(config, pack) {
                         target.showIdentity();
                     },
                     player,
-                    trigger.player
+                    trigger.player,
                 );
                 event.trigger('zhuUpdate');
             },
@@ -27657,7 +27559,7 @@ export async function precontent(config, pack) {
                             return list[0];
                         }
                         return list;
-                    })()
+                    })(),
                 );
                 next.set('ai', function (card) {
                     if (!_status.event.cardResult.includes(card)) return 0;
@@ -27822,7 +27724,7 @@ export async function precontent(config, pack) {
                             if (!_status.event.targets.includes(target)) return false;
                             if (!_status.event.nodistance && !lib.filter.targetInRange(card, trigger.player, target)) return false;
                             return lib.filter.targetEnabledx(card, trigger.player, target);
-                        }
+                        },
                     );
                     next.set('ai', event.ai || get.effect_use);
                     next.set('selectTarget', event.selectTarget || lib.filter.selectTarget);
@@ -28103,7 +28005,7 @@ export async function precontent(config, pack) {
                             var selfTargets = targets.slice();
                             selfTargets[0] = '自己';
                             return get.translation(selfTargets);
-                        })(logs)}发动了【${get.skillTranslation(event.name, player)}】`
+                        })(logs)}发动了【${get.skillTranslation(event.name, player)}】`,
                     );
                     game.loseAsync({
                         gain_list: map,
@@ -28233,7 +28135,7 @@ export async function precontent(config, pack) {
                             var num = 0;
                             for (var i of trigger.targets) num += get.effect(i, trigger.card, player, player);
                             return num > 0;
-                        })(trigger.card)
+                        })(trigger.card),
                     );
                 ('step 7');
                 if (result.bool) trigger.effectCount++;
@@ -28307,7 +28209,7 @@ export async function precontent(config, pack) {
                             if (player.marks.syr_mojian_mark) player.marks.syr_mojian_mark.firstChild.innerHTML = get.translation(suit);
                         },
                         player,
-                        trigger.card.suit
+                        trigger.card.suit,
                     );
                 }
             },
@@ -28331,7 +28233,7 @@ export async function precontent(config, pack) {
                                 if (player.marks.syr_mojian_mark) player.marks.syr_mojian_mark.firstChild.innerHTML = get.translation(suit);
                             },
                             player,
-                            trigger.card.suit
+                            trigger.card.suit,
                         );
                     },
                     intro: {
@@ -28738,7 +28640,7 @@ export async function precontent(config, pack) {
                     get.prompt(event.name) +
                     `<div class = "text center">
                     对至多${get.cnNumber(Math.min(event.num, game.players.length))}名角色造成1点伤害或回复1点体力
-                    </div>`
+                    </div>`,
                 );
                 next.set('list', [['场上角色', [game.players.slice(0), 'player']], ['造成伤害'], ['回复体力']]);
                 next.set('filterOk', function (moved) {
@@ -29209,7 +29111,7 @@ export async function precontent(config, pack) {
                                                 if (!_status.event.c.includes(card)) return false;
                                                 return lib.filter.filterCard.apply(this, arguments);
                                             },
-                                            '野䜁:是否对' + get.translation(player) + '使用一张刚刚获得的牌？'
+                                            '野䜁:是否对' + get.translation(player) + '使用一张刚刚获得的牌？',
                                         )
                                         .set('targetRequired', true)
                                         .set('complexSelect', true)
@@ -29240,7 +29142,6 @@ export async function precontent(config, pack) {
                         if (s) player.loseMaxHp(s, true);
                         var skills = player.getSkills(null, false, false).remove('syr_yexi');
                         if (skills.length) player.removeSkills(skills);
-                        await;
                         var players = game.filterPlayer(),
                             cards;
                         for (var i of players) {
@@ -29595,7 +29496,7 @@ export async function precontent(config, pack) {
                         (function () {
                             if (!target.hasValueTarget(card)) return 1;
                             return Math.random() < 0.5 ? 0 : 1;
-                        })()
+                        })(),
                     )
                     .set('ai', () => _status.event.choice);
                 ('step 3');
@@ -29754,7 +29655,7 @@ export async function precontent(config, pack) {
                                 (card, player, target) => {
                                     return target != get.event('target');
                                 },
-                                true
+                                true,
                             )
                             .set('ai', (target) => get.attitude(get.event('player'), target))
                             .set('target', target)
@@ -30084,7 +29985,7 @@ export async function precontent(config, pack) {
                                                 if ((get.attitude(player, next) > 0 && val >= 6) || (get.attitude(player, next) < 0 && val <= 4.5)) return '牌堆顶';
                                             } //QQQ
                                             return '牌堆底';
-                                        })()
+                                        })(),
                                     );
                             }
                             ('step 3');
@@ -30100,7 +30001,7 @@ export async function precontent(config, pack) {
                                             if (type == 'equip') return current.canEquip(card);
                                             if (type == 'delay') return current.canAddJudge(card);
                                             return false;
-                                        })
+                                        }),
                                     )
                                     .set('ai', (target) => {
                                         var player = _status.event.player;
@@ -30116,7 +30017,7 @@ export async function precontent(config, pack) {
                                                         cards: [card],
                                                     },
                                                     target,
-                                                    target
+                                                    target,
                                                 ))
                                         );
                                     })
@@ -30249,7 +30150,7 @@ export async function precontent(config, pack) {
                                 card.init([card2[0], card2[1], card2[2], card2[3]]);
                             },
                             card,
-                            card2
+                            card2,
                         );
                     }
                 } else await lib.skill.minihuanshu.GainContent(2, trigger.num || 1, player);
@@ -30258,9 +30159,8 @@ export async function precontent(config, pack) {
                 if (!_status.Mbaby_zuoci_card_css) {
                     _status.Mbaby_zuoci_card_css = true;
                     game.broadcastAll(() => {
-                        /*神左慈幻术卡牌颜色*/
                         lib.init.sheet(['.card.minihuanshu-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color: #0000FF;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
-                        /*神左慈幻化卡牌颜色*/
+
                         lib.init.sheet(['.card.minihuanhua-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color:yellow;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
                     });
                 }
@@ -30612,7 +30512,7 @@ export async function precontent(config, pack) {
                                     var player = _status.event.player;
                                     return !_status.event.targets.includes(target) && lib.filter.targetEnabled2(_status.event.card, player, target);
                                 },
-                                [1, 2]
+                                [1, 2],
                             )
                             .set('prompt2', prompt2)
                             .set('ai', function (target) {
@@ -31074,7 +30974,7 @@ export async function precontent(config, pack) {
                 var func = (target) => (get.realAttitude || get.attitude)(player, target);
                 var mt = get.max(
                     game.filterPlayer((i) => func(i) < 0),
-                    get.threaten
+                    get.threaten,
                 );
                 return get.threaten(event.player) == mt;
             },
@@ -31162,7 +31062,7 @@ export async function precontent(config, pack) {
                                 source.setIdentity();
                             },
                             target,
-                            identity
+                            identity,
                         );
                         game.log(target, '将身份变为了', '#y' + get.translation(identity));
                         if (target.node && target.node.identity && target.node.identity.dataset) target.node.identity.dataset.color = get.translation(target.side + 'Color');
@@ -31589,7 +31489,8 @@ export async function precontent(config, pack) {
                         if (!target.countCards('he') && get.attitude(target, source) <= 0 && button.link[2] == 'db_atk1') return 10;
                         return 1 + Math.random();
                     })
-                    .set('sourceSkill', 'sbtieji').forResult();
+                    .set('sourceSkill', 'sbtieji')
+                    .forResult();
                 if (result.bool) {
                     if (result.player == 'db_def1') player.gainPlayerCard(target, 'he', true);
                     else player.draw(2);
@@ -31653,7 +31554,7 @@ export async function precontent(config, pack) {
                                     }
                                 },
                                 event.namelist,
-                                event.sourceSkill
+                                event.sourceSkill,
                             );
                             game.log(player, '向', target, '发起了', '#y谋弈');
                             if (!event.ai) event.ai = () => 1 + Math.random();
@@ -31697,7 +31598,7 @@ export async function precontent(config, pack) {
                                         ],
 
                                         () => { },
-                                        event.ai
+                                        event.ai,
                                     )
                                     .set('processAI', () => {
                                         const buttons = _status.event.dialog.buttons;
@@ -31725,7 +31626,7 @@ export async function precontent(config, pack) {
                                             ],
                                         ],
 
-                                        true
+                                        true,
                                     )
                                     .set('ai', event.ai);
                             ('step 2');
@@ -31744,7 +31645,7 @@ export async function precontent(config, pack) {
                                         ],
                                     ],
 
-                                    true
+                                    true,
                                 )
                                 .set('ai', event.ai);
                             ('step 3');
@@ -31788,7 +31689,7 @@ export async function precontent(config, pack) {
                                     },
                                     event.parent.name,
                                     event.result.bool,
-                                    mes
+                                    mes,
                                 );
                             ('step 6');
                             game.broadcastAll(() => ui.arena.classList.remove('thrownhighlight'));
@@ -31882,7 +31783,7 @@ export async function precontent(config, pack) {
                         function (card, player, event) {
                             return lib.filter.filterCard.apply(this, arguments);
                         },
-                        get.prompt('syr_jianxiong', trigger.player)
+                        get.prompt('syr_jianxiong', trigger.player),
                     )
                     .set('targetRequired', true)
                     .set('complexSelect', true)
@@ -31908,7 +31809,7 @@ export async function precontent(config, pack) {
                                         target: sourcex,
                                         card: card,
                                     },
-                                    false
+                                    false,
                                 )
                             )
                                 order += 20;
@@ -32040,7 +31941,7 @@ export async function precontent(config, pack) {
                             if (player.marks.syr_chehun_mark) player.marks.syr_chehun_mark.firstChild.innerHTML = get.translation(color);
                         },
                         player,
-                        get.color(trigger.card, player)
+                        get.color(trigger.card, player),
                     );
                 }
             },
@@ -32063,7 +31964,7 @@ export async function precontent(config, pack) {
                                 if (player.marks.syr_chehun_mark) player.marks.syr_chehun_mark.firstChild.innerHTML = get.translation(color);
                             },
                             player,
-                            get.color(trigger.card, player)
+                            get.color(trigger.card, player),
                         );
                     },
                     intro: {
@@ -32276,7 +32177,7 @@ export async function precontent(config, pack) {
                                 'goon',
                                 (function (event, player) {
                                     return get.attitude(_status.event.player, player) < 0 && !player.hasSkillTag('filterDamage');
-                                })(trigger, trigger.player)
+                                })(trigger, trigger.player),
                             )
                             .set('ai', function (card) {
                                 if (_status.event.goon) return 7.5 - get.value(card);
@@ -32376,7 +32277,7 @@ export async function precontent(config, pack) {
                     _status.fh_cardPile.addArray(
                         cardList.filter((card) => {
                             return lib.card.list.some((cardx) => card[0] == cardx[0] && card[1] == cardx[1] && card[2] == cardx[2] && ((!card[3] && !cardx[3]) || card[3] == cardx[3]));
-                        })
+                        }),
                     );
                     var names = lib.card.list.filter((cardx) => !cardList.some((card) => card[2] == cardx[2])).reduce((list, card) => list.add(card[2]), []);
                     names.forEach((name) => {
@@ -32400,7 +32301,7 @@ export async function precontent(config, pack) {
                             uiintro.add(ui.create.div('.placeholder'));
                             return uiintro;
                         },
-                        250
+                        250,
                     );
                 }
                 //获取额外牌堆的牌
@@ -32448,7 +32349,7 @@ export async function precontent(config, pack) {
                             (cards) => {
                                 cards.forEach((card) => card.addGaintag('fh_tag'));
                             },
-                            cards.filter((card) => get.owner(card))
+                            cards.filter((card) => get.owner(card)),
                         );
                     },
                 };
@@ -34171,7 +34072,7 @@ export async function precontent(config, pack) {
                                     target: target,
                                     card: card,
                                 },
-                                true
+                                true,
                             ) || 0);
                         if (!dl || dl > 1) return;
                         if (get.tag(card, 'damage')) {
@@ -34802,7 +34703,7 @@ export async function precontent(config, pack) {
                                         return Infinity;
                                     }
                                     return 0;
-                                })()
+                                })(),
                             );
                         ('step 1');
                         if (result.bool) {
@@ -35244,9 +35145,8 @@ export async function precontent(config, pack) {
                     if (!_status.Mbaby_zuoci_card_css) {
                         _status.Mbaby_zuoci_card_css = true;
                         game.broadcastAll(() => {
-                            /*神左慈幻术卡牌颜色*/
                             lib.init.sheet(['.card.minihuanshu-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color: #0000FF;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
-                            /*神左慈幻化卡牌颜色*/
+
                             lib.init.sheet(['.card.minihuanhua-glow:before{', 'opacity:0.2;', 'box-shadow:rgba(0,0,0,0.2) 0 0 0 1px,rgb(255,109,12) 0 0 5px,rgb(255,0,0) 0 0 10px;', 'background-color:yellow;', '-webkit-filter:blur(5px);', 'filter:blur(5px);', '}'].join(''));
                         });
                     }
@@ -35369,7 +35269,7 @@ export async function precontent(config, pack) {
                                     }
                             },
                             trigger.player.getCards('h', (card) => card.minihuanshu && card.minihuanhua ^ (trigger.player == player)),
-                            card
+                            card,
                         );
                     },
                 },
@@ -35453,7 +35353,7 @@ export async function precontent(config, pack) {
                                     source.setIdentity();
                                 },
                                 target,
-                                identity
+                                identity,
                             );
                             game.log(target, '将身份变为了', '#y' + get.translation(identity));
                             if (target.node && target.node.identity && target.node.identity.dataset) target.node.identity.dataset.color = get.translation(target.side + 'Color');
@@ -35664,7 +35564,7 @@ export async function precontent(config, pack) {
                         for (var name of list) lib.skill.qiexie.createCard(name);
                     },
                     player,
-                    list
+                    list,
                 );
                 var cards = list.map(function (name) {
                     var card = game.createCard('qiexie_' + name, 'none', get.infoMaxHp(lib.character[name][2]));
@@ -35719,7 +35619,7 @@ export async function precontent(config, pack) {
                                 for (var name of list) lib.skill.qiexie.createCard(name);
                             },
                             player,
-                            list
+                            list,
                         );
                         var cards = list.map(function (name) {
                             var card = game.createCard('qiexie_' + name, 'none', get.infoMaxHp(lib.character[name][2]));
@@ -35775,7 +35675,7 @@ export async function precontent(config, pack) {
                         cardsh.addArray(
                             card.cards.filter((card) => {
                                 return get.position(card) == 'h';
-                            })
+                            }),
                         );
                     }
                     var del = player.countCards('h') - cardsh.length - player.getHistory('useCard').length - 1;
@@ -35944,7 +35844,7 @@ export async function precontent(config, pack) {
                                             source.setIdentity();
                                         },
                                         target,
-                                        identity
+                                        identity,
                                     );
                                     game.log(target, '将身份变为了', '#y' + get.translation(identity));
                                     if (target.node && target.node.identity && target.node.identity.dataset) target.node.identity.dataset.color = get.translation(target.side + 'Color');
@@ -36504,7 +36404,7 @@ export async function precontent(config, pack) {
                                     else solver(result, current);
                                 }
                             });
-                        })
+                        }),
                     ).catch(() => { });
                     game.broadcastAll('cancel', eventId);
                 }
@@ -36550,7 +36450,7 @@ export async function precontent(config, pack) {
                             ],
                         ],
 
-                        true
+                        true,
                     )
                     .set('filterButton', (button) => {
                         const player = get.event().player;
@@ -36679,7 +36579,7 @@ export async function precontent(config, pack) {
                     ...game
                         .filterPlayer()
                         .map((p) => p.getCards('h', (c) => ['tao', 'jiu', 'jlsgqs_mei'].includes(c.name)))
-                        .flat()
+                        .flat(),
                 );
                 event.cards = cards;
                 ('step 1');
@@ -36708,7 +36608,7 @@ export async function precontent(config, pack) {
                     ...game
                         .filterPlayer()
                         .map((p) => p.getCards('h', (c) => get.tag(c, 'recover')))
-                        .flat()
+                        .flat(),
                 );
                 event.cards = cards;
                 ('step 1');
@@ -36812,7 +36712,7 @@ export async function precontent(config, pack) {
                                             source.setIdentity();
                                         },
                                         target,
-                                        identity
+                                        identity,
                                     );
                                     game.log(target, '将身份变为了', '#y' + get.translation(identity));
                                     if (target.node && target.node.identity && target.node.identity.dataset) target.node.identity.dataset.color = get.translation(target.side + 'Color');
@@ -36957,7 +36857,7 @@ export async function precontent(config, pack) {
                             if (card.name != 'sha') return false;
                             return lib.filter.filterCard.apply(this, arguments);
                         },
-                        '对' + get.translation(target2) + '使用一张杀,否则本回合对' + get.translation(source) + '使用伤害牌须交给其两张不为【金箍圈】的牌'
+                        '对' + get.translation(target2) + '使用一张杀,否则本回合对' + get.translation(source) + '使用伤害牌须交给其两张不为【金箍圈】的牌',
                     )
                     .set('targetRequired', true)
                     .set('complexSelect', true)
@@ -37732,7 +37632,7 @@ export async function precontent(config, pack) {
                             false,
                             game.filterPlayer(function (current) {
                                 return get.distance(objL.target, current) <= 2;
-                            })
+                            }),
                         );
                         if (typeof objL.baseDamage == 'number') next.baseDamageSk = objL.baseDamage;
                         if (typeof objL.extraDamage == 'number') next.extraDamageSk = objL.extraDamage;
@@ -38533,7 +38433,7 @@ export async function precontent(config, pack) {
                                 return true;
                             }
                             return false;
-                        })(trigger, trigger.target)
+                        })(trigger, trigger.target),
                     )
                     .set('ai', function (card) {
                         if (_status.event.goon) return 7.5 - get.value(card);
@@ -38800,7 +38700,7 @@ export async function precontent(config, pack) {
                                 cards: [card],
                             },
                             target,
-                            target
+                            target,
                         );
                     var du = target.countCards('h', 'du');
                     eff += target.hasSkillTag('usedu') ? 5 * du : -du;
@@ -38813,22 +38713,11 @@ export async function precontent(config, pack) {
                     event.cards = [];
                     var js = target.getCards('j');
                     if (js && js.length) {
-                        /*                            for(var i=0;i<js.length;i++) js[i]._destroy=true;
-                                    target.lose(player,js,'visible');*/
                         game.cardsGotoSpecial(js, false);
                         game.log(js, '被销毁了');
                     }
                     var du = target.getCards('h', 'du');
                     if (du && du.length) {
-                        /*                            for(var i=0;i<du.length;i++) du[i]._destroy=true;
-                                    var next=game.createEvent('lose');
-                                    next.player=target;
-                                    next.forceDie=true;
-                                    next.source=player;
-                                    next.cards=du.slice(0);
-                                    next.visible=false;
-                                    next.position=ui.discardPile;
-                                    next.setContent('lose');*/
                         game.cardsGotoSpecial(du, false);
                         game.log(du, '被销毁了');
                     }
@@ -39520,7 +39409,7 @@ export async function precontent(config, pack) {
                             dead.revive();
                         },
                         player,
-                        dead
+                        dead,
                     );
                     var num = get.infoMaxHp(lib.character[dead.name][2]);
                     if ([game.zhu, game.rZhu, game.bZhu].includes(dead)) num++;
@@ -39621,8 +39510,8 @@ export async function precontent(config, pack) {
                                         cards: [card],
                                     },
                                     player,
-                                    player
-                                ) < 0
+                                    player,
+                                ) < 0,
                         ) &&
                         hs[0].number + 2 > ts[ts.length - 1].number
                     )
@@ -40292,7 +40181,7 @@ export async function precontent(config, pack) {
                         game.swapSeat(target1, target2);
                     },
                     player,
-                    target
+                    target,
                 );
             },
             subSkill: { blocker: { charlotte: true } },
@@ -41644,13 +41533,7 @@ export async function precontent(config, pack) {
                 jlsg_syqj_wusheng: '武圣',
                 jlsg_syqj_wusheng2: '武圣',
                 jlsg_syqj_wusheng_info: '你可以将红色牌当【杀】使用或打出,以此法使用的【杀】指定目标后,你摸一张牌并弃置至多三张手牌,若如此做,目标角色弃置X张牌,此【杀】的伤害+X,若此时是你的出牌阶段,你于此阶段内使用【杀】的次数上限+X(X为你弃置的牌数).',
-                /*syr_nabao:'纳暴',
-        syr_nabao_info:'锁定技.<br>❶当你即将受到伤害或即将扣减体力上限时,防止之,你将造成此次伤害或扣减体力上限的对应实体牌和当前回合角色区域内的一张牌置入<仁>区并失去1点体力.<br>❷准备阶段,你摸一张牌,将区域内的一张黑色牌置入<仁>区.<br>❸当一名角色失去体力时,你获得你最近失去的一张牌.',
-        syr_nabao1:'纳暴',
-        syr_nabao2:'纳暴',
-        syr_nabao3:'纳暴',
-        syr_diewu:'蝶舞',
-        syr_diewu_info:'❶当你需要使用或打出一张【刺杀】或【蝴蝶舞】时,你可以获得<仁>区中的一张牌,视为使用或打出【刺杀】或【蝴蝶舞】.<br>❷你的攻击范围和手牌上限+X(X为<仁>区中的牌数).',*/
+
                 syr_xigou: '奊诟',
                 syr_xigou2: '奊诟',
                 syr_xigou_info: '锁定技.<br>❶当一张伤害牌结算结束后,若此牌未造成过伤害,你将此牌的对应实体牌和牌堆底的一张牌置入<仁>区.<br>❷回合结束时,你依次使用当前<仁>区中能使用的所有牌(无距离和次数限制).',
@@ -42207,9 +42090,7 @@ export async function precontent(config, pack) {
                 syr_porui_info: '每轮限两次.一名角色的结束阶段,你可以弃置一张基本牌并选择一名于此回合内失去过牌的另一名其他角色,你视为对其依次使用两张【刺杀】,若其存活,你可视为对一名角色使用一张【桃】.',
                 gzshensu: '神速',
                 gzshensu_info: '❶判定阶段开始时,你可跳过此阶段和摸牌阶段,视为使用一张【杀】(无距离限制).<br>❷出牌阶段开始时,你可跳过此阶段并弃置一张装备牌,视为使用一张【杀】(无距离限制).<br>❸弃牌开始时,你可跳过此阶段并失去1点体力,视为使用一张【杀】(无距离限制).',
-                /*syr_geming:'革命',
-        syr_geming2:'革命',
-        syr_geming_info:'转化技,锁定技.<br>❶游戏开始时,你获得标记<恐义>并获得技能〖神躯〗、〖破锐〗和〖鞬出〗.<br>❷回合开始时,你须将你的标记变为<裏格>,将这三项技能改为〖隐世〗、〖神速〗和〖灵涌〗.<br>❸回合结束时,你须将标记翻回.',*/
+
                 jlsg_tianzi: '天姿',
                 jlsg_tianzi_info: '摸牌阶段开始时,你可以放弃摸牌,令所有其他角色依次选择一项:1、交给你一张牌;2、令你摸一张牌.',
                 jlsg_lihun: '离魂',
@@ -43802,7 +43683,7 @@ export async function precontent(config, pack) {
                                 function (card, player, event) {
                                     return card.name == 'sha' && lib.filter.filterCard.apply(this, arguments);
                                 },
-                                '使用一张杀,或交给' + get.translation(player) + '两张牌'
+                                '使用一张杀,或交给' + get.translation(player) + '两张牌',
                             );
                         } else {
                             event.directfalse = true;
@@ -43922,7 +43803,7 @@ export async function precontent(config, pack) {
                                             source.setIdentity();
                                         },
                                         target,
-                                        identity
+                                        identity,
                                     );
                                     game.log(target, '将身份变为了', '#y' + get.translation(identity));
                                     if (target.node && target.node.identity && target.node.identity.dataset) target.node.identity.dataset.color = get.translation(target.side + 'Color');
@@ -44022,7 +43903,7 @@ export async function precontent(config, pack) {
                                         Math.max(1, get.threaten(target, player)) *
                                         Math.max.apply(
                                             Math,
-                                            player.getCards('h').map((card) => card.number || 0)
+                                            player.getCards('h').map((card) => card.number || 0),
                                         )) /
                                     ((target.hasSkill('tianbian') ? target.countCards('h') / 2 : 0) + 1)
                                 );
@@ -44201,7 +44082,7 @@ export async function precontent(config, pack) {
                                 },
                                 target,
                                 card,
-                                target == targets[0]
+                                target == targets[0],
                             );
                             if (target == targets[0]) {
                                 if (card.clone && (card.clone.parentNode == target.parentNode || card.clone.parentNode == ui.arena)) {
@@ -44436,7 +44317,7 @@ export async function precontent(config, pack) {
                                             target: target,
                                             card: card,
                                         },
-                                        true
+                                        true,
                                     )
                                 )
                                     return eff / 1.2;
@@ -45009,7 +44890,7 @@ export async function precontent(config, pack) {
                                         dead.addSkill('zq_huanhundan_die');
                                     },
                                     player,
-                                    dead
+                                    dead,
                                 );
                                 if (typeof lib.character[dead.name][2] == typeof 0) {
                                     dead.maxHp = lib.character[dead.name][2];
@@ -45163,7 +45044,7 @@ export async function precontent(config, pack) {
                                         dead.addSkill('zq_huanhundan_die');
                                     },
                                     player,
-                                    dead
+                                    dead,
                                 );
                                 if (typeof lib.character[dead.name][2] == typeof 0) {
                                     dead.maxHp = lib.character[dead.name][2];
@@ -45343,9 +45224,7 @@ export async function precontent(config, pack) {
                         target.gainMaxHp(1);
                         ('step 1');
                         target.recover();
-                        /*if(target == game.me && target.xwIs('xwjh_qianyuanlong') && target.hasSkill('xwjh_diwei')){
-                window.xwTempGainAchievement("千载万岁");
-            }*/
+
                         if (typeof window.xwTempGainAchievement == 'function') window.xwTempGainAchievement('千载万岁');
                     },
                     contentAfter() {
@@ -45564,7 +45443,7 @@ export async function precontent(config, pack) {
                                 },
                                 target,
                                 card,
-                                target == targets[0] && cards.length == 1
+                                target == targets[0] && cards.length == 1,
                             );
                             if (target == targets[0] && cards.length == 1) {
                                 if (card.clone && (card.clone.parentNode == target.parentNode || card.clone.parentNode == ui.arena)) {
@@ -45691,7 +45570,7 @@ export async function precontent(config, pack) {
                                 },
                                 target,
                                 card,
-                                target == targets[0] && cards.length == 1
+                                target == targets[0] && cards.length == 1,
                             );
                             if (target == targets[0] && cards.length == 1) {
                                 if (card.clone && (card.clone.parentNode == target.parentNode || card.clone.parentNode == ui.arena)) {
@@ -46055,7 +45934,7 @@ export async function precontent(config, pack) {
                             target.discard(
                                 target.getCards('e', function (card) {
                                     return lib.filter.cardDiscardable(card, target, 'syr_shuishuishui');
-                                })
+                                }),
                             );
                             target.damage('thunder');
                             event.goto(3);
@@ -46087,7 +45966,7 @@ export async function precontent(config, pack) {
                             target.discard(
                                 target.getCards('e', function (card) {
                                     return lib.filter.cardDiscardable(card, target, 'syr_shuishuishui');
-                                })
+                                }),
                             );
                         } else {
                             var next = target.damage();
