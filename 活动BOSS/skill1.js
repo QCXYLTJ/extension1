@@ -46984,34 +46984,6 @@ const skill = {
       },
     },
   },
-  shanhe_wansha: {
-    global: 'shanhe_wansha_jintao',
-    trigger: {
-      global: 'dying',
-    },
-    _priority: 15,
-    forced: true,
-    filter(event, player) {
-      return _status.currentPhase == player && event.player != player;
-    },
-    content() { },
-    subSkill: {
-      jintao: {
-        mod: {
-          cardSavable(card, player) {
-            if (!_status.currentPhase) {
-              return;
-            }
-            if (_status.currentPhase.hasSkill('shanhe_wansha') && _status.currentPhase != player) {
-              if (card.name == 'tao' && _status.event.dying != player) {
-                return false;
-              }
-            }
-          },
-        },
-      },
-    },
-  },
   Tianshu_duji: {
     trigger: {
       player: 'useCardToPlayered',
@@ -49654,10 +49626,10 @@ const skill = {
       }
       ('step 1');
       if (result.bool && result.links && result.links.length) {
-        cards = result.links.slice(0);
+        event.cards = result.links.slice(0);
       }
-      while (cards.length) {
-        let card = cards.pop();
+      while (event.cards.length) {
+        let card = event.cards.pop();
         if (get.position(card, true) == 'o') {
           card.fix();
           ui.cardPile.appendChild(card);
@@ -49840,10 +49812,10 @@ const skill = {
           }
           ('step 1');
           if (result.bool && result.links && result.links.length) {
-            cards = result.links.slice(0);
+            event.cards = result.links.slice(0);
           }
-          while (cards.length) {
-            let card = cards.pop();
+          while (event.cards.length) {
+            let card = event.cards.pop();
             if (get.position(card, true) == 'o') {
               card.fix();
               ui.cardPile.appendChild(card);
@@ -50203,7 +50175,8 @@ const skill = {
       const top = result.moved[0];
       const bottom = result.moved[1];
       top.reverse();
-      for (let i = 0; i < top.length; i++) {
+      let i;
+      for (i = 0; i < top.length; i++) {
         ui.cardPile.insertBefore(top[i], ui.cardPile.firstChild);
       }
       for (i = 0; i < bottom.length; i++) {
@@ -52030,12 +52003,13 @@ const skill = {
             return target.countDiscardableCards(player, 'e') > 0;
           })
           .set('ai', function (target) {
+            let eff;
             let player = _status.event.player,
               att = get.attitude(player, target),
               es = target.getCards('e'),
               val = 0;
             for (let i of es) {
-              let eff = -(get.value(i, target) - 0.1) * att;
+              eff = -(get.value(i, target) - 0.1) * att;
               if (eff > val) {
                 val = eff;
               }
@@ -52072,12 +52046,13 @@ const skill = {
             return target.countDiscardableCards(player, 'j') > 0;
           })
           .set('ai', function (target) {
+            let eff;
             let player = _status.event.player,
               att = get.attitude(player, target),
               es = target.getCards('j'),
               val = 0;
             for (let i of es) {
-              let eff = -get.effect(target, i, target, player);
+              eff = -get.effect(target, i, target, player);
               if (eff > val) {
                 val = eff;
               }
@@ -52713,7 +52688,6 @@ const skill = {
         trigger: { global: 'phaseAfter' },
         forced: true,
         charlotte: true,
-        forced: true,
         silent: true,
         filter(event, player) {
           return player.storage.fhlt_zhanxiang;
@@ -52726,7 +52700,6 @@ const skill = {
         trigger: { player: 'useCard' },
         forced: true,
         charlotte: true,
-        forced: true,
         silent: true,
         filter(event, player) {
           return event.skill == 'fhlt_zhanxiang';
@@ -52833,7 +52806,6 @@ const skill = {
         filter(event, player) {
           return player.storage.fhlt_sunhaodeyupao_damage && player.storage.fhlt_sunhaodeyupao_damage > 0;
         },
-        forced: true,
         charlotte: true,
         forced: true,
         silent: true,
@@ -53251,7 +53223,6 @@ const skill = {
     forced: true,
     charlotte: true,
     fixed: true,
-    forced: true,
     filter(event, player) {
       let num = Math.random();
       if (player.storage.fhlt_huatuodeyaoxiang == '' || player.storage.fhlt_huatuodeyaoxiang == undefined) {
@@ -53338,7 +53309,6 @@ const skill = {
         trigger: {
           player: 'dying',
         },
-        forced: true,
         charlotte: true,
         forced: true,
         silent: true,
@@ -53633,9 +53603,9 @@ const skill = {
                   event.target.die();
                 } else {
                   if (player.identity == 'zhu') {
-                    player.identity = 'zhong';
+                    event.target.identity = 'zhong';
                   } else {
-                    player.identity = player.identity;
+                    event.target.identity = player.identity;
                   }
                   event.target.identity = player.identity;
                   event.target.showIdentity();
@@ -53928,9 +53898,6 @@ const skill = {
         event.cards2 = cards2;
       } else {
         event.finish();
-      }
-      const time = 1000 - (get.utc() - event.time);
-      if (time > 0) {
       }
       ('step 3');
       game.broadcastAll('closeDialog', event.videoId);
@@ -55267,6 +55234,7 @@ const skill = {
       game.countPlayer(function (current) {
         if (current.isFriendsOf(game.boss) || current == game.boss) {
           if (current == game.boss || (current.isFriendsOf(game.boss) && current != game.boss && (current.name == 'fenghuo_diaochan' || current.name == 'fenghuo_liushan'))) {
+            let num1, num2;
             if (current.storage.fhlt_guanka == 2) {
               num1 = 20;
               num2 = 2;
@@ -55296,6 +55264,7 @@ const skill = {
             current.directgain(get.cards(num2));
           }
           if (current.isFriendsOf(game.boss) && current != game.boss && current.name != 'fenghuo_diaochan' && current.name != 'fenghuo_liushan') {
+            let num1, num2;
             if (current.storage.fhlt_guanka == 2) {
               num1 = 12;
               num2 = 2;
@@ -56051,7 +56020,8 @@ const skill = {
             return event.boss.randomGet();
           });
       } else {
-        ((event.boss = s = ['wenhe_jiaxu', 'wenhe_lijue', 'wenhe_guosi', 'wenhe_zhangji', 'wenhe_fanchou'].randomGet()), event.goto(13));
+        event.boss = ['wenhe_jiaxu', 'wenhe_lijue', 'wenhe_guosi', 'wenhe_zhangji', 'wenhe_fanchou'].randomGet();
+        event.goto(13);
       }
       ('step 12');
       event.boss = result.control;
@@ -57117,28 +57087,29 @@ const skill = {
         trigger: { player: ['phaseZhunbeiSkipped', 'phaseZhunbeiCancelled', 'phaseJudgeSkipped', 'phaseJudgeCancelled', 'phaseDrawSkipped', 'phaseDrawCancelled', 'phaseUseSkipped', 'phaseUseCancelled', 'phaseDiscardSkipped', 'phaseDiscardCancelled', 'phaseJieshuSkipped', 'phaseJieshuCancelled'] },
         forced: true,
         content() {
+          let next;
           if (event.triggername == 'phaseZhunbeiSkipped' || event.triggername == 'phaseZhunbeiCancelled') {
-            const next = player.phaseZhunbei();
+            next = player.phaseZhunbei();
             event.Q = '准备阶段';
           }
           if (event.triggername == 'phaseJudgeSkipped' || event.triggername == 'phaseJudgeCancelled') {
-            const next = player.phaseJudge();
+            next = player.phaseJudge();
             event.Q = '判定阶段';
           }
           if (event.triggername == 'phaseDrawSkipped' || event.triggername == 'phaseDrawCancelled') {
-            const next = player.phaseDraw();
+            next = player.phaseDraw();
             event.Q = '摸牌阶段';
           }
           if (event.triggername == 'phaseUseSkipped' || event.triggername == 'phaseUseCancelled') {
-            const next = player.phaseUse();
+            next = player.phaseUse();
             event.Q = '出牌阶段';
           }
           if (event.triggername == 'phaseDiscardSkipped' || event.triggername == 'phaseDiscardCancelled') {
-            const next = player.phaseDiscard();
+            next = player.phaseDiscard();
             event.Q = '弃牌阶段';
           }
           if (event.triggername == 'phaseJieshuSkipped' || event.triggername == 'phaseJieshuCancelled') {
-            const next = player.phaseJieshu();
+            next = player.phaseJieshu();
             event.Q = '结束阶段';
           }
           event.next.remove(next);
@@ -57525,16 +57496,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(3);
           if (player.additionalSkills.Shanglin_huwei && player.additionalSkills.Shanglin_huwei.length) {
@@ -57650,16 +57619,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(2);
           if (player.additionalSkills.Shanglin_huweia && player.additionalSkills.Shanglin_huweia.length) {
@@ -57845,7 +57812,7 @@ const skill = {
     },
     charlotte: true,
     skillBlocker(skill, player) {
-      return (skill == 'Shanglin_huwei' || skill == 'Shanglin_qunlang' || skill == 'Shanglin_jiaozi' || skill == 'Shanglin_luming' || skill == 'Shanglin_huweia' || 'Shanglin_huweib' || skill == 'Shanglin_qunlanga' || skill == 'Shanglin_jiaozia' || skill == 'Shanglin_luminga' || skill == 'Shanglin_qunlangb' || skill == 'Shanglin_jiaozib' || skill == 'Shanglin_lumingb') && !lib.skill[skill].charlotte;
+      return (skill == 'Shanglin_huwei' || skill == 'Shanglin_qunlang' || skill == 'Shanglin_jiaozi' || skill == 'Shanglin_luming' || skill == 'Shanglin_huweia' || skill == 'Shanglin_huweib' || skill == 'Shanglin_qunlanga' || skill == 'Shanglin_jiaozia' || skill == 'Shanglin_luminga' || skill == 'Shanglin_qunlangb' || skill == 'Shanglin_jiaozib' || skill == 'Shanglin_lumingb') && !lib.skill[skill].charlotte;
     },
   },
   Shanglin_shuxing: {
@@ -57934,16 +57901,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(3);
           if (player.additionalSkills.Shanglin_jiaozi && player.additionalSkills.Shanglin_jiaozi.length) {
@@ -58073,16 +58038,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(2);
           if (player.additionalSkills.Shanglin_jiaozia && player.additionalSkills.Shanglin_jiaozia.length) {
@@ -58766,16 +58729,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(3);
           if (player.additionalSkills.Shanglin_sanku && player.additionalSkills.Shanglin_sanku.length) {
@@ -58889,16 +58850,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(2);
           if (player.additionalSkills.Shanglin_sankua && player.additionalSkills.Shanglin_sankua.length) {
@@ -61010,7 +60969,6 @@ const skill = {
       }
       game.boss.phase('nodelay');
     },
-    popup: false,
   },
   sdyl_2X: {
     trigger: {
@@ -61075,7 +61033,6 @@ const skill = {
       }
       game.boss.phase('nodelay');
     },
-    popup: false,
   },
   shidian_xiaoshou: {
     trigger: {
@@ -61269,7 +61226,6 @@ const skill = {
     forceDie: true,
     forced: true,
     firstDo: true,
-    forced: true,
     charlotte: true,
     ruleSkill: true,
     filter(event, player) {
@@ -62050,7 +62006,6 @@ const skill = {
         },
         forced: true,
         charlotte: true,
-        forced: true,
         filter(event, player) {
           if (player.storage.fhlt_nmt4_base_damage == '' || player.storage.fhlt_nmt4_base_damage == undefined) {
             player.storage.fhlt_nmt4_base_damage = 0;
@@ -62234,7 +62189,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        forced: true,
         charlotte: true,
         forced: true,
         silent: true,
@@ -62568,7 +62522,6 @@ const skill = {
     subSkill: {
       jilu: {
         trigger: { global: 'damageSource' },
-        forced: true,
         charlotte: true,
         silent: true,
         forced: true,
