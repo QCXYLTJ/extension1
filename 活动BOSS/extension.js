@@ -159,6 +159,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   event.dialog.content.childNodes[0].innerHTML = str;
                 }
+                let j;
                 if (link == '回复') {
                   j = 0;
                 }
@@ -234,9 +235,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               switchToAuto();
             }
             ('step 2');
+            let storage;
             game.broadcastAll('closeDialog', event.videoId);
             if (player.storage._HD_buff) {
-              const storage = player.storage._HD_buff;
+              storage = player.storage._HD_buff;
             }
             if (storage[0] && storage[0] != 0) {
               player.addSkill('levelBuffXf_hF');
@@ -256,7 +258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           intro: {
             name: '五阶特权',
             content(storage, player) {
-              const storage = [];
+              storage = [];
               for (let i = 0; i < 4; i++) {
                 if (player.storage._HD_buff[i]) {
                   storage[i] = player.storage._HD_buff[i];
@@ -402,7 +404,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           forced: true,
           charlotte: true,
           fixed: true,
-          forced: true,
           firstDo: true,
           content() {
             player.addSkill('mitan_weizhuang');
@@ -419,7 +420,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           forced: true,
           charlotte: true,
           fixed: true,
-          forced: true,
           firstDo: true,
           content() {
             game.tiankong = true;
@@ -436,7 +436,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           forced: true,
           charlotte: true,
           fixed: true,
-          forced: true,
           firstDo: true,
           content() {
             game.ludi = true;
@@ -453,7 +452,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           forced: true,
           charlotte: true,
           fixed: true,
-          forced: true,
           firstDo: true,
           content() {
             game.haiyang = true;
@@ -689,7 +687,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         superCharlotte: true,
         charlotte: true,
         fixed: true,
-        forced: true,
         silent: true,
         filter(event, player, name) {
           if (name == 'gainBefore') {
@@ -714,9 +711,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               (player.name1 == 'hzc_zuoci' || player.name2 == 'hzc_zuoci')
             );
           } else {
+            let isContains;
             const es = player.getCards('e');
             if (event.cards) {
-              const isContains = event.cards.filter((card) => es.includes(card));
+              isContains = event.cards.filter((card) => es.includes(card));
             }
             if (!es || !isContains || (isContains && isContains.length == 0) || (player.name1 != 'hzc_zuoci' && player.name2 != 'hzc_zuoci')) {
               return false;
@@ -758,14 +756,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         superCharlotte: true,
         charlotte: true,
         fixed: true,
-        forced: true,
         silent: true,
         filter(event, player, name) {
           const es = player.getCards('e', function (card) {
             return card.name == 'dw_ruyijingubang';
           });
+          let isContains;
           if (event.cards) {
-            const isContains = event.cards.filter((card) => es.includes(card));
+            isContains = event.cards.filter((card) => es.includes(card));
           }
           if (!es || !isContains || (isContains && isContains.length == 0) || !player.hasSkill('dw_ruyi')) {
             return false;
@@ -1525,7 +1523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               const node = event.skill[i];
               if (Math.random() >= event.num) {
                 game.addGlobalSkill(node);
-                if ((event.num = 0)) {
+                if (event.num == 0) {
                   event.num += 0.6;
                 } else {
                   event.num += 0.2;
@@ -3630,8 +3628,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             fenghuo_gongsunyuan1: '暴虐境(普通)',
             fenghuo_liuhong2: '暴虐境(普通)',
             fenghuo_chengong: '暴虐境(普通)',
-            fenghuo_zhangrang1: '暴虐境(普通)',
-            fenghuo_limin: '暴虐境(普通)',
             fenghuo_caocao3: '暴虐境(普通)',
             fenghuo_dading1: '暴虐境(普通)',
             fenghuo_lvboshe: '暴虐境(普通)',
@@ -3700,7 +3696,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             fenghuo_lingju: '刺客境(普通)',
             fenghuo_cike: '刺客境(普通)',
             fenghuo_jiping1: '刺客境(普通)',
-            fenghuo_cike: '刺客境(普通)',
             fenghuo_nvcike: '刺客境(普通)',
             fenghuo_wufu: '刺客境(普通)',
             fenghuo_hanlong: '刺客境(普通)',
@@ -4532,15 +4527,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             shanhe_baiyannv: '百眼女',
             shanhe_baonunianshou: '暴怒年兽',
             shanhe_haizhu: '亥猪',
-            shanhe_youji: '酉鸡',
             shanhe1_youji: '酉鸡',
             shanhe_weiyang: '未羊',
             shanhe_zishu: '子鼠',
             shanhe_xugou: '戌狗',
-            shanhe_sishe: '巳蛇',
             shanhe_shenhou: '申猴',
-            shanhe_chenlong: '辰龙',
-            shanhe_yinhu: '寅虎',
             shanhe_mengpo: '孟婆',
             shanhe_dizangwang: '地藏王',
             shanhe_changqiangshizu: '长枪士卒',
@@ -5069,7 +5060,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             shanhai_taowu: '梼杌',
             shanhai_qiongqi: '穷奇',
             shanhai_taotie: '饕餮',
-            wjldc: '无尽乱斗场',
             Waiqi_caocao: '曹操',
             Waiqi_yuanshao: '袁绍',
             Waiqi_guotufengji: '郭图逢纪',
@@ -6555,8 +6545,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             shanhe_xuanbei_info: '出牌阶段限一次.你可选择一名其他角色区域内的一张牌.其对你使用对应实体牌为此牌的【杀】.若此【杀】,未对你造成过伤害,你摸一张牌;对你造成过伤害,你摸两张牌.',
             shanhe_chengqi: '承启',
             shanhe_chengqi_info: '你可以将至少两张手牌当作本回合未使用过的基本牌或普通锦囊牌使用,且你以此法转化的牌名字数须不大于以此法转化的所有实体牌牌名字数之和,若你以此法转化的牌名字数等于以此法转化的所有实体牌牌名字数之和,则你使用此牌时可以令一名角色摸一张牌.',
-            shanhe_xuanfeng: '旋风',
-            shanhe_xuanfeng_info: '当你一次性失去至少两张牌后,或失去装备区的牌后,你可以依次弃置一至两名其他角色的共计两张牌.',
             shanhe_tianxianga: '天香',
             shanhe_tianxianga_info: '当你受到伤害时,你可以弃置一张♥️️手牌将此伤害转移给一名其他角色,令其摸X张牌(X为其已损失体力值).',
             shanhe_tianxiang: '天香',
@@ -7448,8 +7436,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             sy_zirun_info: '锁定技,准备阶段,你令所有角色摸一张牌,若其装备区内有牌,则其额外摸一张牌.',
             sy_juehong: '决洪',
             sy_juehong_info: '锁定技,准备阶段,你令所有敌方角色自己弃置自己的装备区内的所有牌,若其装备区内没有牌,则改为随机弃置两张手牌.',
-            sy_juehong: '决洪',
-            sy_juehong_info: '锁定技,准备阶段,你令所有敌方角色自己弃置自己的装备区内的所有牌,若其装备区内没有牌,则改为随机弃置一张手牌.',
             Tianshu_tuanliua: '湍流',
             Tianshu_tuanliua_info: '锁定技,结束阶段,若本回合进入弃牌堆的牌数量:大于4,你回复两点体力;大于5,你摸四张牌;大于9,你对所有敌方角色各造成1点伤害.',
             Tianshu_tuanliub: '湍流',
@@ -10465,8 +10451,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             nianshou_cuikua_info: '锁定技,游戏开始时或游戏每进行6轮时,你对至多2名其他角色造成2点伤害.',
             nianshou_cuikub: '摧枯',
             nianshou_cuikub_info: '锁定技,游戏开始时或游戏每进行6轮时,你对至多1名其他角色造成2点伤害.',
-            NS_cuikub: '摧枯',
-            NS_cuikub_info: '锁定技,每六轮开始时,你对一名敌方角色造成1点伤害.',
             NS_jiyuan: '汲源',
             NS_jiyuan_info: '锁定技,结束阶段,你摸三张牌.',
             NS_jiyuana: '汲源',
@@ -11209,13 +11193,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   target.storage.nianshou_lingli_skill = [];
                 }
                 event.skills = [];
+                let skills;
                 if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                  skills = target.getSkills(null, false, false).filter(function (skill) {
                     const info = get.info(skill);
                     return (player.getFriends().includes(target) || target == player ? info : info && info.ai && info.ai.neg) && target.storage.nianshou_lingli_skill.includes(skill) && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
                 } else {
-                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                  skills = target.getSkills(null, false, false).filter(function (skill) {
                     const info = get.info(skill);
                     return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
@@ -11257,16 +11242,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   const skills = event.skills2;
                   skills.randomSort();
-                  let list = [];
+                  let list1 = [];
                   for (let i = 0; i < skills[i].length; i++) {
-                    if (!target.storage.nianshou_lingli_skill.includes(skills[i]) && !list.includes(skills[i]) && !target.getSkills(null, false, false).includes(skills[i]) && !get.skillInfoTranslation(skills[i], player).length == 0) {
-                      list.push(skills[i]);
+                    if (!target.storage.nianshou_lingli_skill.includes(skills[i]) && !list1.includes(skills[i]) && !target.getSkills(null, false, false).includes(skills[i]) && !get.skillInfoTranslation(skills[i], player).length == 0) {
+                      list1.push(skills[i]);
                     }
-                    if (list.length == 1) {
+                    if (list1.length == 1) {
                       break;
                     }
                   }
-                  event.skill2 = list.randomGet();
+                  event.skill2 = list1.randomGet();
                   target.storage.nianshou_lingli_skill.push(event.skill2);
                   target.addSkill(event.skill2);
                   target.popup(event.skill2);
@@ -11283,8 +11268,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 order: 9.9,
                 result: {
                   target(player, target) {
+                    let skills;
                     if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                      const skills = target.getSkills(null, false, false).filter(function (skill) {
+                      skills = target.getSkills(null, false, false).filter(function (skill) {
                         const info = get.info(skill);
                         return target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length && target.storage.nianshou_lingli_skill.includes(skill) && info && info.ai && info.ai.neg && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                       });
@@ -11305,23 +11291,27 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               audio: true,
               type: 'trick',
               filterTarget(card, player, target) {
-                return (target != player && target.getSkills(null, false, false).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
-                }).length);
+                return (
+                  target != player &&
+                  target.getSkills(null, false, false).filter(function (skill) {
+                    const info = get.info(skill);
+                    return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
+                  }).length
+                );
               },
               content() {
                 if (!target.storage.nianshou_lingli_skill) {
                   target.storage.nianshou_lingli_skill = [];
                 }
                 event.skills = [];
+                let skills;
                 if (target.storage.nianshou_lingli_skill && target.storage.nianshou_lingli_skill.length) {
-                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                  skills = target.getSkills(null, false, false).filter(function (skill) {
                     const info = get.info(skill);
                     return target.storage.nianshou_lingli_skill.includes(skill) && info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
                 } else {
-                  const skills = target.getSkills(null, false, false).filter(function (skill) {
+                  skills = target.getSkills(null, false, false).filter(function (skill) {
                     const info = get.info(skill);
                     return info && !info.charlotte && lib.translate[skill + '_info'] && !get.skillInfoTranslation(skill, player).length == 0;
                   });
@@ -11661,16 +11651,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   list.push(i);
                 }
-                if (!skills) {
-                  const skills = [];
-                  for (let i of list) {
-                    skills.addArray(
-                      (lib.character[i][3] || []).filter(function (skill) {
-                        const info = get.info(skill);
-                        return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill;
-                      }),
-                    );
-                  }
+                const skills = [];
+                for (let i of list) {
+                  skills.addArray(
+                    (lib.character[i][3] || []).filter(function (skill) {
+                      const info = get.info(skill);
+                      return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill;
+                    }),
+                  );
                 }
                 event.num = target.storage.hzc_haoshouqiongjing.length;
                 const num1 = 10 * (event.num + 1);
@@ -11686,7 +11674,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   if (!get.translation(i, 'info') || get.translation(i + '_info').length == 0) {
                     continue;
                   }
-                  const leng = get.translation(i + '_info').replace(new RegExp('<(\S*?)[^>]*>.*?|<.*? />', 'gi'), '').length;
+                  const leng = get.translation(i + '_info').replace(new RegExp('<(S*?)[^>]*>.*?|<.*? />', 'gi'), '').length;
                   if (leng >= num1 && leng <= num2) {
                     list2.add(i);
                   }
@@ -11862,7 +11850,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               subtype: 'equip2',
               skills: ['baiyin_skill'],
               enable: true,
-              enable: true,
               ai: {
                 order: 9.5,
                 equipValue(card, player) {
@@ -11885,7 +11872,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               subtype: 'equip2',
               skills: ['renwang_skill'],
               enable: true,
-              enable: true,
               ai: {
                 basic: {
                   equipValue: 7.5,
@@ -11896,7 +11882,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               cardnature: 'fire',
               type: 'equip',
               subtype: 'equip2',
-              enable: true,
               enable: true,
               ai: {
                 equipValue(card, player) {
