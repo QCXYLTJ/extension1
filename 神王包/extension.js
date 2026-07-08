@@ -2649,13 +2649,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (player.countCards('hej') > 1) {
                                             return 1;
                                         }
-                                        var players = game.filterPlayer();
-                                        for (var i of players) {
-                                            if (i.countCards('hej') && i != target && i != player && get.attitude(player, i) < 0) {
-                                                break;
-                                            }
-                                        }
-                                        if (i == players.length) {
+                                        const playerx = game.players.find((i) => i.countCards('hej') && i != target && i != player && get.attitude(player, i) < 0);
+                                        if (!playerx) {
                                             return 1;
                                         }
                                         return -2 / (target.countCards('hej') + 1);
@@ -2667,13 +2662,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target1 = targets[0];
                                 targets[0].gain(cards, player);
                                 player.recover();
-                                var players = game.filterPlayer();
-                                for (var i of players) {
-                                    if (i.countCards('hej') && i != event.target1 && i != player) {
-                                        break;
-                                    }
-                                }
-                                if (i == players.length) {
+                                const playerx = game.players.find((i) => i.countCards('hej') && i != event.target1 && i != player);
+                                if (!playerx) {
                                     event.finish();
                                 }
                                 ('step 1');
@@ -9631,13 +9621,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (player.countCards('h') > 1) {
                                             return 1;
                                         }
-                                        var players = game.filterPlayer();
-                                        for (var i of players) {
-                                            if (i.countCards('h') && i != target && i != player && get.attitude(player, i) < 0) {
-                                                break;
-                                            }
-                                        }
-                                        if (i == players.length) {
+                                        const playerx = game.players.find((i) => i.countCards('h') && i != target && i != player && get.attitude(player, i) < 0);
+                                        if (!playerx) {
                                             return 1;
                                         }
                                         return -2 / (target.countCards('h') + 1);
@@ -9648,13 +9633,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 event.target1 = targets[0];
                                 targets[0].gain(cards, player);
-                                var players = game.filterPlayer();
-                                for (var i of players) {
-                                    if (i.countCards('h') && i != event.target1 && i != player) {
-                                        break;
-                                    }
-                                }
-                                if (i == players.length) {
+                                const playerx = game.players.find((i) => i.countCards('h') && i != event.target1 && i != player);
+                                if (!playerx) {
                                     event.finish();
                                 }
                                 ('step 1');

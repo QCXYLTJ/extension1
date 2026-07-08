@@ -2489,10 +2489,7 @@ const skill = {
       global: 'phaseBefore',
       player: 'enterGame',
     },
-    charlotte: true,
-    fixed: true,
     firstDo: true,
-    forced: true,
     filter(event, player) {
       return !game.hezong_hslh && (event.name != 'phase' || game.phaseNumber == 0);
     },
@@ -2573,10 +2570,11 @@ const skill = {
       const card2 = get.cardPile2(function (card) {
         return card.name == 'hezong_chuanguoyuxi';
       });
+      let target1, target2;
       if (card1) {
         list.push(card1);
       } else {
-        const target1 = game.findPlayer(function (current) {
+        target1 = game.findPlayer(function (current) {
           return (
             current != player &&
             current.countCards('hesjx', function (card) {
@@ -2597,7 +2595,7 @@ const skill = {
       if (card2) {
         list.push(card2);
       } else {
-        const target2 = game.findPlayer(function (current) {
+        target2 = game.findPlayer(function (current) {
           return (
             current != player &&
             current.countCards('hesjx', function (card) {
@@ -2716,11 +2714,11 @@ const skill = {
             return event.target != current && lib.filter.targetEnabled2(trigger.card, trigger.player, current);
           });
           if (list.length) {
-            target = list.randomGet();
+            const target = list.randomGet();
+            trigger.targets.push(target);
+            trigger.player.line(target, 'fire');
+            game.log(trigger.card, '的目标被改为', target);
           }
-          trigger.targets.push(target);
-          trigger.player.line(target, 'fire');
-          game.log(trigger.card, '的目标被改为', target);
         },
       },
     },
@@ -2936,7 +2934,6 @@ const skill = {
     trigger: {
       player: 'damageBegin4',
     },
-    forced: true,
     content() {
       trigger.cancel();
     },
@@ -3298,7 +3295,6 @@ const skill = {
     },
     forced: true,
     popup: false,
-    forced: true,
     charlotte: true,
     filter(event, player) {
       return event.parent.type == 'hezong_shangyangbianfa';
@@ -6280,15 +6276,14 @@ const skill = {
       ('step 2');
       if (event.recover) {
         player.recover();
-      } else if (result.bool) {
-      } else {
+      } else if (!result.bool) {
         player.recover();
       }
     },
     ai: {
       effect: {
         target(card, player, target) {
-          if (get.tag(card, 'damage' && target.countCards('h'))) {
+          if (get.tag(card, 'damage') && target.countCards('h')) {
             return 0.8;
           }
         },
@@ -7584,7 +7579,6 @@ const skill = {
             trigger.num2 = 13;
           }
         },
-        forced: true,
         popup: false,
       },
     },
@@ -10143,9 +10137,6 @@ const skill = {
   wenhe_yisuan2: {
     charlotte: true,
   },
-  wenhe_xinglang2: {
-    charlotte: true,
-  },
   boss_yisuan: {
     audio: 'ext:活动BOSS/audio/skill:true',
     trigger: {
@@ -10764,7 +10755,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -11305,7 +11295,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -11368,7 +11357,7 @@ const skill = {
           num2 = Math.max(num2, game.dead[i].storage.wjldc_kill_mark + 1);
         }
       }
-      num = Math.min(num1, num2);
+      const num = Math.min(num1, num2);
       let list = [];
       for (let i in lib.character) {
         if (lib.character[i][4].includes('boss')) {
@@ -11467,7 +11456,7 @@ const skill = {
               num2 = Math.max(num2, game.dead[i].storage.wjldc_kill_mark + 1);
             }
           }
-          num = Math.min(num1, num2);
+          const num = Math.min(num1, num2);
           let list = [];
           for (let i in lib.character) {
             if (lib.character[i][4].includes('boss')) {
@@ -11533,13 +11522,13 @@ const skill = {
               num4 = Math.max(num4, game.dead[i].storage.wjldc_kill_mark + 1);
             }
           }
-          num = Math.min(num3, num4);
+          const num5 = Math.min(num3, num4);
           let list3 = [];
           for (let i in lib.character) {
             if (lib.character[i][4].includes('boss')) {
               continue;
             }
-            if (lib.character[i][2] > 6 + (Math.random(num + 1) / 2) * num) {
+            if (lib.character[i][2] > 6 + (Math.random(num5 + 1) / 2) * num5) {
               continue;
             }
             if (i.includes('zuoci')) {
@@ -11652,7 +11641,7 @@ const skill = {
       });
       game.changeBossQ('nianxiboss_jinniu');
       let list = ['shengxiao_zishu', 'shengxiao_yinhu', 'shengxiao_wuma', 'shengxiao_weiyang', 'shengxiao_shenhou', 'shengxiao_youji', 'shengxiao_xugou', 'shengxiao_haizhu'];
-      skills = list.randomGets(2);
+      const skills = list.randomGets(2);
       game.boss.addSkill(skills);
       ('step 1');
       const evt = _status.event.getParent('phase');
@@ -12516,11 +12505,12 @@ const skill = {
     },
     logTarget: 'player',
     content() {
+      let card1, card2;
       if (trigger.player.countCards('h') > 0) {
-        const card1 = trigger.player.getCards('h').randomGet();
+        card1 = trigger.player.getCards('h').randomGet();
       }
       if (trigger.player.countCards('e') > 0) {
-        const card2 = trigger.player.getCards('e').randomGet();
+        card2 = trigger.player.getCards('e').randomGet();
       }
       if (trigger.player.countCards('e') > 0 && trigger.player.countCards('h') == 0) {
         trigger.player.discard(card2);
@@ -13065,9 +13055,6 @@ const skill = {
             return [1, -1];
           }
           return 0.8;
-          if (get.tag(card, 'damage') && get.damageEffect(target, player, player) > 0) {
-            return [1, 0, 0, -1.5];
-          }
         },
       },
     },
@@ -13111,9 +13098,6 @@ const skill = {
             return [1, -1];
           }
           return 0.8;
-          if (get.tag(card, 'damage') && get.damageEffect(target, player, player) > 0) {
-            return [1, 0, 0, -1.5];
-          }
         },
       },
     },
@@ -13164,9 +13148,6 @@ const skill = {
             return [1, -1];
           }
           return 0.8;
-          if (get.tag(card, 'damage') && get.damageEffect(target, player, player) > 0) {
-            return [1, 0, 0, -1.5];
-          }
         },
       },
     },
@@ -13211,9 +13192,6 @@ const skill = {
             return [1, -1];
           }
           return 0.8;
-          if (get.tag(card, 'damage') && get.damageEffect(target, player, player) > 0) {
-            return [1, 0, 0, -1.5];
-          }
         },
       },
     },
@@ -13258,9 +13236,6 @@ const skill = {
             return [1, -1];
           }
           return 0.8;
-          if (get.tag(card, 'damage') && get.damageEffect(target, player, player) > 0) {
-            return [1, 0, 0, -1.5];
-          }
         },
       },
     },
@@ -14733,7 +14708,6 @@ const skill = {
     _priority: 100,
     forced: true,
     mode: ['boss'],
-    forced: true,
     filter(event, player) {
       return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0) && !player.storage.hezong_dengjie_mark;
     },
@@ -14859,7 +14833,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -15020,7 +14993,6 @@ const skill = {
     charlotte: true,
     fixed: true,
     _priority: 100,
-    forced: true,
     mode: ['boss'],
     forced: true,
     filter(event, player) {
@@ -15115,7 +15087,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -15167,7 +15138,6 @@ const skill = {
     _priority: 100,
     forced: true,
     mode: ['boss'],
-    forced: true,
     filter(event, player) {
       return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0) && !player.storage.sx2022_dengjie && player.hasClan('生肖兽');
     },
@@ -15260,7 +15230,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -15417,14 +15386,13 @@ const skill = {
     noDisable: true,
     charlotte: true,
     superCharlotte: true,
-    ruleSkill: true,
     filter(event, player) {
       return player == game.boss;
     },
     content() {
       'step 0';
       if (!player.storage.lzzd_tianqi_next) {
-        if ((game.roundNumber = 1)) {
+        if (game.roundNumber == 1) {
           player.storage.lzzd_tianqi_next = 'qingtian';
         } else {
           player.storage.lzzd_tianqi_next = player.storage.lzzd_tianqi.randomGet();
@@ -15704,8 +15672,6 @@ const skill = {
     popup: false,
     forced: true,
     noDisable: true,
-    charlotte: true,
-    charlotte: true,
     firstDo: true,
     superCharlotte: true,
     ruleSkill: true,
@@ -15859,7 +15825,6 @@ const skill = {
     popup: false,
     forced: true,
     firstDo: true,
-    forced: true,
     forceDie: true,
     noDisable: true,
     charlotte: true,
@@ -15953,7 +15918,6 @@ const skill = {
         popup: false,
         forced: true,
         firstDo: true,
-        forced: true,
         forceDie: true,
         noDisable: true,
         charlotte: true,
@@ -16014,7 +15978,6 @@ const skill = {
         popup: false,
         forced: true,
         firstDo: true,
-        forced: true,
         forceDie: true,
         noDisable: true,
         charlotte: true,
@@ -16075,7 +16038,6 @@ const skill = {
         popup: false,
         forced: true,
         firstDo: true,
-        forced: true,
         forceDie: true,
         noDisable: true,
         charlotte: true,
@@ -16148,8 +16110,6 @@ const skill = {
     popup: false,
     forced: true,
     noDisable: true,
-    charlotte: true,
-    charlotte: true,
     firstDo: true,
     superCharlotte: true,
     ruleSkill: true,
@@ -16706,7 +16666,6 @@ const skill = {
         result.targets[0].equip(card);
         player.$give(card, result.targets[0]);
         player.line(result.targets[0], 'green');
-      } else {
       }
     },
     subSkill: {
@@ -16874,7 +16833,6 @@ const skill = {
         },
       },
     },
-    popup: false,
   },
   jinpao_skill_equip: {
     trigger: {
@@ -17447,13 +17405,9 @@ const skill = {
             case 'sha':
               if (button.link[3] == 'fire') {
                 return 2.95;
-              } else if (button.link[3] == 'fire') {
-                return 2.92;
               } else {
                 return 2.9;
               }
-            case 'shan':
-              return 1;
           }
         }
         return 0;
@@ -18324,17 +18278,17 @@ const skill = {
           let num = get.distance(player, trigger.source);
           trigger.num -= num;
         },
-      },
-    },
-    ai: {
-      effect: {
-        target(card, player, target, current) {
-          if (player.hasSkillTag('jueqing', false, target) || player.hasSkill('shanhe_zhangdu') || player.hasSkillTag('damageBonus', false, { target: target, card: card })) {
-            return;
-          }
-          if (!target.inRangeOf(player) && get.tag(card, 'damage') && get.tag(card, 'damage') <= get.distance(target, player)) {
-            return 0;
-          }
+        ai: {
+          effect: {
+            target(card, player, target, current) {
+              if (player.hasSkillTag('jueqing', false, target) || player.hasSkill('shanhe_zhangdu') || player.hasSkillTag('damageBonus', false, { target: target, card: card })) {
+                return;
+              }
+              if (!target.inRangeOf(player) && get.tag(card, 'damage') && get.tag(card, 'damage') <= get.distance(target, player)) {
+                return 0;
+              }
+            },
+          },
         },
       },
     },
@@ -19047,26 +19001,26 @@ const skill = {
     intro: {
       name: '宣判',
       mark(dialog, content, player) {
+        let num1 = 0;
+        let num2 = 0;
+        let num3 = 0;
+        let num4 = 0;
         if (_status.currentPhase) {
-          let num1 = 0;
           _status.currentPhase.getHistory('sourceDamage', function (evt) {
             if (_status.currentPhase != player && player.getEnemies().includes(_status.currentPhase) && evt.num > 0 && evt.player == player) {
               num1 += evt.num;
             }
           });
-          let num2 = 0;
           _status.currentPhase.getHistory('gain', function (evt) {
             const evt2 = evt.parent;
             if (_status.currentPhase != player && player.getEnemies().includes(_status.currentPhase) && evt.cards && evt.cards.length && evt.parent.name == 'draw') {
               num2 += evt.cards && evt.cards.length;
             }
           });
-          let num3 = 0;
           num3 += game.getGlobalHistory('changeHp', function (evt) {
             return _status.currentPhase != player && player.getEnemies().includes(_status.currentPhase) && evt.parent.name == 'recover' && evt.player == _status.currentPhase;
           }).length;
         }
-        let num4 = 0;
         player.getHistory('lose', function (evt) {
           const evt2 = evt.parent;
           if (_status.currentPhase != player && player.getEnemies().includes(_status.currentPhase) && evt.cards && evt.cards.length && evt.type == 'discard') {
@@ -19964,12 +19918,12 @@ const skill = {
         player.removeSkill('danji_jiashu');
         player.addSkill('danji_jingyi');
         if (get.mode() == 'boss') {
-          if ((player.identity = 'zhong')) {
+          if (player.identity == 'zhong') {
             player.setIdentity('cai');
             player.identity = 'cai';
             player.side = false;
           }
-          if ((player.identity = 'cai')) {
+          if (player.identity == 'cai') {
             player.setIdentity('zhong');
             player.identity = 'zhong';
             player.side = true;
@@ -19980,8 +19934,7 @@ const skill = {
     },
   },
   danji_jingyi: {
-    global: 'danji_jingyi_buff',
-    global: ['danji_jingyi_damage', 'danji_jingyi_fang'],
+    global: ['danji_jingyi_buff', 'danji_jingyi_damage', 'danji_jingyi_fang'],
     forced: true,
     subSkill: {
       damage: {
@@ -20697,7 +20650,6 @@ const skill = {
         return num - player.countMark('boss_liushi2');
       },
     },
-    charlotte: true,
     intro: {
       name2: '流矢',
       content: '手牌上限-#',
@@ -21827,9 +21779,7 @@ const skill = {
           },
         },
         trigger: { global: ['phaseBefore', 'phaseAfter', 'phaseCancelled'] },
-        forced: true,
         charlotte: true,
-        forced: true,
         silent: true,
         filter(event, player) {
           return player.storage.zygx_qimen > 0;
@@ -21865,76 +21815,78 @@ const skill = {
           return player.storage.zygx_qimen_damage > 2 && player.side != game.boss.side && player.storage.zygx_qimen_xingxiang < 7;
         },
         content() {
+          let card1;
           if (player.storage.zygx_qimen_xingxiang == 0) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return card1.number == 11;
             });
           }
           if (player.storage.zygx_qimen_xingxiang == 1) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return get.type(card1) == 'equip';
             });
           }
           if (player.storage.zygx_qimen_xingxiang == 2) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return card1.suit == 'spade' && get.type(card1) == 'trick';
             });
           }
           if (player.storage.zygx_qimen_xingxiang == 3) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return card1.number == 5;
             });
           }
           if (player.storage.zygx_qimen_xingxiang == 4) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return card1.name == 'tao' && card1.number == 6;
             });
           }
           if (player.storage.zygx_qimen_xingxiang == 5) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return card1.number == 12 && get.type(card1) == 'basic';
             });
           }
           if (player.storage.zygx_qimen_xingxiang == 6) {
-            const card1 = get.cardPile2(function (card1) {
+            card1 = get.cardPile2(function (card1) {
               return card1.number == 1 && card1.suit == 'club' && get.type(card1) == 'equip';
             });
           }
+          let card2;
           if (card1) {
             player.gain(card1, 'gain2');
           } else {
             if (player.storage.zygx_qimen_xingxiang == 0) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return card2.number == 11;
               });
             }
             if (player.storage.zygx_qimen_xingxiang == 1) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return get.type(card2) == 'equip';
               });
             }
             if (player.storage.zygx_qimen_xingxiang == 2) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return card2.suit == 'spade' && get.type(card2) == 'trick';
               });
             }
             if (player.storage.zygx_qimen_xingxiang == 3) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return card2.number == 5;
               });
             }
             if (player.storage.zygx_qimen_xingxiang == 4) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return card2.name == 'tao' && card2.number == 6;
               });
             }
             if (player.storage.zygx_qimen_xingxiang == 5) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return card2.number == 12 && get.type(card2) == 'basic';
               });
             }
             if (player.storage.zygx_qimen_xingxiang == 6) {
-              const card2 = get.discardPile(function (card2) {
+              card2 = get.discardPile(function (card2) {
                 return card2.number == 1 && card2.suit == 'club' && get.type(card2) == 'equip';
               });
             }
@@ -22068,7 +22020,6 @@ const skill = {
         return num + player.storage.dw_ruyijingubang - 3;
       },
     },
-    equipSkill: true,
     enable: 'phaseUse',
     usable: 1,
     content() {
@@ -22296,7 +22247,6 @@ const skill = {
     forced: true,
     charlotte: true,
     popup: false,
-    ruleSkill: true,
     filter(event, player) {
       return (player.name1 == 'old_nianshou' || player.name2 == 'old_nianshou') && game.roundNumber >= 2;
     },
@@ -22442,7 +22392,6 @@ const skill = {
     forced: true,
     charlotte: true,
     popup: false,
-    ruleSkill: true,
     filter(event, player) {
       return player.name1 == 'ol_old_nianshou' || player.name2 == 'ol_old_nianshou' || player.name1 == 'ol_old_nianshou1' || player.name2 == 'ol_old_nianshou1' || player.name1 == 'ol_old_nianshou2' || player.name2 == 'ol_old_nianshou2' || player.name1 == 'ol_old_nianshou3' || player.name2 == 'ol_old_nianshou3';
     },
@@ -23882,7 +23831,6 @@ const skill = {
         trigger: { player: 'useCardAfter' },
         forced: true,
         charlotte: true,
-        forced: true,
         silent: true,
         filter(event, player) {
           return player.storage.sw_yilu_effect && player.storage.sw_yilu_effect == event.card && player.storage.sw_yilu_jiu != undefined && player.storage.sw_yilu_jiu > 0;
@@ -24110,7 +24058,6 @@ const skill = {
         },
         forced: true,
         charlotte: true,
-        forced: true,
         silent: true,
         content() {
           if (trigger.baseDamage) {
@@ -24131,7 +24078,6 @@ const skill = {
         },
         forced: true,
         charlotte: true,
-        forced: true,
         silent: true,
         filter(event, player) {
           return get.type(event.card) == 'trick';
@@ -26740,7 +26686,6 @@ const skill = {
       player: ['damage', 'damageCancelled', 'damageZero'],
       target: ['shaMiss', 'useCardToExcluded'],
     },
-    charlotte: true,
     filter(event, player) {
       return player.storage.danji_anjian2 && event.card && player.storage.danji_anjian2.includes(event.card);
     },
@@ -26827,7 +26772,6 @@ const skill = {
       player: ['damage', 'damageCancelled', 'damageZero'],
       target: ['shaMiss', 'useCardToExcluded'],
     },
-    charlotte: true,
     filter(event, player) {
       return player.storage.liezhuan_anjian2 && event.card && player.storage.liezhuan_anjian2.includes(event.card);
     },
@@ -28083,7 +28027,6 @@ const skill = {
     audio: 'ext:活动BOSS/audio/skill:2',
     enable: 'phaseUse',
     position: 'h',
-    filterCard: true,
     selectCard: 2,
     filterCard(card, player) {
       if (!ui.selected.cards.length) {
@@ -29243,7 +29186,6 @@ const skill = {
       backup(links, player) {
         return {
           audio: 'jingong',
-          filterCard: true,
           popname: true,
           position: 'hes',
           viewAs: { name: links[0][2] },
@@ -29493,9 +29435,6 @@ const skill = {
             number: null,
           },
           position: 'h',
-          check(card) {
-            return 8 - get.value(card);
-          },
           ignoreMod: true,
           check(card) {
             let player = _status.event.player;
@@ -30331,7 +30270,6 @@ const skill = {
           player: 'phaseDrawBegin2',
         },
         forced: true,
-        charlotte: true,
         filter(event, player) {
           return player.storage.shanhe_taidao_draw && player.storage.shanhe_taidao_draw > 0 && !event.numFixed;
         },
@@ -30520,11 +30458,12 @@ const skill = {
         });
       ('step 1');
       if (result.control != 'cancel2') {
-        if (result.index == 0) {
-        } else if (result.index + event.addIndex == 1) {
-          event.goto(6);
-        } else {
-          event.goto(4);
+        if (result.index) {
+          if (result.index + event.addIndex == 1) {
+            event.goto(6);
+          } else {
+            event.goto(4);
+          }
         }
       } else {
         event.finish();
@@ -31854,7 +31793,6 @@ const skill = {
           global: 'roundStart',
         },
         forceDie: true,
-        forced: true,
         firstDo: true,
         forced: true,
         charlotte: true,
@@ -31879,7 +31817,6 @@ const skill = {
           player: 'phaseBegin',
         },
         forceDie: true,
-        forced: true,
         firstDo: true,
         forced: true,
         charlotte: true,
@@ -32531,10 +32468,7 @@ const skill = {
     trigger: {
       player: 'gainEnd',
     },
-    charlotte: true,
-    fixed: true,
     firstDo: true,
-    forced: true,
     filter(event, player, name) {
       return _status.currentPhase != player && player.name == 'hezong_daqin_lvbuwei' && (event.animate == 'draw' || event.parent.name == 'draw') && event.getParent(2).name != 'hezong_lscq' && event.getParent(2).name != 'hezong_dengjie';
     },
@@ -32794,7 +32728,6 @@ const skill = {
     _priority: 100,
     forced: true,
     mode: ['boss'],
-    forced: true,
     filter(event, player) {
       return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0) && !player.storage.shidian_dengjie_mark;
     },
@@ -32929,7 +32862,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -32977,7 +32909,6 @@ const skill = {
     _priority: 100,
     forced: true,
     mode: ['boss'],
-    forced: true,
     filter(event, player) {
       return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0) && !player.storage.shenwu_dengjie_mark;
     },
@@ -33082,7 +33013,6 @@ const skill = {
           global: 'phaseBefore',
           player: 'enterGame',
         },
-        charlotte: true,
         forced: true,
         filter(event, player) {
           return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0);
@@ -33421,8 +33351,8 @@ const skill = {
     delay: false,
     selectTarget: -1,
     check(event, player) {
-      player = _status.event.player,
-        target = _status.event.dying;
+      player = _status.event.player;
+      const target = _status.event.dying;
       if (player.maxHp == 1) {
         return false;
       }
@@ -33759,7 +33689,6 @@ const skill = {
       }
       return num >= 0;
     },
-    forced: true,
     content() {
       'step 0';
       let targets = game.filterPlayer(function (current) {
@@ -34904,7 +34833,6 @@ const skill = {
           player: 'phaseEnd',
         },
         forced: true,
-        charlotte: true,
         popup: false,
         content() {
           player.draw(3);
@@ -35171,7 +35099,7 @@ const skill = {
         return;
       }
       const hs = player.getCards('h');
-      cards = cards.filter(function (card) {
+      event.cards = event.cards.filter(function (card) {
         return (
           hs.includes(card) &&
           card.name == 'sha' &&
@@ -35186,8 +35114,8 @@ const skill = {
           )
         );
       });
-      if (cards.length) {
-        let card = cards.randomRemove(1)[0];
+      if (event.cards.length) {
+        let card = event.cards.randomRemove(1)[0];
         player.useCard(target, false, card);
         event.redo();
       }
@@ -35580,7 +35508,6 @@ const skill = {
       }
     },
     trigger: { player: ['damageEnd', 'loseHpEnd', 'dyingAfter'] },
-    audio: 'ext:活动BOSS/audio/skill:2',
     forced: true,
     filter(event, player) {
       if (player.hp <= player.maxHp / 3) {
@@ -35641,7 +35568,6 @@ const skill = {
       player: 'phaseDrawBegin1',
       source: 'damageSource',
     },
-    audio: 'ext:活动BOSS/audio/skill:2',
     filter(event, player, name) {
       if (name == 'phaseDrawBegin1') {
         return !event.numFixed;
@@ -36385,7 +36311,6 @@ const skill = {
           }
           player.update();
         },
-        popup: false,
       },
     },
   },
@@ -36496,7 +36421,7 @@ const skill = {
     logTarget: 'target',
     content() {
       let target = trigger.target;
-      card = target.getCards('e').randomGet();
+      const card = target.getCards('e').randomGet();
       if (card) {
         target.discard(card);
       }
@@ -36889,7 +36814,7 @@ const skill = {
   tsld_huben: {
     trigger: { source: 'damageBegin1' },
     filter(event, player, name) {
-      boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
+      const boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
       return boss_huben.includes(player.name) && event.card && (event.card.name == 'sha' || event.card.name == 'juedou') && player.identity != 'cai';
     },
     forced: true,
@@ -37249,7 +37174,6 @@ const skill = {
       source: 'damageBegin1',
     },
     forced: true,
-    audio: 'ext:活动BOSS/audio/skill:true',
     filter(event, player, name) {
       if (name == 'phaseBegin') {
         return player.countMark('boss_suishou') < 5 && player.getEnemies().includes(event.player);
@@ -37330,7 +37254,6 @@ const skill = {
       source: 'damageBegin1',
     },
     forced: true,
-    audio: 'ext:活动BOSS/audio/skill:true',
     filter(event, player, name) {
       if (name == 'phaseBegin') {
         return player.countMark('boss_suishou_female') < 5 && player.getEnemies().includes(event.player);
@@ -37411,7 +37334,6 @@ const skill = {
       source: 'damageBegin1',
     },
     forced: true,
-    audio: 'boss_suishou',
     filter(event, player, name) {
       if (name == 'roundStart') {
         return player.countMark('boss_suishoua') < 3;
@@ -37492,7 +37414,6 @@ const skill = {
       source: 'damageBegin1',
     },
     forced: true,
-    audio: 'boss_suishou_female',
     filter(event, player, name) {
       if (name == 'roundStart') {
         return player.countMark('boss_suishoua_female') < 3;
@@ -37573,7 +37494,6 @@ const skill = {
       source: 'damageBegin1',
     },
     forced: true,
-    audio: 'boss_suishou',
     filter(event, player, name) {
       if (name == 'roundStart') {
         return player.countMark('boss_suishoub') < 2;
@@ -37654,7 +37574,6 @@ const skill = {
       source: 'damageBegin1',
     },
     forced: true,
-    audio: 'boss_suishou_female',
     filter(event, player, name) {
       if (name == 'roundStart') {
         return player.countMark('boss_suishoub_female') < 2;
@@ -39260,16 +39179,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(3);
           if (player.additionalSkills.Shanglin_qunlang && player.additionalSkills.Shanglin_qunlang.length) {
@@ -39463,16 +39380,14 @@ const skill = {
             }
             list.push(i);
           }
-          if (!skill2s) {
-            const skill2s = [];
-            for (let i of list) {
-              skill2s.addArray(
-                (lib.character[i][3] || []).filter(function (skill) {
-                  const info = get.info(skill);
-                  return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
-                }),
-              );
-            }
+          const skill2s = [];
+          for (let i of list) {
+            skill2s.addArray(
+              (lib.character[i][3] || []).filter(function (skill) {
+                const info = get.info(skill);
+                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill && !info.init && (!info.ai || (info.ai && !info.ai.combo && !info.ai.notemp && !info.ai.neg)) && !player.hasSkill(skill);
+              }),
+            );
           }
           let skills = skill2s.randomGets(2);
           if (player.additionalSkills.Shanglin_qunlanga && player.additionalSkills.Shanglin_qunlanga.length) {
@@ -39915,9 +39830,9 @@ const skill = {
                   event.target.die();
                 } else {
                   if (player.identity == 'zhu') {
-                    player.identity = 'zhong';
+                    event.target.identity = 'zhong';
                   } else {
-                    player.identity = player.identity;
+                    event.target.identity = player.identity;
                   }
                   event.target.identity = player.identity;
                   event.target.showIdentity();
@@ -39965,7 +39880,7 @@ const skill = {
           trigger.player.update();
         }
         if (player.identity == 'cai') {
-          if ((trigger.player.identity = 'zhu')) {
+          if (trigger.player.identity == 'zhu') {
             game.countPlayer(function (current) {
               if (current.identity == 'zhong' && current != player && current.name != 'tongque_jinpao' && current.isAlive()) {
                 game.boss = current;
@@ -41826,7 +41741,6 @@ const skill = {
     popup: false,
     noDisable: true,
     charlotte: true,
-    charlotte: true,
     firstDo: true,
     superCharlotte: true,
     ruleSkill: true,
@@ -41867,15 +41781,15 @@ const skill = {
       zhuzhanjuese.addSkill('tsld_zhuzhan');
       zhuzhanjuese.changeSeat(game.me == game.boss ? 7 : 6);
       ('step 2');
-      boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
-      boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
-      boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
-      boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
-      boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
-      boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
-      boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
-      boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
-      boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
+      const boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
+      const boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
+      const boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
+      const boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
+      const boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
+      const boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
+      const boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
+      const boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
+      const boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
       event.guai = Math.random() <= 0.25 ? boss_huben.randomGets(2) : Math.random() <= 0.5 ? boss_wenzuo.randomGets(2) : Math.random() <= 0.75 ? boss_mouding.randomGets(2) : boss_jinguo.randomGets(2);
       player.init(event.guai[0]);
       player.addFellow(event.guai[1]);
@@ -41929,15 +41843,15 @@ const skill = {
     skillList: ['qianya', 'chenqing', 'tiandu', 'qiaobian', 'tiaoxin', 'new_rewusheng', 'lianhuan', 'relonghun', 'oldingcuo', 'dcdouzhen', 'lvbu_shenwu', 'xinfu_tunan', 'neihuan_chibi', 'lvbu_jinghu', 'qugui2_chihu', 'fenghuo_qiangshua', 'dcqiangzhi', 'shanhe_nuyan', 'youyan', 'decadezongshi', 'suizheng', 'jiaojie', 'new_guixin', 'juece', 'zhiman', 'fenghuo_wumeng', 'fenghuo_shouzhi', 'cxliushi', 'neihuan_leixi', 'refuqi', 'zhiren', 'fenghuo_manji', 'fenghuo_manjin', 'jinjian', 'xinfu_lingren', 'zhaxiang', 'xinbenxi', 'decadepojun', 'nzry_shicai', 'qingjiao', 'xunxun', 'huomo', 'anjian', 'shibei', 'wangxi', 'fengpo', 'rezhiheng', 'lieren', 'fenyue', 'longdan', 'luanji', 'remieji', 'mozhi', 'jijiu', 'fenghuo_sheyan', 'hulaoguan_sizhen', 'zhichi', 'Kuiba_wangjian', 'qiluan', 'xinliegong', 'xindanshou', 'decadejingce', 'chengxiang', 'hulaoguan_shence', 'qianxi', 'taoshen_nutaoa', 'zuoding', 'mingjian', 'kaikang', 'danlao', 'zhiyu', 'rexuanhuo', 'beige', 'xinfu_langxi', 'mizhao', 'hongyuan', 'new_reqingnang', 'new_liyu', 'liangzhu', 'shanhe_luoyi', 'xinanguo', 'jieming', 'new_reyiji', 'new_yajiao', 'qunying_yehuo', 'xpchijie', 'mingzhe', 'kongcheng', 'rejianchu', 'daoshu', 'xinfu_qinguo', 'xinshensu', 'drlt_wanglie', 'resanyao', 'zhongye_xingri', 'zhongye_yihuo', 'wushuang', 'rehuoji', 'reganglie', 'retieji', 'lijian', 'benyu', 'xiaoji', 'rejizhi', 'qizhi', 'xinjushou', 'rebiyue', 'xinfu_guolun', 'miji', 'gzjili', 'xinfu_zuilun', 'daiyan', 'reyingzi', 'decadezishou', 'qingjiao', 'rejigong', 'drlt_yongsi', 'haoshi', 'tianming', 'xiangle', 'reshenxing', 'tongque_pingkou', 'drlt_zhengu', 'kurou', 'jiaozi', 'duwu', 'shelie', 'zhongye_kuimu', 'zhongye_kangjin', 'zhongye_jiaomu', 'zhongye_canshui', 'drlt_congjian'],
     content() {
       'step 0';
-      boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
-      boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
-      boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
-      boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
-      boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
-      boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
-      boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
-      boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
-      boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
+      const boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
+      const boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
+      const boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
+      const boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
+      const boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
+      const boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
+      const boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
+      const boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
+      const boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
       event.guai = Math.random() <= 0.5 ? boss_shengxiao.randomGets(2) : boss_shenjiang.randomGets(2);
       if (game.me == game.boss) {
         event.goto(2);
@@ -42082,15 +41996,15 @@ const skill = {
     skillList: ['qianya', 'chenqing', 'tiandu', 'qiaobian', 'tiaoxin', 'new_rewusheng', 'lianhuan', 'relonghun', 'oldingcuo', 'dcdouzhen', 'lvbu_shenwu', 'xinfu_tunan', 'neihuan_chibi', 'lvbu_jinghu', 'qugui2_chihu', 'fenghuo_qiangshua', 'dcqiangzhi', 'shanhe_nuyan', 'youyan', 'decadezongshi', 'suizheng', 'jiaojie', 'new_guixin', 'juece', 'zhiman', 'fenghuo_wumeng', 'fenghuo_shouzhi', 'cxliushi', 'neihuan_leixi', 'refuqi', 'zhiren', 'fenghuo_manji', 'fenghuo_manjin', 'jinjian', 'xinfu_lingren', 'zhaxiang', 'xinbenxi', 'decadepojun', 'nzry_shicai', 'qingjiao', 'xunxun', 'huomo', 'anjian', 'shibei', 'wangxi', 'fengpo', 'rezhiheng', 'lieren', 'fenyue', 'longdan', 'luanji', 'remieji', 'mozhi', 'jijiu', 'fenghuo_sheyan', 'hulaoguan_sizhen', 'zhichi', 'Kuiba_wangjian', 'qiluan', 'xinliegong', 'xindanshou', 'decadejingce', 'chengxiang', 'hulaoguan_shence', 'qianxi', 'taoshen_nutaoa', 'zuoding', 'mingjian', 'kaikang', 'danlao', 'zhiyu', 'rexuanhuo', 'beige', 'xinfu_langxi', 'mizhao', 'hongyuan', 'new_reqingnang', 'new_liyu', 'liangzhu', 'shanhe_luoyi', 'xinanguo', 'jieming', 'new_reyiji', 'new_yajiao', 'qunying_yehuo', 'xpchijie', 'mingzhe', 'kongcheng', 'rejianchu', 'daoshu', 'xinfu_qinguo', 'xinshensu', 'drlt_wanglie', 'resanyao', 'zhongye_xingri', 'zhongye_yihuo', 'wushuang', 'rehuoji', 'reganglie', 'retieji', 'lijian', 'benyu', 'xiaoji', 'rejizhi', 'qizhi', 'xinjushou', 'rebiyue', 'xinfu_guolun', 'miji', 'gzjili', 'xinfu_zuilun', 'daiyan', 'reyingzi', 'decadezishou', 'qingjiao', 'rejigong', 'drlt_yongsi', 'haoshi', 'tianming', 'xiangle', 'reshenxing', 'tongque_pingkou', 'drlt_zhengu', 'kurou', 'jiaozi', 'duwu', 'shelie', 'zhongye_kuimu', 'zhongye_kangjin', 'zhongye_jiaomu', 'zhongye_canshui', 'drlt_congjian'],
     content() {
       'step 0';
-      boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
-      boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
-      boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
-      boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
-      boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
-      boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
-      boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
-      boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
-      boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
+      const boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
+      const boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
+      const boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
+      const boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
+      const boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
+      const boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
+      const boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
+      const boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
+      const boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
       event.guai = Math.random() <= 0.5 ? boss_shenshou.randomGets(2) : boss_baigui.randomGets(2);
       if (game.me == game.boss) {
         event.goto(2);
@@ -42235,15 +42149,15 @@ const skill = {
     skillList: ['qianya', 'chenqing', 'tiandu', 'qiaobian', 'tiaoxin', 'new_rewusheng', 'lianhuan', 'relonghun', 'oldingcuo', 'dcdouzhen', 'lvbu_shenwu', 'xinfu_tunan', 'neihuan_chibi', 'lvbu_jinghu', 'qugui2_chihu', 'fenghuo_qiangshua', 'dcqiangzhi', 'shanhe_nuyan', 'youyan', 'decadezongshi', 'suizheng', 'jiaojie', 'new_guixin', 'juece', 'zhiman', 'fenghuo_wumeng', 'fenghuo_shouzhi', 'cxliushi', 'neihuan_leixi', 'refuqi', 'zhiren', 'fenghuo_manji', 'fenghuo_manjin', 'jinjian', 'xinfu_lingren', 'zhaxiang', 'xinbenxi', 'decadepojun', 'nzry_shicai', 'qingjiao', 'xunxun', 'huomo', 'anjian', 'shibei', 'wangxi', 'fengpo', 'rezhiheng', 'lieren', 'fenyue', 'longdan', 'luanji', 'remieji', 'mozhi', 'jijiu', 'fenghuo_sheyan', 'hulaoguan_sizhen', 'zhichi', 'Kuiba_wangjian', 'qiluan', 'xinliegong', 'xindanshou', 'decadejingce', 'chengxiang', 'hulaoguan_shence', 'qianxi', 'taoshen_nutaoa', 'zuoding', 'mingjian', 'kaikang', 'danlao', 'zhiyu', 'rexuanhuo', 'beige', 'xinfu_langxi', 'mizhao', 'hongyuan', 'new_reqingnang', 'new_liyu', 'liangzhu', 'shanhe_luoyi', 'xinanguo', 'jieming', 'new_reyiji', 'new_yajiao', 'qunying_yehuo', 'xpchijie', 'mingzhe', 'kongcheng', 'rejianchu', 'daoshu', 'xinfu_qinguo', 'xinshensu', 'drlt_wanglie', 'resanyao', 'zhongye_xingri', 'zhongye_yihuo', 'wushuang', 'rehuoji', 'reganglie', 'retieji', 'lijian', 'benyu', 'xiaoji', 'rejizhi', 'qizhi', 'xinjushou', 'rebiyue', 'xinfu_guolun', 'miji', 'gzjili', 'xinfu_zuilun', 'daiyan', 'reyingzi', 'decadezishou', 'qingjiao', 'rejigong', 'drlt_yongsi', 'haoshi', 'tianming', 'xiangle', 'reshenxing', 'tongque_pingkou', 'drlt_zhengu', 'kurou', 'jiaozi', 'duwu', 'shelie', 'zhongye_kuimu', 'zhongye_kangjin', 'zhongye_jiaomu', 'zhongye_canshui', 'drlt_congjian'],
     content() {
       'step 0';
-      boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
-      boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
-      boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
-      boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
-      boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
-      boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
-      boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
-      boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
-      boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
+      const boss_huben = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan'];
+      const boss_wenzuo = ['zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong'];
+      const boss_mouding = ['xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi'];
+      const boss_jinguo = ['caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'];
+      const boss_shengxiao = ['olsx_zishu', 'olsx_chouniu', 'olsx_yinhu', 'olsx_maotu', 'olsx_chenlong', 'olsx_sishe', 'olsx_wuma', 'olsx_weiyang', 'olsx_shenhou', 'olsx_youji', 'olsx_xugou', 'olsx_haizhu'];
+      const boss_shenjiang = ['shen_guanyu', 'shen_liubei', 'shen_luxun', 'shen_caocao', 'shen_zhouyu', 'shen_lvmeng', 'shen_simayi', 'shen_ganning', 'shen_zhaoyun', 'shen_lvbu'];
+      const boss_shenshou = ['Tianshu_qinglong', 'Tianshu_baihu', 'Tianshu_zhuque', 'Tianshu_xuanwu', 'shenshou_qiuniu', 'shenshou_yazi', 'shenshou_chaofeng', 'shenshou_pulao', 'shenshou_suanni', 'shenshou_bixi', 'shenshou_bian', 'shenshou_fuxi', 'shenshou_chiwen'];
+      const boss_baigui = ['Tianshu_mengpo2', 'Tianshu_yvsai2', 'qugui2_heibaiwuchang3', 'Tianshu_niutoumamian2', 'Tianshu_riyeyoushen2', 'Tianshu_niaozui2', 'Tianshu_huangfeng2', 'Tianshu_baowei2', 'Tianshu_guiwang2', 'Tianshu_yanluowang2'];
+      const boss_shenhua = ['Tianshu_baiqi', 'Tianshu_huoshenzhurong', 'Tianshu_shuishengonggong', 'Tianshu_shaohao', 'Tianshu_hanba', 'Tianshu_xuannv', 'Tianshu_kuafu', 'Tianshu1_jiaxu', 'Tianshu2_jiaxu'];
       event.guai = boss_shenhua.randomGets(2);
       if (game.me == game.boss) {
         event.goto(2);
@@ -42402,7 +42316,6 @@ const skill = {
     forced: true,
     popup: false,
     noDisable: true,
-    charlotte: true,
     charlotte: true,
     firstDo: true,
     superCharlotte: true,
@@ -42570,12 +42483,12 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      boss_jinguo = [];
-      boss_shengxiao = [];
-      boss_shenjiang = [];
-      boss_shenshou = [];
-      boss_baigui = [];
-      boss_shenhua = [];
+      const boss_jinguo = [];
+      const boss_shengxiao = [];
+      const boss_shenjiang = [];
+      const boss_shenshou = [];
+      const boss_baigui = [];
+      const boss_shenhua = [];
       const guaiweupanduan = player.storage.bzts_X + 1;
       if (guaiweupanduan == 1) {
         event.guai = ['ol_dianwei', 'ol_pangde', 'haozhao', 'zhangxiu', 'caochun', 'wangshuang', 're_huangzhong', 'sp_zhaoyun', 're_taishici', 'ol_yanwen', 're_zhangliao', 're_lvbu', 'ol_huaxiong', 're_caozhen', 're_guohuai', 're_yujin', 're_gaoshun', 're_caozhang', 're_xuzhu', 're_xusheng', 're_xiahoudun', 're_gongsunzan', 're_gongsunyuan', 'zhongyao', 'chenlin', 're_lusu', 'luzhi', 're_zhangzhang', 'kuailiangkuaiyue', 're_xushu', 're_chenqun', 're_caozhi', 're_yufan', 're_guyong', 're_zhangsong', 'xunyu', 're_jiaxu', 'xuyou', 'sp_zhugeliang', 're_guojia', 're_chengong', 're_jushou', 're_liru', 're_zhouyu', 're_luxun', 're_simayi', 'caoying', 'zhoufei', 'mayunlu', 'zhangxingcai', 're_diaochan', 're_zhenji', 're_wangyi', 're_zhangchunhua', 're_caifuren', 're_huangyueying', 're_sunshangxiang'].randomGets(2);
@@ -46549,13 +46462,8 @@ const skill = {
           if (player.countCards('h') > 1) {
             return 1;
           }
-          const players = game.filterPlayer();
-          for (let i of players) {
-            if (i.countCards('h') && i != target && i != player && get.attitude(player, i) < 0) {
-              break;
-            }
-          }
-          if (i == players.length) {
+          const playerx = game.players.find((i) => i.countCards('h') && i != target && i != player && get.attitude(player, i) < 0);
+          if (!playerx) {
             return 1;
           }
           return -2 / (target.countCards('h') + 1);
@@ -46571,13 +46479,8 @@ const skill = {
         event.finish();
         return;
       }
-      const players = game.filterPlayer();
-      for (let i of players) {
-        if (i != event.target1 && i != player && event.target1.canCompare(i)) {
-          break;
-        }
-      }
-      if (i == players.length) {
+      const playerx = game.players.find((i) => i != event.target1 && i != player && event.target1.canCompare(i));
+      if (!playerx) {
         event.finish();
       }
       ('step 2');

@@ -24969,11 +24969,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             check(event, player) {
                                 if (get.attitude(player, event.player) >= 0) return false;
-                                var players = game.filterPlayer();
-                                for (const i of players) {
-                                    if (event.player.canUse('sha', i) && get.attitude(player, i) > 0) break;
+                                const playerx = game.players.find((i) => event.player.canUse('sha', i) && get.attitude(player, i) > 0);
+                                if (!playerx) {
+                                    return false;
                                 }
-                                if (i == players.length) return false;
                                 var nh = event.player.countCards('h');
                                 var nsha = event.player.countCards('h', 'sha');
                                 if (nh < 2) return false;

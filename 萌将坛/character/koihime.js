@@ -2061,13 +2061,10 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						target(player, target) {
 							if (target.hasSkillTag('nogain')) return 0;
 							if (player.countCards('h') > 1) return 1;
-							var players = game.filterPlayer();
-							for (const i of players) {
-								if (i.countCards('h') && i != target && i != player && get.attitude(player, i) < 0) {
-									break;
-								}
+							const playerx = game.players.find((i) => i.countCards('h') && i != target && i != player && get.attitude(player, i) < 0);
+							if (!playerx) {
+								return 1;
 							}
-							if (i == players.length) return 1;
 							return -2 / (target.countCards('h') + 1);
 						},
 					},
