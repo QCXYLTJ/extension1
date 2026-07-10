@@ -38209,16 +38209,14 @@ const skill = {
                     }
                     list.push(i);
                 }
-                if (!skills) {
-                    const skills = [];
-                    for (let i of list) {
-                        skills.addArray(
-                            (lib.character[i][3] || []).filter(function (skill) {
-                                const info = get.info(skill);
-                                return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill;
-                            }),
-                        );
-                    }
+                const skills = [];
+                for (let i of list) {
+                    skills.addArray(
+                        (lib.character[i][3] || []).filter(function (skill) {
+                            const info = get.info(skill);
+                            return info && !info.zhuSkill && !info.limited && !info.juexingji && !info.hiddenSkill && !info.charlotte && !info.ruleSkill;
+                        }),
+                    );
                 }
                 event.list2 = skills.randomGets(100);
                 event.count = 0;
@@ -38492,6 +38490,7 @@ const skill = {
                         return false;
                     }
                     const es = player.getCards('e');
+                    let isContains;
                     if (event.cards) {
                         const isContains = event.cards.filter((card) => es.includes(card));
                     }
@@ -44544,28 +44543,29 @@ const skill = {
                 trigger: { player: ['phaseZhunbeiSkipped', 'phaseZhunbeiCancelled', 'phaseJudgeSkipped', 'phaseJudgeCancelled', 'phaseDrawSkipped', 'phaseDrawCancelled', 'phaseUseSkipped', 'phaseUseCancelled', 'phaseDiscardSkipped', 'phaseDiscardCancelled', 'phaseJieshuSkipped', 'phaseJieshuCancelled'] },
                 forced: true,
                 content() {
+                    let next;
                     if (event.triggername == 'phaseZhunbeiSkipped' || event.triggername == 'phaseZhunbeiCancelled') {
-                        const next = player.phaseZhunbei();
+                        next = player.phaseZhunbei();
                         event.Q = '准备阶段';
                     }
                     if (event.triggername == 'phaseJudgeSkipped' || event.triggername == 'phaseJudgeCancelled') {
-                        const next = player.phaseJudge();
+                        next = player.phaseJudge();
                         event.Q = '判定阶段';
                     }
                     if (event.triggername == 'phaseDrawSkipped' || event.triggername == 'phaseDrawCancelled') {
-                        const next = player.phaseDraw();
+                        next = player.phaseDraw();
                         event.Q = '摸牌阶段';
                     }
                     if (event.triggername == 'phaseUseSkipped' || event.triggername == 'phaseUseCancelled') {
-                        const next = player.phaseUse();
+                        next = player.phaseUse();
                         event.Q = '出牌阶段';
                     }
                     if (event.triggername == 'phaseDiscardSkipped' || event.triggername == 'phaseDiscardCancelled') {
-                        const next = player.phaseDiscard();
+                        next = player.phaseDiscard();
                         event.Q = '弃牌阶段';
                     }
                     if (event.triggername == 'phaseJieshuSkipped' || event.triggername == 'phaseJieshuCancelled') {
-                        const next = player.phaseJieshu();
+                        next = player.phaseJieshu();
                         event.Q = '结束阶段';
                     }
                     event.next.remove(next);
@@ -44620,28 +44620,29 @@ const skill = {
                 trigger: { player: ['phaseZhunbeiSkipped', 'phaseZhunbeiCancelled', 'phaseJudgeSkipped', 'phaseJudgeCancelled', 'phaseDrawSkipped', 'phaseDrawCancelled', 'phaseUseSkipped', 'phaseUseCancelled', 'phaseDiscardSkipped', 'phaseDiscardCancelled', 'phaseJieshuSkipped', 'phaseJieshuCancelled'] },
                 forced: true,
                 content() {
+                    let next;
                     if (event.triggername == 'phaseZhunbeiSkipped' || event.triggername == 'phaseZhunbeiCancelled') {
-                        const next = player.phaseZhunbei();
+                        next = player.phaseZhunbei();
                         event.Q = '准备阶段';
                     }
                     if (event.triggername == 'phaseJudgeSkipped' || event.triggername == 'phaseJudgeCancelled') {
-                        const next = player.phaseJudge();
+                        next = player.phaseJudge();
                         event.Q = '判定阶段';
                     }
                     if (event.triggername == 'phaseDrawSkipped' || event.triggername == 'phaseDrawCancelled') {
-                        const next = player.phaseDraw();
+                        next = player.phaseDraw();
                         event.Q = '摸牌阶段';
                     }
                     if (event.triggername == 'phaseUseSkipped' || event.triggername == 'phaseUseCancelled') {
-                        const next = player.phaseUse();
+                        next = player.phaseUse();
                         event.Q = '出牌阶段';
                     }
                     if (event.triggername == 'phaseDiscardSkipped' || event.triggername == 'phaseDiscardCancelled') {
-                        const next = player.phaseDiscard();
+                        next = player.phaseDiscard();
                         event.Q = '弃牌阶段';
                     }
                     if (event.triggername == 'phaseJieshuSkipped' || event.triggername == 'phaseJieshuCancelled') {
-                        const next = player.phaseJieshu();
+                        next = player.phaseJieshu();
                         event.Q = '结束阶段';
                     }
                     event.next.remove(next);
@@ -51305,12 +51306,6 @@ const skill = {
             content(storage, player, skill) {
                 let num1 = player.storage.mitan_jijiang;
                 let num2 = player.storage.mitan_jijiang_xiaoguo;
-                if (num1 == undefined) {
-                    num = 0;
-                }
-                if (num2 == undefined) {
-                    num = 0;
-                }
                 return '本回合可多使用' + num2 + '张杀<br>下回合可多使用' + num1 + '张杀';
             },
         },
@@ -52977,8 +52972,6 @@ const skill = {
     liezhuan_qingjiao: {
         trigger: { player: 'phaseUseBegin' },
         filter(event, player) {
-            if (!ui.cardPile.hasChildNodes() && !ui.discardPile.hasChildNodes()) {
-            }
             let hs = player.getCards('h');
             if (!hs.length) {
                 return false;
@@ -53980,38 +53973,39 @@ const skill = {
             });
             ('step 1');
             if (result.bool) {
-                for (let i = 0; i < game.dead.length && game.dead[i].name != result.buttons[0].link; i++) { }
-                const dead = game.dead[i];
-                if (get.mode() == 'boss') {
-                    dead.init('liezhuan_huangjinbing');
-                    dead.maxHp = 3;
-                    dead.revive(3);
-                    dead.draw(4);
-                    if (player.identity == 'zhu' || player.identity == 'zhong') {
-                        dead.setIdentity('zhong');
-                        dead.identity = 'zhong';
-                        dead.side = true;
-                        dead.update();
-                    }
-                    if (player.identity == 'cai') {
-                        dead.setIdentity('cai');
-                        dead.identity = 'cai';
-                        dead.side = false;
-                        dead.update();
-                    }
-                } else {
-                    dead.init('liezhuan_huangjinbing');
-                    dead.maxHp = 3;
-                    dead.revive(3);
-                    dead.draw(4);
-                    if (get.mode() == 'identity' && player.identity == 'zhu') {
-                        player.identity = 'zhong';
+                for (let i = 0; i < game.dead.length && game.dead[i].name != result.buttons[0].link; i++) {
+                    const dead = game.dead[i];
+                    if (get.mode() == 'boss') {
+                        dead.init('liezhuan_huangjinbing');
+                        dead.maxHp = 3;
+                        dead.revive(3);
+                        dead.draw(4);
+                        if (player.identity == 'zhu' || player.identity == 'zhong') {
+                            dead.setIdentity('zhong');
+                            dead.identity = 'zhong';
+                            dead.side = true;
+                            dead.update();
+                        }
+                        if (player.identity == 'cai') {
+                            dead.setIdentity('cai');
+                            dead.identity = 'cai';
+                            dead.side = false;
+                            dead.update();
+                        }
                     } else {
-                        player.identity = player.identity;
+                        dead.init('liezhuan_huangjinbing');
+                        dead.maxHp = 3;
+                        dead.revive(3);
+                        dead.draw(4);
+                        if (get.mode() == 'identity' && player.identity == 'zhu') {
+                            dead.identity = 'zhong';
+                        } else {
+                            dead.identity = player.identity;
+                        }
+                        dead.identity = player.identity;
+                        dead.showIdentity();
+                        dead.update();
                     }
-                    dead.identity = player.identity;
-                    dead.showIdentity();
-                    dead.update();
                 }
             }
         },
@@ -54385,8 +54379,6 @@ const skill = {
                         case 'sha':
                             if (button.link[3] == 'fire') {
                                 return 2.95;
-                            } else if (button.link[3] == 'fire') {
-                                return 2.92;
                             } else {
                                 return 2.9;
                             }
@@ -55207,10 +55199,11 @@ const skill = {
                 event.equip.remove('youhuoshepoling');
             }
             ('step 2');
+            let list;
             if (event.equip.length > 3) {
-                let list = event.equip.randomGets(3);
+                list = event.equip.randomGets(3);
             } else {
-                let list = event.equip;
+                list = event.equip;
             }
             if (list.length) {
                 player
@@ -55226,11 +55219,13 @@ const skill = {
             }
             ('step 3');
             if (result.bool) {
+                let nb;
                 if (result.links[0][2] == 'honglianzijinguan') {
                     nb = 1;
                 } else {
                     nb = 13;
                 }
+                let st;
                 if (result.links[0][2] == 'honglianzijinguan' || result.links[0][2] == 'feijiangshenweijian') {
                     st = 'heart';
                 }
@@ -55324,10 +55319,11 @@ const skill = {
                 event.equip.remove('youhuoshepoling');
             }
             ('step 2');
+            let list;
             if (event.equip.length > 3) {
-                let list = event.equip.randomGets(3);
+                list = event.equip.randomGets(3);
             } else {
-                let list = event.equip;
+                list = event.equip;
             }
             if (list.length) {
                 player
@@ -55343,11 +55339,13 @@ const skill = {
             }
             ('step 3');
             if (result.bool) {
+                let nb;
                 if (result.links[0][2] == 'honglianzijinguan') {
                     nb = 1;
                 } else {
                     nb = 13;
                 }
+                let st;
                 if (result.links[0][2] == 'honglianzijinguan' || result.links[0][2] == 'feijiangshenweijian') {
                     st = 'heart';
                 }
@@ -55754,7 +55752,7 @@ const skill = {
         },
         forced: true,
         content() {
-            cards = trigger.cards.filter((i) => get.position(i, true) == 'o');
+            const cards = trigger.cards.filter((i) => get.position(i, true) == 'o');
             player.gain(cards, 'gain2');
         },
     },
@@ -58929,12 +58927,6 @@ const skill = {
         },
         ai: {
             damageBonus: true,
-            skillTagFilter(player, tag, arg) {
-                if (tag == 'damageBonus' && tag.getEquip(2)) {
-                    return true;
-                }
-                return false;
-            },
             unequip: true,
             skillTagFilter(player, tag, arg) {
                 if (tag == 'unequip' && arg && arg.name == 'sha') {
