@@ -1276,9 +1276,9 @@ const skill = {
                 .set('prompt', '失去任意点体力')
                 .set('goon', num);
             ('step 1');
-            let num = event.map[result.control] || 1;
-            player.storage.shanhe_qimou2 = num;
-            player.loseHp(num);
+            let num1 = event.map[result.control] || 1;
+            player.storage.shanhe_qimou2 = num1;
+            player.loseHp(num1);
             player.addTempSkill('shanhe_qimou2');
         },
         ai: {
@@ -5535,7 +5535,7 @@ const skill = {
                 function (trigger, player, event) {
                     player
                         .chooseTarget('请选择' + get.translation(trigger.card) + '的额外目标', true, function (card, player, target) {
-                            let player = _status.event.player;
+                            player = _status.event.player;
                             if (_status.event.targets.includes(target)) {
                                 return false;
                             }
@@ -5851,8 +5851,8 @@ const skill = {
                 },
                 content() {
                     'step 0';
-                    let list = trigger.parent._shanhe_shanduan;
-                    if (!list) {
+                    let list1 = trigger.parent._shanhe_shanduan;
+                    if (!list1) {
                         trigger.parent._shanhe_shanduan = (player.storage.shanhe_shanduan || [1, 2, 3, 4]).slice(0);
                         player.storage.shanhe_shanduan = [1, 2, 3, 4];
                     }
@@ -5868,10 +5868,9 @@ const skill = {
                             .set('ai', () => _status.event.choice);
                     }
                     ('step 2');
-                    let list = trigger.parent._shanhe_shanduan;
-                    let num = list[result.index];
+                    let list2 = trigger.parent._shanhe_shanduan;
+                    let num = list2[result.index];
                     trigger.num = num;
-                    list.remove(num);
                     player.popup(num, 'fire');
                     game.log(player, '给', '#g摸牌阶段的摸牌数', '分配的数值是', '#y' + num);
                 },
@@ -30733,12 +30732,12 @@ const skill = {
                 .set('ai', function (target) {
                     let player = _status.event.player, att = get.attitude(player, target), hs = target.getCards('h'), num = hs.length;
                     let getv = function (list, target) {
-                            let num = 0;
-                            for (let i of list) {
-                                num += get.value(i, target);
-                            }
-                            return num;
-                        },
+                        let num = 0;
+                        for (let i of list) {
+                            num += get.value(i, target);
+                        }
+                        return num;
+                    },
                         val = getv(hs, target) - getv(player.storage.fenghuo_xingzuo2, target);
                     if (num < 3) {
                         return att * Math.sqrt(Math.max(0, -val)) * 1.5;
@@ -33106,15 +33105,15 @@ const skill = {
             if (
                 event.targetsx.some((target) => {
                     return (event.targetsx.includes(target) &&
-                    target.countCards('e') &&
-                    target.isAlive() && target.hasHistory('damage', function (evt) {
-                        let card = evt.card;
-                        if (!card || card.name != 'sha') {
-                            return false;
-                        }
-                        let evtx = evt.getParent('useCard');
-                        return evtx.card == card && evtx.parent == event;
-                    }));
+                        target.countCards('e') &&
+                        target.isAlive() && target.hasHistory('damage', function (evt) {
+                            let card = evt.card;
+                            if (!card || card.name != 'sha') {
+                                return false;
+                            }
+                            let evtx = evt.getParent('useCard');
+                            return evtx.card == card && evtx.parent == event;
+                        }));
                 })
             ) {
                 if (event.targetsx.length) {
@@ -34920,8 +34919,8 @@ const skill = {
         },
         check(event, player) {
             let targets = event.parent.gongjian_targets.filter(function (target) {
-                    return event.targets.includes(target) && target.countCards('he') > 0;
-                }),
+                return event.targets.includes(target) && target.countCards('he') > 0;
+            }),
                 att = 0;
             for (let i of targets) {
                 att += get.attitude(player, i);
