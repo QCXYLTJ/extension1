@@ -30246,35 +30246,38 @@ const skill = {
                     ('step 1');
                     let num = get.rand(0, 2);
                     switch (num) {
-                        case 0: {
-                            player.line(trigger.player, 'fire');
-                            trigger.player.damage('fire');
-                            trigger.player.addTempSkill('shanhe_xionghuo_disable');
-                            trigger.player.markAuto('shanhe_xionghuo_disable', [player]);
-                        }
+                        case 0:
+                            {
+                                player.line(trigger.player, 'fire');
+                                trigger.player.damage('fire');
+                                trigger.player.addTempSkill('shanhe_xionghuo_disable');
+                                trigger.player.markAuto('shanhe_xionghuo_disable', [player]);
+                            }
                             break;
-                        case 1: {
-                            player.line(trigger.player, 'water');
-                            trigger.player.loseHp();
-                            trigger.player.addMark('shanhe_xionghuo_low', 1, false);
-                            trigger.player.addTempSkill('shanhe_xionghuo_low');
-                        }
+                        case 1:
+                            {
+                                player.line(trigger.player, 'water');
+                                trigger.player.loseHp();
+                                trigger.player.addMark('shanhe_xionghuo_low', 1, false);
+                                trigger.player.addTempSkill('shanhe_xionghuo_low');
+                            }
                             break;
-                        case 2: {
-                            player.line(trigger.player, 'green');
-                            const card1 = trigger.player.getCards('h').randomGet();
-                            const card2 = trigger.player.getCards('e').randomGet();
-                            let list = [];
-                            if (card1) {
-                                list.push(card1);
+                        case 2:
+                            {
+                                player.line(trigger.player, 'green');
+                                const card1 = trigger.player.getCards('h').randomGet();
+                                const card2 = trigger.player.getCards('e').randomGet();
+                                let list = [];
+                                if (card1) {
+                                    list.push(card1);
+                                }
+                                if (card2) {
+                                    list.push(card2);
+                                }
+                                if (list.length) {
+                                    player.gain(list, trigger.player, 'giveAuto', 'bySelf');
+                                }
                             }
-                            if (card2) {
-                                list.push(card2);
-                            }
-                            if (list.length) {
-                                player.gain(list, trigger.player, 'giveAuto', 'bySelf');
-                            }
-                        }
                             break;
                     }
                     ('step 2');
@@ -31355,21 +31358,7 @@ const skill = {
             threaten: 1.8,
         },
     },
-    shidian_beiming: {
-        trigger: { player: 'die' },
-        forced: true,
-        forceDie: true,
-        filter(event, player) {
-            return event.source != undefined;
-        },
-        logTarget: 'source',
-        content() {
-            trigger.source.discard(trigger.source.getCards('h'));
-        },
-        ai: {
-            threaten: 0.8,
-        },
-    },
+
     lvbu_jinghu: {
         trigger: {
             player: 'useCardAfter',
@@ -34993,7 +34982,7 @@ const skill = {
                 trigger: {
                     global: 'useCard',
                 },
-                forced: true,
+
                 firstDo: true,
                 filter(event, player) {
                     return event.card && event.card.name == 'sha';
@@ -36501,7 +36490,7 @@ const skill = {
         },
         marktext: '环境',
         mark: true,
-        ruleSkill: true,
+
         intro: {
             name: '环境',
             content(storage, player) {
@@ -36537,7 +36526,7 @@ const skill = {
             player.markSkill('ghssz_huanjing');
             player.update();
             ('step 1');
-            if ((player.storage.ghssz_huanjing_next = 'tiankong')) {
+            if (player.storage.ghssz_huanjing_next == 'tiankong') {
                 game.tiankong = true;
                 player.markSkill('ghss_tiankong');
                 game.ludi = false;
@@ -36545,7 +36534,7 @@ const skill = {
                 game.haiyang = false;
                 player.unmarkSkill('ghss_haiyang');
             }
-            if ((player.storage.ghssz_huanjing_next = 'ludi')) {
+            if (player.storage.ghssz_huanjing_next == 'ludi') {
                 game.tiankong = false;
                 player.unmarkSkill('ghss_tiankong');
                 game.ludi = true;
@@ -36553,7 +36542,7 @@ const skill = {
                 game.haiyang = false;
                 player.unmarkSkill('ghss_haiyang');
             }
-            if ((player.storage.ghssz_huanjing_next = 'haiyang')) {
+            if (player.storage.ghssz_huanjing_next == 'haiyang') {
                 game.tiankong = false;
                 player.unmarkSkill('ghss_tiankong');
                 game.ludi = false;
@@ -36680,7 +36669,6 @@ const skill = {
         group: ['qlzdj_bingli_mark', 'qlzdj_bingli_hp', 'qlzdj_bingli_sha', 'qlzdj_bingli_damage'],
         subSkill: {
             mark: {
-                charlotte: true,
                 mark: true,
                 marktext: '兵力',
                 intro: {
@@ -36772,7 +36760,6 @@ const skill = {
         group: ['qlzdj_liangcao_mark', 'qlzdj_liangcao_hp', 'qlzdj_liangcao_recover', 'qlzdj_liangcao_damage'],
         subSkill: {
             mark: {
-                charlotte: true,
                 mark: true,
                 marktext: '粮草',
                 intro: {
@@ -36842,7 +36829,6 @@ const skill = {
         group: ['qlzdj_shiqi_mark', 'qlzdj_shiqi_begin', 'qlzdj_shiqi_draw', 'qlzdj_shiqi_skill', 'qlzdj_shiqi_use'],
         subSkill: {
             mark: {
-                charlotte: true,
                 mark: true,
                 marktext: '士气',
                 intro: {
@@ -37042,7 +37028,7 @@ const skill = {
         },
         mode: ['boss'],
         forceDie: true,
-        forced: true,
+
         firstDo: true,
         forced: true,
         charlotte: true,
@@ -38106,7 +38092,7 @@ const skill = {
         },
         fixed: true,
         popup: false,
-        forced: true,
+
         firstDo: true,
         forced: true,
         forceDie: true,
@@ -38157,7 +38143,7 @@ const skill = {
         },
         fixed: true,
         popup: false,
-        forced: true,
+
         firstDo: true,
         forced: true,
         noDisable: true,
@@ -38177,7 +38163,7 @@ const skill = {
             player: ['enterGame', 'phaseBegin', 'phaseDrawBegin2', 'recoverBegin', 'phaseEnd'],
             source: 'damageBegin1',
         },
-        forced: true,
+
         charlotte: true,
         firstDo: true,
         forced: true,
@@ -39509,7 +39495,6 @@ const skill = {
         },
         subSkill: {
             chosen: {
-                charlotte: true,
                 onremove(player) {
                     player.storage.tongque_wenyong_chosen = [];
                     player.update();
@@ -42351,7 +42336,7 @@ const skill = {
                     player: 'phaseBegin',
                 },
                 forceDie: true,
-                forced: true,
+
                 _priority: 40,
                 forced: true,
                 silent: true,
@@ -42647,12 +42632,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -42768,12 +42753,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -43266,12 +43251,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -46521,7 +46506,7 @@ const skill = {
                     }
                     return event.num > 0 && player.storage.huoshao_zhanjian && player.storage.huoshao_zhanjian == 4;
                 },
-                forced: true,
+
                 charlotte: true,
                 forced: true,
                 silent: true,
@@ -46547,7 +46532,7 @@ const skill = {
                     }
                     return event.player != player && player.storage.huoshao_zhanjian && ((player.storage.huoshao_zhanjian == 9 && get.type2(event.card) == 'trick') || (player.storage.huoshao_zhanjian == 10 && get.type(event.card) == 'basic'));
                 },
-                forced: true,
+
                 charlotte: true,
                 forced: true,
                 silent: true,
@@ -46605,12 +46590,12 @@ const skill = {
             global: ['linkAfter', 'dieBegin', 'dieAfter'],
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -47678,12 +47663,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -48207,12 +48192,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -49195,7 +49180,7 @@ const skill = {
         trigger: {
             global: 'phaseEnd',
         },
-        forced: true,
+
         charlotte: true,
         forced: true,
         filter(event, player) {
@@ -49226,9 +49211,6 @@ const skill = {
         popup: false,
     },
     hezong_hzlh: {
-        charlotte: true,
-        fixed: true,
-        forced: true,
         ruleSkill: true,
         mark: true,
         marktext: '合纵连横',
@@ -51316,7 +51298,7 @@ const skill = {
             player.storage.mitan_jijiang = 0;
             player.storage.mitan_jijiang_xiaoguo = 0;
         },
-        audio: 'ext:活动BOSS/audio/skill:2',
+
         marktext: '激将',
         mark: true,
         intro: {
@@ -51382,7 +51364,7 @@ const skill = {
                 trigger: {
                     player: 'phaseAfter',
                 },
-                forced: true,
+
                 silent: true,
                 forced: true,
                 charlotte: true,
@@ -51616,7 +51598,7 @@ const skill = {
                 forceDie: true,
                 charlotte: true,
                 forced: true,
-                popup: false,
+
                 content() {
                     game.countPlayer(function (current2) {
                         if (current2 != player) {
@@ -51918,12 +51900,12 @@ const skill = {
     },
     sw_die: {
         trigger: { global: 'dieAfter' },
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -51943,12 +51925,12 @@ const skill = {
     },
     hezong_die: {
         trigger: { global: 'dieAfter' },
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -51966,12 +51948,12 @@ const skill = {
     },
     hlg_die: {
         trigger: { global: 'dieAfter' },
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -51994,12 +51976,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -52044,12 +52026,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -54270,7 +54252,7 @@ const skill = {
         subSkill: {
             reset: {
                 trigger: { global: 'phaseAfter' },
-                forced: true,
+
                 charlotte: true,
                 forced: true,
                 silent: true,
@@ -54283,7 +54265,7 @@ const skill = {
             },
             count: {
                 trigger: { player: 'useCard' },
-                forced: true,
+
                 charlotte: true,
                 forced: true,
                 silent: true,
@@ -54769,45 +54751,7 @@ const skill = {
             }
         },
     },
-    sy_juehong: {
-        trigger: {
-            player: 'phaseZhunbeiBegin',
-        },
-        forced: true,
-        audio: 'ext:活动BOSS/audio/skill:true',
-        filter(event, player) {
-            return game.hasPlayer(function (current) {
-                return player != current && player.getEnemies().includes(current) && current.countCards('he') > 0;
-            });
-        },
-        logTarget(event, player) {
-            return game.filterPlayer(function (current) {
-                return current != player && player.getEnemies().includes(current) && current.countCards('he');
-            });
-        },
-        content() {
-            'step 0';
-            event.list = player.getEnemies();
-            ('step 1');
-            if (event.list.length) {
-                const target = event.list.shift();
-                if (target.countCards('he')) {
-                    const es = target.getCards('e');
-                    if (es.length) {
-                        target.discard(es);
-                    } else {
-                        event.card = target.getCards('h').randomGets(2);
-                        target.discard(event.card);
-                    }
-                }
-                event.redo();
-            }
-        },
-        ai: {
-            expose: 0.2,
-            threaten: 2,
-        },
-    },
+
     sy_juehong: {
         trigger: {
             player: 'phaseZhunbeiBegin',
@@ -57905,7 +57849,6 @@ const skill = {
         },
     },
     ns_zhuguo: {
-        charlotte: true,
         init(player) {
             game.addGlobalSkill('nianshou_zhuguo_gain');
             game.addGlobalSkill('nianshou_zhuguo_jiawei');
@@ -60698,7 +60641,6 @@ const skill = {
                 },
             },
             recover: {
-                charlotte: true,
                 fixed: true,
                 mark: true,
                 marktext: '争',
@@ -60789,7 +60731,6 @@ const skill = {
                 },
             },
             recover: {
-                charlotte: true,
                 fixed: true,
                 mark: true,
                 marktext: '争',
@@ -61776,12 +61717,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -61838,7 +61779,7 @@ const skill = {
             player: 'dieBegin',
         },
         fixed: true,
-        popup: false,
+
         forced: true,
         noDisable: true,
         charlotte: true,
@@ -61918,12 +61859,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -62043,12 +61984,12 @@ const skill = {
             player: 'enterGame',
         },
         mode: ['boss'],
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -62180,12 +62121,12 @@ const skill = {
         trigger: {
             player: 'useCard',
         },
-        charlotte: true,
+
         fixed: true,
-        popup: false,
+
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -62203,12 +62144,12 @@ const skill = {
         trigger: {
             player: 'useCard',
         },
-        charlotte: true,
+
         fixed: true,
         popup: false,
         forced: true,
         noDisable: true,
-        charlotte: true,
+
         charlotte: true,
         firstDo: true,
         superCharlotte: true,
@@ -63371,7 +63312,7 @@ const skill = {
             mark: {
                 marktext: '年',
                 mark: true,
-                charlotte: true,
+
                 intro: {
                     name: '年牌',
                     content(storage, player, skill) {
