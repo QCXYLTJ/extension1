@@ -392,7 +392,6 @@ const skill = {
         forced: true,
         charlotte: true,
         firstDo: true,
-        forced: true,
         filter(event, player, name) {
             if (player.identity == 'cai') {
                 return false;
@@ -1930,55 +1929,6 @@ const skill = {
                 content() {
                     player.line(event.targets);
                     event.targets[0].draw();
-                },
-            },
-        },
-    },
-    shanhe_xuanfeng: {
-        trigger: {
-            player: ['loseAfter'],
-            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
-        },
-        filter(event, player) {
-            let evt = event.getl(player);
-            return evt && (evt.es.length || evt.cards2.length > 1);
-        },
-        forced: true,
-        content() {
-            'step 0';
-            event.count = 2;
-            ('step 1');
-            player
-                .chooseTarget(get.prompt('shanhe_xuanfeng'), '弃置一名其他角色的一张牌', function (card, player, target) {
-                    if (player == target) {
-                        return false;
-                    }
-                    return target.countDiscardableCards(player, 'he');
-                })
-                .set('ai', function (target) {
-                    return -get.attitude(_status.event.player, target);
-                });
-            ('step 2');
-            if (result.bool) {
-                player.line(result.targets[0], 'green');
-                player.discardPlayerCard(result.targets[0], 'he', true);
-                event.count--;
-            } else {
-                event.finish();
-            }
-            ('step 3');
-            if (event.count) {
-                event.goto(1);
-            }
-        },
-        ai: {
-            reverseEquip: true,
-            noe: true,
-            effect: {
-                target(card, player, target, current) {
-                    if (get.type(card) == 'equip' && !get.cardtag(card, 'gifts')) {
-                        return [1, 3];
-                    }
                 },
             },
         },
@@ -5592,7 +5542,6 @@ const skill = {
         },
         ai: {
             unequip: true,
-            unequip: true,
             directHit_ai: true,
             skillTagFilter(player, tag, arg) {
                 if (tag == 'unequip') {
@@ -8376,7 +8325,6 @@ const skill = {
         popup: false,
         forced: true,
         firstDo: true,
-        forced: true,
         noDisable: true,
         charlotte: true,
         superCharlotte: true,
@@ -12105,7 +12053,7 @@ const skill = {
                     return false;
                 }
                 if (arg && arg.card && arg.card.name == 'sha') {
-                    return arg.target.storage.shanhe_qianxi2 == 'red' && (!arg.target.getEquip('bagua') || player.hasSkillTag('unequip', false, { name: arg.card ? arg.card.name : null, target: arg.target, card: arg.card }) || player.hasSkillTag('unequip', false, { name: arg.card ? jiguan_sunchi2 : null, target: arg.target, card: arg.card }));
+                    return arg.target.storage.shanhe_qianxi2 == 'red' && (!arg.target.getEquip('bagua') || player.hasSkillTag('unequip', false, { name: arg.card ? arg.card.name : null, target: arg.target, card: arg.card }) || player.hasSkillTag('unequip', false, { name: arg.card ? 'jiguan_sunchi2' : null, target: arg.target, card: arg.card }));
                 }
                 return arg.target.storage.shanhe_qianxi2 == 'black';
             },
@@ -14657,10 +14605,11 @@ const skill = {
         forced: true,
         content() {
             'step 0';
+            let list;
             if (player.hasMark('shezhan_huaiju')) {
-                let list = ['移去一个【橘】', '失去1点体力', 'cancel2'];
+                list = ['移去一个【橘】', '失去1点体力', 'cancel2'];
             } else {
-                let list = ['失去1点体力', 'cancel2'];
+                list = ['失去1点体力', 'cancel2'];
             }
             player
                 .chooseControl(list, function (event, player) {
@@ -16874,16 +16823,13 @@ const skill = {
                             return 3;
                         }
                         return 1;
-                        break;
                     case 1:
                         return 1.5;
-                        break;
                     case 2:
                         if (att > 0) {
                             return 2;
                         }
                         return 0;
-                        break;
                 }
             });
             ('step 1');
@@ -17359,9 +17305,6 @@ const skill = {
                 event.cards2 = cards2;
             } else {
                 event.finish();
-            }
-            const time = 1000 - (get.utc() - event.time);
-            if (time > 0) {
             }
             ('step 3');
             game.broadcastAll('closeDialog', event.videoId);
@@ -18082,8 +18025,9 @@ const skill = {
             const es = player.getCards('e', function (card) {
                 return ['equip2', 'equip5'].includes(get.subtype(card));
             });
+            let isContains;
             if (event.cards) {
-                const isContains = event.cards.filter((card) => es.includes(card));
+                isContains = event.cards.filter((card) => es.includes(card));
             }
             if (!es || !isContains || (isContains && isContains.length == 0)) {
                 return false;
@@ -18173,7 +18117,7 @@ const skill = {
                     }
                     const cardsx = event.getg(current);
                     for (const card of cardsx) {
-                        if (cards.includes(i) && current.getCards('h').includes(card) && cards.includes(card) && get.color(card, player) == 'black') {
+                        if (cards.includes(card) && current.getCards('h').includes(card) && cards.includes(card) && get.color(card, player) == 'black') {
                             return true;
                         }
                     }
@@ -18352,8 +18296,9 @@ const skill = {
                 trigger = map.trigger,
                 result = map.result;
             const target = trigger.target;
+            let next;
             const send = function (card, list) {
-                const next = game.createEvent('shanhe_langdao_choose', false);
+                next = game.createEvent('shanhe_langdao_choose', false);
                 next.setContent(lib.skill.shanhe_langdao.contentx);
                 next.set('card', card);
                 next.set('list', list);
@@ -18386,7 +18331,7 @@ const skill = {
                     i.wait(sendback);
                 } else if (i == game.me) {
                     withme = true;
-                    const next = game.createEvent('shanhe_langdao_choose', false);
+                    next = game.createEvent('shanhe_langdao_choose', false);
                     next.setContent(lib.skill.shanhe_langdao.contentx);
                     next.set('card', card);
                     next.set('list', list);
@@ -20449,7 +20394,6 @@ const skill = {
                 },
                 forced: true,
                 popup: false,
-                charlotte: true,
                 filter(event, player) {
                     return event.num > 0;
                 },
@@ -21346,7 +21290,6 @@ const skill = {
                         trigger.num2 = 13;
                     }
                 },
-                forced: true,
                 popup: false,
             },
         },
@@ -22276,7 +22219,6 @@ const skill = {
                 },
                 forced: true,
                 forceDie: true,
-                forced: true,
                 filter(event, player) {
                     return game.hasPlayer(function (current) {
                         return current != player && current.hasMark('shanhe_wuhun_mark');
@@ -23324,7 +23266,6 @@ const skill = {
                         }
                     }
                     return 1;
-                    return 0.5 * trigger.num;
                 });
             } else {
                 event.finish();
@@ -23438,7 +23379,6 @@ const skill = {
                 trigger: {
                     player: 'phaseBegin',
                 },
-                forced: true,
                 charlotte: true,
                 forced: true,
                 content() {
@@ -23588,7 +23528,6 @@ const skill = {
                 }
                 return player.hp > player.countCards('h') && eff2 < eff1 && num == 1;
             }
-            return false;
         },
         logTarget: 'player',
         shaRelated: true,
@@ -25060,8 +24999,8 @@ const skill = {
                         }
                     }
                 }
+                return skills && skills.length && event.source && event.source != player && event.source.isIn() && player.hp < 10 && event.num > 0;
             }
-            return skills && skills.length && event.source && event.source != player && event.source.isIn() && player.hp < 10 && event.num > 0;
         },
         content() {
             const skills = trigger.source.getSkills(true, false).filter(function (skill) {
@@ -26518,42 +26457,6 @@ const skill = {
         },
         content() {
             'step 0';
-            let go = false;
-            if (get.attitude(player, trigger.player) > 0) {
-                if (get.color(trigger.card) == 'red') {
-                    go = true;
-                } else if (trigger.addCount === false || !trigger.player.isPhaseUsing()) {
-                    go = false;
-                } else if (!trigger.player.hasSkill('paoxiao') && !trigger.player.hasSkill('tanlin3') && !trigger.player.hasSkill('zhaxiang2') && !trigger.player.hasSkill('fengnu') && !trigger.player.getEquip('zhuge')) {
-                    const nh = trigger.player.countCards('h');
-                    if (player == trigger.player) {
-                        go = player.countCards('h', 'sha') > 0;
-                    } else if (nh >= 4) {
-                        go = true;
-                    } else if (player.countCards('h', 'sha')) {
-                        if (nh == 3) {
-                            go = Math.random() < 0.8;
-                        } else if (nh == 2) {
-                            go = Math.random() < 0.5;
-                        }
-                    } else if (nh >= 3) {
-                        if (nh == 3) {
-                            go = Math.random() < 0.5;
-                        } else if (nh == 2) {
-                            go = Math.random() < 0.2;
-                        }
-                    }
-                }
-            }
-            if (
-                go &&
-                !event.isMine() &&
-                !event.isOnline() &&
-                player.hasCard(function (card) {
-                    return get.value(card) < 6 && lib.filter.cardDiscardable(card, player, event.name);
-                }, 'he')
-            ) {
-            }
             const next = player.chooseToDiscard(get.prompt('shanhe_longyin'), '弃置一张牌' + (get.color(trigger.card) == 'red' ? '并摸一张牌' : '') + ',令' + get.translation(trigger.player) + '本次使用的【杀】不计入使用次数', 'he');
             next.set('ai', function (card) {
                 if (_status.event.go) {
@@ -26561,7 +26464,6 @@ const skill = {
                 }
                 return 0;
             });
-            next.set('go', go);
             ('step 1');
             if (result.bool) {
                 if (trigger.addCount !== false) {
@@ -27957,9 +27859,6 @@ const skill = {
                 },
             },
         },
-        ai: {
-            threaten: 1.2,
-        },
     },
     shanhe_duling: {
         enable: 'phaseUse',
@@ -28874,9 +28773,6 @@ const skill = {
                         number: null,
                     },
                     position: 'he',
-                    check(card) {
-                        return 8 - get.value(card);
-                    },
                     ignoreMod: true,
                     check(card) {
                         let player = _status.event.player,
@@ -29166,7 +29062,6 @@ const skill = {
         },
         forced: true,
         charlotte: true,
-        forced: true,
         filter(event, player) {
             return event.player != player;
         },
@@ -30351,19 +30246,21 @@ const skill = {
                     ('step 1');
                     let num = get.rand(0, 2);
                     switch (num) {
-                        case 0:
+                        case 0: {
                             player.line(trigger.player, 'fire');
                             trigger.player.damage('fire');
                             trigger.player.addTempSkill('shanhe_xionghuo_disable');
                             trigger.player.markAuto('shanhe_xionghuo_disable', [player]);
+                        }
                             break;
-                        case 1:
+                        case 1: {
                             player.line(trigger.player, 'water');
                             trigger.player.loseHp();
                             trigger.player.addMark('shanhe_xionghuo_low', 1, false);
                             trigger.player.addTempSkill('shanhe_xionghuo_low');
+                        }
                             break;
-                        case 2:
+                        case 2: {
                             player.line(trigger.player, 'green');
                             const card1 = trigger.player.getCards('h').randomGet();
                             const card2 = trigger.player.getCards('e').randomGet();
@@ -30377,6 +30274,7 @@ const skill = {
                             if (list.length) {
                                 player.gain(list, trigger.player, 'giveAuto', 'bySelf');
                             }
+                        }
                             break;
                     }
                     ('step 2');
@@ -30963,7 +30861,6 @@ const skill = {
         popup: false,
         forced: true,
         firstDo: true,
-        forced: true,
         noDisable: true,
         charlotte: true,
         superCharlotte: true,
@@ -31725,7 +31622,6 @@ const skill = {
         _priority: 100,
         forced: true,
         superCharlotte: true,
-        charlotte: true,
         fixed: true,
         filter(event, player) {
             return player.side == game.boss.side && (event.name != 'phase' || game.phaseNumber == 0) && player.group != 'daqin';
@@ -34856,7 +34752,6 @@ const skill = {
         },
         trigger: { global: ['phaseAfter', 'phaseCancelled'] },
         forced: true,
-        charlotte: true,
         popup: false,
         content() {
             player.storage.jiguan_jiangzhi--;
