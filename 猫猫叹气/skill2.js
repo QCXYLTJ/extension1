@@ -1510,7 +1510,7 @@ const skill = {
             },
             chongzhu: {
                 trigger: { player: 'phaseZhunbeiBegin' },
-                forced: true,
+
                 //popup:false,
                 forced: true,
                 filter(event, player) {
@@ -1532,7 +1532,7 @@ const skill = {
             },
             maoniang: {
                 trigger: { player: 'phaseZhunbeiBegin' },
-                forced: true,
+
                 //popup:false,
                 forced: true,
                 filter(event, player) {
@@ -3715,6 +3715,7 @@ const skill = {
                 ['heart', 1, 'gz_guguoanbang'],
                 ['club', 12, 'gz_wenheluanwu'],
             ];
+
             for (let i = 0; i < 4; i++) {
                 if (event.group[i] == result.control) {
                     let card = list[i];
@@ -4223,6 +4224,7 @@ const skill = {
                     ['上', '上一页'],
                     ['下', '下一页'],
                 ],
+
                 'tdnodes',
             ]);
             const chooseButton = player.chooseButton(dialog, true);
@@ -4572,6 +4574,7 @@ const skill = {
                                 [2, '选择一名没有被伐谋标记的其他角色,选择一个数字对其进行标记'],
                                 [1, '选择一名手牌数与伐谋标记相同的角色,移除其标记并将其区域内的一张牌当作任意牌使用'],
                             ],
+
                             'textbutton',
                         ]);
                         return dialog;
@@ -6135,6 +6138,7 @@ const skill = {
                         target.loseHp();
                     },
                 ];
+
                 for (let i = 0; i < event.links.length; i++) {
                     map[event.links[i]](player, target);
                 }
@@ -8330,7 +8334,7 @@ const skill = {
                 forced: true,
                 content() {
                     'step 0';
-                    ('step 1');
+                    'step 1';
                     if (player.storage.duohunzhaoxin && player.countCards('h') <= player.maxHp) {
                         let evt = trigger.getl(player);
                         if (player.countCards('h') + evt.cards2.length > player.maxHp + 1) {
@@ -8891,7 +8895,7 @@ const skill = {
         forced: true,
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             let evt = trigger.getl(player);
             game.countPlayer(function (current) {
                 let list = [];
@@ -9816,7 +9820,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('xdz_kongshuishenjiangx');
             ('step 2');
             game.boss.addFellow('xdz_shuilinglingx');
@@ -10096,7 +10100,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('xdz_zhemianhuanwangx');
             ('step 2');
             game.boss.addFellow('xdz_kuishoulongx');
@@ -12465,7 +12469,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('xdz_xuwudatianshix');
             game.boss.directgain(get.cards(4));
             ('step 2');
@@ -15022,7 +15026,7 @@ const skill = {
             global: 'judge',
         },
         audio: true,
-        forced: true,
+
         lastDo: true,
         forced: true,
         filter(event, player) {
@@ -15533,7 +15537,7 @@ const skill = {
                     name: '时间休克',
                     //  content:"跳过回合",
                 },
-                forced: true,
+
                 _priority: 1000000,
                 popup: false,
                 nopop: true,
@@ -16098,7 +16102,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             player.say('虽为战神之瞳,但在我这,就叫猫眼.');
             let dialog = ui.create.dialog('猫眼:查看一切(手牌/牌堆/弃牌堆)', 'hidden');
             for (let i of game.players) {
@@ -16752,7 +16756,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('boss_tianshizhuzai');
             ('step 2');
             game.boss.storage.tianshi = true;
@@ -20429,7 +20433,7 @@ const skill = {
         trigger: {
             player: ['useCardAfter', 'respondAfter'],
         },
-        forced: true,
+
         popup: false,
         _priority: -313,
         forced: true,
@@ -20692,7 +20696,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('boss_siling');
             game.boss.maxHp = 10;
             game.boss.hp = 8;
@@ -21010,7 +21014,7 @@ const skill = {
         forced: true,
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             let cards = [];
             for (let i = 0; i < trigger.cards2.length; i++) {
                 if (get.position(trigger.cards2[i], true) == 'd') {
@@ -21099,7 +21103,7 @@ const skill = {
     },
     bly_siyi: {
         trigger: { global: 'phaseEnd' },
-        forced: true,
+
         filter(event, player) {
             const history = player.getHistory('useCard').concat(player.getHistory('respond'));
             for (let i = 0; i < history.length; i++) {
@@ -21894,6 +21898,7 @@ const skill = {
                     trigger.player.turnOver();
                 },
             ];
+
             for (let i of result.links) {
                 //	game.log(player,'选择了','#g【奔袭】','的','#y选项'+get.cnNumber(i+1,true));
                 map[i](trigger, player, event);
@@ -23970,8 +23975,8 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
-            ('step 2');
+            'step 1';
+            'step 2';
             game.changeBossQ('rclm_x3bailongyin');
             game.boss.maxHp = 8;
             game.boss.hp = 8;
@@ -23999,7 +24004,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('rclm_x5qihuanwuji');
             game.boss.hp = 7;
             game.boss.update();
@@ -24028,8 +24033,8 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
-            ('step 2');
+            'step 1';
+            'step 2';
             game.changeBossQ('rclm_xtiangongwang');
             game.boss.maxHp = 8;
             game.boss.hp = 8;
@@ -24057,8 +24062,8 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
-            ('step 2');
+            'step 1';
+            'step 2';
             game.changeBossQ('rclm_xundaotianshen');
             game.boss.maxHp = 20;
             game.boss.hp = 20;
@@ -24578,7 +24583,7 @@ const skill = {
         trigger: {
             player: ['phaseZhunbeiBegin', 'phaseDrawBegin', 'phaseAfter'],
         },
-        forced: true,
+
         _priority: -1,
         forced: true,
         filter(event, player, name) {
@@ -28240,7 +28245,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('yjckc_shangying');
             game.boss.hp = 8;
             game.boss.maxHp = 8;
@@ -28267,7 +28272,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('yjckd_fengyuli');
             game.boss.hp = 8;
             game.boss.maxHp = 8;
@@ -28295,8 +28300,8 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
-            ('step 2');
+            'step 1';
+            'step 2';
             game.changeBossQ('yjckf_shangyu');
             game.boss.hp = 8;
             game.boss.maxHp = 8;
@@ -28323,7 +28328,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('yjckh_longyang');
             game.boss.hp = 8;
             game.boss.maxHp = 8;
@@ -28351,7 +28356,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('yjckj_chencaozhi');
             game.boss.hp = 8;
             game.boss.maxHp = 8;
@@ -28379,7 +28384,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             game.changeBossQ('yjckm_mushan');
             game.boss.hp = 10;
             game.boss.maxHp = 10;
@@ -29720,7 +29725,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             let targets = game.filterPlayer(function (current) {
                 return player.getEnemies().includes(current) && trigger.targets.includes(current);
             });
@@ -30001,6 +30006,7 @@ const skill = {
                     '一张牌',
                     '令本次对' + get.translation(player) + '造成的伤害-2',
                 ];
+
             if (
                 lib.config.mode == 'boss' &&
                 game.hasPlayer(function (current) {
@@ -30591,7 +30597,7 @@ const skill = {
     },
     sgjl_shewei: {
         trigger: { global: 'gainAfter' },
-        forced: true,
+
         _priority: -888,
         logTarget: 'player',
         filter(event, player) {
@@ -35515,7 +35521,7 @@ const skill = {
             },
         },
         trigger: { player: ['useCard'] },
-        forced: true,
+
         preHidden: true,
         filter(event, player) {
             return player.isPhaseUsing(); //&&player.getHistory('useCard').length+player.getHistory('respond').length==player.getAttackRange();
@@ -38849,6 +38855,7 @@ const skill = {
                         [1, '和角色拼点'],
                         [2, '使用义刃杀'],
                     ],
+
                     'tdnodes',
                 ]);
                 return dialog;
@@ -40795,6 +40802,7 @@ const skill = {
                     ['基本', '', 'sha'],
                     ['基本', '', 'shan'],
                 ];
+
                 return ui.create.dialog('白马', '要使用哪张牌？', [basic, 'vcard']);
             },
             filter(button, player) {
@@ -41048,7 +41056,7 @@ const skill = {
     },
     yinmz_ansha2: {
         trigger: { global: 'dyingBegin' },
-        forced: true,
+
         silent: true,
         firstDo: true,
         forced: true,
@@ -47533,7 +47541,7 @@ const skill = {
                 return '🗡';
             },
         },
-        forced: true,
+
         trigger: {
             player: 'useCard',
         },
@@ -47596,7 +47604,7 @@ const skill = {
         trigger: {
             player: 'phaseBefore',
         },
-        forced: true,
+
         _priority: 10000000,
         popup: false,
         nopop: true,
@@ -49419,9 +49427,7 @@ const skill = {
         content() {
             trigger.num++;
         },
-        ai: {
-            damageBonus: true,
-        },
+
         mark: true,
         marktext: '逼',
         intro: {
@@ -50085,7 +50091,7 @@ const skill = {
     },
     leicz_huguodie: {
         trigger: { global: 'die' },
-        forced: true,
+
         forceDie: true,
         forced: true,
         content() {
@@ -51905,7 +51911,7 @@ const skill = {
         },
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             event.cards = get.cards();
             game.cardsGotoOrdering(event.cards);
             player.showCards(event.cards).set('forceDie', true);
@@ -52582,6 +52588,7 @@ const skill = {
                         ['基本', '', 'jiu'],
                         ['锦囊', '', 'juedou'],
                     ],
+
                     'vcard',
                 ]);
             },
@@ -52907,7 +52914,7 @@ const skill = {
     moxs_yicheng: {
         audio: 'ext:猫猫叹气/audio:2',
         trigger: { target: 'useCardToTarget' },
-        forced: true,
+
         preHidden: true,
         filter(event, player) {
             if (event.card.name != 'sha') {
@@ -53175,6 +53182,7 @@ const skill = {
                         [2, '弃置一张【无懈可击】,将一名角色武将牌上的一张坐骑牌移动到其下家'],
                         [3, '展示并弃置一名角色武将牌上的三张或以上同花色的进攻/防御坐骑并:进攻:对其造成一点伤害;防御:获得其装备区内一张防具牌'],
                     ],
+
                     'textbutton',
                 ]);
                 return dialog;
@@ -53514,6 +53522,7 @@ const skill = {
                     ['equip3', '防御马'],
                     ['equip4', '进攻马'],
                 ],
+
                 'tdnodes',
             ]);
             dialog.addText('请选择要展示并弃置的坐骑花色');
@@ -55220,6 +55229,7 @@ const skill = {
                         ['锦囊', '', 'ssft_xihanmibao'],
                         ['锦囊', '', 'ssft_guzhengleigui'],
                     ],
+
                     'vcard',
                 ]);
                 const hongse = player.countCards('hs', function (card) {
@@ -56422,6 +56432,7 @@ const skill = {
                         ['club', '', 'sha'],
                         ['锦囊', '', 'juedou'],
                     ],
+
                     'vcard',
                 ]);
                 return dialog;
@@ -57481,7 +57492,6 @@ const skill = {
         },
     },
     nusq_shouxunx: {
-        forced: true,
         filter(event, player) {
             if (event.name == 'chooseTarget') {
                 return lib.skill.nusq_shouxunx.global && typeof lib.skill.nusq_shouxunx.global != 'string' && lib.skill.nusq_shouxunx.global.length && lib.skill.nusq_shouxunx.global.includes('nzry_lijun1') && event.getParent(2).skill == 'nzry_lijun1' && event.result && event.result.bool && event.result.targets && event.result.targets.includes(player);
@@ -57846,7 +57856,7 @@ const skill = {
         audio: 'rejianxiong',
         forbid: ['boss'],
         trigger: { player: 'die' },
-        forced: true,
+
         forceDie: true,
         forced: true,
         content() {
@@ -58594,7 +58604,7 @@ const skill = {
     nuzgl_tianji: {
         audio: 'rekanpo',
         trigger: { player: 'die' },
-        forced: true,
+
         forceDie: true,
         forced: true,
         content() {
@@ -59808,6 +59818,7 @@ const skill = {
                             });
                         },
                     ];
+
                     for (let i of result.links) {
                         map[i](trigger, player, event);
                     }
@@ -60987,7 +60998,7 @@ const skill = {
         //frequent:'check',
         content() {
             'step 0';
-            ('step 1');
+            'step 1';
             let cards = [];
             for (let i = 0; i < trigger.cards2.length; i++) {
                 if (get.position(trigger.cards2[i], true) == 'd') {
