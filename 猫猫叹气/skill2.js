@@ -3870,8 +3870,7 @@ const skill = {
                 return 1;
             });
             ('step 2');
-            if ([0, 1].includes(result.index)) {
-            } else {
+            if (![0, 1].includes(result.index)) {
                 delete player.storage.qysj_zhuizhan;
                 player.unmarkSkill('qysj_zhuizhan');
             }
@@ -4438,7 +4437,6 @@ const skill = {
                                 nature: button.link[3],
                             });
                         }
-                        return 0;
                     });
                     chooseButton.set('filterButton', function (button) {
                         if (ui.selected.buttons.length) {
@@ -6114,7 +6112,6 @@ const skill = {
                             return -att;
                         }
                     }
-                    return 0;
                 });
             ('step 3');
             if (result.bool) {
@@ -7898,7 +7895,6 @@ const skill = {
         marktext: '阳',
         intro: {
             name: '阳',
-            content: 'character',
             onunmark(storage, player) {
                 if (storage && storage.length) {
                     if (_status.characterlist) {
@@ -13597,7 +13593,6 @@ const skill = {
             } else {
                 return player.storage.xdz_shenzhix && player.storage.xdz_shenzhix > 0 && player.getCards('h').length <= player.storage.xdz_shenzhix / 2;
             }
-            return false;
         },
         content() {
             let name = event.triggername;
@@ -14652,8 +14647,6 @@ const skill = {
                 player.addFellow('rclm_x1tutu');
             }
             ('step 2');
-            if (lib.config.extension_猫猫叹气_bossdongfeng == 'richanglinmo') {
-            }
             game.boss.update();
             _status.noswap = true;
             game.addVideo('reinit2', player, player.name);
@@ -14892,10 +14885,10 @@ const skill = {
                     if (player.storage.tianshi) {
                         return false;
                     }
-                    if ((name = 'turnOverBegin')) {
+                    if (name == 'turnOverBegin') {
                         return !player.isTurnedOver();
                     }
-                    if ((name = 'linkBegin')) {
+                    if (name == 'linkBegin') {
                         return !player.isLinked();
                     }
                     return true;
@@ -15039,16 +15032,16 @@ const skill = {
                 for (let i = 1; i < 14; i++) {
                     list.add(event.number[i]);
                     let j = i;
-                    if ((j = 'A')) {
+                    if (j == 'A') {
                         j = 1;
                     }
-                    if ((j = 'J')) {
+                    if (j == 'J') {
                         j = 11;
                     }
-                    if ((j = 'Q')) {
+                    if (j == 'Q') {
                         j = 12;
                     }
-                    if ((j = 'K')) {
+                    if (j == 'K') {
                         j = 13;
                     }
                     const judge2 =
@@ -15069,9 +15062,6 @@ const skill = {
             }
             list.push('cancel2');
             event.suitx.push('cancel2');
-            //  player.chooseControl(list).set('ai',function(){
-            //   return _status.event.choice;
-            // }).set('choice',choice).prompt=('改命:更改'+get.translation(trigger.player)+'的判定牌最终结果点数');
             let dialog = ui.create.dialog('改命', '更改' + get.translation(trigger.player) + '的判定牌最终结果点数和花色', 'hidden');
             dialog.addText('更改点数');
             const table = [];
@@ -15183,51 +15173,6 @@ const skill = {
                             trigger.fixedResult.color = 'red';
                         }
                     }
-                }
-            }
-            event.finish();
-            return;
-            if (result.control != 'cancel2') {
-                player.say('没有什么是天命之镰做不到的.');
-                game.log(trigger.player, '判定结果点数为', '#g' + result.control);
-                player.popup(result.control, 'fire');
-                let numx = result.control;
-                if (result.control == 'A') {
-                    numx = 1;
-                }
-                if (result.control == 'J') {
-                    numx = 11;
-                }
-                if (result.control == 'Q') {
-                    numx = 12;
-                }
-                if (result.control == 'K') {
-                    numx = 13;
-                }
-                if (!trigger.fixedResult) {
-                    trigger.fixedResult = {};
-                }
-                trigger.fixedResult.number = numx;
-            }
-            player
-                .chooseControl(event.suitx)
-                .set('ai', function () {
-                    return _status.event.choice;
-                })
-                .set('choice', event.suitchoice).prompt = '改命:更改' + get.translation(trigger.player) + '的判定牌最终结果花色';
-            ('step 2');
-            if (result.control != 'cancel2') {
-                player.say('没有什么是天命之镰做不到的.');
-                game.log(trigger.player, '判定结果花色为', '#g' + result.control);
-                player.popup(result.control, 'fire');
-                if (!trigger.fixedResult) {
-                    trigger.fixedResult = {};
-                }
-                trigger.fixedResult.suit = result.control;
-                if (result.control == 'club' || result.control == 'spade') {
-                    trigger.fixedResult.color = 'black';
-                } else if (result.control == 'heart' || result.control == 'diamond') {
-                    trigger.fixedResult.color = 'red';
                 }
             }
         },
@@ -16550,10 +16495,10 @@ const skill = {
                     if (!player.storage.tianshi) {
                         return false;
                     }
-                    if ((name = 'turnOverBegin')) {
+                    if (name == 'turnOverBegin') {
                         return !player.isTurnedOver();
                     }
-                    if ((name = 'linkBegin')) {
+                    if (name == 'linkBegin') {
                         return !player.isLinked();
                     }
                     return true;
@@ -18240,7 +18185,6 @@ const skill = {
                     } else {
                         return -get.damageEffect(target, player, player, 'thunder');
                     }
-                    return -1.5;
                 }
                 if (target.hasSkill('huogong2') || target.countCards('h') == 0) {
                     return 0;
@@ -18552,13 +18496,13 @@ const skill = {
         },
         contentxx() {
             'step 0';
-            player.loseToSpecial(cards, 'muniu');
+            player.loseToSpecial(event.cards, 'muniu');
             ('step 1');
-            cards = cards.filter((i) => i.hasGaintag('muniu') && get.position(i) == 's' && !i.destroyed);
+            event.cards = event.cards.filter((i) => i.hasGaintag('muniu') && get.position(i) == 's' && !i.destroyed);
             const muniu = player.getEquip('muniu');
-            if (!muniu || !cards.length) {
-                if (Array.isArray(cards)) {
-                    for (let i of cards) {
+            if (!muniu || !event.cards.length) {
+                if (Array.isArray(event.cards)) {
+                    for (let i of event.cards) {
                         i.discard();
                     }
                 }
@@ -18568,7 +18512,7 @@ const skill = {
             if (muniu.cards == undefined) {
                 muniu.cards = [];
             }
-            muniu.cards.push(cards[0]);
+            muniu.cards.push(event.cards[0]);
             game.broadcast(
                 function (muniu, cards) {
                     muniu.cards = cards;
@@ -18618,7 +18562,6 @@ const skill = {
                 result.targets[0].equip(card);
                 player.$give(card, result.targets[0]);
                 player.line(result.targets, 'green');
-            } else {
             }
         },
         introxx: {
@@ -20205,7 +20148,7 @@ const skill = {
                     if (next.num == undefined) {
                         next.num = 1;
                     }
-                    nocard = true;
+                    next.nocard = true;
                     next.setContent(lib.skill.sl_taoyue.losehpx);
                 },
             },
@@ -20897,8 +20840,9 @@ const skill = {
             const list2 = game.filterPlayer(function (current) {
                 return current != player && current.countCards('h') && player.getEnemies().includes(current);
             });
+            let list3;
             if (player.storage.tt_qiuxuanplayer && player.storage.tt_qiuxuanplayer.length) {
-                const list3 = game.filterPlayer(function (current) {
+                list3 = game.filterPlayer(function (current) {
                     return current != player && current.countCards('h') && player.getEnemies().includes(current) && !player.storage.tt_qiuxuanplayer.includes(current);
                 });
             }
@@ -24418,37 +24362,31 @@ const skill = {
                     }
                 },
                 mod: {
-                    cardEnabled(card, player) {
-                        if (player.countMark('yjckmy_leizheng_a') >= player.hp) {
-                            return false;
-                        }
-                    },
-                    cardUsable(card, player) {
-                        if (player.countMark('yjckmy_leizheng_a') >= player.hp) {
-                            return false;
-                        }
-                    },
-                    cardRespondable(card, player) {
-                        if (player.countMark('yjckmy_leizheng_a') >= player.hp) {
-                            return false;
-                        }
-                    },
                     cardDiscardable(card, player) {
                         if (get.type2(card) == player.storage.leizhix) {
                             return false;
                         }
                     },
                     cardEnabled2(card, player) {
+                        if (player.countMark('yjckmy_leizheng_a') >= player.hp) {
+                            return false;
+                        }
                         if (get.type2(card) == player.storage.leizhix) {
                             return false;
                         }
                     },
                     cardUsable(card, player) {
+                        if (player.countMark('yjckmy_leizheng_a') >= player.hp) {
+                            return false;
+                        }
                         if (get.type2(card) == player.storage.leizhix) {
                             return false;
                         }
                     },
                     cardRespondable(card, player) {
+                        if (player.countMark('yjckmy_leizheng_a') >= player.hp) {
+                            return false;
+                        }
                         if (get.type2(card) == player.storage.leizhix) {
                             return false;
                         }
@@ -26981,7 +26919,6 @@ const skill = {
                 player.removeSkill('yjckdy_hehuansan');
                 player.removeSkill('yjckdy_hehuan');
                 game.log(player, '失去了技能', '#g【合欢】');
-            } else {
             }
         },
     },
@@ -29337,8 +29274,7 @@ const skill = {
             let targets = game
                 .filterPlayer(function (current) {
                     return player.getEnemies().includes(current);
-                })
-            [num == 1 ? 'randomGet' : 'randomGets'](num);
+                }).randomGets(num);
             if (num == 1) {
                 targets.damage(2);
             } else if (targets.length == 1) {
@@ -30344,7 +30280,6 @@ const skill = {
         marktext: '仆',
         intro: {
             name: '仆',
-            content: 'character',
             onunmark(storage, player) {
                 if (storage && storage.length) {
                     storage.length = 0;
@@ -35980,7 +35915,6 @@ const skill = {
                         } else {
                             return event.num > 0;
                         }
-                        break;
                     }
                 }
             }
@@ -42960,8 +42894,7 @@ const skill = {
                     skillt = [];
                 for (let j = 0; j < skilla.length; j++) {
                     const info = lib.skill[skilla[j]];
-                    if (info.charlotte || (info.unique && !info.gainable) || info.juexingji || info.limited || info.zhuSkill || info.hiddenSkill || info.dutySkill) {
-                    } else {
+                    if (!info.charlotte && !(info.unique && !info.gainable) && !info.juexingji && !info.limited && !info.zhuSkill && !info.hiddenSkill && !info.dutySkill) {
                         skillt.push(skilla[j]);
                     }
                 }
@@ -43162,7 +43095,6 @@ const skill = {
         marktext: '虚',
         intro: {
             name: '虚',
-            content: 'character',
             onunmark(storage, player) {
                 if (storage && storage.length) {
                     if (_status.characterlist) {
@@ -54274,7 +54206,6 @@ const skill = {
         marktext: '皇',
         intro: {
             name: '皇命',
-            content: 'character',
             onunmark(storage, player) {
                 if (storage && storage.length) {
                     for (const cccc of storage) {
@@ -60964,10 +60895,11 @@ const skill = {
             }
             if (cards.length) {
                 event.cards = cards;
+                let du;
                 if (Array.isArray(cards)) {
                     for (let i of cards) {
                         if (i.name == 'du') {
-                            let du = '？!';
+                            du = '？!';
                         }
                     }
                 }
