@@ -1096,9 +1096,9 @@ const card = {
 		global: 'g_shihuifen',
 		async content(event, trigger, player) {
 			if (_status.currentPhase?.isIn()) {
-				_status.currentPhase.chooseToRespond({ name: 'shan' })
+				const result = await _status.currentPhase.chooseToRespond({ name: 'shan' })
 					.set('respondTo', [player, event.card])
-					.set('prompt2', '否则本回合无法对其他角色使用卡牌');
+					.set('prompt2', '否则本回合无法对其他角色使用卡牌').forResult();
 				if (!result.bool) {
 					_status.currentPhase.addTempSkill('shihuifen', 'phaseUseAfter');
 				}
