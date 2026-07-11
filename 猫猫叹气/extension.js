@@ -5,7 +5,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
     return {
         name: '猫猫叹气',
         content(config, pack) {
-            var style1 = document.createElement('style');
+            const style1 = document.createElement('style');
             style1.innerHTML = ".player .identity[data-color='qmcat'],";
             style1.innerHTML += "div[data-nature='qmcat'],";
             style1.innerHTML += "span[data-nature='qmcat'] {text-shadow: black 0 0 1px,rgba(0,191,255,1) 0 0 2px,rgba(0,191,255,1) 0 0 5px,rgba(0,191,255,1) 0 0 10px,rgba(0,191,255,1) 0 0 10px}";
@@ -17,7 +17,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qmcat');
             lib.translate.qmcat = '猫';
             lib.groupnature.qmcat = 'qmcat';
-            var dao = document.createElement('style');
+            const dao = document.createElement('style');
             dao.innerHTML = ".player .identity[data-color='qysjdao'],";
             dao.innerHTML += "div[data-nature='qysjdao'],";
             dao.innerHTML += "span[data-nature='qysjdao'] {text-shadow: black 0 0 1px,rgba(123,104,238,1) 0 0 2px,rgba(123,104,238,1) 0 0 5px,rgba(123,104,238,1) 0 0 10px,rgba(123,104,238,1) 0 0 10px}";
@@ -29,7 +29,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjdao');
             lib.translate.qysjdao = '道';
             lib.groupnature.qysjdao = 'qysjdao';
-            var sese = document.createElement('style');
+            const sese = document.createElement('style');
             sese.innerHTML = ".player .identity[data-color='qysjsese'],";
             sese.innerHTML += "div[data-nature='qysjsese'],";
             sese.innerHTML += "span[data-nature='qysjsese'] {text-shadow: black 0 0 1px,rgba(0,191,255,1) 0 0 2px,rgba(0,191,255,1) 0 0 5px,rgba(0,191,255,1) 0 0 10px,rgba(0,191,255,1) 0 0 10px}";
@@ -41,7 +41,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjsese');
             lib.translate.qysjsese = '涩';
             lib.groupnature.qysjsese = 'qysjsese';
-            var meng = document.createElement('style');
+            const meng = document.createElement('style');
             meng.innerHTML = ".player .identity[data-color='qysjmeng'],";
             meng.innerHTML += "div[data-nature='qysjmeng'],";
             meng.innerHTML += "span[data-nature='qysjmeng'] {text-shadow: black 0 0 1px,rgba(255,140,0,1) 0 0 2px,rgba(255,140,0,1) 0 0 5px,rgba(255,140,0,1) 0 0 10px,rgba(255,140,0,1) 0 0 10px}";
@@ -53,7 +53,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjmeng');
             lib.translate.qysjmeng = '梦';
             lib.groupnature.qysjmeng = 'qysjmeng';
-            var qing = document.createElement('style');
+            const qing = document.createElement('style');
             qing.innerHTML = ".player .identity[data-color='qysjqing'],";
             qing.innerHTML += "div[data-nature='qysjqing'],";
             qing.innerHTML += "span[data-nature='qysjqing'] {text-shadow: black 0 0 1px,rgba(34,139,34,1) 0 0 2px,rgba(34,139,34,1) 0 0 5px,rgba(34,139,34,1) 0 0 10px,rgba(34,139,34,1) 0 0 10px}";
@@ -65,7 +65,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjqing');
             lib.translate.qysjqing = '清';
             lib.groupnature.qysjqing = 'qysjqing';
-            var dan = document.createElement('style');
+            const dan = document.createElement('style');
             dan.innerHTML = ".player .identity[data-color='qysjdan'],";
             dan.innerHTML += "div[data-nature='qysjdan'],";
             dan.innerHTML += "span[data-nature='qysjdan'] {text-shadow: black 0 0 1px,rgba(255,192,203,1) 0 0 2px,rgba(255,192,203,1) 0 0 5px,rgba(255,192,203,1) 0 0 10px,rgba(255,192,203,1) 0 0 10px}";
@@ -77,7 +77,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjdan');
             lib.translate.qysjdan = '弹';
             lib.groupnature.qysjdan = 'qysjdan';
-            var xuan = document.createElement('style');
+            const xuan = document.createElement('style');
             xuan.innerHTML = ".player .identity[data-color='qysjxuan'],";
             xuan.innerHTML += "div[data-nature='qysjxuan'],";
             xuan.innerHTML += "span[data-nature='qysjxuan'] {text-shadow: black 0 0 1px,rgba(255,0,255,1) 0 0 2px,rgba(255,0,255,1) 0 0 5px,rgba(255,0,255,1) 0 0 10px,rgba(255,0,255,1) 0 0 10px}";
@@ -89,7 +89,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjxuan');
             lib.translate.qysjxuan = '玄';
             lib.groupnature.qysjxuan = 'qysjxuan';
-            var stylexun = document.createElement('style');
+            const stylexun = document.createElement('style');
             stylexun.innerHTML = ".player .identity[data-color='xund'],";
             stylexun.innerHTML += "div[data-nature='xund'],";
             stylexun.innerHTML += "span[data-nature='xund'] {text-shadow: black 0 0 1px,rgba(255,0,255,1) 0 0 2px,rgba(255,0,255,1) 0 0 5px,rgba(255,0,255,1) 0 0 10px,rgba(255,0,255,1) 0 0 10px}";
@@ -101,7 +101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('xund');
             lib.translate.xund = '殉';
             lib.groupnature.xund = 'xund';
-            var style1 = document.createElement('style');
+            const style1 = document.createElement('style');
             style1.innerHTML = ".player .identity[data-color='dong0'],";
             style1.innerHTML += "div[data-nature='dong0'],";
             style1.innerHTML += "span[data-nature='dong0'] {text-shadow: black 0 0 1px,rgba(64,224,208,1) 0 0 2px,rgba(64,224,208,1) 0 0 5px,rgba(64,224,208,1) 0 0 10px,rgba(64,224,208,1) 0 0 10px}"; //0,191,255,1
@@ -113,7 +113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('dong0');
             lib.translate.dong0 = '东';
             lib.groupnature.dong0 = 'dong0';
-            var stylelm = document.createElement('style');
+            const stylelm = document.createElement('style');
             stylelm.innerHTML = ".player .identity[data-color='linmo0'],";
             stylelm.innerHTML += "div[data-nature='linmo0'],";
             stylelm.innerHTML += "span[data-nature='linmo0'] {text-shadow: black 0 0 1px,rgba(255,182,193,1) 0 0 2px,rgba(255,182,193,1) 0 0 5px,rgba(255,182,193,1) 0 0 10px,rgba(255,182,193,1) 0 0 10px}";
@@ -125,7 +125,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('linmo0');
             lib.translate.linmo0 = '摹';
             lib.groupnature.linmo0 = 'linmo0';
-            var gui = document.createElement('style');
+            const gui = document.createElement('style');
             gui.innerHTML = ".player .identity[data-color='guissft'],";
             gui.innerHTML += "div[data-nature='guissft'],";
             gui.innerHTML += "span[data-nature='guissft'] {text-shadow: black 0 0 1px,rgba(153,50,204,1) 0 0 2px,rgba(153,50,204,1) 0 0 5px,rgba(153,50,204,1) 0 0 10px,rgba(153,50,204,1) 0 0 10px}";
@@ -137,7 +137,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('guissft');
             lib.translate.guissft = '鬼';
             lib.groupnature.guissft = 'guissft';
-            var yao = document.createElement('style');
+            const yao = document.createElement('style');
             yao.innerHTML = ".player .identity[data-color='yaossft'],";
             yao.innerHTML += "div[data-nature='yaossft'],";
             yao.innerHTML += "span[data-nature='yaossft'] {text-shadow: black 0 0 1px,rgba(255,99,71,1) 0 0 2px,rgba(255,99,71,1) 0 0 5px,rgba(255,99,71,1) 0 0 10px,rgba(255,99,71,1) 0 0 10px}";
@@ -149,7 +149,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('yaossft');
             lib.translate.yaossft = '妖';
             lib.groupnature.yaossft = 'yaossft';
-            var sheng = document.createElement('style');
+            const sheng = document.createElement('style');
             sheng.innerHTML = ".player .identity[data-color='shengssft'],";
             sheng.innerHTML += "div[data-nature='shengssft'],";
             sheng.innerHTML += "span[data-nature='shengssft'] {text-shadow: black 0 0 1px,rgba(255,0,255,1) 0 0 2px,rgba(255,0,255,1) 0 0 5px,rgba(255,0,255,1) 0 0 10px,rgba(255,0,255,1) 0 0 10px}";
@@ -161,7 +161,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('shengssft');
             lib.translate.shengssft = '圣';
             lib.groupnature.shengssft = 'shengssft';
-            var xian = document.createElement('style');
+            const xian = document.createElement('style');
             xian.innerHTML = ".player .identity[data-color='xianssft'],";
             xian.innerHTML += "div[data-nature='xianssft'],";
             xian.innerHTML += "span[data-nature='xianssft'] {text-shadow: black 0 0 1px,rgba(0,139,139,1) 0 0 2px,rgba(0,139,139,1) 0 0 5px,rgba(0,139,139,1) 0 0 10px,rgba(0,139,139,1) 0 0 10px}";
@@ -173,7 +173,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('xianssft');
             lib.translate.xianssft = '仙';
             lib.groupnature.xianssft = 'xianssft';
-            var huang = document.createElement('style');
+            const huang = document.createElement('style');
             huang.innerHTML = ".player .identity[data-color='yjckhuangx'],";
             huang.innerHTML += "div[data-nature='yjckhuangx'],";
             huang.innerHTML += "span[data-nature='yjckhuangx'] {text-shadow: black 0 0 1px,rgba(255,127,80,1) 0 0 2px,rgba(255,127,80,1) 0 0 5px,rgba(255,127,80,1) 0 0 10px,rgba(255,127,80,1) 0 0 10px}";
@@ -185,7 +185,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('yjckhuangx');
             lib.translate.yjckhuangx = '荒';
             lib.groupnature.yjckhuangx = 'yjckhuangx';
-            var mox = document.createElement('style');
+            const mox = document.createElement('style');
             mox.innerHTML = ".player .identity[data-color='mo0'],";
             mox.innerHTML += "div[data-nature='mo0'],";
             mox.innerHTML += "span[data-nature='mo0'] {text-shadow: black 0 0 1px,rgba(123,104,238,1) 0 0 2px,rgba(123,104,238,1) 0 0 5px,rgba(123,104,238,1) 0 0 10px,rgba(123,104,238,1) 0 0 10px}";
@@ -197,7 +197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('mo0');
             lib.translate.mo0 = '魔';
             lib.groupnature.mo0 = 'mo0';
-            var yashi = document.createElement('style');
+            const yashi = document.createElement('style');
             yashi.innerHTML = ".player .identity[data-color='yjckyax'],";
             yashi.innerHTML += "div[data-nature='yjckyax'],";
             yashi.innerHTML += "span[data-nature='yjckyax'] {text-shadow: black 0 0 1px,rgba(100,149,237,1) 0 0 2px,rgba(100,149,237,1) 0 0 5px,rgba(100,149,237,1) 0 0 10px,rgba(100,149,237,1) 0 0 10px}";
@@ -209,7 +209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('yjckyax');
             lib.translate.yjckyax = '雅';
             lib.groupnature.yjckyax = 'yjckyax';
-            var you = document.createElement('style');
+            const you = document.createElement('style');
             you.innerHTML = ".player .identity[data-color='yjckyoux'],";
             you.innerHTML += "div[data-nature='yjckyoux'],";
             you.innerHTML += "span[data-nature='yjckyoux'] {text-shadow: black 0 0 1px,rgba(0,191,255,1) 0 0 2px,rgba(0,191,255,1) 0 0 5px,rgba(0,191,255,1) 0 0 10px,rgba(0,191,255,1) 0 0 10px}";
@@ -221,7 +221,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('yjckyoux');
             lib.translate.yjckyoux = '游';
             lib.groupnature.yjckyoux = 'yjckyoux';
-            var nanman = document.createElement('style');
+            const nanman = document.createElement('style');
             nanman.innerHTML = ".player .identity[data-color='nanmanssft'],";
             nanman.innerHTML += "div[data-nature='nanmanssft'],";
             nanman.innerHTML += "span[data-nature='nanmanssft'] {text-shadow: black 0 0 1px,rgba(210,105,30,1) 0 0 2px,rgba(210,105,30,1) 0 0 5px,rgba(210,105,30,1) 0 0 10px,rgba(210,105,30,1) 0 0 10px}";
@@ -233,7 +233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('nanmanssft');
             lib.translate.nanmanssft = '蛮';
             lib.groupnature.nanmanssft = 'nanmanssft';
-            var tang = document.createElement('style');
+            const tang = document.createElement('style');
             tang.innerHTML = ".player .identity[data-color='qysjtang'],";
             tang.innerHTML += "div[data-nature='qysjtang'],";
             tang.innerHTML += "span[data-nature='qysjtang'] {text-shadow: black 0 0 1px,rgba(255,255,0,1) 0 0 2px,rgba(255,255,0,1) 0 0 5px,rgba(255,255,0,1) 0 0 10px,rgba(255,255,0,1) 0 0 10px}";
@@ -245,7 +245,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjtang');
             lib.translate.qysjtang = '唐';
             lib.groupnature.qysjtang = 'qysjtang';
-            var qin = document.createElement('style');
+            const qin = document.createElement('style');
             qin.innerHTML = ".player .identity[data-color='qysjqin'],";
             qin.innerHTML += "div[data-nature='qysjqin'],";
             qin.innerHTML += "span[data-nature='qysjqin'] {text-shadow: black 0 0 1px,rgba(0,0,0,1) 0 0 2px,rgba(0,0,0,1) 0 0 5px,rgba(0,0,0,1) 0 0 10px,rgba(0,0,0,1) 0 0 10px}";
@@ -257,7 +257,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('qysjqin');
             lib.translate.qysjqin = '秦';
             lib.groupnature.qysjqin = 'qysjqin';
-            var gu = document.createElement('style');
+            const gu = document.createElement('style');
             gu.innerHTML = ".player .identity[data-color='sgjlgu'],";
             gu.innerHTML += "div[data-nature='sgjlgu'],";
             gu.innerHTML += "span[data-nature='sgjlgu'] {text-shadow: black 0 0 1px,rgba(218,165,32,1) 0 0 2px,rgba(218,165,32,1) 0 0 5px,rgba(218,165,32,1) 0 0 10px,rgba(218,165,32,1) 0 0 10px}";
@@ -269,7 +269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('sgjlgu');
             lib.translate.sgjlgu = '古';
             lib.groupnature.sgjlgu = 'sgjlgu';
-            var huangt = document.createElement('style');
+            const huangt = document.createElement('style');
             huangt.innerHTML = ".player .identity[data-color='huangssft'],";
             huangt.innerHTML += "div[data-nature='huangssft'],";
             huangt.innerHTML += "span[data-nature='huangssft'] {text-shadow: black 0 0 1px,rgba(255,215,0,1) 0 0 2px,rgba(255,215,0,1) 0 0 5px,rgba(255,215,0,1) 0 0 10px,rgba(255,215,0,1) 0 0 10px}";
@@ -281,7 +281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('huangssft');
             lib.translate.huangssft = '黄';
             lib.groupnature.huangssft = 'huangssft';
-            var nunu = document.createElement('style');
+            const nunu = document.createElement('style');
             nunu.innerHTML = ".player .identity[data-color='nussft'],";
             nunu.innerHTML += "div[data-nature='nussft'],";
             nunu.innerHTML += "span[data-nature='nussft'] {text-shadow: black 0 0 1px,rgba(255,0,0,1) 0 0 2px,rgba(255,0,0,1) 0 0 5px,rgba(255,0,0,1) 0 0 10px,rgba(255,0,0,1) 0 0 10px}";
@@ -293,7 +293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.group.add('nussft');
             lib.translate.nussft = '怒';
             lib.groupnature.nussft = 'nussft';
-            var maocat = document.createElement('style');
+            const maocat = document.createElement('style');
             maocat.innerHTML = ".player .identity[data-color='maocat'],";
             maocat.innerHTML += "div[data-nature='maocat'],";
             maocat.innerHTML += "span[data-nature='maocat'] {text-shadow: black 0 0 1px,rgba(255,105,180,1) 0 0 2px,rgba(255,105,180,1) 0 0 5px,rgba(255,105,180,1) 0 0 10px,rgba(255,105,180,1) 0 0 10px}";
@@ -329,7 +329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (game.hasNature(card, 'ssftan')) return 1;
             };
             lib.inpile_nature.add('ssftan');
-            var qmmjin = document.createElement('style');
+            const qmmjin = document.createElement('style');
             qmmjin.innerHTML = ".player .identity[data-color='qmmjin'],";
             qmmjin.innerHTML += "div[data-nature='qmmjin'],";
             qmmjin.innerHTML += "span[data-nature='qmmjin'] {text-shadow: black 0 0 1px,rgba(255,215,0,1) 0 0 2px,rgba(255,215,0,1) 0 0 5px,rgba(255,215,0,1) 0 0 10px,rgba(255,215,0,1) 0 0 10px}";
@@ -348,7 +348,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (game.hasNature(card, 'qmmjin')) return 1;
             };
             lib.inpile_nature.add('qmmjin');
-            var qmmmu = document.createElement('style');
+            const qmmmu = document.createElement('style');
             qmmmu.innerHTML = ".player .identity[data-color='qmmmu'],";
             qmmmu.innerHTML += "div[data-nature='qmmmu'],";
             qmmmu.innerHTML += "span[data-nature='qmmmu'] {text-shadow: black 0 0 1px,rgba(34,139,34,1) 0 0 2px,rgba(34,139,34,1) 0 0 5px,rgba(34,139,34,1) 0 0 10px,rgba(34,139,34,1) 0 0 10px}";
@@ -367,7 +367,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (game.hasNature(card, 'qmmmu')) return 1;
             };
             lib.inpile_nature.add('qmmmu');
-            var qmmshui = document.createElement('style');
+            const qmmshui = document.createElement('style');
             qmmshui.innerHTML = ".player .identity[data-color='qmmshui'],";
             qmmshui.innerHTML += "div[data-nature='qmmshui'],";
             qmmshui.innerHTML += "span[data-nature='qmmshui'] {text-shadow: black 0 0 1px,rgba(0,191,255,1) 0 0 2px,rgba(0,191,255,1) 0 0 5px,rgba(0,191,255,1) 0 0 10px,rgba(0,191,255,1) 0 0 10px}";
@@ -386,7 +386,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (game.hasNature(card, 'qmmshui')) return 1;
             };
             lib.inpile_nature.add('qmmshui');
-            var qmmtu = document.createElement('style');
+            const qmmtu = document.createElement('style');
             qmmtu.innerHTML = ".player .identity[data-color='qmmtu'],";
             qmmtu.innerHTML += "div[data-nature='qmmtu'],";
             qmmtu.innerHTML += "span[data-nature='qmmtu'] {text-shadow: black 0 0 1px,rgba(139,69,19,1) 0 0 2px,rgba(139,69,19,1) 0 0 5px,rgba(139,69,19,1) 0 0 10px,rgba(139,69,19,1) 0 0 10px}";
@@ -405,7 +405,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (game.hasNature(card, 'qmmtu')) return 1;
             };
             lib.inpile_nature.add('qmmtu');
-            var ssftfeng = document.createElement('style');
+            const ssftfeng = document.createElement('style');
             ssftfeng.innerHTML = ".player .identity[data-color='ssftfeng'],";
             ssftfeng.innerHTML += "div[data-nature='ssftfeng'],";
             ssftfeng.innerHTML += "span[data-nature='ssftfeng'] {text-shadow: black 0 0 1px,rgba(0,255,0,1) 0 0 2px,rgba(0,255,0,1) 0 0 5px,rgba(0,255,0,1) 0 0 10px,rgba(0,255,0,1) 0 0 10px}";
@@ -517,7 +517,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             //    lib.translate.qmm_yixiang='<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">'+get.translation('qmm_yixiang')+'</span>';
             //...……………………"曦光"选项3:斗花色🌺……………………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToDousuit = function (target) {
-                var next = game.createEvent('chooseToDousuit');
+                let next = game.createEvent('chooseToDousuit');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToDousuit');
@@ -554,9 +554,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 });
                 ('step 2');
                 event.targetsuit = result.suit;
-                var mes = event.playersuit;
-                var tes = event.targetsuit;
-                var str;
+                let mes = event.playersuit;
+                const tes = event.targetsuit;
+                let str;
                 if (mes == tes) {
                     str = '二人平局';
                     player.popup('平', 'metal');
@@ -579,7 +579,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -592,7 +592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //3
             //………………………………<曦光>选项4:比骰子…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToThrowDices = function (target) {
-                var next = game.createEvent('chooseToThrowDices');
+                let next = game.createEvent('chooseToThrowDices');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToThrowDices');
@@ -609,9 +609,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 2');
                 event.targetnum = num;
                 game.log(target, '的骰子点数为', '#y' + num);
-                var mes = event.playernum;
-                var tes = event.targetnum;
-                var str;
+                let mes = event.playernum;
+                const tes = event.targetnum;
+                let str;
                 if (mes == tes) {
                     str = '二人平局';
                     player.popup('平', 'metal');
@@ -634,7 +634,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -643,7 +643,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项6:斗兽棋…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToDoushou = function (target) {
-                var next = game.createEvent('chooseToDoushou');
+                let next = game.createEvent('chooseToDoushou');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToDoushou');
@@ -651,8 +651,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //1
             lib.element.content.chooseToDoushou = function () {
                 'step 0';
-                var name = ['dsq_mao', 'dsq_xiang', 'dsq_shu', 'dsq_shi'];
-                for (var i = 0; i < name.length; i++) {
+                let name = ['dsq_mao', 'dsq_xiang', 'dsq_shu', 'dsq_shi'];
+                for (let i = 0; i < name.length; i++) {
                     if (!lib.card[name[i]]) {
                         lib.card[name[i]] = get.copy(lib.skill.equiplib[name[i]]);
                         lib.translate[name[i]] = get.translation(name[i]);
@@ -702,7 +702,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             _status.event.result = 'ai';
                         })
                         .set('processAI', function () {
-                            var buttons = _status.event.dialog.buttons;
+                            const buttons = _status.event.dialog.buttons;
                             return {
                                 bool: true,
                                 links: [buttons.randomGet().link],
@@ -760,9 +760,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.log(player, '选择的斗兽棋为', '#g' + get.translation(event.mes + '1'));
                 game.log(target, '选择的斗兽棋为', '#g' + get.translation(event.tes + '1'));
                 ('step 5');
-                var mes = event.mes;
-                var tes = event.tes;
-                var str;
+                let mes = event.mes;
+                const tes = event.tes;
+                let str;
                 if ((mes == 'dsq_mao' && tes == 'dsq_shu') || (mes == 'dsq_xiang' && tes == 'dsq_shi')) {
                     str = get.translation(player) + '斗兽获胜';
                     player.popup('胜', 'wood');
@@ -779,7 +779,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.result = { bool: false };
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -796,7 +796,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项7:狼人查杀…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToLangrensha = function (target) {
-                var next = game.createEvent('chooseToLangrensha');
+                let next = game.createEvent('chooseToLangrensha');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToLangrensha');
@@ -804,14 +804,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //1
             lib.element.content.chooseToLangrensha = function () {
                 'step 0';
-                var langren = ['lrs_langxiongdi', 'lrs_zhonglang', 'lrs_yinlang', 'lrs_langwang', 'lrs_langmeiren', 'lrs_bailangwang'];
-                var shenzhi = ['lrs_yuyanjia', 'lrs_nvwu', 'lrs_lieren', 'lrs_baichi', 'lrs_shouwei', 'lrs_qishi'];
-                var cunmin2 = ['lrs_nvhai', 'lrs_laoliumang', 'lrs_popo', 'lrs_zhanglao', 'lrs_cunzhang', 'lrs_shaonian'];
-                var langrensha = [];
-                for (var i = 0; i < langren.length; i++) langrensha.push(langren[i]);
-                for (var i = 0; i < shenzhi.length; i++) langrensha.push(shenzhi[i]);
-                for (var i = 0; i < cunmin2.length; i++) langrensha.push(cunmin2[i]);
-                for (var i = 0; i < langrensha.length; i++) {
+                const langren = ['lrs_langxiongdi', 'lrs_zhonglang', 'lrs_yinlang', 'lrs_langwang', 'lrs_langmeiren', 'lrs_bailangwang'];
+                const shenzhi = ['lrs_yuyanjia', 'lrs_nvwu', 'lrs_lieren', 'lrs_baichi', 'lrs_shouwei', 'lrs_qishi'];
+                const cunmin2 = ['lrs_nvhai', 'lrs_laoliumang', 'lrs_popo', 'lrs_zhanglao', 'lrs_cunzhang', 'lrs_shaonian'];
+                const langrensha = [];
+                for (let i = 0; i < langren.length; i++) langrensha.push(langren[i]);
+                for (let i = 0; i < shenzhi.length; i++) langrensha.push(shenzhi[i]);
+                for (let i = 0; i < cunmin2.length; i++) langrensha.push(cunmin2[i]);
+                for (let i = 0; i < langrensha.length; i++) {
                     if (!lib.card[langrensha[i]]) {
                         lib.card[langrensha[i]] = get.copy(lib.skill.equiplib[langrensha[i]]);
                         lib.translate[langrensha[i]] = get.translation(langrensha[i]);
@@ -819,17 +819,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                 }
                 game.log(player, '对', target, '发起了', '#y狼人查杀');
-                var card = [];
+                const card = [];
                 card.push(langren.randomGet());
                 card.push(shenzhi.randomGet());
                 card.push(cunmin2.randomGet());
                 event.card = card.randomSort();
-                var card2 = [];
+                const card2 = [];
                 card2.push(langren.randomGet());
                 card2.push(shenzhi.randomGet());
                 card2.push(cunmin2.randomGet());
                 event.card2 = card2.randomSort();
-                var dialog = ui.create.dialog('狼人查杀', '请查验一张牌', 'hidden');
+                const dialog = ui.create.dialog('狼人查杀', '请查验一张牌', 'hidden');
                 dialog.add([event.card, 'blank']); //blank
                 player.chooseButton(dialog, true).ai = function () {
                     return 1 + Math.random();
@@ -848,10 +848,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         game.log(player, '查杀', '#g失败');
                         event.mes = false;
                     }
-                    var str = '答案公布';
-                    var str2 = get.translation(player) + '的查验结果为' + get.translation(result.links[0]);
+                    let str = '答案公布';
+                    let str2 = get.translation(player) + '的查验结果为' + get.translation(result.links[0]);
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str, str2, [event.card, 'vcard']);
+                        const dialog = ui.create.dialog(str, str2, [event.card, 'vcard']);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -859,12 +859,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }, str);
                 }
                 ('step 2');
-                var str = '查杀成功🎉';
+                let str = '查杀成功🎉';
                 if (get.type(result.links[0]) != 'langren') str = '查杀失败😭';
-                var dialog = ui.create.dialog('答案公布:' + str, 'hidden');
+                const dialog = ui.create.dialog('答案公布:' + str, 'hidden');
                 dialog.add([event.card, 'vcard']);
                 player.chooseControl('ok').set('dialog', dialog);
-                var dialog = ui.create.dialog('狼人查杀', '请查验一张牌', 'hidden');
+                const dialog = ui.create.dialog('狼人查杀', '请查验一张牌', 'hidden');
                 dialog.add([event.card2, 'blank']); //blank
                 target.chooseButton(dialog, true).ai = function () {
                     return 1 + Math.random();
@@ -883,14 +883,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         game.log(target, '查杀', '#g失败');
                         event.tes = false;
                     }
-                    var mes = event.mes;
-                    var tes = event.tes;
+                    let mes = event.mes;
+                    const tes = event.tes;
                     if (mes == true || tes == false) event.result = { bool: true };
                     if (mes == false && tes == true) event.result = { bool: false };
-                    var str = '答案公布';
-                    var str2 = get.translation(target) + '的查验结果为' + get.translation(result.links[0]);
+                    let str = '答案公布';
+                    let str2 = get.translation(target) + '的查验结果为' + get.translation(result.links[0]);
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str, str2, [event.card2, 'vcard']);
+                        const dialog = ui.create.dialog(str, str2, [event.card2, 'vcard']);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -898,15 +898,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }, str);
                 }
                 ('step 4');
-                var str = '查杀成功🎉';
+                let str = '查杀成功🎉';
                 if (get.type(result.links[0]) != 'langren') str = '查杀失败😭';
-                var dialog = ui.create.dialog('答案公布:' + str, 'hidden');
+                const dialog = ui.create.dialog('答案公布:' + str, 'hidden');
                 dialog.add([event.card2, 'vcard']);
                 target.chooseControl('ok').set('dialog', dialog);
                 ('step 5');
-                var str = event.str + '<br>' + event.str2;
+                let str = event.str + '<br>' + event.str2;
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -915,7 +915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项8:对子…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToDuiduizi = function (target) {
-                var next = game.createEvent('chooseToDuiduizi');
+                let next = game.createEvent('chooseToDuiduizi');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToDuiduizi');
@@ -924,10 +924,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.content.chooseToDuiduizi = function () {
                 'step 0';
                 game.log(player, '对', target, '发起了', '#y对对子');
-                var list = ['红樱绽红,红遍红樱林,嘤嘤嘤', '一乡二里共三夫子,不识四书五经六义,竟敢教七八九子,十分大胆!', '图书里,龙不吟,虎不啸,小小书僮可笑可笑', '莺莺燕燕翠翠红红处处融融洽洽', '十口心思,思君思国思社稷', '我上等威风,显现一身虎胆', '古有曳影之剑,腾空而舒,克伐四方.历史,我的源代码', '大道如青天,道彰则恶不显,道晦则神剑出,吾名曳影!', '红面关,黑面张,白面子龙,面面护着刘先生', '人说之人,被人说之人说,人人被说,不如不说', '调琴调新调调调调来调调妙', '朝云朝朝朝朝朝朝朝退', '白蛇过江头顶一轮红日', '鹰立树梢月照斜影鹰不斜', '乔女自然娇,深恶胭脂胶肖脸', '黑不是,白不是,红黄更不是,和狐狸猫狗彷佛,既非家畜,又非野兽', '一叶孤舟,坐了二三个骚客,启用四桨五帆,经过六滩七湾,历尽八颠九簸,可叹十分来迟'];
-                var dialog = ui.create.dialog('对子:请出上联', 'hidden');
-                var avx = [];
-                for (var i = 0; i < list.length; i++) {
+                let list = ['红樱绽红,红遍红樱林,嘤嘤嘤', '一乡二里共三夫子,不识四书五经六义,竟敢教七八九子,十分大胆!', '图书里,龙不吟,虎不啸,小小书僮可笑可笑', '莺莺燕燕翠翠红红处处融融洽洽', '十口心思,思君思国思社稷', '我上等威风,显现一身虎胆', '古有曳影之剑,腾空而舒,克伐四方.历史,我的源代码', '大道如青天,道彰则恶不显,道晦则神剑出,吾名曳影!', '红面关,黑面张,白面子龙,面面护着刘先生', '人说之人,被人说之人说,人人被说,不如不说', '调琴调新调调调调来调调妙', '朝云朝朝朝朝朝朝朝退', '白蛇过江头顶一轮红日', '鹰立树梢月照斜影鹰不斜', '乔女自然娇,深恶胭脂胶肖脸', '黑不是,白不是,红黄更不是,和狐狸猫狗彷佛,既非家畜,又非野兽', '一叶孤舟,坐了二三个骚客,启用四桨五帆,经过六滩七湾,历尽八颠九簸,可叹十分来迟'];
+                const dialog = ui.create.dialog('对子:请出上联', 'hidden');
+                const avx = [];
+                for (let i = 0; i < list.length; i++) {
                     avx.add([list[i], get.translation(list[i])]);
                 }
                 dialog.add([avx, 'textbutton']);
@@ -938,34 +938,34 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 1');
                 if (result.bool) {
                     game.log(target, '出上联:', '<font color=#CCFF33>' + result.links + '</font>');
-                    for (var i = 0; i < event.list.length; i++) {
+                    for (let i = 0; i < event.list.length; i++) {
                         if (event.list[i] == result.links[0]) event.tes = i;
                     }
-                    var list2 = ['花猫戏花,花迷花猫眼,喵喵喵', '十室九贫,凑得八两七钱六分五毫四厘,尚且三心二意,一等下流!', '棋盘里,车无轮,马无韁,叫声将军提防提防', '雨雨风风花花叶叶年年暮暮朝朝', '八目共赏,赏花赏月赏秋香', '你下流贱格,露出半个龟头', '今有滑天之稽,斜眼而滑,天下大稽.滑稽,我的代名词', '吾志如天候,志傲则使膨胀,志谦则使憋屈,吾名大佬!', '奸心曹,雄心瑜,阴心董卓,心心夺取汉江山', '官管之官,被官管之官管,官官被管,不如不管', '种花种好种种种种成种种香', '长水长长长长长长长流', '青龙挂壁身披万点金星', '猫伏墙角风吹毛动猫未动', '止戈才是武,何劳铜铁铸镖锋', '诗也有,词也有,论语上也有,对东西南北模糊,虽是短品,却是妙文', '十年寒窗,进了九八家书院,抛却七情六欲,苦读五经四书,考了三番二次,这天一定要中'];
-                    var dialog = ui.create.dialog('对子', 'hidden');
+                    const list2 = ['花猫戏花,花迷花猫眼,喵喵喵', '十室九贫,凑得八两七钱六分五毫四厘,尚且三心二意,一等下流!', '棋盘里,车无轮,马无韁,叫声将军提防提防', '雨雨风风花花叶叶年年暮暮朝朝', '八目共赏,赏花赏月赏秋香', '你下流贱格,露出半个龟头', '今有滑天之稽,斜眼而滑,天下大稽.滑稽,我的代名词', '吾志如天候,志傲则使膨胀,志谦则使憋屈,吾名大佬!', '奸心曹,雄心瑜,阴心董卓,心心夺取汉江山', '官管之官,被官管之官管,官官被管,不如不管', '种花种好种种种种成种种香', '长水长长长长长长长流', '青龙挂壁身披万点金星', '猫伏墙角风吹毛动猫未动', '止戈才是武,何劳铜铁铸镖锋', '诗也有,词也有,论语上也有,对东西南北模糊,虽是短品,却是妙文', '十年寒窗,进了九八家书院,抛却七情六欲,苦读五经四书,考了三番二次,这天一定要中'];
+                    const dialog = ui.create.dialog('对子', 'hidden');
                     dialog.add(get.translation(target) + '出上联:');
                     dialog.add('<font color=#CCFF33>' + result.links + '</font>');
                     dialog.add('请对下联');
-                    var avcd = [];
-                    for (var i = 0; i < list2.length; i++) {
+                    const avcd = [];
+                    for (let i = 0; i < list2.length; i++) {
                         avcd.add([list2[i], get.translation(list2[i])]);
                     }
                     dialog.add([avcd, 'textbutton']);
                     event.list2 = list2;
                     player.chooseButton(dialog, true).set('ai', function (button) {
-                        var tes = event.tes;
+                        const tes = event.tes;
                         return button.link == event.list2[tes];
                     });
                 } else event.finish();
                 ('step 2');
                 if (result.bool) {
                     game.log(player, '对下联:', '<font color=#CCFF33>' + result.links + '</font>');
-                    for (var i = 0; i < event.list2.length; i++) {
+                    for (let i = 0; i < event.list2.length; i++) {
                         if (event.list2[i] == result.links[0]) event.mes = i;
                     }
-                    var mes = event.mes;
-                    var tes = event.tes;
-                    var str;
+                    let mes = event.mes;
+                    const tes = event.tes;
+                    let str;
                     if (mes == tes) {
                         player.popup('洗具', 'metal');
                         game.log(player, '对对子', '#g成功', ',并且十分工整');
@@ -979,7 +979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         event.result = { bool: false };
                     }
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str);
+                        const dialog = ui.create.dialog(str);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -989,7 +989,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项9:求签…………………………………………………………………………………………………………………………………………………………
             lib.element.player.qiuqian = function () {
-                var next = game.createEvent('qiuqian');
+                let next = game.createEvent('qiuqian');
                 next.player = this;
                 next.setContent('qiuqian');
                 return next;
@@ -997,8 +997,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.content.qiuqian = function () {
                 'step 0';
                 game.log(player, '进行了', '#y求签');
-                var str = get.translation(player) + '正在求签……';
-                var str2 = ' ';
+                let str = get.translation(player) + '正在求签……';
+                let str2 = ' ';
                 if (player == game.me || player.isUnderControl()) {
                     str = '求签中……';
                     str2 = '请平心静气,耐心等候,虔诚祷告';
@@ -1009,8 +1009,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 event.dialog.add(str2);
                 ('step 1');
                 event.dialog.close();
-                var list = ['ssq', 'ssq', 'sq', 'zq', 'zq', 'xq', 'xxq'];
-                var list2 = list.randomGet();
+                let list = ['ssq', 'ssq', 'sq', 'zq', 'zq', 'xq', 'xxq'];
+                const list2 = list.randomGet();
                 game.log(player, '求到的签为', '#g' + get.translation('qiuqian_' + list2 + 's'));
                 event.dialog2 = ui.create.dialog();
                 event.dialog2.add([['<span><img src="extension/猫猫叹气/image/曦光如月/qiuqian_' + list2 + '.png" width="100" height="170"></span>'], 'tdnodes']);
@@ -1019,7 +1019,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 event.list3 = get.translation('qiuqian_' + list2 + 's');
                 ('step 2');
                 event.dialog2.close();
-                var str;
+                let str;
                 if (event.list2 == 'sq' || event.list2 == 'ssq' || event.list2 == 'zq') {
                     if (event.list2 != 'zq') player.popup('洗具', 'metal');
                     str = get.translation(player) + '求到' + event.list3;
@@ -1036,7 +1036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     };
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -1045,7 +1045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项10:卖萌…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToMaimeng = function (target) {
-                var next = game.createEvent('chooseToMaimeng');
+                let next = game.createEvent('chooseToMaimeng');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToMaimeng');
@@ -1071,11 +1071,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.log(player, '卖萌', '#g失败', ':对象', target, '非男性角色');
                 }
                 ('step 1');
-                var list = ['mm_miaomiaomiao', 'mm_miaowu', 'mm_aojiao', 'mm_yingyingying'];
-                var dialog = ui.create.dialog('战术卖萌', '选择一种卖萌方式向' + get.translation(target) + '卖萌', 'hidden');
-                var list100 = [];
-                for (var i = 0; i < list.length; i++) {
-                    var td = '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.png" width="95" height="95"></span>';
+                let list = ['mm_miaomiaomiao', 'mm_miaowu', 'mm_aojiao', 'mm_yingyingying'];
+                const dialog = ui.create.dialog('战术卖萌', '选择一种卖萌方式向' + get.translation(target) + '卖萌', 'hidden');
+                const list100 = [];
+                for (let i = 0; i < list.length; i++) {
+                    let td = '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.png" width="95" height="95"></span>';
                     if (list[i] == 'mm_miaomiaomiao') td += '<br><font size=2>青睐:交给你牌</font>';
                     if (list[i] == 'mm_miaowu') td += '<br><font size=2>青睐:令你摸牌</font>';
                     if (list[i] == 'mm_aojiao') td += '<br><font size=2>青睐:手牌上限+2</font>';
@@ -1085,7 +1085,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 dialog.add([list100, 'tdnodes']);
                 dialog.add('只是战术性卖萌,假装一下讨好对方');
                 player.chooseButton(dialog, true).set('ai', function (button) {
-                    var m = ['mm_miaowu'];
+                    let m = ['mm_miaowu'];
                     if (_status.currentPhase == player) m.add('mm_aojiao');
                     if (player.isDamaged()) m = ['mm_yingyingying'];
                     if (m.includes(button.link)) return 1 + Math.random();
@@ -1096,25 +1096,25 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.log(player, '选择的卖萌方式是', '#g【<img src="extension/猫猫叹气/image/曦光如月/' + event.link + '.png" width="25" height="25">】');
                 if (event.link == 'mm_miaomiaomiao')
                     target.chooseCard('h', '<img src="extension/猫猫叹气/image/曦光如月/' + event.link + '.png" width="180" height="180"><br>青睐:选择一张手牌交给' + get.translation(player) + '表示你对其青睐,否则其卖萌失败').set('ai', function (card) {
-                        var att = get.attitude(target, player);
+                        const att = get.attitude(target, player);
                         if (att < 0) return 0;
                         return 15 - get.value(card);
                     });
                 else {
-                    var prompt = '令' + get.translation(player) + '摸一张牌';
+                    let prompt = '令' + get.translation(player) + '摸一张牌';
                     if (event.link == 'mm_aojiao') prompt = '令' + get.translation(player) + '本回合手牌上限+2';
                     if (event.link == 'mm_yingyingying') prompt = '令' + get.translation(player) + '回复一点体力';
                     target
                         .chooseControl(prompt, 'cancel2')
                         .set('ai', function () {
-                            var att = get.attitude(target, player);
+                            const att = get.attitude(target, player);
                             if (att < 0) return 1;
                             return 0;
                         })
                         .set('prompt', '<img src="extension/猫猫叹气/image/曦光如月/' + event.link + '.png" width="180" height="180"><br>青睐:' + prompt + '表示你对其青睐,否则其卖萌失败');
                 }
                 ('step 3');
-                var str;
+                let str;
                 if (result.bool) {
                     target.popup('青睐', 'wood');
                     player.popup('卖萌成功', 'metal');
@@ -1150,9 +1150,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 event.str = str;
                 ('step 4');
-                var str = event.str;
+                let str = event.str;
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -1167,7 +1167,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项11:游戏王…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToYuGiOh = function (target) {
-                var next = game.createEvent('chooseToYuGiOh');
+                let next = game.createEvent('chooseToYuGiOh');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToYuGiOh');
@@ -1175,11 +1175,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //1
             lib.element.content.chooseToYuGiOh = function () {
                 'step 0';
-                var list2 = ['yxw_qiangyuzhihu', 'yxw_heidong', 'yxw_leiji', 'yxw_yumaosao', 'yxw_sizhesusheng'];
-                var list = list2.randomGets(3);
-                var dialog = ui.create.dialog('遊戲王', '選擇一張魔法卡發動', 'hidden');
-                var table = [];
-                for (var i = 0; i < list.length; i++) {
+                const list2 = ['yxw_qiangyuzhihu', 'yxw_heidong', 'yxw_leiji', 'yxw_yumaosao', 'yxw_sizhesusheng'];
+                let list = list2.randomGets(3);
+                const dialog = ui.create.dialog('遊戲王', '選擇一張魔法卡發動', 'hidden');
+                const table = [];
+                for (let i = 0; i < list.length; i++) {
                     table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="102" height="142"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
@@ -1190,18 +1190,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 1');
                 if (result.bool) {
                     event.mes = result.links[0];
-                    var list = [];
+                    let list = [];
                     if (event.list.includes('yxw_qiangyuzhihu')) list.push('yxw_daohuzhe');
                     if (event.list.includes('yxw_heidong')) list.push('yxw_baidong');
                     if (event.list.includes('yxw_leiji')) list.push('yxw_bileizhen');
                     if (event.list.includes('yxw_yumaosao')) list.push('yxw_shijiuzhiyi');
                     if (event.list.includes('yxw_sizhesusheng')) list.push('yxw_muchenghusheng');
                     list = list.randomSort();
-                    var list0 = '選擇一張陷阱卡發動';
+                    let list0 = '選擇一張陷阱卡發動';
                     if (list.includes('yxw_daohuzhe')) list0 = '選擇一張陷阱卡/速攻魔法卡發動';
-                    var dialog = ui.create.dialog('遊戲王', list0, 'hidden');
-                    var table22 = [];
-                    for (var i = 0; i < list.length; i++) {
+                    const dialog = ui.create.dialog('遊戲王', list0, 'hidden');
+                    const table22 = [];
+                    for (let i = 0; i < list.length; i++) {
                         table22.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="102" height="142"></span>']);
                     }
                     dialog.add([table22, 'tdnodes']);
@@ -1212,12 +1212,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 2');
                 if (result.bool) {
                     event.tes = result.links[0];
-                    var mes = event.mes;
-                    var tes = event.tes;
+                    let mes = event.mes;
+                    const tes = event.tes;
                     game.log(player, '发动魔法卡', '#g' + mes + '0');
                     if (tes == 'yxw_daohuzhe') game.log(target, '发动速攻魔法', '#g' + tes + '0');
                     else game.log(target, '发动陷阱卡', '#g' + tes + '0');
-                    var str = '针对失败';
+                    let str = '针对失败';
                     if ((mes == 'yxw_qiangyuzhihu' && tes == 'yxw_daohuzhe') || (mes == 'yxw_heidong' && tes == 'yxw_baidong') || (mes == 'yxw_leiji' && tes == 'yxw_bileizhen') || (mes == 'yxw_yumaosao' && tes == 'yxw_shijiuzhiyi') || (mes == 'yxw_sizhesusheng' && tes == 'yxw_muchenghusheng')) {
                         str = '针对成功';
                         game.log(target, '针对', '#g成功');
@@ -1227,9 +1227,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         target.popup('针对失败');
                     }
                     event.dialog = ui.create.dialog();
-                    var list = [mes, tes];
-                    var table = [];
-                    for (var i = 0; i < list.length; i++) {
+                    let list = [mes, tes];
+                    const table = [];
+                    for (let i = 0; i < list.length; i++) {
                         table.add('<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="115" height="160"></span>');
                     }
                     event.dialog.add(str);
@@ -1237,9 +1237,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 } else event.finish();
                 ('step 3');
                 event.dialog.close();
-                var mes = event.mes;
-                var tes = event.tes;
-                var str;
+                let mes = event.mes;
+                const tes = event.tes;
+                let str;
                 if (mes == 'yxw_qiangyuzhihu') {
                     if (tes == 'yxw_daohuzhe') {
                         game.log('#g强欲之壶', '失效');
@@ -1319,7 +1319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         game.log('#g死者苏生', '生效');
                         player.popup('死者苏生');
                         if (ui.discardPile.childNodes.length) {
-                            var dialog = ui.create.dialog('死者蘇生', '選擇一張牌獲得', 'hidden');
+                            const dialog = ui.create.dialog('死者蘇生', '選擇一張牌獲得', 'hidden');
                             dialog.add(Array.from(ui.discardPile.childNodes));
                             player.chooseButton(dialog, true).set('ai', function (button) {
                                 return get.value(button.link);
@@ -1344,10 +1344,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 5');
                 if (result.bool && event.tes != 'yxw_baidong') target.discard(result.cards);
                 ('step 6');
-                var str = event.str;
+                let str = event.str;
                 if (!event.str2) {
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str);
+                        const dialog = ui.create.dialog(str);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -1361,8 +1361,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (event.str2) {
                     event.dialog.close();
                     game.broadcastAll(function (str) {
-                        var str = event.str2;
-                        var dialog = ui.create.dialog(str);
+                        let str = event.str2;
+                        const dialog = ui.create.dialog(str);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -1372,7 +1372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //………………………………<曦光>选项12:Precious Memories…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToPrememo = function (target) {
-                var next = game.createEvent('chooseToPrememo');
+                let next = game.createEvent('chooseToPrememo');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToPrememo');
@@ -1380,11 +1380,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //1
             lib.element.content.chooseToPrememo = function () {
                 'step 0';
-                var list = ['pm_feng', 'pm_yubanmeiqin', 'pm_jiatenghui', 'pm_xuechuyin'];
+                let list = ['pm_feng', 'pm_yubanmeiqin', 'pm_jiatenghui', 'pm_xuechuyin'];
                 list = list.randomSort();
-                var dialog = ui.create.dialog('Precious Memories', '选择一张角色牌令' + get.translation(player) + '选择其登场时所需的费用', 'hidden');
-                var table = [];
-                for (var i = 0; i < list.length; i++) {
+                const dialog = ui.create.dialog('Precious Memories', '选择一张角色牌令' + get.translation(player) + '选择其登场时所需的费用', 'hidden');
+                const table = [];
+                for (let i = 0; i < list.length; i++) {
                     table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="100" height="138"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
@@ -1395,9 +1395,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 1');
                 if (result.bool) {
                     event.link = result.links[0];
-                    var str = get.translation(target) + '选择的角色牌为:<br><span><img src="extension/猫猫叹气/image/曦光如月/' + event.link + '.jpg" width="120" height="166"></span>';
+                    let str = get.translation(target) + '选择的角色牌为:<br><span><img src="extension/猫猫叹气/image/曦光如月/' + event.link + '.jpg" width="120" height="166"></span>';
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str);
+                        const dialog = ui.create.dialog(str);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -1405,9 +1405,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }, str);
                 } else event.finish();
                 ('step 2');
-                var link = '<font color=#FF0000>' + get.translation(event.link) + '</font>';
-                var llll = '选择任意牌作为' + get.translation(event.link) + '登场时所需的费用';
-                var list = [event.link, llll, 'pm_aierkuitebulunshitade', 'pm_hunhouguangzi', 'pm_shifengcaoqi', 'pm_guaihaizi', 'pm_jiuwanlijinlu'];
+                let link = '<font color=#FF0000>' + get.translation(event.link) + '</font>';
+                const llll = '选择任意牌作为' + get.translation(event.link) + '登场时所需的费用';
+                let list = [event.link, llll, 'pm_aierkuitebulunshitade', 'pm_hunhouguangzi', 'pm_shifengcaoqi', 'pm_guaihaizi', 'pm_jiuwanlijinlu'];
                 if (event.link == 'pm_feng') {
                     link = '<font color=#FFFF00>' + get.translation(event.link) + '</font>';
                     list = [event.link, llll, 'pm_qiaokeli', 'pm_jiuyuanshiyouzhu', 'pm_xunyinliuge', 'pm_huxiangzhengduo', 'pm_maozhuazi'];
@@ -1421,9 +1421,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     list = [event.link, llll, 'pm_xunyinliuge', 'pm_tengheailiou', 'pm_zhuimingzhenbai', 'pm_xuezhixiaxuenaiyoubibinjieyi', 'pm_feng2'];
                 }
                 game.log(target, '选择了角色牌', link);
-                var dialog = ui.create.dialog('Precious Memories', get.translation(target) + '选择了角色牌:' + link, 'hidden');
-                var table = [];
-                for (var i = 0; i < list.length; i++) {
+                const dialog = ui.create.dialog('Precious Memories', get.translation(target) + '选择了角色牌:' + link, 'hidden');
+                const table = [];
+                for (let i = 0; i < list.length; i++) {
                     if (list[i] == event.link) table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="120" height="166"></span>']);
                     else if (list[i] == llll) table.add([list[i], '<font size=5>' + llll + '</font>']);
                     else if (['pm_guaihaizi', 'pm_huxiangzhengduo', 'pm_maozhuazi', 'pm_xin', 'pm_shenhaishaonv'].includes(list[i])) table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="194" height="140"></span>']);
@@ -1444,14 +1444,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 event.link2 = link;
                 ('step 3');
                 if (result.bool) {
-                    var num2 = 1;
+                    let num2 = 1;
                     if (event.link == 'pm_feng' || event.link == 'pm_yubanmeiqin') num2 = 5;
                     if (event.link == 'pm_xuechuyin') num2 = 4;
-                    var link = event.link2;
+                    let link = event.link2;
                     game.log(link, '所需的', '#b使用费用', '为', '#y' + num2);
-                    var num = 0;
+                    let num = 0;
                     link = '';
-                    for (var i of result.links) {
+                    for (let i of result.links) {
                         if (i == 'pm_qiaokeli') {
                             num += 2;
                             link += '<font color=#FF0000>' + get.translation(i) + '</font>、';
@@ -1529,11 +1529,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     link = link.slice(0, link.length - 1);
                     game.log(player, '选择了', link, '作为费用,合计', '#b发生费用', '为', '#y' + num, num < num2 ? ',费用不足' : '');
-                    var list = result.links;
+                    let list = result.links;
                     event.link3 = list;
                     event.dialog = ui.create.dialog();
-                    var table = [];
-                    for (var i = 0; i < list.length; i++) {
+                    const table = [];
+                    for (let i = 0; i < list.length; i++) {
                         if (['pm_guaihaizi', 'pm_huxiangzhengduo', 'pm_maozhuazi', 'pm_xin', 'pm_shenhaishaonv'].includes(list[i])) table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="83" height="60"></span>']);
                         else table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="60" height="83"></span>']);
                     }
@@ -1542,7 +1542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 } else event.finish();
                 ('step 4');
                 event.dialog.close();
-                var l = event.link3;
+                const l = event.link3;
                 if (l.includes('pm_jiuyuanshiyouzhu')) game.log('<font color=#00FF00>久远寺有珠【<span><img src="extension/猫猫叹气/image/曦光如月/pm_mofashizhiye.png" width="60" height="20"></span>】</font>与<font color=#FFFF00>枫【<span><img src="extension/猫猫叹气/image/曦光如月/pm_maoniangleyuan.png" width="31" height="20"></span>】</font>非同一<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">颜色</span>,亦非同一<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">作品</span>,不能作为费用');
                 if (l.includes('pm_xunyinliuge')) {
                     if (event.link == 'pm_feng') game.log('<font color=#FF0000>巡音流歌【<span><img src="extension/猫猫叹气/image/曦光如月/pm_xunyinliuge.png" width="43" height="20"></span>】</font>与<font color=#FFFF00>枫【<span><img src="extension/猫猫叹气/image/曦光如月/pm_maoniangleyuan.png" width="31" height="20"></span>】</font>非同一<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">颜色</span>,亦非同一<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">作品</span>,不能作为费用');
@@ -1556,7 +1556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (l.includes('pm_xin') && l.includes('pm_zecunshibinseyinglili') && l.length == 2) game.log('<font color=#00FF00>信</font>', '、', '<font color=#FFFF00>泽村·史宾瑟·英梨梨</font>', '随意一张都足以作为费用,', '#b厉行节约,反对浪费');
                 if (event.link == 'pm_xuechuyin' && !l.includes('pm_xunyinliuge') && !l.includes('pm_feng2') && l.length == 3) game.log('<font color=#00FFFF>藤和艾利欧</font>', '、', '<font color=#00FFFF>椎名真白</font>', '、', '<font color=#00FFFF>雪之下雪乃&由比滨结衣</font>', '随意两张都足以作为费用,', '#b厉行节约,反对浪费');
                 if (l.includes('pm_feng2')) game.log('<font color=#FFFF00>枫【<span><img src="extension/猫猫叹气/image/曦光如月/pm_maoniangleyuan.png" width="31" height="20"></span>】</font>与<font color=#00FFFF>雪初音【<span><img src="extension/猫猫叹气/image/曦光如月/pm_xuechuyin2014.png" width="22" height="20"></span>】</font>非同一<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">颜色</span>,亦非同一<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">作品</span>,且', '#b发生费用', '为', '#y0', ',不能作为费用');
-                var mes = 100;
+                let mes = 100;
                 if (event.link == 'pm_feng') {
                     if (l.includes('pm_xunyinliuge') || l.includes('pm_jiuyuanshiyouzhu')) mes--;
                     if (!l.includes('pm_qiaokeli') || !l.includes('pm_huxiangzhengduo') || !l.includes('pm_maozhuazi')) mes--;
@@ -1573,7 +1573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (l.includes('pm_xunyinliuge') || l.includes('pm_feng2')) mes--;
                     if (l.length != 2) mes--;
                 }
-                var str;
+                let str;
                 if (mes == 100) {
                     player.popup('正确', 'wood');
                     game.log(player, '选择费用', '#g正确');
@@ -1586,7 +1586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.result = { bool: false };
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -1595,7 +1595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //Precious Memories
             //…………………………<曦光>选项13:殉道者 地狱魔神「黯魔」衍生锦囊牌…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToAnmo = function (target) {
-                var next = game.createEvent('chooseToAnmo');
+                let next = game.createEvent('chooseToAnmo');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToAnmo');
@@ -1603,9 +1603,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //1
             lib.element.content.chooseToAnmo = function () {
                 'step 0';
-                var tricks = ['guilai', 'fanzhishouyu', 'jiyidetouzhi', 'huimieqixijianglin', 'biaotaihuyin', 'shijianduantu', 'yuanjijin', 'yiciyuanchuanyue', 'huimiequ', 'jiejiexianzhi', 'huigui', 'zhongzuchouhen', 'fensui', 'tianshinvlang', 'jinqiangonglve', 'shijianxianzhi', 'mingyundejueze', 'mudizailiyong', 'shuangchongxuanze', 'shikonghuilang', 'eyunxianglian', 'suming'];
-                for (var i = 0; i < tricks.length; i++) {
-                    var name = 'xdz_' + tricks[i];
+                const tricks = ['guilai', 'fanzhishouyu', 'jiyidetouzhi', 'huimieqixijianglin', 'biaotaihuyin', 'shijianduantu', 'yuanjijin', 'yiciyuanchuanyue', 'huimiequ', 'jiejiexianzhi', 'huigui', 'zhongzuchouhen', 'fensui', 'tianshinvlang', 'jinqiangonglve', 'shijianxianzhi', 'mingyundejueze', 'mudizailiyong', 'shuangchongxuanze', 'shikonghuilang', 'eyunxianglian', 'suming'];
+                for (let i = 0; i < tricks.length; i++) {
+                    let name = 'xdz_' + tricks[i];
                     if (!lib.card[name]) {
                         lib.card[name] = get.copy(lib.skill.qmm_baibaoxiang[name]);
                         lib.translate[name] = get.translation(name);
@@ -1613,15 +1613,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     lib.inpile.add(name);
                 }
-                var skill = lib.skill.qmm_xiguangx.xdztrick;
-                for (var i = 0; i < skill.length; i++) {
+                const skill = lib.skill.qmm_xiguangx.xdztrick;
+                for (let i = 0; i < skill.length; i++) {
                     game.addGlobalSkill(skill[i]);
                 }
-                var cards = ['xdz_guilai', 'xdz_fanzhishouyu', 'xdz_jiyidetouzhi', 'xdz_huimieqixijianglin', 'xdz_biaotaihuyin', 'xdz_shijianduantu', 'xdz_yuanjijin', 'xdz_yiciyuanchuanyue', 'xdz_huimiequ', 'xdz_jiejiexianzhi', 'xdz_huigui', 'xdz_zhongzuchouhen', 'xdz_fensui', 'xdz_tianshinvlang', 'xdz_jinqiangonglve', 'xdz_shijianxianzhi', 'xdz_mingyundejueze', 'xdz_mudizailiyong', 'xdz_shuangchongxuanze', 'xdz_shikonghuilang', 'xdz_eyunxianglian', 'xdz_suming'];
-                var dialog = ui.create.dialog('殉道者 地狱魔神', '是否选择一张牌令' + get.translation(player) + '获得？', [cards, 'vcard'], 'hidden');
-                var chooseButton = target.chooseButton(dialog);
+                const cards = ['xdz_guilai', 'xdz_fanzhishouyu', 'xdz_jiyidetouzhi', 'xdz_huimieqixijianglin', 'xdz_biaotaihuyin', 'xdz_shijianduantu', 'xdz_yuanjijin', 'xdz_yiciyuanchuanyue', 'xdz_huimiequ', 'xdz_jiejiexianzhi', 'xdz_huigui', 'xdz_zhongzuchouhen', 'xdz_fensui', 'xdz_tianshinvlang', 'xdz_jinqiangonglve', 'xdz_shijianxianzhi', 'xdz_mingyundejueze', 'xdz_mudizailiyong', 'xdz_shuangchongxuanze', 'xdz_shikonghuilang', 'xdz_eyunxianglian', 'xdz_suming'];
+                const dialog = ui.create.dialog('殉道者 地狱魔神', '是否选择一张牌令' + get.translation(player) + '获得？', [cards, 'vcard'], 'hidden');
+                const chooseButton = target.chooseButton(dialog);
                 chooseButton.set('ai', function (button) {
-                    var att = get.attitude(target, player);
+                    const att = get.attitude(target, player);
                     if (att < 0) return 0;
                     if (['xdz_huimiequ', 'xdz_shuangchongxuanze', 'xdz_mudizailiyong'].includes(button.link[2])) return 0;
                     return Math.random();
@@ -1631,7 +1631,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (result.bool) {
                     target.popup('是', 'wood');
                     player.popup('成功', 'wood');
-                    var card = game.createCard(result.buttons[0].link[2]);
+                    const card = game.createCard(result.buttons[0].link[2]);
                     player.gain(card);
                     target.line(player, 'ice');
                     target.showCards(card, get.translation(target) + '选择的衍生锦囊牌');
@@ -1647,7 +1647,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 2');
                 if (event.createcard) game.log(player, '获得了', target, '选择的', event.createcard);
                 if (!event.str) return;
-                var str = event.str;
+                let str = event.str;
                 event.dialog = ui.create.dialog(str);
                 ('step 3');
                 event.dialog.close();
@@ -1659,7 +1659,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             //…………………………新<曦光>选项13:五选一…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToWuxuanyi = function (target) {
-                var next = game.createEvent('chooseToWuxuanyi');
+                let next = game.createEvent('chooseToWuxuanyi');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToWuxuanyi');
@@ -1667,15 +1667,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //1
             lib.element.content.chooseToWuxuanyi = function () {
                 'step 0';
-                var cards = lib.inpile.randomGets(5);
+                const cards = lib.inpile.randomGets(5);
                 if (!cards || !cards.length) {
                     event.finish();
                     return;
                 }
-                var dialog = ui.create.dialog('曦光选项13', '是否选择一张牌令' + get.translation(player) + '获得？', [cards, 'vcard'], 'hidden');
-                var chooseButton = target.chooseButton(dialog);
+                const dialog = ui.create.dialog('曦光选项13', '是否选择一张牌令' + get.translation(player) + '获得？', [cards, 'vcard'], 'hidden');
+                const chooseButton = target.chooseButton(dialog);
                 chooseButton.set('ai', function (button) {
-                    var att = get.attitude(target, player);
+                    const att = get.attitude(target, player);
                     if (att < 0) return 0;
                     return get.value({ name: button.link[2] });
                 });
@@ -1683,7 +1683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (result.bool) {
                     target.popup('是', 'wood');
                     player.popup('成功', 'wood');
-                    var card = game.createCard(result.buttons[0].link[2]);
+                    const card = game.createCard(result.buttons[0].link[2]);
                     player.gain(card);
                     target.line(player, 'ice');
                     target.showCards(card, get.translation(target) + '选择的牌');
@@ -1700,14 +1700,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 2');
                 if (event.createcard) game.log(player, '获得了', target, '选择的', event.createcard);
                 if (!event.str) return;
-                var str = event.str;
+                let str = event.str;
                 event.dialog = ui.create.dialog(str);
                 ('step 3');
                 event.dialog.close();
             }; //2
             //………………………………<曦光>选项14:答题…………………………………………………………………………………………………………………………………………………………
             lib.element.player.chooseToDatiQiuzhu = function (target) {
-                var next = game.createEvent('chooseToDatiQiuzhu');
+                let next = game.createEvent('chooseToDatiQiuzhu');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToDatiQiuzhu');
@@ -1717,81 +1717,81 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 'step 0';
                 game.log(player, '开始答题');
                 game.log(target, '被选为', '#y求助对象');
-                var dialog = ui.create.dialog('<font size=6><b>有奖问答</b></font>', 'hidden');
+                const dialog = ui.create.dialog('<font size=6><b>有奖问答</b></font>', 'hidden');
                 dialog.add('<font color=#00FF00><b><P align=left><font size=5>回答五道题目,全对奖励免费出牌,无需紧张,正常发挥即可,答错还有求助对象顶着;还有,别问我为什么是绿色</font></font><br><br>⒈我为什么是<font color=#00FF00>绿色</font>？<br>👻👻<br>开个玩笑,我怎么会问这种问题?<br>好了,请调整心态,开始答题');
                 dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？');
-                var qq = ['536563254', '3131652528', '3431256367'].randomSort();
+                const qq = ['536563254', '3131652528', '3431256367'].randomSort();
                 event.qq = qq;
-                var yi = [];
-                for (var i = 0; i < qq.length; i++) {
+                const yi = [];
+                for (let i = 0; i < qq.length; i++) {
                     if (i == 0) yi.add([qq[i], '<b>A.' + qq[i] + '</b>']);
                     if (i == 1) yi.add([qq[i], '<b>B.' + qq[i] + '</b>']);
                     if (i == 2) yi.add([qq[i], '<b>C.' + qq[i] + '</b>']);
                 }
                 dialog.add([yi, 'tdnodes']);
                 dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？');
-                var wp = ['dt_wudiliuxinglong', 'dt_diyutianshen', 'dt_chenggangxiezi'].randomSort();
+                const wp = ['dt_wudiliuxinglong', 'dt_diyutianshen', 'dt_chenggangxiezi'].randomSort();
                 event.wp = wp;
-                var er = [];
-                for (var i = 0; i < wp.length; i++) {
+                const er = [];
+                for (let i = 0; i < wp.length; i++) {
                     if (i == 0) er.add([wp[i], '<b>A.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + wp[i] + '.jpg" width="100" height="140"></span>']);
                     else if (i == 1) er.add([wp[i], '<b>B.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + wp[i] + '.jpg" width="100" height="140"></span>']);
                     else er.add([wp[i], '<b>C.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + wp[i] + '.jpg" width="100" height="140"></span>']);
                 }
                 dialog.add([er, 'tdnodes']);
                 dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？');
-                var gx = ['兄 妹', '师 徒', '朋 友'].randomSort();
+                const gx = ['兄 妹', '师 徒', '朋 友'].randomSort();
                 event.gx = gx;
-                var san = [];
-                for (var i = 0; i < gx.length; i++) {
+                const san = [];
+                for (let i = 0; i < gx.length; i++) {
                     if (i == 0) san.add([gx[i], '<b>A.' + gx[i] + '</b>']);
                     if (i == 1) san.add([gx[i], '<b>B.' + gx[i] + '</b>']);
                     if (i == 2) san.add([gx[i], '<b>C.' + gx[i] + '</b>']);
                 }
                 dialog.add([san, 'tdnodes']);
                 dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？');
-                var cd = ['dt_zhuangdan', 'dt_cidao', 'dt_humu'].randomSort();
+                const cd = ['dt_zhuangdan', 'dt_cidao', 'dt_humu'].randomSort();
                 event.cd = cd;
-                var si = [];
-                for (var i = 0; i < cd.length; i++) {
+                const si = [];
+                for (let i = 0; i < cd.length; i++) {
                     if (i == 0) si.add([cd[i], '<b>A.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + cd[i] + '.jpg" width="100" height="140"></span>']);
                     else if (i == 1) si.add([cd[i], '<b>B.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + cd[i] + '.jpg" width="100" height="140"></span>']);
                     else si.add([cd[i], '<b>C.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + cd[i] + '.jpg" width="100" height="140"></span>']);
                 }
                 dialog.add([si, 'tdnodes']);
                 dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？');
-                var gttd = ['dt_suai', 'dt_shishi', 'dt_dongtai'].randomSort();
+                const gttd = ['dt_suai', 'dt_shishi', 'dt_dongtai'].randomSort();
                 event.gttd = gttd;
-                var wu = [];
-                for (var i = 0; i < gttd.length; i++) {
+                const wu = [];
+                for (let i = 0; i < gttd.length; i++) {
                     if (i == 0) wu.add([gttd[i], '<b>A.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + gttd[i] + '.png" width="52" height="50"></span>']);
                     else if (i == 1) wu.add([gttd[i], '<b>B.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + gttd[i] + '.png" width="52" height="50"></span>']);
                     else wu.add([gttd[i], '<b>C.</b><br><span><img src="extension/猫猫叹气/image/曦光如月/' + gttd[i] + '.png" width="52" height="50"></span>']);
                 }
                 dialog.add([wu, 'tdnodes']);
                 dialog.add('<b><P align=left>注释:<br>啊猫:千面猫<br>啊婊:浪琴婊');
-                var chooseButton = player.chooseButton(dialog, 5, true);
+                const chooseButton = player.chooseButton(dialog, 5, true);
                 chooseButton
                     .set('ai', function (button) {
                         if (['536563254', 'dt_chenggangxiezi', '兄 妹', 'dt_cidao', 'dt_suai'].includes(button.link)) return 20;
                         return 0;
                     })
                     .set('filterButton', function (button) {
-                        for (var i = 0; i < ui.selected.buttons.length; i++) {
+                        for (let i = 0; i < ui.selected.buttons.length; i++) {
                             if ((qq.includes(ui.selected.buttons[i].link) && qq.includes(button.link)) || (wp.includes(ui.selected.buttons[i].link) && wp.includes(button.link)) || (gx.includes(ui.selected.buttons[i].link) && gx.includes(button.link)) || (cd.includes(ui.selected.buttons[i].link) && cd.includes(button.link)) || (gttd.includes(ui.selected.buttons[i].link) && gttd.includes(button.link))) return false;
                         }
                         return true;
                     });
                 ('step 1');
                 if (result.bool) {
-                    var zhengque = 0;
+                    let zhengque = 0;
                     if (result.links.includes('536563254')) zhengque++;
                     if (result.links.includes('dt_chenggangxiezi')) zhengque++;
                     if (result.links.includes('兄 妹')) zhengque++;
                     if (result.links.includes('dt_cidao')) zhengque++;
                     if (result.links.includes('dt_suai')) zhengque++;
                     player.popup('对' + zhengque + '错' + (5 - zhengque));
-                    for (var i = 0; i < event.qq.length; i++) {
+                    for (let i = 0; i < event.qq.length; i++) {
                         if (result.links.includes(event.qq[i])) {
                             if (i == 0) event.qq2 = 'A.';
                             else event.qq2 = i == 1 ? 'B.' : 'C.';
@@ -1799,7 +1799,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             else event.qq3 = '<font color=#FF0000>×</font>';
                         }
                     }
-                    for (var i = 0; i < event.wp.length; i++) {
+                    for (let i = 0; i < event.wp.length; i++) {
                         if (result.links.includes(event.wp[i])) {
                             if (i == 0) event.wp2 = 'A.';
                             else event.wp2 = i == 1 ? 'B.' : 'C.';
@@ -1810,7 +1810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }
                         }
                     }
-                    for (var i = 0; i < event.gx.length; i++) {
+                    for (let i = 0; i < event.gx.length; i++) {
                         if (result.links.includes(event.gx[i])) {
                             if (i == 0) event.gx2 = 'A.';
                             else event.gx2 = i == 1 ? 'B.' : 'C.';
@@ -1818,7 +1818,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             else event.gx3 = '<font color=#FF0000>×</font>';
                         }
                     }
-                    for (var i = 0; i < event.cd.length; i++) {
+                    for (let i = 0; i < event.cd.length; i++) {
                         if (result.links.includes(event.cd[i])) {
                             if (i == 0) event.cd2 = 'A.';
                             else event.cd2 = i == 1 ? 'B.' : 'C.';
@@ -1826,7 +1826,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             else event.cd3 = '<font color=#FF0000>×</font>';
                         }
                     }
-                    for (var i = 0; i < event.gttd.length; i++) {
+                    for (let i = 0; i < event.gttd.length; i++) {
                         if (result.links.includes(event.gttd[i])) {
                             if (i == 0) event.gttd2 = 'A.';
                             else event.gttd2 = i == 1 ? 'B.' : 'C.';
@@ -1836,15 +1836,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     game.log(player, '的答案:<br>', '⒈', event.qq2, event.qq3, '<br>⒉', event.wp2, event.wp3, '<br>⒊', event.gx2, event.gx3, '<br>⒋', event.cd2, event.cd3, '<br>⒌', event.gttd2, event.gttd3);
                     game.log(player, '答题', zhengque == 5 ? '<font color=#00DD00>全对</font>,答题<font color=#00DD00>成功</font>' : '<font color=#FF0000>失败</font>');
-                    var dialog = ui.create.dialog('<font size=6><b>答题结果</b></font>', 'hidden');
+                    const dialog = ui.create.dialog('<font size=6><b>答题结果</b></font>', 'hidden');
                     if (zhengque == 5) dialog.add('<font color=#FF44AA><b><P align=left><font size=5>恭喜你,全对,请再接再厉 🎉🎉🎉</font></font>');
                     else dialog.add('<font color=#AAAAAA><b><P align=left><font size=5>太可惜了,就差那么一点点,别灰心,继续努力 🤕🤕</font></font>');
                     if (event.qq3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？(<font color=#00DD00>答对√</font>)');
                     else dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？(<font color=#FF0000>答错×</font>)');
-                    var qq = event.qq;
-                    var yi = [];
-                    for (var i = 0; i < qq.length; i++) {
-                        var xx;
+                    const qq = event.qq;
+                    const yi = [];
+                    for (let i = 0; i < qq.length; i++) {
+                        let xx;
                         if (i == 0) xx = 'A.';
                         else xx = i == 1 ? 'B.' : 'C.';
                         if (result.links.includes(qq[i])) {
@@ -1856,10 +1856,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     dialog.add('<b><P align=left>(解析:不解释,自己去看)');
                     if (event.wp3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？(<font color=#00DD00>答对√</font>)');
                     else dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？(<font color=#FF0000>答错×</font>)');
-                    var wp = event.wp;
-                    var er = [];
-                    for (var i = 0; i < wp.length; i++) {
-                        var xx;
+                    const wp = event.wp;
+                    const er = [];
+                    for (let i = 0; i < wp.length; i++) {
+                        let xx;
                         if (i == 0) xx = 'A.';
                         else xx = i == 1 ? 'B.' : 'C.';
                         if (result.links.includes(wp[i])) {
@@ -1874,10 +1874,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     } else dialog.add('<b><P align=left>(解析:啊猫的王牌正是「機械昆蟲 橙鋼蠍子」)');
                     if (event.gx3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？(<font color=#00DD00>答对√</font>)');
                     else dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？(<font color=#FF0000>答错×</font>)');
-                    var gx = event.gx;
-                    var san = [];
-                    for (var i = 0; i < gx.length; i++) {
-                        var xx;
+                    const gx = event.gx;
+                    const san = [];
+                    for (let i = 0; i < gx.length; i++) {
+                        let xx;
                         if (i == 0) xx = 'A.';
                         else xx = i == 1 ? 'B.' : 'C.';
                         if (result.links.includes(gx[i])) {
@@ -1889,10 +1889,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     dialog.add('<b><P align=left>(解析:三种关系都有,但正确的只有一个)');
                     if (event.cd3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？(<font color=#00DD00>答对√</font>)');
                     else dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？(<font color=#FF0000>答错×</font>)');
-                    var cd = event.cd;
-                    var si = [];
-                    for (var i = 0; i < cd.length; i++) {
-                        var xx;
+                    const cd = event.cd;
+                    const si = [];
+                    for (let i = 0; i < cd.length; i++) {
+                        let xx;
                         if (i == 0) xx = 'A.';
                         else xx = i == 1 ? 'B.' : 'C.';
                         if (result.links.includes(cd[i])) {
@@ -1904,10 +1904,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     dialog.add('<b><P align=left>(解析:是因为「刺刀槍管龍」;又名「槍管載劍龍」)');
                     if (event.gttd3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？(<font color=#00DD00>答对√</font>)');
                     else dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？(<font color=#FF0000>答错×</font>)');
-                    var gttd = event.gttd;
-                    var wu = [];
-                    for (var i = 0; i < gttd.length; i++) {
-                        var xx;
+                    const gttd = event.gttd;
+                    const wu = [];
+                    for (let i = 0; i < gttd.length; i++) {
+                        let xx;
                         if (i == 0) xx = 'A.';
                         else xx = i == 1 ? 'B.' : 'C.';
                         if (result.links.includes(gttd[i])) {
@@ -1924,16 +1924,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     // return
                     if (zhengque < 5) {
                         game.log('#y求助对象', target, '开始帮答');
-                        var dialog = ui.create.dialog('<font size=6><b>有奖问答</b></font>', 'hidden');
+                        const dialog = ui.create.dialog('<font size=6><b>有奖问答</b></font>', 'hidden');
                         dialog.add('<font color=#00FFFF><b><P align=left><font size=5>回答' + get.translation(player) + '的错题,你已是最后的希望,请紧张一点,问题很大</font></font>');
                         if (event.qq3 == '<font color=#00DD00>√</font>') {
                             dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？(<font color=#00DD00>答对√</font>)');
                             event.qq0 = '对';
                         } else dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？(<font color=#FF0000>答错×</font>)');
-                        var qq = event.qq;
-                        var yi = [];
-                        for (var i = 0; i < qq.length; i++) {
-                            var xx;
+                        const qq = event.qq;
+                        const yi = [];
+                        for (let i = 0; i < qq.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(qq[i])) {
@@ -1946,10 +1946,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？(<font color=#00DD00>答对√</font>)');
                             event.wp0 = '对';
                         } else dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？(<font color=#FF0000>答错×</font>)');
-                        var wp = event.wp;
-                        var er = [];
-                        for (var i = 0; i < wp.length; i++) {
-                            var xx;
+                        const wp = event.wp;
+                        const er = [];
+                        for (let i = 0; i < wp.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(wp[i])) {
@@ -1962,10 +1962,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？(<font color=#00DD00>答对√</font>)');
                             event.gx0 = '对';
                         } else dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？(<font color=#FF0000>答错×</font>)');
-                        var gx = event.gx;
-                        var san = [];
-                        for (var i = 0; i < gx.length; i++) {
-                            var xx;
+                        const gx = event.gx;
+                        const san = [];
+                        for (let i = 0; i < gx.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(gx[i])) {
@@ -1978,10 +1978,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？(<font color=#00DD00>答对√</font>)');
                             event.cd0 = '对';
                         } else dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？(<font color=#FF0000>答错×</font>)');
-                        var cd = event.cd;
-                        var si = [];
-                        for (var i = 0; i < cd.length; i++) {
-                            var xx;
+                        const cd = event.cd;
+                        const si = [];
+                        for (let i = 0; i < cd.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(cd[i])) {
@@ -1994,10 +1994,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？(<font color=#00DD00>答对√</font>)');
                             event.gttd0 = '对';
                         } else dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？(<font color=#FF0000>答错×</font>)');
-                        var gttd = event.gttd;
-                        var wu = [];
-                        for (var i = 0; i < gttd.length; i++) {
-                            var xx;
+                        const gttd = event.gttd;
+                        const wu = [];
+                        for (let i = 0; i < gttd.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(gttd[i])) {
@@ -2007,10 +2007,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         dialog.add([wu, 'tdnodes']);
                         dialog.add('<b><P align=left>注释:<br>啊猫:千面猫<br>啊婊:浪琴婊');
-                        var chooseButton = target.chooseButton(dialog, 5, true);
+                        const chooseButton = target.chooseButton(dialog, 5, true);
                         chooseButton
                             .set('ai', function (button) {
-                                var att = get.attitude(target, player);
+                                const att = get.attitude(target, player);
                                 if (att > 0) {
                                     if (['536563254', 'dt_chenggangxiezi', '兄 妹', 'dt_cidao', 'dt_suai'].includes(button.link)) return 20;
                                 } else if (['536563254', 'dt_chenggangxiezi', '兄 妹', 'dt_cidao', 'dt_suai'].includes(button.link)) return 0;
@@ -2018,7 +2018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('filterButton', function (button) {
                                 if ((event.qq0 && qq.includes(button.link)) || (event.wp0 && wp.includes(button.link)) || (event.gx0 && gx.includes(button.link)) || (event.cd0 && cd.includes(button.link)) || (event.gttd0 && gttd.includes(button.link))) return false;
-                                for (var i = 0; i < ui.selected.buttons.length; i++) {
+                                for (let i = 0; i < ui.selected.buttons.length; i++) {
                                     if ((qq.includes(ui.selected.buttons[i].link) && qq.includes(button.link)) || (wp.includes(ui.selected.buttons[i].link) && wp.includes(button.link)) || (gx.includes(ui.selected.buttons[i].link) && gx.includes(button.link)) || (cd.includes(ui.selected.buttons[i].link) && cd.includes(button.link)) || (gttd.includes(ui.selected.buttons[i].link) && gttd.includes(button.link))) return false;
                                 }
                                 return true;
@@ -2032,7 +2032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 } else event.finish();
                 ('step 2');
                 if (result.bool) {
-                    var zhengque = 0;
+                    let zhengque = 0;
                     if (!event.qq0 && result.links.includes('536563254')) zhengque++;
                     if (!event.wp0 && result.links.includes('dt_chenggangxiezi')) zhengque++;
                     if (!event.gx0 && result.links.includes('兄 妹')) zhengque++;
@@ -2040,7 +2040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!event.gttd0 && result.links.includes('dt_suai')) zhengque++;
                     target.popup('对' + zhengque + '错' + (5 - event.zhengque - zhengque));
                     if (!event.qq0) {
-                        for (var i = 0; i < event.qq.length; i++) {
+                        for (let i = 0; i < event.qq.length; i++) {
                             if (result.links.includes(event.qq[i])) {
                                 if (i == 0) event.qq2 = 'A.';
                                 else event.qq2 = i == 1 ? 'B.' : 'C.';
@@ -2050,7 +2050,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                     }
                     if (!event.wp0) {
-                        for (var i = 0; i < event.wp.length; i++) {
+                        for (let i = 0; i < event.wp.length; i++) {
                             if (result.links.includes(event.wp[i])) {
                                 if (i == 0) event.wp2 = 'A.';
                                 else event.wp2 = i == 1 ? 'B.' : 'C.';
@@ -2063,7 +2063,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                     }
                     if (!event.gx0) {
-                        for (var i = 0; i < event.gx.length; i++) {
+                        for (let i = 0; i < event.gx.length; i++) {
                             if (result.links.includes(event.gx[i])) {
                                 if (i == 0) event.gx2 = 'A.';
                                 else event.gx2 = i == 1 ? 'B.' : 'C.';
@@ -2073,7 +2073,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                     }
                     if (!event.cd0) {
-                        for (var i = 0; i < event.cd.length; i++) {
+                        for (let i = 0; i < event.cd.length; i++) {
                             if (result.links.includes(event.cd[i])) {
                                 if (i == 0) event.cd2 = 'A.';
                                 else event.cd2 = i == 1 ? 'B.' : 'C.';
@@ -2083,7 +2083,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                     }
                     if (!event.gttd0) {
-                        for (var i = 0; i < event.gttd.length; i++) {
+                        for (let i = 0; i < event.gttd.length; i++) {
                             if (result.links.includes(event.gttd[i])) {
                                 if (i == 0) event.gttd2 = 'A.';
                                 else event.gttd2 = i == 1 ? 'B.' : 'C.';
@@ -2092,7 +2092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }
                         }
                     }
-                    var wwwww = '';
+                    let wwwww = '';
                     if (!event.qq0) wwwww += '<br>⒈' + event.qq2 + event.qq3;
                     if (!event.wp0) wwwww += '<br>⒉' + event.wp2 + event.wp3;
                     if (!event.gx0) wwwww += '<br>⒊' + event.gx2 + event.gx3;
@@ -2100,16 +2100,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!event.gttd0) wwwww += '<br>⒌' + event.gttd2 + event.gttd3;
                     game.log(target, '的答案:', wwwww);
                     game.log(target, '帮答', zhengque == 5 - event.zhengque ? '<font color=#00DD00>成功</font>' : '<font color=#FF0000>失败</font>');
-                    var dialog = ui.create.dialog('<font size=6><b>帮答结果</b></font>', 'hidden');
+                    const dialog = ui.create.dialog('<font size=6><b>帮答结果</b></font>', 'hidden');
                     if (zhengque == 5 - event.zhengque) dialog.add('<font color=#FF44AA><b><P align=left><font size=5>恭喜你,帮答全对,请再接再厉 🎉🎉🎉</font></font>');
                     else dialog.add('<font color=#AAAAAA><b><P align=left><font size=5>太可惜了,就差那么一点点,继续努力吧 🤕🤕</font></font>');
                     if (!event.qq0) {
                         if (event.qq3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？(<font color=#00DD00>答对√</font>)');
                         else dialog.add('<b><P align=left>⒈啊猫的<font color=#F08080>QQ</font>是？(<font color=#FF0000>答错×</font>)');
-                        var qq = event.qq;
-                        var yi = [];
-                        for (var i = 0; i < qq.length; i++) {
-                            var xx;
+                        const qq = event.qq;
+                        const yi = [];
+                        for (let i = 0; i < qq.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(qq[i])) {
@@ -2123,10 +2123,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!event.wp0) {
                         if (event.wp3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？(<font color=#00DD00>答对√</font>)');
                         else dialog.add('<b><P align=left>⒉实卡中,啊猫的<font color=#FFBB00>王牌</font>是？(<font color=#FF0000>答错×</font>)');
-                        var wp = event.wp;
-                        var er = [];
-                        for (var i = 0; i < wp.length; i++) {
-                            var xx;
+                        const wp = event.wp;
+                        const er = [];
+                        for (let i = 0; i < wp.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(wp[i])) {
@@ -2143,10 +2143,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!event.gx0) {
                         if (event.gx3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？(<font color=#00DD00>答对√</font>)');
                         else dialog.add('<b><P align=left>⒊啊猫与啊婊的<font color=#33FFFF>关系</font>？(<font color=#FF0000>答错×</font>)');
-                        var gx = event.gx;
-                        var san = [];
-                        for (var i = 0; i < gx.length; i++) {
-                            var xx;
+                        const gx = event.gx;
+                        const san = [];
+                        for (let i = 0; i < gx.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(gx[i])) {
@@ -2160,10 +2160,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!event.cd0) {
                         if (event.cd3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？(<font color=#00DD00>答对√</font>)');
                         else dialog.add('<b><P align=left>⒋啊猫与啊婊在某YGO交流群友谊赛双打时被誉为<<font color=#00BBFF>最强刺刀使</font>>,请问是因为哪张牌的缘故？(<font color=#FF0000>答错×</font>)');
-                        var cd = event.cd;
-                        var si = [];
-                        for (var i = 0; i < cd.length; i++) {
-                            var xx;
+                        const cd = event.cd;
+                        const si = [];
+                        for (let i = 0; i < cd.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(cd[i])) {
@@ -2177,10 +2177,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (!event.gttd0) {
                         if (event.gttd3 == '<font color=#00DD00>√</font>') dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？(<font color=#00DD00>答对√</font>)');
                         else dialog.add('<b><P align=left>⒌啊猫喜欢的三国杀武将有<font color=#009FCC>虎豹骑曹纯</font>、<font color=#FFA07A>徐荣</font>、<font color=#FFFF33>星甘宁</font>、<font color=#66DD00>神陆逊</font>等,是因为他们都有哪个<font color=#FF7744>共同特点</font>？(<font color=#FF0000>答错×</font>)');
-                        var gttd = event.gttd;
-                        var wu = [];
-                        for (var i = 0; i < gttd.length; i++) {
-                            var xx;
+                        const gttd = event.gttd;
+                        const wu = [];
+                        for (let i = 0; i < gttd.length; i++) {
+                            let xx;
                             if (i == 0) xx = 'A.';
                             else xx = i == 1 ? 'B.' : 'C.';
                             if (result.links.includes(gttd[i])) {
@@ -2193,7 +2193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     dialog.add('<b><P align=left>注释:<br>啊猫:千面猫<br>啊婊:浪琴婊');
                     target.chooseControl('ok').set('dialog', dialog);
-                    var num = event.zhengque + zhengque;
+                    let num = event.zhengque + zhengque;
                     game.log(player, '最终答对题数为', '#y' + num, ',答题', num == 5 ? '#g成功' : '<font color=#FF0000>失败</font>');
                     if (num == 5) {
                         event.str = get.translation(player) + '答题成功';
@@ -2206,9 +2206,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                 } else event.finish();
                 ('step 3');
-                var str = event.str;
+                let str = event.str;
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -2217,35 +2217,35 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             }; //有奖问答
             //…………………………<曦光>选项 选择执行………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………………
             lib.element.player.xiguang = function () {
-                var next = game.createEvent('xiguang');
+                let next = game.createEvent('xiguang');
                 next.player = this;
                 next.setContent('xiguang');
                 return next;
             }; //1
             lib.element.content.xiguang = function () {
                 'step 0';
-                var xgxx1 = !game.hasPlayer(function (current) {
+                const xgxx1 = !game.hasPlayer(function (current) {
                     return player.canCompare(current) && current != player;
                 });
-                var xgxx1hs = player.countCards('h') <= 0;
-                var xgxx10 = !game.hasPlayer(function (current) {
+                const xgxx1hs = player.countCards('h') <= 0;
+                const xgxx10 = !game.hasPlayer(function (current) {
                     return current.sex == 'male' && current != player;
                 });
                 if (!player.storage.poxiao) {
-                    var xgxxd = 0;
+                    let xgxxd = 0;
                     if ((xgxx1 || xgxx1hs) && (!player.storage.xiguang || !player.storage.xiguang.includes(0))) xgxxd++;
                     if (xgxx10 && (!player.storage.xiguang || !player.storage.xiguang.includes(9))) xgxxd++;
                     if (player.storage.xiguang && player.storage.xiguang.length + xgxxd >= 14) {
                         delete player.storage.xiguang;
                         delete player.storage.leijix;
                     }
-                    var xgxx3 = '<strong style=\"background:cyan\"><font size=3>♠️️️♥️️️♣️️️♦️️</font>️</strong>';
+                    let xgxx3 = '<strong style=\"background:cyan\"><font size=3>♠️️️♥️️️♣️️️♦️️</font>️</strong>';
                     if (player.storage.xiguang && player.storage.xiguang.includes(2)) xgxx3 = '<strong style=\"background:pink\"><font size=3>♠️️️♥️️️♣️️️♦️️</font>️</strong>';
-                } else var xgxx3 = '<strong style=\"background:GreenYellow\"><font size=3>♠️️️♥️️️♣️️️♦️️</font>️</strong>';
-                var xgxx = ['⒈你与一名其他角色拼点;<font color=#00FF00>成功</font>:其没赢', '⒉你与一名其他角色猜拳直至分出胜负;<font color=#00FF00>成功</font>:你赢', '⒊你与一名其他角色各进行一次判定;<font color=#00FF00>成功</font>:你的判定牌花色按♠️️️♥️️️♣️️️♦️️排列不比其靠后', '⒋你与一名其他角色各掷一枚骰子;<font color=#00FF00>成功</font>:你的点数不比其小', '⒌你与一名其他角色进行【对策】;<font color=#00FF00>成功</font>:你赢', '⒍你与一名其他角色进行【斗兽】;<font color=#00FF00>成功</font>:你赢', '⒎你与一名其他角色相互对对方进行狼人查杀;<font color=#00FF00>成功</font>:你查杀成功或其查杀失败', '⒏你与一名其他角色对【对子】;<font color=#00FF00>成功</font>:你正确对出下联', '⒐你求一次签;<font color=#00FF00>成功</font>:不为下签/下下签;若为上上签,你摸一张牌', '⒑你向一名男性角色卖萌;<font color=#00FF00>成功</font>:获得青睐', '11.你发动一张魔法卡并令一名其他角色针对你发动一张陷阱卡;<font color=#00FF00>成功</font>:其针对失败', '12.你令一名其他角色选择一张Precious Memories角色牌;<font color=#00FF00>成功</font>:你正确选择该角色牌登场时所需的费用', '13.你令一名其他角色选择是否从随机亮出的五张牌中选择一张展示并交给你;<font color=#00FF00>成功</font>:其选择是', '14.你选择一名其他角色作为求助对象并你回答五道题目,若你答题失败,求助对象有一次机会重答你的错题;<font color=#00FF00>成功</font>:最终结果为全对'];
-                var dialog = ui.create.dialog('<font size=6><b><曦光>选项</b></font>', '<font size=5><b>请选择一项:</b></font>', 'hidden');
-                var table = [];
-                for (var i = 0; i < xgxx.length; i++) {
+                } else let xgxx3 = '<strong style=\"background:GreenYellow\"><font size=3>♠️️️♥️️️♣️️️♦️️</font>️</strong>';
+                const xgxx = ['⒈你与一名其他角色拼点;<font color=#00FF00>成功</font>:其没赢', '⒉你与一名其他角色猜拳直至分出胜负;<font color=#00FF00>成功</font>:你赢', '⒊你与一名其他角色各进行一次判定;<font color=#00FF00>成功</font>:你的判定牌花色按♠️️️♥️️️♣️️️♦️️排列不比其靠后', '⒋你与一名其他角色各掷一枚骰子;<font color=#00FF00>成功</font>:你的点数不比其小', '⒌你与一名其他角色进行【对策】;<font color=#00FF00>成功</font>:你赢', '⒍你与一名其他角色进行【斗兽】;<font color=#00FF00>成功</font>:你赢', '⒎你与一名其他角色相互对对方进行狼人查杀;<font color=#00FF00>成功</font>:你查杀成功或其查杀失败', '⒏你与一名其他角色对【对子】;<font color=#00FF00>成功</font>:你正确对出下联', '⒐你求一次签;<font color=#00FF00>成功</font>:不为下签/下下签;若为上上签,你摸一张牌', '⒑你向一名男性角色卖萌;<font color=#00FF00>成功</font>:获得青睐', '11.你发动一张魔法卡并令一名其他角色针对你发动一张陷阱卡;<font color=#00FF00>成功</font>:其针对失败', '12.你令一名其他角色选择一张Precious Memories角色牌;<font color=#00FF00>成功</font>:你正确选择该角色牌登场时所需的费用', '13.你令一名其他角色选择是否从随机亮出的五张牌中选择一张展示并交给你;<font color=#00FF00>成功</font>:其选择是', '14.你选择一名其他角色作为求助对象并你回答五道题目,若你答题失败,求助对象有一次机会重答你的错题;<font color=#00FF00>成功</font>:最终结果为全对'];
+                const dialog = ui.create.dialog('<font size=6><b><曦光>选项</b></font>', '<font size=5><b>请选择一项:</b></font>', 'hidden');
+                const table = [];
+                for (let i = 0; i < xgxx.length; i++) {
                     if (player.storage.poxiao) {
                         if (i == 0 && (xgxx1 || xgxx1hs)) table.add([i, '<font color=#ADFF2F><b><span>' + get.translation(xgxx[i]) + '</span></font><br><font color=#FF0000>(' + (xgxx1hs ? '你无可拼点的手牌' : '无可拼点的目标') + ')</font></b>']);
                         else if (i == 9 && xgxx10) table.add([i, '<font color=#ADFF2F><b><span>' + get.translation(xgxx[i]) + '</span></font><br><font color=#FF0000>(场上无' + (player.sex == 'male' ? '其他男性' : '男性') + '角色)</font></b>']);
@@ -2281,9 +2281,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 1');
                 if (result.bool) {
                     event.link = result.links[0];
-                    var num = event.link + 1;
+                    let num = event.link + 1;
                     if (num != 9) {
-                        var prompt;
+                        let prompt;
                         if (num == 1) prompt = '请选择拼点的目标';
                         if (num == 2) prompt = '请选择猜拳的目标';
                         if (num == 3) prompt = '令一名其他角色与你各进行一次判定';
@@ -2307,7 +2307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             function (target) {
-                                var att = get.attitude(_status.event.player, target);
+                                const att = get.attitude(_status.event.player, target);
                                 if ([10, 13, 14].includes(num)) return player.getFriends().includes(target);
                                 if (num == 1) return player.getEnemies().includes(target);
                                 return Math.random();
@@ -2388,7 +2388,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             [255, 160, 122],
                         ].randomGet(),
                     });
-                    var num = event.link + 1;
+                    let num = event.link + 1;
                     game.log(player, '选择执行曦光选项', '#y' + num);
                     switch (num) {
                         case 1: {
@@ -2451,7 +2451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 } else event.finish();
                 ('step 3');
                 event.result = { xiguang: event.link };
-                var num = event.link + 1;
+                let num = event.link + 1;
                 if (event.link == 1 && result.tie) player.chooseToPSS(event.target);
                 else {
                     event.finish();
@@ -2468,7 +2468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 event.goto(3);
             };
             lib.element.player.chooseToQysjDuiben = function (target) {
-                var next = game.createEvent('chooseToQysjDuiben');
+                let next = game.createEvent('chooseToQysjDuiben');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToQysjDuiben');
@@ -2476,8 +2476,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.element.content.chooseToQysjDuiben = function () {
                 'step 0';
-                var name = ['qysj2_fenbingweicheng', 'qysj2_kaichengyoudi', 'qysj1_quanjunchuji', 'qysj1_qixiliangdao'];
-                for (var i = 0; i < name.length; i++) {
+                let name = ['qysj2_fenbingweicheng', 'qysj2_kaichengyoudi', 'qysj1_quanjunchuji', 'qysj1_qixiliangdao'];
+                for (let i = 0; i < name.length; i++) {
                     if (!lib.card[name[i]]) {
                         lib.card[name[i]] = get.copy(lib.skill.equiplib[name[i]]);
                         lib.translate[name[i]] = get.translation(name[i]);
@@ -2527,7 +2527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             _status.event.result = 'ai';
                         })
                         .set('processAI', function () {
-                            var buttons = _status.event.dialog.buttons;
+                            const buttons = _status.event.dialog.buttons;
                             return {
                                 bool: true,
                                 links: [buttons.randomGet().link],
@@ -2585,9 +2585,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.log(target, '选择的进攻之策为', '#g' + get.translation(event.tes));
                 game.log(player, '选择的防御对策为', '#g' + get.translation(event.mes));
                 ('step 5');
-                var mes = event.mes[4];
-                var tes = event.tes[4];
-                var str;
+                let mes = event.mes[4];
+                const tes = event.tes[4];
+                let str;
                 if (mes == tes) {
                     str = get.translation(player) + '对策成功';
                     player.popup('胜', 'wood');
@@ -2602,7 +2602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.result = { bool: false };
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -2618,7 +2618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
             };
             lib.element.player.chooseToQysjMoulve = function (target) {
-                var next = game.createEvent('chooseToQysjMoulve');
+                let next = game.createEvent('chooseToQysjMoulve');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToQysjMoulve');
@@ -2635,11 +2635,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.cardsGotoOrdering(event.cardx);
                 target.showCards(event.cardx);
                 event.num2 = event.cardx[0].number;
-                for (var i = 0; i < event.cardx.length; i++) {
+                for (let i = 0; i < event.cardx.length; i++) {
                     event.cardx.splice(i--, 1);
                 }
                 ('step 1');
-                var str;
+                let str;
                 if (event.num1 > event.num2) {
                     str = get.translation(player) + '谋略成功';
                     //	player.popup('胜','wood');
@@ -2654,7 +2654,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.result = { bool: false };
                 }
                 game.broadcastAll(function (str) {
-                    var dialog = ui.create.dialog(str);
+                    const dialog = ui.create.dialog(str);
                     dialog.classList.add('center');
                     setTimeout(function () {
                         dialog.close();
@@ -2662,11 +2662,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }, str);
             };
             lib.element.player.chooseToQmmMouyi = function (target) {
-                var next = game.createEvent('chooseToQmmMouyi');
+                let next = game.createEvent('chooseToQmmMouyi');
                 next.player = this;
                 next.setContent('chooseToQmmMouyi');
                 next.target = target;
-                for (var i = 1; i < arguments.length; i++) {
+                for (let i = 1; i < arguments.length; i++) {
                     if (typeof arguments[i] == 'string') {
                         next.mouyi = arguments[i];
                     }
@@ -2675,17 +2675,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.element.content.chooseToQmmMouyi = function () {
                 'step 0';
-                var target = event.target;
-                var mouyi = event.mouyi;
+                const target = event.target;
+                const mouyi = event.mouyi;
                 game.log(player, '对', target, '发起了', '#y谋弈');
-                var list;
+                let list;
                 if (mouyi == '破阵') list = ['zhiqudiying', 'raozhenpidi', 'chuzhenyingdi', 'gongweizhongjun'];
                 if (mouyi == '攻城') list = ['leigujinjun', 'weichengduanliang', 'tuchuchongwei', 'gushouchengchi'];
                 if (mouyi == '海王') list = ['pubiansawang', 'zhongdianpeiyang', 'yusiwangpo', 'taidulengmo'];
                 if (mouyi == '龙灾') list = ['potianzhanlei', 'longzuzhihuo', 'leidianzhidun', 'tulongshenjian'];
-                var dialog = ui.create.dialog(mouyi, '请选择你的' + (mouyi == '攻城' ? mouyi : mouyi == '破阵' ? '突袭' : mouyi == '海王' ? '养鱼' : '毁灭') + '之策', 'hidden');
-                var table = [];
-                for (var i = 0; i < 2; i++) {
+                const dialog = ui.create.dialog(mouyi, '请选择你的' + (mouyi == '攻城' ? mouyi : mouyi == '破阵' ? '突袭' : mouyi == '海王' ? '养鱼' : '毁灭') + '之策', 'hidden');
+                const table = [];
+                for (let i = 0; i < 2; i++) {
                     table.add([list[i], '<span><img src="extension/猫猫叹气/image/蓝语天谋/' + list[i] + '.png" width="135" height="160"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
@@ -2694,14 +2694,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 };
                 event.list = list;
                 ('step 1');
-                var target = event.target;
-                var mouyi = event.mouyi;
-                var list = event.list;
+                const target = event.target;
+                const mouyi = event.mouyi;
+                let list = event.list;
                 if (result.bool) {
                     event.mes = result.links[0];
-                    var dialog = ui.create.dialog(mouyi, '请选择你的' + (mouyi == '攻城' ? '守城' : mouyi == '破阵' ? '守营' : mouyi == '海王' ? '反海王' : '防龙') + '之策', 'hidden');
-                    var table = [];
-                    for (var i = 2; i < 4; i++) {
+                    const dialog = ui.create.dialog(mouyi, '请选择你的' + (mouyi == '攻城' ? '守城' : mouyi == '破阵' ? '守营' : mouyi == '海王' ? '反海王' : '防龙') + '之策', 'hidden');
+                    const table = [];
+                    for (let i = 2; i < 4; i++) {
                         table.add([list[i], '<span><img src="extension/猫猫叹气/image/蓝语天谋/' + list[i] + '.png" width="135" height="160"></span>']);
                     }
                     dialog.add([table, 'tdnodes']);
@@ -2710,12 +2710,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     };
                 } else event.finish();
                 ('step 2');
-                var target = event.target;
-                var mouyi = event.mouyi;
+                const target = event.target;
+                const mouyi = event.mouyi;
                 if (result.bool) {
                     event.tes = result.links[0];
-                    var mes = event.mes;
-                    var tes = event.tes;
+                    let mes = event.mes;
+                    const tes = event.tes;
                     game.log(player, '选择的', mouyi == '攻城' ? mouyi : mouyi == '破阵' ? '突袭' : mouyi == '海王' ? '养鱼' : '毁灭', '之策为', '#g' + mes);
                     game.log(target, '选择的', mouyi == '攻城' ? '守城' : mouyi == '破阵' ? '守营' : mouyi == '海王' ? '反海王' : '防龙', '之策为', '#g' + tes);
                     if ((['leigujinjun', 'zhiqudiying', 'pubiansawang', 'potianzhanlei'].includes(mes) && !['gushouchengchi', 'gongweizhongjun', 'yusiwangpo', 'leidianzhidun'].includes(tes)) || (['weichengduanliang', 'raozhenpidi', 'zhongdianpeiyang', 'longzuzhihuo'].includes(mes) && !['tuchuchongwei', 'chuzhenyingdi', 'taidulengmo', 'tulongshenjian'].includes(tes))) {
@@ -2735,9 +2735,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 ('step 3');
                 if (event.str) {
-                    var str = event.str;
+                    let str = event.str;
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str);
+                        const dialog = ui.create.dialog(str);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -2746,7 +2746,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
             };
             lib.element.player.chooseToQmmXieli = function (target) {
-                var next = game.createEvent('chooseToQmmXieli');
+                let next = game.createEvent('chooseToQmmXieli');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToQmmXieli');
@@ -2755,7 +2755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.player.canQmmXieli = function (target) {
                 if (this == target) return false;
                 if (this.storage.qmm_xieli) {
-                    for (let storage of this.storage.qmm_xieli) {
+                    for (const storage of this.storage.qmm_xieli) {
                         if (storage && storage[0] && storage[0] == target) return false;
                     }
                 }
@@ -2764,10 +2764,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.content.chooseToQmmXieli = function () {
                 'step 0';
                 game.log(player, '与', target, '进行', '#y协力');
-                var list = ['同仇', '并进', '疏财', '戮力'];
-                var dialog = ui.create.dialog('协力', '选择你与' + get.translation(target) + '的协力条件', 'hidden');
-                var table = [];
-                for (var i = 0; i < list.length; i++) {
+                let list = ['同仇', '并进', '疏财', '戮力'];
+                const dialog = ui.create.dialog('协力', '选择你与' + get.translation(target) + '的协力条件', 'hidden');
+                const table = [];
+                for (let i = 0; i < list.length; i++) {
                     table.add([list[i], '<span><img src="extension/猫猫叹气/image/蓝语天谋/' + list[i] + '.png" width="100" height="133"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
@@ -2781,7 +2781,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.addGlobalSkill('qmm_xieli2');
                     game.addGlobalSkill('qmm_xieli3');
                     game.addGlobalSkill('qmm_xielidie');
-                    var num = 0;
+                    let num = 0;
                     if (['疏财', '戮力'].includes(result.links[0])) num = [];
                     if (!player.storage.qmm_xieli) player.storage.qmm_xieli = [];
                     player.storage.qmm_xieli.add([target, result.links[0], num]);
@@ -2790,7 +2790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
             };
             lib.element.player.chooseToQmmXieli2 = function (target) {
-                var next = game.createEvent('chooseToQmmXieli2');
+                let next = game.createEvent('chooseToQmmXieli2');
                 next.player = this;
                 next.target = target;
                 next.setContent('chooseToQmmXieli2');
@@ -2798,11 +2798,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.element.content.chooseToQmmXieli2 = function () {
                 'step 0';
-                var storage = player.storage.qmm_xieli;
-                var next = 0;
-                var list = [];
+                const storage = player.storage.qmm_xieli;
+                let next = 0;
+                let list = [];
                 if (storage && storage.length) {
-                    for (let s of storage) {
+                    for (const s of storage) {
                         if (s && s[0] && s[0] != target) list.add(s);
                         if (s && s[0] && s[0] == target && s[1] && s[2]) {
                             if ((s[1] == '同仇' && s[2] > 3) || (s[1] == '并进' && s[2] > 7) || (['疏财', '戮力'].includes(s[1]) && s[2].length > 3)) next++;
@@ -2819,12 +2819,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.str = get.translation(player) + '与' + get.translation(target) + '协力失败';
                 }
                 player.storage.qmm_xieli = list;
-                var num2 = 0;
-                var num3 = 0;
+                let num2 = 0;
+                let num3 = 0;
                 game.countPlayer(function (current2) {
-                    var storage2 = current2.storage.qmm_xieli;
+                    const storage2 = current2.storage.qmm_xieli;
                     if (storage2 && storage2.length) {
-                        for (let s of storage2) {
+                        for (const s of storage2) {
                             if (s && s[0] && s[0] == player) num2++;
                             if (s && s[0] && s[0] == target) num3++;
                         }
@@ -2834,9 +2834,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if ((!target.storage.qmm_xieli || !target.storage.qmm_xieli.length) && num3 == 0) target.unmarkSkill('qmm_xieli_mark');
                 ('step 1');
                 if (event.str) {
-                    var str = event.str;
+                    let str = event.str;
                     game.broadcastAll(function (str) {
-                        var dialog = ui.create.dialog(str);
+                        const dialog = ui.create.dialog(str);
                         dialog.classList.add('center');
                         setTimeout(function () {
                             dialog.close();
@@ -2845,9 +2845,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
             };
             lib.element.player.openBaibaoxiang = function () {
-                var next = game.createEvent('openBaibaoxiang');
+                let next = game.createEvent('openBaibaoxiang');
                 next.player = this;
-                for (var i = 0; i < arguments.length; i++) {
+                for (let i = 0; i < arguments.length; i++) {
                     if (typeof arguments[i] == 'number') {
                         next.num = arguments[i];
                     } else if (typeof arguments[i] == 'boolean') {
@@ -2867,7 +2867,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.finish();
                     return;
                 }
-                var num = 1;
+                let num = 1;
                 if (event.num) num = event.num;
                 for (let name of lib.skill.qmm_baibaoxiang.bao.concat(lib.skill.qmm_baibaoxiang.geren)) {
                     if (!lib.card[name]) {
@@ -2877,7 +2877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     if (!['qmm_tianmingzhilian', 'qmm_guishi', 'qmm_tianshidu', 'qmm_baguaqizhen'].includes(name)) lib.inpile.add(name);
                 }
-                var dialog = ui.create.dialog('<font size=6>百宝箱', '<font size=3>百宝箱收录了小作者所创作的所有衍生牌', '选择一张牌获得', 'hidden');
+                const dialog = ui.create.dialog('<font size=6>百宝箱', '<font size=3>百宝箱收录了小作者所创作的所有衍生牌', '选择一张牌获得', 'hidden');
                 dialog.add('来源:镜灵蛇(反射)');
                 dialog.add([
                     [
@@ -2891,10 +2891,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 dialog.add('来源:镜灵蛇(反扑)');
                 dialog.add([['xdz_siqianfanji', 'xdz_zuihoufanji'], 'vcard']);
                 dialog.add('来源:虚无大天使(虚无)');
-                var xuwu2 = [];
-                for (let xuwu of ['xdz_nvwangbihu', 'xdz_lingwu', 'xdz_dun', 'xdz_jixianzhuangjia', 'xdz_kui', 'xdz_nenglifengjin', 'xdz_waigugezhuangzhi', 'xdz_kuizeng', 'xdz_donglizhuangjia', 'xdz_lun', 'xdz_shenlongzhili', 'xdz_jinguzhuangjia', 'xdz_zaokaqi']) {
+                const xuwu2 = [];
+                for (const xuwu of ['xdz_nvwangbihu', 'xdz_lingwu', 'xdz_dun', 'xdz_jixianzhuangjia', 'xdz_kui', 'xdz_nenglifengjin', 'xdz_waigugezhuangzhi', 'xdz_kuizeng', 'xdz_donglizhuangjia', 'xdz_lun', 'xdz_shenlongzhili', 'xdz_jinguzhuangjia', 'xdz_zaokaqi']) {
                     if (xuwu != 'xdz_zaokaqi') {
-                        var xstype = get.subtype(xuwu);
+                        const xstype = get.subtype(xuwu);
                         xuwu2.push([get.translation(xstype), '', xuwu]);
                     } else xuwu2.push(['特殊', '', xuwu]);
                 }
@@ -2966,14 +2966,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 };
                 ('step 1');
                 if (result.bool) {
-                    var card = [];
-                    for (let r of result.links) {
+                    const card = [];
+                    for (const r of result.links) {
                         if (r[2] == 'lxl_shui') {
                             if (lib.skill.g_shencaojie) lib.skill.g_shencaojie.filter = lib.skill.qmm_xiguangx.filter;
                             if (lib.skill.g_shenmiguo) lib.skill.g_shenmiguo.filter = lib.skill.qmm_xiguangx.filter0;
                             if (lib.skill.g_jinlianzhu) lib.skill.g_jinlianzhu.filter = lib.skill.qmm_xiguangx.filter2;
                             if (lib.skill.g_shihuifen) lib.skill.g_shihuifen.filter = lib.skill.qmm_xiguangx.filter1;
-                            for (let c of ['g_chenhuodajie', 'g_youdishenru', 'g_shihuifen', 'qmm_hupeng4', 'g_shencaojie', 'g_shenmiguo', 'g_jinlianzhu', 'caochuan_skill']) {
+                            for (const c of ['g_chenhuodajie', 'g_youdishenru', 'g_shihuifen', 'qmm_hupeng4', 'g_shencaojie', 'g_shenmiguo', 'g_jinlianzhu', 'caochuan_skill']) {
                                 if (lib.skill[c]) game.addGlobalSkill(c);
                             }
                         }
@@ -2992,16 +2992,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
             };
             lib.element.player.canQmmLinmo = function (card, huihuaname) {
-                var player = this;
+                const player = this;
                 if (!lib.skill.qmmtricklib.linmo.includes(card.name)) return false;
                 if (player.storage.huihuaname2 && player.storage.huihuaname2.includes(card)) return false;
                 if (huihuaname == true && player.storage.huihuaname && player.storage.huihuaname.includes(card.name)) return false;
                 return true;
             };
             lib.element.player.qmmLinmoCard = function () {
-                var next = game.createEvent('qmmLinmoCard');
+                let next = game.createEvent('qmmLinmoCard');
                 next.player = this;
-                for (var i = 0; i < arguments.length; i++) {
+                for (let i = 0; i < arguments.length; i++) {
                     if (get.itemtype(arguments[i]) == 'card') {
                         next.card = [arguments[i]];
                     } else if (get.itemtype(arguments[i]) == 'cards') {
@@ -3017,10 +3017,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.element.content.qmmLinmoCard = function () {
                 'step 0';
-                var gain = [],
-                    draw = [],
-                    linmo = [];
-                for (let cardx of event.card) {
+                let gain = [], draw = [], linmo = [];
+                for (const cardx of event.card) {
                     if (event.forced && player.canQmmLinmo(cardx, true)) linmo.add(cardx);
                     if (!event.forced && player.canQmmLinmo(cardx)) linmo.add(cardx);
                 }
@@ -3028,7 +3026,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.finish();
                     return;
                 }
-                for (let card of linmo) {
+                for (const card of linmo) {
                     if (event.forced) {
                         if (!player.storage.huihuaname) player.storage.huihuaname = [];
                         player.storage.huihuaname.add(card.name);
@@ -3044,7 +3042,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         lib.inpile.sort(lib.sort.card);
                         gain = game.createCard2(name, card.suit, card.number);
                     } else gain = game.createCard2(card);
-                    var cardtag = [];
+                    const cardtag = [];
                     if (get.cardtag(card, 'gifts')) cardtag.push('gifts');
                     if (get.cardtag(card, 'yingbian_kongchao')) cardtag.push('yingbian_kongchao');
                     if (get.cardtag(card, 'yingbian_canqu')) cardtag.push('yingbian_canqu');
@@ -3071,7 +3069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     if (event.target) game.log(player, '对', event.target, '的', linmo, '进行了临摹');
                     else game.log(player, '对', linmo, '进行了临摹');
                     player.gain(draw, 'draw2');
-                    for (let players of game.players) {
+                    for (const players of game.players) {
                         if (!players.storage.huihuaname2) players.storage.huihuaname2 = [];
                         players.storage.huihuaname2.addArray(draw);
                     }
@@ -3095,9 +3093,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			/*精品*/ lib.rank.rarity.rare.addArray(['qysj_zxz', 'qysj_chayedan', 'qysj_liyujinger', 'qysj_zhihui', 'qysj_qingmengx', 'qysj_fuban', 'qysj_abiao', 'qysj_mifan', 'qysj_qihaiqianqiu', 'qysj_youlian', 'gz_jushou_qysj', 'qysj_maoyamaoli', 'qysj_xiexiong']);
 			/*平凡*/ lib.rank.rarity.junk.addArray(['qmm_yueguishu', 'qysj_lilongji']);
             if (config.bosssuncex) {
-                var setBackground = HTMLDivElement.prototype.setBackground,
-                    time;
-                var characterImage = {
+                const setBackground = HTMLDivElement.prototype.setBackground, time;
+                const characterImage = {
                     boss_sunce: 'extension/猫猫叹气/image/天马行空/boss_sunce.jpg',
                 };
                 HTMLDivElement.prototype.setBackground = function (name) {
@@ -3140,7 +3137,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     loopType: 1,
                     chongzheng: 0,
                     gameDraw(player) {
-                        var dong = lib.config['extension_猫猫叹气_bossdongfeng'];
+                        const dong = lib.config['extension_猫猫叹气_bossdongfeng'];
                         if (dong == 'richanglinmo') return player == game.boss ? 8 : 4;
                         if (dong == 'xundaotianshen') return player == game.boss ? 10 : 4;
                         return 4;
@@ -3151,7 +3148,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                     },
                     init() {
-                        var dong = lib.config.extension_猫猫叹气_bossdongfeng;
+                        const dong = lib.config.extension_猫猫叹气_bossdongfeng;
                         if (dong == 'tianshishenhua') {
                             game.boss.storage.siling = true;
                             game.addGlobalSkill('qmsl_xuanhuo_delay');
@@ -3171,9 +3168,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         lib.inpile.add('sadouchengbing');
                         lib.inpile.add('yihuajiemu');
                         lib.inpile.add('gubuzifeng');
-                        var cards = [game.createCard2('gubuzifeng', 'club', 5), game.createCard2('gubuzifeng', 'diamond', 7)];
-                        for (var i = 0; i < ui.cardPile.childElementCount; i++) {
-                            var node = ui.cardPile.childNodes[i];
+                        const cards = [game.createCard2('gubuzifeng', 'club', 5), game.createCard2('gubuzifeng', 'diamond', 7)];
+                        for (let i = 0; i < ui.cardPile.childElementCount; i++) {
+                            const node = ui.cardPile.childNodes[i];
                             if (node.name == 'wuzhong') {
                                 cards.push(game.createCard2('sadouchengbing', node.suit, node.number));
                             } else if (node.name == 'jiedao') {
@@ -3417,7 +3414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         },
         precontent(miaomiaomiao) {
             game.import('character', function () {
-                var miaomiaomiao = {
+                const miaomiaomiao = {
                     name: 'miaomiaomiao',
                     connect: true,
                     characterSort: {
@@ -5294,11 +5291,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return '锁定技,你对主公造成的伤害-1.一名角色的回合结束时,若你因【昭心】而获得过八张或以上的牌,你获得【泰然】并修改【夺魂】.';
                         },
                         leiwmr_guowei(player) {
-                            var info = player.storage.leiwmrguowei;
-                            var str = '每回合限一次,你可以将一张';
-                            var list = ['diamond', 'heart', 'spade', 'club'];
-                            for (var i of list) {
-                                var strx = get.translation(i);
+                            const info = player.storage.leiwmrguowei;
+                            let str = '每回合限一次,你可以将一张';
+                            let list = ['diamond', 'heart', 'spade', 'club'];
+                            for (let i of list) {
+                                let strx = get.translation(i);
                                 if (info && info.includes(i)) strx = '<span style="text-decoration:line-through;text-decoration-style:double;">' + strx + '</span>'; //<span style="text-decoration:underline;text-decoration-style:double;"><span style="text-decoration:overline;text-decoration-style:double;">
                                 //if(info&&info.includes(i)) strx=('<div style="position:relative"> <p style="position:absolute;z-index:1">'+strx+'</p> <p style="position:absolute;z-index:2">删</p> </div>');
                                 str += strx;
@@ -5309,7 +5306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                     }, //修改
                 };
-                for (var i in miaomiaomiao.character) {
+                for (let i in miaomiaomiao.character) {
                     miaomiaomiao.character[i][4].push('ext:猫猫叹气/image/武将/' + i + '.jpg');
                 }
                 lib.config.all.characters.add('miaomiaomiao');
@@ -5319,7 +5316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             });
             //圆梦计划
             game.import('character', function () {
-                var yuanmengjihua = {
+                const yuanmengjihua = {
                     name: 'yuanmengjihua',
                     connect: true,
                     characterSort: {
@@ -5918,7 +5915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         qysj_yiming_info: '当你摸牌时,你可以将本次摸牌数改为八,本次摸牌结束后你须弃置至少六张手牌,若你的势力为吴,则你可以选择任意名吴势力或手牌数最少的其他角色,将你以此法弃置的牌分配给这些角色(每名角色至多获得两张牌).',
                     }, //翻译
                 };
-                for (var i in yuanmengjihua.character) {
+                for (let i in yuanmengjihua.character) {
                     yuanmengjihua.character[i][4].push('ext:猫猫叹气/image/武将/' + i + '.jpg');
                 }
                 lib.config.all.characters.add('yuanmengjihua');
@@ -6946,7 +6943,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         sgjl_fenlikengzheng_info: '其他角色对你造成伤害后可以对其使用,弃置其装备区内所有牌,再弃置其X张手牌(X为本次伤害值乘以2).',
                     }, //翻译
                 };
-                for (var i in tianmaxingkongx.character) {
+                for (let i in tianmaxingkongx.character) {
                     tianmaxingkongx.character[i][4].push('ext:猫猫叹气/image/天马行空/' + i + '.jpg');
                 }
                 lib.config.all.characters.add('tianmaxingkongx');
@@ -8816,7 +8813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         hjzh_guzhu_info: '一名其他角色的回合结束时,若你的体力值或手牌数为1,你可视为对其使用一张【杀】.',
                     }, //翻译
                 };
-                for (var i in qmmshashenfuti.character) {
+                for (let i in qmmshashenfuti.character) {
                     qmmshashenfuti.character[i][4].push('ext:猫猫叹气/image/杀神附体/' + i + '.jpg');
                 }
                 lib.config.all.characters.add('qmmshashenfuti');
@@ -8936,7 +8933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             wuxieable: true,
                             content() {
                                 'step 0';
-                                var info = event.getParent(2).debuchangshi || event.getParent(3).debuchangshi;
+                                const info = event.getParent(2).debuchangshi || event.getParent(3).debuchangshi;
                                 if (!info) {
                                     event.finish();
                                     return;
@@ -8963,7 +8960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             notarget: true,
                             wuxieable: true,
                             content() {
-                                var info = event.getParent(2).fankeweizhu || event.getParent(3).fankeweizhu;
+                                const info = event.getParent(2).fankeweizhu || event.getParent(3).fankeweizhu;
                                 if (!info) {
                                     event.finish();
                                     return;
@@ -9018,17 +9015,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.equip(game.createCard('zhangba', 'spade', 12));
                                 if (!target.hasJudge('shandian')) target.addJudge([game.createCard('shandian', 'spade', 1), game.createCard('shandian', 'heart', 12)].randomGet());
                                 ('step 2');
-                                var lists = [];
-                                for (var i in lib.card) {
+                                const lists = [];
+                                for (let i in lib.card) {
                                     if (!lib.translate[i + '_info']) continue;
                                     if (!lib.card[i].content) continue;
                                     if (lib.card[i].mode && lib.card[i].mode.includes(lib.config.mode) == false) continue;
                                     if (lib.config.hiddenCardPack.indexOf(i) == 0) continue;
                                     lists.push(i);
                                 }
-                                var multitarget = [];
-                                for (var i = 0; i < lists.length; i++) {
-                                    var name = lists[i];
+                                const multitarget = [];
+                                for (let i = 0; i < lists.length; i++) {
+                                    let name = lists[i];
                                     if (get.tag(game.createCard(name), 'multitarget') && !['xianluhui', 'gw_shanbengshu', 'gw_wenyi', 'shenhuofeiya', 'tanshezhiren', 'shuiyanqijun', 'tiesuo'].includes(name)) multitarget.push(game.createCard(name));
                                 }
                                 if (lib.card.hszuzhou_wushushike) multitarget.push(game.createCard('hszuzhou_wushushike'));
@@ -9113,23 +9110,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.die().source = player;
                                 } else {
                                     game.log(target, '当场滑稽');
-                                    var getLeft = function (player) {
+                                    const getLeft = function (player) {
                                         if (player == game.me && !ui.fakeme && !ui.chess) return player.getLeft() + player.node.avatar.offsetWidth / 2;
                                         return player.getLeft() + player.offsetWidth / 2;
                                     };
-                                    var player = target;
-                                    var emotion = ui.create.div('', '<div style="text-align:center"> <img src="extension/猫猫叹气/image/卡牌/tmxk_huaji.png"> </div>', game.chess ? ui.chess : ui.window);
+                                    const player = target;
+                                    const emotion = ui.create.div('', '<div style="text-align:center"> <img src="extension/猫猫叹气/image/卡牌/tmxk_huaji.png"> </div>', game.chess ? ui.chess : ui.window);
                                     emotion.style.width = '60px';
                                     emotion.style.height = '60px';
-                                    var width = emotion.offsetWidth / 2;
-                                    var height = emotion.offsetHeight / 2;
+                                    let width = emotion.offsetWidth / 2;
+                                    const height = emotion.offsetHeight / 2;
                                     if (game.chess) width += 60;
-                                    var left = getLeft(player) - width;
-                                    var top = player.getTop() + player.offsetHeight / 3 - height;
+                                    const left = getLeft(player) - width;
+                                    const top = player.getTop() + player.offsetHeight / 3 - height;
                                     emotion.style.left = left + 'px';
                                     emotion.style.top = top + 'px';
-                                    var left2 = getLeft(target) - width;
-                                    var top2 = target.getTop() + target.offsetHeight / 3 - height;
+                                    const left2 = getLeft(target) - width;
+                                    const top2 = target.getTop() + target.offsetHeight / 3 - height;
                                     emotion.style['z-index'] = 10;
                                     emotion.style.transform = 'translateY(' + (top2 - top) + 'px) translateX(' + (left2 - left) + 'px)';
                                     setTimeout(function () {
@@ -9183,7 +9180,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var cards = target.getCards('he');
+                                const cards = target.getCards('he');
                                 event.num = cards.length;
                                 target.discard(cards);
                                 ('step 1');
@@ -9199,10 +9196,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target(player, target) {
                                         if (target == player) {
-                                            var cards = player.getCards('he');
-                                            var num = -1;
+                                            const cards = player.getCards('he');
+                                            let num = -1;
                                             if (Array.isArray(cards))
-                                                for (var i of cards) {
+                                                for (let i of cards) {
                                                     if (get.value(i) < 6) num++;
                                                 }
                                             if (player.needsToDiscard() && num < 1) {
@@ -9235,9 +9232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.qiuqian();
                                 ('step 1');
-                                var basic = [],
-                                    trick = [],
-                                    equip = [];
+                                const basic = [], trick = [], equip = [];
                                 get.cardPile(function (card) {
                                     if (result.qian == 'ssq') {
                                         if (get.type(card) == 'basic' && card.name != 'du') basic.push(card);
@@ -9253,7 +9248,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (['sha', 'shan'].includes(card.name)) basic.push(card);
                                     } else if (result.qian == 'xxq' && card.name == 'du') basic.push(card);
                                 });
-                                var cards = [];
+                                const cards = [];
                                 if (basic.length) cards.push(basic.randomGet());
                                 if (trick.length) cards.push(trick.randomGet());
                                 if (equip.length) cards.push(equip.randomGet());
@@ -9288,22 +9283,22 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             modTarget: true,
                             content() {
                                 'step 0';
-                                var list = get.gainableCharacters();
-                                var players = game.players.concat(game.dead);
-                                for (var i of players) {
+                                let list = get.gainableCharacters();
+                                const players = game.players.concat(game.dead);
+                                for (let i of players) {
                                     list.remove(i.name);
                                     list.remove(i.name1);
                                     list.remove(i.name2);
                                 }
-                                var dialog = ui.create.dialog('是否将当前武将牌更换为一个体力上限相同的武将', 'hidden');
+                                const dialog = ui.create.dialog('是否将当前武将牌更换为一个体力上限相同的武将', 'hidden');
                                 dialog.add([list.randomGets(3), 'character']);
                                 target
                                     .chooseButton(dialog)
                                     .set('ai', function (button) {
-                                        for (var i in lib.characterPack.tianmaxingkong) {
+                                        for (let i in lib.characterPack.tianmaxingkong) {
                                             if (i == player.name) return 0;
                                         }
-                                        for (var i in lib.characterPack.miaomiaomiao) {
+                                        for (let i in lib.characterPack.miaomiaomiao) {
                                             if (i == player.name) return 0;
                                         }
                                         return get.rank(button.link, true);
@@ -9313,9 +9308,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 if (result.bool) {
-                                    var hp = target.hp;
-                                    var maxhp = target.maxHp;
-                                    var name = target.name;
+                                    const hp = target.hp;
+                                    const maxhp = target.maxHp;
+                                    let name = target.name;
                                     target.reinit(target.name, result.links[0]);
                                     game.log('#b' + name, '将武将牌更换为', '#b' + result.links[0]);
                                     target.hp = hp;
@@ -9339,7 +9334,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             wuxieable: true,
                             content() {
                                 'step 0';
-                                var info = event.getParent(2).luojingxiashi || event.getParent(3).luojingxiashi;
+                                const info = event.getParent(2).luojingxiashi || event.getParent(3).luojingxiashi;
                                 if (!info) {
                                     event.finish();
                                     return;
@@ -9377,7 +9372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', '请选择一个花色:');
                                 ('step 1');
-                                var suit = [];
+                                const suit = [];
                                 get.cardPile(function (card) {
                                     if (card.suit == (result.control == '♠️️' ? 'spade' : result.control == '♥️️' ? 'heart' : result.control == '♣️️' ? 'club' : 'diamond')) suit.push(card);
                                 });
@@ -9410,7 +9405,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var color = ['红色牌', '黑色牌'];
+                                const color = ['红色牌', '黑色牌'];
                                 if (target.storage.mozhongfengyin) {
                                     if (target.storage.mozhongfengyin.includes('red')) color.remove('红色牌');
                                     else color.remove('黑色牌');
@@ -9594,7 +9589,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return target.countGainableCards(player, 'hej') > 0;
                             },
                             content() {
-                                var position = 'hej';
+                                const position = 'hej';
                                 if (target.countGainableCards(player, position)) {
                                     player.gainPlayerCard(position, target, true);
                                 }
@@ -9613,9 +9608,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target(player, target) {
                                         if (get.attitude(player, target) <= 0) return target.countCards('he') > 0 ? -1.5 : 1.5;
-                                        var js = target.getCards('j');
+                                        const js = target.getCards('j');
                                         if (js.length) {
-                                            var jj = js[0].viewAs ? { name: js[0].viewAs } : js[0];
+                                            const jj = js[0].viewAs ? { name: js[0].viewAs } : js[0];
                                             if (jj.name == 'shunshou') return 3;
                                             if (js.length == 1 && get.effect(target, jj, target, player) >= 0) {
                                                 return -1.5;
@@ -9629,9 +9624,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         }
                                         if (get.attitude(player, target) > 1) {
-                                            var js = target.getCards('j');
+                                            const js = target.getCards('j');
                                             if (js.length) {
-                                                var jj = js[0].viewAs ? { name: js[0].viewAs } : js[0];
+                                                const jj = js[0].viewAs ? { name: js[0].viewAs } : js[0];
                                                 if (jj.name == 'shunshou') return 1;
                                                 if (js.length == 1 && get.effect(target, jj, target, player) >= 0) {
                                                     return 0;
@@ -9666,9 +9661,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.cards = [];
                                 event.cards2 = [];
                                 ('step 1');
-                                var list = [];
-                                var b = lib.translate[event.Q];
-                                for (var i = 0; i < b.length; i++) {
+                                let list = [];
+                                const b = lib.translate[event.Q];
+                                for (let i = 0; i < b.length; i++) {
                                     if ((b[i] == '刘' && b.substring(i, i + 2) == '刘备') || (b[i] == '烈' && b.substring(i, i + 4) == '烈帝玄德') || (b[i] == '蜀' && b.substring(i, i + 4) == '蜀汉烈帝') || (b[i] == '汉' && b.substring(i, i + 4) == '汉昭烈帝')) {
                                         if (lib.card.cixiong) list.add(game.createCard('cixiong', 'spade', 2));
                                         if (lib.card.dilu) list.add(game.createCard('dilu', 'club', 5));
@@ -9839,7 +9834,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     if ((b[i] == '兀' && b.substring(i, i + 3) == '兀突骨') || (b[i] == '孟' && b.substring(i, i + 2) == '孟获') || (b[i] == '祝' && b.substring(i, i + 2) == '祝融') || (b[i] == '花' && b.substring(i, i + 2) == '花鬘') || (b[i] == '花' && b.substring(i, i + 2) == '花蔓') || (b[i] == '沙' && b.substring(i, i + 3) == '沙摩柯') || (b[i] == '忙' && b.substring(i, i + 3) == '忙牙长') || (b[i] == '朵' && b.substring(i, i + 4) == '朵思大王') || (b[i] == '木' && b.substring(i, i + 4) == '木鹿大王')) {
                                         if (lib.card.zhanxiang) {
-                                            var zhanxiang = game.createCard('zhanxiang');
+                                            const zhanxiang = game.createCard('zhanxiang');
                                             zhanxiang.init(['heart', 13, 'zhanxiang', null, ['gifts']]).delay = false;
                                             list.add(zhanxiang);
                                         }
@@ -9853,7 +9848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (b[i] == '王' && b.substring(i, i + 2) == '王允') {
                                         if (lib.card.qibaodao) list.add(game.createCard('qibaodao', 'spade', 6));
                                         if (lib.card.qixingbaodao) {
-                                            var qixingbaodao = game.createCard('qixingbaodao');
+                                            const qixingbaodao = game.createCard('qixingbaodao');
                                             qixingbaodao.init(['spade', 2, 'qixingbaodao', null, ['gifts']]).delay = false;
                                             list.add(qixingbaodao);
                                         }
@@ -9883,7 +9878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     if (b[i] == '王' && b.substring(i, i + 2) == '王粲') {
                                         if (lib.card.yonglv) {
-                                            var yonglv = game.createCard('yonglv');
+                                            const yonglv = game.createCard('yonglv');
                                             yonglv.init(['club', 13, 'yonglv', null, ['gifts']]).delay = false;
                                             list.add(yonglv);
                                         }
@@ -10052,7 +10047,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(1);
                                 }
                                 ('step 3');
-                                var dialog = ui.create.dialog('天赐神兵', '选项一:选择一件专属装备获得', 'hidden');
+                                const dialog = ui.create.dialog('天赐神兵', '选项一:选择一件专属装备获得', 'hidden');
                                 if (event.cards.length) {
                                     dialog.addText(get.translation(target) + '的专属装备');
                                     dialog.add(event.cards);
@@ -10063,9 +10058,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else if (target.name2) dialog.addText(get.translation(target.name2) + '无专属装备');
                                 dialog.add('选项二:摸两张牌');
                                 dialog.add([[['摸两张牌', '<b><font size=5>摸两张牌']], 'tdnodes']);
-                                var chooseButton = target.chooseButton(dialog, true);
+                                const chooseButton = target.chooseButton(dialog, true);
                                 chooseButton.set('ai', function (button) {
-                                    var card = button.link[2];
+                                    const card = button.link[2];
                                     return 1 + Math.random();
                                 });
                                 ('step 4');
@@ -10105,7 +10100,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else {
                                     target
                                         .chooseToRespond('请打出一张【桃】或【桃园结义】响应【天灾人祸】', function (card, player) {
-                                            var name = card.name;
+                                            let name = card.name;
                                             return name == 'tao' || name == 'taoyuan';
                                         })
                                         .set('ai', function (card) {
@@ -10130,7 +10125,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target) {
-                                        var nh = target.countCards('h');
+                                        const nh = target.countCards('h');
                                         if (get.mode() == 'identity') {
                                             if (target.isZhu && nh <= 2 && target.hp <= 2) return -100;
                                         }
@@ -10162,8 +10157,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.say('有本事你张角/司马懿来劈死我啊.');
                                 target.judge(function (card) {
-                                    var suit = card.suit;
-                                    var number = card.number;
+                                    const suit = card.suit;
+                                    const number = card.number;
                                     if (suit == 'spade' && number > 1 && number < 10) return -3;
                                     else return 4;
                                     return 0;
@@ -10183,9 +10178,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 3');
                                 if (result.bool) {
-                                    var len = result.targets;
+                                    const len = result.targets;
                                     target.line(len, 'thunder');
-                                    for (var i = 0; i < len.length; i++) {
+                                    for (let i = 0; i < len.length; i++) {
                                         len[i].damage('thunder');
                                     }
                                 }
@@ -10280,7 +10275,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return target != player;
                             },
                             content() {
-                                var chat = ['劳资一拖鞋拍死你信不信？', '看我把你打得姹紫嫣红', '吃我一记毁容拖鞋拍.'].randomGet();
+                                const chat = ['劳资一拖鞋拍死你信不信？', '看我把你打得姹紫嫣红', '吃我一记毁容拖鞋拍.'].randomGet();
                                 player.say(chat);
                                 target.damage();
                                 target.storage.tmxk_tuoxieskill = cards;
@@ -10400,7 +10395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             notarget: true,
                             wuxieable: true,
                             content() {
-                                var info = event.getParent(2).youlaiwuhui || event.getParent(3).youlaiwuhui;
+                                const info = event.getParent(2).youlaiwuhui || event.getParent(3).youlaiwuhui;
                                 if (!info) {
                                     event.finish();
                                     return;
@@ -10437,9 +10432,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             content() {
-                                var list = ['tuteng1', 'tuteng2', 'tuteng3', 'tuteng4', 'tuteng5', 'tuteng6', 'tuteng7', 'tuteng8'];
-                                var tuteng = [];
-                                for (let tu of list) {
+                                let list = ['tuteng1', 'tuteng2', 'tuteng3', 'tuteng4', 'tuteng5', 'tuteng6', 'tuteng7', 'tuteng8'];
+                                const tuteng = [];
+                                for (const tu of list) {
                                     if (!target.hasSkill(tu)) tuteng.push(tu);
                                 }
                                 if (tuteng.length) target.addTempSkill(tuteng.randomGet(), { player: 'phaseAfter' });
@@ -10471,7 +10466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.draw();
                                 ('step 1');
-                                var trick = [];
+                                const trick = [];
                                 if (target.countDiscardableCards(player, 'hej')) trick.push('过河拆桥');
                                 trick.push('决斗');
                                 if (target.countCards('h')) trick.push('火攻');
@@ -10492,7 +10487,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', '要视为对' + get.translation(target) + '使用那张锦囊牌呢？');
                                 ('step 2');
-                                var trick = result.control == '过河拆桥' ? 'guohe' : result.control == '决斗' ? 'juedou' : 'huogong';
+                                const trick = result.control == '过河拆桥' ? 'guohe' : result.control == '决斗' ? 'juedou' : 'huogong';
                                 player.useCard({ name: trick }, target);
                             },
                             ai: {
@@ -10531,7 +10526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.say('我' + get.translation(target) + '就是饿死,死外边,从这里跳下去,也不会吃你们一点东西.');
                                 //    if(target.countCards('he')){
-                                var next = target.chooseCard('交给' + get.translation(player) + '一张牌后回复一点体力,否则你失去一点体力', 'he');
+                                let next = target.chooseCard('交给' + get.translation(player) + '一张牌后回复一点体力,否则你失去一点体力', 'he');
                                 next.set('ai', function (card) {
                                     if (get.attitude(target, player) < 0 && (!target.isDamaged() || target.hp > 5) && !target.countCards('h', 'du')) return 0;
                                     return 15 - get.useful(card);
@@ -10566,7 +10561,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     },
                                     target(player, target) {
-                                        var num = 0;
+                                        let num = 0;
                                         if (target.isDamaged() && (get.attitude(target, player) > 0 || target.hp < 6) && target.countCards('he')) num++;
                                         if (get.attitude(target, player) > 0 && target.countCards('he')) num++;
                                         if (num <= 0) num = -1.5;
@@ -10598,7 +10593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                var list = [];
+                                let list = [];
                                 if (target.countCards('he')) list.push('弃置一张牌');
                                 list.push('令' + get.translation(player) + '摸一张牌');
                                 event.list = list;
@@ -10614,7 +10609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                var list = [];
+                                let list = [];
                                 if (result.index == 0 && event.list.length > 1) {
                                     target.chooseToDiscard('he', true);
                                     list.push('现如今,无名鼠辈都有偌大嗓门啦');
@@ -10663,7 +10658,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             content() {
-                                var list = [1, 1, 1, 2];
+                                let list = [1, 1, 1, 2];
                                 if (player.getEnemies().includes(target)) {
                                     target.chooseToDiscard(true, list.randomGet(), 'he');
                                 } else {
@@ -10718,11 +10713,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target(player, target) {
                                         if (target.hasJudge('lebu')) return 0;
-                                        var num = target.hp - target.countCards('h') - 2;
+                                        let num = target.hp - target.countCards('h') - 2;
                                         if (num > -1) return -0.01;
                                         if (target.hp < 3) num--;
                                         if (target.isTurnedOver()) num /= 2;
-                                        var dist = get.distance(player, target, 'absolute');
+                                        let dist = get.distance(player, target, 'absolute');
                                         if (dist < 1) dist = 1;
                                         return num / Math.sqrt(dist);
                                     },
@@ -10763,7 +10758,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target) {
-                                        var num = 0;
+                                        let num = 0;
                                         if (target.hasJudge('lebu')) num += 0.2;
                                         if (target.hasJudge('tmxk_ezhijujin')) num += 0.2;
                                         return -(target.countCards('h') - num);
@@ -10802,7 +10797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target) {
-                                        var num = 0;
+                                        let num = 0;
                                         if (target.hasJudge('lebu')) num += 0.2;
                                         if (target.hasJudge('tmxk_ezhijujin')) num += 0.2;
                                         return -(target.countCards('h') - num);
@@ -11218,7 +11213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             addinfo: '防御&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ',
                             customSwap(card) {
-                                var type = get.subtype(card, false);
+                                const type = get.subtype(card, false);
                                 return type == 'equip3' || type == 'equip4' || type == 'equip6';
                             },
                             skills: [],
@@ -11298,7 +11293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 // useful:1,
                                 result: {
                                     player(player, target) {
-                                        var att = get.attitude(player, target);
+                                        const att = get.attitude(player, target);
                                         if (att > 0) {
                                             return 1 + target.countCards('h', 'tao');
                                         } else {
@@ -11332,38 +11327,35 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             content() {
                                 'step 0';
                                 target.say('冒个泡,免得让管理员把我当死人给踢了');
-                                var dialog = ui.create.dialog('<font size=6><b>冒个泡,禁止戳破</b></font>', 'hidden');
+                                const dialog = ui.create.dialog('<font size=6><b>冒个泡,禁止戳破</b></font>', 'hidden');
                                 dialog.add('选择一个花色');
-                                var suit = ['spade', 'heart', 'club', 'diamond'];
-                                var yi = [];
-                                for (var i = 0; i < suit.length; i++) {
+                                const suit = ['spade', 'heart', 'club', 'diamond'];
+                                const yi = [];
+                                for (let i = 0; i < suit.length; i++) {
                                     yi.add([suit[i], get.translation(suit[i])]);
                                 }
                                 dialog.add([yi, 'tdnodes']);
                                 dialog.add('选择一个牌的类型');
-                                var type = ['basic', 'trick', 'equip'];
-                                var er = [];
-                                for (var i = 0; i < type.length; i++) {
+                                const type = ['basic', 'trick', 'equip'];
+                                const er = [];
+                                for (let i = 0; i < type.length; i++) {
                                     er.add([type[i], get.translation(type[i])]);
                                 }
                                 dialog.add([er, 'tdnodes']);
-                                var chooseButton = target.chooseButton(dialog, 2, true);
+                                const chooseButton = target.chooseButton(dialog, 2, true);
                                 chooseButton
                                     .set('ai', function (button) {
                                         return 1 + Math.random();
                                     })
                                     .set('filterButton', function (button) {
-                                        for (var i = 0; i < ui.selected.buttons.length; i++) {
+                                        for (let i = 0; i < ui.selected.buttons.length; i++) {
                                             if ((suit.includes(ui.selected.buttons[i].link) && suit.includes(button.link)) || (type.includes(ui.selected.buttons[i].link) && type.includes(button.link))) return false;
                                         }
                                         return true;
                                     });
                                 ('step 1');
                                 if (result.bool) {
-                                    var suit = [],
-                                        type = [],
-                                        cards = [],
-                                        popup = [];
+                                    const suit = [], type = [], cards = [], popup = [];
                                     get.cardPile(function (card) {
                                         if (result.links.includes(card.suit)) suit.push(card);
                                         if (result.links.includes(get.type2(card))) type.push(card);
@@ -11443,9 +11435,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             image: 'ext:猫猫叹气/image/卡牌/tmxk_wangbashizijia.png',
                             loseDelay: false,
                             onLose() {
-                                var next = game.createEvent('wangbashizijia_recover');
+                                let next = game.createEvent('wangbashizijia_recover');
                                 event.next.remove(next);
-                                var evt = event.parent;
+                                let evt = event.parent;
                                 if (evt.getlx === false) evt = evt.parent;
                                 evt.after.push(next);
                                 next.player = player;
@@ -11487,7 +11479,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             onLose() {
                                 'step 0';
-                                var targets = game
+                                const targets = game
                                     .filterPlayer(function (current) {
                                         return current != player && current.countCards('e');
                                     })
@@ -11496,11 +11488,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                     return;
                                 }
-                                var dialog = ui.create.dialog('是否发动【八骏】？', '选择任意张装备牌获得', 'hidden');
-                                for (var i = 0; i < targets.length; i++) {
+                                const dialog = ui.create.dialog('是否发动【八骏】？', '选择任意张装备牌获得', 'hidden');
+                                for (let i = 0; i < targets.length; i++) {
                                     if (targets[i].countCards('e')) {
                                         dialog.add(get.translation(targets[i]) + '的装备区');
-                                        var es = targets[i].getCards('e');
+                                        const es = targets[i].getCards('e');
                                         dialog.add(es);
                                     }
                                 }
@@ -11510,21 +11502,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 if (result.bool) {
-                                    var owners = [];
-                                    for (var i of result.links) {
-                                        var owner = get.owner(i);
+                                    const owners = [];
+                                    for (let i of result.links) {
+                                        const owner = get.owner(i);
                                         if (!owners.includes(owner)) owners.push(owner);
                                     }
                                     event.owner = owners;
                                     event.card = result.links;
                                 } else event.finish();
                                 ('step 2');
-                                var targetx = [];
+                                const targetx = [];
                                 targetx.addArray(event.owner);
                                 ('step 3');
-                                var owner = event.owner[0];
-                                var card = [];
-                                for (var o = 0; o < event.card.length; o++) {
+                                const owner = event.owner[0];
+                                const card = [];
+                                for (let o = 0; o < event.card.length; o++) {
                                     if (get.owner(event.card[o]) == owner) card.push(event.card[o]);
                                 }
                                 player.gain(card, owner, 'giveAuto');
@@ -11549,7 +11541,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: { globalTo: 2 },
                             image: 'ext:猫猫叹气/image/卡牌/tmxk_nanmanxiangx.png',
                             customSwap(card) {
-                                var type = get.subtype(card, false);
+                                const type = get.subtype(card, false);
                                 return type == 'equip3' || type == 'equip4' || type == 'equip6';
                             },
                             skills: [],
@@ -11733,12 +11725,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             image: 'ext:猫猫叹气/image/卡牌/ssft_jiuci.png',
                             onEquip() {
                                 'step 0';
-                                var mode = get.mode();
+                                const mode = get.mode();
                                 if ((mode == 'identity' || (mode == 'versus' && _status.mode == 'four')) && player != game.zhu) {
-                                    var list = [];
-                                    var zhu = get.zhu(player);
+                                    let list = [];
+                                    const zhu = get.zhu(player);
                                     if (zhu && zhu != player && zhu.skills) {
-                                        for (var i = 0; i < zhu.skills.length; i++) {
+                                        for (let i = 0; i < zhu.skills.length; i++) {
                                             if (lib.skill[zhu.skills[i]] && lib.skill[zhu.skills[i]].zhuSkill) {
                                                 list.push(zhu.skills[i]);
                                             }
@@ -11892,7 +11884,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target) {
-                                        var num = 0;
+                                        let num = 0;
                                         if (target.hasJudge('lebu')) num += 0.2;
                                         if (target.hasJudge('tmxk_ezhijujin')) num += 0.2;
                                         return -(target.countCards('h') - num);
@@ -11918,7 +11910,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 if (event.directHit) event._result = { bool: false };
                                 else {
-                                    var next = target.chooseToRespond({ name: 'sha' });
+                                    let next = target.chooseToRespond({ name: 'sha' });
                                     next.autochoose = lib.filter.autoRespondShan;
                                     next.set('ai', function (card) {
                                         if (card.nature && card.nature == 'fire') {
@@ -12012,7 +12004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filterTarget: true,
                             global: 'ssft_dandaofuhuiskill',
                             content() {
-                                var evt = event.getParent(3)._trigger;
+                                let evt = event.getParent(3)._trigger;
                                 evt.cancel();
                             },
                             ai: {
@@ -12090,7 +12082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return card.number > event.card2.number;
                                         },
                                         function (card) {
-                                            var evt = _status.event.parent;
+                                            let evt = _status.event.parent;
                                             if (get.attitude(evt.player, evt.target) < 0) {
                                                 return 6 - get.value(card, evt.player);
                                             }
@@ -12100,10 +12092,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', false);
                                 ('step 2');
                                 if (result.bool) {
-                                    var skills = target.getSkills(true, false);
+                                    const skills = target.getSkills(true, false);
                                     if (!target.storage.ssftquanxiang) target.storage.ssftquanxiang = [];
-                                    for (var s of skills) {
-                                        var info = get.info(s);
+                                    for (const s of skills) {
+                                        const info = get.info(s);
                                         if (lib.skill[s] && lib.translate[s] && lib.translate[s + '_info'] && !info.limited) {
                                             target.storage.ssftquanxiang.add(s);
                                             target.removeSkill(s);
@@ -12180,7 +12172,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (typeof event.baseDamage != 'number') event.baseDamage = 1;
                                 if (typeof event.extraDamage != 'number') event.extraDamage = 0;
                                 if (event.directHit) {
-                                    var num = event.baseDamage + event.extraDamage;
+                                    let num = event.baseDamage + event.extraDamage;
                                     if (player.storage.jiu) {
                                         num += player.storage.jiu;
                                         game.broadcastAll(function (player) {
@@ -12192,16 +12184,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                     return;
                                 }
-                                var next = target.chooseToUse('请使用一张闪响应射');
+                                let next = target.chooseToUse('请使用一张闪响应射');
                                 next.set('type', 'respondShan');
                                 next.set('filterCard', function (card, player) {
                                     if (card.name != 'shan') return false;
                                     return lib.filter.cardEnabled(card, player, 'forceEnable');
                                 });
                                 next.set('ai1', function (card) {
-                                    var target = _status.event.player;
-                                    var evt = _status.event.parent;
-                                    var bool = true;
+                                    const target = _status.event.player;
+                                    let evt = _status.event.parent;
+                                    let bool = true;
                                     if (target.hasSkillTag('useShan')) {
                                         bool = true;
                                     } else if (target.hasSkillTag('noShan')) {
@@ -12216,7 +12208,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //next.autochoose=lib.filter.autoRespondShan;
                                 ('step 1');
                                 if (!result || !result.bool) {
-                                    var num = event.baseDamage + event.extraDamage;
+                                    let num = event.baseDamage + event.extraDamage;
                                     if (player.storage.jiu) {
                                         num += player.storage.jiu;
                                         game.broadcastAll(function (player) {
@@ -12239,7 +12231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target, card, isLink) {
-                                        var eff = (function () {
+                                        const eff = (function () {
                                             if (!isLink && player.hasSkill('jiu')) {
                                                 if (
                                                     !target.hasSkillTag('filterDamage', null, {
@@ -12289,7 +12281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             notarget: true,
                             global: ['ssft_kaiskill'],
                             content() {
-                                var evt2 = event.getParent(3)._trigger;
+                                const evt2 = event.getParent(3)._trigger;
                                 evt2.neutralize();
                                 player.draw();
                             },
@@ -12368,14 +12360,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.chooseCard(true);
                                 ('step 1');
-                                var dialog = ui.create.dialog(get.translation(player) + '展示的手牌', result.cards, true);
+                                const dialog = ui.create.dialog(get.translation(player) + '展示的手牌', result.cards, true);
                                 _status.dieClose.push(dialog);
                                 dialog.videoId = lib.status.videoId++;
                                 game.addVideo('cardDialog', null, [get.translation(player) + '展示的手牌', get.cardsInfo(result.cards), dialog.videoId]);
                                 event.parent.preResult = dialog.videoId;
                                 game.broadcast(
                                     function (cards, id) {
-                                        var dialog = ui.create.dialog(get.translation(player) + '展示的手牌', result.cards, true);
+                                        const dialog = ui.create.dialog(get.translation(player) + '展示的手牌', result.cards, true);
                                         _status.dieClose.push(dialog);
                                         dialog.videoId = id;
                                     },
@@ -12387,7 +12379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                for (var i = 0; i < ui.dialogs.length; i++) {
+                                for (let i = 0; i < ui.dialogs.length; i++) {
                                     if (ui.dialogs[i].videoId == event.preResult) {
                                         event.dialog = ui.dialogs[i];
                                         break;
@@ -12405,16 +12397,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else target.showCards(get.translation(target) + '展示的手牌', result.cards);
                             },
                             contentAfter() {
-                                for (var i = 0; i < ui.dialogs.length; i++) {
+                                for (let i = 0; i < ui.dialogs.length; i++) {
                                     if (ui.dialogs[i].videoId == event.preResult) {
-                                        var dialog = ui.dialogs[i];
+                                        const dialog = ui.dialogs[i];
                                         dialog.close();
                                         _status.dieClose.remove(dialog);
                                         break;
                                     }
                                 }
                                 game.broadcast(function (id) {
-                                    var dialog = get.idDialog(id);
+                                    const dialog = get.idDialog(id);
                                     if (dialog) {
                                         dialog.close();
                                         _status.dieClose.remove(dialog);
@@ -12431,7 +12423,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     target_use(player, target) {
                                         if (player.hasUnknown(2) && get.mode() != 'guozhan') return 0;
-                                        var nh = target.countCards('h');
+                                        const nh = target.countCards('h');
                                         if (get.mode() == 'identity') {
                                             if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
                                         }
@@ -12440,7 +12432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1.5;
                                     },
                                     target(player, target) {
-                                        var nh = target.countCards('h');
+                                        const nh = target.countCards('h');
                                         if (get.mode() == 'identity') {
                                             if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
                                         }
@@ -12499,7 +12491,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'basic',
                             content() {
                                 'step 0';
-                                var info = event.getParent(2).zou || event.getParent(3).zou;
+                                const info = event.getParent(2).zou || event.getParent(3).zou;
                                 if (!info) {
                                     event.finish();
                                     return;
@@ -12507,7 +12499,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (target.countCards('h')) target.showCards(target.getCards('h'));
                                 event.info = info;
                                 ('step 1');
-                                var info = event.info;
+                                const info = event.info;
                                 info.evt.neutralize();
                                 game.log(info.card, '对', target, '无效');
                             },
@@ -12552,7 +12544,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             fullskin: true,
                             type: 'basic',
                             content() {
-                                var info = event.getParent(2).jin || event.getParent(3).jin;
+                                const info = event.getParent(2).jin || event.getParent(3).jin;
                                 if (!info) {
                                     event.finish();
                                     return;
@@ -12667,7 +12659,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 result: {
                                     target(player, target) {
-                                        var num = 0;
+                                        let num = 0;
                                         if (target.hasJudge('lebu')) num += 0.2;
                                         if (target.hasJudge('tmxk_ezhijujin')) num += 0.2;
                                         return target.countCards('h') + num;
@@ -12698,16 +12690,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (typeof event.baseDamage != 'number') event.baseDamage = 1;
                                 if (typeof event.extraDamage != 'number') event.extraDamage = 0;
                                 if (event.directHit) return;
-                                var next = target.chooseToUse('请使用一张闪响应飞刃');
+                                let next = target.chooseToUse('请使用一张闪响应飞刃');
                                 next.set('type', 'respondShan');
                                 next.set('filterCard', function (card, player) {
                                     if (card.name != 'shan') return false;
                                     return lib.filter.cardEnabled(card, player, 'forceEnable');
                                 });
                                 next.set('ai1', function (card) {
-                                    var target = _status.event.player;
-                                    var evt = _status.event.parent;
-                                    var bool = true;
+                                    const target = _status.event.player;
+                                    let evt = _status.event.parent;
+                                    let bool = true;
                                     if (target.hasSkillTag('useShan')) {
                                         bool = true;
                                     } else if (target.hasSkillTag('noShan')) {
@@ -12721,7 +12713,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('respondTo', [player, card]);
                                 ('step 1');
                                 if (!result || !result.bool || event.directHit) {
-                                    var num = event.baseDamage + event.extraDamage;
+                                    let num = event.baseDamage + event.extraDamage;
                                     target.damage(num);
                                 }
                             },
@@ -12933,7 +12925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.type2(card) == _status.event.type;
                                         })
                                         .set('ai', function (card) {
-                                            var evt = _status.event.parent;
+                                            let evt = _status.event.parent;
                                             if (get.damageEffect(evt.target, evt.player, evt.player, 'ice') > 0) {
                                                 return 6.2 + Math.min(4, evt.player.hp) - get.value(card, evt.player);
                                             }
@@ -12952,8 +12944,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 value: [4, 1],
                                 useful: 1,
                                 wuxie(target, card, player, viewer, state) {
-                                    let att = get.attitude(viewer, target),
-                                        eff = get.effect(target, card, player, target);
+                                    const att = get.attitude(viewer, target), eff = get.effect(target, card, player, target);
                                     if ((status * get.attitude(viewer, player) > 0 && !player.isMad()) || status * eff * att >= 0) return 0;
                                     if (get.attitude(viewer, player) >= 0 || _status.event.getRand('huogong_wuxie') * 4 > player.countCards('h')) return 0;
                                 },
@@ -13585,7 +13576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 clear: true,
                 onclick() {
                     if (this.gengxin == undefined) {
-                        var more = ui.create.div('.gengxin', '<div style="border:2px solid gray"><font size=2><P><img src="extension/猫猫叹气/image/字体图/maomaotanqi.png" width="113" height="29"><br><P align=left>「生活不易,猫猫叹气」是标准的武将扩展,记录小作者的各种奇思妙想,其中［千面猫］是小作者的真实写照,四个技能诠述着四个不同的自己,技能设计也十分有趣,不过武将整体十分阴间.此外,此扩展的每个武将都涉及到一些新颖的设定,比如［曦千面猫］的曦光选项,印牌神器、玩法繁多;［祈千面猫］的随机手牌,强度全靠抽盲盒,给到什么玩什么;［魅千面猫］的随从,调遣木傀神傀,将BOSS武将引入战斗;［花千面猫］的检索描述,从技能描述中获取牌名,若场上有手杀骆统、手杀花鬘,那你直接起飞;［帝千面猫］的掌控牌堆,真正的众神之主.</P><P><img src="extension/猫猫叹气/image/字体图/yuanmengjihua.png" width="113" height="29"><br><P align=left>众所周知,小作者曾经是个小代,一直以强悍的代码技术保持着最低收费,为的就是以己身所学,替人圆设计梦;后来小作者退出了代写的舞台,先后写了「天马行空」「猫猫叹气」两个属于自己的扩展,但依旧初心未泯,重拾旧业,接收投稿,不管大家投什么,小作者都一丝不苟地写出来,这便是圆梦计划最好的诠释,以己身所学,替他人圆梦.此系列中有一个投稿武将就十分应景,［梦千面猫］,便是〔圆梦大师〕.</P><P><img src="extension/猫猫叹气/image/字体图/tmxk.png" width="113" height="29"><br><P align=left>「天马行空」为挑战模式扩展,首发挑战为「殉道者」,5个关卡,强度适中,十分迎合大众选择;第二弹为重塑「东风」扩展,此扩展是小作者早期用于练手的破烂,算是一种旧日情怀;三发挑战为「一剑成狂」扩展,同样是旧扩重塑,与「东风」一样因为强度失衡而编入挑战模式;第四个挑战名为「上古降灵」,共六关,强度不低,但也不会太高,没有太亮眼的设计思路,算是灵感枯竭后的产物.</P><P><img src="extension/猫猫叹气/image/字体图/shashenfuti.png" width="106" height="29"><P align=left>「杀神附体」相信不少人都不会感到陌生,它是十年前的产物,是系列最多,流传度最广的民间diy扩展,从最开始的妖鬼神圣仙,到后来的魔、怒、恶、南蛮之祸、黄巾之乱、山、阴、雷、战火连天,乱世枭雄、乱世将星、英杰辈出、雄兵百万、军争之法、虚实篇等等等等,根本数不胜数,小作者为了重拾这份童心,便将此扩展做了出来,目前已经做了不少系列武将以及卡牌.</P>');
+                        const more = ui.create.div('.gengxin', '<div style="border:2px solid gray"><font size=2><P><img src="extension/猫猫叹气/image/字体图/maomaotanqi.png" width="113" height="29"><br><P align=left>「生活不易,猫猫叹气」是标准的武将扩展,记录小作者的各种奇思妙想,其中［千面猫］是小作者的真实写照,四个技能诠述着四个不同的自己,技能设计也十分有趣,不过武将整体十分阴间.此外,此扩展的每个武将都涉及到一些新颖的设定,比如［曦千面猫］的曦光选项,印牌神器、玩法繁多;［祈千面猫］的随机手牌,强度全靠抽盲盒,给到什么玩什么;［魅千面猫］的随从,调遣木傀神傀,将BOSS武将引入战斗;［花千面猫］的检索描述,从技能描述中获取牌名,若场上有手杀骆统、手杀花鬘,那你直接起飞;［帝千面猫］的掌控牌堆,真正的众神之主.</P><P><img src="extension/猫猫叹气/image/字体图/yuanmengjihua.png" width="113" height="29"><br><P align=left>众所周知,小作者曾经是个小代,一直以强悍的代码技术保持着最低收费,为的就是以己身所学,替人圆设计梦;后来小作者退出了代写的舞台,先后写了「天马行空」「猫猫叹气」两个属于自己的扩展,但依旧初心未泯,重拾旧业,接收投稿,不管大家投什么,小作者都一丝不苟地写出来,这便是圆梦计划最好的诠释,以己身所学,替他人圆梦.此系列中有一个投稿武将就十分应景,［梦千面猫］,便是〔圆梦大师〕.</P><P><img src="extension/猫猫叹气/image/字体图/tmxk.png" width="113" height="29"><br><P align=left>「天马行空」为挑战模式扩展,首发挑战为「殉道者」,5个关卡,强度适中,十分迎合大众选择;第二弹为重塑「东风」扩展,此扩展是小作者早期用于练手的破烂,算是一种旧日情怀;三发挑战为「一剑成狂」扩展,同样是旧扩重塑,与「东风」一样因为强度失衡而编入挑战模式;第四个挑战名为「上古降灵」,共六关,强度不低,但也不会太高,没有太亮眼的设计思路,算是灵感枯竭后的产物.</P><P><img src="extension/猫猫叹气/image/字体图/shashenfuti.png" width="106" height="29"><P align=left>「杀神附体」相信不少人都不会感到陌生,它是十年前的产物,是系列最多,流传度最广的民间diy扩展,从最开始的妖鬼神圣仙,到后来的魔、怒、恶、南蛮之祸、黄巾之乱、山、阴、雷、战火连天,乱世枭雄、乱世将星、英杰辈出、雄兵百万、军争之法、虚实篇等等等等,根本数不胜数,小作者为了重拾这份童心,便将此扩展做了出来,目前已经做了不少系列武将以及卡牌.</P>');
                         this.parentNode.insertBefore(more, this.nextSibling);
                         this.gengxin = more;
                         this.innerHTML = '<div class="langqinjiuxiao">「查阅」扩展简介<font size="4px">▼▼▼</font></div>';
@@ -13601,7 +13592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 clear: true,
                 onclick() {
                     if (this.gengxin == undefined) {
-                        var more = ui.create.div(
+                        const more = ui.create.div(
                             '.gengxin',
                             '<div style="border:2px solid gray"><P>本期更新:<P align=left><font size=2>这次千面猫懒,就更了一个武将龙千面猫和几张属性杀</P></font><P>更新日志:<P><b><font size=2>〈一〉<P align=left>●扩展:</b>天马行空<br><b>●挑战:</b>殉道者<br><b>●武将系列:</b>殉道者<br><b>●武将:</b>魔导领主、魔导绿、魔导红、控水神将、海王巡查兵、水灵灵、遮面幻王、镜灵蛇、魁首龙、焚天摩柯、虚无大天使、邪天使•露莉丝、地狱天神奴仆、地狱天神、地狱魔神、地狱战神<br><b>●衍生牌:</b>反射盾、反射罩、无情反击、无赖反击、力量倍返、伤的倍返、死前反击、最后反击、女王庇护、灵巫、盾、极限装甲、能力封禁、外骨骼装置、馈赠、动力装甲、轮、神龙之力、禁锢装甲、造卡器、回魂技、逆转、雷击、腐朽的更替、军团、等价交换、悠间时刻、恶魔的歌颂、剥夺、禁忌召唤、归来、繁殖兽鱼、兽鱼、记忆的透支、毁灭气息降临、表态互引、时间断屠、远及近、异次元穿越、毁灭区、结界限制、回归、种族仇恨、粉碎、天使女郎、金钱攻略、时间限制、命运的决择、墓地再利用、双重选择、时空回廊、宿命、厄运相连<P><b>〈二〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>一猫独秀<br><b>●武将:</b>千面猫(初版)<br><b>●衍生牌:</b>界雌雄双股剑、界方天画戟、界贯石斧、界寒冰剑、界麒麟弓、界青釭剑、界青龙偃月刀、界丈八蛇矛、界诸葛连弩、界八卦阵、界仁王盾、界的卢、界绝影、界爪黄飞电、界赤兔、界大宛、界紫骍、界古锭刀、界朱雀羽扇、界白银狮子、界藤甲、界骅骝、界木牛流马、界七宝刀、界银月枪、界衠钢槊、界烂银甲、界三尖两刃刀、界护心镜、界惊帆、界无锋剑、界涯角枪、界折戟、界女装、界夜行衣、界引蜂甲、界驽马、界锦盒、界乌铁锁链、界五行鹤翎扇、界黑光铠、界太公阴符、界天机图、界铜雀、界锁链甲、界赤龙牙、界封雪刃、界鬼眼法刀、界盘古斧、界轩辕剑、界白狐披风、界光纱天衣、界青莲心灯、界霞云彩绫、界带火风轮、界东皇钟、界伏羲琴、界归灵指套、界昊天塔、界昆仑镜、界崆峒印、界蓝格怪衣、界炼妖壶、界女娲石、界乾坤袋、界青龙灵珠、界萨登荆环、界神农鼎、界神偷面具、界鼠槌、界四非真面、界星君眼、界吸血鬼指环、界御夫录、界玉如意、界木头面具、界玉衡、界玉衡(二级)、界玉衡(三级)、界苦无、界漩涡面具、界九尾、界猴子、界写轮眼、界赤血青锋、界赤焰镇魂琴、界鬼龙斩月刀、界金乌落日弓、界鸾凤和鸣剑、界无双方天戟、界刑天破军斧、界修罗炼狱戟、界国风玉袍、界红棉百花袍、界玲珑狮蛮带、界奇门八卦、界绝尘金戈、界七彩神鹿、界灵蛇髻、界禅让诏书、界束发紫金冠、界虚妄之冕、界青玉之爪、界达里安、界霹雳车、界海德洛、界水波剑、界烈淬刀、界红缎枪、界天雷刃、界混毒弯匕、界元戎精械弩、界莎莉、界先天八卦阵、界照月狮王盔、界精银甲、界耀光铠、界仁王金刚盾、界桐油百韧甲、界索拉斯、界纳兹戈林、界神机、界旅行箱、界望远镜、界鸟白岛文蛤、界篝酱的丝带、界神之修女服、界地契、界六龙骖驾、界飞龙夺凤、界吴六剑、界明光铠、界太平要术、界定澜夜明珠、界玉玺、界飞轮战舆、界四乘粮舆、界铁蒺玄舆、界投石车<P><b>〈三〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>曦千面猫<P><b>〈四〉<P align=left>●扩展:</b>天马行空<b><br>●挑战:</b>东风<br><b>●武将系列:</b>东风<br><b>●武将:</b>千面司零、天时主宰、明煜明、千面扬炎、司零、筱、问天爱、公主殿下、兔兔、大白、白龙吟、韩跳跳、七幻舞姬、精灵公主、海的新娘、花容月貌、天公王、殉道天神<br><b>●卡牌:</b>暗箭难防、兵荒马乱、重整旗鼓、得不偿失、反客为主、割须弃袍、关门捉贼、红颜娇花、回天再造、临阵换将、64卦签、落井下石、冒泡、金色冒泡、魔种封印、倾国倾城、穷兵黩武、弃卒保帅、舍命趋财、摄神取念、探囊取物、天赐神兵、天下大稽、天灾人祸、挑衅闪电、同归于尽、图谋不轨、拖鞋、望梅止渴、文和乱武、先礼后兵、有来无回、原始融合、欲擒故纵、真香警告、众望所归、桌游、恶之拘禁、挂牌免战、四六零、无计可施、白冥轮回杖、鬼龙斩月刀、合成武、姬神弓、流焔玄火扇、破万法之符、乾坤白羽扇、天门御灵剑、養由基弓、战符锁龙令、镇魂琴、子午阴阳扇、百花裙、黄金铠、雷龙双极玉、七星袍、圣光白衣、兽面盾、王八狮子甲、卧龙四轮车、邪神面具、玄武护臂、折戟盾、八骏、草泥马、科多兽、孔明车、南蛮象(体力)、南蛮象(缺陷)、南蛮战象(+1)、战鹰、苍狼、军马、马车、梦魇赤兔、南蛮象(-1)、南蛮战象(-1)、南蛮战象(手牌)、西域羊驼、麻沸散、木牛流马、青囊书、先锋令<br><b>●衍生牌:</b>天命之镰、鬼时、天时渡、水、风卷残云、龙羽风吟、凌空击碎、天龙圣歌、七星龙腾、白龙真身、幻龙破空、沧龙绞杀、狼人、狼王、白狼王、狼美人、预言家、女巫、猎人、平民×4、青眼白龙、橙钢蝎子、防火墙龙、刺刀枪管龙、银河眼时空龙、无敌流星龙、宇宙耀变龙、幻魔教主教、冰河期恐慌、黄泉天轮、雷击、强欲之壶、神鹰羽毛扫、死者苏生、召雷弹、白银之翼、病毒、反射镜力、天罚、神之宣告、魔导之瞳、力量倍返、无限泡影、走魔灯、八卦奇阵、天命冰杖、天门剑、寒玉剑、冰帝斧、八卦杀阵、冰刺寒阵、卡盒、伊瑟拉、法力浮龙、八爪巨怪、玛里苟斯、刃舞、睡眠少女、风险骰子、小恶魔媚眼、大天使气息、金粉少女、对峙、蔷薇龙、蔽日龙群、永生琼浆、梦巢猫、火蜥蜴、荷鲁斯、三头犬族、马尔杜克、利维坦、幻魔皇、降雷皇、幻魔皇、浑身一击、天神荡、超融合、恶魔戒律、超度、刻之封印、史诗武将<P><b>〈五〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>一猫独秀、群猫乱舞<b><br>●武将:</b>千面猫(补全)、祈千面猫<br><b>●bug修复:</b>修复内容被隐藏时选择曦千面猫会卡死无法正常开局的bug<br><b>●优化:</b>优化曦千面猫的<曦光>选项13,没有下载<天马行空>扩展也能选择该选项<br><b>●衍生牌:</b>界灵宝仙壶、界太极拂尘、界冲应神符、界梅影枪、界琼梳、界犀梳、界金梳、界倚天剑、界七星宝刀、界断剑、界水手服、界引蜂衣、界庸驴、界战象、界信鸽、界诏书、绘知己知彼、绘号令天下、绘克复中原、绘固国安邦、绘文和乱武、绘过河拆桥、绘借刀杀人、绘决斗、绘南蛮入侵、绘顺手牵羊、绘桃园结义、绘万箭齐发、绘五谷丰登、绘无懈可击、绘无中生有、绘乐不思蜀、绘闪电、绘火攻、绘铁索连环、绘兵粮寸断、绘弃甲曳兵、绘声东击西、绘增兵减灶、绘草木皆兵、绘浮雷、绘金蝉脱壳、绘敕令、绘调虎离山、绘火烧连营、绘联军盛宴、绘戮力同心、绘水淹七军、绘挟令、绘以逸待劳、绘远交近攻、绘草船借箭、绘解甲归田、绘树上开花、绘逐鹿天下、绘出其不意、绘洞烛先机、绘随机应变、绘逐近弃远、绘趁火打劫、绘刮骨疗毒、绘推心置腹、绘草船借箭、绘趁火打劫、绘调兵遣将、绘釜底抽薪、绘隔岸观火、绘舌战群儒、绘水攻、绘偷梁换柱、绘望梅止渴、绘诱敌深入、绘洪水、绘火山、绘传送门、绘盾牌格挡、绘激活、绘灵魂之火、绘闪电箭、绘神恩术、绘视界术、绘弹射之刃、绘星界沟通、绘元素毁灭、绘照明弹、绘治疗波、绘兵临城下、绘瞒天过海、绘排兵布阵、绘奇正相生、绘调剂盐梅、绘美人计、绘笑里藏刀、绘回魂、绘故步自封、绘洪荒之力、绘撒豆成兵、绘移花接木、绘勾魂锣、绘机关蜂、绘机关鼠、绘机关火筒、绘机关要术、绘机关鸢、绘零件袋、绘木甲人、绘指路小狐、绘炽羽袭、绘龟蛇旗、绘惊雷闪、绘流星火羽、绘神草结、绘仙炉灰、绘羊皮卷、绘祠符、绘鬼幽结、绘天女散花、绘飞镖、绘六骰格、绘龙须钩、绘绵里针、绘乾坤镖、绘神火飞鸦、绘黑龙鳞片、绘金莲珠、绘流风散、绘沙棠、绘石灰粉、绘舒筋散、绘偃甲蛋♠️️️、绘偃甲蛋♥️️️、绘偃甲蛋♣️️️、绘偃甲蛋♦️️️、绘屯粮、绘援军、绘同舟共济、绘力争上游、绘白衣渡江、绘水淹七军、绘落井下石、绘攻守兼备、绘进退自如、绘炸弹、绘继往开来、绘兵临城下、绘偷梁换柱、绘釜底抽薪、打一架?!、抱羊、男生头像、女生头像、同人漫画、壁咚猫、笔记本入侵、阳光男头、推倒、龙裔、猫耳雷姆、宽衣解带、卡图锦集、顺手临摹、东风弑神阵、阖家安康、踏青、求学兔、溜了溜了、表里不一、神兽坐骑、神炎皇、时空蝎王、虎啸生风、炽天使同人、改造人生、刀剑、大黄蜂、立体、龙珠临摹、傲娇、捏脸、童年记忆、诱惑、地狱天神、童心未泯<P><b>〈六〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>魅千面猫、萌千面猫、海千面猫<br><b>●衍生牌:</b>一袋猫粮、礼品卡、礼物卡、金色礼包、好运礼包、冰镇礼包<P><b>〈七〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>真千面猫、纯千面猫、仙千面猫<P><b>〈八〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群友设计<br><b>●投稿武将:</b>智慧、ZXZ<br><b>●投稿人:</b>乔<P><b>〈九〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群友设计<b><br>●投稿武将:</b>默、节命君<br><b>●投稿人:</b>智慧、清梦<P><b>〈十〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞、群友设计<br><b>●武将:</b>花千面猫<br><b>●投稿武将:</b>猫猫、猫娘、胡萝卜、茶叶蛋、袁术<br><b>●投稿人:</b>乔<br><b>●优化:</b>重写魅千面猫随从设定,适应挑战模式.<P><b>〈十一〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群友设计<br><b>●投稿武将:</b>🦉、GYPSOPHILA、龙霸天、王基、啊婊、清梦、李羽&静儿、浊心斯卡蒂、君<br><b>●投稿人:</b>乔、清梦、fuban、GYPSOPHILA<P><b>〈十二〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群友设计Ⅱ<br><b>●投稿武将:</b>剑问心、铝猫、梦千面猫、智慧、清梦、fuban、小山、乔、风玄君、刘备、群雷神、仇千面猫<br><b>●衍生牌:</b>斩立决、白毦<br><b>●投稿人:</b>乔、清梦、智慧、群雷神、2HAlO₂·H₂Oฅฅ*<br><b>●调整:</b>应设计者乔要求对胡萝卜进行增强<br><b>●优化:</b>所有武将增添露头立绘,可在扩展页关闭或开启<br><b>●鸣谢:</b>特别鸣谢群员青青子衿对所有露头立绘进行裁剪<b><P>〈十三〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群友设计Ⅱ、群友设计Ⅲ<br><b>●投稿武将:</b>张辽、左慈、猫头鹰、胡萝卜、啊婊、小婊贝、米饭、猫猫(国战武将)、小初初、千面猫、断业<br><b>●衍生牌:</b>幻术卷<br><b>●投稿人:</b>乔、清梦、浪琴婊、群雷神、世上无难事<br><b>●优化:</b>①将群友设计系列从<生活不易,猫猫叹气>扩展中独立出来,做成全新扩展<圆梦计划>,其寓意是:以己身所学,替他人圆梦;②更换武将胡萝卜技能【卖萌】中的对策为个人专属版;③更换武将群雷神立绘及语音,素材由设计者本人提供,武将性别更换为女性<P><b>〈十四〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>月千面猫<br><b>●衍生牌:</b>月饼、玉兔、月桂酒、金蟾<br><b>●衍生武将:</b>嫦娥、吴刚、月桂树<P><b>〈十五〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>帝千面猫<P><b>〈十六〉<P align=left>●扩展:</b>圆梦计划<br><b>●武将系列:</b>群友设计Ⅲ<br><b>●投稿武将:</b>心光、猫猫&啊婊、诸葛孔萌、司马仲哒、陌玉、兵、乔、苟或、灵雎、七海千秋、谋清梦、羿、正经人、小猫猫(国战)、舞千面猫、明德远<br><b>●衍生牌:</b>红烧牛肉面、辣牛肉面、豚骨面、鸡汤面、一箱泡面、猎日神弓<br><b>●投稿人:</b>清梦、乔、炙热心光、日暮难寻旧径还、群雷神、人້໌类<br><b>●bug修复:</b>因为吞骨骼的问题,含泪删除武将乔的技能【乔乔】<P><b>〈十七〉<P align=left>●扩展:</b>杀神附体<br><b>●武将系列:</b>鬼包、妖包、圣包、仙包、六女神、军争之法、虚实篇<br><b>●武将:</b>鬼曹操、鬼曹节、鬼关羽、鬼华雄、鬼吕布、鬼张飞、鬼诸葛亮、沙摩柯、司马徽、妖卞氏、妖吉平、妖司马懿、妖小乔、妖张角、妖周泰、程昱、凌统、圣郭嘉、圣孙策、圣孙权、圣赵云、圣甄姬、程普、公孙瓒、仙华佗、仙南华老仙、仙普净、仙于吉、仙左慈、张郃、马谡、神貂蝉、神黄月英、神孙尚香、神小乔、神甄姬、神祝融、孙武、杨仪<P><b>〈十八〉<P align=left>●扩展:</b>猫猫叹气、天马行空、杀神附体<br><b>●挑战:</b>一剑成狂<br><b>●武将系列:</b>一剑成狂<br><b>●武将:</b>牧云、华轩、殇莺、风羽璃、游弋、殇羽、上官子之、龙阳、灵秀、陈操之、管玄、慕善、阿叡、张生<br><b>●卡牌:</b>金、开、粮、射、酥、走、草船借箭、单刀赴会、刮骨疗毒、劝降、舌战群儒、水淹七军、望梅止渴、夜观天象、八门金锁、木牛流马、施毒、发石车、七宝刀、日月戟(左)、日月戟(右)、双股剑之鸳剑、双股剑之鸯剑、铁蒺藜骨朵、投石车、护心镜、连环铠、白鹄、南蛮象(+2)、碧眼白水牛、汗血、连弩战车、遁甲天书、九赐、青囊书、蜀道图、铜雀赋<br><b>●衍生牌:</b>金疮药、合欢散、三尸丹、易筋丸<br><b>●优化:</b>①:将<猫猫叹气><圆梦计划><天马行空><杀神附体>四扩合一;②对殉道者系列武将及卡牌进行全方位优化;③修改曦千面猫<曦光>选项13,使其变得更加简便;④重写花千面猫技能【花仙】,不再卡顿<br><b>●调整:</b>削弱帝千面猫两个技能,【独掌】改为每回合限两次,【帝权】每回合使用次数从体力值上限改为体力值,总结:蚊子腿削弱<P><b>〈十九〉<P align=left>●扩展:</b>杀神附体<br><b>●武将系列:</b>南蛮之祸、旧南蛮之祸<br><b>●武将:</b>阿会喃、带来洞主、董荼那、朵思大王、花鬘、金环三结、忙牙长、孟获、孟节、孟优、木鹿大王、沙摩柯、土安、兀突骨、杨锋、祝融、阿会喃(旧)、带来洞主(旧)、董荼那(旧)、朵思大王(旧)、颚焕、贺纳哈、金环三结(旧)、孟获(旧)、孟优(旧)、木鹿大王(旧)、沙摩柯(旧)、藤甲兵、兀突骨(旧)、祝融夫人<br><b>●卡牌:</b>飞刃、蛮勇战绘、烈火獠牙、蛮王巨斧、牛角弓、千机弩、千机弩(旧)、養由基弓、蜀道图<P><b>〈二十〉<P align=left>●扩展:</b>圆梦计划<br><b>●武将系列:</b>群友设计Ⅳ<br><b>●投稿武将:</b>曹婴、吕玲绮、青幽、幽怜、哆啦A梦、千面猫、乔氏、孟达、孙资刘放、曹丕、单方朔<br><b>●衍生牌:</b>空气炮、竹蜻蜓、记忆面包、任意门、翻译年糕、驯兽手套<br><b>●投稿人:</b>乔、清梦、淇苍苍苍<P><b>〈二十一〉<P align=left>●扩展:</b>圆梦计划<br><b>●武将系列:</b>群友设计Ⅳ、群友设计Ⅴ<br><b>●投稿武将:</b>樱花冰儿×2、子过、李隆基、沮授(国战)、华雄(国战)、公孙渊、猫雅猫哩、嬴政、屑雄、司马昭、乔、千面喵<br><b>●投稿人:</b>乔、清梦、淇苍苍苍、鱼仙、大姐<P><b>〈二十二〉<P align=left>●扩展:</b>生活不易,猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>桃千面猫、谋千面猫<P><b>〈二十三〉<P align=left>●扩展:</b>天马行空<br><b>●挑战:</b>上古降灵<br><b>●武将系列:</b>上古降灵<br><b>●武将:</b>巨毒蘑王、毒蘑、末日甲虫、末日甲虫之茧、死神、嗜血巨人、独眼巨人、牛头人、魔像、吸血鬼、鹰身女妖、邪术师、邪眼、龙王、红龙、飞龙•雄、飞龙•雌、猫战士、剑齿虎、美杜莎、魔鱼、杀人蜂、巨猿、奇美拉、九头鸟、恶魔<br><b>●衍生牌:</b>宝箱、武器箱、魔莺雏子、战争、监视、奋力抗争、十字弓、火器、五彩神石<P><b>〈二十四〉<P align=left>●扩展:</b>猫猫叹气、圆梦计划、杀神附体<br><b>●武将系列:</b>黄巾之乱、旧黄巾之乱、山、阴、阴2、阴3、雷、雷2、雷3<br><b>●武将:</b>波才、卜巳、程远志、邓茂、高升、管亥、马元义、裴元绍、张宝、张角、张梁、张曼成、张宁、张燕、周仓、程远志(旧)、管亥(旧)、马元义(旧)、裴元绍(旧)、张宝(旧)、张角(旧)、张梁(旧)、张曼成(旧)、张燕(旧)、周仓(旧)、神张飞、神赵云、邓艾、张郃、法正、姜维、凌统、孙策、公孙瓒、左慈、孙策&大乔、管辂、文鸳、马忠、何皇后、李儒、南华老仙、曲阿小将、张宁(阴)、妖许褚、神蔡文姬、王元姬、甄姬、马超、徐庶、蒋钦、周瑜&小乔、吕玲绮、沙摩柯、邹氏、柏夫人、蒋济、王元姬(新)、陈到、邓芝、冯习、黄舞蝶、王伉&吕凯、蒋钦(新)、吕范、潘淑、孙峻、董承、管辂(新)、左幽、妖许褚(新)、神陆逊、曹冲、华歆、夏侯霸、黄叙、马云禄、关羽、太史慈、文聘、妖黄月英、神庞统、曹真、郭嘉、张琦、星彩、凌统(雷)、周泰、樊娟、水镜、赵云、曹婴、贾逵、王凌、伊籍、张翼、大虎&小虎、孙贲、陈登、成廉、管宁、侯成、刘刕、王美人、臧霸、张燕(雷)、终军<br><b>●bug修复:</b>①修复因为衍生牌绘无懈可击而导致无懈不能正常使用的bug;②修复帝千面猫【独掌】与投稿武将曹婴【伐谋】无法使用无懈可击并且弹窗的bug;③修复衍生牌超融合在使用时会弹窗的bug<br><b>●优化:</b>①对函数:曦光选项9/10/11/14/谋弈/协力、衍生牌:天命之镰/绘羊皮卷/对峙/种族仇恨/、技能:涩图/鸷爪/执笔/缘书/新生/恍悟/梦乡/博才/礼书/疾雷/伐谋/谋胜、卡牌:天赐神兵/金色冒泡等涉及文字窗口的内容进行优化,添加tdnodes设定;②对函数:曦光选项8、衍生牌:地狱天神、技能:曦光/伐谋/放逐/凛冬、卡牌:合成武等涉及文字窗口的内容进行优;添加textbutton设定;③添加关于武将千面猫百宝箱与临摹的函数并对百宝箱进行补全<P><b>〈二十五〉<P align=left>●扩展:</b>杀神附体、圆梦计划<br><b>●武将系列:</b>黄巾之乱、恶、魔、怒、群友设计Ⅴ<br><b>●武将:</b>龚都(黄巾补充)、赵弘(黄巾补充)、神典韦、神左慈、文鸯、曹彰、关平、关羽、张苞、周仓、孙姬、张昭、卑弥呼、高顺、华雄、曹真、夏侯令女、于禁、枣祗任峻、法正、关平(魔)、姜维、习珍习宏、徐盛、祖茂、樊阿、华雄、胡车儿、刘宏、马腾、王异、张绣、魔刘邦、魔吴普、魔兀突骨、魔张春华、怒曹操、怒貂蝉、怒关羽、怒刘备、怒吕布、怒吕玲绮、怒庞统、怒司马懿、怒孙权、怒孙尚香、怒魏延、怒徐荣、怒周瑜、怒诸葛亮<br><b>●投稿武将:</b>云涌<br><b>●卡牌:</b>古筝雷鬼、西汉秘宝、水攻、龙胆枪、玉玺、猫杀<br><b>●投稿人:</b>雲湧<br><b>●优化:</b>①更换杀神附体妖包武将程昱、凌统的原画为最初版;②补全曦光、评改、鸷爪、神术、蓝语、伐谋、量反、逆鳞、锦就、贯云、予望、皇者、水、古筝雷鬼等印牌技能与卡牌印属性杀时的属性种类,添加lib.inpile_nature设定<br><b>●bug修复:</b>修复群猫乱舞系列武将纯千面猫阵亡时无法使用技能纯情令<夫君>获得纯千面猫所有牌的bug<P><b>〈二十六〉<P align=left>●扩展:</b>猫猫叹气<br><b>●武将系列:</b>群猫乱舞<br><b>●武将:</b>龙千面猫<br><b>●卡牌:</b>暗杀、金杀、木杀、水杀、土杀、风杀、穿刺杀、血杀、射杀<br><b>●衍生牌:</b>龙焰<br><b>●优化:</b>将杀神附体系列卡牌[水攻]中的冰属性伤害改为水属性'
                         );
@@ -13620,7 +13611,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 clear: true,
                 onclick() {
                     if (this.jiaqun == undefined) {
-                        var more = ui.create.div('.jiaqun', '<div style="border:2px solid gray"><span><img src="extension/猫猫叹气/image/字体图/欢迎进群.jpg" width="230" height="260"></span>');
+                        const more = ui.create.div('.jiaqun', '<div style="border:2px solid gray"><span><img src="extension/猫猫叹气/image/字体图/欢迎进群.jpg" width="230" height="260"></span>');
                         this.parentNode.insertBefore(more, this.nextSibling);
                         this.jiaqun = more;
                         this.innerHTML = '<div class="langqinjiuxiao">「查阅」欢迎加群<font size="4px">▼▼▼</font></div>';
