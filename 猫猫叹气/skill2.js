@@ -380,7 +380,6 @@ const skill = {
                     }) == 1
                 ) {
                     return true;
-                    break;
                 }
             }
             return false;
@@ -709,7 +708,6 @@ const skill = {
                     })
                 ) {
                     return true;
-                    break;
                 }
             }
             return false;
@@ -2307,7 +2305,6 @@ const skill = {
                 for (let i of evt.cards) {
                     if (['qysj_hongshaoniuroumian', 'qysj_laniuroumian', 'qysj_tungumian', 'qysj_jitangmian', 'qysj_yixiangpaomian'].includes(i.name)) {
                         return true;
-                        break;
                     }
                 }
             }
@@ -3086,7 +3083,6 @@ const skill = {
                     for (let i = 0; i < evt.es.length; i++) {
                         if (evt.es[i].name == 'qysj_sherishengong') {
                             return true;
-                            break;
                         }
                     }
                     return false;
@@ -6286,7 +6282,6 @@ const skill = {
                         for (const storage of player.storage.qysj_kuiming) {
                             if (storage[0] == event.player) {
                                 return true;
-                                break;
                             }
                         }
                     }
@@ -6316,7 +6311,6 @@ const skill = {
                         for (const storage of player.storage.qysj_kuiming) {
                             if (storage[0] == event.player) {
                                 return true;
-                                break;
                             }
                         }
                     }
@@ -7941,7 +7935,6 @@ const skill = {
                         for (let i of group) {
                             if (i == event.player.group) {
                                 return true;
-                                break;
                             }
                         }
                     }
@@ -7960,7 +7953,6 @@ const skill = {
                             for (let i of group) {
                                 if (i == _status.event.source.group) {
                                     return true;
-                                    break;
                                 }
                             }
                             return false;
@@ -8025,7 +8017,6 @@ const skill = {
                 for (let i of group) {
                     if (i == event.player.group) {
                         return true;
-                        break;
                     }
                 }
             }
@@ -8044,7 +8035,6 @@ const skill = {
                     for (let i of group) {
                         if (i == _status.event.source.group) {
                             return true;
-                            break;
                         }
                     }
                     return false;
@@ -8253,7 +8243,6 @@ const skill = {
                                     for (let i of group) {
                                         if (!groups.includes(i)) {
                                             return 1;
-                                            break;
                                         }
                                     }
                                 }
@@ -13874,7 +13863,7 @@ const skill = {
         init(player) {
             game.broadcastAll(function (player) {
                 player._xdz_shenlvex_mark = player.mark('○', {
-                    name: '<strong style=\"background:red\">神略</strong>',
+                    name: '<strong style="background:red">神略</strong>',
                     content: '阳:将一张红色牌当作【乐不思蜀】对自己使用并跳过一名随机敌方角色的下次出牌阶段',
                 });
             }, player);
@@ -13953,7 +13942,7 @@ const skill = {
                     }
                     player._xdz_shenlvex_mark.name = '●';
                     player._xdz_shenlvex_mark.firstChild.innerHTML = '●';
-                    player._xdz_shenlvex_mark.info.name = '<strong style=\"background:black\">神略</strong>';
+                    player._xdz_shenlvex_mark.info.name = '<strong style="background:black">神略</strong>';
                     player._xdz_shenlvex_mark.info.content = '阴:将一张黑色牌当作【兵粮寸断】对自己使用并跳过一名随机敌方角色的下次摸牌阶段';
                 }, player);
                 let target = list.randomGet();
@@ -13969,7 +13958,7 @@ const skill = {
                     }
                     player._xdz_shenlvex_mark.name = '○';
                     player._xdz_shenlvex_mark.firstChild.innerHTML = '○';
-                    player._xdz_shenlvex_mark.info.name = '<strong style=\"background:red\">神略</strong>';
+                    player._xdz_shenlvex_mark.info.name = '<strong style="background:red">神略</strong>';
                     player._xdz_shenlvex_mark.info.content = '阳:将一张红色牌当作【乐不思蜀】对自己使用并跳过一名随机敌方角色的下次出牌阶段';
                 }, player);
                 const target0 = list0.randomGet();
@@ -19543,7 +19532,7 @@ const skill = {
                         //	dialog.content.lastChild.querySelector('.skill>.card').style.transform='';
                     }
                     dialog.addText('<P>');
-                    dialog.add('<font size=3><P align=left><font color=#FFE4E1><strong style=\"background:DarkSlateGray\">因为会出现各种各样的情况(如下图),以至于我们根本不知道自己装备了些啥,所以我弄了这个标记,方便查看装备,不过你要是非要抬杠说长按武将牌往上划到下面也能查看那我也没办法</P></font>');
+                    dialog.add('<font size=3><P align=left><font color=#FFE4E1><strong style="background:DarkSlateGray">因为会出现各种各样的情况(如下图),以至于我们根本不知道自己装备了些啥,所以我弄了这个标记,方便查看装备,不过你要是非要抬杠说长按武将牌往上划到下面也能查看那我也没办法</P></font>');
                     dialog.add('<span><img src="extension/猫猫叹气/image/东风/qmyy_huoqixxx.jpg" width="180" height="347"></span>(图1)');
                     dialog.add('<span><img src="extension/猫猫叹气/image/东风/qmyy_hqhqhqya.jpg" width="180" height="353"></span>(图2)');
                     dialog.add('<span><img src="extension/猫猫叹气/image/东风/qmyy_huoqixxa.jpg" width="180" height="318"></span>(图3)');
@@ -25020,7 +25009,6 @@ const skill = {
                         for (const ce of ne) {
                             if (ce[1] == i) {
                                 return ce[0];
-                                break;
                             }
                         }
                     }
@@ -25151,7 +25139,6 @@ const skill = {
                             for (const dt of player.storage.yjckfyl_jiuxianwai) {
                                 if (dt[0] == storage && dt[1] < 9 && (!player.storage.yjckfyl_jiuxiannei || !player.storage.yjckfyl_jiuxiannei.includes(storage) || event.name == 'chooseToRespond') && filter({ name: storage }, player, event) && player.storage.yjckfyljiuxiancard.includes(storage)) {
                                     return true;
-                                    break;
                                 }
                             }
                         }
@@ -25177,7 +25164,6 @@ const skill = {
                             for (const dt of player.storage.yjckfyl_jiuxianwai) {
                                 if (dt[0] == button.link[2] && dt[1] < 9) {
                                     return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
-                                    break;
                                 }
                             }
                         }
@@ -31171,7 +31157,6 @@ const skill = {
                 for (let i of evt.cards) {
                     if (['shan'].includes(i.name)) {
                         return true;
-                        break;
                     }
                 }
             }
@@ -31683,7 +31668,6 @@ const skill = {
                     for (const c of dead) {
                         if (c.identity == player.identity || (player.identity == 'zhu' && c.identity == 'zhong')) {
                             return 4;
-                            break;
                         }
                     }
                     return 0;
@@ -32330,7 +32314,6 @@ const skill = {
                         for (let i = 0; i < evt.es.length; i++) {
                             if (['equip3', 'equip4', 'equip6'].includes(get.subtype(evt.es[i]))) {
                                 return true;
-                                break;
                             }
                         }
                     }
@@ -32342,7 +32325,6 @@ const skill = {
                 for (let i = 0; i < evt.es.length; i++) {
                     if (['equip3', 'equip4', 'equip6'].includes(get.subtype(evt.es[i]))) {
                         return true;
-                        break;
                     }
                 }
             }
@@ -32658,7 +32640,6 @@ const skill = {
                             const info = get.info(s);
                             if (lib.skill[s] && lib.translate[s] && lib.translate[s + '_info'] && !info.limited) {
                                 return true;
-                                break;
                             }
                         }
                     },
@@ -33186,7 +33167,6 @@ const skill = {
                     for (const c of dead) {
                         if (c.identity == player.identity || (player.identity == 'zhu' && c.identity == 'zhong')) {
                             return 4;
-                            break;
                         }
                     }
                     return 0;
@@ -34033,7 +34013,6 @@ const skill = {
                     //QQQ
                     if (get.position(i) == 'd') {
                         return true;
-                        break;
                     }
                 }
             }
@@ -34643,7 +34622,6 @@ const skill = {
                 for (let i = 0; i < history.length; i++) {
                     if (get.type2(history[i].card) == 'trick') {
                         return true;
-                        break;
                     }
                 }
             });
@@ -34941,7 +34919,6 @@ const skill = {
                                 for (let x of player.storage.nmmy_manzhi[i][1]) {
                                     if (get.position(x, true) == 'd') {
                                         return true;
-                                        break;
                                     }
                                 }
                             }
@@ -35929,7 +35906,6 @@ const skill = {
                 for (let i = 0; i < str.length; i++) {
                     if (str[i] == '南' && str.substring(i, i + 4) == '南蛮入侵') {
                         return true;
-                        break;
                     }
                 }
             }
@@ -35994,7 +35970,6 @@ const skill = {
                 for (let skill of lib.skill.nmmldw_yushou.derivation) {
                     if (player.hasSkill(skill)) {
                         return event.num > 0;
-                        break;
                     }
                 }
             } else {
@@ -36786,7 +36761,6 @@ const skill = {
             for (const c of event.cards) {
                 if (get.color(c) != 'black') {
                     return false;
-                    break;
                 }
             }
             return true;
@@ -36807,7 +36781,6 @@ const skill = {
                     for (let i = 0; i < tra.length; i++) {
                         if (['弓', '弩'].includes(tra[i])) {
                             return true;
-                            break;
                         }
                     }
                 }
@@ -41487,7 +41460,6 @@ const skill = {
                     for (const c of dead) {
                         if (c.identity == player.identity || (player.identity == 'zhu' && c.identity == 'zhong')) {
                             return 4;
-                            break;
                         }
                     }
                     return 0;
@@ -41959,7 +41931,6 @@ const skill = {
                             for (let j = 0; j < skills.length; j++) {
                                 if (lib.translate[skills[j] + '_info'] && lib.skill[skills[j]] && player != target && !pss.includes(skills[j])) {
                                     return true;
-                                    break;
                                 }
                             }
                         }
@@ -42101,7 +42072,6 @@ const skill = {
             for (let card of cards) {
                 if (card.name == 'du') {
                     return false;
-                    break;
                 }
             }
             return true;
@@ -42111,7 +42081,6 @@ const skill = {
             for (let card of cards) {
                 if (card.name == 'du') {
                     return false;
-                    break;
                 }
             }
             return true;
@@ -42311,7 +42280,6 @@ const skill = {
                     for (let target of trigger.targets) {
                         if (get.attitude(player, target) <= 0 && (target.hasSkillTag('maixie') || target.hasSkillTag('maixie_hp') || target.hasSkillTag('maixie_defend'))) {
                             return 6 - get.value(card);
-                            break;
                         }
                     }
                 }
@@ -46297,19 +46265,15 @@ const skill = {
                 }
                 if (['孙'].includes(str2[0])) {
                     return true;
-                    break;
                 }
                 if (str2[0] != '公' && ['孙'].includes(str2[1])) {
                     return true;
-                    break;
                 }
                 if (str2[1] != '公' && ['孙'].includes(str2[2])) {
                     return true;
-                    break;
                 }
                 if (lib.translate[str + '_ab'] && ['孙'].includes(lib.translate[str + '_ab'][0])) {
                     return true;
-                    break;
                 }
             }
             return false;
@@ -47638,7 +47602,6 @@ const skill = {
                     next.add(storage[0]);
                     if (storage[0] == event.player && storage[1] < 2) {
                         return true;
-                        break;
                     }
                 }
                 if (!next.includes(event.player)) {
@@ -47704,7 +47667,6 @@ const skill = {
                         for (const storage of player.storage.leign_gexi) {
                             if (storage[0] == event.player) {
                                 return true;
-                                break;
                             }
                         }
                     }
@@ -47739,7 +47701,6 @@ const skill = {
                     //QQQ
                     if (event.player.getCards('h').includes(i)) {
                         return true;
-                        break;
                     }
                 }
             }
@@ -47765,11 +47726,9 @@ const skill = {
                     for (let card of trigger.cards) {
                         if (att < 0 && trigger.player.getCards('h').includes(card) && (card.name == 'du' || (get.value(card, trigger.player) < 2 && trigger.player.countCards('h') > 4 && _status.currentPhase == trigger.player))) {
                             return '提出申请';
-                            break;
                         }
                         if (att >= 0 && trigger.player.getCards('h').includes(card) && get.value(card, trigger.player) <= 4) {
                             return '提出申请';
-                            break;
                         }
                     }
                     return '还是算了';
@@ -49179,7 +49138,6 @@ const skill = {
                             for (let j = 0; j < skills.length; j++) {
                                 if (lib.translate[skills[j] + '_info'] && lib.skill[skills[j]] && target.group == 'shu' && player != target && !pss.includes(skills[j])) {
                                     return true;
-                                    break;
                                 }
                             }
                         }
@@ -49271,7 +49229,6 @@ const skill = {
                             for (let j = 0; j < skills.length; j++) {
                                 if (lib.translate[skills[j] + '_info'] && lib.skill[skills[j]] && target.group == 'wei' && player != target && !pss.includes(skills[j])) {
                                     return true;
-                                    break;
                                 }
                             }
                         }
