@@ -668,9 +668,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             ban_identity.remove('off');
                             if (ban_identity.length) {
                                 const identityList2 = identityList.slice(0);
-                                for (let i = 0; i < ban_identity.length; i++) {
-                                    while (identityList2.remove(ban_identity[i])) { }
-                                }
                                 ban_identity = identityList2.randomGet();
                                 identityList.remove(ban_identity);
                                 identityList.splice(game.players.indexOf(target), 0, ban_identity);
@@ -713,8 +710,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             game.zhu.identityShown = true;
                             game.zhu.isZhu = game.zhu.identity == 'zhu';
                             game.zhu.node.identity.classList.remove('guessing');
-                            /*target.setIdentity();
-              target.node.identity.classList.remove('guessing');*/
                         }
                         //选将框分配
                         for (i in lib.characterReplace) {
@@ -790,11 +785,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 str = _status.brawl.chooseCharacterStr;
                             }
                             dialog = ui.create.dialog(str, 'hidden', [list, 'characterx']);
-                            /*if(!_status.brawl||!_status.brawl.noAddSetting){
-              if(get.config('change_identity')){
-              addSetting(dialog);
-              }
-              }*/
                         }
                         const createSearchInput = function (dialog) {
                             const div = ui.create.div(dialog.content, 1, {
@@ -870,18 +860,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             event.dialogxx = ui.create.characterDialog('heightset', target);
                         }
                         // createSearchInput(event.dialogxx);
-                        /*自动改为全部*/
-                        /*if (event.dialogxx.currentcaptnode2) {
-            if (lib.config.touchscreen) {
-            event.dialogxx.currentcaptnode2.dispatchEvent(new DragEvent('touchend', {
-            cancelable: true,
-            composed: true
-            }))
-            } else {
-            event.dialogxx.currentcaptnode2.click();
-            }
-            }*/
-                        /*补充所有武将*/
+
                         const charactersKey = Object.keys(lib.character)
                             .removeArray(event.dialogxx.buttons.map((value) => value.link))
                             .filter((value) => {
@@ -1101,12 +1080,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 target.update();
                             }
                         }
-                        /*for(var i=0;i<game.players.length;i++){
-            if(game.players[i]!=game.zhu&&game.players[i]!=target){
-            event.list.randomSort();
-            event.ai(game.players[i],event.list.splice(0,get.config('choice_'+game.players[i].identity)),null,event.list)
-            }
-            }*/
+
                         ('step 3');
                         if (event.group) {
                             target.group = event.group;
@@ -3120,7 +3094,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return false;
                                     }
                                     if (player.storage.xyfh_shengguang == true) {
-                                        return isPrime(event.player.getHistory('useCard').length, player);
+                                        return window.isPrime(event.player.getHistory('useCard').length, player);
                                     }
                                     return event.player.getHistory('useCard').length % 2 != 0;
                                 },
@@ -3469,7 +3443,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     } else if (_status.connectMode) {
                                         list = get.charactersOL((name) => lib.character[name][1] == 'shen');
                                     } else {
-                                        list = get.gainableCharacters((info) => info[i] == 'shen');
+                                        list = get.gainableCharacters((info) => info[1] == 'shen');
                                     }
                                     const players = game.players.concat(game.dead);
                                     players.forEach((current) => {
@@ -4552,8 +4526,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return 2;
                                         })
                                         .forResult();
-                                    if (result.suit == 'heart' && result.number == 1) {
-                                    } else {
+                                    if (!(result.suit == 'heart' && result.number == 1)) {
                                         trigger.cancel();
                                     }
                                 },
@@ -4784,7 +4757,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     global: 'useCard1',
                                 },
                                 filter(event, player) {
-                                    return event.player != player && isPrime(event.player.getHistory('useCard').length);
+                                    return event.player != player && window.isPrime(event.player.getHistory('useCard').length);
                                 },
                                 forced: true,
                                 async content(event, trigger, player) {
@@ -4946,7 +4919,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             xyfh_podao: {
                                 nobracket: true,
                                 group: 'xyfh_podao3',
-                                nobracket: true,
                                 mahouSkill: true,
                                 enable: 'phaseUse',
                                 filter(event, player) {
@@ -7664,11 +7636,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (num > 0) {
                                         player.draw(Math.min(num, 5));
                                     }
-                                    return;
-                                    if (num < 1) {
-                                        num = 1;
-                                    }
-                                    player.draw(num);
                                 },
                                 forced: true,
                                 popup: false,
@@ -8309,10 +8276,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             }
                                         }
                                         return ui.create.dialog('千风罡', [list, 'vcard']);
-                                    },
-                                    filter(button, player) {
-                                        return true;
-                                        return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
                                     },
                                     check(button) {
                                         if (_status.event.parent.type != 'phase') {
@@ -12977,8 +12940,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 const index = result.index;
                                 switch (index) {
                                     case 0:
-                                        const next = trigger.player.chooseToDiscard('he', 2, (card) => card.suit == trigger.card.suit, get.translation(event.name) + ':弃置两张' + get.translation(trigger.card.suit) + '牌');
-                                        next.set('ai', () => 1);
+                                        {
+                                            trigger.player.chooseToDiscard('he', 2, (card) => card.suit == trigger.card.suit, get.translation(event.name) + ':弃置两张' + get.translation(trigger.card.suit) + '牌').set('ai', () => 1);
+                                        }
                                         break;
                                     default:
                                         trigger.player.loseHp();
@@ -14567,53 +14531,63 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (effect > 0) {
                                         switch (get.subtype(name)) {
                                             case 'equip1':
-                                                const card1 = player
-                                                    .getCards('hes', {
-                                                        subtype: 'equip1',
-                                                    })
-                                                    .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
-                                                if (player.getUseValue(card1) < effect) {
-                                                    return effect + 1.2 + Math.random();
+                                                {
+                                                    const card1 = player
+                                                        .getCards('hes', {
+                                                            subtype: 'equip1',
+                                                        })
+                                                        .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
+                                                    if (player.getUseValue(card1) < effect) {
+                                                        return effect + 1.2 + Math.random();
+                                                    }
                                                 }
                                                 break;
                                             case 'equip2':
-                                                const card2 = player
-                                                    .getCards('hes', {
-                                                        subtype: 'equip2',
-                                                    })
-                                                    .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
-                                                if (player.getUseValue(card2) < effect) {
-                                                    return effect + 2 + Math.random();
+                                                {
+                                                    const card2 = player
+                                                        .getCards('hes', {
+                                                            subtype: 'equip2',
+                                                        })
+                                                        .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
+                                                    if (player.getUseValue(card2) < effect) {
+                                                        return effect + 2 + Math.random();
+                                                    }
                                                 }
                                                 break;
                                             case 'equip3':
-                                                const card3 = player
-                                                    .getCards('hes', {
-                                                        subtype: 'equip3',
-                                                    })
-                                                    .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
-                                                if (player.getUseValue(card3) < effect) {
-                                                    return effect + 1.1 + Math.random();
+                                                {
+                                                    const card3 = player
+                                                        .getCards('hes', {
+                                                            subtype: 'equip3',
+                                                        })
+                                                        .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
+                                                    if (player.getUseValue(card3) < effect) {
+                                                        return effect + 1.1 + Math.random();
+                                                    }
                                                 }
                                                 break;
                                             case 'equip4':
-                                                const card4 = player
-                                                    .getCards('hes', {
-                                                        subtype: 'equip4',
-                                                    })
-                                                    .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
-                                                if (player.getUseValue(card4) < effect) {
-                                                    return effect + 1.4 + Math.random();
+                                                {
+                                                    const card4 = player
+                                                        .getCards('hes', {
+                                                            subtype: 'equip4',
+                                                        })
+                                                        .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
+                                                    if (player.getUseValue(card4) < effect) {
+                                                        return effect + 1.4 + Math.random();
+                                                    }
                                                 }
                                                 break;
                                             case 'equip5':
-                                                const card5 = player
-                                                    .getCards('hes', {
-                                                        subtype: 'equip5',
-                                                    })
-                                                    .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
-                                                if (player.getUseValue(card5) < effect) {
-                                                    return effect + 1.5 + Math.random();
+                                                {
+                                                    const card5 = player
+                                                        .getCards('hes', {
+                                                            subtype: 'equip5',
+                                                        })
+                                                        .sort((a, b) => player.getUseValue(b) - player.getUseValue(a))[0];
+                                                    if (player.getUseValue(card5) < effect) {
+                                                        return effect + 1.5 + Math.random();
+                                                    }
                                                 }
                                                 break;
                                         }
@@ -16271,29 +16245,24 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     return 0.3 + Math.random();
                                                 }
                                                 return Math.random() - 0.3;
-                                                break;
                                             case 2:
                                                 if (effect <= 0) {
                                                     return 0.2 + Math.random();
                                                 }
                                                 return Math.random() - 0.3;
-                                                break;
                                             case 3:
                                                 if (effect > 0) {
                                                     return 0.7 + Math.random();
                                                 }
                                                 return Math.random() - 0.3;
-                                                break;
                                             case 4:
                                                 if (effect <= 0) {
                                                     return Math.random();
                                                 }
                                                 return Math.random() - 0.3;
-                                                break;
                                             default:
                                                 return Math.random();
                                         }
-                                        return 0;
                                     });
                                 ('step 1');
                                 if (result.bool) {
@@ -16847,6 +16816,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             content() {
                                 'step 0';
                                 let num = 0;
+                                let num1;
+                                let num2;
                                 for (let i = 0; i < game.players.length; i++) {
                                     let current = game.players[i];
                                     if (current.countMark('_zxqy_liuxie')) {
@@ -16854,14 +16825,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                 }
                                 if (num > 0) {
-                                    let num1 = num;
+                                    num1 = num;
                                 } else {
-                                    let num1 = 0;
+                                    num1 = 0;
                                 }
                                 if (player.countMark('zxqy_qinggan')) {
-                                    let num2 = player.countMark('zxqy_qinggan');
+                                    num2 = player.countMark('zxqy_qinggan');
                                 } else {
-                                    let num2 = 0;
+                                    num2 = 0;
                                 }
                                 const num3 = num1 * num2;
                                 event.num1 = num3;
@@ -18242,10 +18213,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return false;
                                         }
                                         return true;
-                                        if (event.responded) {
-                                            return false;
-                                        }
-                                        return true;
                                     },
                                     forced: true,
                                     content() {
@@ -18260,31 +18227,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                             },
                         },
-                        /*zxqy_shikongganshe: {
-            audio: 2,
-            trigger: {
-            player: "phaseZhunbeiBegin",
-            },
-            forced: true,
-            content() {
-            'step 0'
-            player.hp =player.maxHp;
-            list1 = ['nanman', 'wanjian', 'wuzhong', 'chuqibuyi', 'zengbing', 'suijiyingbian', 'chenghuodajie'];
-            list2 = ['nanman', 'wanjian', 'wuzhong', 'chuqibuyi', 'zengbing', 'suijiyingbian', 'chenghuodajie'];
-            var cards1 = game.createCard(list1.randomGet());
-            var cards2 = game.createCard(list2.randomGet());
-            lib.inpile.push(cards1);
-            lib.inpile.push(cards2);
-            player.gain(cards1, 'gain2');
-            player.gain(cards2, 'gain2');
-            'step 1'
-            if (!player.hasFriend() && player.maxHp < 3) {
-            player.addTempSkill('zxqy_shikongganshe_damage', {
-            player: 'phaseZhunbeiBegin'
-            });
-            }
-            },
-            },*/
+
                         zxqy_zhiji: {
                             audio: 2,
                             enable: 'phaseUse',
@@ -18346,24 +18289,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.damage(9999, 'nosource');
                             },
                         },
-                        /*zxqy_huangnvxitong: {
-            audio: 2,
-            trigger: {
-            player: "dying",
-            },
-            forced: true,
-            filter(event, player) {
-            if (event.getParent(2).name == 'zxqy_shikongganshe_damage') return false;
-            return player.maxHp > 1;
-            },
-            content() {
-            'step 0'
-            player.loseMaxHp();
-            'step 1'
-            player.hp =player.maxHp;
-            player.addTempSkill('zxqy_huangnvxitong_buff');
-            },
-            },*/
+
                         zxqy_huangnvxitong_buff: {
                             trigger: {
                                 player: ['damageBefore', 'loseHpBefore'],
@@ -18827,7 +18753,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             player.storage.QQQ_shengguang = false;
                                         }
                                     } else {
-                                        if (isPrime(trigger.player.getHistory('useCard').length)) {
+                                        if (window.isPrime(trigger.player.getHistory('useCard').length)) {
                                             game.playAudio('../extension/雪月风花/audio/圣光阳效果.mp3');
                                             trigger.cancel();
                                             player.useCard(
@@ -19815,8 +19741,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await trigger.player.chooseToDiscard(3).forResult();
-                                if (result.cards && result.cards[0]) {
-                                } else {
+                                if (!(result.cards?.length)) {
                                     trigger.player.loseHp(3);
                                 }
                             },
@@ -20247,14 +20172,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     supperCharlotte: true,
                                     fixed: true,
                                     content() {
-                                        let card = get.cardPile(function (card) {
-                                            return card.name == 'sha';
-                                        });
-                                        if (card) {
-                                            player.gain(card, 'gain2');
-                                        }
-                                    },
-                                    content() {
                                         'step 0';
                                         trigger.bagua_skill = true;
                                         player.judge('bagua', function (card) {
@@ -20427,8 +20344,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (links && links[0]) {
                                     game.log(player, '声明', links[0]);
                                     const { cards } = await trigger.target.chooseToGive(player, links[0]).forResult();
-                                    if (cards && cards[0]) {
-                                    } else {
+                                    if (!(cards?.length)) {
                                         trigger.directHit.add(trigger.target);
                                         trigger.target.addTempSkill('QQQ_futa_1', { player: 'phaseAfter' });
                                     }
@@ -20803,25 +20719,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                         }, //10
                         //——————————————————————————————————————————————————————————————————————————————————————————————————【誓约胜利之剑】
-                        /*
-            出牌阶段限一次,你可消耗100点魔力值,对所有敌方角色造成一次牛逼的攻击
-            当前模式为挑战模式,则是圆桌会议,无限真实伤害
-            当前模式不为挑战模式,但场上敌方角色的血量大于等于60,是圆桌会议,21亿真实伤害
-            当前模式不为挑战模式.是君主独裁,六点伤害,有概率触发彩蛋
-            圆桌会议超过一半人承认即可发动攻击,解封条件
-            <此战,即为生存而战>———承认,凯(本局脱离过濒死)
-            <此战,即为抗争强于自身之人之战>————承认,贝狄威尔(自动通过)
-            <此战,非背离人道之战>————承认,加赫雷斯(本回合未对友方角色造成伤害)
-            <此战,即为追求真实之战>————承认,阿格规文(场上所有角色执行过一次完整的回合)
-            <此战,非抗争精灵之战>————承认,兰斯洛特(场上不存在key势力角色)
-            <此战,即为公平之战>————承认,帕拉米迪斯(场上存活角色不大于二,若为挑战模式自动通过)
-            <此战,乃讨伐邪恶之战>————承认,莫德雷德(当前模式为挑战模式,且你为挑战方)
-            <此战,非为私欲而战>————承认,加拉哈德(存在一名敌方角色的体力大于你的体力)
-            <此战,即拯救世界之战>————承认,亚瑟(自动通过)
-            <此战,即高贵荣誉之战>————承认,高文(你的手牌数不为全场最高,也不为全场最低)
-            <此战,即勇者同行之战>————承认,崔斯坦(友方角色为<勇者>)
-            <此战,非向善者挥剑之战>————承认,加雷斯(存在一名敌方角色有手牌)
-            */
+
                         QQQ_Excalibur: {
                             enable: 'phaseUse',
                             usable: 1,
@@ -20885,10 +20783,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         num++;
                                         game.log('<此战,即为追求真实之战>————阿格规文');
                                     }
-                                    if (true) {
-                                        num++;
-                                        game.log('<此战,即为抗争强于自身之人之战>————贝狄威尔');
-                                    }
+                                    num++;
+                                    game.log('<此战,即为抗争强于自身之人之战>————贝狄威尔');
                                     if (game.players.every((q) => q.group != 'key')) {
                                         num++;
                                         game.log('<此战,非抗争精灵之战>————兰斯洛特');
@@ -20905,10 +20801,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         num++;
                                         game.log('<此战,非为私欲而战>————加拉哈德');
                                     }
-                                    if (true) {
-                                        num++;
-                                        game.log('<此战,即拯救世界之战>————亚瑟');
-                                    }
+                                    num++;
+                                    game.log('<此战,即拯救世界之战>————亚瑟');
                                     if (!player.isMaxHandcard() && !player.isMinHandcard()) {
                                         num++;
                                         game.log('<此战,即高贵荣誉之战>————高文');
@@ -22041,14 +21935,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         zxqy_zhufu_yasuo_info: '锁定技,其他角色与你计算距离时+1;你始终跳过你的弃牌阶段',
                         zxqy_zhufu_hui: '辉的祝福',
                         zxqy_zhufu_zxqy_info: '锁定技,每轮限三次,当你进入濒死阶段时,你减少一点体力上限并将体力回复至体力上限,在回合结束后进行一个额外回合',
-                        //——————————————————————————————————————————————————————————————————————————————————————————————————
-                        QQQ_: '',
-                        QQQ_: '',
-                        QQQ__info: '',
-                        QQQ_: '',
-                        QQQ__info: '',
-                        QQQ_: '',
-                        QQQ__info: '',
                         //——————————————————————————————————————————————————————————————————————————————————————————————————阿尔托莉雅
                         QQQ_Altria: '阿尔托莉雅',
                         QQQ_lingxiu: '领袖气质',
@@ -22603,7 +22489,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                             },
                             toself: true,
-                            fullimage: true,
                         },
                         xyfh_jushu: {
                             fullimage: true,
@@ -23359,7 +23244,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             equipSkill: true,
                             trigger: { player: 'useCardToPlayered' },
-                            forced: true,
                             filter(event, player) {
                                 return event.card && event.card.name == 'sha' && !event.parent.directHit.includes(event.target);
                             },
@@ -23400,7 +23284,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                         },
                         xyfh_kalisita_skill2: {
-                            forced: true,
                             equipSkill: true,
                             trigger: {
                                 player: 'useCardToPlayered',
