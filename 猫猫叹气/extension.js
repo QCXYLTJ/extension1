@@ -481,7 +481,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.playAudio('../extension/猫猫叹气/audio', trigger.player.name);
                 },
             };
-
             //    lib.translate.qmm_yixiang_info='<span style="background-image:-webkit-linear-gradient(left,aqua 0%,lime 5%,pink 10%,cyan 15%,deepSkyBlue 20%,mediumSlateBlue 25%,silver 30%,coral 35%,deepPink 40%,greenYellow 45%,wheat 50%,aqua 55%,lime 60%,pink 65%,cyan 70%,deepSkyBlue 75%,mediumSlateBlue 80%,silver 85%,coral 90%,deepPink 95%,greenYellow 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">这里写文字内容</span>';
             //    lib.translate.qmm_yixiang='<span style="background-image:-webkit-linear-gradient(top,aqua 0%,lime 10%,pink 20%,cyan 30%,deepSkyBlue 40%,mediumSlateBlue 50%,silver 60%,coral 70%,deepPink 80%,greenYellow 90%,wheat 100%);  -webkit-background-clip:text; -webkit-text-fill-color:transparent;text-shadow:none;">'+get.translation('qmm_yixiang')+'</span>';
             //...……………………"曦光"选项3:斗花色🌺……………………………………………………………………………………………………………………………………………………………………
@@ -623,11 +622,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.content.chooseToDoushou = function () {
                 'step 0';
                 let name = ['dsq_mao', 'dsq_xiang', 'dsq_shu', 'dsq_shi'];
-                for (let i = 0; i < name.length; i++) {
-                    if (!lib.card[name[i]]) {
-                        lib.card[name[i]] = get.copy(lib.skill.equiplib[name[i]]);
-                        lib.translate[name[i]] = get.translation(name[i]);
-                        lib.translate[name[i] + '_info'] = get.translation(name[i] + '_info');
+                for (const i of name) {
+                    if (!lib.card[i]) {
+                        lib.card[i] = get.copy(lib.skill.equiplib[i]);
+                        lib.translate[i] = get.translation(i);
+                        lib.translate[i + '_info'] = get.translation(i + '_info');
                     }
                 }
                 game.log(player, '对', target, '发起了', '#y斗兽');
@@ -785,20 +784,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 const shenzhi = ['lrs_yuyanjia', 'lrs_nvwu', 'lrs_lieren', 'lrs_baichi', 'lrs_shouwei', 'lrs_qishi'];
                 const cunmin2 = ['lrs_nvhai', 'lrs_laoliumang', 'lrs_popo', 'lrs_zhanglao', 'lrs_cunzhang', 'lrs_shaonian'];
                 const langrensha = [];
-                for (let i = 0; i < langren.length; i++) {
-                    langrensha.push(langren[i]);
+                for (const i of langren) {
+                    langrensha.push(i);
                 }
-                for (let i = 0; i < shenzhi.length; i++) {
-                    langrensha.push(shenzhi[i]);
+                for (const i of shenzhi) {
+                    langrensha.push(i);
                 }
-                for (let i = 0; i < cunmin2.length; i++) {
-                    langrensha.push(cunmin2[i]);
+                for (const i of cunmin2) {
+                    langrensha.push(i);
                 }
-                for (let i = 0; i < langrensha.length; i++) {
-                    if (!lib.card[langrensha[i]]) {
-                        lib.card[langrensha[i]] = get.copy(lib.skill.equiplib[langrensha[i]]);
-                        lib.translate[langrensha[i]] = get.translation(langrensha[i]);
-                        lib.translate[langrensha[i] + '_info'] = get.translation(langrensha[i] + '_info');
+                for (const i of langrensha) {
+                    if (!lib.card[i]) {
+                        lib.card[i] = get.copy(lib.skill.equiplib[i]);
+                        lib.translate[i] = get.translation(i);
+                        lib.translate[i + '_info'] = get.translation(i + '_info');
                     }
                 }
                 game.log(player, '对', target, '发起了', '#y狼人查杀');
@@ -918,8 +917,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 let list = ['红樱绽红,红遍红樱林,嘤嘤嘤', '一乡二里共三夫子,不识四书五经六义,竟敢教七八九子,十分大胆!', '图书里,龙不吟,虎不啸,小小书僮可笑可笑', '莺莺燕燕翠翠红红处处融融洽洽', '十口心思,思君思国思社稷', '我上等威风,显现一身虎胆', '古有曳影之剑,腾空而舒,克伐四方.历史,我的源代码', '大道如青天,道彰则恶不显,道晦则神剑出,吾名曳影!', '红面关,黑面张,白面子龙,面面护着刘先生', '人说之人,被人说之人说,人人被说,不如不说', '调琴调新调调调调来调调妙', '朝云朝朝朝朝朝朝朝退', '白蛇过江头顶一轮红日', '鹰立树梢月照斜影鹰不斜', '乔女自然娇,深恶胭脂胶肖脸', '黑不是,白不是,红黄更不是,和狐狸猫狗彷佛,既非家畜,又非野兽', '一叶孤舟,坐了二三个骚客,启用四桨五帆,经过六滩七湾,历尽八颠九簸,可叹十分来迟'];
                 const dialog = ui.create.dialog('对子:请出上联', 'hidden');
                 const avx = [];
-                for (let i = 0; i < list.length; i++) {
-                    avx.add([list[i], get.translation(list[i])]);
+                for (const i of list) {
+                    avx.add([i, get.translation(i)]);
                 }
                 dialog.add([avx, 'textbutton']);
                 target.chooseButton(dialog, true).set('ai', function (button) {
@@ -940,8 +939,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     dialog.add('<font color=#CCFF33>' + result.links + '</font>');
                     dialog.add('请对下联');
                     const avcd = [];
-                    for (let i = 0; i < list2.length; i++) {
-                        avcd.add([list2[i], get.translation(list2[i])]);
+                    for (const i of list2) {
+                        avcd.add([i, get.translation(i)]);
                     }
                     dialog.add([avcd, 'textbutton']);
                     event.list2 = list2;
@@ -1075,21 +1074,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 let list = ['mm_miaomiaomiao', 'mm_miaowu', 'mm_aojiao', 'mm_yingyingying'];
                 const dialog = ui.create.dialog('战术卖萌', '选择一种卖萌方式向' + get.translation(target) + '卖萌', 'hidden');
                 const list100 = [];
-                for (let i = 0; i < list.length; i++) {
-                    let td = '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.png" width="95" height="95"></span>';
-                    if (list[i] == 'mm_miaomiaomiao') {
+                for (const i of list) {
+                    let td = '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.png" width="95" height="95"></span>';
+                    if (i == 'mm_miaomiaomiao') {
                         td += '<br><font size=2>青睐:交给你牌</font>';
                     }
-                    if (list[i] == 'mm_miaowu') {
+                    if (i == 'mm_miaowu') {
                         td += '<br><font size=2>青睐:令你摸牌</font>';
                     }
-                    if (list[i] == 'mm_aojiao') {
+                    if (i == 'mm_aojiao') {
                         td += '<br><font size=2>青睐:手牌上限+2</font>';
                     }
-                    if (list[i] == 'mm_yingyingying') {
+                    if (i == 'mm_yingyingying') {
                         td += '<br><font size=2>青睐:令你回复体力</font>';
                     }
-                    list100.add([list[i], td]);
+                    list100.add([i, td]);
                 }
                 dialog.add([list100, 'tdnodes']);
                 dialog.add('只是战术性卖萌,假装一下讨好对方');
@@ -1214,8 +1213,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 let list = list2.randomGets(3);
                 const dialog = ui.create.dialog('遊戲王', '選擇一張魔法卡發動', 'hidden');
                 const table = [];
-                for (let i = 0; i < list.length; i++) {
-                    table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="102" height="142"></span>']);
+                for (const i of list) {
+                    table.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="102" height="142"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
                 player.chooseButton(dialog, true).ai = function () {
@@ -1248,8 +1247,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                     const dialog = ui.create.dialog('遊戲王', list0, 'hidden');
                     const table22 = [];
-                    for (let i = 0; i < list.length; i++) {
-                        table22.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="102" height="142"></span>']);
+                    for (const i of list) {
+                        table22.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="102" height="142"></span>']);
                     }
                     dialog.add([table22, 'tdnodes']);
                     target.chooseButton(dialog, true).ai = function () {
@@ -1281,8 +1280,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.dialog = ui.create.dialog();
                     let list = [mes, tes];
                     const table = [];
-                    for (let i = 0; i < list.length; i++) {
-                        table.add('<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="115" height="160"></span>');
+                    for (const i of list) {
+                        table.add('<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="115" height="160"></span>');
                     }
                     event.dialog.add(str);
                     event.dialog.add([table, 'tdnodes']);
@@ -1444,8 +1443,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 list = list.randomSort();
                 const dialog = ui.create.dialog('Precious Memories', '选择一张角色牌令' + get.translation(player) + '选择其登场时所需的费用', 'hidden');
                 const table = [];
-                for (let i = 0; i < list.length; i++) {
-                    table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="100" height="138"></span>']);
+                for (const i of list) {
+                    table.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="100" height="138"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
                 target.chooseButton(dialog, true).ai = function () {
@@ -1485,15 +1484,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.log(target, '选择了角色牌', link);
                 const dialog1 = ui.create.dialog('Precious Memories', get.translation(target) + '选择了角色牌:' + link, 'hidden');
                 const table1 = [];
-                for (let i = 0; i < list1.length; i++) {
-                    if (list1[i] == event.link) {
-                        table1.add([list1[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list1[i] + '.jpg" width="120" height="166"></span>']);
-                    } else if (list1[i] == llll) {
-                        table1.add([list1[i], '<font size=5>' + llll + '</font>']);
-                    } else if (['pm_guaihaizi', 'pm_huxiangzhengduo', 'pm_maozhuazi', 'pm_xin', 'pm_shenhaishaonv'].includes(list1[i])) {
-                        table1.add([list1[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list1[i] + '.jpg" width="194" height="140"></span>']);
+                for (const i of list1) {
+                    if (i == event.link) {
+                        table1.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="120" height="166"></span>']);
+                    } else if (i == llll) {
+                        table1.add([i, '<font size=5>' + llll + '</font>']);
+                    } else if (['pm_guaihaizi', 'pm_huxiangzhengduo', 'pm_maozhuazi', 'pm_xin', 'pm_shenhaishaonv'].includes(i)) {
+                        table1.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="194" height="140"></span>']);
                     } else {
-                        table1.add([list1[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list1[i] + '.jpg" width="140" height="194"></span>']);
+                        table1.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="140" height="194"></span>']);
                     }
                 }
                 dialog1.add([table1, 'tdnodes']);
@@ -1608,11 +1607,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.link3 = list;
                     event.dialog = ui.create.dialog();
                     const table = [];
-                    for (let i = 0; i < list.length; i++) {
-                        if (['pm_guaihaizi', 'pm_huxiangzhengduo', 'pm_maozhuazi', 'pm_xin', 'pm_shenhaishaonv'].includes(list[i])) {
-                            table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="83" height="60"></span>']);
+                    for (const i of list) {
+                        if (['pm_guaihaizi', 'pm_huxiangzhengduo', 'pm_maozhuazi', 'pm_xin', 'pm_shenhaishaonv'].includes(i)) {
+                            table.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="83" height="60"></span>']);
                         } else {
-                            table.add([list[i], '<span><img src="extension/猫猫叹气/image/曦光如月/' + list[i] + '.jpg" width="60" height="83"></span>']);
+                            table.add([i, '<span><img src="extension/猫猫叹气/image/曦光如月/' + i + '.jpg" width="60" height="83"></span>']);
                         }
                     }
                     event.dialog.add(get.translation(player) + '选择作为费用的牌');
@@ -1721,8 +1720,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.content.chooseToAnmo = function () {
                 'step 0';
                 const tricks = ['guilai', 'fanzhishouyu', 'jiyidetouzhi', 'huimieqixijianglin', 'biaotaihuyin', 'shijianduantu', 'yuanjijin', 'yiciyuanchuanyue', 'huimiequ', 'jiejiexianzhi', 'huigui', 'zhongzuchouhen', 'fensui', 'tianshinvlang', 'jinqiangonglve', 'shijianxianzhi', 'mingyundejueze', 'mudizailiyong', 'shuangchongxuanze', 'shikonghuilang', 'eyunxianglian', 'suming'];
-                for (let i = 0; i < tricks.length; i++) {
-                    let name = 'xdz_' + tricks[i];
+                for (const i of tricks) {
+                    let name = 'xdz_' + i;
                     if (!lib.card[name]) {
                         lib.card[name] = get.copy(lib.skill.qmm_baibaoxiang[name]);
                         lib.translate[name] = get.translation(name);
@@ -1731,8 +1730,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     lib.inpile.add(name);
                 }
                 const skill = lib.skill.qmm_xiguangx.xdztrick;
-                for (let i = 0; i < skill.length; i++) {
-                    game.addGlobalSkill(skill[i]);
+                for (const i of skill) {
+                    game.addGlobalSkill(i);
                 }
                 const cards = ['xdz_guilai', 'xdz_fanzhishouyu', 'xdz_jiyidetouzhi', 'xdz_huimieqixijianglin', 'xdz_biaotaihuyin', 'xdz_shijianduantu', 'xdz_yuanjijin', 'xdz_yiciyuanchuanyue', 'xdz_huimiequ', 'xdz_jiejiexianzhi', 'xdz_huigui', 'xdz_zhongzuchouhen', 'xdz_fensui', 'xdz_tianshinvlang', 'xdz_jinqiangonglve', 'xdz_shijianxianzhi', 'xdz_mingyundejueze', 'xdz_mudizailiyong', 'xdz_shuangchongxuanze', 'xdz_shikonghuilang', 'xdz_eyunxianglian', 'xdz_suming'];
                 const dialog = ui.create.dialog('殉道者 地狱魔神', '是否选择一张牌令' + get.translation(player) + '获得？', [cards, 'vcard'], 'hidden');
@@ -1938,8 +1937,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         return 0;
                     })
                     .set('filterButton', function (button) {
-                        for (let i = 0; i < ui.selected.buttons.length; i++) {
-                            if ((qq.includes(ui.selected.buttons[i].link) && qq.includes(button.link)) || (wp.includes(ui.selected.buttons[i].link) && wp.includes(button.link)) || (gx.includes(ui.selected.buttons[i].link) && gx.includes(button.link)) || (cd.includes(ui.selected.buttons[i].link) && cd.includes(button.link)) || (gttd.includes(ui.selected.buttons[i].link) && gttd.includes(button.link))) {
+                        for (const i of ui.selected.buttons) {
+                            if ((qq.includes(i.link) && qq.includes(button.link)) || (wp.includes(i.link) && wp.includes(button.link)) || (gx.includes(i.link) && gx.includes(button.link)) || (cd.includes(i.link) && cd.includes(button.link)) || (gttd.includes(i.link) && gttd.includes(button.link))) {
                                 return false;
                             }
                         }
@@ -2338,8 +2337,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if ((event.qq0 && qq.includes(button.link)) || (event.wp0 && wp.includes(button.link)) || (event.gx0 && gx.includes(button.link)) || (event.cd0 && cd.includes(button.link)) || (event.gttd0 && gttd.includes(button.link))) {
                                     return false;
                                 }
-                                for (let i = 0; i < ui.selected.buttons.length; i++) {
-                                    if ((qq.includes(ui.selected.buttons[i].link) && qq.includes(button.link)) || (wp.includes(ui.selected.buttons[i].link) && wp.includes(button.link)) || (gx.includes(ui.selected.buttons[i].link) && gx.includes(button.link)) || (cd.includes(ui.selected.buttons[i].link) && cd.includes(button.link)) || (gttd.includes(ui.selected.buttons[i].link) && gttd.includes(button.link))) {
+                                for (const i of ui.selected.buttons) {
+                                    if ((qq.includes(i.link) && qq.includes(button.link)) || (wp.includes(i.link) && wp.includes(button.link)) || (gx.includes(i.link) && gx.includes(button.link)) || (cd.includes(i.link) && cd.includes(button.link)) || (gttd.includes(i.link) && gttd.includes(button.link))) {
                                         return false;
                                     }
                                 }
@@ -2990,10 +2989,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.content.chooseToQysjDuiben = function () {
                 'step 0';
                 let name = ['qysj2_fenbingweicheng', 'qysj2_kaichengyoudi', 'qysj1_quanjunchuji', 'qysj1_qixiliangdao'];
-                for (let i = 0; i < name.length; i++) {
-                    if (!lib.card[name[i]]) {
-                        lib.card[name[i]] = get.copy(lib.skill.equiplib[name[i]]);
-                        lib.translate[name[i]] = get.translation(name[i]);
+                for (const i of name) {
+                    if (!lib.card[i]) {
+                        lib.card[i] = get.copy(lib.skill.equiplib[i]);
+                        lib.translate[i] = get.translation(i);
                         //  lib.translate[name[i]+'_info']=get.translation(name[i]+'_info');
                     }
                 }
@@ -3290,8 +3289,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 let list = ['同仇', '并进', '疏财', '戮力'];
                 const dialog = ui.create.dialog('协力', '选择你与' + get.translation(target) + '的协力条件', 'hidden');
                 const table = [];
-                for (let i = 0; i < list.length; i++) {
-                    table.add([list[i], '<span><img src="extension/猫猫叹气/image/蓝语天谋/' + list[i] + '.png" width="100" height="133"></span>']);
+                for (const i of list) {
+                    table.add([i, '<span><img src="extension/猫猫叹气/image/蓝语天谋/' + i + '.png" width="100" height="133"></span>']);
                 }
                 dialog.add([table, 'tdnodes']);
                 player.chooseButton(dialog, true).ai = function () {
@@ -3386,11 +3385,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.player.openBaibaoxiang = function () {
                 let next = game.createEvent('openBaibaoxiang');
                 next.player = this;
-                for (let i = 0; i < arguments.length; i++) {
-                    if (typeof arguments[i] == 'number') {
-                        next.num = arguments[i];
-                    } else if (typeof arguments[i] == 'boolean') {
-                        next.forced = arguments[i];
+                for (const i of arguments) {
+                    if (typeof i == 'number') {
+                        next.num = i;
+                    } else if (typeof i == 'boolean') {
+                        next.forced = i;
                     }
                 }
                 next.setContent('openBaibaoxiang');
@@ -3568,15 +3567,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.element.player.qmmLinmoCard = function () {
                 let next = game.createEvent('qmmLinmoCard');
                 next.player = this;
-                for (let i = 0; i < arguments.length; i++) {
-                    if (get.itemtype(arguments[i]) == 'card') {
-                        next.card = [arguments[i]];
-                    } else if (get.itemtype(arguments[i]) == 'cards') {
-                        next.card = arguments[i];
-                    } else if (get.itemtype(arguments[i]) == 'player') {
-                        next.target = arguments[i];
-                    } else if (typeof arguments[i] == 'boolean') {
-                        next.forced = arguments[i];
+                for (const i of arguments) {
+                    if (get.itemtype(i) == 'card') {
+                        next.card = [i];
+                    } else if (get.itemtype(i) == 'cards') {
+                        next.card = i;
+                    } else if (get.itemtype(i) == 'player') {
+                        next.target = i;
+                    } else if (typeof i == 'boolean') {
+                        next.forced = i;
                     }
                 }
                 next.setContent('qmmLinmoCard');
@@ -9715,8 +9714,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     lists.push(i);
                                 }
                                 const multitarget = [];
-                                for (let i = 0; i < lists.length; i++) {
-                                    let name = lists[i];
+                                for (const i of lists) {
+                                    let name = i;
                                     if (get.tag(game.createCard(name), 'multitarget') && !['xianluhui', 'gw_shanbengshu', 'gw_wenyi', 'shenhuofeiya', 'tanshezhiren', 'shuiyanqijun', 'tiesuo'].includes(name)) {
                                         multitarget.push(game.createCard(name));
                                     }
@@ -11344,8 +11343,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     const len = result.targets;
                                     target.line(len, 'thunder');
-                                    for (let i = 0; i < len.length; i++) {
-                                        len[i].damage('thunder');
+                                    for (const i of len) {
+                                        i.damage('thunder');
                                     }
                                 }
                             },
@@ -11724,7 +11723,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return 15 - get.useful(card);
                                 });
-
                                 ('step 1');
                                 if (result.bool) {
                                     target.give(result.cards, player, true);
@@ -12592,15 +12590,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 dialog.add('选择一个花色');
                                 const suit = ['spade', 'heart', 'club', 'diamond'];
                                 const yi = [];
-                                for (let i = 0; i < suit.length; i++) {
-                                    yi.add([suit[i], get.translation(suit[i])]);
+                                for (const i of suit) {
+                                    yi.add([i, get.translation(i)]);
                                 }
                                 dialog.add([yi, 'tdnodes']);
                                 dialog.add('选择一个牌的类型');
                                 const type = ['basic', 'trick', 'equip'];
                                 const er = [];
-                                for (let i = 0; i < type.length; i++) {
-                                    er.add([type[i], get.translation(type[i])]);
+                                for (const i of type) {
+                                    er.add([i, get.translation(i)]);
                                 }
                                 dialog.add([er, 'tdnodes']);
                                 const chooseButton = target.chooseButton(dialog, 2, true);
@@ -12609,8 +12607,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1 + Math.random();
                                     })
                                     .set('filterButton', function (button) {
-                                        for (let i = 0; i < ui.selected.buttons.length; i++) {
-                                            if ((suit.includes(ui.selected.buttons[i].link) && suit.includes(button.link)) || (type.includes(ui.selected.buttons[i].link) && type.includes(button.link))) {
+                                        for (const i of ui.selected.buttons) {
+                                            if ((suit.includes(i.link) && suit.includes(button.link)) || (type.includes(i.link) && type.includes(button.link))) {
                                                 return false;
                                             }
                                         }
@@ -12777,10 +12775,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return;
                                 }
                                 const dialog = ui.create.dialog('是否发动【八骏】？', '选择任意张装备牌获得', 'hidden');
-                                for (let i = 0; i < targets.length; i++) {
-                                    if (targets[i].countCards('e')) {
-                                        dialog.add(get.translation(targets[i]) + '的装备区');
-                                        const es = targets[i].getCards('e');
+                                for (const i of targets) {
+                                    if (i.countCards('e')) {
+                                        dialog.add(get.translation(i) + '的装备区');
+                                        const es = i.getCards('e');
                                         dialog.add(es);
                                     }
                                 }
@@ -12810,9 +12808,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 const owner = event.owner[0];
                                 const card = [];
-                                for (let o = 0; o < event.card.length; o++) {
-                                    if (get.owner(event.card[o]) == owner) {
-                                        card.push(event.card[o]);
+                                for (const o of event.card) {
+                                    if (get.owner(o) == owner) {
+                                        card.push(o);
                                     }
                                 }
                                 player.gain(card, owner, 'giveAuto');
@@ -13034,9 +13032,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     let list = [];
                                     const zhu = get.zhu(player);
                                     if (zhu && zhu != player && zhu.skills) {
-                                        for (let i = 0; i < zhu.skills.length; i++) {
-                                            if (lib.skill[zhu.skills[i]] && lib.skill[zhu.skills[i]].zhuSkill) {
-                                                list.push(zhu.skills[i]);
+                                        for (const i of zhu.skills) {
+                                            if (lib.skill[i] && lib.skill[i].zhuSkill) {
+                                                list.push(i);
                                             }
                                         }
                                     }
@@ -13294,7 +13292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         })
                                         .forResult();
-                                    if (!(cards?.length)) {
+                                    if (!cards?.length) {
                                         damage = true;
                                     }
                                 }
@@ -13726,9 +13724,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                for (let i = 0; i < ui.dialogs.length; i++) {
-                                    if (ui.dialogs[i].videoId == event.preResult) {
-                                        event.dialog = ui.dialogs[i];
+                                for (const i of ui.dialogs) {
+                                    if (i.videoId == event.preResult) {
+                                        event.dialog = i;
                                         break;
                                     }
                                 }
@@ -13747,9 +13745,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             },
                             contentAfter() {
-                                for (let i = 0; i < ui.dialogs.length; i++) {
-                                    if (ui.dialogs[i].videoId == event.preResult) {
-                                        const dialog = ui.dialogs[i];
+                                for (const i of ui.dialogs) {
+                                    if (i.videoId == event.preResult) {
+                                        const dialog = i;
                                         dialog.close();
                                         _status.dieClose.remove(dialog);
                                         break;
