@@ -13072,7 +13072,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (!player.storage.zxqy_longyi) {
                                     player.storage.zxqy_longyi = [];
                                 }
-                                let skills1 = player.storage.zxqy_longyi;
+                                const skills1 = player.storage.zxqy_longyi;
                                 skills1.addArray(links);
                                 let array = [];
                                 if (skills1.length > 5) {
