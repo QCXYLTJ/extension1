@@ -15401,9 +15401,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             derivation: ['zxqy_zhufu_shihao', 'zxqy_zhufu_xiaoyan', 'zxqy_zhufu_jidong', 'zxqy_zhufu_mingren', 'zxqy_zhufu_yihu', 'zxqy_zhufu_tangsan', 'zxqy_zhufu_sailuo', 'zxqy_zhufu_youlandaier', 'zxqy_zhufu_zhugeliang', 'zxqy_zhufu_qiyana', 'zxqy_zhufu_weilaigongzhu', 'zxqy_zhufu_yasuo', 'zxqy_zhufu_hui'],
                             forced: true,
                             content() {
-                                let num = [];
-                                for (let i = 0; i < trigger.cards.length; i++) {
-                                    num.add(trigger.cards[i].number);
+                                const num = [];
+                                for (const i of trigger.cards) {
+                                    if (i.num > 0 && i.num < 14) {
+                                        num.add(i.number);
+                                    }
                                 }
                                 const players = lib.skill.zxqy_zhufu.player;
                                 const ban = lib.skill.zxqy_zhufu.list.slice(0);
@@ -15412,11 +15414,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         num.remove(ban.indexOf(i) + 1);
                                     }
                                 }
-                                for (let i = 0; i < num.length; i++) {
-                                    let str = 'zxqy_zhufu_' + ban[num[i] - 1];
+                                for (const i of num) {
+                                    let str = 'zxqy_zhufu_' + ban[i - 1];
                                     player.$fullscreenpop(get.translation(str));
                                     game.log(player, '获得了', '#g【' + get.translation(str) + '】');
-                                    lib.skill.zxqy_zhufu.player[ban[num[i] - 1]].add(player);
+                                    lib.skill.zxqy_zhufu.player[ban[i - 1]].add(player);
                                     game.addGlobalSkill(str);
                                     if (lib.skill[str].mark) {
                                         player.markSkill(str);
