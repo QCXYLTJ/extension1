@@ -6,7 +6,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
     name: '梦隐',
     content(config, pack) {
       get.groupnature = function (group, method) {
-        var nature;
+        let nature;
         switch (group) {
           case '音律世界':
             nature = 'fire';
@@ -219,37 +219,47 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         }, //先声明后赋值的,后面调用会是underfined,所以用getter实时获取
         cards: [],
         result: {
-          cards: []
+          cards: [],
         },
         gaintag: [],
-        forResult() { }
+        forResult() { },
       };
       //—————————————————————————————————————————————————————————————————————————————数据操作相关自定义函数
       const numfunc = function () {
         if (!lib.number) {
           lib.number = [];
-          for (var i = 1; i < 14; i++) {
+          for (let i = 1; i < 14; i++) {
             lib.number.add(i);
           }
         } //添加lib.number
         window.sgn = function (bool) {
-          if (bool) return 1;
+          if (bool) {
+            return 1;
+          }
           return -1;
         }; //true转为1,false转为-1
         window.numberq0 = function (num) {
-          if (isNaN(Number(num))) return 0;
+          if (isNaN(Number(num))) {
+            return 0;
+          }
           return Math.abs(Number(num));
         }; //始终返回正数(取绝对值)
         window.numberq1 = function (num) {
-          if (isNaN(Number(num))) return 1;
+          if (isNaN(Number(num))) {
+            return 1;
+          }
           return Math.max(Math.abs(Number(num)), 1);
         }; //始终返回正数且至少为1(取绝对值)
         window.number0 = function (num) {
-          if (isNaN(Number(num))) return 0;
+          if (isNaN(Number(num))) {
+            return 0;
+          }
           return Math.max(Number(num), 0);
         }; //始终返回正数
         window.number1 = function (num) {
-          if (isNaN(Number(num))) return 1;
+          if (isNaN(Number(num))) {
+            return 1;
+          }
           return Math.max(Number(num), 1);
         }; //始终返回正数且至少为1
         window.deepClone = function (obj, visited = new WeakMap()) {
@@ -264,7 +274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           }
           const clonedObj = {};
           visited.set(obj, clonedObj);
-          for (let key in obj) {
+          for (const key in obj) {
             if (Object.hasOwn(obj, key)) {
               clonedObj[key] = deepClone(obj[key], visited);
             }
@@ -286,10 +296,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           return result;
         }; //阶乘
         window.isPrime = function (num) {
-          if (num === 2 || num === 3) return true;
-          if (num < 2 || num % 2 === 0 || num % 3 === 0) return false;
+          if (num === 2 || num === 3) {
+            return true;
+          }
+          if (num < 2 || num % 2 === 0 || num % 3 === 0) {
+            return false;
+          }
           for (let i = 5; i * i <= num; i += 6) {
-            if (num % i === 0 || num % (i + 2) === 0) return false;
+            if (num % i === 0 || num % (i + 2) === 0) {
+              return false;
+            }
           }
           return true;
         }; // 质数
@@ -303,14 +319,26 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           }
           const player = this,
             info = get.info(card);
-          if (!lib.filter.cardEnabled(card, player)) return false; //卡牌使用限制
-          if (info.notarget) return true;
-          if (!info.filterTarget) return true;
-          if (!info.enable) return true;
+          if (!lib.filter.cardEnabled(card, player)) {
+            return false;
+          } //卡牌使用限制
+          if (info.notarget) {
+            return true;
+          }
+          if (!info.filterTarget) {
+            return true;
+          }
+          if (!info.enable) {
+            return true;
+          }
           return game.hasPlayer(function (current) {
-            if (info.multicheck && !info.multicheck(card, player)) return false;
+            if (info.multicheck && !info.multicheck(card, player)) {
+              return false;
+            }
             if (filter) {
-              if (!lib.filter.targetInRange(card, player, current)) return false; //距离限制
+              if (!lib.filter.targetInRange(card, player, current)) {
+                return false;
+              } //距离限制
               return lib.filter.targetEnabledx(card, player, current);
             }
             return lib.filter.targetEnabled(card, player, current); //目标限制
@@ -330,13 +358,25 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           else if (evt.filterCard && evt.filterCard != lib.filter.filterCard) {
             return evt.filterCard(card, player, evt); //这里也有次数限制
           } else {
-            if (!lib.filter.cardEnabled(card, player)) return false; //卡牌使用限制
-            if (info.notarget) return true;
-            if (!info.filterTarget) return true;
-            if (!info.enable) return true;
-            if (evt.name == 'chooseToRespond') return true; //chooseToRespond无次数距离目标限制
+            if (!lib.filter.cardEnabled(card, player)) {
+              return false;
+            } //卡牌使用限制
+            if (info.notarget) {
+              return true;
+            }
+            if (!info.filterTarget) {
+              return true;
+            }
+            if (!info.enable) {
+              return true;
+            }
+            if (evt.name == 'chooseToRespond') {
+              return true;
+            } //chooseToRespond无次数距离目标限制
             if (filter) {
-              if (!lib.filter.cardUsable(card, player, evt)) return false; //次数限制
+              if (!lib.filter.cardUsable(card, player, evt)) {
+                return false;
+              } //次数限制
             }
             if (evt.filterTarget && evt.filterTarget != lib.filter.filterTarget) {
               return game.hasPlayer(function (current) {
@@ -344,9 +384,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               });
             }
             return game.hasPlayer(function (current) {
-              if (info.multicheck && !info.multicheck(card, player)) return false;
+              if (info.multicheck && !info.multicheck(card, player)) {
+                return false;
+              }
               if (filter) {
-                if (!lib.filter.targetInRange(card, player, current)) return false; //距离限制
+                if (!lib.filter.targetInRange(card, player, current)) {
+                  return false;
+                } //距离限制
                 return lib.filter.targetEnabledx(card, player, current);
               }
               return lib.filter.targetEnabled(card, player, current); //目标限制
@@ -390,14 +434,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
       };
       shiwei();
       game.center = function () {
-        var list = [];
+        const list = [];
         game.countPlayer2(function (current) {
           current.getHistory('lose', function (evt) {
-            if (evt.position == ui.discardPile) list.addArray(evt.cards);
+            if (evt.position == ui.discardPile) {
+              list.addArray(evt.cards);
+            }
           });
         });
         game.getGlobalHistory('cardMove', function (evt) {
-          if (evt.name == 'cardsDiscard') list.addArray(evt.cards);
+          if (evt.name == 'cardsDiscard') {
+            list.addArray(evt.cards);
+          }
         });
         return list;
       }; //获取本回合进入弃牌堆的牌
@@ -457,8 +505,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               梦想协奏曲: ['mx_cangtianzhenbai', 'mx_eryezhuzi', 'mx_changqisushi', 'mx_gaosongdeng', 'mx_yaolenai', 'mx_zhuiminglixi', 'mx_qianzaoaiyin', 'mx_jinjinglisha', 'mx_bingchuanshaye', 'mx_yutianchuanyazi', 'mx_baijinlinzi', 'mx_couyouxina', 'mx_meizhulan', 'mx_yuzedong', 'mx_yutianchuanba', 'mx_shangyuanfeimali', 'mx_qingyemoka', 'mx_baijiuqiansheng', 'mx_bingchuanricai', 'mx_ruogongyifu', 'mx_dahemami', 'mx_wanshancai'],
               冠位时间神殿: ['mx_suoluomen2', 'mx_dafenqi', 'mx_zhende2', 'mx_luomani', 'mx_maxiu', 'mx_suoluomen'],
               葬送的芙莉莲: ['mx_sailiai', 'mx_awula', 'mx_youbeier', 'mx_fulilian', 'mx_feilun'],
-              科学超电磁炮: ['mx_baijingheizi', 'mx_shifengcaoqi', 'mx_yubanmeiqin']
-            }
+              科学超电磁炮: ['mx_baijingheizi', 'mx_shifengcaoqi', 'mx_yubanmeiqin'],
+            },
           },
           character: {
             mx_bolilingmeng: ['female', '幻想乡', 4, ['mx_mengxiangfengyin', 'mx_mengxiangmiaozhu', 'mx_bafangguifuzhen', 'mx_bolilingmeng_zhenwang'], ['des:幻想乡境内博丽神社的现职巫女.<br/><br/>没有大结界就没有现在的幻想乡.博丽神社是监控大结界的神社.解决异变是博丽巫女代代赖以为生的职业.她是历代巫女中最缺乏危机感的一位,而且疏于修行,不过相当有实力.她以与生俱来的好运和敏锐直觉驱除妖怪.<br/><br/> 博丽的巫女的任务即是<博丽大结界的维持与管理>.不过,结界的存在,充其量也只是为了维持幻想乡的平衡,从另一种意义来说只有幻想乡保持在一种平衡的状态下结界才能成立.幻想乡的平衡也就是人类和妖怪之间保有的一定平衡.即所谓的<妖怪去袭击人类,而人类恐惧着妖怪>这一概念.将所有威胁这一概念的事物排除,这才是博丽巫女的工作,也就是保护幻想乡所需要做的事情.']],
@@ -1197,7 +1245,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             mx_fengxiaomeng: ['female', '音律世界', '2/4/2', ['mx_xuanlv', 'mx_zuozhanhui', 'mx_tianmihui', 'mx_fengxiaomeng_zhenwang'], ['des:宫益坂女子学院一年级生,Wonderlands×Showtime的一员.某一天笑梦遇到了被分配到凤凰仙境的舞台招揽顾客的司,笑梦想让舞台重获昔日辉煌.非常开朗,天真烂漫的性格.因为一想起来就马上采取行动,所以常常不知不觉地把周围的人卷进来.为了让凤凰仙境冷清的舞台复活,她在寻找能和她一起站在舞台上的人.']],
             mx_shuangzijingyin2: ['double', '音律世界', '2/4/2', ['mx_xuanlv', 'mx_huanhecheng', 'mx_shuangzijingyin2_zhenwang'], ['des:镜音双子都是Crypton Future Media以Yamaha的VOCALOID歌声合成引擎为基础,开发贩售的虚拟歌手软件及其角色形象,同样也是角色主唱系列的第二作.']],
             mx_xingnaiyige: ['female', '音律世界', '2/4/2', ['mx_xuanlv', 'mx_cengxingkong', 'mx_cengxingkong2', 'mx_cengxingkong3', 'mx_cengxingkong4', 'mx_bicilianxin', 'mx_worengjide', 'mx_xingnaiyige_zhenwang'], ['des:虽然看起来很酷,其实是对朋友很温柔的少女.与咲希、穗波、志步是青梅竹马,但因为某些原因,与穗波和志步的关系变得不融洽.喜欢听初音未来的歌,在Leo/need中担当主唱和吉他手.']],
-            mx_amoweilai: ['female', '音律世界', '2/4/2', ['mx_xuanlv', 'mx_huangrumeng', 'mx_mofaxing', 'mx_amoweilai_zhenwang'], ['des:初音未来是世界上第一个使用全息投影技术举办演唱会的虚拟偶像.演唱会中使用的3D全息透明屏幕是一种采用了全息技术的透明投影屏幕,这种投影屏幕具有全息图像的特点,只显示来自某一特定角度的图像,而忽略其他角度的光线.即使是在环境光线很亮的地方,也能显示非常明亮、清晰的影像.']]
+            mx_amoweilai: ['female', '音律世界', '2/4/2', ['mx_xuanlv', 'mx_huangrumeng', 'mx_mofaxing', 'mx_amoweilai_zhenwang'], ['des:初音未来是世界上第一个使用全息投影技术举办演唱会的虚拟偶像.演唱会中使用的3D全息透明屏幕是一种采用了全息技术的透明投影屏幕,这种投影屏幕具有全息图像的特点,只显示来自某一特定角度的图像,而忽略其他角度的光线.即使是在环境光线很亮的地方,也能显示非常明亮、清晰的影像.']],
           },
           translate: {
             mx_bolilingmeng: '博丽灵梦',
@@ -9228,12 +9276,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             mx_mofaxing: '音符魔法·星梦',
             mx_mofaxing_info: '音律技,除你以外的角色打出手牌时,你可以交给其任意张牌.若其以此法获得的牌数不大于体力值,你可以选择一项:❶回复2点体力;❷随机获得一张装备牌.若你没有手牌且因此回复体力,其视为使用一张【决斗】.',
             mx_amoweilai_zhenwang: '阵亡',
-            mx_amoweilai_zhenwang_info: ''
-          }
+            mx_amoweilai_zhenwang_info: '',
+          },
         };
         lib.config.all.characters.add('梦隐');
         lib.config.characters.add('梦隐');
-        for (var i in QQQ.character) {
+        for (let i in QQQ.character) {
           QQQ.character[i][4].add(`ext:梦隐/image/${i}.jpg`);
         }
         lib.translate.梦隐_character_config = `梦隐`;
@@ -9257,24 +9305,24 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               useful: 6,
               value: 6,
               result: {
-                target: -1
+                target: -1,
               },
               tag: {
-                loseCard: 1
-              }
+                loseCard: 1,
+              },
             },
-            selectTarget: 1
-          }
+            selectTarget: 1,
+          },
         },
         translate: {
           mx_xuanlvfu: '音律',
-          mx_xuanlvfu_info: '一名其他角色打出手牌时,若其的攻击范围大于你,你可以对其使用.其随机获得一张延时锦囊牌,受到2点无来源伤害.'
+          mx_xuanlvfu_info: '一名其他角色打出手牌时,若其的攻击范围大于你,你可以对其使用.其随机获得一张延时锦囊牌,受到2点无来源伤害.',
         },
-        list: []
+        list: [],
       },
       intro: `<br><br><span style='color: gold'>潜水的火修复版<br>『无名杀扩展大全群』:771901025<br><br></span>梦与现实的区别,在于现实是我们共同编织的梦境,而梦境却又是自己所构筑的现实.我也曾试图去窥探那所谓的梦境,可破碎的镜花水月,却把我刺的满身伤痕,直至不堪入目`,
       author: '邻家筱筱',
-      version: '3.9'
-    }
+      version: '3.9',
+    },
   };
 });
