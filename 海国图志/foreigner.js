@@ -1052,7 +1052,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     var num = target.countGainableCards(player, 'he');
                     player.gainPlayerCard(target, [1, num], 'he', true);
                     ('step 2');
-                    if (result && result.links && result.links.length) {
+                    if (result.links?.length) {
                         event.num = result.links.length;
                         player.update();
                         target.gainPlayerCard(player, event.num, 'he', true);

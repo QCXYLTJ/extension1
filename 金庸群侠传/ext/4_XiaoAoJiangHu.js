@@ -6605,7 +6605,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.gainPlayerCard(target, 'h', true, 'visibleMove');
             } else event.finish();
             'step 2';
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
               if (result.links[0].suit != 'heart') player.draw();
             }
           },
@@ -7507,7 +7507,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 3';
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
               var type = get.type(result.links[0], target);
               if (type != event.typePlayer) {
                 player.popup('潜行', 'fire');

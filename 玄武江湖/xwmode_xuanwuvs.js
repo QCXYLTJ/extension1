@@ -164,7 +164,7 @@ const modexwvs = {
                     event.finish();
                 }
                 'step 2'
-                if (result && result.links && result.links.length) {
+                if (result.links?.length) {
                     event.chooseList.remove(result.links[0]);
                     event.chooseList.randomSort();
                     event.current.init(result.links[0]);
@@ -569,7 +569,7 @@ const modexwvs = {
                     event.finish();
                 }
                 'step 3'
-                if (result && result.links && result.links.length) {
+                if (result.links?.length) {
                     event.tar.lose(result.links);
                     event.tar.$throw(result.links);
                     game.log(event.tar, "重铸了", result.links);

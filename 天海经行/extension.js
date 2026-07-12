@@ -2124,7 +2124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 2'
-                                if (result && result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.discard(event.cardx);
                                     player.useCard(result.links[0], false, trigger.player);
                                 }

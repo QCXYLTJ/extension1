@@ -1588,7 +1588,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						}
 					}
 					('step 3');
-					if (result && result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						var cars = { name: result.links[0][2], nature: result.links[0][3] };
 						event.cardstep3 = cars;
 						var str = '请选择【' + get.translation(cars) + '】的目标';

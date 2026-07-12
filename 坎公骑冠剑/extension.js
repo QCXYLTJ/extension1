@@ -4347,7 +4347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 2');
 								var target = lib.skill.gt_luren2.logTarget(trigger, player);
-								if (result && result.links && result.links.length) {
+								if (result.links?.length) {
 									target.$give(result.links[0], player, false);
 									player.equip(result.links[0]);
 									player.addExpose(0.2);

@@ -7087,7 +7087,7 @@ const skill = {
         event.redo();
       }
       ('step 3');
-      if (result && result.links && result.links.length) {
+      if (result.links?.length) {
         event.tar.gain(result.links, 'gain2');
       }
       event.goto(2);
@@ -33701,7 +33701,7 @@ const skill = {
         event.finish();
       }
       ('step 3');
-      if (result && result.links && result.links.length) {
+      if (result.links?.length) {
         var type = get.type(result.links[0], target);
         if (type != event.typePlayer) {
           trigger.untrigger();

@@ -2085,7 +2085,7 @@ const content = async function () {
                 return -W;
               })
               .forResult();
-            if (result && result.links && result.links[0]) {
+            if (result.links?.length) {
               ui.discardPile.appendChild(result.links[0]);
             }
           }
@@ -2471,7 +2471,7 @@ const content = async function () {
           next.set('closeDialog', false);
           next.set('dialogdisplay', true);
           ('step 1');
-          if (result && result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             for (const i of result.buttons) {
               event.dialog.buttons.remove(i);
             }
@@ -2729,7 +2729,7 @@ const content = async function () {
           next.set('closeDialog', false);
           next.set('dialogdisplay', true);
           ('step 1');
-          if (result && result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             for (const i of result.buttons) {
               event.dialog.buttons.remove(i);
             }

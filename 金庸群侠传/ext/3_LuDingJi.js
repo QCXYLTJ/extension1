@@ -410,7 +410,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return _status.event['aii' + button.link];
             });
             ('step 1');
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
               for (const link of result.links) {
                 game.log(player, '选择了', '#g【巨炮】', '的', '#y选项' + get.cnNumber(link + 1, true));
                 if (link == 0) {

@@ -140,7 +140,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return 1;
 					});
 					('step 2');
-					if (result && result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						var card = result.links[0];
 						event.list.remove(card);
 						var next = game.createEvent(card.name);

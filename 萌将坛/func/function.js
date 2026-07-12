@@ -611,7 +611,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 			return 1;
 		});
 		('step 1');
-		if (result && result.bool && result.links && result.links.length) {
+		if (result.links?.length) {
 			var card = player.scqh_print(result.links[0][2]);
 			if (event.equip && player.canEquip(card)) {
 				player.equip(card);

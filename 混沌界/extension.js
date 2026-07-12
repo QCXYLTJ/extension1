@@ -11390,7 +11390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.draw();
                                 }
                                 ('step 3');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     trigger.player.$give(result.links[0], player);
                                     player.equip(result.links[0]);
                                     player.addExpose(0.2);

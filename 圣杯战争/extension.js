@@ -22943,7 +22943,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 3');
                                 var evt = event.getParent(2);
-                                if (result && result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var cars = { name: result.links[0][2], nature: result.links[0][3] };
                                     event.cardstep3 = cars;
                                     var libselect = lib.card[result.links[0][2]].selectTarget;

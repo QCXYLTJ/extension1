@@ -13579,7 +13579,7 @@ const skill = {
                 event._result = { bool: false };
             }
             ('step 3');
-            if (result && result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 event.colorList.add(get.color(result.links[0], target));
             } else {
                 target.goMad('equipAfter');
@@ -51180,7 +51180,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
                 let type = get.type(result.links[0], target);
                 if (type != event.typePlayer) {
                     trigger.untrigger();

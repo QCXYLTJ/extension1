@@ -45237,7 +45237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return;
                                 }
                                 ('step 2');
-                                if (result && result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], 'draw2', 'log');
                                     result.links[0].acgn_jiezou2 = player.getAllHistory().length - 1;
                                 }

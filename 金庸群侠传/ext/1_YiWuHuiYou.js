@@ -19695,7 +19695,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard('hej', trigger.source, lib.skill.ywhy_mingcha_nocard.prompt(trigger, player));
                                 ('step 1');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     //player.line(trigger.source,'red');
                                     player.addToExpansion(result.links, trigger.source, 'give', 'log').gaintag.add('ywhy_mingcha');
                                     game.log(player, '将', trigger.source, '的', result.links, '认作凶器.');

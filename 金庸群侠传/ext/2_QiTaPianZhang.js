@@ -8853,7 +8853,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: false };
             }
             ('step 3');
-            if (result && result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               event.suitList.add(result.links[0].suit);
             } else {
               target.damage('fire', player);
@@ -10970,7 +10970,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 2');
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
               event.card = result.links[0];
               target.lose(result.links[0], ui.special);
               player.storage.qtpz_zangbao.add(event.card);

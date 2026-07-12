@@ -1516,7 +1516,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(button.link);
                                 });
                                 ('step 3');
-                                if (result && result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var cards = result.links.slice(0);
                                     event.cards = cards;
                                     player.lose(cards, ui.special);

@@ -3923,7 +3923,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 player.choosePlayerCard('hej', '选择1张牌扣置,此牌将称为<荣>', trigger.player);
                                 ('step 3');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.line(player, trigger.player);
                                     player.addToExpansion(result.links, trigger.player, 'give', 'log').gaintag.add('ua_zhengrong');
                                 }

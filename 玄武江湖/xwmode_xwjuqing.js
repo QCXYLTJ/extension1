@@ -1225,7 +1225,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									return player.getUseValue(button.link);
 								});
 							('step 3');
-							if (result && result.links && result.links.length) {
+							if (result.links?.length) {
 								event.cards.remove(result.links[0]);
 								player.chooseUseTarget(result.links[0]).set('prompt', '请选择' + get.translation(result.links[0]) + '的目标.');
 							} else {
@@ -1275,7 +1275,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					player.choosePlayerCard(trigger.player, 'h', true);
 					('step 1');
-					if (result && result.links && result.links.length) {
+					if (result.links?.length) {
 						player.showCards(result.links);
 						event.card = result.links[0];
 					} else {
@@ -1593,7 +1593,7 @@ const modejuqing = {
 			return 2;
 		});
 		('step 3');
-		if (result && result.links && result.links.length) {
+		if (result.links?.length) {
 			game.log('正在加载剧本');
 			_status.xwImportingDrama = {
 				onload() {
@@ -1622,7 +1622,7 @@ const modejuqing = {
 			return 2;
 		});
 		('step 5');
-		if (result && result.links && result.links.length) {
+		if (result.links?.length) {
 			var charlist = _status.xwJuqingStatus.juqing.characters[result.links[0]];
 			_status.xwJuqingStatus.groupId = result.links[0];
 			game.me.getId();

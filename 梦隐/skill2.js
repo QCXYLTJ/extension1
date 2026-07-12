@@ -8770,7 +8770,7 @@ const skill = {
         event.finish();
       }
       ('step 3');
-      if (result && result.links && result.links.length) {
+      if (result.links?.length) {
         const type = get.type(result.links[0], target);
         if (type != event.typePlayer) {
           trigger.untrigger();

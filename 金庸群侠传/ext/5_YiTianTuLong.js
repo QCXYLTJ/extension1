@@ -10358,7 +10358,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             var num = target.countGainableCards(player, 'h');
             player.gainPlayerCard(target, [1, num], 'h', true);
             'step 1';
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
               player.storage['yttl_congshan_new2'] = result.links.length;
               player.changeZhuanhuanji('yttl_congshan_new');
               player.addTempSkill('yttl_congshan_new_off', 'phaseUseEnd');

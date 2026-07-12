@@ -12841,7 +12841,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, trigger.player) + 1;
                                 });
                                 ('step 1');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.line(player, trigger.player);
                                     player.addToExpansion(result.links, trigger.player, 'give', 'log').gaintag.add('ty_chunniang');
                                 }
@@ -12946,7 +12946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(2);
                                 }
                                 ('step 2');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.line(player, trigger.player);
                                     player.addToExpansion(result.links, trigger.player, 'give', 'log').gaintag.add('ty_qingnang');
                                     event.goto(4);
@@ -13141,7 +13141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, trigger.player) + 1;
                                 });
                                 ('step 1');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.line(player, trigger.player);
                                     player.addToExpansion(result.links, trigger.player, 'give', 'log').gaintag.add('ty_qingnang');
                                 }

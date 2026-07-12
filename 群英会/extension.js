@@ -8667,7 +8667,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result && result.links && result.links.length) {
+								if (result.links?.length) {
 									trigger.player.$give(result.links[0], player);
 									player.gain(result.links[0]);
 									player.addExpose(0.2);
@@ -10318,7 +10318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result && result.links && result.links.length) {
+								if (result.links?.length) {
 									trigger.player.$give(result.links[0], player);
 									player.gain(result.links[0]);
 									player.equip(result.links[0]);

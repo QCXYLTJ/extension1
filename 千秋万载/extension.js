@@ -3416,7 +3416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.choosePlayerCard(trigger.player, 'e', '选择装备一张装备牌并令其翻面,或取消并摸二张牌');
 								}
 								('step 1');
-								if (result && result.links && result.links.length) {
+								if (result.links?.length) {
 									trigger.player.$give(result.links[0], player);
 									trigger.player.turnOver();
 									player.equip(result.links[0]);
@@ -7563,7 +7563,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -1;
 								});
 								('step 1');
-								if (result && result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var cards = result.links.slice(0);
 									while (cards.length) {
 										ui.cardPile.insertBefore(cards.pop(), ui.cardPile.firstChild);

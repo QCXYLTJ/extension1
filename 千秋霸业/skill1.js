@@ -9619,7 +9619,7 @@ const skill = {
                 event._result = { bool: false };
             }
             ('step 3');
-            if (result && result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 event.typeList.add(get.type(result.links[0], target));
             } else {
                 target.damage(2, 'fire', player);
@@ -42431,7 +42431,7 @@ const skill = {
                             return get.equipValue(button.link, event.gainer);
                         });
                     ('step 1');
-                    if (result && result.links && result.links.length) {
+                    if (result.links?.length) {
                         if (event.gainer == player) {
                         } else {
                         }
@@ -43648,7 +43648,7 @@ const skill = {
                 return -get.buttonValue(button);
             });
             ('step 3');
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
                 //game.log(result.links);
                 for (var i of result.links) {
                     if (get.position(i) == 'e') {
@@ -43734,7 +43734,7 @@ const skill = {
                         };
                     }
                     ('step 3');
-                    if (result && result.links && result.links.length) {
+                    if (result.links?.length) {
                         for (var k = 0; k < result.links.length; k++) {
                             if (get.position(result.links[k]) == 'e') {
                                 player.$give(result.links[k], event.target, false);

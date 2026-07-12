@@ -121,7 +121,7 @@ const card = {
 			next.set("dialogdisplay", true);
 			next.set("nextSeat", nextSeat);
 			"step 1";
-			if (result && result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				for (var i = 0; i < result.buttons.length; i++) {
 					event.dialog.buttons.remove(result.buttons[i]);
 				}

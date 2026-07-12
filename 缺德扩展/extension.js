@@ -3790,7 +3790,7 @@ game.import('extension', function () {
                                                 return number0(num) + 10;
                                             })
                                             .forResult();
-                                        if (result && result.links && result.links[0]) {
+                                        if (result.links?.length) {
                                             await i.chooseUseTarget(
                                                 {
                                                     suit: result.links[0][0],

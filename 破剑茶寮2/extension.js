@@ -2911,7 +2911,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = Math.floor(trigger.target.countCards('h') / 2);
                                 player.choosePlayerCard(trigger.target, true, 'h', num, '请选择' + get.cnNumber(num) + '张牌放在' + get.translation(trigger.target) + '武将牌旁边');
                                 ('step 1');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     trigger.target.lose(result.links, ui.special, 'toStorage');
                                     if (!trigger.target.hasSkill('tstsilian_back')) {
                                         trigger.target.addSkill('tstsilian_back');
@@ -17291,7 +17291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 3');
-                                if (result && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var arr = player.storage.zymjitayingxiong.slice(0);
                                     player.storage.zymjitayingxiong = result.links.slice(0);
                                     for (var c of result.links) {

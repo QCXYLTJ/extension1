@@ -4608,7 +4608,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 2';
-            if (result && result.links && result.links.length) {
+            if (result.links?.length) {
               if (target.name2 && lib.character[target.name2]) {
                 lib.skill.tlbb_shidu.addfujiang(player, target.name2);
               }
