@@ -108,8 +108,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               for (let i in event.status) {
                 event.dialog.content.childNodes[0].innerHTML = event.dialog.content.childNodes[0].innerHTML.replace(i, event.status[i]);
               }
-              for (let i = 0; i < event.dialog.buttons.length; i++) {
-                event.dialog.buttons[i].classList.add('pointerdiv');
+              for (const i of event.dialog.buttons) {
+                i.classList.add('pointerdiv');
               }
               event.switchToAuto = function () {
                 player.storage._HD_buff[0] = event.list[0];
@@ -218,8 +218,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.resume();
                 _status.imchoosing = false;
               });
-              for (let i = 0; i < event.dialog.buttons.length; i++) {
-                event.dialog.buttons[i].classList.add('selectable');
+              for (const i of event.dialog.buttons) {
+                i.classList.add('selectable');
               }
               game.pause();
               game.countChoose();
@@ -1519,8 +1519,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           init() {
             event.skill = ['qlzdj_bingli', 'qlzdj_liangcao', 'qlzdj_shiqi'];
             event.num = 0;
-            for (let i = 0; i < event.skill.length; i++) {
-              const node = event.skill[i];
+            for (const i of event.skill) {
+              const node = i;
               if (Math.random() >= event.num) {
                 game.addGlobalSkill(node);
                 if (event.num == 0) {
@@ -1593,8 +1593,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             _status.additionalReward = function () {
               return 500;
             };
-            for (let i = 0; i < ui.cardPile.childNodes.length; i++) {
-              const card = ui.cardPile.childNodes[i];
+            for (const i of ui.cardPile.childNodes) {
+              const card = i;
               if (get.type(card) == 'equip') {
                 game.cardsGotoSpecial(card);
               }
@@ -11206,8 +11206,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   });
                   target.addMark('nianshou_lingli_skill_extra', 1);
                 }
-                for (let i = 0; i < skills.length; i++) {
-                  event.skills.push(skills[i]);
+                for (const i of skills) {
+                  event.skills.push(i);
                 }
                 event.skill = event.skills.randomGet();
                 if (target.storage.nianshou_lingli_skill.includes(event.skill)) {
@@ -11317,8 +11317,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   });
                   target.addMark('nianshou_lingli_skill_extra', 1);
                 }
-                for (let i = 0; i < skills.length; i++) {
-                  event.skills.push(skills[i]);
+                for (const i of skills) {
+                  event.skills.push(i);
                 }
                 event.skill = event.skills.randomGet();
                 if (target.storage.nianshou_lingli_skill.includes(event.skill)) {
@@ -11702,17 +11702,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     dialog.close();
                     game.resume();
                   };
-                  for (let i = 0; i < list.length; i++) {
-                    if (lib.translate[list[i] + '_info']) {
-                      let translation = get.translation(list[i]);
+                  for (const i of list) {
+                    if (lib.translate[i + '_info']) {
+                      let translation = get.translation(i);
                       if (translation[0] == '新' && translation.length == 3) {
                         translation = translation.slice(1, 3);
                       } else {
                         translation = translation.slice(0, 2);
                       }
-                      const item = dialog.add('<div class="popup pointerdiv" style="width:100%;display:inline-block"><div class="skill">【' + translation + '】</div><div>' + lib.translate[list[i] + '_info'] + '</div></div>');
+                      const item = dialog.add('<div class="popup pointerdiv" style="width:100%;display:inline-block"><div class="skill">【' + translation + '】</div><div>' + lib.translate[i + '_info'] + '</div></div>');
                       item.firstChild.addEventListener('click', clickItem);
-                      item.firstChild.link = list[i];
+                      item.firstChild.link = i;
                     }
                   }
                   dialog.add(ui.create.div('.placeholder'));
@@ -11785,16 +11785,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 basic: {
                   useful() {
                     let player = _status.event.player;
-                    for (let i = 0; i < game.dead.length; i++) {
-                      if (get.attitude(player, game.dead[i]) > 1) {
+                    for (const i of game.dead) {
+                      if (get.attitude(player, i) > 1) {
                         return 8;
                       }
                     }
                     return 0;
                   },
                   value(card, player) {
-                    for (let i = 0; i < game.dead.length; i++) {
-                      if (get.attitude(player, game.dead[i]) > 1) {
+                    for (const i of game.dead) {
+                      if (get.attitude(player, i) > 1) {
                         return 12;
                       }
                     }
@@ -11802,8 +11802,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   },
                 },
                 order(card, player) {
-                  for (let i = 0; i < game.dead.length; i++) {
-                    if (get.attitude(player, game.dead[i]) > 3) {
+                  for (const i of game.dead) {
+                    if (get.attitude(player, i) > 3) {
                       return 7;
                     }
                   }
@@ -11811,8 +11811,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 },
                 result: {
                   player(player) {
-                    for (let i = 0; i < game.dead.length; i++) {
-                      if (get.attitude(player, game.dead[i]) > 3) {
+                    for (const i of game.dead) {
+                      if (get.attitude(player, i) > 3) {
                         return 2;
                       }
                     }
