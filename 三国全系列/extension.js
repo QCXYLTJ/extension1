@@ -866,7 +866,7 @@ game.import('extension', function () {
                             }
                         },
                         natures,
-                        player
+                        player,
                     );
                     const numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
                     player.$damagepop(-numx, natures[0]);
@@ -3129,7 +3129,7 @@ game.import('extension', function () {
                                 player.useCard(
                                     { name: 'sha', suit: 'spade' },
                                     game.players.filter((q) => q.group == 'wu'),
-                                    false
+                                    false,
                                 );
                             },
                         },
@@ -3303,7 +3303,7 @@ game.import('extension', function () {
                                                 nature: button.link[3],
                                             },
                                             null,
-                                            true
+                                            true,
                                         );
                                         return number0(num) + 10;
                                     })
@@ -3324,7 +3324,7 @@ game.import('extension', function () {
                                             cards,
                                             true,
                                             true,
-                                            'nodistance'
+                                            'nodistance',
                                         );
                                     }
                                 }
@@ -3709,7 +3709,7 @@ game.import('extension', function () {
                         player.chooseToUse(
                             `是否对${get.translation(trigger.player)}使用『斩』`,
                             (card) => card.name == 'SG_zhan',
-                            (c, p, t) => t == trigger.player
+                            (c, p, t) => t == trigger.player,
                         );
                     },
                 },

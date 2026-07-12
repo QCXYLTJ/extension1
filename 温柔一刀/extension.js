@@ -37,15 +37,7 @@ if (QQQ.config.扩展全关) {
   }
 } //扩展全部关闭
 if (QQQ.作者模式) {
-  const Q = [
-    '3D精选', '欢乐卡牌', '玩点论杀', '杀海拾遗',
-    '温柔一刀',
-    '火灵月影',
-    '缺德扩展',
-    '三国全系列', '雪月风花',
-    '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS',
-    'EX神将', '第叁幻界'
-  ].unique();
+  const Q = ['3D精选', '欢乐卡牌', '玩点论杀', '杀海拾遗', '温柔一刀', '火灵月影', '缺德扩展', '三国全系列', '雪月风花', '千秋霸业', '梦隐', '猫猫叹气', '活动BOSS', 'EX神将', '第叁幻界'].unique();
   game.saveConfig('extensions', Q); //扩展修改
 } //扩展修改
 //boot=>(loadJavaScriptExtension/onload)=>loadExtension=>precontent/content
@@ -185,7 +177,7 @@ const boss = function () {
     }); //修改previousSeat
     game.players.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
     return true;
-  };//当回合死亡角色会导致下回合是下下家,因为下家的座位号和自己相同了
+  }; //当回合死亡角色会导致下回合是下下家,因为下家的座位号和自己相同了
   game.players = new Proxy([], {
     set(target, property, value) {
       const result = Reflect.set(target, property, value);

@@ -614,7 +614,6 @@ const kangxing1 = function () {
         set() { },
         configurable: false,
     }); //名字抗性加入,类列表节点监听
-
     Reflect.defineProperty(game, 'HL_dead', {
         get() {
             return function (player) {
@@ -856,7 +855,6 @@ const kangxing2 = function () {
             'HL_zuishi',
             '测试',
         ],
-
         //每局游戏每个技能限一次
     };
     for (const namex of ['player', 'global', 'source', 'target']) {
@@ -1807,7 +1805,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     noclick = arg;
                                 }
                             }
-
                             const list = [];
                             const characterlist = Object.keys(lib.character);
                             const groups = [];
@@ -1816,7 +1813,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             if (get.is.phoneLayout()) {
                                 node.style.fontSize = '30px';
                             }
-
                             const namecapt = [];
                             const getCapt = function (str2) {
                                 let capt;
@@ -1831,7 +1827,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 return capt;
                             };
-
                             if (thisiscard) {
                                 for (const i in lib.card) {
                                     if (!lib.translate[i + '_info']) {
@@ -1862,7 +1857,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 namecapt.remove('自定义');
                                 namecapt.push('最近', '收藏');
                             }
-
                             let newlined;
                             if (!thisiscard) {
                                 newlined = document.createElement('div');
@@ -1875,7 +1869,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             let newlined2;
                             let packsource;
                             let filternode = null;
-
                             const updatePagination = () => {
                                 if (dialog.paginationMaxCount.get('character')) {
                                     const buttons = dialog.content.querySelector('.buttons');
@@ -1887,13 +1880,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                             };
-
                             const restoreState = (btn) => {
                                 if (btn.style.display == 'none') {
                                     btn.style.display = '';
                                 }
                             };
-
                             const clickCapt = function (e) {
                                 if (_status.dragged) {
                                     return;
@@ -1943,7 +1934,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         packsource.innerHTML = this.innerHTML;
                                         packsource.classList.add('thundertext');
                                     }
-
                                     let listx;
                                     switch (dialog.currentcapt2) {
                                         case '最近':
@@ -1969,7 +1959,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         btn.capt = getCapt(btn.link);
                                     }
                                 }
-
                                 if (dialog.seperate) {
                                     for (const sep of dialog.seperate) {
                                         if (!sep.nextSibling.querySelector('.button:not(.nodisplay)')) {
@@ -1993,7 +1982,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     e.stopPropagation();
                                 }
                             }; //最近和收藏按钮监听
-
                             for (const name of namecapt) {
                                 const span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius');
                                 span.style.margin = '3px';
@@ -2005,13 +1993,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 node[name] = span;
                                 span._nature = name == '收藏' ? 'fire' : 'wood';
                             } //生成最近和收藏
-
                             if (!thisiscard) {
                                 const natures = ['water', 'soil', 'wood', 'metal'];
                                 const sep = document.createElement('span');
                                 newlined.appendChild(sep);
                                 sep.style.margin = '8px';
-
                                 const clickGroup = function () {
                                     if (_status.dragged) {
                                         return;
@@ -2057,7 +2043,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     updatePagination();
                                 }; //群组按钮监听
-
                                 for (const group of groups) {
                                     const span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
                                     span.style.margin = '3px';
@@ -2067,15 +2052,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     span._nature = natures[groups.indexOf(group)];
                                     span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickGroup);
                                 } //加入群组
-
                                 const spacer = document.createElement('span');
                                 newlined.appendChild(spacer);
                                 spacer.style.margin = '8px';
-
                                 packsource = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
                                 packsource.style.margin = '3px';
                                 newlined.appendChild(packsource);
-
                                 const clickCaptNode = function (e) {
                                     delete _status.filterCharacter;
                                     ui.window.classList.remove('shortcutpaused');
@@ -2083,7 +2065,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     filternode.classList.remove('shown');
                                     clickCapt.call(this.link, e);
                                 };
-
                                 if (get.is.phoneLayout() && lib.config.filternode_button) {
                                     newlined.style.marginTop = '';
                                     packsource.innerHTML = '筛选';
@@ -2117,7 +2098,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         packsource.innerHTML = '武将包';
                                     }
                                 } //武将包按钮
-
                                 newlined2 = document.createElement('div');
                                 newlined2.style.marginTop = '5px';
                                 newlined2.style.display = 'none';
@@ -2126,7 +2106,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 newlined2.style.fontSize = get.is.phoneLayout() ? '32px' : '22px';
                                 newlined2.style.textAlign = 'center';
                                 node.appendChild(newlined2);
-
                                 packsource.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
                                     if (packsource.onlypack) {
                                         return;
@@ -2150,7 +2129,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         newlined2.style.display = newlined2.style.display == 'none' ? 'block' : 'none';
                                     }
                                 }); //武将包按钮监听
-
                                 const packlist = [];
                                 for (const name of lib.config.all.characters) {
                                     if (lib.config.characters.includes(name)) {
@@ -2175,7 +2153,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.config[`extension_${extName}_characters_enable`] === true;
                                     })
                                     .forEach((key) => packlist.add(key));
-
                                 for (const pkg of packlist) {
                                     const span = document.createElement('div');
                                     span.style.display = 'inline-block';
@@ -2192,7 +2169,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } //所有武将包按钮
                             } //所有武将包按钮监听
-
                             let groupSort;
                             if (thisiscard) {
                                 groupSort = function (name) {
@@ -2234,7 +2210,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             } else {
                                 list.sort(lib.sort.character);
                             }
-
                             dialog = ui.create.dialog('hidden');
                             dialog.classList.add('noupdate', 'scroll1', 'scroll2', 'scroll3');
                             dialog.supportsPagination = Boolean(parseInt(lib.config.showMax_character_number));
@@ -2262,7 +2237,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 return this.currentcapt;
                             };
-
                             const container = dialog.querySelector('.content-container>.content');
                             const Searcher = ui.create.div('.searcher.caption');
                             const input = document.createElement('input').css({
@@ -2273,10 +2247,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 fontSize: '21px',
                             });
                             input.placeholder = '支持正则搜索';
-
                             const find = ui.create.button(['find', '搜索'], 'tdnodes');
                             find.style.display = 'inline';
-
                             const updateFind = () => {
                                 while (dialog.buttons.length) {
                                     dialog.buttons[0].remove();
@@ -2304,7 +2276,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 updatePagination();
                             }; //搜索按钮监听
-
                             find.addEventListener('click', updateFind);
                             input.addEventListener('keydown', (e) => {
                                 e.stopPropagation();
@@ -2313,15 +2284,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             });
                             input.addEventListener('mousedown', (e) => e.stopPropagation());
-
                             Searcher.append(input, find);
                             container.prepend(Searcher);
-
                             if (str) {
                                 dialog.add(str);
                             }
                             dialog.add(node);
-
                             if (thisiscard) {
                                 if (seperate) {
                                     seperate = seperate(list);
@@ -2369,9 +2337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.add([recentCharacter, 'character']);
                                 }
                             } //将所有武将生成div
-
                             dialog.add(ui.create.div('.placeholder'));
-
                             for (const btn of dialog.buttons) {
                                 if (thisiscard) {
                                     btn.capt = getCapt(btn.link[2]);
@@ -2380,13 +2346,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     btn.capt = getCapt(btn.link);
                                 }
                             }
-
                             if (!expandall) {
                                 if (!thisiscard && (lib.characterDialogGroup[lib.config.character_dialog_tool] || lib.config.character_dialog_tool == '自创')) {
                                     clickCapt.call(node[lib.config.character_dialog_tool]);
                                 }
                             }
-
                             if (dialog.paginationMaxCount.get('character')) {
                                 const buttons = dialog.content.querySelector('.buttons');
                                 const array = dialog.buttons.filter((item) => !item.classList.contains('nodisplay') && item.style.display !== 'none');
@@ -2409,7 +2373,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     changePageEvent: 'click',
                                 });
                             }
-
                             return dialog;
                         };
                     },
@@ -11290,7 +11253,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         // ②『逆流河』中所有角色技能失效,自己回合结束后失去一点体力摸两张牌
                         // ③一名角色进入濒死时,可选择退出『逆流河』,将体力值改为记录值
                         // ④最后留在『逆流河』内的角色获得『坚持』
-
                         // 坚持
                         // 逆流河对你的效果改为:
                         // ①每回合限一次,不在『逆流河』中的角色对你<使用牌/造成伤害>时,你可将目标改为其自身
