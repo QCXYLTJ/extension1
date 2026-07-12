@@ -81,37 +81,23 @@ setInterval常量计算会被删掉
 for (var i =
 [,//, ,//,]//,)
 cards.splice//i.discard()
-
-
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-
 npm install
 npm install -g jscodeshift
 npm install prettier
 npm install eslint
 npm install @babel/parser @babel/traverse @babel/generator @babel/types
 npm install --save-dev @babel/parser @babel/traverse @babel/generator
-
 jscodeshift -t var-to-const-let.js . --extensions js --verbose=2
 npx eslint . --ext .js,.jsx,.ts,.tsx --fix
-
-
 check\(event, player\) \{\n\s*let player = _status.event.player;
 function \(card, player, target\) \{\n\s*let player = _status.event.player;
 function \(card, player, target\) \{\n\s*let player = _status.event.player;
-
-
-
 //([^(!\s&|)]*)(?<!\bObject\b)\.hasOwn\(([^)]*)\)
 //Object.hasOwn($1,$2)
-
-
-
-
 game[otherFunction[6]](game.zmtzd13Gif('zmcuibin.gif', null, null, true), 3600);
 game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
-
 //-------------------------------------------------------正则替换
 !((?!\(\b)[^&|\s]*) == //$1 !=
 'die:(?!ext\b)
@@ -670,14 +656,14 @@ const precontent = async function () {
                 group: 'boss_biantian4',
                 content() {
                     'step 0';
-                    for (let i = 0; i < game.players.length; i++) {
-                        if (game.players[i].hasSkill('boss_biantian3')) {
-                            game.players[i].removeSkill('boss_biantian3');
-                            game.players[i].popup('boss_biantian3');
+                    for (const i of game.players) {
+                        if (i.hasSkill('boss_biantian3')) {
+                            i.removeSkill('boss_biantian3');
+                            i.popup('boss_biantian3');
                         }
-                        if (game.players[i].hasSkill('boss_biantian2')) {
-                            game.players[i].removeSkill('boss_biantian2');
-                            game.players[i].popup('boss_biantian2');
+                        if (i.hasSkill('boss_biantian2')) {
+                            i.removeSkill('boss_biantian2');
+                            i.popup('boss_biantian2');
                         }
                     }
                     player.judge(function (card) {
@@ -694,19 +680,19 @@ const precontent = async function () {
                     let targets = [],
                         players = game.players;
                     if (result.color == 'red') {
-                        for (let i = 0; i < players.length; i++) {
-                            if (players[i].isEnemiesOf(player)) {
-                                players[i].addSkill('boss_biantian3');
-                                players[i].popup('kuangfeng');
-                                targets.push(players[i]);
+                        for (const i of players) {
+                            if (i.isEnemiesOf(player)) {
+                                i.addSkill('boss_biantian3');
+                                i.popup('kuangfeng');
+                                targets.push(i);
                             }
                         }
                     } else if (result.color == 'black') {
-                        for (let i = 0; i < players.length; i++) {
-                            if (players[i].isFriendsOf(player)) {
-                                players[i].addSkill('boss_biantian2');
-                                players[i].popup('dawu');
-                                targets.push(players[i]);
+                        for (const i of players) {
+                            if (i.isFriendsOf(player)) {
+                                i.addSkill('boss_biantian2');
+                                i.popup('dawu');
+                                targets.push(i);
                             }
                         }
                     }
@@ -1726,8 +1712,8 @@ const precontent = async function () {
                 }
             });
             const updateNodes = function () {
-                for (let i = 0; i < start.firstChild.childNodes.length; i++) {
-                    let node = start.firstChild.childNodes[i];
+                for (const i of start.firstChild.childNodes) {
+                    let node = i;
                     if (node.mode) {
                         if (node.mode.startsWith('mode_')) {
                             // 扩展卡牌包开启逻辑
@@ -1842,11 +1828,11 @@ const precontent = async function () {
                 node._initLink = function () {
                     node.link = page;
                     const list = [];
-                    for (let i = 0; i < info.length; i++) {
-                        if (!lib.card[info[i]]) {
+                    for (const i of info) {
+                        if (!lib.card[i]) {
                             continue;
                         } //QQQ
-                        list.push([get.translation(get.type(info[i], 'trick')), '', info[i]]);
+                        list.push([get.translation(get.type(i, 'trick')), '', i]);
                     }
                     const sortCard = function (card) {
                         const type = lib.card[card[2]].type;
@@ -1958,11 +1944,11 @@ const precontent = async function () {
                         }
                     };
                     const buttons = ui.create.buttons(list, 'vcard', page);
-                    for (let i = 0; i < buttons.length; i++) {
-                        buttons[i].classList.add('noclick');
-                        buttons[i].listen(banCard);
+                    for (const i of buttons) {
+                        i.classList.add('noclick');
+                        i.listen(banCard);
                         if (mode != 'mode_banned') {
-                            buttons[i].updateBanned = updateBanned;
+                            i.updateBanned = updateBanned;
                         }
                     }
                     page.classList.add('menu-buttons');
@@ -1995,13 +1981,13 @@ const precontent = async function () {
                         ui.create.div('.config.more.pile', '编辑牌堆 <div>&gt;</div>', page, function () {
                             if (cardpileexpanded) {
                                 this.classList.remove('on');
-                                for (let k = 0; k < cardpileNodes.length; k++) {
-                                    cardpileNodes[k].style.display = 'none';
+                                for (const k of cardpileNodes) {
+                                    k.style.display = 'none';
                                 }
                             } else {
                                 this.classList.add('on');
-                                for (let k = 0; k < cardpileNodes.length; k++) {
-                                    cardpileNodes[k].style.display = '';
+                                for (const k of cardpileNodes) {
+                                    k.style.display = '';
                                 }
                             }
                             cardpileexpanded = !cardpileexpanded;
@@ -2011,16 +1997,16 @@ const precontent = async function () {
                             this.parentNode.nextSibling.classList.toggle('hidden');
                         });
                         const cfgbancard = ui.create.node('button', '', '全部关闭', cfgnode, function () {
-                            for (let i = 0; i < cardpileNodes.length; i++) {
-                                if (cardpileNodes[i].type == 'defaultcards' && cardpileNodes[i].classList.contains('on')) {
-                                    clickToggle.call(cardpileNodes[i]);
+                            for (const i of cardpileNodes) {
+                                if (i.type == 'defaultcards' && i.classList.contains('on')) {
+                                    clickToggle.call(i);
                                 }
                             }
                         });
                         const cfgenablecard = ui.create.node('button', '', '全部开启', cfgnode, function () {
-                            for (let i = 0; i < cardpileNodes.length; i++) {
-                                if (cardpileNodes[i].type == 'defaultcards' && !cardpileNodes[i].classList.contains('on')) {
-                                    clickToggle.call(cardpileNodes[i]);
+                            for (const i of cardpileNodes) {
+                                if (i.type == 'defaultcards' && !i.classList.contains('on')) {
+                                    clickToggle.call(i);
                                 }
                             }
                         });
@@ -2034,12 +2020,12 @@ const precontent = async function () {
                         page.appendChild(cfgnode);
                         const cardpileadd = ui.create.div('.config.toggle.hidden.cardpilecfg.cardpilecfgadd', page);
                         const pileaddlist = [];
-                        for (let i = 0; i < lib.config.cards.length; i++) {
-                            if (!lib.cardPack[lib.config.cards[i]]) {
+                        for (const i of lib.config.cards) {
+                            if (!lib.cardPack[i]) {
                                 continue;
                             }
-                            for (let j = 0; j < lib.cardPack[lib.config.cards[i]].length; j++) {
-                                const cname = lib.cardPack[lib.config.cards[i]][j];
+                            for (const j of lib.cardPack[i]) {
+                                const cname = j;
                                 pileaddlist.push([cname, get.translation(cname)]);
                                 if (cname == 'sha') {
                                     pileaddlist.push(['huosha', '火杀']);
@@ -2060,7 +2046,6 @@ const precontent = async function () {
                                 ['club', '♣️️'],
                                 ['spade', '♠️️'],
                             ],
-
                             null,
                             cardpileadd,
                         );
@@ -2101,8 +2086,8 @@ const precontent = async function () {
                         cardpileadd.appendChild(button);
                         cardpileadd.style.whiteSpace = 'nowrap';
                         cardpileNodes.push(cardpileadd);
-                        for (let i = 0; i < lib.config.addedpile[mode].length; i++) {
-                            let card = lib.config.addedpile[mode][i];
+                        for (const i of lib.config.addedpile[mode]) {
+                            let card = i;
                             const cfgnode = ui.create.div('.config.toggle.cardpilecfg');
                             cfgnode._info = card;
                             cfgnode.innerHTML = get.translation(card[2]) + ' ' + get.translation(card[0]) + card[1];
@@ -2140,11 +2125,11 @@ const precontent = async function () {
             };
             if (!connectMenu && lib.config.show_ban_menu) {
                 lib.cardPack.mode_banned = [];
-                for (let i = 0; i < lib.config.all.mode.length; i++) {
-                    const banned = lib.config[lib.config.all.mode[i] + '_bannedcards'];
+                for (const i of lib.config.all.mode) {
+                    const banned = lib.config[i + '_bannedcards'];
                     if (banned) {
-                        for (let j = 0; j < banned.length; j++) {
-                            lib.cardPack.mode_banned.add(banned[j]);
+                        for (const j of banned) {
+                            lib.cardPack.mode_banned.add(j);
                         }
                     }
                 }
@@ -2154,11 +2139,11 @@ const precontent = async function () {
                 }
                 delete lib.cardPack.mode_banned;
             }
-            for (let i = 0; i < lib.config.all.cards.length; i++) {
-                if (connectMenu && !lib.connectCardPack.includes(lib.config.all.cards[i])) {
+            for (const i of lib.config.all.cards) {
+                if (connectMenu && !lib.connectCardPack.includes(i)) {
                     continue;
                 }
-                createModeConfig(lib.config.all.cards[i], start.firstChild);
+                createModeConfig(i, start.firstChild);
             }
             if (!connectMenu) {
                 Object.keys(lib.cardPack).forEach((key) => {
@@ -2593,15 +2578,15 @@ const precontent = async function () {
                 return function () {
                     if (QQQ.config.属性杀) {
                         let nature, num, source;
-                        for (let i = 0; i < arguments.length; i++) {
-                            if (typeof arguments[i] == 'number') {
-                                num = arguments[i];
-                            } else if (get.itemtype(arguments[i]) == 'player') {
-                                source = arguments[i];
-                            } else if (get.itemtype(arguments[i]) == 'nature' && arguments[i] != 'stab') {
-                                nature = arguments[i];
-                            } else if (get.itemtype(arguments[i]) == 'natures') {
-                                const natures = arguments[i].split(lib.natureSeparator);
+                        for (const i of arguments) {
+                            if (typeof i == 'number') {
+                                num = i;
+                            } else if (get.itemtype(i) == 'player') {
+                                source = i;
+                            } else if (get.itemtype(i) == 'nature' && i != 'stab') {
+                                nature = i;
+                            } else if (get.itemtype(i) == 'natures') {
+                                const natures = i.split(lib.natureSeparator);
                                 natures.remove('stab');
                                 if (natures.length) {
                                     nature = natures.join(lib.natureSeparator);
@@ -2633,30 +2618,30 @@ const precontent = async function () {
                     next.player = this;
                     let nocard, nosource;
                     const event = _status.event;
-                    for (let i = 0; i < arguments.length; i++) {
-                        if (get.itemtype(arguments[i]) == 'cards') {
-                            next.cards = arguments[i].slice(0);
-                        } else if (get.itemtype(arguments[i]) == 'card') {
-                            next.card = arguments[i];
-                        } else if (typeof arguments[i] == 'number') {
-                            next.num = arguments[i];
-                        } else if (get.itemtype(arguments[i]) == 'player') {
-                            next.source = arguments[i];
-                        } else if (typeof arguments[i] == 'object' && arguments[i] && arguments[i].name) {
-                            next.card = arguments[i];
-                        } else if (arguments[i] == 'nocard') {
+                    for (const i of arguments) {
+                        if (get.itemtype(i) == 'cards') {
+                            next.cards = i.slice(0);
+                        } else if (get.itemtype(i) == 'card') {
+                            next.card = i;
+                        } else if (typeof i == 'number') {
+                            next.num = i;
+                        } else if (get.itemtype(i) == 'player') {
+                            next.source = i;
+                        } else if (typeof i == 'object' && i && i.name) {
+                            next.card = i;
+                        } else if (i == 'nocard') {
                             nocard = true;
-                        } else if (arguments[i] == 'nosource') {
+                        } else if (i == 'nosource') {
                             nosource = true;
-                        } else if (arguments[i] == 'notrigger') {
+                        } else if (i == 'notrigger') {
                             next._triggered = null;
                             next.notrigger = true;
-                        } else if (arguments[i] == 'unreal') {
+                        } else if (i == 'unreal') {
                             next.unreal = true;
-                        } else if (get.itemtype(arguments[i]) == 'nature' && arguments[i] != 'stab') {
-                            next.nature = arguments[i];
-                        } else if (get.itemtype(arguments[i]) == 'natures') {
-                            const natures = arguments[i].split(lib.natureSeparator);
+                        } else if (get.itemtype(i) == 'nature' && i != 'stab') {
+                            next.nature = i;
+                        } else if (get.itemtype(i) == 'natures') {
+                            const natures = i.split(lib.natureSeparator);
                             natures.remove('stab');
                             if (natures.length) {
                                 next.nature = natures.join(lib.natureSeparator);
@@ -2923,9 +2908,9 @@ const precontent = async function () {
             }
             if (source && lib.config.border_style == 'auto') {
                 let dnum = 0;
-                for (let j = 0; j < source.stat.length; j++) {
-                    if (source.stat[j].damage != undefined) {
-                        dnum += source.stat[j].damage;
+                for (const j of source.stat) {
+                    if (j.damage != undefined) {
+                        dnum += j.damage;
                     }
                 }
                 if (dnum >= 2) {
@@ -3093,7 +3078,6 @@ const precontent = async function () {
                                 noclick = arg;
                             }
                         }
-
                         const list = [];
                         const characterlist = Object.keys(lib.character);
                         const groups = [];
@@ -3102,7 +3086,6 @@ const precontent = async function () {
                         if (get.is.phoneLayout()) {
                             node.style.fontSize = '30px';
                         }
-
                         const namecapt = [];
                         const getCapt = function (str2) {
                             let capt;
@@ -3117,7 +3100,6 @@ const precontent = async function () {
                             }
                             return capt;
                         };
-
                         if (thisiscard) {
                             for (const i in lib.card) {
                                 if (!lib.translate[i + '_info']) {
@@ -3148,7 +3130,6 @@ const precontent = async function () {
                             namecapt.remove('自定义');
                             namecapt.push('最近', '收藏');
                         }
-
                         let newlined;
                         if (!thisiscard) {
                             newlined = document.createElement('div');
@@ -3161,7 +3142,6 @@ const precontent = async function () {
                         let newlined2;
                         let packsource;
                         let filternode = null;
-
                         const updatePagination = () => {
                             if (dialog.paginationMaxCount.get('character')) {
                                 const buttons = dialog.content.querySelector('.buttons');
@@ -3173,13 +3153,11 @@ const precontent = async function () {
                                 }
                             }
                         };
-
                         const restoreState = (btn) => {
                             if (btn.style.display == 'none') {
                                 btn.style.display = '';
                             }
                         };
-
                         const clickCapt = function (e) {
                             if (_status.dragged) {
                                 return;
@@ -3229,7 +3207,6 @@ const precontent = async function () {
                                     packsource.innerHTML = this.innerHTML;
                                     packsource.classList.add('thundertext');
                                 }
-
                                 let listx;
                                 switch (dialog.currentcapt2) {
                                     case '最近':
@@ -3255,7 +3232,6 @@ const precontent = async function () {
                                     btn.capt = getCapt(btn.link);
                                 }
                             }
-
                             if (dialog.seperate) {
                                 for (const sep of dialog.seperate) {
                                     if (!sep.nextSibling.querySelector('.button:not(.nodisplay)')) {
@@ -3279,7 +3255,6 @@ const precontent = async function () {
                                 e.stopPropagation();
                             }
                         }; //最近和收藏按钮监听
-
                         for (const name of namecapt) {
                             const span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius');
                             span.style.margin = '3px';
@@ -3291,13 +3266,11 @@ const precontent = async function () {
                             node[name] = span;
                             span._nature = name == '收藏' ? 'fire' : 'wood';
                         } //生成最近和收藏
-
                         if (!thisiscard) {
                             const natures = ['water', 'soil', 'wood', 'metal'];
                             const sep = document.createElement('span');
                             newlined.appendChild(sep);
                             sep.style.margin = '8px';
-
                             const clickGroup = function () {
                                 if (_status.dragged) {
                                     return;
@@ -3343,7 +3316,6 @@ const precontent = async function () {
                                 }
                                 updatePagination();
                             }; //群组按钮监听
-
                             for (const group of groups) {
                                 const span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
                                 span.style.margin = '3px';
@@ -3353,15 +3325,12 @@ const precontent = async function () {
                                 span._nature = natures[groups.indexOf(group)];
                                 span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickGroup);
                             } //加入群组
-
                             const spacer = document.createElement('span');
                             newlined.appendChild(spacer);
                             spacer.style.margin = '8px';
-
                             packsource = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
                             packsource.style.margin = '3px';
                             newlined.appendChild(packsource);
-
                             const clickCaptNode = function (e) {
                                 delete _status.filterCharacter;
                                 ui.window.classList.remove('shortcutpaused');
@@ -3369,7 +3338,6 @@ const precontent = async function () {
                                 filternode.classList.remove('shown');
                                 clickCapt.call(this.link, e);
                             };
-
                             if (get.is.phoneLayout() && lib.config.filternode_button) {
                                 newlined.style.marginTop = '';
                                 packsource.innerHTML = '筛选';
@@ -3403,7 +3371,6 @@ const precontent = async function () {
                                     packsource.innerHTML = '武将包';
                                 }
                             } //武将包按钮
-
                             newlined2 = document.createElement('div');
                             newlined2.style.marginTop = '5px';
                             newlined2.style.display = 'none';
@@ -3412,7 +3379,6 @@ const precontent = async function () {
                             newlined2.style.fontSize = get.is.phoneLayout() ? '32px' : '22px';
                             newlined2.style.textAlign = 'center';
                             node.appendChild(newlined2);
-
                             packsource.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
                                 if (packsource.onlypack) {
                                     return;
@@ -3436,7 +3402,6 @@ const precontent = async function () {
                                     newlined2.style.display = newlined2.style.display == 'none' ? 'block' : 'none';
                                 }
                             }); //武将包按钮监听
-
                             const packlist = [];
                             for (const name of lib.config.all.characters) {
                                 if (lib.config.characters.includes(name)) {
@@ -3461,7 +3426,6 @@ const precontent = async function () {
                                     return lib.config[`extension_${extName}_characters_enable`] === true;
                                 })
                                 .forEach((key) => packlist.add(key));
-
                             for (const pkg of packlist) {
                                 const span = document.createElement('div');
                                 span.style.display = 'inline-block';
@@ -3478,7 +3442,6 @@ const precontent = async function () {
                                 }
                             } //所有武将包按钮
                         } //所有武将包按钮监听
-
                         let groupSort;
                         if (thisiscard) {
                             groupSort = function (name) {
@@ -3520,7 +3483,6 @@ const precontent = async function () {
                         } else {
                             list.sort(lib.sort.character);
                         }
-
                         dialog = ui.create.dialog('hidden');
                         dialog.classList.add('noupdate', 'scroll1', 'scroll2', 'scroll3');
                         dialog.supportsPagination = Boolean(parseInt(lib.config.showMax_character_number));
@@ -3548,7 +3510,6 @@ const precontent = async function () {
                             }
                             return this.currentcapt;
                         };
-
                         const container = dialog.querySelector('.content-container>.content');
                         const Searcher = ui.create.div('.searcher.caption');
                         const input = document.createElement('input').css({
@@ -3559,10 +3520,8 @@ const precontent = async function () {
                             fontSize: '21px',
                         });
                         input.placeholder = '支持正则搜索';
-
                         const find = ui.create.button(['find', '搜索'], 'tdnodes');
                         find.style.display = 'inline';
-
                         const updateFind = () => {
                             while (dialog.buttons.length) {
                                 dialog.buttons[0].remove();
@@ -3590,7 +3549,6 @@ const precontent = async function () {
                             }
                             updatePagination();
                         }; //搜索按钮监听
-
                         find.addEventListener('click', updateFind);
                         input.addEventListener('keydown', (e) => {
                             e.stopPropagation();
@@ -3599,15 +3557,12 @@ const precontent = async function () {
                             }
                         });
                         input.addEventListener('mousedown', (e) => e.stopPropagation());
-
                         Searcher.append(input, find);
                         container.prepend(Searcher);
-
                         if (str) {
                             dialog.add(str);
                         }
                         dialog.add(node);
-
                         if (thisiscard) {
                             if (seperate) {
                                 seperate = seperate(list);
@@ -3655,9 +3610,7 @@ const precontent = async function () {
                                 dialog.add([recentCharacter, 'character']);
                             }
                         } //将所有武将生成div
-
                         dialog.add(ui.create.div('.placeholder'));
-
                         for (const btn of dialog.buttons) {
                             if (thisiscard) {
                                 btn.capt = getCapt(btn.link[2]);
@@ -3666,13 +3619,11 @@ const precontent = async function () {
                                 btn.capt = getCapt(btn.link);
                             }
                         }
-
                         if (!expandall) {
                             if (!thisiscard && (lib.characterDialogGroup[lib.config.character_dialog_tool] || lib.config.character_dialog_tool == '自创')) {
                                 clickCapt.call(node[lib.config.character_dialog_tool]);
                             }
                         }
-
                         if (dialog.paginationMaxCount.get('character')) {
                             const buttons = dialog.content.querySelector('.buttons');
                             const array = dialog.buttons.filter((item) => !item.classList.contains('nodisplay') && item.style.display !== 'none');
@@ -3695,7 +3646,6 @@ const precontent = async function () {
                                 changePageEvent: 'click',
                             });
                         }
-
                         return dialog;
                     };
                 },
@@ -3865,7 +3815,6 @@ const precontent = async function () {
             ['club', 4, 'sha'],
             ['diamond', 13, 'zixin'],
         ];
-
         if (QQQ.config.还原初始牌堆) {
             Reflect.defineProperty(lib.card, 'list', {
                 get() {
@@ -8789,7 +8738,6 @@ const precontent = async function () {
                         }
                     },
                 },
-
                 // 大蛇
                 //————————————————————————————————————————————安帕赫 3/3
                 // 王朝镰技
@@ -9232,10 +9180,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         name: 'QQQQQQ',
         connect: true,
         card: {
-
         },
         translate: {
-
         },
     };
     for (const i in QQQ.card) {
@@ -9280,11 +9226,8 @@ extension/([^/,]*)/([^/,]*).png
 extension/$1/image/$2.png
 ext:([^/,]*)/([^/,]*).png
 ext:$1/image/$2.png
-
 url\('(.+)'\)
 url(image/$1)
-
-
 game.playAudio('../extension/秦时明月',
 ext:([^/,]*):
 ext:$1/audio:

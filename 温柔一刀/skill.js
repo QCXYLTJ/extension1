@@ -3241,7 +3241,6 @@ const skill = {
             ['锦囊', '', 'juedou'],
             ['锦囊', '', 'zhujinqiyuan'],
           ],
-
           'vcard',
         ]);
       },

@@ -844,8 +844,8 @@ lib.element.content.waitForPlayer = function () {
   if (game.onlineroom) {
     game.send('server', 'config', lib.configOL);
   }
-  for (let i = 0; i < game.connectPlayers.length; i++) {
-    game.connectPlayers[i].delete();
+  for (const i of game.connectPlayers) {
+    i.delete();
   }
   delete game.connectPlayers;
   if (ui.roomInfo) {

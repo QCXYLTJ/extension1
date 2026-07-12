@@ -206,8 +206,8 @@ const content = async function () {
       const player = this;
       if (Array.isArray(skill)) {
         _status.event.clearStepCache();
-        for (let i = 0; i < skill.length; i++) {
-          player.addSkill(skill[i]);
+        for (const i of skill) {
+          player.addSkill(i);
         }
       } else {
         if (player.skills.includes(skill)) {
@@ -405,8 +405,8 @@ const content = async function () {
       player.$addVirtualEquip(card, cards);
       const info = get.info(card, false);
       if (info.skills) {
-        for (let i = 0; i < info.skills.length; i++) {
-          player.addSkillTrigger(info.skills[i]);
+        for (const i of info.skills) {
+          player.addSkillTrigger(i);
         }
       }
     }; //防止直接装备卡牌节点//directequip老扩展的问题
@@ -420,8 +420,8 @@ const content = async function () {
       }
       let skills = player.getSkills('invisible').concat(lib.skill.global);
       game.expandSkills(skills);
-      for (let i = 0; i < skills.length; i++) {
-        const info = lib.skill[skills[i]];
+      for (const i of skills) {
+        const info = lib.skill[i];
         if (info && info.onChooseToUse) {
           info.onChooseToUse(event);
         }
@@ -724,8 +724,8 @@ const content = async function () {
       }
       let skills = player.getSkills('invisible').concat(lib.skill.global);
       game.expandSkills(skills);
-      for (let i = 0; i < skills.length; i++) {
-        const info = lib.skill[skills[i]];
+      for (const i of skills) {
+        const info = lib.skill[i];
         if (info && info.onChooseToRespond) {
           info.onChooseToRespond(event);
         }
@@ -1101,26 +1101,26 @@ const content = async function () {
       if (!game.chess) {
         ui.control.innerHTML = '';
         const nodes = [];
-        for (let i = 0; i < ui.arena.childNodes.length; i++) {
-          nodes.push(ui.arena.childNodes[i]);
+        for (const i of ui.arena.childNodes) {
+          nodes.push(i);
         }
-        for (let i = 0; i < nodes.length; i++) {
-          if (nodes[i] == ui.canvas) {
+        for (const i of nodes) {
+          if (i == ui.canvas) {
             continue;
           }
-          if (nodes[i] == ui.control) {
+          if (i == ui.control) {
             continue;
           }
-          if (nodes[i] == ui.mebg) {
+          if (i == ui.mebg) {
             continue;
           }
-          if (nodes[i] == ui.me) {
+          if (i == ui.me) {
             continue;
           }
-          if (nodes[i] == ui.roundmenu) {
+          if (i == ui.roundmenu) {
             continue;
           }
-          nodes[i].remove();
+          i.remove();
         }
         ui.sidebar.innerHTML = '';
         ui.cardPile.innerHTML = '';
@@ -2198,11 +2198,11 @@ const content = async function () {
           let list2 = get.typeCard('jiqi');
           const list3 = [];
           const list4 = [];
-          for (let i = 0; i < list2.length; i++) {
-            if (list2[i].indexOf('yuchan') == 0) {
-              list4.push(list2[i]);
+          for (const i of list2) {
+            if (i.indexOf('yuchan') == 0) {
+              list4.push(i);
             } else {
-              list3.push(list2[i]);
+              list3.push(i);
             }
           }
           if (Math.random() < 1 / 3) {
@@ -2473,8 +2473,8 @@ const content = async function () {
           next.set('dialogdisplay', true);
           ('step 1');
           if (result && result.bool && result.links && result.links.length) {
-            for (let i = 0; i < result.buttons.length; i++) {
-              event.dialog.buttons.remove(result.buttons[i]);
+            for (const i of result.buttons) {
+              event.dialog.buttons.remove(i);
             }
             let cards = result.links.slice(0);
             while (cards.length) {
@@ -2482,8 +2482,8 @@ const content = async function () {
             }
             game.log(player, '将' + get.cnNumber(result.links.length) + '张牌置于牌堆顶');
           }
-          for (let i = 0; i < event.dialog.buttons.length; i++) {
-            event.dialog.buttons[i].link.discard();
+          for (const i of event.dialog.buttons) {
+            i.link.discard();
           }
           ('step 2');
           const dialog = event.dialog;
@@ -2505,9 +2505,9 @@ const content = async function () {
           let targets = game.players.filter(function (current) {
             return get.attitude(player, current) > 0;
           });
-          for (let i = 0; i < targets.length; i++) {
-            if (targets[i].hp == 1) {
-              if (targets[i].hasSkill('yunvyuanshen_skill')) {
+          for (const i of targets) {
+            if (i.hp == 1) {
+              if (i.hasSkill('yunvyuanshen_skill')) {
                 choice = 'ziyangdan';
               } else {
                 choice = 'yunvyuanshen';
@@ -2524,8 +2524,8 @@ const content = async function () {
             choice = 'shatang';
           }
           if (!choice) {
-            for (let i = 0; i < targets.length; i++) {
-              if (!targets[i].hasSkill('yunvyuanshen_skill')) {
+            for (const i of targets) {
+              if (!i.hasSkill('yunvyuanshen_skill')) {
                 choice = 'yunvyuanshen';
                 break;
               }
@@ -2731,8 +2731,8 @@ const content = async function () {
           next.set('dialogdisplay', true);
           ('step 1');
           if (result && result.bool && result.links && result.links.length) {
-            for (let i = 0; i < result.buttons.length; i++) {
-              event.dialog.buttons.remove(result.buttons[i]);
+            for (const i of result.buttons) {
+              event.dialog.buttons.remove(i);
             }
             let cards = result.links.slice(0);
             while (cards.length) {
@@ -2740,8 +2740,8 @@ const content = async function () {
             }
             game.log(player, `将${get.cnNumber(result.links.length)}张牌置于牌堆顶`);
           }
-          for (let i = 0; i < event.dialog.buttons.length; i++) {
-            event.dialog.buttons[i].link.discard();
+          for (const i of event.dialog.buttons) {
+            i.link.discard();
           }
           ('step 2');
           const dialog = event.dialog;
@@ -2993,7 +2993,6 @@ const content = async function () {
             const hs = target.getGainableCards(player, 'h');
             const es = target.getGainableCards(player, 'e');
             const js = target.getGainableCards(player, 'j');
-
             if (get.attitude(player, target) <= 0) {
               if (hs.length > 0) {
                 return -1.5;
@@ -3500,8 +3499,8 @@ const content = async function () {
                 next.set('prompt2', '或点「取消」,令其将此牌置入弃牌堆');
                 next.ai = function () {
                   let eff = 0;
-                  for (let i = 0; i < event.targets2.length; i++) {
-                    eff += get.effect(event.targets2[i], card, target, player);
+                  for (const i of event.targets2) {
+                    eff += get.effect(i, card, target, player);
                   }
                   return eff > 0;
                 };
@@ -4284,9 +4283,8 @@ const content = async function () {
           ('step 1');
           if (result.bool) {
             player.showCards(get.translation(player) + '发动了【苍螭之璧】', player.getCards('h', 'cangchizhibi'));
-            //QQQ
-            for (let i = 0; i < result.targets.length; i++) {
-              result.targets[i].link();
+            for (const i of result.targets) {
+              i.link();
             }
           }
         },
@@ -4445,11 +4443,11 @@ const content = async function () {
                 } else {
                   const he = player.getCards('he');
                   let sha = false;
-                  for (let i = 0; i < he.length; i++) {
-                    if (he[i] == 'sha' && !sha) {
+                  for (const i of he) {
+                    if (i == 'sha' && !sha) {
                       sha = true;
                     } else {
-                      if (get.value(he[i]) <= 6) {
+                      if (get.value(i) <= 6) {
                         return [1, 0, 1, -0.5];
                       }
                     }
@@ -4879,10 +4877,9 @@ const content = async function () {
               player.storage.xinbenxi_damage.add(trigger.card);
             },
           ];
-
-          for (let i = 0; i < result.links.length; i++) {
-            game.log(`<span class="greentext">${get.translation(player)}选择了【奔袭】的选项${result.links[i] + 1}</span>`);
-            map[result.links[i]](trigger, player, event);
+          for (const i of result.links) {
+            game.log(`<span class="greentext">${get.translation(player)}选择了【奔袭】的选项${i + 1}</span>`);
+            map[i](trigger, player, event);
           }
           if (!result.links.includes(0)) {
             event.finish();
@@ -5282,8 +5279,8 @@ const content = async function () {
               if (card.name != 'du' && _status.currentPhase && get.attitude(_status.event.player, _status.currentPhase) < 0 && _status.currentPhase.needsToDiscard()) {
                 return -1;
               } //QQQ
-              for (let i = 0; i < ui.selected.cards.length; i++) {
-                if (get.type(ui.selected.cards[i]) == get.type(card) || (ui.selected.cards[i].name == 'du' && card.name != 'du')) {
+              for (const i of ui.selected.cards) {
+                if (get.type(i) == get.type(card) || (i.name == 'du' && card.name != 'du')) {
                   return -1;
                 }
               }
@@ -5315,8 +5312,8 @@ const content = async function () {
             const target = result.targets[0];
             let cards = result.cards;
             let type = [];
-            for (let i = 0; i < cards.length; i++) {
-              type.add(get.type2(cards[i]));
+            for (const i of cards) {
+              type.add(get.type2(i));
             }
             player.give(cards, target);
             const current = _status.currentPhase;
@@ -6037,11 +6034,11 @@ const content = async function () {
             if (str2[str2.length - 1] == '.' || str2[str2.length - 1] == '.') {
               str2 = str2.slice(0, str2.length - 1);
             }
-            for (let i = 0; i < cards.length; i++) {
+            for (const i of cards) {
               for (let j = 1; j <= 5; j++) {
-                lib.translate[cards[i].name + '_equip' + j] = lib.translate[cards[i].name + '_duanzao'];
+                lib.translate[i.name + '_equip' + j] = lib.translate[i.name + '_duanzao'];
               }
-              const name2 = cards[i].name + '_' + get.subtype(equip);
+              const name2 = i.name + '_' + get.subtype(equip);
               if (lib.skill[name2]) {
                 info.skills.add(name2);
                 str2 += `;${lib.translate[name2 + '_info']}`;
@@ -6482,24 +6479,24 @@ const content = async function () {
           }
           let num = 0;
           const players = game.players;
-          for (let i = 0; i < players.length; i++) {
-            let att = get.attitude(player, players[i]);
+          for (const i of players) {
+            let att = get.attitude(player, i);
             if (att > 0) {
               att = 1;
             }
             if (att < 0) {
               att = -1;
             }
-            if (players[i] != player && players[i].hp <= 3) {
-              if (players[i].countCards('h') == 0) {
-                num += att / players[i].hp;
-              } else if (players[i].countCards('h') == 1) {
-                num += att / 2 / players[i].hp;
-              } else if (players[i].countCards('h') == 2) {
-                num += att / 4 / players[i].hp;
+            if (i != player && i.hp <= 3) {
+              if (i.countCards('h') == 0) {
+                num += att / i.hp;
+              } else if (i.countCards('h') == 1) {
+                num += att / 2 / i.hp;
+              } else if (i.countCards('h') == 2) {
+                num += att / 4 / i.hp;
               }
             }
-            if (players[i].hp == 1) {
+            if (i.hp == 1) {
               num += att * 1.5;
             }
           }
@@ -6623,11 +6620,11 @@ const content = async function () {
           content() {
             if (player.name1 && player.name2) {
               let list = [player.name1, player.name2];
-              for (let i = 0; i < list.length; i++) {
-                if (list[i] && lib.character[list[i]]) {
-                  const info = lib.character[list[i]];
+              for (const i of list) {
+                if (i && lib.character[i]) {
+                  const info = lib.character[i];
                   if (info.skills.includes('dualside') && info.dualSideCharacter) {
-                    player.storage.dualside = [list[i], player.hp, player.maxHp];
+                    player.storage.dualside = [i, player.hp, player.maxHp];
                     const name2 = info.dualSideCharacter;
                     const info2 = lib.character[name2];
                     player.storage.dualside.push(name2);
@@ -6676,8 +6673,8 @@ const content = async function () {
           if (cards.length >= 3 && player.hp >= 3) {
             return 0;
           }
-          for (let i = 0; i < cards.length; i++) {
-            num += Math.max(0, get.value(cards[i], player, 'raw'));
+          for (const i of cards) {
+            num += Math.max(0, get.value(i, player, 'raw'));
           }
           num /= cards.length;
           num *= Math.min(cards.length, player.hp);
@@ -7140,8 +7137,8 @@ const content = async function () {
         }
         this.node.count.innerHTML = numh; //QQQ
         if (this.updates) {
-          for (let i = 0; i < lib.element.player.updates.length; i++) {
-            lib.element.player.updates[i](this);
+          for (const i of lib.element.player.updates) {
+            i(this);
           }
         }
         if (!_status.video) {
@@ -7439,8 +7436,8 @@ const content = async function () {
               }
               let num = 0,
                 bool = false;
-              for (let i = 0; i < ui.cardPile.childNodes.length; i++) {
-                let card = ui.cardPile.childNodes[i];
+              for (const i of ui.cardPile.childNodes) {
+                let card = i;
                 if (card.number == 7) {
                   num++;
                   if (num >= target.hp) {
@@ -7465,8 +7462,8 @@ const content = async function () {
             content() {
               player.drawTo(7);
               let num = 0;
-              for (let i = 0; i < ui.cardPile.childNodes.length; i++) {
-                let card = ui.cardPile.childNodes[i];
+              for (const i of ui.cardPile.childNodes) {
+                let card = i;
                 if (card.number == 7) {
                   num++;
                 }
@@ -7526,8 +7523,8 @@ const content = async function () {
             shown = [];
           const piles = ['cardPile', 'discardPile'];
           for (const pile of piles) {
-            for (let i = 0; i < ui[pile].childNodes.length; i++) {
-              let card = ui[pile].childNodes[i];
+            for (const i of ui[pile].childNodes) {
+              let card = i;
               const number = card.number;
               if (!list.includes(card) && number == 8) {
                 list.push(card);
@@ -7880,8 +7877,8 @@ const content = async function () {
                             game.hasPlayer(function (current) {
                               if (get.attitude(player, current) > 0) {
                                 let es = target.getCards('e');
-                                for (let i = 0; i < es.length; i++) {
-                                  if (current.canEquip(es[i])) {
+                                for (const i of es) {
+                                  if (current.canEquip(i)) {
                                     return true;
                                   }
                                 }
@@ -8123,8 +8120,8 @@ const content = async function () {
         if (_status.discarded) {
           _status.discarded.length = 0;
         }
-        for (let i = 0; i < ui.discardPile.childNodes.length; i++) {
-          const currentcard = ui.discardPile.childNodes[i];
+        for (const i of ui.discardPile.childNodes) {
+          const currentcard = i;
           currentcard.vanishtag.length = 0;
           currentcard.clearKnowers();
           if (get.info(currentcard).vanish || currentcard.storage.vanish) {
@@ -8142,20 +8139,20 @@ const content = async function () {
         if (num2) {
           next = this.draw(num2);
           if (Array.isArray(args)) {
-            for (let i = 0; i < args.length; i++) {
-              if (get.itemtype(args[i]) == 'player') {
-                next.source = args[i];
-              } else if (typeof args[i] == 'boolean') {
-                next.animate = args[i];
-              } else if (args[i] == 'nodelay') {
+            for (const i of args) {
+              if (get.itemtype(i) == 'player') {
+                next.source = i;
+              } else if (typeof i == 'boolean') {
+                next.animate = i;
+              } else if (i == 'nodelay') {
                 next.animate = false;
                 next.$draw = true;
-              } else if (args[i] == 'visible') {
+              } else if (i == 'visible') {
                 next.visible = true;
-              } else if (args[i] == 'bottom') {
+              } else if (i == 'bottom') {
                 next.bottom = true;
-              } else if (typeof args[i] == 'object' && args[i] && args[i].drawDeck != undefined) {
-                next.drawDeck = args[i].drawDeck;
+              } else if (typeof i == 'object' && i && i.drawDeck != undefined) {
+                next.drawDeck = i.drawDeck;
               }
             }
           }
@@ -8484,8 +8481,8 @@ const content = async function () {
                   }
                 }
                 if (info.subfrequent) {
-                  for (let j = 0; j < info.subfrequent.length; j++) {
-                    if (lib.config.autoskilllist.includes(skill + '_' + info.subfrequent[j])) {
+                  for (const j of info.subfrequent) {
+                    if (lib.config.autoskilllist.includes(skill + '_' + j)) {
                       underlinenode.classList.remove('on');
                     }
                   }
@@ -8508,8 +8505,8 @@ const content = async function () {
                 }
               }
               if (info.subfrequent) {
-                for (let j = 0; j < info.subfrequent.length; j++) {
-                  if (lib.config.autoskilllist.includes(skill + '_' + info.subfrequent[j])) {
+                for (const j of info.subfrequent) {
+                  if (lib.config.autoskilllist.includes(skill + '_' + j)) {
                     underlinenode.classList.remove('on');
                   }
                 }
@@ -8581,9 +8578,9 @@ const content = async function () {
             td = document.createElement('td');
             (function () {
               let num = 0;
-              for (let j = 0; j < node.stat.length; j++) {
-                if (typeof node.stat[j].damage == 'number') {
-                  num += node.stat[j].damage;
+              for (const j of node.stat) {
+                if (typeof j.damage == 'number') {
+                  num += j.damage;
                 }
               }
               td.innerHTML = num;
@@ -8598,24 +8595,24 @@ const content = async function () {
           }
           if (!simple || get.is.phoneLayout()) {
             let es = node.getCards('e');
-            for (let i = 0; i < es.length; i++) {
-              const cardinfo = lib.card[es[i].name];
+            for (const i of es) {
+              const cardinfo = lib.card[i.name];
               if (cardinfo && cardinfo.cardPrompt) {
-                uiintro.add(`<div><div class='skill'>${es[i].outerHTML}</div><div>${cardinfo.cardPrompt(es[i])}</div></div>`);
+                uiintro.add(`<div><div class='skill'>${i.outerHTML}</div><div>${cardinfo.cardPrompt(i)}</div></div>`);
               } else {
-                uiintro.add(`<div><div class='skill'>${es[i].outerHTML}</div><div>${lib.translate[es[i].name + '_info']}</div></div>`);
+                uiintro.add(`<div><div class='skill'>${i.outerHTML}</div><div>${lib.translate[i.name + '_info']}</div></div>`);
               }
               uiintro.content.lastChild.querySelector('.skill>.card').style.transform = '';
-              if (lib.translate[es[i].name + '_append']) {
-                uiintro.add(`<div class='text'>${lib.translate[es[i].name + '_append']}</div>`);
+              if (lib.translate[i.name + '_append']) {
+                uiintro.add(`<div class='text'>${lib.translate[i.name + '_append']}</div>`);
               }
             }
             const js = node.getCards('j');
-            for (let i = 0; i < js.length; i++) {
-              if (js[i].viewAs && js[i].viewAs != js[i].name) {
-                uiintro.add(`<div><div class='skill'>${js[i].outerHTML}</div><div>${lib.translate[js[i].viewAs]}:${lib.translate[js[i].viewAs + '_info']}</div></div>`);
+            for (const i of js) {
+              if (i.viewAs && i.viewAs != i.name) {
+                uiintro.add(`<div><div class='skill'>${i.outerHTML}</div><div>${lib.translate[i.viewAs]}:${lib.translate[i.viewAs + '_info']}</div></div>`);
               } else {
-                uiintro.add(`<div><div class='skill'>${js[i].outerHTML}</div><div>${lib.translate[js[i].name + '_info']}</div></div>`);
+                uiintro.add(`<div><div class='skill'>${i.outerHTML}</div><div>${lib.translate[i.name + '_info']}</div></div>`);
               }
               uiintro.content.lastChild.querySelector('.skill>.card').style.transform = '';
             }
@@ -8685,15 +8682,15 @@ const content = async function () {
             table.style.width = '100%';
             table.style.position = 'relative';
             const listi = ['flower', 'egg'];
-            for (let i = 0; i < listi.length; i++) {
+            for (const i of listi) {
               td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
               ui.throwEmotion.add(td);
               if (_status.throwEmotionWait) {
                 td.classList.add('exclude');
               }
-              td.link = listi[i];
+              td.link = i;
               table.appendChild(td);
-              td.innerHTML = `<span>${get.translation(listi[i])}</span>`;
+              td.innerHTML = `<span>${get.translation(i)}</span>`;
               td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', click);
             }
             uiintro.content.appendChild(table);
@@ -8706,15 +8703,15 @@ const content = async function () {
             if (game.me.storage.zhuSkill_shanli) {
               listi2 = ['yuxisx', 'jiasuo'];
             }
-            for (let i = 0; i < listi2.length; i++) {
+            for (const i of listi2) {
               td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
               ui.throwEmotion.add(td);
               if (_status.throwEmotionWait) {
                 td.classList.add('exclude');
               }
-              td.link = listi2[i];
+              td.link = i;
               table.appendChild(td);
-              td.innerHTML = `<span>${get.translation(listi2[i])}</span>`;
+              td.innerHTML = `<span>${get.translation(i)}</span>`;
               td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', click);
             }
             uiintro.content.appendChild(table);
@@ -8953,16 +8950,16 @@ const content = async function () {
               ui.click.touchpop();
               e.stopPropagation();
             });
-            for (let i = 0; i < modeorder.length; i++) {
+            for (const i of modeorder) {
               if (node._banning == 'online') {
-                if (!lib.mode[modeorder[i]].connect) {
+                if (!lib.mode[i].connect) {
                   continue;
                 }
-              } else if (modeorder[i] == 'connect' || modeorder[i] == 'brawl') {
+              } else if (i == 'connect' || i == 'brawl') {
                 continue;
               }
-              if (lib.config.all.mode.includes(modeorder[i])) {
-                list.push(modeorder[i]);
+              if (lib.config.all.mode.includes(i)) {
+                list.push(i);
               }
             }
             if (lib.card[name] && lib.card[name].type == 'trick') {
@@ -8970,20 +8967,20 @@ const content = async function () {
             }
             const page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
             let banall = false;
-            for (let i = 0; i < list.length; i++) {
-              const cfg = ui.create.div('.config', list[i] == 'zhinang_tricks' ? '设为智囊' : lib.translate[list[i]] + '模式', page);
+            for (const i of list) {
+              const cfg = ui.create.div('.config', i == 'zhinang_tricks' ? '设为智囊' : lib.translate[i] + '模式', page);
               cfg.classList.add('toggle');
-              if (list[i] == 'zhinang_tricks') {
+              if (i == 'zhinang_tricks') {
                 cfg.bannedname = (node._banning == 'offline' ? '' : 'connect_') + 'zhinang_tricks';
               } else if (node._banning == 'offline') {
-                cfg.bannedname = list[i] + '_bannedcards';
+                cfg.bannedname = i + '_bannedcards';
               } else {
-                cfg.bannedname = `connect_${list[i]}_bannedcards`;
+                cfg.bannedname = `connect_${i}_bannedcards`;
               }
               cfg.listen(clickBanned);
               ui.create.div(ui.create.div(cfg));
               const banned = lib.config[cfg.bannedname] || [];
-              if (banned.includes(name) == (list[i] == 'zhinang_tricks')) {
+              if (banned.includes(name) == (i == 'zhinang_tricks')) {
                 cfg.classList.add('on');
                 banall = true;
               }
@@ -9128,30 +9125,30 @@ const content = async function () {
               ui.click.touchpop();
               e.stopPropagation();
             });
-            for (let i = 0; i < modeorder.length; i++) {
+            for (const i of modeorder) {
               if (node._banning == 'online') {
-                if (!lib.mode[modeorder[i]].connect) {
+                if (!lib.mode[i].connect) {
                   continue;
                 }
-                if (!lib.config[`connect_${modeorder[i]}_banned`]) {
-                  lib.config[`connect_${modeorder[i]}_banned`] = [];
+                if (!lib.config[`connect_${i}_banned`]) {
+                  lib.config[`connect_${i}_banned`] = [];
                 }
-              } else if (modeorder[i] == 'connect' || modeorder[i] == 'brawl') {
+              } else if (i == 'connect' || i == 'brawl') {
                 continue;
               }
-              if (lib.config.all.mode.includes(modeorder[i])) {
-                list.push(modeorder[i]);
+              if (lib.config.all.mode.includes(i)) {
+                list.push(i);
               }
             }
             const page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
             let banall = false;
-            for (let i = 0; i < list.length; i++) {
-              const cfg = ui.create.div('.config', lib.translate[list[i]] + '模式', page);
+            for (const i of list) {
+              const cfg = ui.create.div('.config', lib.translate[i] + '模式', page);
               cfg.classList.add('toggle');
               if (node._banning == 'offline') {
-                cfg.bannedname = list[i] + '_banned';
+                cfg.bannedname = i + '_banned';
               } else {
-                cfg.bannedname = `connect_${list[i]}_banned`;
+                cfg.bannedname = `connect_${i}_banned`;
               }
               cfg.listen(clickBanned);
               ui.create.div(ui.create.div(cfg));
@@ -9324,8 +9321,8 @@ const content = async function () {
               ui.control.show();
             };
             let confirmbutton;
-            for (let i = 0; i < uiintro.buttons.length; i++) {
-              const button = uiintro.buttons[i];
+            for (const i of uiintro.buttons) {
+              const button = i;
               button.classList.add('pointerdiv');
               if (button.link.classList.contains('selected')) {
                 button.classList.add('selected');
@@ -9405,8 +9402,8 @@ const content = async function () {
             uiintro.add(`<div class='text center'>卡牌</div>`);
             uiintro.addSmall(node.cards);
           }
-          for (let i = 0; i < node.added.length; i++) {
-            uiintro.add(node.added[i]);
+          for (const i of node.added) {
+            uiintro.add(i);
           }
           if (node.added.length) {
             uiintro.add(ui.create.div('.placeholder.slim'));
@@ -9613,7 +9610,6 @@ const content = async function () {
         'QQQ_哦哦',
         'QQQ_测试',
       ];
-
       //收藏武将修改
       game.saveConfig('favouriteCharacter', lib.config.favouriteCharacter);
       Reflect.defineProperty(lib.config, 'image_background', {
