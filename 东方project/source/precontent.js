@@ -6723,7 +6723,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 3');
-				if (result.targets && result.targets.length) {
+				if (result.targets?.length) {
 					player.line(result.targets[0], 'blue');
 					result.targets[0].addJudgen(event.card);
 				}
@@ -8026,7 +8026,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 2');
-				if (result.bool && result.targets && result.targets.length) {
+				if (result.targets?.length) {
 					player.useCard(event.fakecard, result.targets);
 				}
 			},
@@ -12541,7 +12541,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 3');
-				if (result.targets && result.targets.length) {
+				if (result.targets?.length) {
 					if (result.targets[0].name == 'gezi_kaguya') result.targets[0].say('啊,还真摘了颗星星来啊,谢谢永琳!');
 					player.line(result.targets[0], 'red');
 					result.targets[0].gain(event.card);
@@ -13953,7 +13953,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 2');
-				if (result.bool && result.targets && result.targets.length) {
+				if (result.targets?.length) {
 					for (let i = 0; i < result.targets.length; i++) {
 						result.targets[i].addTempSkill('gezi_huanshi_2');
 						result.targets[i].addTempSkill('gezi_huanshi_3');

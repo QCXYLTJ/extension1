@@ -10245,7 +10245,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.drawEffect(target, 4 - target.countCards('h'), player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.addCountNum('qyhc_shangshen');
                                     result.targets[0].drawTo(4);
                                 } else event.finish();

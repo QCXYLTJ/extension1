@@ -5238,7 +5238,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [4, 5, 3, 4, 5, 5].randomGet();
 									event.num = num;
 									event.num1 = num;
@@ -5429,7 +5429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [2, 2, 2, 2, 1, 1].randomGet();
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage('thunder', num);
@@ -6193,7 +6193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.damageEffect(target, player, player);
 								});
 								('step 3');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [1, 2].randomGet();
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage('thunder', num);
@@ -8040,7 +8040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.damageEffect(target, player, player);
 								});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [1, 2].randomGet();
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage(num);

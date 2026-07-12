@@ -25263,7 +25263,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'green');
                                     result.targets[0].damage(target);
                                 }

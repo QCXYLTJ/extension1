@@ -891,7 +891,7 @@ const modexiahun = {
                     })
                     .set('forceDie', true);
                 'step 2'
-                if (result && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     game.log(target, "继承了盟主之位.");
                     player.line(target, 'green');

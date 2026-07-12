@@ -2259,7 +2259,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 6');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             var target2 = result.targets[0];
                                             player.useCard({ name: 'sha' }, [target, target2], false);
@@ -2325,7 +2325,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 6');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             var target2 = result.targets[0];
                                             player.addTempSkill('hm_gongyi_3');

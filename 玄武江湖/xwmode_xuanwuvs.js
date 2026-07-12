@@ -548,7 +548,7 @@ const modexwvs = {
                         return r <= 0 ? 1 : r;
                     });
                 'step 1'
-                if (result && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     event.tar = result.targets[0];
                     var num = Math.min(event.tar.countMark('xwjh_publicmark_haibu'), event.tar.countCards('h'));
                     player.choosePlayerCard(true, num, 'h', result.targets[0])

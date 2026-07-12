@@ -11242,7 +11242,7 @@ export default async function () {
                                         );
                                     });
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player
                                         .useCard(
                                             {

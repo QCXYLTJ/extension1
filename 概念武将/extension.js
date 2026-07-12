@@ -4650,7 +4650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									if (event.target.hasSkill('AM_guizeyuesu')) event.target.removeSkill('AM_guizeyuesu');
 									var skills = result.targets[0].getCards('s', true, false);

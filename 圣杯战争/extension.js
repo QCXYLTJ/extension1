@@ -31741,7 +31741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 ('step 2');
                                 player.removeSkill('sbzz_shuangdao_1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);
@@ -33579,7 +33579,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         else return 0;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.addTempSkill('sbzz_shifu1');
                                     player.sbzzbs(event.name, 'modeleide1_sbzz');
                                     result.targets[0].addTempSkill('sbzz_yase');
@@ -41344,7 +41344,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.useCard(event.fakecard, result.targets);
                                 }
                             },
@@ -52614,7 +52614,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     if (player.hasSkill('sbzz_shanguang')) {
                                         player.sbzzbs('sbzz_shanguang', 'jiaxianhuohuapaojisbzz');
                                         game.playAudio('../extension/圣杯战争/audio/', 'sbzzjixianhuohuashifang.mp3');
@@ -52626,7 +52626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [1, 2].randomGet();
                                     if (num == 1) {
                                         player.say('灵梦、小爱、帕琪······还有大家');
@@ -52722,7 +52722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }, 2001);
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].style.transform = '';
                                     result.targets[0].style.zIndex = result.targets[0].storage.闪光sbzz位置2;
                                     var n = 3 + event.baseDamage;

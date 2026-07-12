@@ -3738,7 +3738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, trigger.card, trigger.player, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     for (var a of result.targets) {
                                         trigger.targets.push(a);
                                     }

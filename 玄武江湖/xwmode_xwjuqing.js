@@ -1093,7 +1093,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return get.attitude(player, target);
 						});
 					('step 1');
-					if (result && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						game.asyncDraw(result.targets);
 					}
 				},
@@ -1150,7 +1150,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return 10 - target.hp > 0 ? 10 - target.hp : 1;
 						});
 					('step 2');
-					if (result && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						player.line(event.target, 'green');
 						game.log(player, '选择了', event.target);
@@ -1343,7 +1343,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return trigger.source.getUseValue(event.card) < 1 ? 2 : -1;
 						});
 					('step 3');
-					if (result && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						event.tar2 = result.targets[0];
 						player.line(trigger.source, 'green');
 						player.give(event.card, trigger.source);

@@ -2106,7 +2106,7 @@ export async function precontent(config, pack) {
                     })
                     .set('forceDie', true);
                 ('step 1');
-                if (result.bool && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.line(target, { color: [255, 255, 0] });
@@ -10296,7 +10296,7 @@ export async function precontent(config, pack) {
                     return get.threaten(target, player);
                 });
                 ('step 1');
-                if (result.bool && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     player.addExpose(0.2);
                     for (var i = 0; i < result.targets.length; i++) result.targets[i].addSkill('hlquanxue2');
                 }
@@ -30030,7 +30030,7 @@ export async function precontent(config, pack) {
                                 game.log(player, '将', card, '置于了', '#y' + result.control);
                             }
                             ('step 4');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 var target = result.targets[0];
                                 player.line(target);
                                 player.$give(card, target, false);
@@ -37520,7 +37520,7 @@ export async function precontent(config, pack) {
                     return totalValue;
                 };
                 ('step 1');
-                if (result && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     if (!player.hasSkill('venusStaffSkRun')) player.addTempSkill('venusStaffSkRun', 'end');
                     if (!Array.isArray(player.storage.venusStaffSkRun)) player.storage.venusStaffSkRun = [];
                     var obj = {};
@@ -37708,7 +37708,7 @@ export async function precontent(config, pack) {
                             };
                         } else event.finish();
                         ('step 1');
-                        if (result.bool && result.targets && result.targets.length) {
+                        if (result.targets?.length) {
                             game.playAudioWithVideoSk('..', 'extension', '白河子与其他', 'audio', 'skill', 'laser');
                             game.broadcast(game.playAudio, '..', 'extension', '白河子与其他', 'audio', 'skill', 'laser');
                             var targets = result.targets;
@@ -38911,7 +38911,7 @@ export async function precontent(config, pack) {
                         return get.attitude(player, target) < 0 && get.effect(target, { name: 'sha' }, player, player) > 0;
                     });
                 ('step 1');
-                if (result.bool && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     var target = (event.target = result.targets[0]);
                     if (!player.isIn() || !target.isIn()) {
                         event.finish();
@@ -39736,7 +39736,7 @@ export async function precontent(config, pack) {
                     return get.effect(target, { name: 'damage' }, player, player);
                 });
                 ('step 1');
-                if (result.bool && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     var target = (event.target = result.targets[0]);
                     if (!player.isIn() || !target.isIn()) {
                         event.finish();

@@ -2190,7 +2190,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var str = '请选择令' + get.translation(result.targets) + '获得以下【寰宇】替换「星」的条件之一:';
                                     event.cplayer = result.targets[0];
                                     var arr = ['①点数为奇数', '②点数为质数', '③点数需大于其已有的「星」', '④花色需为黑色', '⑤需为非基本牌'];
@@ -8438,7 +8438,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line2(
                                         game
@@ -11101,7 +11101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage();
                                 } else player.draw(Math.ceil(player.getDamagedHp() / 2));
@@ -14975,7 +14975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             };
                                         }
                                         ('step 2');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].damage(1);
                                         }

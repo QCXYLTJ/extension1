@@ -4766,7 +4766,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.hujia < 1) {
                                     player.changeHujia();
                                 }
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].damage(result.targets[0].isDamaged() ? 2 : 1, player, 'nocard');
                                 }

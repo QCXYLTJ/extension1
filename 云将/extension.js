@@ -2739,7 +2739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return get.attitude(player, target);
                             });
                         ('step 1');
-                        if (result.bool && result.targets && result.targets.length) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target, 'fire');
                             target.addSkill('smh_huoji');
@@ -2759,7 +2759,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                         } else event.finish();
                         ('step 2');
-                        if (result.bool && result.targets && result.targets.length) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target, 'green');
                             target.addSkill('smh_lianhuan');
@@ -3191,7 +3191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('forceDie', true)
                                     .set('num', num);
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target, { color: [255, 255, 0] });
@@ -16609,7 +16609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'green');
                                     result.targets[0].damage(event.target_hu);
                                     event.finish();
@@ -18958,7 +18958,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.tar = result.targets[0];
                                     var str = '是否令';
                                     str += get.translation(event.tar);
@@ -20179,7 +20179,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     })
                                     .forResult();
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.say(['爱卿,全靠你了～', '众卿还不诛杀国贼？'].randomGet());
                                     for (var i of result.targets) {
                                         var card = game.createCard(trigger.card.name, trigger.card.suit, trigger.card.number, trigger.card.nature);
@@ -21139,7 +21139,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('card', trigger.card);
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);

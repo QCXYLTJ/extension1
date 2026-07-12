@@ -5045,7 +5045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets[0], false);
                                 }
                             },
@@ -16809,7 +16809,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.current = result.targets[0];
                                     if (event.cards.length == 1) {
                                         event.directCard = event.cards[0];
@@ -31068,7 +31068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     if (event.isMine()) {
                                         var bg = ui.create.div('', document.body);
                                         bg.style.cssText = 'width:100%;height:100%;top:0;left:0;position:absolute;z-index:7';
@@ -31398,7 +31398,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'thunder');
                                     result.targets[0].damage(event.num, 'thunder');
                                 }

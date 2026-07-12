@@ -6304,7 +6304,7 @@ const skill = {
                     return get.effect(target, _status.event.getTrigger().card, _status.event.player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let targets = result.targets;
                 player.line(targets, trigger.card.nature);
                 trigger.targets.addArray(targets);
@@ -6329,7 +6329,7 @@ const skill = {
                     return get.effect(target, _status.event.getTrigger().card, _status.event.player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let targets = result.targets;
                 player.line(targets, trigger.card.nature);
                 trigger.targets.addArray(targets);
@@ -8728,7 +8728,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 target.line(result.targets[0], 'green');
                 result.targets[0].damage(target);
             }
@@ -11671,7 +11671,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [1, 2, 0].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 2;
@@ -22234,7 +22234,7 @@ const skill = {
                         .set('forceDie', true)
                         .set('num', num);
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         event.target = target;
                         player.line(target, { color: [255, 255, 0] });
@@ -25957,7 +25957,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.useCard({ name: 'sha' }, result.targets[0], false);
             }
         },
@@ -27205,7 +27205,7 @@ const skill = {
                 event.goto(3);
             }
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.addExpose(0.15);
                 result.targets[0].loseHp();
             }
@@ -36331,7 +36331,7 @@ const skill = {
                 );
             });
             ('step 7');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 player.line(target, 'green');
                 let num = target.countCards('e');
@@ -49015,7 +49015,7 @@ const skill = {
                 return get.damageEffect(target, player, player, 'thunder');
             };
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'thunder');
                 result.targets[0].damage(event.num, 'thunder');
             }
@@ -49093,7 +49093,7 @@ const skill = {
                     return get.attitude(player, target) <= 0;
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 player.gainPlayerCard(target, 'e', true);
             }
@@ -52151,7 +52151,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [1, 2, 3].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 3;
@@ -52187,7 +52187,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [0, 1, 2].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 3;
@@ -52223,7 +52223,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [1, 2].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 3;
@@ -52259,7 +52259,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [1, 2, 3].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 3;
@@ -52295,7 +52295,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [0, 1, 2].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 2;
@@ -52331,7 +52331,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let num = [0, 1].randomGet();
                 if (get.isLuckyStar(player)) {
                     num = 1;
@@ -53794,7 +53794,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 trigger.player.line(result.targets[0], 'green');
                 result.targets[0].damage(trigger.player);
             }

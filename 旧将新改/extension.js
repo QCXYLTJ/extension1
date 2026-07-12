@@ -6717,7 +6717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             };
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets;
                                             player.line(targets, trigger.card.nature);
                                             trigger.targets.addArray(targets);
@@ -9224,7 +9224,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 10 + get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('wubin_dao');
                                 }
@@ -9243,7 +9243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('wubin_jian');
                                 }
@@ -9262,7 +9262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('wubin_qiang');
                                 }
@@ -9281,7 +9281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('wubin_ji');
                                 }
@@ -9300,7 +9300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 5');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('wubin_gong');
                                 }
@@ -16440,7 +16440,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [0, 1, 1, 2, 2].randomGet();
                                     if (get.isLuckyStar(player)) num = 2;
                                     player.line(result.targets[0], 'green');
@@ -16563,7 +16563,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [0, 1, 1, 2, 2].randomGet();
                                     if (get.isLuckyStar(player)) num = 2;
                                     player.line(result.targets[0], 'green');

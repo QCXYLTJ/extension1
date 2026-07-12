@@ -699,7 +699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target);
                                             });
                                         ('step 1');
-                                        if (result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             game.log(player, '发动了朱标记.');
                                             player.skip('phaseUse');
                                             // for(var i=0;i<result.targets.length;i++){
@@ -776,7 +776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) * base;
                                             });
                                         ('step 1');
-                                        if (result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             game.log(player, '对', result.targets, '发动了玄标记.');
                                             result.targets[0].recover(trigger.num);
                                             player.line(result.targets, 'green');
@@ -1638,7 +1638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(p, target);
                                     });
                                 ('step 2');
-                                if (result && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     if (trigger.targets) {
                                         trigger.targets = trigger.targets.concat(result.targets);
@@ -3937,7 +3937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(p, target);
                                     });
                                 ('step 2');
-                                if (result && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     if (trigger.targets) {
                                         trigger.targets = trigger.targets.concat(result.targets);

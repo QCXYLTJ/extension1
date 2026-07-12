@@ -1069,7 +1069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.effect(target, _status.event.getTrigger().card, _status.event.player);
 											});
 										('step 2');
-										if (result.bool && result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											game.playAudio('../extension/奇特物语/audio/QT_luehuo_effect3' + Math.ceil(Math.random() * 2));
 											var targets = result.targets;
 											game.log(player, '对', targets, '发动了', '<span class=firetext>【掠火·燎原】</span>');

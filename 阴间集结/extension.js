@@ -2699,7 +2699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(1);
                                 }
                             },
@@ -5557,7 +5557,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'thunder');
                                     result.targets[0].damage(event.num, 'thunder');
                                 }
@@ -9778,7 +9778,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (!_status.noclearcountdown) {
                                     game.stopCountChoose();
                                 }
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.gainPlayerCard(target, 'hej', [1, target.countCards('hej') > event.num ? event.num : target.countCards('hej')], true);
                                 } else {
@@ -10013,7 +10013,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             } else if (list.length) trigger.targets.removeArray(list);
                                         }
                                         ('step 3');
-                                        if (result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             trigger.targets.removeArray(result.targets);
                                         }
                                         trigger.targets.addArray(event.targets);
@@ -10336,7 +10336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 10 + get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     target.addSkill('xin_smh_huoji');
@@ -10356,7 +10356,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.addSkill('xin_smh_lianhuan');
@@ -10604,7 +10604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(2);
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     target.addSkill('xin_smh_huoji');
@@ -10617,7 +10617,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.addSkill('xin_smh_lianhuan');

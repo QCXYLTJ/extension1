@@ -39860,7 +39860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 10 + get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'fire');
 									target.addSkill('XS_hezong2');
@@ -39881,7 +39881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'green');
 									target.addSkill('XS_lianheng2');
@@ -39967,7 +39967,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.goto(2);
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'fire');
 									target.addSkill('XS_hezong2');
@@ -39981,7 +39981,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 4');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'green');
 									target.addSkill('XS_lianheng2');
@@ -40628,7 +40628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.goto(2);
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'fire');
 									target.addSkill('XS_zhifa');
@@ -40641,7 +40641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.goto(4);
 								('step 4');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'water');
 									target.addSkill('XS_yongshu');
@@ -40654,7 +40654,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 6');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'green');
 									target.addSkill('XS_heshi');

@@ -6357,7 +6357,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var x = num - target.hp;
                                             return get.attitude(player, target) * x * 2;
                                         });
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             for (var target of result.targets) {
                                                 await target.changeHp(num - target.hp);
                                             }
@@ -6456,7 +6456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         var x = num - target.countCards('h');
                                                         return get.attitude(player, target) * x;
                                                     });
-                                                    if (result.bool && result.targets && result.targets.length) {
+                                                    if (result.targets?.length) {
                                                         for (var target of result.targets) {
                                                             if (target.countCards('h') < num) await target.drawTo(num);
                                                             else if (target.countCards('h') > num) await target.chooseToDiscard('h', '请弃置' + (target.countCards('h') - num) + '张牌', target.countCards('h') - num, true).set('ai', (card) => 11 - get.value(card));
@@ -6468,7 +6468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             num = Math.min(num, game.players.length);
                                             result = await player.chooseTarget('囚歌:横置' + num + '名角色', [1, num])
                                                 .set('ai', (target) => -get.attitude(player, target));//QQQ
-                                            if (result.bool && result.targets && result.targets.length) {
+                                            if (result.targets?.length) {
                                                 for (var target of result.targets) {
                                                     await target.link(true);
                                                 }
@@ -7270,7 +7270,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         num = Math.ceil(num / 2);
                                         return get.attitude(player, target) + num;
                                     });
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     num = 0;
                                     result.targets[0].getHistory('lose', (evt) => {
                                         if (evt.cards) num += evt.cards.length;
@@ -8100,7 +8100,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('ai', function (target) {
                                             return get.effect(target, trigger.card, player);
                                         });
-                                    if (result.bool && result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                         var targets = result.targets;
                                         player.line(targets, trigger.card.nature);
                                         trigger.targets.addArray(targets);
@@ -9329,7 +9329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, _status.event.getTrigger().card, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);
@@ -10511,7 +10511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return target != player && target.hasMark('mingmen_mark') && !evt.targets.includes(target) && lib.filter.targetEnabled2(evt.card, player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets;
                                             player.line(targets, trigger.card.nature);
                                             trigger.targets.addArray(targets);
@@ -10572,7 +10572,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return target != player && target.hasMark('gongfa_mark') && !evt.targets.includes(target) && lib.filter.targetEnabled2(evt.card, player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets;
                                             player.line(targets, trigger.card.nature);
                                             trigger.targets.addArray(targets);

@@ -2442,7 +2442,7 @@ game.import('extension', function () {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [1, 1, 1].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage(num, 'fire');

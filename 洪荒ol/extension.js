@@ -4812,7 +4812,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.damageEffect(target, player, player, 'thunder');
 										};
 										('step 1');
-										if (result.bool && result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											result.targets[0].damage(event.num, 'thunder');
 											if (event.num == 1) {
 												player.recover();
@@ -7858,7 +7858,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									target.line(result.targets[0], 'green');
 									result.targets[0].damage(target);
 								}
@@ -8009,7 +8009,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									target.line(result.targets[0], 'green');
 									result.targets[0].damage(target);
 								}
@@ -8176,7 +8176,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [1, 2, 0, 1, 1, 2].randomGet(); //QQQ
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage(num);
@@ -8200,7 +8200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [1, 2, 2, 1, 1, 2].randomGet(); //QQQ
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage(num);
@@ -9408,7 +9408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									target.line(result.targets[0], 'green');
 									result.targets[0].damage(target);
 								}

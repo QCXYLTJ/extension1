@@ -5988,7 +5988,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return get.damageEffect(target, player, player);
 						});
 					('step 1');
-					if (result.bool && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						var num = [2, 3, 4].randomGet();
 						if (get.isLuckyStar(player)) num = 4;
 						player.line(result.targets[0], 'green');
@@ -6536,7 +6536,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								})
 								.set('source', trigger.getParent(2).player);
 							('step 1');
-							if (result.bool && result.targets && result.targets.length) {
+							if (result.targets?.length) {
 								result.targets[0].recover();
 							}
 						},
@@ -6561,7 +6561,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								})
 								.set('target', trigger.target);
 							('step 1');
-							if (result.bool && result.targets && result.targets.length) {
+							if (result.targets?.length) {
 								result.targets[0].damage();
 							}
 						},
@@ -7942,7 +7942,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						};
 					}
 					('step 1');
-					if (result.bool && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						var targets = result.targets;
 						player.line(targets, trigger.card.nature);
 						trigger.targets.addArray(targets);

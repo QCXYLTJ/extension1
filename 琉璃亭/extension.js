@@ -9844,7 +9844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.gain(card, 'gain2', 'log');
@@ -11901,7 +11901,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var target;
                                 if (event.onlytarget) {
                                     target = event.onlytarget;
-                                } else if (result.targets && result.targets.length) {
+                                } else if (result.targets?.length) {
                                     target = result.targets[0];
                                 }
                                 if (target) {

@@ -2504,7 +2504,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             event.cards1 = cards1;
             ('step 2');
-            if (result.targets && result.targets.length) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               target.gain(event.cards1, 'gain2');
             }
@@ -3235,7 +3235,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             });
             next.set('choice', choice);
             ('step 2');
-            if (result && result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               //player.line(result.targets[0]);
               player.give(event.card, result.targets[0], true).gaintag.add('sdxl_dajie');
               //result.targets[0].gain(event.card,'gain2','log').gaintag.add('sdxl_dajie');
@@ -3280,7 +3280,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             });
             next.set('choice', choice);
             ('step 1');
-            if (result && result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               player.give(event.togive, result.targets[0], true).gaintag.add('sdxl_dajie');
               //result.targets[0].gain(event.togive,'gain2','log').gaintag.add('sdxl_dajie');
               //result.targets[0].addTempSkill('funan_use');

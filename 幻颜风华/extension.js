@@ -14695,7 +14695,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, { color: [220, 90, 139] });
 									player.discardPlayerCard(target, 'hej', 3, true);
@@ -18385,7 +18385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											})
 											.set('animate', false);
 										('step 2');
-										if (result && result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											player.storage.lg_lvfa1 = result.targets[0];
 										}
 									},
@@ -19055,7 +19055,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return false;
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									event.mubiao = result.targets[0];
 									if (event.mubiao.countCards('h') > player.countCards('h')) player.gainPlayerCard(event.mubiao, 1, 'h', true);
 									else result.targets[0].showHandcards();
@@ -22745,7 +22745,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 5 - att;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var tar = result.targets[0];
 									player.gainPlayerCard(tar, 'hej', true);
 									if (!player.storage.lg_fanxingwanxiang.includes(tar)) player.storage.lg_fanxingwanxiang.push(tar);

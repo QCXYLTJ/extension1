@@ -4081,7 +4081,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.damageEffect(target, player, player, 'thunder');
                     };
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'thunder');
                         result.targets[0].damage(event.num, 'thunder');
                     }
@@ -5149,7 +5149,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.damageEffect(target, player, player, 'fire');
                     };
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'fire');
                         result.targets[0].damage(event.num, 'fire');
                     }
@@ -5193,7 +5193,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.damageEffect(target, player, player, 'fire');
                     };
                     ('step 3');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'fire');
                         result.targets[0].damage(3, 'fire');
                     }
@@ -5288,7 +5288,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.damageEffect(target, player, player, 'fire');
                     };
                     ('step 3');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'fire');
                         result.targets[0].damage(3, 'fire');
                         player.draw(2);
@@ -10665,7 +10665,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 };
                             }
                             ('step 2');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 player.line(result.targets);
                                 result.targets[0].damage(1);
                             }
@@ -17225,7 +17225,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.effect(target, { name: 'sha' }, _status.event.player);
                     };
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var targets = result.targets;
                         player.line(targets, trigger.card.nature);
                         trigger.targets.addArray(targets);
@@ -23117,7 +23117,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return false;
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         event.mubiao = result.targets[0];
                         if (event.mubiao.countCards('he') > player.countCards('he')) player.discardPlayerCard(event.mubiao, 1, 'he', true);
                         else result.targets[0].draw();
@@ -27120,7 +27120,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 });
                             ('step 1');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 event.pdmb = result.targets[0];
                             } else event.goto(4);
                             ('step 2');
@@ -30948,7 +30948,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 2');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 event.current = result.targets[0];
                             } else {
                                 event.finish();
@@ -37445,7 +37445,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 };
                             }
                             ('step 2');
-                            if (result && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 event.target = result.targets[0];
                             }
                             if (event.cards2.length) {

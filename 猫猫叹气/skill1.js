@@ -15761,7 +15761,7 @@ const skill = {
                     event.finish();
                 }
                 ('step 5');
-                if (result.bool && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     const current = result.targets[0];
                     target.line(current, 'green');
                     current.gain(event.cards2, 'gain2');
@@ -50481,7 +50481,7 @@ const skill = {
                 return get.effect(target, { name: 'sha' }, _status.event.player);
             };
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let targets = result.targets;
                 player.line(targets, trigger.card.nature);
                 trigger.targets.addArray(targets);

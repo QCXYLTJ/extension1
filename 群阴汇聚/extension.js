@@ -1848,7 +1848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })
                                         .set('source', trigger.getParent(2).player);
                                     ('step 1');
-                                    if (result.bool && result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets[0], 'green');
                                         result.targets[0].recover();
                                     }
@@ -1877,7 +1877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })
                                         .set('target', trigger.target);
                                     ('step 1');
-                                    if (result.bool && result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets[0], 'green');
                                         result.targets[0].damage();
                                     }

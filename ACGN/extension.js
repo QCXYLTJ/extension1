@@ -31037,7 +31037,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .setHiddenSkill('acgn_zhuolanjiangui');
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     var card = { name: 'sha' };
                                     card.zhuolanjiangui = true;
                                     player.useCard(card, result.targets[0], false);
@@ -32742,7 +32742,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0.1;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     player.yuugou('db_acgn_yamaikaguya', 'db_acgn_yamaiyuzuru', 'db_acgn_kazamachiyamai', result.targets[0]);
                                     trigger.cancel();
@@ -32782,7 +32782,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0.1;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     player.yuugou('db_acgn_yamaiyuzuru', 'db_acgn_yamaikaguya', 'db_acgn_kazamachiyamai', result.targets[0]);
                                     trigger.cancel();
@@ -33130,7 +33130,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, player);
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.addTempSkill('acgn_yunpao_toki', 'phaseEnd');
                                     var card = {};
                                     card.name = 'sha';
@@ -34576,7 +34576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets, false).card.chengzhao = true;
                                 }
                             },
@@ -35468,7 +35468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 4');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets;
                                     event.targer_num = 0;
                                 } else {
@@ -37059,7 +37059,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].gainMaxHp();
                                 }
@@ -43031,7 +43031,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 4');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], `获得了技能【懒惰】和${get.cnNumber(event.togive.length)}张牌`);

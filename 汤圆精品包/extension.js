@@ -13371,7 +13371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     trigger.targets.add(result.targets[0]);
                                     game.log(trigger.player, '的', trigger.cards, '额外指定了', result.targets[0], '为目标');
                                     trigger.player.line(result.targets[0], 'green');
@@ -13540,7 +13540,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (result.bool) {
-                                    if (result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                     }
                                     var color1 = get.color(event.cards1);
                                     var suit1 = event.cards1.suit;
@@ -14868,7 +14868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (event.cardsx4 && event.cardsx4.length) {
                                         event.cardlistx.addArray(event.cardsx4);
                                     }
-                                    if (result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                         event.targetsx1 = result.targets[0];
                                         event.goto(2);
                                     } else {
@@ -17022,7 +17022,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.bool && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     if (event.zishoubool && event.zishoubool == true) {
                                         result.targets[0].addTempSkill('tyj_buyan_debuff', { player: 'phaseAfter' });
                                     }

@@ -1608,7 +1608,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('targets', event.givenList);
 							} else event.finish();
 							('step 5');
-							if (result.bool && result.targets && result.targets.length) {
+							if (result.targets?.length) {
 								var current = result.targets[0];
 								target.line(current, 'green');
 								current.gain(event.card2, 'gain2');
@@ -6246,7 +6246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 1');
 								if (trigger.player == player) {
-									if (result.bool && result.targets && result.targets.length) {
+									if (result.targets?.length) {
 										var target = result.targets[0];
 										player.line(target, { color: [255, 206, 0] });
 										player.discardPlayerCard(target, 'ej', true);
@@ -6507,7 +6507,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets._showHandcards();
 									if (player.storage[event.name]) delete player.storage[event.name][2];
 									if (!player.storage[event.name] || !player.storage[event.name][1]) {
@@ -11881,7 +11881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (!result.bool) {
 									player.getStat('triggerSkill')[event.name]--;
 								} else {
-									if (result.targets && result.targets.length) {
+									if (result.targets?.length) {
 										player.line(result.targets);
 										result.targets[0].gain(trigger.cards.filterInD(), 'gain2');
 									} else {

@@ -4735,7 +4735,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 current.classList.toggle('linked2');
                                             }
                                         });
-                                        if (result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             event.zhiyutarget[event.zhiyulength] = result.targets;
                                             if (get.type(event.zhiyucards[event.zhiyulength]) == 'equip') {
                                                 event.willEquip.push([result.targets[0], get.subtype(event.zhiyucards[event.zhiyulength])]);

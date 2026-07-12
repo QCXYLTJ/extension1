@@ -8953,7 +8953,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     'step 0';
                     player.chooseTarget(get.prompt('linfengzhufu'));
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.line(target, 'blue');
                         if (target.hujia > 0) {
@@ -9146,7 +9146,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return target == player || player.getFriends().includes(target);
                     });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.line(target, 'blue');
                         target.changeHujia(2);
@@ -12398,7 +12398,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 .set('forceDie', true)
                                 .set('num', num);
                             ('step 1');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 var target = result.targets[0];
                                 event.target = target;
                                 player.line(target, { color: [255, 255, 0] });

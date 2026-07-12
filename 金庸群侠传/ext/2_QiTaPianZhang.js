@@ -11698,7 +11698,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('source', target);
             ('step 7');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               target.line(result.targets[0], 'green');
               result.targets[0].damage(target);
             }

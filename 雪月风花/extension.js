@@ -10450,7 +10450,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             next.set('ai', (target) => get.damageEffect(target, player, player));
                                         }
                                         ('step 2');
-                                        if (result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             let target = result.targets[0];
                                             player.line(target);
                                             target.chooseToDiscard(true, 'he');

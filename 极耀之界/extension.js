@@ -8679,7 +8679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, player, player, 'thunder');
                                         };
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'thunder');
                                             result.targets[0].damage(event.num, 'thunder');
                                         }
@@ -9122,7 +9122,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.gain(card, 'gain2', 'log');
@@ -9573,7 +9573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('forceDie', true)
                                     .set('num', num);
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target, { color: [255, 255, 0] });
@@ -10514,7 +10514,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'green');
                                     result.targets[0].damage(event.num, target);
                                 }
@@ -18526,7 +18526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('forceDie', true)
                                     .set('num', num);
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.loseMaxHp();
                                     if (target.getAllHistory('sourceDamage', (evt) => evt.player == player).length) target.clearSkills();
@@ -19262,7 +19262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('forceDie', true)
                                             .set('num', num);
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) result.targets[0].loseMaxHp();
+                                        if (result.targets?.length) result.targets[0].loseMaxHp();
                                     },
                                     logTarget: 'source',
                                     ai: {
@@ -23070,7 +23070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'sha' }, _status.event.player);
                                     };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);
@@ -41211,7 +41211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage();
                                     trigger.cancel();

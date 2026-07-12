@@ -893,7 +893,7 @@ import { func as characterListSet } from './character_list_set.js';
 						.set('_useCard', trigger.card);
 					('step 1');
 					trigger.targets.length = 0;
-					if (result.targets && result.targets.length) trigger.targets.push(...result.targets);
+					if (result.targets?.length) trigger.targets.push(...result.targets);
 					let info = player.getStorage(event.name, 0);
 					if (info) {
 						let damage = player.damage(info.num, 'fire', info.card, info.source);
@@ -2461,7 +2461,7 @@ import { func as characterListSet } from './character_list_set.js';
 							)
 							.set('ying', event.ying);
 					('step 2');
-					if (result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						player.line(result.targets, event.ying ? 'fire' : 'green');
 						if (event.ying) for (let target of result.targets) target.loseHp(event.num);
 						else for (let target of result.targets) target.recover(event.num);
@@ -3097,7 +3097,7 @@ import { func as characterListSet } from './character_list_set.js';
 						target => get.recoverEffect(target, get.player(), get.player())
 					);
 					('step 1');
-					if (result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						player.line(result.targets, 'green');
 						result.targets[0].recover();
 						player.addTempSkill(event.name + '_used', 'roundStart');
@@ -3763,7 +3763,7 @@ import { func as characterListSet } from './character_list_set.js';
 					}
 					event.num = num;
 					('step 1');
-					if (result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						let num = event.num;
 						if (num > 0) {
 							let target = result.targets[0];
@@ -6520,7 +6520,7 @@ import { func as characterListSet } from './character_list_set.js';
 									)
 									.set('deadTarget', true);
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									let target = result.targets[0];
 									target.revive(target.maxHp);
 									target.directgain(get.cards(3));

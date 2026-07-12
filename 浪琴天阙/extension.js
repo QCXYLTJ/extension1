@@ -16786,7 +16786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												.set('cards', cards);
 										} else event.finish();
 										('step 2');
-										if (result.bool && result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											event.a = result.targets[0];
 											if (event.b.length == 1) {
 												player.line(event.a);

@@ -8814,7 +8814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return target != player && target.countCards('he');
                                         })
                                         .set('ai', (target) => -get.attitude(player, target));
-                                    if (result && result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         //QQQ
                                         var target = result.targets[0];
                                         await player.discardPlayerCard(target, 'he', player.countMark('zhen_fengzhu'), true);
@@ -8827,7 +8827,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return target != player;
                                         })
                                         .set('ai', (target) => -get.attitude(player, target));
-                                    if (result && result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         //QQQ
                                         var target = result.targets[0];
                                         target.damage(1);
@@ -24918,7 +24918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'green');
                                     result.targets[0].damage(target);
                                 }
@@ -26857,7 +26857,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             event.target = target;
                                             player.line(target, { color: [255, 255, 0] });
@@ -37909,7 +37909,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.current = result.targets[0];
                                     if (event.cards.length == 1) {
                                         event.directCard = event.cards[0];
@@ -39443,7 +39443,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var x = player.countMark('yao_yaoming_jie');
                                             result.targets[0].draw(x);
                                             result.targets[0].skip('phaseDiscard');
@@ -39465,7 +39465,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseTarget('令一名角色弃' + get.cnNumber(player.countMark('yao_yaoming_yao')) + '张牌', true).set('ai', (target) => -get.attitude(player, target)); //QQQ
                                         ('step 1');
-                                        if (result && result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             var x = player.countMark('yao_yaoming_yao');
                                             if (result.targets[0].countCards('he')) result.targets[0].chooseToDiscard('弃' + get.cnNumber(x) + '张牌', x, 'he', true);
                                             result.targets[0].skip('phaseDraw');

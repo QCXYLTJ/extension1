@@ -5028,7 +5028,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 				};
 			}
 			('step 2');
-			if (result.bool && result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				player.line(result.targets, 'green');
 				result.targets[0].loseHp();
 			}

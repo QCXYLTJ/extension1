@@ -2452,7 +2452,7 @@ const skill = {
           return get.damageEffect(player, player, player) + get.damageEffect(target, player, player) + add;
         });
       ('step 1');
-      if (result && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         event.tar = result.targets[0];
       } else {
         event.finish();
@@ -7479,7 +7479,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         player.useCard({ name: 'shunshou' }, result.targets).set('addCount', false);
       }
     },
@@ -9756,7 +9756,7 @@ const skill = {
             })
             .set('animate', false);
           ('step 2');
-          if (result && result.targets && result.targets.length) {
+          if (result.targets?.length) {
             player.storage.lg_qishu = result.targets[0];
           }
         },
@@ -15991,7 +15991,7 @@ const skill = {
         return true;
       });
       ('step 2');
-      if (result && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         var tars = result.targets.slice(0).sortBySeat();
         game.asyncDraw(tars);
       }
@@ -21941,7 +21941,7 @@ const skill = {
         return get.effect(target, { name: 'sha' }, player);
       };
       ('step 1');
-      if (result.bool && result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         if (!player.isMinHp()) player.addTempSkill('lg_jingshi2', 'phaseEnd');
         var card = {};
         card.name = 'sha';
@@ -24108,7 +24108,7 @@ const skill = {
           return get.damageEffect(target, player, player);
         });
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         event.mubiao = result.targets[0];
         if (event.mubiao.countCards('h') > 0) event.mubiao.showHandcards();
       } else event.goto(5);
@@ -24629,7 +24629,7 @@ const skill = {
         return true;
       });
       ('step 2');
-      if (result && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         var tars = result.targets.slice(0).sortBySeat();
         game.asyncDraw(tars);
       }
@@ -28064,7 +28064,7 @@ const skill = {
         )
         .set('aicheck', check);
       ('step 1');
-      if (result && result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         player.gainMultiple(result.targets);
         player.chooseToDiscard(2, true, 'h');
         if (result.targets.length < player.hp) {
@@ -44568,7 +44568,7 @@ const skill = {
         })
         .set('enemy', event.togive.length == 1 && get.value(event.togive[0], player, 'raw') < 0);
       ('step 2');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         result.targets[0].gain(event.togive, 'gain2', 'log');
         event.draw = result.targets[0].hasSex('male');
       } else {
@@ -51274,7 +51274,7 @@ const skill = {
           return '';
         });
       ('step 1');
-      if (result.targets && result.targets.length) {
+      if (result.targets?.length) {
         var next = result.targets[0].phaseDiscard();
         next.lg_yuannian = true;
         event.next.remove(next);

@@ -5099,7 +5099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, _status.event.getTrigger().card, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);

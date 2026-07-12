@@ -1561,7 +1561,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.finish();
                                 ('step 3');
                                 if (event.bool === true) {
-                                    if (result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         result.targets[0].recover();
                                     }
@@ -17171,7 +17171,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.skill.zymhuairou.huairoueffect(player, target);
                                     });
                                 ('step 1');
-                                if (result && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.tar = result.targets[0];
                                     player.swapHandcards(event.tar);
                                 } else {
@@ -24183,7 +24183,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, _status.event.player, _status.event.player, 'fire');
                                     });
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     for (var a of result.targets) {
                                         a.damage('nocard', 'fire');
                                         event.chooses++;

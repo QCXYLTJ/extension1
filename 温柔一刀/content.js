@@ -4009,7 +4009,7 @@ const content = async function () {
             game.log(`<span class="greentext">${get.translation(player)}将${get.translation(card)}置于了${result.control}</span>`);
           }
           ('step 4');
-          if (result.bool && result.targets && result.targets.length) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             player.line(target);
             player.$give(card, target, false);

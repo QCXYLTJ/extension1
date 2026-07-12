@@ -11158,7 +11158,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             trigger.player.gain(result.cards, player, 'giveAuto');
             trigger.parent.targets.add(player);
           }
-          if (result.targets && result.targets.length) {
+          if (result.targets?.length) {
             player.gainPlayerCard(result.targets[0], true, 'hej');
             trigger.parent.targets.add(result.targets[0]);
           }
@@ -12219,7 +12219,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               });
             }
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               player.unmarkSkill('mengjiannu');
               player.line(result.targets[0], 'ice');
               result.targets[0].damage('ice');
@@ -16514,7 +16514,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           }
         } else event.finish();
         ('step 2');
-        if (result.bool && result.targets && result.targets.length) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           if (!player.storage.mengkuixi) {
             player.when({ global: 'phaseAfter' }).then(() => {
@@ -16551,7 +16551,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               });
             } else event._result = { bool: true, targets: game.filterPlayer((current) => current.isIn() && current != player) };
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.line(target, 'fire');
               game.log(target, '被', player, '<span class="firetext">操控</span>了');

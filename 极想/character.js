@@ -19618,7 +19618,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.damageEffect(target, player, player, 'thunder');
                             };
                             ('step 2');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 player.line(result.targets, 'thunder');
                                 result.targets[0].damage(event.num, 'thunder');
                             }
@@ -20958,7 +20958,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player.loseHp();
                         var cards = get.cards(2);
                         game.cardsGotoOrdering(cards);

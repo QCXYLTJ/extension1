@@ -2829,7 +2829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('forceDie', true);
                                 }, player);
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('qw_AroundCaliburn_skill');
                                     player.line(target, { color: [65, 105, 225] });
@@ -2905,7 +2905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('qw_AroundCaliburn_skill');
                                     player.line(target, { color: [65, 105, 225] });
@@ -3871,7 +3871,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseTarget(1, '令一名角色获得技能「' + get.translation(player.skills[0]) + '」').set('forceDie', true);
                                 ('step 1');
                                 game.log(result.targets[0]);
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     game.log(result.targets[0]);
                                     var target = result.targets[0];
                                     target.addSkill(player.skills[0]);

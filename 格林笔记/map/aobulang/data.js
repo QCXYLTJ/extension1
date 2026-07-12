@@ -189,7 +189,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
                 return get.damageEffect(target, player, player);
               });
               'step 1';
-              if (result.bool && result.targets && result.targets.length) {
+              if (result.targets?.length) {
                 player.logSkill('hundun_polang', result.targets);
                 player.line(result.targets, 'green');
                 for (var i of result.targets) {

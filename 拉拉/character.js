@@ -248,7 +248,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         };
                         ('step 1');
-                        if (result.bool && result.targets && result.targets.length) {
+                        if (result.targets?.length) {
                             player.line(result.targets);
                             result.targets[0].damage(event.num);
                         }

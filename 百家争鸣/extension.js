@@ -2264,7 +2264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.give(event.togive, result.targets[0], 'give');
                                 } else event.finish();
                                 ('step 3');
@@ -6524,7 +6524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.finish();
                                     }
                                 } else {
-                                    if (result.bool && result.targets && result.targets.length) {
+                                    if (result.targets?.length) {
                                         player.loseHp();
                                         result.targets[0].loseHp();
                                         event.finish();
@@ -6911,7 +6911,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     for (const target of result.targets) {
                                         target.damage();
                                     }
@@ -12353,7 +12353,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     if (event.target) {
                                         event.target.chooseBool('是否成为' + get.translation(trigger.card) + '的额外目标').ai = function () {
@@ -14574,7 +14574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 2');
-                                if (result && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     //QQQ
                                     result.targets[0].draw();
                                 }
@@ -16317,7 +16317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt', '对一名角色造成一点伤害');
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage();
                                 }
                                 var customHistory = player.getHistory('custom', function (evt) {
@@ -30570,7 +30570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('source', target);
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'red');
                                     result.targets[0].damage(target);
                                 }
@@ -32302,7 +32302,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('source', target);
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0]);
                                     target.viewHandcards(result.targets[0]);
                                     var num = result.targets[0].countCards('h', function (card) {

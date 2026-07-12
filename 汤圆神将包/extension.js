@@ -3615,7 +3615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 10 + get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     target.addSkill('smh_huoji');
@@ -3635,7 +3635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.addSkill('smh_lianhuan');

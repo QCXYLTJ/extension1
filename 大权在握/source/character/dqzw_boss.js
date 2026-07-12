@@ -762,7 +762,7 @@ export let info = {
               });
         } else event.finish();
         ('step 2');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           event.tar = result.targets[0];
           target.chooseCard([2, Infinity], true, '将至少两张牌当【杀】对' + get.translation(event.tar) + '使用').set('ai', function (card) {
             if (ui.selected.cards.length >= 2) return false;

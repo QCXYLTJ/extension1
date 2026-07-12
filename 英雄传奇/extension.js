@@ -7877,7 +7877,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var i = 0;
                                     var list = [];
                                     while (i++ < 2) {
@@ -9055,7 +9055,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.recover();
                                 } else if (get.position(event.card, true) == 'd') {
@@ -13043,7 +13043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } //QQQ
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.gain(card, 'gain2', 'log');

@@ -12689,7 +12689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('source', target);
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									player.line(result.targets[0], 'fire');
 									result.targets[0].damage('fire');
 								}

@@ -6587,7 +6587,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'ice');
                                     result.targets[0].damage('ice');
                                     result.targets[0].addMark('paj_xx_Yaoyue');
@@ -6624,7 +6624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage();
                                 }
                                 player.addHut();
@@ -6767,7 +6767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(_status.event.player, target);
                                 });
                                 ('step 1');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets;
                                 } else event.finish();
                                 ('step 2');
@@ -7243,7 +7243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage();
                                 }
                             },
@@ -7634,7 +7634,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].addMark('paj_xx_Xinxiang');
                                     }

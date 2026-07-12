@@ -9011,7 +9011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 5 - att;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var tar = result.targets[0];
 									player.gainPlayerCard(tar, 'hej', true);
 									if (!player.storage.rain_acgn_fgo_senChangKe_yiZhu.includes(tar)) player.storage.rain_acgn_fgo_senChangKe_yiZhu.push(tar);
@@ -11553,7 +11553,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) <= 0;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.sortBySeat();
 									for (var a of result.targets) {
 										player.gainPlayerCard('he', a, true);
@@ -11655,7 +11655,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.effect(tar, { name: 'wanjian' }, player, player);
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'water');
 									result.targets.sortBySeat();
 									player.useCard({ name: 'wanjian' }, result.targets);
@@ -13021,7 +13021,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												});
 										}
 										('step 1');
-										if (result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											player.line(result.targets[0], 'water');
 											trigger.targets.push(result.targets[0]);
 										}
@@ -13077,7 +13077,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return '摸' + num + '张牌';
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									var num = 0;
 									num++;
@@ -13197,7 +13197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return lib.filter.targetEnabled2(trigger.card, trigger.player, target);
 										});
 										('step 1');
-										if (result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											trigger.targets = [];
 											for (var a of result.targets) {
 												player.line(a, 'water');
@@ -13701,7 +13701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.effect(target, trigger.card, trigger.player, _status.event.player);
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									for (var a of result.targets) {
 										trigger.targets.push(a);
 									}
@@ -14682,7 +14682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									player.$skill('与彼方同坠的梦之眼瞳');
 									player.storage.rain_acgn_fgo_aoBoLong_mengZhiYanTong = true;
 									player.drawTo(5);
@@ -15240,7 +15240,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 3');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									if (event.num != 0) {
 										result.targets[0].damage('fire');
 										player.storage.rain_acgn_fgo_zhiTianXinZhangBerserker_shengXia = 0;
@@ -15557,7 +15557,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.storage.rain_acgn_fgo_siYou_fanFuWuChang.push(current);
 									}
 								});
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									for (var a of result.targets) {
 										trigger.targets.push(a);
 										player.storage.rain_acgn_fgo_siYou_fanFuWuChang.remove(a);
@@ -18647,7 +18647,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 4');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.sort(lib.sort.seat);
 									for (var ta of result.targets) {
 										player.line(ta, 'water');
@@ -18680,7 +18680,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) <= 0;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.sort(lib.sort.seat);
 									for (var ta of result.targets) {
 										player.line(ta, 'water');
@@ -18704,7 +18704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) > 0;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.sort(lib.sort.seat);
 									for (var ta of result.targets) {
 										player.line(ta, 'water');
@@ -18727,7 +18727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) <= 0;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.sort(lib.sort.seat);
 									for (var ta of result.targets) {
 										player.line(ta, 'water');
@@ -18751,7 +18751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) > 0;
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.sort(lib.sort.seat);
 									for (var ta of result.targets) {
 										player.line(ta, 'water');
@@ -18925,7 +18925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.damageEffect(target, player, player, 'fire');
 											});
 										('step 2');
-										if (result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											for (var a of result.targets) {
 												a.damage('nocard', 'fire');
 												event.chooses++;
@@ -19776,7 +19776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.effect(target, trigger.card, trigger.player, _status.event.player);
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									for (var a of result.targets) {
 										trigger.targets.push(a);
 									}
@@ -20636,7 +20636,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										}
 										('step 3');
-										if (result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											for (var b of result.targets) {
 												player.line(b, 'water');
 												b.recover(3);
@@ -21280,7 +21280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return '';
 									});
 								('step 1');
-								if (result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var next = result.targets[0].phaseDiscard();
 									next.rain_acgn_project_luMiYa_yueZhiYinAnMian = true;
 									event.next.remove(next);
@@ -22636,7 +22636,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.attitude(player, target) > 0;
 											});
 										('step 1');
-										if (result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											result.targets[0].draw(3);
 										}
 									},

@@ -1960,7 +1960,7 @@ const skill = {
               });
           }
           ('step 1');
-          if (result.targets && result.targets.length) {
+          if (result.targets?.length) {
             player.line(result.targets[0], 'thunder');
             trigger.targets.push(result.targets[0]);
             result.targets[0].addTempSkill('mx_jiejin2', { player: 'dieAfter' });
@@ -16633,7 +16633,7 @@ const skill = {
         };
       } else event.finish();
       ('step 2');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let target = result.targets[0];
         player.line(target, { color: [220, 90, 139] });
         player.discardPlayerCard(target, 'hej', 2, true);
@@ -17758,7 +17758,7 @@ const skill = {
           return get.damageEffect(target, player, player);
         });
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let num = 2;
         result.targets[0].damage(num, 'thunder');
       }
@@ -20006,7 +20006,7 @@ const skill = {
           return get.effect(target, trigger.card, trigger.player, _status.event.player);
         });
       ('step 1');
-      if (result.targets && result.targets.length) {
+      if (result.targets?.length) {
         player.draw(3);
         for (let a of result.targets) {
           trigger.targets.push(a);
@@ -29786,7 +29786,7 @@ const skill = {
           return get.damageEffect(target, player, player);
         });
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         event.t = result.targets[0];
         event.goto(2);
       } else event.goto(8);
@@ -43567,7 +43567,7 @@ const skill = {
           return get.effect(target, trigger.card, trigger.player, _status.event.player);
         });
       ('step 1');
-      if (result.targets && result.targets.length) {
+      if (result.targets?.length) {
         for (let a of result.targets) {
           trigger.targets.push(a);
         }
@@ -46438,7 +46438,7 @@ const skill = {
           return '';
         });
       ('step 1');
-      if (result.targets && result.targets.length) {
+      if (result.targets?.length) {
         const next = result.targets[0].phaseDiscard();
         next.mx_shanshe = true;
         event.next.remove(next);
@@ -55626,7 +55626,7 @@ const skill = {
           return 5 - att;
         });
       ('step 1');
-      if (result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let tar = result.targets[0];
         player.gainPlayerCard(tar, 'hej', true);
         player.showHandcards();
@@ -65844,7 +65844,7 @@ const skill = {
           return get.damageEffect(target, player, player, 'fire');
         });
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         result.targets[0].damage(2, 'fire');
         player.addTempSkill('mx_feidi', { player: 'phaseEndStart' });
       }
@@ -70221,7 +70221,7 @@ const skill = {
           return get.effect(target, trigger.card, trigger.player, _status.event.player);
         });
       ('step 1');
-      if (result.targets && result.targets.length) {
+      if (result.targets?.length) {
         player.recover();
         for (let a of result.targets) {
           trigger.targets.push(a);

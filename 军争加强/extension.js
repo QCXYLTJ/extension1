@@ -5448,7 +5448,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result && result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     //QQQ
                                     var target = result.targets[0];
                                     game.countPlayer(function (current) {
@@ -7181,7 +7181,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(_status.event.player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             result.targets[0].recover();
                                         }
@@ -7206,7 +7206,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             result.targets[0].damage();
                                         }

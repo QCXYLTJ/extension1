@@ -575,7 +575,7 @@ const skill = {
 					return player != target;
 				})
 				.forResult();
-			if (result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				for (const i of result.targets) {
 					player.removeMark('sgskjdbzjms_cifu_mark');
 					i.addMark('sgskjdbzjms_cifu_mark');
@@ -10240,7 +10240,7 @@ const skill = {
 					return -att;
 				});
 			('step 1');
-			if (result.bool && result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.line(event.target, 'green');
 				const e = event.target.getEquips(2);

@@ -2053,7 +2053,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return val;
                 });
                 "step 2"
-                if (result.bool && result.targets && result.targets.length) {
+                if (result.targets?.length) {
                     player.line(result.targets);
                     result.targets[0].loseHp();
                 }

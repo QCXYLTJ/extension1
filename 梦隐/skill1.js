@@ -8887,7 +8887,7 @@ const skill = {
                 };
             } else event.finish();
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let target = result.targets[0];
                 player.line(target, { color: [220, 90, 139] });
                 player.gainPlayerCard(target, 'hej', true);
@@ -9158,7 +9158,7 @@ const skill = {
                 })
                 .set('source', target);
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets[0], 'ice');
                 result.targets[0].damage('ice');
             }
@@ -9496,7 +9496,7 @@ const skill = {
                     return 5 - att;
                 });
             ('step 1');
-            if (result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let tar = result.targets[0];
                 player.gainPlayerCard(tar, 'hej', true);
                 if (!player.countCards('he', { suit: 'club' })) event.goto(0);
@@ -25265,7 +25265,7 @@ const skill = {
                 return get.effect(target, { name: 'sha', nature: 'thunder' }, player);
             };
             ('step 1');
-            if (result.bool && result.targets && result.targets[0]) {
+            if (result.targets?.length) {
                 player.addSkill('mx_tianzhaoshen3', { player: 'mx_tianzhaoshenAfter' });
                 player.addTempSkill('mx_tianzhaoshen2', 'wuxieBegin');
                 let card = {};
@@ -55222,7 +55222,7 @@ const skill = {
                     return '';
                 });
             ('step 1');
-            if (result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let next = result.targets[0].phaseDiscard();
                 next.mx_mengtujuli = true;
                 event.next.remove(next);
@@ -56094,7 +56094,7 @@ const skill = {
                     return -get.attitude(player, target);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.pdmb = result.targets[0];
             } else event.goto(4);
             ('step 2');
@@ -64780,7 +64780,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.jnmb = result.targets[0];
                 event.goto(2);
             } else event.goto(8);
@@ -67373,7 +67373,7 @@ const skill = {
                             );
                         });
                     ('step 2');
-                    if (result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player
                             .useCard(
                                 {

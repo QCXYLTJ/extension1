@@ -5647,7 +5647,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						};
 					}
 					'step 1'
-					if (result.bool && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						player.line(result.targets, 'thunder');
 						result.targets[0].addMark('YBSL_weiwunuyan');
 					}

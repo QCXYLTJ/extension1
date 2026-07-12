@@ -11817,7 +11817,7 @@ export let info = {
           .set('list', list);
         event.list = list;
         ('step 1');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           let target = result.targets[0],
             num = player.countCards('h'),
             list = [target],
@@ -12630,7 +12630,7 @@ export let info = {
           });
         } else event.finish();
         ('step 2');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           _status.isRoundFilter = () => false;
           player.markAuto(event.name, result.targets);
           trigger.player = result.targets.shift();

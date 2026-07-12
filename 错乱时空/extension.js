@@ -1408,7 +1408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [1, 1, 1, 1, 3].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage(num);
@@ -9628,7 +9628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('forceDie', true)
                                             .set('num', num);
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             event.target = target;
                                             player.line(target, { color: [255, 255, 0] });

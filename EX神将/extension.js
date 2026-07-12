@@ -824,7 +824,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     let num = [2, 2, 2, 2, 2, 2, 2, 2, 2, 6].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].draw(2);
@@ -1046,7 +1046,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     const num1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].draw(num);
@@ -1195,7 +1195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     let num = [1, 1, 1].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage(num, 'fire');
@@ -1410,7 +1410,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, _status.event.player);
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     const targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);
@@ -2000,7 +2000,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     let num = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].chooseToDiscard(1, 'e', true);
@@ -6453,7 +6453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage(1);
                                 }
@@ -6738,7 +6738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].addSkill('exsunyi');
                                     if (result.targets[0].hasSkill('exsunyi')) {
@@ -6786,7 +6786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].addSkill('exzengyi');
                                 }
@@ -7915,7 +7915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('extongqumark');
                                     result.targets[0].storage.extongqumark++;
                                     result.targets[0].markSkill('extongqumark');
@@ -8751,7 +8751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     if (result.targets[0].countCards('h', 'sha') <= 0) {
                                         let list = ['sha'];
@@ -8988,7 +8988,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].draw(3);
                                     player.addSkill('exduhoub');
@@ -9860,7 +9860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.damageEffect(target, player, player);
                                             });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets[0].addSkill('exanjianmark');
                                         }
                                     },

@@ -439,7 +439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('forceDie', true)
                                             .set('num', num);
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             event.target = target;
                                             player.line(target, { color: [255, 255, 0] });
@@ -2158,7 +2158,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].chooseToDiscard(999, 'e', true);
@@ -2204,7 +2204,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [2, 3, 2, 6, 5, 4, 2, 7, 2, 9].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].draw(2);
@@ -4107,7 +4107,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [1].randomGet();
                                     player.line(result.targets[0], 'green');
                                     player.discardPlayerCard(result.targets[0], true, 'hej');
@@ -6444,7 +6444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [100].randomGet();
                                     if (get.isLuckyStar(player)) num = 2;
                                     player.line(result.targets[0], 'green');
@@ -7292,7 +7292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -att;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.line(event.target, 'green');
                                     var e = event.target.getEquip(2);
@@ -7406,7 +7406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, _status.event.player);
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);
@@ -8766,7 +8766,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3].randomGet();
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].loseHp();

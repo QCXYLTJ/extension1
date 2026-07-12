@@ -227,7 +227,7 @@ export let info = {
         'step 0';
         player.chooseTarget(get.prompt2(event.name), [1, player.getExpansions('dqzw_rubbish_zhimou').length]);
         'step 1';
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           result.targets.forEach((target) => {
             event.insert(
               function () {
@@ -244,7 +244,7 @@ export let info = {
           });
         }
         'step 2';
-        if (result.targets && result.targets.length) player.draw(result.targets.length, 'nodelay');
+        if (result.targets?.length) player.draw(result.targets.length, 'nodelay');
       }
     },
     dqzw_rubbish_weizhong: {
@@ -362,7 +362,7 @@ export let info = {
           }
         );
         'step 1';
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           result.targets.forEach((target) => {
             event.insert(
               function () {
@@ -1106,7 +1106,7 @@ export let info = {
           set('card', trigger.card).
           set('num', trigger.cards.length);
         'step 1';
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           trigger.targets.add(...result.targets);
           game.log(result.targets, '成为了', trigger.card, '的额外目标');
         }
@@ -1494,7 +1494,7 @@ export let info = {
           set('num', arr);
         'step 1';
         let count = player.getStat('triggerSkill');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           let target = result.targets[0],
             num = target.countCards('h');
           if (num > event.num) target.chooseToDiscard(num - event.num, true); else
@@ -1523,7 +1523,7 @@ export let info = {
             return 0;
           });
         'step 1';
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           let target = result.targets[0];
           target.chooseToUse(get.translation(event.name) + ':使用一张手牌,' + (target == player ? '若指定了目标,则你摸一张牌' : '若指定了其他角色为目标则' + get.translation(player) + '摸一张牌,否则你摸一张牌'));
           event.target = target;
@@ -2175,7 +2175,7 @@ export let info = {
               return 20 - get.value(button.link);
             }).
             set('target', target);
-        } else if (result.targets && result.targets.length) {
+        } else if (result.targets?.length) {
           event.target = result.targets[0];
           event.goto(0);
         }
@@ -2372,7 +2372,7 @@ export let info = {
         'step 1';
         let list = ['draw_card', 'recover_hp', 'reset_character'];
         //, count = player.getStat('triggerSkill');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           event.insert((lib.skill.xinjujian || {}).content || (() => { }), {
             target: result.targets[0],
             step: 2,

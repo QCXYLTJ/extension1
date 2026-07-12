@@ -20070,7 +20070,7 @@ const skill = {
           return get.damageEffect(target, player, player);
         });
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let num = [1, 2, 0].randomGet();
         if (get.isLuckyStar(player)) {
           num = 2;
@@ -20106,7 +20106,7 @@ const skill = {
           return get.damageEffect(target, player, player);
         });
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let num = [1, 2, 3].randomGet();
         if (get.isLuckyStar(player)) {
           num = 3;
@@ -27772,7 +27772,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         event.current = result.targets[0];
         if (event.cards.length == 1) {
           event.directCard = event.cards[0];
@@ -29550,7 +29550,7 @@ const skill = {
         };
       }
       ('step 2');
-      if (result && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         event.target = result.targets[0];
       }
       if (event.target && event.cards2.length) {
@@ -29613,7 +29613,7 @@ const skill = {
         };
       }
       ('step 2');
-      if (result && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         event.target = result.targets[0];
       }
       if (event.target && event.cards2.length) {
@@ -33832,7 +33832,7 @@ const skill = {
           .set('source', target);
       }
       ('step 2');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         target.line(result.targets[0], 'green');
         result.targets[0].damage(target, event.num);
       }
@@ -34437,7 +34437,7 @@ const skill = {
         return get.effect(target, { name: 'sha' }, _status.event.player);
       };
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let targets = result.targets;
         player.line(targets, trigger.card.nature);
         trigger.targets.addArray(targets);
@@ -34474,7 +34474,7 @@ const skill = {
         return get.effect(target, { name: 'sha' }, _status.event.player);
       };
       ('step 1');
-      if (result.bool && result.targets && result.targets.length) {
+      if (result.targets?.length) {
         let targets = result.targets;
         player.line(targets, trigger.card.nature);
         trigger.targets.addArray(targets);

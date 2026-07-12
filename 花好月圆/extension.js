@@ -2673,7 +2673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'green');
                                     result.targets[0].damage(2, target);
                                 }
@@ -5183,7 +5183,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('source', trigger.getParent(2).player);
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             result.targets[0].recover();
                                         }
@@ -5209,7 +5209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('target', trigger.target);
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             result.targets[0].damage();
                                         }
@@ -6466,7 +6466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, _status.event.player);
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);
                                     trigger.targets.addArray(targets);

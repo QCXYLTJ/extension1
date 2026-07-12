@@ -2682,7 +2682,7 @@ const skills = {
 				return -get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool && result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 				event.targets[0].chooseCard('he', false, 1, '选择交给' + get.translation(trigger.target) + get.cnNumber(1) + '张牌,或失去一点体力').set('ai', function (card) {
 					if (get.position(card) == 'e') return -1;
@@ -5501,7 +5501,7 @@ const skills = {
 					});
 			}
 			('step 3');
-			if (result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				var card = { name: 'sha' };
 				player.addTempSkill('unequip', { player: 'shaAfter' });

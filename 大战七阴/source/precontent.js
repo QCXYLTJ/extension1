@@ -4396,7 +4396,7 @@ export async function precontent(config, pack) {
 							});
 						('step 1');
 						game.log(result.targets);
-						if (result.bool && result.targets && result.targets.length) {
+						if (result.targets?.length) {
 							player.line(result.targets[0], 'green');
 							result.targets[0].damage(damage);
 						}
@@ -7090,7 +7090,7 @@ export async function precontent(config, pack) {
 							event.finish();
 						}
 						('step 2');
-						if (result.bool && result.targets && result.targets.length) {
+						if (result.targets?.length) {
 							result.targets.forEach((tg) => {
 								target.line(tg, 'green');
 								tg.damage(target);

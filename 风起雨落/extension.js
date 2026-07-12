@@ -6657,7 +6657,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.showHandcards();
                                 player.chooseTarget(get.prompt2('zhaoxinon'));
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     event.index = 0;
@@ -8624,7 +8624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 6');
                                 event.audio.remove();
                                 ui.backgroundMusic.play();
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                     result.targets[0].addTempSkill('lhzzon', { global: 'roundStart' });
                                     event.finish();

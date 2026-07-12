@@ -6024,7 +6024,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'thunder');
 									result.targets[0].damage(event.num, 'thunder');
 								}

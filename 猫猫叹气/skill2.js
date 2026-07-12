@@ -25686,7 +25686,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 3');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'mo0');
                 for (const n of result.targets) {
                     n.damage();
@@ -37461,7 +37461,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.current = result.targets[0];
                 if (event.cards.length == 1) {
                     event.directCard = event.cards[0];
@@ -48994,7 +48994,7 @@ const skill = {
                     return -get.attitude(_status.event.player, target);
                 }); //.set('forceDie',true);
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 let target = result.targets[0];
                 event.target = target;
                 player.line(target, { color: [255, 255, 0] });

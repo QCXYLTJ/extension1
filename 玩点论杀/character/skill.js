@@ -367,7 +367,7 @@ const skills = {
 				event.finish();
 			}
 			"step 3";
-			if (result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				result.targets.sort(lib.sort.seat);
 				player.line(result.targets, "green");
 				game.asyncDraw(result.targets);

@@ -814,7 +814,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 10 + get.attitude(player, target);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                         if (lib.config.mode == 'guozhan' && event.target.isUnseen()) {
                             player
@@ -2180,7 +2180,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 10 + get.attitude(player, target);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                         if (lib.config.mode == 'guozhan' && event.target.isUnseen()) {
                             player
@@ -6362,7 +6362,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.effect(target, { name: 'losehp' }, player, player);
                         });
                     ('step 3');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         target.loseHp();
                     }
@@ -13212,7 +13212,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 10 + get.attitude(player, target);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         target.changeHujia();
                         var list = lib.linked.slice(0);
@@ -13573,7 +13573,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         result.targets[0].damage();
                     }
                 },
@@ -13598,7 +13598,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.effect(target, { name: 'tao' }, player, player);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         {
                             target.recover();
@@ -14847,7 +14847,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         target.gain(event.give, player, 'gain2');
                     }
@@ -16601,7 +16601,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return -get.attitude(get.player(), target);
                         });
                     ('step 3');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.damage('nosource', 'nocard', 'thunder');
                         target.damage('nosource', 'nocard', 'thunder');
@@ -17891,7 +17891,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         if (!target.storage.haitu_ol_shuyue) {
                             target.storage.haitu_ol_shuyue = [target.name1 ? target.name1 : target.name, target.name2];

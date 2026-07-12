@@ -2472,7 +2472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = player.countCards('h', { color: 'black' });
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage(num);
@@ -16807,7 +16807,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.damageEffect(target, player, player);
 								});
 								('step 2');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var num = [1, 2].randomGet();
 									var n = num * num;
 									player.line(result.targets[0], 'green');

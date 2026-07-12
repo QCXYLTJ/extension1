@@ -3342,7 +3342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         else event.goto(3);
                                         'step 2'
-                                        if (result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(event.cardx, 'gain2');
                                             result.targets[0].damage();
                                         }
@@ -4265,7 +4265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) > 0;
                                 });
                                 'step 4'
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'purple');
                                     player.removeSkill(event.skill);
                                     result.targets[0].addSkill(event.skill);
@@ -4315,7 +4315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 2'
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.tar = result.targets[0];
                                     target.chooseCard([2, Infinity], true, `将至少两张牌当【杀】对${get.translation(event.tar)}使用`).set('ai', function (card) {
                                         if (ui.selected.cards.length >= 2) return false;

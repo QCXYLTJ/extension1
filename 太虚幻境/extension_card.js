@@ -1999,7 +1999,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         };
                     }
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var targets = result.targets;
                         player.line(targets, trigger.card.nature);
                         trigger.targets.addArray(targets);

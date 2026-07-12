@@ -4239,7 +4239,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.current = result.targets[0];
                                     if (event.cards.length == 1) {
                                         event.directCard = event.cards[0];
@@ -4906,7 +4906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, { color: [220, 90, 139] });
                                     player.discardPlayerCard(target, 'hej', 4);

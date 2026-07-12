@@ -3938,7 +3938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return player != target;
 										}).set('ai', (t) => -get.attitude(player, t));
 								('step 1');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									for (let i = 0; i < result.targets.length; i++) {
 										result.targets[i].addSkill('god_guanyu_wuhun_debuff');
 										result.targets[i].markSkillCharacter('god_guanyu_wuhun', player, '索魂', '当你濒死时,你立即死亡(不触发任何其它效果)');

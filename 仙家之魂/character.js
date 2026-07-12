@@ -13093,7 +13093,7 @@ game.import('character', function () {
 							if (card) player.gain(card, player, 'gain2', 'log');
 						}
 					} else if (event.num == 4) {
-						if (result.bool && result.targets && result.targets.length) {
+						if (result.targets?.length) {
 							var targets = result.targets;
 							for (var target of targets) {
 								target.draw();

@@ -2613,7 +2613,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             'step 1';
             if (result.bool) {
-              if (result.targets && result.targets.length) {
+              if (result.targets?.length) {
                 player.give(event.togain, result.targets[0]);
               } else {
                 trigger.player.give(event.togain, player);
@@ -3442,7 +3442,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('forceDie', true).
             set('num', num);
             'step 1';
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.line(target, { color: [255, 255, 0] });
               var card = get.cardPile(function (cardx) {
@@ -4278,7 +4278,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('enemy', event.togive.length == 1 && get.value(event.togive[0], player, 'raw') < 0);
             'step 2';
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               result.targets[0].gain(event.togive, 'gain2', 'log');
               event.draw = result.targets[0].hasSex('female');
             } else {

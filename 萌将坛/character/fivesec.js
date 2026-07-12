@@ -600,7 +600,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return get.attitude(_status.event.player, target);
 					});
 					('step 1');
-					if (result && result.bool && result.targets && result.targets.length) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						player.chooseToCompare(event.target);
 					} else event.finish();

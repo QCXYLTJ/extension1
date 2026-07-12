@@ -80,7 +80,7 @@ export let info = {
         );
         ('step 1');
         let count = player.getStat('triggerSkill');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           let card = get.cardPile((card) => get.type(card) == 'basic', 'cardPile');
           if (card) result.targets[0].gain(card, 'gain2');
           else game.log('#b牌堆中没有基本牌!');
@@ -1170,7 +1170,7 @@ export let info = {
           .set('num', arr);
         ('step 1');
         let count = player.getStat('triggerSkill');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           let target = result.targets[0],
             num = target.countCards('h');
           if (num > event.num) target.chooseToDiscard(num - event.num, true);
@@ -1199,7 +1199,7 @@ export let info = {
             return 0;
           });
         ('step 1');
-        if (result.targets && result.targets.length) {
+        if (result.targets?.length) {
           let target = result.targets[0];
           target.chooseToUse(get.translation(event.name) + ':使用一张手牌,' + (target == player ? '若指定了目标,则你摸一张牌' : '若指定了其他角色为目标则' + get.translation(player) + '摸一张牌,否则你摸一张牌'));
           event.target = target;
@@ -1840,7 +1840,7 @@ export let info = {
               return 20 - get.value(button.link);
             })
             .set('target', target);
-        } else if (result.targets && result.targets.length) {
+        } else if (result.targets?.length) {
           event.target = result.targets[0];
           event.goto(0);
         }

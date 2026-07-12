@@ -2107,7 +2107,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var num = [2, 3, 1].randomGet();
                                     if (get.isLuckyStar(player)) num = 2;
                                     player.line(result.targets[0], 'green');
@@ -3852,7 +3852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, current);
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.gainPlayerCard('he', result.targets[i], true);

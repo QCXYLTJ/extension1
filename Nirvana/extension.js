@@ -13332,7 +13332,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.addTempSkill('szdl_fanjian2');
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0], 'green');
                                     result.targets[0].damage(target);
                                 }
@@ -16322,7 +16322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var list = [1, 2, 3];
                                     var num = list.randomGet();
                                     event.goto(num + 1);
@@ -16938,7 +16938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, player, player, 'thunder');
                                         };
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'thunder');
                                             result.targets[0].damage(event.num, 'thunder');
                                         }

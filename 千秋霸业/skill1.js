@@ -2277,7 +2277,7 @@ const skill = {
                     return 5 - att;
                 });
             ('step 1');
-            if (result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 var tar = result.targets[0];
                 player.gainPlayerCard(tar, 'hej', true);
                 if (!player.storage.lg_lijie.includes(tar)) player.storage.lg_lijie.push(tar);
@@ -5122,7 +5122,7 @@ const skill = {
                             return -get.attitude(player, target);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         player.chooseToDiscard(true, 'h');
                         var num = Math.ceil(player.countCards('he', { suit: 'spade' }) / 2);
                         player.draw(num);
@@ -6936,7 +6936,7 @@ const skill = {
                 event.goto(1);
             }
             ('step 3');
-            if (result && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 var viewAsCard = {
                     name: 'sha',
                     cards: [event.jzsha],
@@ -8018,7 +8018,7 @@ const skill = {
                     return -attitude * (3 / (target.countCards('h') + 1));
                 });
             ('step 2');
-            if (result && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.tar = result.targets[0];
                 player.chooseToCompare(result.targets[0]);
             } else {
@@ -16912,7 +16912,7 @@ const skill = {
                     return -get.attitude(player, target);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.pdmb = result.targets[0];
             } else event.goto(4);
             ('step 2');
@@ -22698,7 +22698,7 @@ const skill = {
                     return Math.max(1, 3 - target.hp);
                 });
             ('step 2');
-            if (result && result.targets && result.targets[0]) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 player.line(target, 'fire');
                 player.swapHandcards(target); //QQQ
@@ -26335,7 +26335,7 @@ const skill = {
                     return false;
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.mubiao = result.targets[0];
                 if (event.mubiao.countCards('h') > player.countCards('h')) player.gainPlayerCard(event.mubiao, 1, 'h', 'visible', true);
                 else result.targets[0].draw(2);
@@ -29264,7 +29264,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 event.jnmb = result.targets[0];
                 event.goto(2);
             } else event.goto(8);
@@ -31619,7 +31619,7 @@ const skill = {
                 event.goto(4);
             }
             ('step 2');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'green');
                 result.targets[0].damage(2);
             }
@@ -31637,7 +31637,7 @@ const skill = {
                 event.goto(7);
             }
             ('step 5');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'green');
                 result.targets[0].recover(2);
             }
@@ -32122,7 +32122,7 @@ const skill = {
                     return get.damageEffect(target, player, player);
                 });
             ('step 1');
-            if (result.bool && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 result.targets[0].damage(1, 'nocard');
             }
         },
@@ -40446,7 +40446,7 @@ const skill = {
                         return get.damageEffect(target, player, player);
                     })
                     .forResult();
-                if (result && result.targets && result.targets[0]) {
+                if (result.targets?.length) {
                     result.targets[0].damage(2, player);
                 }
             }
@@ -40968,7 +40968,7 @@ const skill = {
                             );
                         });
                     ('step 1');
-                    if (result && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         while (result.targets.length) {
                             result.targets.sortBySeat();
                             player.gainPlayerCard('he', 2, result.targets.shift(), true);
@@ -48998,7 +48998,7 @@ const skill = {
                 return true;
             });
             ('step 2');
-            if (result && result.targets && result.targets.length) {
+            if (result.targets?.length) {
                 var tars = result.targets.slice(0).sortBySeat();
                 game.asyncDraw(tars);
                 player.next.next.recover();

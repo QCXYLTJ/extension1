@@ -5229,7 +5229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'guohe' } || { name: 'zhujin' }, _status.event.player) - 0.5 || (get.effect(target, _status.event.player) - 0.5 && get.tag(trigger.card, 'damage'));
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.removeMark('tgtt_sqksshishilingyu', 8);
                                     var targets = result.targets;
                                     player.line(targets, trigger.card.nature);

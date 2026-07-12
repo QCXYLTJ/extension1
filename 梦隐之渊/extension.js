@@ -4403,7 +4403,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.cards1 = cards1;
                                 ('step 2');
-                                if (result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.gain(event.cards1, 'gain');
                                 }

@@ -382,7 +382,7 @@ const skill = {
 				event.finish();
 			}
 			"step 3";
-			if (result.bool && result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				result.targets[0].gain(result.cards, player);
 				player.$giveAuto(result.cards, result.targets[0]);
 				player.line(result.targets, "green");

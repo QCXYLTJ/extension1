@@ -7237,7 +7237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										} else event.goto(0);
 										('step 3');
-										if (result.bool && result.targets && result.targets.length) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											player.line(target, 'green');
 											target.addTempSkill('dshj_jianshen', { player: 'phaseEnd' });
@@ -36295,7 +36295,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 4');
-								if (result.bool && result.targets && result.targets.length) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.damage();
 								}

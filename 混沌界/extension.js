@@ -9399,7 +9399,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att * lib.card.guohe.ai.result.target(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     for (var i = 0; i < event.targets.length; i++) {
                                         player.line(event.targets[i]);
@@ -13201,7 +13201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     target.line(result.targets[0]);
                                     if (player.hasSkill('圣_quhu_mark')) {
                                         result.targets[0].damage(2, target);

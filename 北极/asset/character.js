@@ -1688,7 +1688,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return att;
                         }).animate = false;
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         var next = target.phaseUse();
                         event.next.remove(next);
@@ -6271,7 +6271,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'guohe' }, player, player);
                                 });
                             ('step 1');
-                            if (result.bool && result.targets && result.targets.length) {
+                            if (result.targets?.length) {
                                 var target = result.targets[0];
                                 player.discardPlayerCard('hej', target, true);
                             }
@@ -6297,7 +6297,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.effect(target, { name: 'tao' }, player, player);
                         });
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         if (target.isHealthy()) {
                             target.gainMaxHp();
@@ -7702,7 +7702,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     'step 0';
                     player.chooseTarget(get.prompt('bjbeiji'));
                     ('step 1');
-                    if (result.bool && result.targets && result.targets.length) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.line(target, 'blue');
                         target.addSkill('bjlinhan');

@@ -558,7 +558,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     if (!player.hasSkill('fangjun_spzhangliang_5')) {
                                         result.targets[0].damage(player.getDamagedHp());
                                     } else {
@@ -1757,7 +1757,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targ = result.targets;
                                     for (var i = 0; i < targ.length; i++) targ[i].draw();
                                 }
@@ -1797,7 +1797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 6');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.discardPlayerCard(result.targets[0], 'h', true, 'visible');
                                 }
                             },
@@ -3679,7 +3679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target != player;
                                 });
                                 ('step 2');
-                                if (result.bool && result.targets && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.tar = result.targets[0];
                                 } else event.finish();
                                 ('step 3');
@@ -4180,7 +4180,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return target.hasSkill('qiaobianwjxs_tar');
                                         });
                                         ('step 1');
-                                        if (result.bool && result.targets && result.targets.length) {
+                                        if (result.targets?.length) {
                                             event.tar = result.targets[0];
                                             var list = ['摸牌阶段', '出牌阶段', '弃牌阶段', '准备阶段', '结束阶段'];
                                             player.chooseControl(list).set('prompt', '你选择令其执行一个');

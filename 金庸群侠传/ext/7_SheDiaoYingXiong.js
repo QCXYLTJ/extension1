@@ -4358,7 +4358,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             'step 2';
-            if (result && result.targets && result.targets.length) {
+            if (result.targets?.length) {
               player.give(event.togive, result.targets[0], true);
               //result.targets[0].gain(event.togive,'gain','log');
               //player.line(result.targets[0],'green');
