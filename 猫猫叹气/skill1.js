@@ -23355,10 +23355,7 @@ const skill = {
                 ('step 1');
                 if (result.bool) {
                     let list = get.typeCard(result.links[0], 'trick');
-                    list = list.randomGets(3);
-                    for (const i of list) {
-                        i = [get.translation(result.control), '', i];
-                    }
+                    list = list.randomGets(3).map((i) => [get.translation(result.control), '', i]);
                     let dialog = ui.create.dialog('选择一张加入你的手牌', [list, 'vcard'], 'hidden');
                     target.chooseButton(dialog, true).ai = function (button) {
                         if (button.link[2] == 'hsbaowu_huangjinyuanhou') {
@@ -27752,10 +27749,7 @@ const skill = {
                 list.remove('hslingjian_jinjilengdong');
             }
             if (list.length) {
-                list = list.randomGets(num);
-                for (const i of list) {
-                    i = game.createCard(i);
-                }
+                list = list.randomGets(num).map((i) => game.createCard(i));
                 player.gain(list, 'gain2');
             }
             player.recover(jxtp);
