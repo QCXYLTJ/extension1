@@ -5625,7 +5625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var owner = get.owner(result.links[0]);
 									if (owner) {
 										owner.give(result.links, player);
@@ -8215,7 +8215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var owner = get.owner(result.links[0]);
 									if (owner) {
 										owner.give(result.links, player);

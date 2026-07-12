@@ -446,7 +446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.broadcast('closeDialog', event.dialogid);
                                     event.dialog.close();
                                 }
-                                if (result.links && result.links.length) player.gain(result.links[0], 'gain2');
+                                if (result.links?.length) player.gain(result.links[0], 'gain2');
                                 ('step 4');
                                 if (!player.hasHistory('custom', (evt) => evt.name == 'zhaozhang_chuli' && evt != event && evt.count == event.count)) player.getStat('triggerSkill').zhaozhang_chuli = 0;
                             },

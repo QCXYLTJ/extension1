@@ -6716,7 +6716,7 @@ export async function precontent(config, pack) {
 					return get.value(button);
 				});
 				('step 2');
-				if (result.links && result.links.length) {
+				if (result.links?.length) {
 					event.card = result.links[0];
 					player.chooseTarget('将' + get.translation(result.links) + '给一名角色贴上').set('ai', function (target) {
 						return get.attitude(_status.event.player, target);
@@ -7904,7 +7904,7 @@ export async function precontent(config, pack) {
 						.set('att', get.attitude(player, event.targets[0]) <= 0);
 				}
 				('step 2');
-				if (result.bool && result.links && result.links.length) {
+				if (result.links?.length) {
 					if (get.color(result.links[0]) && get.color(trigger.card)) {
 						if (get.color(result.links[0]) == get.color(trigger.card)) event.targets[0].draw();
 					}
@@ -12534,7 +12534,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.links && result.links.length) {
+				if (result.links?.length) {
 					event.card = result.links;
 					player.chooseTarget('将' + get.translation(result.links) + '交给一名角色').set('ai', function (target) {
 						return get.attitude(_status.event.player, target);
@@ -14721,7 +14721,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 3');
-				if (result.bool && result.links && result.links.length) {
+				if (result.links?.length) {
 					if (get.type(result.links[0]) == 'jinengpai') {
 						var cards = event.targets[event.num].getJinengpai('j');
 						for (const i of cards) {

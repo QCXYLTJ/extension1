@@ -10278,7 +10278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								('step 2');
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									target.loseToDiscardpile(result.links);
 									target.draw(result.links.length);
 								}
@@ -10473,7 +10473,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										});
 										('step 1');
-										if (result.links && result.links.length) {
+										if (result.links?.length) {
 											for (var i of result.links) event.card.remove(i);
 											player.addToExpansion(result.links, player, 'giveAuto').gaintag.add('lqhc_jibing');
 											player.draw();
@@ -16801,7 +16801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													.set('target', event.a);
 										} else event.finish();
 										('step 3');
-										if (result.links && result.links.length) {
+										if (result.links?.length) {
 											var card = result.links[0];
 											event.b.remove(card);
 											player.line(event.a);
@@ -16940,7 +16940,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								player.unmarkSkill('lqtqx_liegong');
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									player.gain(result.links, 'log', 'gain2');
 								}
 							},
@@ -19737,7 +19737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('att', get.attitude(player, trigger.target) <= 0);
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (result.links[0].name == 'sha') trigger.baseDamage++;
 									else player.gain(result.links[0], 'gain2', 'log');
 								}
@@ -19862,7 +19862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(card);
 								});
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									target.discard(result.links);
 									player
 										.chooseToDiscard('你可弃置一张与' + get.translation(result.links) + '中有相同类型的牌,对' + get.translation(target) + '造成两点伤害', function (card) {
@@ -21327,7 +21327,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+								if (result.links?.length) cards = result.links.slice(0);
 								while (cards.length) {
 									var card = cards.pop();
 									if (get.position(card, true) == 'o') {

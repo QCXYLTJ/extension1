@@ -35451,7 +35451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.chooseCardButton('【洛水】<br>请选择获得其中两张', num2, event.card, true);
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'give2');
                                     for (var i of result.links) {
                                         event.card.remove(i);
@@ -35478,7 +35478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result.links = false;
                                 event.target[event.targer_num].chooseCardButton('【洛水】<br>请选择获得其中一张', 1, event.card, true);
                                 ('step 6');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.target[event.targer_num].gain(result.links, 'give2');
                                     for (var i of result.links) {
                                         event.card.remove(i);
@@ -36124,7 +36124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target = result.targets[0];
                                 }
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var yousha = false;
                                     player.showCards(result.links);
                                     for (var i of result.links) {
@@ -36656,7 +36656,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player == game.me && !event.isMine()) {
                                 }
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     game.log(player, '获得了武将牌牌上的', result.links);
                                     player.gain(result.links, 'fromStorage');
                                     for (var k = 0; k < result.links.length; k++) {
@@ -37316,7 +37316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCardButton('选择获得其中一张', 1, cards, true);
                                 }
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'giveAuto');
                                 }
                             },
@@ -37481,7 +37481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCardButton('选择获得其中1张', 1, cards, true);
                                 }
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'giveAuto');
                                 }
                             },
@@ -37581,7 +37581,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return;
                                 }
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'giveAuto');
                                 }
                             },
@@ -43012,7 +43012,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 3');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -44424,7 +44424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 });
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 }
                                 var time = 1000 - (get.utc() - event.time);
@@ -45729,7 +45729,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 3');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';
                                     if (aozhan) {

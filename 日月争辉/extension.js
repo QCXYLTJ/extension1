@@ -6137,7 +6137,7 @@ game.import('extension', function () {
                                     );
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';
                                     if (aozhan) {

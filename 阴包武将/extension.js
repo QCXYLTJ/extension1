@@ -7737,7 +7737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return val;
                                     });
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.Q = result.links[0][2];
                                     if (player != game.me) {
                                         var card = get.cardPile(function (card) {

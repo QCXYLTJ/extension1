@@ -875,7 +875,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           }
         );
         'step 2';
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           player.storage.jycj_canwu = result.links[0];
           var info = lib.skill[result.links[0]];
           if (info.filter && !info.jycj_canwu_filter) {

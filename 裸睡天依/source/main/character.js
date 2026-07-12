@@ -7280,7 +7280,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                             return 1;
                         }).forResult();
-                    if (result.bool && result.links && result.links.length) {
+                    if (result.links?.length) {
                         var card = result.links[0];
                         var name = card.name,
                             aozhan = player.hasSkill('aozhan') && name == 'tao';

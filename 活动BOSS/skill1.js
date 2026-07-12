@@ -13700,7 +13700,7 @@ const skill = {
         })
         .set('att', get.attitude(player, trigger.target) <= 0);
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (result.links[0].name == 'sha') {
           const id = trigger.target.playerid;
           const map = trigger.parent.customArgs;
@@ -13739,7 +13739,7 @@ const skill = {
         })
         .set('att', get.attitude(player, trigger.target) <= 0);
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (result.links[0].name == 'sha') {
           const id = trigger.target.playerid;
           const map = trigger.parent.customArgs;
@@ -13778,7 +13778,7 @@ const skill = {
         })
         .set('att', get.attitude(player, trigger.target) <= 0);
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (result.links[0].name == 'sha') {
           const id = trigger.target.playerid;
           const map = trigger.parent.customArgs;
@@ -13817,7 +13817,7 @@ const skill = {
         })
         .set('att', get.attitude(player, trigger.target) <= 0);
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (result.links[0].name == 'sha') {
           const id = trigger.target.playerid;
           const map = trigger.parent.customArgs;
@@ -32668,7 +32668,7 @@ const skill = {
         })
         .set('att', get.attitude(player, trigger.target) <= 0);
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (get.type(result.links[0], null, result.links[0].original == 'h' ? player : false) == 'equip') {
           trigger.parent.directHit.add(trigger.target);
           game.log(trigger.card, '无法被', trigger.target, '响应');
@@ -49611,7 +49611,7 @@ const skill = {
           .set('reverse', _status.currentPhase && _status.currentPhase.next ? get.attitude(player, _status.currentPhase.next) > 0 : false);
       }
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.cards = result.links.slice(0);
       }
       while (event.cards.length) {
@@ -49797,7 +49797,7 @@ const skill = {
               .set('reverse', _status.currentPhase && _status.currentPhase.next ? get.attitude(player, _status.currentPhase.next) > 0 : false);
           }
           ('step 1');
-          if (result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             event.cards = result.links.slice(0);
           }
           while (event.cards.length) {
@@ -54713,7 +54713,7 @@ const skill = {
         event.goto(14);
       }
       ('step 13');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.fujiang.push(result.links[0]);
         if (event.fujiang.length < 2) {
           event.goto(12);
@@ -55070,7 +55070,7 @@ const skill = {
         }
       }
       ('step 4');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (!game.me.storage.fhlt_jilu) {
           game.me.storage.fhlt_jilu = [];
           game.me.storage.fhlt_jilu.add(game.me.name);
@@ -55292,7 +55292,7 @@ const skill = {
         event.goto(14);
       }
       ('step 13');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         game.me.reinit(game.me.name, result.links[0]);
         game.me.group = lib.character[result.links[0]][1];
         event.goto(15);
@@ -55428,7 +55428,7 @@ const skill = {
         event.goto(23);
       }
       ('step 22');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.fujiang.push(result.links[0]);
         if (event.fujiang.length < 2) {
           event.goto(21);

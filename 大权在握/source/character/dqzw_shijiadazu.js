@@ -1822,7 +1822,7 @@ export let info = {
               dialog.buttons[dialog.buttons.indexOf(button)] = card;
             }
         };
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           let target = event.target || (!player.isDamaged() && trigger.targets.length == 1 ? trigger.targets[0] : trigger.player);
           if (player.isOnline2()) player.send(event._showCard, result, event.videoId, target, event._visible);
           else event._showCard(result, event.videoId, target, event._visible);
@@ -1846,7 +1846,7 @@ export let info = {
         }
         event._result = {};
         ('step 2');
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           (event.target || (!player.isDamaged() && trigger.targets.length == 1 ? trigger.targets[0] : trigger.player)).lose(result.links, ui.cardPile, 'insert');
           game.log(player, '将', result.links, '置于牌堆顶');
         }

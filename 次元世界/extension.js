@@ -25004,7 +25004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var button;
                                 if (event.directbutton) {
                                     button = event.directbutton;
-                                } else if (result.bool && result.links && result.links.length) {
+                                } else if (result.links?.length) {
                                     button = result.links[0];
                                 }
                                 if (button) {
@@ -30624,7 +30624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     var name = card.name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';

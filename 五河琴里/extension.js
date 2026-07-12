@@ -2290,7 +2290,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 game.broadcastAll('closeDialog', event.videoId);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0];
                                     if (name && lib.character[name]) {
                                         var skills = lib.character[name][3];

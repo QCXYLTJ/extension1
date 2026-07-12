@@ -3222,7 +3222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         ('step 1');
                                         var evt = event.getParent(2);
-                                        if (result.bool && result.links && result.links.length) {
+                                        if (result.links?.length) {
                                             if (evt.type == 'wuxie') {
                                                 game.skipwuxie = true;
                                             }
@@ -3797,7 +3797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('att', att)
                                     .set('ai2', ai2);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var suits = [];
                                     trigger.target.countCards('h', function (cardx) {
                                         var suit = cardx.suit;

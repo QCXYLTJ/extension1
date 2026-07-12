@@ -7621,7 +7621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('att', get.attitude(player, event.target) <= 0);
                                 }
                                 ('step 3');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.subtype(result.links[0]) == 'equip1') player.enableEquip('equip1');
                                     if (get.subtype(result.links[0]) == 'equip2') player.enableEquip('equip2');
                                     if (get.subtype(result.links[0]) == 'equip3') player.enableEquip('equip3');
@@ -8649,7 +8649,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, trigger.player) + 1;
                                 });
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.num = result.links[0].number;
                                     if (event.num) player.storage.zmjiehua2 = event.num;
                                     player.addTempSkill('zmjiehua2');

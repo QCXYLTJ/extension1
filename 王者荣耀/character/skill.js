@@ -18282,7 +18282,7 @@ const skills = {
             }
             var evt = event.getParent(2);
             const result = event.result;
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 var name = event.cardName || 'chuqibuyi';
                 game.broadcastAll(
                     function (result, name) {

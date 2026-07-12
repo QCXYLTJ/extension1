@@ -5012,7 +5012,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -5484,7 +5484,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -5566,7 +5566,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -5648,7 +5648,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -5730,7 +5730,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -5845,7 +5845,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -5944,7 +5944,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -6026,7 +6026,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -6166,7 +6166,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -27060,7 +27060,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -36961,7 +36961,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -37684,7 +37684,7 @@ game.import('extension', function () {
                                     return Math.random();
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -42727,7 +42727,7 @@ game.import('extension', function () {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.links && result.links.length) event.xuanze = result.links[0];
+                                if (result.links?.length) event.xuanze = result.links[0];
                                 else event.finish();
                                 ('step 2');
                                 var fellow = game.addFellow(1, event.xuanze);

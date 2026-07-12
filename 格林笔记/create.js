@@ -2110,7 +2110,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             event.finish();
           }
           ('step 1');
-          if (result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             player.gain(result.links, 'gain2', 'log');
           }
         },

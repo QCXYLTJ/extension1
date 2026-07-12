@@ -9965,7 +9965,7 @@ export let info = {
               else event.finish();
             }
             ('step 3');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
               for (var name of result.links) {
                 var cardname = lib.skill.dqzw_liying.createCard(name);
                 var card = game.createCard2(cardname);
@@ -12620,7 +12620,7 @@ export let info = {
           (button) => (ui.selected.buttons.length ? button.number == get.number(ui.selected.buttons.slice(-1)[0]) + 1 : true)
         );
         ('step 1');
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           player.loseToDiscardpile(result.links);
           player.chooseTarget('请指定本轮每名角色的行动次序', result.links.length, true).set('ai', (target) => {
             let att = get.attitude(_status.event.player, target),
@@ -13067,7 +13067,7 @@ export let info = {
               );
             }
             ('step 2');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
               let card = result.links[0],
                 tag = get.tag(card, 'damage');
               target

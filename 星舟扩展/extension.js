@@ -5305,7 +5305,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.chooseButton(['选择要当作的延时锦囊牌', [list, 'vcard']])
 										.set('ai', (button) => _status.event.player.getUseValue({ name: button.link[2] }))
 										.forResult();
-									if (result.links && result.links.length) {
+									if (result.links?.length) {
 										lib.skill.msjiqun_sidao.viewAs = { name: result.links[0][2] };
 										await player
 											.chooseToUse()

@@ -22184,7 +22184,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name;
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -24988,7 +24988,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.type(result.links[0], null, result.links[0].original == 'h' ? player : false) != 'basic') {
                                         player.draw();
                                         trigger.parent.directHit.add(trigger.target);

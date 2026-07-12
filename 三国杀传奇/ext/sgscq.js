@@ -1563,7 +1563,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 6 - get.value(card);
 					});
 					'step 1'
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						event.card = result.links;
 						player.chooseTarget(1, true, function (card, player, target) {
 							// return player.canUse('lebu',target);

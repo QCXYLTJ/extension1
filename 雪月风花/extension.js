@@ -1568,7 +1568,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.links && result.links.length) {
+                    if (result.links?.length) {
                         let cards = [];
                         cards.addArray(ui.cardPile.childNodes);
                         cards.addArray(ui.discardPile.childNodes);

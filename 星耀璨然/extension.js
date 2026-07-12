@@ -20573,7 +20573,7 @@ export default async function () {
                             return val;
                         });
                         ('step 2');
-                        if (result.links && result.links.length) {
+                        if (result.links?.length) {
                             event.cards.remove(result.links[0]);
                             player.gain(result.links[0], 'draw');
                             event.card = event.cards[0];
@@ -29748,7 +29748,7 @@ export default async function () {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.type == 'wuxie') {
                                         game.skipwuxie = true;
                                     }

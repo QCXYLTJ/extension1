@@ -3444,7 +3444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (get.color(result.links[0]) == 'red') {
 										trigger.player.useCard({ name: 'sha' }, event.target, false);
 									} else {

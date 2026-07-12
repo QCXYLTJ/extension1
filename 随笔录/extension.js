@@ -9455,7 +9455,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name, i;
                                     for (var i of lib.phaseName) {
                                         if (_status.event.getParent(i).name == i) {
@@ -10718,7 +10718,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(function (result) {
                                             lib.skill.yshouren_backup.viewAs = { name: result.name, cards: [result] };
@@ -11450,7 +11450,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(function (result) {
                                             lib.skill.ypaidui_backup.viewAs = { name: result.name, cards: [result] };
@@ -12609,7 +12609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(function (result) {
                                             lib.skill.yquanzhiquanneng_backup.viewAs = { name: result.name, cards: [result] };

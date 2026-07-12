@@ -10939,7 +10939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 3');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									event.shiyong = result.links.slice(0);
 								} else event.goto(6);
 								('step 4');
@@ -11529,7 +11529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.chooseButton(true, event.cards.length, ['按顺序将卡牌置于牌堆底(先选择的在下)', event.cards]);
 								}
 								('step 1');
-								if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+								if (result.links?.length) cards = result.links.slice(0);
 								while (cards.length) {
 									var card = cards.pop();
 									if (get.position(card, true) == 'o') {
@@ -13501,7 +13501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (evt.name == 'chooseToUse') {
 										game.broadcastAll(function (result) {
 											lib.skill.sxchc_backup.viewAs = { name: result.name, cards: [result] };
@@ -13586,7 +13586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.value(button.link);
 								});
 								('step 4');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									player.showCards(result.links);
 									game.cardsDiscard(result.links);
 									game.log(result.links, '被置入了弃牌堆');
@@ -15549,7 +15549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.send('closeDialog', event.videoId);
 								}
 								event.dialog.close();
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									player.removeMark('szcxf_mark', result.links.length);
 									for (var i = 0; i < result.links.length; i++) {
 										if (result.links[i] == 0) player.recover();
@@ -15633,7 +15633,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											player.send('closeDialog', event.videoId);
 										}
 										event.dialog.close();
-										if (result.bool && result.links && result.links.length) {
+										if (result.links?.length) {
 											for (var i = 0; i < result.links.length; i++) {
 												for (var x of event.jiang) {
 													if (x.includes(event.jineng[result.links[i]])) {
@@ -25784,7 +25784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									else return false;
 								});
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									event.shiyong = result.links.slice(0);
 									event.cards.remove(event.shiyong);
 									event.cishu++;
@@ -32996,7 +32996,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 4');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									event.target.gain(result.links[0], 'gain2', 'log');
 								}
 							},
@@ -34145,7 +34145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											} else ui.cardPile.insertBefore(event.card.pop(), ui.cardPile.firstChild);
 											game.log(player, '将一张牌置于牌堆底');
 										} else {
-											if (result.bool && result.links && result.links.length) {
+											if (result.links?.length) {
 												player.gain(result.links[0], 'draw');
 											}
 										}
@@ -34286,7 +34286,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else event.goto(4);
 								} else event.finish();
 								('step 3');
-								if (result.bool && result.links && result.links.length) event.pai = result.links[0];
+								if (result.links?.length) event.pai = result.links[0];
 								var hd = game.createCard({ name: event.pai.name, nature: event.pai.nature, suit: event.pai.suit, number: event.pai.number });
 								lib.skill._snjs_shengchengpaixiaohui.linshifuzhi.add(hd);
 								player.$give(1, player, false);
@@ -34402,7 +34402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								}
 								('step 3');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var hd = result.links[0];
 									event.cards.remove(hd);
 									player.gain(hd, 'draw');
@@ -34447,7 +34447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.goto(3);
 								('step 2');
-								if (result.bool && result.links && result.links.length) event.pai = result.links[0];
+								if (result.links?.length) event.pai = result.links[0];
 								var hd = game.createCard({ name: event.pai.name, nature: event.pai.nature, suit: event.pai.suit, number: event.pai.number });
 								lib.skill._snjs_shengchengpaixiaohui.fuzhi.add(hd);
 								player.$give(1, player, false);
@@ -36512,7 +36512,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 2');
 								if (event.jingxiang == true) {
-									if (result.bool && result.links && result.links.length) {
+									if (result.links?.length) {
 										var pai = result.links[0];
 										var huode = [];
 										var card1 = game.createCard({ name: pai.name, nature: pai.nature, suit: pai.suit, number: pai.number });
@@ -41156,7 +41156,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									event._result = { bool: false };
 									event.card = result.links[0];
 									player
@@ -41452,7 +41452,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 3');
-								if (result.bool && result.links && result.links.length) player.useCard(result.links[0], target, false);
+								if (result.links?.length) player.useCard(result.links[0], target, false);
 							},
 							ai: {
 								order: 9,
@@ -61663,7 +61663,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												.set('reverse', _status.currentPhase && _status.currentPhase.next ? get.attitude(player, _status.currentPhase.next) > 0 : false);
 										}
 										('step 1');
-										if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+										if (result.links?.length) cards = result.links.slice(0);
 										while (cards.length) {
 											var card = cards.pop();
 											if (get.position(card, true) == 'o') {

@@ -5333,7 +5333,7 @@ const skill = {
           .set('att', get.attitude(player, event.target) > 0);
       }
       ('step 3');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (result.links[0].suit == cards[0].suit) {
           if (player.isDamaged()) {
             player.chooseDrawRecover(1, true);
@@ -8918,7 +8918,7 @@ const skill = {
         return get.value(button.link);
       });
       ('step 3');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.shiyong = result.links.slice(0);
       } else event.goto(6);
       ('step 4');
@@ -15330,7 +15330,7 @@ const skill = {
       'step 0';
       event.cards = trigger.cards.filterInD();
       ('step 1');
-      if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+      if (result.links?.length) cards = result.links.slice(0);
       while (cards.length) {
         let card = cards.pop();
         if (get.position(card, true) == 'o') {
@@ -20115,7 +20115,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (get.tag(result.links[0], 'damage')) {
           player.swapHandcards(player.next);
         } else {
@@ -50661,7 +50661,7 @@ const skill = {
         return -get.attitude(player, trigger.player) + 1;
       });
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.num = result.links[0].number;
         if (event.num) trigger.player.storage.mx_hanghai2 = event.num;
         trigger.player.addTempSkill('mx_hanghai2');
@@ -53063,7 +53063,7 @@ const skill = {
       'step 0';
       event.cards = trigger.cards.filterInD();
       ('step 1');
-      if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+      if (result.links?.length) cards = result.links.slice(0);
       while (cards.length) {
         let card = cards.pop();
         if (get.position(card, true) == 'o') {
@@ -55062,7 +55062,7 @@ const skill = {
         .set('att', att)
         .set('ai2', ai2);
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         player.draw();
         const suits = [];
         trigger.target.countCards('he', function (cardx) {
@@ -55142,7 +55142,7 @@ const skill = {
           .set('att', get.attitude(player, event.target) <= 0);
       }
       ('step 3');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (get.subtype(result.links[0]) == 'equip1') {
           player.enableEquip('equip1');
           player.chooseUseTarget(false, true, { name: 'sha' }, 'nodistance');
@@ -56626,7 +56626,7 @@ const skill = {
         return get.value(button.link);
       });
       ('step 3');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.shiyong = result.links.slice(0);
       } else event.goto(6);
       ('step 4');
@@ -68609,7 +68609,7 @@ const skill = {
         player.chooseButton(true, event.cards.length, ['将这些牌以任意顺序置于牌堆底', event.cards]);
       }
       ('step 1');
-      if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+      if (result.links?.length) cards = result.links.slice(0);
       while (cards.length) {
         let card = cards.pop();
         if (get.position(card, true) == 'o') {

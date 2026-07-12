@@ -25905,7 +25905,7 @@ export default function () {
                                 'step 0';
                                 player.discardPlayerCard('h', trigger.target, true, get.prompt('jjbsy_yitian', trigger.target)).set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                 } else {
                                     event.finish();
@@ -26409,7 +26409,7 @@ export default function () {
                                 'step 0';
                                 player.discardPlayerCard('he', trigger.source, true, get.prompt('mlt_lufu', trigger.source));
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                 } else {
                                     event.finish();

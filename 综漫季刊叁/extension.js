@@ -5938,7 +5938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.player) > 0);
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.cardss = result.links[0];
                                     trigger.player
                                         .discardPlayerCard(player, 'h', get.prompt('zmluoyuzuji'), true)
@@ -5948,7 +5948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('att', get.attitude(trigger.player, player) > 0);
                                 }
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.color(result.links[0]) == get.color(event.cardss)) {
                                         game.playzm3('zmluoyuzuji0');
                                         player.storage.zmmofafeijianshanguang++;

@@ -3422,7 +3422,7 @@ const skill = {
           return _status.event.player.getUseValue(button.link);
         });
       ('step 1');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         var card = result.links[0];
         var next = player.chooseUseTarget(card, true, false);
         var bool = get.type(card) == 'trick' || (get.type(card) == 'basic' && !['shan', 'tao', 'jiu', 'du'].includes(card.name));
@@ -5059,7 +5059,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         if (get.tag(result.links[0], 'damage')) {
           player.recover();
         } else {
@@ -10919,7 +10919,7 @@ const skill = {
             });
           ('step 1');
           var evt = event.getParent(2);
-          if (result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             if (evt.type == 'wuxie') {
               game.skipwuxie = true;
             }
@@ -11105,7 +11105,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         var bool = false;
         if (event.hCards.length == 1 && event.hCards.includes(result.links[0])) {
           bool = true;
@@ -11610,7 +11610,7 @@ const skill = {
         return get.value(button.link);
       });
       ('step 3');
-      if (result.bool && result.links && result.links.length) {
+      if (result.links?.length) {
         event.shiyong = result.links.slice(0);
       } else event.goto(6);
       ('step 4');
@@ -16191,7 +16191,7 @@ const skill = {
         event.target = result.targets[0];
       }
       ('step 2');
-      if (result.links && result.links.length) {
+      if (result.links?.length) {
         var yousha = false;
         player.showCards(result.links);
         for (var i of result.links) {
@@ -50278,7 +50278,7 @@ const skill = {
         player.chooseCardButton('获得其中一张普通锦囊牌', 1, cards, true);
       }
       ('step 1');
-      if (result.links && result.links.length) {
+      if (result.links?.length) {
         player.gain(result.links, 'giveAuto');
         trigger.player.draw();
         if (trigger.player == player) player.chooseToDiscard(true, 'h') && player.moveCard(true);

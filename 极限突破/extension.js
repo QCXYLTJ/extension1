@@ -4771,7 +4771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 let evt2 = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     let name = get.subtype(result.links[0]) == 'equip1' ? 'juedou' : 'sha';
                                     if (evt2.name == 'chooseToUse') {
                                         game.broadcastAll(

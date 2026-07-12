@@ -937,7 +937,7 @@ const skill = {
 				}
 			}
 			"step 1";
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				var list = [];
 				for (var i = 0; i < result.links.length; i++) {
 					list.push(game.createCard(result.links[i][2]));

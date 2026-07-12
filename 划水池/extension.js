@@ -7151,7 +7151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var list = ['选择一张<田>当作【出其不意】使用', player.getExpansions('hs_tuntian')];
 								player.chooseButton(list);
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var num = Math.ceil((player.countExpansions('hs_tuntian') - 1) / 2),
 										next = player.chooseUseTarget({ name: 'chuqibuyi' }, result.links, 'nodistance', true, false);
 									next.set('prompt', '急袭:选择【出其不意】的目标');

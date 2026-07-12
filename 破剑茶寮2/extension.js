@@ -3266,7 +3266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name;
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -9385,7 +9385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = get.subtype(result.links[0]) == 'equip3' ? 'shan' : 'sha';
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -13939,7 +13939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'draw').set('gaintag', ['zymyingzhan']);
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -18620,7 +18620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = get.subtype(result.links[0]) == ['equip3', 'equip2'] ? 'shan' : 'sha';
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -19115,7 +19115,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name, i;
                                     for (var i of lib.phaseName) {
                                         if (_status.event.getParent(i).name == i) {
@@ -20081,7 +20081,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 3');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.shiyong = result.links.slice(0);
                                 } else event.goto(6);
                                 ('step 4');
@@ -20763,7 +20763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     //QQQ
                                     player.gain(result.links[0], event.target);
                                     event.target.$give(1, player);
@@ -21108,7 +21108,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(function (result) {
                                             lib.skill.zymyuanmiao_backup.viewAs = { name: result.name, cards: [result] };
@@ -24068,7 +24068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseCardButton(trigger.cards, '婆娑:选择收回的牌')
                                         .set('ai', (button) => 20 - get.value(button.link))
                                         .forResult();
-                                    if (result.links && result.links.length) {
+                                    if (result.links?.length) {
                                         player.gain(result.links);
                                         game.log(player, '收回了', result.links);
                                     }

@@ -1853,7 +1853,7 @@ const skills = {
 				});
 			('step 1');
 			var evt = event.getParent(2);
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				var card = result.links[0];
 				var name = card.name;
 				if (evt.name == 'chooseToUse') {

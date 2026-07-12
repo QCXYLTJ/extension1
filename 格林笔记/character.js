@@ -791,7 +791,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					player.chooseButton(['惶恐:选择要获得的牌', Array.from(ui.discardPile.childNodes)]);
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						player.gain(result.links, 'gain2', 'log').gaintag.push('gl_huangkong');
 					}
 				},
@@ -1094,7 +1094,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return true;
 					});
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						player.addSkill('gl_mozhuang_discard');
 						while (result.links.length) {
 							var card = result.links.shift();
@@ -4606,7 +4606,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					player.chooseButton(true, ['驱虎:我的乐雅哪去了？', list]);
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						player.markSkill('gl_qvhu');
 						player.storage.gl_qvhu = result.links[0];
 						player.addSkill('gl_qvhu_gain');
@@ -9270,7 +9270,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						var cards = result.links.slice(0);
 						while (cards.length) {
 							var card = cards.pop();
@@ -9631,7 +9631,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						player.chooseUseTarget(result.links[0][2], true, false);
 					}
 				},
@@ -10087,7 +10087,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							'step 0';
 							player.chooseButton(['求法:请选择要交给' + get.translation(trigger.player) + '的牌', Array.from(ui.discardPile.childNodes)], [1, 2]);
 							('step 1');
-							if (result.bool && result.links && result.links.length) {
+							if (result.links?.length) {
 								trigger.player.gain(result.links, 'gain2', 'log');
 							}
 						},
@@ -10210,7 +10210,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					if (player.getHistory('useCard').length == 0) select[1]++;
 					player.chooseButton(['自守:请选择要获得的牌', Array.from(ui.discardPile.childNodes)], select);
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						player.gain(result.links, 'gain2', 'log');
 					}
 				},
@@ -10730,7 +10730,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.value(card, _status.event.player, 'raw');
 					});
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						target.addTempSkill('gl_muyang_die');
 						target.gain(result.links, 'gain2', 'log');
 						target.loseHp(target.hp);
@@ -11616,7 +11616,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					player.chooseButton(['吟春:请选择要令' + get.translation(target) + '获得的牌', Array.from(ui.discardPile.childNodes)]);
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						target.gain(result.links, 'gain2', 'log').gaintag.push('gl_yinchun');
 						target.addSkill('gl_yinchun_card');
 					}

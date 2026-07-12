@@ -13827,7 +13827,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           })
           .set('att', get.attitude(player, trigger.source) <= 0);
         ('step 1');
-        if (result.bool && result.links && result.links.length) {
+        if (result.links?.length) {
           var card = result.links[0];
           if (get.color(card) == 'red') {
             game.playAudio('../extension/忽悠宇宙/audio/skill/mengsizhi1.mp3');
@@ -16481,7 +16481,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           }
         });
         ('step 1');
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           if (result.links[0] == 0) {
             player
               .chooseTarget(true, '选择一名角色', '选择原目标则取消之,选择非原目标则增加之', function (card, player, target) {

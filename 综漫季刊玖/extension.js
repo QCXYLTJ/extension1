@@ -4952,7 +4952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.discardPlayerCard(target, 1, 'h', true);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.color(result.links[0]) == get.color(cards[0])) {
                                         target.gain(target.getCards('e'));
                                         target.addTempSkill('zmguyuehuguang_0', { player: 'discardEnd' });

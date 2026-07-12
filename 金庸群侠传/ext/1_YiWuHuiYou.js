@@ -19662,7 +19662,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.line(trigger.source, 'red');
                                     player.addToExpansion(result.links, trigger.source, 'give', 'log').gaintag.add('ywhy_mingcha');
                                     game.log(player, '将', trigger.source, '的', result.links, '认作凶器.');

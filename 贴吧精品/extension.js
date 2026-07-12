@@ -14591,7 +14591,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var evt = event.getParent(2);
                                     if (event.getParent(3).name == 'phaseUse') {
                                         event.target.lose(result.links[0], ui.special);

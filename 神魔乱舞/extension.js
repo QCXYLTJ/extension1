@@ -2376,7 +2376,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     });
                                 ('step 2');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';
                                     if (aozhan) {
@@ -5351,7 +5351,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     event.target = result.targets[0]; // 记录选择的目标
                                 }
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     // 如果成功选择了展示的牌,则判断是否有杀
                                     var yousha = false;
                                     player.showCards(result.links);

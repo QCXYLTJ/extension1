@@ -310,7 +310,7 @@ window.gl_load(function (lib, game, ui, get, ai, _status) {
             player.chooseButton(true, ['探宝:请选择要获得的装备', list]);
           }
           'step 1';
-          if (result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             player.gain(result.links, 'gain2');
           }
         },
@@ -1067,7 +1067,7 @@ window.gl_load(function (lib, game, ui, get, ai, _status) {
           }
           player.chooseButton(['是否发动【嗜伤】？', cards]);
           'step 1';
-          if (result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             player.gain(result.links, 'gain2', 'log');
             event.card = result.links[0];
             trigger.num++;
@@ -1145,7 +1145,7 @@ window.gl_load(function (lib, game, ui, get, ai, _status) {
           event.cards = get.cards(5);
           player.chooseButton(['魔哮:请选择一张牌获得之', event.cards], true);
           'step 1';
-          if (result.bool && result.links && result.links.length) {
+          if (result.links?.length) {
             player.gain(result.links);
             event.cards.remove(result.links[0]);
             player.$throw(event.cards, 1000);

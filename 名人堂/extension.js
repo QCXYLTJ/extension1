@@ -7693,7 +7693,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											})
 											.forResult();
-										if (result.links && result.links.length) {
+										if (result.links?.length) {
 											if (result.links.includes('出牌阶段(限1次)')) {
 												player.addTempSkill('XS_youmie_temp1');
 												player.loseHp(1);
@@ -8282,7 +8282,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									})
 									.forResult();
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									if (result.links.includes('判定阶段')) {
 										player.storage.XS_xianzhuo.push('判定阶段');
 										player.skip('phaseJudge');
@@ -18265,7 +18265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 3');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var evt = event.getParent(2);
 									var cds = result.links[0];
 									event.pla.lose(cds, ui.special, 'toStorage');
@@ -22130,7 +22130,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									})
 									.forResult();
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									if (result.links.includes('伤害转火属性')) {
 										trigger.Changena = true;
 									}
@@ -26799,7 +26799,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									})
 									.forResult();
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									if (result.links.includes('摸牌阶段摸牌数')) {
 										player.storage.XS_yangxing[0][0] = 1;
 										player.storage.XS_yangxing[0][1] *= 0.5;
@@ -34218,7 +34218,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.chooseCardButton('你可获得' + get.translation(trigger.player) + '的1张坐骑牌,并令1名角色装备之.', cds)
 										.set('ai', (button) => get.value(button.link))
 										.forResult();
-									if (result.links && result.links.length) {
+									if (result.links?.length) {
 										const result1 = await player
 											.chooseTarget('令1名角色装备' + get.translation(result.links), 1, true)
 											.set('ai', (target) => {

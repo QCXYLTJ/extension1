@@ -2207,7 +2207,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         : 0,
                                 );
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (!trigger.fixedResult) trigger.fixedResult = {};
                                     trigger.fixedResult[player.playerid] = result.links[0];
                                     let evt = game.createEvent('angel_renzhi.compare.log', false);
@@ -2243,7 +2243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton([`###${get.prompt('angel_renzhi')}###每回合限两次,当【仁】移入游戏时,你可以将此牌交给一名角色`, trigger.cardxs]).set('ai', (button) => get.value(button.link));
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     trigger.cardxs.removeArray(result.links);
                                     event.togive = result.links.slice(0);
                                     player
@@ -6256,7 +6256,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 4');
                                 if (event.bool1) {
-                                    if (result.bool && result.links && result.links.length) {
+                                    if (result.links?.length) {
                                         event.target.give(
                                             event.target.getCards('h', (c) => c.suit == result.links[0].suit),
                                             player,
@@ -8079,7 +8079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.finish();
                                 ('step 2');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name;
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -8312,7 +8312,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.finish();
                                 ('step 2');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name;
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(
@@ -10057,7 +10057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';
                                     if (aozhan) {
@@ -24608,7 +24608,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return;
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     //第三个参数false为不计入杀的次数
                                     var card = game.createCard({
                                         name: result.links[0][2],

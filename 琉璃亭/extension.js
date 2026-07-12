@@ -8761,7 +8761,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         } else {
                                         }
                                         ('step 1');
-                                        if (result.links && result.links.length) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                         }
                                         if (result.bool) {

@@ -2460,7 +2460,7 @@ const skill = {
 							event.finish();
 						}
 						('step 1');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							const card = result.links[0];
 							event.card = card;
 							let cards = target.getCards('h').filter(function (c) {
@@ -2483,7 +2483,7 @@ const skill = {
 							player.chooseCardButton(event.cardsx, 1).set('prompt', '请选择一张牌获得,或者取消,然后获得其藏起来的牌').set('complexCard', true);
 						}
 						('step 4');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							player.gain(result.links[0], target, 'give');
 						} else {
 							player.gain(card, target, 'give');
@@ -2658,7 +2658,7 @@ const skill = {
 							event.finish();
 						}
 						('step 1');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							const card = result.links[0];
 							event.card = card;
 							let cards = target.getCards('h').filter(function (c) {
@@ -2681,7 +2681,7 @@ const skill = {
 							player.chooseCardButton(event.cardsx, 1).set('prompt', '请选择一张牌获得,或者取消,然后获得其藏起来的牌').set('complexCard', true);
 						}
 						('step 4');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							player.gain(result.links[0], target, 'give');
 						} else {
 							player.gain(card, target, 'give');

@@ -498,7 +498,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return val;
                                 });
                                 ('step 2');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.cards.remove(result.links[0]);
                                     player.gain(result.links[0], 'draw');
                                     event.card = event.cards[0];
@@ -2586,7 +2586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.type(result.links[0]) == 'equip') {
                                         trigger.player.useCard({ name: 'xlg_jingong' }, event.target, false);
                                     } else {

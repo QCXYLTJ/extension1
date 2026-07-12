@@ -1534,7 +1534,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     }
                 );
                 ('step 1');
-                if (result.bool && result.links && result.links.length) {
+                if (result.links?.length) {
                     event.result = { bool: true, skills: result.links };
                     if (event.callback) {
                         event.callback(result, player, target); //这里可以自定义获得的是否临时技能//

@@ -4450,7 +4450,7 @@ const skill = {
                     });
                     ('step 1');
                     let evt1 = event.getParent(2);
-                    if (result.bool && result.links && result.links.length) {
+                    if (result.links?.length) {
                         let name = false;
                         let cards = [];
                         let nature = null;
@@ -45666,7 +45666,7 @@ const skill = {
             });
             ('step 1');
             let evt1 = event.getParent(2);
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let name = result.links[0][2]; //(event.cardName||(get.subtype(result.links[0])=='equip4'?'sha':'shan'));
                 const result = target.getCards('h')[0];
                 //	game.log(name)
@@ -46398,7 +46398,7 @@ const skill = {
             });
             ('step 1');
             let evt1 = event.getParent(2);
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let name = 'sha'; //(event.cardName||(get.subtype(result.links[0])=='equip4'?'sha':'shan'));
                 const result = result.links[0];
                 game.broadcastAll(
@@ -46595,7 +46595,7 @@ const skill = {
                 event.finish();
             }
             ('step 5');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 event.target.$give(result.links[0], trigger.player, false);
                 trigger.player.chooseUseTarget('选择杀(' + get.translation(result.links[0]) + ')的目标', { name: 'sha', cards: [result.links[0]], storage: { leicdguanzheng: true } }, [result.links[0]], true);
             }
@@ -47747,7 +47747,7 @@ const skill = {
                 game.log(player, '拒绝了', trigger.player, '的申请');
             }
             ('step 3');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 trigger.player.gain(result.links, player, 'give');
                 trigger.player.addTempSkill('leign_shibao3');
                 trigger.player.storage.leign_shibao3 = result.links.length;

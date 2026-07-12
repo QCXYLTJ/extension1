@@ -11881,7 +11881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 });
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.discard(event.cards);
                                     var list = [];
                                     for (var i of result.links) {

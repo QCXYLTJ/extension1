@@ -35856,7 +35856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     trigger.cancel();
                                     player.addSkill('tyj_duyuan_sha');
-                                    if (result.links && result.links.length) {
+                                    if (result.links?.length) {
                                         if (result.links.length > 1) {
                                             game.playAudio('../extension/汤圆精品包/audio/tyj_duyuan_EXeffect.mp3');
                                         }
@@ -36960,7 +36960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player
                                         .chooseTarget(1, false, '将选择的牌分配给一位不为' + get.translation(get.owner(result.links[0])) + '的角色', function (card, player, target) {
@@ -41535,7 +41535,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2) || event.getParent('chooseToUse');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     var name = card.name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';

@@ -3069,7 +3069,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('selectButton', [1, Infinity]);
                     ('step 1');
-                    if (result.links && result.links.length) {
+                    if (result.links?.length) {
                         var links = result.links;
                         for (var i of links) {
                             player.disableEquip(i);

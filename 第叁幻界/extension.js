@@ -18886,7 +18886,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (get.color(result.links[0]) == event.color) player.draw();
 									else event.target.draw();
 								}
@@ -36273,7 +36273,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.discardPlayerCard(target, 'hej', [1, event.num], true);
 								} else event.finish();
 								('step 3');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var x = 0,
 										y = 0,
 										z = 0;
@@ -65394,7 +65394,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									var name = card.name;
 									game.broadcastAll(
@@ -69433,7 +69433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								} else player.choosePlayerCard(true, target, 'e');
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var name = event.cardName || (get.type(result.links[0]) == 'equip' && (get.color(result.links[0]) == 'black' ? 'sha' : 'shan'));
 									if (evt.name == 'chooseToUse') {
 										game.broadcastAll(

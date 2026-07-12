@@ -774,7 +774,7 @@ const skill = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				var owner = get.owner(result.links[0]);
 				if (owner) {
 					owner.give(result.links, player);
@@ -2315,7 +2315,7 @@ const skill = {
 			if (event.discard) {
 				player.discardPlayerCard(target, "h", true, "visible");
 			} else {
-				if (result.links && result.links.length) {
+				if (result.links?.length) {
 					player.gain(result.links, false);
 					event.cards.remove(result.links[0]);
 					target.gain(event.cards, false);

@@ -12756,7 +12756,7 @@ game.import('character', function () {
             }
           }
           ('step 1');
-          if (result.links && result.links.length) {
+          if (result.links?.length) {
             event.cards = result.links;
           }
           ('step 2');

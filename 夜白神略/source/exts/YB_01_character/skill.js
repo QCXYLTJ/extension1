@@ -1729,7 +1729,7 @@ const skill = {
 				event.finish();
 			}
 			('step 1');
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 			}
 			event.finish();
@@ -19113,7 +19113,7 @@ const skill = {
 						player.chooseButton(['妖异:选择要转化的牌', equips]);
 						('step 2');
 						let evt = event.getParent(2);
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							let name = event.card.name;
 							game.broadcastAll(
 								function (result, name) {
@@ -19736,7 +19736,7 @@ const skill = {
 				});
 			('step 1');
 			let evt1 = event.getParent(2);
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				let name = result.links[0].name,
 					aozhan = player.hasSkill('aozhan') && name == 'tao';
 				if (aozhan) {

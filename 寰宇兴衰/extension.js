@@ -276,7 +276,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.num1 = 0;
                                 event.num2 = 0;
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         if (get.type(i) == 'basic') event.num1++;
                                         else event.num2++;

@@ -22275,7 +22275,7 @@ export async function precontent(config, pack) {
                 //     player.send('closeDialog',event.videoId);
                 // }
                 // event.dialog.close();
-                if (result.bool && result.links && result.links.length) {
+                if (result.links?.length) {
                     var list = result.links,
                         bool = false;
                     for (var i of list) {

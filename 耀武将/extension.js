@@ -12485,7 +12485,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (result.cards[0].name == 'shan') trigger.target.draw();
                                 }
                                 ('step 2');
@@ -25527,7 +25527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.type(result.links[0], null, result.links[0].original == 'h' ? player : false) == 'equip') {
                                         trigger.parent.directHit.add(trigger.target);
                                     } else {

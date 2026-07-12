@@ -189,7 +189,7 @@ export let info = {
           game.log(player, '的', '#g手牌上限+2');
         }
         'step 1';
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           player.loseToDiscardpile(result.links);
           player.markAuto(event.name, trigger.player);
           trigger.player.damage();
@@ -234,7 +234,7 @@ export let info = {
                 'step 0';
                 player.chooseButton(['获得一张[智]', target.getExpansions('dqzw_rubbish_zhimou')], true);
                 'step 1';
-                if (result.links && result.links.length) player.gain(result.links, 'gain2');
+                if (result.links?.length) player.gain(result.links, 'gain2');
               },
               {
                 player: target,
@@ -315,7 +315,7 @@ export let info = {
           set('_trigger', trigger);
         'step 1';
         let count = player.getStat('triggerSkill');
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           let list = [];
           player.loseToDiscardpile(result.links);
           trigger.targets.remove(trigger.target);
@@ -371,7 +371,7 @@ export let info = {
                 'step 1';
                 player.choosePlayerCard(player, 'hej', [1, Infinity], true, '将自己区域内至少一张牌置入' + get.translation(target) + '的[智]');
                 'step 2';
-                if (result.links && result.links.length) lib.skill.dqzw_rubbish_zhimou.add(target, result.links);
+                if (result.links?.length) lib.skill.dqzw_rubbish_zhimou.add(target, result.links);
               },
               {
                 player: target,
@@ -1005,7 +1005,7 @@ export let info = {
             event.finish();
           }
         'step 1';
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           player.gain(result.links, 'gain2');
         }
       },
@@ -2157,7 +2157,7 @@ export let info = {
               dialog.buttons[dialog.buttons.indexOf(button)] = card;
             }
         };
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           let target = event.target || (!player.isDamaged() && trigger.targets.length == 1 ? trigger.targets[0] : trigger.player);
           if (player.isOnline2()) player.send(event._showCard, result, event.videoId, target, event._visible); else
             event._showCard(result, event.videoId, target, event._visible);
@@ -2181,7 +2181,7 @@ export let info = {
         }
         event._result = {};
         'step 2';
-        if (result.links && result.links.length) {
+        if (result.links?.length) {
           (event.target || (!player.isDamaged() && trigger.targets.length == 1 ? trigger.targets[0] : trigger.player)).lose(result.links, ui.cardPile, 'insert');
           game.log(player, '将', result.links, '置于牌堆顶');
         }

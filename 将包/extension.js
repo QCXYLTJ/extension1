@@ -1414,7 +1414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('reverse', _status.currentPhase && _status.currentPhase.next ? get.attitude(player, _status.currentPhase.next) > 0 : false);
                                 }
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+                                if (result.links?.length) cards = result.links.slice(0);
                                 while (cards.length) {
                                     var card = cards.pop();
                                     if (get.position(card, true) == 'o') {
@@ -2543,7 +2543,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         game.broadcastAll(function (result) {
                                             lib.skill.aocai_backup.viewAs = { name: result.name, cards: [result] };

@@ -7380,7 +7380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             });
                         ('step 1');
                         var evt = event.getParent(2);
-                        if (result.bool && result.links && result.links.length) {
+                        if (result.links?.length) {
                             var name = get.subtype(result.links[0]) == 'equip3' ? 'shan' : 'sha';
                             if (evt.name == 'chooseToUse') {
                                 game.broadcastAll(
@@ -19829,7 +19829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('filterButton', (button) => _status.event.skill1.includes(button.link))
                                         .set('ai', () => skills.randomGets(_status.event.player.hp))
                                         .forResult();
-                                    if (result.links && result.links.length) {
+                                    if (result.links?.length) {
                                         for (var i of result.links) {
                                             game.log(player, '获得了技能', '#g【' + get.translation(i) + '】');
                                         }
@@ -19924,7 +19924,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     })
                                     .forResult();
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'log', 'gain2');
                                     if (player.countCards('he')) {
                                         const result1 = await player

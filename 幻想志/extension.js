@@ -856,7 +856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 										('step 1');
 										game.broadcastAll('closeDialog', event.videoId);
-										if (result.bool && result.links && result.links.length) {
+										if (result.links?.length) {
 											player.init(result.links[0], 'RE_yuanhuan');
 										}
 									},

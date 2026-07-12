@@ -9687,7 +9687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 event.dialog.close();
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.trymarkAutoSkill('qyhc_zhenting_roundcount');
                                     event.links = result.links.slice(0);
                                 } else event.finish();

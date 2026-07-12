@@ -7431,7 +7431,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.storage.zmxkczys.push(result.links[0].number);
                                 }
                                 ('step 3');

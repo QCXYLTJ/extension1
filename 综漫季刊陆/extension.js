@@ -5032,7 +5032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 4');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.storage.zmt_np -= 10;
                                 }
                             },
@@ -6068,7 +6068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var kg = 0;
                                     if (Array.isArray(trigger.cards))
                                         for (var i of trigger.cards) {

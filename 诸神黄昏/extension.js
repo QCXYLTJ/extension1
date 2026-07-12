@@ -5595,7 +5595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.color(result.links[0]) == 'black') {
                                         trigger.player.useCard({ name: 'juedou' }, event.target, false);
                                     } else {
@@ -11760,7 +11760,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var bool = false;
                                     if (event.hCards.length == 1 && event.hCards.includes(result.links[0])) {
                                         bool = true;
@@ -19790,7 +19790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 8 - get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var c1 = [],
                                         c2 = [];
                                     for (var i of result.links) {
@@ -58086,7 +58086,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseButton(true, event.cards.length, ['发动此技能？', event.cards]);
                                 }
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+                                if (result.links?.length) cards = result.links.slice(0);
                                 while (cards.length) {
                                     var card = cards.pop();
                                     if (get.position(card, true) == 'o') {
@@ -64424,7 +64424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.type(result.links[0], null, result.links[0].original == 'h' ? trigger.target : false) == 'equip') {
                                         trigger.parent.directHit.add(trigger.target);
                                     } else if (result.links[0].original == 'j' || get.type(result.links[0], 'trick', result.links[0].original == 'h' ? trigger.target : false) == 'trick') {

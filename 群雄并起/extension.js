@@ -4197,7 +4197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('att', get.attitude(player, trigger.target) <= 0);
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (get.type(result.links[0]) == 'equip') {
 										trigger.directHit = true;
 									} else if (trigger.cards) {
@@ -7794,7 +7794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 3');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var owner = get.owner(result.links[0]);
 									if (owner) {
 										owner.give(result.links, player);
@@ -12230,7 +12230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('att', get.attitude(player, trigger.target) <= 0);
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (get.type(result.links[0]) == 'equip') {
 										trigger.directHit = true;
 										player.draw(result.links[0].number);

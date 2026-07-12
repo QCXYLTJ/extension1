@@ -56178,7 +56178,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.jzsha = result.links[0];
                                     event.tar.say('结阵!');
                                     event.tar.showCards(result.links);

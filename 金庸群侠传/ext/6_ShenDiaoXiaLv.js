@@ -2220,7 +2220,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return _status.event.player.getUseValue(button.link);
               });
             ('step 1');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               var card = result.links[0];
               var next = player.chooseUseTarget(card, true, false);
               var bool = get.type(card) == 'trick' || (get.type(card) == 'basic' && !['shan', 'tao', 'jiu', 'du'].includes(card.name));

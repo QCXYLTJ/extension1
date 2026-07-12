@@ -3486,7 +3486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									for (var i of result.links) {
 										event.cards.push(i);
 									}
@@ -3592,7 +3592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (result.links[0].number == player.storage.sgyj_benta) {
 										trigger.parent.directHit.add(trigger.target);
 									}
@@ -11992,7 +11992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									player.storage.jp_guyao = result.links[0].suit;
 									player.addTempSkill('jp_guyaocount');
 									player.addTempSkill('jp_guyaodamage');

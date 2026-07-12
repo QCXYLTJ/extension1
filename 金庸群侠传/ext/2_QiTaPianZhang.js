@@ -5988,7 +5988,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return;
             }
             ('step 1');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               target.$give(result.links[0], target.next, false);
               target.next.equip(result.links[0]);
             } else if (
@@ -11931,7 +11931,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.value(objList[button.link], player, 'raw');
             });
             ('step 2');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
               var suit = result.links[0];
               game.log(player, '选择了', suit);
               player.popup(suit);

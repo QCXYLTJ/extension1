@@ -3703,7 +3703,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             'step 1';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               if (event.getParent('chooseToUse').type == 'dying') {
                 event.dying = player;
                 event.type = 'dying';
@@ -4205,7 +4205,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('att', get.attitude(player, trigger.target) <= 0);
             'step 1';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               if (get.type(result.links[0], null, result.links[0].original == 'h' ? trigger.target : false) == 'equip') {
                 trigger.parent.directHit.add(trigger.target);
                 game.log(trigger.card, '对', trigger.target, '不可闪避!');
@@ -4383,7 +4383,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return num;
             });
             'step 1';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               if (result.links[0].suit != 'club') {
                 player.loseHp();
               }

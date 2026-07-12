@@ -5635,7 +5635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('att', get.attitude(player, event.target) > 0);
                                 }
                                 ('step 3');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.color(result.links[0]) == get.color(cards[0])) {
                                         if (player.isDamaged()) {
                                             //player.recover();
@@ -5714,7 +5714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.color(result.links[0]) == 'red') {
                                         trigger.player.useCard({ name: 'sha' }, event.target, false);
                                     } else {
@@ -6707,7 +6707,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (get.tag(result.links[0], 'damage')) {
                                         player.draw();
                                     } else {

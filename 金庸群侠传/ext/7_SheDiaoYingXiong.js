@@ -3459,7 +3459,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('att', att).
             set('ai2', ai2);
             'step 1';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               var suits = [];
               trigger.target.countCards('he', function (cardx) {
                 var suit = cardx.suit;

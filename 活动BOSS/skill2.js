@@ -22136,7 +22136,7 @@ const skill = {
                 })
                 .set('att', get.attitude(player, trigger.target) <= 0);
             ('step 1');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 if (get.type(result.links[0], null, result.links[0].original == 'h' ? player : false) != 'basic') {
                     trigger.parent.directHit.add(trigger.target);
                     player.addTempSkill('shanhe_jianchu2');
@@ -46940,7 +46940,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let num = Math.random();
                 if (num <= Math.random(0.4, 0.8)) {
                     event.num = result.links[0].number;
@@ -50968,7 +50968,7 @@ const skill = {
                 });
             ('step 1');
             let evt1 = event.getParent(2);
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let name = result.links[0].name,
                     aozhan = player.hasSkill('aozhan') && name == 'tao';
                 if (aozhan) {
@@ -51119,7 +51119,7 @@ const skill = {
                 });
             ('step 1');
             let evt1 = event.getParent(2);
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let name = result.links[0].name,
                     aozhan = player.hasSkill('aozhan') && name == 'tao';
                 if (aozhan) {
@@ -58496,7 +58496,7 @@ const skill = {
                 return 10;
             });
             ('step 1');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
                 const n = result.links.length;
                 lib.skill.nianshou_lingli.change(player, -n);
                 player.draw(n);

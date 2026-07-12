@@ -13092,7 +13092,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 if (get.tag(result.links[0], 'damage')) {
                     player.recover();
                     _status.currentPhase.recover();
@@ -23965,7 +23965,7 @@ const skill = {
                 event.target = result.targets[0];
             }
             ('step 2');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
                 let yousha = false;
                 player.showCards(result.links);
                 for (let i of result.links) {
@@ -43497,7 +43497,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let bool = false;
                 if (event.hCards.length == 1 && event.hCards.includes(result.links[0])) {
                     bool = true;
@@ -45102,7 +45102,7 @@ const skill = {
                     'step 0';
                     event.cards = trigger.cards.filterInD();
                     ('step 1');
-                    if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+                    if (result.links?.length) cards = result.links.slice(0);
                     while (cards.length) {
                         let card = cards.pop();
                         if (get.position(card, true) == 'o') {
@@ -47417,7 +47417,7 @@ const skill = {
                 return val;
             });
             ('step 2');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
                 event.cards.remove(result.links[0]);
                 player.gain(result.links[0], 'draw');
                 event.card = event.cards[0];
@@ -60735,7 +60735,7 @@ const skill = {
                     .set('att', get.attitude(player, event.target) <= 0);
             }
             ('step 3');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 if (get.subtype(result.links[0]) == 'equip1') player.enableEquip('equip1');
                 if (get.subtype(result.links[0]) == 'equip2') player.next.recover() && player.enableEquip('equip2');
                 if (get.subtype(result.links[0]) == 'equip3') player.enableEquip('equip3');
@@ -67484,7 +67484,7 @@ const skill = {
             'step 0';
             event.cards = trigger.cards.filterInD();
             ('step 1');
-            if (result.bool && result.links && result.links.length) cards = result.links.slice(0);
+            if (result.links?.length) cards = result.links.slice(0);
             while (cards.length) {
                 let card = cards.pop();
                 if (get.position(card, true) == 'o') {

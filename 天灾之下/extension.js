@@ -4618,7 +4618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								);
 								('step 1');
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									var name, i;
 									for (var i of lib.phaseName) {
 										if (_status.event.getParent(i).name == i) {
@@ -7760,7 +7760,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								const result = await player.discardPlayerCard(event.target, 1 + Math.min(4, (game.roundNumber - 1 - (player.storage[event.name] || 0)) * 2), true).forResult();
 								player.storage[event.name] = game.roundNumber - 1;
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									if (result.links.length > 1) player.loseHp();
 									var card = result.links.filter((card) => card.name == 'sha');
 									if (card.length) {
@@ -11486,7 +11486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (evt.name == 'chooseToUse') {
 										game.broadcastAll(
 											function (cards) {
@@ -13353,7 +13353,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								);
 								next.set('prompt', '闪袭:请选择你要封锁' + get.translation(target) + '的牌');
 								('step 1');
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									var card = target.getCards('e').filter((cardx) => result.links.includes(cardx));
 									if (card.length) target.gain(card, 'gain2'); //QQQ
 									event.choCards = result.links;
@@ -13736,7 +13736,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 1');
-								if (result.links && result.links.length) {
+								if (result.links?.length) {
 									//QQQ
 									game.lockDown(result.links);
 									target.addTempSkill('lockDown', { player: 'phaseBefore' });
@@ -19445,7 +19445,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									player.gain(result.links, 'draw').set('gaintag', ['ark_jusha']);
 									if (evt.name == 'chooseToUse') {
 										game.broadcastAll(
@@ -23314,7 +23314,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											trigger.source.damage(player);
 											if (player.storage.ark_shanhaixiangyong && player.storage.ark_shanhaixiangyong.length) {
 												const result1 = await player.chooseCardButton('将一张<羽翼>交给' + get.translation(trigger.source), player.storage.ark_shanhaixiangyong, true).forResult();
-												if (result.links && result.links.length) {
+												if (result.links?.length) {
 													player.$give(result.links, trigger.source);
 													trigger.source.markAuto('ark_shanhaixiangyong', result.links);
 												}
@@ -29831,7 +29831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									player.gain(result.links, 'gain2');
 								}
 							},

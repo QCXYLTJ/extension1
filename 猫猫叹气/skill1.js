@@ -1785,7 +1785,7 @@ const skill = {
             'step 1';
             trigger.target.discardPlayerCard('h', player, true);
             ('step 2');
-            if (result.links && result.links.length) {
+            if (result.links?.length) {
                 if (result.links[0].suit == 'heart' || result.links[0].name == 'sha') {
                     player.discardPlayerCard('h', 2, trigger.target, true);
                     event.finish();
@@ -55093,7 +55093,7 @@ const skill = {
                 });
             ('step 1');
             let evt1 = event.getParent(2);
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 let name = result.links[0].name;
                 if (evt1.name == 'chooseToUse') {
                     game.broadcastAll(

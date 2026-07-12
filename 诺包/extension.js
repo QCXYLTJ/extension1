@@ -8621,7 +8621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     var list = [];
                                     for (var i = 0; i < lib.inpile.length; i++) {
@@ -8685,7 +8685,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 evt.goto(0);
                                 ('step 2');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     var cardx = event.cards;
                                     game.broadcastAll(
@@ -15899,7 +15899,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     delete evt.wuxieresult2.skill;
                                     delete evt.wuxieresult2.targets;
                                     evt.wuxieresult2.card = get.autoViewAs(
@@ -15946,7 +15946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 var evt = event.parent,
                                     target = event.result.targets[0];
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     delete event.result.targets;
                                     event.result.cards = result.links;
                                     target.$give(result.links[0], player, false);
@@ -16306,7 +16306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         var name = result.links[0][2],
                                             cardx = [],
@@ -16403,7 +16403,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 if (cards.length > 1) player.choosePlayerCard('选择一张牌进入濒死', true, 1, target, 'ej');
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (!event.cardsname) {
                                         event.cardsname = result.links;
                                         game.log(result.links[0], '被绑票(进入濒死状态)');
@@ -23137,7 +23137,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (evt.name == 'chooseToUse') {
                                         var name = result.links[0][2],
                                             cardx = [],
@@ -25467,7 +25467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 if (cards.length > 1) player.choosePlayerCard('选择一张牌进入濒死', true, 1, target, 'ej');
                                 ('step 1');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (!event.cardsname) {
                                         event.cardsname = result.links;
                                         game.log(result.links[0], '被绑票(进入濒死状态)');

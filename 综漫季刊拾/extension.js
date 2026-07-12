@@ -3919,7 +3919,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discardPlayerCard('h', result.targets[0], true);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.list.push(result.links[0]);
                                     event.s1 = result.links[0].suit;
                                 }
@@ -3951,7 +3951,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 5');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.list.push(result.links[0]);
                                     event.s2 = result.links[0].suit;
                                 }
@@ -3983,7 +3983,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 8');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.list.push(result.links[0]);
                                     if (result.links[0].suit == event.s1 && event.s1 == event.s2) player.gain(event.list, 'gain2');
                                     if (event.num == 3) event.goto(10);
@@ -5349,7 +5349,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.line(event.tr, { color: [238, 221, 255] });
                                 player.discardPlayerCard('h', event.tr, '可弃置' + get.translation(event.tr) + '一张手牌', false);
                                 ('step 3');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (player.storage.zmxiuluojianglin == 0 && player.hasUseTarget(result.links[0])) {
                                         player.chooseUseTarget(result.links[0], false);
                                     } else event.goto(5);
@@ -5370,7 +5370,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 6');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     if (player.storage.zmxiuluojianglin == 0 && player.hasUseTarget(result.links[0])) {
                                         player.chooseUseTarget(result.links[0], false);
                                     } else event.goto(8);

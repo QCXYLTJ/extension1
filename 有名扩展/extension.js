@@ -2727,7 +2727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     game.playgqj(['gqjzhengrong1', 'gqjzhengrong2'].randomGet());
                                     if (get.type(result.links[0]) == 'trick' && get.tag(result.links[0], 'damage')) {
                                         event.finish();

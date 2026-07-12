@@ -72,7 +72,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					('step 1');
 					if (game.me.isOnline2()) game.me.send('closeDialog', event.videoId);
 					event.dialog.close();
-					if (result.links && result.links.length) {
+					if (result.links?.length) {
 						let nums = result.links.sort();
 						event.names = [];
 						for (let num of nums) {

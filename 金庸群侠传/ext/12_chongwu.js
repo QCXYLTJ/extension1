@@ -174,7 +174,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: true, links: event.gainList.randomGets(1) };
             }
             'step 2';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               var chongwu = result.links[0];
               lib.card.jycw_baishoujinglin.gainChongWu(target, chongwu);
             }
@@ -318,7 +318,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: true, links: event.gainList.randomGets(1) };
             }
             'step 2';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               var chongwu = result.links[0];
               lib.card.jycw_baishoujinglin.gainChongWu(target, chongwu);
             }

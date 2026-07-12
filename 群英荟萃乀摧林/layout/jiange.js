@@ -2057,7 +2057,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     player.line(result.targets);
                     result.targets[0].loseHp();
                 }
-                if (result.bool && result.links && result.links.length) {
+                if (result.links?.length) {
                     player.gain(result.links[0], 'gain2');
                     event.cards.remove(result.links[0]);
                 }

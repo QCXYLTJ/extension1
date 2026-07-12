@@ -6906,7 +6906,7 @@ const skill = {
                     });
             }
             ('step 2');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 event.jzsha = result.links[0];
                 event.tar.showCards(result.links);
                 var cttt = event.tar;
@@ -7843,7 +7843,7 @@ const skill = {
                 .set('att', att)
                 .set('ai2', ai2);
             ('step 1');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 var suits = [];
                 trigger.target.countCards('he', function (cardx) {
                     var suit = cardx.suit;
@@ -10764,7 +10764,7 @@ const skill = {
                     .set('att', get.attitude(player, event.target) <= 0);
             }
             ('step 3');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 if (get.subtype(result.links[0]) == 'equip1') player.enableEquip('equip1');
                 if (get.subtype(result.links[0]) == 'equip2') player.enableEquip('equip2');
                 if (get.subtype(result.links[0]) == 'equip3') player.enableEquip('equip3');
@@ -11486,7 +11486,7 @@ const skill = {
                 return -get.attitude(player, trigger.player) + 1;
             });
             ('step 2');
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
                 event.num = result.links[0].number;
                 if (event.num) player.storage.lg_mousuan2 = event.num;
                 player.addTempSkill('lg_mousuan2');

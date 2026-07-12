@@ -17215,7 +17215,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                             ('step 2');
                             var evt = event.getParent(2);
-                            if (result.bool && result.links && result.links.length) {
+                            if (result.links?.length) {
                                 player.changeZhuanhuanji('haitu_fnaf_juantu');
                                 var name = result.links[0].name,
                                     aozhan = player.hasSkill('aozhan') && name == 'tao';

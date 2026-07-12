@@ -13833,7 +13833,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         ('step 1');
                                         game.broadcastAll('closeDialog', event.videoId);
-                                        if (result.bool && result.links && result.links.length) {
+                                        if (result.links?.length) {
                                             player.init(result.links[0], 'JX_zhanghe');
                                         }
                                     },
@@ -14620,7 +14620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';
                                     if (aozhan) {
@@ -15110,7 +15110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 game.broadcastAll('closeDialog', event.videoId);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var x = result.links[0],
                                         y = result.links[1];
                                     if (!x[0]) {
@@ -15268,7 +15268,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         next.set('name', trigger.card.name);
                                         ('step 1');
                                         game.broadcastAll('closeDialog', event.videoId);
-                                        if (result.bool && result.links && result.links.length) {
+                                        if (result.links?.length) {
                                             player.storage.DIY_longyuan[result.links[0][0]][result.links[0][1]] = trigger.card.name;
                                         }
                                     },
@@ -24541,7 +24541,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name,
                                         aozhan = player.hasSkill('aozhan') && name == 'tao';
                                     if (aozhan) {
@@ -27822,7 +27822,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseButton([get.prompt('DIY_qianchong'), '请选择要声明的牌', [list1.concat(list2), 'vcard']]);
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.storage.DIY_qianchong_num = 0;
                                     player.storage.DIY_qianchong = false;
                                     player.showCards(
@@ -31944,7 +31944,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return value;
                                     })
                                     .forResult();
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     await player.respond(result.links[0], 'DIY_difa', 'highlight', 'noOrdering');
                                     trigger.player.judging[0] = result.links[0];
                                     trigger.orderingCards.addArray(result.links);
@@ -33590,7 +33590,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 game.broadcastAll('closeDialog', event.videoId);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var name = result.links[0];
                                     if (name && lib.character[name]) {
                                         var skills = lib.character[name][3];
@@ -38171,7 +38171,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 3');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], 'gain2');
                                 }
                                 evt.goto(0);

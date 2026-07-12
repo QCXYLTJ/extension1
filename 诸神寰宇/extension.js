@@ -3543,7 +3543,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var card = result.links[0],
 										name = card.name;
 									if (evt.name == 'chooseToUse') {
@@ -12298,7 +12298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('att', get.attitude(player, trigger.target) <= 0);
 								('step 1');
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									if (get.type(result.links[0], null, result.links[0].original == 'h' ? player : false) != 'basic') {
 										trigger.parent.directHit.add(trigger.target);
 										player.addTempSkill('zshy_jianchu_damage');
@@ -16670,7 +16670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								} else player.choosePlayerCard(true, target, 'e');
 								('step 1');
 								var evt = event.getParent(2);
-								if (result.bool && result.links && result.links.length) {
+								if (result.links?.length) {
 									var name = event.cardName || (get.type(result.links[0]) == 'equip' && (get.color(result.links[0]) == 'black' ? 'sha' : 'shan'));
 									if (evt.name == 'chooseToUse') {
 										game.broadcastAll(

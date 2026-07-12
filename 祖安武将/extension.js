@@ -26677,7 +26677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var evt = event.getParent(2);
                                 var evt2 = _status.event.getParent('phaseUse');
                                 var him = _status.currentPhase;
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var suitlist = {
                                         spade: 1,
                                         club: 2,

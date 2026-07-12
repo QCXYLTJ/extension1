@@ -4369,7 +4369,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   return get.value(button.link);
                 });
                 'step 1';
-                if (result.bool && result.links && result.links.length) {
+                if (result.links?.length) {
                   trigger.source.gain(result.links, 'gain2', 'fromStorage');
                   var storage = player.storage.yttl_yabiao;
                   for (var i in storage) {
@@ -4872,7 +4872,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             player.discardPlayerCard(pos, target, true);
             'step 1';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               //var pos=result.links[0].original;
               var pos = '';
               if (event.hCards.includes(result.links[0])) {
@@ -8121,7 +8121,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 2';
-            if (result.bool && result.links && result.links.length) {
+            if (result.links?.length) {
               var bool = false;
               if (event.hCards.length == 1 && event.hCards.includes(result.links[0])) {
                 bool = true;

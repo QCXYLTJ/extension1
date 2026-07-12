@@ -8890,7 +8890,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					event.num1 = 0;
 					event.num2 = 0;
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						for (var i of result.links) {
 							if (get.type(i) == 'basic') event.num1++;
 							else event.num2++;
@@ -16681,7 +16681,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.set('att', get.attitude(player, trigger.target) <= 0);
 					('step 1');
-					if (result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						if (result.links[0].name == 'sha') {
 							trigger.baseDamage++;
 							game.log(trigger.card, '造成的伤害基础值加一');

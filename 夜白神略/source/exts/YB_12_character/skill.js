@@ -24315,7 +24315,7 @@ const skill = {
 			}
 			('step 1');
 			let evt1 = event.getParent(2);
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				let name = event.cardName || (get.is.attackingMount(result.links[0]) ? 'sha' : 'shan');
 				if (evt1.name == 'chooseToUse') {
 					game.broadcastAll(
@@ -27193,7 +27193,7 @@ const skill = {
 				return get.value(button.link, _status.event.player);
 			});
 			('step 2');
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				event.cards2 = result.links;
 			}
 			('step 3');

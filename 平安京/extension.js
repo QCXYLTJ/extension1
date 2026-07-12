@@ -7360,7 +7360,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(player, button.link, target, target) > 0;
                                 };
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         target.useCard(result.links[i], player);
                                     }
@@ -7845,7 +7845,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 8 - get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     var c1 = [],
                                         c2 = [];
                                     for (var i of result.links) {

@@ -4782,7 +4782,7 @@ const skill = {
           return num;
         })
         .forResult();
-      if (result.links && result.links.length) {
+      if (result.links?.length) {
         game.log('#g【求贤若渴选择了】' + result.links);
         const cards = get.cards(3);
         game.cardsGotoOrdering(cards);

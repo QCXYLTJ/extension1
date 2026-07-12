@@ -51472,7 +51472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 next.set('selectButton', [1, 5]);
                                 ('step 1');
-                                if (result.links && result.links.length) {
+                                if (result.links?.length) {
                                     result.links.sort();
                                     player.storage.szdl_xinweimu_skip = [];
                                     player.addTempSkill('szdl_xinweimu_skip');
@@ -52601,7 +52601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         player.storage.szdl_langgu.push(i);
                                     }

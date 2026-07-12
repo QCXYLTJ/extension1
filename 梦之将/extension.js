@@ -5265,7 +5265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links && result.links.length) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 }
                                 var time = 1000 - (get.utc() - event.time);
