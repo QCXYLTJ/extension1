@@ -1151,7 +1151,7 @@ game.import('extension', function () {
                             }
                         },
                         natures,
-                        player
+                        player,
                     );
                     let numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
                     player.$damagepop(-numx, natures[0]);
@@ -1756,7 +1756,7 @@ game.import('extension', function () {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     );
                                     if (['wuzhong', 'dongzhuxianji'].includes(button.link[2]) && player.countCards('h') < 4) {
                                         return number0(num) * 2 + 10;
@@ -2222,8 +2222,8 @@ game.import('extension', function () {
                             async content(event, trigger, player) {
                                 player.randomDiscard('h', 6);
                                 const list = get.inpile('trick', 'trick').randomGets(3);
-                                for (let i = 0; i < list.length; i++) {
-                                    list[i] = game.createCard(list[i]);
+                                for (const i of list) {
+                                    i = game.createCard(i);
                                 }
                                 player.gain(list, 'draw');
                             },
@@ -2339,7 +2339,7 @@ game.import('extension', function () {
                                                 player
                                                     .getExpansions('化木')
                                                     .filter((i) => get.color(i, false) == color)
-                                                    .randomGet()
+                                                    .randomGet(),
                                             );
                                         },
                                     };
@@ -2495,7 +2495,7 @@ game.import('extension', function () {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     ); //null是距离限制//true是用牌次数限制
                                     if (button.link[3] == 'kami') {
                                         return number0(num) * 2 + 10;
@@ -2590,7 +2590,7 @@ game.import('extension', function () {
                                                     nature: button.link[3],
                                                 },
                                                 null,
-                                                true
+                                                true,
                                             );
                                             if (button.link[2] == 'juedou' && player.hp > player.maxHp / 2) {
                                                 return number0(num) * 8 + 10;
@@ -2867,8 +2867,8 @@ game.import('extension', function () {
                                         if (!hs.length) {
                                             event.num = 0;
                                         }
-                                        for (let i = 0; i < hs.length; i++) {
-                                            if (!cards.includes(hs[i])) {
+                                        for (const i of hs) {
+                                            if (!cards.includes(i)) {
                                                 event.num = 0;
                                                 break;
                                             }
@@ -3788,7 +3788,7 @@ game.import('extension', function () {
                                                         nature: button.link[3],
                                                     },
                                                     null,
-                                                    true
+                                                    true,
                                                 );
                                                 return number0(num) + 10;
                                             })
@@ -3803,7 +3803,7 @@ game.import('extension', function () {
                                                 },
                                                 true,
                                                 false,
-                                                'nodistance'
+                                                'nodistance',
                                             );
                                         }
                                     }
@@ -4938,7 +4938,6 @@ game.import('extension', function () {
                                         (target) => 1.5 * get.effect(target, { name: 'guohe_copy2' }, player, player),
                                         (target) => get.effect(target, { name: 'wuzhong' }, player, player),
                                     ];
-
                                     const { index } = await player
                                         .chooseControl(controllist)
                                         .set('prompt', get.prompt('落宠'))
@@ -5910,11 +5909,11 @@ game.import('extension', function () {
                                         if (result2.moved && result2.moved[0]) {
                                             player.addToExpansion(
                                                 result2.moved[0].filter((q) => !card2.includes(q)),
-                                                'draw'
+                                                'draw',
                                             ).gaintag = ['QD_dongfeng'];
                                             player.gain(
                                                 result2.moved[1].filter((q) => !card1.includes(q)),
-                                                'gain2'
+                                                'gain2',
                                             );
                                         }
                                         const result = await player
@@ -6798,7 +6797,7 @@ game.import('extension', function () {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     );
                                     if (button.link[2] == 'wuzhong') {
                                         return 9999;
@@ -7850,7 +7849,7 @@ game.import('extension', function () {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     );
                                     return number0(num) + 10;
                                 },
@@ -7980,7 +7979,7 @@ game.import('extension', function () {
                             async content(event, trigger, player) {
                                 player.gain(
                                     trigger.cards.filter((q) => q.suit == 'club'),
-                                    'gain2'
+                                    'gain2',
                                 );
                                 player.classList.remove('turnedover');
                             },
@@ -8168,7 +8167,7 @@ game.import('extension', function () {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     );
                                     if (button.link[2] == 'wuzhong') {
                                         return 9999;
@@ -8236,7 +8235,7 @@ game.import('extension', function () {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     );
                                     if (['wuzhong', 'dongzhuxianji'].includes(button.link[2]) && player.countCards('h') < 4) {
                                         return number0(num) * 2 + 10;
@@ -8341,9 +8340,9 @@ game.import('extension', function () {
                             intro: {
                                 content(s, p) {
                                     return `当前全场角色累计失去过的牌包含${game
-                                        .lose()
-                                        .map((q) => q.suit)
-                                        .unique().length
+                                            .lose()
+                                            .map((q) => q.suit)
+                                            .unique().length
                                         }种花色`;
                                 },
                             },
@@ -8503,7 +8502,7 @@ game.import('extension', function () {
                                                     nature: button.link[3],
                                                 },
                                                 null,
-                                                true
+                                                true,
                                             );
                                             return number0(num) + 10;
                                         })
@@ -9067,7 +9066,7 @@ game.import('extension', function () {
                                                     nature: button.link[3],
                                                 },
                                                 null,
-                                                true
+                                                true,
                                             ); //null是距离限制//true是用牌次数限制
                                             return number0(num) + 10; //不加这行会出现有button返回undefined导致无法判断直接结束回合
                                         }, //有些高手写的卡牌返回NAN也会导致无法判断,所以用 Number
@@ -9225,7 +9224,7 @@ game.import('extension', function () {
                                                             nature: button.link[3],
                                                         },
                                                         null,
-                                                        true
+                                                        true,
                                                     ); //null是距离限制//true是用牌次数限制
                                                     return number0(num) + 10;
                                                 })
