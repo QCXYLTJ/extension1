@@ -1013,8 +1013,7 @@ const kangxing2 = function () {
                                     next._trigger = trigger;
                                     next.triggername = namey;
                                     result = await next.setContent(infox.cost).forResult();
-                                    if (result && result.bool) {
-                                    } else {
+                                    if (!result?.bool) {
                                         return;
                                     } //cost没通过就返回
                                 }
@@ -5155,8 +5154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             async content(event, trigger, player) {
-                                if (HL.wangzuoboss && game.players.includes(HL.wangzuoboss)) {
-                                } else {
+                                if (!HL.wangzuoboss || !game.players.includes(HL.wangzuoboss)) {
                                     HL.wangzuoboss = player;
                                 } // 场上只能有一个boss
                                 const shibing = game.players.filter((q) => q.shibing);
@@ -7508,8 +7506,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (links && links[0]) {
                                     game.log(player, '加入律法', links);
                                     HL.lvfa = links;
-                                    if (HL.jielvboss && game.players.includes(HL.jielvboss)) {
-                                    } else {
+                                    if (!HL.jielvboss || !game.players.includes(HL.jielvboss)) {
                                         HL.jielvboss = player;
                                     } // 场上只能有一个boss
                                 }
@@ -7536,8 +7533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         HL.zhenlicaijue += 3;
                                         player.markSkill('_HL_zhenlicaijue');
                                         HL.lvfa = player.storage.HL_tianqi.slice();
-                                        if (HL.jielvboss && game.players.includes(HL.jielvboss)) {
-                                        } else {
+                                        if (!HL.jielvboss || !game.players.includes(HL.jielvboss)) {
                                             HL.jielvboss = player;
                                         } // 场上只能有一个boss
                                     },
@@ -8561,8 +8557,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 }
                                             })
                                             .forResult();
-                                        if (result?.bool) {
-                                        } else {
+                                        if (!result?.bool) {
                                             player.HL_kuangbao = false;
                                             bool = false;
                                         } //无牌可出退出狂暴
@@ -9021,8 +9016,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return game.players.filter((q) => q.qhasSkill('HL_fenshen')).length < 4;
                             },
                             async content(event, trigger, player) {
-                                if (event.cards?.length) {
-                                } else {
+                                if (!event.cards?.length) {
                                     await player.loseHp();
                                 }
                                 player.kekedi();
@@ -9170,8 +9164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return value - get.value(c);
                                     })
                                     .forResult();
-                                if (cards?.length) {
-                                } else {
+                                if (!cards?.length) {
                                     await player.loseHp();
                                 }
                                 const { targets } = await player
@@ -9214,8 +9207,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 20 - get.value(c);
                                     })
                                     .forResult();
-                                if (cards?.length) {
-                                } else {
+                                if (!cards?.length) {
                                     await player.loseHp();
                                 }
                                 const { targets } = await player
@@ -10018,8 +10010,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (const npc of game.players) {
                                     npc.storage.heianzhixing = 0;
                                 }
-                                if (HL.laleiye && HL.laleiye.isIn()) {
-                                } else {
+                                if (!HL.laleiye || !HL.laleiye.isIn()) {
                                     HL.laleiye = player;
                                 }
                                 player.draw(Math.min(player.maxHp, 20));

@@ -2222,10 +2222,8 @@ game.import('extension', function () {
                             async content(event, trigger, player) {
                                 player.randomDiscard('h', 6);
                                 const list = get.inpile('trick', 'trick').randomGets(3);
-                                for (const i of list) {
-                                    i = game.createCard(i);
-                                }
-                                player.gain(list, 'draw');
+                                const list1 = list.map((i) => game.createCard(i));
+                                player.gain(list1, 'draw');
                             },
                             ai: {
                                 basic: {
@@ -3299,8 +3297,7 @@ game.import('extension', function () {
                                     }
                                     while (true) {
                                         const result = await player.chooseToUse().set('type', 'phase').forResult();
-                                        if (result?.bool) {
-                                        } else {
+                                        if (!result?.bool) {
                                             break;
                                         } //QQQ
                                     }
@@ -8267,8 +8264,7 @@ game.import('extension', function () {
                                                     .chooseToGive(player)
                                                     .set('ai', (c) => 8 - get.value(c))
                                                     .forResult();
-                                                if (cards && cards[0]) {
-                                                } else {
+                                                if (!cards?.length) {
                                                     targets[0].loseHp();
                                                     const skill = game.filterSkills(targets[0].GAS(), targets[0]).randomGet();
                                                     if (skill) {
@@ -8340,9 +8336,9 @@ game.import('extension', function () {
                             intro: {
                                 content(s, p) {
                                     return `当前全场角色累计失去过的牌包含${game
-                                            .lose()
-                                            .map((q) => q.suit)
-                                            .unique().length
+                                        .lose()
+                                        .map((q) => q.suit)
+                                        .unique().length
                                         }种花色`;
                                 },
                             },

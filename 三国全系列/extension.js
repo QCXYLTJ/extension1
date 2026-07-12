@@ -1830,8 +1830,7 @@ game.import('extension', function () {
                                 .chooseToDiscard('he', `弃置一张牌,否则此杀无效`)
                                 .set('ai', (card) => 12 - get.value(card))
                                 .forResult();
-                            if (result?.cards?.length) {
-                            } else {
+                            if (!result?.cards?.length) {
                                 trigger.cancel();
                             }
                         }
@@ -5110,8 +5109,7 @@ game.import('extension', function () {
                                     .set('filterCard', (c) => c.suit == suit)
                                     .set('ai', (c) => 6 - get.value(c))
                                     .forResult();
-                                if (cards && cards[0]) {
-                                } else {
+                                if (!cards?.length) {
                                     trigger.all_excluded = true;
                                 }
                             },
