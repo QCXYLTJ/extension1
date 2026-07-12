@@ -100,6 +100,8 @@ game[otherFunction[6]](game.zmtzd13Gif('zmcuibin.gif', null, null, true), 3600);
 game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
+result.links && result.links
+if (result.links?.length)
 !((?!\(\b)[^&|\s]*) == //$1 !=
 'die:(?!ext\b)
 function \(.*\) \{\n\s*\}//function \(.*\) \{ \}//= () => { }
