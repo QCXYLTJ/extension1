@@ -810,7 +810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var list = Object.keys(lib.character).randomGets(4);
                                         var skill = list.map((q) => lib.character[q][3]).flat();
                                         const result = await player.chooseButton(['请选择获得至多两个技能', [list, 'character'], [skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [1, 2]).set('filterButton', (button) => skill.includes(button.link)).forResult();
-                                        if (result.links && result.links[0]) {
+                                        if (result.links?.length) {
                                             player.addSkillLog(result.links);
                                             player.removeSkill('shenhuashen');
                                         }

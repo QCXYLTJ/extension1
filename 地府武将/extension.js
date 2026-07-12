@@ -2534,7 +2534,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 if (trigger.target.countCards('h')) {
                                     const result = await player.discardPlayerCard(trigger.target, 1, 'h', get.prompt('difu_蛮击', trigger.target), true).set('ai', (button) => get.value(button.link)).forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         if (result.links[0].name == 'sha') {
                                             trigger.parent.baseDamage++;
                                         } else {

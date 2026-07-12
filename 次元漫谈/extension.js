@@ -4387,7 +4387,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								('step 1');
-								if (result.cards && result.cards[0]) {
+								if (result.cards?.length) {
 									player.storage.rain_acgn_date_youXiaoMeiJiu_poJunGeJiCard.push(result.cards[0]);
 									player.storage.rain_acgn_date_youXiaoMeiJiu_poJunGeJiUse++;
 									event.goto(0);
@@ -22352,7 +22352,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									})
 									.forResult();
-								if (links && links[0]) {
+								if (links?.length) {
 									game.log(player, '选择了', links);
 									const { targets } = await player
 										.chooseTarget(
@@ -22366,7 +22366,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return -get.attitude(_status.event.player, target) / target.countCards('h');
 										})
 										.forResult();
-									if (targets && targets[0]) {
+									if (targets?.length) {
 										event.targets[0].lose(links);
 										player.line(targets[0], 'water');
 										var next = player.chooseToCompare(targets[0]);
@@ -23840,7 +23840,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -val;
 								})
 								.forResult();
-							if (cards && cards[0]) {
+							if (cards?.length) {
 								player.discard(cards);
 							}
 						},

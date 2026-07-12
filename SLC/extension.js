@@ -7842,7 +7842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '弃置一枚【梅影】标记,将杀当做闪,或将闪当做杀,或将桃当做酒,或将酒当做桃使用或打出',
                                     viewAs(cards, player) {
                                         var name = false;
-                                        if (cards && cards[0]) {
+                                        if (cards?.length) {
                                             switch (
                                             cards[0].name //QQQ
                                             ) {
@@ -7978,7 +7978,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseButton(['选择并获得至多六个技能', [list, 'character'], [skills1.map((i) => [i, get.translation(i)]), 'tdnodes']], [0, 6])
                                         .set('filterButton', (button) => skills1.includes(button.link))
                                         .set('ai', (button) => Math.random()).forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         player.addSkillLog(result.links);
                                     }
                                 }

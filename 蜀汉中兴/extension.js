@@ -3816,7 +3816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['请选择体力牌', [list, 'character']])
                                     .set('ai', (button) => Math.random())
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     trigger.source.maxHp = lib.character[links[0]].maxHp;
                                     trigger.source.update();
                                     game.log(player, '选择的体力牌为', links[0]);
@@ -4255,7 +4255,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['请选择身份', [list, 'vcard']])
                                     .set('ai', (b) => Math.random())
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     player.setIdentity(links[0][2]);
                                     game.log(player, '选择的身份牌为', links[0][2]);
                                     player.awakenSkill('shzx_zaofan');
@@ -6002,7 +6002,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('filterButton', (button) => skills.includes(button.link))
                                     .set('ai', (b) => Math.random())
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     player.addSkillLog(links);
                                     player.awakenSkill('shzx_fuhan_zx');
                                 }

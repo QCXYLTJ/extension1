@@ -6428,7 +6428,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										const num = player.getUseValue(button.link, null, true);
 										return num || 0;
 									}).forResult();
-									if (links && links[0]) {
+									if (links?.length) {
 										if (links[0].name == 'caochuan') {
 											player.useCard(links[0], false);
 											event.parent._trigger = evt.parent._trigger;
@@ -14883,7 +14883,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (get.type(card) == 'basic') {
 									player.gain(card, 'gain2');
 									const { targets } = await player.chooseTarget(get.prompt('xwj_xwugeng_xuemao'), (c, p, t) => p != t).set('ai', (t) => -get.attitude(player, t)).forResult();
-									if (targets && targets[0]) {
+									if (targets?.length) {
 										player.useCard({ name: 'sha' }, targets, false);
 									}
 								}

@@ -19230,7 +19230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', function (target) {
                                         return -get.attitude(player, target);
                                     }).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     for (var i of result.targets) {
                                         const { result: result1 } = await i.chooseToCompare(player);
                                         if (result1.bool) {

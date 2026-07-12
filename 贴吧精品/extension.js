@@ -4829,7 +4829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             position: 'h',
                             viewAs(cards, player) {
                                 //QQQ
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     var name = cards[0].name;
                                     var nature = cards[0].nature;
                                     return { name: name, nature: nature };
@@ -6738,7 +6738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (cards.length) {
                                     const { links } = await player.chooseButton(['获得场上装备牌', cards], [1, 3])
                                         .set('ai', (button) => get.value(button.link)).forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         player.gain(links, 'gain2').gaintag = ['zhongxie3d82'];
                                         num -= links.length;
                                     }
@@ -7461,7 +7461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseTarget([1, Infinity], (card, player, target) => player.inRange(target) && target.countCards('h')).set('ai', (target) => -get.attitude(player, target)).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     var cardx = { number: 0 };
                                     var playerx;
                                     for (var i of result.targets) {
@@ -22110,7 +22110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return Math.max(1, 5 - target.countCards('he'));
                                     });
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     //QQQ
                                     event.target = result.targets[0];
                                     player.line(event.target, 'red');

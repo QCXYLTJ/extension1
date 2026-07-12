@@ -8679,7 +8679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 const { targets } = await player.chooseTarget(get.prompt('RuthlessReload'), '与一名其他角色拼点', (card, player, target) => player.canCompare(target) && target != player)
                                     .set('ai', (target) => -get.attitude(player, target)).forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.awakenSkill('RuthlessReload');
                                     const result = await player.chooseToCompare(targets[0]).forResult();
                                     if (result.tie) {
@@ -16642,7 +16642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('ai', (button) => {
                                                 return player.getUseValue(button.link) || 0;
                                             });
-                                        if (links && links[0]) {
+                                        if (links?.length) {
                                             player.gain(links, 'draw');
                                         }
                                     }
@@ -17192,7 +17192,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                     if (result.cards.length >= 2) player.recover();
                                 }

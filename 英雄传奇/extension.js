@@ -2792,7 +2792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 player.chooseCard('将两张牌置于牌堆顶(先选择的在上)', 2, 'he', true);
                                 ('step 3');
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     game.log(player, '将' + get.cnNumber(result.cards.length) + '张牌置于牌堆顶');
                                     for (var i of result.cards) {
@@ -18747,7 +18747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseToDiscard('he', '是否弃置一张牌令' + get.translation(trigger.player) + '跳过判定', true).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     trigger.cancel();
                                 }
                             },
@@ -22397,7 +22397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 const result = await trigger.target.chooseToRespond({ name: 'shan' }, '【三板斧】:你需要额外打出1张闪', [1, 2]);
                                 trigger.parent.directHit.push(trigger.target).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     player.damage();
                                     if (result.cards.length > 1) {
                                         trigger.parent.excluded.add(trigger.target);

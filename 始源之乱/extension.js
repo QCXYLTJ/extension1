@@ -1571,7 +1571,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     forced: true,
                                     async content(event, trigger, player) {
                                         const result = await player.chooseCard(true, 'he', '将一张牌置于牌堆顶').set('ai', (c) => 4 - get.value(c)).forResult(); //QQQ
-                                        if (result.cards && result.cards[0]) {
+                                        if (result.cards?.length) {
                                             ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
                                             game.updateRoundNumber();
                                         }
@@ -4093,7 +4093,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('ai', (target) => get.attitude(player, target));
                                         ('step 1');
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(player.storage.xlg_shengmang, 'gain2');
                                             player.line(result.targets[0], 'green');
                                             game.log(result.targets[0], '获得了' + get.cnNumber(player.storage.xlg_shengmang.length) + '张牌');

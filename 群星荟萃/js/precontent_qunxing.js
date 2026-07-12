@@ -9304,7 +9304,7 @@ const packs = function () {
                             for (const npc of [player, target]) {
                                 const { cards } = await npc.chooseCard(true, ...filter[count])
                                     .set('ai', (c) => - get.value(c)).forResult();
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     list.push(cards[0]);
                                 }
                             }//QQQ

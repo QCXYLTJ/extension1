@@ -188,7 +188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseToDiscard('he', `弃置一张牌令${get.translation(player)}的${get.translation(trigger.card)}增加目标`, (c) => get.type(c) == get.type(trigger.card))
                                         .set('ai', (c) => get.attitude(player, npc) - get.value(c))
                                         .forResult();
-                                    if (cards && cards[0]) {
+                                    if (cards?.length) {
                                         num++;
                                         if (player.isMaxHandcard()) {
                                             npc.draw();
@@ -200,7 +200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseTarget('增加目标', [1, num], (c, p, t) => !trigger.targets.includes(t))
                                         .set('ai', (t) => get.effect(t, trigger.card, player, player))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         trigger.targets.addArray(targets);
                                     }
                                 }
@@ -454,7 +454,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     const result = await player.chooseButton(['精典:请选择一张拼点牌', cards], true).set('ai', function (button) {
                                         return button.link.number;
                                     }).forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         const { result: result1 } = await player.chooseTarget('请选择拼点目标', true, (card, player, target) => target != player).set('ai', (target) => -get.attitude(player, target));
                                         if (result1.targets && result1.targets[0]) {
                                             cards.remove(result.links[0]);
@@ -1966,7 +1966,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.value({ name: button.link[2] });
                                         })
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         var name = links[0][2],
                                             cardx = { name: name };
                                         player.popup(get.translation(name));
@@ -5834,7 +5834,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 event.count--;
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     //QQQ
                                     event.list.remove(result.links[0][2]);
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };

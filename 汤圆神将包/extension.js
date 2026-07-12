@@ -15156,7 +15156,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseTarget('请选择【恿戈】的目标,其增加' + get.translation(player.countMark('ty_beifa3')) + '点体力上限并摸等量的牌', true, (card, player, target) => target != player && !game.hasPlayer((current) => current != target && current.countCards('h') > target.countCards('h'))).set('ai', (target) => get.attitude(player, target)).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].gainMaxHp(player.countMark('ty_beifa3'));
                                     result.targets[0].draw(player.countMark('ty_beifa3'));
                                     player.gainMaxHp(player.countMark('ty_beifa3') - player.maxHp + 1);

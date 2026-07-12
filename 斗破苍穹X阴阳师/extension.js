@@ -9523,7 +9523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					lib.config.yh_Collect--;
 					game.saveConfig('yh_Collect', lib.config.yh_Collect);
 					const { links } = await player.chooseButton(['选择要收藏的御魂', player.storage.yh_], true).forResult();
-					if (links && links[0]) {
+					if (links?.length) {
 						const subtype = get.subtype(links[0]);
 						var name = links[0].name;
 						var name = name.slice(0, name.length - 1);

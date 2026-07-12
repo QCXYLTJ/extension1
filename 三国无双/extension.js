@@ -4225,7 +4225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.chooseButton(['请选择卡牌', cards], true)
 											.set('ai', (button) => get.value(button.link))
 											.forResult();
-										if (links && links[0]) {
+										if (links?.length) {
 											previous.gain(links[0]);
 											cards.remove(links[0]);
 										}
@@ -4238,7 +4238,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.chooseButton(['请选择卡牌', cards], true)
 											.set('ai', (button) => get.value(button.link))
 											.forResult();
-										if (links && links[0]) {
+										if (links?.length) {
 											next.gain(links[0]);
 											cards.remove(links[0]);
 										}
@@ -4644,7 +4644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('filterTarget', (c, player, target) => target != player && target.hp < player.hp)
 									.set('ai', (t) => get.attitude(player, t))
 									.forResult();
-								if (targets && targets[0]) {
+								if (targets?.length) {
 									player.line(targets);
 									player.give(trigger.cards, targets[0]); //QQQ
 								}

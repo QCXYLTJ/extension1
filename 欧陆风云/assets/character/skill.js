@@ -18372,7 +18372,7 @@ const skills = {
                     return get.effect(trigger.source, { name: button.link[2] }, player, player);
                 })
                 .forResult();
-            if (result.links && result.links[0]) {
+            if (result.links?.length) {
                 //QQQ
                 game.broadcastAll(function (name) {
                     lib.skill.Europa_kangbao_backup.viewAs = {

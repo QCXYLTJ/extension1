@@ -4628,7 +4628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											game.log(player, '将', links[0], '置于牌堆底');
 											const { targets } = await player.chooseTarget(true, '对一名角色造成一点雷电伤害.')
 												.set('ai', (t) => -get.attitude(player, t)).forResult();
-											if (targets && targets[0]) {
+											if (targets?.length) {
 												targets[0].damage('thunder');
 											}
 										}
@@ -4642,7 +4642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (player.getExpansions('lqtq_xuansha').length > ui.cardPile.childElementCount) {
 										const { links } = await player.chooseCardButton(true, 5, '获得5张<玄刹>牌.', player.getExpansions('lqtq_xuansha'))
 											.set('ai', (button) => get.value(button.link)).forResult();
-										if (links && links[0]) {
+										if (links?.length) {
 											await player.gain(links, 'gain2');
 											for (const i of player.getExpansions('lqtq_xuansha')) {
 												ui.cardPile.appendChild(i, ui.cardPile.firstChild);
@@ -5572,7 +5572,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								} else {
 									const result = await player.chooseTarget(true, '将一名角色变为你的副将').set('ai', (target) => get.attitude(player, target)).forResult();
-									if (result.targets && result.targets[0]) {
+									if (result.targets?.length) {
 										var target = result.targets[0],
 											chaii = [],
 											a = get.translation(target.name),
@@ -7059,7 +7059,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.bool) {
 									player.addTempSkill('lqhc_chuqiao_use', ['dieEnd', 'phaseAfter']);
-									if (result.cards && result.cards[0]) {
+									if (result.cards?.length) {
 										//QQQ
 										player.draw(result.cards.length);
 										player

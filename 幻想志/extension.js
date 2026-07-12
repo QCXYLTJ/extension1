@@ -6251,7 +6251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								player.awakenSkill('RE_mankai');
 								const result = await player.chooseButton(['选择废除至少2个装备栏获得对应效果', [[1, 2, 3, 4, 5], 'tdnodes']], [2, 5]).set('ai', () => Math.random()).forResult();
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									player.disableEquip(result.links);
 									player.loseMaxHp(result.links.length);
 									if (result.links.includes(1)) {

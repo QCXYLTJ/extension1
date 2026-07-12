@@ -4628,7 +4628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseToDiscard(true, 'he')
                                         .set('ai', (card) => card.name == trigger.card.name)
                                         .forResult();
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         if (result.cards[0].name == trigger.card.name) {
                                             player.chat('<div class="text center"><span class=thundertext>你的计谋!被我的【止矢】识破了');
                                             trigger.targets.remove(player);

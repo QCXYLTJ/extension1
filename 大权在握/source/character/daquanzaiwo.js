@@ -4282,12 +4282,12 @@ export let info = {
           .chooseTarget('武穆:令一名其他角色猜测扣置牌的颜色', (card, player, target) => target != player && target.hasCard((card) => lib.filter.cardDiscardable(card, target), 'he') && !player.storage.dqzw_wumu.includes(target))
           .set('ai', (t) => -get.attitude(player, t))
           .forResult();
-        if (targets && targets[0]) {
+        if (targets?.length) {
           player.storage.dqzw_wumu.push(targets[0]);
           player.when({ player: 'phaseUseEnd' }).then(() => (player.storage.dqzw_wumu = []));
           player.line(targets[0]);
           const { cards } = await targets[0].chooseToDiscard('武穆:弃置一张牌', 'he', true).forResult();
-          if (cards && cards[0]) {
+          if (cards?.length) {
             player.showCards(card);
             if (get.color(card) != get.color(cards[0])) {
               player.gain(cards, 'gain2');
@@ -7060,7 +7060,7 @@ export let info = {
             return get.value(button.link, _status.event.player);
           })
           .forResult();
-        if (links && links[0]) {
+        if (links?.length) {
           player.gain(links, 'gain2');
           cards.removeArray(links);
           const { targets } = await player
@@ -7068,7 +7068,7 @@ export let info = {
             .set('createDialog', ['称象:将剩余牌交给一名其他角色', cards])
             .set('ai', (target) => get.attitude(target, player))
             .forResult();
-          if (targets && targets[0]) {
+          if (targets?.length) {
             targets[0].gain(cards, 'gain2').giver = player;
             if (cards.length > 2) {
               const { targets: tars } = await player
@@ -8998,7 +8998,7 @@ export let info = {
             }
           })
           .forResult();
-        if (targets && targets[0]) {
+        if (targets?.length) {
           var choice = ['交给' + get.translation(player) + get.cnNumber(player.getDamagedHp()) + '张牌并翻面'];
           if (trigger.source) {
             choice.push('弃置' + get.cnNumber(player.getDamagedHp()) + '张牌并对' + get.translation(trigger.source) + '造成一点伤害');
@@ -9022,7 +9022,7 @@ export let info = {
           } else {
             targets[0].turnOver();
             const { cards } = await targets[0].chooseCard(num).forResult();
-            if (cards && cards[0]) {
+            if (cards?.length) {
               targets[0].give(cards, player, 'giveAuto');
             }
           }
@@ -18072,18 +18072,18 @@ export let info = {
           if (num < min) min = num;
         });
         const cards = get.cards(max - min);
-        if (cards && cards[0]) {
+        if (cards?.length) {
           while (cards[0]) {
             const { targets } = await player
               .chooseTarget('选择要交给牌的目标', (c, p, t) => t != p)
               .set('ai', (t) => get.attitude(player, t))
               .forResult();
-            if (targets && targets[0]) {
+            if (targets?.length) {
               const { links } = await player
                 .chooseButton([`选择要交给${get.translation(targets[0])}的牌`, cards])
                 .set('ai', (button) => 7 - get.value(button.link))
                 .forResult();
-              if (links && links[0]) {
+              if (links?.length) {
                 cards.removeArray(links);
                 targets[0].gain(links, 'gain2');
               } else break;
@@ -20067,19 +20067,19 @@ export let info = {
         player.popup(skill);
         player.removeSkill(skill);
         const cards = Array.from(ui.discardPile.childNodes).filter((q) => get.color(q) == 'black');
-        if (cards && cards[0]) {
+        if (cards?.length) {
           const { targets } = await player
             .chooseTarget('与一名其他角色各获得一张', (c, p, t) => t != p)
             .set('ai', (t) => get.attitude(player, t))
             .forResult();
-          if (targets && targets[0]) {
+          if (targets?.length) {
             for (var i of [player, targets[0]]) {
               if (cards[0]) {
                 const { links } = await i
                   .chooseButton([`获得一张牌`, cards])
                   .set('ai', (button) => get.value(button.link))
                   .forResult();
-                if (links && links[0]) {
+                if (links?.length) {
                   cards.remove(links[0]);
                   i.gain(links, 'gain2');
                 }
@@ -20953,7 +20953,7 @@ export let info = {
           .set('cardx', card)
           .set('source', event.target);
         ('step 5');
-        if (result.targets && result.targets[0]) {
+        if (result.targets?.length) {
           var target2 = result.targets[0];
           if (get.position(event.card) == 'h') {
             var next = target2.gain(event.card);

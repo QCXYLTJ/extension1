@@ -9066,7 +9066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget(2, '选择拼点目标,并猜测胜负', (card, player, target) => target.countCards('h') && !target.hasSkillTag('noCompareTarget'))
                                     .set('ai', (target) => 20 - get.attitude(player, target))
                                     .set('targetprompt', ['胜利者', '失败者']).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     if (result.targets[0].canCompare(result.targets[1])) {
                                         const { result: result1 } = await result.targets[0].chooseToCompare(result.targets[1]);
                                         if (result1) {
@@ -9105,7 +9105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     const num = player.getUseValue({ name: button.link[2], nature: button.link[3] }, null, true);
                                                     return numberq0(num) / 2 + 10;
                                                 }).forResult();
-                                                if (links && links[0]) {
+                                                if (links?.length) {
                                                     if (links[0][2] == 'caochuan') {
                                                         player.useCard({ name: links[0][2] }, false);
                                                         event.parent._trigger = evt.parent._trigger;

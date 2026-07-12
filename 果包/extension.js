@@ -8766,7 +8766,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget(get.prompt2('spxianchou'), (card, player, target) => target != trigger.source)
                                     .set('ai', (target) => get.attitude(target, player) * Math.sqrt(target.countCards('he')))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].addTempSkill('retieji');
                                     const { result: result1 } = await result.targets[0].chooseToDiscard('he', '是否弃置一张牌,视为对' + get.translation(trigger.source) + '使用一张【杀】？').set('ai', (card) => -get.attitude(result.targets[0], trigger.source) - get.value(card));
                                     if (result1.cards && result1.cards[0]) {

@@ -27,7 +27,7 @@ game.addMode(
               .chooseButton(['选择首个出战武将', [list, 'character']], true)
               .set('ai', (button) => Math.random())
               .forResult();
-            if (links && links[0]) {
+            if (links?.length) {
               npc.init(links[0]);
             }
           } else {
@@ -35,7 +35,7 @@ game.addMode(
               .chooseButton(ui.create.characterDialog('选择十个出战武将'), 10, true)
               .set('ai', (button) => Math.random())
               .forResult();
-            if (links && links[0]) {
+            if (links?.length) {
               npc.characterlist = links;
               const { links: links1 } = await npc
                 .chooseButton(['选择首个出战武将', [npc.characterlist, 'character']], true)
@@ -83,7 +83,7 @@ game.addMode(
                 .chooseButton(['选择下一个出战武将', [list, 'character']], true)
                 .set('ai', (button) => Math.random())
                 .forResult();
-              if (links && links[0]) {
+              if (links?.length) {
                 player.characternum--;
                 name = links[0];
               }
@@ -94,7 +94,7 @@ game.addMode(
                 .chooseButton(['选择下一个出战武将', [player.characterlist, 'character']], true)
                 .set('ai', (button) => Math.random())
                 .forResult();
-              if (links && links[0]) {
+              if (links?.length) {
                 player.characterlist.remove(links[0]);
                 name = links[0];
               }
@@ -202,7 +202,7 @@ game.addMode(
               .chooseButton(['选择出战武将', [list, 'character']], true)
               .set('ai', (button) => Math.random())
               .forResult();
-            if (links && links[0]) {
+            if (links?.length) {
               npc.init(links[0]);
             }
           } else {
@@ -210,7 +210,7 @@ game.addMode(
               .chooseButton(ui.create.characterDialog('选择出战武将'), true)
               .set('ai', (button) => Math.random())
               .forResult();
-            if (links && links[0]) {
+            if (links?.length) {
               npc.init(links[0]);
             }
           }
@@ -485,7 +485,7 @@ game.addMode(
               .chooseButton(['选择出战武将', [list, 'character']], true)
               .set('ai', (button) => Math.random())
               .forResult();
-            if (links && links[0]) {
+            if (links?.length) {
               npc.init(links[0]);
             }
           } else {
@@ -493,7 +493,7 @@ game.addMode(
               .chooseButton(ui.create.characterDialog('选择出战武将'), true)
               .set('ai', (button) => Math.random())
               .forResult();
-            if (links && links[0]) {
+            if (links?.length) {
               npc.init(links[0]);
             }
           }

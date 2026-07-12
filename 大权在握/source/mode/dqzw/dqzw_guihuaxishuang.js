@@ -2216,7 +2216,7 @@ import { func as characterListSet } from './character_list_set.js';
 				async content(event, trigger, player) {//QQQ
 					const num = Math.ceil(trigger.cards.length / 2);
 					const { result: { links } } = await player.chooseButton([get.prompt2(event.name), trigger.cards], [1, num], button => get.value(button.link));
-					if (links && links[0]) {
+					if (links?.length) {
 						player.gain(links, 'gain2');
 					}
 				},
@@ -2581,7 +2581,7 @@ import { func as characterListSet } from './character_list_set.js';
 					player.draw((_status.dqzw_checkpoint_level || 1) + 1, 'nodelay');
 					player.chooseTarget(get.translation(event.name) + ':是否对一名角色造成' + get.cnNumber(_status.dqzw_checkpoint_level || 1) + '点伤害？').set('ai', target => get.damageEffect(target, _status.event.player, _status.event.player));
 					('step 1');
-					if (result.targets && result.targets[0]) {
+					if (result.targets?.length) {
 						player.line(result.targets, 'green');
 						result.targets[0].damage(_status.dqzw_checkpoint_level || 1);
 					}

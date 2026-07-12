@@ -4359,7 +4359,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     })
                                     .set('ai', (button) => 2 * get.value(button.link) - button.link.number).forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },
@@ -9941,7 +9941,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return val;
                                     })
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     var list = ['tao', 'wugu'].filter((c) => trigger.player.hasUseTarget({ name: c }, null, true));
                                     if (list.length == 2) {
                                         const result1 = await player
@@ -24421,7 +24421,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (list.length < 8) {
                                     const result = await player.chooseTarget(`请选择一名角色受到${8 - list.length}点雷电伤害`, lib.filter.notMe)
                                         .set('ai', (target) => get.damageEffect(target, player, player, 'thunder')).forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         result.targets[0].damage(8 - list.length);
                                     }
                                 }

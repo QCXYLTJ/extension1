@@ -3734,7 +3734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 1');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									result.targets[0].gain(result.cards, player);
 									player.$give(result.cards.length, result.targets[0]);
 								}
@@ -10969,7 +10969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 1');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									result.targets[0].gain(result.cards, player);
 									player.$give(result.cards.length, result.targets[0]);
 									var list = game.filterPlayer(function (current) {
@@ -15996,7 +15996,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									num.push(i);
 								}
 								var { result } = await player.chooseTarget(get.prompt('狼枭')).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var t = result.targets[0];
 									switch (num.randomGet()) {
 										case 1: {
@@ -16750,7 +16750,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var Q = result.targets.slice();
 								for (var i of Q) {
 									var { result } = await i.chooseButton(['从游戏外获得所选择牌名相同的牌', player.getCards('he')], [0, 2]).set('ai', (button) => get.value(button.link));
-									if (result.links && result.links[0]) {
+									if (result.links?.length) {
 										for (var i of result.links) {
 											await i.gain(game.createCard(i));
 										}
@@ -16772,7 +16772,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								await game.mp40('shuilong水龙');
 								var { result } = await player.chooseTarget(get.prompt('水龙'), [1, 4], true).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									for (var i of result.targets) {
 										if (i.countCards('he')) await player.discardPlayerCard(i, 'he', true);
 										if (i.countCards('he', { suit: 'club' }) < player.countCards('he', { suit: 'club' })) {
@@ -16792,7 +16792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								await game.mp40('huolong火龙');
 								var { result } = await player.chooseTarget(get.prompt('火龙'), [1, 4], true).set('ai', (target) => get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									await result.targets.forEach((i) => i.gain([game.createCard({ name: 'sha', nature: 'fire' }), game.createCard('huogong'), game.createCard('huoshaolianying')], 'draw'));
 									var { result } = await player.chooseControl('弃两张红色牌', '受到你的一点火焰伤害');
 									var { result: result1 } = await player.chooseTarget(get.prompt('火龙'), [1, 4], true).set('ai', (target) => -get.attitude(player, target));
@@ -18976,11 +18976,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.chooseTarget('观看一名其他角色的手牌,你可以获得其中至多两张牌,并对其造成一点伤害', (card, player, target) => player != target).set('ai', (target) => target.isEnemiesOf(player));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var Q = result.targets[0];
 									if (Q.countCards('h')) {
 										var { result } = await player.chooseButton(['获得其中至多两张牌', Q.getCards('h')], [1, 2]).set('ai', (button) => get.value(button.link));
-										if (result.links && result.links[0]) {
+										if (result.links?.length) {
 											player.gain(result.links, 'gain2');
 										}
 									}
@@ -20345,12 +20345,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.chooseTarget(get.prompt('占梦')).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var Q = result.targets[0];
 									if (Q.countCards('he')) await player.gainPlayerCard(Q, 'he', true);
 									if (player.countCards('he')) {
 										var { result } = await player.chooseCard('选择1张牌置于牌堆顶', 1, true, 'he');
-										if (result.cards && result.cards[0]) {
+										if (result.cards?.length) {
 											ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
 											game.log(player, '将', result.cards[0], '置于牌堆顶');
 										}
@@ -20367,12 +20367,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.chooseTarget(get.prompt('解卜')).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var Q = result.targets[0];
 									if (Q.countCards('he')) await player.gainPlayerCard(Q, 'he', true);
 									if (player.countCards('he')) {
 										var { result } = await player.chooseCard('选择1张牌置于牌堆顶', 1, true, 'he');
-										if (result.cards && result.cards[0]) {
+										if (result.cards?.length) {
 											ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
 											game.log(player, '将', result.cards[0], '置于牌堆顶');
 										}

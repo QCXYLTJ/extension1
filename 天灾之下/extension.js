@@ -23290,7 +23290,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.chooseCard(true, '将一张手牌交给' + get.translation(trigger.source) + '并防止此伤害')
 											.set('ai', (card) => 8 - get.value(card))
 											.forResult();
-										if (result.cards && result.cards[0]) {
+										if (result.cards?.length) {
 											player.give(result.cards, trigger.source);
 											trigger.cancel();
 										}

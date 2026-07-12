@@ -2569,7 +2569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .chooseButton(['将一张<庭火>当火[杀]使用', player.storage.yanxiaotinghuowu])
                                             .set('ai', (button) => 2)
                                             .forResult();
-                                        if (result.links && result.links[0]) {
+                                        if (result.links?.length) {
                                             player.storage.yanxiaotinghuowu.remove(result.links[0]);
                                             await player.chooseUseTarget({ name: 'sha', nature: 'fire' }, result.links, true, false);
                                         }
@@ -3397,7 +3397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     })
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     switch (result.links[0]) {
                                         case '获得三枚<丹火印>':
                                             {
@@ -5371,7 +5371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', (button) => 2)
                                     .set('filterButton', (button) => get.type(button.link) == 'trick')
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     var list = [];
                                     for (var i in lib.card) {
                                         var info = lib.card[i];
@@ -5511,7 +5511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     //QQQ
                                     cards = result.links.slice(0);
                                     while (cards.length) {
@@ -8110,7 +8110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['将一张♥️️️牌当【桃园结义】或【五谷丰登】使用', player.getCards('he', { suit: 'heart' })])
                                     .set('ai', (button) => 6 - get.value(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     const result1 = await player
                                         .chooseButton([`视为使用一张牌`, [['taoyuan', 'wugu'], 'vcard']])
                                         .set('ai', (button) => player.getUseValue(button.link[2]))
@@ -10148,7 +10148,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             viewAs(cards, player) {
                                 var name = false;
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     name = player.storage.nizao[cards[0].name];
                                 }
                                 if (name) return { name: name };
@@ -12821,7 +12821,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseTarget()
                                         .set('ai', (t) => get.attitude(player, t))
                                         .forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         await result.targets[0].chooseDrawRecover(2, true);
                                     }
                                 }

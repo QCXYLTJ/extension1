@@ -10999,7 +10999,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     })
                                     .set('ai', (target) => get.attitude(player, target))
                                     .forResult(); //QQQ
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.line(targets[0]);
                                     for (const i of targets[0].getSkills()) {
                                         if (get.info(i).juexingji == true) {
@@ -18786,7 +18786,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseButton([`选择${num}张牌`, Array.from(ui.cardPile.childNodes)], num, true)
                                     .set('ai', (button) => get.value(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         player.node.handcards1.appendChild(i);
                                         ui.updatehl();
@@ -18816,7 +18816,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         .chooseButton([`选择任意张牌`, player.getCards('hej')], [1, player.countCards('hej')])
                                         .set('ai', (button) => 8 - get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         for (const i of links) {
                                             //QQQ
                                             ui.cardPile.appendChild(i);
@@ -18841,7 +18841,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseButton(list, num, true)
                                     .set('ai', (button) => get.value(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         player.node.handcards1.appendChild(i);
                                         ui.updatehl();
@@ -19327,7 +19327,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 //QQQ
                                 if (trigger.card.number && trigger.cards && trigger.cards[0]) {
                                     const result = await player.chooseCard('与其使用的牌拼点', 'h').forResult();
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         game.cardsGotoOrdering(result.cards);
                                         await player.$compare(result.cards[0], trigger.player, trigger.cards[0]);
                                         game.log(player, '的拼点牌为', result.cards[0]);
@@ -19433,7 +19433,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             async content(event, trigger, player) {
                                 const result = await player.chooseToDiscard(1, 'he', true).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     let num = 0;
                                     for (const i of game.players) {
                                         num += i.countMark('_zxqy_shaoshang');
@@ -20287,7 +20287,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseCard('he')
                                     .set('ai', (card) => -get.effect(player, event.card, event.player, player) - get.value(card))
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     player.useCard({ name: 'shan' }, result.cards);
                                     trigger.parent.all_excluded = true;
                                 }
@@ -20313,7 +20313,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .set('filterButton', (button) => list.includes(button.link))
                                     .set('ai', (button) => button.link)
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     game.log(player, '声明', links[0]);
                                     const { cards } = await trigger.target.chooseToGive(player, links[0]).forResult();
                                     if (!cards?.length) {
@@ -20373,7 +20373,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseButton([`选择${num}张牌`, Array.from(ui.cardPile.childNodes).concat(Array.from(ui.discardPile.childNodes))], [1, num])
                                     .set('ai', (button) => get.value(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         player.node.handcards1.appendChild(i);
                                         ui.updatehl();
@@ -20480,7 +20480,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         .chooseButton([`选择任意张牌`, player.getCards('hej')], [1, player.countCards('hej')])
                                         .set('ai', (button) => 8 - get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         for (const i of links) {
                                             //QQQ
                                             ui.cardPile.appendChild(i);
@@ -20508,7 +20508,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         .chooseButton(list, num, true)
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         for (const i of result.links) {
                                             player.node.handcards1.appendChild(i);
                                             ui.updatehl();
@@ -20554,12 +20554,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseTarget('将此牌的目标改为另一名其他角色', (c, p, t) => t != p)
                                     .set('ai', (t) => -get.effect(player, trigger.card, trigger.player, player) - get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     const { cards } = await player
                                         .chooseToDiscard('he', `弃置一张牌,将此牌的目标改为${get.translation(targets[0])}`)
                                         .set('ai', (card) => 8 - get.value(card))
                                         .forResult();
-                                    if (cards && cards[0]) {
+                                    if (cards?.length) {
                                         trigger.target = targets[0];
                                         trigger.targets.remove(player);
                                         trigger.targets.add(targets[0]);
@@ -20960,7 +20960,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseCard('he', true)
                                     .set('ai', (c) => 6 - get.value(c))
                                     .forResult();
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     trigger.player.give(cards, player).gaintag = ['QQQ_lingxiu'];
                                     trigger.player.when({ source: 'damageBefore' }).then(() => trigger.num++);
                                 }
@@ -21218,7 +21218,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseTarget('观看任意名手牌中任意花色与你相同的角色', (c, p, t) => p != t && players.includes(t), [1, players.length])
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     for (const i of targets) {
                                         await player.viewHandcards(i);
                                         i.addMark('XY_zhaowendao', trigger.XY_zhaowendao.get(i));
@@ -21263,7 +21263,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseButton(['请选择卡牌', cards], [1, cards.length])
                                     .set('ai', (button) => get.value(button.link))
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     for (const i of links) {
                                         ui.cardPile.appendChild(i);
                                     }
@@ -21273,7 +21273,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseButton([`选择${num}张牌`, Array.from(ui.cardPile.childNodes)], [1, num])
                                     .set('ai', (button) => get.value(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         player.node.handcards1.appendChild(i);
                                         ui.updatehl();

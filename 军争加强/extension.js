@@ -3868,7 +3868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     })
                                     .set('ai', (button) => 2 * get.value(button.link) - button.link.number).forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },

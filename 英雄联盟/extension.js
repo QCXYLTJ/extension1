@@ -1338,7 +1338,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else {
                                     player.gainMaxHp(2);
                                     const result = await player.chooseTarget(1, true, '弃置一名其他角色与你各2张手牌').forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         await player.discardPlayerCard(2, true, result.targets[0], 'h');
                                         await player.chooseToDiscard(2, true, 'h');
                                     }
@@ -2991,7 +2991,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.摄魂--; //'障'-1
                                 //同步标记(每当标记变动都要写这句)
                                 const result = await player.chooseTarget(true).forResult(); //你可以选择一个目标
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     var card = game.createCard('lebu');
                                     result.targets[0].addJudge(card);
                                     result.targets[0].$draw(card);
@@ -3018,7 +3018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseTarget('令目标摸一张牌').forResult(); //你可以选择一个目标
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(); //(选的第一个)目标摸一张牌
                                 }
                             },
@@ -3405,7 +3405,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget()
                                     .set('ai', (t) => -get.attitude(t, player))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     const num = result.targets[0].dataset.position;
                                     const player2 = game.addPlayerX(num, '岩嶂');
                                     player2.side = player.side;
@@ -5132,7 +5132,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseCard(true, 'hes', { color: 'black' }).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     const result1 = await player.chooseTarget(true).forResult(); //你可以选择一个目标
                                     if (result1.targets && result1.targets[0]) {
                                         player.useCard({ name: 'shandian' }, result1.targets[0], result.cards);
@@ -5969,7 +5969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseTarget().forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(2);
                                 }
                             },
@@ -9011,7 +9011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseTarget('选择一名角色令其装备黑矛').forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].equip(game.createCard('黑矛', 'spade', 11));
                                     player.chat('契约,已签订.');
                                 }
@@ -9209,7 +9209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseTarget().forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(trigger.cards);
                                     result.targets[0].$gain2(trigger.cards);
                                     player.removeSkill('isxm');
@@ -9919,7 +9919,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseCard('h', true, 6)
                                         .set('ai', (c) => 6 - get.value(c))
                                         .forResult();
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         for (var i of result.cards) {
                                             ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
                                         }
@@ -10020,7 +10020,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseButton(['获得一张牌', cards])
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         player.gain(result.links, 'gain2');
                                     }
                                 }
@@ -11124,7 +11124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseCardButton('破绽', true, list)
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         player.showCards(result.links);
                                         target.addGaintag(result.links[0], 'lol_pozhan_ding');
                                         target.storage.lol_pozhan_ding1.push(result.links[0]);

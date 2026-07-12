@@ -11412,7 +11412,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					player.moveCard();
 					('step 1');
-					if (result.targets && result.targets[0]) {
+					if (result.targets?.length) {
 						result.targets[0].drawTo(result.targets[0].maxHp);
 					}
 				},

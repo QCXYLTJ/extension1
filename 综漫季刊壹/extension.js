@@ -6320,7 +6320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         event.cards.remove(i);
                                         ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

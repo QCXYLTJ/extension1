@@ -4212,13 +4212,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (player.storage.zmminganshuangyi == 2) {
                                     player.storage.zmminganshuangyi = 3;
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         event.cd = result.cards[0];
                                     } else event.finish();
                                 }
                                 if (player.storage.zmminganshuangyi == 1) {
                                     player.storage.zmminganshuangyi = 2;
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         event.cd = result.cards[0];
                                     } else event.finish();
                                 }
@@ -4233,7 +4233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att / Math.sqrt(1 + target.countCards('h')) / 5;
                                     });
                                 ('step 3');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     result.targets[0].gain(event.cd);
                                 }

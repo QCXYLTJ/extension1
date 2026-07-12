@@ -3576,7 +3576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 const result = await player.chooseButton(['你的<田>可转化为【顺手牵羊】', player.getExpansions('ua_tuntian')]).set('ai', (button) => 2).forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     await player.chooseUseTarget({ name: 'shunshou' }, result.links, true, false);
                                 }
                             },
@@ -9259,7 +9259,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return target != player;
                                         })
                                         .set('ai', (t) => -get.attitude(player, t)).forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         result.targets[0].addSkill('ua_hengjiang2');
                                         let ua = player.storage.ua_hengjiang + player.countMark('ua_hengjiang_zd');
                                         result.targets[0].addMark('ua_hengjiang2', ua);

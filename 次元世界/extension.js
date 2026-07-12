@@ -32434,7 +32434,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                 }
                             },
@@ -33948,7 +33948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                 }
                             },

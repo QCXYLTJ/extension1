@@ -3157,7 +3157,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.discardPlayerCard(event.target, true).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     if (event.cards[0].name == 'sha' || result.links[0].name == 'sha') {
                                         if (event.cards[0].name == 'sha') {
                                             event.target.damage(player, true);
@@ -13778,7 +13778,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.draw(trigger.cards.length);
                                         } else {
                                             const result = await player.choosePlayerCard(`【良姻】:是否获得${get.translation(trigger.player)}至多${get.translation(trigger.cards.length)}张牌？`, trigger.player, 'he', [1, trigger.cards.length]).forResult();
-                                            if (result.links && result.links[0]) {
+                                            if (result.links?.length) {
                                                 trigger.player.$give(result.links.length, player);
                                                 player.gain(result.links);
                                             }

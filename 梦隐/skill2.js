@@ -18863,7 +18863,7 @@ const skill = {
         return -1;
       };
       ('step 1');
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         event.target = result.targets[0];
         player.line(event.target, 'red');
         game.log(player, '选择了', event.target);
@@ -18887,7 +18887,7 @@ const skill = {
           .set('complexCard', true);
       } else event.finish();
       ('step 2');
-      if (result.cards && result.cards[0]) {
+      if (result.cards?.length) {
         event.cards = [];
         event.cards.add(result.cards[0]);
         event.count = 1;
@@ -18930,7 +18930,7 @@ const skill = {
           });
       }
       ('step 3');
-      if (result.cards && result.cards[0]) {
+      if (result.cards?.length) {
         event.cards.add(result.cards[0]);
         event.count += 1;
       }
@@ -28074,7 +28074,7 @@ const skill = {
           .chooseTarget(get.prompt2('mx_fanzui'), (card, player, target) => target != player)
           .set('ai', (target) => get.damageEffect(target, player, player))
           .forResult();
-        if (targets && targets[0]) {
+        if (targets?.length) {
           const { control } = await player
             .chooseControl(lib.suit)
             .set('ai', function (event) {
@@ -36175,7 +36175,7 @@ const skill = {
         player.chooseButton(['请选择其中的一张牌', cards], true).set('ai', get.buttonValue);
       } else event._result = { bool: true, links: cards };
       ('step 1');
-      if (result.links && result.links[0]) {
+      if (result.links?.length) {
         event.card = result.links[0];
       } else event.finish();
       ('step 2');
@@ -49961,7 +49961,7 @@ const skill = {
           return 8 - get.value(card);
         })
         .forResult();
-      if (cards && cards[0]) {
+      if (cards?.length) {
         cards[0].discard();
         if (cards[0].suit == 'club') {
           player.draw(3);
@@ -51140,13 +51140,13 @@ const skill = {
       player.showCards(card);
       player.draw(num, 'bottom');
       const { targets } = await player.chooseTarget('令一名角色展示全部的手牌').forResult();
-      if (targets && targets[0]) {
+      if (targets?.length) {
         targets[0].showHandcards();
         const { cards } = await targets[0]
           .chooseCard(`打出一张手牌,将此牌与${get.translation(card)}替换`, 'he', true)
           .set('ai', (c) => 6 - get.value(c))
           .forResult();
-        if (cards && cards[0]) {
+        if (cards?.length) {
           targets[0].gain(card);
           ui.cardPile.insertBefore(cards[0], ui.cardPile.firstChild);
         }
@@ -53333,7 +53333,7 @@ const skill = {
           return -get.attitude(player, target);
         })
         .forResult();
-      if (targets && targets[0]) {
+      if (targets?.length) {
         const { cards } = await targets[0]
           .chooseCard('请交给' + get.translation(player) + '一张手牌', 'h', true)
           .set('ai', function (card) {
@@ -53347,7 +53347,7 @@ const skill = {
           })
           .set('tg', player)
           .forResult();
-        if (cards && cards[0]) {
+        if (cards?.length) {
           if (cards[0].name == 'sha' && targets[0].canUse(cards[0], player, false)) {
             player.useCard(cards[0], targets[0], false);
           } else targets[0].give(cards, player);
@@ -60412,7 +60412,7 @@ const skill = {
           return att;
         });
       ('step 1');
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         event.target = result.targets[0];
         player.chooseCard('he', true).ai = function (card) {
           if (player.isDamaged()) {
@@ -61049,7 +61049,7 @@ const skill = {
         player.discardPlayerCard(event.target, 'hej', true);
       } else event.finish();
       ('step 2');
-      if (result.cards && result.cards[0]) {
+      if (result.cards?.length) {
         //QQQ
         var a = player;
         var card = result.cards[0];
@@ -62375,7 +62375,7 @@ const skill = {
           return 0;
         });
       ('step 3');
-      if (result.links && result.links[0]) {
+      if (result.links?.length) {
         var card = result.links[0];
         if (card.name == 'sha') {
           player.draw();
@@ -65326,7 +65326,7 @@ const skill = {
           return get.damageEffect(target, player, player);
         });
       ('step 1');
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         //QQQ
         result.targets[0].damage();
       }

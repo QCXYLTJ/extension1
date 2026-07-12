@@ -1216,7 +1216,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 prompt: `【遗计】结果为${get.translation(event.color)},请选择要送人的牌`,
                             });
                             ('step 3');
-                            if (result.cards && result.cards[0]) {
+                            if (result.cards?.length) {
                                 //QQQ
                                 if (event.color == 'red') {
                                     player.line(result.targets, 'green');
@@ -1930,7 +1930,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }
                             player.chooseButton(['选择获得一个技能', [list, 'character'], [skills.map((i) => [i, get.translation(i)]), 'tdnodes']]).set('filterButton', (button) => skills.includes(button.link));
                             ('step 4');
-                            if (result.links && result.links[0]) {
+                            if (result.links?.length) {
                                 player.addSkillLog(result.links);
                             } //QQQ
                             ('step 5');

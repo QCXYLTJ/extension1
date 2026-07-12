@@ -14561,7 +14561,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.value(card) * num;
                                     })
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     if (get.color(result.links[0]) == 'red') {
                                         player.gain(result.links);
                                         trigger.target.addTempSkill('tyj_zhuixi_blocker', { player: 'phaseAfter' });
@@ -15592,7 +15592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 if (result.bool) {
                                     player.discard(result.cards);
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         var cardsx = get.cardPile(function (card) {
                                             return get.type(card) == 'equip' && card.suit == result.cards[0].suit;
                                         });
@@ -15931,7 +15931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 if (result.bool) {
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         var owner = get.owner(event.cardsx);
                                         if (owner) {
                                             result.targets[0].gain(event.cardsx, owner, 'giveAuto');

@@ -1353,7 +1353,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         .chooseTarget(true, '掉1滴血,来发梦想九连射', (card, player, target) => player != target)
                         .set('ai', (target) => -get.attitude(player, target))
                         .forResult();
-                    if (result.targets && result.targets[0]) {
+                    if (result.targets?.length) {
                         const cards = get.cards(9);
                         const cards1 = cards.filter((q) => q.name == 'sha' && q.nature);
                         const cards2 = cards.filter((q) => !cards1.includes(q));
@@ -6407,7 +6407,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 1;
                         })
                         .forResult();
-                    if (result.links && result.links[0]) {
+                    if (result.links?.length) {
                         player.removeSkill(result.links);
                         game.log(player, `失去了【${get.translation(result.links)}】`);
                     }

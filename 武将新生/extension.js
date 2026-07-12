@@ -670,7 +670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 const result = await player.chooseTarget('你可以令至多两名其他角色交给你一张牌', [1, 2], function (card, player, target) {
                                     return target != player && target.countCards('he') > 0;
                                 }).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     for (var i of result.targets.concat(player.storage.问技_target)) {
                                         const { result: result1 } = await i.chooseCard(`交给${get.translation(player)}1张牌`, true, 'he').set('ai', (card) => get.attitude(player, i) * get.value(card));
                                         if (result1.cards && result1.cards[0]) {
@@ -2679,7 +2679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(_status.event.player, target) + 0.5;
                                         });
                                 ('step 5');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     //QQQ
                                     result.targets[0].addTempSkill('fengyin');
                                 }
@@ -2694,7 +2694,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 ('step 7');
                                 //出牌阶段当你首次使用了四张不同花色的手牌时,你可以选择X项:<li>①发动一次<哀歌></li><li>②摸X张牌</li><li>③令一名角色非锁定技失效直至回合结束</li><li>④弃置一名角色X张牌
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     //QQQ
                                     player.discardPlayerCard(result.targets[0], Math.max(player.getDamagedHp(), 1), true, 'he');
                                 }
@@ -4116,7 +4116,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 const result = await player.chooseCard('he', true).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, 'giveAuto');
                                     if (trigger.source && trigger.source.countCards('he')) {
                                         const { result: result1 } = await player

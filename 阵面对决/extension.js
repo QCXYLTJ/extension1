@@ -6451,7 +6451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return 0;
                                 }).forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     trigger.cancel();
                                     trigger.result = {
                                         card: result.links[0],

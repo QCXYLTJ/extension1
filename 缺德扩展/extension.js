@@ -158,7 +158,7 @@ game.import('extension', function () {
                         .set('filterButton', (button) => skills.includes(button.link))
                         .set('ai', (button) => Math.random())
                         .forResult();
-                    if (links && links[0]) {
+                    if (links?.length) {
                         event.target.addSkill(links[0]);
                     }
                 },
@@ -230,7 +230,7 @@ game.import('extension', function () {
                             return get.value(button.link);
                         })
                         .forResult();
-                    if (result.links && result.links[0]) {
+                    if (result.links?.length) {
                         for (const i of result.links) {
                             await player.chooseUseTarget(true, i);
                         }
@@ -333,7 +333,7 @@ game.import('extension', function () {
                             return true;
                         })
                         .forResult();
-                    if (links && links[0]) {
+                    if (links?.length) {
                         player.chooseUseTarget(true, game.createCard(links[0][2], event.card.suit, event.card.number));
                     }
                 },
@@ -399,7 +399,7 @@ game.import('extension', function () {
                                 return !event.target.hasJudge(button.link[2]);
                             })
                             .forResult();
-                        if (result.links && result.links[0]) {
+                        if (result.links?.length) {
                             let card = game.createCard(result.links[0][2]);
                             event.judgecard = card;
                             event.target.$draw(card);
@@ -2128,7 +2128,7 @@ game.import('extension', function () {
                                     .chooseToDiscard('he', '弃置牌并防止伤害', [1, trigger.num])
                                     .set('ai', (card) => 20 - get.value(card))
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     trigger.num -= result.cards.length;
                                 }
                             },
@@ -2412,7 +2412,7 @@ game.import('extension', function () {
                                     .chooseTarget(get.prompt('羁肆'), lib.filter.notMe)
                                     .set('ai', (t) => t.isFriendsOf(player))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.awakenSkill('羁肆');
                                     targets[0].addSkill('前盟');
                                 }
@@ -4518,7 +4518,7 @@ game.import('extension', function () {
                                         return result;
                                     })
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'xinguidao', 'noOrdering');
                                     player.gain(trigger.player.judging[0]);
                                     trigger.player.judging[0] = result.cards[0];
@@ -4726,7 +4726,7 @@ game.import('extension', function () {
                                             return 0;
                                         })
                                         .forResult();
-                                    if (cards && cards[0]) {
+                                    if (cards?.length) {
                                         player.give(cards, trigger.target, 'give');
                                         if (get.type(cards[0]) == 'equip') {
                                             trigger.target.equip(cards[0]);
@@ -4751,7 +4751,7 @@ game.import('extension', function () {
                                         .chooseTarget(get.prompt('恩怨'), (card, player, target) => target != player)
                                         .set('ai', (target) => -get.attitude(player, target))
                                         .forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         result.targets[0].loseHp();
                                         player.gainPlayerCard(result.targets[0], 'hej', true);
                                         player.draw();
@@ -4776,7 +4776,7 @@ game.import('extension', function () {
                                         .chooseTarget('获得其他角色的牌', (c, p, t) => t.countCards('he') && t.isEnemiesOf(p))
                                         .set('ai', (target) => -get.attitude(player, target))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         const { links } = await player.gainPlayerCard(targets[0], 'he', [1, trigger.num]).forResult();
                                         if (links?.length) {
                                             trigger.num -= links.length;
@@ -4955,7 +4955,7 @@ game.import('extension', function () {
                                         })
                                         .forResult();
                                     const { targets } = await player.chooseTarget(choiceList[index], true).set('ai', effects[index]).forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         switch (index) {
                                             case 0:
                                                 targets[0].recover();
@@ -4999,7 +4999,7 @@ game.import('extension', function () {
                                         return 6 - get.value(card);
                                     })
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     player.draw(1 + result.cards.length);
                                 }
                             },
@@ -5229,7 +5229,7 @@ game.import('extension', function () {
                                         .chooseTarget(`分配${num}点火焰伤害`, (card, player, target) => target.isEnemiesOf(player))
                                         .set('ai', (t) => -get.attitude(player, t))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         num--;
                                         const index = list.get(targets[0]);
                                         if (!index) {
@@ -5540,7 +5540,7 @@ game.import('extension', function () {
                                     .chooseButton(['弃置任意张<幻身>', [player.storage.QD_huanshen, 'character']], true, [1, player.storage.QD_huanshen.length])
                                     .set('ai', (button) => Math.random() - 0.5)
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     let num = links.length;
                                     game.log(`<span class="greentext">${get.translation(player)}弃置了<幻身>${get.translation(links)}</span>`);
                                     player.storage.QD_huanshen.removeArray(links);
@@ -5704,7 +5704,7 @@ game.import('extension', function () {
                                     },
                                     async content(event, trigger, player) {
                                         const { links } = await player.chooseButton(['获得一张<嫕>', player.getExpansions('QD_wanyi')], true).forResult();
-                                        if (links && links[0]) {
+                                        if (links?.length) {
                                             player.gain(links, player, 'give');
                                         }
                                     },
@@ -5847,7 +5847,7 @@ game.import('extension', function () {
                                                 return num - get.value(card, player);
                                             })
                                             .forResult();
-                                        if (cards && cards[0]) {
+                                        if (cards?.length) {
                                             player.line(trigger.player, 'purple');
                                             trigger.effectCount++;
                                         }
@@ -5917,7 +5917,7 @@ game.import('extension', function () {
                                             .chooseTarget('大雾', (c, p, t) => !t.hasSkill('QD_dawu'), [1, game.players.length])
                                             .set('ai', (t) => t.isFriendsOf(player))
                                             .forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             for (const i of result.targets) {
                                                 i.addSkill('QD_dawu');
                                                 player.loseToDiscardpile(player.getExpansions('QD_dongfeng').randomGet());
@@ -6339,7 +6339,7 @@ game.import('extension', function () {
                                     .chooseTarget(`弃置一名角色至多${player.maxHp}张牌`, (c, p, t) => t != p && t.countCards('he'))
                                     .set('ai', (target) => -get.attitude(player, target))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     const result1 = await player.discardPlayerCard(result.targets[0], 'he', [1, Math.min(result.targets[0].countCards('he'), player.maxHp)]).forResult();
                                     if (result1?.cards?.length) {
                                         player.draw(player.maxHp - result1.cards.length);
@@ -6445,7 +6445,7 @@ game.import('extension', function () {
                                         .chooseButton(['请选择其一张牌', event.target.getCards('he')], true)
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         event.target.discard(links);
                                     }
                                 }
@@ -6453,7 +6453,7 @@ game.import('extension', function () {
                                     .chooseTarget('选择一名其他角色,令其视为对前者使用一张【决斗】', (c, p, t) => event.target != t, true)
                                     .set('ai', (t) => 20 - get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     document.body.QD_BG('QD_diaochan1');
                                     targets[0].useCard({ name: 'juedou' }, event.target);
                                 }
@@ -6495,7 +6495,7 @@ game.import('extension', function () {
                                         .chooseButton(['请选择其一张牌', event.target.getCards('he')], true)
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         if (get.type(links[0]) == 'equip') {
                                             player.equip(links[0]);
                                         } else {
@@ -6549,7 +6549,7 @@ game.import('extension', function () {
                                         .set('filterButton', (button) => button.link.suit == 'diamond')
                                         .set('ai', (button) => get.value(button.link) * sgn(event.target.isEnemiesOf(player)))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         const { targets } = await player
                                             .chooseTarget('选择乐不思蜀的目标', (c, p, t) => t != p)
                                             .set('ai', (t) => {
@@ -6559,7 +6559,7 @@ game.import('extension', function () {
                                                 return -get.attitude(player, t);
                                             })
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             if (targets[0].hasJudge('lebu')) {
                                                 const card = targets[0].getJudge('lebu');
                                                 const { targets: targets1 } = await player
@@ -6604,13 +6604,13 @@ game.import('extension', function () {
                                     .chooseButton(['弃置其一张牌,将此牌转移给另一名其他角色', trigger.player.getCards('he')])
                                     .set('ai', (button) => get.value(button.link) * sgn(trigger.player.isEnemiesOf(player)))
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     trigger.player.discard(links);
                                     const { targets } = await player
                                         .chooseTarget('选择要转移的角色', (c, p, t) => p != t)
                                         .set('ai', (t) => -get.attitude(player, t))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         trigger.targets.add(targets[0]);
                                         trigger.targets.remove(player);
                                         trigger.target = targets[0];
@@ -6704,7 +6704,7 @@ game.import('extension', function () {
                                                 .chooseCard(`交给${get.translation(player)}一张黑色牌`, 'he', (c) => get.color(c) == 'black')
                                                 .set('ai', (c) => 6 - get.value(c))
                                                 .forResult();
-                                            if (cards && cards[0]) {
+                                            if (cards?.length) {
                                                 npc.give(cards, player);
                                             } else {
                                                 const { links } = await player
@@ -6726,7 +6726,7 @@ game.import('extension', function () {
                                                         }
                                                     })
                                                     .forResult();
-                                                if (links && links[0]) {
+                                                if (links?.length) {
                                                     if (links[0] == '翻面') {
                                                         npc.turnOver();
                                                     } else if (links[0] == '受到一点无来源火焰伤害') {
@@ -6959,7 +6959,7 @@ game.import('extension', function () {
                                         return 99 + get.value(button.link);
                                     })
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     const name = get.color(links[0]) == 'red' ? 'tao' : 'jiu';
                                     const target = evt.parent.name == '_save' ? _status.dying : player;
                                     await player.useCard({ name: name }, links, target, false);
@@ -6993,7 +6993,7 @@ game.import('extension', function () {
                                         .chooseButton(['请选择其一张牌', event.target.getCards('he')])
                                         .set('ai', (button) => get.value(button.link) * sgn(event.target.isEnemiesOf(player)))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         event.target.discard(links);
                                         const { control } = await player
                                             .chooseControl('流失', '回复')
@@ -7036,7 +7036,7 @@ game.import('extension', function () {
                                     .chooseTarget('弃置任意名角色各一张牌', [1, game.players.length], (c, p, t) => t.countCards('he'))
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     for (const npc of targets) {
                                         const { links } = await player
                                             .chooseButton(['请选择弃置的卡牌', npc.getCards('he')])
@@ -7047,7 +7047,7 @@ game.import('extension', function () {
                                                 return 20 + get.value(button.link) * sgn(npc.isEnemiesOf(player));
                                             })
                                             .forResult();
-                                        if (links && links[0]) {
+                                        if (links?.length) {
                                             npc.discard(links);
                                         }
                                     }
@@ -7115,7 +7115,7 @@ game.import('extension', function () {
                                             .chooseTarget('令一名其他角色于本轮获得牌时随机少获得一张牌', (c, p, t) => p != t)
                                             .set('ai', (t) => -get.attitude(player, t))
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             targets[0].addSkill('QD_yingzix_2');
                                         }
                                     },
@@ -7351,7 +7351,7 @@ game.import('extension', function () {
                                             .chooseTarget('令任意其他角色代替你使用一张【桃】', [1, game.players.length], (c, p, t) => p != t)
                                             .set('ai', (t) => -get.attitude(player, t))
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             for (const npc of targets) {
                                                 const result = await npc
                                                     .chooseCard('he', (c) => c.name == 'tao')
@@ -7421,7 +7421,7 @@ game.import('extension', function () {
                                         return 5;
                                     })
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     for (const i of links) {
                                         if (i == '摸牌阶段') {
                                             trigger.player.skip('phaseDraw');
@@ -7453,7 +7453,7 @@ game.import('extension', function () {
                                         .chooseTarget('分配伤害', (card, player, target) => target != player)
                                         .set('ai', (t) => -get.attitude(player, t))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         targets[0].damage();
                                     }
                                 }
@@ -7472,7 +7472,7 @@ game.import('extension', function () {
                                                 .chooseTarget('分配伤害', (card, player, target) => target != player)
                                                 .set('ai', (t) => -get.attitude(player, t))
                                                 .forResult();
-                                            if (targets && targets[0]) {
+                                            if (targets?.length) {
                                                 targets[0].damage();
                                             }
                                         }
@@ -7550,7 +7550,7 @@ game.import('extension', function () {
                                         return 20 - get.attitude(player, t);
                                     })
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     let num = 6;
                                     while (num-- > 1) {
                                         targets[0].disableEquip(`equip${num}`);
@@ -7667,7 +7667,7 @@ game.import('extension', function () {
                                     .chooseTarget('令一名角色展示牌堆顶一张牌')
                                     .set('ai', (t) => 50 - get.attitude(player, t) - t.getExpansions('QD_buqu').length)
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     const cards = get.cards(1);
                                     targets[0].showCards(cards);
                                     if (
@@ -7720,13 +7720,13 @@ game.import('extension', function () {
                                             return -get.attitude(player, t);
                                         })
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         let numx = Math.min(num, targets[0].countCards('he'));
                                         const { links } = await player
                                             .chooseButton([`将${get.translation(targets[0])}至多${numx}张牌当作<谦逊>牌置于你的武将牌上`, targets[0].getCards('he')], [1, numx])
                                             .set('ai', (button) => 6 + get.value(button.link) * sgn(targets[0].isEnemiesOf(player)))
                                             .forResult();
-                                        if (links && links[0]) {
+                                        if (links?.length) {
                                             num -= links.length;
                                             player.addToExpansion(links).gaintag.add('QD_qianxun');
                                         } else {
@@ -7754,7 +7754,7 @@ game.import('extension', function () {
                                             .chooseButton([`选择获得一半(向下取整)的<谦逊>牌`, cards], num, true)
                                             .set('ai', (button) => get.value(button.link) - 7)
                                             .forResult();
-                                        if (links && links[0]) {
+                                        if (links?.length) {
                                             game.cardsGotoOrdering(links);
                                             player.gain(links, 'gain2');
                                         }
@@ -7811,7 +7811,7 @@ game.import('extension', function () {
                                                 .chooseTarget('分配火焰伤害', (card, player, target) => target != player)
                                                 .set('ai', (t) => -get.attitude(player, t))
                                                 .forResult();
-                                            if (targets && targets[0]) {
+                                            if (targets?.length) {
                                                 await targets[0].damage('fire');
                                             } else {
                                                 break;
@@ -8002,7 +8002,7 @@ game.import('extension', function () {
                                     .chooseTarget('将一名正面朝上角色的武将牌翻面', (c, p, t) => !t.isTurnedOver(), true)
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     targets[0].turnOver();
                                 }
                             },
@@ -8068,7 +8068,7 @@ game.import('extension', function () {
                                     .chooseTarget('将场上的牌当无懈可击使用', (c, p, t) => t.countCards('ej'), true)
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     const { links } = await player
                                         .choosePlayerCard(targets[0], true, 'ej', 'visible')
                                         .set('ai', (b) => sgn(targets[0].isEnemiesOf(player)) * get.value(b.link))
@@ -8102,7 +8102,7 @@ game.import('extension', function () {
                                     .chooseTarget(`令一名其他角色跳过其下个${get.translation(trigger.name)}`, (c, p, t) => p != t && !t.skipList.includes(trigger.name))
                                     .set('ai', (t) => sgn(['phaseJudge', 'phaseDiscard'].includes(trigger.name)) * get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     targets[0].skip(trigger.name);
                                 }
                             },
@@ -8123,7 +8123,7 @@ game.import('extension', function () {
                                             .chooseTarget('获得其他角色的至多两张牌', (c, p, t) => p != t && t.countCards('he'))
                                             .set('ai', (t) => -get.attitude(player, t))
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             const { links } = await player
                                                 .choosePlayerCard(targets[0], true, 'he', [1, num], 'visible')
                                                 .set('ai', (b) => get.value(b.link))
@@ -8259,7 +8259,7 @@ game.import('extension', function () {
                                                 .chooseTarget('选择一名角色令其选择①交给你一张牌②失去一点体力并随机失效一个技能', (c, p, t) => p != t, true)
                                                 .set('ai', (t) => -get.attitude(player, t))
                                                 .forResult();
-                                            if (targets && targets[0]) {
+                                            if (targets?.length) {
                                                 const { cards } = await targets[0]
                                                     .chooseToGive(player)
                                                     .set('ai', (c) => 8 - get.value(c))
@@ -8488,7 +8488,7 @@ game.import('extension', function () {
                                         return cards.filter((q) => get.type(q) == b.link).length;
                                     })
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     const { links: links1 } = await player
                                         .chooseButton(['选择一种基本牌', [player.qcard('basic', true, false), 'vcard']])
                                         .set('ai', (button) => {
@@ -8607,7 +8607,7 @@ game.import('extension', function () {
                                     .chooseTarget('令任意其他角色替你打出【闪】', (c, p, t) => p != t)
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     for (const npc of targets) {
                                         const result = await npc.chooseToRespond('替' + get.translation(player) + '打出一张闪或受到一点伤害', { name: 'shan' }).forResult();
                                         if (result?.bool) {
@@ -8639,7 +8639,7 @@ game.import('extension', function () {
                                         .chooseTarget('令一名其他角色失去一点体力', (c, p, t) => p != t)
                                         .set('ai', (t) => -get.attitude(player, t))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         targets[0].loseHp();
                                     }
                                 } else {
@@ -8725,7 +8725,7 @@ game.import('extension', function () {
                                         .chooseCard('he', true)
                                         .set('ai', (c) => 6 - get.value(c))
                                         .forResult();
-                                    if (cards && cards[0]) {
+                                    if (cards?.length) {
                                         player.addToExpansion(cards).gaintag.add('QD_mingren');
                                     }
                                 }
@@ -8771,7 +8771,7 @@ game.import('extension', function () {
                                         return 8 - sgn(get.owner(b.link).isFriendsOf(player)) * get.value(b.link, player);
                                     })
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     game.log(links, '进入弃牌堆');
                                     game.cardsDiscard(links);
                                     let num = links.length;
@@ -8780,7 +8780,7 @@ game.import('extension', function () {
                                             .chooseTarget('分配伤害', (c, p, t) => p != t)
                                             .set('ai', (t) => -get.attitude(player, t))
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             targets[0].damage();
                                         }
                                     }
@@ -8930,7 +8930,7 @@ game.import('extension', function () {
                                         return value;
                                     })
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     if (type.length) {
                                         targets[0].discard(targets[0].getCards('x'));
                                     }
@@ -9266,7 +9266,7 @@ game.import('extension', function () {
                                     }
                                     if (i.countCards('h', { name: 'sha' })) {
                                         const result = await i.chooseToRespond(`替${get.translation(player)}打出一张杀`, true, { name: 'sha' }).forResult();
-                                        if (result.cards && result.cards[0]) {
+                                        if (result.cards?.length) {
                                             if (evt.name == 'chooseToUse') {
                                                 player.when('useCard').then(() => trigger.directHit.addArray(game.players));
                                                 await player.chooseUseTarget('sha', true, false, 'nodistance');

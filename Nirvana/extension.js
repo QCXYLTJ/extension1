@@ -5287,7 +5287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', function (card) {
                                         return 7 - get.value(card);
                                     });
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     var list = [];
                                     var listx = [];
                                     if (!player.storage.hdsk_xinpokong.includes('damage')) {
@@ -20723,7 +20723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             prompt: '你可以将一张牌按下列规则互相转换并使用或打出,【酒】与【桃】,【闪】与【杀】,【决斗】与【火攻】,【闪电】与【无懈可击】,【过河拆桥】与【顺手牵羊】,【桃园结义】与【五谷丰登】,【借刀杀人】与【铁索连环】,【乐不思蜀】与【兵粮寸断】',
                             viewAs(cards, player) {
                                 var name = false;
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     switch (cards[0]?.name) {
                                         case 'sha':
                                             name = 'shan';
@@ -30207,7 +30207,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['任意张牌交给一名其他角色,其可选择<三策>中一项', list])
                                     .set('ai', (button) => 6 - get.value(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     const result1 = await player
                                         .chooseTarget()
                                         .set('ai', (t) => get.attitude(t, player))
@@ -37529,7 +37529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 0;
                                             })
                                             .forResult();
-                                        if (result.links && result.links[0]) {
+                                        if (result.links?.length) {
                                             if (result.links.length > 1) {
                                                 player.randomDiscard('e');
                                             }
@@ -46755,7 +46755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseCard('he')
                                     .set('ai', (c) => 8 - get.value(c))
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     const list = [];
                                     var numx = player.getHistory('useCard').length;
                                     var evt = event.getParent(2);
@@ -50935,7 +50935,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['弃置手牌中一种本回合未以此法弃置过的类型的所有牌', [type, 'tdnodes']])
                                     .set('ai', (button) => 3 - player.countCards('he', (c) => get.type(c) == button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.storage.szdl_gangmeng.add(result.links[0]);
                                     player.when('phaseEnd').then(() => (player.storage.szdl_gangmeng = []));
                                     var cards = player.getCards('h').filter((q) => get.type(q) == result.links[0]);

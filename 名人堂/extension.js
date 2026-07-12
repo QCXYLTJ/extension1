@@ -2667,10 +2667,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									for (const npc of targets1) {
 										const { result: { targets } } = await npc.chooseTarget('选择加入拼点其中一方', true, (c, p, t) => list.includes(t))
 											.set('ai', (t) => get.attitude(npc, t));
-										if (targets && targets[0]) {
+										if (targets?.length) {
 											const { result: { cards } } = await npc.chooseCard('h', true)
 												.set('ai', (c) => c.number);
-											if (cards && cards[0]) {
+											if (cards?.length) {
 												game.log(npc, '使用', cards[0], '加入了', targets[0]);
 												game.cardsGotoOrdering(cards[0]);
 												if (targets[0] == trigger.player) {
@@ -2718,7 +2718,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												.set('ai', function (t) {
 													return -get.attitude(npc, t);
 												});
-											if (targets && targets[0]) {
+											if (targets?.length) {
 												npc.useCard({ name: 'sha' }, targets[0]);
 											}
 										}
@@ -4288,7 +4288,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									while (cards.length) {
 										const { result: { links } } = await trigger.player.chooseCardButton(cards, true)
 											.set('ai', (c) => 6 - get.value(c.link));
-										if (links && links[0]) {
+										if (links?.length) {
 											cards.remove(links[0]);
 											trigger.player.showCards(links[0]);
 											const { result: { targets } } = await player.chooseTarget('是否终止洞明的流程,令1名角色获得' + get.translation(links[0]))
@@ -4296,7 +4296,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													if (get.value(links[0]) > 6) return get.attitude(player, t);
 													return 0;
 												});
-											if (targets && targets[0]) {
+											if (targets?.length) {
 												targets[0].gain(links[0], 'gain2');
 												break;
 											}
@@ -15084,13 +15084,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {//QQQ
 								const { result: { targets } } = await player.chooseTarget('移走攻击范围内其他角色1张装备', (c, p, t) => p != t && t.countCards('e'))
 									.set('ai', (t) => -get.attitude(player, t));
-								if (targets && targets[0]) {
+								if (targets?.length) {
 									const { result: { targets: targets1 } } = await player.chooseTarget('选择获得装备角色')
 										.set('ai', (t) => get.attitude(player, t));
 									if (targets1 && targets1[0]) {
 										const { result: { links } } = await player.chooseCardButton('选择一张装备牌', targets[0].getCards('e'))
 											.set('ai', (b) => get.value(b.link));
-										if (links && links[0]) {
+										if (links?.length) {
 											targets1[0].equip(links[0]);
 										}
 									}
@@ -16494,7 +16494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if (att > 0) return -1;
 											return Math.random() > 0.3;
 										});
-									if (cards && cards[0]) {
+									if (cards?.length) {
 										game.log(npc, '打出了牌');
 									}
 									else {
@@ -44472,7 +44472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								const result = await player.chooseTarget('可令任意名目标与你各弃置1张牌.', [1, Infinity], false, (card, player, target) => target != player && trigger.targets.includes(target) && target.countCards('he')).set('ai', (target) => -get.attitude(player, target)).forResult();
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									for (var i of result.targets) {
 										await i.chooseToDiscard(1, 'he', true);
 									}

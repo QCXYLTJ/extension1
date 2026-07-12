@@ -2977,7 +2977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         if (cards[0]) {
                                             const result = await player.chooseButton([cards], true).forResult();
-                                            if (result.links && result.links[0]) {
+                                            if (result.links?.length) {
                                                 await player.gain(result.links, 'gain2'); //QQQ
                                                 game.log(player, '从弃牌堆获得了', result.links);
                                             }

@@ -2813,7 +2813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (button) => get.value(button.link) - button.link.number / 2)
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },

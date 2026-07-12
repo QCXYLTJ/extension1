@@ -2136,7 +2136,7 @@ const skill = {
 						})
 						.set('ai', (button) => 10 - get.value(button.link))
 						.forResult();
-					if (result.links && result.links[0]) {
+					if (result.links?.length) {
 						player.addToExpansion(result.links, player, 'give').gaintag.add('QQQ002_xiangyun');
 						player.draw((player.storage.QQQ002_xiangyun > 1 ? 2 : 1) * result.links.length);
 					}
@@ -2151,7 +2151,7 @@ const skill = {
 				filter: (event, player) => (event.player == player || event.player.countCards('h') < event.player.hp) && player.getExpansions('QQQ002_xiangyun').length,
 				async content(event, trigger, player) {
 					const result = await trigger.player.chooseButton(['获得' + get.translation(player) + '的一张<香>', player.getExpansions('QQQ002_xiangyun')]).forResult();
-					if (result.links && result.links[0]) {
+					if (result.links?.length) {
 						trigger.player.gain(result.links, 'gain2');
 					}
 				},
@@ -19183,7 +19183,7 @@ const skill = {
 		async content(event, trigger, player) {
 			let num = player.storage.QQQ107_taye;
 			const { result } = await player.chooseButton(['从弃牌堆中选择至多' + num + '张与此牌类型相同的其他牌', Array.from(ui.discardPile.childNodes).filter((q) => get.type(q) == get.type(trigger.card))], [1, num]).set('ai', (button) => get.buttonValue(button));
-			if (result.links && result.links[0]) {
+			if (result.links?.length) {
 				player.storage.QQQ107_taye = 1;
 				for (const i of result.links) {
 					ui.cardPile.appendChild(i);
@@ -19278,7 +19278,7 @@ const skill = {
 			}
 			if (cards[0]) {
 				const { result } = await player.chooseButton(['将【小狐】或非手牌区一张牌当做一张基本牌使用或打出', cards]);
-				if (result.links && result.links[0]) {
+				if (result.links?.length) {
 					let list = [];
 					for (let i in lib.card) {
 						if (lib.card[i].mode && !lib.card[i].mode.includes(lib.config.mode)) {

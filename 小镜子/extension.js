@@ -279,7 +279,7 @@ export default function () {
                                                             return get.attitude(player, t);
                                                         })
                                                         .forResult();
-                                                    if (targets && targets[0]) {
+                                                    if (targets?.length) {
                                                         if (control == '装备区') {
                                                             targets[0].equip(card);
                                                         } else if (control == '判定区') {
@@ -459,7 +459,7 @@ export default function () {
                                                 .chooseButton(['请选择一个同名武将', [list, 'character']])
                                                 .set('ai', (button) => Math.random())
                                                 .forResult();
-                                            if (links && links[0]) {
+                                            if (links?.length) {
                                                 const skills = lib.character[links[0]].skills;
                                                 if (skills?.length) {
                                                     const { control } = await player.chooseControl(skills).set('prompt', `获得一个技能`).forResult();

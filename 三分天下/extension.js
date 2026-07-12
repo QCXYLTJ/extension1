@@ -188,7 +188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                 }
                             },
@@ -2450,7 +2450,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', function (target) {
                                         return -get.attitude(player, target);
                                     }).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     await player.gainPlayerCard(result.targets[0].hp, result.targets[0], 'h');
                                     var y = result.targets[0].maxHp - result.targets[0].hp + 1;
                                     const { result: result1 } = await player.chooseCard(Math.min(y, player.countCards('h')), 'he', '选择要交给' + get.translation(result.targets[0]) + '的牌', true);
@@ -2771,7 +2771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 const result = await player.chooseTarget(function (card, player, target) {
                                     return player != target && target.countCards('he');
                                 }).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.gainPlayerCard(result.targets[0], 'he');
                                     result.targets[0].addTempSkill('rejiuchi', { player: 'phaseBegin' });
                                 }

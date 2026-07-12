@@ -1396,7 +1396,7 @@ game.import('extension', function () {
                             .chooseTarget('选择一名距离不大于2的角色执行一种野兽效果', (c, p, t) => get.distance(p, t) < 3)
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             player.SG_shoufa(targets[0]);
                         }
                     },
@@ -1413,7 +1413,7 @@ game.import('extension', function () {
                                     .chooseTarget('选择一名距离不小于2的角色执行一种野兽效果', (c, p, t) => get.distance(p, t) > 1)
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.SG_shoufa(targets[0]);
                                 }
                             },
@@ -1433,7 +1433,7 @@ game.import('extension', function () {
                                     .chooseTarget('选择一名其他角色执行一种野兽效果', (c, p, t) => p != t)
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.SG_shoufa(targets[0]);
                                 }
                             },
@@ -1590,7 +1590,7 @@ game.import('extension', function () {
                                 .chooseTarget('选择一名其他角色,令其下回合内不能使用或打出牌', (c, p, t) => p != t)
                                 .set('ai', (t) => -get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 targets[0].addTempSkill('SG_manji_3', { player: 'phaseEnd' });
                             }
                         }
@@ -1608,7 +1608,7 @@ game.import('extension', function () {
                                     return 0;
                                 })
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 if (links[0] == '加入手牌') {
                                     player.gain(cards, 'gain2');
                                 } else {
@@ -1757,7 +1757,7 @@ game.import('extension', function () {
                                 return -2;
                             })
                             .forResult();
-                        if (links && links[0]) {
+                        if (links?.length) {
                             player.removeMark('SG_lianhua_1');
                             if (links[0] == '防止此伤害,改为你失去1点体力') {
                                 trigger.cancel();
@@ -1864,7 +1864,7 @@ game.import('extension', function () {
                                 .chooseButton(['选择其装备区一张牌', trigger.player.getCards('e')])
                                 .set('ai', (button) => get.value(button.link))
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 const { bool } = await trigger.player
                                     .chooseBool(`弃置${get.translation(links)}或取消受到一点伤害`)
                                     .set('ai', () => get.value(links[0]) < 8)
@@ -2067,7 +2067,7 @@ game.import('extension', function () {
                                 .chooseTarget('令一名角色回复1点体力,并代替其承受下一次伤害', (c, p, t) => t.hp < t.maxHp)
                                 .set('ai', (t) => get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 targets[0].recover();
                                 player.storage.SG_huanling_2.add(targets[0]);
                             }
@@ -2241,7 +2241,7 @@ game.import('extension', function () {
                             .chooseTarget(`对至多${num}名角色造成${num}点雷电伤害`, (c, p, t) => p != t)
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             for (const npc of targets) {
                                 await npc.damage(num, 'thunder');
                             }
@@ -2282,7 +2282,7 @@ game.import('extension', function () {
                                 .chooseButton(['将其一张手牌称为<封>置于其武将牌上', event.target.getCards('h')])
                                 .set('ai', (button) => get.value(button.link))
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 event.target.addToExpansion(links).gaintag.add('SG_lingfu_1');
                                 event.target.addSkill('SG_lingfu_1');
                             }
@@ -2453,7 +2453,7 @@ game.import('extension', function () {
                             .chooseTarget('对至多三名角色各造成1点火焰伤害', (c, p, t) => p != t, [1, 3])
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             for (const npc of targets) {
                                 npc.addSkill('fengyin');
                                 npc.damage(2, 'fire');
@@ -2537,7 +2537,7 @@ game.import('extension', function () {
                             .chooseTarget('令攻击范围内另一名角色成为目标', (c, p, t) => get.distance(p, t, 'attack') < 2 && ![trigger.target, p].includes(t))
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             player.useCard({ name: 'sha' }, targets[0], false);
                         }
                     },
@@ -2558,7 +2558,7 @@ game.import('extension', function () {
                             .chooseTarget('令一名角色重置护甲', (c, p, t) => t.hujia)
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             targets[0].hujia = 0;
                         }
                     },
@@ -2609,7 +2609,7 @@ game.import('extension', function () {
                                 .chooseTarget('令一名同势力其他角色获得1点护甲', (c, p, t) => t.group == p.group && t != p)
                                 .set('ai', (t) => get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 targets[0].SG_hujia();
                             }
                         }
@@ -2644,7 +2644,7 @@ game.import('extension', function () {
                                 .chooseTarget('令一名角色回复1点体力,若其性别为男,额外获得1层『灵印』', (c, p, t) => t.hp < t.maxHp)
                                 .set('ai', (t) => get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 targets[0].recover();
                                 if (targets[0].sex == 'male') {
                                     targets[0].addMark('SG_wuji');
@@ -2655,7 +2655,7 @@ game.import('extension', function () {
                                 .chooseTarget('弃置一名角色区域内两张牌(装备优先),若其为魏或吴势力,其本回合无法使用与弃牌同类型的牌', (c, p, t) => p != t && t.countCards('he'))
                                 .set('ai', (t) => -get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 let cards = [];
                                 const he = targets[0].getCards('he');
                                 const equip = targets[0].getCards('e');
@@ -3023,7 +3023,7 @@ game.import('extension', function () {
                                 .chooseTarget('视为对另一名其他角色使用『杀』(无视距离)', (c, p, t) => ![trigger.player, player].includes(t))
                                 .set('ai', (t) => -get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 player.useCard({ name: 'sha' }, targets[0], false);
                                 targets[0].addMark('SG_xuechou');
                                 if (player.getEquip('SG_zhanxiang')) {
@@ -3291,7 +3291,7 @@ game.import('extension', function () {
                                 .chooseCard('he', (c) => color.includes(get.color(c)))
                                 .set('ai', (card) => 999 - get.value(card))
                                 .forResult(); //填小了会无限循环
-                            if (cards && cards[0]) {
+                            if (cards?.length) {
                                 list = list.filter((q) => vcard[get.color(cards[0])].includes(q[2]));
                                 const { links } = await player
                                     .chooseButton(['视为使用一张牌', [list, 'vcard']])
@@ -3307,7 +3307,7 @@ game.import('extension', function () {
                                         return number0(num) + 10;
                                     })
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     if (links[0][2] == 'wuxie') {
                                         player.useCard({ name: links[0][2] }, cards, false);
                                         event._trigger = evt._trigger;
@@ -3525,7 +3525,7 @@ game.import('extension', function () {
                             .chooseTarget('额外指定一个目标', (c, p, t) => p != t && !trigger.targets.includes(t))
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             player.when({ player: 'shaBefore' }).then(() => (trigger.shanRequired = 2));
                             trigger.targets.push(targets[0]);
                         }
@@ -3622,7 +3622,7 @@ game.import('extension', function () {
                                 .chooseButton(['请选择卡牌', nobasic])
                                 .set('ai', (button) => get.value(button.link))
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 cards.remove(links[0]);
                                 event.target.gain(links, 'gain2');
                             }
@@ -3836,7 +3836,7 @@ game.import('extension', function () {
                                             .chooseTarget(`额外指定${num}名目标`, (c, p, t) => !trigger.targets.includes(t), [1, num])
                                             .set('ai', (t) => get.effect(t, trigger.card, player, player))
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             trigger.targets.addArray(targets);
                                         }
                                     }
@@ -3951,7 +3951,7 @@ game.import('extension', function () {
                             .chooseCard('h', { color: 'black' })
                             .set('ai', (c) => get.attitude(player, event.target))
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                             event.target.showCards(cards);
                             player.addMark('SG_qingnang');
                             if (player.storage.SG_qingnang > 4) {
@@ -3989,7 +3989,7 @@ game.import('extension', function () {
                                     .chooseTarget('伤害转移给其攻击范围内另一角色', (c, p, t) => p != t && get.distance(player, t, 'attack') < 2)
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     trigger.player = targets[0];
                                 }
                             },
@@ -4159,12 +4159,12 @@ game.import('extension', function () {
                                     .chooseButton(['请选择类型', [list, 'tdnodes']], true)
                                     .set('ai', (b) => Math.random())
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     const { cards } = await trigger.player
                                         .chooseCard(`交出一张${get.translation(links[0])}类型的牌`, 'he', (c) => get.type(c) == links[0])
                                         .set('ai', (c) => 10 - get.value(c))
                                         .forResult();
-                                    if (cards && cards[0]) {
+                                    if (cards?.length) {
                                         trigger.player.give(cards, player);
                                     } else {
                                         trigger.player.damage(2, 'nosource');
@@ -4428,7 +4428,7 @@ game.import('extension', function () {
                                 .chooseTarget('分配2点伤害', (c, p, t) => p != t)
                                 .set('ai', (t) => -get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 targets[0].damage(2);
                             }
                         }
@@ -4486,7 +4486,7 @@ game.import('extension', function () {
                                 return num;
                             })
                             .forResult();
-                        if (links && links[0]) {
+                        if (links?.length) {
                             for (const npc of game.players) {
                                 const cards = npc.getCards('hej').filter((c) => c.name == links[0][2]);
                                 if (cards.length) {
@@ -4679,7 +4679,7 @@ game.import('extension', function () {
                                         .chooseButton(['选择弃置装备', player.getCards('e')], num, true)
                                         .set('ai', (button) => 20 - get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         player.discard(links);
                                     }
                                 }
@@ -4792,7 +4792,7 @@ game.import('extension', function () {
                                 .chooseButton(['选择未使用过的一项领域持续3轮', [player.storage.SG_liudao_list.map((i) => [i, get.translation(i)]), 'tdnodes']], true)
                                 .set('ai', (button) => Math.random())
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 player.storage.SG_liudao_list.remove(links[0]);
                                 game.addGlobalSkill(links[0]);
                                 player.storage.SG_liudao = [links[0], 3];
@@ -4853,12 +4853,12 @@ game.import('extension', function () {
                             .chooseButton(['请选择类型', [lib.type.map((i) => [i, get.translation(i)]), 'tdnodes']], true)
                             .set('ai', (b) => Math.random())
                             .forResult();
-                        if (links && links[0]) {
+                        if (links?.length) {
                             const { cards } = await player
                                 .chooseCard(`交出一张${get.translation(links[0])}类型的牌`, 'he', (c) => get.type(c) == links[0])
                                 .set('ai', (c) => 10 - get.value(c))
                                 .forResult();
-                            if (cards && cards[0]) {
+                            if (cards?.length) {
                                 player.give(cards, boss);
                             } else {
                                 trigger.all_excluded = true;
@@ -5055,7 +5055,7 @@ game.import('extension', function () {
                                 .chooseToDiscard('弃置等同于当前轮次数的牌(不足则流失等量体力)', 'he', [1, game.roundNumber])
                                 .set('ai', (c) => 6 - get.value(c))
                                 .forResult();
-                            if (cards && cards[0]) {
+                            if (cards?.length) {
                                 const num = game.roundNumber - cards.length;
                                 if (num > 0) {
                                     npc.loseHp(num);
@@ -5183,7 +5183,7 @@ game.import('extension', function () {
                                         })
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         player.gain(links, 'gain2');
                                     }
                                 }
@@ -5464,7 +5464,7 @@ game.import('extension', function () {
                             .chooseToDiscard('弃置一张牌防止此伤害', 'he')
                             .set('ai', (c) => 5 * sgn(trigger.player.isFriendsOf(player)) + sgn(get.type(c) == 'equip'))
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                             player.storage.SG_xingzhui--;
                             if (get.type(cards[0]) == 'equip') {
                                 player.draw();
@@ -5507,7 +5507,7 @@ game.import('extension', function () {
                             .chooseCard('h', true)
                             .set('ai', (c) => 6 - get.value(c))
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                             event.target.showCards(cards);
                             if (get.color(cards[0]) == 'black') {
                                 const sha = player.useCard({ name: 'sha' }, event.target).set('addCount', false).set('directHit', game.players);
@@ -5695,7 +5695,7 @@ game.import('extension', function () {
                                 .chooseButton(['观看牌堆顶两张牌选择一张替换', cards], true)
                                 .set('ai', (b) => (trigger.judge(b.link) - trigger.judge(trigger.player.judging[0])) * sgn(get.attitude(player, trigger.player)))
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 card = links[0];
                                 cards.remove(card);
                                 player.gain(cards, 'gain2');
@@ -5800,7 +5800,7 @@ game.import('extension', function () {
                                 .set('filterCard', (c) => color.includes(get.color(c)))
                                 .set('ai', (c) => 8 - get.value(c))
                                 .forResult();
-                            if (cards && cards[0]) {
+                            if (cards?.length) {
                             } else {
                                 const list1 = [];
                                 let num = 6;
@@ -5865,12 +5865,12 @@ game.import('extension', function () {
                             .set('filterButton', (button) => get.color(button.link) == 'red')
                             .set('ai', (button) => get.value(button.link))
                             .forResult();
-                        if (links && links[0]) {
+                        if (links?.length) {
                             const { targets } = await player
                                 .chooseTarget('『幻月』置于一名角色的武将牌上', (c, p, t) => p != t)
                                 .set('ai', (t) => -get.attitude(player, t))
                                 .forResult();
-                            if (targets && targets[0]) {
+                            if (targets?.length) {
                                 targets[0].addToExpansion(links, 'gain2').gaintag.add('SG_huanyue');
                             }
                         }
@@ -5955,7 +5955,7 @@ game.import('extension', function () {
                             .set('filterCard', (c) => get.type(c) == 'basic')
                             .set('ai', (c) => get.effect(player, trigger.card, trigger.player, trigger.player) - get.value(c))
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                         } else {
                             trigger.parent.excluded.add(player);
                         }
@@ -6210,7 +6210,7 @@ game.import('extension', function () {
                             .chooseButton(['获得其一个技能', [skills.map((i) => [i, get.translation(i)]), 'tdnodes']])
                             .set('ai', (button) => Math.random())
                             .forResult();
-                        if (links && links[0]) {
+                        if (links?.length) {
                             player.addSkill(links);
                         }
                     },
@@ -6245,7 +6245,7 @@ game.import('extension', function () {
                             .chooseTarget('令一名角色执行一至两项')
                             .set('ai', (t) => get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             const list = ['获得一点护甲'];
                             if (targets[0].hp < targets[0].maxHp) {
                                 list.push('回复1点体力');
@@ -6262,7 +6262,7 @@ game.import('extension', function () {
                                     return 0.8;
                                 })
                                 .forResult();
-                            if (links && links[0]) {
+                            if (links?.length) {
                                 if (links.length > 1) {
                                     player.skip('phaseUse');
                                 }
@@ -6300,7 +6300,7 @@ game.import('extension', function () {
                             .chooseCard('h', '将一张手牌称为<塔>置于武将牌上')
                             .set('ai', (c) => 6 - get.value(c))
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                             player.addToExpansion(cards).gaintag.add('SG_jiansi');
                         }
                     },
@@ -6393,7 +6393,7 @@ game.import('extension', function () {
                                 return -2;
                             })
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                             event.target.showCards(cards);
                             if (get.type(cards[0]) == 'basic') {
                                 const { bool } = await player
@@ -6420,7 +6420,7 @@ game.import('extension', function () {
                                     .set('filterTarget', (c, p, t) => t != event.target)
                                     .set('ai', (t) => get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     targets[0].equip(cards[0]);
                                 }
                             }
@@ -6449,7 +6449,7 @@ game.import('extension', function () {
                             .chooseCard('h', '弃置任意张手牌,摸等量的牌')
                             .set('ai', (c) => 8 - get.value(c))
                             .forResult();
-                        if (cards && cards[0]) {
+                        if (cards?.length) {
                             player.discard(cards);
                             let num = cards.length;
                             if (cards.map((c) => c.suit).unique().length > 1) {
@@ -6522,13 +6522,13 @@ game.import('extension', function () {
                                                 .chooseToDiscard('弃置1张手牌,令一名其他角色回复1点体力', 'h')
                                                 .set('ai', (c) => 6 - get.value(c))
                                                 .forResult();
-                                            if (cards && cards[0]) {
+                                            if (cards?.length) {
                                                 const { targets } = await player
                                                     .chooseTarget('令一名其他角色回复1点体力')
                                                     .set('filterTarget', (c, p, t) => p != t)
                                                     .set('ai', (t) => get.attitude(player, t))
                                                     .forResult();
-                                                if (targets && targets[0]) {
+                                                if (targets?.length) {
                                                     await targets[0].recover();
                                                     if (targets[0].isMinHp()) {
                                                         player.SG_lingyun(1);
@@ -6543,13 +6543,13 @@ game.import('extension', function () {
                                                 .chooseCard('将至多2张手牌交给一名其他角色', 'h', [1, 2])
                                                 .set('ai', (c) => 6 - get.value(c))
                                                 .forResult();
-                                            if (cards && cards[0]) {
+                                            if (cards?.length) {
                                                 const { targets } = await player
                                                     .chooseTarget('将牌交给一名其他角色')
                                                     .set('filterTarget', (c, p, t) => p != t)
                                                     .set('ai', (t) => get.attitude(player, t))
                                                     .forResult();
-                                                if (targets && targets[0]) {
+                                                if (targets?.length) {
                                                     player.give(cards, targets[0]);
                                                     if (cards.some((c) => get.color(c) == 'red')) {
                                                         player.SG_lingyun(1);
@@ -6574,7 +6574,7 @@ game.import('extension', function () {
                                                     return 0;
                                                 })
                                                 .forResult();
-                                            if (cards && cards[0]) {
+                                            if (cards?.length) {
                                                 player.showCards(cards);
                                                 const type = get.type(cards[0]);
                                                 if (type == 'basic') {
@@ -6585,7 +6585,7 @@ game.import('extension', function () {
                                                         .set('filterTarget', (c, p, t) => p != t)
                                                         .set('ai', (t) => get.attitude(player, t))
                                                         .forResult();
-                                                    if (targets && targets[0]) {
+                                                    if (targets?.length) {
                                                         if (type == 'trick') {
                                                             targets[0].draw();
                                                         }
@@ -7690,7 +7690,7 @@ game.import('extension', function () {
                                 .chooseCard('h', [1, 3])
                                 .set('ai', (c) => 8 - get.value(c))
                                 .forResult();
-                            if (cards && cards[0]) {
+                            if (cards?.length) {
                                 const { control } = await player
                                     .chooseControl(['牌堆顶', '牌堆底'])
                                     .set('ai', (e, p) => {
@@ -7859,7 +7859,7 @@ game.import('extension', function () {
                             .chooseTarget('弃置一名其他角色一张装备牌', (c, p, t) => p != t && t.countCards('e'))
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             player.discardPlayerCard(targets[0], 'e', true);
                         }
                     },
@@ -7906,7 +7906,7 @@ game.import('extension', function () {
                             .chooseTarget('弃置一名其他角色一张牌并令其翻面', (c, p, t) => p != t && t.countCards('he'))
                             .set('ai', (t) => -get.attitude(player, t))
                             .forResult();
-                        if (targets && targets[0]) {
+                        if (targets?.length) {
                             player.discardPlayerCard(targets[0], 'he', true);
                             targets[0].turnOver(true);
                         }

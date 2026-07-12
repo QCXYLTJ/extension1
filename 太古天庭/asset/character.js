@@ -28867,7 +28867,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         async content(event, trigger, player) {
                             //QQQ
                             const result = await player.chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target)).set('ai', (target) => get.effect(target, trigger.card, player, player)).forResult();
-                            if (result.targets && result.targets[0]) {
+                            if (result.targets?.length) {
                                 trigger.targets.push(result.targets[0]);
                             }
                         },

@@ -556,7 +556,7 @@ const skills = {
                         return number0(num) / 2 + 10;
                     })
                     .forResult();
-                if (links && links[0]) {
+                if (links?.length) {
                     const cards = get.cards(numx);
                     const card = cards.find((q) => q.name == links[0][2]);
                     if (card) {

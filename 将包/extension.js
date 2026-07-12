@@ -610,7 +610,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (button) => 2 * get.value(button.link) - button.link.number)
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },
@@ -9781,7 +9781,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target))
                                     .set('ai', (target) => get.effect(target, trigger.card, player, player))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     trigger.targets.push(result.targets[0]);
                                 }
                             },
@@ -9925,7 +9925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target))
                                     .set('ai', (target) => get.effect(target, trigger.card, player, player))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     trigger.targets.push(result.targets[0]);
                                 }
                             },
@@ -10333,7 +10333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('filterButton', (button) => event.skill.includes(button.link))
                                     .set('ai', (button) => Math.random())
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     if (player.isMinHp()) player.recover();
                                     player.addSkillLog(result.links);
                                 }
@@ -11117,7 +11117,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (target) => -get.attitude(player, target))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     for (var i of result.targets) {
                                         await player.gainPlayerCard(i);
                                     }

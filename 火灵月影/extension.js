@@ -3279,7 +3279,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         return 6 - get.useful(b.link);
                     })
                     .forResult();
-                if (links && links[0]) {
+                if (links?.length) {
                     await player.discard(links);
                 }
                 game.playAudio(`../extension/火灵月影/audio/qinli_yanli${[1, 2, 3].randomGet()}.mp3`);
@@ -3289,7 +3289,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         .set('filterTarget', (c, p, t) => p != t && t.countCards('h'))
                         .set('ai', (t) => -get.attitude(player, t))
                         .forResult();
-                    if (targets && targets[0]) {
+                    if (targets?.length) {
                         player.gainPlayerCard(targets[0], 'hej', 'visible').set('ai', (b) => get.value(b.link));
                     }
                 }
@@ -3307,7 +3307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     })
                     .set('ai', (t) => -get.attitude(player, t))
                     .forResult();
-                if (targets && targets[0]) {
+                if (targets?.length) {
                     if (!targets[0].storage.HL_wufan) {
                         targets[0].storage.HL_wufan = [];
                     }
@@ -4445,7 +4445,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget('展示一名敌方角色的手牌,弃置里面所有基本牌,获得其中所有锦囊牌', (c, p, npc) => npc.isEnemiesOf(p) && npc.countCards('h'))
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     const cards = targets[0].getCards('h');
                                     player.showCards(cards);
                                     targets[0].discard(cards.filter((q) => get.type(q) == 'basic'));
@@ -4692,7 +4692,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseTarget('令一名角色回复一点体力', (c, p, t) => t.hp < t.maxHp)
                                         .set('ai', (t) => get.attitude(player, t))
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         targets[0].recover();
                                     }
                                 }
@@ -4749,7 +4749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseCard('将一张牌当做【杀】对伤害来源使用', 'he')
                                         .set('ai', (c) => -get.attitude(player, trigger.source) - get.value(c))
                                         .forResult();
-                                    if (cards && cards[0]) {
+                                    if (cards?.length) {
                                         const sha = player.useCard({ name: 'sha' }, cards, trigger.source, false);
                                         await sha;
                                         if (trigger.source.countCards('he')) {
@@ -5492,7 +5492,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseButton(['选择其中一张使用之', cards])
                                         .set('ai', (button) => get.value(button.link))
                                         .forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         HL.wangzuoboss.chooseUseTarget(links[0], true, false, 'nodistance');
                                     } else {
                                         player.loseHp();
@@ -6705,7 +6705,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 if (trigger.card.number && trigger.cards && trigger.cards[0]) {
                                     const result = await player.chooseCard('与其使用的牌拼点', 'h').forResult();
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         game.cardsGotoOrdering(result.cards);
                                         await player.$compare(result.cards[0], trigger.player, trigger.cards[0]);
                                         game.log(player, '的拼点牌为', result.cards[0]);
@@ -6811,7 +6811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             async content(event, trigger, player) {
                                 const result = await player.chooseToDiscard(1, 'he', true).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     let num = 0;
                                     for (const i of game.players) {
                                         num += i.countMark('_HL_shaoshang');
@@ -7151,7 +7151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('filterTarget', (c, p, t) => trigger.targets.includes(t))
                                     .set('ai', (t) => -get.attitude(player, t))
                                     .forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     while (num-- > 0) {
                                         await player.useCard({ name: 'sha' }, targets[0], false);
                                     }
@@ -7359,7 +7359,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton([`生成一个友方傀儡并赋予其至多${num}个已记录的技能`, [player.storage.HL_liankui_skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [1, num])
                                     .set('ai', (b) => Math.random())
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     const numx = links.length;
                                     player.removeMark('HL_liankui', numx);
                                     const npc = player.addFellow('HL_kuilei');
@@ -7503,7 +7503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['从四项律法中选择获得其中两项律法', [player.storage.HL_tianqi.map((i) => [i, get.translation(i)]), 'tdnodes']], 2, true)
                                     .set('ai', (b) => Math.random())
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     game.log(player, '加入律法', links);
                                     HL.lvfa = links;
                                     if (!HL.jielvboss || !game.players.includes(HL.jielvboss)) {
@@ -8190,7 +8190,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(player, t);
                                         })
                                         .forResult();
-                                    if (targets && targets[0]) {
+                                    if (targets?.length) {
                                         num--;
                                         const index = list.get(targets[0]);
                                         if (!index) {
@@ -8330,7 +8330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('filterCard', (c) => get.color(c) != get.color(trigger.card) || c.suit == trigger.card.suit)
                                     .set('ai', (c) => -get.effect(player, trigger.card, trigger.player, player) - get.value(c))
                                     .forResult();
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     game.log(player, '无效了', trigger.card);
                                     game.playAudio(`../extension/火灵月影/audio/qinli_jiaozhan${[1, 2, 3].randomGet()}.mp3`);
                                     trigger.parent.all_excluded = true;
@@ -8859,7 +8859,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(player, t);
                                             })
                                             .forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             num--;
                                             const index = list.get(targets[0]);
                                             if (!index) {

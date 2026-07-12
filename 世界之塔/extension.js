@@ -3783,7 +3783,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     dialog.add(list);
                                     const result = await player.chooseButton(dialog)
                                         .set('ai', (button) => get.value(button.link)).forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         var num = Math.floor(player.countCards('hej', { suit: 'heart' }) / 2);
                                         player.gain(result.links, 'draw2', 'log');
                                         player.randomGain(trigger.player, 2, true, 'hej');

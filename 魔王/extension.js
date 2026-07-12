@@ -1805,7 +1805,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }, null, true);
                                             return numberq0(num) / 2 + 10;
                                         }).forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         if (lib.card[links[0][2]].type == 'basic') {
                                             if (player.countDisabled() < 5) {
                                                 await player.chooseToDisable();

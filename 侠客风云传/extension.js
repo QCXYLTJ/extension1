@@ -8352,7 +8352,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (target.isLinked()) return att;
 										else return -att + 0.1;
 									}).forResult();
-									if (result.targets && result.targets[0]) {
+									if (result.targets?.length) {
 										player.line(result.targets, 'fire');
 										for (var i of result.targets) {
 											i.link();

@@ -58,7 +58,7 @@ export let info = {
                   () => 1
                 )
                 .forResult();
-              if (targets && targets[0]) {
+              if (targets?.length) {
                 const next = game.createEvent('diex', false);
                 next.source = player;
                 next.player = targets[0];
@@ -93,7 +93,7 @@ export let info = {
       filterTarget: (_event, player, target) => player != target && target.getCards('h')[0],
       content: async function (event, trigger, player) {
         const { links } = await player.choosePlayerCard(event.target, 'h', '展示一张牌', true).forResult();
-        if (links && links[0]) {
+        if (links?.length) {
           await event.target.showCards(links[0]);
           let num = get.cardNameLength(links[0]);
           if (num < event.target.hp) {
@@ -929,7 +929,7 @@ export let info = {
           else event.finish();
         } else event.finish();
         ('step 2');
-        if (result.targets && result.targets[0]) {
+        if (result.targets?.length) {
           //QQQ
           player.addTempSkill('dqzw_boss_activity_tianhai_Pierc_sha');
           player.gainPlayerCard(result.targets[0], 'e', true);

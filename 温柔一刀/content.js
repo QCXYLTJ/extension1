@@ -2547,7 +2547,7 @@ const content = async function () {
               return _status.event.player.hasUseTarget(button.link[2]);
             })
             .forResult();
-          if (links && links[0]) {
+          if (links?.length) {
             player.chooseUseTarget(true, links[0][2]);
           }
         };
@@ -2585,7 +2585,7 @@ const content = async function () {
               return _status.event.player.hasUseTarget(button.link[2]);
             })
             .forResult();
-          if (links && links[0]) {
+          if (links?.length) {
             player.chooseUseTarget(true, links[0][2]);
           }
         };
@@ -2606,7 +2606,7 @@ const content = async function () {
               return _status.event.player.hasUseTarget(button.link[2]);
             })
             .forResult();
-          if (links && links[0]) {
+          if (links?.length) {
             player.chooseUseTarget(true, links[0][2]);
           }
         };
@@ -2634,7 +2634,7 @@ const content = async function () {
               return _status.event.player.hasUseTarget(button.link[2]);
             })
             .forResult();
-          if (links && links[0]) {
+          if (links?.length) {
             player.chooseUseTarget(true, links[0][2]);
           }
         };
@@ -5401,7 +5401,7 @@ const content = async function () {
       if (lib.skill.twqiaosi) {
         lib.skill.twqiaosi.content = async function (event, trigger, player) {
           const cards = get.info('twqiaosi').getCards(player);
-          if (cards && cards[0]) {
+          if (cards?.length) {
             await player.gain(cards, 'gain2');
           } //QQQ
           if (cards.length < player.getHp()) {
@@ -5596,7 +5596,7 @@ const content = async function () {
               .discardPlayerCard(target, 'hej', true)
               .set('ai', (button) => game.countPlayer((current) => current.isEnemiesOf(player) && current.countCards('he', (card) => get.color(card) == get.color(button.link))))
               .forResult();
-            if (result.cards && result.cards[0]) {
+            if (result.cards?.length) {
               event.color = get.color(result.cards[0]);
               let list = [];
               if (game.hasPlayer((current) => current.isEnemiesOf(player) && current.countCards('h'))) {
@@ -7804,7 +7804,7 @@ const content = async function () {
               return 0.6;
             })
             .forResult();
-          if (result.links && result.links[0]) {
+          if (result.links?.length) {
             switch (result.links[0]) {
               case 'wolong':
                 {
@@ -7970,7 +7970,7 @@ const content = async function () {
               return attx / Math.max(2.25, Math.sqrt(target.countCards('h') + 1));
             })
             .forResult();
-          if (result.targets && result.targets[0]) {
+          if (result.targets?.length) {
             game.log(`<span class="greentext">${get.translation(result.targets)}获得了<御风>效果</span>`);
             for (const i of result.targets) {
               i.addSkill('yufeng2');
@@ -8011,7 +8011,7 @@ const content = async function () {
                 return get.attitude(player, target) * (0.3 * target.countCards('j') - 1);
               })
               .forResult(); //对目标正价值就乘get.att,负价值就乘-get.att
-            if (result.targets && result.targets[0]) {
+            if (result.targets?.length) {
               const result1 = await player
                 .chooseButton(['将整理出的经典置于一名角色的武将牌上', cards])
                 .set('ai', (button) => 6 - get.value(button.link))

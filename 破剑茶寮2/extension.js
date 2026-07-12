@@ -25570,7 +25570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     game.swapSeat(player, i, true, false, true);
                                     if (player.countCards('he') && list.length) {
                                         const result = await player.chooseToDiscard('he', true).forResult();
-                                        if (result.cards && result.cards[0]) {
+                                        if (result.cards?.length) {
                                             var suit = result.cards[0].suit;
                                             var card = list.filter((card) => card.suit != suit && !player.getCards('he').includes(card));
                                             if (card.length) {

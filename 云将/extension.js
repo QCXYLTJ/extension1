@@ -10542,7 +10542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 0.6;
                             })
                             .forResult();
-                        if (result.links && result.links[0]) {
+                        if (result.links?.length) {
                             switch (result.links[0]) {
                                 case 'wolong':
                                     {
@@ -10680,7 +10680,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return attx / Math.max(2.25, Math.sqrt(target.countCards('h') + 1));
                             })
                             .forResult();
-                        if (result.targets && result.targets[0]) {
+                        if (result.targets?.length) {
                             game.log(result.targets, '获得了#y<御风>效果');
                             for (var i of result.targets) {
                                 i.addSkill('yufeng2');
@@ -10719,7 +10719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) * (0.3 * target.countCards('j') - 1);
                                 })
                                 .forResult(); //对目标正价值就乘get.att,负价值就乘-get.att
-                            if (result.targets && result.targets[0]) {
+                            if (result.targets?.length) {
                                 const { result: result1 } = await player.chooseButton(['将整理出的经典置于一名角色的武将牌上', cards]).set('ai', (button) => 6 - get.value(button.link));
                                 if (result1.links && result1.links[0]) {
                                     cards.remove(result1.links[0]);

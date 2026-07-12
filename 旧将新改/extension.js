@@ -17135,7 +17135,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var card = get.cards();
                                 player.showCards(cards);
                                 const result = await player.chooseTarget('将此牌置于一名角色判定区', (card, player, target) => target != player && !target.countCards('j', 'caomu')).forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].addJudge({ name: 'caomu' }, card);
                                 }
                             },

@@ -1679,7 +1679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.tag(button.link, 'damage') > 0;
                                 });
                                 ('step 1');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     //QQQ
                                     if (result.links[0].nature) {
                                         var card = game.createCard(result.links[0].name, result.links[0].suit, result.links[0].number, result.links[0].nature);

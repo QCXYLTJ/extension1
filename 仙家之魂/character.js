@@ -3657,7 +3657,7 @@ game.import('character', function () {
 						.chooseButton(['请选择武将', [list, 'character']])
 						.set('ai', (button) => Math.random())
 						.forResult();
-					if (links && links[0]) {
+					if (links?.length) {
 						event.target.reinit(event.target.name, links[0]);
 					}
 				},
@@ -3682,12 +3682,12 @@ game.import('character', function () {
 								.chooseButton(['请选择武将', [list, 'character']])
 								.set('ai', (button) => Math.random())
 								.forResult();
-							if (links && links[0]) {
+							if (links?.length) {
 								const { targets } = await player
 									.chooseTarget('选择一名角色令其更换武将', (c, p, t) => p != t)
 									.set('ai', (t) => Math.random())
 									.forResult();
-								if (targets && targets[0]) {
+								if (targets?.length) {
 									targets[0].reinit(targets[0].name, links[0]);
 								}
 							}

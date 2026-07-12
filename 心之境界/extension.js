@@ -4529,7 +4529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (att == 0) return Math.random();
                                         return att;
                                     }).forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.line(targets[0], 'green');
                                     targets[0].storage.xzjj_xianfu2 = player;
                                     targets[0].addSkill('xzjj_xianfu2');
@@ -8049,7 +8049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '你送给别人一张牌!',
                                 });
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(result.cards);
                                     target.$give(result.cards.length, result.targets[0]);
                                     target.addExpose();

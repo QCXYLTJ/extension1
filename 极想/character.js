@@ -12644,7 +12644,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     player.draw();
                     if (player.countCards('h')) {
                         const result = await player.chooseCard('h', true).set('prompt2', '将一张牌置于牌堆顶').forResult();
-                        if (result.cards && result.cards[0]) {
+                        if (result.cards?.length) {
                             ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
                             const result1 = await player
                                 .chooseTarget('选择两名手牌数不同的角色,令手牌多的角色交给手牌少的角色一张手牌,若他们手牌数相等,你摸一张牌,否则你令其中一名角色重铸一张手牌', true, 2, (card, player, tar) => {
@@ -33429,7 +33429,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 async content(event, trigger, player) {
                     const { result: { cards } } = await player.gainPlayerCard(trigger.target, 'he', 'visibleMove');
-                    if (cards && cards[0]) {
+                    if (cards?.length) {
                         if (get.type(cards[0]) == 'equip') {
                             const { bool } = await player.chooseBool('是否立即装备' + get.translation(cards[0]) + '？').forResult();
                             if (bool) {

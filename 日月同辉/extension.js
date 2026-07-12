@@ -2558,7 +2558,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 while (trigger.num > 0) {
                                     if (game.hasPlayer((target) => target.countCards('h') && player != target)) {
                                         const result = await player.chooseTarget(`少摸任意的牌,获得其他角色等量张手牌(当前剩余摸牌数:${trigger.num})`, (card, player, target) => target.countCards('h') && player != target, (target) => -get.attitude(player, target)).forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             await player.gainPlayerCard(result.targets[0], 'h', true);
                                             trigger.num--;
                                             if (trigger.num <= 0) {

@@ -15822,7 +15822,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget('选择要杀的角色', true, (c, p, t) => p != t)
                                     .set('ai', (target) => -get.attitude(player, target))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     for (var i of event.targets) {
                                         const { result: result1 } = await i.chooseToUse('对' + get.translation(result.targets[0]) + '使用一张杀', { name: 'sha' }, result.targets[0]);
                                         if (!result1.bool) {
@@ -22932,7 +22932,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     })
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     const { result: result1 } = await player.chooseToCompare(result.targets[0]);
                                     if (result1.bool) {
                                         player.gain(
@@ -27800,7 +27800,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                     var num = player.getDamagedHp();
                                     player.draw(num);
@@ -33468,7 +33468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     //QQQ
                                     player.line(result.targets, 'green');
                                     player.discardPlayerCard(result.targets[0], 'he', true).ai = get.buttonValue;
@@ -35599,7 +35599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (button) => 2 * get.value(button.link) - button.link.number)
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },
@@ -42170,7 +42170,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     //QQQ
                                     for (var i of result.links) {
                                         i.discard();

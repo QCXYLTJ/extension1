@@ -1215,7 +1215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 13 - button.link.number;
                                         } else return 18 - get.value(button.link);
                                     }).forResult();
-                                    if (links && links[0]) {
+                                    if (links?.length) {
                                         await player.addToExpansion(links).gaintag.add('zmlingziemo');
                                         game.log(player, '将', links, '置于武将牌上');
                                     }

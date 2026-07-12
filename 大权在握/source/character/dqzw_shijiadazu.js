@@ -345,7 +345,7 @@ export let info = {
           })
           .set('reverse', _status.currentPhase && _status.currentPhase.next ? get.attitude(player, _status.currentPhase.next) > 0 : false)
           .forResult();
-        if (links && links[0]) {
+        if (links?.length) {
           let remaining = cards.filter((card) => card != links[0]);
           ui.cardPile.insertBefore(links[0], ui.cardPile.firstChild);
           game.log(player, '将', links, '置于牌堆顶');
@@ -583,7 +583,7 @@ export let info = {
               .set('targets', trigger.targets)
               .set('card', trigger.card)
               .forResult();
-            if (targets && targets[0]) {
+            if (targets?.length) {
               player.line(targets[0], 'green');
               trigger.getParent('useCard').targets.add(targets[0]);
               game.log(targets[0], '成为了', trigger.card, '的额外目标');
@@ -2374,7 +2374,7 @@ export let info = {
             )
             .set('ai_friendly', ['phaseDraw', 'phaseUse', 'phaseJieshu'].includes(name))
             .forResult();
-          if (targets && targets[0]) {
+          if (targets?.length) {
             targets[0].setStorage(event.name, name);
             targets[0].markSkill(event.name);
             bool = true;

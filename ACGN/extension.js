@@ -1005,7 +1005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     'step 0';
                     player.chooseTarget(true, '【分裂】<br>体力值为单数,请选择你要分配的角色.', (card, player, target) => target.hp < target.maxHp && (player == target || source == target));
                     ('step 1');
-                    if (result.targets && result.targets[0]) {
+                    if (result.targets?.length) {
                         result.targets[0].hp++;
                         result.targets[0].update();
                     } //QQQ
@@ -9046,7 +9046,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value > 0 ? get.value : 0.1;
                                 });
                                 ('step 3');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], 'draw2', 'log');
                                 }
                             },
@@ -9081,7 +9081,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['将一名已死亡的角色炸掉', game.dead])
                                     .set('ai', (button) => 20 - get.attitude(player, button.link))
                                     .forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     links[0].bxyr_jieshihuanhun = true;
                                 }
                             },
@@ -9442,7 +9442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('createDialog', ['将武将牌替换为一名角色', [list.randomGets(3), 'character']]);
                                 ('step 1');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     target.reinit(target.name, result.links[0], false);
                                     if (_status.characterlist) {
                                         _status.characterlist.add(target.name);
@@ -14176,7 +14176,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 }
                                 ('step 1');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     result.links[0].fix();
                                     ui.cardPile.insertBefore(result.links[0], ui.cardPile.firstChild);
                                     game.log(player, '将', result.links[0], '置于了牌堆顶');
@@ -23338,7 +23338,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 1;
                                         })
                                         .forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         event.card = result.links[0];
                                         player.gain(event.card, event.target);
                                     }
@@ -29887,7 +29887,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('targets', llw);
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     event.llwT = result.targets[0];
                                     game.log(player, '流流舞', event.llwT);
                                     var list = ['ice', 'water'];
@@ -32157,7 +32157,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.damage(event.num, event.target);
                                 }
@@ -37348,7 +37348,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return Math.random();
                                         })
                                         .forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         for (var i of result.links) {
                                             game.log(player, `选择获得【千机-${get.translation(i)}】`);
                                             player.popup(`【千机-${get.translation(i)}】`);
@@ -38256,7 +38256,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].revive();
                                     result.targets[0].hp = result.targets[0].maxHp;
                                     result.targets[0].update();
@@ -43380,7 +43380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.awakenSkill('acgn_zuiM');
                                     player.storage.acgn_zuiM = true;
                                     event.target = result.targets[0];

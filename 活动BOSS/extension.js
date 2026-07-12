@@ -11776,7 +11776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   .chooseButton(['选择一名角色令其复活', game.dead])
                   .set('ai', (button) => get.attitude(player, button.link))
                   .forResult();
-                if (links && links[0]) {
+                if (links?.length) {
                   links[0].revive(1);
                   links[0].draw(2);
                 }

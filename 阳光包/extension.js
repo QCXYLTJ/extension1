@@ -11151,7 +11151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseTarget((card, player, target) => target.group == 'qun', '请选择一名角色', true)
                                         .set('ai', (target) => get.attitude(player, target))
                                         .forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         const result1 = await player
                                             .chooseControl('xinleiji', 'xinguidao', 'tiandu')
                                             .set('prompt', '令' + get.translation(result.targets[0]) + '获得一项技能')
@@ -11165,7 +11165,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else if (!game.hasPlayer((Q) => Q.group == 'qun')) {
                                     const result = await player.chooseTarget('请选择一名角色,将其势力改为群', true, (card, player, target) => target.group != 'qun').forResult();
-                                    if (result.targets && result.targets[0]) {
+                                    if (result.targets?.length) {
                                         result.targets[0].group = 'qun';
                                     }
                                 } else {
@@ -11178,7 +11178,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .chooseTarget((card, player, target) => target.group == 'qun', '请选择一名角色', true)
                                             .set('ai', (target) => get.attitude(player, target))
                                             .forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             const result1 = await player
                                                 .chooseControl('xinleiji', 'xinguidao', 'tiandu')
                                                 .set('prompt', '令' + get.translation(result.targets[0]) + '获得一项技能')
@@ -11192,7 +11192,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     } else {
                                         const result = await player.chooseTarget('请选择一名角色,将其势力改为群', true, (card, player, target) => target.group != 'qun').forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             result.targets[0].group = 'qun';
                                         }
                                     }

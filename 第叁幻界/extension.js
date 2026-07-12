@@ -23527,7 +23527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.chooseButton(['获得至多2个技能', [list, 'character'], [skills.map((i) => [i, get.translation(i)]), 'tdnodes']], [1, 2])
 											.set('filterButton', (button) => skills.includes(button.link))
 											.set('ai', (button) => Math.random()).forResult();
-										if (result.links && result.links[0]) {
+										if (result.links?.length) {
 											player.addSkillLog(result.links);
 										}
 									}
@@ -50624,7 +50624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target) / target.countCards('h');
 									});
 								('step 1');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									//QQQ
 									player.chooseToCompare(result.targets[0]);
 								} else event.finish();

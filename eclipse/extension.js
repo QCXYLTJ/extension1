@@ -5465,7 +5465,7 @@ game.import('extension', function () {
                                         if (player.countCards('he')) {
                                             const { result: { cards } } = await player.chooseToDiscard(`弃置${numx}张牌,否则受到无来源的${num}点伤害`, 'he', numx)
                                                 .set('ai', (c) => 6 - get.value(c));
-                                            if (cards && cards[0]) {
+                                            if (cards?.length) {
                                             }
                                             else {
                                                 player.damage(num, 'nosource');
@@ -5618,7 +5618,7 @@ game.import('extension', function () {
                                     async content(event, trigger, player) {
                                         const { targets } = await player.chooseTarget('弃置一名角色的所有手牌', (c, p, t) => t.countCards('h'))
                                             .set('ai', (t) => -get.attitude(player, t)).forResult();
-                                        if (targets && targets[0]) {
+                                        if (targets?.length) {
                                             const cards = targets[0].getCards('h');
                                             if (cards.some((q) => q.gaintag?.includes('QQQ_xingchen'))) {
                                                 player.maxHp = 3;
@@ -5646,7 +5646,7 @@ game.import('extension', function () {
                                         }
                                         return get.attitude(player, t);
                                     }).forResult();
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     if (!(player.storage.QQQ_fengling > 5)) {
                                         player.addMark('QQQ_fengling');
                                         player.draw();

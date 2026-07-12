@@ -10425,7 +10425,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 if (player.hasCard((c) => get.type(c) == 'delay', 'hej')) {
                                     const result = await player.chooseButton(['弃置一张延时锦囊牌', player.getCards('hej', (c) => get.type(c) == 'delay')]).set('ai', () => 1).forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         player.discard(result.links);
                                         player.chooseUseTarget('lg_buwu', true, false);
                                         player
@@ -31872,7 +31872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 if (event.targets[0].countCards('he')) {
                                     const result = await player.discardPlayerCard('he', event.targets[0], true).forResult();
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         if (get.type(result.cards[0]) !== 'trick') {
                                             player.gain(game.createCard('huogong'), 'gain2');
                                         }
@@ -39985,7 +39985,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 var targets = result.targets;
-                                if (targets && targets[0]) {
+                                if (targets?.length) {
                                     player.popup('魔怒·夜沉狂寂', 'thunder');
                                     player.line(targets, 'white');
                                     for (var i = 0; i < targets.length; i++) {
@@ -40475,7 +40475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseButton(['使用其中一张牌,令此牌指定的目标角色各选择获得其中亮出的一张牌', cards])
                                         .set('filterButton', (button) => player.hasUseTarget(button.link, true, true)) //第二个参数是距离,第三个是用牌次数
                                         .set('ai', (button) => player.getUseValue(button.link) + (lib.card[button.link.name].toself ? 40 : 0)).forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         cards.remove(result.links[0]);
                                         const { result: result1 } = await player.chooseUseTarget(result.links[0], true, false);
                                         if (result1.targets && result1.targets[0]) {
@@ -46016,7 +46016,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 100 - att;
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.addTempSkill('lg_xiangrikuizuzhou_buff', { player: 'shaBegin' });
                                     player.storage.lg_xiangrikuizuzhou_buff.add(target);
@@ -59770,7 +59770,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('prompt', '展示其中的至多两张锦囊牌');
                                 next.set('cansha', player.canUse('sha', target, true, true));
                                 ('step 1');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     //QQQ
                                     target.showCards(result.links);
                                     target.goMad('phaseEndStart');

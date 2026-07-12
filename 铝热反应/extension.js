@@ -1638,7 +1638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {//QQQ
 								const result = await player.chooseButton(['令以下一至二项数值-1,其余项+<X>', [['攻击范围', '使用【杀】的次数', '<>内的数字'], 'tdnodes']], [1, 2])
 									.set('ai', (button) => Math.random()).forResult();
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									player.addTempSkill('lr_yunling_effect', { player: 'phaseZhunbeiBegin' });
 									player.say(['隐身于,山岚之境.', '藏匿于,雾霭之心.'].randomGet());
 									for (var i of result.links) {

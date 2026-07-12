@@ -7099,7 +7099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								while (num-- > 0) {
 									if (player.countCards('h')) {
 										var { result } = await player.chooseCard(true, 1, 'h', '将一张手牌置于牌堆底').set('ai', (card) => 10 - get.value(card));
-										if (result.cards && result.cards[0]) {
+										if (result.cards?.length) {
 											ui.cardPile.appendChild(result.cards[0]);
 											game.log(player, '将' + get.cnNumber(result.cards.length) + '张牌置入了牌堆底');
 										}
@@ -13430,7 +13430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.chooseTarget('<center>视为使用一张【杀】</center>', (card, player, target) => player.inRange(target) && target != player)
 										.set('ai', (target) => get.damageEffect(target, player, player))
 										.forResult();
-									if (result.targets && result.targets[0]) {
+									if (result.targets?.length) {
 										await player.useCard({ name: 'sha' }, false, result.targets[0]);
 									}
 									trigger.cancel();
@@ -21335,7 +21335,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										else return -result;
 									})
 									.forResult();
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									game.cardsGotoOrdering(result.links);
 									player.respond(result.links, 'szjgd', 'highlight', 'noOrdering');
 									player.gain(trigger.player.judging[0], 'gain2');
@@ -23687,7 +23687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (Q[num].countCards('h') == 1) game.playAudio('../extension/神怒降世/audio/spmzfs_ddz_' + Q[num].sex + '_yzp.mp3');
 									if (Q[num].countCards('h') == 2) game.playAudio('../extension/神怒降世/audio/spmzfs_ddz_' + Q[num].sex + '_lzp.mp3');
 									var { result } = await Q[num].chooseCard('〖富商〗:是否打出一张比' + cardnum + '大的手牌？', 'h', (card) => card.number > cardnum).set('ai', (card) => 20 - get.value(card));
-									if (result.cards && result.cards[0]) {
+									if (result.cards?.length) {
 										game.cardsGotoOrdering(result.cards);
 										W.push(result.cards[0]);
 										cardnum = result.cards[0].number;
@@ -23747,7 +23747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('ai', (button) => 2 * get.value(button.link) - button.link.number)
 									.forResult();
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									player.gain(result.links, 'gain2');
 								}
 							},
@@ -50883,7 +50883,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return target != player && target.countCards('hej') && target.countCards('hej', (card) => lib.filter.canBeDiscarded(card, player, target));
 									})
 									.set('ai', (target) => get.effect(target, { name: 'guohe' }, player, player));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(result.targets[0], 'hej', true);
 								}
 							},

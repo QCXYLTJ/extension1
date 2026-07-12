@@ -983,7 +983,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         });
                                 }
                                 ('step 1');
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     //player.lose(result.cards[0],ui.special,'toStorage');
                                     player.lose(result.cards, 'toStorage', ui.special, 'visible');
                                     player.$give(result.cards[0], player, 'give');
@@ -2260,7 +2260,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     });
                                 }
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('同德');
                                     player.addSkill('同德');
                                 }
@@ -2782,7 +2782,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     })
                                     .set('createDialog', ['请选择变身为一名未上场的非［神魔轮仙鬼］其中一个势力角色!', [list.randomGets(72), 'character']]);
                                 ('step 1');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.reinit(player.name, result.links[0], player.maxHp);
                                     player.addSkill('七十二变死');
                                     var card = player.getCards('e', { name: '如意金箍棒' });

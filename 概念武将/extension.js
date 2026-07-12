@@ -3993,7 +3993,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (list.length) {
 									const { result: { cards } } = await player.chooseCard('he', '将一张牌当作一张与之同类型的牌使用')
 										.set('ai', (c) => 8 - get.value(c));
-									if (cards && cards[0]) {
+									if (cards?.length) {
 										const { result: { links } } = await player.chooseButton(['视为使用或打出同类型的牌', [list, 'vcard']])
 											.set('ai', (button) => {
 												return (player.getUseValue({
@@ -4001,7 +4001,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													nature: button.link[3]
 												}, null, true) || 0) / 2 + 10;
 											});
-										if (links && links[0]) {
+										if (links?.length) {
 											await player.chooseUseTarget({
 												name: links[0][2],
 												nature: links[0][3],
@@ -5895,7 +5895,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 									else {
 										const { result: { links } } = await player.chooseButton(['获得这名角色的一个技能', [skills, 'tdnodes']], true);
-										if (links && links[0]) {
+										if (links?.length) {
 											player.popup(links[0]);
 											player.addAdditionalSkill('zyile_shiling', links, true);
 										}
@@ -8410,7 +8410,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									lib.skill.zyile_tiance2.viewAs = { name: result.links[0][2], nature: result.links[0][3] };
 									player.storage.zyile_tiance2 = game.createCard(result.links[0][2], ['heart', 'diamond', 'club', 'spade'].randomGet(), Math.ceil(Math.random() * 13), result.links[0][3]);
 									var next = player.chooseToUse();
@@ -8582,7 +8582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								if (cards && cards[0]) {
+								if (cards?.length) {
 									player.storage.zyile_juanyue_result = cards[0];
 									var type = get.type(cards[0]);
 									var list = [];
@@ -8668,7 +8668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 1');
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									lib.skill.zyile_juanyue2.viewAs = { name: result.links[0][2], nature: result.links[0][3] };
 									player.storage.zyile_juanyue2 = game.createCard(result.links[0][2], ['heart', 'diamond', 'club', 'spade'].randomGet(), Math.ceil(Math.random() * 13), result.links[0][3]);
 									var next = player.chooseToUse();

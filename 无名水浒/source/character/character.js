@@ -4273,7 +4273,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         .set('targets', trigger.targets)
                         .set('card', trigger.card)
                         .forResult();
-                    if (result.targets && result.targets[0]) {
+                    if (result.targets?.length) {
                         //QQQ
                         player.line(result.targets);
                         trigger.targets.addArray(result.targets);

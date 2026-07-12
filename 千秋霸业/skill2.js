@@ -23546,7 +23546,7 @@ const skill = {
           return lib.filter.filterCard({ name: button.link[2] }, player, _status.event.getParent('phaseUse'));
         });
       ('step 1');
-      if (result.links && result.links[0]) {
+      if (result.links?.length) {
         lib.skill.lg_wuni2.viewAs = { name: result.links[0][2], nature: result.links[0][3] };
         var next = player.chooseToUse().set('ai', function (card) {
           return 7 - get.value(card);
@@ -24845,7 +24845,7 @@ const skill = {
         .chooseTarget([1, player.countCards('he', { suit: 'spade' })], '展示这些角色的手牌,你对其各造成2点伤害', (c, p, t) => t != p)
         .set('ai', (t) => -get.attitude(player, t))
         .forResult();
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         await player.chooseToDiscard('he', (c) => c.suit == 'spade', true);
         for (var i of result.targets) {
           i.showHandcards();
@@ -29087,7 +29087,7 @@ const skill = {
         .chooseTarget('你与至多两名其他角色进行拼点', [1, 2], (card, player, target) => target != player && target.countCards('h'))
         .set('ai', (target) => -get.attitude(player, target))
         .forResult();
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         const result1 = await player
           .chooseToCompare(result.targets)
           .set('ai', (card) => card.number)
@@ -32619,7 +32619,7 @@ const skill = {
         }
       }
       ('step 2');
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         result.targets[0].revive();
         result.targets[0].hp = result.targets[0].maxHp;
         result.targets[0].update();
@@ -44326,7 +44326,7 @@ const skill = {
           return -get.attitude(player, target);
         });
       ('step 2');
-      if (result.targets && result.targets[0]) {
+      if (result.targets?.length) {
         //QQQ
         var num = player.storage.lg_bingzang;
         result.targets[0].addSkill('lg_dongjie1_hs');

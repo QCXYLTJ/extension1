@@ -1106,7 +1106,7 @@ const card = {
 						return !event.target.hasJudge(button.link[2]);
 					})
 					.forResult();
-				if (result.links && result.links[0]) {
+				if (result.links?.length) {
 					var card = game.createCard(result.links[0][2]);
 					event.judgecard = card;
 					event.target.$draw(card);
@@ -1327,7 +1327,7 @@ const card = {
 					return true;
 				})
 				.forResult();
-			if (links && links[0]) {
+			if (links?.length) {
 				player.chooseUseTarget(true, game.createCard(links[0][2], event.card.suit, event.card.number));
 			}
 		},

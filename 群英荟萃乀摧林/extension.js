@@ -13828,7 +13828,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         if (trigger.player.getExpansions('clyl_qianhao').length) trigger.player.chooseButton(['请移去一张<毫>,当前伤害值-1', trigger.player.getExpansions('clyl_qianhao')], true).set('ai', get.buttonValue).direct = true;
                                         ('step 1');
-                                        if (result.links && result.links[0]) {
+                                        if (result.links?.length) {
                                             trigger.player.loseToDiscardpile(result.links[0]);
                                             if (trigger.player.getExpansions('clyl_qianhao').length == 0) trigger.player.tryunmarkSkill('clyl_qianhao');
                                             trigger.num--;

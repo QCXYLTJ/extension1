@@ -7891,7 +7891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('ai', (button) => {
 										return 6 - player.countCards('h', { suit: button.link });
 									}).forResult();
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									const { result: result1 } = await player
 										.chooseTarget('观看一名其他角色的手牌并弃置其中一种花色的所有牌', (card, player, target) => target != player && target.countCards('h'))
 										.set('ai', (target) => {

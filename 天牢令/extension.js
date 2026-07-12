@@ -29792,7 +29792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return 0;
                                 }).forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     if (trigger.addCount !== false) {
                                         trigger.addCount = false;
                                         trigger.player.getStat().card.sha--;
@@ -37163,7 +37163,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     async content(event, trigger, player) {
                                         //QQQ
                                         const result = await player.chooseTarget('为' + get.translation(trigger.card) + '额外指定一个目标', (card, player, target) => !trigger.targets.includes(target)).set('ai', (target) => get.effect(target, trigger.card, player, player)).forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             trigger.targets.push(result.targets[0]);
                                         }
                                     },

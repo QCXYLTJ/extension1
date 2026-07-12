@@ -2818,7 +2818,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.chooseTarget((c, p, t) => t.countCards('hej'))
 									.set('ai', (target) => 10 - get.attitude(player, target))
 									.forResult();
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									const { result: result1 } = await player.chooseTarget().set('ai', (target) => -get.attitude(player, target));
 									if (result1.targets && result1.targets[0]) {
 										await player.discardPlayerCard(result.targets[0], 'hej', true);
@@ -3744,7 +3744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (attitude > 0) return result;
 										return -result;
 									});
-									if (result.cards && result.cards[0]) {
+									if (result.cards?.length) {
 										player.showCards(result.cards[0]);
 										const card = game.createCard(result.cards[0]);
 										player.respond(card, 'smyyx鬼才', 'highlight', 'noOrdering');
@@ -6823,7 +6823,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.chooseTarget('对一名角色造成1点伤害')
 									.set('ai', (target) => -get.attitude(player, target))
 									.forResult();
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									player.line(result.targets[0], 'green');
 									result.targets[0].damage();
 								} else player.recover();
@@ -6843,7 +6843,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.chooseTarget('弃置一名其他角色一张牌', (c, p, t) => t.countCards('he'))
 									.set('ai', (target) => -get.attitude(player, target))
 									.forResult();
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									player.line(result.targets[0], 'green');
 									player.discardPlayerCard(result.targets[0], true, 'he');
 								} else player.draw();
@@ -8426,7 +8426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.chooseButton(['选择一名角色对其使用牌堆的1张牌', Array.from(ui.cardPile.childNodes).slice(0, 7)])
 										.set('ai', (button) => player.getUseValue(button.link))
 										.forResult();
-									if (result.links && result.links[0]) {
+									if (result.links?.length) {
 										game.cardsGotoOrdering(result.links);
 										await player.chooseUseTarget(result.links[0], true, false);
 									}

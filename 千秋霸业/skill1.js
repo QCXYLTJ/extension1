@@ -11333,7 +11333,7 @@ const skill = {
                 return true;
             };
             ('step 1');
-            if (result.links && result.links[0]) {
+            if (result.links?.length) {
                 for (var i of event.cards.filter((q) => !result.links.includes(q))) {
                     ui.cardPile.appendChild(i);
                 } //QQQ
@@ -13771,7 +13771,7 @@ const skill = {
                     'step 0';
                     player.chooseTarget('令一名其他角色获得' + get.translation(player.storage.lg_xiluan), (card, player, target) => target != player).set('ai', (target) => get.attitude(player, target)); //QQQ
                     ('step 1');
-                    if (result.targets && result.targets[0]) {
+                    if (result.targets?.length) {
                         result.targets[0].gain(player.storage.lg_xiluan, 'gain2');
                         player.line(result.targets[0], 'green');
                         game.log(result.targets[0], '获得了' + get.cnNumber(player.storage.lg_xilua.length) + '张牌');
@@ -14198,7 +14198,7 @@ const skill = {
             'step 0';
             player.gainPlayerCard('h', target, true);
             ('step 1');
-            if (result.cards && result.cards[0]) {
+            if (result.cards?.length) {
                 //QQQ
                 if (result.cards[0].name == 'sha' && target.canUse({ name: 'sha' }, player, false)) {
                     target.useCard(result.cards[0], player, false);
@@ -14810,7 +14810,7 @@ const skill = {
                 .chooseToDiscard('与其各弃置一张手牌')
                 .set('ai', (card) => -get.attitude(player, trigger.player) - get.value(card))
                 .forResult();
-            if (result.cards && result.cards[0]) {
+            if (result.cards?.length) {
                 const result1 = await trigger.player
                     .chooseToDiscard('h', true)
                     .set('ai', function (card) {
@@ -17141,7 +17141,7 @@ const skill = {
                         return 0;
                     })
                     .forResult();
-                if (cards && cards[0]) {
+                if (cards?.length) {
                     if (trigger.source.countCards('h') === player.countCards('h')) {
                         player.recover(1 - player.hp);
                     }
@@ -24343,7 +24343,7 @@ const skill = {
                     .chooseToDiscard(2, 'h')
                     .set('ai', (card) => -get.attitude(player, trigger.player) - get.value(card))
                     .forResult();
-                if (result.cards && result.cards[0]) {
+                if (result.cards?.length) {
                     const result1 = await player.chooseControl(lib.suits).set('prompt', '选择一种花色,若其弃置的牌中没有你选择的花色,其弃置一张与你选择花色相同的牌').forResult();
                     if (
                         !trigger.cards
@@ -25524,7 +25524,7 @@ const skill = {
                 return true;
             };
             ('step 1');
-            if (result.links && result.links[0]) {
+            if (result.links?.length) {
                 for (var i of event.cards.filter((q) => !result.links.includes(q))) {
                     ui.cardPile.appendChild(i);
                 } //QQQ
@@ -40426,7 +40426,7 @@ const skill = {
                         return player.getUseValue({ name: button.link[2], nature: button.link[3] });
                     })
                     .forResult();
-                if (result.links && result.links[0]) {
+                if (result.links?.length) {
                     const result1 = await player
                         .chooseCard('he', true, '将一张牌当' + get.translation(result.links[0][2]) + '使用')
                         .set('ai', function (card) {
@@ -42788,7 +42788,7 @@ const skill = {
                             .chooseButton(['获得其中的一张牌', list], true)
                             .set('ai', (button) => get.value(button.link))
                             .forResult(); //开局点确认加入技能
-                        if (result.cards && result.cards[0]) {
+                        if (result.cards?.length) {
                             i.gain(result.cards[0], 'gain2');
                             list.remove(result.cards[0]);
                         }

@@ -5708,7 +5708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 const { links } = await player.chooseButton(ui.create.dialog('令一名已死亡的角色复活', [game.dead, 'character']), function (button) {
                                     return get.attitude(player, button.link);
                                 }).forResult();
-                                if (links && links[0]) {
+                                if (links?.length) {
                                     links[0].revive(links[0].maxHp);
                                 }
                             },

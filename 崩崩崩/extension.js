@@ -2730,7 +2730,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1;
                                     })
                                     .forResult();
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     trigger.cancel();
                                     player.addTempSkill('bhheiyuanbaihua_in_skill1_im');
                                     const result1 = await trigger.player
@@ -7676,7 +7676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('ai', (target) => -get.attitude(player, target))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     trigger.targets.addArray(result.targets);
                                     for (var i of game.filterPlayer((target) => player.inRange(target))) {
                                         const result1 = await i
@@ -8687,7 +8687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseTarget('请选择发动【月照】的目标', (card, player, target) => list.includes(target))
                                     .set('ai', (target) => get.attitude(player, target))
                                     .forResult();
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     const result1 = await player
                                         .chooseCard('请选择一张<月照>牌弃置', 'h', (card) => card.hasGaintag('bhyuezhao') && get.color(card) == get.color(event.card))
                                         .set('ai', (card) => 8 - get.value(card))
@@ -9136,7 +9136,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.line(event.target);
                                 player.gainPlayerCard(`获得${get.translation(event.target)}区域内一张牌`, event.target, 'hej', true);
                                 ('step 4');
-                                if (result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     player
                                         .chooseCard(
@@ -23379,7 +23379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return player.getCards('h').includes(button.link);
                                         })
                                         .forResult();
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         player.showCards(result.links);
                                         const num1 = player.countCards('h', (c) => result.links.includes(c));
                                         const num2 = event.targets[0].countCards('h', (c) => result.links.includes(c));

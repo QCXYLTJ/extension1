@@ -317,10 +317,10 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         selectTarget: -1,
         async content(event, trigger, player) {
           const { links } = await event.target.
-          chooseButton(['将一名已死亡的角色炸掉', game.dead]).
-          set('ai', (button) => 20 - get.attitude(event.target, button.link)).
-          forResult();
-          if (links && links[0]) {
+            chooseButton(['将一名已死亡的角色炸掉', game.dead]).
+            set('ai', (button) => 20 - get.attitude(event.target, button.link)).
+            forResult();
+          if (links?.length) {
             const next = links[0].next;
             const previous = links[0].previous;
             game.log(`<span class=Qmenu>${get.translation(links[0])}尸体被炸掉</span>`);
@@ -486,7 +486,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 get() {
                   return name;
                 },
-                set() {},
+                set() { },
                 configurable: false
               });
               card.node.name2.innerHTML = `${get.translation(card.suit)}${card.number} ${get.translation(name)}`;
@@ -528,7 +528,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                               hook.add(x);
                               return hook;
                             },
-                            set() {},
+                            set() { },
                             configurable: false
                           });
                         }

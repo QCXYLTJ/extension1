@@ -5484,7 +5484,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 2'
-                                if (result.targets && result.targets[0]) {//QQQ
+                                if (result.targets?.length) {//QQQ
                                     player.addTempSkill('Pierc_sha');
                                     player.gainPlayerCard('e', result.targets[0], true);
                                 }

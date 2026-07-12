@@ -4385,7 +4385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (choiceList[index] == '令一名角色获得<凝雾>') return target.isFriendsOf(player);
                                             return target.isEnemiesOf(player);
                                         });
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             switch (choiceList[index]) {
                                                 case '令一名角色获得<烈暑>':
                                                     result.targets[0].addSkill('烈暑');
@@ -7326,7 +7326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var { result } = await player.chooseTarget(get.prompt2('度断a'), [1, 2]).set('ai', (target) => get.attitude(player, target));
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     for (var i of result.targets) {
                                         i.draw(2);
                                     }
@@ -8325,7 +8325,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var { result } = await player.chooseButton(['令一名角色复活', [game.dead, 'character']]).set('ai', () => Math.random());
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     var plta = result.links[0];
                                     plta.revive();
                                     plta.hp = plta.maxHp;
@@ -16420,10 +16420,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var { result } = await player.chooseTarget(get.prompt('仲盛'), function (card, player, target) {
                                     return target != player;
                                 });
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     var Q = result.targets[0];
                                     var { result } = await player.chooseCard(true, 'he', '交给一名其他角色一张牌');
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         Q.gain(result.cards, player);
                                         if (get.color(result.cards[0]) == 'red') player.draw(2);
                                     }

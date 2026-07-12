@@ -6369,7 +6369,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('rand', [Math.random(), Math.random(), Math.random()], Math.random());
                                 ('step 1');
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     //QQQ
                                     player.say('不看公告和教程就问问题的,祖安问候');
                                     target.storage.wwyj_jinyan.push(result.links[0][2]);

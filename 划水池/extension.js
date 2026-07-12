@@ -13407,7 +13407,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									//QQQ
 									var targets = result.targets.sortBySeat();
 									player.hs_discardCardsMultiple(targets, ['h', true]);
@@ -14243,7 +14243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										num[i.suit] = num[i.suit] + 1 || 1;
 									}
 									const result = await player.chooseCard('h').set('ai', (c) => (num[c.suit] || 0) + (num[i.number] || 0) * -get.attitude(player, trigger.player)).forResult();
-									if (result.cards && result.cards[0]) {
+									if (result.cards?.length) {
 										player.showCards(result.cards);
 										var cards = list.filter((q) => q.suit == result.cards[0].suit || q.number == result.cards[0].number);
 										var delay = [];

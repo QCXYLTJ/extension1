@@ -1122,7 +1122,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', function (card) {
                                         return 8 - get.value(card);
                                     }).forResult();
-                                if (cards && cards[0]) {
+                                if (cards?.length) {
                                     if (!bool) {
                                         player.gain(cards, trigger.player, 'giveAuto');
                                     }

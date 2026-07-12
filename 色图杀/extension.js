@@ -6770,7 +6770,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.value(button.link);
                                     }).forResult();
                                     player.removeSkill('很冰的斧');
-                                    if (result.links && result.links[0]) {
+                                    if (result.links?.length) {
                                         player.gain(result.links, 'gain2');
                                     }
                                 }

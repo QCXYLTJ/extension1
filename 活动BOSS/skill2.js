@@ -4957,7 +4957,7 @@ const skill = {
                 },
             });
             ('step 1');
-            if (result.targets && result.targets[0]) {
+            if (result.targets?.length) {
                 player.give(result.cards, result.targets[0]);
             }
         },
@@ -45291,7 +45291,7 @@ const skill = {
                 .chooseTarget('其余的牌交给一名其他角色', (c, p, t) => p != t)
                 .set('ai', (t) => get.attitude(player, t))
                 .forResult();
-            if (targets && targets[0]) {
+            if (targets?.length) {
                 targets[0].gain(bottom, 'gain2');
             }
         },
@@ -50559,7 +50559,7 @@ const skill = {
                         return 3;
                     })
                     .forResult();
-                if (targets && targets[0]) {
+                if (targets?.length) {
                     targets[0].turnOver();
                 }
             }

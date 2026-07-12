@@ -4672,7 +4672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (get.type(card) == 'equip') return 0.3;
                                         return -get.value(card);
                                     }).forResult();
-                                    if (result.cards && result.cards[0]) {
+                                    if (result.cards?.length) {
                                         trigger.target.gain(result.cards, player, 'give');
                                         if (get.type(result.cards[0]) == 'trick') trigger.target.recover();
                                         if (get.type(result.cards[0]) == 'basic') trigger.target.draw();

@@ -3381,7 +3381,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -att;
 								};
 								('step 1');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									//QQQ
 									result.targets[0].turnOver();
 								}
@@ -13472,7 +13472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								player.draw();
 								var { result } = await player.chooseTarget(get.prompt('媵予'), 2, (card, player, target) => target.countCards('he')).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var Q = result.targets;
 									for (var i of Q) {
 										var { result } = await player.discardPlayerCard(i, 'he', true);

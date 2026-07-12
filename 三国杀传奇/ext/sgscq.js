@@ -1940,7 +1940,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									if (num2 > 3) return false;
 									return -get.attitude(player, _status.currentPhase) - get.value(card);
 								}).forResult();
-							if (result.cards && result.cards[0]) {
+							if (result.cards?.length) {
 								game.playAudio('../extension/三国杀传奇/audio/character/sgscq_dujin_add1.mp3');
 								_status.currentPhase.damage(1, player);
 							}
@@ -3978,7 +3978,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						const result = await player.chooseTarget(1, '请选择一名目标角色的一张牌？',
 							(card, player, target) => trigger.targets.includes(target) && target.countCards('he'))
 							.set('ai', (target) => -get.attitude(player, target)).forResult();
-						if (result.targets && result.targets[0]) {
+						if (result.targets?.length) {
 							const { result: result1 } = await player.gainPlayerCard(result.targets[0], 'he', true);
 							if (result1 && result1.cards && result1.cards[0]) {
 								player.changeZhuanhuanji('sczs_juzhan');

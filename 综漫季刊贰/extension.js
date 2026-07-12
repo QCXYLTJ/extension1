@@ -3539,7 +3539,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 const result = await player.chooseButton(['调整其中1张牌的位置', cards]).set('ai', function (button) {
                                     return get.value(button.link);
                                 }).forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     cards.remove(result.links[0]);
                                     const { result: result1 } = await player.chooseControl([0, 1, 2, 3, 4]);
                                     cards.splice(result1.control, 0, result.links[0]);
@@ -4092,7 +4092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], { color: [51, 0, 153] });
                                     result.targets[0].addSkill('zmbengluo_1');
                                     result.targets[0].node.avatar.zm2t('武将牌特效崩落');

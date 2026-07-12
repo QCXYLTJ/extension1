@@ -2606,7 +2606,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 2');
-                                if (result.targets && result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.storage.bt2 = result.targets[0];
                                     player.addTempSkill('bt2');
                                     game.swapSeat(player, result.targets[0]);

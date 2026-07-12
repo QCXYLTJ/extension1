@@ -31279,7 +31279,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return false;
                                     })
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     if (result.links[0] == '浮屠') {
                                         if (player.countCards('j')) player.gain(player.getCards('j'), 'gain2');
                                         player.skip('phaseJudge');
@@ -31292,7 +31292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .chooseTarget([1, 2], '获得至多两名角色各一张手牌', (card, player, target) => target != player && target.countCards('h'))
                                             .set('ai', (target) => -get.attitude(_status.event.player, target))
                                             .forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             for (var i of result.targets) {
                                                 await player.gainPlayerCard(i, 'h');
                                             }
@@ -31310,7 +31310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .chooseTarget('观看一名角色的手牌并弃置其中一张', 1, (card, player, target) => target.countCards('h'))
                                             .set('ai', (target) => -get.attitude(player, target))
                                             .forResult();
-                                        if (result.targets && result.targets[0]) {
+                                        if (result.targets?.length) {
                                             await player.discardPlayerCard(result.targets[0], 'h', true, 'visible');
                                         }
                                     }

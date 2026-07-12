@@ -4351,7 +4351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								if (result.judge > 0) {
 									var { result } = await player.chooseTarget({ prompt: get.prompt('刹幽') });
-									if (result.targets && result.targets[0]) {
+									if (result.targets?.length) {
 										trigger.target = result.targets[0];
 										trigger.targets.remove(player);
 										trigger.targets.push(result.targets[0]);
@@ -5616,7 +5616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.control) {
 									var index = ['选项一', '选项二', '选项三', '选项四', '选项五'].indexOf(result.control);
 									var { result } = await player.chooseTarget(choiceList[index], true);
-									if (result.targets && result.targets[0]) {
+									if (result.targets?.length) {
 										switch (index) {
 											case 0:
 												result.targets[0].addTempSkill('笞', { player: 'phaseAfter' });
@@ -11944,12 +11944,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								trigger.num += game.countPlayer((target) => target.hp == player.hp) + 1;
 								var { result } = await player.chooseTarget(get.prompt('雅俊')).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									await player.gainPlayerCard(result.targets[0], 'he', true);
 									result.targets[0].addTempSkill('雅俊2', 'phaseAfter');
 									if (player.countCards('he')) {
 										var { result } = await player.chooseCard('he', true);
-										if (result.cards && result.cards[0]) {
+										if (result.cards?.length) {
 											ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
 										}
 									}
@@ -14587,7 +14587,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								);
 								var { result } = await player.chooseTarget(get.prompt('三奇'), true).set('ai', (target) => get.attitude(player, target));
 								('step 1');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var { result: result1 } = await player.chooseTarget(get.prompt('三奇'), true, (card, player, target) => target != player).set('ai', (target) => -get.attitude(player, target));
 									if (result1.targets && result1.targets[0]) {
 										if (result1.targets[0].countCards('he')) result.targets[0].gainPlayerCard(result1.targets[0], result1.targets[0].maxHp, 'he', true);

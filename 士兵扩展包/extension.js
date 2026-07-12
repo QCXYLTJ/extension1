@@ -9929,7 +9929,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 1');
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									result.targets[0].gain(result.cards, player);
 									player.$give(result.cards.length, result.targets[0]);
 									var list = game.filterPlayer(function (current) {
@@ -13265,7 +13265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.chooseTarget(get.prompt('刺探'), (card, player, target) => target.countCards('h')).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									var suit = [],
 										card = [];
 									for (var i of result.targets[0].getCards('h')) {
@@ -16736,7 +16736,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.chooseTarget(get.prompt('煆营'), [1, trigger.targets.length], (card, player, target) => trigger.targets.includes(target)).set('ai', (target) => -get.attitude(player, target));
-								if (result.targets && result.targets[0]) {
+								if (result.targets?.length) {
 									for (var i of result.targets) {
 										trigger.targets.remove(i);
 									}

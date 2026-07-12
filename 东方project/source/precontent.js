@@ -292,7 +292,7 @@ export async function precontent(config, pack) {
 							prompt: '你送给别人一张牌!',
 						});
 						('step 1');
-						if (result.targets && result.targets[0]) {
+						if (result.targets?.length) {
 							result.targets[0].gain(result.cards);
 							target.$give(result.cards.length, result.targets[0]);
 							target.addExpose();
@@ -381,7 +381,7 @@ export async function precontent(config, pack) {
 							prompt: '请选择要送人的卡牌(点取消停止送牌)',
 						});
 						('step 3');
-						if (result.targets && result.targets[0]) {
+						if (result.targets?.length) {
 							player.line(result.targets, 'green');
 							result.targets[0].gain(result.cards, player);
 							player.$give(result.cards.length, result.targets[0]);
@@ -1389,7 +1389,7 @@ export async function precontent(config, pack) {
 							.chooseButton(['选择1名角色复活', game.dead])
 							.set('ai', (b) => get.attitude(event.target, b.link))
 							.forResult();
-						if (links && links[0]) {
+						if (links?.length) {
 							event.target.line(links[0], 'green');
 							links[0].revive();
 							links[0].draw()._triggered = null;
@@ -9978,7 +9978,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				if (result.bool && event.control == '将一张牌交给其') {
-					if (result.targets && result.targets[0]) {
+					if (result.targets?.length) {
 						if (lib.config.background_audio) {
 							game.playlili('xiaotiqin4');
 						}
@@ -10264,7 +10264,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				if (result.bool && event.control == '将明置牌交给当前回合角色') {
-					if (result.targets && result.targets[0]) {
+					if (result.targets?.length) {
 						if (lib.config.background_audio) {
 							game.playlili('xiaotiqin4');
 						}
@@ -14230,7 +14230,7 @@ export async function precontent(config, pack) {
 					},
 				});
 				('step 1');
-				if (result.targets && result.targets[0]) {
+				if (result.targets?.length) {
 					result.targets[0].gain(result.cards, trigger.player);
 					trigger.player.$give(result.cards.length, result.targets[0]);
 					result.targets[0].say('只要998,保证你出SSR——');
@@ -14287,7 +14287,7 @@ export async function precontent(config, pack) {
 					},
 				});
 				('step 1');
-				if (result.targets && result.targets[0]) {
+				if (result.targets?.length) {
 					result.targets[0].gain(result.cards, player);
 					player.$give(result.cards.length, result.targets[0]);
 					result.targets[0].say('只要998,保证你出SSR——');

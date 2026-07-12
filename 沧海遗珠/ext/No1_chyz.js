@@ -599,7 +599,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 										return true;
 									})
 									.forResult();
-								if (result.links && result.links[0]) {
+								if (result.links?.length) {
 									var name = result.links[0][2];
 									player.storage.ybdy_qingyu_light.push(name);
 									game.log(player, '点亮了【武库】中的', '#y' + get.translation(name));
@@ -4718,7 +4718,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							.chooseButton(['获得一个技能', [list, 'character'], [link, 'tdnodes']], 1, true)
 							.set('filterButton', (button) => skill.includes(button.link))
 							.forResult();
-						if (result.links && result.links[0]) {
+						if (result.links?.length) {
 							player.storage.QQQ_xiasi.add(result.links[0]);
 							player.addTempSkills(result.links[0]);
 						}
@@ -4765,7 +4765,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.set('prompt2', '请选择一名有角色,令其手牌上限-1');
 					('step 2');
-					if (result.targets && result.targets[0]) {
+					if (result.targets?.length) {
 						result.targets[0].addSkill('ybhzy_rongzhi_1');
 						result.targets[0].storage.QQQ_rongzhi++;
 					}
@@ -4820,7 +4820,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return Math.random();
 							})
 							.forResult();
-						if (result.links && result.links[0]) {
+						if (result.links?.length) {
 							if (player.storage.QQQ_xiasi.includes(result.links[0])) {
 								player.draw();
 							}
@@ -4921,7 +4921,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return Math.random();
 							})
 							.forResult();
-						if (result.links && result.links[0]) {
+						if (result.links?.length) {
 							if (player.storage.QQQ_xiasi.includes(result.links[0])) {
 								player.draw();
 							}
@@ -5062,7 +5062,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return get.value({ name: name });
 						})
 						.forResult();
-					if (result.links && result.links[0]) {
+					if (result.links?.length) {
 						var card = game.createCard(result.links[0][2]);
 						if (card) {
 							const result1 = await player

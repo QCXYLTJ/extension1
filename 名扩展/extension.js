@@ -1403,7 +1403,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['请选择获得至多' + num + '个技能', [list, 'character'], [skill.map((i) => [i, get.translation(i)]), 'tdnodes']], [0, num])
                                     .set('filterButton', (button) => skill.includes(button.link))
                                     .forResult();
-                                if (result.links && result.links[0]) {
+                                if (result.links?.length) {
                                     player.addSkillLog(result.links);
                                     const result1 = await player.chooseControl('弃置一张牌并回复一点体力', '失去一点体力并摸一张牌').forResult();
                                     if (result1.control == '弃置一张牌并回复一点体力') {
@@ -1605,7 +1605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     next.skill = i;
                                                     next.player = player;
                                                     next._trigger = _status.event;
-                                                    if (result.targets && result.targets[0]) {
+                                                    if (result.targets?.length) {
                                                         next.targets = result.targets;
                                                     }
                                                     if (result.cards) {
@@ -1639,7 +1639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             next.player = player;
                                             next._trigger = trigger;
                                             next.triggername = event.triggername;
-                                            if (result.targets && result.targets[0]) {
+                                            if (result.targets?.length) {
                                                 next.targets = result.targets;
                                             }
                                             if (result.cards) {
