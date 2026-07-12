@@ -5487,7 +5487,7 @@ game.import('extension', function () {
                         },
                     },
                 }, //10
-                //——————————————————————————————————————————————————————————————————————————————————————————————————夏侯翎  魏​ 3 勾玉
+                //——————————————————————————————————————————————————————————————————————————————————————————————————夏侯翎
                 // 影射
                 // 出牌阶段限一次,你可以弃置一张牌,令一名其他角色展示一张手牌
                 // 若此牌为黑色,你可以对其使用一张『杀』,此『杀』不计入次数且不可被响应.此杀造成伤害后,你令其选择一项:1.失去1点体力;2.你摸两张牌
@@ -5586,8 +5586,7 @@ game.import('extension', function () {
                             .chooseToDiscard('弃置两张牌或令对方回复1点体力且你本回合手牌上限-1', 'he', 2)
                             .set('ai', (c) => -get.attitude(player, trigger.player) - get.value(c))
                             .forResult();
-                        if (result?.cards?.length) {
-                        } else {
+                        if (!result?.cards?.length) {
                             player.recover();
                             trigger.player.addTempSkill('SG_shizhi_1');
                             trigger.player.storage.SG_shizhi_1++;
@@ -5800,8 +5799,7 @@ game.import('extension', function () {
                                 .set('filterCard', (c) => color.includes(get.color(c)))
                                 .set('ai', (c) => 8 - get.value(c))
                                 .forResult();
-                            if (cards?.length) {
-                            } else {
+                            if (!cards?.length) {
                                 const list1 = [];
                                 let num = 6;
                                 while (num-- > 1) {
@@ -5955,8 +5953,7 @@ game.import('extension', function () {
                             .set('filterCard', (c) => get.type(c) == 'basic')
                             .set('ai', (c) => get.effect(player, trigger.card, trigger.player, trigger.player) - get.value(c))
                             .forResult();
-                        if (cards?.length) {
-                        } else {
+                        if (!cards?.length) {
                             trigger.parent.excluded.add(player);
                         }
                     },
