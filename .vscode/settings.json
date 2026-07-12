@@ -78,9 +78,9 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "git.openRepositoryInParentFolders": "never",
-    "editor.formatOnPaste": false,
-    "editor.formatOnType": false,
-    "editor.formatOnSave": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
     "search.searchOnTypeDebouncePeriod": 5000,
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
