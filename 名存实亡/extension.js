@@ -3548,7 +3548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.discardPlayerCard(3, result.targets[0], 'he', true);
 								}
 								('step 3');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var list = [],
 										list1 = [];
 									for (var i of result.cards) {
@@ -4966,7 +4966,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.value(card);
 									});
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var list = [];
 									for (var i of result.cards) list.add(get.type2(i));
 									if (list.length == result.cards.length) {
@@ -5193,7 +5193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (num && target.isAlive()) player.chooseCard('h', num, true, '交给' + get.translation(target) + get.cnNumber(num) + '张牌');
 								else event.finish();
 								('step 3');
-								if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+								if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
 							},
 							ai: {
 								order: 1,
@@ -7337,7 +7337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.value(card);
 									});
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var list = [];
 									for (var i of result.cards) list.add(get.type2(i));
 									if (list.length == result.cards.length) {

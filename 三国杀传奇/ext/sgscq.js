@@ -5731,7 +5731,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0'
 					trigger.player.chooseCard(true, 'he');
 					'step 1'
-					if (result.bool && result.cards && result.cards.length) trigger.player.give(result.cards, player);
+					if (result.cards?.length) trigger.player.give(result.cards, player);
 				},
 			},
 			//------------司马昭

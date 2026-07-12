@@ -5856,7 +5856,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return -get.value(card);
 						});
 					('step 2');
-					if (result.bool && result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						var list = [];
 						for (var i of result.cards) list.add(get.type2(i));
 						if (list.length == result.cards.length) {
@@ -7244,7 +7244,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					} else event.finish();
 					('step 2');
 					var num = player.countMark('txyongguan');
-					if (result.cards && result.cards.length) num -= result.cards.length;
+					if (result.cards?.length) num -= result.cards.length;
 					if (num > 0) player.loseHp(num);
 					player.removeMark('txyongguan', 999);
 				},

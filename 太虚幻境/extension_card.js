@@ -1498,7 +1498,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     ('step 2');
                     if (event.directcards) {
                         target.give(target.getCards('he'), player);
-                    } else if (result.bool && result.cards && result.cards.length) {
+                    } else if (result.cards?.length) {
                         target.give(result.cards, player);
                     }
                 },

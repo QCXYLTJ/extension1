@@ -854,7 +854,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 var num2 = Math.max(1, sl);
                 player.chooseToDiscard('he', true, num2);
                 ('step 2');
-                if (result.cards && result.cards.length) {
+                if (result.cards?.length) {
                   event.num = 0;
                   for (var i = 0; i < result.cards.length; i++) {
                     if (get.type(result.cards[i]) == 'equip') {
@@ -1793,7 +1793,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.goto(4);
                 }
                 ('step 3');
-                if (result.cards && result.cards.length) {
+                if (result.cards?.length) {
                   player.lose(result.cards, ui.special, 'toStorage');
                   player.storage.hj_bm_quanji = player.storage.hj_bm_quanji.concat(result.cards);
                   player.markSkill('hj_bm_quanji');
@@ -13689,7 +13689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 //QQQ
                 if (trigger.player.countCards('he')) {
                   const result = await player.discardPlayerCard(trigger.player, 'he', true);
-                  if (result && result.cards && result.cards[0]) {
+                  if (result.cards?.length) {
                     if (get.type(result.cards[0]) == 'equip') player.useCard({ name: 'sha' }, trigger.player, false);
                   }
                 }

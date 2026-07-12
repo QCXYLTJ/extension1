@@ -6195,7 +6195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.line(event.targets[event.num], 'green');
                                     player.lose(result.cards);
                                     event.targets[event.num].storage.wwyj_xingcheng1 = result.cards.slice(0);

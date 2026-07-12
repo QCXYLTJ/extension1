@@ -3863,7 +3863,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return 10 - get.value(card);
               });
             ('step 1');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
               player.addToExpansion(result.cards, 'gain2', 'log', 'fromStorage', player).gaintag.add('sdxl_kaoshang');
               if (trigger.player.isDamaged()) trigger.player.recover();
             } else {
@@ -3909,7 +3909,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 1');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
               player.addToExpansion(result.cards, 'gain2', 'log', player).gaintag.add('sdxl_kaoshang');
               player.say('立下大功者,赏千金,封万户侯!');
             }

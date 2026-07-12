@@ -12182,7 +12182,7 @@ export default async function () {
                             });
                         }
                         ('step 3');
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             var togain = [];
                             var red = true;
                             for (var i = result.cards.length - 1; i >= 0; i--) {
@@ -12284,7 +12284,7 @@ export default async function () {
                                     ('step 2');
                                     if (event.directcards) {
                                         target.give(target.getCards('he'), player);
-                                    } else if (result.bool && result.cards && result.cards.length) {
+                                    } else if (result.cards?.length) {
                                         target.give(result.cards, player);
                                     }
                                 },
@@ -20047,7 +20047,7 @@ export default async function () {
                                 })
                                 .set('prompt', str)
                                 .set('suits', suits);
-                            if (result.cards && result.cards.length) {
+                            if (result.cards?.length) {
                                 suits.add(result.cards[0].suit);
                                 cards.add(result.cards[0]);
                             }
@@ -25744,7 +25744,7 @@ export default async function () {
                             });
                         }
                         ('step 2');
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             var card = result.cards[0];
                             if (get.subtype(card) == 'equip1') {
                                 target.draw(event.num);
@@ -37702,7 +37702,7 @@ export default async function () {
                         ('step 2');
                         if (result.bool && result.targets.length) {
                             var num = 1;
-                            if (result.cards && result.cards.length) {
+                            if (result.cards?.length) {
                                 player.discard(result.cards);
                                 num = result.cards.length;
                             }
@@ -42260,7 +42260,7 @@ export default async function () {
                         }
                         ('step 5');
                         if (result.bool && result.targets.length) {
-                            if (result.cards && result.cards.length) {
+                            if (result.cards?.length) {
                                 player.discard(result.cards);
                             }
                             game.log(player, '选择', event.type ? '令' : '对', result.targets, event.type ? '不能用牌和技能' : '造成伤害');

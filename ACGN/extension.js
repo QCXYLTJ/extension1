@@ -1033,7 +1033,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         .set('list', hs)
                         .set('att', get.attitude(event.source, player) > 0); //QQQ
                     ('step 1');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         cards = result.cards;
                         source.gain(cards, player, 'giveAuto');
                     }
@@ -28342,7 +28342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.players[event.num].addSkill('acgn_hundun_buff');
                                     if (!event.players[event.num].acgn_hundun) {
                                         event.players[event.num].acgn_hundun = [];
@@ -30815,7 +30815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 12 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('acgn_shayu');
                                     event.true = true;
                                 }
@@ -31293,7 +31293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (trigger.player.isAlive()) {
-                                    if (result.bool && result.cards && result.cards.length) {
+                                    if (result.cards?.length) {
                                         trigger.player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('acgn_lunhuileyuan');
                                     }
                                 }
@@ -34491,7 +34491,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.gain(event.card, event.target, 'giveAuto');
                                     event.target.gain(result.cards, player, 'giveAuto');
                                     game.log(player, '与', event.target, '交换了一张手牌');
@@ -35010,7 +35010,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, 'giveAuto', player);
                                 }
                                 ('step 4');
@@ -37575,7 +37575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.value(card);
                                     });
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.chooseCardButton('选择获得其中1张', 1, result.cards, true);
                                 } else {
                                     return;

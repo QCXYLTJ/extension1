@@ -1454,7 +1454,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (player.countCards('h')) player.chooseCard('将一张手牌置于武将牌上作为「威」', true);
                                         else event.goto(4);
                                         'step 3'
-                                        if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('ryshenwei');
+                                        if (result.cards?.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('ryshenwei');
                                         'step 4'
                                         if (event.count > 0) event.goto(1);
                                     },

@@ -3339,7 +3339,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         player.chooseCard('将至多3张手牌置于武将牌上作为<天使>', [1, 3], true);
                         ('step 1');
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             player.addToExpansion(result.cards, player, 'give').gaintag.add('llbz_duotianshi');
                             ('step 2');
                             if (event.count > 0 && player.hasSkill('llbz_duotianshi')) {

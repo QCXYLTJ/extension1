@@ -3948,7 +3948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									if (!player.storage.xwj_xsanguo_jugong) {
 										player.storage.xwj_xsanguo_jugong = result.cards;

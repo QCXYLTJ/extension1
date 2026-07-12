@@ -25165,7 +25165,7 @@ const skill = {
       else if (hs.length == 1) event._result = { bool: true, cards: hs };
       else player.chooseCard('he', 1, '将一张牌置于你的武将牌上');
       ('step 3');
-      if (result.bool && result.cards && result.cards.length) {
+      if (result.cards?.length) {
         let cards = result.cards;
         player.addToExpansion(cards, player, 'give').gaintag.add('mx_songchang');
       }
@@ -25653,7 +25653,7 @@ const skill = {
         player.chooseCard('he', true, '交给' + get.translation(target) + get.cnNumber(num) + '张牌', num);
       }
       ('step 2');
-      if (result.bool && result.cards && result.cards.length) player.give(result.cards, target);
+      if (result.cards?.length) player.give(result.cards, target);
     },
     ai: {
       order: 4,
@@ -27602,7 +27602,7 @@ const skill = {
       ('step 1');
       target.chooseToDiscard(cards.length, 'he', true);
       ('step 2');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         for (let a of result.cards) {
           if (get.color(a) == 'black') event.tablack++;
         }
@@ -37636,7 +37636,7 @@ const skill = {
         return -get.value(card);
       });
       ('step 1');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         player.lose(result.cards, ui.special, 'toStorage');
         player.storage.mx_youyezhiyuan = player.storage.mx_youyezhiyuan.concat(result.cards);
         player.markSkill('mx_youyezhiyuan');
@@ -37647,7 +37647,7 @@ const skill = {
         return -get.value(card);
       });
       ('step 4');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         trigger.player.changeHujia();
         trigger.player.lose(result.cards, ui.special, 'toStorage');
         trigger.player.$giveAuto(result.cards, player);
@@ -41162,7 +41162,7 @@ const skill = {
       }
       ('step 1');
       let num = cards.length;
-      if (result.cards && result.cards.length) num -= result.cards.length;
+      if (result.cards?.length) num -= result.cards.length;
       if (num > 0) {
         let a = player.countDisabled() + target.getAttackRange();
         player.randomGain(target, num, true, 'hej');
@@ -47887,7 +47887,7 @@ const skill = {
         });
       } else event.finish();
       ('step 2');
-      if (result.bool && result.cards && result.cards.length) {
+      if (result.cards?.length) {
         let card = result.cards[0];
         target.$give(card, player);
         let name = card.viewAs || card.name;
@@ -68476,7 +68476,7 @@ const skill = {
       }
       ('step 1');
       let num = cards.length;
-      if (result.cards && result.cards.length) num -= result.cards.length;
+      if (result.cards?.length) num -= result.cards.length;
       if (num > 0) {
         target.addTempSkill('mx_kongjushizhe2', { player: 'shanBegin' });
         target.storage.mx_kongjushizhe2++;

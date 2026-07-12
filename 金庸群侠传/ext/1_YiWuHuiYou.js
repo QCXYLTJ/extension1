@@ -23391,7 +23391,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             player.chooseCard('将一张手牌当' + get.translation(trigger.card) + isrespond, 1, true);
                         }
                         ('step 3');
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             trigger.cards = result.cards.slice(0);
                             trigger.card.number = result.cards[0].number;
                             trigger.card.suit = result.cards[0].suit;

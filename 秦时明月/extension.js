@@ -5278,7 +5278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discardPlayerCard('he', target, true);
                                 }
                                 ('step 1');
-                                if (result && result.cards && result.cards[0]) {
+                                if (result.cards?.length) {
                                     //QQQ
                                     var card = result.cards[0];
                                     if (get.type(card) !== 'equip') {

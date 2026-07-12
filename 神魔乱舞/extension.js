@@ -2025,7 +2025,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                 'step 0';
                                 player.chooseCard('h', [1, Infinity], '将任意张手牌置于武将牌上作为<兵>');
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.$give(result.cards, player, 'give');
                                     player.storage.点兵 = player.storage.点兵.concat(result.cards);
@@ -6639,7 +6639,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         return 4 - get.value(card); // 否则更倾向于选择价值较小的牌
                                     });
                                 ('step 1');
-                                if (result && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     // 如果目标选择了牌
                                     target.give(result.cards, player); // 将选择的牌交给该角色
                                     if (result.cards[0].suit == 'heart') {

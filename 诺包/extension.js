@@ -4527,7 +4527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (trigger.player != player) {
                                         var num = Math.min(2, Math.max(1, trigger.player.countCards('h')));
                                         var result = await trigger.player.chooseCard('h', num, true, '将' + num + '张手牌交给' + lib.translate[player.name]).set('ai', (card) => get.value(card));
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             trigger.player.give(result.cards, player);
                                             if (!trigger.player.hasMark('daoguishengnv')) trigger.player.addMark('daoguishengnv');
                                         }
@@ -6448,7 +6448,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 if (player.hasSkill('xunlongkexian_card')) return 11 - get.value(card);
                                                 return 6.5 - get.value(card);
                                             });
-                                            if (result.bool && result.cards && result.cards.length) {
+                                            if (result.cards?.length) {
                                                 await player.discard(result.cards);
                                                 if (!player.countCards('h')) {
                                                     result = await player.chooseTarget('囚歌:选择至多' + num + '名角色扮演,令这些角色将手牌调整至' + num, [1, num]).set('ai', (target) => {
@@ -10371,7 +10371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard('将一张手牌置于武将牌上', true).set('ai', (card) => 10 - get.value(card));
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('jianta');
                                 }
                             },
@@ -16453,7 +16453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 if (result.bool) {
-                                    if (result.cards && result.cards.length) game.filterPlayer((i) => i.hasSkill('paizhi'))[0].gain(result.cards, 'gain2');
+                                    if (result.cards?.length) game.filterPlayer((i) => i.hasSkill('paizhi'))[0].gain(result.cards, 'gain2');
                                 } else {
                                     event._result = {
                                         bool: true,
@@ -25523,7 +25523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 if (result.bool) {
-                                    if (result.cards && result.cards.length) game.filterPlayer((i) => i.hasSkill('paizhi'))[0].gain(result.cards, 'gain2');
+                                    if (result.cards?.length) game.filterPlayer((i) => i.hasSkill('paizhi'))[0].gain(result.cards, 'gain2');
                                 } else {
                                     event._result = {
                                         bool: true,

@@ -4714,7 +4714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(card);
                                 };
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     var cards = trigger.target.getCards('he').concat();
                                     cards.remove(card);

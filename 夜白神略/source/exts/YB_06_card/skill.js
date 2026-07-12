@@ -286,7 +286,7 @@ const skill = {
 					.set('ignoreCard', player.hasSkill('shanrangzhaoshu', null, false));
 			}
 			('step 3');
-			if (result.cards && result.cards.length) {
+			if (result.cards?.length) {
 				event.giver.give(result.cards, event.gainner);
 			}
 			('step 4');

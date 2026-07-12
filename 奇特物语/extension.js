@@ -1124,7 +1124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.getParent(2).goto(0);
 								}
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									event.cards = result.cards;
 									_status.QT_duanyue_aiCanceled = false;
 									game.log(player, '对', target, '发动了', '#g【断月】');

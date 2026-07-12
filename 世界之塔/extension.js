@@ -1371,7 +1371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.gainPlayerCard(trigger.player, true, 'hej');
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (card.suit == 'heart') {
                                         trigger.player.draw(4);

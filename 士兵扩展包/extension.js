@@ -7866,7 +7866,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								player.draw();
 								var { result } = await player.discardPlayerCard(trigger.target, 'he', true);
-								if (result && result.cards && result.cards[0]) {
+								if (result.cards?.length) {
 									if (get.type(result.cards[0]) == 'basic') {
 										trigger.player.addTempSkill('破甲2', 'phaseAfter');
 									}
@@ -8687,7 +8687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.discardPlayerCard(trigger.target, 'he', true);
-								if (result && result.cards && result.cards[0]) {
+								if (result.cards?.length) {
 									if (get.color(result.cards[0]) == 'black') {
 										var list = game.filterPlayer(function (current) {
 											return current.isEnemiesOf(player);
@@ -16762,7 +16762,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								var { result } = await player.discardPlayerCard(trigger.player, 2, 'he', true);
-								if (result && result.cards && result.cards[0]) {
+								if (result.cards?.length) {
 									if (result.cards.some((i) => get.type(i) == 'equip')) {
 										trigger.player.damage();
 										player.useCard({ name: 'sha' }, trigger.player, false);

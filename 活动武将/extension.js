@@ -41688,7 +41688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.discardPlayerCard(trigger.target, 'he', 2, true);
                                         ('step 1');
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             if (result.cards.length == 1) event._result = { bool: true, links: result.cards.slice(0) };
                                             else
                                                 player.chooseButton(['选择获得其中的一张牌', result.cards.slice(0)], true).set('ai', function (button) {

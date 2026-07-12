@@ -17150,7 +17150,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.gainPlayerCard([1, 3], target, 'e', true);
                                         }
                                         ('step 2');
-                                        if (result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             event.num = 0;
                                             if (Array.isArray(result.cards))
                                                 for (const i of result.cards) {
@@ -17206,7 +17206,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (player.storage.mx2_ranwucun != 100) player.storage.mx2_ranwucun += 5;
                                         }
                                         ('step 2');
-                                        if (result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             event.num = 0;
                                             if (Array.isArray(result.cards))
                                                 for (const i of result.cards) {
@@ -17273,7 +17273,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (player.storage.mx2_ranwucun != 100) player.storage.mx2_ranwucun += 10;
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.num = 0;
                                     if (Array.isArray(result.cards))
                                         for (const i of result.cards) {

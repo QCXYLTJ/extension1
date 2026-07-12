@@ -3501,7 +3501,7 @@ const skill = {
                 });
             });
             ('step 1');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 trigger.player.give(result.cards, player);
             }
         },
@@ -11109,7 +11109,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let cards = result.cards;
                 target.give(cards, player);
             } else {
@@ -15663,7 +15663,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.give(result.cards, target);
             }
         },
@@ -17969,7 +17969,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 target.give(result.cards, player);
             }
         },
@@ -25237,7 +25237,7 @@ const skill = {
                 return num * 1.5 - get.value(cardx);
             });
             ('step 4');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let name = get.type(result.cards[0]) == 'basic' ? 'shanhe_neifa_basic' : 'shanhe_neifa_nobasic';
                 player.addTempSkill(name);
                 let num = Math.min(
@@ -39190,7 +39190,7 @@ const skill = {
                 player.discardPlayerCard(num, target, true);
             }
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let cards = [];
                 if (Array.isArray(result.cards)) {
                     for (let i of result.cards) {
@@ -45586,7 +45586,7 @@ const skill = {
                 player.discardPlayerCard(num, target, true);
             }
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 event.num = result.cards.length;
                 event.count = 0;
             } else {
@@ -53015,7 +53015,7 @@ const skill = {
             'step 0';
             player.chooseCard('将一张牌置于武将牌上作为<符>', 'he', true);
             ('step 1');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.addToExpansion(result.cards, player, 'give').gaintag.add('liezhuan_tunfu');
             }
             player.addTempSkill('liezhuan_tunfu_xiaoguo', { player: 'phaseAfter' });
@@ -56036,7 +56036,7 @@ const skill = {
                 event.goto(4);
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('shanhe_quanji');
             }
             ('step 4');

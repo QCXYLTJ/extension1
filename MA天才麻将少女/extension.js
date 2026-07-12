@@ -1485,7 +1485,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 7 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'gain2').gaintag.add('masaki_duanshi');
                                     trigger.cancel();
                                     game.log(player, '令', trigger.player, '使用的【', trigger.card, '】失效了');
@@ -4970,7 +4970,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return num * 1.5 + get.value(cardx);
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addTempSkill('masaki_jigong_buff');
                                     var card = result.cards[0];
                                     player.markAuto('masaki_jigong_buff', [get.type2(card)]);
@@ -6531,7 +6531,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('autodelay', 0.5);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card1 = result.cards[0];
                                     var card = get.cardPile2(function (card) {
                                         return get.color(card) != get.color(card1);

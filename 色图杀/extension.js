@@ -4719,7 +4719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     target.$give(card, player);
                                     var name = card.viewAs || card.name;

@@ -100,6 +100,10 @@ game[otherFunction[6]](game.zmtzd13Gif('zmcuibin.gif', null, null, true), 3600);
 game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
+result.cards && result.cards
+if (result.cards?.length)
+result.targets && result.targets
+if (result.targets?.length)
 result.links && result.links
 if (result.links?.length)
 !((?!\(\b)[^&|\s]*) == //$1 !=
@@ -4829,7 +4833,7 @@ const precontent = async function () {
                                 .chooseCard(`交给${get.translation(player)}${num}张牌,增加一项基本数值`, 'he', num)
                                 .set('ai', (card) => get.attitude(player, i) - get.value(card))
                                 .forResult();
-                            if (result && result.cards && result.cards[0]) {
+                            if (result.cards?.length) {
                                 if (Math.random() > 0.5) {
                                     game.playAudio('../extension/温柔一刀/audio/你听说过指头女巫吗.mp3');
                                 } else {

@@ -324,7 +324,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(5);
 								}
 								'step 3'
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									event.name = 'lr_wuxiu';
 									player.$compare(cards[0], event.current, result.cards[0]);
 									game.log(player, '展示了', player, '的', cards[0]);
@@ -2583,7 +2583,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								'step 5'
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									event.target.gain(result.cards, 'gain2');
 									if (!player.storage.lr_xingshi_qingsong) player.changeZhuanhuanji('lr_qingsong');
 								}

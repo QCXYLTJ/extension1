@@ -6024,7 +6024,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     event.finish();
-                                    if (result.cards && result.cards.length) {
+                                    if (result.cards?.length) {
                                         player.useCard({ name: 'sha' }, result.cards, target).animate = false;
                                     } else {
                                         player.useCard({ name: 'sha' }, target).animate = false;

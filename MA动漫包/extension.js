@@ -5930,7 +5930,7 @@ export default function () {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     event.target.lose(card, ui.special, 'toStorage');
                                     player.markAuto('qxmn_woxuan', result.cards);
@@ -24098,7 +24098,7 @@ export default function () {
                                         return 100 - get.value(card);
                                     });
                                 ('step 6');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.current.give(result.cards, player);
                                 }
                                 ('step 7');
@@ -25260,7 +25260,7 @@ export default function () {
                                 var name = get.translation(target);
                                 player.chooseCard('he', 1, true, '交给' + name + '1张牌');
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) player.give(result.cards, target);
+                                if (result.cards?.length) player.give(result.cards, target);
                             },
                             ai: {
                                 order: 4,

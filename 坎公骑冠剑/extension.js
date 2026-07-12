@@ -7526,7 +7526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.chooseCard('将一张手牌置于武将牌上作为<火箭>', true);
 								} else event.finish();
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('gt_shuiqiang');
 								}
 							},
@@ -10145,7 +10145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 6 - value;
 								});
 								('step 1');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('gt_shachan');
 								}
 							},

@@ -3882,7 +3882,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(4);
                     }
                     ('step 2');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         event.tar.addToExpansion(result.cards, event.tar, 'giveAuto').gaintag.add('xx_shunten');
                     }
                     ('step 3');
@@ -4290,7 +4290,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '积土|你可以将一张牌作为<土>置于武将牌上');
                     ('step 1');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_jitu');
                     }
                 },
@@ -8560,7 +8560,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             ('step 2');
                             event.goto(5);
                             ('step 3');
-                            if (result.bool && result.cards && result.cards.length) {
+                            if (result.cards?.length) {
                                 var cs = player.getExpansions('xx_xingding_1');
                                 player.chooseCardButton('刑鼎:获得一张<刑>', true, cs, 1).set('ai', function (button) {
                                     var c = button.link;
@@ -8931,7 +8931,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 1;
                         });
                     ('step 2');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         var c = result.cards;
                         event.n2 = c[0].number;
                         player.markAuto('xx_bianri_1', [event.n2]);
@@ -9301,7 +9301,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 8 - get.value(card);
                         });
                     ('step 1');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_chengzhu');
                         player.addSkill('xx_chengzhu_1');
                     }
@@ -33105,7 +33105,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '你可以将一张牌作为<替身>置于武将牌上');
                     ('step 1');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_tishen');
                     }
                 },
@@ -37373,7 +37373,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         player.chooseCard('你可以将一张手牌置于武将牌上作为<略>', 'hes', false);
                     }
                     ('step 1');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_xionglue');
                     }
                 },
@@ -39337,7 +39337,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             .set('prompt2', '交给' + get.translation(player) + '两张牌.');
                     }
                     ('step 2');
-                    if (result.bool && result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         game.playAudio('../extension/极想/audio/xx_zhonghuijiangwei/quantaoA' + [1, 2].randomGet());
                         event.tar.give(result.cards, player).gaintag.add('xx_quantao');
                         event.tar.addTempSkill('xx_quantao_1');

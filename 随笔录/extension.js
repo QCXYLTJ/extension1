@@ -10265,7 +10265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('xinquanji');
                                 }
                                 ('step 4');
@@ -21556,7 +21556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌,或依次弃置两张非锦囊牌.');
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type2(result.cards[0]) == 'trick') {
                                         target.give(result.cards, player);
                                         event.finish();

@@ -6694,7 +6694,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.权计 = player.storage.权计.concat(result.cards);
                                     player.markSkill('权计');
@@ -7987,7 +7987,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.集巾 = player.storage.集巾.concat(result.cards);
                                     player.markSkill('集巾');
@@ -10027,7 +10027,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target = result.targets[0];
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.target.lose(result.cards, ui.special);
                                     player.storage.周擎zhanghezq = [...player.storage.周擎zhanghezq, ...result.cards];
                                     player.markSkill('周擎zhanghezq');
@@ -10038,7 +10038,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.周擎zhanghezq = [...player.storage.周擎zhanghezq, ...result.cards];
                                     player.markSkill('周擎zhanghezq');
@@ -11149,7 +11149,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 100 - get.value(card);
                                 });
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.current.$giveAuto(result.cards, player);
                                     player.gain(result.cards);
                                 }
@@ -14733,7 +14733,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     target.give(result.cards, player);
                                 }
                             },
@@ -16239,7 +16239,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.锦铃 = player.storage.锦铃.concat(result.cards);
                                     player.markSkill('锦铃');
@@ -17992,7 +17992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 var x = 1;
                                 if (event.target.group == 'wu') x++;
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var list = [];
                                     for (var i of result.cards) list.add(get.type2(i));
                                     if (list.length == result.cards.length) {
@@ -18604,7 +18604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 var x = 1;
                                 if (event.target.group == 'wu') x++;
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var list = [];
                                     for (var i of result.cards) list.add(get.type2(i));
                                     if (list.length == result.cards.length) {

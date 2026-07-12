@@ -5465,7 +5465,7 @@ const skill = {
                 return true;
             });
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 target.gain(result.cards, player, 'giveAuto');
             }
         },
@@ -15925,7 +15925,7 @@ const skill = {
                     player.discardPlayerCard('hej', target, true, 1 + Math.min(2, player.getDamagedHp()));
                 }
                 ('step 1');
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     if (result.cards.length == 1) {
                         event._result = { bool: true, links: result.cards.slice(0) };
                     } else {
@@ -20096,7 +20096,7 @@ const skill = {
                     target.chooseToDiscard('e', true);
                 }
                 ('step 1');
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     if (!player.storage.linmo_shuigong) {
                         player.storage.linmo_shuigong = [];
                     }
@@ -27107,7 +27107,7 @@ const skill = {
                 });
                 ('step 1');
                 let num = 1;
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     num += result.cards.length;
                 }
                 if (target.hasBaibaoxiang()) {
@@ -44435,7 +44435,7 @@ const skill = {
                 event.goto(4);
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 trigger.source.addSkill('qysj_caoshen2');
                 trigger.source.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('qysj_caoshen2');
             }

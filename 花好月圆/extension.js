@@ -4726,7 +4726,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.mou_dawu = player.storage.mou_dawu.concat(result.cards);
                                     player.markSkill('mou_dawu');
@@ -4853,7 +4853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.mou_dawu = player.storage.mou_dawu.concat(result.cards);
                                     player.markSkill('mou_dawu');

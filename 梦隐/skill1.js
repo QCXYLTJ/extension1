@@ -4078,7 +4078,7 @@ const skill = {
             ('step 1');
             if (result.bool) {
                 event.finish();
-                if (result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     player.useCard({ name: 'sha' }, result.cards, target).animate = false;
                 } else {
                     player.useCard({ name: 'sha' }, target).animate = false;
@@ -15924,7 +15924,7 @@ const skill = {
                 }
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 trigger.player.gain(result.cards, 'giveAuto', player);
             }
             ('step 4');
@@ -22105,7 +22105,7 @@ const skill = {
                     return -get.value(card);
                 });
             ('step 2');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let card = result.cards[0];
                 if (!player.storage.mx_mingmie.includes(get.type(card))) {
                     player.getHistory('custom').push({ mx_mingmie_name: card.name });
@@ -28386,7 +28386,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.lose(result.cards, ui.special);
                 player.storage.mx_qianshu = player.storage.mx_qianshu.concat(result.cards);
                 player.markSkill('mx_qianshu');
@@ -29868,7 +29868,7 @@ const skill = {
                 });
             }
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let card = result.cards[0];
                 if (get.subtype(card) == 'equip2') {
                     let num = target.storage.mx_yuanlingxiaozhen2;
@@ -32047,7 +32047,7 @@ const skill = {
             player.addTempSkill('mx_wukenaihe2', { player: 'mx_wukenaihe2After' });
             target.chooseToDiscard(cards.length, 'he', true);
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 for (let a of result.cards) {
                     if (get.color(a) == 'red') event.tablack++;
                 }
@@ -37240,7 +37240,7 @@ const skill = {
                 return 0;
             });
             ('step 1');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let target = trigger.player;
                 event.cards = result.cards;
                 player.storage.mx_wuchangwuxian.push(target);
@@ -39588,7 +39588,7 @@ const skill = {
                 });
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let togain = [];
                 let red = true;
                 for (let i = result.cards.length - 1; i >= 0; i--) {
@@ -43152,7 +43152,7 @@ const skill = {
                 })
                 .set('prompt', str);
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 event.suits.add(result.cards[0].suit);
                 event.cards.add(result.cards[0]);
             }
@@ -52258,7 +52258,7 @@ const skill = {
                 event.goto(5);
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 let card = result.cards[0];
                 if (get.type(card, event.current) == 'basic') {
                     event.togain.add(card);
@@ -53281,7 +53281,7 @@ const skill = {
                 if (event.num > 0) target.damage(event.num, 'ice');
             }
             ('step 2');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.gain(result.cards, target, 'giveAuto');
             }
             ('step 3');
@@ -53963,7 +53963,7 @@ const skill = {
             } else event.finish();
             ('step 2');
             let num = player.countMark('mx_liuyu');
-            if (result.cards && result.cards.length) num -= result.cards.length;
+            if (result.cards?.length) num -= result.cards.length;
             if (num > 0) player.draw(num);
         },
     },
@@ -54366,7 +54366,7 @@ const skill = {
                     ('step 1');
                     if (result.bool) {
                         event.finish();
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             player.useCard({ name: 'sha' }, result.cards, target).animate = false;
                         } else {
                             player.useCard({ name: 'sha' }, target).animate = false;
@@ -54450,7 +54450,7 @@ const skill = {
                     ('step 1');
                     if (result.bool) {
                         event.finish();
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             player.useCard({ name: 'tao' }, result.cards, target).animate = false;
                         } else {
                             player.useCard({ name: 'tao' }, target).animate = false;
@@ -54534,7 +54534,7 @@ const skill = {
                     ('step 1');
                     if (result.bool) {
                         event.finish();
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             player.useCard({ name: 'jiu' }, result.cards, target).animate = false;
                         } else {
                             player.useCard({ name: 'jiu' }, target).animate = false;
@@ -67746,7 +67746,7 @@ const skill = {
                 target.chooseCard('将装备区内的一张牌交给彦卿', 'e', 1, true);
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.gain(result.cards[0], 'gain');
                 target.randomDiscard('h');
             }

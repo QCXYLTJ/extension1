@@ -10212,7 +10212,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.target.$give(1, player);
                                     player.gain(result.cards, event.target);
                                 }
@@ -15688,7 +15688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 5');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.$give(card, target);
                                     var name = card.viewAs || card.name;
@@ -18020,7 +18020,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (var i of game.filterPlayer((current) => current != player && current.inRange(player))) {
                                     if (i.countCards('he')) {
                                         var { result } = await i.chooseCard('he', `倨傲:是否交给${get.translation(player)}一张牌,视为对其使用一张【杀】`, 'he').set('ai', (card) => -get.attitude(player, i) - get.value(card));
-                                        if (result && result.cards && result.cards[0]) {
+                                        if (result.cards?.length) {
                                             await i.give(result.cards, player);
                                             await i.useCard({ name: 'sha' }, player);
                                         }
@@ -34168,7 +34168,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.goto(4);
                                         }
                                         ('step 3');
-                                        if (result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('yao_chunlao');
                                         }
                                         ('step 4');
@@ -34839,7 +34839,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('yao_quanji');
                                 }
                                 ('step 4');
@@ -36378,7 +36378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.goto(4);
                                         }
                                         ('step 3');
-                                        if (result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('yao_danshou');
                                         }
                                         ('step 4');
@@ -36545,7 +36545,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })
                                         .set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌,或依次弃置两张非锦囊牌.');
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type2(result.cards[0]) == 'trick') {
                                         target.give(result.cards, player);
                                         event.finish();
@@ -37754,7 +37754,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw();
                                 player.chooseCard('he', true, '选择交给' + get.translation(target) + '一张牌');
                                 ('step 6');
-                                if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                             },
                         },
                         yao_zhongyong2: {
@@ -37854,7 +37854,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.gain(event.sha, 'gain2');
                                 player.chooseCard('he', true, '选择交给' + get.translation(trigger.player) + '一张牌');
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) trigger.player.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) trigger.player.gain(result.cards, player, 'giveAuto');
                             },
                             group: ['yao_yisui_roundcount'],
                         },

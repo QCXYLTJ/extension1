@@ -3339,7 +3339,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (player.countCards('h')) player.chooseCard('将一张手牌置于武将牌上作为<权>', true);
 								else event.goto(5);
 								('step 3');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('quanji');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('quanji');
 								('step 4');
 								if (event.count > 0) player.chooseBool(get.prompt2('hs_quanji')).set('frequentSkill', 'hs_quanji');
 								else event.finish();
@@ -3817,7 +3817,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else event.redo();
 								} else event.goto(3);
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, target, 'giveAuto');
 									game.log(player, '获得了', event.current, '的', result.cards);
 									game.log(event.current, '令', player, '的此次伤害+!');

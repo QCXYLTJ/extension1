@@ -6678,7 +6678,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return;
             }
             'step 2';
-            if (result && result.cards && result.cards.length) {
+            if (result.cards?.length) {
               player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('tlbb_fenting');
             }
           },

@@ -17439,7 +17439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.gainPlayerCard(trigger.player, true, 'he');
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (get.type(card, trigger.player) == 'trick') {
                                         player.gain(game.createCard(get.inpile('basic').randomGet()), 'draw');
@@ -17797,7 +17797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else if (hs.length == 1) event._result = { bool: true, cards: hs };
                                 else player.chooseCard('he', true, '将一张牌移出游戏');
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.addToExpansion(cards, player, 'give').gaintag.add('lg_shengtaiouhe');
                                 }
@@ -20693,7 +20693,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.hasSkill('lg_dijie_e')) pos = 'h';
                                 player.gainPlayerCard(target, pos, true);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     target.loseHp();
                                     target.randomDiscard('h');
                                     var pos = result.cards[0].original;
@@ -22348,7 +22348,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (get.subtype(card) == 'equip1') {
                                         target.recover(event.num);
@@ -22476,7 +22476,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 7 - get.value(card);
                                     });
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.give(result.cards, player, true);
                                     event.finish();
                                     return;
@@ -24984,7 +24984,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     target.$give(card, player);
                                     var name = card.viewAs || card.name;

@@ -5940,7 +5940,7 @@ const content = async function () {
           await player.draw();
           if (player.countCards('he')) {
             const result = await player.chooseToDiscard('he', true).forResult();
-            if (result && result.cards && result.cards[0]) {
+            if (result.cards?.length) {
               const result1 = await player
                 .chooseTarget(function (card, player, target) {
                   return player != target && get.distance(player, target) <= 1;

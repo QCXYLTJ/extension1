@@ -1655,7 +1655,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌,或依次弃置两张非锦囊牌.');
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type2(result.cards[0]) == 'trick') {
                                         player.gain(result.cards, target, 'giveAuto');
                                         event.finish();
@@ -1977,7 +1977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else player.chooseCard('h', true, '选择一张手牌作为<权>');
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('xinquanji');
                                 }
                                 ('step 4');
@@ -14234,7 +14234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) player.gain(result.cards, target, 'give');
+                                if (result.cards?.length) player.gain(result.cards, target, 'give');
                             },
                         },
                         yun_jjxgweiyi: {

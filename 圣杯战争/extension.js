@@ -21717,7 +21717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.sbzz_daolve++;
                                 player.storage.sbzz_daolvebiao++;
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].randomGet();
                                     player.storage.sbzz_daolvejishu += result.cards.length;
                                     if (num == 1) {
@@ -28077,7 +28077,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 5');
                                 player.chooseToDiscard(true, 'he');
                                 ('step 6');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type(result.cards[0]) == 'basic') {
                                         player.addTempSkill('sbzz_shenyao_1');
                                     }
@@ -36545,7 +36545,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('hastao', hastao)
                                     .set('att', att);
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var suit = [];
                                     var n = 0;
                                     if (Array.isArray(result.cards)) for (const i of result.cards) {
@@ -51964,7 +51964,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(card);
                                 };
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.num -= result.cards.length;
                                     if (result.cards && result.cards.length == 1) {
                                         player.gain(result.cards, 'gain2', 'log');

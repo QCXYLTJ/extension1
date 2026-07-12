@@ -2474,7 +2474,7 @@ game.import('character', function () {
 						event.finish();
 					}
 					('step 3');
-					if (result.bool && result.cards && result.cards.length) player.gain(result.cards, target, 'give');
+					if (result.cards?.length) player.gain(result.cards, target, 'give');
 				},
 			},
 			xjzh_meiren_meihun2: {

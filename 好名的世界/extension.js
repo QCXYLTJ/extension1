@@ -1416,7 +1416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 100 - get.value(card);
                                     });
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.current, 'giveAuto');
                                 }
                                 ('step 3');
@@ -2234,7 +2234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 2');
                                         player.chooseCard('he', true, '选择交给' + get.translation(target) + get.cnNumber(1) + '张牌,与其进行拼点');
                                         ('step 3');
-                                        if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                        if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                                         ('step 4');
                                         player.chooseToCompare(target);
                                         ('step 5');
@@ -2300,7 +2300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 2');
                                         player.chooseCard('he', true, '选择交给' + get.translation(target) + get.cnNumber(1) + '张牌,与其进行拼点');
                                         ('step 3');
-                                        if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                        if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                                         ('step 4');
                                         player.chooseToCompare(target);
                                         ('step 5');

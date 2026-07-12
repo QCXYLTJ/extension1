@@ -5486,7 +5486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('yinquanji');
                                 }
                                 ('step 4');
@@ -6602,7 +6602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })
                                         .set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌,或依次弃置所有非锦囊牌.');
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type2(result.cards[0]) == 'trick') {
                                         player.gain(result.cards, target, 'giveAuto');
                                         event.finish();
@@ -9252,7 +9252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('hastao', hastao);
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var type = [];
                                     for (var i = 0; i < result.cards.length; i++) {
                                         type.add(get.type(result.cards[i]));

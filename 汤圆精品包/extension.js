@@ -13963,7 +13963,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.storage.tyj_ningxi_cards.addArray(event.cards1);
                                     player.markSkill('tyj_ningxi');
                                 }
@@ -16389,7 +16389,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, event.targetsx1, 'giveAuto').gaintag.add('tyj_zhenling');
                                     player.markSkill('tyj_zhenling');
                                 }
@@ -28480,7 +28480,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.currentuse.useCard({ name: 'huogong' }, result.cards, player);
                                 }
                                 event.goto(2);
@@ -39978,7 +39978,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('tyj_quanji');
                                 }
                                 ('step 4');

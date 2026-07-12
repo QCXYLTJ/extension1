@@ -11195,7 +11195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.removeZhimou();
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('fubing_Angel');
                                     player.chooseUseTarget('gong_Angel', true, false);

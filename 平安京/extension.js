@@ -6835,7 +6835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 7 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.paj_xx_Yuebai = result.cards[0];
                                     player.draw('nodelay');
@@ -7463,7 +7463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '回合开始时,你可将一张【杀】置于武将牌上,称之为【卒】并摸两张牌.');
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.paj_xx_Guibing = player.storage.paj_xx_Guibing.concat(result.cards);
                                     player.markSkill('paj_xx_Guibing');

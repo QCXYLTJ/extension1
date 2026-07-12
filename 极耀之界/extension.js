@@ -7492,7 +7492,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.xg = false;
                                 if (trigger.source.countCards('he')) player.discardPlayerCard(trigger.source, 'he', true);
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (const i of result.cards) {
                                             if (get.color(i) == 'red') event.xg = true;
@@ -8211,7 +8211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     num = 1 + player.countMark(event.name);
                                 player.discardPlayerCard(target, [1, num], 'he');
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     for (const i of cards) {
                                         var type = get.type2(i);
@@ -10810,7 +10810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0],
                                         type = get.type2(card, false);
                                     if (type == 'basic') {
@@ -23260,7 +23260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 100 - get.value(card);
                                     });
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.current.give(result.cards, player);
                                     if (get.type2(result.cards[0]) == 'basic') player.recover();
                                 }
@@ -29212,7 +29212,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })
                                         .set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌;依次弃置两张非锦囊牌,若未弃置两张牌,你流失1点体力');
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type2(result.cards[0]) == 'trick') {
                                         target.give(result.cards, player);
                                         event.finish();
@@ -30797,7 +30797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add(event.name);
                                 }
                                 ('step 4');
@@ -35241,7 +35241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else player.chooseCard('h', true, '选择一张手牌作为<权>');
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('xinquanji');
                                 }
                                 ('step 4');
@@ -36268,7 +36268,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 100 - get.value(card);
                                     });
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.current.give(result.cards, player);
                                 }
                                 ('step 3');
@@ -41831,7 +41831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('ignoreCard', player.hasSkill('shanrangzhaoshu', null, false));
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) event.giver.give(result.cards, event.gainner);
+                                if (result.cards?.length) event.giver.give(result.cards, event.gainner);
                                 ('step 4');
                                 if (targets.length) event.goto(1);
                             },

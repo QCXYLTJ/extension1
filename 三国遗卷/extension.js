@@ -70,7 +70,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return 12 - get.value(card);
 							};
 							('step 1');
-							if (result.bool && result.cards && result.cards.length) {
+							if (result.cards?.length) {
 								player.gain(result.cards, target, 'give');
 								event.finish();
 							} else {
@@ -1307,7 +1307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							}
 							('step 2');
 							var num = player.countMark('lslixun');
-							if (result.cards && result.cards.length) num -= result.cards.length;
+							if (result.cards?.length) num -= result.cards.length;
 							if (num > 0) player.loseHp(num);
 						},
 					};
@@ -10940,7 +10940,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 8 - get.value(card);
 								};
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.$give(result.cards, trigger.player);
 									trigger.player.gain(result.cards, player);
 									trigger.cancel();
@@ -12267,7 +12267,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									trigger.player.lose(result.cards);
 									player.storage.df_zhixin = player.storage.df_zhixin.concat(result.cards);
 									player.update();
@@ -12319,7 +12319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 6 - get.value(card);
 								};
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.storage.df_zhixin = player.storage.df_zhixin.concat(result.cards);
 									player.markSkill('df_zhixin');
 									player.lose(result.cards, ui.special, 'toStorage');

@@ -7435,7 +7435,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', `选择将一张锦囊牌交给${get.translation(player)},或依次弃置两张非锦囊牌.`);
                             ('step 2');
-                            if (result.cards && result.cards.length) {
+                            if (result.cards?.length) {
                                 if (get.type2(result.cards[0]) == 'trick') {
                                     player.gain(result.cards, target, 'give').gaintag.add('diy_remieji');
                                     player.addTempSkill('diy_remieji2');

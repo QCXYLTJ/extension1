@@ -9608,7 +9608,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.goto(6);
 								('step 3');
-								if (result.bool && result.cards && result.cards.length) event.mk++;
+								if (result.cards?.length) event.mk++;
 								else event.goto(6);
 								('step 4');
 								if (player.countCards('he') > 0) {

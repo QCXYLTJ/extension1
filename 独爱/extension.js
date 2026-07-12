@@ -2428,7 +2428,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discardPlayerCard(num, target, true);
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
                                             if (get.type(i) == 'equip') {
@@ -5393,7 +5393,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('ua_quanji');
                                 }
                                 ('step 4');
@@ -6472,7 +6472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) player.give(result.cards, event.target);
+                                if (result.cards?.length) player.give(result.cards, event.target);
                                 if (event.count > 0) {
                                     player.chooseBool(get.prompt2('ua_wangxi', event.target));
                                 } else event.finish();
@@ -8509,7 +8509,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (result.bool) {
-                                    if (result.cards && result.cards.length) {
+                                    if (result.cards?.length) {
                                         lib.skill.ua_xieshou.change(player, 1);
                                     } else {
                                         player.drawTo(player.maxHp);
@@ -9140,7 +9140,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else if (hs.length <= num) event._result = { bool: true, cards: hs };
                                 else player.chooseCard('he', true, `选择交给${get.translation(target) + get.cnNumber(num)}张牌`, num);
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) player.give(result.cards, target);
+                                if (result.cards?.length) player.give(result.cards, target);
                             },
                         },
                         tongyuan: { audio: 2 },

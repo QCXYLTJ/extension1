@@ -2221,7 +2221,7 @@ const skill = {
 				event.finish();
 			}
 			"step 3";
-			if (result.bool && result.cards && result.cards.length) {
+			if (result.cards?.length) {
 				event.goto(2);
 			} else {
 				event.current.damage();

@@ -2771,7 +2771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									event.target.$give(1, player);
 									player.gain(result.cards, event.target);
 								}

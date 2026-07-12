@@ -557,7 +557,7 @@ const modexwvs = {
                         });
                 }
                 'step 2'
-                if (result && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     player.chooseCardButton([1, Infinity], "请选择其中的♥️️牌令其重铸", result.cards)
                         .set('filterButton', function (button) {
                             return button.link.suit == 'heart';

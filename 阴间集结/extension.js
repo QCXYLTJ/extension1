@@ -3747,7 +3747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 var target = event.recover;
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     cards = result.cards;
                                 }
                                 if (
@@ -9861,7 +9861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return num * 1.5 - get.value(cardx);
                                 });
                                 ('step 5');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var name = get.type(result.cards[0]) == 'basic' ? 'new_neifa_basic' : 'new_neifa_nobasic';
                                     player.addTempSkill(name);
                                 }

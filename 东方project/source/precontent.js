@@ -9020,7 +9020,7 @@ export async function precontent(config, pack) {
 					return 7 - get.value(card);
 				});
 				('step 1');
-				if (result.cards && result.cards.length) {
+				if (result.cards?.length) {
 					player.lose(result.cards, ui.special, 'toStorage');
 					player.$give(result.cards, player);
 					player.storage.gezi_huanfa = player.storage.gezi_huanfa.concat(result.cards);
@@ -14445,7 +14445,7 @@ export async function precontent(config, pack) {
 					return 6 - get.value(card);
 				});
 				('step 1');
-				if (result.cards && result.cards.length) {
+				if (result.cards?.length) {
 					if (_status.currentPhase == player) {
 					}
 					player.gainlili();
@@ -14530,7 +14530,7 @@ export async function precontent(config, pack) {
 					return card.name == 'sha';
 				});
 				('step 1');
-				if (result.cards && result.cards.length) {
+				if (result.cards?.length) {
 					player.gainlili();
 					player.lose(result.cards, ui.special);
 					player.storage.gezi_mitu2 = result.cards[0];

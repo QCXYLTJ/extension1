@@ -2371,7 +2371,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         return true;
                     });
                     ('step 3');
-                    if (result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                    if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                 },
             },
             //益契城防图

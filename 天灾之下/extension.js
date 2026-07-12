@@ -5660,7 +5660,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.finish();
 										}
 										('step 2');
-										if (result.cards && result.cards.length) {
+										if (result.cards?.length) {
 											trigger.player.line(player, 'green');
 											trigger.player.gain(result.cards, player, 'give');
 										}
@@ -6251,7 +6251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.line(target, { color: [255, 206, 0] });
 										player.discardPlayerCard(target, 'ej', true);
 									}
-								} else if (result.cards && result.cards.length) {
+								} else if (result.cards?.length) {
 									player.lose(result.cards, ui.cardPile).insert_card = true;
 								}
 							},
@@ -6423,7 +6423,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								('step 1');
 								if (result.bool) {
-									if (result.cards && result.cards.length) {
+									if (result.cards?.length) {
 										player.chongzhu(result.cards);
 										player.getStat()[event.name] = (player.getStat()[event.name] || 0) + 1;
 										event.finish();
@@ -7246,7 +7246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									target.line(player, [180, 180, 180]);
 									target.discardPlayerCard(player, Infinity, true);
 								}
@@ -10955,7 +10955,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								await trigger.player.draw(2);
 								if (trigger.source && trigger.source != trigger.player && trigger.player.countCards('h')) {
 									const result = await player.choosePlayerCard(trigger.player, 'h', true, 'visible').forResult();
-									if (result && result.cards && result.cards[0]) trigger.player.give(result.cards[0], trigger.source); //QQQ
+									if (result.cards?.length) trigger.player.give(result.cards[0], trigger.source); //QQQ
 								}
 							},
 							check(event, player) {

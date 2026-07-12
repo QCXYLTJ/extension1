@@ -2114,7 +2114,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.chooseCard(`度民:交给${get.translation(player.name)}一张非基本牌`, 'h', (cardx) => get.type(cardx) != 'basic', true);
                                 }
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     target.give(result.cards, player);
                                 }
                             },
@@ -2329,7 +2329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.chooseCard(`去毒:请选择两张牌令${get.translation(player.name)}观看`, 2, 'he', true);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards.slice(0);
                                     player.viewCards('去毒', event.cards);
                                 } else event.finish();
@@ -2493,7 +2493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', (cardx) => (get.attitude(_status.event.player, _status.event.target) > 0 ? 8 : 2) - get.value(cardx))
                                     .set('target', trigger.player);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.changeZhuanhuanji('angel_pindi');
                                     player.give(result.cards, trigger.player).gaintag.add('angel_gaintag_lv');
                                 }
@@ -2514,7 +2514,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', (cardx) => (get.attitude(_status.event.player, _status.event.target) > 0 ? 8 : 2) - get.value(cardx))
                                     .set('target', trigger.player);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.changeZhuanhuanji('angel_pindi');
                                     player.give(result.cards, trigger.player).gaintag.add('angel_gaintag_lv');
                                 }
@@ -26947,7 +26947,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards);
                                     event.card = result.cards[0];
                                     var list = ['弃置所有与此牌类型相同的牌', '受到庆父造成的一点伤害'];
@@ -31264,7 +31264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var target = event.target;
                                     player.line(target);
                                     player.addExpose(0.2);
-                                    if (result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                    if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                                 }
                             },
                         },
@@ -31320,7 +31320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var target = event.target;
                                     player.line(target);
                                     player.addExpose(0.2);
-                                    if (result.cards && result.cards.length) player.gain(result.cards, target, 'giveAuto');
+                                    if (result.cards?.length) player.gain(result.cards, target, 'giveAuto');
                                 }
                             },
                             ai: {
@@ -31566,7 +31566,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var target = event.target;
                                     player.line(target);
                                     player.addExpose(0.2);
-                                    if (result.cards && result.cards.length) {
+                                    if (result.cards?.length) {
                                         if (trigger.source.isAlive()) {
                                             trigger.source.gain(result.cards, player, 'give');
                                             player.storage.bjzm_dieying3Card = result.cards;
@@ -32225,7 +32225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 //trigger.target
-                                if (result && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.storage.bjzm疑符_bool = false;
                                     player.showCards(result.cards);
                                     if (trigger.player != player) {

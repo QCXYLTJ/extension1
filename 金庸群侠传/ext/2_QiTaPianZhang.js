@@ -11801,7 +11801,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 ('step 2');
-                if (result.cards && result.cards.length) {
+                if (result.cards?.length) {
                   player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('qtpz_tudu');
                 }
               },
@@ -13657,7 +13657,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 2');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
               player.lose(result.cards, ui.special, 'toStorage');
               player.storage.qtpz_zhucheng_old = player.storage.qtpz_zhucheng_old.concat(result.cards);
               player.markSkill('qtpz_zhucheng_old');

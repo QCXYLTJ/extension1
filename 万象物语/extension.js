@@ -14505,7 +14505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 100 - get.value(card);
                                             });
                                         ('step 4');
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             event.current.give(result.cards, player);
                                         }
                                         ('step 5');
@@ -15301,7 +15301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 100 - get.value(card);
                                             });
                                         ('step 3');
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             event.current.give(result.cards, player);
                                         }
                                         ('step 4');

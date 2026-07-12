@@ -3207,7 +3207,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         } else return 0;
                     });
                     ('step 1');
-                    if (result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('hyym_shuimudan');
                     } else event.finish();
                     ('step 2');

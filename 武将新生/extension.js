@@ -4344,7 +4344,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseCard('he', false).set('prompt', `〖喜膳〗:交给${get.translation(trigger.player)}一张牌或点取消流失一点体力值`);
                                 ('step 2');
-                                if (result.cards && result.cards.length) trigger.player.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) trigger.player.gain(result.cards, player, 'giveAuto');
                                 else player.loseHp();
                             },
                             subSkill: {

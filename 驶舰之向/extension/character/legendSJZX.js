@@ -2829,7 +2829,7 @@ game.import('character', function () {
                 else target.chooseCard(1, '展示两张手牌', true, 'he');
               }
               ('step 2');
-              if (result.bool && result.cards && result.cards.length) {
+              if (result.cards?.length) {
                 if (result.cards.length == 1) {
                   event._result = {
                     bool: true,
@@ -3402,7 +3402,7 @@ game.import('character', function () {
             event.finish();
           }
           ('step 3');
-          if (result.cards && result.cards.length) {
+          if (result.cards?.length) {
             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xuyingmrfz');
           }
         },
@@ -5398,7 +5398,7 @@ game.import('character', function () {
             });
           else event.finish();
           ('step 5');
-          if (result.cards && result.cards.length) {
+          if (result.cards?.length) {
             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('shixingmrfz');
           }
           if (result.cards && player.getExpansions('shixingmrfz').length < 1) event.goto(4);

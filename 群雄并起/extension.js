@@ -2436,7 +2436,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, target);
 									target.$give(result.cards, player);
 								}
@@ -3068,7 +3068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 1');
 								var num = cards.length;
-								if (result.cards && result.cards.length) num -= result.cards.length;
+								if (result.cards?.length) num -= result.cards.length;
 								if (num > 0) player.draw(num);
 							},
 							ai: {
@@ -5864,7 +5864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.休生 = player.storage.休生.concat(result.cards);
 									player.markSkill('休生');
@@ -8128,7 +8128,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target.chooseCard('h', [1, 2], true, '交给' + get.translation(player) + '一张手牌');
 								} else event.finish();
 								('step 4');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, target, 'giveAuto');
 								}
 							},
@@ -13197,7 +13197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.锦jin铃ling = player.storage.锦jin铃ling.concat(result.cards);
 									player.markSkill('锦jin铃ling');
@@ -16664,7 +16664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								trigger.player.chooseCard('he', true, '选择一张牌交给' + get.translation(player));
 								('step 1');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, trigger.player);
 									trigger.player.$give(result.cards, player);
 								}
@@ -16685,7 +16685,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									result.targets[0].chooseCard('he', true, '选择一张牌交给' + get.translation(player));
 								}
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, trigger.player);
 									trigger.player.$give(result.cards, player);
 								}

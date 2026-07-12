@@ -7750,7 +7750,7 @@ export async function precontent(config, pack) {
                     });
                 }
                 ('step 2');
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     if (target.ai && target.ai.shown > player.ai.shown) player.addExpose(0.1);
                     player.addToExpansion(result.cards, target, 'giveAuto', 'bySelf').gaintag.add('syr_baolie');
                     game.log(player, '将', target, '区域内的一张牌作为<暴烈>置于武将牌上');
@@ -9562,7 +9562,7 @@ export async function precontent(config, pack) {
                         })
                         .set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌,或依次弃置两张非锦囊牌.');
                 ('step 2');
-                if (result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     if (get.type2(result.cards[0]) == 'trick') {
                         target.give(result.cards, player);
                         event.finish();
@@ -15427,7 +15427,7 @@ export async function precontent(config, pack) {
                         return -get.value(card);
                     });
                 ('step 6');
-                if (result.bool && result.cards && result.cards.length) player.give(result.cards, target);
+                if (result.cards?.length) player.give(result.cards, target);
             },
         },
         syr_miganhs: {
@@ -16581,7 +16581,7 @@ export async function precontent(config, pack) {
                     event.goto(3);
                 }
                 ('step 2');
-                if (result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     player.addToExpansion(result.cards, player, 'giveAuto', 'bySelf', 'log').gaintag.add('syr_baolie');
                 }
                 ('step 3');
@@ -21178,7 +21178,7 @@ export async function precontent(config, pack) {
                     return getn(button.link) / Math.pow(2 + get.buttonValue({ link: button.link }), 0.2);
                 });
                 ('step 1');
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     event.card = result.cards[0];
                     player
                         .chooseTarget('天:用<span class="yellowtext">' + get.translation(event.card) + '</span>和任意名攻击范围内不包含你的其他角色拼点', [1, Infinity], true, function (card, player, target) {
@@ -22300,7 +22300,7 @@ export async function precontent(config, pack) {
                 ('step 3');
                 player.chooseCard('炼讐:将' + get.cnNumber(num) + '张牌作为<暴烈>置于武将牌上', 'he', num, true);
                 ('step 4');
-                if (result.bool && result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'giveAuto', 'bySelf', 'log').gaintag.add('syr_baolie');
+                if (result.cards?.length) player.addToExpansion(result.cards, player, 'giveAuto', 'bySelf', 'log').gaintag.add('syr_baolie');
             },
             group: ['syr_baolie', 'syr_baoliehs', 'syr_lianchou3', 'wxuying_change', 'wxuying_lose'],
             derivation: 'syr_baolie',
@@ -25365,7 +25365,7 @@ export async function precontent(config, pack) {
                                 .set('judge', judges[0]);
                         } else event.finish();
                         ('step 2');
-                        if (result.bool && result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             event.card = result.cards[0];
                             player.lose(event.card, ui.cardPile, 'insert');
                             game.log(player, '将一张手牌置于牌堆顶');
@@ -25937,7 +25937,7 @@ export async function precontent(config, pack) {
                 ('step 3');
                 if (event.directcards) {
                     player.give(player.getCards('he'), target);
-                } else if (result.bool && result.cards && result.cards.length) {
+                } else if (result.cards?.length) {
                     player.give(result.cards, target);
                 }
                 event.goto(2);
@@ -32862,7 +32862,7 @@ export async function precontent(config, pack) {
                 if (list.length) await player.enableEquip(list);
                 if (player.countCards('e')) {
                     var result = await player.chooseCard('物化:销毁掉装备区里的任意张牌', [0, Infinity], 'e').set('ai', (card) => 1);
-                    if (result.bool && result.cards && result.cards.length) {
+                    if (result.cards?.length) {
                         for (var i of result.cards) await i.selfDestroy();
                     }
                 }
@@ -33174,7 +33174,7 @@ export async function precontent(config, pack) {
                             return 0;
                         });
                         ('step 3');
-                        if (result.bool && result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             var cards = result.cards;
                             cards.reverse();
                             cards.forEach((i) => player.addJudge({ name: 'xumou_jsrg' }, i));
@@ -33187,7 +33187,7 @@ export async function precontent(config, pack) {
                             return 0;
                         });
                         ('step 4');
-                        if (result.bool && result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             var cards = result.cards;
                             cards.reverse();
                             cards.forEach((i) => player.addJudge({ name: 'xumou_jsrg' }, i));
@@ -37071,7 +37071,7 @@ export async function precontent(config, pack) {
                         .set('res', res);
                 }
                 ('step 1');
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     event.card2 = result.cards[0];
                     player.gain(event.card2, target, 'giveAuto', 'bySelf');
                 } else {
@@ -38510,7 +38510,7 @@ export async function precontent(config, pack) {
                     return true;
                 });
                 ('step 3');
-                if (result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
             },
         },
         syr_xieshenxiang: {
@@ -39356,7 +39356,7 @@ export async function precontent(config, pack) {
                     if (target && target.isIn() && target.countCards('hej')) player.choosePlayerCard(target, 'hej');
                 }
                 ('step 2');
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     var fail = Math.random() < 0.1;
                     if (fail) target.discard(player, result.cards, 'notBySelf');
                     else player.gain(target, result.cards, 'giveAuto', 'bySelf');
@@ -43702,7 +43702,7 @@ export async function precontent(config, pack) {
                         ('step 2');
                         if (event.directcards) {
                             target.give(target.getCards('he'), player);
-                        } else if (result.bool && result.cards && result.cards.length) {
+                        } else if (result.cards?.length) {
                             target.give(result.cards, player);
                         }
                     },

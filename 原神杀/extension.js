@@ -3461,7 +3461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.jichou = player.storage.jichou.concat(result.cards);
                                     player.markSkill('jichou');
@@ -9923,7 +9923,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.yanfei_danhuo = player.storage.yanfei_danhuo.concat(result.cards);
                                     player.markSkill('yanfei_danhuo');

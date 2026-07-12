@@ -1425,7 +1425,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 6 - get.value(card);
                                     };
                                 ('step 4');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.sfxiansi.addArray(result.cards);
                                     player.markSkill('sfxiansi');
@@ -2339,7 +2339,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCard({ name: 'sha' }, player.countCards('h', 'sha'), true);
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.reyanyu1 = player.storage.reyanyu1.concat(result.cards);
                                     player.markSkill('reyanyu1');
@@ -2813,7 +2813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard('交给' + get.translation(event.target) + '一张牌', 'he', true);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.target.gain(result.cards, player, 'giveAuto');
                                     var evt = trigger.parent;
                                     evt.triggeredTargets2.remove(player);
@@ -2959,7 +2959,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCard('将一张牌置于武将牌上作为<识>', 'he');
                                         ('step 1');
-                                        if (result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('sfmoshi_a');
                                             game.log(player, '将', result.cards, '置于武将牌上');
                                         }

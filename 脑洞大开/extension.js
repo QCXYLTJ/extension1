@@ -1671,7 +1671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('ls_jucai');
                                 }
                                 event.finish();
@@ -3714,7 +3714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('filterCard', lib.filter.cardDiscardable);
                                 }
                                 ('step 6');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type(result.cards[0]) == 'equip' || game.shende.includes(result.cards[0].name)) {
                                         player.lose(result.cards, ui.special, 'toStorage');
                                         player.storage.ls_tanbao = player.storage.ls_tanbao.concat(result.cards);
@@ -5384,7 +5384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return (get.color(card) == _status.event.color ? 4 : 0) - get.value(card);
                                     });
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (get.color(card, trigger.source) == 'red') player.recover();
                                     else if (get.position(card, true) == 'd') player.gain(card, 'gain2');

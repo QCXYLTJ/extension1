@@ -7089,7 +7089,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (target.countCards('he')) target.chooseCard('将一张手牌置于武将牌上作为<盟>', 'he', true);
                                 else event.finish();
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (event.target.storage.haoshi3d82 && event.target.storage.haoshi3d82.length) {
                                         event.target.gain(event.target.storage.haoshi3d82, 'fromStorage', 'gain2');
                                         event.target.storage.haoshi3d82 = [];

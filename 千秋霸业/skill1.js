@@ -726,7 +726,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.cards && result.cards.length) player.gain(result.cards, target, 'give');
+            if (result.cards?.length) player.gain(result.cards, target, 'give');
         },
     },
     lg_kebineng_zhenwang: {
@@ -2001,7 +2001,7 @@ const skill = {
                     return get.value(card, trigger.player);
                 });
             ('step 1');
-            if (result && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.give(result.cards, trigger.player);
                 player.line(trigger.player, 'green');
             } else {
@@ -16759,7 +16759,7 @@ const skill = {
                     return 7 - get.value(card);
                 });
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 trigger.player.give(result.cards, player, true);
                 event.finish();
                 return;
@@ -42379,7 +42379,7 @@ const skill = {
                     return 7 - get.value(card);
                 });
             ('step 3');
-            if (result && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 event.tar.lose(result.cards);
                 event.tar.$throw(result.cards);
                 event.tar.draw();
@@ -46832,7 +46832,7 @@ const skill = {
                 return -get.value(card);
             });
             ('step 2');
-            if (result && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 event.finCards = result.cards.slice(0);
                 event.finCards.addArray(cards);
                 target.give(result.cards, player);

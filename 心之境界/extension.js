@@ -2701,7 +2701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special, 'toStorage');
                                     player.storage.xzjj_quanji = player.storage.xzjj_quanji.concat(result.cards);
                                     player.markSkill('xzjj_quanji');
@@ -3273,7 +3273,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     if (player.storage.xzjj_tianbing == undefined) player.storage.xzjj_tianbing = [];
                                     player.storage.xzjj_tianbing.push(result.cards[0]);

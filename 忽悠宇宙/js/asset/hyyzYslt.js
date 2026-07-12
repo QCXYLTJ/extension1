@@ -1650,7 +1650,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         if (player.countCards('he')) player.chooseCard('将一张牌置于伤害来源武将牌旁作为<律>', 'he', true);else
         event.goto(4);
         "step 3";
-        if (result.cards && result.cards.length) {
+        if (result.cards?.length) {
           trigger.source.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xxcabjielv2');
         }
         "step 4";
@@ -1814,7 +1814,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         }).set('source', target1);
         event.goto(5);
         "step 4";
-        if (result.cards && result.cards.length) target.give(result.cards, player).gaintag.add('xxcabganzhao');else
+        if (result.cards?.length) target.give(result.cards, player).gaintag.add('xxcabganzhao');else
         {
           game.broadcastAll(function () {
             if (lib.config.background_speak) game.playAudio('skill/xxcabganzhao3');

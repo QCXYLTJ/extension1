@@ -13159,7 +13159,7 @@ export let info = {
           })
           .set('target', player);
         ('step 1');
-        if (result.cards && result.cards.length) {
+        if (result.cards?.length) {
           trigger.player.line(player, 'green');
           trigger.player.give(result.cards, _status.currentPhase, true);
           player
@@ -13182,7 +13182,7 @@ export let info = {
         } else event.finish();
         event._result = {};
         ('step 2');
-        if (result.cards && result.cards.length) player.give(result.cards, _status.currentPhase);
+        if (result.cards?.length) player.give(result.cards, _status.currentPhase);
         else player.loseHp();
       },
     },

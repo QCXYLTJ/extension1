@@ -3643,7 +3643,7 @@ game.import('extension', function () {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.goto(2);
                                 } else {
                                     event.current.damage();
@@ -5756,7 +5756,7 @@ game.import('extension', function () {
                                     return player.hasSkill('死战') && get.tag(card, 'damage');
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.responded = event.triggerName;
                                     trigger.untrigger();
                                     trigger.finish();

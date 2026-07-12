@@ -8303,7 +8303,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 4');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, player, 'giveAuto');
                                     for (let i = 0; i < result.cards.length; i++) {
                                         if (get.type(result.cards[i]) == 'equip') {
@@ -13264,7 +13264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.source.gain(result.cards, player, 'giveAuto');
                                 }
                             },

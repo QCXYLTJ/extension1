@@ -9130,7 +9130,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         target.give(result.cards, player);
       } else {
         target.damage(2);

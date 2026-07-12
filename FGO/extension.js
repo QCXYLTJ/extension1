@@ -4488,7 +4488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) target.give(result.cards, player, 'give');
+                                if (result.cards?.length) target.give(result.cards, player, 'give');
                             },
                         },
                         fgoyizhenjingjie: {

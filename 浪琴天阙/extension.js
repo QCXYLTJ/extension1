@@ -2489,7 +2489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 7 - get.value(card);
 								});
 								('step 1');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var type = get.type2(result.cards[0]);
 									if (!event.count.includes(type)) {
 										event.count.push(type);
@@ -2579,7 +2579,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return 7 - get.value(card);
 											});
 											('step 3');
-											if (result.cards && result.cards.length) {
+											if (result.cards?.length) {
 												var type = get.type2(result.cards[0]);
 												if (!event.count.includes(type)) {
 													event.count.push(type);
@@ -3806,7 +3806,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									if (result.cards.length < 3) event.target.damage();
 									if (result.cards.length < 2) player.gain(result.cards, 'gain2');
 								}
@@ -4072,7 +4072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								('step 3');
-								if (result.cards && result.cards.length) event.color = get.color(result.cards[0]);
+								if (result.cards?.length) event.color = get.color(result.cards[0]);
 								if (event.color) {
 									var list = [];
 									get.cardPile(function (card) {
@@ -9437,7 +9437,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 100 - get.value(card);
 									});
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, event.current, 'giveAuto');
 								}
 								('step 3');
@@ -9525,7 +9525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.goto(4);
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_juezan');
 								}
 								('step 4');
@@ -9621,7 +9621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('goon', get.attitude(player, trigger.player) < 0);
 								('step 1');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, trigger.player, 'giveAuto');
 									event.finish();
 								} else player.draw();
@@ -9642,7 +9642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 3');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_juezan');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_juezan');
 							},
 						},
 						lqhc_jueyuan: {
@@ -12385,7 +12385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.goto(3);
 								('step 2');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_shuiqun');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_shuiqun');
 								('step 3');
 								if (player.getExpansions('lqhc_shuiqun').length) player.loseToSpecial(player.getExpansions('lqhc_shuiqun'), 'lqhc_shuiqun_s').visible = true;
 								('step 4');
@@ -12559,7 +12559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 1');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_shuiqun');
 								}
 							},
@@ -14518,7 +14518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								if (result.control == '选项二') target.chooseCard('he', true, '寻衅:将一张牌交给' + get.translation(player));
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) target.give(result.cards, player, true);
+								if (result.cards?.length) target.give(result.cards, player, true);
 							},
 							mod: {
 								inRangeOf(from, to) {
@@ -17409,7 +17409,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (player.countCards('he')) player.chooseCard([1, 2], 'he', '将一至两张牌置于武将牌上作为<权>', true);
 								else event.goto(4);
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('quanji');
 								}
 								('step 4');

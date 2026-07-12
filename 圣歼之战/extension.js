@@ -9109,7 +9109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 4');
                                         player.chooseCard('he', true, 1, '选择交给' + get.translation(target) + '的一张牌');
                                         ('step 5');
-                                        if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                        if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                                         ('step 6');
                                     },
                                     ai: {

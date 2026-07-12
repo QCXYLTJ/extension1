@@ -16419,7 +16419,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard('he', true, '选择交给' + get.translation(event.target) + '一张牌');
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) event.target.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) event.target.gain(result.cards, player, 'giveAuto');
                             },
                         },
                         DIY_jinqu: {
@@ -16494,7 +16494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('DIY_quanji');
                                 }
                                 ('step 4');
@@ -16721,7 +16721,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else player.chooseCard('he', true, '选择一张牌作为<权>');
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('DIY_quanji');
                                 }
                                 ('step 4');
@@ -20782,7 +20782,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) trigger.player.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) trigger.player.gain(result.cards, player, 'giveAuto');
                                 ('step 3');
                                 event.finish();
                             },
@@ -25092,7 +25092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('DIY_tuifeng');
                                 }
                                 ('step 4');
@@ -26969,7 +26969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 4');
                                 player.chooseCard('he', true, 2, '选择交给' + get.translation(target) + '的两张牌');
                                 ('step 5');
-                                if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                                 ('step 6');
                             },
                             ai: {
@@ -27846,7 +27846,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 100 - get.value(card);
                                     });
                                 ('step 4');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.current, 'giveAuto');
                                     player.storage.DIY_qianchong_num++;
                                     if (result.cards[0].name == event.Q && player.storage.DIY_qianchong != true) {
@@ -28243,7 +28243,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.getParent(2).goto(0);
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     _status.DIY_shajue_aiCanceled = false;
                                     player.gain(event.cards, 'give', 'log');
@@ -33466,7 +33466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (card) player.gain(card, 'gain2');
                                         trigger.target.chooseToDiscard('he', true, 2);
                                         ('step 1');
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             if (result.cards.length == 1) {
                                                 event._result = { bool: true, links: result.cards.slice(0) };
                                             } else

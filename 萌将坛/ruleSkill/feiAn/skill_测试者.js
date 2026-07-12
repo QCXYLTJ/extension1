@@ -32,7 +32,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							});
 					}
 					('step 1');
-					if (result.bool && result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						var cards = result.cards[0];
 						player.addShownCards(cards, 'visible_zhenxiang');
 					}

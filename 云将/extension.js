@@ -4794,7 +4794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             event.finish();
                         }
                         ('step 2');
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             player.lose(result.cards, ui.special);
                             player.storage.jugong = player.storage.jugong.concat(result.cards);
                             player.markSkill('jugong');
@@ -20419,7 +20419,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = Math.floor(player.countCards('h') / 2);
                                 player.chooseCard('hes', num, true, '交给' + get.translation(target) + get.cnNumber(num) + '张牌');
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) target.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                             },
                             ai: {
                                 order: 1,

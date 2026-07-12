@@ -11326,7 +11326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discardPlayerCard(target, true, 'he');
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     //真是太纯真,太野性了!
                                     var card = result.cards[0],
                                         type = get.type2(card, false);
@@ -19837,7 +19837,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('att', get.attitude(player, trigger.target) <= 0);
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (result.cards.length == 1) {
                                         player.addTempSkill('m_jianchu_asa');
                                         player.addMark('m_jianchu_asa', 1, false);

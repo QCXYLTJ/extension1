@@ -549,7 +549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards[0], target, 'giveAuto');
                                     if (!player.hasSkill('圣_yange_go')) {
                                         player.addSkill('圣_yange_go');
@@ -3897,7 +3897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 100 - get.value(card);
                                         });
                                         ('step 1');
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             trigger.source.line(player);
                                             player.gain(result.cards, trigger.source, 'giveAuto');
                                             player.storage.圣_luanwu_damage_draw++;
@@ -7675,7 +7675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(2);
                                 }
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, target, 'giveAuto').gaintag.add('圣_quanji');
                                     event.finish();
                                 }
@@ -8039,7 +8039,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('圣_hongmou');
                                     game.log(player, '将', result.cards, '置于武将牌上称为', '#y<谋>');
                                 }
@@ -8173,7 +8173,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCard(`交给${get.translation(trigger.player)}一张牌`, 'he', true);
                                         ('step 1');
-                                        if (result.bool && result.cards && result.cards.length) {
+                                        if (result.cards?.length) {
                                             trigger.player.gain(result.cards, player, 'giveAuto');
                                         }
                                     },

@@ -1497,7 +1497,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (num > target.countCards('he')) num = target.countCards('he');
                                 player.discardPlayerCard('极昼宣誓:弃置' + get.translation(target) + num + '张牌', target, num, true);
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var bool = false;
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (event.suit.includes(result.cards[i].suit)) {
@@ -2092,7 +2092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 player.chooseCard('祈禳:你可以将一张手牌与牌堆第' + event.num + '张牌' + get.translation(event.card) + '交换', 1, 'h');
                                 ('step 4');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.lose(card, ui.cardPile, 'insert');
                                     player.$throw(card, 1000);
@@ -14700,7 +14700,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.num = result.cards.length;
                                     event.cards = result.cards;
                                     player.discard(result.cards);
@@ -17364,7 +17364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 6 - get.value(card);
                                     });
                                 ('step 1');
-                                if (result && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.addTempSkill('zymguduyaogun_luan', 'phaseUseAfter');
                                     trigger.player.storage.zymguduyaogun_player = player;
                                     player.discard(result.cards);

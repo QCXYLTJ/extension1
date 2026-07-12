@@ -1778,7 +1778,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             player.storage.mlmli = null;
             x.lose(x.getCards('h'), ui.special)._triggered = null;
             const result = await player.chooseCard('h', false, [1, Infinity], '连理:选择要交给' + get.translation(x) + '的牌').forResult();
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
               player.give(result.cards, event.lmli, 'giveAuto')._triggered = null;
             }
           }

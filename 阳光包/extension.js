@@ -2160,7 +2160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return Math.random() - 0.5;
                                     });
                                 ('step 2');
-                                if (result && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.lose(result.cards, ui.special, 'toStorage');
                                     game.cardsDiscard([player.storage.ygbhuanyu_xing]);
                                     trigger.player.storage.ygbhuanyu_xing = result.cards[0]; //QQQ

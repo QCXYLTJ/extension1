@@ -2145,7 +2145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.冷雨开膛手杰克_暗黑雾都 = player.storage.冷雨开膛手杰克_暗黑雾都.concat(result.cards);
                                     player.markSkill('冷雨开膛手杰克_暗黑雾都');
@@ -11379,7 +11379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.冷雨荆轲_图策 = player.storage.冷雨荆轲_图策.concat(result.cards);
                                     player.markSkill('冷雨荆轲_图策');
@@ -11680,7 +11680,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.storage.冷雨阿喀琉斯_小世界 = player.storage.冷雨阿喀琉斯_小世界.concat(result.cards);
                                     player.markSkill('冷雨阿喀琉斯_小世界');

@@ -3627,7 +3627,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .forResult();
                     const result = await player.choosePlayerCard(target, 'h', true).forResult();
-                    if (result && result.cards && result.cards[0]) {
+                    if (result.cards?.length) {
                         var card = result.cards[0];
                         await target.showCards(card, get.translation(target) + '因【胆识】展示');
                         if (card.suit == control) {

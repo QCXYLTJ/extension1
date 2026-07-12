@@ -2432,7 +2432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('moquanji');
                                 }
                                 ('step 4');
@@ -5030,7 +5030,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 10;
                                 });
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addSkill('mobazhen_effect');
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('mobazhen');
                                 }

@@ -1302,7 +1302,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             if (num == 0) player.chooseBool('均田:是否发动〖豊屯〗？').set('ai', () => true);
                             ('step 1');
                             if (result.bool) {
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.$throw(result.cards, 1000);
                                     game.log(trigger.player, '将', result.cards, '置入了<策>区');
                                     trigger.player.lose(result.cards, ui.special, 'toStorage');

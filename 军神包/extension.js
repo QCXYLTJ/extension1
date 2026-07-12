@@ -8784,7 +8784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									if (player.storage.ly_junshenbao_zhangjiao_tianbing == undefined) player.storage.ly_junshenbao_zhangjiao_tianbing = [];
 									player.storage.ly_junshenbao_zhangjiao_tianbing.push(result.cards[0]);
@@ -9055,7 +9055,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.ly_junshenbao_zhonghui_quanyi = player.storage.ly_junshenbao_zhonghui_quanyi.concat(result.cards);
 									player.markSkill('ly_junshenbao_zhonghui_quanyi');

@@ -17404,7 +17404,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 3');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_zhengrong');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_zhengrong');
 							},
 							marktext: '荣',
 							intro: {
@@ -19906,7 +19906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var str = `清议:请将1张牌置于${get.translation(player)}的武将牌上作为<议>`;
 								if (targets[event.num].countCards('he')) targets[event.num].chooseCard('he', str, true);
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var cardx = result.cards[0];
 									event.type.add(get.type2(cardx));
 									event.color.add(get.color(cardx));
@@ -22103,7 +22103,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (!player.countCards('hes')) event.goto(4);
 								else player.chooseCard('hes', '将1张牌置于武将牌上,称为<权>', true);
 								('step 3');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_quanji');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_quanji');
 								('step 4');
 								if (event.count > 0) {
 									event.goto(1);
@@ -40475,7 +40475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.gainPlayerCard(target, 'hej', [1, 2], true);
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var num = result.cards.length;
 									var num1 = result.cards.filter(function (card) {
 										return get.tag(card, 'damage');
@@ -42667,7 +42667,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 2');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_yuanyu');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_yuanyu');
 							},
 							ai: {
 								order() {
@@ -46330,7 +46330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												.set('prompt2', '丹法:请将1张牌置于武将牌上作为<丹>');
 										}
 										('step 1');
-										if (result.cards && result.cards.length) player.addToExpansion(result.cards, trigger.player, 'give').gaintag.add('dshj_danfa');
+										if (result.cards?.length) player.addToExpansion(result.cards, trigger.player, 'give').gaintag.add('dshj_danfa');
 									},
 								},
 								Draw: {
@@ -46932,7 +46932,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.gainPlayerCard(target, 'hej', true);
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var card = result.cards[0],
 										type = get.type2(card, false);
 									if (type != 'basic') {
@@ -48437,7 +48437,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event._result = { bool: false };
 								('step 1');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var card = result.cards[0];
 									if (get.color(card, target) == 'black') player.draw();
 									else if (player.isDamaged()) player.recover();
@@ -53293,7 +53293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('prompt', '成略:你可以将至多2张牌置于武将牌上,称为<略>');
 								} else event.finish();
 								('step 2');
-								if (result.cards && result.cards.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_chenglve');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'give').gaintag.add('dshj_chenglve');
 							},
 							ai: {
 								order() {
@@ -54378,7 +54378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return num * 1.5 - get.value(cardx);
 								});
 								('step 4');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var name = get.type(result.cards[0]) == 'basic' ? 'dshj_neifa_basic' : 'dshj_neifa_trick';
 									player.addTempSkill(name, 'phaseUseEnd');
 									var num = Math.min(

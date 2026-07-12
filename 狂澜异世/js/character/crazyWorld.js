@@ -10631,7 +10631,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 2');
                     if (result.bool) {
-                        if (result.cards && result.cards.length) {
+                        if (result.cards?.length) {
                             player.useCard({ name: 'sha' }, result.cards, event.player2, false);
                         } else {
                             player.loseHp();

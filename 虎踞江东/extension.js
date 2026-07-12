@@ -9701,7 +9701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.怨咽 = player.storage.怨咽.concat(result.cards);
 									player.markSkill('怨咽');
@@ -9740,7 +9740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.怨咽 = player.storage.怨咽.concat(result.cards);
 									player.markSkill('怨咽');
@@ -11258,7 +11258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.y怨y咽 = player.storage.y怨y咽.concat(result.cards);
 									player.markSkill('y怨y咽');
@@ -11297,7 +11297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.y怨y咽 = player.storage.y怨y咽.concat(result.cards);
 									player.markSkill('y怨y咽');
@@ -13350,7 +13350,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special);
 									player.storage.quanji = player.storage.quanji.concat(result.cards);
 									player.markSkill('quanji');

@@ -1570,7 +1570,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.set('goon', get.attitude(player, trigger.player) > 0);
 					('step 1');
-					if (result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						trigger.player.recover();
 						player.gl_eventAfter('gl_jiming', function () {
 							player.storage.gl_jiming = [];
@@ -2697,7 +2697,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return !card.hasGaintag('gl_xinao');
 					});
 					('step 2');
-					if (result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						result.cards[0].addGaintag('gl_xinao');
 					}
 				},
@@ -2752,7 +2752,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					('step 1');
 					player.chooseToDiscard('乐助:请选择要弃置的牌', 'he', [0, 4], true);
 					('step 2');
-					if (result.bool && result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						var cards = result.cards;
 						var suit = [];
 						for (let i = 0; i < cards.length; i++) {
@@ -12142,7 +12142,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return true;
 					});
 					('step 1');
-					if (result.bool && result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('gl_kuluo');
 						player.gl_changeMp(2);
 					}

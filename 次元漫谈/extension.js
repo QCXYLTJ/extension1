@@ -1206,7 +1206,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 1');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var target = trigger.player;
 									////game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【因父之名】</span>');
 									event.cards = result.cards;
@@ -2041,7 +2041,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 7 - get.value(card);
 									});
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									trigger.player.give(result.cards, player, true);
 									event.finish();
 									return;
@@ -7355,7 +7355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return 7 - get.value(card);
 											});
 										('step 2');
-										if (result.cards && result.cards.length) {
+										if (result.cards?.length) {
 											event.cards = [];
 											if (Array.isArray(result.cards))
 												for (var i of result.cards) {
@@ -9781,7 +9781,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.value(card);
 									});
 								('step 2');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var card = result.cards[0];
 									if (!player.storage.rain_acgn_fgo_xiaoCiLang_zongHe.includes(get.type(card))) {
 										player.getHistory('custom').push({ rain_acgn_fgo_xiaoCiLang_zongHe_name: card.name });
@@ -10544,7 +10544,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(3);
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var cards = [];
 									for (var a of result.cards) {
 										if (!event.target.storage.rain_acgn_fgo_aErTuoLiYaRuler_daTing_wagerCard) event.target.storage.rain_acgn_fgo_aErTuoLiYaRuler_daTing_wagerCard = [];
@@ -11074,7 +11074,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								if (num <= 21) event.goto(17);
 								('step 13');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									event.reviving--;
 									var nh = result.cards.length;
 									for (var a of result.cards) {
@@ -11141,7 +11141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 16');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									var nh = result.cards.length;
 									for (var a of result.cards) {
 										player.storage.rain_acgn_fgo_aErTuoLiYaRuler_daTing_hand.remove(a);
@@ -11785,7 +11785,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										});
 										('step 4');
-										if (result.cards && result.cards.length) {
+										if (result.cards?.length) {
 											if (!event.logs) {
 												event.logs = true;
 											}
@@ -11898,7 +11898,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target.chooseCard('收回装备区内1张牌', 'e', 1, true);
 								}
 								('step 3');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									target.gain(result.cards[0], 'gain2');
 								}
 							},
@@ -19472,7 +19472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								target.chooseToDiscard(cards.length, 'he', true);
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									for (var a of result.cards) {
 										if (get.color(a) == 'black') event.tablack++;
 									}

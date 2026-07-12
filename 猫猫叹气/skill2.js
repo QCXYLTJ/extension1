@@ -7119,7 +7119,7 @@ const skill = {
                 event.finish();
             }
             ('step 6');
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 event.cards.addArray(result.cards);
             }
             if (event.targets.length) {
@@ -47677,7 +47677,7 @@ const skill = {
                 game.log(player, '拒绝了', trigger.player, '的申请');
             }
             ('step 3');
-            if (result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 player.addToExpansion(result.cards, trigger.player, 'giveAuto').gaintag.add('leign_shibao');
                 trigger.player.addTempSkill('leign_shibao1');
             }
@@ -48603,7 +48603,7 @@ const skill = {
             }
             ('step 3');
             if (event.control == '选项一') {
-                if (result.bool && result.cards && result.cards.length) {
+                if (result.cards?.length) {
                     player.gain(result.cards, event.current, 'giveAuto');
                     event.current.draw();
                     event.current = event.current.next;
@@ -52857,7 +52857,7 @@ const skill = {
             event.dialog = ui.create.dialog('疑城');
             event.dialog.addText(get.translation(player) + '的盖牌');
             event.dialog.add(event.cards);
-            if (result.bool && result.cards && result.cards.length) {
+            if (result.cards?.length) {
                 trigger.player.lose(result.cards, ui.ordering).relatedEvent = trigger;
                 event.dialog.addText(get.translation(trigger.player) + '多加的【杀】');
                 event.dialog.add(result.cards);

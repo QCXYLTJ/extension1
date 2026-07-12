@@ -4127,7 +4127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 6 - get.value(card);
 								});
 								('step 1');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									event.num = result.cards.length;
 									event.cards = result.cards;
 									player.discard(result.cards);
@@ -4170,7 +4170,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 6 - get.value(card);
 										});
 										('step 1');
-										if (result.cards && result.cards.length) {
+										if (result.cards?.length) {
 											event.num = result.cards.length;
 											event.cards = result.cards;
 											player.discard(result.cards);

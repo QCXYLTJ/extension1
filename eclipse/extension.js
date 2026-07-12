@@ -985,7 +985,7 @@ game.import('extension', function () {
                                         ('step 1');
                                         if (result.bool) {
                                             var card;
-                                            if (result.cards && result.cards.length) card = result.cards[0];
+                                            if (result.cards?.length) card = result.cards[0];
                                             else card = get.cardPile2((card) => card.name == 'c_shang');
                                             if (card) {
                                                 trigger.player.gain(card, 'gain2')._triggered = null;

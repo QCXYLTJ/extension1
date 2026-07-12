@@ -13794,7 +13794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 11 - get.value(card) + (info && info.enable ? 2 : 0);
                                 });
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     trigger.player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('clyl_qianhao');
                                     trigger.player.markSkill('clyl_qianhao');
                                 }
@@ -16282,7 +16282,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 .set('secondvalue', second);
                         }
                         ('step 1');
-                        if (result.cards && result.cards.length)
+                        if (result.cards?.length)
                             for (var card of result.cards)
                                 if (card.name == 'sha' || get.type2(card, false) == 'equip') {
                                     event.finish();

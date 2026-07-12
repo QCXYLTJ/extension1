@@ -5174,7 +5174,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) player.gain(result.cards, target, 'give');
+                                if (result.cards?.length) player.gain(result.cards, target, 'give');
                             },
                         },
                         巫女的圣光: {

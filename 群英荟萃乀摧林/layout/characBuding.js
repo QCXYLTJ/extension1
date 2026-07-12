@@ -321,7 +321,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         ('step 1');
                 if (result.bool) {
                     player.addCountNum('dcqingyan');
-                    if (result.cards && result.cards.length) player.qyhc_moveMaxhand('dcqingyan');
+                    if (result.cards?.length) player.qyhc_moveMaxhand('dcqingyan');
                     else {
                         player.drawTo(player.maxHp);
                     }

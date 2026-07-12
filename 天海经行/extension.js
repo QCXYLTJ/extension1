@@ -1707,7 +1707,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 'step 1'
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var cardx = result.cards[0];
                                     if (lib.filter.cardUsable(cardx, player) && game.hasPlayer(function (current) {
                                         return player.canUse(cardx, current);
@@ -4220,7 +4220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 'step 1'
                                 if (result.bool) {
-                                    if (result.cards && result.cards.length) {
+                                    if (result.cards?.length) {
                                         player.discard(result.cards);
                                         player.chooseControl(['lizhan', 'reshengxi'], function (player) {
                                             var player = _status.event.player;
@@ -4765,7 +4765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 7 - get.value(card);
                                 });
                                 'step 1'
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (trigger.cards.length && trigger.cards.someInD()) event.tar.gain(trigger.cards, 'gain2');
                                 }
                                 else {

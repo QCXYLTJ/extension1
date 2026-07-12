@@ -8330,7 +8330,7 @@ export async function precontent(config, pack) {
 							return num * 1.5 - get.value(cardx);
 						});
 						('step 1');
-						if (result.bool && result.cards && result.cards.length) {
+						if (result.cards?.length) {
 							const banned_type = get.type(result.cards[0]);
 							if (banned_type == 'basic') {
 								player.addTempSkill('fusion_neifa_trick', 'phaseUseAfter');

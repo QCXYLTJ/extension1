@@ -11154,7 +11154,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         ('step 1');
         if (result.bool) {
           player.addTempSkill('menglinting_usable');
-          if (result.cards && result.cards.length) {
+          if (result.cards?.length) {
             trigger.player.gain(result.cards, player, 'giveAuto');
             trigger.parent.targets.add(player);
           }
@@ -11581,7 +11581,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             return 100 - get.value(card);
           });
         ('step 2');
-        if (result.bool && result.cards && result.cards.length) {
+        if (result.cards?.length) {
           event.current.give(result.cards, player);
         }
         ('step 3');

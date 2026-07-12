@@ -1020,7 +1020,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.goto(3);
                                 ('step 2');
                                 if (result.bool) {
-                                    if (result.cards && result.cards.length) {
+                                    if (result.cards?.length) {
                                         var cardsx = player.getCards('h', function (card) {
                                             return lib.filter.cardDiscardable(card, player, 'dz_jdxb_zhiheng') && !result.cards.includes(card);
                                         });

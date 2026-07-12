@@ -4230,7 +4230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										('step 1');
 										if (result.bool) {
 											event.finish();
-											if (result.cards && result.cards.length) {
+											if (result.cards?.length) {
 												player.useCard({ name: 'sha' }, result.cards, target).animate = false;
 											} else {
 												player.useCard({ name: 'sha' }, target).animate = false;
@@ -4316,7 +4316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										('step 1');
 										if (result.bool) {
 											event.finish();
-											if (result.cards && result.cards.length) {
+											if (result.cards?.length) {
 												player.useCard({ name: 'tao' }, result.cards, target).animate = false;
 											} else {
 												player.useCard({ name: 'tao' }, target).animate = false;
@@ -4402,7 +4402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										('step 1');
 										if (result.bool) {
 											event.finish();
-											if (result.cards && result.cards.length) {
+											if (result.cards?.length) {
 												player.useCard({ name: 'jiu' }, result.cards, target).animate = false;
 											} else {
 												player.useCard({ name: 'jiu' }, target).animate = false;
@@ -7205,7 +7205,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								var num = cards.length;
 								var s = Math.ceil(target.hp / 2);
-								if (result.cards && result.cards.length) num -= result.cards.length;
+								if (result.cards?.length) num -= result.cards.length;
 								if (num > 0) player.gain(game.createCard(get.inpile('delay').randomGet()), 'draw');
 								if (target.isMinHandcard()) target.damage(s)._triggered = null;
 							},
@@ -20096,7 +20096,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								});
 								('step 1');
-								if (result && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addTempSkill('lg_beicanmingyun_off');
 									var tar = trigger.player == player ? trigger.target : trigger.player;
 									tar.chooseToDiscard(true, 'he', result.cards.length);
@@ -25239,7 +25239,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								target.chooseToDiscard(cards.length, 'he', true);
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									for (var a of result.cards) {
 										if (get.color(a) == 'red') event.tablack++;
 									}

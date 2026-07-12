@@ -5177,7 +5177,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								else player.chooseCard('h', true, '选择一张手牌作为<权>');
 							} else event.goto(4);
 							('step 3');
-							if (result.bool && result.cards && result.cards.length) {
+							if (result.cards?.length) {
 								var card = result.cards[0];
 								player.lose(card, ui.special, 'toStorage');
 								player.markAuto('upgrade_quanji', result.cards);
@@ -15290,7 +15290,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									else player.chooseCard('h', true, '选择一张手牌作为<权>');
 								} else event.goto(4);
 								('step 3');
-								if (result.bool && result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('upgrade_quanji');
 								}
 								('step 4');
@@ -15766,7 +15766,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.discardPlayerCard(num, target, true);
 								}
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									for (var i = 0; i < result.cards.length; i++) {
 										if (get.type(result.cards[i]) == 'equip') {
 											event.finish();
@@ -18108,7 +18108,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										})
 										.set('prompt', '选择交给' + get.translation(player) + '一张锦囊牌,或依次弃置3张非锦囊牌.');
 								('step 2');
-								if (result.cards && result.cards.length) {
+								if (result.cards?.length) {
 									if (get.type2(result.cards[0]) == 'trick') {
 										player.gain(result.cards, target, 'giveAuto');
 										event.finish();

@@ -1022,7 +1022,7 @@ const skill = {
 						event.finish();
 					}
 					"step 2";
-					if (result.bool && result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						player.storage.gwfutian += get.number(result.cards[0]);
 						player.markSkill("gwfutian", true);
 					}

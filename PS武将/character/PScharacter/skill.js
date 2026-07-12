@@ -2692,7 +2692,7 @@ const skills = {
 				});
 			}
 			('step 2');
-			if (result.bool && result.cards && result.cards.length) {
+			if (result.cards?.length) {
 				event.targets[0].give(result.cards, trigger.target);
 				event.card = result.cards[0];
 			} else {
@@ -12881,7 +12881,7 @@ const skills = {
 				})
 				.set('attitude', get.attitude(targets[0], targets[1]) < 0);
 			('step 1');
-			if (result.bool && result.cards && result.cards.length) {
+			if (result.cards?.length) {
 				targets[0].give(result.cards, targets[1]);
 				if (result.cards.length >= 2) {
 					let next = game.createEvent('chooseToUse');
@@ -13685,7 +13685,7 @@ const skills = {
 					});
 			}
 			('step 1');
-			if (result.bool && result.cards && result.cards.length) {
+			if (result.cards?.length) {
 				player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('PStunchu');
 			}
 		},
@@ -13730,7 +13730,7 @@ const skills = {
 						return 5 - get.value(card);
 					});
 					('step 1');
-					if (result.bool && result.cards && result.cards.length) {
+					if (result.cards?.length) {
 						player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('PStunchu');
 					}
 				},
@@ -14337,7 +14337,7 @@ const skills = {
 			if (player.countDiscardableCards(player, 'hes') > 0) {
 				const result = await player.chooseToDiscard([1, 2], 'hes', '是否弃置至多两张牌,回复等量的装备栏？', false)
 					.set('ai', get.disvalue).forResult();
-				if (result.cards && result.cards.length) {
+				if (result.cards?.length) {
 					const num = result.cards.length;
 					if (num >= player.countDisabledSlot()) {
 						for (var i = 1; i <= 5; i++) {

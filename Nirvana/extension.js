@@ -20017,7 +20017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else player.chooseCard('h', true, '选择一张手牌作为<权>');
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('szdl_yanghui');
                                 }
                                 ('step 4');
@@ -22904,7 +22904,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 3');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var num = 3 - result.cards.length;
                                     event.current.damage(num, 'fire');
                                 } else {
@@ -28960,7 +28960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.addToExpansion(event.judgeResult.card, 'gain2').gaintag.add('szdl_tuntian');
                                 ('step 1');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.storage.szdl_tuntian = false;
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('szdl_tuntian');
                                 }
@@ -36816,7 +36816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(7);
                                 }
                                 ('step 6');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards[0], event.target);
                                     event.target.$give(1, player);
                                 }
@@ -37280,7 +37280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseControl('确定', '取消').set('prompt', '膂力:放弃此次获得的' + get.cnNumber(trigger.cards.length) + '张牌并回复一点体力？');
                                 }
                                 ('step 1');
-                                if (result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     var list1 = [];
                                     var typelist1 = [];
                                     var getType = function (card) {

@@ -5088,7 +5088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.current.$give(1, player);
                                     player.gain(result.cards, event.current, 'giveAuto');
                                 }

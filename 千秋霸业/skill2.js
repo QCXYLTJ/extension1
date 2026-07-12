@@ -2711,7 +2711,7 @@ const skill = {
         })
         .set('prompt', str);
       ('step 2');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         event.suits.add(result.cards[0].suit);
         event.cards.add(result.cards[0]);
       }
@@ -11680,7 +11680,7 @@ const skill = {
           return 4 - get.value(card);
         });
       ('step 1');
-      if (result && result.cards && result.cards.length) {
+      if (result.cards?.length) {
         trigger.all_excluded = true;
         trigger.player.draw(player.hp).set('gaintag', ['lg_huisu']).set('bottom', true);
       } else {
@@ -16358,7 +16358,7 @@ const skill = {
       }
       ('step 1');
       var num = cards.length;
-      if (result.cards && result.cards.length) num -= result.cards.length;
+      if (result.cards?.length) num -= result.cards.length;
       if (num > 0) player.drawTo(num);
       if (num > 0) player.chooseToDiscard(true, 'h');
     },
@@ -17151,7 +17151,7 @@ const skill = {
         });
       }
       ('step 3');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         var togain = [];
         var red = true;
         for (var i = result.cards.length - 1; i >= 0; i--) {
@@ -25314,7 +25314,7 @@ const skill = {
         player.discardPlayerCard(target, true, [1, num], 'hej');
       } else event.finish();
       ('step 2');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         for (var i of result.cards) {
           if (i.name == 'juedou' && player.countCards('hej') > 0) {
             player.addTempSkill('lg_fengshi1', { player: 'phaseAfter' });
@@ -27414,7 +27414,7 @@ const skill = {
               return player.getUseValue({ name: card.name });
             });
           ('step 1');
-          if (result && result.cards && result.cards.length) {
+          if (result.cards?.length) {
             if (player.hasUseTarget({ name: result.cards[0].name })) {
               player.chooseUseTarget(true, { name: result.cards[0].name }).set('addCount', false);
             } else {
@@ -33258,7 +33258,7 @@ const skill = {
         return event.cards.includes(card);
       }); //QQQ
       ('step 2');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         player.lose(result.cards, ui.special);
         player.storage.lg_linran = player.storage.lg_linran.concat(result.cards);
         player.markSkill('lg_linran');
@@ -34113,7 +34113,7 @@ const skill = {
       }
       ('step 5');
       if (result.bool && result.targets.length) {
-        if (result.cards && result.cards.length) {
+        if (result.cards?.length) {
           player.discard(result.cards);
         }
         game.log(player, '选择', event.type ? '令' : '对', result.targets, event.type ? '回复体力' : '造成伤害');
@@ -42017,7 +42017,7 @@ const skill = {
         event.goto(5);
       }
       ('step 3');
-      if (result.cards && result.cards.length) {
+      if (result.cards?.length) {
         var card = result.cards[0];
         if (get.type(card, event.current) == 'equip') {
           event.togain.add(card);
@@ -48757,7 +48757,7 @@ const skill = {
       //QQQ
       const result = await player.discardPlayerCard('hej', event.targets[0], true).forResult();
       event.targets[0].addTempSkill('lg_qingyu_mark');
-      if (result && result.cards && result.cards[0]) {
+      if (result.cards?.length) {
         var card = result.cards[0];
         if (card.suit == 'spade') {
           if (!event.targets[0].isLinked()) {
