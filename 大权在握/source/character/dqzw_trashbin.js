@@ -465,7 +465,7 @@ export let info = {
         if (trigger.name == 'damage') {
           trigger.cancel(); const {
             links } = await player.choosePlayerCard('hej', true, trigger.player, '将' + get.translation(trigger.player) + '区域内一张牌置入[智]').forResult();
-          if (links && links.length) {
+          if (links?.length) {
             lib.skill.dqzw_rubbish_zhimou.add(player, links);
             player.line(trigger.player);
           }

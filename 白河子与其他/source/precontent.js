@@ -27364,7 +27364,7 @@ export async function precontent(config, pack) {
                     var target = event.targets2.shift();
                     if (target && target.isIn()) {
                         var cards = target.getCards('h', lib.filter.cardRecastable);
-                        if (cards && cards.length) target.recast(cards);
+                        if (cards?.length) target.recast(cards);
                     }
                     event.redo();
                 }
@@ -28604,7 +28604,7 @@ export async function precontent(config, pack) {
             filter(event, player) {
                 if (event.getParent('phaseDraw').player != player && typeof event.getg == 'function') {
                     var cards = event.getg(player).filter((i) => player.getCards('h', { color: 'red' }).includes(i));
-                    if (cards && cards.length) return true;
+                    if (cards?.length) return true;
                 }
                 if (event.type != 'discard' || event.getParent('phaseDiscard').player == player) return false;
                 var discarder = event.discarder;
@@ -28621,7 +28621,7 @@ export async function precontent(config, pack) {
                 event.cards = [];
                 if (trigger.getParent('phaseDraw').player != player && typeof trigger.getg == 'function') {
                     var cards = trigger.getg(player).filter((i) => player.getCards('h', { color: 'red' }).includes(i));
-                    if (cards && cards.length) (event.cards.addArray(cards), (event.num += cards.length));
+                    if (cards?.length) (event.cards.addArray(cards), (event.num += cards.length));
                 }
                 if (trigger.type == 'discard' && trigger.getParent('phaseDiscard').player != player) {
                     var discarder = trigger.discarder;
@@ -33036,7 +33036,7 @@ export async function precontent(config, pack) {
                 if (trigger.player == player) player.draw(num);
                 else {
                     var cards = trigger.player.getCards('he').randomGets(num);
-                    if (cards && cards.length) trigger.player.give(cards, player);
+                    if (cards?.length) trigger.player.give(cards, player);
                 }
             },
             global: 'syr_qingzi_hongyan',
@@ -37848,7 +37848,7 @@ export async function precontent(config, pack) {
             },
             content() {
                 var cards = player.getEquips('yurishengong');
-                if (cards && cards.length) {
+                if (cards?.length) {
                     for (var card of cards) {
                         card.fix();
                         card.remove();
@@ -44068,7 +44068,7 @@ export async function precontent(config, pack) {
                                 target.getStat().card.jiu--;
                             }
                         } else {
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 card = cards[0];
                             }
                             game.broadcastAll(
@@ -45428,7 +45428,7 @@ export async function precontent(config, pack) {
                             }
                         } else {
                             game.addVideo('jiuNode', target, true);
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 card = cards[0];
                             }
                             if (!target.storage.jiu) target.storage.jiu = 0;
@@ -45555,7 +45555,7 @@ export async function precontent(config, pack) {
                             }
                         } else {
                             game.addVideo('jiuNode', target, true);
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 card = cards[0];
                             }
                             if (!target.storage.jiu) target.storage.jiu = 0;

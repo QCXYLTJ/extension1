@@ -12770,7 +12770,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'gain2',
                                     );
                                     var cards = get.randomCards(1, (card) => !get.tag(card, 'damage'), 'discardPile');
-                                    if (cards && cards.length) player.gain(cards, 'gain2');
+                                    if (cards?.length) player.gain(cards, 'gain2');
                                 }
                                 ('step 2');
                             },

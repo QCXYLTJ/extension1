@@ -846,7 +846,7 @@ export function initGouzhu(lib, game, ui, get, ai, _status, datasrc) {
 				}
 			}, 500);
 		};
-		if (cards && cards.length) {
+		if (cards?.length) {
 			setTimeout(function () {
 				moveCard(cards.shift(), 1);
 			}, 300);

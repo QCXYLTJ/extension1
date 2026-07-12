@@ -3345,7 +3345,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 content() {
                     'step 0';
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         event.bn = 1;
                     } else {
                         event.bn = 2;
@@ -4250,7 +4250,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             cards.push(card);
                         }
                     }
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         player.gain(cards);
                         if (suit == 'heart') {
                             player.recover();
@@ -6409,7 +6409,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 3');
                     if (event.inx > 0 && player.hasMark('xx_lunhuizhen')) {
                         var cards = event.tar.getExpansions('xx_lunhui');
-                        if (cards && cards.length) {
+                        if (cards?.length) {
                             player.chooseBool('永夜:是否令' + get.translation(event.tar) + '随机获得其武将牌上一张<轮回>并令此技能对其额外生效一次？').set('ai', function () {
                                 return true;
                             });
@@ -27960,7 +27960,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 content() {
                     'step 0';
                     var bo = false;
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         for (var i = 0; i < cards.length; i++) {
                             var color = get.color(cards[i]);
                             if (color == 'black') {

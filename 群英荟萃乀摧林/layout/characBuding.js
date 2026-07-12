@@ -945,7 +945,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
         content() {
             'step 0';
             player.trymarkAutoSkill('clanyirong_QYHCqyhc_cl');
-            if (cards && cards.length);
+            if (cards?.length);
             else {
                 player.draw(player.getHandcardLimit() - player.countCards('h'));
                 player.qyhc_moveMaxhand('clanyirong', -1);
@@ -1335,7 +1335,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             event.NotAddCount(0, 0);
         } else {
             game.addVideo('jiuNode', target, true);
-            if (cards && cards.length) card = cards[0];
+            if (cards?.length) card = cards[0];
             if (!target.storage.jiu) target.storage.jiu = 0;
             target.storage.jiu += event.baseDamage;
             if (target.storage.jiu > 1 && lib.skill.qyhc_jiu_logger) target.addSkill('qyhc_jiu_logger');

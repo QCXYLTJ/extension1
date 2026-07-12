@@ -631,7 +631,7 @@ const card = {
 				cards = event.cards;
 			target.storage.yunvyuanshen_skill = game.createCard('yunvyuanshen');
 			target.addSkill('yunvyuanshen_skill');
-			if (cards && cards.length) {
+			if (cards?.length) {
 				card = cards[0];
 			}
 			if (target === targets[0] && card.clone && (card.clone.parentNode === player.parentNode || card.clone.parentNode === ui.arena)) {

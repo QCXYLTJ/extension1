@@ -8474,7 +8474,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 dialog.buttons.add(td);
                                             }
                                             var thiscards = [];
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 for (var i of cards) thiscards.push([i.suit, i.number, i.name, i.nature]);
                                             }
                                             if (cards2 && cards2.length) thiscards.addArray(cards2);

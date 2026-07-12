@@ -16202,7 +16202,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											cards = cards0;
 											event.num += (event.map.judge - cards0.length) * event.dic.judge;
 										} else cards = cards0.randomGets(event.map.judge);
-										if (cards && cards.length) event.player.discard(cards);
+										if (cards?.length) event.player.discard(cards);
 									}
 									('step 10');
 									var cards = [];

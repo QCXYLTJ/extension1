@@ -16061,7 +16061,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         game.getGlobalHistory('cardMove', (evt) => {
                                             if ((evt.name == 'lose' && (evt.position == ui.discardPile || evt.position == ui.ordering)) || evt.name == 'cardsDiscard') {
                                                 var cards = evt.cards;
-                                                if (cards && cards.length) {
+                                                if (cards?.length) {
                                                     for (var card of cards) {
                                                         player.storage.slc_caifu_roundcard.push([card.name, card.suit]);
                                                     }

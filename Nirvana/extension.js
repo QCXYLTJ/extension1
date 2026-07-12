@@ -15002,7 +15002,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 cards.push(trigger.cards2[i]);
                                             }
                                         }
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             player.chooseCardButton(cards, '逆锋:选择使用的基本牌');
                                         } else {
                                             event.finish();
@@ -35761,7 +35761,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             audio: 'ext:Nirvana/audio/孙尚香:2',
                             content() {
                                 'step 0';
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     player.addTempSkill('szdl_newjieyin_mark', { player: 'loseAfter' });
                                     target.gain(cards, player).gaintag.add('szdl_newjieyin');
                                     player.$give(1, target);
@@ -37480,7 +37480,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target1.$throw(result.cards, 1000);
                                     game.log(event.target1, '重铸了', result.cards);
                                     event.target1.draw(event.num).log = false;
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         player
                                             .chooseButton(['椎锋:请选则至多两张牌获得之', cards], [1, 2])
                                             .set('filterButton', function (button) {
@@ -52748,7 +52748,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 'step 0';
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.storage.szdl_yingshi.add(targets[0]);
                                     event.finish();
                                 } else {

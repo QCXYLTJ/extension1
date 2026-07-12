@@ -19211,7 +19211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target.getStat().card.liejiu--;
 								}
 							} else {
-								if (cards && cards.length) {
+								if (cards?.length) {
 									card = cards[0];
 								}
 								game.broadcastAll(
@@ -19329,7 +19329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									target.getStat().card.bingjiu--;
 								}
 							} else {
-								if (cards && cards.length) {
+								if (cards?.length) {
 									card = cards[0];
 								}
 								game.broadcastAll(

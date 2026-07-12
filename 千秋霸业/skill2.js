@@ -26412,7 +26412,7 @@ const skill = {
     usable: 1,
     content() {
       'step 0';
-      if (cards && cards.length) {
+      if (cards?.length) {
         player.give(cards, target);
       } else {
         player.loseHp();
@@ -32069,7 +32069,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (targets && targets.length) {
+      if (targets?.length) {
         player.line(targets, 'thunder');
         for (var i = 0; i < targets.length; i++) {
           player.discardPlayerCard('hej', targets[i], 2, true);
@@ -37045,7 +37045,7 @@ const skill = {
       event.targets = result.targets;
       player.line(event.targets, 'thunder');
       ('step 5');
-      if (targets && targets.length) {
+      if (targets?.length) {
         for (var i = 0; i < targets.length; i++) {
           var target = targets[i];
           if (target.getEquips(2)) target.discard(target.getEquips(2));
@@ -40784,7 +40784,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (targets && targets.length) {
+      if (targets?.length) {
         player.line(targets, 'thunder');
         for (var i = 0; i < targets.length; i++) {
           player.useCard({ name: 'sha', nature: 'thunder' }, targets[i]);

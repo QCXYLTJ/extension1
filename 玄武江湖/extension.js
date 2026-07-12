@@ -34147,7 +34147,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             usable: 1,
                             content() {
                                 'step 0';
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     player.give(cards, target);
                                 } else {
                                     player.loseMaxHp();
@@ -52957,7 +52957,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 10 - get.value(card);
                             },
                             content() {
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.give(cards, targets[0]);
                                     if (!targets[0].storage.xwjh_xinnuo) {
                                         targets[0].storage.xwjh_xinnuo = [];
@@ -60315,7 +60315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var cards = trigger.cards.filter(function (card) {
                                             return get.owner(card) == trigger.player && ['xwjh_card_nanjiangjilang', 'xwjh_card_manzhonghuwang'].includes(card.name);
                                         });
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             trigger.player.discard(cards);
                                         }
                                     } else {
@@ -60374,7 +60374,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 var cards = trigger.cards.filter(function (card) {
                                                     return get.owner(card) == trigger.player && ['xwjh_card_nanjiangjilang', 'xwjh_card_manzhonghuwang'].includes(card.name);
                                                 });
-                                                if (cards && cards.length) {
+                                                if (cards?.length) {
                                                     trigger.player.discard(cards);
                                                 }
                                             } else {
@@ -65301,7 +65301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var cards = player.getCards('e', function (card) {
                                                 return lib.skill.xwjh_pubing.xwBaibingpu(card) != -1;
                                             });
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 return get.translation(cards[0].name) + ':列百兵谱第' + get.cnNumber(lib.skill.xwjh_pubing.xwBaibingpu(cards[0]));
                                             }
                                             return '无';
@@ -65310,7 +65310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var cards = player.getCards('e', function (card) {
                                                 return lib.skill.xwjh_pubing.xwBaibingpu(card) != -1;
                                             });
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 return lib.skill.xwjh_pubing.xwBaibingpu(cards[0]);
                                             }
                                             return 0;
@@ -65347,7 +65347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var cards = to.getCards('e', function (card) {
                                                 return lib.skill.xwjh_pubing.xwBaibingpu(card) != -1;
                                             });
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 if (
                                                     game.hasPlayer(function (current) {
                                                         return (

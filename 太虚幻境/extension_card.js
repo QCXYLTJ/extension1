@@ -966,7 +966,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                             target.getStat().card.jiu--;
                         }
                     } else {
-                        if (cards && cards.length) {
+                        if (cards?.length) {
                             card = cards[0];
                         }
                         game.broadcastAll(

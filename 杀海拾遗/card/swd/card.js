@@ -1770,7 +1770,7 @@ const card = {
 				await target.recover();
 			} else {
 				target.addTempSkill("tianxianjiu", ["phaseAfter", "shaAfter"]);
-				if (cards && cards.length) {
+				if (cards?.length) {
 					card = cards[0];
 				}
 				if (target === targets[0] && card.clone && (card.clone.parentNode === player.parentNode || card.clone.parentNode === ui.arena)) {
@@ -1866,7 +1866,7 @@ const card = {
 			let card = event.card,
 				cards = event.cards;
 			target.addSkill("huanpodan_skill");
-			if (cards && cards.length) {
+			if (cards?.length) {
 				card = cards[0];
 			}
 			if (target === targets[0] && card.clone && (card.clone.parentNode === player.parentNode || card.clone.parentNode === ui.arena)) {

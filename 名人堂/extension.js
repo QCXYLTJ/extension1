@@ -7162,7 +7162,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										}
 									});
-								if (links && links.length) {
+								if (links?.length) {
 									if (links.includes('手牌上限')) player.addTempSkill('XS_piaoling_temp1');
 									if (links.includes('使用杀次数')) player.addTempSkill('XS_piaoling_temp2');
 									if (links.includes('摸牌阶段摸牌数')) player.addTempSkill('XS_piaoling_temp3');

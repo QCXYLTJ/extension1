@@ -3062,7 +3062,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.awakenSkill(event.name);
 					('step 1');
 					const targets = player.storage.yb_wan_linzuo;
-					if (targets && targets.length) {
+					if (targets?.length) {
 						for (const i of targets) {
 							if (i.isAlive) {
 								player.storage.yb_wan_linzuo.remove(i);

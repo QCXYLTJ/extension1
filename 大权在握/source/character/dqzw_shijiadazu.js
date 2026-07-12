@@ -103,7 +103,7 @@ export let info = {
             .choosePlayerCard('h', player, true, '重铸其中一张牌')
             .set('ai', (card) => get.value(card))
             .forResult();
-          if (links && links.length) player.recast(links);
+          if (links?.length) player.recast(links);
         }
         trigger.getParent('useCard')._dqzw_zongcu_ = true;
       },
@@ -376,7 +376,7 @@ export let info = {
           .chooseToDiscard('h', Math.max(1, player.countCards('h') - player.hp), get.prompt2(event.name))
           .set('ai', (card) => 6 - get.value(card))
           .forResult();
-        if (cards && cards.length) {
+        if (cards?.length) {
           player.draw(cards.length * 2);
           player.addMark(event.name + '_effect', cards.length, false);
         }
@@ -661,7 +661,7 @@ export let info = {
               return 6 - get.value(card);
             })
             .forResult();
-          if (cards && cards.length) for (let sha of cards.filter((card) => card.name == 'sha')) await target.useCard(sha, player);
+          if (cards?.length) for (let sha of cards.filter((card) => card.name == 'sha')) await target.useCard(sha, player);
         } else {
           const { cards } = await target.draw(num, 'nodelay').forResult();
           if (!cards.some((card) => card.name == 'sha')) player.addTempSkill(event.name + '_draw');
@@ -806,7 +806,7 @@ export let info = {
           )
           .set('targetx', target)
           .forResult();
-        if (links && links.length) {
+        if (links?.length) {
           player.line(target, 'green');
           target.discard(links);
         }
@@ -984,7 +984,7 @@ export let info = {
                         .set('card', trigger.card)
                         .set('num', trigger.cards.length)
                         .forResult();
-                      if (targets && targets.length) {
+                      if (targets?.length) {
                         player.setStorage('dqzw_bingxin_unusable', suits);
                         player.addTempSkill('dqzw_bingxin_unusable');
                         trigger.targets.add(...targets);
@@ -1330,7 +1330,7 @@ export let info = {
                       .forResult();
                     trigger.all_excluded = trigger.__original_all_excluded__;
                     delete trigger.__original_all_excluded__;
-                    if (cards && cards.length) trigger.card.name = 'tao';
+                    if (cards?.length) trigger.card.name = 'tao';
                   },
                   { player: event.player, _trigger: event }
                 );

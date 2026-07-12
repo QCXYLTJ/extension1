@@ -10017,7 +10017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.cards = [];
                                 event.num = 0;
                                 event.all = ['spade', 'heart', 'club', 'diamond'];
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     player.showHandcards();
                                     for (let i = 0; i < cards.length; i++) {
                                         if (!event.suit.includes(cards[i].suit)) {
@@ -14577,7 +14577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.getHistory('lose', function (evt) {
                                         let cards = evt.cards.slice(0);
                                         cards.removeArray(event.cards);
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             types.addArray(
                                                 cards.map(function (card) {
                                                     return get.type(card, 'trick');
@@ -14605,7 +14605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.getHistory('lose', function (evt) {
                                         let cards = evt.cards.slice(0);
                                         cards.removeArray(trigger.cards);
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             types.addArray(
                                                 cards.map(function (card) {
                                                     return get.type(card, 'trick');

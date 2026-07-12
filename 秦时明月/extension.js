@@ -776,7 +776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.bianhuanSkill = skills;
                                 var cards = target.getCards('');
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     for (var j = 0; j < cards.length; j++) {
                                         var card = game.createCard(cards[j].name, cards[j].suit, cards[j].number, cards[j].nature);
                                         player.gain(card);
@@ -3848,7 +3848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.bool) {
                                     player.discard(player.getCards('h'));
                                     var cards = target.getCards('h');
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         for (var j = 0; j < cards.length; j++) {
                                             var card = game.createCard(cards[j].name, cards[j].suit, cards[j].number, cards[j].nature);
                                             player.gain(card);

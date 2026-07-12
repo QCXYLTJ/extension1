@@ -2401,7 +2401,7 @@ const content = async function () {
             targets = event.targets;
           target.storage.yunvyuanshen_skill = game.createCard('yunvyuanshen');
           target.addSkill('yunvyuanshen_skill');
-          if (cards && cards.length) {
+          if (cards?.length) {
             card = cards[0];
           }
           if (target === targets[0] && card.clone && (card.clone.parentNode === player.parentNode || card.clone.parentNode === ui.arena)) {
@@ -6888,7 +6888,7 @@ const content = async function () {
           }
         } else {
           game.addVideo('jiuNode', target, true);
-          if (cards && cards.length) {
+          if (cards?.length) {
             event.card = cards[0];
           }
           if (!target.storage.jiu) {

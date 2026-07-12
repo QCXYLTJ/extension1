@@ -2109,7 +2109,7 @@ const skills = {
 							})
 							.set('targets', hs_targets)
 							.forResult();
-						if (targets && targets.length) {
+						if (targets?.length) {
 							target = targets[0];
 						}
 					}
@@ -2159,7 +2159,7 @@ const skills = {
 							})
 							.set('targets', es_targets)
 							.forResult();
-						if (targets && targets.length) {
+						if (targets?.length) {
 							target = targets[0];
 						}
 					}

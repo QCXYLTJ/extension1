@@ -2730,7 +2730,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         dialog.classList.add('withbg');
                     }
                 }
-                if (cards && cards.length) {
+                if (cards?.length) {
                     const cards2 = cards.filter((i) => lib.card[i]);
                     if (cards2.length) {
                         dialog.addText('卡牌更新');

@@ -2590,7 +2590,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 event.num--;
                                 ('step 2');
@@ -2632,7 +2632,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 event.num--;
                                 ('step 2');
@@ -2677,7 +2677,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                                 event.num--;
@@ -2723,7 +2723,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                                 event.num--;
@@ -2785,7 +2785,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 event.num--;
                                 ('step 2');
@@ -2846,7 +2846,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                 }
                                 event.num--;
                                 ('step 2');
@@ -2880,7 +2880,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 2);
@@ -2899,7 +2899,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                             },
@@ -2954,7 +2954,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                             },
                         },
@@ -2985,7 +2985,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                             },
                         },
@@ -3309,7 +3309,7 @@ game.import('extension', function () {
                                         );
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.addTempSkill('aq_wskz', { player: ['damage', 'damageCancelled', 'damageZero'], source: ['damage', 'damageCancelled', 'damageZero'], target: ['shaMiss', 'useCardToExcluded', 'useCardToEnd'] });
                                     }
@@ -3510,7 +3510,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets[targets.length - 1]);
                                         trigger.targets.push(targets[targets.length - 1]);
                                     }
@@ -3743,7 +3743,7 @@ game.import('extension', function () {
                                                     return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                                 })
                                                 .sortBySeat(_status.currentPhase);
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 for (var target of targets) {
                                                     target.addSkill('aq_bsfy');
                                                     target
@@ -3852,7 +3852,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_zmyj_damage');
                                             if (!target.storage.aq_zmyj_damage) target.storage.aq_zmyj_damage = 0;
@@ -4178,7 +4178,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!target.storage.aq_lysj4) target.storage.aq_lysj4 = 0;
                                             if (!target.storage.aq_lysj) target.storage.aq_lysj = 0;
@@ -4196,7 +4196,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -4351,7 +4351,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .randomGets([1, 2].randomGet());
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets);
                                         for (var target of targets) trigger.targets.push(target);
                                     }
@@ -4372,7 +4372,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_wffh');
                                                 if (!target.storage.aq_wffh) target.storage.aq_wffh = 0;
@@ -4492,7 +4492,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -4519,7 +4519,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                     if (player.tongling()) {
                                         lib.skill.aq_tlzh.change(player, 2);
@@ -4538,7 +4538,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                     event.finish();
@@ -4690,7 +4690,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && player.getStorage('aq_zhqyjs').includes(i)) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_fs.change(targets[0], Math.max(Math.floor(0.66 * player.maxHp), 1));
                                     targets[0].update();
                                     targets[0].addSkill('aq_lx');
@@ -4708,7 +4708,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_lx');
                                         targets[0]
                                             .when('dieBegin')
@@ -4858,7 +4858,7 @@ game.import('extension', function () {
                                                     return player.getEnemies().includes(current) && (current.hp == trigger.targets[0].hp || current.maxHp == trigger.targets[0].maxHp || current.group == trigger.targets[0].group || (current.hasSkill('aq_shenwuji') && trigger.targets[0].hasSkill('aq_shenwuji')) || (current.hasSkill('aq_shenguang') && trigger.targets[0].hasSkill('aq_shenguang')) || (current.hasSkill('aq_shenan') && trigger.targets[0].hasSkill('aq_shenan')) || (current.hasSkill('aq_shenling') && trigger.targets[0].hasSkill('aq_shenling')) || (current.hasSkill('aq_shenhuan') && trigger.targets[0].hasSkill('aq_shenhuan')) || (current.hasSkill('aq_shenshui') && trigger.targets[0].hasSkill('aq_shenshui')) || (current.hasSkill('aq_shenhuo') && trigger.targets[0].hasSkill('aq_shenhuo')) || (current.hasSkill('aq_shencao') && trigger.targets[0].hasSkill('aq_shencao'))) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                                 })
                                                 .sortBySeat(_status.currentPhase);
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 event.target = targets.randomGet();
                                                 player.line(event.target);
                                                 trigger.targets.push(event.target);
@@ -5051,7 +5051,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_my');
                                         targets[0].markSkill('aq_my');
                                         if (!targets[0].storage.aq_my) targets[0].storage.aq_my = 0;
@@ -5302,7 +5302,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     event.target = targets.randomGet();
                                     lib.skill.aq_fs.change(event.target, Math.max(Math.floor(0.66 * player.maxHp), 1));
                                     event.target.update();
@@ -5417,7 +5417,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_czsb');
                                         targets[0].markSkill('aq_czsb');
                                         if (!targets[0].storage.aq_czsb) targets[0].storage.aq_czsb = 0;
@@ -5884,7 +5884,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_ms');
                                         targets[0].markSkill('aq_ms');
                                         if (!targets[0].storage.aq_ms) targets[0].storage.aq_ms = 0;
@@ -6098,7 +6098,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                             },
@@ -6343,7 +6343,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         if (targets.length >= 2) {
                                             if (!targets[targets.length - 2].storage.aq_ewsh) targets[targets.length - 2].storage.aq_ewsh = 0;
                                             if (!targets[targets.length - 2].storage.aq_ewsh_source) targets[targets.length - 2].storage.aq_ewsh_source = [];
@@ -6371,7 +6371,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_sxwm_chosen2').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_lx');
                                         targets[0]
                                             .when('dieBegin')
@@ -6429,7 +6429,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     } else target.addSkill('aq_symd');
@@ -6543,7 +6543,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.num =
                                             player.getHistory('useCard', function (evt) {
                                                 return evt.card.name == 'sha';
@@ -6658,7 +6658,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -6699,7 +6699,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                     player.addSkill('aq_syzn_damage');
                                     player.markSkill('aq_syzn_damage');
@@ -6739,7 +6739,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -6845,7 +6845,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                     player.addSkill('aq_zyas_damage');
                                     player.markSkill('aq_zyas_damage');
@@ -6884,7 +6884,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -7167,7 +7167,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_qljs.change(targets[0], 1);
                                         targets[0].update();
                                     }
@@ -7396,7 +7396,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -7415,7 +7415,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && player.getStorage('aq_wwcfjmcs_ssly').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_wffh');
                                                 target.markSkill('aq_wffh');
@@ -7547,7 +7547,7 @@ game.import('extension', function () {
                                                                 targets.push(i);
                                                             }
                                                         }
-                                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                                     }
                                                 }
                                             }
@@ -7619,7 +7619,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             event.target = targets.randomGet();
                                             lib.skill.aq_fs.change(event.target, Math.max(player.maxHp, 1));
                                             event.target.update();
@@ -7821,7 +7821,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -7976,7 +7976,7 @@ game.import('extension', function () {
                                                                 targets.push(i);
                                                             }
                                                         }
-                                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 4);
+                                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 4);
                                                     }
                                                 }
                                             }
@@ -7997,7 +7997,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                         }
                                         event.num--;
                                         ('step 2');
@@ -8091,7 +8091,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     event.target = targets.randomGet();
                                     lib.skill.aq_fs.change(event.target, Math.max(player.maxHp, 1));
                                     event.target.update();
@@ -8272,7 +8272,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -8351,7 +8351,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_wffh');
                                                 target.markSkill('aq_wffh');
@@ -8434,7 +8434,7 @@ game.import('extension', function () {
                                                                 targets.push(i);
                                                             }
                                                         }
-                                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                                     }
                                                 }
                                             }
@@ -8543,7 +8543,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     event.target = targets.randomGet();
                                     lib.skill.aq_fs.change(event.target, Math.max(player.maxHp, 1));
                                     event.target.update();
@@ -8827,7 +8827,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                 }
                                 player.storage.aq_ttjy--;
                                 player.update();
@@ -9197,7 +9197,7 @@ game.import('extension', function () {
                                                     return player.getEnemies().includes(current) && current != target;
                                                 })
                                                 .randomGets([1, 2].randomGet());
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 for (var target of targets) {
                                                     if (!target.storage.aq_ewsh) target.storage.aq_ewsh = 0;
                                                     if (!target.storage.aq_ewsh_source) target.storage.aq_ewsh_source = [];
@@ -9428,7 +9428,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                         }
                                     }
                                     player.storage.aq_knjt--;
@@ -9483,7 +9483,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                     }
                                 }
                                 player.storage.aq_knjt--;
@@ -9621,7 +9621,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         if (targets[0] == player) player.draw(2)._triggered = null;
                                         else {
                                             player.addSkill('aq_mjq');
@@ -9810,7 +9810,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_qljs.change(targets[0], 1);
                                         targets[0].update();
                                     }
@@ -9887,7 +9887,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_ssjs');
                                             if (!target.storage.aq_ssjs) target.storage.aq_ssjs = 0;
@@ -10178,13 +10178,13 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(Math.floor(0.66 * player.maxHp), 1));
                                             target.update();
                                         }
                                     }
-                                    if (targets && targets.length) event.num = targets.length;
+                                    if (targets?.length) event.num = targets.length;
                                     else event.num = 0;
                                     if (event.num < 2) {
                                         var target2s = game
@@ -10242,7 +10242,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 1);
@@ -10261,7 +10261,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                                 event.num--;
@@ -10346,7 +10346,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                             })
                                             .randomGets([1, 2].randomGet());
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             player.line(targets);
                                             for (var target of targets) trigger.targets.push(target);
                                         }
@@ -10358,7 +10358,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             event.target = targets.randomGet();
                                             player.line(event.target);
                                             trigger.targets.push(event.target);
@@ -10542,7 +10542,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_wfhx');
                                             if (!target.storage.aq_wfhx) target.storage.aq_wfhx = 0;
@@ -10630,7 +10630,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.addSkill('aq_mxwx_ah_pofang');
                                         if (!target.storage.aq_mxwx_ah_pofang) target.storage.aq_mxwx_ah_pofang = 0;
@@ -10799,7 +10799,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         if (!target.storage.aq_hmsh) target.storage.aq_hmsh = 0;
                                         target.storage.aq_hmsh += Math.min(Math.max(Math.round(0.25 * (Math.min(5, player.maxHp) - Math.abs(player.maxHp - 4))), 1), 5);
@@ -10821,7 +10821,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                             },
                         },
@@ -10979,7 +10979,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                 }
                                 if (name == 'damageBegin4') {
@@ -11263,7 +11263,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!target.storage.aq_gedang) target.storage.aq_gedang = 0;
                                             target.storage.aq_gedang += 60;
@@ -11295,7 +11295,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_cmfy_gedang');
                                             target.popup('格挡提升');
@@ -11473,7 +11473,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 event.num--;
                                 ('step 2');
@@ -11695,7 +11695,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 if (player.isAlive()) {
                                     if (!trigger.player.storage.aq_hmsh) trigger.player.storage.aq_hmsh = 0;
@@ -11943,7 +11943,7 @@ game.import('extension', function () {
                                                             targets.push(i);
                                                         }
                                                     }
-                                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 4);
+                                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 4);
                                                 }
                                             }
                                         }
@@ -12093,7 +12093,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 var target = game
                                     .filterPlayer(function (current) {
@@ -12482,7 +12482,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (i.isFriendsOf(player) && i.tongling()) targets.push(i);
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                 }
                             },
@@ -12575,7 +12575,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (i.isFriendsOf(player) && i.tongling()) targets.push(i);
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                 }
                             },
@@ -13350,7 +13350,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         if (!targets[0].storage.aq_hzsm_sx) {
                                             targets[0].storage.aq_hzsm_sx = [];
                                             if (targets[0].hasSkill('aq_shenwuji')) targets[0].storage.aq_hzsm_sx = 'aq_shenwuji';
@@ -13607,7 +13607,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                         }
                                         if (player.tongling()) {
                                             lib.skill.aq_tlzh.change(player, 1);
@@ -13626,7 +13626,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                             }
                                         }
                                     },
@@ -13663,7 +13663,7 @@ game.import('extension', function () {
                                                     return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                                 })
                                                 .sortBySeat(_status.currentPhase);
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 for (var target of targets) target.discard(target.getCards('h').randomGets(2)).discarder = player;
                                             }
                                         }
@@ -14268,7 +14268,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -14445,7 +14445,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -14483,7 +14483,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                         }
                                     }
                                 }
@@ -14557,7 +14557,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if ((target.storage.aq_bj | 0) < 6) lib.skill.aq_bj.change(target, 6);
                                             else {
@@ -14681,7 +14681,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), player.getFriends().length + 1);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), player.getFriends().length + 1);
                                         }
                                     }
                                 }
@@ -14718,13 +14718,13 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                         target.update();
                                     }
                                 }
-                                if (targets && targets.length) event.num = targets.length;
+                                if (targets?.length) event.num = targets.length;
                                 else event.num = 0;
                                 if (event.num < 2) {
                                     var target2s = game
@@ -14771,7 +14771,7 @@ game.import('extension', function () {
                                         );
                                     })
                                     .randomGets(2);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.drawTo(Math.min(5, target.maxHp))._triggered = null;
                                         target.addSkill('aq_my');
@@ -14970,7 +14970,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                     var targets = game
@@ -14982,7 +14982,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         if (targets.length >= 2) {
                                             if (!targets[targets.length - 2].storage.aq_ewsh) targets[targets.length - 2].storage.aq_ewsh = 0;
                                             if (!targets[targets.length - 2].storage.aq_ewsh_source) targets[targets.length - 2].storage.aq_ewsh_source = [];
@@ -15135,7 +15135,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                         }
                                         event.num--;
                                         ('step 2');
@@ -15180,7 +15180,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player) && !player.getStorage('aq_cylj_chosen').includes(current) && trigger.targets.includes(current);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         player.markAuto('aq_cylj_chosen', [target]);
                                         lib.skill.aq_xy.change(trigger.player, 1);
@@ -15405,7 +15405,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                     if (player.tongling()) {
                                         lib.skill.aq_tlzh.change(player, 2);
@@ -15424,7 +15424,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                 }
@@ -15811,7 +15811,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (i.isFriendsOf(player) && targets.length < 1) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                         target.update();
@@ -15847,7 +15847,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (i.isFriendsOf(player) && targets.length < 1) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                         target.update();
@@ -16020,7 +16020,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     }
@@ -16080,7 +16080,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && (current.hp == player.hp || current.maxHp == player.maxHp || current.group == player.group || (current.hasSkill('aq_putong') && player.hasSkill('aq_putong')) || (current.hasSkill('aq_shenwuji') && player.hasSkill('aq_shenwuji')) || (current.hasSkill('aq_shenguang') && player.hasSkill('aq_shenguang')) || (current.hasSkill('aq_shenan') && player.hasSkill('aq_shenan')) || (current.hasSkill('aq_shenling') && player.hasSkill('aq_shenling')) || (current.hasSkill('aq_shenhuan') && player.hasSkill('aq_shenhuan')) || (current.hasSkill('aq_shenshui') && player.hasSkill('aq_shenshui')) || (current.hasSkill('aq_shenhuo') && player.hasSkill('aq_shenhuo')) || (current.hasSkill('aq_shencao') && player.hasSkill('aq_shencao')));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         var cards = event.target.getCards('h').randomGets(2);
                                         event.target.lose(cards)._triggered = null;
@@ -16113,7 +16113,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     }
@@ -16308,7 +16308,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 if (!target.storage.aq_hmsh) target.storage.aq_hmsh = 0;
                                                 target.storage.aq_hmsh += Math.min(Math.max(Math.round(0.5 * (Math.min(5, player.maxHp) - Math.abs(player.maxHp - 4))), 1), 5);
@@ -16329,7 +16329,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .randomGets([1, 2].randomGet());
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets);
                                         for (var target of targets) trigger.targets.push(target);
                                     }
@@ -16447,7 +16447,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         if (!target.storage.aq_hmsh) target.storage.aq_hmsh = 0;
                                         target.storage.aq_hmsh += Math.min(Math.max(Math.round(0.5 * (Math.min(5, player.maxHp) - Math.abs(player.maxHp - 4))), 1), 5);
@@ -16512,7 +16512,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -16539,7 +16539,7 @@ game.import('extension', function () {
                                             );
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!target.storage.aq_hmsh) target.storage.aq_hmsh = 0;
                                             target.storage.aq_hmsh += Math.min(Math.max(Math.round(0.25 * (Math.min(5, player.maxHp) - Math.abs(player.maxHp - 4))), 1), 5);
@@ -16941,9 +16941,9 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (i.isFriendsOf(player) && targets.length < 1) targets.push(i);
                                 }
-                                if (targets && targets.length) event.num = targets.length;
+                                if (targets?.length) event.num = targets.length;
                                 else event.num = 0;
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                         target.update();
@@ -16960,7 +16960,7 @@ game.import('extension', function () {
                                             );
                                         })
                                         .randomGets(1 - event.num);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
@@ -17160,7 +17160,7 @@ game.import('extension', function () {
                                                     if (i.isFriendsOf(player) && i.hasSkill('aq_mkzy')) targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 for (var target of targets) {
                                                     lib.skill.aq_zlmk.change(target, 1);
                                                     lib.skill.aq_zlmk.change(target, -1);
@@ -17293,7 +17293,7 @@ game.import('extension', function () {
                                                     if (i.isFriendsOf(player) && i.hasSkill('aq_crzz')) targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 for (var target of targets) {
                                                     lib.skill.aq_zlcr.change(target, 1);
                                                     lib.skill.aq_zlcr.change(target, -1);
@@ -17328,7 +17328,7 @@ game.import('extension', function () {
                                                 if (i.isFriendsOf(player) && i.hasSkill('aq_crzz')) targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 lib.skill.aq_zlcr.change(target, 1);
                                                 lib.skill.aq_zlcr.change(target, -1);
@@ -17401,7 +17401,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                 }
                                 if (info.aq_zlcr == 0) {
@@ -17487,7 +17487,7 @@ game.import('extension', function () {
                                             );
                                         })
                                         .randomGets(4);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!target.storage.aq_hmsh) target.storage.aq_hmsh = 0;
                                             target.storage.aq_hmsh += Math.min(Math.max(Math.round(0.5 * (Math.min(5, player.maxHp) - Math.abs(player.maxHp - 4))), 1), 5);
@@ -17636,7 +17636,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                         }
                                         event.num--;
                                         ('step 2');
@@ -17674,7 +17674,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_qjqd_pofang');
                                             if (!target.storage.aq_qjqd_pofang) target.storage.aq_qjqd_pofang = 0;
@@ -17855,7 +17855,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.num = player.hasSkill('aq_jlwjsj_chosen') ? [3, 4].randomGet() : 2;
                                         target2s = targets.randomGets(event.num);
                                         player.line(target2s);
@@ -18051,7 +18051,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.num =
                                             player.getHistory('useCard', function (evt) {
                                                 return evt.card.name == 'sha';
@@ -18606,7 +18606,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_ycwysfsm_pofang');
                                                 if (!target.storage.aq_ycwysfsm_pofang) target.storage.aq_ycwysfsm_pofang = 0;
@@ -19249,13 +19249,13 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
                                         }
                                     }
-                                    if (targets && targets.length) event.num = targets.length;
+                                    if (targets?.length) event.num = targets.length;
                                     else event.num = 0;
                                     if (event.num < 2) {
                                         var target2s = game
@@ -19308,7 +19308,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                 }
@@ -19371,7 +19371,7 @@ game.import('extension', function () {
                                             for (const i of dead) {
                                                 if (get.attitude(player, i) < 0 && i.tongling() && (i.storage.aq_hmzj | 0) < 2) targets.push(i);
                                             }
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 event.target = targets.randomGet();
                                                 event.target.addSkill('aq_hmzj');
                                                 event.target.markSkill('aq_hmzj');
@@ -19720,7 +19720,7 @@ game.import('extension', function () {
                                         return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_xj_anjin') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_xj_anjin'));
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         targets[i].addSkill('aq_hd');
                                         targets[i].markSkill('aq_hd');
@@ -19922,7 +19922,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets[targets.length - 1]);
                                         trigger.targets.push(targets[targets.length - 1]);
                                     }
@@ -20005,7 +20005,7 @@ game.import('extension', function () {
                                             );
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_my');
                                             target.markSkill('aq_my');
@@ -20111,7 +20111,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && ((i.hasSkill('aq_bs') && i.name == 'aq_sy_huanlongya') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_huanlongya'))) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_fs.change(targets[0], Math.max(trigger.player.maxHp, 1));
                                     targets[0].update();
                                     targets[0].addSkill('aq_lx');
@@ -20129,7 +20129,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_huanlongya') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_huanlongya'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_fs.change(targets[0], Math.max(trigger.player.maxHp, 1));
                                         targets[0].update();
                                         targets[0].addSkill('aq_lx');
@@ -20432,7 +20432,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -20627,7 +20627,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player);
                                     })
                                     .randomGets(3);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.draw()._triggered = null;
                                         lib.skill.aq_ld.change(target, Math.max(Math.floor(0.6 * player.maxHp), 1));
@@ -20667,7 +20667,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .randomGets(3);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_syzf');
                                             target.markSkill('aq_syzf');
@@ -20685,9 +20685,9 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) event.num = targets.length;
+                                    if (targets?.length) event.num = targets.length;
                                     else event.num = 0;
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
@@ -20797,7 +20797,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 event.num--;
                                 ('step 2');
@@ -20858,7 +20858,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) > 0) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         lib.skill.aq_fs.change(event.target, Math.max(player.maxHp, 1));
                                         event.target.addSkill('aq_lxcb');
@@ -21147,7 +21147,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && ((i.hasSkill('aq_bs') && i.name == 'aq_sy_qingyun') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_qingyun'))) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         lib.skill.aq_fs.change(targets[i], Math.max(Math.floor(0.33 * player.maxHp), 1));
                                         targets[i].update();
@@ -21158,7 +21158,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_qingyun') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_qingyun'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             targets[i].addSkill('aq_zzrs');
                                             targets[i]
@@ -21259,7 +21259,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_nuoyà') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_nuoyà'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.addSkill('aq_npzy_lsq');
                                         for (let i = 0; i < targets.length; i++) targets[i].addSkill('aq_npzy_lsq');
                                     } else {
@@ -21268,7 +21268,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_wz_nuoyà') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_wz_nuoyà'))) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             player.addSkill('aq_npzy_lsq');
                                             for (let i = 0; i < targets.length; i++) targets[i].addSkill('aq_npzy_lsq');
                                         }
@@ -21285,7 +21285,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -21311,7 +21311,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                     if (player.tongling()) {
                                         lib.skill.aq_tlzh.change(player, 2);
@@ -21330,7 +21330,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                 }
@@ -21377,7 +21377,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_luoshiqi') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_luoshiqi'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             lib.skill.aq_cf.change(targets[i], 1);
                                             targets[i].addSkill('aq_my');
@@ -21394,7 +21394,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_nuoyà') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_nuoyà'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             targets[i].addSkill('aq_lx');
                                             targets[i]
@@ -21693,7 +21693,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_longyan') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_longyan'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.draw(2)._triggered = null;
                                         player.addSkill('aq_swfs3');
                                         player.markSkill('aq_swfs3');
@@ -21714,7 +21714,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_wz_longyan') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_wz_longyan'))) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             player.draw(2)._triggered = null;
                                             player.addSkill('aq_swfs3');
                                             player.markSkill('aq_swfs3');
@@ -21871,7 +21871,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_xy.change(targets[0], 1);
                                         targets[0].update();
                                     }
@@ -21919,7 +21919,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_zyfq_pofang');
                                             if (!target.storage.aq_zyfq_pofang) target.storage.aq_zyfq_pofang = 0;
@@ -22488,7 +22488,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                             }
                                             if (player.tongling()) {
                                                 lib.skill.aq_tlzh.change(player, 1);
@@ -22507,7 +22507,7 @@ game.import('extension', function () {
                                                             targets.push(i);
                                                         }
                                                     }
-                                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                                 }
                                             }
                                             player.drawTo(Math.min(5, player.maxHp))._triggered = null;
@@ -22599,7 +22599,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current);
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_bbsc');
                                             target.markSkill('aq_bbsc');
@@ -22625,7 +22625,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 4);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 4);
                                         }
                                     }
                                 }
@@ -22649,7 +22649,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current);
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_bbsc');
                                             target.markSkill('aq_bbsc');
@@ -22968,7 +22968,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 10);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 10);
                                             }
                                         }
                                         var players = game
@@ -22983,7 +22983,7 @@ game.import('extension', function () {
                                             for (const i of dead) {
                                                 if (get.attitude(player, i) < 0 && i.tongling()) targets.push(i);
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 10);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 10);
                                         }
                                     } else {
                                         if (player.tongling()) lib.skill.aq_tlzh.change(player, 3);
@@ -23002,7 +23002,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 3);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 3);
                                             }
                                         }
                                     }
@@ -23049,7 +23049,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                 }
@@ -23128,7 +23128,7 @@ game.import('extension', function () {
                                         i.storage.aq_lx++;
                                         i.update();
                                     }
-                                } else if (targets && targets.length) {
+                                } else if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         targets[i].addSkill('aq_lx');
                                         targets[i]
@@ -23201,7 +23201,7 @@ game.import('extension', function () {
                                             return current.seatNum == 1;
                                         })
                                     );
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     targets[targets.length - 1].draw()._triggered = null;
                                     targets[targets.length - 1].addSkill('aq_czsb');
                                     if (!targets[targets.length - 1].storage.aq_czsb) targets[targets.length - 1].storage.aq_czsb = 0;
@@ -23432,7 +23432,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && current.countCards('h') < current.maxHp;
                                         })
                                         .randomGets([1, 2].randomGet());
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!target.storage.aq_lysj4) target.storage.aq_lysj4 = 0;
                                             if (!target.storage.aq_lysj) target.storage.aq_lysj = 0;
@@ -23714,7 +23714,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.card = targets[0].getCards('h').randomGet();
                                         if (event.card) {
                                             player.gain(event.card, targets[0], 'giveAuto', 'BySelf');
@@ -23784,7 +23784,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 1);
@@ -23803,7 +23803,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                                 event.num--;
@@ -23856,7 +23856,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_xiuer') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_xiuer'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             targets[i].addSkill('aq_swfs3');
                                             targets[i].markSkill('aq_swfs3');
@@ -23870,7 +23870,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_wz_xiuer') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_wz_xiuer'))) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (let i = 0; i < targets.length; i++) {
                                                 targets[i].addSkill('aq_swfs3');
                                                 targets[i].markSkill('aq_swfs3');
@@ -24034,7 +24034,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                         }
                                         event.num--;
                                         ('step 2');
@@ -24303,7 +24303,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_lxcb');
                                             target.markSkill('aq_lxcb');
@@ -24566,7 +24566,7 @@ game.import('extension', function () {
                                                     return current.seatNum == 1;
                                                 })
                                             );
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             lib.skill.aq_lltx.change(targets[0], 1);
                                             if (!targets[0].storage.aq_lltx_source) targets[0].storage.aq_lltx_source = player;
                                             targets[0].update();
@@ -24817,7 +24817,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
@@ -24956,7 +24956,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_lx');
                                         targets[0]
                                             .when('dieBegin')
@@ -25051,7 +25051,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_huanya') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_huanya'));
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                     targets[0].update();
                                     targets[0].draw(2)._triggered = null;
@@ -25061,7 +25061,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) < 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_huanya') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_huanya'))) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                         targets[0].update();
                                         targets[0].draw(2)._triggered = null;
@@ -25100,7 +25100,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.addSkill('aq_wfhx');
                                         if (!target.storage.aq_wfhx) target.storage.aq_wfhx = 0;
@@ -25281,7 +25281,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -event.num);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -event.num);
                                     }
                                     lib.skill.aq_tlzh.change(player, event.num);
                                 }
@@ -25371,7 +25371,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                 }
                                 if (name == 'changeHpEnd') {
@@ -25456,7 +25456,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                             },
                         },
@@ -26081,7 +26081,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && trigger.targets.includes(current) && current.countCards('h') > 0;
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.discard(target.getCards('h').randomGets(2)).discarder = player;
                                             }
@@ -26094,7 +26094,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -26177,7 +26177,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && player.getAllHistory('useCard', (evt) => ['trick'].includes(get.type(evt.card)) && get.tag(evt.card, 'damage') && evt.targets && evt.targets.includes(current)).length >= 3;
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             player.addTempSkill('aq_ycjh_damage');
                                             player.initStorage('aq_ycjh_damage', []);
@@ -26368,7 +26368,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 1);
@@ -26387,7 +26387,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                             },
@@ -26608,7 +26608,7 @@ game.import('extension', function () {
                                                 );
                                             })
                                             .randomGets(2);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) target.draw(2)._triggered = null;
                                             if (targets.length < 2) {
                                                 var target2 = game
@@ -26639,7 +26639,7 @@ game.import('extension', function () {
                                             for (const i of dead) {
                                                 if (get.attitude(player, i) < 0 && i.tongling()) targets.push(i);
                                             }
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 var players = targets.randomGet();
                                                 lib.skill.aq_qlmh.change(players, 1);
                                             }
@@ -26758,7 +26758,7 @@ game.import('extension', function () {
                                             );
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) target.draw(2)._triggered = null;
                                         if (targets.length < 2) {
                                             var target2 = game
@@ -26793,7 +26793,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!target.hasSkill('aq_mycj')) {
                                                 target.addSkill('aq_ys');
@@ -26941,7 +26941,7 @@ game.import('extension', function () {
                                                     return current.seatNum == 1;
                                                 })
                                             );
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             targets[0].removeSkill('aq_ys');
                                             targets[0].removeSkill('aq_yn');
                                             targets[0].update();
@@ -26952,7 +26952,7 @@ game.import('extension', function () {
                                                 return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             targets[0].addSkill('aq_lx');
                                             targets[0]
                                                 .when('dieBegin')
@@ -27154,7 +27154,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     },
@@ -27477,7 +27477,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && (current.hp == player.hp || current.maxHp == player.maxHp || current.group == player.group || (current.hasSkill('aq_putong') && player.hasSkill('aq_putong')) || (current.hasSkill('aq_shenwuji') && player.hasSkill('aq_shenwuji')) || (current.hasSkill('aq_shenguang') && player.hasSkill('aq_shenguang')) || (current.hasSkill('aq_shenan') && player.hasSkill('aq_shenan')) || (current.hasSkill('aq_shenling') && player.hasSkill('aq_shenling')) || (current.hasSkill('aq_shenhuan') && player.hasSkill('aq_shenhuan')) || (current.hasSkill('aq_shenshui') && player.hasSkill('aq_shenshui')) || (current.hasSkill('aq_shenhuo') && player.hasSkill('aq_shenhuo')) || (current.hasSkill('aq_shencao') && player.hasSkill('aq_shencao')));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         event.target.addSkill('aq_mycj');
                                         event.target
@@ -28017,7 +28017,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -28031,14 +28031,14 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) > 0 && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
                                             target.drawTo(Math.min(5, target.maxHp))._triggered = null;
                                         }
                                     }
-                                    if (targets && targets.length) event.num = targets.length;
+                                    if (targets?.length) event.num = targets.length;
                                     else event.num = 0;
                                     if (event.num < 2) {
                                         var target2s = game
@@ -28112,7 +28112,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current) && trigger.targets.includes(current) && current.countCards('h') > 0;
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         event.card = target.getCards('h').randomGet();
                                         if (event.card) {
@@ -28188,7 +28188,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     }
@@ -28223,7 +28223,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                     player.addSkill('aq_my');
@@ -28274,7 +28274,7 @@ game.import('extension', function () {
                                             return current.seatNum == 1;
                                         })
                                     );
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_csfy.change(targets[0], 1);
                                     targets[0].addSkill('aq_cjls_pofang');
                                     if (!targets[0].storage.aq_cjls_pofang) targets[0].storage.aq_cjls_pofang = 0;
@@ -28554,7 +28554,7 @@ game.import('extension', function () {
                                         return player.getEnemies().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_guangyaoshenglong') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_guangyaoshenglong')) && current.hasSkill('aq_hmbl') && current.storage.aq_hmbl && current.storage.aq_hmbl > 0;
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     targets[0].storage.aq_hmbl--;
                                     targets[0].update();
                                     if ((targets[0].storage.aq_hmbl | 0) == 0) targets[0].removeSkill('aq_hmbl');
@@ -28565,7 +28565,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) < 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_guangyaoshenglong') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_guangyaoshenglong')) && i.hasSkill('aq_hmbl') && i.storage.aq_hmbl && i.storage.aq_hmbl > 0) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].storage.aq_hmbl--;
                                         targets[0].update();
                                         if ((targets[0].storage.aq_hmbl | 0) == 0) targets[0].removeSkill('aq_hmbl');
@@ -29010,7 +29010,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_czsb');
                                         if (!targets[0].storage.aq_czsb) targets[0].storage.aq_czsb = 0;
                                         targets[0].storage.aq_czsb += Math.min(1, Math.max(6 - targets[0].storage.aq_czsb, 0));
@@ -29032,7 +29032,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[targets.length - 1].addSkill('aq_lx');
                                         targets[targets.length - 1]
                                             .when('dieBegin')
@@ -29189,7 +29189,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_qljs.change(targets[0], 1);
                                         targets[0].update();
                                     }
@@ -29357,7 +29357,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                     }
                                 }
                                 if (name == 'useCardEnd') {
@@ -29527,7 +29527,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -29560,7 +29560,7 @@ game.import('extension', function () {
                                                 return current.isFriendsOf(player) && player.getStorage('aq_szwy_chosen2').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) targets[0].addSkill('aq_szwy_phase');
+                                        if (targets?.length) targets[0].addSkill('aq_szwy_phase');
                                     }
                                     if (game.roundNumber == 2) {
                                         var targets = game
@@ -29568,7 +29568,7 @@ game.import('extension', function () {
                                                 return current.isFriendsOf(player) && player.getStorage('aq_szwy_chosen2').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             targets[0].addSkill('aq_mt');
                                             targets[0].addSkill('aq_mjq');
                                             targets[0].addSkill('aq_hd');
@@ -29611,7 +29611,7 @@ game.import('extension', function () {
                                             for (const i of dead) {
                                                 if (i.isFriendsOf(player) && player.getStorage('aq_szwy_chosen2').includes(i)) targets.push(i);
                                             }
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 targets[0].addSkill('aq_mt');
                                                 targets[0].addSkill('aq_mjq');
                                                 targets[0].addSkill('aq_hd');
@@ -29657,7 +29657,7 @@ game.import('extension', function () {
                                                 return current.isFriendsOf(player) && player.getStorage('aq_szwy_chosen2').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             lib.skill.aq_fs.change(targets[0], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                             targets[0].update();
                                             var target2s = game
@@ -29699,7 +29699,7 @@ game.import('extension', function () {
                                             for (const i of dead) {
                                                 if (i.isFriendsOf(player) && player.getStorage('aq_szwy_chosen2').includes(i)) targets.push(i);
                                             }
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 lib.skill.aq_fs.change(targets[0], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                                 targets[0].update();
                                                 var target2s = game
@@ -29854,7 +29854,7 @@ game.import('extension', function () {
                                                 return current.seatNum == 1;
                                             })
                                         );
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_ywzm');
                                         targets[0].markSkill('aq_ywzm');
                                         if (!targets[0].storage.aq_ywzm) targets[0].storage.aq_ywzm = 0;
@@ -30173,7 +30173,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                             },
@@ -30385,7 +30385,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current);
                                             })
                                             .randomGets(player.storage.aq_zsjm >= 250 ? 2 : 1);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 lib.skill.aq_qljs.change(target, 1);
                                                 target.update();
@@ -30406,7 +30406,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2 * event.num);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2 * event.num);
                                     }
                                     if (player.tongling()) lib.skill.aq_tlzh.change(player, 2 * event.num);
                                     else {
@@ -30424,7 +30424,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2 * event.num);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2 * event.num);
                                         }
                                     }
                                 }
@@ -30532,7 +30532,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 3);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 3);
                                     }
                                 }
                             },
@@ -30758,7 +30758,7 @@ game.import('extension', function () {
                                         return player.getFriends().includes(current);
                                     })
                                     .randomGets(3);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) lib.skill.aq_qyhx.change(target, 1);
                                 }
                             },
@@ -30793,7 +30793,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_nuoya') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_nuoya'));
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     targets[0].addSkill('aq_lx');
                                     targets[0]
                                         .when('dieBegin')
@@ -30821,7 +30821,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                 }
@@ -30903,7 +30903,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 2);
@@ -30922,7 +30922,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                             },
@@ -30959,7 +30959,7 @@ game.import('extension', function () {
                                         return player.getFriends().includes(current);
                                     })
                                     .randomGets(2);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) lib.skill.aq_slzz.change(target, 1);
                                 }
                             },
@@ -31001,7 +31001,7 @@ game.import('extension', function () {
                                         return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_kaya') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_kaya'));
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         targets[i].draw(2)._triggered = null;
                                         targets[i].addSkill('aq_lx');
@@ -31020,7 +31020,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_kaya') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_kaya'))) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             lib.skill.aq_fs.change(targets[i], Math.max(Math.floor(0.33 * player.maxHp), 1));
                                             targets[i].update();
@@ -31152,7 +31152,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                     player.addSkill('aq_tjjyyx_z');
                                     if (!player.storage.aq_tjjyyx_z) player.storage.aq_tjjyyx_z = 0;
@@ -31245,7 +31245,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                     player.addSkill('aq_tjjyyx_n');
                                     if (!player.storage.aq_tjjyyx_n) player.storage.aq_tjjyyx_n = 0;
@@ -31388,7 +31388,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_jiyi_z') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_jiyi_z'))) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         lib.skill.aq_fs.change(targets[i], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                         targets[i].update();
@@ -31401,7 +31401,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_jiyi_z') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_jiyi_z'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             lib.skill.aq_fs.change(targets[i], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                             targets[i].update();
@@ -31424,7 +31424,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 player.storage.aq_jyyx_z--;
                                 player.update();
@@ -31469,7 +31469,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_jiyi_n') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_jiyi_n'))) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         lib.skill.aq_fs.change(targets[i], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                         targets[i].update();
@@ -31481,7 +31481,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_jiyi_n') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_jiyi_n'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             lib.skill.aq_fs.change(targets[i], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                             targets[i].update();
@@ -31503,7 +31503,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 player.storage.aq_jyyx_n--;
                                 player.update();
@@ -31588,7 +31588,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -31633,7 +31633,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                         }
                                     }
                                 }
@@ -31685,7 +31685,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_jinyu') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_jinyu')) && (current.countCards('h') >= Math.min(5, current.maxHp) || (current.countCards('h') > 0 && current.storage.aq_qishi && current.storage.aq_qishi >= 100));
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.gainPlayerCard(targets[0], 'he', 'visible', true);
                                     player.addSkill('aq_blfh');
                                     player
@@ -31724,7 +31724,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_jinyu') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_jinyu'));
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     if (!player.hasSkill('aq_blfh_chosen')) {
                                         player.addSkill('aq_blfh_chosen');
                                         player
@@ -31851,13 +31851,13 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                                 target.update();
                                             }
                                         }
-                                        if (targets && targets.length) event.num = targets.length;
+                                        if (targets?.length) event.num = targets.length;
                                         else event.num = 0;
                                         if (event.num < 2) {
                                             var target2s = game
@@ -31934,7 +31934,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player);
                                     })
                                     .randomGets(2);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) lib.skill.aq_sjcq.change(target, 1);
                                 }
                             },
@@ -31976,7 +31976,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 2);
@@ -31995,7 +31995,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                                 var targets = game
@@ -32123,7 +32123,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -4);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -4);
                                     }
                                 }
                             },
@@ -32172,7 +32172,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_mzgn') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_mzgn'))) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_fs.change(targets[0], Math.max(Math.floor(1.33 * player.maxHp), 1));
                                     targets[0].update();
                                     targets[0].addSkill('aq_lx');
@@ -32255,7 +32255,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 if (player.tongling()) {
                                     lib.skill.aq_tlzh.change(player, 2);
@@ -32274,7 +32274,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                     }
                                 }
                                 player.addSkill('aq_hhma_lj');
@@ -32596,7 +32596,7 @@ game.import('extension', function () {
                                                     return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                                 })
                                                 .sortBySeat(_status.currentPhase);
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 for (var target of targets) trigger.parent.directHit.push(target);
                                             }
                                         }
@@ -32692,7 +32692,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.num = game.roundNumber >= 2 ? 2 : 1;
                                         target2s = targets.randomGets(event.num);
                                         player.line(target2s);
@@ -32805,7 +32805,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                         }
                                         if (player.tongling()) {
                                             lib.skill.aq_tlzh.change(player, 1);
@@ -32824,7 +32824,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                             }
                                         }
                                     }
@@ -32884,7 +32884,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) lib.skill.aq_bj.change(target, 3);
                                     }
                                     if (player.storage.aq_xkhyjp && player.storage.aq_xkhyjp >= 150) {
@@ -33243,7 +33243,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.num =
                                             player.getHistory('useCard', function (evt) {
                                                 return evt.card.name == 'sha';
@@ -33272,7 +33272,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && player.getStorage('aq_ztslc_effect').includes(i)) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                             targets[0].update();
                                         }
@@ -33366,7 +33366,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.addSkill('aq_nmts');
                                         target.update();
@@ -33442,7 +33442,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 3);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 3);
                                     }
                                 }
                             },
@@ -33500,7 +33500,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     }
@@ -33555,7 +33555,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && player.getStorage('aq_xmjdyj_effect').includes(i) && !i.hasSkill('aq_xmjdyj_chosen2')) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             targets[0].addSkill('aq_xmjdyj_chosen2');
                                             targets[0]
                                                 .when({ global: 'roundEnd' })
@@ -33725,7 +33725,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) > 0 && player.getStorage('aq_klt').includes(i)) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                         targets[0].update();
                                     }
@@ -33734,7 +33734,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_klt').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         if (!targets[0].hasSkill('aq_my')) {
                                             targets[0].addSkill('aq_my');
                                             targets[0].markSkill('aq_my');
@@ -33958,7 +33958,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                         }
                                     }
                                     player.addSkill('aq_mcwydntx2_qyzl');
@@ -33996,7 +33996,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                     player.addSkill('aq_mcwydntx2_qyzl');
                                     player.storage.aq_mcwydntx2_qyzl = 3;
@@ -34152,7 +34152,7 @@ game.import('extension', function () {
                                                                 targets.push(i);
                                                             }
                                                         }
-                                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                                     }
                                                 }
                                                 player.addSkill('aq_mcwydntx2_qyzl');
@@ -34327,7 +34327,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -34473,7 +34473,7 @@ game.import('extension', function () {
                                     })
                                     .sortBySeat(_status.currentPhase);
                                 if (name == 'roundStart') {
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (target.hasSkill('aq_myzl')) target.removeSkill('aq_myzl');
                                             else {
@@ -34484,7 +34484,7 @@ game.import('extension', function () {
                                     }
                                 }
                                 if (name == 'aq_tlAfter' || name == 'dieAfter') {
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.removeSkill('aq_mymy');
                                         }
@@ -34683,7 +34683,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     event.target = targets.randomGet();
                                     lib.skill.aq_fs.change(event.target, Math.max(Math.floor(0.33 * player.maxHp), 1));
                                     event.target.update();
@@ -34771,7 +34771,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_qsyj.change(target, 1);
                                             target.update();
@@ -34842,7 +34842,7 @@ game.import('extension', function () {
                                                 return current.tongling() && current.isFriendsOf(player) && current.hasSkill('aq_mymy');
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_mymy');
                                                 target.update();
@@ -35073,7 +35073,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && (current.hp == player.hp || current.maxHp == player.maxHp || current.group == player.group || (current.hasSkill('aq_putong') && player.hasSkill('aq_putong')) || (current.hasSkill('aq_shenwuji') && player.hasSkill('aq_shenwuji')) || (current.hasSkill('aq_shenguang') && player.hasSkill('aq_shenguang')) || (current.hasSkill('aq_shenan') && player.hasSkill('aq_shenan')) || (current.hasSkill('aq_shenling') && player.hasSkill('aq_shenling')) || (current.hasSkill('aq_shenhuan') && player.hasSkill('aq_shenhuan')) || (current.hasSkill('aq_shenshui') && player.hasSkill('aq_shenshui')) || (current.hasSkill('aq_shenhuo') && player.hasSkill('aq_shenhuo')) || (current.hasSkill('aq_shencao') && player.hasSkill('aq_shencao')));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         event.target.addSkill('aq_zfly');
                                         if (!event.target.storage.aq_zfly_source) event.target.storage.aq_zfly_source = player;
@@ -35432,7 +35432,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_lhzj');
                                             target.update();
@@ -35450,7 +35450,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -35467,7 +35467,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!player.getStorage('aq_blcl_an_chosen2').includes(target)) {
                                                 player.addSkill('aq_blcl_an_chosen2');
@@ -35557,7 +35557,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_lhyj');
                                             target.update();
@@ -35575,7 +35575,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         event.target = targets.randomGet();
                                         player.line(event.target);
                                         trigger.targets.push(event.target);
@@ -35592,7 +35592,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && trigger.targets.includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             if (!player.getStorage('aq_blcl_ling_chosen2').includes(target)) {
                                                 player.addSkill('aq_blcl_ling_chosen2');
@@ -35679,7 +35679,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                     }
                                 }
                             },
@@ -35743,7 +35743,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                     }
                                     var targets = game
                                         .filterPlayer(function (current) {
@@ -35796,7 +35796,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                 }
                             },
                             subSkill: {
@@ -35836,7 +35836,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.addSkill('aq_sxyz');
                                         target.markSkill('aq_sxyz');
@@ -35904,7 +35904,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_zhixu_s') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_zhixu_s'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].addSkill('aq_lx');
                                         targets[0]
                                             .when('dieBegin')
@@ -35929,7 +35929,7 @@ game.import('extension', function () {
                                                     targets.push(i);
                                                 }
                                             }
-                                            if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                            if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                         }
                                     }
                                 }
@@ -36090,7 +36090,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && trigger.targets.includes(current) && player.getHistory('useCard', (evt) => ['trick'].includes(get.type(evt.card)) && get.tag(evt.card, 'damage') && evt.targets && evt.targets.length == 1 && evt.targets.includes(current)).length == 1;
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 if (!target.storage.aq_lysj4) target.storage.aq_lysj4 = 0;
                                                 if (!target.storage.aq_lysj) target.storage.aq_lysj = 0;
@@ -36224,7 +36224,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .randomGets([1, 2].randomGet());
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets);
                                         for (var target of targets) trigger.targets.push(target);
                                     }
@@ -36372,7 +36372,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .randomGets([1, 2].randomGet());
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets);
                                         for (var target of targets) trigger.targets.push(target);
                                     }
@@ -36385,7 +36385,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_wz_aruisi') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_wz_aruisi'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (let i = 0; i < targets.length; i++) {
                                             targets[i].addSkill('aq_qhdy_damage2');
                                             targets[i]
@@ -36408,7 +36408,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_wz_aruisi') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_wz_aruisi'))) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (let i = 0; i < targets.length; i++) {
                                                 targets[i].addSkill('aq_qhdy_damage2');
                                                 targets[i]
@@ -36813,14 +36813,14 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                                 var targets = game
                                     .filterPlayer(function (current) {
                                         return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     targets[0].addSkill('aq_ms');
                                     targets[0].markSkill('aq_ms');
                                     if (!targets[0].storage.aq_ms) targets[0].storage.aq_ms = 0;
@@ -36893,7 +36893,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         targets[0].drawTo(Math.min(5, targets[0].maxHp))._triggered = null;
                                         targets[0].addSkill('aq_my');
                                         targets[0].markSkill('aq_my');
@@ -37103,7 +37103,7 @@ game.import('extension', function () {
                                             if (get.attitude(player, i) > 0 && player.getStorage('aq_zhqyjs').includes(i) && i.hasSkill('aq_lzqn')) targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) player.addSkill('aq_zszm');
+                                    if (targets?.length) player.addSkill('aq_zszm');
                                 }
                                 if (name == 'useCardEnd') {
                                     player.addSkill('aq_nrqq_chosen');
@@ -37171,7 +37171,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                     }
                                 }
                             },
@@ -37554,7 +37554,7 @@ game.import('extension', function () {
                                                 return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             targets[0].addSkill('aq_lx');
                                             targets[0]
                                                 .when('dieBegin')
@@ -37579,7 +37579,7 @@ game.import('extension', function () {
                                                 if (get.attitude(player, i) > 0 && player.getStorage('aq_zhqyjs').includes(i)) target2s.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             if (!player.storage.aq_benti) player.storage.aq_benti = player.name1;
                                             player.update();
                                             if (!player.storage.aq_bianshen) player.storage.aq_bianshen = [];
@@ -37963,7 +37963,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -2);
                                 }
                             },
                             subSkill: {
@@ -38109,7 +38109,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && player.getStorage('aq_zhqyjs').includes(i) && i.hasSkill('aq_shenguang')) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                     targets[0].update();
                                 } else {
@@ -38118,7 +38118,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current) && current.hasSkill('aq_shenguang');
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                         targets[0].update();
                                     }
@@ -38249,7 +38249,7 @@ game.import('extension', function () {
                                 for (const i of dead) {
                                     if (get.attitude(player, i) > 0 && player.getStorage('aq_zhqyjs').includes(i)) targets.push(i);
                                 }
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                     targets[0].drawTo(Math.min(5, targets[0].maxHp))._triggered = null;
                                     targets[0].update();
@@ -38265,7 +38265,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                         targets[0].drawTo(Math.min(5, targets[0].maxHp))._triggered = null;
                                         targets[0].update();
@@ -38464,7 +38464,7 @@ game.import('extension', function () {
                                                 return current.isFriendsOf(player);
                                             })
                                             .randomGets(3);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_js2');
                                                 if (!target.storage.aq_js2) target.storage.aq_js2 = 0;
@@ -38492,7 +38492,7 @@ game.import('extension', function () {
                                                 );
                                             })
                                             .randomGets(3);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) lib.skill.aq_ld.change(target, Math.max(Math.floor(0.5 * player.maxHp), 1));
                                             if (targets.length < 3) {
                                                 var target2s = game
@@ -38554,7 +38554,7 @@ game.import('extension', function () {
                                             );
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_hd');
                                             target.markSkill('aq_hd');
@@ -38601,7 +38601,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_js2');
                                             if (!target.storage.aq_js2) target.storage.aq_js2 = 0;
@@ -38617,7 +38617,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_tzfs');
                                             target.markSkill('aq_tzfs');
@@ -39470,13 +39470,13 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) > 0 && targets.length < 3) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 lib.skill.aq_fs.change(target, Math.max(Math.floor(0.66 * player.maxHp), 1));
                                                 target.update();
                                             }
                                         }
-                                        if (targets && targets.length) event.num = targets.length;
+                                        if (targets?.length) event.num = targets.length;
                                         else event.num = 0;
                                         if (event.num < 3) {
                                             var target2s = game
@@ -39557,7 +39557,7 @@ game.import('extension', function () {
                                                     return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                                 })
                                                 .randomGets([1, 2].randomGet());
-                                            if (targets && targets.length) {
+                                            if (targets?.length) {
                                                 player.line(targets);
                                                 for (var target of targets) trigger.targets.push(target);
                                             }
@@ -39837,7 +39837,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -3);
                                     }
                                     if (player.storage.aq_cjtcyy >= 250) {
                                         player.drawTo(Math.min(5, player.maxHp))._triggered = null;
@@ -40125,13 +40125,13 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 1) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(Math.floor(1.33 * player.maxHp), 1));
                                             target.update();
                                         }
                                     }
-                                    if (targets && targets.length) event.num = targets.length;
+                                    if (targets?.length) event.num = targets.length;
                                     var target4s = [];
                                     var target2s = game
                                         .filterPlayer(function (current) {
@@ -40227,7 +40227,7 @@ game.import('extension', function () {
                                         return current.isFriendsOf(player) && current.hasSkill(event.shuxing2);
                                     })
                                     .randomGets(event.num);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var target of targets) {
                                         target.addSkill('aq_xsjl');
                                         target.update();
@@ -40399,7 +40399,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_lhzj');
                                             target.update();
@@ -40412,7 +40412,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_lhyj');
                                             target.update();
@@ -40657,7 +40657,7 @@ game.import('extension', function () {
                                                 );
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             targets[0].addSkill('aq_lx');
                                             targets[0]
                                                 .when('dieBegin')
@@ -41026,7 +41026,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                                 event.num--;
@@ -41048,7 +41048,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 event.num2--;
                                 ('step 4');
@@ -41060,7 +41060,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_ydsm');
                                             player
@@ -41186,7 +41186,7 @@ game.import('extension', function () {
                                                 return current.isFriendsOf(player);
                                             })
                                             .randomGets(3);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_xgsl');
                                                 target.markSkill('aq_xgsl');
@@ -41286,7 +41286,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                                 event.num--;
@@ -41308,7 +41308,7 @@ game.import('extension', function () {
                                             targets.push(i);
                                         }
                                     }
-                                    if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
+                                    if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), -1);
                                 }
                                 event.num2--;
                                 ('step 4');
@@ -41402,7 +41402,7 @@ game.import('extension', function () {
                                                 return current.isFriendsOf(player);
                                             })
                                             .randomGets(3);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 target.addSkill('aq_xgsl1');
                                                 target.markSkill('aq_xgsl1');
@@ -41495,7 +41495,7 @@ game.import('extension', function () {
                                         lib.skill.aq_ld.change(player, Math.max(Math.floor(Math.max(0.5 * players[0].maxHp, 1)), 1));
                                         player.storage.aq_xgsl--;
                                         player.update();
-                                    } else if (targets && targets.length) {
+                                    } else if (targets?.length) {
                                         lib.skill.aq_ld.change(player, Math.max(Math.floor(Math.max(0.5 * targets[0].maxHp, 1)), 1));
                                         player.storage.aq_xgsl--;
                                         player.update();
@@ -41509,7 +41509,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_nflt') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_nflt'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_ld.change(targets[0], Math.max(targets[0].maxHp, 1));
                                         targets[0].addSkill('aq_jz');
                                         targets[0].markSkill('aq_jz');
@@ -41550,7 +41550,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (i.isFriendsOf(player) && ((!i.hasSkill('aq_bs') && i.name == 'aq_sy_nflt') || (i.hasSkill('aq_bs') && i.storage.aq_benti && i.storage.aq_benti == 'aq_sy_nflt'))) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             lib.skill.aq_ld.change(targets[0], Math.max(targets[0].maxHp, 1));
                                             targets[0].addSkill('aq_jz');
                                             targets[0].markSkill('aq_jz');
@@ -41689,7 +41689,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player) && ((!current.hasSkill('aq_bs') && current.name == 'aq_sy_nflt1') || (current.hasSkill('aq_bs') && current.storage.aq_benti && current.storage.aq_benti == 'aq_sy_nflt1'));
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_ld.change(targets[0], Math.max(targets[0].maxHp, 1));
                                         targets[0].addSkill('aq_jz');
                                         targets[0].markSkill('aq_jz');
@@ -41865,7 +41865,7 @@ game.import('extension', function () {
                                             }
                                         }
                                     }
-                                } else if (targets && targets.length) {
+                                } else if (targets?.length) {
                                     var num = 0;
                                     player.getHistory('sourceDamage', function (evt) {
                                         if (evt.num > 0 && evt.card == trigger.card) num += evt.num;
@@ -41877,7 +41877,7 @@ game.import('extension', function () {
                                     player.update();
                                     if (player.storage.aq_xgsl2 >= Math.max(Math.ceil(1.2 * targets[0].maxHp), 1)) {
                                         player.removeSkill('aq_xgsl2');
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             if (!targets[0].storage.aq_xgly1) targets[0].storage.aq_xgly1 = 0;
                                             targets[0].storage.aq_xgly1++;
                                             targets[0].update();
@@ -41975,7 +41975,7 @@ game.import('extension', function () {
                                     if (!player.storage.aq_xgly2) player.storage.aq_xgly2 = 0;
                                     player.storage.aq_xgly2++;
                                     player.update();
-                                } else if (targets && targets.length) {
+                                } else if (targets?.length) {
                                     lib.skill.aq_ld.change(trigger.player, Math.max(Math.ceil(0.6 * targets[0].maxHp), 1));
                                     if (!player.storage.aq_xgly2) player.storage.aq_xgly2 = 0;
                                     player.storage.aq_xgly2++;
@@ -42118,7 +42118,7 @@ game.import('extension', function () {
                                                         targets.push(i);
                                                     }
                                                 }
-                                                if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
+                                                if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 2);
                                             }
                                         }
                                     },
@@ -42194,7 +42194,7 @@ game.import('extension', function () {
                                     }
                                 }
                                 if (players && players.length) event.num1 = Math.min(Math.ceil(0.6 * Math.max(players[0].maxHp, 1)), trigger.num - (player.storage.aq_ld | 0));
-                                else if (targets && targets.length) event.num1 = Math.min(Math.ceil(0.6 * Math.max(targets[0].maxHp, 1)), trigger.num - (player.storage.aq_ld | 0));
+                                else if (targets?.length) event.num1 = Math.min(Math.ceil(0.6 * Math.max(targets[0].maxHp, 1)), trigger.num - (player.storage.aq_ld | 0));
                                 else event.finish();
                                 ('step 1');
                                 var targets = game
@@ -42209,7 +42209,7 @@ game.import('extension', function () {
                                         );
                                     })
                                     .sortBySeat(_status.currentPhase);
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     event.num = Math.min(targets[0].storage.aq_ld, event.num1);
                                     targets[0].storage.aq_ld -= event.num;
                                     targets[0].update();
@@ -42552,7 +42552,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .randomGets(2);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         player.line(targets);
                                         for (var target of targets) trigger.targets.push(target);
                                     }
@@ -42710,7 +42710,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (get.attitude(player, i) > 0 && player.getStorage('aq_zhqyjs').includes(i)) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                         targets[0].update();
                                     } else {
@@ -42719,7 +42719,7 @@ game.import('extension', function () {
                                                 return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             lib.skill.aq_fs.change(targets[0], Math.max(player.maxHp, 1));
                                             targets[0].update();
                                         }
@@ -42803,7 +42803,7 @@ game.import('extension', function () {
                                             return player.getEnemies().includes(current) && !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, player, current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         target2s = targets.randomGets(2);
                                         player.line(target2s);
                                         for (var target2 of target2s) trigger.targets.push(target2);
@@ -42897,7 +42897,7 @@ game.import('extension', function () {
                                             return current.isFriendsOf(player);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_sczl');
                                             target.markSkill('aq_sczl');
@@ -42918,13 +42918,13 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
                                         }
                                     }
-                                    if (targets && targets.length) event.num = targets.length;
+                                    if (targets?.length) event.num = targets.length;
                                     else event.num = 0;
                                     if (event.num < 2) {
                                         var target4s = [];
@@ -43154,7 +43154,7 @@ game.import('extension', function () {
                                                 targets.push(i);
                                             }
                                         }
-                                        if (targets && targets.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
+                                        if (targets?.length) lib.skill.aq_tlzh.change(targets.randomGet(), 1);
                                     }
                                 }
                                 player.storage.aq_sczl--;
@@ -43187,7 +43187,7 @@ game.import('extension', function () {
                                             return player.isEnemiesOf(current);
                                         })//QQQ
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             target.addSkill('aq_zgf');
                                             if (!target.storage.aq_twzg_source) target.storage.aq_twzg_source = player;
@@ -43255,7 +43255,7 @@ game.import('extension', function () {
                                                 return player.getEnemies().includes(current) && current.hasSkill('aq_twzg');
                                             })
                                             .sortBySeat(_status.currentPhase);
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             for (var target of targets) {
                                                 if (!target.storage.aq_hmsh) target.storage.aq_hmsh = 0;
                                                 target.storage.aq_hmsh += Math.min(Math.max(Math.round(0.5 * (Math.min(5, player.maxHp) - Math.abs(player.maxHp - 4))), 1), 5);
@@ -43740,7 +43740,7 @@ game.import('extension', function () {
                                             return player.getFriends().includes(current) && player.getStorage('aq_zhqyjs').includes(current);
                                         })
                                         .sortBySeat(_status.currentPhase);
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         lib.skill.aq_ld.change(targets[0], Math.max(Math.floor(0.4 * player.maxHp), 1));
                                     }
                                 }
@@ -43797,7 +43797,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 1) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
@@ -44044,7 +44044,7 @@ game.import('extension', function () {
                                     for (const i of dead) {
                                         if (i.isFriendsOf(player) && targets.length < 2) targets.push(i);
                                     }
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         for (var target of targets) {
                                             lib.skill.aq_fs.change(target, Math.max(player.maxHp, 1));
                                             target.update();
@@ -44926,7 +44926,7 @@ game.import('extension', function () {
                                         for (const i of dead) {
                                             if (get.attitude(player, i) < 0 && i.tongling() && (player.storage.aq_tl_count | 0) <= (i.storage.aq_tl_count | 0)) targets.push(i);
                                         }
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             lib.skill.aq_tlzh.change(targets.randomGet(), -event.num);
                                         }
                                     }

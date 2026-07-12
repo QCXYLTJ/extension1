@@ -12229,7 +12229,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         var cards = get.randomCards(2, function (card) {
                             return card.name == 'tiesuo';
                         });
-                        if (cards && cards.length) {
+                        if (cards?.length) {
                             player.gain(cards, 'log', 'gain2');
                         } else {
                             player.chat('没有【玄铁索链】了吗');
@@ -15900,7 +15900,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     num = num / 9;
                                     if (typeof event.baseDamage != 'number') event.baseDamage = 1;
                                     game.addVideo('jiuNode', target, true);
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         card = cards[0];
                                     }
                                     if (!target.storage.jiu) target.storage.jiu = 0;
@@ -19922,7 +19922,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             event.cards = result.slice(0);
                         }
                         ('step 2');
-                        if (cards && cards.length) {
+                        if (cards?.length) {
                             var card = cards.shift();
                             if (player.getCards('h').includes(card)) {
                                 if (get.color(card) == 'red') {
@@ -20145,7 +20145,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 game.playJY(['ywhy_mojin1', 'ywhy_mojin2'].randomGet());
                                 var cards = player.getExpansions('ywhy_mojin');
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     var mjcard = cards[0];
                                     player.showCards([mjcard]);
                                     if (mjcard.name == 'huogong' || (mjcard.name == 'sha' && mjcard.nature == 'fire')) {
@@ -20372,7 +20372,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                     return cards.length;
                                 });
                                 var target = undefined;
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     target = targets[0];
                                 }
                                 var cards = target.getExpansions('ywhy_mojin');
@@ -20471,7 +20471,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                                 var targets = game.filterPlayer(function (current) {
                                     return !current.hasSkill('ywhy_lianshi') && !current.hasSkill('ywhy_modao_lingfu') && current != player; //&&!get.isXingShi(current);
                                 });
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     event.target = targets[Math.floor(Math.random() * targets.length)];
                                     event.target.damage(1, player);
                                     player.line(event.target, 'green');

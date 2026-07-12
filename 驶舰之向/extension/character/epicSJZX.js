@@ -10386,7 +10386,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           var cards = player.getCards('s', function (card) {
             return card.hasGaintag('tongqingmrfzx');
           });
-          if (cards && cards.length) {
+          if (cards?.length) {
             await player.loseToDiscardpile(cards);
           }
           let cardsList = lib.skill.tongqingmrfz.getDiscard(trigger, player);

@@ -665,7 +665,7 @@ const card = {
 					target.getStat().card.jiu--;
 				}
 			} else {
-				if (cards && cards.length) {
+				if (cards?.length) {
 					event.card = cards[0];
 				}
 				game.broadcastAll(

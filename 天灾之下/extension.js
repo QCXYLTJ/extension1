@@ -14295,14 +14295,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length)
+								if (targets?.length)
 									for (var i of targets) {
 										if (i.countCards('ej')) i.gain(i.getCards('ej'), 'gain2'); //QQQ
 									}
 								('step 3');
-								if (targets && targets.length) for (var i of targets) i.turnOver(false);
+								if (targets?.length) for (var i of targets) i.turnOver(false);
 								('step 4');
-								if (targets && targets.length) for (var i of targets) i.link(false);
+								if (targets?.length) for (var i of targets) i.link(false);
 							},
 						},
 						/////塞西莉亚
@@ -14438,7 +14438,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.targets2 = [];
 								player.awakenSkill(event.name);
 								('step 1');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									var target = targets.shift();
 									event.target = target;
 									player.line(target);

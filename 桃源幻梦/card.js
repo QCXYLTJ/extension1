@@ -414,7 +414,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 content() {
                     target.storage.hyym_guihuajiux = game.createCard('hyym_guihuajiu');
                     target.addSkill('hyym_guihuajiux');
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         card = cards[0];
                     }
                 },
@@ -536,7 +536,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 content() {
                     target.storage.hyym_zhuangyuanhongx = game.createCard('hyym_zhuangyuanhong');
                     target.addSkill('hyym_zhuangyuanhongx');
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         card = cards[0];
                     }
                 },
@@ -663,7 +663,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 content() {
                     targets[0].storage.hyym_baozoubingganx = game.createCard('hyym_baozoubinggan');
                     targets[0].addSkill('hyym_baozoubingganx');
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         card = cards[0];
                     }
                 },
@@ -690,7 +690,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 content() {
                     target.storage.hyym_xianrouzongzix = game.createCard('hyym_xianrouzongzi');
                     target.addSkill('hyym_xianrouzongzix');
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         card = cards[0];
                     }
                 },
@@ -1962,7 +1962,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     target.storage.jianguo = player;
                     target.storage.hyym_jianguotouzix = game.createCard('hyym_jianguotouzi');
                     target.addSkill('hyym_jianguotouzix');
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         card = cards[0];
                     }
                 },

@@ -2102,7 +2102,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
         phaseDraw() {
           'step 0';
           var cards = Array.from(ui.discardPile.childNodes);
-          if (cards && cards.length) {
+          if (cards?.length) {
             player.chooseButton(['选择要获得的牌', cards], [1, 2]).set('ai', function (button) {
               return get.value(button.link, _status.event.player, 'raw');
             });

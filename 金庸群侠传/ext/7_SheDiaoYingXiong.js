@@ -2733,7 +2733,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               var number = result.cards[0].number;
               player.discard(result.cards[0]);
               var cards = get.randomCards(5, (cardx) => cardx.number == number, 'cardPile');
-              if (cards && cards.length) {
+              if (cards?.length) {
                 player.gain(cards, 'log', 'gain2');
                 event.cards = cards;
                 event.targets = [];

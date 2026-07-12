@@ -14812,7 +14812,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     event.cardlistx = [];
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         event.cardlistx.push(cards);
                                     }
                                     if (result.targets && result.targets.length && result.targets[0]) {
@@ -15952,7 +15952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         cards.addArray(i[1]);
                                                     }
                                                 }
-                                                if (cards && cards.length) {
+                                                if (cards?.length) {
                                                     dialog.addText('<div class="text center">此回合结束时,将对以下牌的拥有者伏诛!</div>');
                                                     dialog.addSmall(cards);
                                                 } else {
@@ -23887,7 +23887,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var cards = [];
                                         if (get.itemtype(trigger.respondTo[1]) == 'card') cards.push(trigger.respondTo[1]);
                                         else if (trigger.respondTo[1].cards) cards.addArray(trigger.respondTo[1].cards);
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             player.gain(cards, 'log', 'gain2').gaintag.add('tyj_reqingguo');
                                         }
                                     },
@@ -25046,7 +25046,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             var cards = trigger.source.getCards('h', function (card) {
                                                 return card.name != 'du';
                                             });
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 var cardsx = cards.randomGet();
                                                 cardsx.init([cardsx.suit, cardsx.number, 'du']);
                                                 game.log(trigger.source, '的一张手牌被转化为', '#y【毒】');
@@ -25728,7 +25728,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var cards = player.getCards('h', function (card) {
                                         return list.includes(card.suit);
                                     });
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         player.chooseUseTarget('juedou', '选择【决斗】(' + get.translation(cards) + ')的目标', get.prompt(event.name), cards, true, false);
                                     }
                                 }
@@ -29894,7 +29894,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                 });
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     return targets;
                                 }
                                 return 'player';
@@ -35427,7 +35427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var cards = [];
                                 if (get.color(trigger.card1) == 'black' && get.position(trigger.card1, true) == 'o') cards.push(trigger.card1);
                                 if (get.color(trigger.card2) == 'black' && get.position(trigger.card2, true) == 'o') cards.push(trigger.card2);
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     player.chooseUseTarget({ name: 'juedou' }, '昂斗:选择【决斗】(' + get.translation(cards) + ')的目标');
                                 }
                             },
@@ -35810,7 +35810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return card.name != 'du';
                                 });
                                 var numx = trigger.num;
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     player
                                         .choosePlayerCard(
                                             'h',
@@ -39382,7 +39382,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 var cards = trigger.cards.filterInD();
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     if (!trigger.targets[0].storage.tyj_yuyou_tempban) {
                                         trigger.targets[0].storage.tyj_yuyou_tempban = [];
                                     }
@@ -40613,7 +40613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.cards2 = result.cards.filter(function (card) {
                                         return namelist.includes(card.name);
                                     });
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         event.target.draw(cards.length);
                                     }
                                 } else event.finish();

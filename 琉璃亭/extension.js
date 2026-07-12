@@ -13844,7 +13844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'thunder');
                                     for (var i = 0; i < targets.length; i++) {
                                         player.useCard({ name: 'sha' }, targets[i], false);

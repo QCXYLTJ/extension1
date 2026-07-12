@@ -25126,7 +25126,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else {
 									game.addVideo('jiuNode', target, true);
-									if (cards && cards.length) {
+									if (cards?.length) {
 										card = cards[0];
 									}
 									if (!target.storage.jiu) target.storage.jiu = 0;

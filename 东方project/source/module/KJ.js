@@ -603,7 +603,7 @@ KJZR = function (lib, game, ui, get, ai, _status) {
                 }
               }
               var result = '';
-              if (cards && cards.length) result += '卡牌:' + cards + '<br>';
+              if (cards?.length) result += '卡牌:' + cards + '<br>';
               if (skills && skills.length) result += '技能:' + skills;
               return result;
             },

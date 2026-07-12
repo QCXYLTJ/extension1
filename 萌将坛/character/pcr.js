@@ -2654,7 +2654,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					trigger.parent.effectCount += 2;
 					game.log(trigger.card, '额外结算两次');
 					var targets = lib.skill.scqhPcr_liegong.canCompare(trigger, player);
-					if (targets && targets.length) {
+					if (targets?.length) {
 						var next = player.chooseToCompare(targets);
 						next.callback = lib.skill[event.name].callback;
 					}

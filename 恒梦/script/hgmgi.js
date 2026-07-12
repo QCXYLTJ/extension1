@@ -13112,7 +13112,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                   }
                 });
               }
-              if (cards && cards.length) player.addToExpansion(cards, 'gain2').gaintag.add('mgikli');
+              if (cards?.length) player.addToExpansion(cards, 'gain2').gaintag.add('mgikli');
             },
           },
           mark: {

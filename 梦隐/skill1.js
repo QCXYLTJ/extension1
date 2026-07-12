@@ -4185,7 +4185,7 @@ const skill = {
                 player.line(event.targets, 'water');
             } else event.finish();
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 for (const i of targets) {
                     let target = i;
                     player.storage.mx_shuangmie.push(target);
@@ -14643,7 +14643,7 @@ const skill = {
             event.targets = result.targets;
             player.line(event.targets, 'red');
             ('step 3');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 for (const i of targets) {
                     player.discardPlayerCard(i, 'hej', 'visible', true);
                 }
@@ -26734,7 +26734,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'ice');
 
                 for (const i of targets) {
@@ -39781,7 +39781,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'fire');
 
                 for (const i of targets) {
@@ -62458,7 +62458,7 @@ const skill = {
             let info = '<br><br>令一名其他角色成为【' + get.translation(trigger.card) + '】的使用者？';
             let targets = trigger.targets;
             event.num = 0;
-            if (targets && targets.length) {
+            if (targets?.length) {
                 event.num++;
             }
             player
@@ -62470,7 +62470,7 @@ const skill = {
                     let num = 0;
                     let info = get.info(trigger.card);
                     const select = get.select(info.selectTarget);
-                    if (targets && targets.length) {
+                    if (targets?.length) {
                         for (let a of targets) {
                             let b = a;
                             if (info.toself) {
@@ -64242,7 +64242,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'fire');
 
                 for (const i of targets) {
@@ -68905,7 +68905,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'metal');
 
                 for (const i of targets) {

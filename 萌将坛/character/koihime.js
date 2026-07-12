@@ -1209,7 +1209,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 				content() {
 					'step 0';
 					var draw = 3;
-					if (cards && cards.length) {
+					if (cards?.length) {
 						var equip = cards.filter((card) => {
 							var type = get.type2(card, player);
 							var position = get.position(card, true);
@@ -6366,7 +6366,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					game.hasPlayer(function (current) {
 						if (current == player) return false;
 						var cards = lib.skill.scqhKoihime_xiahui.xiahui(trigger, player, current) || [];
-						if (cards && cards.length) {
+						if (cards?.length) {
 							current.addSkill('xiehui2');
 							current.addGaintag(cards, 'xiehui');
 						}

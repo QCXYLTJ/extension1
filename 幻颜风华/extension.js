@@ -2665,7 +2665,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], ['fire', 'thunder'].randomGet());
 										targets[i].chooseToDiscard('h', true);
@@ -22364,7 +22364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'white');
 									for (var i = 0; i < targets.length; i++) {
 										player.gainPlayerCard('hej', targets[i], true);
@@ -22469,7 +22469,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'white');
 									for (var i = 0; i < targets.length; i++) {
 										player.gainPlayerCard('hej', targets[i], true);

@@ -28447,7 +28447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 mark(dialog, content, player) {
                                     var cards = player.getStorage('tx_xhjs_shicao_record');
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         if (player.isUnderControl(true)) {
                                             dialog.addText(`上一次观看的${player.storage.tx_xhjs_shicao_bottom ? '牌堆底' : '牌堆顶'}的牌:`);
                                             dialog.addAuto(cards);

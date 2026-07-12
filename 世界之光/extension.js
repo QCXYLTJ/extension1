@@ -15229,7 +15229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage(3);
@@ -23653,7 +23653,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'thunder');
                                     for (var i = 0; i < targets.length; i++) {
                                         player.discardPlayerCard('hej', targets[i], 3, true);

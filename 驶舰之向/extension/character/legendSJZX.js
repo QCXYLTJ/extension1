@@ -18895,7 +18895,7 @@ game.import('character', function () {
             var cards = player.getCards('s', function (card) {
               return card.hasGaintag('yuximrfzx');
             });
-            if (cards && cards.length) dialog.addAuto('其他角色计算与你的距离+2');
+            if (cards?.length) dialog.addAuto('其他角色计算与你的距离+2');
             else return `没有‘死魂灵’`;
             if (game.me == player) dialog.addAuto(cards);
             else dialog.addAuto(`共有${cards.length}张牌`);

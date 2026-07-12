@@ -7702,7 +7702,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 markcount: () => null,
                                 mark(dialog, content, player) {
                                     const cards = player.storage.xunlongduishow;
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         if (player == game.me || player.isUnderControl()) {
                                             if (Array.isArray(cards))
                                                 for (const i of cards) {
@@ -14542,7 +14542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 mark(dialog, content, player) {
                                     if (player.storage.guijingce) var cards = player.storage.guijingce.filter((i) => player.getCards('h').includes(i));
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         dialog.addAuto(cards);
                                     } else return '手牌中没有<精策>牌';
                                 },
@@ -26215,7 +26215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 mark(dialog, content, player) {
                                     if (player.storage.guijingce) var cards = player.storage.guijingce.filter((i) => player.getCards('h').includes(i));
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         dialog.addAuto(cards);
                                     } else return '手牌中没有<精策>牌';
                                 },

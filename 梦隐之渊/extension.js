@@ -6053,7 +6053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (targets && targets.length) {
+                                        if (targets?.length) {
                                             player.line(targets, 'fire');
                                             for (let i = 0; i < targets.length; i++) {
                                                 targets[i].damage();
@@ -21356,7 +21356,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.targets = result.targets;
                                 player.line(event.targets);
                                 ('step 3');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (let i = 0; i < targets.length; i++) {
                                         player.discardPlayerCard(targets[i], 2, 'he', true);
                                         ('step 4');

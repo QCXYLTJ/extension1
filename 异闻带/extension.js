@@ -33258,7 +33258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         target.getStat().card.jiu--;
                                     }
                                 } else {
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         card = cards[0];
                                     }
                                     if (!target.storage.jiu) target.storage.jiu = 0;

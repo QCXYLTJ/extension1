@@ -9280,7 +9280,7 @@ const skill = {
         event.finish();
       }
       ('step 3');
-      if (targets && targets.length) {
+      if (targets?.length) {
         player.line(targets, 'fire');
 
         for (const i of targets) {
@@ -14999,7 +14999,7 @@ const skill = {
         player.line(event.targets, 'thunder');
       } else event.finish();
       ('step 2');
-      if (targets && targets.length) {
+      if (targets?.length) {
         for (const i of targets) {
           let target = i;
           player.storage.mx_chousha.push(target);
@@ -16082,7 +16082,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (targets && targets.length) {
+      if (targets?.length) {
         let num = game.countPlayer(function (current) {
           return current.countCards('e', { subtype: 'equip2' });
         });
@@ -17824,7 +17824,7 @@ const skill = {
       event.targets = result.targets;
       player.line(event.targets, 'thunder');
       ('step 5');
-      if (targets && targets.length) {
+      if (targets?.length) {
         for (const i of targets) {
           let num = player.getAttackRange();
           let target = i;
@@ -47474,7 +47474,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (targets && targets.length) {
+      if (targets?.length) {
         player.line(targets, 'ice');
 
         for (const i of targets) {
@@ -53813,7 +53813,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (targets && targets.length) {
+      if (targets?.length) {
         player.line(targets, 'red');
 
         for (const i of targets) {
@@ -54706,7 +54706,7 @@ const skill = {
       event.targets = result.targets;
       player.line(event.targets, 'white');
       ('step 3');
-      if (targets && targets.length) {
+      if (targets?.length) {
         for (const i of targets) {
           player.gainPlayerCard(i, 'he', 2, true);
         }

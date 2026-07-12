@@ -79,7 +79,7 @@ const brawl = {
                         return target == player;
                     },
                     content() {
-                        if (cards && cards.length) card = cards[0];
+                        if (cards?.length) card = cards[0];
                         game.broadcastAll(function (target, card, gain2) {
                             if (!target.storage.jiu) target.storage.jiu = 0;
                             target.storage.jiu++;

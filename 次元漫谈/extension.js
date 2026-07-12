@@ -6173,7 +6173,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											var num = 3;
 										game.log(num);
 										player.chooseCard(name + info, [1, player.countCards('he')]).set('ai', function (card) {
-											if (targets && targets.length) {
+											if (targets?.length) {
 												if (ui.selected.cards.length < num) return 8 - get.value(card);
 											} else if (num > 2 && targets && targets.length) {
 												if (ui.selected.cards.length < num) return 7 - get.value(card);
@@ -7111,7 +7111,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.choosePlayerCard(trigger.source, event.num, 'he', true);
 										('step 2');
 										var cards = result.links;
-										if (cards && cards.length) {
+										if (cards?.length) {
 											event.cards = [];
 											if (Array.isArray(cards))
 												for (var i of cards) {
@@ -7220,7 +7220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									content() {
 										'step 0';
 										//game.rainSay(player,'发动了武将技能','<span style=\"color: #FFD700\">【山脉震撼明星之薪】</span>');
-										if (cards && cards.length) {
+										if (cards?.length) {
 											event.cards = [];
 											if (Array.isArray(cards))
 												for (var i of cards) {
@@ -12283,7 +12283,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var info = '<br><br>是否令1名其他角色成为' + get.translation(trigger.card) + '使用者';
 								var targets = trigger.targets;
 								event.num = 0;
-								if (targets && targets.length) {
+								if (targets?.length) {
 									event.num++;
 								}
 								player
@@ -12295,7 +12295,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var num = 0;
 										var info = get.info(trigger.card);
 										var select = get.select(info.selectTarget);
-										if (targets && targets.length) {
+										if (targets?.length) {
 											for (var a of targets) {
 												var b = a;
 												if (info.toself) {
@@ -22408,7 +22408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return 0;
 												})
 												.forResult();
-											if (cards && cards.length) {
+											if (cards?.length) {
 												player.discard(cards);
 												player.getStat().skill.rain_acgn_project_zouFangZi_erBai--;
 											}

@@ -45229,7 +45229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         cards = cards.concat(ui.discardPile.childNodes[i]);
                                     }
                                 }
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     player.chooseCardButton(cards, '节奏:获得其中一张牌.', true).set('ai', function (card) {
                                         return get.value > 0 ? get.value : 0.1;
                                     });

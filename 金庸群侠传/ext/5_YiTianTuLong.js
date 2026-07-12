@@ -13336,7 +13336,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           selectCard: -1,
           content() {
             player.loseMaxHp(2);
-            if (targets && targets.length) {
+            if (targets?.length) {
               targets[0].loseHp(1);
             } else {
               player.draw(4);

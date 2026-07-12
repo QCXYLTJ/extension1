@@ -2730,7 +2730,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'green');
                                     for (let i = 0; i < targets.length; i++) {
                                         targets[i].draw(3);

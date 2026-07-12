@@ -3414,7 +3414,7 @@ const skills = {
                         }
                     }
                     const targets = _status.Europa_AfricaViceroy_player;
-                    if (targets && targets.length) {
+                    if (targets?.length) {
                         for (const target of targets) {
                             const { bool, links } = await target
                                 .chooseButton(['游乐设施:你可以选择任意三个项目', [choiceList, 'textbutton']])

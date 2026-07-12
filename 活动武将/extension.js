@@ -54250,7 +54250,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         targets = evt.targets;
                                     var info = get.info(skill);
                                     if (!info || info.charlotte) return false;
-                                    if (targets && targets.length) {
+                                    if (targets?.length) {
                                         if (targets.filter((i) => player.differentSexFrom(i)).length) return true;
                                     }
                                     return false;

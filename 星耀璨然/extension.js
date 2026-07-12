@@ -13053,7 +13053,7 @@ export default async function () {
                             )
                             .set('forced', true)
                             .forResult();
-                        if (targets && targets.length) {
+                        if (targets?.length) {
                             player.addTempSkill('radiance_modao_db', 'phaseUseEnd');
                             player.storage.radiance_modao_db = targets.slice(0);
                         }
@@ -18310,7 +18310,7 @@ export default async function () {
                         markcount: 'expansion',
                         mark(dialog, content, player) {
                             var cards = player.getExpansions('radiance_hongse');
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 dialog.add(cards);
                             }
                         },
@@ -20407,7 +20407,7 @@ export default async function () {
                         },
                         onunmark(storage, player) {
                             var cards = player.getExpansions('radiance_suzheng');
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 player.$throw(cards, 1000);
                                 game.cardsDiscard(cards);
                                 game.log(cards, '被置入了弃牌堆');
@@ -38747,7 +38747,7 @@ export default async function () {
                         markcount: 'expansion',
                         mark(dialog, content, player) {
                             var cards = player.getExpansions('radiance_senbao');
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 if (player == game.me || player.isUnderControl()) {
                                     dialog.add(cards);
                                 } else {

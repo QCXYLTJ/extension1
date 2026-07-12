@@ -418,7 +418,7 @@ export let info = {
         markcount: 'expansion',
         mark(dialog, storage, player) {
           var cards = player.getExpansions('dqzw_yuanjiang');
-          if (cards && cards.length) dialog.addSmall(cards);
+          if (cards?.length) dialog.addSmall(cards);
           dialog.addText('<ul style="margin-top:5px;padding-left:22px;"><li>每名吴势力角色的出牌阶段限一次,该角色可以将一张牌置于<缘江烽火图>上,称之为<烽火>.<li>根据<烽火>的数量,所有吴势力角色可于其准备阶段开始时选择并获得其中一个技能直到其下回合开始:一张以上~英姿(界);两张以上~好施;三张以上~连营;四张以上~涉猎;五张以上~可额外选择一项;六张以上~英姿(界)改为英姿(谋).', false);
         },
       },
@@ -16784,7 +16784,7 @@ export let info = {
         game.filterPlayer((current) => current != player && current.countGainableCards(player, 'h')).forEach(async (target) => {
           player.line(target, 'green');
           const { cards } = await player.gainPlayerCard(target, 'h', true).forResult();
-          if (cards && cards.length) {
+          if (cards?.length) {
             player.addGaintag(cards, event.name);
             player.addGaintag(cards, target.name || target.name1);
             player.setStorage(event.name, storage.add({ cards, target }));
@@ -22343,8 +22343,8 @@ export let info = {
             })
             .forResult();
           if (bool && (cards || targets)) {
-            if (cards && cards.length) player.recast(cards);
-            if (targets && targets.length) {
+            if (cards?.length) player.recast(cards);
+            if (targets?.length) {
               player.line(targets, 'green');
               targets[0].damage(player);
             }
@@ -22391,7 +22391,7 @@ export let info = {
               .set('_card', card)
               .set('_isEquip', isEquip)
               .forResult();
-            if (targets && targets.length) {
+            if (targets?.length) {
               player.line2([source, targets[0]], 'green');
               source.$give(card, targets[0]);
               targets[0][isEquip ? 'equip' : 'gain'](card);
@@ -24095,9 +24095,9 @@ export let info = {
             (button) => get.player().hasUseTarget({ name: button.link[2] }, true, true)
           )
           .forResult();
-        if (links && links.length) {
+        if (links?.length) {
           const { targets } = await player.chooseUseTarget({ name: links[0][2] }, true).forResult();
-          if (targets && targets.length) player.setStorage('dqzw_luoyuan', player.getStorage('dqzw_luoyuan').concat(targets), true);
+          if (targets?.length) player.setStorage('dqzw_luoyuan', player.getStorage('dqzw_luoyuan').concat(targets), true);
         }
       },
       intro: {

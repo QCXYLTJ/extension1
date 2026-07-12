@@ -3005,7 +3005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 order(item, player) {
                                     var cards = player.getCards('h', (card) => get.tag(card, 'damage'));
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         cards.sort((a, b) => get.order(a) - get.order(b));
                                         return get.order(cards[0]) - 0.2;
                                     } else return 0.2;
@@ -10842,7 +10842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             ai: {
                                 order(item, player) {
                                     var cards = player.getCards('h', (card) => get.tag(card, 'damage'));
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         cards.sort((a, b) => get.order(b) - get.order(a));
                                         return get.order(cards[0]) + 0.2;
                                     } else return 0.2;

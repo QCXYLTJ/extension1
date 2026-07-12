@@ -1346,7 +1346,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           }
           return false;
         });
-        if (cards && cards.length) {
+        if (cards?.length) {
           player.gain(cards, 'log', 'gain2');
         }
       },

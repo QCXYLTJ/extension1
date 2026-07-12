@@ -20561,7 +20561,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                 return true;
               })
               .forResult();
-            if (links && links.length) {
+            if (links?.length) {
               targets[0].discard(links);
             }
           }
@@ -20682,7 +20682,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             player.draw(); // 玩家摸一张牌
             if (player.countCards('h') > 0) {
               const { cards } = await player.chooseCard('h', '将一张牌置于武将牌上作为<神君>', true).forResult(); // 玩家选择一张手牌并置于武将牌上作为<神君>
-              if (cards && cards.length) {
+              if (cards?.length) {
                 player.addToExpansion(cards, player, 'giveAuto').gaintag.add('mengkanxing'); // 将选择的牌添加到武将牌上
               }
             }
@@ -20699,7 +20699,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
       async content(event, trigger, player) {
         if (player.getExpansions('mengkanxing').length) {
           const { links } = await player.chooseCardButton(player.getExpansions('mengkanxing'), true).forResult();
-          if (links && links.length) {
+          if (links?.length) {
             player.loseToDiscardpile(links);
           }
           player.recover();
@@ -20743,7 +20743,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           if (trigger.cards && trigger.cards.includes(i)) owner = trigger.player;
           if ([1, 11, 12, 13].includes(i.number) && !get.owner(i)) cards.push(i);
         }
-        if (cards && cards.length) player.gain(cards, 'gain2');
+        if (cards?.length) player.gain(cards, 'gain2');
         if (
           player.canMoveCard(
             null,
@@ -20907,7 +20907,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             }
           )
           .forResult();
-        if (targets && targets.length) {
+        if (targets?.length) {
           let target = targets[0];
           let position = [];
           if (target.countCards('h')) position.push('手牌区');
@@ -20953,7 +20953,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                 });
               })
               .forResult();
-            if (links && links.length) {
+            if (links?.length) {
               let cards = target.getCards(map[control]);
               target.chooseUseTarget(
                 {
@@ -21487,7 +21487,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           .chooseTarget(lib.filter.notMe, get.prompt('mengshuhu'))
           .set('ai', (target) => get.damageEffect(player, target, player))
           .forResult();
-        if (targets && targets.length) {
+        if (targets?.length) {
           game.playAudio('../extension/忽悠宇宙/audio/skill/mengenci' + [1, 2, 3, 4, 5, 6].randomGet());
           targets[0].damage(player);
           player.recover();

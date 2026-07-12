@@ -8219,7 +8219,7 @@ const skill = {
 				player.addMark('qmsgswkjsgj_potzhuangshi_limit', number, false);
 				player.addTip('qmsgswkjsgj_potzhuangshi_limit', `不计次数 ${number}`);
 			}
-			if (cards && cards.length) {
+			if (cards?.length) {
 				await player.modedDiscard(cards);
 			}
 			if (numbers && numbers[0] >= 0) {
@@ -11837,7 +11837,7 @@ const skill = {
 		intro: {
 			mark(dialog, content, player) {
 				let cards = player.getStorage('dcshicao_record');
-				if (cards && cards.length) {
+				if (cards?.length) {
 					if (player.isUnderControl(true)) {
 						dialog.addText(`上一次观看的${player.storage.dcshicao_bottom ? '牌堆底' : '牌堆顶'}的牌:`);
 						dialog.addAuto(cards);
@@ -33651,7 +33651,7 @@ const skill = {
 			player.changeZhuanhuanji('sgsxjxfzmnl_dcsbquanmou');
 			player.markAuto('sgsxjxfzmnl_dcsbquanmou_selected', [target]);
 			const { cards } = await target.chooseCard('he', true, `选择交给${get.translation(player)}一张牌`).forResult();
-			if (cards && cards.length) {
+			if (cards?.length) {
 				await target.give(cards, player);
 				const key = `sgsxjxfzmnl_dcsbquanmou_${Boolean(!player.storage.sgsxjxfzmnl_dcsbquanmou)}`;
 				player.addTempSkill(key, { global: ['phaseUseBefore', 'phaseChange'] });

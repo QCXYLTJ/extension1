@@ -4989,7 +4989,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage();
                                         player.discardPlayerCard(1, 'he', targets[i], true);
@@ -5023,7 +5023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'thunder');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].addTempSkill('冷雨诱宵美九_激励', { player: 'phaseAfter' });
@@ -5094,7 +5094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'thunder');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].changeHujia();
@@ -5131,7 +5131,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'thunder');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage();
@@ -5570,7 +5570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage();
@@ -7711,7 +7711,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].draw(targets[i].hp);
@@ -9473,7 +9473,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'green');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].draw();
@@ -9964,7 +9964,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage();
@@ -11628,7 +11628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage();
@@ -12039,7 +12039,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage()._triggered = null;
@@ -12548,7 +12548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].goMad({ player: 'phaseBegin' });
@@ -12587,7 +12587,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage();
@@ -13147,7 +13147,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         player.useCard({ name: 'sha', nature: 'fire' }, targets[i]);
@@ -13975,7 +13975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var i = 0; i < targets.length; i++) {
                                         var cards = targets[i].getCards('e');
                                         targets[i].lose(cards, ui.special)._triggered = null;
@@ -14004,7 +14004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     for (var i = 0; i < targets.length; i++) {
                                         var card1 = game.createCard({ name: 'lebu', color: 'red', suit: 'heart' });
                                         var card2 = game.createCard({ name: 'bingliang', color: 'red', suit: 'heart' });
@@ -14677,7 +14677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (targets && targets.length) {
+                                if (targets?.length) {
                                     player.line(targets, 'fire');
                                     for (var i = 0; i < targets.length; i++) {
                                         var damage = [0, 1, 2];

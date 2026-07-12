@@ -1947,7 +1947,7 @@ const skills = {
 				await player.draw(num);
 				if (player.countCards('he')) {
 					const cards = await player.chooseCard('将' + get.cnNumber(num) + '张牌置于武将牌上,称为「灵」', num, true).forResult('cards');
-					if (cards && cards.length) {
+					if (cards?.length) {
 						player.addToExpansion(cards, player, 'giveAuto').gaintag.add('bleach_jiling');
 					}
 				}
@@ -19092,7 +19092,7 @@ const skills = {
 					player.changeZhuanhuanji('bleach_yinyi');
 					player.gain(trigger.cards, 'gain2');
 					const cards = await player.chooseCard('将一张牌置于武将牌上,称为「翼」', true, 'he').forResult('cards');
-					if (cards && cards.length) {
+					if (cards?.length) {
 						player.addToExpansion(cards, player, 'giveAuto').gaintag.add('bleach_yinyi_x');
 					}
 				},
@@ -19112,7 +19112,7 @@ const skills = {
 					player.changeZhuanhuanji('bleach_yinyi');
 					player.gain(trigger.cards, 'gain2');
 					const cards = await player.chooseCard('将一张牌置于武将牌上,称为「翼」', true, 'he').forResult('cards');
-					if (cards && cards.length) {
+					if (cards?.length) {
 						player.addToExpansion(cards, player, 'giveAuto').gaintag.add('bleach_yinyi_x');
 					}
 				},

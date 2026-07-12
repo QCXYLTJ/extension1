@@ -27226,7 +27226,7 @@ const skill = {
                     return;
                 }
                 let str = get.translation(source);
-                if (targets && targets.length) {
+                if (targets?.length) {
                     str += '对' + get.translation(targets);
                 }
                 str += '使用了';

@@ -4842,7 +4842,7 @@ game.import('extension', function () {
                                 markcount: 'expansion',
                                 mark(dialog, storage, player) {
                                     var cards = player.getExpansions('gm_qiyuan');
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         if (player == game.me || player.isUnderControl()) {
                                             dialog.addAuto(cards);
                                         } else {
@@ -4852,7 +4852,7 @@ game.import('extension', function () {
                                 },
                                 content(storage, player) {
                                     var cards = player.getExpansions('gm_qiyuan');
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         if (player == game.me || player.isUnderControl()) {
                                             return get.translation(cards);
                                         }

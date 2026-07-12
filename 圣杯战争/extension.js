@@ -16379,7 +16379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     content() {
                                         if (player.hasSkill('sbzz_jika_21')) {
                                             var cards = player.getCards('h');
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 for (const i of cards) {
                                                     player.addGaintag(i, 'sbzz_jika_yuanming');
                                                 }
@@ -16387,7 +16387,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         if (player.hasSkill('sbzz_jika_32')) {
                                             var cards = player.getCards('h');
-                                            if (cards && cards.length) {
+                                            if (cards?.length) {
                                                 for (const i of cards) {
                                                     player.addGaintag(i, 'sbzz_jika_duozhi');
                                                 }
@@ -16641,7 +16641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     init(player) {
                                         var cards = player.getCards('h');
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             for (const i of cards) {
                                                 player.addGaintag(i, 'sbzz_jika_yuanming');
                                             }
@@ -16698,7 +16698,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     forced: true,
                                     init(player) {
                                         var cards = player.getCards('h');
-                                        if (cards && cards.length) {
+                                        if (cards?.length) {
                                             for (const i of cards) {
                                                 player.addGaintag(i, 'sbzz_jika_duozhi');
                                             }

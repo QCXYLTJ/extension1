@@ -5970,7 +5970,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool) {
                                     var cards = result.cards,
                                         target = result.targets[0];
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         player.discard(cards);
                                         game.delayex();
                                         target.damage(2, 'thunder');

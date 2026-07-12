@@ -190,7 +190,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					}
 					('step 3');
 					var cards = event.cards || [];
-					if (cards && cards.length) {
+					if (cards?.length) {
 						player.storage.scqhJojo_qianggong = false;
 						game.log(player, '对', trigger.target, '发动了', '#g【强攻】(' + cards.length + ')');
 						player.popup('强攻');

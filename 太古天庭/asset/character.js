@@ -6889,7 +6889,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 intro: {
                     mark(dialog, content, player) {
                         var cards = player.getCards('h');
-                        if (cards && cards.length) {
+                        if (cards?.length) {
                             dialog.addAuto(cards);
                         }
                     },
@@ -6898,7 +6898,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 TaiguSkill: true,
                 content(content, player) {
                     var cards = player.getCards('h');
-                    if (cards && cards.length) {
+                    if (cards?.length) {
                         return get.translation(cards);
                     }
                 },
@@ -27528,7 +27528,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                             }
-                            if (cards && cards.length) player.gain(cards, 'gain2');
+                            if (cards?.length) player.gain(cards, 'gain2');
                         },
                     },
                     mark: {

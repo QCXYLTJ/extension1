@@ -48301,7 +48301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (!player.hasSkill('fxfz_jilu2')) player.addTempSkill('fxfz_jilu2');
 										var cards = player.getExpansions('bxfx_beimark');
 										var leixing = [];
-										if (cards && cards.length) for (var i of cards) if (!leixing.includes(get.type(i))) leixing.add(get.type(i));
+										if (cards?.length) for (var i of cards) if (!leixing.includes(get.type(i))) leixing.add(get.type(i));
 										if (leixing.length) player.draw(leixing.length);
 									},
 								},

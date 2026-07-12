@@ -1018,7 +1018,7 @@ const skill = {
 				}
 				let type = get.type2(card),
 					str = get.translation(source);
-				if (targets && targets.length) {
+				if (targets?.length) {
 					str += `对${get.translation(targets)}`;
 				}
 				str += `使用了${get.translation(card)},是否弃置一张${get.translation(type)}为其助战？`;
@@ -6503,7 +6503,7 @@ const skill = {
 				async cost(event, trigger, player) {
 					event.result = { bool: false };
 					let cards = player.getExpansions('ybsl_fengci');
-					if (cards && cards.length) {
+					if (cards?.length) {
 						event.result = await player
 							.chooseCardButton(cards, [1, cards.length])
 							.set('filterButton', function (button) {

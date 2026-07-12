@@ -21846,7 +21846,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 for (var i = 0; i < targets.length; i++) {
                     player.line(targets[i], 'fire');
                     trigger.targets.push(targets[i]);
@@ -23805,7 +23805,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'thunder');
                 for (var i = 0; i < targets.length; i++) {
                     targets[i].drawTo(targets[i].hp);
@@ -28040,7 +28040,7 @@ const skill = {
                 event.finish();
             }
             ('step 4');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'fire');
                 for (var i = 0; i < targets.length; i++) {
                     player.useCard({ name: 'geanguanhuo' }, targets[i], false);
@@ -37945,7 +37945,7 @@ const skill = {
                 event.finish();
             }
             ('step 4');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 player.line(targets, 'thunder');
                 for (var i = 0; i < targets.length; i++) {
                     targets[i].chooseToDiscard(2, true, 'h');
@@ -46791,7 +46791,7 @@ const skill = {
             event.getSuitsCount = function (suits) {
                 return suits.heart + suits.spade + suits.club + suits.diamond;
             };
-            if (cards && cards.length) {
+            if (cards?.length) {
                 player.showCards(cards);
                 event.suits = event.computeSuits(cards);
                 event.suitsCount = event.getSuitsCount(event.suits);
@@ -49129,7 +49129,7 @@ const skill = {
             player.popup('镜鉴', 'metal');
             player.line(target, 'metal');
             ('step 2');
-            if (targets && targets.length) {
+            if (targets?.length) {
                 for (var i = 0; i < targets.length; i++) {
                     event.targetss.push(targets[i]);
                 }

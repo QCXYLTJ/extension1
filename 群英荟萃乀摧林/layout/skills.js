@@ -84,7 +84,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             }
             if (trigger.getg) {
                 var cards = trigger.getg(player);
-                if (cards && cards.length) {
+                if (cards?.length) {
                     if (!trigger.gainers) trigger.gainers = [];
                     trigger.gainers.add(player);
                 }

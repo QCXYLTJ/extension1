@@ -310,7 +310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], ['fire', 'water', 'thunder', 'green'].randomGet());
 										player.discardPlayerCard('j', true, targets[i]);
@@ -386,7 +386,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], ['fire', 'water', 'thunder', 'green'].randomGet());
 										targets[i].addTempSkill('fengyin', { player: 'phaseUseBegin' });
@@ -424,7 +424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], ['fire', 'water', 'thunder', 'green'].randomGet());
 										targets[i].recover();
@@ -515,7 +515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], ['fire', 'water', 'thunder', 'green'].randomGet());
 										targets[i].chooseToDiscard('he', true);
@@ -1632,7 +1632,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 4');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'thunder');
 									for (var i = 0; i < targets.length; i++) {
 										player.useCard({ name: 'sha' }, targets[i], false);
@@ -2099,7 +2099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], 'fire');
 										trigger.targets.push(targets[i]);
@@ -3729,7 +3729,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								} else event.finish();
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										trigger.targets.push(targets[i]);
 									}
@@ -5645,7 +5645,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										if (targets[i].isDamaged()) targets[i].recover();
 										else targets[i].draw();
@@ -5695,7 +5695,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										targets[i].loseHp();
 									}
@@ -7377,7 +7377,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.nums = result.targets.length;
 								}
 								('step 4');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.line(targets[i], 'thunder');
 										player.useCard({ name: 'sha' }, targets[i], false);
@@ -8386,7 +8386,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									for (var i = 0; i < targets.length; i++) {
 										player.useCard({ name: 'sha' }, targets[i], false);
 									}
@@ -8622,7 +8622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 4');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'thunder');
 									for (var i = 0; i < targets.length; i++) {
 										player.useCard({ name: 'sha', nature: 'thunder' }, targets[i], false);
@@ -11109,7 +11109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 8');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'thunder');
 									for (var i = 0; i < targets.length; i++) {
 										if (targets[i].countCards('h', 'shan')) {
@@ -11191,7 +11191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'thunder');
 									game.asyncDraw(targets);
 									for (var i = 0; i < targets.length; i++) {
@@ -14675,7 +14675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (targets && targets.length) {
+								if (targets?.length) {
 									player.line(targets, 'white');
 									for (var i = 0; i < targets.length; i++) {
 										player.discardPlayerCard('hej', targets[i], true);

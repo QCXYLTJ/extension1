@@ -16886,7 +16886,7 @@ const skill = {
                 if (!info || info.charlotte) {
                     return false;
                 }
-                if (targets && targets.length) {
+                if (targets?.length) {
                     if (targets.filter((i) => player.differentSexFrom(i)).length) {
                         return true;
                     }

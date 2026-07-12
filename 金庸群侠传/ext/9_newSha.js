@@ -957,7 +957,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           const cards = get.randomCards(count, function (card) {
             return card.suit == 'heart';
           });
-          if (cards && cards.length) player.gain(cards, 'log', 'gain2');
+          if (cards?.length) player.gain(cards, 'log', 'gain2');
         },
         jy_yuhu(event, player, card, targets, name) {
           if (name != 'useCard') return;

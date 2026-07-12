@@ -4363,7 +4363,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 mark(dialog, content, player) {
                                     var cards = player.getCards('h');
-                                    if (cards && cards.length) {
+                                    if (cards?.length) {
                                         dialog.addAuto(cards);
                                     }
                                 },
@@ -4372,7 +4372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             charlotte: true,
                             content(content, player) {
                                 var cards = player.getCards('h');
-                                if (cards && cards.length) {
+                                if (cards?.length) {
                                     return get.translation(cards);
                                 }
                             },

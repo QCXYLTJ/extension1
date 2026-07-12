@@ -84,7 +84,7 @@ const brawl = {
                                 target.getStat().card.jiu--;
                             }
                         } else {
-                            if (cards && cards.length) {
+                            if (cards?.length) {
                                 card = cards[0];
                             }
                             game.broadcastAll(

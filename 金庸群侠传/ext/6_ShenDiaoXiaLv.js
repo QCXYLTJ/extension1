@@ -4195,7 +4195,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             return player != target && target.canEquip(card);
           },
           content() {
-            if (targets && targets.length) {
+            if (targets?.length) {
               player.$give(cards, targets[0]);
               targets[0].equip(cards[0]);
             } else {

@@ -14622,7 +14622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (cards2 && cards2.length) trigger.player.gain(cards2, 'log', 'gain2');
                                 ('step 3');
                                 var cards = event.cards;
-                                if (cards && cards.length) player.gain(cards, 'log', 'gain2');
+                                if (cards?.length) player.gain(cards, 'log', 'gain2');
                             },
                         },
                         bhsanjie: {

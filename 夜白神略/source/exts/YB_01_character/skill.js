@@ -5520,7 +5520,7 @@ const skill = {
 					target.recover(event.baseDamage);
 
 					game.addVideo('jiuNode', target, true);
-					if (cards && cards.length) {
+					if (cards?.length) {
 						event.card = cards[0];
 					}
 					if (!target.storage.jiu) {
