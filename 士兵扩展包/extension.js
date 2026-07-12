@@ -6767,7 +6767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.card.discard();
 									}
 									player.chooseTarget('选择一名角色,弃置其一张牌');
-								} else if (result.targets) {
+								} else if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									result.targets[0].gain(event.card, 'log');
 									result.targets[0].draw(2);
@@ -6832,7 +6832,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.card.discard();
 									}
 									player.chooseTarget('选择一名角色,弃置其一张牌');
-								} else if (result.targets) {
+								} else if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									result.targets[0].gain(event.card, 'log');
 									result.targets[0].draw();
@@ -9050,7 +9050,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.discardPlayerCard(num, result.targets[0], 'he', true);
 								}
 								('step 2');
-								if (result.cards) {
+								if (result.cards?.length) {
 									var cards = result.cards;
 									var suits = [];
 									for (var i = 0; i < cards.length; i++) {

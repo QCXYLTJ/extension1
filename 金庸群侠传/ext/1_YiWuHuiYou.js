@@ -4962,7 +4962,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             return get.rank(button.link, true);
                         });
                         ('step 1');
-                        if (result.links) {
+                        if (result.links?.length) {
                             var link = result.links[0];
                             if (player.name2) {
                                 player.replaceFujiang(link);
@@ -5842,7 +5842,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             return num2 != num;
                         });
                         ('step 1');
-                        if (result.links) {
+                        if (result.links?.length) {
                             target.setAvatar(target.name, result.links[0]);
                             var num = get.translation(result.links[0]).length;
                             var num2 = target.name ? get.translation(target.name).length : get.translation(target.name1).length;
@@ -5957,7 +5957,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                             return get.rank(button.link, true);
                         });
                         ('step 1');
-                        if (result.links) {
+                        if (result.links?.length) {
                             event.link = result.links[0];
                             for (var i in player.storage.ywhy_yixin_lupan) {
                                 if (i == event.link) skills = player.storage.ywhy_yixin_lupan[i];

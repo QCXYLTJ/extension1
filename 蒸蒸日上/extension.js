@@ -17771,7 +17771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								if (!result.links.includes(0)) event.finish();
 								('step 2');
-								if (result.targets) {
+								if (result.targets?.length) {
 									player.line(result.targets);
 									trigger.targets.addArray(result.targets);
 								}
@@ -19262,7 +19262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.dialog.close();
 									game.addVideo('judge2', null, event.videoId);
 									ui.arena.classList.remove('thrownhighlight');
-								} else if (result.targets) {
+								} else if (result.targets?.length) {
 									event.dialog.close();
 									game.addVideo('judge2', null, event.videoId);
 									player.line(result.targets, 'green');

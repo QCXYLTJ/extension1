@@ -1234,7 +1234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(6);
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     var type = get.type(card, 'trick');
                                     if (player.storage.mly_sajin.includes(type)) event.goto(6);
@@ -1330,7 +1330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('card', trigger.card)
                                     .set('target', trigger.player);
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     trigger.cancel();
                                 } else event.finish();
                                 ('step 2');
@@ -1360,7 +1360,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('card', trigger.card)
                                     .set('target', trigger.player);
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     if (!player.storage.mly_xinjuedu) player.storage.mly_xinjuedu = 0;
                                     player.storage.mly_xinjuedu++;
                                     trigger.cancel();
@@ -1432,7 +1432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         evt.mly_moved = true;
                                         player.chooseTarget(1, '为' + get.translation(trigger.card) + '重新指定使用者');
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             var evt = trigger.parent;
                                             evt.player = target;
@@ -1442,7 +1442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = evt.targets.length;
                                         player.chooseTarget([1, num], '为' + get.translation(trigger.card) + '重新指定目标');
                                         ('step 3');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             var evt = trigger.parent;
                                             evt.triggeredTargets2 = [];
                                             evt.targets = result.targets;
@@ -1536,7 +1536,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(card);
                                 });
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var color1 = get.color(result.cards[0]);
                                     var color2 = get.color(result.cards[1]);
                                     if (color1 == color2) {
@@ -1569,7 +1569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, _status.event.player, _status.event.player, 'fire');
                                     });
                                 } else {
-                                    if (result.targets) {
+                                    if (result.targets?.length) {
                                         for (var i = 0; i < result.targets.length; i++) {
                                             player.line(result.targets[i]);
                                             result.targets[i].link();
@@ -1578,7 +1578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.line(result.targets[i]);
                                         result.targets[i].damage(1, 'fire');
@@ -1709,7 +1709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 7 - get.value(card);
                                     });
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.current.give(result.cards, event.current.next, 'giveAuto');
                                     player.storage.mly_yunduan_1.push(event.current);
                                 } else {
@@ -1778,7 +1778,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('苍山:对一名角色造成' + Math.ceil(num / 2) + '点伤害', 1);
                                 }
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     game.playzsp6('苍山');
@@ -1825,7 +1825,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseTarget(1, '令一名角色回复一点体力');
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.line(target);
                                             target.recover();
@@ -2222,7 +2222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget([1, Infinity], '羽化:你可以令任意名角色回复' + event.control + '点体力并从牌堆随机获得一张锦囊牌');
                                 } else event.finish();
                                 ('step 8');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else event.finish();
                                 ('step 9');
@@ -5284,7 +5284,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('mly_zugang');
                                 }
                             },
@@ -21546,7 +21546,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         if (!result.links.includes(1)) event.finish();
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             trigger.targets.addArray(result.targets);
                                             player.removeSkill('zymjihua');

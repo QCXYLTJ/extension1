@@ -6242,7 +6242,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('du', event.card.name == 'du')
                                     .set('same', event.same);
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(event.card, 'gain2');
                                     if (!event.same) {

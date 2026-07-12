@@ -4166,7 +4166,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     if (!player.hasSkill('hdsk_molian_ying') && !player.hasSkill('hdsk_molian_mo')) {
                                         game.playAudio('../extension/Nirvana/audio/凯隐', ['kaiying_lueying1.mp3', 'kaiying_lueying2.mp3'].randomGet());
                                     } else {
@@ -11271,7 +11271,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 var next = player.chooseCard('重铸一张手牌并跳过判定阶段,你可使用一张无视距离的【杀】');
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.discardPile);
                                     player.$throw(result.cards, 1000);
                                     game.log(player, '重铸了', result.cards);
@@ -12355,7 +12355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && target.countCards('h');
                                 });
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.num = 0;
                                     var list = game.filterPlayer(function (target) {
@@ -12512,7 +12512,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return player != target && target.countCards('h');
                                         });
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                             event.num = 0;
                                             var list = game.filterPlayer(function (target) {
@@ -13673,7 +13673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.effect(target, trigger.card, trigger.player, _status.event.player);
                                         });
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             result.targets[0].damage('nocard');
                                         }
                                     },
@@ -13820,7 +13820,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(card) == 'equip';
                                 });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     var type = get.subtype(card);
                                     if (!player.isEmpty(type)) {
@@ -16032,7 +16032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
                                             if (['equip'].includes(get.type(i, 'equip', i.original == 'h' ? player : false))) {
@@ -46419,7 +46419,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     trigger.cancel();
                                     player.gain(result.links, 'gain2');
                                 }
@@ -51549,7 +51549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.storage.szdl_xinwansha = result.targets[0];
                                     player.discard(player.getCards('h'));
                                     result.targets[0].addTempSkill('szdl_xinwansha_use', { player: 'phaseEnd' });
@@ -51741,7 +51741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             },
                                         });
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             event.targetsx = result.targets[0];
                                             event.targetsz = result.targets[1];
                                         } else {

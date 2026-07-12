@@ -98,7 +98,7 @@ export let info = {
           return val;
         });
         'step 1';
-        if (result.links) {
+        if (result.links?.length) {
           let link = result.links[0];
           if (!player.getExpansions('dqzw_rubbish_zhimou').some((card) => card.suit == link.suit)) {
             let count = player.getStat('triggerSkill'),
@@ -1735,7 +1735,7 @@ export let info = {
         player.chooseButton([get.translation(event.name) + ':使用一张基本牌' + (skill ? ',若未造成体力值变动则将『' + get.translation(skill) + '』改为限定技' : ''), [...ui.discardPile.children].filter((card) => !used.includes(card.name) && get.type(card) == 'basic' && player.hasUseTarget(card)).sort((a, b) => lib.inpile.indexOf(a.name) - lib.inpile.indexOf(b.name))], true, (button) => _status.event.player.getUseValue(button.link) + (get.tag(button.link, 'recover') || get.tag(button.link, 'damage')) ? 5 : -3);
         event.skill = skill;
         'step 1';
-        if (result.links) {
+        if (result.links?.length) {
           player.chooseUseTarget(result.links[0], true);
           player.addTempSkill(event.name + '_change', 'changeHp');
         }

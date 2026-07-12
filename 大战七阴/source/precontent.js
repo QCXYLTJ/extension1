@@ -9235,7 +9235,7 @@ export async function precontent(config, pack) {
 							.setHiddenSkill(event.name);
 						('step 1');
 						var logged = false;
-						if (result.cards) {
+						if (result.cards?.length) {
 							logged = true;
 							player.discard(result.cards);
 							trigger.num--;

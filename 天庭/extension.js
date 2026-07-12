@@ -6317,7 +6317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     }).animate = false;
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addToExpansion(card, 'gain2').gaintag.add('zqboming');
                                     game.log(target, '将', card, '置于武将牌上作为<危>');

@@ -2018,7 +2018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.card
                                     );
                                     ui.arena.classList.remove('thrownhighlight');
-                                } else if (result.targets) {
+                                } else if (result.targets?.length) {
                                     var list = [];
                                     for (var i = 0; i < trigger.parent.cards.length; i++) {
                                         if (i.isInPile()) {

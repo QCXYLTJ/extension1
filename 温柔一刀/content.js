@@ -331,10 +331,10 @@ const content = async function () {
                       next.indexedData = indexedData;
                     }
                     if (result && result.bool) {
-                      if (result.cards) {
+                      if (result.cards?.length) {
                         next.cards = result.cards;
                       } //无需补齐变量
-                      if (result.targets) {
+                      if (result.targets?.length) {
                         next.targets = result.targets;
                       }
                       if (result.cost_data) {
@@ -4885,7 +4885,7 @@ const content = async function () {
             event.finish();
           }
           ('step 2');
-          if (result.targets) {
+          if (result.targets?.length) {
             player.line(result.targets);
             trigger.targets.addArray(result.targets);
           }
@@ -5230,7 +5230,7 @@ const content = async function () {
         lib.skill.dddzhishu.content = async function (event, map) {
           const player = map.player;
           let result = await player.moveCard();
-          if (result.targets) {
+          if (result.targets?.length) {
             const targets = result.targets;
             const guohe = new lib.element.VCard({
               name: 'guohe',

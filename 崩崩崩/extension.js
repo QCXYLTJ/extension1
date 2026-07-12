@@ -22538,7 +22538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.trigger('yemu_count');
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
                                             if (['basic'].includes(get.type(i, 'trick', i.original == 'h' ? player : false))) {

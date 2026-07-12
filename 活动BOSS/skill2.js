@@ -5534,7 +5534,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.targets) {
+            if (result.targets?.length) {
                 player.line(result.targets);
                 trigger.targets.addArray(result.targets);
             }
@@ -16451,7 +16451,7 @@ const skill = {
                         const result = await player.choosePlayerCard(player, 'ej', '请选择' + get.translation(event.result.card) + '转化的卡牌').set('ai', (button) => {
                             return get.value(button.link) * (get.position(button.link) == 'e' ? -1 : 1);
                         });
-                        if (result.cards) {
+                        if (result.cards?.length) {
                             player.addTempSkill('shanhe_lieshi_end');
                             event.result.cards = result.cards;
                         } else {
@@ -18898,7 +18898,7 @@ const skill = {
             ('step 2');
             let bool1 = true,
                 bool2 = true;
-            if (result.cards) {
+            if (result.cards?.length) {
                 let cards = result.cards;
                 if (Array.isArray(result.cards)) {
                     for (let i of result.cards) {
@@ -24323,7 +24323,7 @@ const skill = {
                 .set('check', check)
                 .setHiddenSkill(event.name);
             ('step 1');
-            if (result.cards) {
+            if (result.cards?.length) {
                 player.discard(result.cards);
                 trigger.num--;
                 if (

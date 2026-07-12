@@ -3029,7 +3029,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					player.chooseCardButton('寻宝:请选择要获得的牌', list, [1, trigger.num]);
 					('step 1');
-					if (result.links) {
+					if (result.links?.length) {
 						player.gain(result.links);
 						trigger.num = trigger.num - result.links.length;
 					}
@@ -4283,7 +4283,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					('step 1');
 					if (result.winner == player) {
 						trigger.parent.all_excluded = true;
-					} else if (result.targets) {
+					} else if (result.targets?.length) {
 						var list = result.targets.slice(0);
 						list.add(result.player);
 						list.sort(lib.sort.number2);
@@ -11389,7 +11389,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							);
 						});
 					('step 3');
-					if (result.targets) {
+					if (result.targets?.length) {
 						player.useCard(
 							{
 								name: 'sha',
@@ -12217,7 +12217,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 1');
-					if (result.targets) {
+					if (result.targets?.length) {
 						var type = get.type(card);
 						if (type == 'delay') {
 							for (var target of result.targets) {

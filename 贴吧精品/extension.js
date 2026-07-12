@@ -9292,7 +9292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.send('closeDialog', event.videoId);
                                 }
                                 event.dialog.close();
-                                if (result.links) {
+                                if (result.links?.length) {
                                     result.links.sort();
                                     for (var i of result.links) game.log(player, '选择了', '#g【解构】', '的', '#y选项' + get.cnNumber(1 + i, true));
                                 }
@@ -16528,7 +16528,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.cards.add(result.cards[0]);
                                     event.count += 1;
                                 }
@@ -16997,7 +16997,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(1);
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     event.current.storage.fandi3d8_card = card;
                                     event.current = event.current.next;

@@ -1814,7 +1814,7 @@ const skill = {
 			return 5 - get.value(card);
 		},
 		onuse(result) {
-			if (result.targets) {
+			if (result.targets?.length) {
 				for (var i = 0; i < result.targets.length; i++) {
 					result.targets[i].addTempSkill("yanzhan3");
 				}
@@ -3830,18 +3830,18 @@ const skill = {
 					return target.hp < target.maxHp;
 				})
 				.set("autodelay", true).ai = function (target) {
-				var num = get.attitude(player, target);
-				if (num > 0) {
-					if (noneed && player === target) {
-						num = 0.5;
-					} else if (target.hp === 1) {
-						num += 3;
-					} else if (target.hp === 2) {
-						num += 1;
+					var num = get.attitude(player, target);
+					if (num > 0) {
+						if (noneed && player === target) {
+							num = 0.5;
+						} else if (target.hp === 1) {
+							num += 3;
+						} else if (target.hp === 2) {
+							num += 1;
+						}
 					}
-				}
-				return num;
-			};
+					return num;
+				};
 			"step 1";
 			if (result.bool) {
 				player.logSkill("runxin", result.targets);

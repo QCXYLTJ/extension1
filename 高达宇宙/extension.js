@@ -5100,7 +5100,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.$throw(result.links);
                                     for (var i = 0; i < result.links.length; i++) player.storage.gd30_xingwu.remove(result.links[i]);
                                     game.cardsDiscard(result.links);
@@ -5214,7 +5214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.$throw(result.links);
                                     for (var i = 0; i < result.links.length; i++) player.storage.gd30_xingwu.remove(result.links[i]);
                                     game.cardsDiscard(result.links);

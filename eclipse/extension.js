@@ -4265,7 +4265,7 @@ game.import('extension', function () {
                                         .set('card', trigger.card);
                                 }
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else event.finish();
                                 ('step 2');

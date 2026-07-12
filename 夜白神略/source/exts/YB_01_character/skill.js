@@ -1233,7 +1233,7 @@ const skill = {
 					}
 				});
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				const tar = result.targets[0];
 				switch (event.tt) {
 					case -2:
@@ -4970,7 +4970,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.cards) {
+			if (result.cards?.length) {
 				event.cards = result.cards;
 				trigger.target.recast(event.cards);
 			} else {
@@ -8127,7 +8127,7 @@ const skill = {
 			});
 			('step 2');
 			game.broadcastAll('closeDialog', event.videoId);
-			if (result.links) {
+			if (result.links?.length) {
 				event.lists = result.links;
 				game.log(player, '选择了', event.lists);
 				event.types = get.YB_map(event.lists, event.list);
@@ -8145,7 +8145,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.cards) {
+			if (result.cards?.length) {
 				target.give(result.cards, player);
 			} else {
 				target.damage(event.types.length, player);
@@ -8286,7 +8286,7 @@ const skill = {
 				.forResult();
 			('step 2');
 			game.broadcastAll('closeDialog', event.videoId);
-			if (result.links) {
+			if (result.links?.length) {
 				event.result = { bool: true, cost_data: result.links[0] };
 			}
 		},
@@ -8393,7 +8393,7 @@ const skill = {
 			'step 0';
 			player.chooseCard('h', true).set('prompt2', '请选择一张手牌加入此牌实体牌');
 			('step 1');
-			if (result.cards) {
+			if (result.cards?.length) {
 				game.log(player, '将', '#y' + get.translation(result.cards[0]), '加入了', '#y' + get.translation(trigger.card), '的实体牌中');
 				player.lose(result.cards[0], 'visible');
 				trigger.cards.push(result.cards[0]);
@@ -8606,7 +8606,7 @@ const skill = {
 				return atk;
 			});
 			('step 5');
-			if (result.targets) {
+			if (result.targets?.length) {
 				const cardlist = event.cardlist;
 				const cardlist2 = event.cards.filter(function (cardf) {
 					return !cardlist.includes(cardf);
@@ -8726,7 +8726,7 @@ const skill = {
 			'step 0';
 			target.chooseToGive('he', true, player, '赞助:将一张牌交给' + get.translation(player) + '然后你摸一张牌');
 			('step 1');
-			if (result.cards) {
+			if (result.cards?.length) {
 				target.draw();
 			}
 		},
@@ -11187,7 +11187,7 @@ const skill = {
 								return get.attitude(_status.event.player, target);
 							})
 							.forResult();
-						if (result.targets) {
+						if (result.targets?.length) {
 							let target = result.targets[0];
 							target.addSkill('yb038_shenglu');
 						}
@@ -11614,7 +11614,7 @@ const skill = {
 				player.send(func, event.videoId);
 			}
 			('step 1');
-			if (result.cards) {
+			if (result.cards?.length) {
 				let numx = 0;
 				for (const i of result.cards) {
 					numx += i.number;
@@ -12875,7 +12875,7 @@ const skill = {
 					});
 
 					('step 1');
-					if (result.links) {
+					if (result.links?.length) {
 						let card = result.links[0];
 						if (player.hasUseTarget(card)) {
 							player.chooseUseTarget(card, false);
@@ -18008,7 +18008,7 @@ const skill = {
 									}
 								})
 								.forResult();
-							if (result.cards) {
+							if (result.cards?.length) {
 								await jiaohe(target, player);
 							}
 						}
@@ -18387,7 +18387,7 @@ const skill = {
 				}
 			}
 			('step 3');
-			if (result.links) {
+			if (result.links?.length) {
 				for (let i = 0; i < event.list3.length; i++) {
 					if (event.list3[i] == result.links[0]) {
 						event.num1 = i + 1;
@@ -18597,7 +18597,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.links) {
+			if (result.links?.length) {
 				for (let i = 0; i < event.list3.length; i++) {
 					if (event.list3[i] == result.links[0]) {
 						event.num1 = i + 1;
@@ -18939,7 +18939,7 @@ const skill = {
 								return get.value(button.link);
 							});
 							('step 2');
-							if (result.cards) {
+							if (result.cards?.length) {
 								event.cards6 = result.cards;
 								player.chooseTarget(true, '踏野:请选择任意张牌,然后选择一名角色,若仍有未分配的牌,则继续选择').set('ai', function (target) {
 									return get.attitude(_status.event.player, target);
@@ -18948,7 +18948,7 @@ const skill = {
 								event.goto(5);
 							}
 							('step 3');
-							if (result.targets) {
+							if (result.targets?.length) {
 								const tar = result.targets;
 								if (!event.ybmap[tar]) {
 									event.ybmap[tar] = [];

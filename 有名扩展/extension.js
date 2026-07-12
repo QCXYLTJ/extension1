@@ -1100,7 +1100,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var check = result.control == '一张非基本牌';
                                 target.chooseCard('he', check ? 1 : 2, { type: check ? ['trick', 'delay', 'equip'] : 'basic' }, true);
                                 ('step 5');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target, 'giveAuto');
                                 }
                             },
@@ -2560,7 +2560,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     result.targets[0].chooseCard('he', true, '恩怨:将一张牌交给' + get.translation(player));
                                 }
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player);
                                 }
                                 event.target.loseHp();
@@ -2853,7 +2853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     result.targets[0].chooseCard('he', true, '拢睚:将一张牌交给' + get.translation(player));
                                 }
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player);
                                 }
                                 event.target.damage('fire');
@@ -18763,7 +18763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 trigger.source.chooseCard('he', true, '怨海:将一张牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     trigger.source.give(result.cards, player);
                                 }
                                 trigger.source.loseHp(1 + player.countCards('he', { suit: 'heart' }));
@@ -18804,7 +18804,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     result.targets[0].chooseCard('he', true, '眩天:将一张牌交给' + get.translation(player));
                                 } else event.finish();
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player);
                                 }
                                 event.target.chooseToDiscard('he', true);

@@ -2839,7 +2839,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0]);
                                             player.discardPlayerCard('h', result.targets[0], true, 'visible');
                                         }

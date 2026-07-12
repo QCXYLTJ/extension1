@@ -6680,7 +6680,7 @@ export async function precontent(config, pack) {
 					return att;
 				});
 				('step 1');
-				if (result.targets) {
+				if (result.targets?.length) {
 					player.line(result.targets[0], 'green');
 					result.targets[0].$effectn('jinengpai_show', 4);
 					result.targets[0].addJudgen(event.card);
@@ -7814,7 +7814,7 @@ export async function precontent(config, pack) {
 					return 0;
 				});
 				('step 1');
-				if (result.cards) {
+				if (result.cards?.length) {
 					if (trigger.target.name == 'gezi_sakuya') player.say('别想动咲夜一下!');
 					if (trigger.target.name == 'gezi_flandre') player.say('妹妹大人,请让一下!');
 					trigger.target.gain(result.cards, player);
@@ -8689,7 +8689,7 @@ export async function precontent(config, pack) {
 					})
 					.set('nono', nono);
 				('step 1');
-				if (result.cards) {
+				if (result.cards?.length) {
 					player.lose(result.cards[0]);
 					player.$throw(result.cards[0], 1000);
 					player.say('呵,多谢款待了!');
@@ -8743,7 +8743,7 @@ export async function precontent(config, pack) {
 					})
 					.set('nono', nono);
 				('step 1');
-				if (result.cards) {
+				if (result.cards?.length) {
 					player.lose(result.cards[0]);
 					player.$throw(result.cards[0], 1000);
 					player.say('啊？这玩笑可不好笑啊');
@@ -8972,7 +8972,7 @@ export async function precontent(config, pack) {
 					player.gainPlayerCard(result.targets[0], 'hej', true);
 				}
 				('step 3');
-				if (result.cards) {
+				if (result.cards?.length) {
 					var card = result.cards[0];
 					if (
 						card &&
@@ -9056,7 +9056,7 @@ export async function precontent(config, pack) {
 					})
 					.set('nono', nono);
 				('step 1');
-				if (result.links) {
+				if (result.links?.length) {
 					var list = ['将<手办>交给目标', '发现一张牌,交给目标'];
 					event.list = list;
 					event.card = result.links[0];
@@ -9095,7 +9095,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 3');
-				if (result.links) {
+				if (result.links?.length) {
 					if (event.list[event.index] == '将<手办>交给目标' && result.bool && event.card) {
 						trigger.target.equip(event.card);
 					}
@@ -11623,7 +11623,7 @@ export async function precontent(config, pack) {
 						});
 				}
 				('step 1');
-				if (result.targets) {
+				if (result.targets?.length) {
 					var tao = get.cardPile2(function (card) {
 						return get.value(card) > get.value(cards[0]);
 					});
@@ -12475,7 +12475,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 3');
-				if (result.links) {
+				if (result.links?.length) {
 					var num = event.target.countCards('h');
 					event.target.discard(result.links);
 					if (num == 1) event.target.loseHp();
@@ -13328,7 +13328,7 @@ export async function precontent(config, pack) {
 						return get.attitude(player, target);
 					});
 				('step 1');
-				if (result.targets) {
+				if (result.targets?.length) {
 					if (result.targets[0].name == 'gezi_mokou') {
 						player.say('妹红辛苦了,不要忘记休息啊');
 					}
@@ -13406,7 +13406,7 @@ export async function precontent(config, pack) {
 					};
 				}
 				('step 4');
-				if (result.targets) {
+				if (result.targets?.length) {
 					player.line(result.targets[0], 'green');
 					player.Fuka();
 					player.say('「日出国之天子」!');
@@ -14143,7 +14143,7 @@ export async function precontent(config, pack) {
 					return 7 - get.value(card);
 				};
 				('step 1');
-				if (result.cards) {
+				if (result.cards?.length) {
 					player.lose(result.cards[0]);
 					player.$throw(result.cards[0], 1000);
 					player.chooseTarget([1, 2], '选择要被月光晒瞎的倒霉人吧', true, function (card, player, target) {
@@ -14153,7 +14153,7 @@ export async function precontent(config, pack) {
 					};
 				}
 				('step 2');
-				if (result.targets) {
+				if (result.targets?.length) {
 					player.line(result.targets, 'red');
 					event.targets = result.targets;
 					event.targets.push(trigger.targets[0]);
@@ -14169,7 +14169,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 3');
-				if (result.links) {
+				if (result.links?.length) {
 					event.targets.randomSort();
 					trigger.targets.remove(trigger.targets[0]);
 					trigger.target = event.targets[0];
@@ -16785,7 +16785,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.targets) {
+				if (result.targets?.length) {
 					if (event.control == 'gezi_sihuan_2') {
 						player.gainPlayerCard(result.targets[0], 'he', true);
 					} else if (event.control == 'gezi_sihuan_4') {
@@ -17797,7 +17797,7 @@ export async function precontent(config, pack) {
 					})
 					.set('nono', nono);
 				('step 1');
-				if (result.cards) {
+				if (result.cards?.length) {
 					player.lose(result.cards[0]);
 					player.$throw(result.cards[0], 1000);
 					trigger.cancel();
@@ -17903,7 +17903,7 @@ export async function precontent(config, pack) {
 					player.gainPlayerCard(result.targets[0], 'he', true);
 				}
 				('step 3');
-				if (result.cards) {
+				if (result.cards?.length) {
 					var card = result.cards[0];
 					if (
 						card &&
@@ -20205,7 +20205,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result.links) {
+				if (result.links?.length) {
 					event.link = result.links[0][2];
 					player
 						.chooseCard('he', '选择一张非装备牌', true, function (card) {
@@ -20216,7 +20216,7 @@ export async function precontent(config, pack) {
 						});
 				}
 				('step 2');
-				if (result.cards) {
+				if (result.cards?.length) {
 					var card = result.cards[0];
 					player.$throw(card, 1000);
 					player.lose(card);
@@ -20307,7 +20307,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result.links) {
+				if (result.links?.length) {
 					event.link = result.links[0][2];
 					player
 						.chooseCard('he', '选择一张非装备牌', true, function (card) {
@@ -20318,7 +20318,7 @@ export async function precontent(config, pack) {
 						});
 				}
 				('step 2');
-				if (result.cards) {
+				if (result.cards?.length) {
 					var card = result.cards[0];
 					player.$throw(card, 1000);
 					player.lose(card);
@@ -21367,7 +21367,7 @@ export async function precontent(config, pack) {
 					},
 				});
 				('step 1');
-				if (result.targets) {
+				if (result.targets?.length) {
 					player.discard(result.cards[0]);
 					event.target = result.targets[0];
 					event.target
@@ -21884,7 +21884,7 @@ export async function precontent(config, pack) {
 				('step 1');
 				player.chooseTarget('选择一名角色(还剩' + event.num + '次)', true);
 				('step 2');
-				if (result.targets) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					var list = ['从牌堆随机位置获得一张牌', '获得随机一个技能'];
 					player.chooseControlList(list, true).set('prompt', '为' + get.translation(event.target) + '选择一项,还剩' + event.num + '次');
@@ -22844,7 +22844,7 @@ export async function precontent(config, pack) {
 					},
 				});
 				('step 1');
-				if (result.targets) {
+				if (result.targets?.length) {
 					result.targets[0].gain(result.cards[0], 'draw');
 					player.$give(result.cards.length, result.targets[0]);
 					result.targets[0].addTempSkill('kc_yuzhi_3');
@@ -23826,7 +23826,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 3');
-				if (result.links) {
+				if (result.links?.length) {
 					player.gain(result.links, 'log');
 					for (const i of result.links) {
 						ui.discardPile.remove(i);
@@ -24814,7 +24814,7 @@ export async function precontent(config, pack) {
 						);
 					});
 				('step 1');
-				if (result.targets) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					player.choosePlayerCard(event.target, 'e', true).set('ai', function (button) {
 						if (get.subtype(button.link) == 'equip2') return 3;

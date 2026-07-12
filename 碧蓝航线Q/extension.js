@@ -2300,7 +2300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else var choiceList = ui.create.dialog('维修舰的歌单', '无可用歌曲');
                                 player.chooseButton(choiceList);
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var str = 'extension/碧蓝航线Q/audio/维修舰的歌单';
                                     var name = player.storage.diange[result.links];
                                     ui.backgroundMusic.pause();

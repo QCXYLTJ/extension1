@@ -2787,7 +2787,7 @@ export let info = {
         }
         ('step 1');
         if (result.bool) {
-          if (result.targets) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             player.line(target);
             game.broadcastAll(
@@ -5631,12 +5631,12 @@ export let info = {
               ('step 2');
               player.chooseTarget(1).set('prompt', '请选择一名其他角色,令其选择是否选择交给你一张牌<br>若其交给你牌,则其回复一点体力.'); //ai自己补吧
               ('step 3');
-              if (result.targets) {
+              if (result.targets?.length) {
                 event.tar = result.targets[0];
                 result.targets[0].chooseCard().set('prompt', '是否交给' + get.translation(player) + '一张牌,回复一点体力？'); //ai自己补吧
               } else event.finish();
               ('step 4');
-              if (result.cards) {
+              if (result.cards?.length) {
                 event.tar.give(result.cards, player);
                 event.tar.recover();
               }
@@ -5729,7 +5729,7 @@ export let info = {
                 player.chooseToDiscard('he', [1, Infinity]);
               }
               ('step 3');
-              if (result.cards) {
+              if (result.cards?.length) {
                 player.draw(result.cards.length);
               }
               ('step 4');
@@ -5872,7 +5872,7 @@ export let info = {
                 });
               }
               ('step 3');
-              if (result.cards) {
+              if (result.cards?.length) {
                 player.discard(result.cards);
                 reslut.targets[0].chooseToDiscard(result.cards.length, true, 'he');
               }
@@ -5910,7 +5910,7 @@ export let info = {
                 });
               }
               ('step 3');
-              if (result.cards) {
+              if (result.cards?.length) {
                 player.discard(result.cards);
                 reslut.targets[0].draw(result.cards.length);
               }
@@ -7765,7 +7765,7 @@ export let info = {
           })
           .set('_num', get.rand(1, character.length - 1));
         ('step 1');
-        if (result.links) {
+        if (result.links?.length) {
           lib.ergroup = result.links;
           var character = game.filterPlayer().filter((current) => !lib.ergroup.includes(current));
           player.chooseButton(['选择加入【玖】阵营的角色', character], [1, character.length], true).set('ai', function (button) {
@@ -7773,7 +7773,7 @@ export let info = {
           });
         }
         ('step 2');
-        if (result.links) {
+        if (result.links?.length) {
           lib.jiugroup = result.links;
           for (var i of game.filterPlayer()) {
             i.removeSkill('er');
@@ -7868,7 +7868,7 @@ export let info = {
               })
               .set('_num', get.rand(1, character.length - 1));
             ('step 1');
-            if (result.links) {
+            if (result.links?.length) {
               lib.ergroup = result.links;
               var character = game.filterPlayer().filter((current) => !lib.ergroup.includes(current));
               player.chooseButton(['选择加入【玖】阵营的角色', character], [1, character.length], true).set('ai', function (button) {
@@ -7876,7 +7876,7 @@ export let info = {
               });
             }
             ('step 2');
-            if (result.links) {
+            if (result.links?.length) {
               lib.jiugroup = result.links;
               for (var i of game.filterPlayer()) {
                 i.removeSkill('er');

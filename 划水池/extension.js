@@ -6269,7 +6269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('go', go);
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									player.unmarkAuto('hs_qinxue', [result.links[0][2]]);
 									trigger.addCount = false;
 									if (player.stat[player.stat.length - 1].card[trigger.card.name] > 0) {
@@ -6945,7 +6945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 4');
 								var list = [0, 1, 2, 3, 4, 1, 2, 3];
-								if (result.links) {
+								if (result.links?.length) {
 									var list0 = ['上上签', '上签', '中签', '下签', '下下签'];
 									var qian = list0.indexOf(result.links[0][2]);
 									list.push(qian, qian, qian);
@@ -9320,7 +9320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else event.goto(2);
 								} else event.goto(2);
 								('step 4');
-								if (result.cards) {
+								if (result.cards?.length) {
 									event.cards = result.cards;
 									event.current
 										.chooseControl('牌堆顶', '牌堆底')
@@ -9552,7 +9552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 1');
-								if (result.cards) {
+								if (result.cards?.length) {
 									event.targets2 = result.targets.sortBySeat();
 									ui.clear();
 									var cards = result.cards,
@@ -10082,7 +10082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										}
 										('step 2');
-										if (result.cards) {
+										if (result.cards?.length) {
 											player.addToExpansion(result.cards, event.player0, 'giveAuto').gaintag.add('xinfu_jijun');
 											event.player0.draw();
 										}
@@ -10576,7 +10576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else return 10 - value;
 									});
 								('step 2');
-								if (result.cards) {
+								if (result.cards?.length) {
 									if (event.current == player) {
 										if (!event.loged) {
 											event.loged = true;
@@ -14931,7 +14931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return player.getUseValue({ name: button.link[2] });
 										});
 										('step 1');
-										if (result.links) {
+										if (result.links?.length) {
 											var card = Array.from(ui.discardPile.childNodes)[0],
 												name = result.links[0][2];
 											player.chooseUseTarget({ name: name }, [card]);
@@ -15906,7 +15906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.links) {
+								if (result.links?.length) {
 									event.target.gain(result.links, player, 'giveAuto');
 									if (player.hasMark('hs_tuishi_gain')) {
 										player.clearMark('hs_tuishi_gain', false);
@@ -15941,7 +15941,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 10 - value;
 										});
 										('step 1');
-										if (result.links) {
+										if (result.links?.length) {
 											trigger.discarder.gain(result.links, player, 'giveAuto');
 											if (player.hasMark('hs_tuishi_gain')) {
 												player.clearMark('hs_tuishi_gain', false);

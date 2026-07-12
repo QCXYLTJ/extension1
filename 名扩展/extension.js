@@ -1608,7 +1608,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     if (result.targets?.length) {
                                                         next.targets = result.targets;
                                                     }
-                                                    if (result.cards) {
+                                                    if (result.cards?.length) {
                                                         next.cards = result.cards;
                                                     }
                                                     if (result.cost_data) {
@@ -1642,7 +1642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (result.targets?.length) {
                                                 next.targets = result.targets;
                                             }
-                                            if (result.cards) {
+                                            if (result.cards?.length) {
                                                 next.cards = result.cards;
                                             }
                                             if (result.cost_data) {

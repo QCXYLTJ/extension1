@@ -1875,7 +1875,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     });
                     ('step 1');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         target.line(player);
                         target.give(result.cards, player);
                     }
@@ -17046,7 +17046,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return true;
                     });
                     ('step 1');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         player.recast(result.cards);
                         var card0 = result.cards[0];
                         var card1 = result.cards[1];

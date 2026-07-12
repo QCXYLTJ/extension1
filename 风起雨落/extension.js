@@ -8301,7 +8301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.links) player.gain(result.links, 'gain2');
                                 event.finish();
                                 ('step 7');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     event.targetx = result.targets[0];
                                     var list = result.targets[0].getSkills(true, false).filter(function (skill) {
                                         var info = lib.skill[skill];
@@ -8326,7 +8326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 9');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     event.targetx.removeSkill(event.skillx);
                                     result.targets[0].addSkillLog(event.skillx);
                                     game.log(player, '将', event.targetx, '的『', event.skillx, '』移动给', result.targets[0]);
@@ -8385,7 +8385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                 }
                             },

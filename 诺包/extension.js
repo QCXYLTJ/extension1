@@ -129,7 +129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('forced', true);
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     switch (result.links[0]) {
                                         case 'a':
                                             var list = [

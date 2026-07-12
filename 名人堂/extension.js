@@ -4954,7 +4954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 2');
-								if (result.links) {
+								if (result.links?.length) {
 									var tp = result.links.length;
 									target.$throw(result.links, 1000);
 									game.log(target, '将', result.links, '置入了<仁>中');
@@ -12020,7 +12020,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(2);
 								}
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									event.hs = result.links.slice(0);
 									event.tp = 6 - event.hs.length;
 								} else {
@@ -18331,7 +18331,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								} else event.finish();
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									event.cd = result.links[0];
 									var col = get.color(result.links[0]);
 									if (col == 'red') player.sex = 'female';
@@ -19806,7 +19806,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								}
 								('step 2');
-								if (result.links) {
+								if (result.links?.length) {
 									player.chooseUseTarget(result.links[0], false, false);
 								}
 							},
@@ -36266,7 +36266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 6 - get.value(button.link);
 								};
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									event.cds = result.links;
 									var dialog = ui.create.dialog('将' + get.translation(event.cds) + '当作一张宝物牌置于1名角色装备区', [event.lt, 'vcard'], 'hidden');
 									player.chooseButton(dialog, true).set('ai', function (button) {

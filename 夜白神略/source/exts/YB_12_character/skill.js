@@ -1524,7 +1524,7 @@ const skill = {
 				prompt: '筹策:是否将一张手牌交给任意角色？',
 			});
 			('step 5');
-			if (result.cards) {
+			if (result.cards?.length) {
 				player.give(result.cards, result.targets[0]);
 			}
 		},
@@ -2142,7 +2142,7 @@ const skill = {
 				player.chooseCardButton(event.cards, 1);
 			}
 			('step 1');
-			if (result.links) {
+			if (result.links?.length) {
 				event.cards.remove(result.links[0]);
 				player.addToExpansion(result.links, 'draw').gaintag.add('qixing');
 			}
@@ -21706,7 +21706,7 @@ const skill = {
 						}
 					});
 					('step 1');
-					if (result.links) {
+					if (result.links?.length) {
 						const listx = [],
 							listy = [];
 						for (const i of result.links) {
@@ -25892,7 +25892,7 @@ const skill = {
 											return 6 - get.value(card) && !lib.card[card.name].ai.recover;
 										})
 										.forResult();
-									if (result.cards) {
+									if (result.cards?.length) {
 										await target.give(result.cards, player);
 									} else {
 										await target.loseHp();
@@ -27408,7 +27408,7 @@ const skill = {
 					});
 			}
 			('step 1');
-			if (result.targets) {
+			if (result.targets?.length) {
 				event.result = {
 					bool: true,
 					targets: result.targets,
@@ -27670,7 +27670,7 @@ const skill = {
 				}
 			}
 			('step 1');
-			if (result.links) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 			}
 		},
@@ -30857,7 +30857,7 @@ const skill = {
 					return 5 - get.value(card);
 				})
 				.forResult();
-			if (result.cards) {
+			if (result.cards?.length) {
 				let result2 = await player.YB_fuhan(['wu', game.countPlayer(), result.cards.length]).forResult();
 
 				if (result2.skills) {
@@ -33454,7 +33454,7 @@ const skill = {
 					if (result.bool) {
 						player.removeGaintag('eternal_dcqiqin_tag');
 
-						if (result.cards) {
+						if (result.cards?.length) {
 							player.addGaintag(result.cards, 'eternal_dcqiqin_tag');
 						}
 					}

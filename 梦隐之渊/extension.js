@@ -12412,7 +12412,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard('将其区域内的至多三张牌移出游戏', [1, 3], 'hej', trigger.player, true);
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.storage.mx2_yishuowu = player.storage.mx2_yishuowu.concat(result.links);
                                     trigger.player.lose(result.links, ui.special, 'toStorage');
                                     trigger.player.$throw(result.links, 1000);

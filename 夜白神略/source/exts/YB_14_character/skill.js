@@ -1545,7 +1545,7 @@ const skill = {
 				});
 			event.goto(9);
 			('step 9');
-			if (result.links) {
+			if (result.links?.length) {
 				let name = result.links[0][2];
 				const nature = result.links[0][3];
 
@@ -1783,7 +1783,7 @@ const skill = {
 				});
 			event.goto(9);
 			('step 9');
-			if (result.links) {
+			if (result.links?.length) {
 				let name = result.links[0][2];
 				const nature = result.links[0][3];
 
@@ -7380,7 +7380,7 @@ const skill = {
 					});
 			}
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].phase('nodelay');
 			}
 			let evt = _status.event.getParent('phase');
@@ -9150,7 +9150,7 @@ const skill = {
 			let num = get.YB_cardMaxLose(target);
 			player.choosePlayerCard(target, 'h', true, num);
 			('step 1');
-			if (result.links) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 			}
 		},
@@ -9185,7 +9185,7 @@ const skill = {
 			('step 1');
 			player.choosePlayerCard(target, 'h', true);
 			('step 2');
-			if (result.links) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 				event.count++;
 			} else {
@@ -11306,7 +11306,7 @@ const skill = {
 				return target.getDamagedHp();
 			});
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				event.target2 = result.targets[0];
 				let list = [];
 				list.push('伤害');

@@ -10574,7 +10574,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 });
                                 next.set('ai', () => Math.random());
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     let skill = result.links[0];
                                     player.addTempSkill(skill);
                                     player.popup(get.translation(skill));
@@ -11064,7 +11064,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 player.chooseTarget(get.prompt(event.name), '将' + get.translation(player.storage.huishi_qxsy) + '交于一名角色', true).set('ai', (target) => get.attitude(player, target)); //QQQ
                                 ('step 3');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     let target = result.targets[0];
                                     target.gain(player.storage.huishi_qxsy, 'gain2', 'log');
                                     delete player.storage.huishi_qxsy;
@@ -11452,7 +11452,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 next.set('selectButton', [1, cards.length]);
                                 next.set('ai', (button) => 5 - get.value(button.link));
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     event.dialog.close();
                                     event.num = result.links.length;
                                     player.loseToDiscardpile(result.links);
@@ -11464,7 +11464,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     for (let target of result.targets) {
                                         player.line(target, 'green');
                                         target.storage.kuangfeng_qxsy = event.num;
@@ -11588,7 +11588,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             .set('selectButton', [1, 3])
                                             .set('ai', (button) => 8 - get.value(button.link));
                                         ('step 1');
-                                        if (result.links) {
+                                        if (result.links?.length) {
                                             player.$gain2(result.links);
                                             player.addToExpansion(result.links, player, 'giveAuto').gaintag.add('qixing_qxsy');
                                         }
@@ -11750,7 +11750,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 }),
                                             );
                                         ('step 1');
-                                        if (result.links) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2', 'log');
                                             delete player.storage.jiufa_shenjiangwei_qxsy;
                                             let cards = event.cards.removeArray(result.links);
@@ -11784,7 +11784,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     player.showCards(result.cards);
                                     let list = ['弃置此牌,获得一张装备牌', '将此牌置于牌堆顶,获得一张【无中生有】'];
@@ -11798,7 +11798,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     let str = result.links[0];
                                     if (str == event.list[0]) {
                                         event.target.discard(event.cards);
@@ -14921,7 +14921,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     if (
                                         player.canUse(
                                             {
@@ -15331,7 +15331,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     })
                                     .set('createDialog', ['获得一张武将牌上的所有技能', [list.randomGets(10), 'character']]);
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     let skills = lib.character[result.links[0]][3].slice(0);
                                     player.flashAvatar('zxqy_huaizhi', result.links[0]);
                                     for (const i of skills) {

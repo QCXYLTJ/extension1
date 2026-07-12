@@ -15170,7 +15170,7 @@ const skill = {
       'step 0';
       player.choosePlayerCard('hej', trigger.player, [1, 3], true);
       ('step 1');
-      if (result.links) {
+      if (result.links?.length) {
         player.storage.mx_haigou2 = player.storage.mx_haigou2.concat(result.links);
         trigger.player.lose(result.links, ui.special, 'toStorage');
         trigger.player.$throw(result.links, 1000);
@@ -15540,7 +15540,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.cards) {
+      if (result.cards?.length) {
         for (var i of result.cards) {
           if (i.suit == 'heart') {
             player.randomDiscard(3, 'h');
@@ -19088,7 +19088,7 @@ const skill = {
         } else event.goto(4);
       }
       ('step 3');
-      if (result.cards) {
+      if (result.cards?.length) {
         if (event.triggername == 'useCardToTarget') var target = trigger.player;
         else if (trigger.source) var target = trigger.source;
         player.give(result.cards, target, true);
@@ -31064,7 +31064,7 @@ const skill = {
         event.goto(3);
       }
       ('step 2');
-      if (result.cards) {
+      if (result.cards?.length) {
         var card = result.cards[0];
         event.current.showCards(card);
         event.cards.push(card);
@@ -38585,7 +38585,7 @@ const skill = {
       var num = player.getDamagedHp();
       player.choosePlayerCard('hej', trigger.player, '将其区域内的至多' + num + '张牌移出游戏', [0, num], true);
       ('step 1');
-      if (result.links) {
+      if (result.links?.length) {
         player.addTempSkill('mx_heisecike2', { player: 'phaseAfter' });
         player.storage.mx_heisecike = player.storage.mx_heisecike.concat(result.links);
         trigger.player.lose(result.links, ui.special, 'toStorage');
@@ -61734,7 +61734,7 @@ const skill = {
       if (player.countCards('e', { color: 'black' }) == player.countCards('e')) player.chooseUseTarget(false, { name: 'nanman' });
       if (player.countCards('e', { color: 'red' }) == player.countCards('e')) player.draw(4);
       ('step 1');
-      if (result.links) {
+      if (result.links?.length) {
         player.storage.mx_shuangfengbao2 = player.storage.mx_shuangfengbao2.concat(result.links);
         trigger.player.lose(result.links, ui.special, 'toStorage');
         trigger.player.$throw(result.links, 1000);

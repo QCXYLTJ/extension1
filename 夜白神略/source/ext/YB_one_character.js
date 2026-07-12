@@ -3560,7 +3560,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						player.chooseToDiscard('he').set('chooseonly', true).set('prompt2', str);
 					}
 					('step 2');
-					if (result.cards) {
+					if (result.cards?.length) {
 						event.result = {
 							bool: true,
 							cards: result.cards,

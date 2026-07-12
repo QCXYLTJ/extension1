@@ -3069,7 +3069,7 @@ const skill = {
             'step 0';
             player.choosePlayerCard('hej', trigger.player, '将其区域内的至多两张牌移出游戏', [1, 2], true);
             ('step 1');
-            if (result.links) {
+            if (result.links?.length) {
                 player.showHandcards();
                 player.storage.mx_wuguancibei = player.storage.mx_wuguancibei.concat(result.links);
                 trigger.player.lose(result.links, ui.special, 'toStorage');
@@ -28038,7 +28038,7 @@ const skill = {
                 };
             }
             ('step 2');
-            if (result.links) {
+            if (result.links?.length) {
                 player.addTempSkill('mx_jingyaonuowu2', { player: 'phaseAfter' });
                 player.chooseUseTarget(result.links[0], false, false);
             }
@@ -31062,7 +31062,7 @@ const skill = {
             }
             event.zuo[event.num] = [];
             event.zuo[event.num][0] = event.targets[event.num];
-            if (result.cards) {
+            if (result.cards?.length) {
                 event.zuo[event.num][1] = result.cards;
             } else {
                 event.zuo[event.num][1] = [];
@@ -35394,7 +35394,7 @@ const skill = {
                     });
             }
             ('step 3');
-            if (result.cards) {
+            if (result.cards?.length) {
                 event.cards.add(result.cards[0]);
                 event.count += 1;
             }
@@ -41596,7 +41596,7 @@ const skill = {
                 ((event.target0 = target), player.gainPlayerCard(true, target, 'hej', 'visibleMove'));
             }
             ('step 2');
-            if (result.cards) {
+            if (result.cards?.length) {
                 event.bool = false;
                 var card = result.cards[0];
                 if (card.suit == 'diamond') event.bool = true;
@@ -45811,7 +45811,7 @@ const skill = {
                 event.goto(1);
             }
             ('step 2');
-            if (result.cards) {
+            if (result.cards?.length) {
                 var card = result.cards[0];
                 event.current.storage.mx_diaolinghuzhou_card = card;
                 event.current = event.current.next;
@@ -53604,7 +53604,7 @@ const skill = {
                 event.goto(2);
             }
             ('step 1');
-            if (result.links) {
+            if (result.links?.length) {
                 event.hs = result.links.slice(0);
                 event.tp = num - event.hs.length;
             } else {
@@ -64973,7 +64973,7 @@ const skill = {
                 event.goto(3);
             }
             ('step 2');
-            if (result.cards) {
+            if (result.cards?.length) {
                 var card = result.cards[0];
                 event.current.showCards(card);
                 event.cards.push(card);

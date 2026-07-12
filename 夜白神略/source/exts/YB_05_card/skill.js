@@ -1535,7 +1535,7 @@ const skill = {
 				event.goto(4);
 			}
 			('step 3');
-			if (result.targets) {
+			if (result.targets?.length) {
 				if (!result.targets[0].isLinked()) {
 					result.targets[0].link(true);
 				}

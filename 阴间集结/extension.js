@@ -12404,7 +12404,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseButton(dialog, [0, 7]).set('ai', function () {
                                         return 1;
                                     });
-                                } else if (result.cards) {
+                                } else if (result.cards?.length) {
                                     event.forceDie = true;
                                     event.cards = result.cards;
                                     player.storage.xin_xingzuo2 = result.cards;
@@ -12414,7 +12414,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var x = result.links;
                                     player.lose(event.cards, ui.cardPile);
                                     for (var i of x) player.gain(i, 'draw', 'gain2');

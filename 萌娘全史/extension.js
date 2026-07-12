@@ -8440,7 +8440,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 20 - get.buttonValue(button);
                                 });
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     trigger.player
                                         .chooseControl('收回', '交给', function (event, player) {

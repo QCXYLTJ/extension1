@@ -476,7 +476,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             }
             if (!result.links.includes(0)) event.finish();
             ('step 2');
-            if (result.targets) {
+            if (result.targets?.length) {
                 player.line(result.targets);
                 trigger.targets.addArray(result.targets);
             }

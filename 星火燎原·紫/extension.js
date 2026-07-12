@@ -744,7 +744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.$gain2(result.links, false);
                                     game.log(player, '将', result.links, '置于了仁库');
                                     game.cardsGotoSpecial(result.links, 'toRenku');

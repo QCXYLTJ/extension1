@@ -48,7 +48,7 @@ lib.dqzw_mode_start = {
             let level = _status.dqzw_checkpoint_level
                 , progress = this.progress || _status.dqzw_checkpoint_progress
                 , num = Math.floor(((this.skills || {}).length || 0) / 2);
-            if (result.links) {
+            if (result.links?.length) {
                 player.addSkillLog(result.links);
                 if (progress > 1 && level > 1 && num) {
                     let skills = player.getSkills(true, false, false).filter(skill => {

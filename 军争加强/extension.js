@@ -6803,7 +6803,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         game.log(player, '展示并弃掉了', event.card);
                                         event.card.discard();
                                     }
-                                } else if (result.targets) {
+                                } else if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(event.card, 'log');
                                 } else {

@@ -11085,7 +11085,7 @@ game.import('character', function () {
 						return get.value(button.link); //QQQ
 					});
 					('step 1');
-					if (result.links) {
+					if (result.links?.length) {
 						player.addToExpansion(result.links, 'gain2', player).gaintag.add('xjzh_sanguo_qixing');
 					}
 				},
@@ -12172,7 +12172,7 @@ game.import('character', function () {
 						return true;
 					});
 					('step 2');
-					if (result.links) {
+					if (result.links?.length) {
 						event.cards = result.links.slice(0);
 						var cards = lib.skill.xjzh_sanguo_busuan.getCards_guanlu.slice(0);
 						player
@@ -13659,7 +13659,7 @@ game.import('character', function () {
 								})
 								.set('createDialog', ['〖荐杰〗:' + get.translation(trigger.player) + '的回合开始,请选择一张武将牌', [list, 'character']]);
 							('step 1');
-							if (result.links) {
+							if (result.links?.length) {
 								var name = result.links[0];
 								var list = [];
 								var skills = lib.character[name][3];
@@ -14177,7 +14177,7 @@ game.import('character', function () {
 								})
 								.set('selectButton', [1, Infinity]);
 							('step 1');
-							if (result.links) {
+							if (result.links?.length) {
 								var list = result.links;
 								event.targets = result.links.slice(0);
 								var skills = [];
@@ -14930,7 +14930,7 @@ game.import('character', function () {
 						event.finish();
 					}
 					('step 2');
-					if (result.links) {
+					if (result.links?.length) {
 						var card = game.createCard(result.links[0][2]);
 						event.targetx.addTempSkill('xjzh_sanguo_jiang_source', 'useCardAfter');
 						event.targetx.chooseUseTarget(card, true).set('addCount', false).set('viewAs', true);
@@ -16819,7 +16819,7 @@ game.import('character', function () {
 								});
 								next.set('complexSelect', true);
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									player.loseToDiscardpile(result.links);
 									player.chooseUseTarget({ name: 'taoyuan' }, true, false).set(
 										'targets',

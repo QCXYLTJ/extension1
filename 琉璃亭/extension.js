@@ -17432,7 +17432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 7 - get.value(card);
                             },
                             onuse(result) {
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].addTempSkill('Mdianran2');
                                     }
@@ -20563,7 +20563,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var cd = result.links[0];
                                     player.chooseUseTarget({ name: cd.name, nature: cd.nature, suit: cd.suit, number: cd.number }, 'nodistance', false);
                                     player.storage.m_xingsan.remove(result.links[0]);

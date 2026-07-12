@@ -1261,7 +1261,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                             else return get.attitude(player, target) < 0;
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat();
                     } else event.finish();
                     ('step 2');
@@ -2271,7 +2271,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         return 6 - get.value(card);
                     });
                     ('step 1');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         target.discoverCard(get.inpile('hyym_daojv'), lib.suit.randomGet(), Math.floor(Math.random() * 13) + 1);
                     }
                 },

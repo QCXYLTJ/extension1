@@ -4149,7 +4149,7 @@ const skills = {
 				})
 				.set('targetprompt', ['', '']);
 			('step 7');
-			if (result.targets) {
+			if (result.targets?.length) {
 				var targets = result.targets;
 				game.broadcastAll(
 					function (target1, target2) {
@@ -4179,7 +4179,7 @@ const skills = {
 					return att;
 				});
 			('step 10');
-			if (result.targets) {
+			if (result.targets?.length) {
 				var targets = result.targets;
 				for (var i of targets) {
 					if (i.countCards('he') > 0) {
@@ -4352,7 +4352,7 @@ const skills = {
 						})
 						.set('targetprompt', ['', '']);
 					('step 7');
-					if (result.targets) {
+					if (result.targets?.length) {
 						var targets = result.targets;
 						game.broadcastAll(
 							function (target1, target2) {
@@ -4382,7 +4382,7 @@ const skills = {
 							return att;
 						});
 					('step 10');
-					if (result.targets) {
+					if (result.targets?.length) {
 						var targets = result.targets;
 						for (var i of targets) {
 							if (i.countCards('he') > 0) {
@@ -4596,7 +4596,7 @@ const skills = {
 					});
 			}
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				target.revive();
 				target.recoverTo(target.maxHp);
@@ -5290,7 +5290,7 @@ const skills = {
 			player.chooseToDiscard('he', true, 3).ai = get.disvalue;
 			('step 1');
 			var bool = [false, false, false];
-			if (result.cards) {
+			if (result.cards?.length) {
 				var list = ['basic', 'trick', 'equip'];
 				for (var i = 0; i < bool.length; i++) {
 					for (var j = 0; j < result.cards.length; j++) {
@@ -5360,7 +5360,7 @@ const skills = {
 			if (target.countCards('he') > 0) player.gainPlayerCard(target, [1, 2], 'he', false);
 			target.damage('nocard', 1, player);
 			('step 2');
-			if (result.cards) {
+			if (result.cards?.length) {
 				for (var i of result.cards) {
 					if (get.type(i) == 'equip') {
 						player.recover();
@@ -5480,7 +5480,7 @@ const skills = {
 			}
 			('step 2');
 			var bool = true;
-			if (result.cards) {
+			if (result.cards?.length) {
 				if (Array.isArray(result.cards))
 					for (var i of result.cards) {
 						if (['delay'].includes(get.type(i, null, i.original == 'h' ? player : false))) {
@@ -7737,7 +7737,7 @@ const skills = {
 			var num = Math.floor(event.target.countCards('h') / 2);
 			event.target.chooseCard(num, true).set('prompt', '赠玺:请将' + get.cnNumber(num) + '张手牌交给' + get.translation(player));
 			('step 3');
-			if (result.cards) {
+			if (result.cards?.length) {
 				event.target.give(result.cards, player);
 			}
 			('step 4');
@@ -7843,7 +7843,7 @@ const skills = {
 				return 0;
 			});
 			('step 3');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'fire');
 				result.targets[0].damage(2, 'nocard', player);
 				game.playSkillAudio('xinfu_langxi');
@@ -7856,7 +7856,7 @@ const skills = {
 				return 0;
 			});
 			('step 5');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'green');
 				result.targets[0].draw(4);
 				game.playSkillAudio('shuliang');
@@ -7874,7 +7874,7 @@ const skills = {
 					return 0;
 				});
 			('step 7');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'fire');
 				var target = result.targets[0];
 				if (target.countCards('he') <= 4) target.discard(target.getCards('he'));
@@ -7894,7 +7894,7 @@ const skills = {
 					return 0;
 				});
 			('step 9');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'fire');
 				var target = result.targets[0];
 				if (target.countCards('he') <= 2) player.gainPlayerCard(target, true, 'he', target.countCards('he'));
@@ -7914,7 +7914,7 @@ const skills = {
 					return 0;
 				});
 			('step 11');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'green');
 				result.targets[0].recover(2);
 				game.playSkillAudio('qingnang');
@@ -7927,7 +7927,7 @@ const skills = {
 				return 0;
 			});
 			('step 13');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'green');
 				result.targets[0].gainMaxHp(2);
 				game.playSkillAudio('yongdi');
@@ -7946,7 +7946,7 @@ const skills = {
 			player.draw(num + 1);
 			player.chooseToDiscard('he', num, true);
 			('step 1');
-			if (result.cards) {
+			if (result.cards?.length) {
 				var bool = [false, false];
 				var list = ['trick', 'equip'];
 				for (var i = 0; i < bool.length; i++) {
@@ -8068,7 +8068,7 @@ const skills = {
 							return -get.attitude(player, target);
 						});
 					('step 1');
-					if (result.targets) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						event.target = target;
 						trigger.player = target;
@@ -11330,7 +11330,7 @@ const skills = {
 				return att;
 			});
 			('step 3');
-			if (result.targets) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				let list;
 				if (_status.characterlist) {

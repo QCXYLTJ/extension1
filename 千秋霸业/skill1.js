@@ -17934,7 +17934,7 @@ const skill = {
                 event.goto(3);
             }
             ('step 2');
-            if (result.cards) {
+            if (result.cards?.length) {
                 var card = result.cards[0];
                 event.current.showCards(card);
                 event.cards.push(card);
@@ -38170,7 +38170,7 @@ const skill = {
                     });
             } else event.finish();
             ('step 2');
-            if (result.links) {
+            if (result.links?.length) {
                 if (result.links.length == 1) {
                     _status.currentPhase && _status.currentPhase.$throw(result.links[0]);
                     _status.currentPhase && _status.currentPhase.addJudge({ name: result.links[0][2] }, trigger.cards);
@@ -39488,7 +39488,7 @@ const skill = {
                 };
             }
             ('step 2');
-            if (result.links) {
+            if (result.links?.length) {
                 player.chooseUseTarget(result.links[0], false, false);
                 player.draw();
             }
@@ -46068,7 +46068,7 @@ const skill = {
                     });
             }
             ('step 3');
-            if (result.cards) {
+            if (result.cards?.length) {
                 event.cards.add(result.cards[0]);
                 event.count += 1;
             }
@@ -46647,7 +46647,7 @@ const skill = {
             'step 0';
             player.choosePlayerCard('hej', trigger.player, true);
             ('step 1');
-            if (result.links) {
+            if (result.links?.length) {
                 player.storage.lg_zhue = player.storage.lg_zhue.concat(result.links);
                 trigger.player.lose(result.links, ui.special, 'toStorage');
                 trigger.player.$throw(result.links, 1000);

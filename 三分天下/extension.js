@@ -1111,7 +1111,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('你可以对一名角色造成一点伤害');
                                 } else event.finish();
                                 ('step 3');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     result.targets[0].damage();
                                 }
@@ -1928,7 +1928,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else player.chooseCard('he', true, '请选择一张牌交给' + get.translation(event.target));
                                 }
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.target.gain(result.cards, player, 'gain2');
                                     player.useCard(event.target, { name: 'sha' });
                                 }
@@ -1970,7 +1970,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.chooseCard('he', true, '请选择一张牌交给' + get.translation(trigger.player));
                                         }
                                         ('step 1');
-                                        if (result.cards) {
+                                        if (result.cards?.length) {
                                             trigger.player.gain(result.cards, player, 'give');
                                             var evt = trigger.parent;
                                             evt.targets.remove(trigger.targets);

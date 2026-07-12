@@ -4191,7 +4191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })
                                         .set('autodelay', true);
                                     ('step 1');
-                                    if (result.targets) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         trigger.targets.addArray(result.targets);
                                     }

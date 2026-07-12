@@ -29246,7 +29246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     game.animate.window(1);
                                     game.roundNumber += num;
                                     game.log(player.name, '穿越到第', game.roundNumber, '轮游戏');

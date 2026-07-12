@@ -997,7 +997,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 2'
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     trigger.player.useCard({ name: 'tao' }, result.cards, 'Mistpearl', trigger.player, false);
                                 }
                                 else {
@@ -1635,7 +1635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 5 - get.value(card);
                                 });
                                 'step 1'
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.addSkill('Preserve_block');
                                     player.lose(result.cards, ui.cardPile, 'insert');
                                     game.broadcastAll(function (player) {
@@ -2068,7 +2068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 2'
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].recover();
                                     result.targets[0].draw();
                                 }

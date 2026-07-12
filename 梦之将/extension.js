@@ -1537,7 +1537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     if (player.isOnline2()) {
                                         player.send('closeDialog', event.videoId);
                                     }
@@ -3880,7 +3880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 var bool1 = true,
                                     bool2 = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {

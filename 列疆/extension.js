@@ -10425,7 +10425,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     );
                                 });
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.removeZhimou(result.links[0]);
                                     trigger.num -= result.links[0];
                                 }
@@ -11023,7 +11023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (let i = 1; i <= num; i++) number.add(i);
                                 player.chooseButton([sit, [number, 'tdnodes']]);
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     target.addTempSkill('xiufa_sankoo_sub', { global: 'phaseUseAfter' });
                                     if (event.transaction == '消耗任意点智谋令其回复等量点体力') {
                                         player.removeZhimou(result.links[0]);
@@ -11306,7 +11306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     true
                                 );
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.removeZhimou(result.links[0]);
                                     var card = get.cards(result.links[0]);
                                     game.cardsGotoOrdering(card);
@@ -11548,7 +11548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     true
                                 );
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     game.Micd(result.links[0]);
                                 }
                             },
@@ -11571,7 +11571,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button == num;
                                 });
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.removeZhimou(result.links[0]);
                                     player.chooseTarget('选择至多' + result.links[0] + '名角色,令其于其回合外使用或打出一张牌后你获得一点智谋其摸一张牌', true, [1, result.links[0]]).ai = (target) => {
                                         return get.attitude(player, target) > 0 || target == player;
@@ -11639,7 +11639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 3');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     trigger.player.chooseUseTarget(result.links[0], true);
                                 }
                                 ('step 4');
@@ -12164,7 +12164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     );
                                 });
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.removeZhimou(result.links[0]);
                                     player.draw(result.links[0]);
                                     if (player.isMaxHandcard()) player.chooseToDiscard('he', 2, true);

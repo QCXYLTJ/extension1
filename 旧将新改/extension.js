@@ -3133,7 +3133,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (['basic', 'trick'].includes(get.type(result.cards[i], 'trick', result.cards[i].original == 'h' ? player : false))) {
                                             bool = false;
@@ -9088,7 +9088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     var info1 = lib.card[name];
                                     if (info1) {
@@ -11646,7 +11646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (['basic', 'trick'].includes(get.type(result.cards[i], 'trick', result.cards[i].original == 'h' ? player : false))) {
                                             bool = false;
@@ -11759,7 +11759,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         ('step 2');
                                         var bool = true;
-                                        if (result.cards) {
+                                        if (result.cards?.length) {
                                             for (var i = 0; i < result.cards.length; i++) {
                                                 if (['basic', 'trick'].includes(get.type(result.cards[i], 'trick', result.cards[i].original == 'h' ? player : false))) {
                                                     bool = false;
@@ -11815,7 +11815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         ('step 2');
                                         var bool = true;
-                                        if (result.cards) {
+                                        if (result.cards?.length) {
                                             for (var i = 0; i < result.cards.length; i++) {
                                                 if (['basic', 'trick'].includes(get.type(result.cards[i], 'trick', result.cards[i].original == 'h' ? player : false))) {
                                                     bool = false;
@@ -16712,7 +16712,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (['basic', 'trick'].includes(get.type(result.cards[i], 'trick', result.cards[i].original == 'h' ? player : false))) {
                                             bool = false;

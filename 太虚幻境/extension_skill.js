@@ -4884,7 +4884,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 			}
 			('step 2');
 			var bool = true;
-			if (result.cards) {
+			if (result.cards?.length) {
 				if (Array.isArray(result.cards))
 					for (var i of result.cards) {
 						if (['basic', 'trick'].includes(get.type(i, 'trick', i.original == 'h' ? player : false))) {

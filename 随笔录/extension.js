@@ -14347,7 +14347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = evt.targets.length;
                                 player.chooseTarget([1, num], '为' + get.translation(trigger.card) + '重新指定目标');
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var evt = trigger.parent;
                                     evt.triggeredTargets2 = [];
                                     evt.targets = result.targets;
@@ -14980,7 +14980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target != player;
                                 });
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     game.broadcastAll(
                                         function (target1, target2) {
                                             game.swapSeat(target1, target2);
@@ -15087,7 +15087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var evt = trigger.parent;
                                 player.chooseTarget([0, Infinity], '为' + get.translation(trigger.card) + '重新指定任意目标');
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var evt = trigger.parent;
                                     evt.triggeredTargets2 = [];
                                     evt.targets = result.targets;

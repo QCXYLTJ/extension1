@@ -3747,7 +3747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 }
                                             });
                                         ('step 2');
-                                        if (result.cards) {
+                                        if (result.cards?.length) {
                                             player.gain(result.cards, target, 'giveAuto');
                                         }
                                     },

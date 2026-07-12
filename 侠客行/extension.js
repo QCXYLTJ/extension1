@@ -2611,12 +2611,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             ('step 2');
                                             player.chooseTarget(1).set('prompt', '请选择一名其他角色,令其选择是否选择交给你一张牌<br>若其交给你牌,则其回复一点体力.'); //ai自己补吧
                                             ('step 3');
-                                            if (result.targets) {
+                                            if (result.targets?.length) {
                                                 event.tar = result.targets[0];
                                                 result.targets[0].chooseCard().set('prompt', '是否交给' + get.translation(player) + '一张牌,回复一点体力？'); //ai自己补吧
                                             } else event.finish();
                                             ('step 4');
-                                            if (result.cards) {
+                                            if (result.cards?.length) {
                                                 event.tar.give(result.cards, player);
                                                 event.tar.recover();
                                             }
@@ -2709,7 +2709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 player.chooseToDiscard('he', [1, Infinity]);
                                             }
                                             ('step 3');
-                                            if (result.cards) {
+                                            if (result.cards?.length) {
                                                 player.draw(result.cards.length);
                                             }
                                             ('step 4');
@@ -2852,7 +2852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                             }
                                             ('step 3');
-                                            if (result.cards) {
+                                            if (result.cards?.length) {
                                                 player.discard(result.cards);
                                                 reslut.targets[0].chooseToDiscard(result.cards.length, true, 'he');
                                             }
@@ -2890,7 +2890,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                             }
                                             ('step 3');
-                                            if (result.cards) {
+                                            if (result.cards?.length) {
                                                 player.discard(result.cards);
                                                 reslut.targets[0].draw(result.cards.length);
                                             }

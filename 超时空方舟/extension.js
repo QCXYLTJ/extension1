@@ -3511,7 +3511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var name = [
                                         ['真的太对不起了 我下个月就还你钱', 'qw_stl1'],
@@ -4299,7 +4299,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             list
                                         );
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             player.useCard(result.targets[0].getExpansions('qw_yjmark')[0], trigger.targets[0]);
                                         }
                                     },
@@ -4395,7 +4395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             list
                                         );
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             game.broadcastAll(function () {
                                                 game.playAudio('../extension/超时空方舟/audio/qw_ruanyanc.mp3');
                                             });
@@ -4476,7 +4476,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard('获得该角色一张手牌', trigger.player, 'h', 1, trigger.player == player ? false : true);
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.gain(result.links, trigger.player);
                                     game.broadcastAll(function (card) {
                                         card.storage.qw_knzh = 1;
@@ -4527,7 +4527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget('「万物化生」<br>选择至多两名角色', [1, 2]);
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     game.broadcastAll(function (player, target) {
                                         game.arkcg('qw_wwhs', 3000, true);
                                         setTimeout(function () {
@@ -7609,7 +7609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.num = 0;
                                 event.list = [];
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     for (var a = 0; a < result.targets.length; a++) {
                                         event.list.push(result.targets[a]);
                                     }
@@ -8749,7 +8749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player);
                                 });
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     for (var a = 0; a < result.targets.length; a++) {
                                         result.targets[a].addMark('qw_bingshuang', 1);
                                     }
@@ -8835,7 +8835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             event.num--;
                                             result.targets[0].damage(1, 'fire', player);
                                         } else event.finish();
@@ -8905,7 +8905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             event.num--;
                                             result.targets[0].recover(1);
                                         } else event.finish();
@@ -9269,7 +9269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player == target;
                                 });
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     if (result.targets[0].hp == result.targets[0].maxHp) player.draw();
                                     result.targets[0].recover();
                                 }
@@ -9639,7 +9639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.lose(result.cards[0]);
                                     result.targets[0].damage(1, player);
                                 }

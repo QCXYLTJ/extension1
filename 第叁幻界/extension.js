@@ -3201,7 +3201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return 0;
 						});
 						('step 1');
-						if (result.links) {
+						if (result.links?.length) {
 							var name = result.links[0][2];
 							var info1 = lib.card[name];
 							if (info1) {
@@ -3380,7 +3380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return button.link * Math.random();
 						});
 						('step 1');
-						if (result.links) {
+						if (result.links?.length) {
 							var map = [
 								function (trigger, player, event) {
 									player.draw();
@@ -37925,7 +37925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								});
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									player.changeHujia(-1);
 									var map = [
 										function (trigger, player, event) {
@@ -64981,7 +64981,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										});
 										('step 1');
-										if (result.links) {
+										if (result.links?.length) {
 											var map = [
 												function (trigger, player, event) {
 													player.removeMark('dshj_shanduan_Tan', 1);

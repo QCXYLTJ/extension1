@@ -10998,7 +10998,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								};
 								('step 1');
 								if (result.bool) {
-									if (result.targets) {
+									if (result.targets?.length) {
 										player.line(result.targets[0]);
 										result.targets[0].damage();
 									}

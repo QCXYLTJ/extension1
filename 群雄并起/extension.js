@@ -14688,7 +14688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw(12);
 								if (player.countCards('he')) player.chooseToDiscard('he', true);
 								('step 1');
-								if (result.cards) {
+								if (result.cards?.length) {
 									if (get.type(result.cards[0]) == 'basic') {
 										player
 											.chooseTarget(get.prompt('争伐'), [1, 2], function (card, player, target) {

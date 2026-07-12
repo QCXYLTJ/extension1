@@ -14251,7 +14251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             player.chooseUseTarget('决斗谁？', { name: 'juedou' }, false);
                                         }
                                     },

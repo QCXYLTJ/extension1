@@ -1068,7 +1068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 										next.set('selectButton', 2);
 										('step 2');
-										if (result.links) {
+										if (result.links?.length) {
 											if (get.itemtype(result.links[0]) == 'card') {
 												result.links[0].init({
 													name: result.links[0].name,

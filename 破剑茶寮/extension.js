@@ -1466,7 +1466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('card', trigger.card)
                                     .set('target', trigger.player);
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     trigger.cancel();
                                 } else event.finish();
                                 ('step 2');

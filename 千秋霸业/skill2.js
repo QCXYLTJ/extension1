@@ -1047,7 +1047,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.cards) {
+      if (result.cards?.length) {
         for (var i of result.cards) {
           if (i.suit == 'heart') player.draw(i.length);
         }
@@ -13606,7 +13606,7 @@ const skill = {
         return;
       }
       ('step 2');
-      if (result.cards) {
+      if (result.cards?.length) {
         var num1 = 0,
           num2 = 0;
         for (var i = 0; i < result.cards.length; i++) {
@@ -13742,7 +13742,7 @@ const skill = {
         return -get.value(card);
       });
       ('step 1');
-      if (result.cards) {
+      if (result.cards?.length) {
         var suits = [];
         for (var i = 0; i < result.cards.length; i++) {
           suits.add(result.cards[i].suit);
@@ -19918,7 +19918,7 @@ const skill = {
       return 5 - get.value(card);
     },
     onuse(result) {
-      if (result.targets) {
+      if (result.targets?.length) {
         for (var i = 0; i < result.targets.length; i++) {
           result.targets[i].addTempSkill('lg_kuangfu3');
         }
@@ -41031,7 +41031,7 @@ const skill = {
       }
       event.dialog.close();
       ('step 2');
-      if (result.links) {
+      if (result.links?.length) {
         if (player.isOnline2()) {
           player.send('closeDialog', event.videoId);
         }
@@ -44663,7 +44663,7 @@ const skill = {
         return get.attitude(player, target);
       });
       ('step 2');
-      if (result.targets) {
+      if (result.targets?.length) {
         var targets = result.targets;
         targets.sort(lib.sort.seat);
         player.line(targets, 'green');

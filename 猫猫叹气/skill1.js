@@ -4439,7 +4439,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.links) {
+            if (result.links?.length) {
                 player.gain(result.links, 'gain2');
             }
         },
@@ -15937,7 +15937,7 @@ const skill = {
                     event.finish();
                 }
                 ('step 2');
-                if (result.links) {
+                if (result.links?.length) {
                     player.gain(result.links, 'gain2');
                 }
             },
@@ -16182,7 +16182,7 @@ const skill = {
                     if (result.bool) {
                         event.shaRequired--;
                         if (event.turn == target) {
-                            if (result.cards) {
+                            if (result.cards?.length) {
                                 event.targetCards.addArray(result.cards);
                             }
                             if (event.shaRequired > 0) {
@@ -16192,7 +16192,7 @@ const skill = {
                                 event.goto(1);
                             }
                         } else {
-                            if (result.cards) {
+                            if (result.cards?.length) {
                                 event.playerCards.addArray(result.cards);
                             }
                             if (event.shaRequired > 0) {
@@ -16856,7 +16856,7 @@ const skill = {
                     }
                 }
                 ('step 1');
-                if (result.links) {
+                if (result.links?.length) {
                     player.gain(result.links, 'gain2');
                 }
             },
@@ -36260,7 +36260,7 @@ const skill = {
                     if (result.bool) {
                         event.shaRequired--;
                         if (event.turn == target) {
-                            if (result.cards) {
+                            if (result.cards?.length) {
                                 event.targetCards.addArray(result.cards);
                             }
                             if (event.shaRequired > 0) {
@@ -36270,7 +36270,7 @@ const skill = {
                                 event.goto(1);
                             }
                         } else {
-                            if (result.cards) {
+                            if (result.cards?.length) {
                                 event.playerCards.addArray(result.cards);
                             }
                             if (event.shaRequired > 0) {
@@ -43613,7 +43613,7 @@ const skill = {
                     };
                 }
                 ('step 4');
-                if (result.links) {
+                if (result.links?.length) {
                     target.gain(result.links[0], 'gain2');
                     event.discard.remove(result.links[0]);
                     if (event.discard.length) {
@@ -50228,7 +50228,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.targets) {
+            if (result.targets?.length) {
                 player.line(result.targets);
                 trigger.targets.addArray(result.targets);
             }

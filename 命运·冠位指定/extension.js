@@ -2129,7 +2129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            else return get.value(card, trigger.player);
                         });
                         ('step 2');
-                        if (result.links) {
+                        if (result.links?.length) {
                            event.num2 = result.links.length;
                            var cards = [];
                            for (var i = 0; i < result.links.length; i++) {

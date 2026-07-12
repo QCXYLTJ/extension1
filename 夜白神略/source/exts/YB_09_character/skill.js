@@ -38,7 +38,7 @@ const skill = {
 					.discardPlayerCard('he', target, [1, count], forced)
 					.set('prompt2', `弃置${get.translation(target)}至多${count}张牌？`)
 					.forResult();
-				if (result.cards) {
+				if (result.cards?.length) {
 					cards.push(...result.cards);
 					forced = false;
 					count -= result.cards.length;
@@ -467,7 +467,7 @@ const skill = {
 				}
 			};
 			('step 7');
-			if (result.targets) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 			}
 			player.chooseCard('he', [0, Infinity]).set('ai', function (card) {
@@ -690,7 +690,7 @@ const skill = {
 			trigger.player.removeMark('North_yhy_minzeng_zeng');
 			player.chooseTarget().set('prompt', '是否转移<憎>标记？').set('prompt2', '如放弃转移,则此标记移出游戏,然后你回复2点体力并选择是否获得其一个技能(觉醒技、限定技、主公技除外)');
 			('step 1');
-			if (result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].addMark('North_yhy_minzeng_zeng');
 				event.finish();
 			} else {
@@ -1919,7 +1919,7 @@ const skill = {
 						return -get.attitude(_status.event.player, target);
 					});
 					('step 2');
-					if (result.targets) {
+					if (result.targets?.length) {
 						for (const i of result.targets) {
 							i.damage('fire', 'nocard', event.num);
 						}
@@ -2041,7 +2041,7 @@ const skill = {
 						return -get.attitude(_status.event.player, target);
 					});
 					('step 2');
-					if (result.targets) {
+					if (result.targets?.length) {
 						for (const i of result.targets) {
 							i.damage('fire', 'nocard', 2);
 						}
@@ -3246,7 +3246,7 @@ const skill = {
 				})
 				.set('prompt2', str + '你可以指定1名角色回复1点体力和摸三张牌并选择令其①出牌阶段后额外获得1个摸牌阶段②弃牌阶段结束后额外获得1个出牌阶段③废除判定区');
 			('step 1');
-			if (result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].recover();
 				result.targets[0].draw(3);
 				event.target = result.targets[0];
@@ -4342,7 +4342,7 @@ const skill = {
 					}
 				})
 				.forResult();
-			if (result.links) {
+			if (result.links?.length) {
 				await player.discard(result.links);
 				if (event.triggername != 'useCard') {
 					trigger.cancel();
@@ -4511,7 +4511,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.cards) {
+			if (result.cards?.length) {
 				player.changeZhuanhuanji('North_shh_yuniao');
 				event.cards = result.cards;
 			} else {
@@ -5370,7 +5370,7 @@ const skill = {
 					}
 				});
 			('step 3');
-			if (result.targets) {
+			if (result.targets?.length) {
 				const targets = result.targets.sortBySeat();
 				player.storage.caoyi_miyi = [];
 				player.addTempSkill('caoyi_miyi_add');
@@ -5545,7 +5545,7 @@ const skill = {
 				event.goto(3);
 			}
 			('step 2');
-			if (result.cards) {
+			if (result.cards?.length) {
 				event.tar.give(result.cards, player);
 			} else {
 				event.tar.damage(player);
@@ -5832,7 +5832,7 @@ const skill = {
 				})
 				.set('promtp2', '令一名角色摸一张牌');
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0]);
 				result.targets[0].draw(1);
 			}
@@ -6069,7 +6069,7 @@ const skill = {
 			('step 2');
 			player.chooseCard('he', 3, true, '请选择三张牌重铸');
 			('step 3');
-			if (result.cards) {
+			if (result.cards?.length) {
 				player.recast(result.cards);
 			}
 		},

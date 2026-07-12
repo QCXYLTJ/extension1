@@ -1677,7 +1677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.storage.XK_wangnianwuwang.push('spade');
 									},
 								];
-								if (result.links) {
+								if (result.links?.length) {
 									player.markSkill('XK_wangnianwuwang');
 									for (var i = 0; i < result.links.length; i++) {
 										map[result.links[i]](trigger, player, event);
@@ -4019,7 +4019,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										trigger.num--;
 									},
 								];
-								if (result.links) {
+								if (result.links?.length) {
 									for (var i = 0; i < result.links.length; i++) {
 										game.log(player, '选择了', '#g【毒魄】', '的', '#y选项' + get.cnNumber(result.links[i] + 1, true));
 										map[result.links[i]](trigger, player, event);
@@ -4483,7 +4483,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								} else event.finish();
 								('step 2');
-								if (result.links) {
+								if (result.links?.length) {
 									if (player.name == 'XK_fengzhongzhishen') {
 										game.playAudio('../extension/侠客风云传/audio/XK_tiantabujing1.mp3');
 									}
@@ -10880,7 +10880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								}
 								('step 2');
-								if (result.links) {
+								if (result.links?.length) {
 									player.chooseUseTarget(result.links[0], false, false);
 								}
 							},

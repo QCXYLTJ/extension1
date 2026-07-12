@@ -3593,7 +3593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.choosePlayerCard('hej', trigger.player, 2, true);
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									player.storage.lg_bingzhuifengbao = player.storage.lg_bingzhuifengbao.concat(result.links);
 									trigger.player.lose(result.links, ui.special, 'toStorage');
 									trigger.player.$throw(result.links, 1000);

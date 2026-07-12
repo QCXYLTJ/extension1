@@ -16647,7 +16647,7 @@ export async function precontent(config, pack) {
                         .set('createDialog', ['请选择一张武将牌', [list, 'character']]);
                 }
                 ('step 4');
-                if (result.links) {
+                if (result.links?.length) {
                     player.flashAvatar('syr_quanzhii', result.links[0]);
                     player.markAuto('syr_quanzhii_' + (trigger.player == player ? 'e' : 'b'), result.links);
                     var skills = lib.character[result.links[0]][3];
@@ -19825,7 +19825,7 @@ export async function precontent(config, pack) {
                     .set('goon3', list.includes('dshj_VIShiki'))
                     .set('goon4', list.includes('syr_shen_xusheng'));
                 ('step 1');
-                if (result.links) {
+                if (result.links?.length) {
                     event.Q = result.links[0];
                     if (target.name2 != undefined) {
                         target

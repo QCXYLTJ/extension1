@@ -2587,7 +2587,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         break;
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     trigger.player.$giveAuto(result.cards, player);
                                     player.gain(result.cards, trigger.player);
                                 }
@@ -2897,7 +2897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.draw(2);
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.line(trigger.player);
                                     player.gain(result.cards, 'gain2', 'log');
                                     // player.gain(result.cards,trigger.player);

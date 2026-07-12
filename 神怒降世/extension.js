@@ -20409,7 +20409,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 2');
-								if (result.targets) {
+								if (result.targets?.length) {
 									player.useCard({ name: 'juedou' }, result.targets[0], 'noai');
 								}
 							},
@@ -27205,7 +27205,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											else return 6 - get.value(button.link);
 										});
 										('step 3');
-										if (result.links) {
+										if (result.links?.length) {
 											for (var i = 0; i < result.links.length; i++) {
 												if (player.getCards('h').includes(result.links[i])) {
 													event.card1 = result.links[i];
@@ -27297,7 +27297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 3');
-								if (result.targets) {
+								if (result.targets?.length) {
 									player.useCard({ name: 'juedou' }, result.targets[0], 'noai');
 								}
 							},
@@ -30773,7 +30773,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										}
 										('step 2');
-										if (result.targets) {
+										if (result.targets?.length) {
 											player.line(result.targets[0]);
 											player.discard(result.cards);
 											player.gainPlayerCard('he', result.targets[0], true);
@@ -32967,7 +32967,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('hastao', hastao)
 									.set('att', att);
 								('step 3');
-								if (result.cards) {
+								if (result.cards?.length) {
 									if (result.cards.length == 4) {
 										var suits = [];
 										var types1 = [];
@@ -48172,7 +48172,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('ai', (button) => player.getUseValue(button.link)); //QQQ
 								}
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									event.zhuanhuan = result.links[0].name;
 									event.suit1 = result.links[0].suit;
 									player.chooseCard(get.prompt('fxlj'), '将一张手牌当作' + get.translation(event.zhuanhuan) + '使用', 'h').set('ai', function (card) {
@@ -48181,7 +48181,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 2');
-								if (result.cards) {
+								if (result.cards?.length) {
 									event.suit2 = result.cards[0].suit;
 									player.chooseUseTarget({ name: event.zhuanhuan }, result.cards, true);
 								} else event.finish();
@@ -50453,7 +50453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 2');
-								if (result.targets) {
+								if (result.targets?.length) {
 									player.line(result.targets[0]);
 									player.discard(result.cards);
 									player.gainPlayerCard('he', result.targets[0], true);
@@ -60383,7 +60383,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									event.zhuanhuan = result.links[0].name;
 									player.chooseCard('〖灵碣〗:将一张牌当作' + get.translation(event.zhuanhuan) + '使用', 'hes').set('ai', function (card) {
 										return 6 - get.value(card);
@@ -60505,7 +60505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									event.cards = result.links;
 									player.$give(event.cards, player, false);
 									player.gain(event.cards, player, 'fromStorage');

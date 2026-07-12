@@ -3241,7 +3241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             card.clone.delete();
                                         }
                                     }, event.card);
-                                } else if (result.targets) {
+                                } else if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(event.card, 'log');
                                     event.node.moveDelete(result.targets[0]);

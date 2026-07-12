@@ -847,7 +847,7 @@ const skill = {
             event.finish();
           }
           ('step 3');
-          if (result.targets) {
+          if (result.targets?.length) {
             let target = result.targets[0];
             player.line(target);
             if (target.storage.hzc_chenju) {
@@ -5077,7 +5077,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.targets) {
+      if (result.targets?.length) {
         player.useCard({ name: 'juedou' }, result.targets[0], 'noai');
       }
     },
@@ -6914,7 +6914,7 @@ const skill = {
       event.gainner = gainner;
       event.giver = giver;
       ('step 1');
-      if (result.cards) {
+      if (result.cards?.length) {
         event.bool = false;
         let card = result.cards[0];
         if (card.suit != 'spade') {
@@ -29097,7 +29097,7 @@ const skill = {
           return get.effect(target, { name: 'juedou' }, evt.player, _status.event.player) - 2;
         });
       ('step 2');
-      if (result.targets) {
+      if (result.targets?.length) {
         trigger.source.useCard({ name: 'juedou' }, result.targets[0], 'noai');
       }
     },
@@ -40625,7 +40625,7 @@ const skill = {
       }
       ('step 2');
       let bool = true;
-      if (result.cards) {
+      if (result.cards?.length) {
         if (Array.isArray(result.cards)) {
           for (let i of result.cards) {
             if (['basic', 'trick'].includes(get.type(i, 'trick', i.original == 'h' ? player : false))) {
@@ -40718,7 +40718,7 @@ const skill = {
       ('step 2');
       let bool = true;
       let num = game.players.length - 1;
-      if (result.cards) {
+      if (result.cards?.length) {
         if (Array.isArray(result.cards)) {
           for (let i of result.cards) {
             if (['equip3', 'equip4', 'equip6'].includes(get.subtype(i, 'trick', i.original == 'h' ? player : false))) {

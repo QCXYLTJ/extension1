@@ -3837,7 +3837,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 2';
-            if (result.cards) {
+            if (result.cards?.length) {
               for (var i of result.cards) {
                 if (get.type(i) == 'equip') player.draw(i.length);
               }

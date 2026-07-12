@@ -1029,7 +1029,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         if (player.countCards('he') > 0) player.chooseCard('寻师:可以将一张牌置于武将牌上', 'he');
         else event._result = { bool: false };
         ('step 2');
-        if (result.cards) {
+        if (result.cards?.length) {
           game.trySkillAudio('menglinggan', player);
           player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('menglinggan');
         }
@@ -5723,7 +5723,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               }
             });
             ('step 1');
-            if (result.links) {
+            if (result.links?.length) {
               if (result.links[0] == 0) {
                 var str = `请选择${get.translation(trigger.card)}的额外目标`;
                 player
@@ -5749,7 +5749,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               }
             } else event.finish();
             ('step 2');
-            if (result.targets) {
+            if (result.targets?.length) {
               player.removeMark('shencifu_cifu', 1);
               game.playAudio('../extension/忽悠宇宙/audio/skill/mengcifu_cifu1.mp3');
               player.storage.shencifu_cifu2.add(trigger.card);
@@ -15396,7 +15396,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         }
         ('step 1');
         if (result.bool) {
-          if (result.targets) {
+          if (result.targets?.length) {
             if (get.color(trigger.cards[0]) == 'red') {
               result.targets[0].recover();
             } else {
@@ -19833,7 +19833,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             });
         }
         ('step 3');
-        if (result.targets) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.addTempSkill('JLPwuwang_skill');
           target.storage.JLPwuwang_skill.add(trigger.card);

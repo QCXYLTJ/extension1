@@ -40266,7 +40266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var bool1 = true,
                                     bool2 = true,
                                     bool3 = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (result.cards[i].original == 'h') bool2 = false;
@@ -40600,7 +40600,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discardPlayerCard(event.typelist.length, '弃置<' + get.translation(target) + '>的' + get.translation(event.typelist.length) + '张牌,若弃置' + get.translation(event.typelist) + '牌,其摸等量张牌', 'he', target, true);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var list = [];
                                     var namelist = [];
                                     player.getHistory('useCard', function (evt) {

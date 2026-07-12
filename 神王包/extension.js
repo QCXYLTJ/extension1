@@ -10397,7 +10397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 if (!result.links.includes(0)) event.finish();
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     trigger.targets.addArray(result.targets);
                                 }
@@ -11628,7 +11628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
                                             if (['basic', 'trick'].includes(get.type(i, 'trick'))) {

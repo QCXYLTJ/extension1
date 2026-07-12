@@ -12776,7 +12776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.$throw(card, 1000);
                                 player.lose(card, ui.cardPile);
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.suit1 = result.cards[0].suit;
                                 } else event.finish();
                                 ('step 3');

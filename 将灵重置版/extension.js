@@ -2408,7 +2408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   else return -1;
                 });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   game.playThisAudio('voice/' + event.name + '1');
                   if (player == game.me) {
                     jl_config.settexiao();
@@ -2704,7 +2704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return get.attitude(player, target) <= 0;
                   });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   for (var i of result.targets) i.addTempSkill('jl_huaman_mansi_mark', 'phaseUseAfter');
                 }
               },
@@ -2741,7 +2741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return false;
                   });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   game.playThisAudio('voice/' + event.name + '1');
                   if (player == game.me) {
                     jl_config.settexiao();
@@ -2836,7 +2836,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 ('step 1');
                 event.targets = [];
                 event.targets.push(player);
-                if (result.cards) {
+                if (result.cards?.length) {
                   event.feijian = result.cards.length + 2;
                 } else event.feijian = 2;
                 ('step 2');
@@ -3029,7 +3029,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return get.attitude(_status.event.player, target) <= 0;
                 });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   const targets = result.targets;
                   targets.sort(lib.sort.seat);
                   event.targets = targets;
@@ -3678,7 +3678,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   else return -1;
                 });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   result.targets.sortBySeat();
                   game.playThisAudio('voice/' + event.name + '1');
                   if (player == game.me) {
@@ -4034,7 +4034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return get.attitude(player, target);
                 });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   game.playThisAudio('voice/' + event.name + '1');
                   if (player == game.me) {
                     jl_config.settexiao();
@@ -4765,7 +4765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return get.attitude(_status.event.player, target);
                   });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   result.targets.sortBySeat();
                   event.targets = result.targets;
                 } else event.finish();
@@ -5214,7 +5214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return Math.max(att * (10 - target.hp), att * 5);
                 });
                 ('step 1');
-                if (result.targets) {
+                if (result.targets?.length) {
                   result.targets.sortBySeat();
                   event.targets = result.targets;
                 } else event.finish();
@@ -5666,7 +5666,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           player.chooseButton([0, len]).set('createDialog', ['选择幻化的武将', [list, 'character']]);
           ('step 1');
           if (result.bool) {
-            if (result.links) {
+            if (result.links?.length) {
               for (var i of result.links) {
                 let skills = lib.character[i][3];
                 for (let j = 0; j < skills.length; j++) {

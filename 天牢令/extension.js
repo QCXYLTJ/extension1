@@ -3979,7 +3979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('du', event.card.name == 'du');
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(event.card, 'gain2');
                                 }
@@ -33526,7 +33526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.line(targets[1], 'yellow');
                                 targets[1].chooseCard('选择一张牌交给' + get.translation(player), 'he', true);
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, targets[1], 'giveAuto');
                                 }
                                 if (targets.length == 2) event.finish();
@@ -38138,7 +38138,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseButton(dialog);
                                 ('step 1');
                                 var evt = event.getParent(2);
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.getHistory('custom').push({ DIY_tuiyan: true });
                                     event.remove = result.links[0];
                                     player.storage.DIY_busuan_suit.remove(result.links[0]);

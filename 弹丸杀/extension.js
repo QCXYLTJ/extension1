@@ -1210,7 +1210,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 1');
 								if (result.bool) {
-									if (result.cards) {
+									if (result.cards?.length) {
 										player.$gain2(result.cards);
 										player.gain(result.cards);
 									}

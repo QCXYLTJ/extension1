@@ -306,7 +306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.$throw(result.links);
                                     for (var i of result.links) player.storage.siwangbiji.remove(i);
                                     game.cardsDiscard(result.links);

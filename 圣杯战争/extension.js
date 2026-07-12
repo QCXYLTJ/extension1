@@ -8008,7 +8008,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 5');
                                 if (result.bool) {
-                                    if (result.cards) {
+                                    if (result.cards?.length) {
                                         var n = 1;
                                         for (const i of result.cards) {
                                             var cardx = game.createCard2(i.name, 'club', n);
@@ -8054,7 +8054,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 10');
                                 if (result.bool) {
-                                    if (result.cards) {
+                                    if (result.cards?.length) {
                                         var n = 1;
                                         for (const i of result.cards) {
                                             if (['zheji', 'numa', 'jinhe', 'nvzhuang'].includes(i.name)) {
@@ -9222,7 +9222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 3');
                                 event.tolose = [];
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (const i of player.getCards('h')) {
                                         if (!result.cards.includes(i)) event.tolose.push(i);
                                     }
@@ -17658,7 +17658,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 event.finish();
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.addGaintag(result.cards, 'sbzz_huanjin');
                                 }
                             },
@@ -39803,7 +39803,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget(get.prompt('sbzz_caizhi'), prompt, filterTarget).set('ai', ai);
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var num = ['摸牌', '拆牌'].includes(event.control) ? 1 : 2;
                                     player.removeMark('charge', num);
                                     event.target = result.targets[0];

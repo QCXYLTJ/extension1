@@ -4843,7 +4843,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'juedou' }, result.targets[0], 'noai');
                                 }
                             },

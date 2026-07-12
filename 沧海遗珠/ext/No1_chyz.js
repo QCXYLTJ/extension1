@@ -429,7 +429,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					trigger.player.removeMark('ybyhy_minzeng_zeng');
 					player.chooseTarget().set('prompt', '是否转移<憎>标记？').set('prompt2', '如放弃转移,则此标记移出游戏,你回复2点体力并选择是否获得其一个技能(觉醒技、限定技、主公技除外).');
 					('step 1');
-					if (result.targets) {
+					if (result.targets?.length) {
 						result.targets[0].addMark('ybyhy_minzeng_zeng');
 						event.finish();
 					} else {
@@ -1559,7 +1559,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return -get.attitude(_status.event.player, target);
 							});
 							('step 2');
-							if (result.targets) {
+							if (result.targets?.length) {
 								for (var i of result.targets) {
 									i.damage('fire', 'nocard', event.num);
 								}
@@ -1664,7 +1664,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return -get.attitude(_status.event.player, target);
 							});
 							('step 2');
-							if (result.targets) {
+							if (result.targets?.length) {
 								for (var i of result.targets) {
 									i.damage('fire', 'nocard', 2);
 								}
@@ -2697,7 +2697,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.set('prompt2', str + '你可以指定1名角色回复1点体力和摸3张牌并选择令其:<br>①出牌阶段后额外获得1个摸牌阶段<br>②弃牌阶段结束后额外获得1个出牌阶段<br>③废除判定区<br>④获得界制衡.');
 					('step 1');
-					if (result.targets) {
+					if (result.targets?.length) {
 						result.targets[0].recover();
 						result.targets[0].draw(3);
 						event.target = result.targets[0];
@@ -3873,7 +3873,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return att > 0 && eff < 0;
 							}
 						});
-					if (result.links) {
+					if (result.links?.length) {
 						await player.discard(result.links);
 						if (event.triggername != 'useCard') {
 							await trigger.cancel();
@@ -4009,7 +4009,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						player.choosePlayerCard(event.list[1], 'he');
 					} else event.finish();
 					('step 2');
-					if (result.cards) {
+					if (result.cards?.length) {
 						player.changeZhuanhuanji('ybshh_yuniao');
 						event.cards = result.cards;
 					} else event.finish();

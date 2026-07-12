@@ -27219,7 +27219,7 @@ const skill = {
                 };
             }
             ('step 1');
-            if (result.targets) {
+            if (result.targets?.length) {
                 player.line(result.targets[0], 'green');
                 result.targets[0].addMark('yjckar_mingjun_min', event.num);
             }
@@ -40246,7 +40246,7 @@ const skill = {
                 if (result.bool) {
                     event.shaRequired--;
                     if (event.turn == target) {
-                        if (result.cards) {
+                        if (result.cards?.length) {
                             event.targetCards.addArray(result.cards);
                         }
                         if (event.shaRequired > 0) {
@@ -40256,7 +40256,7 @@ const skill = {
                             event.goto(1);
                         }
                     } else {
-                        if (result.cards) {
+                        if (result.cards?.length) {
                             event.playerCards.addArray(result.cards);
                         }
                         if (event.shaRequired > 0) {

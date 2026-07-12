@@ -5825,7 +5825,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 2');
                     if (event.info.includes('[知己知彼]')) {
                         //知己知彼效果
-                        if (result.targets) {
+                        if (result.targets?.length) {
                             //如果知己知彼选择了角色
                             player.popup('知己知彼');
                             trigger.player.link(true);
@@ -5847,7 +5847,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     } else if (event.info.includes('[诱敌深入]')) {
                         //诱敌深入效果
-                        if (result.cards) {
+                        if (result.cards?.length) {
                             //如果诱敌深入弃置了牌
                             player.popup('诱敌深入');
                             trigger.player.link(true);

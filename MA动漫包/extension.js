@@ -31238,7 +31238,7 @@ export default function () {
                                     player.chooseCardButton('选择获得其中的一张牌', true, event.cards, true);
                                 }
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },

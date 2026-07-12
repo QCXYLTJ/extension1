@@ -572,7 +572,7 @@ game.addMode(
                         });
                     }
                     ('step 1');
-                    if (result.links) {
+                    if (result.links?.length) {
                         var card = game.createCard(result.links[0][2]);
                         target.$gain(card);
                         target.gain(card);

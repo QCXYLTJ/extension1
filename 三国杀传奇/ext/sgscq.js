@@ -816,7 +816,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.goto(4);
 					}
 					'step 3'
-					if (result.targets) {
+					if (result.targets?.length) {
 						result.targets[0].damage('thunder', 'nocard');
 					}
 					'step 4'
@@ -949,7 +949,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.goto(4);
 					}
 					'step 3'
-					if (result.targets) {
+					if (result.targets?.length) {
 						result.targets[0].damage('thunder', trigger.card);
 					}
 					'step 4'
@@ -1577,7 +1577,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					'step 2'
-					if (result.targets) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						var link = event.card;
 						event.target.addJudge({ name: 'lebu' }, [link[0]]);
@@ -1730,7 +1730,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						prompt: get.prompt('sgscq_tianxiang'),
 						prompt2: lib.translate.sgscq_tianxiang_info
 					});
-					if (result.cards) {
+					if (result.cards?.length) {
 						trigger.cancel();
 						let player = map.player, target = result.targets[0], card = result.cards[0];
 						if (target && target.isIn()) await target.addJudge({ name: 'shandian' }, [card]);
@@ -3625,7 +3625,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					});
 					'step 1'
 					var control, cards = [];
-					if (result.links) {
+					if (result.links?.length) {
 						for (var i of result.links) {
 							if (event.str.includes(i)) control = i;
 							else cards.push(i);
@@ -3701,7 +3701,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					event.cards2 = trigger.cards;
 					'step 1'
 					var control = [], cards = event.cards2;
-					if (result.links) {
+					if (result.links?.length) {
 						if (this.trigger.player != player) player.line(trigger.player, 'fire')
 						for (var i of result.links) {
 							if (event.str.includes(i)) {
@@ -4235,7 +4235,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return true;
 							});
 							'step 1'
-							if (result.links) {
+							if (result.links?.length) {
 								event.card = result.links[0];
 								var name = (trigger.card.viewAs || trigger.card.name);
 								var str = '将';
@@ -4806,7 +4806,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						});
 					}
 					'step 2'
-					if (result.targets) {
+					if (result.targets?.length) {
 						var nature = null;
 						if (player.hasSkill('sgscq_kuwangxx_1')) nature = 'fire';
 						else if (player.hasSkill('sgscq_kuwangxx_2')) nature = 'thunder';

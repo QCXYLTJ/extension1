@@ -514,7 +514,7 @@ const skill = {
 				});
 			}
 			('step 6');
-			if (result.targets) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 			} else {
 				delete result.targets;

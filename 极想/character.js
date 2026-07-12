@@ -1005,7 +1005,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 1');
-                            if (result.links) {
+                            if (result.links?.length) {
                                 player.recast(result.links);
                             }
                         },
@@ -4336,7 +4336,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 2');
-                            if (result.links) {
+                            if (result.links?.length) {
                                 player.line(event.tar);
                                 player.give(result.links, event.tar);
                                 if (result.links.length >= 3) {
@@ -4373,7 +4373,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 10 - get.value(card) - player.hp / 2;
                     });
                     ('step 1');
-                    if (result.links) {
+                    if (result.links?.length) {
                         player.line(event.tar);
                         event.tar.addToExpansion(result.links, event.tar, 'giveAuto').gaintag.add('xx_huatu');
                     }
@@ -11383,7 +11383,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     });
                     ('step 1');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         event.t.showCards(result.cards);
                         if (result.cards[0].suit == event.s) {
                             player.draw();
@@ -13723,7 +13723,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 4');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         var tar = result.targets[0];
                         if (tar) {
                             player.line(tar);
@@ -13732,7 +13732,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     event.finish();
                     ('step 5');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         var tar = result.targets[0];
                         if (tar) {
                             player.line(tar);
@@ -13741,7 +13741,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     event.finish();
                     ('step 6');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         var tar = result.targets[0];
                         if (tar) {
                             player.line(tar);
@@ -23671,7 +23671,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.player.damage(1);
                             }
                             ('step 3');
-                            if (result.cards) {
+                            if (result.cards?.length) {
                                 player.gain(result.cards, event.player, 'give');
                             }
                         },
@@ -24317,8 +24317,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.cards) {
-                        if (result.cards) {
+                    if (result.cards?.length) {
+                        if (result.cards?.length) {
                             player.gain(result.cards, target, 'give');
                         }
                     } else {
@@ -25825,7 +25825,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 5');
                     if (result.index != 0) {
-                        if (result.cards) {
+                        if (result.cards?.length) {
                             player.gain(result.cards, target, 'give');
                         } else {
                             target.chooseToDiscard(event.cardsnum, true);
@@ -34829,7 +34829,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             ('step 3');
                             event.finish();
                             ('step 4');
-                            if (result.links) {
+                            if (result.links?.length) {
                                 event.t1.gain(result.links);
                             }
                         },
@@ -40524,7 +40524,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     });
                                     if (card) player.gain(card, 'draw');
                                 } else {
-                                    if (result.links) {
+                                    if (result.links?.length) {
                                         player.give(result.links, target);
                                     }
                                 }
@@ -42015,7 +42015,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 player.chooseCardButton('影域<br>你可以消耗任意枚<影>获得其中等量的牌', cards, [1, x]);
                             }
                             ('step 2');
-                            if (result.links) {
+                            if (result.links?.length) {
                                 var x = Math.random() * 10;
                                 if (x < 2) {
                                     player.say('瞧瞧,遗落之物？呵');

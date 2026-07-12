@@ -11785,7 +11785,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.gainPlayerCard(trigger.target, 'he', true);
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (!player.storage.slc_gongxun_data) player.storage.slc_gongxun_data = [];
                                     if (!player.storage.slc_gongxun_data.includes(card.number)) {
@@ -11814,7 +11814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.gainPlayerCard(trigger.player, 'he', true);
                                         ('step 1');
-                                        if (result.cards) {
+                                        if (result.cards?.length) {
                                             var card = result.cards[0];
                                             if (!player.storage.slc_gongxun_data) player.storage.slc_gongxun_data = [];
                                             if (!player.storage.slc_gongxun_data.includes(card.number)) {

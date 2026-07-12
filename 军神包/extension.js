@@ -3199,7 +3199,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.chooseCardButton('是否移去1张"扇",视为对' + get.translation(trigger.player) + '使用1张桃', player.storage.ly_junshenbao_zhenSanGuo_xiaoqiao_cangshan)
 											.set('ai', (button) => get.attitude(player, trigger.player) - get.value(button.link));//QQQ
 										('step 1');
-										if (result.links) {
+										if (result.links?.length) {
 											var card = result.links[0];
 											player.storage.ly_junshenbao_zhenSanGuo_xiaoqiao_cangshan.remove(card);
 											card.discard();

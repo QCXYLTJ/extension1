@@ -2135,7 +2135,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         return 6 - get.value(card);
                                     });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.lose(cards, ui.special);
                                     for (var i = 0; i < cards.length; i++) {
@@ -5610,7 +5610,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     player.chooseCard('h', '是否将一张手牌交给' + get.translation(trigger.source), '令伤害来源改为你？'); //让玩家从自己的手牌中选择一张牌,可以选择将这张牌交给伤害来源,使得伤害来源改为自己
                                 }
                                 ('step 1'); //选择手牌的步骤结束后,开始结算技能效果
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     //如果玩家选择了一张手牌
                                     trigger.source.gain(result.cards, player, 'give'); //将这张手牌交给伤害来源
                                     trigger.source = player; //将伤害来源改为自己
@@ -7693,7 +7693,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     return false;
                                 });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var num = result.cards.length;
                                     game.mp47('穿越');
                                     game.roundNumber += num;
@@ -7891,7 +7891,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         'step 0';
                                         player.chooseToDiscard('he', 2);
                                         ('step 1');
-                                        if (result.cards) {
+                                        if (result.cards?.length) {
                                             player.say(['长锋所指,四方臣服.', '捭阖天下,无人可挡.!'].randomGet());
                                             player.getStat().card.sha--;
                                         }

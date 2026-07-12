@@ -19895,7 +19895,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             prompt: '发动【罗汉拳法】视为使用或打出一张【杀】.',
                             onuse(result, player) {
                                 player.consumexwjhMp(2);
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     for (var target of result.targets) {
                                         game.xwPlayAnimOnPlayer('skill_luohanquan', target);
                                     }
@@ -36559,7 +36559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             prompt: '将至少两张手牌当杀使用.',
                             onuse(result, player) {
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var suits = [];
                                     for (var card of result.cards) {
                                         var suit = card.suit;

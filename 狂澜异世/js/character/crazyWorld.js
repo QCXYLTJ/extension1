@@ -2654,7 +2654,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton(ui.create.dialog('狂澜-备军', true, player.getExpansions('rgxbeijun'), 'hidden'), true);
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     _status.temp = { card: result.links };
                                     event.card = result.links[0];
                                     var bool = game.hasPlayer(function (current) {
@@ -4401,7 +4401,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.color(button.link) == 'black';
                             });
                             ('step 1');
-                            if (result.links) {
+                            if (result.links?.length) {
                                 trigger.player.discard(result.links);
                                 trigger.num--;
                                 game.playAudio('../extension/狂澜异世/audio/lini/qi/wait.mp3');
@@ -4842,7 +4842,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.buttonValue(button);
                             });
                             ('step 1');
-                            if (result.links) {
+                            if (result.links?.length) {
                                 let card = get.cards();
                                 let keys = Object.keys(player.getStorage('hoyohumeng_use'));
                                 for (var i = 0; i < 6; i++) {

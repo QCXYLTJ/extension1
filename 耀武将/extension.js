@@ -10269,7 +10269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 } else event.finish();
                                 ('step 3');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.chooseToDiscard('he', x, true).ai = function (card) {
                                         return 8 - get.value(card);
                                     };
@@ -18554,7 +18554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             result.targets[0].damage();
                                         } else event.finish();
                                     },
@@ -18598,7 +18598,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             result.targets[0].damage();
                                         } else event.finish();
                                     },
@@ -18641,7 +18641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             result.targets[0].damage();
                                         } else event.finish();
                                     },
@@ -18684,7 +18684,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             result.targets[0].damage();
                                         } else event.finish();
                                     },
@@ -34436,7 +34436,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.gainner = gainner;
                                 event.giver = giver;
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.bool = false;
                                     var card = result.cards[0];
                                     if (get.color(card) == 'black') event.bool = true;

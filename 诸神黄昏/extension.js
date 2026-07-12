@@ -16363,7 +16363,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets[0], 'noai');
                                 }
                             },
@@ -18924,7 +18924,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(card);
                                 });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var suits = [];
                                     for (var i = 0; i < result.cards.length; i++) {
                                         suits.add(result.cards[i].suit);
@@ -30048,7 +30048,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.cards.add(result.cards[0]);
                                     event.count += 1;
                                 }
@@ -43807,7 +43807,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (var i of result.cards) {
                                         if (get.type(i) == 'equip') player.changeHujia(i.length);
                                         player.removeSkill('lg_xingyueye');
@@ -43861,7 +43861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (var i of result.cards) {
                                         if (get.type(i) == 'equip') player.gainMaxHp(i.length);
                                         player.removeSkill('lg_xingyueye1');

@@ -7685,7 +7685,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.choosePlayerCard(target, 'e', true);
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									var num = 0,
 										players = game.filterPlayer();
 									for (const i of players) {

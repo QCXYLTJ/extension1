@@ -1781,7 +1781,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                     }
                     ('step 3');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat();
                     } else event.finish();
                     ('step 4');
@@ -3878,7 +3878,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             else return att - target.hp;
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat();
                     } else event.finish();
                     ('step 2');
@@ -4718,7 +4718,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return `弃${num}张牌`;
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat();
                     } else event.finish();
                     ('step 2');
@@ -5771,7 +5771,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target) > 0;
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat();
                     } else event.finish();
                     ('step 2');
@@ -5937,7 +5937,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             else return -get.attitude(player, target);
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                         event.oo = [1, 2, 3, 4, 5].randomGet();
                         player.draw(event.oo);
@@ -6352,7 +6352,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                         });
                     ('step 1');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         target.give(result.cards[0], player, true);
                         target.draw();
                     } else if (!target.isLinked()) target.link();
@@ -7316,7 +7316,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         player.storage.hyym_quanlei.push(trigger.player);
                         game.broadcastAll(
                             function (target1, target2) {
@@ -8009,7 +8009,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                     }
                     ('step 1');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         player.addGaintag(result.cards[0], 'hyym_huayingxuan_tag');
                         player.markAuto('hyym_huayingxuan', result.cards[0]);
                     }
@@ -8170,7 +8170,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         game.broadcastAll(
                             function (target1, target2) {
@@ -8580,7 +8580,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
 
                     ('step 2');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.tar = result.targets[0];
                         var card = result.cards[0];
                         event.tar.addToExpansion(card, player, 'give').gaintag.add('hyym_zhanbafangx');
@@ -8757,7 +8757,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.attitude(player, target) - target.hp;
                             });
                     ('step 2');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.targets.remove(result.targets[0]);
                         game.log(player, '从【地陷】目标中取消了', result.targets[0]);
                     }
@@ -8885,7 +8885,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 1');
                     if (result.bool) {
                         player.draw();
-                        if (result.targets) {
+                        if (result.targets?.length) {
                             event.target = result.targets.sortBySeat();
                         } else event.finish();
                     } else event.finish();
@@ -8967,7 +8967,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     else return get.attitude(player, target);
                                 });
                             ('step 1');
-                            if (result.targets) {
+                            if (result.targets?.length) {
                                 if (!player.storage.hyym_taipingyaoshu_use) player.storage.hyym_taipingyaoshu_use = [];
                                 player.storage.hyym_taipingyaoshu_use.add(trigger.player);
                                 player.storage.hyym_taipingyaoshu_use.sortBySeat();
@@ -9022,7 +9022,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     else return get.attitude(player, target) > 0;
                                 });
                             ('step 1');
-                            if (result.targets) {
+                            if (result.targets?.length) {
                                 for (var i = 0; i < result.targets.length; i++) {
                                     player.line(result.targets[i], 'thunder');
                                     result.targets[i].addSkill('hyym_kuangleilingyux');
@@ -11398,7 +11398,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                     } else event.finish();
                     ('step 2');
-                    if (result.cards) {
+                    if (result.cards?.length) {
                         player.storage.byh_xiandeng.push(result.cards[0].cardid);
                         player.chooseUseTarget(result.cards[0], true);
                     }
@@ -13753,7 +13753,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 });
                     } else event.finish();
                     ('step 3');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat();
                     } else event.finish();
                     ('step 4');
@@ -14077,7 +14077,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target) > 0;
                         });
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         player.awakenSkill('hyym_shenyuqiongfei');
                         event.target = result.targets.sortBySeat();
                     } else event.finish();

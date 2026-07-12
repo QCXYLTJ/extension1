@@ -579,7 +579,7 @@ const skill = {
 				})
 				.set('att', get.attitude(player, target))
 				.forResult();
-			if (result.cards) {
+			if (result.cards?.length) {
 				await player.gain(result.cards, target);
 				game.log(player, '获得了', target, '的一张牌');
 				if ((trigger.source && trigger.source != target) || !trigger.source) {

@@ -1675,7 +1675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 8 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.lose(card, ui.cardPile, 'visible', 'insert');
                                     player.$throw(card, 1000);

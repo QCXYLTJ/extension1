@@ -657,7 +657,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     trigger.targets.addArray(result.targets);
                                 }
@@ -1182,7 +1182,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.istarget = true;
                                         }
                                         ('step 5');
-                                        if (result.links) {
+                                        if (result.links?.length) {
                                             var cards = player.getCards('h', function (card) {
                                                 for (var i in event.cards) {
                                                     if (event.cards[i].includes(card)) return false;
@@ -1233,7 +1233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.goto(8);
                                         }
                                         ('step 6');
-                                        if (result.links) {
+                                        if (result.links?.length) {
                                             event.card = result.links;
                                         }
                                         if (event.card && event.target) {
@@ -4990,7 +4990,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(2);
                                 }
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     trigger.num++;
                                     player.addTempSkill('paj_xx_fmzx_x');
                                     event.finish();
@@ -5272,7 +5272,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.effect(target, { name: 'sha' }, player, player) > 0;
                                         });
                                         ('step 1');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             player.useCard({ name: 'sha' }, result.targets, false);
                                         }
                                         player.removeMark('paj_xx_guimou', Infinity);

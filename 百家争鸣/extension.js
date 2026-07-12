@@ -2978,7 +2978,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             selectCard: -1,
                             position: 'h',
                             onuse(result, player) {
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     let types = [],
                                         suits = [];
                                     for (const card of result.cards) {
@@ -24062,7 +24062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     var info1 = lib.card[name];
                                     if (info1) {
@@ -28136,7 +28136,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) {
                                     var target1 = result.targets;
-                                    if (result.cards) {
+                                    if (result.cards?.length) {
                                         player.discard(result.cards).delay = false;
                                     }
                                     player.useCard({ name: 'sha' }, result.targets);
@@ -30738,7 +30738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //储存拼点胜负
                                 player.storage.bjzm_xunshuBool = result.bool;
                                 ('step 4');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.targets[0].gain(result.cards, player, 'give');
                                 }
                                 if (!player.storage.bjzm_xunshuBool) {
@@ -30937,7 +30937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     result.targets[0].draw(1);
                                     //player.draw(1);
@@ -31165,7 +31165,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var damageCard = ['sha', 'sha', 'sha', 'juedou', 'juedou', 'wanjian', 'wanjian', 'nanman', 'nanman', 'huogong'].randomGet();
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.line(result.targets[i]);

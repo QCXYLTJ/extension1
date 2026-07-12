@@ -20301,7 +20301,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('du', event.card.name == 'du');
                     ('step 1');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'green');
                         result.targets[0].gain(event.card, 'gain2');
                     }
@@ -30828,7 +30828,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 });
                             }
                             ('step 2');
-                            if (result.targets) {
+                            if (result.targets?.length) {
                                 player.line(result.targets[0]);
                                 player.discard(result.cards);
                                 player.gainPlayerCard('he', result.targets[0], true);

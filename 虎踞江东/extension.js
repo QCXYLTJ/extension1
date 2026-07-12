@@ -3847,7 +3847,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.gainner = gainner;
 								event.giver = giver;
 								('step 1');
-								if (result.cards) {
+								if (result.cards?.length) {
 									event.bool = false;
 									var card = result.cards[0];
 									if (card.suit != 'luelue') event.bool = true;
@@ -4242,7 +4242,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return;
 								}
 								('step 2');
-								if (result.targets) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 								}
 								if (event.num > 0) event.goto(1);
@@ -11477,7 +11477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								if (num != 2) event.finish();
 								('step 1');
-								if (result.cards) {
+								if (result.cards?.length) {
 									player.gain(result.cards, target);
 									target.$give(result.cards.length, player);
 								}

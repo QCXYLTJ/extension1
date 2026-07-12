@@ -2416,7 +2416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 ++player.storage.jlsg_chenqing;
                                 player.markSkill('jlsg_chenqing');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var suits = [];
                                     for (var i = 0; i < result.cards.length; i++) {
                                         suits.add(result.cards[i].suit);
@@ -6427,7 +6427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             var att = get.attitude(player, result.targets[0]);
                                             player.line(result.targets[0], 'water');
                                             player.discardPlayerCard(result.targets[0], 'ej', [1, event.count], function (button) {

@@ -6216,7 +6216,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.card
                                     );
                                     ui.arena.classList.remove('thrownhighlight');
-                                } else if (result.targets) {
+                                } else if (result.targets?.length) {
                                     event.dialog.close();
                                     game.addVideo('judge2', null, event.videoId);
                                     player.line(result.targets, 'green');
@@ -6988,7 +6988,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'juedou' }, result.targets[0], 'noai');
                                 }
                             },
@@ -23354,7 +23354,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 var bool1 = true,
                                     bool2 = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     if (Array.isArray(result.cards))
                                         for (const i of result.cards) {
@@ -31676,7 +31676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.tx_yjcm_benxi_1.add(trigger.card);
                                 player.storage.tx_yjcm_benxi_2.add(trigger.card);
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     trigger.targets.addArray(result.targets);
                                 }
@@ -37262,7 +37262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         if (!result.links.includes(0)) event.finish();
                                         ('step 2');
-                                        if (result.targets) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             trigger.targets.addArray(result.targets);
                                         }
@@ -42686,7 +42686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.discardPlayerCard('he', [1, 2], trigger.player, true);
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var suits = [];
                                     if (Array.isArray(result.cards))
                                         for (const i of result.cards) {

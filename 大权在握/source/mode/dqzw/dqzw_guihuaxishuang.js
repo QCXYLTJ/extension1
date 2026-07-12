@@ -1879,7 +1879,7 @@ import { func as characterListSet } from './character_list_set.js';
 					player.storage.dqzw_boss_xiaxiao.push(target);
 					player.addTempSkill('dqzw_boss_xiaxiao_remove', { player: 'phaseUseAfter' });
 					('step 1');
-					if (result.cards) {
+					if (result.cards?.length) {
 						target.give(result.cards, player);
 						target.draw('nodelay');
 					} else target.recover();
@@ -4284,7 +4284,7 @@ import { func as characterListSet } from './character_list_set.js';
 						return 1;
 					});
 					('step 1');
-					if (result.cards) {
+					if (result.cards?.length) {
 						let card = result.cards[0],
 							control = trigger.source == player ? '+3' : '-3';
 						game.log(player, '将', card, '的点数', '#y' + control, `(${Math.max(1, Math.min(13, eval(`card.number ${control}`)))})`);
@@ -4536,7 +4536,7 @@ import { func as characterListSet } from './character_list_set.js';
 						return 0;
 					});
 					('step 1');
-					if (result.targets) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						target.drawTo(target.maxHp);
 					}
@@ -4561,7 +4561,7 @@ import { func as characterListSet } from './character_list_set.js';
 							return 0;
 						});
 					('step 1');
-					if (result.targets) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						target.recover(target.getDamagedHp());
 					}

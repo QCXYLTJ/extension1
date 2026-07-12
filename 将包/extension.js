@@ -9124,7 +9124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     var info1 = lib.card[name];
                                     if (info1) {

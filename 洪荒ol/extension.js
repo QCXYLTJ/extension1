@@ -69,7 +69,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						return get.damageEffect(_target, target, player);
 					});
 				('step 2');
-				if (result.targets) {
+				if (result.targets?.length) {
 					player.line(result.targets, 'green');
 					event.result.targets = result.targets;
 				}
@@ -10724,7 +10724,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw(1 + player.storage.俠义);
 								player.discardPlayerCard(player.storage.俠义, trigger.player, 'he', true);
 								('step 1');
-								if (result.cards) {
+								if (result.cards?.length) {
 									for (var i = 0; i < result.cards.length; i++) {
 										if (get.type(result.cards[i]) == 'equip') {
 											player.equip(result.cards[i]);
@@ -11810,7 +11810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (player.countCards('he')) player.chooseToDiscard('he', true);
 								}
 								('step 2');
-								if (result.cards) {
+								if (result.cards?.length) {
 									player.changeHujia(result.cards[0].number);
 									player.moveCard();
 								}

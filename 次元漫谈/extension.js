@@ -18976,7 +18976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.choosePlayerCard('hej', trigger.player, true);
 								('step 1');
-								if (result.links) {
+								if (result.links?.length) {
 									player.storage.rain_acgn_project_lingLuWuKong_rongHui = player.storage.rain_acgn_project_lingLuWuKong_rongHui.concat(result.links);
 									trigger.player.lose(result.links, ui.special, 'toStorage');
 									trigger.player.$throw(result.links, 1000);

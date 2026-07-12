@@ -2679,7 +2679,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         });
                     }
                     ('step 2');
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         player.line(result.targets[0]);
                         player.discard(result.cards);
                         player.gainPlayerCard('he', result.targets[0], true);

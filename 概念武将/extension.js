@@ -358,7 +358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 									('step 5');
-									if (result.links) {
+									if (result.links?.length) {
 										event.cards.remove(result.links[0]);
 										player.gain(result.links, 'gain2');
 										if (Array.isArray(event.cards)) for (var i of event.cards) {

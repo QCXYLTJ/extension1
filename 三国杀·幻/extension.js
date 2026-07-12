@@ -1432,7 +1432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (target.countCards('e')) player.choosePlayerCard(target, 'e', true);
                                 }
                                 ('step 2');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     event.cardx = result.links[0];
                                     target.recycleCards(result.links);
                                 }

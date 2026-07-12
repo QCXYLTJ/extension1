@@ -12063,7 +12063,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (result.bool) {
                                     player.changeZhuanhuanji('sk_rewrite_bagua_skill');
-                                    if (result.cards) {
+                                    if (result.cards?.length) {
                                         var suit = result.cards[0].suit;
                                     } else {
                                         var suit = 'none';
@@ -12225,7 +12225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (result.bool) {
                                     player.changeZhuanhuanji('sk_bagua_skill');
-                                    if (result.cards) {
+                                    if (result.cards?.length) {
                                         var suit = result.cards[0].suit;
                                     } else {
                                         var suit = 'none';
@@ -18251,7 +18251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 //if(player==game.me||player.isUnderControl()) game.stopClick();
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     player.lose(result.cards, ui.special);
                                     game.broadcastAll(function (player) {

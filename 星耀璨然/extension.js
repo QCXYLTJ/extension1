@@ -26456,7 +26456,7 @@ export default async function () {
                             return get.attitude(player, target);
                         });
                         ('step 2');
-                        if (result.targets) {
+                        if (result.targets?.length) {
                             var targets = result.targets;
                             targets.sort(lib.sort.seat);
                             player.line(targets, 'green');

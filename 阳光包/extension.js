@@ -1513,7 +1513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 8');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.addTempSkill('lyzchouji2');
                                     player.line(result.targets, 'green');
                                     event.targets = result.targets;
@@ -2447,7 +2447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(2);
                                 }
                                 ('step 1');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var type = get.type2(result.cards[0]);
                                     var list = ['basic', 'trick', 'equip'];
                                     list.remove(type);
@@ -5308,7 +5308,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 5');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     for (var i = 0; i < event.targets.length; i++) {
                                         var name = result.links[0][2];
                                         var nature = result.links[0][3];
@@ -5374,7 +5374,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.goto(6);
                                 ('step 5');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     player.give(result.cards, target, true);
                                     event.num++;
                                     event.goto(1);
@@ -8342,7 +8342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     if (event.triggername == 'useCardToTarget') var target = trigger.player;
                                     else if (trigger.source) var target = trigger.source;
                                     player.give(result.cards, target, true);
@@ -8398,7 +8398,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     ((event.target0 = target), player.gainPlayerCard(true, target, 'hej', 'visibleMove'));
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     event.bool = false;
                                     var card = result.cards[0];
                                     if (get.color(card) == 'black' || get.type(card) == 'equip') event.bool = true;
@@ -11688,7 +11688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 3');
                                 delete player.storage.ygbyinghuoxxx;
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var targetx = result.targets[0];
                                     event.targetx = targetx;
                                     event.cards = target.getCards('h');

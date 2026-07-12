@@ -2073,7 +2073,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     trigger.targets.push(result.targets[0]);
                                 }
                                 ('step 3');
@@ -2117,7 +2117,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', lib.translate.shzx_jizhi + '<br>令一名角色摸一张牌');
                                 ('step 1');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw();
                                     event.jizhitarget = result.targets[0];
                                     event.jizhitarget
@@ -2145,7 +2145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return;
                                 }
                                 ('step 2');
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (!player.storage.shzx_jizhi) {
                                         player.storage.shzx_jizhi = [];

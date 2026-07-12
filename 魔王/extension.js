@@ -788,7 +788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('覆海:令一名角色摸' + player.hp + '张牌', true);
                                 } else event.goto(6);
                                 ('step 5');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     target.draw(player.hp);
@@ -800,7 +800,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(8);
                                 ('step 7');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     target.chooseToDiscard('he', true, player.getDamagedHp());
@@ -1485,7 +1485,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 3');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var skills = result.links.slice(0);
                                     for (var i of skills) {
                                         player.removeAdditionalSkill('wanshen_chuli', i);

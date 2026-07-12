@@ -1167,7 +1167,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 2');
-                                if (result.targets) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'juedou' }, result.targets[0], 'noai');
                                 }
                             },
@@ -5935,7 +5935,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 var bool = true;
-                                if (result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (['basic', 'trick'].includes(get.type(result.cards[i], 'trick', result.cards[i].original == 'h' ? player : false))) {
                                             bool = false;
@@ -10509,7 +10509,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.dialog.close();
                                     game.addVideo('judge2', null, event.videoId);
                                     ui.arena.classList.remove('thrownhighlight');
-                                } else if (result.targets) {
+                                } else if (result.targets?.length) {
                                     event.dialog.close();
                                     game.addVideo('judge2', null, event.videoId);
                                     player.line(result.targets, 'green');

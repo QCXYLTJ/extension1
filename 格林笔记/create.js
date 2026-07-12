@@ -303,7 +303,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           }
           player.chooseButtonSkill(list);
           ('step 1');
-          if (result.links) {
+          if (result.links?.length) {
             player.addTempSkill(result.links[0], {
               player: 'phaseBefore',
             });
@@ -1183,7 +1183,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 player.chooseButtonSkill(list, str);
               }
               ('step 1');
-              if (result.links) {
+              if (result.links?.length) {
                 var link = event.map[result.links[0]];
                 var info = get.info(link);
                 trigger.setContent(info.content);

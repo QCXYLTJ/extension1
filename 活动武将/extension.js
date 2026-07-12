@@ -25112,7 +25112,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var num = result.links.length;
                                     player.loseToDiscardpile(result.links);
                                     event.num = num;
@@ -53940,7 +53940,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             const result = await player.choosePlayerCard(player, 'ej', '请选择' + get.translation(event.result.card) + '转化的卡牌').set('ai', (button) => {
                                                 return get.value(button.link) * (get.position(button.link) == 'e' ? -1 : 1);
                                             });
-                                            if (result.cards) {
+                                            if (result.cards?.length) {
                                                 player.addTempSkill('old_lieshi_end');
                                                 event.result.cards = result.cards;
                                             } else {

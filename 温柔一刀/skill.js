@@ -4665,7 +4665,7 @@ const skill = {
           .chooseTarget('令一名其他角色获得<群起>', 1, (card, player, target) => !target.hasSkill('群起') && target.isFriendsOf(player))
           .set('ai', (target) => target.isFriendsOf(_status.event.player))
           .forResult();
-        if (result.targets) {
+        if (result.targets?.length) {
           result.targets[0].addSkill('群起');
         }
       }
@@ -4702,7 +4702,7 @@ const skill = {
         .set('forced', true)
         .set('prompt', '选择获得一条扩展时间线')
         .forResult();
-      if (result.links) {
+      if (result.links?.length) {
         game.扩展1 = result.links[0];
       }
     },

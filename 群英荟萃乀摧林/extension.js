@@ -5445,7 +5445,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.line(result.targets[0]);
                                         player.discardPlayerCard(result.targets[0], 'hej', true);
                                     }
-                                } else if (result.targets) {
+                                } else if (result.targets?.length) {
                                     player.line(result.targets);
                                     result.targets[0].gain(event.card, 'gain2');
                                     if (result.targets[0].hp < 1) result.targets[0].recover(1 - result.targets[0].hp);

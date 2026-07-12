@@ -3937,7 +3937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     true
                                 ).ai = get.buttonValue;
                                 ('step 1');
-                                if (result.links) {
+                                if (result.links?.length) {
                                     var links = result.links;
                                     player.storage.qpfa = (player.storage.qpfa || []).concat(links);
                                     ui.discardPile.insertBefore(cards[0], links[0]);

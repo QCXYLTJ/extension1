@@ -2841,7 +2841,7 @@ game.import('character', function () {
                   };
               }
               ('step 3');
-              if (result.links) {
+              if (result.links?.length) {
                 player.gain(result.links, target, 'give');
               }
             },
@@ -5171,7 +5171,7 @@ game.import('character', function () {
           if (result.cards) player.draw();
           if (result.cards && get.type(result.cards[0]) == 'equip') {
             player.draw();
-          } else if (result.cards) {
+          } else if (result.cards?.length) {
           }
         },
       },
@@ -5760,7 +5760,7 @@ game.import('character', function () {
               }
               if (result.suit == 'club') event.finish();
               ('step 2');
-              if (result.targets) {
+              if (result.targets?.length) {
                 trigger.targets.push(result.targets[0]);
               }
             },
@@ -6149,7 +6149,7 @@ game.import('character', function () {
               'step 0';
               player.chooseToDiscard('he', false, 2, '你可以弃置两张牌将此伤害转移给' + get.translation(trigger.source));
               ('step 1');
-              if (result.cards) {
+              if (result.cards?.length) {
                 trigger.cancel();
                 trigger.source.damage(trigger.num, trigger.nature);
               }
@@ -6167,12 +6167,12 @@ game.import('character', function () {
                 return 6 - get.value(card);
               });
               ('step 1');
-              if (result.cards) {
+              if (result.cards?.length) {
                 var card = player.getCards('j');
                 player.chooseButton(['将你判定区的一张牌移动至一名角色的判定区', card]);
               } else event.finish();
               ('step 2');
-              if (result.cards) {
+              if (result.cards?.length) {
                 event.card = result.links[0];
                 player.chooseTarget(true, '选择' + get.translation(event.card) + '的移动目标', function (card, player, target) {
                   return target != player && target.canAddJudge(event.card);
@@ -6211,7 +6211,7 @@ game.import('character', function () {
           });
           player.addTempSkill('mingshimrfz2');
           ('step 1');
-          if (result.cards) {
+          if (result.cards?.length) {
             player.give(result.cards, target);
             target.addTempSkill('mingshimrfz2');
             player.line(target);
@@ -6706,7 +6706,7 @@ game.import('character', function () {
             return 0;
           });
           ('step 1');
-          if (result.cards) {
+          if (result.cards?.length) {
             player.chooseUseTarget({ name: 'sha' }, result.cards, true, false);
           }
         },
@@ -6888,7 +6888,7 @@ game.import('character', function () {
                 return get.tag(card, 'damage');
               });
               ('step 1');
-              if (result.cards) {
+              if (result.cards?.length) {
                 player.draw(result.cards.length);
                 if (Array.isArray(result.cards))
                   for (var i of result.cards) {
@@ -7055,7 +7055,7 @@ game.import('character', function () {
           if (target.countCards('h') > 0) target.chooseCard('h', true);
           else event.finish();
           ('step 4');
-          if (result.cards) {
+          if (result.cards?.length) {
             target.give(result.cards, player);
             target.draw();
           }
@@ -8048,7 +8048,7 @@ game.import('character', function () {
                 player.gain(result.links, 'gain2').gaintag.add('nianshoumrfz2');
               }
               ('step 7');
-              if (result.cards) {
+              if (result.cards?.length) {
                 var cards3 = player.getCards('h', function (card) {
                   return card.hasGaintag('nianshoumrfz2');
                 });
@@ -10080,7 +10080,7 @@ game.import('character', function () {
               return 0;
             });
           ('step 1');
-          if (result.cards) {
+          if (result.cards?.length) {
             player.chooseTarget(true, '请选择一名与' + get.translation(trigger.targets[0]) + '距离为1的一名其他角色', function (card, player, target) {
               var evt = _status.event.getTrigger();
               return target != player && target != evt.targets[0] && get.distance(evt.targets[0], target) <= 1 && lib.filter.targetEnabled2(evt.card, player, target);
@@ -10153,7 +10153,7 @@ game.import('character', function () {
             return 6 - get.value(card);
           });
           ('step 1');
-          if (result.cards) {
+          if (result.cards?.length) {
             player.removeSkill('guiqiangmrfz');
             player.addSkill('guirenmrfz');
           }
@@ -15081,7 +15081,7 @@ game.import('character', function () {
                 return get.attitude(player, target) < 0;
               };
               ('step 1');
-              if (result.targets) {
+              if (result.targets?.length) {
                 for (var i of result.targets) {
                   i.damage('player');
                   player.line(i);
@@ -15226,7 +15226,7 @@ game.import('character', function () {
             event.finish();
           }
           ('step 2');
-          if (result.targets) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             target.addMark('fuxiemrfzx');
             event.goto(1);
@@ -15277,7 +15277,7 @@ game.import('character', function () {
                 });
               } else event.finish();
               ('step 3');
-              if (result.targets) {
+              if (result.targets?.length) {
                 result.targets[0].removeMark('fuxiemrfzx');
               }
             },
@@ -15493,7 +15493,7 @@ game.import('character', function () {
               });
           } else event.finish();
           ('step 2');
-          if (result.cards) {
+          if (result.cards?.length) {
             targets[event.num].draw(1 + result.cards.length);
           }
           event.num++;
@@ -15540,7 +15540,7 @@ game.import('character', function () {
                 return get.attitude(player, target) > 2;
               };
               ('step 1');
-              if (result.targets) {
+              if (result.targets?.length) {
                 player.changeHujia(Math.min(-1, -result.targets.length + 1));
                 for (var i of result.targets) {
                   i.changeHujia();
@@ -15761,7 +15761,7 @@ game.import('character', function () {
                 return get.attitude(_status.event.player, target) < 0;
               };
               ('step 1');
-              if (result.targets) {
+              if (result.targets?.length) {
                 var target = result.targets[0];
                 player.storage.shouliemrfz_shasha = target;
                 target.addMark('shouliemrfz_shasha', false);
@@ -15861,7 +15861,7 @@ game.import('character', function () {
                 player.chooseCard('【盏菊】:你可以重铸一张你区域内的牌', 'hej');
               }
               ('step 1');
-              if (result.cards) {
+              if (result.cards?.length) {
                 player.recast(result.cards);
               }
             },
@@ -15951,7 +15951,7 @@ game.import('character', function () {
                 }
               }
               ('step 2');
-              if (result.targets) {
+              if (result.targets?.length) {
                 var targets = result.targets;
                 for (var i of targets) {
                   i.draw();
@@ -16474,7 +16474,7 @@ game.import('character', function () {
                 });
               else event.finish();
               ('step 2');
-              if (result.links) {
+              if (result.links?.length) {
                 var cards = result.links;
                 for (var i of cards) {
                   var name = i.name;
@@ -17264,7 +17264,7 @@ game.import('character', function () {
               .set('num', event.type.length);
           } else event.goto(2);
           ('step 1');
-          if (result.targets) {
+          if (result.targets?.length) {
             trigger.player
               .when('useCard')
               .filter((event, player) => {
@@ -17316,7 +17316,7 @@ game.import('character', function () {
             event.finish();
           }
           ('step 4');
-          if (result.targets) {
+          if (result.targets?.length) {
             trigger.player
               .when('useCard')
               .filter((event, player) => {

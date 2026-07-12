@@ -367,7 +367,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return target.countCards('h');
                             });
                             'step 1'
-                            if (result.targets) {
+                            if (result.targets?.length) {
                                 event.target = result.targets.sortBySeat()
                             }
                             else event.finish()
@@ -987,7 +987,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return -target.hp
                     });
                     'step 1'
-                    if (result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets.sortBySeat()
                     }
                     else event.finish()
