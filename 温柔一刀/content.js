@@ -314,8 +314,7 @@ const content = async function () {
                       next._trigger = _status.event;
                       next.triggername = namey;
                       result = await next.setContent(infox.cost).forResult();
-                      if (result && result.bool) {
-                      } else {
+                      if (!result?.bool) {
                         continue;
                       } //cost没通过就返回
                     }
@@ -5101,20 +5100,23 @@ const content = async function () {
                   .set('target', target);
               }
               switch (result3.control) {
-                case '置入<翼>':
+                case '置入<翼>': {
                   player.addTempSkill('dczhifou_0');
                   const result4 = await target.chooseCard('he', choiceList[0], true);
                   if (result4.bool) {
                     player.addToExpansion(result4.cards, target, 'give').gaintag.add('dclingxi');
                   }
+                }
                   break;
-                case '弃置卡牌':
+                case '弃置卡牌': {
                   player.addTempSkill('dczhifou_1');
                   target.chooseToDiscard('he', 2, true);
+                }
                   break;
-                case '失去体力':
+                case '失去体力': {
                   player.addTempSkill('dczhifou_2');
                   target.loseHp();
+                }
                   break;
               }
             }
@@ -6323,8 +6325,6 @@ const content = async function () {
     //————————————————————————————————————————————————————————————————————————————————————————————————————深层检测
     const shenceng = function () {
       if (QQQ.DEEP('lib.skill.dcsbyaozuo.subSkill.ai')) {
-      }
-      if (QQQ.DEEP('lib.skill.dcsbyaozuo.subSkill.ai')) {
         delete lib.skill.dcsbyaozuo.subSkill.ai;
         lib.skill.dcsbyaozuo.subSkill.effect.ai = {
           effect: {
@@ -7027,19 +7027,17 @@ const content = async function () {
         game.getGlobalHistory().changeHp.push(event);
         //changeHujia moved here
         event.Q = event.num;
-        if (num < 0 && player.hujia > 0 && event.parent.name == 'damage' && !player.hasSkillTag('nohujia')) {
-          event.hujia = Math.min(-num, player.hujia);
+        if (event.num < 0 && player.hujia > 0 && event.parent.name == 'damage' && !player.hasSkillTag('nohujia')) {
+          event.hujia = Math.min(-event.num, player.hujia);
           event.parent.hujia = event.hujia;
           event.num += event.hujia;
           game.log(player, `的护甲抵挡了${get.cnNumber(event.hujia)}点伤害`);
           player.changeHujia(-event.hujia).type = 'damage';
         }
-        //old part
-        num = event.num;
-        player.hp += num;
+        player.hp += event.num;
         player.update();
         if (event.popup !== false) {
-          player.$damagepop(num, 'water');
+          player.$damagepop(event.num, 'water');
         }
         if (_status.dying.includes(player) && player.hp > 0) {
           _status.dying.remove(player);

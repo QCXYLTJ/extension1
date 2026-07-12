@@ -2724,18 +2724,18 @@ const precontent = async function () {
             ('step 4');
             if (source && source.hasSkill('醉诗')) {
                 const max = numberq0(source.storage.jiu) + numberq1(event.baseDamage) + numberq0(event.extraDamage);
-                if (num < max) {
-                    num = max;
+                if (event.num < max) {
+                    event.num = max;
                 }
             } //QQQ
             if (player.hujia > 0 && !player.hasSkillTag('nohujia')) {
                 let damageAudioInfo = lib.natureAudio.hujia_damage[event.nature];
                 if (!damageAudioInfo || damageAudioInfo == 'normal') {
-                    damageAudioInfo = 'effect/hujia_damage' + (num > 1 ? '2' : '') + '.mp3';
+                    damageAudioInfo = 'effect/hujia_damage' + (event.num > 1 ? '2' : '') + '.mp3';
                 } else if (damageAudioInfo == 'default') {
-                    damageAudioInfo = 'effect/hujia_damage_' + event.nature + (num > 1 ? '2' : '') + '.mp3';
+                    damageAudioInfo = 'effect/hujia_damage_' + event.nature + (event.num > 1 ? '2' : '') + '.mp3';
                 } else {
-                    damageAudioInfo = damageAudioInfo[num > 1 ? 2 : 1];
+                    damageAudioInfo = damageAudioInfo[event.num > 1 ? 2 : 1];
                 }
                 game.broadcastAll(function (damageAudioInfo) {
                     if (lib.config.background_audio) {
@@ -2746,11 +2746,11 @@ const precontent = async function () {
             else {
                 let damageAudioInfo = lib.natureAudio.damage[event.nature];
                 if (!damageAudioInfo || damageAudioInfo == 'normal') {
-                    damageAudioInfo = 'effect/damage' + (num > 1 ? '2' : '') + '.mp3';
+                    damageAudioInfo = 'effect/damage' + (event.num > 1 ? '2' : '') + '.mp3';
                 } else if (damageAudioInfo == 'default') {
-                    damageAudioInfo = 'effect/damage_' + event.nature + (num > 1 ? '2' : '') + '.mp3';
+                    damageAudioInfo = 'effect/damage_' + event.nature + (event.num > 1 ? '2' : '') + '.mp3';
                 } else {
-                    damageAudioInfo = damageAudioInfo[num > 1 ? 2 : 1];
+                    damageAudioInfo = damageAudioInfo[event.num > 1 ? 2 : 1];
                 }
                 game.broadcastAll(function (damageAudioInfo) {
                     if (lib.config.background_audio) {
@@ -2762,7 +2762,7 @@ const precontent = async function () {
             if (source) {
                 str += `来自<span class='bluetext'>${source == player ? '自己' : get.translation(source)}</span>的`;
             }
-            str += get.cnNumber(num) + '点';
+            str += get.cnNumber(event.num) + '点';
             if (event.nature) {
                 str += get.translation(event.nature) + '属性';
             }
@@ -2771,18 +2771,18 @@ const precontent = async function () {
             const stat = player.stat;
             const statx = stat[stat.length - 1];
             if (!statx.damaged) {
-                statx.damaged = num;
+                statx.damaged = event.num;
             } else {
-                statx.damaged += num;
+                statx.damaged += event.num;
             }
             if (source) {
                 source.getHistory('sourceDamage').push(event);
                 const stat = source.stat;
                 const statx = stat[stat.length - 1];
                 if (!statx.damage) {
-                    statx.damage = num;
+                    statx.damage = event.num;
                 } else {
-                    statx.damage += num;
+                    statx.damage += event.num;
                 }
             }
             player.getHistory('damage').push(event);
@@ -2800,15 +2800,15 @@ const precontent = async function () {
                 if (player.hp > 100) {
                     player.hp = player.hp % 100;
                 }
-                player.hp -= num;
+                player.hp -= event.num;
                 player.update();
             } //QQQ
             else {
                 if (!event.unreal) {
                     if (event.notrigger) {
-                        player.changeHp(-num, false)._triggered = null;
+                        player.changeHp(-event.num, false)._triggered = null;
                     } else {
-                        player.changeHp(-num, false);
+                        player.changeHp(-event.num, false);
                     }
                 } //减少体力
             }
@@ -2829,14 +2829,14 @@ const precontent = async function () {
                     natures,
                     player,
                 );
-                let numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
+                let numx = player.hasSkillTag('nohujia') ? event.num : Math.max(0, event.num - player.hujia);
                 player.$damagepop(-numx, natures[0]);
             } //动画
             if (event.unreal) {
                 event.goto(6);
             }
             if (!event.notrigger) {
-                if (num == 0) {
+                if (event.num == 0) {
                     event.trigger('damageZero');
                     event._triggered = null;
                 } else {
@@ -5966,8 +5966,7 @@ const precontent = async function () {
                                         next._trigger = trigger;
                                         next.triggername = namey;
                                         result = await next.setContent(infox.cost).forResult();
-                                        if (result && result.bool) {
-                                        } else {
+                                        if (!result?.bool) {
                                             return;
                                         } //cost没通过就返回
                                     }

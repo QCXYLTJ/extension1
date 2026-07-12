@@ -1451,11 +1451,11 @@ const skill = {
       }
       ('step 1');
       if (result.bool) {
-        if (!target) {
-          target = result.targets[0];
+        if (!event.target) {
+          event.target = result.targets[0];
         }
-        player.line(target);
-        player.give(result.cards, target);
+        player.line(event.target);
+        player.give(result.cards, event.target);
       }
     },
   },
