@@ -5788,20 +5788,15 @@ const skill = {
                 player.storage.shanhe_shanduan = [1, 2, 3, 4];
             }
             let list = player.storage.shanhe_shanduan;
-            for (const i of list) {
-                let num = i,
-                    add = true;
-                for (const j of list) {
-                    if (j < num) {
-                        add = false;
-                        break;
-                    }
-                }
-                if (add) {
-                    i++;
-                    break;
+            let minVal = list[0];
+            let minIndex = 0;
+            for (let i = 1; i < list.length; i++) {
+                if (list[i] < minVal) {
+                    minVal = list[i];
+                    minIndex = i;
                 }
             }
+            list[minIndex]++; // 将该元素加 1
         },
         ai: {
             notemp: true,

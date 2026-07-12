@@ -5145,9 +5145,7 @@ const skill = {
         }
         return false;
       });
-      for (const i of list) {
-        i = [get.type(i), '', i];
-      }
+      list = list.map((i) => [get.type(i), '', i]);
       player.chooseButton([get.prompt('shanhe_shouxi', trigger.player), [list, 'vcard']]).set('ai', function (button) {
         return Math.random();
       });
