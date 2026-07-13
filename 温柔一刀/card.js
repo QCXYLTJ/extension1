@@ -8,12 +8,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         skills: ['QQQ_人皇幡'],
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       QQQ_EldenRing: {
         type: 'equip',
@@ -21,32 +21,32 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['QQQ_EldenRing'],
         artifact: true,
         ai: {
-          equipValue: 90
-        }
+          equipValue: 90,
+        },
       },
       QQQ_Marikashichui: {
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         skills: ['QQQ_Marikashichui'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       QQQ_Radagonshichui: {
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         skills: ['QQQ_Radagonshichui'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       QQQ_baota: {
         type: 'equip',
@@ -54,49 +54,49 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['QQQ_baota'],
         artifact: true,
         ai: {
-          equipValue: 90
-        }
+          equipValue: 90,
+        },
       },
       禅让诏书: {
         type: 'equip',
         subtype: 'equip5',
         skills: ['禅让诏书'],
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       青锋: {
         type: 'equip',
         subtype: 'equip1',
         distance: {
-          attackFrom: -1
+          attackFrom: -1,
         },
         skills: ['青锋'],
         ai: {
-          equipValue: 80
-        }
+          equipValue: 80,
+        },
       },
       赤焰镇魂琴: {
         type: 'equip',
         subtype: 'equip1',
         skills: ['赤焰镇魂琴'],
         distance: {
-          attackFrom: -3
+          attackFrom: -3,
         },
         ai: {
-          equipValue: 60
-        }
+          equipValue: 60,
+        },
       },
       金乌落日弓: {
         type: 'equip',
         subtype: 'equip1',
         skills: ['金乌落日弓'],
         distance: {
-          attackFrom: -8
+          attackFrom: -8,
         },
         ai: {
-          equipValue: 60
-        }
+          equipValue: 60,
+        },
       },
       崆峒印: {
         type: 'equip',
@@ -104,8 +104,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['崆峒印'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       东皇钟: {
         type: 'equip',
@@ -114,8 +114,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         mode: ['boss'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       封神榜: {
         type: 'equip',
@@ -124,8 +124,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         mode: ['boss'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       封神: {
         type: 'basic',
@@ -143,13 +143,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           basic: {
             useful: 4.5,
-            value: 9.2
+            value: 9.2,
           },
           result: {
-            target: 5
+            target: 5,
           },
-          order: 50
-        }
+          order: 50,
+        },
       },
       昊天塔: {
         type: 'equip',
@@ -157,8 +157,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['昊天塔'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       炼妖壶: {
         type: 'equip',
@@ -166,8 +166,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['炼妖壶'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       昆仑镜: {
         type: 'equip',
@@ -175,20 +175,20 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['昆仑镜'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       盘古斧: {
         type: 'equip',
         subtype: 'equip1',
         skills: ['盘古斧'],
         distance: {
-          attackFrom: -2
+          attackFrom: -2,
         },
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       女娲石: {
         type: 'equip',
@@ -196,8 +196,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['女娲石'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       轩辕剑: {
         type: 'equip',
@@ -210,12 +210,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               return 4;
             }
             return 2;
-          }
+          },
         },
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       神农鼎: {
         type: 'equip',
@@ -223,8 +223,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['神农鼎'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       伏羲琴: {
         type: 'equip',
@@ -232,8 +232,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         skills: ['伏羲琴'],
         artifact: true,
         ai: {
-          equipValue: 70
-        }
+          equipValue: 70,
+        },
       },
       QQQ_灵芝: {
         type: 'basic',
@@ -248,17 +248,17 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           order: 10,
           result: {
-            target: 4
+            target: 4,
           },
           tag: {
             recover: 1,
-            save: 1
+            save: 1,
           },
           basic: {
             useful: 9,
-            value: 9
-          }
-        }
+            value: 9,
+          },
+        },
       },
       火: {
         type: 'basic',
@@ -266,9 +266,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           basic: {
             useful: 0,
-            value: 0
-          }
-        }
+            value: 0,
+          },
+        },
       },
       // 毒爆
       // 将全场所有角色随机一半牌变成毒,弃置所有毒
@@ -295,14 +295,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               const num1 = game.players.filter((q) => q.isEnemiesOf(player)).reduce((acc, curr) => acc + curr.countCards('he'), 0);
               const num2 = game.players.filter((q) => q.isFriendsOf(player)).reduce((acc, curr) => acc + curr.countCards('he'), 0);
               return num1 - num2;
-            }
+            },
           },
           order: 1,
           basic: {
             useful: 1,
-            value: 1
-          }
-        }
+            value: 1,
+          },
+        },
       },
       // 尸爆
       // 将一名已死亡的角色炸掉,对其相邻角色造成一点伤害
@@ -316,10 +316,10 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         selectTarget: -1,
         async content(event, trigger, player) {
-          const { links } = await event.target.
-            chooseButton(['将一名已死亡的角色炸掉', game.dead]).
-            set('ai', (button) => 20 - get.attitude(event.target, button.link)).
-            forResult();
+          const { links } = await event.target
+            .chooseButton(['将一名已死亡的角色炸掉', game.dead])
+            .set('ai', (button) => 20 - get.attitude(event.target, button.link))
+            .forResult();
           if (links?.length) {
             const next = links[0].next;
             const previous = links[0].previous;
@@ -349,14 +349,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 }
                 return num > 0;
               }).length;
-            }
+            },
           },
           order: 10,
           basic: {
             useful: 1,
-            value: 1
-          }
-        }
+            value: 1,
+          },
+        },
       },
       // 我就打你
       // 普通伤害锦囊牌,视为对目标使用随机一张伤害牌
@@ -374,17 +374,17 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         ai: {
           order: 10,
           result: {
-            target: -1
+            target: -1,
           },
           tag: {
-            damage: 1
+            damage: 1,
           },
           basic: {
             useful: 1,
-            value: 5
-          }
-        }
-      }
+            value: 5,
+          },
+        },
+      },
     },
     translate: {
       QQQ_人皇幡: '人皇幡',
@@ -449,8 +449,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
       QQQ_shibao: '尸爆',
       QQQ_shibao_info: '出牌阶段对自己使用,目标将一名已死亡的角色炸掉,对其相邻角色造成一点伤害',
       QQQ_灵芝: '灵芝',
-      QQQ_灵芝_info: '出牌阶段对一名角色使用,其增加一点体力上限回复全部体力'
-    }
+      QQQ_灵芝_info: '出牌阶段对一名角色使用,其增加一点体力上限回复全部体力',
+    },
   };
   for (const i in gentle.card) {
     const info = gentle.card[i];
@@ -474,7 +474,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         equipValue: info.ai.equipValue,
         useful: 0.1,
         value: info.ai.equipValue,
-        order: info.ai.equipValue
+        order: info.ai.equipValue,
       };
       if (info.artifact) {
         info.content = async function (event, trigger, player) {
@@ -487,7 +487,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                   return name;
                 },
                 set() { },
-                configurable: false
+                configurable: false,
               });
               card.node.name2.innerHTML = `${get.translation(card.suit)}${card.number} ${get.translation(name)}`;
               const vcard = new lib.element.VCard(card);
@@ -507,7 +507,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 configurable: false,
                 set(value) {
                   equips = value;
-                }
+                },
               });
               if (player.playerid) {
                 if (lib.card[name].skills) {
@@ -529,7 +529,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                               return hook;
                             },
                             set() { },
-                            configurable: false
+                            configurable: false,
                           });
                         }
                       }
@@ -544,7 +544,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         info.ai.result = {
           keepAI: true, //防止result被本体替换
           player: 99,
-          target: 99
+          target: 99,
         };
       } else {
         info.content = async function (event, trigger, player) {
@@ -553,7 +553,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           }
         };
         info.ai.result = {
-          target: (player, target, card) => get.equipResult(player, target, card)
+          target: (player, target, card) => get.equipResult(player, target, card),
         };
       }
     }

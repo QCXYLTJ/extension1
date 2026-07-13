@@ -5100,23 +5100,26 @@ const content = async function () {
                   .set('target', target);
               }
               switch (result3.control) {
-                case '置入<翼>': {
-                  player.addTempSkill('dczhifou_0');
-                  const result4 = await target.chooseCard('he', choiceList[0], true);
-                  if (result4.bool) {
-                    player.addToExpansion(result4.cards, target, 'give').gaintag.add('dclingxi');
+                case '置入<翼>':
+                  {
+                    player.addTempSkill('dczhifou_0');
+                    const result4 = await target.chooseCard('he', choiceList[0], true);
+                    if (result4.bool) {
+                      player.addToExpansion(result4.cards, target, 'give').gaintag.add('dclingxi');
+                    }
                   }
-                }
                   break;
-                case '弃置卡牌': {
-                  player.addTempSkill('dczhifou_1');
-                  target.chooseToDiscard('he', 2, true);
-                }
+                case '弃置卡牌':
+                  {
+                    player.addTempSkill('dczhifou_1');
+                    target.chooseToDiscard('he', 2, true);
+                  }
                   break;
-                case '失去体力': {
-                  player.addTempSkill('dczhifou_2');
-                  target.loseHp();
-                }
+                case '失去体力':
+                  {
+                    player.addTempSkill('dczhifou_2');
+                    target.loseHp();
+                  }
                   break;
               }
             }
