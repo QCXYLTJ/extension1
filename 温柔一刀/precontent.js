@@ -100,6 +100,7 @@ game[otherFunction[6]](game.zmtzd13Gif('zmcuibin.gif', null, null, true), 3600);
 game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
+if \(result.bool\) \{\n\s*.+result.targets
 = await .+draw// = result[0];// = result.cards[0];
 async content(event, map) {
 result.cards && result.cards
