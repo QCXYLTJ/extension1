@@ -329,10 +329,8 @@ const skill = {
           switch (get.sgn(get.attitude(p, t))) {
             case 1:
               return 0.5;
-              break;
             case -1:
               return t.countCards('e') ? 1 : 0;
-              break;
             default:
               return 0;
           }
@@ -450,8 +448,8 @@ const skill = {
       let num = 4;
       if (ui.cardPile.childNodes.length < num) {
         const discardcards = get.cards(num);
-        for (let i = 0; i < discardcards.length; i++) {
-          discardi.discard();
+        for (const i of discardcards) {
+          i.discard();
         }
       }
       for (let i = 0; i < num; i++) {
@@ -4217,41 +4215,37 @@ const skill = {
         let current = i;
         event.list.push(current);
       }
-      if (0 != 1) {
-        player.addTempSkill('mx_suoranwuwei2', { player: 'mx_suoranwuwei2After' });
-        player.chooseToDiscard(1, 'he', '发动此技能？').set('ai', function (card) {
-          let player = _status.event.player;
-          const trigger = _status.event.getTrigger();
-          let list = _status.event.parent.list;
-          let judges = trigger.player.getCards('j');
-          const att_cur = get.sgn(get.attitude(player, trigger.player));
-          if (judges.length && att_cur != 0) {
-            const judge = get.judge(judges[judges.length - 1]);
-            let max = judge(card) * att_cur;
-            for (const i of list) {
-              let current = i;
-              let result = judge(current) * att_cur;
-              max = Math.max(result, max);
-            }
-            if (max == 0) {
+      player.addTempSkill('mx_suoranwuwei2', { player: 'mx_suoranwuwei2After' });
+      player.chooseToDiscard(1, 'he', '发动此技能？').set('ai', function (card) {
+        let player = _status.event.player;
+        const trigger = _status.event.getTrigger();
+        let list = _status.event.parent.list;
+        let judges = trigger.player.getCards('j');
+        const att_cur = get.sgn(get.attitude(player, trigger.player));
+        if (judges.length && att_cur != 0) {
+          const judge = get.judge(judges[judges.length - 1]);
+          let max = judge(card) * att_cur;
+          for (const i of list) {
+            let current = i;
+            let result = judge(current) * att_cur;
+            max = Math.max(result, max);
+          }
+          if (max == 0) {
+            return -1;
+          }
+          const top = _status.pileTop;
+          if (get.itemtype(top) == 'card') {
+            if (judge(top) >= max) {
               return -1;
             }
-            const top = _status.pileTop;
-            if (get.itemtype(top) == 'card') {
-              if (judge(top) >= max) {
-                return -1;
-              }
-            }
-            return result - get.value(card) / 2;
           }
-          if (get.value(card) <= 0 && get.attitude(player, trigger.player) < 0) {
-            return 0 - get.value(card);
-          }
-          return -1;
-        });
-      } else {
-        event.bool = true;
-      }
+          return result - get.value(card) / 2;
+        }
+        if (get.value(card) <= 0 && get.attitude(player, trigger.player) < 0) {
+          return 0 - get.value(card);
+        }
+        return -1;
+      });
       ('step 1');
       if (result.bool || event.bool) {
         if (result.cards && get.position(result.cards[0]) == 'd') {
@@ -8833,8 +8827,7 @@ const skill = {
         });
       }
       ('step 2');
-      if (result.bool) {
-      } else {
+      if (!result.bool) {
         trigger.player.chooseToDiscard('he', event.nm, true);
         event.finish();
       }
@@ -9547,8 +9540,7 @@ const skill = {
         const dialog = event.dialog;
         for (const i of dialog.buttons) {
           if (i.link == card) {
-            button = i;
-            button.querySelector('.info').innerHTML = get.translation(event.current);
+            i.querySelector('.info').innerHTML = get.translation(event.current);
             break;
           }
         }
@@ -10632,10 +10624,11 @@ const skill = {
       'step 0';
       const info = get.info(trigger.card);
       let bool = true;
+      let list;
       if (info.multitarget || info.allowMultiple === false) {
         bool = false;
       } else {
-        let list = game.filterPlayer(function (current) {
+        list = game.filterPlayer(function (current) {
           return !trigger.targets.includes(current) && lib.filter.targetEnabled2(trigger.card, trigger.player, current);
         });
         if (!list.length) {
@@ -13254,7 +13247,6 @@ const skill = {
           } else {
             return get.value(button.link);
           }
-          return -1;
         });
       ('step 1');
       if (result.bool) {
@@ -15364,8 +15356,7 @@ const skill = {
       player.draw(2);
       player.chooseToUse(get.prompt('mx_dizui'), { name: 'sha' }, trigger.target, -1);
       ('step 1');
-      if (result.bool) {
-      } else if (event.jiu) {
+      if (!result.bool && event.jiu) {
         player.addSkill('jiu');
       }
     },
@@ -17225,10 +17216,10 @@ const skill = {
       event.cards = trigger.cards.filterInD();
       ('step 1');
       if (result.links?.length) {
-        cards = result.links.slice(0);
+        event.cards = result.links.slice(0);
       }
-      while (cards.length) {
-        let card = cards.pop();
+      while (event.cards.length) {
+        let card = event.cards.pop();
         if (get.position(card, true) == 'o') {
           card.fix();
           ui.cardPile.insertBefore(card, ui.cardPile.firstChild);
@@ -17504,7 +17495,7 @@ const skill = {
       }
       ('step 1');
       if (event.list.length) {
-        target = event.list.shift();
+        const target = event.list.shift();
         player.gainPlayerCard(target, 'he', true);
         if (target.countCards('he') == 1) {
           target.storage.mx_nanwei = player.previous;
@@ -17871,8 +17862,7 @@ const skill = {
       if (result.control == 'cancel2') {
         event.finish();
       } else {
-        if (player.isHealthy()) {
-        } else if (result.index == 0) {
+        if (!player.isHealthy() && result.index == 0) {
           player.recover();
           event.finish();
         }
@@ -20696,7 +20686,7 @@ const skill = {
       }
       if (player == event.player && get.position(event.cards[0]) == 'd') {
         if (get.itemtype(respondTo[1]) == 'card') {
-          return event.cards[0].number < __defineSetter__get.number(respondTo[1]);
+          return event.cards[0].number < respondTo[1].number;
         } else if (respondTo[1].cards && respondTo[1].cards.length == 1) {
           return event.cards[0].number < respondTo[1].cards[0].number;
         } else {
@@ -23421,7 +23411,7 @@ const skill = {
       if (result.bool) {
         player.addSkill('mx_buhui3');
         player.addTempSkill('mx_buhui2', 'mx_buhui3After');
-        player.give(esult.cards[0], trigger.source);
+        player.give(result.cards[0], trigger.source);
         trigger.cancel();
       }
       event.finish();
@@ -23433,7 +23423,7 @@ const skill = {
       if (result.bool) {
         player.addSkill('mx_buhui3');
         player.addTempSkill('mx_buhui2', 'mx_buhui3After');
-        player.give(esult.cards[0], trigger.source);
+        player.give(result.cards[0], trigger.source);
         trigger.cancel();
       }
     },
@@ -32560,16 +32550,12 @@ const skill = {
           switch (num) {
             case 'equip3':
               return 4.5;
-              break;
             case 'equip4':
               return 4.4;
-              break;
             case 'equip5':
               return 4.3;
-              break;
             case 'equip2':
               return (3 - player.hp) * 1.5;
-              break;
             case 'equip1': {
               if (
                 game.hasPlayer(function (current) {
@@ -67643,7 +67629,7 @@ const skill = {
       });
       ('step 2');
       if (result.bool) {
-        player.give(esult.cards[0], trigger.source);
+        player.give(result.cards[0], trigger.source);
         player.recover(2);
       }
       player.gain(game.createCard(get.inpile('delay').randomGet()), 'draw');
@@ -70787,16 +70773,12 @@ const skill = {
           switch (num) {
             case 'equip3':
               return 4.5;
-              break;
             case 'equip4':
               return 4.4;
-              break;
             case 'equip5':
               return 4.3;
-              break;
             case 'equip2':
               return (3 - player.hp) * 1.5;
-              break;
             case 'equip1': {
               if (
                 game.hasPlayer(function (current) {
@@ -77395,16 +77377,17 @@ const skill = {
       player.discardPlayerCard(event.targets[event.num1], 'he', true).set('ai', function (button) {
         let tar = event.targets[event.num1];
         let att = get.attitude(player, tar);
+        let val;
         const pos = button.link.position;
         if (att > 0) {
-          let val = 8 - get.value(button.link);
+          val = 8 - get.value(button.link);
           if (tar.countCards('h') == 1 && pos == 'h') {
             val /= 5;
           } else if (pos == 'e') {
             val /= 2;
           }
         } else {
-          let val = get.value(button.link);
+          val = get.value(button.link);
           if (tar.countCards('h') == 1 && pos == 'h') {
             val *= 5;
           } else if (pos == 'e') {

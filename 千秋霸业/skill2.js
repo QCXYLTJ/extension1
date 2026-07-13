@@ -214,8 +214,7 @@ const skill = {
       });
       ('step 2');
       if (result.bool) {
-        //trigger.source.gain(result.cards[0],player,'giveAuto');
-        player.give(esult.cards[0], trigger.source);
+        player.give(result.cards[0], trigger.source);
         trigger.cancel();
       }
       event.finish();

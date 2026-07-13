@@ -10387,8 +10387,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											var cards = [];
 											if (ui.cardPile.childNodes.length < 1) {
 												var discardcards = get.cards(1);
-												for (var i = 0; i < discardcards.length; i++) {
-													discardi.discard();
+												for (const i of discardcards) {
+													i.discard();
 												}
 											}
 											for (var i = 0; i < 1; i++) {
@@ -10485,8 +10485,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var cards = [];
 										if (ui.cardPile.childNodes.length < 1) {
 											var discardcards = get.cards(1);
-											for (var i = 0; i < discardcards.length; i++) {
-												ui.discardPile.appendChild(discardi);
+											for (const i of discardcards) {
+												ui.discardPile.appendChild(i);
 											}
 										}
 										for (var i = 0; i < 1; i++) {

@@ -13287,8 +13287,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = 5;
                                 if (ui.cardPile.childNodes.length < num) {
                                     var discardcards = get.cards(num);
-                                    for (var i = 0; i < discardcards.length; i++) {
-                                        discardi.discard();
+                                    for (const i of discardcards) {
+                                        i.discard();
                                     }
                                 }
                                 for (var i = 0; i < num; i++) {
