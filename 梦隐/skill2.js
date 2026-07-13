@@ -27007,7 +27007,6 @@ const skill = {
           return event.player.countDiscardableCards(player, 'he');
         }
       }
-      return false;
     },
     check(event, player) {
       if (player == event.player) {
@@ -30211,7 +30210,7 @@ const skill = {
     forced: true,
     content() {
       'step 0';
-      const source = ui['cardPile' || 'discardPile'].childNodes;
+      const source = ui[['cardPile', 'discardPile'].randomGet()].childNodes;
       let list = [];
       for (const i of source) {
         list.push(i);
@@ -32942,7 +32941,6 @@ const skill = {
             player.line(target, 'fire');
             player.gainMaxHp(1);
             player.recover(2);
-            for (let i = 0; i < target.length; i++) { }
           }
         },
       },
@@ -34905,9 +34903,10 @@ const skill = {
       event.goto(1);
       ('step 3');
       let list = new Object();
+      let t;
       if (Array.isArray(event.cards)) {
         for (let i of event.cards) {
-          let t = get.type(i, 'trick');
+          t = get.type(i, 'trick');
           if (list[t] == undefined) {
             list[t] = 1;
           } else {
@@ -36084,7 +36083,6 @@ const skill = {
             }
             return 5;
           }
-          return -get.attitude(player, target);
         });
       ('step 1');
       if (result.bool) {
@@ -36410,7 +36408,6 @@ const skill = {
         }
         if (!player.storage.mx_tiantang) {
           player.unmarkSkill('mx_tiantang');
-        } else {
         }
       }
       ('step 2');
@@ -43955,8 +43952,6 @@ const skill = {
                   return 2.92;
                 } else if (card.nature == '') {
                   return 2.94;
-                } else if (card.nature == '') {
-                  return 2.93;
                 } else {
                   return 2.9;
                 }
@@ -45796,7 +45791,6 @@ const skill = {
             }
             return false;
           }
-          return true;
         });
       ('step 1');
       if (result.bool) {
@@ -45864,7 +45858,7 @@ const skill = {
         return;
       }
       const hs = player.getCards('h');
-      cards = cards.filter(function (card) {
+      event.cards = event.cards.filter(function (card) {
         return (
           hs.includes(card) &&
           card.name == 'chenghuodajie' &&
@@ -45879,8 +45873,8 @@ const skill = {
           )
         );
       });
-      if (cards.length) {
-        let card = cards.randomRemove(1)[0];
+      if (event.cards.length) {
+        let card = event.cards.randomRemove(1)[0];
         player.useCard(target, false, card);
         event.redo();
       }
@@ -50985,14 +50979,6 @@ const skill = {
     markimage: 'extension/梦隐/image/mx_dianliu.jpg',
     intro: {
       content: 'expansion',
-      markcount(storage, player) {
-        return;
-        let cards = player.getExpansions('mx_dianliu');
-        if (cards.length == 1) {
-          let suit = get.translation(cards[0].suit);
-          return `<span style="font-size: 1.4em;">${suit}</span>`;
-        }
-      },
     },
     onremove(player, skill) {
       let cards = player.getExpansions(skill);
@@ -54321,11 +54307,6 @@ const skill = {
             return Math.random() > 0.9;
           }
           return Math.random() > 0.75;
-        } else if (player.hp <= 2) {
-          if (flag == 1) {
-            return false;
-          }
-          return true;
         } else {
           if (event.cards.length > 1) {
             return false;
@@ -54338,7 +54319,6 @@ const skill = {
           }
           return Math.random() > 0.6;
         }
-        return false;
       }
       if (event.name == 'gain') {
         let cards = event.cards;
@@ -54395,7 +54375,6 @@ const skill = {
           }
           return Math.random() > 0.8;
         }
-        return false;
       }
       return false;
     },
@@ -54568,7 +54547,6 @@ const skill = {
           return event.player.countDiscardableCards(player, 'he');
         }
       }
-      return false;
     },
     check(event, player) {
       if (player == event.player) {
@@ -54819,12 +54797,7 @@ const skill = {
       player: 'useCardToPlayered',
     },
     check(event, player) {
-      return true;
-      let att = get.attitude(player, event.target);
-      if (att > 0) {
-        return get.effect(event.target, { name: 'guohe' }, player, player) > 0;
-      }
-      return get.attitude(player, event.target) < 0;
+      return -get.attitude(player, event.target);
     },
     filter(event, player) {
       if (typeof event.card.number != 'number') {
@@ -56183,41 +56156,37 @@ const skill = {
         let current = i;
         event.list.push(current);
       }
-      if (0 != 1) {
-        player.moveCard(true);
-        player.chooseToDiscard(2, 'he', '是否弃置两张牌？').set('ai', function (card) {
-          let player = _status.event.player;
-          const trigger = _status.event.getTrigger();
-          let list = _status.event.parent.list;
-          let judges = trigger.player.getCards('j');
-          const att_cur = get.sgn(get.attitude(player, trigger.player));
-          if (judges.length && att_cur != 0) {
-            const judge = get.judge(judges[judges.length - 1]);
-            let max = judge(card) * att_cur;
-            for (const i of list) {
-              let current = i;
-              let result = judge(current) * att_cur;
-              max = Math.max(result, max);
-            }
-            if (max == 0) {
+      player.moveCard(true);
+      player.chooseToDiscard(2, 'he', '是否弃置两张牌？').set('ai', function (card) {
+        let player = _status.event.player;
+        const trigger = _status.event.getTrigger();
+        let list = _status.event.parent.list;
+        let judges = trigger.player.getCards('j');
+        const att_cur = get.sgn(get.attitude(player, trigger.player));
+        if (judges.length && att_cur != 0) {
+          const judge = get.judge(judges[judges.length - 1]);
+          let max = judge(card) * att_cur;
+          for (const i of list) {
+            let current = i;
+            let result = judge(current) * att_cur;
+            max = Math.max(result, max);
+          }
+          if (max == 0) {
+            return -1;
+          }
+          const top = _status.pileTop;
+          if (get.itemtype(top) == 'card') {
+            if (judge(top) >= max) {
               return -1;
             }
-            const top = _status.pileTop;
-            if (get.itemtype(top) == 'card') {
-              if (judge(top) >= max) {
-                return -1;
-              }
-            }
-            return result - get.value(card) / 2;
           }
-          if (get.value(card) <= 0 && get.attitude(player, trigger.player) < 0) {
-            return 0 - get.value(card);
-          }
-          return -1;
-        });
-      } else {
-        event.bool = true;
-      }
+          return result - get.value(card) / 2;
+        }
+        if (get.value(card) <= 0 && get.attitude(player, trigger.player) < 0) {
+          return 0 - get.value(card);
+        }
+        return -1;
+      });
       ('step 1');
       if (result.bool || event.bool) {
         if (result.cards && get.position(result.cards[0]) == 'd') {
@@ -56501,9 +56470,6 @@ const skill = {
         event.cards2 = result.links;
       } else {
         event.finish();
-      }
-      const time = 1000 - (get.utc() - event.time);
-      if (time > 0) {
       }
       ('step 3');
       game.broadcastAll('closeDialog', event.videoId);
@@ -57476,8 +57442,7 @@ const skill = {
         const dialog = event.dialog;
         for (const i of dialog.buttons) {
           if (i.link == card) {
-            button = i;
-            button.querySelector('.info').innerHTML = get.translation(event.current);
+            i.querySelector('.info').innerHTML = get.translation(event.current);
             break;
           }
         }
@@ -59289,10 +59254,10 @@ const skill = {
       event.cards = trigger.cards.filterInD();
       ('step 1');
       if (result.links?.length) {
-        cards = result.links.slice(0);
+        event.cards = result.links.slice(0);
       }
-      while (cards.length) {
-        let card = cards.pop();
+      while (event.cards.length) {
+        let card = event.cards.pop();
         if (get.position(card, true) == 'o') {
           card.fix();
           ui.cardPile.insertBefore(card, ui.cardPile.firstChild);
@@ -61133,7 +61098,6 @@ const skill = {
             }
             return true;
           }
-          return false;
         });
       ('step 2');
       if (!result.bool) {
@@ -67173,7 +67137,6 @@ const skill = {
             }
             return att;
           }
-          return -1;
         })
         .set('targetprompt', targetprompt);
       ('step 1');
@@ -72034,9 +71997,6 @@ const skill = {
       if (result.bool) {
         const card2 = { name: result.links[0][2] };
         const info = get.info(card2);
-        if (info.skills) {
-          for (let i = 0; i < info.skills.length; i++) { }
-        }
         player.storage.mx_miaohui2 = { name: result.links[0][2], card: card2, skills: info.skills || [] };
         let card = { name: result.links[0][2] };
         player.popup(result.links[0][2], 'thunder');
@@ -72634,40 +72594,36 @@ const skill = {
         let current = i;
         event.list.push(current);
       }
-      if (0 != 1) {
-        player.chooseToDiscard('he', true, '请弃置一张牌').set('ai', function (card) {
-          let player = _status.event.player;
-          const trigger = _status.event.getTrigger();
-          let list = _status.event.parent.list;
-          let judges = trigger.player.getCards('j');
-          const att_cur = get.sgn(get.attitude(player, trigger.player));
-          if (judges.length && att_cur != 0) {
-            const judge = get.judge(judges[judges.length - 1]);
-            let max = judge(card) * att_cur;
-            for (const i of list) {
-              let current = i;
-              let result = judge(current) * att_cur;
-              max = Math.max(result, max);
-            }
-            if (max == 0) {
+      player.chooseToDiscard('he', true, '请弃置一张牌').set('ai', function (card) {
+        let player = _status.event.player;
+        const trigger = _status.event.getTrigger();
+        let list = _status.event.parent.list;
+        let judges = trigger.player.getCards('j');
+        const att_cur = get.sgn(get.attitude(player, trigger.player));
+        if (judges.length && att_cur != 0) {
+          const judge = get.judge(judges[judges.length - 1]);
+          let max = judge(card) * att_cur;
+          for (const i of list) {
+            let current = i;
+            let result = judge(current) * att_cur;
+            max = Math.max(result, max);
+          }
+          if (max == 0) {
+            return -1;
+          }
+          const top = _status.pileTop;
+          if (get.itemtype(top) == 'card') {
+            if (judge(top) >= max) {
               return -1;
             }
-            const top = _status.pileTop;
-            if (get.itemtype(top) == 'card') {
-              if (judge(top) >= max) {
-                return -1;
-              }
-            }
-            return result - get.value(card) / 2;
           }
-          if (get.value(card) <= 0 && get.attitude(player, trigger.player) < 0) {
-            return 0 - get.value(card);
-          }
-          return -1;
-        });
-      } else {
-        event.bool = true;
-      }
+          return result - get.value(card) / 2;
+        }
+        if (get.value(card) <= 0 && get.attitude(player, trigger.player) < 0) {
+          return 0 - get.value(card);
+        }
+        return -1;
+      });
       ('step 1');
       if (result.bool || event.bool) {
         if (result.cards && get.position(result.cards[0]) == 'd') {
@@ -74209,7 +74165,7 @@ const skill = {
             }
             cur = cur.next;
           }
-          if ((sub_check = true)) {
+          if (sub_check == true) {
             return get.value(button.link);
           }
           const array = [...player.storage.mx_shuixianbaihe_cards];
@@ -76777,10 +76733,10 @@ const skill = {
       }
       ('step 1');
       if (result.links?.length) {
-        cards = result.links.slice(0);
+        event.cards = result.links.slice(0);
       }
-      while (cards.length) {
-        let card = cards.pop();
+      while (event.cards.length) {
+        let card = event.cards.pop();
         if (get.position(card, true) == 'o') {
           card.fix();
           ui.cardPile.appendChild(card);
@@ -77760,10 +77716,10 @@ const skill = {
                 }
               }
               if (att1 == 0 && att2 == 0) {
-                va1 = -100;
+                val1 = -100;
               }
               if (att1 == 0) {
-                va1 = -100;
+                val1 = -100;
               }
               if (att2 == 0 && att1 > 0) {
                 val1 -= 40;
@@ -77845,10 +77801,10 @@ const skill = {
             }
           }
           if (att1 == 0 && att2 == 0) {
-            va1 = -100;
+            val1 = -100;
           }
           if (att1 == 0) {
-            va1 = -100;
+            val1 = -100;
           }
           if (att2 == 0 && att1 > 0) {
             val1 -= 40;
@@ -77939,10 +77895,10 @@ const skill = {
                 }
               }
               if (att1 == 0 && att2 == 0) {
-                va1 = -100;
+                val1 = -100;
               }
               if (att1 == 0) {
-                va1 = -100;
+                val1 = -100;
               }
               if (att2 == 0 && att1 > 0) {
                 val1 -= 40;
