@@ -553,7 +553,7 @@ const skill = {
 				event.goto(4);
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const targets = result.targets;
 				player.line2(targets);
 				const gain = targets[0].countMark('North_yhy_minzeng_min');
@@ -589,7 +589,7 @@ const skill = {
 				event.finish();
 			}
 			('step 5');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const targets = result.targets;
 				player.line2(targets);
 				const gain = targets[0].countMark('North_yhy_minzeng_zeng');
@@ -1003,7 +1003,7 @@ const skill = {
 					return att / 3;
 				});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (let i = 0; i < result.targets.length; i++) {
 					result.targets[i].draw(3);
 					result.targets[i].chooseToDiscard('he', true);
@@ -1024,7 +1024,7 @@ const skill = {
 					return -att / 3;
 				});
 			('step 5');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (let i = 0; i < result.targets.length; i++) {
 					result.targets[i].link(true);
 				}
@@ -2000,7 +2000,7 @@ const skill = {
 				return -get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (const i of result.targets) {
 					i.damage('fire', 'nocard', 1);
 				}
@@ -2217,7 +2217,7 @@ const skill = {
 				event.goto(4);
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.give(result.cards, target);
 				if (result.cards.length < 2) {
 					event.goto(6);
@@ -3351,7 +3351,7 @@ const skill = {
 					.set('chooseonly', true);
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.addMark('North_cjy_lvzhi', result.links.length);
 				player.discard(result.links);
 			}
@@ -3906,7 +3906,7 @@ const skill = {
 							}
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						const cards = result.links;
 						if (get.position(cards[0]) != 'h') {
 							cards.reverse();
@@ -4556,7 +4556,7 @@ const skill = {
 				prompt2: '弃置一张牌,视为对一名其他角色使用一张雷【杀】',
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				player.useCard({ name: 'sha', nature: 'thunder', isCard: false }, result.targets[0], 'North_shh_qingsi', false);
 			}
@@ -5080,7 +5080,7 @@ const skill = {
 						return false;
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					const targets = result.targets;
 					for (const i of targets) {
 						player.storage.North_lf_zhenzhi.push(i);
@@ -5107,7 +5107,7 @@ const skill = {
 						return false;
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					const targets = result.targets;
 					for (const i of targets) {
 						player.storage.North_lf_zhenzhi.push(i);
@@ -5747,7 +5747,7 @@ const skill = {
 						next.set('prompt', '移动场上的一张牌');
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.line2(result.targets, 'green');
 						event.targets = result.targets;
 					} else {
@@ -6033,7 +6033,7 @@ const skill = {
 					return get.effect(target, card, player, player);
 				});
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const targets = result.targets;
 				player.line(targets, 'green');
 				game.log(player, '发动癸隐,令', targets, '也成为了', trigger.card, '的目标');
@@ -6128,7 +6128,7 @@ const skill = {
 				})
 				.set('chooseonly', true);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				if (target.countDiscardableCards(player, 'he')) {
 					player.discardPlayerCard('he', result.cards.length, target, true);

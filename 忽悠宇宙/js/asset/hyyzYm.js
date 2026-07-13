@@ -665,7 +665,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return _status.event.player.isDamaged();
         });
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           player.loseToDiscardpile(result.links);
           player.recover();
           player.draw(2);
@@ -1224,7 +1224,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         }
         event.finish();
         ('step 3');
-        if (result.bool) {
+        if (result.links?.length) {
           player.loseToDiscardpile(result.links);
           player.draw(2).gaintag = ['mengzaobing'];
           event.finish();
@@ -1347,7 +1347,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return true;
         });
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           player.loseToDiscardpile(result.links);
           var num = result.links.length;
           var list = [`摸${num}张牌`];
@@ -2196,7 +2196,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           event.finish();
         }
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.discard(result.cards);
           var target = result.targets[0];
           var next = player.chooseButton(['乐:选择花色后,若原先判定失败则将视为判定成功,反之', [lib.suit.map((i) => ['', '', 'lukai_' + i]), 'vcard']]);
@@ -2642,7 +2642,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         }
         ('step 1');
         if (event.dialog) event.dialog.close();
-        if (result.bool) {
+        if (result.links?.length) {
           var map = result.links;
           for (var i in map) {
             if (player.storage.mengfenji.owned[map[i]]) {
@@ -2800,7 +2800,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return true;
         });
         ('step 7');
-        if (result.bool) {
+        if (result.links?.length) {
           var map = result.links;
           for (var i in map) {
             if (player.storage.mengfenji.owned[map[i]]) {
@@ -2847,7 +2847,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           },
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           player.useCard({ name: 'diaohulishan' }, result.cards, result.targets);
           _status.currentPhase.draw(result.targets.length);
         }
@@ -3849,7 +3849,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                 .set('judge2', (result) => result.bool)
                 .set('spxiuyao', event.result.card.name);
               ('step 1');
-              if (result.bool) {
+              if (result.cards?.length) {
                 var cards = event.result.cards;
                 event.result.card = {
                   name: event.result.card.name,
@@ -4584,7 +4584,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           .set('targetx', trigger.player)
           .set('prompt2', '交出的牌不能被响应,包含两种颜色可为其增伤');
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           var list = result.cards;
           if (list.some((card) => get.color(card) == 'red') && list.some((card) => get.color(card) == 'black')) {
             trigger.player.addTempSkill('mengzhenqu_add');
@@ -4689,7 +4689,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         next.set('att', get.attitude(player, trigger.player));
         next.set('suitx', trigger.card.suit || null);
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           var cards = result.cards;
           player.recast(cards);
           if (trigger.card.suit && cards[0].suit == trigger.card.suit) {
@@ -5364,7 +5364,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               },
             }));
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.discard(result.cards);
           var target = result.targets[0];
           if (target == player.storage.mengcifu && target != player) target.draw(3);
@@ -7038,7 +7038,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         }
         ('step 2');
         var target = _status.currentPhase;
-        if (result.bool) {
+        if (result.cards?.length) {
           var cards = result.cards;
           target.give(cards, player, 'giveAuto');
         } else {
@@ -9030,7 +9030,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           });
         } else event.finish();
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           event.targets = result.targets;
         } else event.finish();
         ('step 2');
@@ -9653,7 +9653,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           },
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.discard(result.cards);
           result.targets[0].damage(player);
         }
@@ -9846,7 +9846,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           },
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           var cards = result.cards,
             target = result.targets[0];
           target.$throw(cards[0]);
@@ -11376,7 +11376,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return 10 - get.value(card);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.recast(result.cards);
           game.changeWeather('hyyz_rain');
         }
@@ -11417,7 +11417,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return true;
         });
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var cards = result.links;
           while (cards.length) {
             var card = cards.pop();
@@ -11458,7 +11458,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             'step 0';
             player.chooseCardButton(get.prompt('mengshuilong'), `弃置一张<水龙>牌,令${get.translation(trigger.player)}回复1点体力`, player.getExpansions('mengshuilong')).set('ai', () => get.attitude(player, trigger.player) > 0);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               player.loseToDiscardpile(result.links);
               trigger.player.recover();
             } else event.finish();
@@ -11945,7 +11945,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           }); //QQQ
         } else event.finish();
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           event.target.give(result.cards, player, 'giveAuto');
           event.target.removeMark('mengzhaiquan', 1);
         } else {
@@ -12001,7 +12001,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         var num = Math.min(trigger.player.countCards('h'), trigger.player.countMark('mengzhaiquan'));
         player.gainPlayerCard(trigger.player, [0, num], 'visible', 'h', true);
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           if (result.cards.length) trigger.player.removeMark('mengzhaiquan', result.cards.length);
         }
       },
@@ -12142,7 +12142,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           add: next.custom.add,
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           var cards = result.cards;
           if (!cards.length) {
             var suits = result.links.map((i) => i[2].slice(6));
@@ -13951,7 +13951,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                 });
             } else event.finish();
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
               var targets = result.targets;
               trigger.targets.addArray(targets);
             }
@@ -14281,7 +14281,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                 return get.type2(card) == get.type2(trigger.card);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               player.loseToDiscardpile(result.links);
               player.draw();
               trigger.effectCount++;
@@ -15395,7 +15395,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             .set('ai', (target) => (color == 'red' ? get.recoverEffect(target, player, player) : -get.attitude(player, target)));
         }
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           if (result.targets?.length) {
             if (get.color(trigger.cards[0]) == 'red') {
               result.targets[0].recover();
@@ -15923,7 +15923,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               })
               .set('targets', trigger.targets);
             ('step 4');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
               if (event.isMine()) {
                 event.finish();
@@ -16369,7 +16369,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               })
               .set('ai', (target) => get.effect(target, trigger.card, trigger.player, player));
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var targets = result.targets;
               if (trigger.target != targets[0]) {
                 game.log(player, '将', trigger.card, '的目标改为了', targets[0]);
@@ -16909,7 +16909,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           },
         });
         ('step 4');
-        if (result.bool) {
+        if (result.cards?.length) {
           var res = result.cards,
             target = result.targets[0].playerid;
           if (player.getStorage('mengyingzhu').has(event.owner) && result.targets[0] == player) {
@@ -17191,7 +17191,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         player.choosePlayerCard(target, 'he', true, `将${get.translation(target)}的一张牌置为<逆>`);
         event.target = target;
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.addToExpansion(result.cards, event.target, 'give').gaintag.add('mengqiongpi');
         }
       },
@@ -17839,7 +17839,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         ('step 1');
         if (player.countCards('he') > 0 && (player.countCards('h') > trigger.player.countCards('h') || player.countCards('e') > trigger.player.countCards('e') || player.hp > trigger.player.hp)) player.chooseCard(true, 'he', '将一张牌交给' + get.translation(trigger.player));
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.give(result.cards, trigger.player);
         }
       },
@@ -18258,7 +18258,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           });
         } else event.finish();
         ('step 3');
-        if (result.bool) {
+        if (result.links?.length) {
           player.gain(result.links, 'gain2');
         }
       },

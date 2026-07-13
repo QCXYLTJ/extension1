@@ -1378,7 +1378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .setHiddenSkill('slc_lianhua');
                                     }
                                     ('step 1');
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets, 'green');
                                         event.targets = result.targets;
                                         event.targets.sort(lib.sort.seat);
@@ -1437,7 +1437,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) > 0;
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.skills = event.targets[0].getStockSkills(false, true);
                                     player
@@ -1533,7 +1533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .setHiddenSkill('slc_qixi');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.targets.sort(lib.sort.seat);
                                     if (player.isAlive() && event.targets.length) {
@@ -3796,7 +3796,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target.chooseCard(event.num, 'he', true, '妙术:将' + get.cnNumber(event.num, true) + '张牌交给' + get.translation(player));
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player);
                                     if (event.target.countCards('he') <= event.num) {
                                         event.target.loseHp()._triggered = null;
@@ -7113,7 +7113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     switch (event.index) {
                                         case 0:
@@ -10493,7 +10493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .setHiddenSkill(event.name);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     var target = result.targets[0];
                                     trigger.cancel();
@@ -13713,7 +13713,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets.length) {
                                         for (var target of result.targets) {
                                             if (!target.hasSkill('slc_elv_zhanfang_mark')) target.addSkill('slc_elv_zhanfang_mark');
@@ -14177,7 +14177,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             for (var target of result.targets) {
                                                 target.damage(1);
                                             }
@@ -15293,7 +15293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var res = result.cards,
                                         target = result.targets[0].playerid;
                                     player.addGaintag(res, '共鸣_tag');

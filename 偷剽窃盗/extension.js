@@ -347,7 +347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else return true;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var list = result.links;
                                     var num = 0;
                                     for (var i of list) {
@@ -2500,7 +2500,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return att / 10;
                                 });
                                 ('step 7');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.targets.sort(lib.sort.seat);
                                 } else {
@@ -4642,7 +4642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target = player.storage.ls_xiaoer;
                                 event.target.chooseButton(['泻阳:是否获得其中至多两张牌？', cards], [1, 2]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.target.gain(result.links, 'gain2');
                                 }
                             },

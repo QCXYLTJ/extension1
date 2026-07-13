@@ -336,7 +336,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 'step 2';
-                if (result.bool) {
+                if (result.links?.length) {
                   player.gain(result.links, 'gain2', 'log');
                   event.goto(0);
                 }
@@ -389,7 +389,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 'step 1';
-                if (result.bool) {
+                if (result.links?.length) {
                   player.gain(result.links, 'gain2', 'log');
                   event.goto(0);
                 }
@@ -1225,7 +1225,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('card', trigger.card).
             set('distancex', distance);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               event.finish();
@@ -1670,7 +1670,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('goon', goon).
             setHiddenSkill('sdyx_xiemi');
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               event.cards.removeArray(result.links);
               event.togive = result.links.slice(0);
               player.
@@ -2779,7 +2779,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt: '是否选择要送人的卡牌'
             });
             'step 4';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets, 'green');
               result.targets[0].gain(result.cards, player, 'giveAuto');
               //player.give(result.cards,result.targets[0],true);
@@ -4919,7 +4919,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
             });
             'step 4';
-            if (result.bool) {
+            if (result.cards?.length) {
               event.tar.give(result.cards, player, true);
               //player.gain(result.cards,'giveAuto',event.tar);
             }
@@ -5589,7 +5589,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('sourcex', trigger.source);
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.source.gain(result.cards,player,'give','log');
               player.give(result.cards, trigger.source, true);
               //player.$give(result.cards,trigger.source);
@@ -5622,7 +5622,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.chooselist = true;
             }
             'step 3';
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.source.$give(result.cards,player);
               trigger.source.give(result.cards, player, true);
               //player.gain(result.cards,trigger.source,'give','log');
@@ -5752,7 +5752,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('cardname', name);
             'step 2';
-            if (result.bool) {
+            if (result.cards?.length) {
               //player.gain(result.cards,'giveAuto',target);
               target.give(result.cards, player, true);
             } else {
@@ -7021,7 +7021,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: false };
             }
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               trigger.set('sdyx_toutian_Add', true);
@@ -7424,7 +7424,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('card', trigger.card).
             set('list', player.storage.sdxl_zhulu);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               player.removeSkill('sdxl_zhulu2');
@@ -8090,7 +8090,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt2: '弃置一张牌,选择任意名目标直到此牌结算结束,你选择的角色视为装备一张防具牌'
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
               player.discard(result.cards);
               var list = get.inpile(function (name) {
@@ -8263,7 +8263,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt: get.prompt2('sdyx_shijian')
             });
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               player.discard(result.cards);
               var target = result.targets[0];
               target.addTempSkill('sdyx_shijian_distance', { player: 'phaseEnd' });
@@ -8334,7 +8334,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -get.attitude(player, target);
             });
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.storage.sdyx_miyue = result.targets;
               result.targets[1].addTempSkill('sdyx_miyue_map', 'roundStart');
               result.targets[0].addTempSkill('sdyx_miyue_map', 'roundStart');
@@ -8422,7 +8422,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -get.attitude(player, target);
             });
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.storage.sdyx_miyue_new = result.targets;
               result.targets[1].addTempSkill('sdyx_miyue_new_map', 'roundStart');
               result.targets[0].addTempSkill('sdyx_miyue_new_map', 'roundStart');
@@ -9343,7 +9343,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
             );
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets;
               if (trigger.player.storage.sdyx_ninglu == undefined) {
                 trigger.player.storage.sdyx_ninglu = [];
@@ -10295,7 +10295,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('suitxx', suit);
             event.suitx = suit;
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               for (var i of result.targets) {
                 var str = '选择一张与' + get.translation(trigger.card) + '花色相同的牌令' + get.translation(i) + '弃置之';
                 player.
@@ -10518,7 +10518,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('createDialog', ['是否选择一名其他角色获得' + get.translation(event.cards) + '？', event.cards]);
             'step 6';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets);
               result.targets[0].gain(event.cards, 'log', 'gain2');
             }
@@ -11886,7 +11886,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt: '是否弃置任意张不同花色的牌,令一名其他角色选择:弃置等量相同花色组成的牌;或翻面并获得你弃置的牌？'
             });
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               player.discard(result.cards);
               event.cardsss = result.cards;
               var ssuit = [];
@@ -12463,7 +12463,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return true;
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               event.togive = result.links.slice(0);
               var str = '将' + get.translation(result.links) + '交给一名角色';
               player.

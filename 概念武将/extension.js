@@ -418,7 +418,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return ai.get.effect(target, { name: 'sha' }, _status.event.player);
 										});
 									('step 1');
-									if (result.bool) {
+									if (result.targets?.length) {
 										player.useCard({ name: 'sha' }, result.targets, false);
 									}
 								},
@@ -6669,7 +6669,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 9 - get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									player.draw();
 								} else {
@@ -6733,7 +6733,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 9 - get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 								} else {
 									var evt = _status.event;
@@ -7145,7 +7145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '是否发动【黄泉】？',
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									trigger.untrigger();
 									trigger.finish();
@@ -8260,7 +8260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return -get.attitude(player, target) + num;
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets, 'green');
 											var cards = result.targets[0].getCards('h');
 											for (var j = 0; j < cards.length; j++) {

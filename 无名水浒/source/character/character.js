@@ -1384,7 +1384,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.damageEffect(target, player, player);
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.loseToDiscardpile(result.links);
                             await target.damage();
                         }
@@ -1992,7 +1992,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('selectCard', [1, Infinity])
                                     .forResult();
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('shfeishi');
                                 }
                             } else {
@@ -4238,7 +4238,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return att;
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets.forEach((target) => target.addMark('shlizhi'));
                     }
                 },
@@ -5183,7 +5183,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 6 - get.value(card);
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.give(result.cards, trigger.source);
                             trigger.cancel();
                         }
@@ -5197,7 +5197,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 6 - get.value(card);
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.give(result.cards, player);
                             trigger.cancel();
                             player
@@ -7509,7 +7509,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt', `你可以打出一张牌代替${get.translation(trigger.cards)}`)
                         .forResult();
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         await player.respond(result.cards);
                         const cards = trigger.cards.filterInD();
                         player.$gain2(trigger.cards.filterInD());
@@ -8046,7 +8046,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0])
                         .forResult();
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         await player.respond(result.cards, 'highlight', 'shxuexian', 'noOrdering');
                         player.$gain2(trigger.player.judging[0]);
                         await player.gain(trigger.player.judging[0]);
@@ -8129,7 +8129,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 7 - get.value(card);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('shyinglei');
                     }
                 },
@@ -8160,7 +8160,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 async content(event, trigger, player) {
                     const result = await player.chooseCardButton(get.translation(event.name), player.getExpansions('shyinglei', true)).forResult();
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.loseToDiscardpile(result.links);
                         trigger.num -= 2;
                     }
@@ -8873,7 +8873,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 20 - get.value(button.link, get.player());
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.gain(result.links, 'gain2');
                     }
                 },
@@ -9231,7 +9231,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('selectTarget', [1, player.hp])
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const targets = result.targets;
                         while (targets.length) {
                             const target = targets.shift();
@@ -9840,7 +9840,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 7 - get.value(card);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('shniangjiu');
                     }
                 },
@@ -10098,7 +10098,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('prompt', `你可以弃置一张黑色手牌对${get.translation(trigger.player)}造成1点伤害`)
                             .forResult();
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             await player.respond(result.cards);
                             trigger.player.damage();
                         }
@@ -10862,7 +10862,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 7 - get.value(card);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.num += result.cards.length;
                     }
                 },

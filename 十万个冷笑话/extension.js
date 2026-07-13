@@ -546,7 +546,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var att = get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].draw(2);
                                     }

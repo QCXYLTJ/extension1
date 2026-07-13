@@ -8339,7 +8339,7 @@ const skill = {
 					return get.value(button.link) && !button.link.hasGaintag('yb023_fenghou');
 				})
 				.forResult();
-			if (result.bool) {
+			if (result.cards?.length) {
 				await target.showCards(result.cards);
 				if (get.color(result.cards[0]) == 'red') {
 					target.addSkill('yb023_fenghou_viewas');
@@ -12453,7 +12453,7 @@ const skill = {
 				return 100 - get.useful(card);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let cards = result.cards;
 				player.addToExpansion(cards, player, 'give').gaintag.add('yb048_ningyuan');
 			}
@@ -12492,7 +12492,7 @@ const skill = {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.loseToDiscardpile(result.links);
 					}
 				},
@@ -12559,7 +12559,7 @@ const skill = {
 				return -1;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				if (result.cards.length == cards.length) {
 					player.draw();
 				} else {
@@ -12581,7 +12581,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.cardsxx = result.links;
 				if (player.hasSkill('yb048_ningyuan')) {
 					player.chooseControl('是', 'cancel2').set('prompt', '是否将这些牌置于武将牌上充入凝元？');
@@ -12719,7 +12719,7 @@ const skill = {
 			('step 1');
 			player.chooseButton(event.num, ['罠阵:请选择' + event.num + '张牌', event.cards], true);
 			('step 2');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.cardsx = result.links;
 			}
 			('step 3');
@@ -12729,7 +12729,7 @@ const skill = {
 				event.finish();
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.links?.length) {
 				const cardsx = result.links;
 				while (cardsx.length) {
 					let card = cardsx.pop();
@@ -14007,7 +14007,7 @@ const skill = {
 				})
 				.set('judging', trigger.player.judging[0]);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.respond(result.cards, 'highlight', 'yb059_pingyu', 'noOrdering');
 				if (trigger.player.judging[0].suit == result.cards[0].suit) {
 					event.YB_draw = true;
@@ -16566,7 +16566,7 @@ const skill = {
 
 			trigger.player.chooseCard('he', true, '劝氪:将一张牌交给' + get.translation(player));
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				trigger.player.showCards(result.cards);
 				trigger.player.give(result.cards, player, true);
 				trigger.player.storage.yb075_quanke_buff = get.type2(result.cards[0]);
@@ -17411,7 +17411,7 @@ const skill = {
 				})
 				.set('prompt', str);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 			} else {
 				player.storage.counttrigger.yb047_efei--;
@@ -18907,7 +18907,7 @@ const skill = {
 						return true;
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.links?.length) {
 					const cards1 = result.links;
 					let numb = cards.length;
 					for (let i = 0; i < cards1.length; i++) {

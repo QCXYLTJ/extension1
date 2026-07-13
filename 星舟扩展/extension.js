@@ -1052,7 +1052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 3 - get.value(card);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('msjiahe');
 								}
 							},
@@ -1126,7 +1126,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -1;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									var length = targets.length;
 									targets.forEach((target) => {
@@ -1213,7 +1213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										2
 									);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									var length = targets.length;
 									targets.forEach((target) => {
@@ -1589,7 +1589,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								next.set('targetprompt', ['被移走', '移动目标']);
 								next.set('prompt', '移动场上的一张装备牌');
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line2(result.targets, 'green');
 									event.targets = result.targets;
 								} else {
@@ -2355,7 +2355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									trigger.targets.removeArray(result.targets);
 								}
 							},
@@ -2961,7 +2961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 1 + Math.random();
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets);
 											result.targets[0].link(true);
 										} else {
@@ -4966,7 +4966,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(_status.event.player, target);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets;
 									targets.sortBySeat();
 									player.line(targets);
@@ -4980,7 +4980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(_status.event.player, target);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets,
 										type = get.type2(card);
 									targets.sortBySeat();
@@ -5546,7 +5546,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('targets', event.parent.getTrigger().targets);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets;
 									player.line(targets, 'green');
 									player.addTempSkill('dcqingshi_ex');
@@ -5562,7 +5562,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(_status.event.player, target);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets;
 									targets.sortBySeat();
 									player.line(targets);
@@ -5576,7 +5576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(_status.event.player, target);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets,
 										type = get.type2(card);
 									targets.sortBySeat();

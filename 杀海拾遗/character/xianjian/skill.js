@@ -653,7 +653,7 @@ const skill = {
 				event.goto(4);
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.links?.length) {
 				for (var i = 0; i < result.links.length; i++) {
 					event.cards.remove(result.links[i]);
 				}
@@ -2169,7 +2169,7 @@ const skill = {
 				return get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("danqing", result.targets);
 				for (var i = 0; i < result.targets.length; i++) {
 					result.targets[i].getBuff(false);
@@ -2268,7 +2268,7 @@ const skill = {
 			"step 2";
 			player.chooseCard("将两张牌置于牌堆顶（先选择的在上）", 2, "he", true);
 			"step 3";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.lose(result.cards, ui.special);
 				event.cards = result.cards;
 			} else {
@@ -2691,7 +2691,7 @@ const skill = {
 				event.finish();
 			}
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = result.links[[0]];
 				player.chooseCard("h", true, "用一张手牌替换" + get.translation(event.card)).ai = function (card) {
 					return -get.value(card);
@@ -2995,7 +2995,7 @@ const skill = {
 				return 11 - get.value(card);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.$throw(result.cards);
 				var clone = result.cards[0].clone;
 				setTimeout(function () {
@@ -3304,7 +3304,7 @@ const skill = {
 				return get.damageEffect(target, player, player);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("duci", result.targets);
 				result.targets[0].damage();
 			}
@@ -3843,7 +3843,7 @@ const skill = {
 					return num;
 				};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("runxin", result.targets);
 				result.targets[0].recover();
 			}

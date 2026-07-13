@@ -2889,7 +2889,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '是否选择一张手牌当' + get.translation(trigger.card) + '使用？若此牌造成伤害,你可以摸一张牌.',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cardssss = result.cards;
                                     if (!event.isMine()) game.delayx();
                                     event.targets = result.targets;

@@ -3229,7 +3229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											next.set('skills', skills);
 										}
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											var skills = result.links;
 											player.addSkill(skills.slice(0));
 											game.log(player, '获得了以下技能:', '#g' + get.translation(skills));
@@ -3400,7 +3400,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('skills', skills);
 								}
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var skills = result.links;
 									player.addSkill(skills.slice(0));
 									game.log(player, '获得了以下技能:', '#g' + get.translation(skills));
@@ -3732,7 +3732,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('skills', links);
 								} else event.goto(0);
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									var skills = result.links;
 									target.addSkill(skills.slice(0));
 									game.log(target, '获得了以下技能:', '#g' + get.translation(skills));
@@ -4201,7 +4201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										})()
 									);
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									target.damage(result.cards.length);
 								} else {
 									var cards = target.getCards('h', { suit: card.suit });
@@ -5336,7 +5336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 10 - get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.recast(result.cards);
 									player.addTempSkill('zshy_fengsheng_clear', { global: 'roundStart' });
 								}
@@ -5855,7 +5855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 10 - get.value(card);
 										});
 										('step 1');
-										if (result.bool) {
+										if (result.cards?.length) {
 											player.recast(result.cards);
 										}
 									},
@@ -8153,7 +8153,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									)
 									.setHiddenSkill('zshy_tuxi');
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets.sortBySeat();
 									player.gainMultiple(result.targets);
 									trigger.num -= result.targets.length;
@@ -8244,7 +8244,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.effect(target, { name: 'shunshou_copy2' }, player, player);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.slice();
 									targets.sortBySeat();
 									player.gainMultiple(result.targets, 'he');
@@ -8816,7 +8816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									for (var i = 0; i < result.targets.length; i++) {
 										result.targets[i].draw(Math.max(1, result.targets[i].hp));
 									}
@@ -9049,7 +9049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('judging', trigger.player.judging[0]);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.respond(result.cards, 'highlight');
 								} else {
 									event.finish();
@@ -9226,7 +9226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '请选择要送人的卡牌',
 								});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									result.targets[0].gain(result.cards, player, 'giveAuto');
 									event.given += result.cards.length;
@@ -9469,7 +9469,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: get.prompt('zshy_liuli'),
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									trigger.target = result.targets[0];
 									trigger.targets.remove(player);
@@ -10054,7 +10054,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('prompt', get.prompt('zshy_tianxiang'))
 									.set('prompt2', str);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.recast(result.cards);
 								}
 							},
@@ -10393,7 +10393,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (cards.length == 1) event._result = { bool: true, links: cards };
 								else player.chooseCardButton('请选择要获得的一张【杀】', cards, true);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.gain(result.links, player, 'giveAuto');
 								}
 							},
@@ -11033,7 +11033,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('judging', trigger.player.judging[0]);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.respond(result.cards, 'highlight', 'zshy_guidao', 'noOrdering');
 								} else {
 									event.finish();
@@ -11997,7 +11997,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											},
 										},
 									});
-								if (result.bool) {
+								if (result.links?.length) {
 									var names = result.links.map((link) => link[2]);
 									storage = names;
 								}
@@ -12672,7 +12672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.recoverEffect(target, player, player);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									player.line(targets);
 									player.popup('回复体力');
@@ -12689,7 +12689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.effect(target, { name: 'losehp' }, player, player);
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									player.line(targets);
 									player.popup('失去体力');
@@ -12868,7 +12868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										2
 									);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var length = result.targets.length;
 									for (var i = 0; i < length; i++) result.targets[i].addSkill('zshy_dawu_Buff');
 									player.chooseCardButton('大雾:请弃置' + length + '枚「星」', length, player.getExpansions('zshy_qixing'), true);
@@ -12969,7 +12969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 0;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var length = result.targets.length;
 									for (var i = 0; i < length; i++) {
 										result.targets[i].addMark('zshy_kuangfeng_Debuff', 1, false);
@@ -13998,7 +13998,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									for (var i of targets) {
 										i.addTempSkill('baiban');
@@ -14257,7 +14257,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											})
 											.set('goon', get.attitude(event.target, player) > 0);
 										('step 1');
-										if (result.bool) {
+										if (result.cards?.length) {
 											target.give(result.cards, player);
 										}
 										if (targets.length) event.goto(0);
@@ -14646,7 +14646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.effect(target, { name: 'shunshou_copy2' }, player, player) > 0;
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									player.line(targets, 'thunder');
 									for (var i of targets) player.gainPlayerCard(i, 'hej', true);
@@ -14998,7 +14998,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.effect(target, { name: 'shunshou_copy2' }, player, player) > 0;
 											});
 										('step 2');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets);
 											player.gainPlayerCard(result.targets[0], 'hej', true);
 										}
@@ -15290,7 +15290,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return -get.attitude(player, target);
 										});
 										('step 2');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var targets = result.targets.sortBySeat();
 											player.line(targets);
 											for (var i of targets) i.link();
@@ -15884,7 +15884,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var list = result.links;
 									for (var i = 0; i < list.length; i++) {
 										if (get.owner(list[i]) == player) {
@@ -15960,7 +15960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var targets = result.targets.sortBySeat();
 											for (var i of targets) {
 												player.removeMark('zshy_SGNjieying_Mark', 1);
@@ -16031,7 +16031,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return -get.attitude(player, target);
 										};
 										('step 3');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var targets = result.targets.sortBySeat();
 											for (var i of targets) {
 												var num = i.countMark('zshy_SGNjieying_Mark');
@@ -16526,7 +16526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.set('targets', trigger.targets)
 											.set('card', trigger.card);
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var targets = result.targets.sortBySeat();
 											if (trigger.targets.includes(targets[0])) trigger.targets.removeArray(targets);
 											else trigger.targets.addArray(targets);

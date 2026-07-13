@@ -417,7 +417,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt2: '提示:先选择再选择一张牌,最后交给的牌一一对应',
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									for (var i = 0; i < result.targets.length; i++) {
 										player.give(result.cards[i], result.targets[i]);
 										result.targets[i].give(
@@ -2500,7 +2500,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										}
 										('step 2');
-										if (result.bool) {
+										if (result.links?.length) {
 											player.gain(result.links, 'gain2', 'log');
 										}
 									},
@@ -2807,7 +2807,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -3011,7 +3011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(card);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var cards = result.cards,
 										he = [],
 										hs = player.getCards('h');
@@ -3063,7 +3063,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 6');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var cards = result.cards,
 										he = [],
 										hs = event.target.getCards('h');
@@ -3207,7 +3207,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('cardx', trigger.card)
 									.set('targetx', trigger.target);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.respond(result.cards, 'highlight', 'noOrdering');
 									if (event.triggername == 'useCard') trigger.cancel();
 									else {
@@ -5220,7 +5220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets;
 									player.line(targets);
 									for (var i = 0; i < targets.length; i++) {
@@ -5478,7 +5478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 5');
-								if (result.bool) {
+								if (result.links?.length) {
 									var links = result.links;
 									game.broadcastAll(function (card) {
 										lib.skill.RE_lvxing_backup.viewAs = { name: links[0][2], nature: links[0][3] };

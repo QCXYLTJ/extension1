@@ -1013,7 +1013,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 9 - get.value(card);
 								});
 								'step 1'
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.useCard({ name: 'tao' }, result.cards, 'lr_yixiang', trigger.player, false);
 									var info = lib.character[trigger.player.name];
 									var skills = trigger.player.getSkills();
@@ -1092,7 +1092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.effect(target, trigger.card, player.storage.lr_tongtiao);
 								}).set('card', trigger.card).set('targets', trigger.targets);
 								'step 1'
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								}
 								else {
@@ -1141,7 +1141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.loseHp();
 								player.choosePlayerCard('h', trigger.target, true);
 								'step 1'
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.showCards(result.cards);
 									player.addSkill('lr_lingnve_effect');
 									player.storage.lr_lingnve_effect = {
@@ -1214,7 +1214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 100 - get.value(card);
 								};
 								'step 1'
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, target);
 									target.$giveAuto(result.cards, player);
 									player.chooseUseTarget(result.cards[0]);
@@ -1346,7 +1346,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.goto(3);
 										}
 										'step 2'
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets;
 											trigger.player.line(target, 'yellow');
 											trigger.parent.targets = target;
@@ -1777,7 +1777,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return !position.includes(get.position(button.link));
 								});
 								'step 3'
-								if (result.bool) {
+								if (result.links?.length) {
 									player.gain(result.links);
 								}
 							},
@@ -1860,7 +1860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return cards.includes(button.link);
 								});
 								'step 3'
-								if (result.bool) {
+								if (result.links?.length) {
 									event.cards = result.links;
 									player.showCards(result.links, '神解');
 									player.gain(result.links);
@@ -2723,7 +2723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								}
 								'step 3'
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.cards.push([event.target, result.cards]);
 									player.storage.lr_xuanfeng_suit.add(result.cards[0].suit);
 								}

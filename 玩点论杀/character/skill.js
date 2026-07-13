@@ -674,7 +674,7 @@ const skills = {
 				}
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards, trigger.player);
 				trigger.player.$give(1, player);
 			} else {

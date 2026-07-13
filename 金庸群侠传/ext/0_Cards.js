@@ -158,7 +158,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 5';
-            if (result.bool) {
+            if (result.cards?.length) {
               target.give(result.cards, player);
             }
           }
@@ -4264,7 +4264,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('card', trigger.card);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               event.finish();
@@ -4389,7 +4389,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 'step 2';
-                if (result.bool) {
+                if (result.links?.length) {
                   player.gain(result.links, 'gain2', 'log').set('type', 'jydiy_shenmuwangding');
                 }
               }
@@ -4425,7 +4425,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 'step 1';
-                if (result.bool) {
+                if (result.links?.length) {
                   player.gain(result.links, 'gain2', 'log').set('type', 'jydiy_shenmuwangding');
                 }
               }

@@ -1333,7 +1333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('judging', trigger.player.judging[0]);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.respond(result.cards, 'highlight');
                                         } else {
                                             event.finish();
@@ -1475,7 +1475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('aicheck', check);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.gainMultiple(result.targets);
                                     trigger.cancel();
                                     //      player.draw(2);
@@ -3681,7 +3681,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att / 3;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].draw(Math.min(5, result.targets[i].hp) - result.targets[i].countCards('h'));
                                     }
@@ -4943,7 +4943,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             if (result.targets.length == 1) {
                                                 player.discardPlayerCard(event.targets[0], 'he', true);
@@ -5018,7 +5018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     player.gainPlayerCard(result.targets[0], 'he', true);
                                 } else {
@@ -5420,7 +5420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 next.prompt2 = '反弹' + get.translation(trigger.player) + '的' + get.translation(trigger.card);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     // player.discard(result.cards);
                                     trigger.target = trigger.player;
                                     trigger.player = player;
@@ -8229,7 +8229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     player.gainPlayerCard(result.targets[0], 'he', true);
                                 } else {

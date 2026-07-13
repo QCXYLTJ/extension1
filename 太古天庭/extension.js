@@ -1831,7 +1831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         } else event.goto(0);
                         ('step 6');
                         //交换位置
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets;
                             game.swapSeat(event.targets[0], event.targets[1], false);
                             result.control = '工具';

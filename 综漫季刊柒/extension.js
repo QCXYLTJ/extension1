@@ -1463,7 +1463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.hqs = result.targets;
                                 } else event.finish();
@@ -1500,7 +1500,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 7');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var list = result.links;
                                     for (var i = 0; i < list.length; i++) {
                                         var owner = get.owner(list[i]);
@@ -1555,7 +1555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target) * target.countCards('h');
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     if (result.targets[0].countCards('h', { color: 'black' }) > 0) {
                                         if (event.kg == 2) {
@@ -2740,7 +2740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.tr.line(result.targets);
                                     event.target = result.targets[0];
@@ -2790,7 +2790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target) * target.countCards('h');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     result.targets[0].addTempSkill('zmjuedingdeyishou_0');
                                     result.targets[0].draw();
@@ -3184,7 +3184,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return player.getUseValue(button.link) + 1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: 'juedou' }, result.links, false);
                                 } else event.finish();
                             },
@@ -4755,7 +4755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     _status.currentPhase.useCard({ name: 'zengbin' }, result.cards, player);
                                     if (player.countCards('h', { color: 'black' }) == 0) event.goto(1);
                                 }
@@ -4886,7 +4886,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return num + get.attitude(player, target) * target.countCards('h');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     if (result.targets[0].countCards('e', { subtype: 'equip1' })) {
                                         var cards = result.targets[0].getCards('e');
@@ -5639,7 +5639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 7 - get.value(button.link);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.addToExpansion(result.links, player, 'give').gaintag.add('zmzhanhuo');
                                 }
                             },
@@ -5689,7 +5689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.value(button.link);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.discard(result.links);
                                         }
                                     },
@@ -6488,7 +6488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player, 'fire');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'fire');
                                     result.targets[0].damage(1, 'fire');
                                 }

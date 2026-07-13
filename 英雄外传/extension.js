@@ -1626,7 +1626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 8 - get.value(card);
 								};
 								('step 5');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, event.tar, 'giveAuto');
 								}
 							},
@@ -1994,7 +1994,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 8 - get.value(card);
 								};
 								('step 5');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, event.tar, 'giveAuto');
 								}
 							},
@@ -2756,7 +2756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 0.5 - get.attitude(_status.event.player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -4049,7 +4049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									for (var i = 0; i < result.targets.length; i++) {
 										//player.drawTo(Math.min(5,result.targets[i].maxHp));
 										var num = 5 - result.targets[i].hp;
@@ -6008,7 +6008,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.effect(target, _status.event.getTrigger().card, player, player);
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											event.targets = result.targets.sortBySeat();
 										} else {
 											event.finish();
@@ -7013,7 +7013,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, target, 'giveAuto').gaintag.add('yxskuangbi_keep');
 									player.addTempSkill('yxskuangbi_keep');
 									target.addSkill('yxskuangbi_draw');
@@ -7511,7 +7511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, event.target, 'give');
 									player.removeMark('yywucan00102');
 									var list = [];
@@ -8315,7 +8315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.setHiddenSkill(event.name);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									var target = result.targets[0];
 									player
@@ -9232,7 +9232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, 'giveAuto', trigger.source);
 									trigger.source.turnOver();
 								} else {
@@ -10739,7 +10739,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets.sortBySeat();
 									player.line(targets, 'green');
 									for (var i of targets) i.damage('nocard');
@@ -10948,7 +10948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									for (var i = 0; i < result.targets.length; i++) {
 										result.targets[i].recover();
 									}
@@ -11140,7 +11140,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 100 - get.value(button.link);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.list = result.links.slice(0);
 									var list = event.list;
 									player.gain(list, 'draw');
@@ -12009,7 +12009,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.give(result.cards, target);
 									//player.lose(result.cards,ui.special);
 									//target.gain(cards,'gain2');
@@ -12225,7 +12225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									game.asyncDraw(result.targets);
 									player.draw();
 								}
@@ -12719,7 +12719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.pla.chooseUseTarget({ name: event.tp }, result.links, false).viewAs = true;
 									event.pla.lose(result.links, ui.special);
 								}
@@ -12789,7 +12789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var list = result.links;
 									for (var i = 0; i < list.length; i++) {
 										if (get.owner(list[i]) == player) {

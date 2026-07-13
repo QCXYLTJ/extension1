@@ -13246,7 +13246,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             },
           });
           ('step 2');
-          if (result.bool) {
+          if (result.cards?.length) {
             let res = result.cards,
               target = result.targets[0];
             player.addGaintag(res, 'vunkm_tag');
@@ -14230,7 +14230,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               },
             })
             .set('sum', sum);
-          if (result.bool) {
+          if (result.links?.length) {
             const names = result.links.map((link) => link[2]);
             storage[0] -= names.length;
             storage[1] = names;
@@ -16478,7 +16478,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               return Object.keys(target.storage).length - 2 * Math.random() + target.getDamagedHp();
             })
             .forResult();
-          if (result.bool) {
+          if (result.targets?.length) {
             const targets = result.targets,
               tlen = targets.length;
             const target = targets[0];

@@ -313,7 +313,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return player.getUseValue(button.link);
                                     });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     player.gain(event.cards, 'gain2');
                                     var count = 0;
@@ -879,7 +879,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards.removeArray(result.links);
                                     player.gain(result.links, 'gain2');
                                 }
@@ -1750,7 +1750,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.rank(button.link, true) - lib.character[button.link][2];
                                         });
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.storage.huan幻化_dying.removeArray(result.links);
                                         }
                                     },
@@ -2395,7 +2395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.choosePlayerCard(target, 'ej', true, '令' + get.translation(target) + '回手一张牌');
                                 } else event._result = { bool: false };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     target.recycleCards(result.links);
                                 }
                                 ('step 2');

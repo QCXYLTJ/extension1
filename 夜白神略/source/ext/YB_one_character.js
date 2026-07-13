@@ -2131,7 +2131,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								})
 								.set('judging', trigger.player.judging[0]);
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.respond(result.cards, 'yb_wan_rengong', 'highlight', 'noOrdering');
 							} else {
 								event.finish();
@@ -3365,7 +3365,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						const cs = result.cards;
 						player.addToExpansion(cs, player, 'give').gaintag.add('yb_wan_linzuo_mark2');
 					}
@@ -3410,7 +3410,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					game.cardsGotoOrdering(event.cards);
 					player.chooseCardButton(event.cards, true, num2, '窥天:获得其中' + num2 + '张牌');
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.gain(result.links, 'gain2');
 					}
 					const cards2 = event.cards.filter((i) => !result.links.includes(i));

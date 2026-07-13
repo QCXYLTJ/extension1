@@ -509,7 +509,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     game.asyncDraw(result.targets);
                                 }
                             },
@@ -919,7 +919,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0.5 - get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -2662,7 +2662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('ja_luanci'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.cards, result.targets, false);
                                 }
                             },
@@ -3373,7 +3373,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.addTempSkill('ja_jiaokou_1');
                                 target.chooseCard('he', true, '剿寇:将一张牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target);
                                     target.$giveAuto(result.cards, player, true);
                                     if (result.cards[0].name != 'sha') {
@@ -3574,7 +3574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 target.chooseCard('he', true, '独辩:将一张牌交给' + get.translation(player));
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target);
                                     target.$giveAuto(result.cards, player, true);
                                 }

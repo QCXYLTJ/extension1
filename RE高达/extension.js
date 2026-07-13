@@ -2260,7 +2260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.gainMultiple(result.targets, 'he');
 								}
 								('step 2');
@@ -2402,7 +2402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '请选择至多三张手牌,分配给一名其他角色',
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									result.targets[0].gain(result.cards, player, 'giveAuto');
 								}
@@ -3578,7 +3578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								next.set('goon', get.attitude(player, trigger.target) <= 0);
 								next.set('forceAuto', true);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.cards = result.cards;
 									var target = trigger.target;
 									target.addSkill('god_xusheng_pojun_card');
@@ -4516,7 +4516,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: get.prompt('god_zhangxiu_huaqiang'),
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.useCard({ name: 'sha' }, result.cards, result.targets, false);
 								}
 							},
@@ -5269,7 +5269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												};
 										}
 										('step 4');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets);
 											result.targets[0].damage('nocard');
 										}

@@ -3039,7 +3039,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return -1;
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         for (var i = 0; i < result.targets.length; i++) {
                             game.playvs(game.boss.name + 'jn3');
                             game.boss.popup('海啸');
@@ -8090,7 +8090,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 1;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.players = result.targets;
                                             if (event.players.length) {
                                                 event.players.shift().damage(player.storage.mori_xunhui);
@@ -8143,7 +8143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.players = result.targets;
                                     if (event.players.length) {
                                         event.players.shift().changeHujia();
@@ -9948,7 +9948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         var l = [1, 2].randomGet();
                                         if (l == 1) game.playvs(player.name + 'jn1');
@@ -10293,7 +10293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.useCard({ name: 'sha', nature: 'thunder' }, result.targets[i], false);
                                     }
@@ -10543,7 +10543,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.hp = result.targets[i].hp;
                                         result.targets[i].loseHp(result.targets[i].hp);

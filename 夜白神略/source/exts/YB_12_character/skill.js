@@ -132,7 +132,7 @@ const skill = {
 				return -1;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let targets = result.targets.sortBySeat();
 				const length = targets.length;
 				targets.forEach((target) => {
@@ -1050,7 +1050,7 @@ const skill = {
 				return get.recoverEffect(target, player, _status.event.player);
 			};
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (const i of result.targets) {
 					i.recover();
 				}
@@ -1204,7 +1204,7 @@ const skill = {
 						return 1 + Math.random();
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.line(result.targets);
 						result.targets[0].link(true);
 					} else {
@@ -3175,7 +3175,7 @@ const skill = {
 						})
 						.set('goon', get.attitude(event.target, player) > 0);
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						target.give(result.cards, player);
 					}
 					if (targets.length) {
@@ -3592,7 +3592,7 @@ const skill = {
 			});
 			chooseButton.set('filterButton', (button) => lib.filter.canBeDiscarded(button.link, get.player(), get.owner(button.link)));
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				let list = result.links;
 				for (let i = 0; i < list.length; i++) {
 					if (get.owner(list[i]) == player) {
@@ -5381,7 +5381,7 @@ const skill = {
 								})
 								.set('enemy', get.value(cards[0], player, 'raw') < 0)
 								.forResult();
-					if (result.bool) {
+					if (result.links?.length) {
 						if (!result.links?.length) {
 							result.links = cards.slice(0);
 						}
@@ -6871,7 +6871,7 @@ const skill = {
 				return true;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				let list = result.links;
 				for (let i = 0; i < list.length; i++) {
 					if (get.owner(list[i]) == player) {
@@ -8596,7 +8596,7 @@ const skill = {
 							}
 						})
 						.forResult();
-					if (result.bool) {
+					if (result.links?.length) {
 						const choices = result.links;
 						game.log(player, '选择了', '#g【战烈】', '的', '#y' + choices);
 						for (const choice of choices) {
@@ -10574,7 +10574,7 @@ const skill = {
 
 					player.chooseTarget(list.length, true, '请重新分配其他角色的<围>标记');
 					('strp 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let targets = result.targets;
 						targets.sortBySeat();
 						for (let i = 0; i < targets.length; i++) {
@@ -14367,7 +14367,7 @@ const skill = {
 				return get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let targets = result.targets;
 				targets.sortBySeat();
 				player.line(targets);
@@ -14755,7 +14755,7 @@ const skill = {
 					})
 					.forResult();
 			}
-			if (result.bool) {
+			if (result.cards?.length) {
 				selectedCards = result.cards;
 				selectedCount = selectedCards.length;
 				game.log(player, `将${get.cnNumber(selectedCount)}张牌置入了牌堆`);
@@ -19613,7 +19613,7 @@ const skill = {
 				return true;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				let list = result.links;
 				for (let i = 0; i < list.length; i++) {
 					if (get.owner(list[i]) == player) {
@@ -20675,7 +20675,7 @@ const skill = {
 				return true;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				let list = result.links;
 				for (let i = 0; i < list.length; i++) {
 					if (get.owner(list[i]) == player) {
@@ -22351,7 +22351,7 @@ const skill = {
 				return get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let targets = result.targets;
 				targets.sortBySeat();
 				player.line(targets);
@@ -27706,7 +27706,7 @@ const skill = {
 					})
 					.forResult();
 			}
-			if (result.bool) {
+			if (result.cards?.length) {
 				selectedCards = result.cards;
 				selectedCount = selectedCards.length;
 				game.log(player, `将${get.cnNumber(selectedCount)}张牌置入了牌堆`);
@@ -29231,7 +29231,7 @@ const skill = {
 				.set('targets', trigger.targets)
 				.set('card', trigger.card);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 			}
 			('step 2');
@@ -29818,7 +29818,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'thunder') * Math.sqrt(Math.max(1, target.countCards('h', 'shan')));
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let targets = result.targets;
 				targets.sortBySeat();
 				for (let target of targets) {
@@ -30331,7 +30331,7 @@ const skill = {
 				})
 				.set('sum', sum)
 				.forResult();
-			if (result.bool) {
+			if (result.links?.length) {
 				let names = result.links.map((link) => link[2]);
 				storage[0] -= names.length;
 				storage[1] = names;
@@ -33730,7 +33730,7 @@ const skill = {
 								return get.damageEffect(target, player, player);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							await player.logSkill('sgsxjxfzmnl_dcsbquanmou', result.targets);
 							for (let i of result.targets) {
 								if (i.isIn()) {
@@ -34057,7 +34057,7 @@ const skill = {
 					.set('numbers', numbers)
 					.set('ai', () => 1 + Math.random())
 					.forResult();
-				if (result.bool) {
+				if (result.links?.length) {
 					const equips = result.links.sort((a, b) => {
 						return lib.suit.includes(a) + (numbers.includes(a) ? 2 : 0) - (lib.suit.includes(b) + (numbers.includes(b) ? 2 : 0));
 					});
@@ -37122,7 +37122,7 @@ const skill = {
 					})
 					.set('numx', player.countCards('h') / 4)
 					.forResult();
-				if (result.bool) {
+				if (result.cards?.length) {
 					const next = target.addToExpansion(result.cards, 'giveAuto', target);
 					next.gaintag.add('sgsxjxfzmnl_mbweisi');
 					await next;

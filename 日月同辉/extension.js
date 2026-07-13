@@ -1541,7 +1541,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseCard(get.prompt('ryshuangxiong'), `重铸${get.cnNumber(num)}张牌` + (num > 0 ? '并摸一张牌' : ''), num, 'h');
                                 event.num = num;
                                 'step 1'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.loseToDiscardpile(result.cards);
                                     player.draw(result.cards.length);
                                     if (event.num > 0) player.draw();
@@ -1648,7 +1648,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return eff;
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 }
                                 else event.finish();
@@ -2160,7 +2160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 }).set('targets', trigger.targets);
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.removeMark('ryyinling', result.targets.length);
                                     trigger.parent.excluded.addArray(result.targets);
                                 }
@@ -2338,7 +2338,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 'step 2'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     player.line(result.targets);
                                     player.discard(result.cards);
@@ -2535,7 +2535,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 8 - get.value(card);
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     trigger.excluded.add(trigger.target);
                                     trigger.target.damage(1, 'fire');
@@ -2770,7 +2770,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 'step 2'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.list1.push(result.cards);
                                     target.showCards(result.cards, get.translation(target) + '第' + (event.num == 2 ? '二' : get.cnNumber(event.num)) + '轮展示的【杀】');
                                     if ((player.countCards('h', { name: 'sha' }) - event.list2.length) || (player.hasSkill('ryluoyi_sha') && (player.countCards('h') - event.list2.length))) {
@@ -2789,7 +2789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 3'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.list2.push(result.cards);
                                     player.showCards(result.cards, get.translation(player) + '第' + (event.num == 2 ? '二' : get.cnNumber(event.num)) + '轮展示的【杀】');
                                     event.num++;
@@ -3481,7 +3481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 break;
                                         }
                                         'step 1'
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets.sortBySeat();
                                             if (event.type != 'equip1') {
                                                 var target = result.targets[0];
@@ -4644,7 +4644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 else event.goto(2);
                                 'step 1'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.showCards(cards, get.translation(player) + '发动了【据东】');
                                     player.addGaintag(cards, 'ryjudong_mark');
@@ -4662,7 +4662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 else event.finish();
                                 'step 3'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.showCards(cards, get.translation(player) + '发动了【据东】');
                                     player.addGaintag(cards, 'ryjudong_effect');

@@ -808,7 +808,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         else return Math.random()
                     });
                     'step 1'
-                    if (result.bool) {
+                    if (result.links?.length) {
                         var suits = result.links.map(i => i[2].slice(6));
                         player.addTempSkill('tmzz_anlei_effect', 'roundStart');
                         player.setStorage('tmzz_anlei_effect', suits);

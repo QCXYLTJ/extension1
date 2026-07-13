@@ -1622,7 +1622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('弃置一枚月灵髓液,并将手牌摸至' + (player.getHandcardLimit() - 1), player.getExpansions('Grand_yuelingsuiye'), true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                 } else {
                                     event.finish();
@@ -2745,7 +2745,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('弃置一枚星>', player.getExpansions('Grand_duochongxinghuan'), true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                     trigger.num++;
                                 }
@@ -2767,7 +2767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCardButton('弃置一枚星>', player.getExpansions('Grand_duochongxinghuan'), true);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player.draw(1);
                                         }
@@ -2788,7 +2788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCardButton('弃置一枚星>', player.getExpansions('Grand_duochongxinghuan'), true);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player.recover(1);
                                         }
@@ -3201,7 +3201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 / Math.max(0.1, get.value(card));
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.give(result.cards, trigger.player);
                                     player.gain(trigger.cards, 'gain2');
                                     if (get.color(result.cards) == get.color(trigger.cards)) {
@@ -3215,7 +3215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.useCard({ name: 'sha', nature: 'ice' }, result.cards, false, trigger.player, 'Grand_tiancaishunv');
                                 }
                             },
@@ -3342,7 +3342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].damage(1);
@@ -5074,7 +5074,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.draw(result.targets.length);
                                     for (var i = 0; result.targets.length > i; i++) {
                                         result.targets[i].damage(1);
@@ -6819,7 +6819,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCardButton('获得一张<试炼>', player.getExpansions('Grand_shiershilian'), true);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2');
                                             player.gainMaxHp(1);
                                             player.recover(1 - player.hp);

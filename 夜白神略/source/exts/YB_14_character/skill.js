@@ -2295,7 +2295,7 @@ const skill = {
 						return -1;
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						const targets = result.targets.sortBySeat();
 						const length = targets.length;
 						targets.forEach((target) => {
@@ -4039,7 +4039,7 @@ const skill = {
 				(card) => get.color(card) == get.color(trigger.card) && target.canRecast(card),
 				(card) => 11 - get.value(card),
 			);
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.recast(result.cards);
 			} else {
 				target.loseHp();
@@ -4367,7 +4367,7 @@ const skill = {
 					.set('targets', target)
 					.set('filterTarget', (card, player, target) => get.event().targets.includes(target))
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.result.targets = result.targets;
 				}
 			}
@@ -5500,7 +5500,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				delete result.cards;
 				event.target = result.targets[0];
 				player.choosePlayerCard(event.target, 'h', [1, Math.min(event.target.countCards('he'), 5, event.target.hp)], '展示一名其他角色的至多Y张手牌(Y为其体力值且至多为5),弃置其中与判定花色相同的牌').set('forceAuto', true);
@@ -5508,7 +5508,7 @@ const skill = {
 				event.finish();
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let cards = result.cards,
 					cards2 = [];
 				event.target.showCards(cards);

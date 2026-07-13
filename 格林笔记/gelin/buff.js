@@ -255,7 +255,7 @@ export function initBuff(lib, game, ui, get, ai, _status) {
           event.goto(1);
         }
         'step 4';
-        if (result.bool) {
+        if (result.cards?.length) {
           event.target.give(result.cards, event.current, true);
         }
         event.goto(3);

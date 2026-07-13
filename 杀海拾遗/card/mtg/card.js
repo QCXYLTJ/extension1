@@ -25,7 +25,7 @@ const card = {
 				})
 				.set("prompt2", "弃置任意张红桃牌，每弃置一张牌，将一张延时锦囊牌置入一名随机敌方角色的判定区");
 			"step 2";
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.num = result.cards.length;
 				event.targets = player.getEnemies();
 			}

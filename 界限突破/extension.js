@@ -1057,7 +1057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att * lib.card.guohe.ai.result.target(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     for (var i = 0; i < targets.length; i++) {
                                         player.discardPlayerCard(targets[i], 'hej', true);
@@ -2043,7 +2043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = event.control == '牌区' ? result.cards : result.links;
                                     player.respond(event.cards, 'highlight', 'guidao', 'noOrdering');
                                 } else {
@@ -3087,7 +3087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         };
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets.sortBySeat();
                                             targets.forEach((target) => {
                                                 target.addSkill('mo_wuliz_mark');
@@ -3375,7 +3375,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.target.chooseCard(1, 'he', true, `请交给${get.translation(player)}一张牌`);
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             event.cards = result.cards;
                                             player.gain(event.cards, 'give', event.target);
                                             player.judge();
@@ -3585,7 +3585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.cards = result.links;
                                             player.respond(event.cards, 'highlight', 'mo_huita', 'noOrdering');
                                         } else {
@@ -5577,7 +5577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('re_tunchu');
                                         }
                                     },
@@ -5606,7 +5606,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('re_tunchu');
                                         }
                                     },
@@ -5633,7 +5633,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('goon', goon);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                     trigger.player.draw(2);
                                 }

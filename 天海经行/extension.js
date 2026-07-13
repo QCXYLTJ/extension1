@@ -3098,7 +3098,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 else event.finish();
                                 'step 1'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cur.loseToDiscardpile(result.cards);
                                     event.cur.draw();
                                     var suit = result.cards[0].suit;
@@ -4168,7 +4168,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         else event.finish();
                                         'step 1'
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             if (event.isMine()) {
                                                 event.finish();
@@ -4219,7 +4219,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards?.length) {
                                         player.discard(result.cards);
                                         player.chooseControl(['lizhan', 'reshengxi'], function (player) {
@@ -4849,7 +4849,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return true;
                                         });
                                         'step 1'
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.showCards(result.cards, get.translation(player) + '发动了【照骨镜】');
                                             var card = {
                                                 name: result.cards[0].name,

@@ -514,7 +514,7 @@ const card = {
 				return 6 - get.value(card);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.draw(result.cards.length);
 			}
 		},
@@ -563,7 +563,7 @@ const card = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.draw(result.cards.length);
 			}
 		},

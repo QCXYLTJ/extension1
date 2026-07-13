@@ -1357,7 +1357,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return att / get.threaten(target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     for (var i of targets) i.addTempSkill('fengyin');
                                 }
@@ -6651,7 +6651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('goon', get.attitude(player, trigger.target) <= 0);
                                 next.set('forceAuto', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     var target = trigger.target;
                                     target.addSkill('cidunsjdz2');

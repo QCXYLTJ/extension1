@@ -100,11 +100,11 @@ game[otherFunction[6]](game.zmtzd13Gif('zmcuibin.gif', null, null, true), 3600);
 game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
-if \(result.bool(\) \{\n\s*.+result.targets\[0\])
+if \(result.bool(\) \{\n\s*.+result.targets)
 if (result.targets?.length$1
-if \(result.bool(\) \{\n\s*.+result.links\[0\])
+if \(result.bool(\) \{\n\s*.+result.links)
 if (result.links?.length$1
-if \(result.bool(\) \{\n\s*.+result.cards\[0\])
+if \(result.bool(\) \{\n\s*.+result.cards)
 if (result.cards?.length$1
 = await .+draw// = result[0];// = result.cards[0];
 async content(event, map) {
@@ -635,7 +635,7 @@ const precontent = async function () {
                         }
                         return 0;
                     })('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         let num = result.cards.length;
                         const cnum = get.cnNumber(num);
                         event.num = num;

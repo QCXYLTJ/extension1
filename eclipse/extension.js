@@ -868,7 +868,7 @@ game.import('extension', function () {
                                     .set('selectButton', [1])
                                     .set('skills', skills);
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var skills = result.links;
                                     game.log(player, '失去了以下技能:', '#g' + get.translation(skills));
                                     player.removeSkill(skills.slice(0));
@@ -1283,7 +1283,7 @@ game.import('extension', function () {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, event.current, 'giveAuto').gaintag.add('c_diange');
                                 }
                                 ('step 3');
@@ -1942,7 +1942,7 @@ game.import('extension', function () {
                                                 return get.effect(target, _status.event.getTrigger().card, player, player);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets.sortBySeat();
                                         } else {
                                             event.finish();
@@ -2379,7 +2379,7 @@ game.import('extension', function () {
                                     return false;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.target, 'giveAuto');
                                     if (event.list.length) event.goto(1);
                                 } else {
@@ -2705,7 +2705,7 @@ game.import('extension', function () {
                                         return get.attitude(player, target) > 2 || (_status.c_zhengni && _status.c_zhengni.includes(target));
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     targets.forEach(function (target) {
                                         var num = target.getDamagedHp();
@@ -2735,7 +2735,7 @@ game.import('extension', function () {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     targets.forEach(function (target) {
                                         var num = player.getDamagedHp();
@@ -3567,7 +3567,7 @@ game.import('extension', function () {
                                     player.chooseCardButton(num, true, '请选择要移除的【人口】', player.getExpansions('in_renkou'));
                                 }
                                 ('step 7');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     player.loseToDiscardpile(event.cards);
                                     player.loseHp();
@@ -3592,7 +3592,7 @@ game.import('extension', function () {
                                     player.chooseCardButton(num, true, '请选择要移除的【电力】', player.getExpansions('in_dianli'));
                                 }
                                 ('step 12');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     player.loseToDiscardpile(event.cards);
                                     player.loseHp();
@@ -3893,7 +3893,7 @@ game.import('extension', function () {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             for (const i of result.links) {
                                                 event.cards.remove(i);
                                             }
@@ -4636,7 +4636,7 @@ game.import('extension', function () {
                                     return 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                 }
                                 event.togive = result.links.slice(0);
@@ -4985,7 +4985,7 @@ game.import('extension', function () {
                                             }
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             trigger.cancel();
                                         }
@@ -5135,7 +5135,7 @@ game.import('extension', function () {
                                             return 1 + Math.random();
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links).delay = false;
                                             player.hp = player.maxHp;
                                             var length = player.getExpansions('gm_qiyuan').length;
@@ -5217,7 +5217,7 @@ game.import('extension', function () {
                                             return get.attitude(player, target) > 0;
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets.sortBySeat();
                                             event.num = trigger.player.maxHp;
                                         } else event.finish();

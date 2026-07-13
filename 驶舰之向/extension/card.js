@@ -194,7 +194,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						//game.log(player,'弃置了',result.cards);
 						player.loseToDiscardpile(event.cards[0]);
 					} else {

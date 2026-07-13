@@ -1619,7 +1619,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('aicheck', check);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.gainMultiple(result.targets, 'he');
                                 } else {
                                     event.finish();
@@ -1749,7 +1749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择至多五张手牌,分配给任意名其他角色.',
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                     event.given += result.cards.length;
@@ -2472,7 +2472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 1 + Math.random();
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].link(true);
                                         } else {
@@ -3363,7 +3363,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     if (result.targets.length >= 1) {
                                         event.targets[0].link();
@@ -5584,7 +5584,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                 } else {
                                     event.finish();
@@ -6008,7 +6008,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 5 - get.value(card);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.target, 'giveAuto');
                                     target.loseHp();
                                     trigger.untrigger();
@@ -6689,7 +6689,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 };
                                         }
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].damage(3, 'nocard');
                                         }
@@ -8234,7 +8234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         })() > 0
                                     );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     player.draw(4);
                                     var evt = trigger.parent;

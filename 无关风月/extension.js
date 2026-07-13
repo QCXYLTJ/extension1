@@ -1314,7 +1314,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.damageEffect(target, player, player, 'thunder');
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].link(true);
                                         } else {
@@ -2193,7 +2193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'ssmjilue_guicai', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -2644,7 +2644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(player, target); //告诉ai选择队友
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets.sortBySeat();
                                             event.targets = targets;
                                             event.num = 0;
@@ -2682,7 +2682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(player, target); //告诉ai选择敌人
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets.sortBySeat();
                                             event.targets = targets;
                                             event.num = 0;

@@ -6117,7 +6117,7 @@ const skills = {
                         });
                 })
                 .then(() => {
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.line(result.targets);
                         player.gainPlayerCard(result.targets[0], 'he', true);
                     }
@@ -11513,7 +11513,7 @@ const skills = {
                                             });
                                     })
                                     .then(() => {
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].recover();
                                         }
@@ -12319,7 +12319,7 @@ const skills = {
                 return !trigger.targets.includes(target) && lib.filter.targetEnabled2(trigger.card, player, target);
             });
             ('step 3');
-            if (result.bool) {
+            if (result.targets?.length) {
                 for (var i = 0; i < result.targets.length; i++) {
                     trigger.parent.targets.push(result.targets[i]);
                 }
@@ -12913,7 +12913,7 @@ const skills = {
                         prompt: `你可以弃置其中任意张锦囊牌并对等量名角色造成1点伤害`,
                     })
                     .forResult();
-                if (result.bool) {
+                if (result.cards?.length) {
                     await player.discard(result.cards);
                     for (const target of result.targets) {
                         await target.damage();
@@ -13750,7 +13750,7 @@ const skills = {
                                 return ui.selected.cards.reduce((p, c) => p + c.number, 0) > get.event('numx');
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.swapHandcards(target, result.cards, cards);
                         }
                     }
@@ -14001,7 +14001,7 @@ const skills = {
                                 return get.damageEffect(target, player, player, 'thunder');
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             const targets = result.targets.sortBySeat();
                             player.line(targets);
                             for (var i of targets) await i.damage(lp[1], 'thunder');
@@ -14479,7 +14479,7 @@ const skills = {
                             return get.effect(target, { name: 'guohe_copy2' }, player, player);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const targets = result.targets.sortBySeat();
                         player.line(targets);
                         for (var i of targets) await i.chooseToDiscard('he', true);
@@ -15017,7 +15017,7 @@ const skills = {
                             })
                             .forResult()
                         : { bool: true, cards: cards };
-                if (result.bool) {
+                if (result.cards?.length) {
                     const next = player.addToExpansion(result.cards, player, 'give');
                     next.gaintag.add(event.name);
                     await next;
@@ -15105,7 +15105,7 @@ const skills = {
                             return get.value(button.link);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.links?.length) {
                         await player.gain(result.links, target, 'give');
                         if (!target.getExpansions('Europa_cunxu').length) {
                             await target.loseHp();
@@ -15176,7 +15176,7 @@ const skills = {
                                 return 7.5 - get.value(card);
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             const next = target.addToExpansion(result.cards, target, 'give');
                             next.gaintag.add('Europa_cunxu');
                             await next;
@@ -16871,7 +16871,7 @@ const skills = {
                             : 0;
                     })
                     .forResult();
-                if (result.bool) {
+                if (result.cards?.length) {
                     await target.showCards(result.cards, get.translation(target) + '展示');
                     trigger.fixedResult.push([target, result.cards[0]]);
                 } else {
@@ -16934,7 +16934,7 @@ const skills = {
                         : 1 + Math.random();
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.cards?.length) {
                 target.addGaintag(result.cards, 'Europa_jijue');
                 target
                     .when({ global: 'chooseToDebateBefore' })
@@ -17387,7 +17387,7 @@ const skills = {
                                             return 1 + Math.random();
                                         })
                                         .forResult();
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.result.cards = result.links;
                                     player.addTempSkill('Europa_shouluan_used', 'phaseUseAfter');
                                     player.markAuto('Europa_shouluan_used', [get.type(event.result.card)]);

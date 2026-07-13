@@ -856,7 +856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseCard(get.prompt2('CALABIYAU_bihushengping'), [1, Infinity]);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.addShownCards(result.cards, 'visible_CALABIYAU_bihushengping');
 									player.addTempSkill('CALABIYAU_bihushengping_sunben', { source: 'dieAfter' });
 									player.addTempSkill('CALABIYAU_bihushengping_effect', 'roundStart');
@@ -913,7 +913,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.set('prompt', get.prompt('CALABIYAU_bihushengping'))
 											.set('prompt2', '你可以重铸一张' + get.translation(get.color(trigger.card)) + '明置牌取消' + get.translation(trigger.player) + '使用的' + get.translation(trigger.card));
 										('step 1');
-										if (result.bool) {
+										if (result.cards?.length) {
 											player.recast(result.cards);
 											trigger.cancel();
 										}

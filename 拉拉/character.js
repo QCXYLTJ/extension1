@@ -445,7 +445,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return target.countCards('h') > 0;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets;
                         } else {
                             event.finish();
@@ -458,7 +458,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             event.finish();
                         }
                         ('step 3');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             event.target.showCards(result.cards);
                             var suit = [];
                             for (var i of result.cards) {
@@ -1218,7 +1218,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             })
                             .set('ai', (target) => get.attitude(_status.event.player, target));
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets;
                             event.target = event.targets[0];
                         } else {
@@ -1717,7 +1717,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         player.chooseToDiscard(get.prompt('llbz_xinao'), '弃置一张手牌,可以移动场上的一张牌', lib.filter.cardDiscardable);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             if (result.cards.length) {
                                 if (get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0]))) {
                                     player.chooseUseTarget(result.cards[0], true, 'nopopup');
@@ -3394,7 +3394,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton(player.getExpansions('llbz_duotianshi'), 2, true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                 }
                                 ('step 2');
@@ -3427,7 +3427,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             player.chooseCardButton(player.getExpansions('llbz_duotianshi'), true);
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.loseToDiscardpile(result.links);
                             player.chooseTarget('选择一名角色', 1, true);
                         }
@@ -3444,13 +3444,13 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             }
                         }
                         ('step 3');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.give(result.cards, event.target);
                             target.damage(1, 'nosource');
                             event.goto(5);
                         }
                         ('step 4');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             target.give(result.cards, player);
                             target.recover();
                             event.goto(5);
@@ -4711,7 +4711,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             })
                             .set('sourcex', player);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             target.give(result.cards, player);
                         } else {
                             trigger.parent.targets.push(event.target);
@@ -4743,7 +4743,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                     '交给' + get.translation(player) + '一张【桃】或【酒】,或流失1点体力'
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.give(result.cards, player);
                                 } else {
                                     target.loseHp();
@@ -5437,7 +5437,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         event.target = target;
                         player.choosePlayerCard(event.target, 'he', 1, true);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.addToExpansion(result.cards, player, 'give').gaintag.add('llbz_dagong');
                         } else event.finish();
                         ('step 2');
@@ -5534,7 +5534,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         var num = player.getExpansions('llbz_dagong').length;
                         player.chooseTarget('选择一名角色', 1);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets;
                             event.target = event.targets[0];
                             var target = event.target;
@@ -5967,7 +5967,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         player.chooseTarget('选择一名角色', 1, true);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets;
                             event.target = event.targets[0];
                             player.chooseControl('令其回复1点体力', '令其摸一张牌', true);
@@ -6150,7 +6150,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             player.chooseButton(dialog, true);
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             lib.skill.llbz_banyan.removeVisitors(result.links, player);
                             game.log(player, '移去了', '#y' + get.translation(result.links[0]));
                             if (event.drawers.includes(result.links[0])) {
@@ -8239,7 +8239,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             event.goto(3);
                         }
                         ('step 2');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.give(result.cards, target);
                             player.addMark('llbz_jinmi_mark', 10, false);
                             target.removeMark('llbz_jinmi_mark', 10, false);
@@ -11391,7 +11391,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         var number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
                         player.chooseButton(['选择一个音符以组成乐谱', [number, 'tdnodes']], true).set('ai', (button) => number.randomGet());
                         ('step 2');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.storage.llsp_yuepu.push(result.links);
                         }
                         if (event.num < 5) event.goto(1);

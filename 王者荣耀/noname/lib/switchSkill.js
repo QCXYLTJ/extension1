@@ -83,7 +83,7 @@ const SwitchSkills = {
                     return get.skillRank(skill, 'in');
                 })
                 .set('closeDialog', true).forResult();
-            if (result.bool) {
+            if (result.links?.length) {
                 await target.removeSkills(result.links);
             }
         },

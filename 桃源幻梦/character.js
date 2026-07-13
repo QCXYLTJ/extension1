@@ -3264,7 +3264,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     .setHiddenSkill(event.name);
                             } else event.finish();
                             ('step 2');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.useCard({ name: 'sha' }, result.cards, false, trigger.player);
                                 game.playAudio('../extension/桃源幻梦/audio/技能配音/大乔/hyym_shuimudan_21.mp3');
                             }
@@ -3329,7 +3329,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     else return 0;
                                 });
                             ('step 2');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 var list = result.targets.sortBySeat();
                                 for (var i = 0; i < list.length; i++) {
                                     player.line(list[i], 'thunder');
@@ -3408,7 +3408,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target) < 0;
                         };
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.list = result.targets;
                         event.num = 0;
                     } else event.finish();
@@ -6788,7 +6788,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('complexCard', true);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('hyym_honglianshanxian');
                     } else event.finish();
                     ('step 2');
@@ -6892,7 +6892,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .set('complexCard', true);
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('hyym_honglianshanxian');
                             } else event.finish();
                             ('step 2');
@@ -9297,7 +9297,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.tk = result.targets.sortBySeat(player);
                         player.useCard({ name: player.storage.hyym_huimouyixiaoname, nature: player.storage.hyym_huimouyixiaonature }, result.cards, event.tk, false);
                     }
@@ -9590,7 +9590,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         prompt2: '将一张牌当无距离次数限制的【冰杀】使用',
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.useCard({ name: 'sha', nature: 'ice' }, result.cards, result.targets, false);
                     }
                 },
@@ -14411,7 +14411,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight', 'noOrdering');
                     } else {
                         event.finish();

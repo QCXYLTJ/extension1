@@ -680,7 +680,7 @@ const skill = {
 					return 0;
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("lianjing", result.targets);
 				player.insertPhase("lianjing").setContent(lib.skill.lianjing.content_phase);
 				player.storage.lianjing_targets = result.targets.slice(0);
@@ -1265,7 +1265,7 @@ const skill = {
 				event.finish();
 			}
 			"step 3";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: "juedou" }, result.targets);
 			}
 		},
@@ -1298,7 +1298,7 @@ const skill = {
 				prompt: get.prompt("dangping"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				player.logSkill("dangping", result.targets);
 				player.addTempSkill("dangping2");
@@ -1366,7 +1366,7 @@ const skill = {
 				return get.effect(target, { name: "sha" }, player, player);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("liuying", result.targets);
 				event.target = result.targets[0];
 				var cards = get.cards();
@@ -1635,7 +1635,7 @@ const skill = {
 			};
 			next.logSkill = "xidie";
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.storage.xidie = result.cards.length;
 			}
 		},
@@ -2292,7 +2292,7 @@ const skill = {
 				}
 			}
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("yangming", result.targets);
 				for (var i = 0; i < result.targets.length; i++) {
 					result.targets[i].recover();

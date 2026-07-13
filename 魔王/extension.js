@@ -925,7 +925,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var skills = result.links;
                                             player.storage.re_wanshen_chuli.removeArray(skills);
                                             if (!player.storage.re_wanshen_chuli.length) player.unmarkSkill('re_wanshen_chuli');
@@ -984,7 +984,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('filterButton', (button) => _status.event.skill1.includes(button.link))
                                                 .set('ai', () => Math.random())
                                                 .forResult();
-                                            if (result.bool) {
+                                            if (result.links?.length) {
                                                 for (var i of result.links) {
                                                     game.log(player, '获得了技能', '#g【' + get.translation(i) + '】');
                                                 }
@@ -1675,7 +1675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             for (var i of result.links) {
                                                 var info = get.info(i);
                                                 if (info.zhuSkill) {
@@ -2398,7 +2398,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.cardsx = player.getCards('e');
                                 player.chooseToDiscard(get.prompt('zhuchang_chuli'), 'he', [1, player.countCards('he')])
                                     ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     event.cards = cards;
                                     if (get.color(cards, false) == 'none' && player.canMoveCard()) {
@@ -2889,7 +2889,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             },
                                         });
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var res = result.cards,
                                                 target = result.targets[0].playerid;
                                             player.addGaintag(res, 'baobian_chuli_tag');
@@ -3097,7 +3097,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.groups = group;
                                 player.chooseButton(4, ['晋变<br><b>选择4种势力并为其分配花色</b>', [group, 'tdnodes']], true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.group = result.links;
                                     var suit = lib.suit.map((suit) => get.translation(suit));
                                     event.suit = suit;
@@ -4467,7 +4467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('sourcex', trigger.player);
                                 } else event.goto(5);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.linksx = result.links.length;
                                     if (result.links.includes(0)) {
                                         trigger.player.damage();
@@ -4725,7 +4725,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards && result.cards.length >= 1) {
                                         player.useCard({ name: 'lebu', cards: result.cards }, result.cards, trigger.parent.target);
                                     } else {
@@ -4762,7 +4762,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCard('he', player.maxHp - player.hp, true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('chuli_chenyin');
                                 }
                             },
@@ -4782,7 +4782,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             trigger.player.chooseCard('h', player.hujia, true);
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             trigger.player.addToExpansion(result.cards, trigger.player, 'giveAuto').gaintag.add('chuli_chenyin');
                                         }
                                         ('step 2');
@@ -5113,7 +5113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     event.targets = result.targets.sortBySeat();
                                     event.count = result.targets.length;
@@ -5567,7 +5567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         player.chooseButton([get.prompt('chuli_rende'), cards], [1, cards.length]);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2');
                                             if (result.links.length > 1) player.loseHp();
                                         }
@@ -7682,7 +7682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var num = result.cards.length;
                                             player.chooseTarget('选择至多' + get.translation(num) + '名角色,对其造成一点伤害', [1, num]).set('ai', function (target) {
                                                 var player = _status.event.player;
@@ -7690,7 +7690,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             for (var i = 0; i < result.targets.length; i++) {
                                                 result.targets[i].damage();
                                             }
@@ -8260,7 +8260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCard('是否发动【利辞】？:<br>与' + get.translation(trigger.player) + '交换至多三张手牌', [0, 3], 'he');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     var num = [0, 1, 2, 3].randomGet(1);
                                     var bool = [true, false].randomGet(1);
@@ -8312,7 +8312,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('complexCard', true);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.chat('我选择交换' + result.cards.length + '张牌');
                                     player.swapHandcards(trigger.player, event.cards, result.cards);
                                     if (result.cards.length < event.cards.length) {
@@ -8325,7 +8325,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('是否选择一名角色,令其本回合内获得' + event.num + '点护甲');
                                 } else trigger.player.damage(event.num);
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.targets[0].hujiaqianbian = event.num;
                                     event.targets[0].addTempSkill('chuli_qiaobian_1');

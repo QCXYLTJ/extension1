@@ -835,7 +835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target, 'giveAuto');
                                 } else {
                                     target.addTempSkill('折梯_1');
@@ -4024,7 +4024,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.countCards('h') > player.maxHp) player.chooseCard('he', true, [2, player.countCards('he')], '选择需要分配的牌');
                                 else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.card = result.cards;
                                     player.chooseTarget(true, '选择需要交给牌的角色', (event, player, target) => {
                                         return target != player;
@@ -4039,7 +4039,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.gain(result.cards, player, 'giveAuto');
                                     for (var i of result.cards) event.card.remove(i);
                                 }
@@ -4426,7 +4426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (event.i != 0) trigger.player.chooseButton([`移除${event.i}张‘檄’`, event.cards], event.i, true);
                                         else event.goto(5);
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             trigger.player.loseToDiscardpile(result.links);
                                         }
                                         ('step 5');

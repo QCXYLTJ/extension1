@@ -3567,7 +3567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('prompt', '天街巡游:交给' + get.translation(player) + '一张手牌');
                                 next.set('prompt2', '或取消并受到一点伤害');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target, 'giveAuto');
                                     if (!event.parent.countGive) event.parent.countGive = 0;
                                     event.parent.countGive++;
@@ -3626,7 +3626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[[0]];
                                     player.chooseCard('h', true, '用一张手牌替换' + get.translation(event.card)).ai = function (card) {
                                         return -get.value(card);
@@ -4109,7 +4109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.gain(result.targets[i].getCards('he').randomGet());
                                         result.targets[i].$give(1, player);

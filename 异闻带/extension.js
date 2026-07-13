@@ -11882,7 +11882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 1 + Math.random();
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].link()._triggered = null;
                                         } else {
@@ -12143,7 +12143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(player, target);
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             event.num = 0;
                                         } else {
@@ -12311,7 +12311,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.$give(result.cards, player, false);
                                     game.log(player, '将', result.cards, '置于武将牌上');
                                     player.storage.hero目缠2 = player.storage.hero目缠2.concat(result.cards);
@@ -17560,7 +17560,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton(['千里眼:请选择要置于牌堆' + (trigger.bottom ? '底' : '顶') + '的牌(先选择的在上)', Array.from(ui.cardPile.childNodes)], [1, trigger.num || 1]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -18841,7 +18841,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 };
                                 ('step 8');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {
@@ -19156,7 +19156,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {
@@ -20659,7 +20659,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton(['巨目:请选择要置于牌堆' + (trigger.bottom ? '底' : '顶') + '的牌(先选择的在上)', Array.from(ui.cardPile.childNodes)], [1, trigger.num || 1]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -24376,7 +24376,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -24494,7 +24494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -25287,7 +25287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -25806,7 +25806,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     event.targets = result.targets;
                                 } else {
@@ -25821,7 +25821,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.current, 'give');
                                     if (player.storage.神备邵邵伤1 >= 0) {
                                         player.storage.神备邵邵伤1 += 1;
@@ -26284,7 +26284,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, 'giveAuto', trigger.source);
                                 } else {
                                     trigger.source.loseHp();
@@ -27563,7 +27563,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseButton(['巨目:请选择要置于牌堆' + (trigger.bottom ? '底' : '顶') + '的牌(先选择的在上)', Array.from(ui.cardPile.childNodes)], [1, trigger.num || 1]);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             while (result.links.length) {
                                                 if (trigger.bottom) {
                                                     var card = result.links.shift();
@@ -27617,7 +27617,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.draw(cards.length);
                                 }
@@ -28175,7 +28175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var links = result.links;
                                     player.gain(links, 'gain2', 'fromStorage');
                                     player.useCard({ name: 'tao' }, result.targets[0], false);
@@ -28287,7 +28287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var links = result.links;
                                     player.gain(links, 'gain2', 'fromStorage');
                                     trigger.untrigger();
@@ -30396,7 +30396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 5 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.source.gain(result.cards, player, 'give');
                                     trigger.source.storage.维尔瓦伦汀反间 = result.cards[0];
                                 }

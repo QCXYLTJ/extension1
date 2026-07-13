@@ -731,7 +731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.tr = result.targets[0];
                                     var next = event.tr.chooseToUse('【密偶大师】可立即使用一张牌,否则你将两张牌当作【无中生有】使用').set('ai', function (card) {
@@ -752,7 +752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.tr.useCard({ name: 'wuzhong' }, result.links, event.tr);
                                 }
                             },
@@ -873,7 +873,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return true;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.showCards(result.links, '历史迷雾');
                                             event.list = [];
                                             for (var i of result.links) {
@@ -1251,7 +1251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     game.log(player, `预测${get.translation(result.targets[0])}将要因【侵袭】受到伤害`);
                                     result.targets[0].addSkill('zmqinxi_0');
@@ -3091,7 +3091,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.cards = player.getExpansions('zmtaozhongren').slice(0);
                                         player.chooseCardButton('选择获得一张牌收入手牌', 1, event.cards, true).set('ai', get.buttonValue);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(result.links, 'draw');
                                         }
@@ -3469,7 +3469,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -att;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     result.targets[0].link();
                                 }
@@ -3685,7 +3685,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets.length == 1) {
                                         if (result.targets[0].name == 'zm_14linbiexibu' || result.targets[0].name1 == 'zm_14linbiexibu') {
                                             game.playzm8(['zmzhongmodi0', 'zmzhongmodi00', 'zmzhongmodi00'].randomGet());
@@ -3947,7 +3947,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(card);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.$giveAuto(result.cards, player);
                                     player.gain(result.cards, trigger.player);
                                     if (result.cards.length > 1) player.loseHp();
@@ -4839,7 +4839,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards, '谋略果实');
                                     if (result.cards.length > 1) player.addSkill('zmmoulueguoshi_1');
                                 }
@@ -4938,7 +4938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -1;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var num = result.cards.length;
                                             trigger.target = trigger.player;
                                             game.log(trigger.player, '的', trigger.card, '目标改为', trigger.target);

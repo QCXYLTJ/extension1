@@ -652,7 +652,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     });
             else event.finish();
             ('step 3');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var targets = result.targets;
                 event.qian = targets[0];
                 player.logSkill_qyhccl(['quxi', '驱徙·歉'], targets);
@@ -1211,7 +1211,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     }
                 } else event.finish();
                 ('step 2');
-                if (result.bool) {
+                if (result.cards?.length) {
                     var cards = result.cards.filter((card) => card.name == 'sha');
                     if (cards.length) {
                         var next = game.createEvent('olsaogu_chooseToUseSha');
@@ -1636,7 +1636,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 })
                 .set('twice', !player.countCards('e') && !target.countCards('e') && player.countCards('h') == target.countCards('h') + 1);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
                 var links = result.links;
                 var list1 = [],
                     list2 = [],
@@ -1699,7 +1699,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return 6 - get.value(card);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
                 trigger.player.recast(result.cards);
                 event.cards = result.cards;
             } else event.finish();
@@ -1723,7 +1723,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return 6 - get.value(card);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
                 trigger.player.recast(result.cards);
                 event.cards = result.cards;
             } else event.finish();
@@ -2278,7 +2278,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return 1 + Math.random();
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.cards?.length) {
                     var cards = result.cards;
                     player.showCards(cards, get.translation(player) + '对' + get.translation(trigger.target) + '发动了〖遗毒〗');
                     var color = get.color(cards[0], trigger.target);
@@ -3831,7 +3831,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return get.drawEffect(target, Math.min(2, _status.event.parent.qizhinum - target.countCards('h')), _status.event.player) + get.sgn(get.attitude(_status.event.player, target));
                 });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 event.targets = result.targets.slice().sortBySeat(_status.currentPhase);
             } else event.finish();
             ('step 2');
@@ -4048,7 +4048,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return eff + target.hp / 3 + 100;
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var targets = result.targets.sortBySeat();
                     targets.forEach((i) => {
                         i.link();
@@ -4109,7 +4109,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     })
                     .set('winner', winner);
                 ('step 3');
-                if (result.bool) {
+                if (result.links?.length) {
                     player.gain(result.links, 'gain2');
                     event.cards.remove(result.links[0]);
                 } else event.finish();
@@ -4401,7 +4401,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     )
                     .set('ai', ai.drawEffect);
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.line(result.targets);
                     game.asyncDraw(result.targets);
                     event.targets = game.filterPlayer((current) => !result.targets.includes(current));

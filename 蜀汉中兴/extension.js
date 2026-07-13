@@ -2217,7 +2217,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = player.storage.shzx_jizhi.length - 5;
                                         player.chooseButton([`集智<br>请弃置${(num + '张武将上的牌', player.storage.shzx_jizhi)}`], num, true);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             for (var i of result.links) {
                                                 player.storage.shzx_jizhi.remove(i);
                                             }
@@ -2756,7 +2756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -2770,7 +2770,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.shzx_xiansi = player.storage.shzx_xiansi.concat(result.links);
                                     player.markSkill('shzx_xiansi');
                                     event.current.lose(result.links, ui.special, 'toStorage');
@@ -3882,7 +3882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.value(button.link);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links);
                                     player.$draw(result.links);
                                 }
@@ -5315,7 +5315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 7');
                                 event.dialog.close();
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links, true, false, 'nodistance');
                                     game.updateRoundNumber();
                                 }
@@ -6337,7 +6337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, trigger.source, 'giveAuto');
                                 } else {
                                     trigger.source.loseHp();

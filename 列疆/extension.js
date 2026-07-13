@@ -9232,7 +9232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else target.draw();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.gain(result.cards, 'gain2');
                                 }
                                 var target1 = target;
@@ -9288,14 +9288,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 7 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.gain(result.cards, 'gain2');
                                     player.choosePlayerCard('选择一张牌,交给任意一名角色', true, target, 'hej').set('ai', function (b) {
                                         return 11 - get.value(b.link);
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards1 = result.cards;
                                     player.chooseTarget('选择将该牌交给一名角色', true).set('ai', (target) => {
                                         return get.attitude(player, target) > 4 || player == target;
@@ -9879,7 +9879,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 )
                                     .set('complexCard', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     player.draw(result.cards.length);
                                 }
@@ -10941,7 +10941,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.chooseCard('选择你要交给' + get.translation(game.filterPlayer()[num]) + '一张牌', true, 'he');
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var card = result.cards;
                                             player.give(game.filterPlayer()[num], card);
                                         }
@@ -11247,7 +11247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     targets[0].chooseCard('he', '选择交给' + get.translation(player) + '的牌', true, [1, event.num]);
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     targets[0].give(result.cards, player);
                                 }
                             },
@@ -11335,7 +11335,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     player.addZhimou(result.cards.length);
                                 }
@@ -11578,7 +11578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.zongshou = result.targets;
                                     player.addTempSkill('zongshou_Angel_phase', { player: 'phaseBegin' });
                                 }
@@ -12112,7 +12112,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.gain(result.cards, 'gain2', 'log');
                                     var target1 = event.target;
                                     if (game.countPlayer((current) => current != player && current != target1) > 0) {

@@ -668,7 +668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(_status.event.player, { name: 'sha' }, target, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets, false, 'noai');
                                 }
                             },
@@ -1203,7 +1203,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.gainMultiple(targets);
                                     if (player.hp == player.maxHp && !player.storage.yinduorui) player.loseHp();
@@ -2145,7 +2145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.fytarget = fytargets;
                                 player.chooseCard('he', true, '前往赴宴:随个份子？');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards, true);
                                     event.fytarget.shift().draw();
                                 }
@@ -4852,7 +4852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return Math.abs(get.value(card)) + 1;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards);
                                     var type = get.type(result.cards[0], 'trick');
                                     if (trigger.player) {
@@ -4912,7 +4912,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return Math.abs(get.value(card)) + 1;
                                         });
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.showCards(result.cards);
                                             var type = get.type(result.cards[0], 'trick');
                                             if (trigger.source) {
@@ -5551,7 +5551,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             else player.chooseCard('he', '选择一张牌作为<权>');
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var cs = result.cards;
                                             player.addToExpansion(cs, player, 'give').gaintag.add('yinquanji');
                                         }
@@ -5575,7 +5575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             else player.chooseCard('he', '选择一张牌作为<权>');
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var cs = result.cards;
                                             player.addToExpansion(cs, player, 'give').gaintag.add('yinquanji');
                                         }
@@ -7209,7 +7209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     if (event.control == event.str1) {
                                         player.line(targets);
@@ -8965,7 +8965,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'yin_tianzhao_guidao', 'noOrdering');
                                 } else {
                                     event.finish();

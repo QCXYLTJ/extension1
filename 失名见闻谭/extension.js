@@ -2576,7 +2576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) <= 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     game.swapSeat(result.targets[0], result.targets[1]);
                                     var o = result.targets[0];
@@ -2619,7 +2619,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) <= 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     var o = result.targets[0];
                                     var t = result.targets[1];
@@ -2874,7 +2874,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var x = result.cards.length;
                                     var d = 3 - x;
                                     target.damage(d);
@@ -5902,7 +5902,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].addSkill('smzs_ztj_bc');
                                         result.targets[i].addMark('smzs_ztj_bc');

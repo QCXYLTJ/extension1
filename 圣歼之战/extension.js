@@ -4496,7 +4496,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.recast(result.cards);
                                 }
                             },
@@ -5866,7 +5866,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.effect(target, { name: 'sha', nature: 'ice' }, player, player);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets.sortBySeat();
                                             event.targets = targets;
                                             event.num = 0;
@@ -7107,7 +7107,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return cards.includes(button.link);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     player.showCards(result.links, '七番');
                                     player.gain(result.links);
@@ -10187,7 +10187,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             prompt2: '弃置一张牌,对一名其他角色造成一点伤害并令你回复1点体力且获得1点护甲',
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.discard(result.cards);
                                             player.recover();
                                             player.changeHujia();
@@ -10577,7 +10577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('goon', get.attitude(player, trigger.target) <= 0);
                                 next.set('forceAuto', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     var target = trigger.target;
                                     target.addSkill('tgtt_yxmjldsjjxq_po');
@@ -11622,7 +11622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             prompt2: '弃置一张牌,对一名其他角色造成一点伤害并令你回复1点体力且获得1点护甲',
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.discard(result.cards);
                                             player.recover();
                                             player.changeHujia();
@@ -12030,7 +12030,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     next.set('prompt', '请为' + get.translation(trigger.card) + '选择额外结算的目标');
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard(trigger.card, trigger.cards, result.targets, true);
                                 }
                                 ('step 4');
@@ -12252,7 +12252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 next.set('prompt', get.prompt2('tgtt_yxmjzhenhunqu'));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     event.target = result.targets[0];
                                     if (player.isAlive()) {

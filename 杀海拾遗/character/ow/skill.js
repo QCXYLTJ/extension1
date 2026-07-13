@@ -16,7 +16,7 @@ const skill = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("woliu", result.targets);
 				var list = [player].concat(result.targets);
 				for (var i = 0; i < list.length; i++) {
@@ -274,7 +274,7 @@ const skill = {
 				},
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				var target = result.targets[0];
 				player.logSkill("feitiao", target);
@@ -2248,7 +2248,7 @@ const skill = {
 			};
 			player.removeSkill("lichang2");
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("lichang", result.targets);
 				result.targets[0].chooseDrawRecover(2, true);
 			}
@@ -2687,7 +2687,7 @@ const skill = {
 				},
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				player.logSkill("yihun", result.targets);
 				player.addSkill("yihun2");
@@ -2870,7 +2870,7 @@ const skill = {
 					return att;
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("yuedong", result.targets);
 				var eff = 1 + player.storage.yuedong_eff;
 				if (player.storage.yuedong_recover) {

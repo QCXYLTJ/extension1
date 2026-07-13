@@ -505,7 +505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, trigger.player, 'giveAuto').gaintag.add('圣_chuyuan');
                                     game.log(trigger.player, '将', result.cards, '置于', player, '的武将牌上称为', '#y<元>');
                                 }
@@ -636,7 +636,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCardButton('【储元】:请选择并获得至多一张<元>', player.getExpansions('圣_chuyuan'), true);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'fromStorage');
                                 } else {
                                     event.finish();
@@ -646,7 +646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseToDiscard(get.prompt('圣_tianxings'), `请弃置一张牌并根据你弃置牌的花色执行以下相对应效果:</br>♥️️️:你回复一点体力并对其他所有角色造成一点伤害,你于本回合内的手牌上限改为0</br>♦️️️:你可以令一名其他角色获得你的所有手牌,你将手牌数补至与其相同</br>♠️️️:你可以令一名其他角色于本回合结束后开始一个额外的回合,你于本回合结束时摸${get.translation(player.getDamagedHp())}张牌</br>♣️️️:你选择并获得一名其他角色的所有牌,摸` + get.translation(player.countCards('h') - 1) + '张牌并令其获得你的一张牌', 'he', true);
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                 }
                                 ('step 4');
@@ -1078,7 +1078,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.target, 'giveAuto');
                                     event.target.draw();
                                     if (trigger.player.hasSkill('圣_huangkong_buff')) {
@@ -1377,7 +1377,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -2427,7 +2427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt2: `请选择将${trigger.num}张牌交给一名其他角色,防止此伤害;若未选择角色则改为将牌弃置之`,
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets.length) {
                                         result.targets[0].gain(result.cards, player, 'giveAuto');
                                     } else {
@@ -4592,7 +4592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets, false);
                                 }
                             },
@@ -4687,7 +4687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].gainPlayerCard(player, 'h', true);
                                         result.targets[i].addSkill('圣_miuce_buff');
@@ -6676,7 +6676,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseCard('he', [1, player.countCards('h')], `请交给${get.translation(trigger.player)}任意张牌或取消并视为对其使用一张【杀】`);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, player, 'giveAuto');
                                     trigger.player.addTempSkill('圣_hunyong_draw');
                                 } else {
@@ -7246,7 +7246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target != player && !target.hasSkill('圣_zongkui_kuilei');
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.圣_zongkui -= result.targets.length;
                                     event.targets = result.targets;
                                     event.num = 0;
@@ -7871,7 +7871,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton(`是否移除至多${get.translation(player.getDamagedHp() - trigger.num)}张<衡>并额外回复等量体力值？`, player.getExpansions('圣_quanheng'), [1, player.getDamagedHp() - trigger.num]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.getExpansions('圣_quanheng').remove(result.links);
                                     trigger.num += result.links.length;
                                 }
@@ -7943,7 +7943,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCardButton(`选择并获得至多${get.translation(player.storage.圣_juelue)}张<衡>`, [1, player.storage.圣_juelue], player.getExpansions('圣_quanheng'), true);
                                 }
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'fromStorage');
                                     player.getExpansions('圣_quanheng').remove(result.links);
                                 }
@@ -8071,7 +8071,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('请选择任意两张<谋>', 2, player.getExpansions('圣_hongmou'));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links;
                                     player.chooseTarget('请选择一名其他角色,令其获得' + get.translation(event.cards), true, function (card, player, target) {
                                         return player != target && !target.hasSkill('圣_zhilue_mark');
@@ -8841,7 +8841,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'guidao', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -8979,7 +8979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -10556,7 +10556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     if (player.storage.圣_junlve % 2 == 1) {
                                         result.targets[0].damage();
@@ -11474,7 +11474,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target2, target, target);
                                     });
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target.line(result.targets, 'green');
                                     event.targets = result.targets;
                                     event.num2 = 0;
@@ -11753,7 +11753,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 5 - get.value(card);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.target, 'giveAuto');
                                     if (!event.target.hasSkill('圣_diyu_mark')) {
                                         event.target.addSkill('圣_diyu_mark');
@@ -12334,11 +12334,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCardButton(trigger.player, [1, num], `贞烈:你可以弃置${get.translation(trigger.player)}至多${get.translation(num)}张手牌`, trigger.player.getCards('h'));
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     trigger.player.discard(result.links);
                                 }
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (result.links.length <= player.getDamagedHp()) {
                                         if (trigger.player.countCards('h')) {
                                             trigger.player.showHandcards();
@@ -13076,7 +13076,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att / 3;
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         if (result.targets[i].countCards('h') > result.targets[i].maxHp - result.targets[i].hp) {
                                             if (result.targets[i].isDamaged()) {
@@ -15077,7 +15077,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.effect(target, trigger.card, player, player) + 0.01;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             trigger.targets.addArray(result.targets);
                                         }
@@ -15223,7 +15223,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseBool(get.prompt('圣_zengou'), '锁定技,每当你攻击范围内一名其他角色使用或打出【闪】时,你可以展示手牌并失去一点体力,令此【闪】无效;若此【闪】有实体牌,则你将此牌置于该角色的武将牌旁称为<谮>;若此【闪】无实体牌,则你对该角色造成一点伤害');
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards.length) {
                                         player.discard(result.cards);
                                     } else {
@@ -16671,7 +16671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets;
                                             player.line(targets, trigger.card.nature);
                                             trigger.targets.addArray(targets);

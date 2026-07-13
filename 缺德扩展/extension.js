@@ -1905,7 +1905,7 @@ game.import('extension', function () {
                                     forced: true,
                                     async content(event, trigger, player, cards) {
                                         const result = await player.chooseTarget('选择移除惑的角色', (card, player, target) => target.hasMark('蛊惑')).forResult();
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             while (result.targets.length) {
                                                 result.targets.shift().removeMark('蛊惑');
                                                 const result1 = await player
@@ -2711,7 +2711,7 @@ game.import('extension', function () {
                                             }
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.respond(result.cards, 'highlight', 'jilue_guicai', 'noOrdering');
                                         } else {
                                             event.finish();

@@ -374,7 +374,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         if (result.targets[i].hp > 2) result.targets[i].chooseToDiscard(2, 'he', true);
                                         result.targets[i].loseHp();
@@ -673,7 +673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.discardPlayerCard(result.targets[i], 'hej', true);
                                         var chat = ['嫁鸡随鸡,嫁狗随狗!', '三从者,此三从也!'].randomGet();
@@ -722,7 +722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.discardPlayerCard(player.maxHp - player.hp, result.targets[i], 'he', true);
                                         if (player.countCards('h') < 1) result.targets[i].loseHp();
@@ -1656,7 +1656,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.draw(2);
                                         result.targets[i].changeHujia(-1);
@@ -1690,7 +1690,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[0].changeHujia(-1);
                                         result.targets[0].loseHp();
@@ -1716,7 +1716,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].draw();
                                         player.say('威仪抑抑,德音秩秩——<诗经>');

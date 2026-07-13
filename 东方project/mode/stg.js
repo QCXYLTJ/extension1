@@ -1366,7 +1366,7 @@ game.addMode(
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight');
                     } else {
                         event.finish();
@@ -3935,7 +3935,7 @@ game.addMode(
                         return (player.getShownCards().length == 0 || !player.getShownCards().includes(card)) && get.color(card) == get.color(trigger.card);
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addShownCards(result.cards, 'visible_dahezou_skill1');
                         if (typeof trigger.shanRequired == 'number') {
                             trigger.shanRequired += 1;

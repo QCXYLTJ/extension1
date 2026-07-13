@@ -697,7 +697,7 @@ const skill = {
         })
         .set('judging', trigger.player.judging[0]);
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.respond(result.cards, 'highlight', 'lg_tianshi', 'noOrdering');
       } else {
         event.finish();
@@ -817,7 +817,7 @@ const skill = {
               return 4 - get.value(card);
             });
           ('step 3');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.respond(result.cards, 'highlight', 'lg_tianshi', 'noOrdering');
             player.line(trigger.player);
             var huode = trigger.card1;
@@ -863,7 +863,7 @@ const skill = {
               return 4 - get.value(card);
             });
           ('step 5');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.respond(result.cards, 'highlight', 'lg_tianshi', 'noOrdering');
             player.line(trigger.target);
             var huode = trigger.card2;
@@ -2173,7 +2173,7 @@ const skill = {
         event.goto(6);
       }
       ('step 4');
-      if (result.bool) {
+      if (result.links?.length) {
         var cards = result.links;
         event.togive = cards.slice(0);
         player
@@ -2590,7 +2590,7 @@ const skill = {
         },
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         event.cards = result.cards;
         event.target = result.targets[0];
         player.give(event.cards, event.target);
@@ -2753,7 +2753,7 @@ const skill = {
       if (!trigger.numFixed) {
         trigger.num = event.suits.length;
       }
-      if (result.bool) {
+      if (result.links?.length) {
         player.gain(result.links, 'gain2');
         if (!trigger.numFixed) trigger.num -= result.links.length;
       }
@@ -4146,7 +4146,7 @@ const skill = {
       player.discard(event.myCards);
       player.discardPlayerCard(trigger.parent.player, 'h', num, true);
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         event.myCards.addArray(result.cards);
         for (var i = 0; i < event.myCards.length; i++) {
           if (event.myCards[i].name == 'shan') {
@@ -4293,7 +4293,7 @@ const skill = {
         return 1;
       });
       ('step 4');
-      if (result.bool) {
+      if (result.cards?.length) {
         trigger.player.showCards(result.cards);
         event.insert(lib.skill.lg_mingce.content_use, {
           player: trigger.player,
@@ -4627,7 +4627,7 @@ const skill = {
         },
       });
       ('step 3');
-      if (result.bool) {
+      if (result.cards?.length) {
         var cards = result.cards,
           targets = result.targets;
         var cardx = { name: 'sha' };
@@ -4853,7 +4853,7 @@ const skill = {
             event.goto(3);
           }
           ('step 2');
-          if (result.bool) {
+          if (result.cards?.length) {
             event.target.give(result.cards, player, true);
           }
           ('step 3');
@@ -5201,7 +5201,7 @@ const skill = {
         return get.attitude(_status.event.player, target);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         var targets = result.targets;
         targets.sortBySeat();
         player.line(targets, 'thunder');
@@ -5527,7 +5527,7 @@ const skill = {
         event.goto(3);
       }
       ('step 2');
-      if (result.bool) {
+      if (result.links?.length) {
         trigger.source.discard(result.links);
         if (result.links.length < 4) player.draw(4 - result.links.length);
       } else player.draw(4);
@@ -8214,7 +8214,7 @@ const skill = {
           return get.attitude(player, target);
         });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         game.asyncDraw(result.targets, 3);
       }
     },
@@ -9808,7 +9808,7 @@ const skill = {
         return eff;
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.tars = result.targets.splice(0);
         event.nm = trigger.num;
       } else event.finish();
@@ -10278,7 +10278,7 @@ const skill = {
         prompt: get.prompt('lg_yuanrongnu1'),
       });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.useCard({ name: 'sha' }, result.cards, result.targets, false);
       }
     },
@@ -12844,7 +12844,7 @@ const skill = {
         event.finish();
       }
       ('step 5');
-      if (result.bool) {
+      if (result.links?.length) {
         player.gain(result.links, 'gain2');
         _status.currentPhase && _status.currentPhase.addTempSkill('fengyin', { player: 'damageAfter' });
       }
@@ -12896,7 +12896,7 @@ const skill = {
         return 4.5 - get.value(card);
       };
       ('step 3');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.gain(result.cards, event.current, 'giveAuto');
         event.current.draw(2, 'bottom');
       }
@@ -13807,7 +13807,7 @@ const skill = {
         prompt: get.prompt2('lg_guidao'),
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.discard(result.cards);
         var target = result.targets[0];
         target.damage();
@@ -13849,7 +13849,7 @@ const skill = {
         }
       };
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.respond(result.cards, 'highlight');
       } else {
         event.finish();
@@ -14022,7 +14022,7 @@ const skill = {
           return 6 - get.value(button.link);
         });
       ('step 1');
-      if (result.bool) {
+      if (result.links?.length) {
         event.cds = result.links.slice(0);
         player.chooseToDiscard(true, 'he');
       } else event.finish();
@@ -14268,7 +14268,7 @@ const skill = {
           return 20 - get.value(button.link);
         });
       ('step 1');
-      if (result.bool) {
+      if (result.links?.length) {
         target.gain(result.links, player, 'giveAuto');
         target.equip(result.links[0]);
       } else event.finish();
@@ -15601,7 +15601,7 @@ const skill = {
         });
       } else event.finish();
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         var cards = result.cards,
           target = result.targets[0];
         player.line(target, 'green');
@@ -16408,7 +16408,7 @@ const skill = {
           return att <= 0;
         });
       ('step 2');
-      if (result.bool) {
+      if (result.targets?.length) {
         for (var i = 0; i < result.targets.length; i++) {
           player.gainPlayerCard('获得' + get.translation(result.targets[i]) + '的一张手牌.', 'h', result.targets[i], true);
         }
@@ -16421,7 +16421,7 @@ const skill = {
         });
       } else event.finish();
       ('step 4');
-      if (result.bool) {
+      if (result.cards?.length) {
         event.cardss = result.cards.slice(0);
         player.lose(event.cardss, ui.special);
         player.$throw(event.cardss, 1000, 'nobroadcast');
@@ -16711,7 +16711,7 @@ const skill = {
           return 6 - get.value(card);
         });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.discard(result.cards);
         result.targets[0].damage(2, 'nocard');
       }
@@ -16842,7 +16842,7 @@ const skill = {
           });
       } else event.finish();
       ('step 2');
-      if (result.bool) {
+      if (result.targets?.length) {
         var target = result.targets;
         var card = event.cardss;
         if (event.nh == 0) {
@@ -17611,7 +17611,7 @@ const skill = {
         return 0;
       };
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.lose(result.cards, ui.cardPile, 'insert');
         game.log(player, '将一张牌置于牌堆顶');
         player.$throw(1, 1000);
@@ -17755,7 +17755,7 @@ const skill = {
         return Math.sqrt(5 - Math.min(4, target.countCards('h'))) * get.attitude(_status.event.player, target) * (target.hasSkillTag('nogain') ? 0.1 : 1);
       });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         var targets = result.targets.sortBySeat();
         event.targets = targets;
         if (targets.length == 1) targets[0].draw(3);
@@ -18385,7 +18385,7 @@ const skill = {
           return 9 - get.value(card);
         });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.$give(result.cards, player, false);
         game.log(player, '将', result.cards, '置于武将牌上');
         player.storage.lg_luori = player.storage.lg_luori.concat(result.cards);
@@ -19029,7 +19029,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.bool) {
+      if (result.links?.length) {
         event.togive = result.links.slice(0);
         player
           .chooseTarget('将' + get.translation(result.links) + '置于一名角色的武将牌上', function (card, player, target) {
@@ -19161,7 +19161,7 @@ const skill = {
           });
       }
       ('step 2');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.targets = result.targets;
         player.chooseButton(['交给这些角色各一张牌', event.cards], true, result.targets.length).set('ai', function (button) {
           return -get.value(button.link);
@@ -19602,7 +19602,7 @@ const skill = {
           return 6 - get.value(card);
         });
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.lose(result.cards, ui.special);
         player.storage.lg_cuifeng = player.storage.lg_cuifeng.concat(result.cards);
         player.markSkill('lg_cuifeng');
@@ -19756,7 +19756,7 @@ const skill = {
       'step 0';
       player.chooseCard(get.prompt('lg_zhiming'), '将任意张手牌置于牌堆底,回复等量的体力', [1, Infinity], 'h').set('ai', (card) => 6 - get.value(card));
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         event.cards = result.cards;
         player.lose(event.cards, ui.special);
         game.broadcastAll(function (player) {
@@ -19860,7 +19860,7 @@ const skill = {
       'step 0';
       player.chooseToDiscard([1, game.countPlayer()], true, 'h');
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         event.count = result.cards.length;
       } else event.finish();
       ('step 2');
@@ -21118,7 +21118,7 @@ const skill = {
       }
       ('step 6');
       var pl = player.storage.lg_zhuxue;
-      if (result.bool) {
+      if (result.targets?.length) {
         pl.useCard({ name: 'lg_qifengduishou' }, result.targets, false);
       }
       event.finish();
@@ -22062,7 +22062,7 @@ const skill = {
         return -val;
       };
       ('step 6');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.lose(result.cards, ui.special, 'toStorage');
         player.storage.lg_xiongyong = player.storage.lg_xiongyong.concat(result.cards);
         event.num = result.cards.length;
@@ -22122,7 +22122,7 @@ const skill = {
         player.chooseBool(get.prompt2('lg_xiongyong')).set('frequentSkill', 'lg_xiongyong');
       } else event.finish();
       ('step 3');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.storage.lg_xiongyong = player.storage.lg_xiongyong.concat(result.cards);
         event.num = result.cards.length;
       } else {
@@ -22167,7 +22167,7 @@ const skill = {
         return -val;
       };
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.lose(result.cards, ui.special, 'toStorage');
         player.storage.lg_xiongyong = player.storage.lg_xiongyong.concat(result.cards);
         event.num = result.cards.length;
@@ -22713,7 +22713,7 @@ const skill = {
           return 9 - get.value(card);
         });
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.$give(result.cards, player, false);
         player.storage.lg_yuanhuo = player.storage.lg_yuanhuo.concat(result.cards);
         player.lose(result.cards, ui.special, 'toStorage');
@@ -24294,7 +24294,7 @@ const skill = {
         });
       }
       ('step 2');
-      if (result.bool) {
+      if (result.links?.length) {
         event.cards.remove(result.links);
         event.target.gain(result.links, 'gain2');
         game.log(event.target, '获得了' + get.cnNumber(result.links.length) + '张牌');
@@ -24900,7 +24900,7 @@ const skill = {
         return get.effect(target, { name: 'zhujinqiyuan' }, player);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.useCard({ name: 'zhujinqiyuan' }, result.targets, false);
         player.draw();
       }
@@ -25059,7 +25059,7 @@ const skill = {
           .set('check', get.attitude(event.target, player) > 0);
       } else event.finish();
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         if (!player.storage.lg_tongshi) player.storage.lg_tongshi = result.cards.length;
         player.storage.lg_tongshi2 = event.target;
         player.gain(result.cards, event.target, 'giveAuto');
@@ -25097,7 +25097,7 @@ const skill = {
             })
             .set('check', get.attitude(player, player.storage.lg_tongshi2) > 0);
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.storage.lg_tongshi2.gain(result.cards, player, 'giveAuto');
           } else {
             player.storage.lg_tongshi2.line(player);
@@ -25452,7 +25452,7 @@ const skill = {
         prompt: get.prompt('lg_fengwang'),
       });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.useCard({ name: 'sha' }, result.cards, result.targets, false);
       }
     },
@@ -25533,7 +25533,7 @@ const skill = {
         return 0;
       };
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         //    player.lose(result.cards);
         player.$give(result.cards, trigger.player);
         trigger.player.gain(result.cards, player);
@@ -25580,7 +25580,7 @@ const skill = {
           return -att;
         });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.tars = result.targets;
       } else event.finish();
       ('step 2');
@@ -25741,7 +25741,7 @@ const skill = {
       ('step 1');
       target.chooseCard('he', '鉴心:将一张' + get.translation(event.type) + '牌交给' + get.translation(player), { type: event.type });
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         target.give(result.cards, player, true);
       } else target.showHandcards() && player.randomGain(target, true) && player.chooseToDiscard(true, 'he');
     },
@@ -26007,7 +26007,7 @@ const skill = {
       if (player == game.me && !event.isMine()) {
       }
       ('step 1');
-      if (result.bool) {
+      if (result.links?.length) {
         player.gain(result.links, 'fromStorage');
         player.showCards(result.links);
         for (var i of result.links) {
@@ -26614,7 +26614,7 @@ const skill = {
         return get.effect(target, { name: 'sha' }, player, player);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.useCard({ name: 'sha' }, trigger.cards, result.targets).animate = false;
       }
     }, //QQQ
@@ -27140,7 +27140,7 @@ const skill = {
         return get.attitude(player, target);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.line(result.targets);
         event.target = result.targets[0];
         trigger.untrigger();
@@ -29254,7 +29254,7 @@ const skill = {
         return 11 - get.value(card);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.$throw(result.cards);
         player.storage.lg_yijun.push(result.cards[0]);
         player.lose(result.cards, ui.special);
@@ -29373,7 +29373,7 @@ const skill = {
         prompt: get.prompt('lg_yijun2'),
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.discard(result.cards);
         result.targets[0].damage(2);
       }
@@ -29569,7 +29569,7 @@ const skill = {
         })
         .set('targets', trigger.targets);
       ('step 4');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.targets = result.targets;
         if (event.isMine()) {
           event.finish();
@@ -29711,7 +29711,7 @@ const skill = {
         return -get.attitude(player, target);
       };
       ('step 2');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.line(result.targets);
         var target = result.targets[0];
         if (event.control == '失去体力') {
@@ -29847,7 +29847,7 @@ const skill = {
         .set('temp', !player.hasStockSkill('lg_jiemeng'))
         .set('color', color);
       ('step 3');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.showCards(result.cards);
         player.lose(result.cards, ui.special, 'toStorage');
         player.storage.lg_jiemeng = player.storage.lg_jiemeng.concat(result.cards);
@@ -30118,7 +30118,7 @@ const skill = {
         return 5.5 - get.value(card);
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.loseToDiscardpile(result.cards);
         player.draw();
       }
@@ -31235,7 +31235,7 @@ const skill = {
             })
             .set('complexCard', true);
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             event.num = result.cards.length;
           } else event.finish();
           ('step 2');
@@ -31392,7 +31392,7 @@ const skill = {
         .set('cards', trigger.cards);
       ('step 1');
       event.cards = trigger.cards;
-      if (result.bool) {
+      if (result.cards?.length) {
         event.cards = event.cards.filter((c) => !result.cards.includes(c));
       }
       player.discard(event.cards);
@@ -32062,7 +32062,7 @@ const skill = {
         return -get.attitude(player, target);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.targets = result.targets;
       } else {
         event.finish();
@@ -32142,7 +32142,7 @@ const skill = {
         return Math.sqrt(5 - Math.min(4, target.countCards('h'))) * get.attitude(_status.event.player, target) * (target.hasSkillTag('nogain') ? 0.1 : 1);
       });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         var targets = result.targets.sortBySeat();
         if (targets.length > 1) game.asyncDraw(targets);
         else {
@@ -32831,7 +32831,7 @@ const skill = {
         prompt: '发动此技能？',
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.discard(result.cards);
         trigger.untrigger();
         trigger.finish();
@@ -33116,7 +33116,7 @@ const skill = {
         .set('target', target);
       if (event.bool) next.set('visible', true);
       ('step 4');
-      if (result.bool) {
+      if (result.cards?.length) {
         var num = result.cards.length;
         if (event.bool) num = 2;
         var togain = 0;
@@ -34173,7 +34173,7 @@ const skill = {
         return 6 - get.value(card);
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.loseToDiscardpile(result.cards);
         player.draw();
         if (result.cards[0].suit != 'diamond') player.phaseUse();
@@ -34332,7 +34332,7 @@ const skill = {
           return 20 - val;
         });
       ('step 1');
-      if (result.bool) {
+      if (result.links?.length) {
         game.log(player, '将', result.links, '置于弃牌堆');
         player.$throw(result.links, 1000);
         player.storage.lg_jiya.remove(result.links[0]);
@@ -34635,7 +34635,7 @@ const skill = {
             return get.value(card) - 4;
           };
           ('step 2');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.gain(result.cards, player.storage.lg_zhuocai_mark, 'giveAuto');
           }
           ('step 3');
@@ -34873,7 +34873,7 @@ const skill = {
           return -eff;
         });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.tars = result.targets;
         for (var i = 0; i < event.tars.length; i++) {
           trigger.targets.remove(event.tars[i]);
@@ -35618,7 +35618,7 @@ const skill = {
       next.set('prompt', get.prompt('lg_yongji'));
       next.set('prompt2', '你可以令至多' + num + '名其他角色各获得2点护甲');
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.targets = result.targets.slice(0);
         targets = event.targets;
         for (var i = 0; i < targets.length; i++) {
@@ -36568,7 +36568,7 @@ const skill = {
           return get.value(button.link);
         });
       ('step 1');
-      if (result.bool) {
+      if (result.links?.length) {
         player.$throw(result.links);
         player.storage.lg_qianying.remove(result.links[0]);
         game.cardsDiscard(result.links[0]);
@@ -36886,7 +36886,7 @@ const skill = {
       next.set('prompt2', '对' + get.translation(player) + '依次使用其中的【杀】');
       next.set('eff', get.effect(player, { name: 'sha' }, target, target));
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         for (var sha of result.cards) {
           if (sha.name == 'sha') {
             player.draw();
@@ -37642,7 +37642,7 @@ const skill = {
         };
       }
       ('step 2');
-      if (result.bool) {
+      if (result.targets?.length) {
         player.line(result.targets, 'red');
         result.targets[0].damage();
       }
@@ -38059,7 +38059,7 @@ const skill = {
         })
         .set('targets', trigger.targets);
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         trigger.excluded.addArray(result.targets);
         player.chooseToDiscard('是否弃置两张黑色手牌？', 2, 'h', { color: 'black' });
       }
@@ -38513,7 +38513,7 @@ const skill = {
         prompt: '与至多两名其他角色各展示一张手牌',
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         event.cards1 = result.cards.slice(0);
         player.lose(result.cards, ui.special);
         player.$throw(result.cards, 1000, 'nobroadcast');
@@ -40777,7 +40777,7 @@ const skill = {
         }
       );
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.targets = result.targets;
       } else {
         event.finish();
@@ -42718,7 +42718,7 @@ const skill = {
           .set('check', get.attitude(event.target, player) > 0);
       } else event.finish();
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         if (!player.storage.lg_chazhan) player.storage.lg_chazhan = result.cards.length;
         player.storage.lg_chazhan2 = event.target;
         player.gain(result.cards, event.target, 'giveAuto');
@@ -42756,7 +42756,7 @@ const skill = {
             })
             .set('check', get.attitude(player, player.storage.sksn_ezheng2) > 0);
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.storage.lg_chazhan2.gain(result.cards, player, 'giveAuto');
           } else {
             player.storage.lg_chazhan2.line(player);
@@ -43502,7 +43502,7 @@ const skill = {
         return true;
       });
       ('step 1');
-      if (result.bool) {
+      if (result.links?.length) {
         if (result.links.length == 1) {
           target.discard(result.links[0]).discarder = player;
           if (get.color(result.links[0], target) != 'black') event.finish();
@@ -46236,7 +46236,7 @@ const skill = {
         return true;
       });
       ('step 4');
-      if (result.bool) {
+      if (result.links?.length) {
         var list = result.links;
         for (var i = 0; i < list.length; i++) {
           if (get.owner(list[i]) == player) {
@@ -48218,7 +48218,7 @@ const skill = {
           }
         });
       ('step 4');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.gain(result.cards, 'giveAuto', target);
       } else {
         target.turnOver();
@@ -49334,7 +49334,7 @@ const skill = {
         return _status.event.player.getUseValue(nanman);
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         if (trigger.player.hasUseTarget({ name: 'chuqibuyi', cards: result.cards })) {
           trigger.player.chooseUseTarget({ name: 'chuqibuyi' }, result.cards, true, false).viewAs = true;
         } else {
@@ -50080,7 +50080,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result.bool) {
+      if (result.links?.length) {
         for (var i of result.links) {
           event.cds.remove(i);
         }
@@ -50124,7 +50124,7 @@ const skill = {
         return 6 - get.value(card);
       });
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         var num1 = result.cards.length;
         player.discard(result.cards);
         player.draw(num1);
@@ -51339,7 +51339,7 @@ const skill = {
           return eff;
         });
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         event.targets = result.targets;
         if (event.isMine()) {
           event.finish();

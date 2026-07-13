@@ -3144,7 +3144,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'guidao', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -3641,7 +3641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('judging', trigger.player.judging[0])
                                     .setHiddenSkill('ww_guicai');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'ww_guicai', 'highlight', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -4076,7 +4076,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var length = result.targets.length;
                                     for (var i = 0; i < length; i++) {
                                         result.targets[i].addSkill('ww_kuangfeng2');
@@ -4128,7 +4128,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         2
                                     );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var length = result.targets.length;
                                     for (var i = 0; i < length; i++) {
                                         result.targets[i].addSkill('ww_dawu2');
@@ -5046,7 +5046,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('judging', trigger.player.judging[0])
                                     .setHiddenSkill('ww_modi');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'ww_modi', 'highlight', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -5583,7 +5583,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (var i = 0; i < result.links.length; i++) {
                                         event.cards.remove(result.links[i]);
                                     }
@@ -6635,7 +6635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var list = result.links;
                                     for (var i = 0; i < list.length; i++) {
                                         if (get.owner(list[i]) == player) {

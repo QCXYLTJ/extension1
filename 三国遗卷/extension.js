@@ -621,7 +621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 							);
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								if (result.targets.length == 1) {
 									event.goto(3);
 								} else {
@@ -731,7 +731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								};
 							}
 							('step 3');
-							if (result.bool) {
+							if (result.cards?.length) {
 								trigger.source.discard(result.cards);
 								if (event.count > 0) event.goto(1);
 							} else {
@@ -1532,7 +1532,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return -val;
 							};
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.lose(result.cards, ui.special, 'toStorage');
 								player.storage.qixing = player.storage.qixing.concat(result.cards);
 								event.num = result.cards.length;
@@ -4519,7 +4519,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									for (var i of result.links) {
 										if (!player.storage.sgyj_qiutong.includes(get.type(i))) {
 											player.storage.sgyj_qiutong.push(get.type(i));
@@ -4660,7 +4660,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('targets', trigger.targets);
 								('step 4');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 									if (event.isMine()) {
 										event.finish();
@@ -4929,7 +4929,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									for (var i of result.links) {
 										event.list.push(i);
 									}
@@ -6258,7 +6258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.$throw(result.links);
 									player.storage.sgyj_qushou.remove(result.links[0]);
 									game.cardsDiscard(result.links[0]);
@@ -6631,7 +6631,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.$throw(result.links);
 									player.storage.sgyj_hujian.remove(result.links[0]);
 									game.cardsDiscard(result.links[0]);
@@ -6699,7 +6699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.$throw(result.links);
 									player.storage.sgyj_hujian.remove(result.links[0]);
 									game.cardsDiscard(result.links[0]);
@@ -7147,7 +7147,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.value(card);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special, 'toStorage');
 									player.storage.sgyj_huansan = player.storage.sgyj_huansan.concat(result.cards);
 									player.markSkill('sgyj_huansan');
@@ -8193,7 +8193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return Math.random();
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									target.showCards(result.cards);
 									if (Array.isArray(result.cards)) for (var i of result.cards) {
 										event.suits.push(i.suit);
@@ -8771,7 +8771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.value(card);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.special, 'toStorage');
 									player.$give(result.cards, trigger.player, false);
 									trigger.player.storage.sgyj_zhengjiang2 = trigger.player.storage.sgyj_zhengjiang2.concat(result.cards);
@@ -9129,7 +9129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.value(button.link);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.$throw(result.links);
 									player.storage.sgyj_zhengjun.remove(result.links[0]);
 									game.cardsDiscard(result.links[0]);
@@ -9178,7 +9178,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.value(button.link);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.$throw(result.links);
 									player.storage.sgyj_zhengjun.remove(result.links[0]);
 									game.cardsDiscard(result.links[0]);
@@ -9259,7 +9259,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								} else event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.target.lose(result.cards, ui.special, 'tostorage');
 									player.storage.sgyj_zhengjun = player.storage.sgyj_zhengjun.concat(result.cards);
 									player.markSkill('sgyj_zhengjun');
@@ -9686,7 +9686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 10 - get.value(card);
 								};
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									game.log(player, '弃置了一张', result.cards);
 								}
@@ -9789,7 +9789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									trigger.targets.addArray(result.targets);
 								} else event.finish();
 							},
@@ -10295,7 +10295,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.targets[event.num].showCards(result.cards);
 									if (get.color(event.card) == get.color(result.cards[0])) {
 										player.gainMaxHp(true);
@@ -12253,7 +12253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.$throw(result.links);
 									player.storage.df_zhixin.remove(result.links[0]);
 									game.cardsDiscard(result.links[0]);

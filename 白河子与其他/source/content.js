@@ -487,7 +487,7 @@ export async function content(config, pack) {
         player.chooseCard('he', true, '将一张牌交给' + get.translation(target));
       } else event.finish();
       'step 2';
-      if (result.bool) {
+      if (result.cards?.length) {
         player.give(result.cards, trigger.player);
         var target = _status.currentPhase;
         var name;

@@ -1957,7 +1957,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att / 3;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].draw(Math.min(9, result.targets[i].maxHp) - result.targets[i].countCards('h'));
                                     }
@@ -2059,7 +2059,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                 } else {
                                     event.finish();
@@ -3315,7 +3315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                 } else {
                                     event.finish();
@@ -5980,7 +5980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'sha' }, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets, false);
                                 }
                             },
@@ -6714,7 +6714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 next.prompt2 = '返还' + get.translation(trigger.player) + get.translation(trigger.card) + '的效果';
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     // player.discard(result.cards);
                                     trigger.target = trigger.player;
                                     trigger.player = player;
@@ -7027,7 +7027,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link.suit == 'heart';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links);
                                     player.$draw(result.links);
                                 }
@@ -7407,7 +7407,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.storage.chunlao = player.storage.chunlao.concat(result.cards);
                                     player.markSkill('chunlao');
                                     player.lose(result.cards, ui.special, 'toStorage');
@@ -7616,7 +7616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('jz_流离'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     trigger.target = result.targets[0];
                                     for (var i = 0; i < trigger.targets.length; i++) {
@@ -9180,7 +9180,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.gain(result.cards, player);
                                     player.$giveAuto(result.cards, event.target);
                                 }

@@ -373,7 +373,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return target.getCards('h').map(i => get.value(i)).sort((a, b) => (b - a))[0] - 6;
                 });
                 'step 2'
-                if (result.bool) {
+                if (result.targets?.length) {
                     target.line(result.targets);
                     target.gainPlayerCard(result.targets[0], 'visible', true, 'h').set('ai', function (button) {
                         if (button.link.name == 'tao') return 14;
@@ -941,7 +941,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return Math.random() - 0.9;
                 });
                 'step 1'
-                if (result.bool) {
+                if (result.links?.length) {
                     player.gain(result.links, 'gain2');
                 } else event.finish();
                 'step 2'

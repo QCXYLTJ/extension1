@@ -2500,7 +2500,7 @@ export async function precontent(config, pack) {
 						('step 4');
 						player.choosePlayerCard(target, 'he', true, '获得' + get.translation(target) + '的一张牌');
 						('step 5');
-						if (result.bool) {
+						if (result.cards?.length) {
 							player.gain(result.cards, target, 'giveAuto');
 						}
 					},
@@ -3266,7 +3266,7 @@ export async function precontent(config, pack) {
 							return get.effect(target, { name: 'sha' }, player);
 						};
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.useCard({ name: 'sha' }, result.targets, false);
 						}
 					},
@@ -5487,7 +5487,7 @@ export async function precontent(config, pack) {
 								return -1;
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							event.target = result.targets;
 						} else {
 							event.finish();
@@ -6242,7 +6242,7 @@ export async function precontent(config, pack) {
 							return get.effect(target, { name: 'sha' }, player);
 						};
 						('step 5');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.useCard({ name: 'sha' }, result.targets, false);
 						}
 						('step 6');
@@ -7860,7 +7860,7 @@ export async function precontent(config, pack) {
 							.set('card', trigger.card)
 							.set('targets', trigger.targets);
 						('step 2');
-						if (result.bool) {
+						if (result.targets?.length) {
 							event.targets = result.targets;
 						} else {
 							event.finish();
@@ -8413,7 +8413,7 @@ export async function precontent(config, pack) {
 							})
 							.set('card', trigger.card);
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							event.targets = result.targets;
 						} else {
 							event.finish();
@@ -8481,7 +8481,7 @@ export async function precontent(config, pack) {
 							.set('card', trigger.card);
 						('step 1');
 						trigger.effectCount++;
-						if (result.bool) {
+						if (result.targets?.length) {
 							event.targets = result.targets;
 						} else {
 							event.finish();

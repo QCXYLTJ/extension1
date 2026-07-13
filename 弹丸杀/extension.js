@@ -1209,7 +1209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									if (result.cards?.length) {
 										player.$gain2(result.cards);
 										player.gain(result.cards);
@@ -1738,7 +1738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return num;
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var targets = result.targets;
 											player.useCard(
 												{
@@ -3641,7 +3641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.unuseful(card) + 2.5 * (5 - get.owner(card).hp);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, trigger.player);
 									trigger.player.$give(1, player);
 								} else {

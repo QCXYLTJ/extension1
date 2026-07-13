@@ -151,7 +151,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 5';
-            if (result.bool) {
+            if (result.cards?.length) {
               target.give(result.cards, player);
             }
           }

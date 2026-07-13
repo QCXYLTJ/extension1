@@ -2127,7 +2127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     true
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, trigger.player);
                                     trigger.player.$give(2, player);
                                 }
@@ -2321,7 +2321,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var list = result.links;
                                     for (var i = 0; i < list.length; i++) {
                                         if (get.owner(list[i]) == player) {
@@ -2408,7 +2408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     trigger.parent.excluded.addArray(result.targets);
                                 }
                             },
@@ -3147,7 +3147,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'reguicai', 'highlight', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -3264,7 +3264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('aicheck', check);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.gainMultiple(result.targets);
                                     trigger.cancel(null, null, 'notrigger');
                                 } else {
@@ -3971,7 +3971,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 7 - get.value(card);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = get.cards(5 * result.cards.length);
                                     player.showCards(event.cards);
                                 } else {
@@ -8726,7 +8726,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择要送人的卡牌',
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                     event.given += result.cards.length;
@@ -8896,7 +8896,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt2: lib.translate.xiaoquao_tianxiang_info,
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     var target = result.targets[0];
                                     player
@@ -10665,7 +10665,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target2, target, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target.line(result.targets, 'green');
                                     event.targets = result.targets;
                                     event.num2 = 0;
@@ -11834,7 +11834,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('targetprompt', ['被移走', '移动目标']);
                                 next.set('prompt', prompt);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line2(result.targets, 'green');
                                     event.targets = result.targets;
                                 } else event.finish();
@@ -13225,7 +13225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                 } else {
                                     event.finish();
@@ -17458,7 +17458,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.chooseCard('he', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.give(result.cards, player);
                                     target.addSkill('weimu');
                                     target.addSkill('wansha');
@@ -17569,7 +17569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.draw(result.cards.length);
                                 }
                             },

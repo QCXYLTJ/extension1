@@ -3370,7 +3370,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '弃置两张杀令' + get.translation(trigger.parent.card) + '对此牌的全部目标无效');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     trigger.parent.excluded.addArray(trigger.targets);
                                 }
@@ -3551,7 +3551,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', '选择任意张牌作为<水雷>放置于你的武将牌上');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('bulei');
                                 } else {
                                     player.getStat('skill').bulei--;
@@ -3573,7 +3573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return false;
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player.line(trigger.player, 'thunder');
                                             trigger.player.damage('thunder').source = player;
@@ -3768,7 +3768,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var cards = result.links;
                                     target.discard(cards);
                                 }
@@ -3840,7 +3840,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('judging', trigger.player.judging[0])
                                             .setHiddenSkill('zhangkong_rejudge');
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.respond(result.cards, 'zhangkong_rejudge', 'highlight', 'noOrdering');
                                         } else {
                                             event.finish();
@@ -4253,7 +4253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat().forEach(function (target) {
                                         target.damage().source = player;
                                     });
@@ -4327,7 +4327,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (target) => get.attitude(player, target));
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var a = 0; a < result.targets.length; a++) {
                                         result.targets[a].addSkill('yanhu');
                                     }
@@ -5399,7 +5399,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '选择至多三名目标,对其各造成1点伤害并弃置其区域内一张牌');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat().forEach((target) => {
                                         player.line(target, 'fire');
                                         target.damage().source = player;
@@ -6272,7 +6272,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('prompt', '请选择你为其祈求护佑的角色');
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets.forEach((target) => {
                                                 target.storage.daogao_mark = player;
                                                 target.addSkill('daogao_mark');
@@ -6973,7 +6973,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.useCard({ name: event.link1, nature: event.link2 }, result.links, target);
                                     var card = ['sha', 'shan', 'tao', 'jiu'];
                                     player.gain(game.createCard(card.randomGet()), 'gain2');
@@ -7062,7 +7062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('prompt', '选择任意张牌作为<守>放置于你的武将牌上');
                                         }
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var cards = result.cards;
                                             player.addToExpansion(cards, player, 'giveAuto').gaintag.add('gushou_use');
                                         }
@@ -7075,7 +7075,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         }
                                         ('step 6');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2');
                                         }
                                     },
@@ -7561,7 +7561,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2');
                                             var suitlist = [];
                                             for (var i of lib.suit) {
@@ -7942,7 +7942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else return 8 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, trigger.target, 'giveAuto');
                                 } else {
                                     trigger.parent.directHit.add(trigger.target);
@@ -8254,7 +8254,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseToUse('翱翔:你可以使用一张伤害类牌', (card) => get.tag(card, 'damage'));
                                 event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     for (var i = 0; i < targets.length; i++) {
                                         targets[i].draw();
@@ -9415,7 +9415,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', '请选择〖加护〗的目标')
                                     .set('prompt2', '');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.forEach((target) => target.addMark('jiahu'));
                                 }
                             },
@@ -11170,7 +11170,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         player.chooseButton(['选择出击的<死神中队>', cards, '可对一名其他角色造成1点伤害']);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player
                                                 .chooseTarget(true, lib.filter.notMe)
@@ -11262,7 +11262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('prompt2', '&emsp;&emsp;将一张牌交给' + get.translation(trigger.player) + ',令本伤害+' + storage[1][event.num] + '.清空〖复仇〗中' + get.translation(trigger.player) + '的记录');
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.give(result.cards, trigger.player);
                                             var storage = player.storage.Yorktown_fuchou;
                                             trigger.num += storage[1][event.num];
@@ -11296,7 +11296,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', '将一张牌当作【杀】对' + get.translation(trigger.source) + '使用');
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.useCard({ name: 'sha' }, result.cards, trigger.source, false);
                                 }
                             },
@@ -11540,7 +11540,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('prompt2', '将一张牌交给' + get.translation(event.queen) + '令此次伤害+1');
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             event.cards = result.cards;
                                             event.queen
                                                 .chooseBool()
@@ -11639,7 +11639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', '号令:请选择交给' + get.translation(player) + '的牌');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player);
                                 }
                                 if (event.targets.length) event.goto(1);
@@ -12308,7 +12308,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard('he', true, '将一张牌作为<影踪>置于武将牌上');
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.addToExpansion(cards, player, 'giveAuto').gaintag.add('mizong');
                                 }
@@ -12351,7 +12351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard('he', true, '将一张牌作为<影踪>置于武将牌上');
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.addToExpansion(cards, player, 'giveAuto').gaintag.add('mizong');
                                 } else event.finish();
@@ -13029,7 +13029,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', '将其作为<棋>置于你的武将牌上');
                                 else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.addToExpansion(cards, player, 'giveAuto').gaintag.add('ChenHai_buqi');
                                 }
@@ -13080,7 +13080,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else return true;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                     if (trigger.name == 'phaseZhunbei') {
                                         player.chooseToGuanxing(3);
@@ -13120,7 +13120,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var dialog = ['是否发动〖星罗〗？', cards, '<div class="text center">移去一张<棋>,用牌堆底的' + num + '张牌替换一名角色的全部手牌</div>'];
                                         player.chooseButton(dialog);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             var num = Math.max(1, player.getExpansions('ChenHai_buqi').length - 1);
                                             player
@@ -13571,14 +13571,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (player.countCards('h') == 0 || !player.canUse('sha', targets[0], false) || targets[0].isDead()) event.finish();
                                 else player.chooseCard(true).set('prompt2', '将其当作一张【杀】对' + get.translation(targets[0]) + '使用');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.useCard({ name: 'sha' }, result.cards, targets[0]);
                                 }
                                 ('step 2');
                                 if (targets[0].countCards('h') == 0 || !targets[0].canUse('sha', player, false) || player.isDead()) event.finish();
                                 else targets[0].chooseCard(true).set('prompt2', '将其当作一张【杀】对' + get.translation(player) + '使用');
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     targets[0].useCard({ name: 'sha' }, result.cards, player);
                                 }
                                 ('step 4');
@@ -13775,7 +13775,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt', get.prompt2('pingrui'));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     game.log(player, '将', cards, '放到了武将牌上');
                                     player.addToExpansion(cards, player, 'giveAuto').gaintag.add('pingrui');
@@ -13815,7 +13815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var cards = result.links;
                                     var target = trigger.player;
                                     while (cards.length && player.canUse('sha', target)) {

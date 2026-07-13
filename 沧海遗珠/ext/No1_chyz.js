@@ -300,7 +300,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							});
 					else event.goto(4);
 					('step 3');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var targets = result.targets;
 						player.line2(targets);
 						var gain = targets[0].countMark('ybyhy_minzeng_min');
@@ -332,7 +332,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							});
 					else event.finish();
 					('step 5');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var targets = result.targets;
 						player.line2(targets);
 						var gain = targets[0].countMark('ybyhy_minzeng_zeng');
@@ -683,7 +683,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return att / 3;
 						});
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						for (var i = 0; i < result.targets.length; i++) {
 							result.targets[i].draw(3);
 							result.targets[i].chooseToDiscard('he', true);
@@ -704,7 +704,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return -att / 3;
 						});
 					('step 5');
-					if (result.bool) {
+					if (result.targets?.length) {
 						for (var i = 0; i < result.targets.length; i++) {
 							result.targets[i].link(true);
 						}
@@ -1627,7 +1627,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return -get.attitude(_status.event.player, target);
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						for (var i of result.targets) {
 							i.damage('fire', 'nocard', 1);
 						}
@@ -1833,7 +1833,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							});
 					} else event.goto(4);
 					('step 3');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.give(result.cards, target);
 						if (result.cards.length < 2) {
 							event.goto(6);
@@ -2381,7 +2381,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								})
 								.set('prompt', get.prompt('ybbmh_huanchao'));
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.discard(result.cards);
 								player.useSkill('ybbmh_huanchao');
 							}
@@ -2807,7 +2807,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							.set('prompt2', `已因虑至弃置了${numaa}装备牌`);
 					}
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.addMark('ybcjy_lvzhi', result.links.length);
 						player.discard(result.links);
 					}
@@ -3429,7 +3429,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									}
 								});
 							('step 1');
-							if (result.bool) {
+							if (result.links?.length) {
 								var cards = result.links;
 								if (get.position(cards[0]) != 'h') cards.reverse();
 								// var next=target.lose(cards[0],ui.cardPile);
@@ -4053,7 +4053,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						prompt2: '弃置一张牌,视为对一名其他角色使用一张【雷杀】',
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.discard(result.cards);
 						player.useCard({ name: 'sha', nature: 'thunder', ybshh_qingsi: true }, result.targets[0], 'ybshh_qingsi', false);
 					}
@@ -4619,7 +4619,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								}
 								return false;
 							});
-						if (result.bool) {
+						if (result.targets?.length) {
 							let targets = result.targets;
 							for (var i of targets) {
 								await player.storage.yblf_zhenzhi.push(i);
@@ -4646,7 +4646,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								}
 								return false;
 							});
-						if (result.bool) {
+						if (result.targets?.length) {
 							let targets = result.targets;
 							for (var i of targets) {
 								await player.storage.yblf_zhenzhi.push(i);

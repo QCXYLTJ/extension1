@@ -4366,7 +4366,7 @@ import { func as characterListSet } from './character_list_set.js';
 						.set('targets', trigger.targets)
 						.set('card', trigger.card);
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.targets = result.targets;
 					} else event.finish();
 					('step 2');

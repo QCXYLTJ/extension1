@@ -2555,7 +2555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.forced) next.set('forced', true);
                                 ('step 2');
                                 event.result = result;
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line2(result.targets, 'green');
                                     event.targets = result.targets;
                                 } else event.finish();
@@ -2707,7 +2707,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.give(result.cards, player, true);
                                     _status.zqlishi = [trigger.player, result.cards.length];
                                 }
@@ -2740,7 +2740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.give(result.cards, _status.zqlishi[0], true);
                                 }
                                 delete _status.zqlishi;
@@ -3127,7 +3127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.give(result.cards, player, true);
                                     if (trigger.player.hasMark('zqyixin')) trigger.player.removeMark('zqyixin', 1);
                                 } else {
@@ -4181,7 +4181,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.give(result.cards, player, true);
                                     trigger.player.addTempSkill(event.control, { player: 'phaseBefore' });
                                     game.log(trigger.player, '从【封神榜】上获得了技能【', event.control, '】,效果持续到', trigger.player, '的下个回合开始前');

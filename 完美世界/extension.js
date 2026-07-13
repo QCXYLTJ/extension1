@@ -500,7 +500,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     player.logSkill('wmsj_丑谋');
                                     player.say('敬刻二思算八方，入时者移步尽失');
@@ -1895,7 +1895,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].addMark('wmsj_堕化', 1);
                                     result.targets[0].damage();
@@ -3206,7 +3206,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(player, target);
                                             })
                                             .forResult();
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             CSK(result.targets[0]);
                                             player.logSkill('wmsj_天道');
@@ -3335,7 +3335,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     event.targets = targets;
                                     event.num = 0;
@@ -3703,7 +3703,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     })
                                     .forResult();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     player.logSkill('wmsj_十世沉淀');
                                     player.removeMark('wmsj_十世沉淀', 1);
@@ -4228,7 +4228,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'shunshou_copy' }, get.player(), get.player());
                                     })
                                     .forResult();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     var npc = result.targets[0];
                                     player.logSkill('wmsj_帝者俯视', npc);
@@ -4725,7 +4725,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     [target] = targets;
                                 await player.discard(cards);
                                 var result = await player.gainPlayerCard(target, 'hej', [1, 2], 'visible', 'visibleMove').forResult();
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var gainCards = result.cards;
                                     player.addGaintag(gainCards, 'wmsj_宝术掠夺_tag');
                                     for (const card of gainCards) {
@@ -4802,7 +4802,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 },
                                             })
                                             .forResult();
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             await player.discard(result.cards);
                                             player.line(result.targets);
                                             trigger.targets.addArray(result.targets);
@@ -4950,7 +4950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(player, target);
                                             })
                                             .forResult();
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].disableSkill('wmsj_万法皆空', lib.character[result.targets[0].name][3]);
                                             result.targets[0].addSkill('wmsj_万法皆空_2');
@@ -6059,7 +6059,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(get.player(), target);
                                         })
                                         .forResult();
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         result.targets[0].skills = [];
                                     }
@@ -6898,7 +6898,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(get.player(), target);
                                         })
                                         .forResult();
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         result.targets[0].skills = [];
                                     }
@@ -7384,7 +7384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'shunshou_copy' }, get.player(), get.player());
                                     })
                                     .forResult();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     var npc = result.targets[0];
                                     player.logSkill('wmsj_女王威严', npc);

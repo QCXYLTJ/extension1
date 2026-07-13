@@ -594,7 +594,7 @@ const skill = {
 					return get.damageEffect(target, player, player);
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("gwlangshi", result.targets);
 				result.targets[0].damage(player);
 			}
@@ -1470,7 +1470,7 @@ const skill = {
 				return 6 - get.value(card);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.$give(result.cards, player);
 				player.logSkill("huanshu");
 				player.storage.huanshu2 = result.cards[0];
@@ -2040,7 +2040,7 @@ const skill = {
 				return num * att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("gwshenyu", result.targets);
 				event.target = result.targets[0];
 				if (!event.list.length) {
@@ -2853,7 +2853,7 @@ const skill = {
 				return get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets.sortBySeat();
 				result.targets.unshift(player);
 				player.logSkill("huandie", result.targets);

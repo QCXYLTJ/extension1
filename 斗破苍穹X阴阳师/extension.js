@@ -5537,7 +5537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						target.lose(result.cards, ui.special);
 						target.$throw(result.cards);
 						game.log(target, '用', result.cards, '替换了', event.button.link);
@@ -5662,7 +5662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						target.lose(result.cards, ui.special);
 						target.$throw(result.cards);
 						game.log(target, '用', result.cards, '替换了', event.button.link);
@@ -10942,7 +10942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (get.color(result.card) == 'black') event.bool = 'get1';
 										if (get.color(result.card) == 'red') event.bool = 'get1';
 										('step 2');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets);
 											if (event.bool == 'get1') {
 												var hs = trigger.source.getCards('h');
@@ -10950,7 +10950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												player.storage.xwty++;
 											}
 										}
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets);
 											if (event.bool == 'get2') {
 												var hs = trigger.source.getCards('e');
@@ -19661,7 +19661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('card', trigger.card)
 									.set('targets', trigger.targets);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -22779,7 +22779,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								};
 								next.delay = false;
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.num = result.cards.length;
 									event.goto(2);
 								} else {

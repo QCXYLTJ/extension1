@@ -393,7 +393,7 @@ const skills = {
                     .set('prompt2', '你可以使用一张伤害牌,你可以重铸任意张手牌并重复此流程')
                     .set('addCount', false)
                     .forResult();
-                if (result.bool) {
+                if (result.targets?.length) {
                     targets = result.targets;
                     const result2 = await player
                         .chooseCard(trigger.num)
@@ -8155,7 +8155,7 @@ const skills = {
                 })
                 .set('closeDialog', true)
                 .forResult();
-            if (result.bool) {
+            if (result.links?.length) {
                 player.changeSkills(result.links, [skill]);
             }
         },
@@ -9414,7 +9414,7 @@ const skills = {
                                 })
                                 .set('card', trigger.card)
                                 .forResult();
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 player.line(result.targets);
                                 trigger.targets.addArray(result.targets);
                             }
@@ -9537,7 +9537,7 @@ const skills = {
                                         })
                                         .set('card', trigger.card)
                                         .forResult();
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         trigger.targets.addArray(result.targets);
                                     }
@@ -15684,7 +15684,7 @@ const skills = {
                     return -get.attitude(player, target);
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
                 const targets = result.targets.sortBySeat(player);
                 player.tempBanSkill(event.name, false, false);
                 for (const target of targets) {
@@ -15807,7 +15807,7 @@ const skills = {
                     return -get.attitude(player, target);
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
                 const targets = result.targets.sortBySeat(player);
                 player.tempBanSkill(event.name, false, false);
                 for (const target of targets) {
@@ -16985,7 +16985,7 @@ const skills = {
                     }
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.links?.length) {
                 if (result.links.includes('equip')) {
                     await target.chooseToEnable();
                 }
@@ -18902,7 +18902,7 @@ const skills = {
                                                 }
                                             })
                                             .forResult();
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             await target.removeSkills(result.links);
                                         }
                                     }
@@ -21087,7 +21087,7 @@ const skills = {
                     next.autochoose = lib.filter.autoRespondShan;
                     next.set('source', player);
                     const result = await next.forResult();
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.result = { bool: true, card: { name: 'shan', cards: result.cards.slice() }, cards: result.cards.slice() };
                         trigger.responded = true;
                         trigger.animate = false;

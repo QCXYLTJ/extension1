@@ -674,7 +674,7 @@ const card = {
 			};
 			"step 1";
 			if (!result.bool || result.cards.length < 2) {
-				if (result.bool) {
+				if (result.cards?.length) {
 					target.damage(2 - result.cards.length, "thunder");
 				} else {
 					target.damage(2, "thunder");

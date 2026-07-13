@@ -1448,7 +1448,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.value(card);
                     };
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         target.give(result.cards, player);
                     }
                     if (!result.cards || result.cards.length < cards.length) {
@@ -1700,7 +1700,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     );
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.targets = result.targets;
                         event.targets.sort(lib.sort.seat);
                         trigger.num -= 1;
@@ -2541,7 +2541,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 1');
                     player.chooseToDiscard(num, true);
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.cards = result.cards;
                         player.addToExpansion(result.cards, 'gain2').gaintag.add('rgxbeijun');
                         player.chooseTarget('选择一名角色获得一点护甲');
@@ -4091,7 +4091,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 2');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 event.target.addGaintag(result.links, 'myxintu');
                             }
                         },
@@ -4136,7 +4136,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return !card.hasGaintag('myxintu');
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 trigger.player.give(result.cards, player);
                             } else {
                                 trigger.player.loseHp();
@@ -4663,7 +4663,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return player != target;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.useCard({ name: 'sha', nature: 'ice' }, result.targets);
                         player.removeMark('hoyoshengmie');
                     }
@@ -10630,7 +10630,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         player.chooseCard(1, 'h');
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         if (result.cards?.length) {
                             player.useCard({ name: 'sha' }, result.cards, event.player2, false);
                         } else {
@@ -11026,7 +11026,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     });
                     player.addSkill('rgxpaoxiao_damage');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.storage.rgxpaoxiao.add(result.cards.suit);
                         player.markSkill('rgxpaoxiao');
                     }

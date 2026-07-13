@@ -83,7 +83,7 @@ const card = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.lose(result.cards, ui.special);
 				target.$throw(result.cards);
 				game.log(target, "用", result.cards, "替换了", event.button.link);

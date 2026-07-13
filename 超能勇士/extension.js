@@ -2053,7 +2053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('ygsw_nudun'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.num = result.cards.length;
                                     var target = result.targets[0];
                                     if (!event.isMine()) game.delayx();
@@ -2151,7 +2151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(links, 'draw');
                                         }
@@ -2258,7 +2258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(links, 'draw');
                                         }
@@ -2306,7 +2306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(links, 'draw');
                                         }
@@ -2359,7 +2359,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(links, 'draw');
                                         }
@@ -4206,7 +4206,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 7');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].addTempSkill('huanlong_jfj');
                                     }

@@ -1144,7 +1144,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     trigger.player.chooseCard('he', '〖腾踔〗请将一张牌置于牌堆顶', true).set('ai', ai.choosecardtop);
                 } else event.finish();
                 'step 2'
-                if (result.bool) {
+                if (result.cards?.length) {
                     trigger.player.$gainLog('throwtop', result.cards);
                     trigger.player.lose(result.cards, ui.cardPile, 'insert');
                 } else event.finish();
@@ -1591,7 +1591,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 "step 2"
                 player.chooseTarget('〖奔雷〗请对一名敌方器械造成1点雷电伤害', true, (card, player, target) => (target.isEnemiesOf(player) && target.type == 'mech')).set('ai', ai.thunderEffect);
                 "step 3"
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.line(result.targets);
                     result.targets[0].damage('thunder');
                 }
@@ -2141,7 +2141,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 "step 3"
                 player.chooseTarget('〖天陨〗请选择一名敌方角色,其与你依次失去1点体力', true, lib.filter.enemies).set('ai', ai.losehpEffect);
                 "step 4"
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.line(result.targets);
                     result.targets[0].loseHp();
                 } else event.finish();
@@ -2381,7 +2381,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return -get.buttonValue(button) * get.attitude2(target);
                 });
                 'step 1'
-                if (result.bool) {
+                if (result.links?.length) {
                     var links = result.links;
                     var lose_list = [];
                     for (var target of game.players) {
@@ -2667,7 +2667,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             else player.chooseTarget('你可以发动〖励战〗选择任意名已受伤的角色', [1, Infinity], lib.filter.isDamaged).set('ai', ai.drawEffect).set('prompt2', '<center>这些角色各摸一张牌</center>');
         }
         'step 1'
-        if (result.bool) {
+        if (result.targets?.length) {
             if (!result.targets || !result.targets.length) result.targets = game.filterPlayer((current) => (current.isDamaged() && current.isFriendsOf(player)));
             if (result.targets.length) {
                 game.asyncDraw(result.targets.sortBySeat(_status.currentPhase));

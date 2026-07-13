@@ -2865,7 +2865,7 @@ game.import('character', function () {
 						func(event.videoId, prompt);
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						lib.skill.xjzh_meiren_huizhi.removeHuizhi(player, result.links.slice(0));
 						event.Q = result.links[0];
 						var cardname = 'xjzh_meiren_huizhi_card_' + event.Q;
@@ -2992,7 +2992,7 @@ game.import('character', function () {
 						prompt: '是否弃置任意张不同花色的牌,令一名其他角色选择:弃置等量相同花色组成的牌;或翻面并获得你弃置的牌？',
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.discard(result.cards);
 						event.cardsss = result.cards;
 						var ssuit = [];
@@ -8454,7 +8454,7 @@ game.import('character', function () {
 						event.goto(4);
 					}
 					('step 3');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var targets = result.targets;
 						if (targets.length == 1) {
 							var num = Math.min(event.num1.length, 2);
@@ -8472,7 +8472,7 @@ game.import('character', function () {
 						return;
 					}
 					('step 4');
-					if (result.bool) {
+					if (result.links?.length) {
 						for (var i of result.links) {
 							player.addToExpansion(i, 'gain2', player).gaintag.add('xjzh_sanguo_bujiao');
 						}
@@ -10425,7 +10425,7 @@ game.import('character', function () {
 							}
 							player.chooseCardButton('选择一张牌视为使用一张桃园结义', list);
 							('step 1');
-							if (result.bool) {
+							if (result.links?.length) {
 								player.loseToDiscardpile(result.links);
 								var targets = game.filterPlayer();
 								targets.sort(lib.sort.seat);
@@ -10471,7 +10471,7 @@ game.import('character', function () {
 							}
 							player.chooseCardButton('选择一张牌视为使用一张万箭齐发', list);
 							('step 1');
-							if (result.bool) {
+							if (result.links?.length) {
 								player.loseToDiscardpile(result.links);
 								var targets = game.filterPlayer();
 								targets.remove(player);
@@ -11223,7 +11223,7 @@ game.import('character', function () {
 						}
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						for (var i = 0; i < result.targets.length; i++) {
 							trigger.targets.push(result.targets[i]);
 							game.log(result.targets[i], '成为了额外目标');
@@ -11341,7 +11341,7 @@ game.import('character', function () {
 								}
 							};
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.gain(result.cards, 'giveAuto', trigger.player);
 								trigger.player.skip('phaseDiscard');
 							} else {
@@ -13560,7 +13560,7 @@ game.import('character', function () {
 						.set('targets', trigger.targets)
 						.set('card', trigger.card);
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						trigger.targets.addArray(result.targets);
 						for (var i of result.targets) {
 							i.removeMark('xjzh_sanguo_chanyuan', 1);
@@ -18710,7 +18710,7 @@ game.import('character', function () {
 							return get.effect(target, trigger.card, player, player);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets;
 						for (var i of target) {
 							trigger.targets.add(i);
@@ -22580,7 +22580,7 @@ game.import('character', function () {
 						prompt2: '弃置一张牌,选择任意名目标直到此牌结算结束,你选择的角色视为装备一张防具牌',
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.targets = result.targets;
 						player.discard(result.cards);
 						var list = get.inpile(function (name) {

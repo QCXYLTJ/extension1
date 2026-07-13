@@ -826,7 +826,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           }
           target.chooseButton(['请选择要获得的武器牌', list], true).set('ai', (button) => _status.event.player.getUseValue(button.link));
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             target.gain(result.links, 'draw').gaintag = ['g_bleach_daorenrongyao'];
             var list = [];
             if (target.storage.bleach_daorenrongyao) list = target.storage.bleach_daorenrongyao;
@@ -1762,7 +1762,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 0;
           };
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.useCard({ name: 'sha' }, result.cards, trigger.target, false, false);
           }
         },
@@ -2042,7 +2042,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return 6 - get.value(card);
           });
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.gain(result.cards, trigger.player, 'giveAuto');
           }
           ('step 2');
@@ -2509,7 +2509,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               return val;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             trigger.player.loseToDiscardpile(result.links);
             player.draw();
           }

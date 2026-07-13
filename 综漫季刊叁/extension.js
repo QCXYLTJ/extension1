@@ -4165,7 +4165,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(_status.event.player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             event.targets = result.targets;
                                         }
@@ -5054,7 +5054,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.targets = result.targets;
                                     event.num2 = 0;
@@ -6036,7 +6036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.num += result.cards.length;
                                     trigger.player.addTempSkill('zmguanghuizhiluq_2');
                                     player.addTempSkill('zmguanghuizhiluq_1');

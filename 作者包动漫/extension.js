@@ -8528,7 +8528,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) > 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var b = result.targets;
                                     b[0].recover();
                                     b[0].draw(2);

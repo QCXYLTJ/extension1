@@ -783,7 +783,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							});
 							next.set('judging', trigger.player.judging[0]);
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.respond(result.cards, 'highlight', 'scqhMiao_qicai', 'noOrdering');
 							} else event.finish();
 							('step 2');

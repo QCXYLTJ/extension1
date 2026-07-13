@@ -2006,7 +2006,7 @@ const skills = {
 			if (player.getExpansions('bleach_jiling').length == 1) event._result = { bool: true, links: player.getExpansions('bleach_jiling') };
 			else player.chooseCardButton('请选择移去的张「灵」', [1, Infinity], player.getExpansions('bleach_jiling'), true);
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.loseToDiscardpile(result.links);
 				var map = trigger.customArgs;
 				var id = trigger.target.playerid;
@@ -8095,7 +8095,7 @@ const skills = {
 				})
 				.set('color', get.color(player.getEquips(1), player))
 				.forResult();
-			if (result.bool) {
+			if (result.links?.length) {
 				cards.removeArray(result.links);
 				player.gain(result.links, 'log', 'gain2');
 			}
@@ -10846,7 +10846,7 @@ const skills = {
 							})
 							.set('complexCard', true);
 						('step 1');
-						if (result.bool) {
+						if (result.cards?.length) {
 							player.recast(result.cards);
 							var name = event.result.card.name;
 							player.addTempSkill('bleach_newlingbi_used', 'roundStart');
@@ -13111,7 +13111,7 @@ const skills = {
 											}
 										})
 										.then(() => {
-											if (result.bool) {
+											if (result.targets?.length) {
 												player.line(result.targets, 'green');
 												player.discardPlayerCard(result.targets[0], true, 'hej');
 											}
@@ -17465,7 +17465,7 @@ const skills = {
 				return get.recoverEffect(target, player, player) > 0;
 			};
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (var current of result.targets) current.recover();
 			}
 		},
@@ -19178,7 +19178,7 @@ const skills = {
 				.set('prompt2', '若弃置了♣️️牌,则将之置入「翼」')
 				.set('att', get.sgnAttitude(player, target))
 				.forResult();
-			if (result.bool) {
+			if (result.cards?.length) {
 				if (result.cards && result.cards.some((i) => i.suit == 'club')) {
 					player.popup('洗具');
 					player.addToExpansion(result.cards, target, 'giveAuto').gaintag.add('bleach_yinyi_x');

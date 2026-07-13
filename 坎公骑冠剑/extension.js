@@ -1500,7 +1500,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								next.set('skills', skills);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.skills = result.links;
 									var skills = [];
 									for (var i of game.players) {
@@ -2025,7 +2025,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									var list = result.links;
 									for (var i = 0; i < list.length; i++) {
 										if (get.owner(list[i]) == player) {
@@ -2545,7 +2545,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '弃置至多' + get.cnNumber(num == 0 ? 2 : 1) + '张牌,弃置一名其他角色等量的牌',
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									player.discardPlayerCard(result.cards.length, 'he', result.targets[0], true);
 								}
@@ -2681,7 +2681,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									game.asyncDraw(result.targets, 1);
 								}
 							},
@@ -4575,7 +4575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '请选择要送人的卡牌',
 								});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									result.targets[0].gain(result.cards, player, 'giveAuto');
 								}
@@ -5102,7 +5102,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									game.asyncDraw(result.targets, 2);
 									player.addTempSkill('gt_shengguang_disabled', 'roundStart');
 								}
@@ -5592,7 +5592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '弃置一张牌并选择含有' + get.translation(trigger.player) + '的至多四名座次相邻的角色',
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									player.addTempSkill('gt_chonglang_block');
 									result.targets.sortBySeat();
@@ -5942,7 +5942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.choosePlayerCard(true, player, 'hej');
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.useCard({ name: 'shandian' }, result.cards, false, player);
 									player.chooseUseTarget(
 										{
@@ -6164,7 +6164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 5 - value;
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.$throw(result.cards.length, 1000);
 									player.lose(result.cards, ui.cardPile).insert_index = function () {
 										return ui.cardPile.childNodes[get.rand(0, game.players.length * 2)];
@@ -6923,7 +6923,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.target.give(result.cards, player, true);
 								}
 								('step 3');
@@ -8262,7 +8262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									game.asyncDraw(result.targets);
 								}
 							},
@@ -8792,7 +8792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(trigger.card) - get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var length = result.cards.length;
 									game.log(trigger.card, '额外结算' + get.cnNumber(length) + '次');
 									trigger.effectCount += length;
@@ -9319,7 +9319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									true
 								);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									if (result.targets.length) {
 										result.targets.sortBySeat();
 										player.gainMultiple(result.targets, 'hej');
@@ -9364,7 +9364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, player, 'gain2').gaintag.add('gt_qiju');
 								}
 							},
@@ -9969,7 +9969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -1;
 									});//QQQ
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									target.give(result.cards, player);
 								} else player.recover(target);
 							},
@@ -10489,7 +10489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									else player.chooseCard('he', '血月:交给' + get.translation(trigger.source) + '一张牌', true);
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.give(result.cards, trigger.source);
 								}
 							},
@@ -10765,7 +10765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									game.asyncDraw(result.targets);
 								}
 							},
@@ -10846,7 +10846,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.cards.removeArray(result.links);
 									event.togive = result.links.slice(0);
 									player

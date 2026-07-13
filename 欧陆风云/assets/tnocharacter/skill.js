@@ -2489,7 +2489,7 @@ const skills = {
                         return player.canUse(lib.element.VCard({ name: button.link[2] }), target, false);
                     })
                     .forResult();
-                if (result.bool) {
+                if (result.links?.length) {
                     const names = result.links.map((i) => i[2]);
                     for (const name of names) {
                         await player.useCard({ name }, target, false);

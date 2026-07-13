@@ -1717,7 +1717,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           set('att', get.attitude(player, trigger.target) <= 0);
         } else event._result = { bool: false };
         'step 1';
-        if (result.bool) {
+        if (result.cards?.length) {
           event.card = result.cards;
           trigger.target.
           chooseBool(`弃置${get.translation(event.card)},或不响应` + get.translation(trigger.card)).

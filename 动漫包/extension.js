@@ -1712,7 +1712,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[[0]];
                                     player.chooseCard('h', true, '用一张手牌替换' + get.translation(event.card)).ai = function (card) {
                                         return -get.value(card);
@@ -2978,7 +2978,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     };
                                 }
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     var players = game.players.concat(game.dead);
                                     for (var i of players) {
@@ -6816,7 +6816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (get.attitude(player, trigger.player) > 0) return false;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     trigger.targets = result.targets;
                                 }
                             },
@@ -11832,7 +11832,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.lose(result.cards, ui.special);
                                     player.$throw(result.cards);
                                     game.log(player, '发动了大贤者');

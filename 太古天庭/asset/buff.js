@@ -1116,7 +1116,7 @@ window.tgtt_import(function (lib, game, ui, get, ai, _status) {
                         }
                     }).set('judging', trigger.player.judging[0]);
                 "step 1"
-                if (result.bool) {
+                if (result.cards?.length) {
                     player.respond(result.cards, 'Tgtt_Buff_yanling', 'highlight', 'noOrdering');
                 }
                 else {
@@ -1328,7 +1328,7 @@ window.tgtt_import(function (lib, game, ui, get, ai, _status) {
                     event.finish()
                 }
                 'step 2'
-                if (result.bool) {
+                if (result.cards?.length) {
                     event.target.give(result.cards, player, true);
                     player.reduceTgttBuff('youshi')
                 }

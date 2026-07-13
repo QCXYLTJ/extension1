@@ -3578,7 +3578,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.type(card) !== 'basic';
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.num -= result.cards.length;
                     } else event.finish();
                 },
@@ -3783,7 +3783,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.type(card) !== 'basic';
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.num -= result.cards.length;
                         player.draw(result.cards.length);
                     } else event.finish();
@@ -9352,7 +9352,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.type(card) !== 'basic';
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.num -= result.cards.length;
                         player.draw(result.cards.length);
                     } else event.finish();
@@ -11901,7 +11901,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight', 'siji_tianyi', 'noOrdering');
                     } else {
                         event.finish();
@@ -12819,7 +12819,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return -1;
                     };
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var length = result.targets.length;
                         for (var i = 0; i < length; i++) {
                             result.targets[i].addSkill('siji_kuangfeng');
@@ -14266,7 +14266,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight', 'siji_suimeng', 'noOrdering');
                     } else {
                         event.finish();
@@ -16837,7 +16837,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return -1;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.discard(result.cards);
                         player.addTempSkills('mouxiayuan_silent', 'roundStart');
                         trigger.player.changeHujia(trigger.player.LastHujia);
@@ -16955,7 +16955,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight', 'siji_mengbian', 'noOrdering');
                     } else {
                         event.finish();
@@ -17213,7 +17213,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight', 'siji_mengshi', 'noOrdering');
                     } else {
                         event.finish();
@@ -17811,7 +17811,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     );
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets.sortBySeat();
                         event.targets = result.targets;
                     } else {
@@ -17826,7 +17826,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, event.current, 'give').gaintag.add('战梦');
                         event.goto(2);
                     }

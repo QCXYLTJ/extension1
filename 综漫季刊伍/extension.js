@@ -748,7 +748,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 10 - get.value(button.link);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.cards = result.links;
                                             player
                                                 .chooseTarget(1, '选择此【桃】目标？', function (card, player, target) {
@@ -1302,7 +1302,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -1;
                                         }).prompt = false;
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.showCards(result.cards);
                                         }
                                         ('step 3');
@@ -1401,7 +1401,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: `将一张点数大于${get.translation(event.list)}的牌与这些牌交给其他角色或获得这些牌并受到${num}点伤害`,
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target.line(result.targets, 'fire');
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
@@ -1463,7 +1463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: `将一张点数大于${get.translation(event.list)}的牌与这些牌交给其他角色或获得这些牌并受到${num}点伤害`,
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target.line(result.targets, 'fire');
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
@@ -1744,13 +1744,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (event.num == 1) {
-                                    if (result.bool) {
+                                    if (result.cards?.length) {
                                         target.$give(result.cards, player);
                                         player.gain(result.cards, player);
                                     }
                                 }
                                 if (event.num == 0) {
-                                    if (result.bool) {
+                                    if (result.cards?.length) {
                                         player.$give(result.cards, target);
                                         target.gain(result.cards, player);
                                     }
@@ -6930,7 +6930,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target) * num;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.current = result.targets[0];
                                 } else event.finish();

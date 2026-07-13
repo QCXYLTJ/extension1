@@ -495,7 +495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var target of result.targets) {
                                         target.gl_eventAfter('qw_yindao', lib.skill.qw_sushi.contentx, trigger);
                                         target.storage.qw_sushi = {
@@ -1034,7 +1034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.target.give(result.cards, player);
                                     var list = [];
                                     if (trigger.targets.length != game.filterPlayer().length) list.push('增加一个目标');
@@ -2154,7 +2154,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCard('he', '你可以重铸一张牌并令一名角色回复一点体力,本回合手牌上限+1');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.recast(result.cards);
                                     player.storage.qw_AroundCaliburnc1++;
                                     player.chooseTarget();
@@ -2749,7 +2749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.chooseCardButton('你可以将此牌对至多' + trigger.cards.length + '名角色的效果改为构成此牌的一张牌.', trigger.cards, 1);
                                         game.log(trigger.skill, trigger.card, trigger.cards);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.cards = result.links;
                                             game.broadcastAll(
                                                 function (player, cards, card, links, targets) {
@@ -3999,7 +3999,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('targets', trigger.targets);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     trigger.parent.excluded.addArray(result.targets);
                                     player.storage.qw_fxzmscard = trigger.card;
                                     player.storage.qw_fxzms = result.targets;
@@ -4062,7 +4062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.give(result.cards, trigger.player);
                                 }
                             },
@@ -4598,7 +4598,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseButton(['「司天伏邪」<br>将判定牌改为', event.list]).set('judging', trigger.player.judging[0]);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.respond(result.links, 'qw_stfx', 'highlight', 'noOrdering');
                                 }
                                 ('step 3');
@@ -8130,7 +8130,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line2(result.targets);
                                     result.targets[0].damage(1, player);
                                     result.targets[0].useCard({ name: 'sha' }, result.targets[1], false, 'noai');
@@ -12477,7 +12477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.chooseCard('h', [1, Infinity]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     target.chooseControl().set('prompt', '将这些牌').set('choiceList', ['与牌堆顶等量的牌交换(先选择的在上)', '置牌堆顶获得这些牌的复制(先选择的在上)']);
                                 } else event.finish();
@@ -12533,7 +12533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('complexCard', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var length = result.cards.length;
                                     if (get.subtype(result.cards[0]) == 'lucy') {
                                         if (

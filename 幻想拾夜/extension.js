@@ -1044,7 +1044,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'bingliang' }, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'bingliang' }, trigger.cards, result.targets).animate = false;
                                 }
                             },
@@ -1122,7 +1122,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'guiyoujie' }, result.cards, result.targets);
                                 }
                             },
@@ -1924,7 +1924,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     if (cards.length) {
                                         player.lose(cards, ui.discardPile);
@@ -2861,7 +2861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -4412,7 +4412,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'liuxinghuoyu' }, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'liuxinghuoyu' }, result.targets, false);
                                 }
                             },

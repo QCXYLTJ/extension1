@@ -2864,7 +2864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     player.line(targets, 'green');
                                     for (var i of targets) {
@@ -4072,7 +4072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .setHiddenSkill(event.name);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     var target = result.targets[0];
                                     player
@@ -4945,7 +4945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         event.choice[i[2]] = true;
                                     }
@@ -5876,7 +5876,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.addTempSkill(result.control);
                                 event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards);
                                     target.damage();
                                 }
@@ -7336,7 +7336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard('选择目标的牌置于其武将牌上', trigger.target, [0, trigger.target.hp]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.target.addToExpansion(result.cards, 'giveAuto', trigger.target).gaintag.add('repojun2');
                                     trigger.target.addSkill('repojun2');
                                 }
@@ -8714,7 +8714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target, 'giveAuto');
                                     player.draw();
                                     player.addMark('爆衣_guo');
@@ -8831,7 +8831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets.sortBySeat();
                                     event.num = 0;
                                 } else {

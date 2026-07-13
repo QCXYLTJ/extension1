@@ -3545,7 +3545,7 @@ const content = async function () {
             event.finish();
           }
           ('step 2');
-          if (result.bool) {
+          if (result.targets?.length) {
             target.useCard(card, event.targets2 || result.targets, false, 'noai');
             player.draw();
           } else {
@@ -4121,7 +4121,7 @@ const content = async function () {
               'goon',
               get.attitude(player, trigger.target) < 0,
             )('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             let num = result.cards.length;
             if (trigger.target.countDiscardableCards(player, 'he')) {
               player.discardPlayerCard(`平讨:弃置${get.translation(trigger.target) + get.cnNumber(num)}张牌`, num, 'he', trigger.target, true);
@@ -4551,7 +4551,7 @@ const content = async function () {
             }
           }
           ('step 3');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.give(result.cards, trigger.player);
           } //QQQ
         };
@@ -4997,7 +4997,7 @@ const content = async function () {
                 };
               })(),
             );
-          if (result.bool) {
+          if (result.links?.length) {
             player.loseToDiscardpile(result.links);
             let list = [],
               choiceList = ['将一张牌称为<翼>置于你的武将牌上', '弃置两张牌', '失去1点体力'];
@@ -5145,7 +5145,7 @@ const content = async function () {
             })
             .set('complexCard', true)
             .set('triggerName', event.triggername);
-          if (result.bool) {
+          if (result.cards?.length) {
             player.addToExpansion(result.cards, player, 'give').gaintag.add('dclingxi');
           }
         };

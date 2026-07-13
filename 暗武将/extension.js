@@ -312,7 +312,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     game.asyncDraw(result.targets);
                                 } else event.finish();
                                 ('step 2');
@@ -2631,7 +2631,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(player, tar);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var tars = result.targets;
                                             for (var i = 0; i < tars.length; i++) {
                                                 tars[i].chooseToDiscard('he', true);
@@ -2975,7 +2975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 event.p = p;
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var c = result.cards;
                                     event.p.give(c, player);
                                 } else {
@@ -3477,7 +3477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     result.targets[0].addTempSkill('fff_juguang_1', { global: 'roundStart' });
                                 }

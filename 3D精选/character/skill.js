@@ -704,7 +704,7 @@ const skills = {
 				event.goto(4);
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.links = result.links.slice(0);
 				var card = get.autoViewAs({ name: 'tiesuo' }, result.links);
 				var maxNum = get.translation(result.links[0].name).length;
@@ -1110,7 +1110,7 @@ const skills = {
 				event.goto(7);
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.give(result.cards, player, 'visible');
 			} else {
 				event.goto(7);
@@ -1743,7 +1743,7 @@ const skills = {
 					});
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				var cards = result.cards;
 				event.cards = cards;
 				target.showCards(cards, get.translation(player) + '对' + get.translation(target) + '发动了【赍剑】');
@@ -1848,7 +1848,7 @@ const skills = {
 				return 0.1 - player.getUseValue(card) / 100;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				var cards = result.cards;
 				event.cards = cards;
 				target.showCards(cards, get.translation(player) + '对' + get.translation(target) + '发动了【赍剑】');
@@ -1897,7 +1897,7 @@ const skills = {
 					return 1;
 				});
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.give(result.cards, target, 'giveAuto');
 				var num = 0,
 					color = get.color(result.cards[0], player);
@@ -2233,7 +2233,7 @@ const skills = {
 					return get.effect(target, evt.card, evt.player, evt.player);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var targets = result.targets.sortBySeat();
 				event.targets = targets;
 				if (!event.isMine() && !event.isOnline()) {
@@ -2701,7 +2701,7 @@ const skills = {
 				});
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.links?.length) {
 				target.gain(result.links, 'gain2');
 			} else {
 				event.finish();
@@ -2876,7 +2876,7 @@ const skills = {
 				player.chooseCard('h', true, '选择一张牌作为“鉴”');
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.addToExpansion(result.cards, player, 'give').gaintag.add('ddddongcha_effect');
 			}
 			('step 2');
@@ -2884,7 +2884,7 @@ const skills = {
 				target.chooseCard('h', true, '选择一张牌作为“鉴”');
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.addToExpansion(result.cards, target, 'give').gaintag.add('ddddongcha_effect');
 			}
 		},
@@ -2914,7 +2914,7 @@ const skills = {
 						event.finish();
 					}
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.gain(result.links, 'gain2');
 					}
 					('step 2');
@@ -2934,7 +2934,7 @@ const skills = {
 						event.finish();
 					}
 					('step 3');
-					if (result.bool) {
+					if (result.links?.length) {
 						trigger.player.gain(result.links, player, 'give');
 					}
 				},
@@ -4111,7 +4111,7 @@ const skills = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.cards.removeArray(result.links);
 				event.togive = result.links.slice(0);
 				player
@@ -4243,7 +4243,7 @@ const skills = {
 				player.chooseCard('玉律：将一张牌置于武将牌上', true);
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.addToExpansion(result.cards, player, 'give').gaintag.add('dddyulv');
 			}
 		},
@@ -5388,7 +5388,7 @@ const skills = {
 					.set('prompt', false);
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.cards?.length) {
 				var cards2 = result.cards;
 				event.cards2 = cards2;
 				var func = function (id) {
@@ -5920,7 +5920,7 @@ const skills = {
 					return get.effect(target, { name: 'tiesuo' }, _status.event.player);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var targets = result.targets.sortBySeat();
 				player.logSkill('ddddanggu', targets);
 				targets.forEach((i) => i.link());
@@ -6176,7 +6176,7 @@ const skills = {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						var cards = result.cards;
 						event.cards = cards;
 						player

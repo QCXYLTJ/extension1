@@ -1109,7 +1109,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.value(button.link);
             });
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               player.gain(result.links, 'log', 'gain2');
             } else {
               player.getStat('triggerSkill')[event.name] -= 1;

@@ -317,7 +317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         var target = result.targets[i];
                                         var skills = lib.character[target.name][3];
@@ -1875,7 +1875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         var target = result.targets[i];
                                         var skills = lib.character[target.name][3];
@@ -2165,7 +2165,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('card', trigger.card)
                                             .setHiddenSkill(event.name);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             for (let i = 0; i < result.targets.length; i++) {
                                                 trigger.targets.push(result.targets[i]);
                                             }
@@ -2371,7 +2371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     trigger.targets.remove(player);
                                     for (let i = 0; i < result.targets.length; i++) {
@@ -2655,7 +2655,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 2');
                                         player.chooseToDiscard([1, Infinity], 'he', '是否弃置任意数量的牌使' + get.translation(trigger.player) + '流失等量的体力');
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             trigger.player.loseHp(result.cards.length);
                                         }
                                     },

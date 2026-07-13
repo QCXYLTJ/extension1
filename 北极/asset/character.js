@@ -3006,7 +3006,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         target.gain(result.cards, player, 'giveAuto');
                     } else event.finish();
                 },
@@ -4034,7 +4034,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .set('judging', trigger.player.judging[0]);
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.respond(result.cards, 'highlight', 'bjdinggui_pandingx', 'noOrdering');
                             } else {
                                 event.finish();
@@ -4243,7 +4243,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .set('judging', trigger.player.judging[0]);
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.respond(result.cards, 'highlight', 'bjdinggui_panding', 'noOrdering');
                             } else {
                                 event.finish();
@@ -5293,7 +5293,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(3);
                     }
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.gain(result.cards, target, 'giveAuto');
                     } else event.finish();
                     ('step 2');
@@ -5322,7 +5322,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     });
                     ('step 4');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         var togive = result.links.slice(0);
                         target.gain(togive, 'gain2');
                     } else event.finish();
@@ -5638,7 +5638,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return -100;
                     };
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(player, 'giveAuto', result.cards).gaintag.add('bjzhifa');
                     }
                     ('step 4');
@@ -6687,7 +6687,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             'step 2';
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 event.target.give(result.cards, player, true);
                                 event.card2 = result.cards[0];
                                 if (get.type(event.card2) == 'basic') {
@@ -8062,7 +8062,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         )
                         .set('aicheck', check);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.gainMultiple(result.targets, 'hej', true);
                     } else {
                         event.finish();
@@ -9280,7 +9280,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         )
                         .set('aicheck', check);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.gainMultiple(result.targets, 'he', true);
                     } else {
                         event.finish();
@@ -11118,7 +11118,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('complexCard', true);
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         game.log(player, '将', result.cards, '放到了武将牌上');
                         player.loseToSpecial(result.cards, 'bjhaiyun1').visible = true;
                     } else event.finish();
@@ -11395,7 +11395,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('complexCard', true);
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         game.log(player, '将', result.cards, '放到了武将牌上');
                         player.loseToSpecial(result.cards, 'bjhaiyun1').visible = true;
                     } else event.finish();
@@ -12045,7 +12045,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         prompt: '请选择要送人的卡牌',
                     });
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'green');
                         result.targets[0].gain(result.cards, player, 'giveAuto');
                         event.given += result.cards.length;

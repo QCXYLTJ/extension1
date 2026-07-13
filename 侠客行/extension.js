@@ -493,7 +493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('complexCard', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'give').gaintag.add('yanzhen_Angel');
                                 }
                             },

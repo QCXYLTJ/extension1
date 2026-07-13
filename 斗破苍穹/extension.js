@@ -2346,7 +2346,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets;
                                             player.useCard({ name: 'sha' }, target, false).animate = false;
                                         }
@@ -2613,7 +2613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets.slice(0).sortBySeat();
                                     event.list = event.targets.slice(0);
                                 }
@@ -3650,7 +3650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets;
                                             player.useCard({ name: 'sha' }, target, false).animate = false;
                                         }
@@ -3843,7 +3843,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var A = ['这老不死的', '哼!总是对我有所隐瞒', '等着吧,总有一天!'].randomGet();
                                         player.say(A);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             trigger.player.give(result.cards, player);
                                         }
                                     },
@@ -4076,7 +4076,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 var B = ['哥哥最好了!', '最喜欢哥哥了!', '哥哥真好!嘻嘻!'].randomGet();
                                 player.say(B);
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.give(result.cards, player);
                                 }
                             },
@@ -4669,7 +4669,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets.slice(0).sortBySeat();
                                             event.list = event.targets.slice(0);
                                         }

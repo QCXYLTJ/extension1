@@ -895,7 +895,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							}
 						}).set('judging', trigger.player.judging[0]);
 					"step 1"
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.respond(result.cards, 'highlight', 'sgscq_guidao', 'noOrdering');
 					}
 					else {
@@ -1788,7 +1788,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								});
 							}
 							"step 2"
-							if (result.bool) {
+							if (result.links?.length) {
 								player.gain(result.links, 'gain2', 'log');
 							}
 						},
@@ -1812,7 +1812,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return get.value(button.link, _status.event.player, 'raw');
 							});
 							"step 1"
-							if (result.bool) {
+							if (result.links?.length) {
 								player.gain(result.links, 'gain2', 'log');
 							}
 						},
@@ -2146,7 +2146,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 1 - att;
 					}).set('aicheck', check);
 					"step 1"
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.gainMultiple(result.targets);
 						trigger.changeToZero();
 					}
@@ -2198,7 +2198,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 1 - att;
 					}).set('aicheck', check);
 					"step 1"
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.gainMultiple(result.targets);
 						trigger.changeToZero();
 					}
@@ -2458,7 +2458,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return -get.attitude(_status.event.player, target);
 							})
 							'step 2'
-							if (result.bool) {
+							if (result.targets?.length) {
 								result.targets.sortBySeat();
 								player.line(result.targets, 'green');
 								event.targets = result.targets;
@@ -3149,7 +3149,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					else event.finish();
 					'step 2'
-					if (result.bool) {
+					if (result.links?.length) {
 						event.lists = result.links;
 						event.types = get.YB_map(event.lists, event.list);
 						player.addTempSkill('sczs_shefu_buff', 'roundStart');
@@ -4134,7 +4134,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					else event.finish();
 					'step 2'
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.addToExpansion(result.cards, player).gaintag.add('sgscq_yanyu_mark');
 						game.log(player, '将一张牌盖在了武将牌上.')
 					}
@@ -4449,7 +4449,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							'step 2'
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.give(result.cards, trigger.player);
 							}
 						},

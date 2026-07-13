@@ -609,7 +609,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           event.finish();
         }
         'step 2';
-        if (result.bool) {
+        if (result.cards?.length) {
           targets[0].useCard({ name: event.useCardName }, result.cards, false, targets[1]);
         } else {
           targets[0].loseHp();
@@ -1561,7 +1561,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
           });
         'step 1';
-        if (result.bool) {
+        if (result.cards?.length) {
           player.gain(result.cards, 'giveAuto', target);
         } else {
           var cardx = get.cardPile(function (card) {
@@ -2287,7 +2287,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             );
           });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           player.line(result.targets, 'thunder');
           event.target = result.targets[0];
           player.discardPlayerCard('he', event.target, true).set('ai', lib.card.guohe.ai.button);
@@ -2310,7 +2310,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             return damage > 0 ? 5 : 0;
           });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           player.line(result.targets, 'thunder');
           event.target = result.targets[0];
           event.target.damage(2);
@@ -2849,7 +2849,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           set('complexSelect', true).
           set('aicheck', aicheck);
         'step 2';
-        if (result.bool) {
+        if (result.links?.length) {
           var links = result.links;
           var lose = [],
             gain = [];
@@ -2934,7 +2934,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           }).
           set('card', trigger.card);
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           trigger.targets.addArray(result.targets);
         }
       },
@@ -3379,7 +3379,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           event.finish();
         }
         'step 2';
-        if (result.bool) {
+        if (result.cards?.length) {
           event.target.give(result.cards, player);
           //player.gain(result.cards,'giveAuto',event.target);
         } else {

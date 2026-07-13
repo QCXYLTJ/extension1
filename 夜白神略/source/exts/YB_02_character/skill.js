@@ -362,7 +362,7 @@ const skill = {
 				player.chooseCard('h', 1, true);
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.loseToSpecial(result.cards, '_ybsl_sixart').gaintag = ['_ybsl_sixart'];
 				game.log(player, '将', get.cnNumber(1), '张牌置入了六艺区');
 				player.addMark('_ybsl_sixart', 1);

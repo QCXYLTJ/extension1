@@ -33293,7 +33293,7 @@ game.import('extension', function () {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.slice();
                                     targets.sortBySeat();
                                     for (var target of targets) {
@@ -33599,7 +33599,7 @@ game.import('extension', function () {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.slice();
                                     targets.sortBySeat();
                                     for (var target of targets) {

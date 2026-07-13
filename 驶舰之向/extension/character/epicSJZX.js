@@ -4873,7 +4873,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             .set('card', trigger.card)
             .setHiddenSkill(event.name);
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             for (var i = 0; i < result.targets.length; i++) {
               trigger.targets.push(result.targets[i]);
               player.line(result.targets[i]);
@@ -5322,7 +5322,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               if (cards.length) player.chooseButton(['你可以选择移去一张与其使用的牌的牌名相同的<踏垫>,令其流失所有体力', cards]);
               else event.finish();
               ('step 1');
-              if (result.bool) {
+              if (result.links?.length) {
                 player.loseToDiscardpile(result.links);
                 player.draw(3);
                 trigger.player.loseHp(trigger.player.hp);
@@ -6224,7 +6224,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             event.finish();
           }
           ('step 3');
-          if (result.bool) {
+          if (result.links?.length) {
             event.cards.removeArray(result.links);
             event.togive = result.links.slice(0);
             player
@@ -7681,7 +7681,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               .set('list', event.list);
           }
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             var names = result.links.map((i) => i[2]),
               target = trigger.player;
             if (!target.storage.alsmengxiangmrfz_eff) target.storage.alsmengxiangmrfz_eff = [];

@@ -1252,7 +1252,7 @@ const skills = {
                 },
                 async content(event, trigger, player) {
                     let { result } = await player.chooseButton(['阵党:请重置任意张武将牌', [player.storage.dz_rbk_zhengdang.wen.concat(player.storage.dz_rbk_zhengdang.wu), 'character']], true, [1, player.storage.dz_rbk_zhengdang.wen.concat(player.storage.dz_rbk_zhengdang.wu).length]);
-                    if (result.bool) {
+                    if (result.links?.length) {
                         let character = result.links,
                             characters = [];
                         for (var i of character) {

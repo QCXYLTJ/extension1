@@ -2504,7 +2504,7 @@ game.addMode(
                             });
                     }
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         if (result.targets != '') {
                             if (player.identity == 'fan') {
                                 player.line(result.targets[0], 'green');

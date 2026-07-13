@@ -3597,7 +3597,7 @@ export default function () {
                                         if (result.bool && game.roundNumber % 2 != 0) {
                                             event.targets = result.targets;
                                             event.num = 0;
-                                        } else if (result.bool) {
+                                        } else if (result.targets?.length) {
                                             game.asyncDraw(result.targets);
                                             event.finish();
                                         }
@@ -3679,7 +3679,7 @@ export default function () {
                                                 return get.attitude(player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             game.asyncDraw(result.targets, 2);
                                             event.targets = result.targets;
                                             trigger.num -= event.targets.length;
@@ -3832,7 +3832,7 @@ export default function () {
                                             })
                                             .set('judging', trigger.player.judging[0]);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.respond(result.cards, 'highlight', 'yue_leitingshengtang_gp', 'noOrdering');
                                         } else {
                                             event.finish();
@@ -4016,7 +4016,7 @@ export default function () {
                                                 return get.attitude(player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             game.asyncDraw(result.targets, 2);
                                             event.targets = result.targets;
                                             trigger.num -= event.targets.length;
@@ -5441,7 +5441,7 @@ export default function () {
                                     })
                                     .set('targets', trigger.targets);
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     if (event.isMine()) {
                                         event.finish();
@@ -6082,7 +6082,7 @@ export default function () {
                                             })
                                             .set('targets', trigger.targets);
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             if (event.isMine()) {
                                                 event.finish();
@@ -6447,7 +6447,7 @@ export default function () {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -6510,7 +6510,7 @@ export default function () {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player, true);
                                 }
                             },
@@ -8010,7 +8010,7 @@ export default function () {
                                     return 5 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target, 'giveAuto');
                                 } else {
                                     target.damage('nocard');
@@ -8952,7 +8952,7 @@ export default function () {
                                     .set('targets', trigger.targets)
                                     .set('card', trigger.card);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -9930,7 +9930,7 @@ export default function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         result.targets[i].damage();
                                     }
@@ -10169,7 +10169,7 @@ export default function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         result.targets[i].damage('fire');
                                     }
@@ -11317,7 +11317,7 @@ export default function () {
                                         return 10 - get.value(card);
                                     };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.source.gain(result.cards, player, 'giveAuto');
                                     game.log(player, '令', trigger.source, '即将造成的伤害增加了1点');
                                     trigger.num++;
@@ -11519,7 +11519,7 @@ export default function () {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -13760,7 +13760,7 @@ export default function () {
                                         return 10 - get.value(card);
                                     };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, player, 'giveAuto');
                                     trigger.player.damage();
                                 }
@@ -13804,7 +13804,7 @@ export default function () {
                                 ('step 2');
                                 trigger.player.chooseCard('he', true, '〖焦骨牡丹〗:将一张牌交给' + get.translation(player));
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, trigger.player);
                                     trigger.player.$giveAuto(result.cards, player, true);
                                 }
@@ -15231,7 +15231,7 @@ export default function () {
                                     })
                                     .setHiddenSkill(event.name);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.useCard({ name: 'sha' }, result.cards, false, trigger.player, 'jj_fengkuangzuanshi');
                                 }
                             },
@@ -16202,7 +16202,7 @@ export default function () {
                                             });
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.addToExpansion(result.links, player, 'give').gaintag.add('jj_shouchengzhe');
                                         }
                                         ('step 3');
@@ -16230,7 +16230,7 @@ export default function () {
                                             return get.value(button.link, _status.event.player, 'raw');
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.addToExpansion(result.links, player, 'give').gaintag.add('jj_shouchengzhe');
                                         }
                                         ('step 3');
@@ -16296,7 +16296,7 @@ export default function () {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'fg_guidao', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -16939,7 +16939,7 @@ export default function () {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -17310,7 +17310,7 @@ export default function () {
                                         return -get.attitude(player, target) && !target.hasSkill('xinleiji');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         result.targets[i].addTempSkill('dswn_canhuang_2', { player: 'damageAfter' });
                                     }
@@ -19312,7 +19312,7 @@ export default function () {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'thunder');
                                             var targets = result.targets;
                                             for (const i of targets) i.damage();
@@ -19448,7 +19448,7 @@ export default function () {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var list = result.links;
                                     game.addVideo('skill', player, ['mnbq_jiwu', [list]]);
                                     game.broadcastAll(function (list) {
@@ -23128,7 +23128,7 @@ export default function () {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     game.asyncDraw(result.targets);
                                 }
                             },
@@ -23848,7 +23848,7 @@ export default function () {
                                     game.log(player, '对', result.targets, '使用了【正义】');
                                     event.targets = result.targets;
                                     event.num = 0;
-                                } else if (result.bool) {
+                                } else if (result.targets?.length) {
                                     game.log(player, '对', result.targets, '使用了【强权】');
                                     result.targets[0].damage('nocard');
                                     player.changeZhuanhuanji('c1999_chugedeshengpanguan');
@@ -24759,7 +24759,7 @@ export default function () {
                                             })
                                             .set('targets', trigger.targets);
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             if (event.isMine()) {
                                                 event.finish();
@@ -25343,7 +25343,7 @@ export default function () {
                                                 return true;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player.draw(player.getExpansions('gcghyly_moqiang').length + 1);
                                         } else event.finish();
@@ -26447,7 +26447,7 @@ export default function () {
                                         return false;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var nums = result.targets.length;
                                     lib.skill.dmb_shoupaishangxian.change(player, -nums);
                                     game.asyncDraw(result.targets);
@@ -26577,7 +26577,7 @@ export default function () {
                                     target.chooseCard('he', [1, num], true, '请重铸至多' + num + '张牌', lib.filter.cardRecastable);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.recast(result.cards);
                                 }
                                 ('step 3');
@@ -28386,7 +28386,7 @@ export default function () {
                                         });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     player.line(targets, 'thunder');
                                     for (const i of targets) i.damage('thunder', 'nocard');
@@ -28666,7 +28666,7 @@ export default function () {
                                                 return get.effect(target, evt.card, player, player);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                         } else event.finish();
                                         ('step 2');
@@ -29802,7 +29802,7 @@ export default function () {
                                             return 0;
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player.addTempSkill('zjjc_tianyuyuzhan_cishu');
                                             trigger.targets.length = 0;
@@ -30480,7 +30480,7 @@ export default function () {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {
@@ -31147,7 +31147,7 @@ export default function () {
                                             })
                                             .set('targets', trigger.targets);
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             if (event.isMine()) {
                                                 event.finish();
@@ -31302,7 +31302,7 @@ export default function () {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     if (player.storage.zewg_wange == 1) {
                                         player.useCard({ name: 'taoyuan' }, targets, false);
@@ -33193,7 +33193,7 @@ export default function () {
                                             }
                                         }
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             target.give(result.cards, player);
                                         }
                                     },
@@ -33290,7 +33290,7 @@ export default function () {
                                 ('step 2');
                                 target.chooseCard('he', true, '〖神之眼〗:将一张牌交给' + get.translation(player));
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, target);
                                     target.$giveAuto(result.cards, player, true);
                                     event.finish();
@@ -33330,7 +33330,7 @@ export default function () {
                                     return true;
                                 });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var links = result.links.slice();
                                     if (get.owner(links[0]) != player) links.reverse();
                                     var card1 = links[0],

@@ -228,7 +228,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             return 5;
           });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var targets = result.targets.slice(0);
             while (targets.length) {
               var target = targets.shift();
@@ -917,7 +917,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             next.filterCard = lib.filter.cardDiscardable;
           }
           ('step 3');
-          if (result.bool) {
+          if (result.cards?.length) {
             event.current.useSkill('duwu', result.cards, [player]);
             event.goto(2);
           } else {
@@ -993,7 +993,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           var next = player.chooseToDiscard([1, Infinity]);
           get.evtprompt(next, get.prompt('gl_yingyong', trigger.player));
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             trigger.player.recover(result.cards.length);
           }
         },
@@ -1588,7 +1588,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             player.chooseButton(dialog, [1, trigger.player.maxHp - trigger.player.hp]);
           }
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             trigger.player.removeSkill(result.links);
             trigger.player.recover(result.links.length);
             if (result.links.length >= 3 && trigger.source) {
@@ -1641,7 +1641,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             return num + get.damageEffect(player, player);
           });
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             trigger.player.gain(result.links, 'gain2', 'log');
             var num = 0;
             for (const i of result.links) {

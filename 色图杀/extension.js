@@ -3669,7 +3669,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('damaged', damaged);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     result.targets[0].damage();
                                 }
@@ -4891,7 +4891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('donghuangzhong'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     event.target = result.targets[0];
                                 } else {
@@ -8923,7 +8923,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, 'giveAuto', trigger.player);
                                 } else {
                                     trigger.player.loseHp();
@@ -10222,7 +10222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {
@@ -16574,7 +16574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -19313,7 +19313,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('targets', trigger.targets)
                                     .set('card', trigger.card);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -19767,7 +19767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -21088,7 +21088,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.damage(result.targets);
                                 }
                             },

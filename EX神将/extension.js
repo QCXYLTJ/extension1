@@ -1784,7 +1784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'juedou' }, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'juedou' }, result.targets, false);
                                 }
                             },
@@ -2042,7 +2042,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     event.target = result.targets[0];
                                     player.discardPlayerCard(event.target, 'h', true).ai = get.buttonValue;
@@ -3069,7 +3069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('aicheck', check);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.gainMultiple(result.targets);
                                     player.gainMultiple(result.targets);
                                     player.gainMultiple(result.targets);
@@ -3439,7 +3439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -4796,7 +4796,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'exguidao', 'highlight', 'noOrdering');
                                 }
                                 ('step 2');
@@ -4905,7 +4905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -4919,7 +4919,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.current.lose(result.links, ui.special);
                                     let list = ['exxiansip'];
                                     event.current.gain(game.createCard(list.randomGet()));
@@ -6811,7 +6811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -6946,7 +6946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link.suit == 'heart';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links);
                                     player.$draw(result.links);
                                 }
@@ -7285,7 +7285,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'guidao', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -8438,7 +8438,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {

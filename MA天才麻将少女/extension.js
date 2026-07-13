@@ -1011,7 +1011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (const i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -1337,7 +1337,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {
@@ -1513,7 +1513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return true;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             trigger.player.damage();
                                         } else event.finish();
@@ -1938,7 +1938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.togive = result.links.slice(0);
                                     player
                                         .chooseTarget('将' + get.translation(result.links) + '交给一名角色', true, function (card, player, target) {
@@ -1958,7 +1958,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     for (let i = 0; i < event.togive.length; i++) {
                                         event.cards.remove(event.togive[i]);
@@ -3057,7 +3057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) < 0;
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     player.chooseToCompare(targets).set('callback', function () {
                                         if (event.num1 > event.num2) {
@@ -3230,7 +3230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '是否发动〖看破〗？',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     result.targets[0].addTempSkill('baiban');
                                     player.addTempSkill('masaki_kanpo_buff');
@@ -4056,7 +4056,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 12 - get.value(card);
                                         });
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var cs = result.cards;
                                             player.addToExpansion(cs, player, 'give').gaintag.add('masaki_diaoshi');
                                         }
@@ -4124,7 +4124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 2 + Math.random();
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             result.links.forEach(function (card) {
                                                 player.loseToDiscardpile(card);
                                             });
@@ -5139,7 +5139,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards.removeArray(result.links);
                                     event.togive = result.links.slice(0);
                                     player
@@ -5434,7 +5434,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('saki_yizhong');
                                 }
                             },
@@ -5470,7 +5470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links);
                                             player.draw(2);
                                             if (trigger.target != player) {
@@ -5934,7 +5934,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             next.set('goon', true);
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             target.give(result.cards, player);
                                         }
                                     },
@@ -6225,7 +6225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'masaki_shendao1', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -6301,7 +6301,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'masaki_shendao2', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -6695,7 +6695,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         player.discardPlayerCard(result.targets[i], 'he', true);
                                     }

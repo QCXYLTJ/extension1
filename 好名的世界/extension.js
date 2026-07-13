@@ -160,7 +160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, player, 'giveAuto');
                                 }
                             },
@@ -773,7 +773,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(_status.event.player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var targets = result.targets;
                                             targets.add(player);
                                             targets.sortBySeat();
@@ -2844,7 +2844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             target.loseToDiscardpile(result.cards);
                                             target.draw(1 + result.cards.length);
                                         } else {

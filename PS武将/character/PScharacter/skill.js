@@ -1100,7 +1100,7 @@ const skills = {
 						)
 						.set('aicheck', check);
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.gainMultiple(result.targets);
 						trigger.cancel();
 					} else {
@@ -1638,7 +1638,7 @@ const skills = {
 				return -1;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var targets = result.targets.sortBySeat();
 				var length = targets.length;
 				targets.forEach((target) => {
@@ -1731,7 +1731,7 @@ const skills = {
 					2
 				);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var targets = result.targets.sortBySeat();
 				var length = targets.length;
 				targets.forEach((target) => {
@@ -3726,7 +3726,7 @@ const skills = {
 								return 5 - get.value(card);
 							});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.recast(result.cards);
 					}
 				},
@@ -3757,7 +3757,7 @@ const skills = {
 								return 5 - get.value(card);
 							});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.recast(result.cards);
 					}
 				},
@@ -8075,7 +8075,7 @@ const skills = {
 						target.chooseButton(['献贡:请选择你的贡品', target.getExpansions('PSxiangong_cards')], trigger.num, true);
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.target.gain(result.links, 'gain2', 'log');
 					}
 				},
@@ -8893,7 +8893,7 @@ const skills = {
 				.set('boolline', false)
 				.set('delay', num == targets.length - 1);
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.cards.addArray(result.cards);
 			}
 			event.num++;
@@ -8922,7 +8922,7 @@ const skills = {
 				)
 				.setHiddenSkill('PSwu_tuxi');
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets.sortBySeat();
 				var next = game.createEvent('gainMultiple', false);
 				next.player = player;
@@ -9363,7 +9363,7 @@ const skills = {
 						};
 					else event.finish();
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.line(result.targets);
 						result.targets[0].link(true);
 					} else {
@@ -11564,7 +11564,7 @@ const skills = {
 					return true;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(result.links, 'draw');
 			}
 			game.cardsDiscard(event.cards.removeArray(result.links));
@@ -12023,7 +12023,7 @@ const skills = {
 					event.num = skills.length;
 					player.chooseButton(['驭衡:选择失去任意数量个技能,摸等量的牌', [skills, 'vcard']], [1, event.num], false).set('ai', function (button) { });
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						let links = result.links.map((ele) => ele[ele.length - 1]);
 						game.log(player, '失去了以下技能:', '#g' + get.translation(links));
 						player.draw(links.length);
@@ -12147,7 +12147,7 @@ const skills = {
 			('step 1');
 			if (player.isOnline2()) player.send('closeDialog', event.videoId);
 			event.dialog.close();
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(result.links, target, 'giveAuto');
 				player.storage.PSbolan -= Math.min(result.links.length, player.storage.PSbolan);
 				player.storage.PSbolan ? player.markSkill('PSbolan') : player.unmarkSkill('PSbolan');
@@ -12218,7 +12218,7 @@ const skills = {
 				else player.chooseCard('h', true, '选择一张牌作为<权>');
 			} else event.finish();
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				var cs = result.cards;
 				player.addToExpansion(cs, player, 'give').gaintag.add('PSquanshu');
 			}
@@ -12313,7 +12313,7 @@ const skills = {
 				return get.damageEffect(target, player, player);
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var targets = result.targets.sortBySeat();
 				target.line(targets, 'green');
 				for (var i of targets) i.damage('nocard', target);
@@ -13423,7 +13423,7 @@ const skills = {
 				return get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				game.asyncDraw(result.targets);
 			} else event.finish();
 			('step 2');
@@ -13757,7 +13757,7 @@ const skills = {
 				})
 				.set('goon', goon);
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.loseToDiscardpile(result.links);
 				trigger.player.draw(2);
 			}
@@ -13792,7 +13792,7 @@ const skills = {
 				return 1 + 1 / val;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				var suits = result.links.map((i) => i[2].slice(6));
 				player.addTempSkill('PSqingbei_effect', 'roundStart');
 				player.setStorage('PSqingbei_effect', suits);
@@ -14995,7 +14995,7 @@ const skills = {
 				}
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				var choices = result.links.map((i) => i[2]);
 				if (!event.isMine() && !event.isOnline()) game.delayx();
 				var list = [];

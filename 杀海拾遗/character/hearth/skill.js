@@ -389,7 +389,7 @@ const skill = {
 			next.logSkill = "hshuanling";
 			next.delay = false;
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.num = result.cards.length;
 				player.draw(event.num);
 			} else {
@@ -2375,7 +2375,7 @@ const skill = {
 			"step 0";
 			player.chooseCard("h", true, "交给" + get.translation(player.storage.fuhua2) + "一张手牌");
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.storage.fuhua2.gain(result.cards, player);
 				player.$give(result.cards, player.storage.fuhua2);
 				player.line(player.storage.fuhua2, "green");
@@ -2591,7 +2591,7 @@ const skill = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("jinzhou", result.targets);
 				result.targets[0].addTempSkill("fengyin", { player: "phaseAfter" });
 			}
@@ -2673,7 +2673,7 @@ const skill = {
 				event.finish();
 			}
 			"step 5";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(result.links, "gain2");
 			}
 		},
@@ -3245,7 +3245,7 @@ const skill = {
 				},
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: "sha" }, result.cards, result.targets, "yingxi");
 			}
 		},
@@ -3322,7 +3322,7 @@ const skill = {
 				return get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("peiyu", result.targets);
 				var rand = ["tuteng1", "tuteng2", "tuteng3", "tuteng4", "tuteng5", "tuteng6", "tuteng7", "tuteng8"];
 				result.targets[0].addAdditionalSkill("peiyu", ["peiyu2", rand.randomGet()]);
@@ -3834,7 +3834,7 @@ const skill = {
 				event.finish();
 			}
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.target.draw(result.cards.length);
 				player.storage.xianji3 = event.target;
 				player.addSkill("xianji3");
@@ -4320,7 +4320,7 @@ const skill = {
 				return get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("yufa", result.targets);
 				result.targets[0].gain(game.createCard("chuansongmen"), "gain2");
 			}
@@ -4592,7 +4592,7 @@ const skill = {
 				return -get.attitude(player, target) * Math.sqrt(target.countCards("h"));
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("duzhang", result.targets);
 				result.targets[0].addTempSkill("duzhang2", { player: "phaseAfter" });
 			}
@@ -5389,7 +5389,7 @@ const skill = {
 				return num;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("lingzhou", result.targets);
 				result.targets[0].chooseDrawRecover(true);
 			}
@@ -6177,7 +6177,7 @@ const skill = {
 				return 11 - get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("shijie", result.targets);
 				var target = result.targets[0];
 				var card = target.getCards("h").randomGet();

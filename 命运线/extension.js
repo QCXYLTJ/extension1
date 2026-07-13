@@ -2048,7 +2048,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return ui.selected.buttons.length + 2;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var cards = result.links.slice(0);
 									if (Array.isArray(cards))
 										for (var i of cards) {
@@ -2373,7 +2373,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								player.choosePlayerCard(event.targets, 'he', true);
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.addToExpansion(result.cards, event.targets, 'give').gaintag.add('dwbj_luozi');
 									event.cards = result.cards;
 								} else event.finish();
@@ -2542,7 +2542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 13');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards, event.mubiao, 'giveAuto');
 									event.finish();
 								} else {
@@ -3350,7 +3350,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										});
 										('step 2');
-										if (result.bool) {
+										if (result.cards?.length) {
 											var card = result.cards;
 											event.card = card;
 											trigger.player.gain(card, player, 'giveAuto');
@@ -9461,7 +9461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('targets', trigger.targets)
 									.set('card', trigger.card);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -11316,7 +11316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var next = game.me.chooseButton(['选择获得至多三个技能', [list, 'textbutton']]);
 								next.set('forced', true).set('selectButton', [0, 3]);
 								('step 9');
-								if (result.bool) {
+								if (result.links?.length) {
 									var skills = result.links;
 									game.log(game.me, '获得了以下技能:', '#g' + get.translation(skills));
 									player.addSkill(skills.slice(0));

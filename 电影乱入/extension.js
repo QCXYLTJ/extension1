@@ -5960,7 +5960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(card);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.dialog = ui.create.dialog(get.translation(target) + '展示的手牌', result.cards);
                                     event.videoId = lib.status.videoId++;
                                     game.broadcast('createDialog', event.videoId, get.translation(target) + '展示的手牌', result.cards);
@@ -6072,7 +6072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(card);
                                 };
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.dialog = ui.create.dialog(get.translation(trigger.player) + '展示的手牌', result.cards);
                                     event.videoId = lib.status.videoId++;
                                     game.broadcast('createDialog', event.videoId, get.translation(trigger.player) + '展示的手牌', result.cards);
@@ -8666,7 +8666,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         );
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             trigger.target.gain(result.cards, 'gain2');
                                             trigger.parent.directHit.add(trigger.target);
                                         }

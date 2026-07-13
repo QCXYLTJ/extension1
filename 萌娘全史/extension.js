@@ -753,7 +753,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '精治:弃置任意张牌,令一名角色摸等量的牌',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     result.targets[0].draw(result.cards.length);
                                     for (var i of result.cards) {
@@ -2864,7 +2864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         );
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i of result.targets) {
                                         player.useCard(
                                             {
@@ -2982,7 +2982,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '给饷:弃置一张牌,令一名其他角色摸X张牌',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     var num = 1;
                                     var target = result.targets[0];
@@ -3169,7 +3169,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.gain(result.cards, player, 'giveAuto');
                                     event.target.line(event.target_1, 'green');
                                     game.log(event.target, '被指定为给牌的对象');
@@ -4199,7 +4199,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', lib.skill.zhiheng.check)
                                     .set('complexCard', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.storage.hx_jiexing_cnt = result.cards.length;
                                     if (result.cards.length > 1) {
                                         player.draw(result.cards.length - 1);
@@ -4666,7 +4666,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     player.chooseToDiscard(
                                         '拯民:弃置任意数量的非基本牌',
@@ -4788,7 +4788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             };
                                         } else event.finish();
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             target.gain(result.cards, 'gain2');
                                         } else {
                                             player.loseHp();
@@ -5789,7 +5789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             for (var i of result.links) {
                                                 trigger.cards.remove(i);
                                             }
@@ -6488,7 +6488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards);
                                     var card = result.cards[0];
                                     var flag = 0;
@@ -6891,7 +6891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '徼功:弃置一张与判定牌颜色相同的牌,令一名角色获得判定牌',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     result.targets[0].gain(trigger.result.card, 'gain2');
                                     var card1 = trigger.result.card;
@@ -8292,7 +8292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (var i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -8968,7 +8968,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '弃置一张花色或点数与' + get.translation(trigger.cards[0]) + '相同的手牌',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards);
                                     player.discard(result.cards);
                                     player.gain(trigger.cards, 'gain2');
@@ -11856,7 +11856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '整师:重铸手牌中的【杀】',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.lose(cards, ui.discardPile, 'visible');
                                     player.$throw(cards, 1000);
@@ -13036,7 +13036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (event.forced) next.set('forced', true);
                                 ('step 1');
                                 event.result = result;
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line2(result.targets, 'green');
                                     event.targets = result.targets;
                                 } else {
@@ -13595,7 +13595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.target, 'give');
                                 } else {
                                     player.storage.yimeng_map.set(event.target, false);
@@ -13664,7 +13664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '推心:重铸手牌中的一张【杀】',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.lose(cards, ui.discardPile, 'visible');
                                     player.$throw(cards, 1000);
@@ -13846,7 +13846,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.sortBySeat();
                                     event.targets = targets;
                                     event.current = 0;
@@ -13920,7 +13920,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'red');
                                     result.targets[0].damage();
                                     player.addTempSkill('hx_tuxian_temp');

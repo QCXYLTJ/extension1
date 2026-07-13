@@ -2555,7 +2555,7 @@ const skill = {
         });
       }
       ('step 1');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.give(result.cards, trigger.source);
       }
     },
@@ -2925,7 +2925,7 @@ const skill = {
         return number0(num) + 10;
       });
       ('step 2');
-      if (result.bool) {
+      if (result.cards?.length) {
         player.addGaintag(result.cards, '无矩');
       }
     },
@@ -3558,7 +3558,7 @@ const skill = {
         });
       }
       ('step 2');
-      if (result.bool) {
+      if (result.targets?.length) {
         for (const E of result.targets) {
           player.useCard({ name: 'sha' }, E, false).血莲 = true;
         }
@@ -4564,7 +4564,7 @@ const skill = {
               });
           }
           ('step 2');
-          if (result.bool) {
+          if (result.targets?.length) {
             trigger.targets.addArray(result.targets);
             game.log(get.translation(result.targets), '成为了额外目标');
           }

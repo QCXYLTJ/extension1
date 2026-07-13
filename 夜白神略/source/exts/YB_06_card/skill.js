@@ -1185,7 +1185,7 @@ const skill = {
 					return true;
 				});
 			('step 2');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2', 'log');
 			}
 		},
@@ -4308,7 +4308,7 @@ const skill = {
 				true,
 			);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards, trigger.player);
 				trigger.player.$give(1, player);
 			}
@@ -4410,7 +4410,7 @@ const skill = {
 				return 0;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let num = result.cards.length;
 				const cnum = get.cnNumber(num);
 				event.num = num;
@@ -4820,7 +4820,7 @@ const skill = {
 				}
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.respond(result.cards, 'highlight');
 			} else {
 				event.finish();
@@ -5596,7 +5596,7 @@ const skill = {
 				return -get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 				event.num = 0;
 			} else {
@@ -6909,7 +6909,7 @@ const skill = {
 				return get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				game.asyncDraw(result.targets);
 			}
 		},
@@ -8364,7 +8364,7 @@ const skill = {
 				allowChooseAll: true,
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				trigger.targets.addArray(result.targets);
 			}
@@ -8443,7 +8443,7 @@ const skill = {
 				target.chooseCard('he', true, '将一张牌交给' + get.translation(player));
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards, target, 'give');
 			}
 		},
@@ -8694,7 +8694,7 @@ const skill = {
 				return get.effect(target, { name: 'sha' }, player);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: 'sha' }, result.targets, false);
 			}
 		},

@@ -1658,7 +1658,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.addSkill('zmfenghouqimen_3');
                                 player.addSkill('zmfenghouqimen_4');
                                 player.addSkill('bagua_skill');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.targets = result.targets;
                                     event.num2 = 0;
@@ -2079,7 +2079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -1;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             var num = result.cards.length;
                                             trigger.player.loseHp(num);
                                         }
@@ -3068,7 +3068,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         );
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                             player.line(event.targets, 'thunder');
                                         } else {
@@ -4592,7 +4592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('zmheizhishenghaibu'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.num = result.cards.length;
                                     var target = result.targets[0];
                                     player.discard(result.cards);

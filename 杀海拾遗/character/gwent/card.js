@@ -572,7 +572,7 @@ const card = {
 				return 9 - get.value(card);
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.draw(2 * result.cards.length);
 			}
 			player.skip("phaseDiscard");
@@ -894,7 +894,7 @@ const card = {
 					return get.value(button.link);
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				event.list = result.links.slice(0);
 				for (var i = 0; i < event.cards.length; i++) {
 					if (!event.list.includes(event.cards[i])) {

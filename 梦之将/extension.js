@@ -487,7 +487,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + 1 / val;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var suits = result.links.map((i) => i[2].slice(6));
                                     player.addTempSkill('genm_qingbei_effect', 'roundStart');
                                     player.setStorage('genm_qingbei_effect', suits);
@@ -661,7 +661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     player.gainMultiple(result.targets);
                                     if (result.targets.length == 1) player.draw();
@@ -1094,7 +1094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     event.targets = result.targets;
                                 } else {
@@ -1109,7 +1109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, event.current, 'give').gaintag.add('genm_meng_xiansi');
                                     event.goto(2);
                                 }
@@ -1348,7 +1348,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     event.targets = targets;
                                     if (targets[0].group != 'shu' || targets[0].hp < player.hp || targets[0] == player) targets.reverse();
@@ -1862,7 +1862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att / 3;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].drawTo(Math.min(5, player.countCards('h')));
                                     }
@@ -2537,7 +2537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(_status.event.player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     targets.sortBySeat();
                                     player.line(targets);
@@ -5519,7 +5519,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('goon', get.attitude(player, trigger.target) <= 0);
                                 next.set('forceAuto', true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     var target = trigger.target;
                                     target.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('genm_pojun'); //QQQ
@@ -5741,7 +5741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('targets', trigger.targets)
                                             .set('card', trigger.card);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                         } else {
                                             event.finish();
@@ -6189,7 +6189,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('card', trigger.card)
                                     .set('targets', trigger.targets);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -6881,7 +6881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('targets', trigger.targets)
                                     .set('card', trigger.card);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 }
                                 ('step 2');
@@ -7178,7 +7178,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards, get.translation(player) + '发动了【照骨镜】');
                                     var card = {
                                         name: result.cards[0].name,

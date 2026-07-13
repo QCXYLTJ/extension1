@@ -531,7 +531,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('multitarget', true)
 									.set('targetprompt', ['被移走', '移动目标']);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line2(result.targets, 'green');
 									event.targets = result.targets;
 								} else event.finish();
@@ -904,7 +904,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 3');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.gain(result.links, 'log', 'gain2');
 								}
 							},
@@ -1413,7 +1413,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									else event._result = { bool: false };
 								} else event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									trigger.player.give(result.cards, player);
 								} else {
 									trigger.player.loseHp();
@@ -2409,7 +2409,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 7 - get.value(card);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var num = result.cards.length;
 									game.log(trigger.card, '需要额外使用', get.cnNumber(num), '张', '#y【闪】', '来抵消');
 									for (var target of trigger.targets) {

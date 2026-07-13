@@ -45,7 +45,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return true;
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						var cards = result.links || [];
 						var skillname = 'scqhGu_lengyan_fengyin';
 						target.addGaintag(cards, skillname);

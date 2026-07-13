@@ -503,7 +503,7 @@ export async function precontent() {
                     })
                     .forResult()
                 : { bool: true, targets: targets };
-        if (result.bool) {
+        if (result.targets?.length) {
             const targetx = result.targets.sortBySeat();
             player.line(targetx);
             player.addSkill('Europa_shenluodiguo_WatingForKing');

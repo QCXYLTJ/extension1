@@ -590,7 +590,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'yydqrzd-eozy');
                                 } else {
                                     event.finish();
@@ -1292,7 +1292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets, [event.cards1], false);
                                     event.cards.remove(event.cards1);
                                     event.goto(1);
@@ -2222,7 +2222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     if (result.targets.length == 1) {
                                         event.targets[0].draw();
@@ -2459,7 +2459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.target);
                                     event.target.$give(result.cards, player);
                                 } else {
@@ -4115,7 +4115,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[[0]];
                                     player.chooseCard('h', true, '用一张手牌替换' + get.translation(event.card)).ai = function (card) {
                                         return -get.value(card);
@@ -4220,7 +4220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     true
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, trigger.player);
                                     trigger.player.$give(1, player);
                                     player.say('我是一切的征服者,不管对谁.');
@@ -5260,7 +5260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                 } else {
                                     event.finish();
@@ -5597,7 +5597,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         trigger.targets.remove(result.targets[i]);
                                     }
@@ -5695,7 +5695,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择要送人的卡牌',
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                     event.given += result.cards.length;
@@ -6004,7 +6004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     player.line(trigger.player);
                                     trigger.player.judge(function (card) {
@@ -6191,7 +6191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.bool && !event.isMine()) {
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     result.targets[0].damage('fire');
                                     player.say('我还在等待,花落花开.');
@@ -6471,7 +6471,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         trigger.targets.push(result.targets[i]);
                                         game.log(result.targets[i], '成为了额外目标');

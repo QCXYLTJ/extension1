@@ -1887,7 +1887,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 6 - get.value(card);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.$give(result.cards, player, false);
 									game.log(player, '将', result.cards, '置于武将牌上');
 									if (!player.storage.xwj_xsanguo_naxian) {
@@ -1963,7 +1963,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.cards = [];
 								player.chooseCardButton(get.translation('xwj_xsanguo_zexu'), player.storage.xwj_xsanguo_naxian, [1, Math.min(game.players.length - 1, player.storage.xwj_xsanguo_naxian.length)]);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									for (var i of result.links) {
 										event.cards.push(i);
 									}
@@ -2018,7 +2018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 7');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -2057,7 +2057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 12');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.targets[event.num].discard(result.cards);
 									event.num++;
 									event.goto(11);
@@ -2288,7 +2288,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								);
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -3878,7 +3878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.$give(result.cards, target);
 									player.lose(result.cards, ui.special);
 									target.storage.xwj_xsanguo_huanji_1 = result.cards;
@@ -4880,7 +4880,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 								} else {
 									event.finish();
@@ -6196,7 +6196,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								var chat = ['斑,住手!我们是朋友!', '千手神通'].randomGet();
 								player.say(chat);
-								if (result.bool) {
+								if (result.targets?.length) {
 									for (var i = 0; i < result.targets.length; i++) {
 										trigger.targets.remove(result.targets[i]);
 									}
@@ -8019,7 +8019,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									player.useCard({ name: 'sha' }, result.targets, false);
 									var chat = ['作为一名忍者,暗杀是一种手段,也是一种生存方式', '我叫桃地再不斩,以无声杀人术闻名于忍界'].randomGet();
@@ -8523,7 +8523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									)
 									.set('aicheck', check);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 									event.targets.sort(lib.sort.seat);
 									trigger.untrigger();
@@ -9287,7 +9287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									event.target = result.targets[0];
 									player.discardPlayerCard(event.target, 'he', true).ai = get.buttonValue;
@@ -10797,7 +10797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.card = result.links[[0]];
 									player.chooseCard('h', true, '用一张手牌替换' + get.translation(event.card)).ai = function (card) {
 										return -get.value(card);

@@ -419,7 +419,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return player != target;
         });
         "step 1";
-        if (result.bool) {
+        if (result.targets?.length) {
           var targets = result.targets.sortBySeat();
           player.removeMark('xxczhuguang', targets.length);
           for (var i = 0; i < targets.length; i++) {
@@ -576,7 +576,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               return get.effect(target, { name: 'sha', nature: 'thunder' }, player, player);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.removeMark('xxczhuguang', result.targets.length);
               player.addTempSkill('xxcyingwu_reward', 'xxcyingwu_effectAfter');
               player.useCard({

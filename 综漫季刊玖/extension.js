@@ -556,7 +556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var links = result.links;
                                     player.discard(result.links);
                                 }
@@ -856,7 +856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, _status.event.player, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     if (result.targets[0] == player) {
                                         if (player.storage.zmronghelu != 0) {
@@ -899,7 +899,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.tr.$give(result.cards, player);
                                     player.gain(result.cards, event.tr);
                                     event.tr.useCard({ name: 'tao', number: 13 }, event.tr, false);
@@ -1179,7 +1179,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.value(button.link);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.suit = result.links[1].suit;
                                     player.lose(result.links[1]);
                                     player.gain(result.links[0]);
@@ -4255,7 +4255,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     game.playzm9('zmqiangweiliequan0');
                                     if (Math.random() <= 0.5) {
@@ -4493,7 +4493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     result.targets[0].draw();
                                 } else event.finish();
@@ -5533,7 +5533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 7 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.useCard({ name: 'sha', nature: 'fire' }, result.cards, trigger.player);
                                 }
                             },
@@ -5776,7 +5776,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.discard(result.links);
                                     game.playzm9('zmqianqiu');
                                     game.mp429('zmqianqiu');
@@ -5829,7 +5829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, trigger.card, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'thunder');
                                     game.playzm9(['zmxiluona'].randomGet());
                                     game.mp429('zmxiluona');
@@ -6396,7 +6396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.source.$give(result.cards, player);
                                     player.gain(result.cards, trigger.source);
                                 }
@@ -6459,7 +6459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.showCards(result.cards);
                                     var num0 = event.card1.number + 1;
                                     event.card1.init([event.card1.suit, num0, event.card1.name]);

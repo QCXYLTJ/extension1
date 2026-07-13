@@ -2652,7 +2652,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         });
                     ('step 2');
                     var target = event.target;
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.gain(result.cards);
                         target.$give(result.cards, player);
                     } else {

@@ -1658,7 +1658,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, target) <= 0;
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var targed = result.targets;
 								player.addMark('scqh_pcr_腥红之月', 1, false);
 								player.useCard(
@@ -1725,7 +1725,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, target) <= 0;
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var targed = result.targets;
 								if (trigger.player != player && player.canUse('juedou', trigger.player, false)) {
 									targed.push(trigger.player);
@@ -1766,7 +1766,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, target) <= 0;
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var targed = result.targets;
 								player.addMark('scqh_pcr_腥红之月', 1, false);
 								player.useCard(
@@ -1811,7 +1811,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return get.attitude(player, target) <= 0;
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var targed = result.targets;
 								var num = player.countMark('scqh_pcr_腥红之月') - 1;
 								player.removeMark('scqh_pcr_腥红之月', num, false);
@@ -2955,7 +2955,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets;
 									player.discard(result.cards);
 								} else event.finish();
@@ -3420,7 +3420,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return target != player;
 					});
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var targed = result.targets;
 						for (var i = 0; i < targed.length; i++) {
 							targed[i].draw();
@@ -3503,7 +3503,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							return 5 - get.value(card);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						var cardz = result.cards;
 						player.loseToDiscardpile(cardz);
 						player.draw(cardz.length);

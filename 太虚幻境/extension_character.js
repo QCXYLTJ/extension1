@@ -2758,7 +2758,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.set('judging', trigger.player.judging[0]);
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.respond(result.cards, 'highlight', 'txhj_didun', 'noOrdering');
 					} else {
 						event.finish();
@@ -3028,7 +3028,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 6 - get.value(card);
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						var cards = result.cards;
 						player.draw(1, true);
 						player.addTempSkill('txhj_xiefeng_miss', { player: 'die' });
@@ -6856,7 +6856,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return -get.attitude(player, target);
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.targets = result.targets;
 						event.num = 0;
 					} else {
@@ -6920,7 +6920,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						result.targets[0].damage();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						result.cards.forEach((i) => (get.type(i) === 'basic' ? player.recover() : trigger.source.damage()));
 					}
 				},
@@ -7452,7 +7452,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.effect(target, { name: 'sha' }, player);
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.useCard({ name: 'sha' }, result.targets, false);
 					}
 				},
@@ -8169,7 +8169,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 0;
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						trigger.target.gain(result.cards, trigger.player, 'giveAuto');
 					} else trigger.target.draw(2);
 				},
@@ -8809,7 +8809,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							else return false;
 						});
 					('step 3');
-					if (result.bool) {
+					if (result.cards?.length) {
 						event.mubiao[event.count].give(result.cards, player) && player.storage.taixu_mouzhu++;
 						if (typeof event.mubiao[event.count].ai.shown == 'number' && event.mubiao[event.count].ai.shown < 0.95) {
 							event.mubiao[event.count].ai.shown += 0.3;
@@ -10087,7 +10087,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.goto(2);
 							}
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								event.list.gain(result.cards, player, 'giveAuto');
 							}
 							('step 2');
@@ -14086,7 +14086,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.effect(target, { name: 'wanjian' }, player);
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.useCard({ name: 'wanjian' }, result.targets, false);
 						player.useCard({ name: 'wanjian' }, result.targets, false);
 					}
@@ -14180,7 +14180,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.effect(target, { name: 'juedou' }, player);
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.useCard({ name: 'juedou' }, result.targets, false);
 					}
 				},
@@ -14237,7 +14237,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.setHiddenSkill(event.name);
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.give(result.cards, trigger.source);
 					} else event.finish();
 					('step 2');
@@ -14309,7 +14309,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return get.attitude(player, target);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						game.asyncDraw(result.targets);
 					}
 				},
@@ -14725,7 +14725,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							} else if (event.cards.length == 1) event._result = { links: event.cards.slice(0), bool: true };
 							else event.finish();
 							('step 3');
-							if (result.bool) {
+							if (result.links?.length) {
 								event.cards.removeArray(result.links);
 								event.togive = result.links.slice(0);
 								player
@@ -16514,7 +16514,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.value(card);
 					});
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						target.discard(result.links.slice(0));
 						var qbx = [];
 						if (result.links.slice(0).length > 1) qbx = '或与' + get.translation(result.links[1]);
@@ -17276,7 +17276,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return Math.max(9 - get.value(card), card.number);
 					});
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						if (result.cards.length > 2) {
 							if (player.storage.boss_danshi == '' || player.storage.boss_danshi == undefined) player.storage.boss_danshi = 1;
 							else player.storage.boss_danshi++;
@@ -17471,7 +17471,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 4');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.gain(result.cards, event.mubiao2, 'giveAuto');
 					}
 				},
@@ -17830,7 +17830,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						.set('targets', trigger.targets)
 						.set('card', trigger.card);
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.targets = result.targets;
 					} else event.finish();
 					('step 2');

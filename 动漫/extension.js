@@ -658,7 +658,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择要送人的卡牌',
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                     event.given += result.cards.length;
@@ -1478,7 +1478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     game.asyncDraw(result.targets);
                                 }
                             },
@@ -1504,7 +1504,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     game.asyncDraw(result.targets);
                                 }
                             },
@@ -1582,7 +1582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     event.target = result.targets[0];
                                     player.discardPlayerCard(event.target, 'he', true).ai = get.buttonValue;
@@ -1626,7 +1626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('将一张<淫>置入弃牌堆', player.storage.yinluan, true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.$throw(result.links);
                                     var card = result.links[0];
                                     game.cardsDiscard(card);
@@ -2601,7 +2601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseToDiscard('h', 2, true);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.storage.nzry_chenglve1 = result.cards;
                                     player.addTempSkill('nzry_chenglve1', { player: 'phaseAfter' });
                                 }
@@ -3969,7 +3969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'dmyanling', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -4646,7 +4646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, 'giveAuto', trigger.source);
                                 } else {
                                     trigger.source.loseHp();
@@ -5652,7 +5652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     game.asyncDraw(result.targets);
                                 }
                             },

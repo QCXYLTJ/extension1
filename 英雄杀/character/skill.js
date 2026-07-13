@@ -426,7 +426,7 @@ const skill = {
 				prompt: "将得到的一张牌交给一名其他角色，或点取消",
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.line(result.targets, "green");
 				result.targets[0].gain(result.cards, player);
 				player.$give(result.cards.length, result.targets[0]);
@@ -516,7 +516,7 @@ const skill = {
 				prompt: "请选择要送人的卡牌",
 			});
 			"step 3";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.line(result.targets, "green");
 				result.targets[0].gain(result.cards, player);
 				player.$give(result.cards.length, result.targets[0]);
@@ -550,7 +550,7 @@ const skill = {
 					return 0.5 - get.attitude(_status.event.player, target);
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("yaoyi", result.targets);
 				event.targets = result.targets;
 			} else {
@@ -2244,7 +2244,7 @@ const skill = {
 			};
 			player.removeSkill("wange2");
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 				player.logSkill("wange", result.targets);
 			} else {

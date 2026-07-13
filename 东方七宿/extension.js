@@ -1123,7 +1123,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var num = player.hp;
                                 player.chooseTarget(get.prompt2('请选择目标'), [1, num]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     event.targets = result.targets;
                                 } else {
@@ -1333,7 +1333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.gain(cards, event.target, 'give');
                                 }
@@ -3885,7 +3885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, player, player) >= 0 ? -1 : 9 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     targets[0].give(result.cards, player, 'give');
                                     event.finish();
                                 } else {
@@ -5070,7 +5070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget(true, '选择' + num + '名角色', [0, num]);
                                 }
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.players = result.targets;
                                     if (event.players.length) {
                                         var current = event.players.shift();
@@ -6128,7 +6128,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     ui.cardPile.insertBefore(i, ui.cardPile.childNodes[get.rand(ui.cardPile.childElementCount)]);
                                 }
                                 game.updateRoundNumber();
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards, player, 'give');
                                     event.card = result.cards[0];
                                 } else event.finish();
@@ -8379,7 +8379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'dfqx_guicai', 'highlight', 'noOrdering');
                                 } else {
                                     event.finish();

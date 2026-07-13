@@ -4366,7 +4366,7 @@ export default async function () {
                                 return 20 - val;
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             game.log(player, '将', result.links, '置于弃牌堆');
                             player.$throw(result.links, 1000);
                             player.storage.radiance_bofa.remove(result.links[0]);
@@ -4861,7 +4861,7 @@ export default async function () {
                                 });
                         } else event.finish();
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.line(result.targets, 'key');
                             result.targets[0].recover(player, 'nocard');
                             player.addTempSkill('radiance_jiena_used');
@@ -5012,7 +5012,7 @@ export default async function () {
                                 return 0;
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets;
                             trigger.parent.targets.remove(player);
                             trigger.parent[trigger.name == 'useCardToTarget' ? 'triggeredTargets2' : 'triggeredTargets1'].remove(player);
@@ -5926,7 +5926,7 @@ export default async function () {
                             };
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.gain(result.links, 'draw2', 'log');
                         } else {
                             player.draw();
@@ -6293,7 +6293,7 @@ export default async function () {
                         event.dialog.close();
                         event.bool1 = false;
                         event.bool2 = false;
-                        if (result.bool) {
+                        if (result.links?.length) {
                             for (var i of result.links) {
                                 var index = i + 1;
                                 event['bool' + index] = true;
@@ -8154,7 +8154,7 @@ export default async function () {
                                 return Math.max(1, 10 - get.value(card));
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.addToExpansion(result.cards).gaintag.add('radiance_moou');
                             event.finish();
                         } else {
@@ -8585,7 +8585,7 @@ export default async function () {
                             event.goto(5);
                         }
                         ('step 4');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.gain(result.links, 'draw2');
                         }
                         ('step 5');
@@ -9045,7 +9045,7 @@ export default async function () {
                                 if (get.attitude(_status.event.player, _status.event.parent.player) > 1) return 6 - get.useful(card);
                                 return 0;
                             });
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 await current.give(result.cards, player, false);
                                 if (!player.isDamaged()) break;
                             }
@@ -10035,7 +10035,7 @@ export default async function () {
                             })
                             .set('prompt', '威迫:选择至多三张伤害牌并展示');
                         ('step 2');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.showCards(result.cards);
                             var num = result.cards.length;
                             player.addGaintag(result.cards, 'radiance_weipo');
@@ -13121,7 +13121,7 @@ export default async function () {
                         }
                         ('step 2');
                         player.addTempSkill('radiance_modao_db', 'phaseUseEnd');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.storage.radiance_modao_db = result.targets.slice(0);
                         }
                     },
@@ -13989,7 +13989,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 5');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.gain(result.links, 'gain2', 'log');
                         }
                     },
@@ -16166,7 +16166,7 @@ export default async function () {
                         let { result } = await target.chooseCardButton(cards, [1, 2], true, '获得至多两张本回合被弃置装备或♥️️牌').set('ai', function (button) {
                             return get.value(button.link, _status.event.player);
                         });
-                        if (result.bool) {
+                        if (result.links?.length) {
                             bool = result.links.includes(event.cost_data);
                             cards = result.links.slice(0);
                             await target.gain(result.links, 'gain2');
@@ -16887,7 +16887,7 @@ export default async function () {
                             let { result } = await player.choosePlayerCard(target, 'h', true, '选择展示' + get.translation(target) + '的一张牌', function (button) {
                                 return lib.filter.canBeDiscarded(button.link, _status.event.player, get.owner(button.link));
                             });
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 await player.showCards(result.cards, get.translation(player) + '展示' + get.translation(target) + '的牌');
                                 map[result.cards[0].cardid] = [target, result.cards];
                                 game.asyncDelay(0.3);
@@ -16917,7 +16917,7 @@ export default async function () {
                                     return false;
                                 return true;
                             });
-                        if (result.bool) {
+                        if (result.links?.length) {
                             let cards = result.links.slice(0);
                             player.addTempSkill('radiance_yugao_gain');
                             player.storage.radiance_yugao_gain.addArray(cards);
@@ -17217,7 +17217,7 @@ export default async function () {
                             .set('target', target);
                         if (event.bool) next.set('visible', true);
                         ('step 4');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             var num = result.cards.length;
                             if (event.bool) num = 2;
                             var togain = 0;
@@ -17911,7 +17911,7 @@ export default async function () {
                                 .set('ai', function (target) {
                                     return (get.attitude(_status.event.player, target) - 1) * (target.hp * 2 + target.countCards('h'));
                                 });
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 game.log(result.targets, '获得了', 'radiance_fengqi');
                                 player.line(result.targets, 'green');
                                 await result.targets[0].addSkill('radiance_fengqi');
@@ -18441,7 +18441,7 @@ export default async function () {
                                     return val * base;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'draw', 'log');
                                     trigger.num -= 1;
                                 }
@@ -19086,7 +19086,7 @@ export default async function () {
                             });
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets.slice(0);
                             event.targets.sort(lib.sort.seat);
                             player.line(event.targets, 'green');
@@ -19313,7 +19313,7 @@ export default async function () {
                             return 10 - get.alteredValue(card);
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.give(result.cards, player, false);
                         }
                         ('step 2');
@@ -19383,7 +19383,7 @@ export default async function () {
                             return 100 + (get.sgn(get.attitude(player, target)) * target.getAlteredValue(card, player.getCards('h'), target.getCards('hes'))) / Math.max(target.hp, 1) - player.getAlteredValue(card) / Math.max(player.hp, 1);
                         });
                         ('step 2');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.gain(result.cards, player, 'giveAuto');
                         }
                     },
@@ -19482,7 +19482,7 @@ export default async function () {
                             prompt2: get.translation('radiance_fangqu', 'info'),
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             event.num = result.cards.length;
                             var target = result.targets[0];
                             target.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('radiance_fangqu');
@@ -20081,7 +20081,7 @@ export default async function () {
                                     })
                                     .set('bool', trigger.numFixed)
                                     .set('cards', cards);
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     await player.gain(result.links, 'draw2');
                                     if (!trigger.numFixed) trigger.num -= result.links.length;
                                 }
@@ -20190,7 +20190,7 @@ export default async function () {
                                 return -att;
                             })
                             .set('complexTarget', true);
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets.forEach((current) => player.storage.radiance_huizhao_draw.push(current));
                             player.markSkill('radiance_huizhao_draw');
                         }
@@ -20520,7 +20520,7 @@ export default async function () {
                                     event.goto(3);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                                 ('step 2');
@@ -21546,7 +21546,7 @@ export default async function () {
                             return val;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             for (var i = 0; i < result.cards.length - 1; i++) {
                                 var card = i;
                                 if (get.color(card, target) != 'red' && get.color(card, target) != 'black') continue;
@@ -21819,7 +21819,7 @@ export default async function () {
                                 }
                                 return 5 - get.value(card);
                             })('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             var num = result.cards.length;
                             player.storage.radiance_zhanhao_range = num;
                             player.addTempSkill('radiance_zhanhao_range', 'phaseUseEnd');
@@ -21936,7 +21936,7 @@ export default async function () {
                                 });
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.line(result.targets, 'red');
                             if (result.cards) player.discard(result.cards);
                             event.target = result.targets[0];
@@ -22363,7 +22363,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 3');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.target.gain(result.cards, player, 'giveAuto');
                         }
                     },
@@ -23818,7 +23818,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var targets = get.sort(result.targets, 'seat', _status.currentPhase);
                             game.asyncDraw(targets);
                         }
@@ -24128,7 +24128,7 @@ export default async function () {
                                 return 100 - get.attitude(_status.event.player, target);
                             },
                         });
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             let cards = result.cards,
                                 targets = result.targets;
                             for (var i = 0; i < cards.length; i++) {
@@ -24233,7 +24233,7 @@ export default async function () {
                                 if (bool2) base += 4;
                                 return base - get.value(card);
                             });
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             await player.addToExpansion(result.cards, player, 'give').gaintag.add('radiance_jueren');
                             event.result = {
                                 bool: true,
@@ -25931,7 +25931,7 @@ export default async function () {
                             })
                             .set('complexSelect', true);
                         ('step 5');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.gain(result.links, 'gain2', 'log');
                         }
                         ('step 6');
@@ -28648,7 +28648,7 @@ export default async function () {
                                         return 20 - get.value(card, player) - get.value(card, target);
                                     })
                                     .set('target', target);
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     await player.give(result.cards, target, false);
                                 }
                             }
@@ -29368,7 +29368,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             for (var i = 0; i < result.targets.length; i++) {
                                 var target = result.targets[i];
                                 target.addMark('radiance_juyan', 1);
@@ -30399,7 +30399,7 @@ export default async function () {
                                 });
                         }
                         ('step 4');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var targets = get.sort(result.targets, 'seat', _status.currentPhase);
                             for (var i = 0; i < targets.length; i++) {
                                 player.line(targets[i], 'red');
@@ -32230,7 +32230,7 @@ export default async function () {
                             return target.getAlteredValue(card, player.getCards('h'), target.getCards('hes')) / Math.max(target.hp, 1) - player.getAlteredValue(card) / Math.max(player.hp, 1);
                         });
                         ('step 3');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.gain(result.cards, player, 'giveAuto');
                             player.storage.radiance_ximing.push(trigger.player);
                             player.markSkill('radiance_ximing');
@@ -32407,7 +32407,7 @@ export default async function () {
                                 return num;
                             });
                         ('step 3');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.line(result.targets, 'water');
                             var target = result.targets[0];
                             target.gain(cards, 'gain2');
@@ -32823,7 +32823,7 @@ export default async function () {
                                 }
                                 event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets.slice(0);
                                     get.sort(event.targets, 'seat', _status.currentPhase);
                                 } else {
@@ -33174,7 +33174,7 @@ export default async function () {
                                     card = button.link;
                                 return player.getWeightedUseValue(card);
                             });
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 await player.gain(result.links, 'gain2');
                             }
                         }
@@ -33278,7 +33278,7 @@ export default async function () {
                             event.goto(5);
                         }
                         ('step 4');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.line(result.targets, 'water');
                             result.targets[0].damage(1, 'ice', 'nocard');
                         }
@@ -33696,7 +33696,7 @@ export default async function () {
                                     return get.attitude(_status.event.player, target);
                                 })
                                 .set('targets', targets);
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 for (const target of result.targets) {
                                     await target.draw(1, player);
                                 }
@@ -34389,7 +34389,7 @@ export default async function () {
                                     var player = _status.event.player;
                                     return 10 - get.value(card);
                                 });
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.addToExpansion(result.cards, 'giveAuto').gaintag.add('radiance_canglin');
                             }
                             trigger.radiance_canglin = true;
@@ -34468,7 +34468,7 @@ export default async function () {
                                         var player = _status.event.player;
                                         return 10 - get.value(card);
                                     });
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto').gaintag.add('radiance_canglin');
                                 }
                             },
@@ -34490,7 +34490,7 @@ export default async function () {
                                     let { result } = await player.chooseButton(dialog, 1, true).set('ai', function (button) {
                                         return get.value(button.link);
                                     });
-                                    if (result.bool) {
+                                    if (result.links?.length) {
                                         player.gain(result.links, 'draw');
                                     }
                                 }
@@ -34708,7 +34708,7 @@ export default async function () {
                                         return effect;
                                     });
                                     ('step 2');
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets, 'red');
                                         var next2 = result.targets[0].gain(card, 'draw2', player);
                                         result.targets[0].addSkill('radiance_chuibiao_buff');
@@ -34897,7 +34897,7 @@ export default async function () {
                                 return 0;
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.gain(result.cards, player, 'give');
                             trigger.player.addTempSkill('radiance_weiyong_give');
                         }
@@ -35902,7 +35902,7 @@ export default async function () {
                                     .set('filterButton', function (button) {
                                         return true;
                                     });
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     await player.gain(result.links, 'gain2', 'log');
                                 }
                             }
@@ -36085,7 +36085,7 @@ export default async function () {
                                     return 10 - get.useful(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                 }
                                 ('step 2');
@@ -37003,7 +37003,7 @@ export default async function () {
                                 })
                                 .set('cardsx', cardsx)
                                 .set('prompt', str);
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 await target.give(result.cards, player, false);
                                 await target.gain(cardsx, 'gain2');
                             } else {
@@ -38650,7 +38650,7 @@ export default async function () {
                             },
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.discard(result.cards);
                             player.addTempSkill('radiance_senjing_used', 'roundStart');
                         } else {
@@ -38823,7 +38823,7 @@ export default async function () {
                             return 1 / Math.max(0.1, get.useful(card));
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.$throw(result.links, 1000);
                             game.cardsDiscard(result.links);
                             game.log(result.links, '被置入了弃牌堆');
@@ -39332,7 +39332,7 @@ export default async function () {
                             event.goto(3);
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             if (result.targets.length) {
                                 player.give(result.cards, result.targets[0], false);
                             } else {
@@ -41931,7 +41931,7 @@ export default async function () {
                             return 10 - get.value(card);
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             trigger.player.give(result.cards, player, false);
                         }
                     },
@@ -42437,7 +42437,7 @@ export default async function () {
                         let { result } = await player.chooseButton(dialog).set('ai', function (button) {
                             return 0;
                         });
-                        if (result.bool) {
+                        if (result.links?.length) {
                             result.cards = result.links;
                             result.targets = [trigger.player];
                         }

@@ -438,7 +438,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           event.finish();
         }
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           player.line(result.targets);
           event.target = result.targets[0];
         } else {

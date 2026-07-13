@@ -1070,7 +1070,7 @@ const card = {
 			"step 0";
 			target.chooseCard("he", true);
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.give(result.cards, player);
 			}
 		},

@@ -972,7 +972,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 					})
 					.set('damaged', damaged);
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.discard(result.cards);
 					if (lib.config.taixuhuanjing.buff.includes('buff_txhj_shangjiangdelvli') && player == game.me) {
 						game.log(player, '发动了【上将的膂力】');
@@ -5100,7 +5100,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 				return get.effect(target, { name: 'sha' }, player);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: 'sha' }, result.targets, false);
 			}
 		},

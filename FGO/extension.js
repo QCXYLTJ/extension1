@@ -4893,7 +4893,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards.removeArray(result.links);
                                     event.togive = result.links.slice(0);
                                     player
@@ -5177,7 +5177,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -5567,7 +5567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('弃置一把武具,获得技能【第三眼】', player.getExpansions('fgoshenshouwuju'), true);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                 } else {
                                     event.finish();
@@ -5608,7 +5608,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('弃置六把武具,使得所有敌人流失两点体力,弃一张手牌', player.getExpansions('fgoshenshouwuju'), true, 6);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links);
                                 } else {
                                     event.finish();
@@ -6549,7 +6549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.targets = result.targets;
                                     event.num2 = 0;
@@ -11034,7 +11034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -19526,7 +19526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -23351,7 +23351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton(['【根源续接】:请选择要置于牌堆' + (trigger.bottom ? '底' : '顶') + '的牌(先选择的在上)', Array.from(ui.cardPile.childNodes)], [1, trigger.num || 1]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     while (result.links.length) {
                                         if (trigger.bottom) {
                                             var card = result.links.shift();
@@ -25838,7 +25838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, player);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'give', player, 'bySelf');
                                 }
                             },
@@ -25912,7 +25912,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, player);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'give', player, 'bySelf');
                                     game.playAudio('../extension/FGO/audio/fgobrsxy1.mp3');
                                 }
@@ -26609,7 +26609,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1 + Math.max(0, player.getUseValue(card, null, true));
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addGaintag(result.cards, 'fgoegoxfdjy_tag');
                                     player.markAuto('fgoegoxfdjy', result.cards);
                                     player.storage.fgoegoxydjy_limit = 0;

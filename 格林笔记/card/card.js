@@ -146,7 +146,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             event.finish();
           }
           'step 1';
-          if (result.bool) {
+          if (result.cards?.length) {
             player.recast(result.cards);
             if (get.type(result.cards[0]) == 'equip') {
               target.damage().nature = 'earth';
@@ -560,7 +560,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           }
           target.chooseCardButton('死者苏生：请选择你需要获得的牌', cards);
           'step 1';
-          if (result.bool) {
+          if (result.links?.length) {
             target.gain(result.links, 'gain2', 'log');
           }
         },
@@ -1315,7 +1315,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return get.type(button.link) != 'basic';
           };
           'step 1';
-          if (result.bool) {
+          if (result.links?.length) {
             var cards = result.links;
             player.logSkill('gl_xiangtingwangguo2_skill', trigger.player);
             _status.renku.removeArray(cards);

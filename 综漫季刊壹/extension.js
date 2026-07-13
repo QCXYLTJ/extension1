@@ -1006,7 +1006,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(links, 'draw');
                                         }
@@ -1096,7 +1096,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var links = result.links;
                                             player.gain(links, 'draw');
                                         }
@@ -4332,7 +4332,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     source: trigger.player,
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.showCards(result.cards);
                                     player.line(result.targets);
                                     event.targets = result.targets;
@@ -5340,7 +5340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.goto(3);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.num1 = result.cards.length;
                                     player.gain(result.cards, 'gain2');
                                 }
@@ -6303,7 +6303,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var num0 = (result.links.length - event.num9) * 5;
                                     player.storage.zmt_np += num0;
                                     event.cards.remove(result.links);

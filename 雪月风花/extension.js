@@ -10053,7 +10053,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return get.damageEffect(target, player, player);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const targets = result.targets.sortBySeat();
                                     for (const i of targets) {
                                         i.damage(event.num);
@@ -11203,7 +11203,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         next.set('ai', () => Math.random());
                                         ('step 1');
                                         event.dialog.close();
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             for (const i of result.links) {
                                                 let name = i[2];
                                                 if (player.storage.dinghan_qxsy.includes(name)) {
@@ -11886,7 +11886,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .set('selectButton', [1, cards.length])
                                     .set('ai', (button) => get.value(button.link, _status.event.player));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -12670,7 +12670,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return get.value(button.link, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2', 'log');
                                 }
                             },
@@ -16239,7 +16239,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.choice = result.links.toString();
                                     trigger.parent.gongming = true;
                                     event.log = [];

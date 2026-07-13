@@ -647,7 +647,7 @@ const skill = {
 				})
 				.set('judging', trigger.player.judging[0]);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.respond(result.cards, 'ybmjz_guicai', 'highlight', 'noOrdering');
 			} else {
 				event.finish();

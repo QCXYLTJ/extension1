@@ -926,7 +926,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 });
                 event.list = list;
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     game.log(target, '出上联:', '<font color=#CCFF33>' + result.links + '</font>');
                     for (let i = 0; i < event.list.length; i++) {
                         if (event.list[i] == result.links[0]) {
@@ -952,7 +952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.finish();
                 }
                 ('step 2');
-                if (result.bool) {
+                if (result.links?.length) {
                     game.log(player, '对下联:', '<font color=#CCFF33>' + result.links + '</font>');
                     for (let i = 0; i < event.list2.length; i++) {
                         if (event.list2[i] == result.links[0]) {
@@ -11340,7 +11340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(targetx, target, target, 'thunder');
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const len = result.targets;
                                     target.line(len, 'thunder');
                                     for (const i of len) {
@@ -11724,7 +11724,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 15 - get.useful(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.give(result.cards, player, true);
                                     target.recover();
                                 } else {
@@ -14332,7 +14332,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                     target.damage('qmmshui');
                                 }

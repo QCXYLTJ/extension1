@@ -630,7 +630,7 @@ const skill = {
 				return -att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("cangchizhibi_equip1", result.targets);
 				result.targets[0].link();
 			}
@@ -777,7 +777,7 @@ const skill = {
 				return -get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("baishouzhihu_equip1", result.targets);
 				result.targets[0].randomDiscard();
 				// player.discardPlayerCard(result.targets[0],'he',true);
@@ -973,7 +973,7 @@ const skill = {
 				prompt: get.prompt("donghuangzhong"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("donghuangzhong", result.targets);
 				player.discard(result.cards);
 				event.target = result.targets[0];
@@ -1608,7 +1608,7 @@ const skill = {
 				return Math.max(0, -get.attitude(player, target) - 2);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("hslingjian_jinjilengdong_equip5", result.targets);
 				player.turnOver();
 				result.targets[0].turnOver();
@@ -1640,7 +1640,7 @@ const skill = {
 				return att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("hslingjian_yinmilichang_equip1", result.targets);
 				result.targets[0].tempHide();
 			}

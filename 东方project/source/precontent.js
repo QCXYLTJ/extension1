@@ -2078,7 +2078,7 @@ export async function precontent(config, pack) {
 								);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets, 'blue');
 							player.useCard(
 								{
@@ -2139,7 +2139,7 @@ export async function precontent(config, pack) {
 								);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets, 'red');
 							player.useCard(
 								{
@@ -2199,7 +2199,7 @@ export async function precontent(config, pack) {
 								);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets, 'blue');
 							player.useCard(
 								{
@@ -2259,7 +2259,7 @@ export async function precontent(config, pack) {
 								);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets, 'blue');
 							player.useCard(
 								{
@@ -2319,7 +2319,7 @@ export async function precontent(config, pack) {
 								);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets, 'blue');
 							player.useCard(
 								{
@@ -7891,7 +7891,7 @@ export async function precontent(config, pack) {
 						return -get.attitude(_status.event.player, target);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					player.line(result.targets, 'green');
 					event.targets = result.targets;
 					player
@@ -8240,7 +8240,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.lose(result.cards);
 					if (Array.isArray(result.cards))
 						for (const i of result.cards) {
@@ -8535,7 +8535,7 @@ export async function precontent(config, pack) {
 						);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.targets = result.targets;
 				} else {
 					event.finish();
@@ -9507,7 +9507,7 @@ export async function precontent(config, pack) {
 					})
 					.set('num', num);
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					for (let i = 0; i < result.targets.length; i++) {
 						result.targets[i].damage('thunder');
 					}
@@ -9715,7 +9715,7 @@ export async function precontent(config, pack) {
 						return -get.attitude(_status.event.player, target);
 					});
 				('step 3');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.current.line(result.targets, 'green');
 					event.targets = result.targets;
 					event.current.discardPlayerCard(event.targets[0], 'he', [1, 1], true);
@@ -12288,7 +12288,7 @@ export async function precontent(config, pack) {
 					}
 				);
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.targets = result.targets;
 				} else {
 					event.finish();
@@ -13067,7 +13067,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					targets[0].showCards(result.cards);
 					game.log(targets[0], '成功回答了难题!');
 					player.gain(result.cards);
@@ -14589,7 +14589,7 @@ export async function precontent(config, pack) {
 					})
 					.set('judging', trigger.player.judging[0]);
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.respond(result.cards, 'highlight');
 				} else {
 					event.finish();
@@ -15870,7 +15870,7 @@ export async function precontent(config, pack) {
 						return -get.attitude(_status.event.player, target);
 					});
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.current.line(result.targets, 'black');
 					event.targets = result.targets;
 					if (event.targets[0].countCards('he')) {
@@ -18889,7 +18889,7 @@ export async function precontent(config, pack) {
 					})
 					.set('choices', choices);
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					for (const i of result.links) {
 						ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
 					}
@@ -18952,7 +18952,7 @@ export async function precontent(config, pack) {
 						}
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					for (const i of result.links) {
 						ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
 					}
@@ -19178,7 +19178,7 @@ export async function precontent(config, pack) {
 						return -get.effect(target, trigger.card, trigger.player, _status.event.player);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					player.line(result.targets, 'red');
 					player.loselili();
 					event.targets = result.targets;
@@ -19785,7 +19785,7 @@ export async function precontent(config, pack) {
 					return 0;
 				});
 				('step 2');
-				if (result.bool) {
+				if (result.links?.length) {
 					for (const i of result.links) {
 						event.cards.remove(i);
 					}
@@ -20414,7 +20414,7 @@ export async function precontent(config, pack) {
 					return get.color(card) != get.color(event.card2);
 				};
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					target.showCards(result.cards);
 					target.gain(event.card2, player);
 					player.$give(event.card2, target);
@@ -20483,7 +20483,7 @@ export async function precontent(config, pack) {
 					return 7 - get.value(card);
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.recast(result.cards);
 					player.discardPlayerCard(trigger.target, 'he', result.cards.length);
 				}
@@ -21783,7 +21783,7 @@ export async function precontent(config, pack) {
 					return;
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.links?.length) {
 					game.removeCardByObject(result.links);
 					let mode = 'standard';
 					for (const i of result.links) {
@@ -22965,7 +22965,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.links?.length) {
 					event.togive = result.links.slice(0);
 					player
 						.chooseTarget('将' + get.translation(result.links) + '交给一名角色', true, function (card, player, target) {
@@ -24823,7 +24823,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.links?.length) {
 					event.target.gain(result.links, 'gain2');
 					player
 						.chooseTarget('弃置场上一张牌', function (card, player, target) {
@@ -25973,7 +25973,7 @@ export async function precontent(config, pack) {
 					})
 					.set('dialog', event.videoId);
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					event.card = result.links;
 					target.addShownCards(event.card, 'visible_mingzhi');
 				}
@@ -26175,7 +26175,7 @@ export async function precontent(config, pack) {
 					return 6 - val;
 				};
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.addShownCards(result.cards, 'visible_mingzhi');
 				}
 			},

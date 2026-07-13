@@ -3650,7 +3650,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 event.dialog.close();
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.discard(result.links);
                                 }
                             },
@@ -4763,7 +4763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets.length ? result.targets : game.filterPlayer((current) => current != player && current.hasCard()),
                                         list = [];
                                     for (var i of targets) list.push(i.getCards('h').randomGet());
@@ -4980,7 +4980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             'step 0';
                                             player.chooseTarget((event, player, target) => player != target, '〖死谏〗请对一名其他角色造成1点伤害', true).set('ai', (i) => get.damageEffect(i, _status.event.player, _status.event.player));
                                             ('step 1');
-                                            if (result.bool) {
+                                            if (result.targets?.length) {
                                                 player.line(result.targets);
                                                 result.targets[0].damage();
                                             }
@@ -5489,7 +5489,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget('###〖眩惑〗你可以选择任意名其他角色###<center>这些角色各摸一张牌并将「眩」调整至等同于你座位号枚' + (lib.config.extension_群英荟萃乀摧林_prom ? '' : '<br><span class=yellowtext>你的回合外,有「眩」且「眩」数不为X的其他角色不于其摸牌阶段内获得手牌时(X为当前回合角色的座位号),其将所有有「眩」的角色的「眩」调整至X枚并令你获得其一张手牌</span>') + '</center>', lib.filter.notMe, [1, Infinity]).set('ai', () => 1);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     game.asyncDraw(event.targets.sortBySeat(_status.event.getParent('phase').player));
                                 } else event.finish();
@@ -6902,7 +6902,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target = i;
                                 ('step 7');
                                 var i = event.target;
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     i.give(result.cards, player);
                                 } else game.log(i, '拒绝交牌');
                             },
@@ -8936,7 +8936,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('removelists', removelists);
                                 ('step 2');
                                 ui.arena.classList.remove('choose-to-move');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.removeSkillLog(result.links, true);
                                     var lists = [];
                                     for (var j = 0; j < Math.min(3, result.links.length); j++) lists.push(lib.skill.qyhc_dili.derivation[j]);
@@ -10262,7 +10262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget([1, Infinity]).set('ai', ai.drawEffect).set('prompt', '〖兴学〗你可以令任意名角色各摸一张牌').set('prompt2', '<center>这些角色依次选择交给这些角色中另一名角色一张牌或将一张牌置于牌堆顶</center>');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets.sortBySeat(_status.event.getParent('phase').player);
                                     event.targets2 = result.targets.slice(0);
                                     game.asyncDraw(event.targets2);
@@ -10467,7 +10467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('targets', trigger.targets)
                                     .set('card', trigger.card);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else event.finish();
                                 ('step 2');
@@ -10933,7 +10933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseTarget('###〖誉虚〗请选择任意名角色,这些角色各摸一张牌###<center><span class=yellowtext>当你造成或受到伤害后,所有角色会弃置手牌中被此法获得后未移动过的牌,即以此法获得的牌如果未再改变过其位置,就会被弃掉</span></center>', true, [1, Infinity]).set('ai', ai.drawEffect);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.T = result.targets;
                                 } else event.finish();
                                 ('step 3');
@@ -11752,7 +11752,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     game.cardsGotoOrdering(result.cards);
                                     player.$gain2(result.cards, false);
                                     event.cards = result.cards;
@@ -16687,7 +16687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         player.choosePlayerCard(target, 'h', true);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             target.showCards(result.cards);
                             if (card.suit != result.cards[0].suit) target.damage(event.baseDamage || 1);
                         }
@@ -19572,7 +19572,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return max && max.includes(target) ? get.effect(target, card, player, player) > 0 : -1;
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             trigger.targets.addArray(result.targets);
                         }
                     },
@@ -20844,7 +20844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return player.getUseValue({ name: tname });
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.showCards(result.cards, get.translation(player) + '【照骨镜】展示');
                             var Ty = get.type(result.cards[0]);
                             if (['trick', 'basic'].includes(Ty)) {
@@ -20874,7 +20874,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('need', player.needsToDiscard());
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.recast(result.cards);
                         } else event.finish();
                         ('step 2');
@@ -21121,7 +21121,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             .set('prompt', '###是否发动【凤翅紫金冠】？###<center>选择至多两名其他角色,对这些角色各造成1点伤害</center>')
                             .set('ai', ai.damageEffect);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.targets = result.targets.slice(0).sortBySeat(_status.event.getParent('phase').player);
                         } else event.finish();
                         ('step 2');

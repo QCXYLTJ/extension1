@@ -1402,7 +1402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 if (!result.bool) event.finish();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     event.num = result.targets.length;
                                     event.targets = result.targets;
@@ -2625,7 +2625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 7 - get.value(card);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             event.cards = get.cards(2 * result.cards.length);
                                             player.showCards(event.cards);
                                         } else {

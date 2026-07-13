@@ -556,7 +556,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line(result.targets);
 									player.popup(lib.translate.TLP_mansun);
 									player.turnOver();

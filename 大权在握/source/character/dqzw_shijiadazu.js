@@ -277,7 +277,7 @@ export let info = {
             });
         }
         ('step 3');
-        if (result.bool) {
+        if (result.cards?.length) {
           _status.currentPhase.swapHandcards(player, result.cards || [], [card]);
         }
       },

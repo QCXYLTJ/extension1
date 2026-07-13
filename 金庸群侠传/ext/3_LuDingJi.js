@@ -2951,7 +2951,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.line([trigger.source, trigger.player], 'fire');
             player.choosePlayerCard(trigger.source, 'h', true);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               player.addToExpansion(result.links, 'log', 'give', trigger.source).gaintag.add('ldj_yazhi');
             } else {
               event.finish();
@@ -3402,7 +3402,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt: get.prompt2('qtpz_xianguan'),
             });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               player.discard(result.cards);
               var target = result.targets[0];
               trigger.player.storage.qtpz_xianguan_two = target;
@@ -3970,7 +3970,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -1;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var list = result.links;
               for (var i = 0; i < list.length; i++) {
                 var owner = get.owner(list[i]);
@@ -4619,7 +4619,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             next.selectButton = trigger.result.cards.length;
             next.set('val2', get.value(trigger.result.cards, trigger.target));
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               trigger.result.cards = result.links.slice(0);
               trigger.result.links = result.links.slice(0);
               trigger.cards = result.links.slice(0);
@@ -5144,7 +5144,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               //player.discardPlayerCard('e',trigger.source,true);
             } else event.finish();
             ('step 2');
-            if (result.bool) {
+            if (result.links?.length) {
               player.addToExpansion(result.links, trigger.source, 'give').gaintag.add('qtpz_fujiang');
             }
           },
@@ -5231,7 +5231,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var links = result.links;
               player.gain(links, 'gain2', 'fromStorage', 'log');
             }
@@ -5311,7 +5311,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 2');
-            if (result.bool) {
+            if (result.links?.length) {
               var links = result.links;
               player.addToExpansion(links, 'give', 'log', trigger.player).gaintag.add('qtpz_fujiang');
             }
@@ -5820,7 +5820,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             ('step 2');
-            if (result.bool) {
+            if (result.cards?.length) {
               var care = result.cards.slice(0);
               // event.tar[event.num1].showCards(result.cards[0]);
               event.show.push(care);

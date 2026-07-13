@@ -336,7 +336,7 @@ const brawl = {
                             },
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             player.discard(result.cards);
                             result.targets[0].chooseToDiscard('弃置一张牌，或令' + get.translation(player) + '摸一张牌', 'he').ai = lib.skill.zhiheng.check;
                         } else event.finish();

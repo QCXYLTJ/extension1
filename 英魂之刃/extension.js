@@ -8495,7 +8495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return trigger.filterCard(button.link, player, trigger);
 								};
 								('step 3');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.target.lose(result.links);
 									event.target.$give(result.links, player);
 									lib.skill.nyhzr镭射光束2.viewAs = result.buttons[0].link;
@@ -9127,7 +9127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 1;
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											for (var i = 0; i < result.links.length; i++) {
 												player.gain(result.links[i]);
 												player.$gain2(result.links[i]);
@@ -9816,7 +9816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseCardButton('选择需要展示的手牌', player.getCards('h'));
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.showCards(result.links);
 									var sourceShowCard = trigger.source.getCards('h').randomGet();
 									trigger.source.showCards(sourceShowCard);
@@ -9937,7 +9937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.finish();
 										}
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											trigger.source.discard(result.links);
 										}
 									},
@@ -10997,7 +10997,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									if (result.targets?.length) {
 										player.line(result.targets[0]);
 										result.targets[0].damage();
@@ -11304,7 +11304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, trigger.player) < 0;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards);
 									trigger.untrigger();
 									trigger.finish();
@@ -12347,7 +12347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return trigger.filterCard(button.link);
 								};
 								('step 3');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.target.lose(result.links);
 									trigger.untrigger();
 									trigger.responded = true;
@@ -12483,7 +12483,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseCardButton('选择' + get.translation(player.storage.nyhzr神雕ol) + '两张手牌并弃置之', player.storage.nyhzr神雕ol.getCards('h'), 2, true);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.storage.nyhzr神雕ol.discard(result.links);
 								}
 							},

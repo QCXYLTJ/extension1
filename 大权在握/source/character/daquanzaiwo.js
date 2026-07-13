@@ -2046,7 +2046,7 @@ export let info = {
           event._result = { bool: false };
         }
         ('step 3');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.give(result.cards, target);
           target.draw();
         } else {
@@ -2786,7 +2786,7 @@ export let info = {
           player.chooseBool(get.prompt(event.name), '你可以获得一点护甲').set('ai', () => true);
         }
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           if (result.targets?.length) {
             var target = result.targets[0];
             player.line(target);
@@ -2848,7 +2848,7 @@ export let info = {
             });
         }
         ('step 2');
-        if (result.bool) {
+        if (result.targets?.length) {
           player.useSkill('shizhan', result.targets);
         }
       },
@@ -3195,7 +3195,7 @@ export let info = {
             return -get.attitude(_status.event.player, target);
           });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var targets = result.targets.sortBySeat();
           var dialog = ui.create.dialog('蹈正:选择要置于武将牌上的牌', 'hidden');
           targets.forEach(function (target) {
@@ -3553,7 +3553,7 @@ export let info = {
           return 5 - get.value(card);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.recast(result.cards);
         }
       },
@@ -4248,7 +4248,7 @@ export let info = {
         });
         event.target = target;
         ('step 3');
-        if (result.bool) {
+        if (result.links?.length) {
           player.swapHandcards(target, result.links, target.getCards('h'));
         }
       },
@@ -6229,7 +6229,7 @@ export let info = {
           return 6 - get.value(button.link);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var length = result.links.length;
           player.chooseTarget('化蝶:令一名角色摸' + get.cnNumber(length) + '张牌', true).set('ai', function (target) {
             var att = get.attitude(_status.event.player, target);
@@ -7370,7 +7370,7 @@ export let info = {
           return att / 3;
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var targets = result.targets.sortBySeat();
           for (var target of targets) {
             target.drawTo(Math.min(5, target.maxHp));
@@ -9287,7 +9287,7 @@ export let info = {
             return get.effect(player, { name: 'sha' }, playerx, playerx) >= 0 ? -1 : 9 - get.value(card);
           };
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           targets[0].give(result.cards, player, 'give');
         } else {
           event.targets = game.filterPlayer(function (c) {
@@ -9656,7 +9656,7 @@ export let info = {
           }
         );
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           result.targets.sortBySeat();
           event.targets = result.targets;
         } else {
@@ -9671,7 +9671,7 @@ export let info = {
           event.finish();
         }
         ('step 3');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.addToExpansion(result.cards, event.current, 'give').gaintag.add(event.name);
           event.goto(2);
         }
@@ -10366,7 +10366,7 @@ export let info = {
             return get.effect(target, trigger.card, player, player);
           });
         ('step 5');
-        if (result.bool) {
+        if (result.targets?.length) {
           var targets = result.targets.sortBySeat();
           player.line(targets);
           trigger.parent.player = player;
@@ -10410,7 +10410,7 @@ export let info = {
           })
           .set('complexCard', true);
         ('step 3');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.recast(result.cards);
         }
       },
@@ -10812,7 +10812,7 @@ export let info = {
             return 1 + Math.random();
           });
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var links = result.links;
           player.chooseTarget([1, links.length], '株罚:选择执行目标(取消以返回上一级)', lib.filter.notMe).set('ai', function (target) {
             return get.damageEffect(target, player, player);
@@ -10822,7 +10822,7 @@ export let info = {
           event.finish();
         }
         ('step 2');
-        if (result.bool) {
+        if (result.targets?.length) {
           var targets = result.targets.sortBySeat();
           var refreshMark = lib.skill[event.name].refreshMark;
           for (var target of targets) {
@@ -11332,7 +11332,7 @@ export let info = {
             })()
           );
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.showCards(result.cards, get.translation(player) + '通过【夺权】展示了');
           player.give(result.cards, trigger.player);
           player.addTempSkill('dqzw_duoquan_effect');
@@ -11452,7 +11452,7 @@ export let info = {
           .set('source', source);
         event.target = source;
         ('step 3');
-        if (result.bool) {
+        if (result.targets?.length) {
           event.targets2 = result.targets.sortBySeat();
         } else {
           event.goto(1);
@@ -11573,7 +11573,7 @@ export let info = {
           });
         }
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var cards = result.links;
           var next = player.chooseTarget();
           next.set('ai', function (target) {
@@ -12347,7 +12347,7 @@ export let info = {
               event.finish();
             }
             ('step 2');
-            if (result.bool) {
+            if (result.links?.length) {
               source.gain(result.links, player, 'giveAuto');
             }
           },
@@ -12379,7 +12379,7 @@ export let info = {
           return get.attitude(player, target);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var targets = result.targets.sortBySeat();
           event.targets = targets;
         } else {
@@ -13924,7 +13924,7 @@ export let info = {
               .set('autoViewAs', { name: 'juedou' });
             event.cards = cards;
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               player.useCard({ name: 'juedou' }, event.cards, result.targets);
             }
           },
@@ -15000,7 +15000,7 @@ export let info = {
           event.finish();
         }
         ('step 4');
-        if (result.bool) {
+        if (result.links?.length) {
           var targets = Array.from(new Set(result.links.map((card) => get.owner(card)))).sortBySeat();
           player.line(targets);
           if (targets.length == 1) {
@@ -15598,7 +15598,7 @@ export let info = {
           .set('_get_card', card)
           .set('source', trigger.player);
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           player.useCard({ name: 'tiesuo' }, result.targets);
         }
       },
@@ -16525,7 +16525,7 @@ export let info = {
               });
             }
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var next = player.chooseUseTarget({ name: 'chuqibuyi' }, result.links);
               if (result.forced !== false) {
                 next.set('prompt', '将' + get.translation(result.links) + '当作【出其不意】使用');
@@ -16821,7 +16821,7 @@ export let info = {
           },
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           event.cards = result.cards;
           var current = result.targets[0];
           game.broadcastAll(
@@ -17325,7 +17325,7 @@ export let info = {
                 return get.effect(target, { name: 'guohe_copy', position: 'j' }, player, player);
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets);
               for (const target of result.targets.sortBySeat()) {
                 await player.discardPlayerCard(target, true, 'j').set('delay', false);
@@ -17529,7 +17529,7 @@ export let info = {
               })
               .set('judging', trigger.player.judging[0])
               .forResult();
-            if (result.bool) {
+            if (result.cards?.length) {
               await player.respond(result.cards, event.name, 'highlight', 'noOrdering');
               if (trigger.player.judging[0].clone) {
                 trigger.player.judging[0].clone.classList.remove('thrownhighlight');
@@ -17826,7 +17826,7 @@ export let info = {
             return get.attitude(get.player(), target);
           })
           .forResult();
-        if (result.bool) {
+        if (result.targets?.length) {
           const targets = result.targets.sortBySeat();
           for (const target of targets) {
             const { cards } = await target
@@ -17856,7 +17856,7 @@ export let info = {
             return get.effect(target, { name: 'tiesuo' }, player, player);
           })
           .forResult();
-        if (result.bool) {
+        if (result.targets?.length) {
           const targets = result.targets.sortBySeat();
           player.addTempSkill('dqzw_cuiwei_link', 'roundStart');
           player.markAuto('dqzw_cuiwei_link', targets);
@@ -18018,7 +18018,7 @@ export let info = {
             const player = get.player();
             return get.damageEffect(target, player, player);
           });
-          if (result.bool) {
+          if (result.targets?.length) {
             const targets = result.targets.sortBySeat();
             player.line(targets);
             for (const target of targets) await target.damage('nocard');
@@ -18908,7 +18908,7 @@ export let info = {
           .set('prompt', '德璋')
           .set('prompt2', '重铸一张明置牌以令' + get.translation(trigger.cards) + '无效');
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.recast(result.cards);
           trigger.targets.length = 0;
           trigger.parent.triggeredTargets2.length = 0;
@@ -19033,7 +19033,7 @@ export let info = {
           });
         } else event.finish();
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           event.target.give(result.cards, player, true);
           event.finish();
         } else {
@@ -19055,7 +19055,7 @@ export let info = {
             };
         }
         ('step 3');
-        if (result.bool) {
+        if (result.links?.length) {
           player.storage.dqzw_yinwen.addArray(result.links);
           player.markSkill('dqzw_yinwen');
         }
@@ -20312,7 +20312,7 @@ export let info = {
           return !player.getShownCards('h').includes(card);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           player.addShownCards(result.cards, 'visible_dqzw_erer');
           game.filterPlayer(function (current) {
             if (current != player) {
@@ -21316,7 +21316,7 @@ export let info = {
               return 1 + _status.event.getTrigger().judge(card) - get.value(card) / 2;
             })
             .forResult();
-          if (result.bool) {
+          if (result.cards?.length) {
             player.lose(result.cards, ui.ordering);
             cards.addArray(result.cards);
           }
@@ -21513,7 +21513,7 @@ export let info = {
             return 5 - get.value(card);
           })
           .forResult();
-        if (result.bool) {
+        if (result.cards?.length) {
           await player.recast(result.cards);
           if (
             get.color(result.cards[0]) == get.color(result.cards[1]) &&

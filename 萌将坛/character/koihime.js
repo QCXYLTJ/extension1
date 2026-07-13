@@ -586,7 +586,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						},
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var targets = result.targets || [];
 						var cards = result.cards || [];
 						if (cards.length) {
@@ -834,7 +834,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return get.attitude(player, target);
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						game.asyncDraw(result.targets);
 					} else event.finish();
 					('step 2');
@@ -3663,7 +3663,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						prompt: get.prompt2(event.name),
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var targets = result.targets || [];
 						var cards = result.cards || [];
 						var map = {};
@@ -5466,7 +5466,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					});
 					next.set('judging', trigger.player.judging[0]);
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.respond(result.cards, 'highlight', event.name, 'noOrdering')._triggered = null;
 					} else event.finish();
 					('step 2');
@@ -5574,7 +5574,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						},
 					});
 					('step 3');
-					if (result.bool) {
+					if (result.cards?.length) {
 						var cards = result.cards || [];
 						var target = result.targets[0].playerid;
 						player.addGaintag(cards, 'reyiji_tag');

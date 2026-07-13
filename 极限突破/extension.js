@@ -662,7 +662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择要送人的卡牌',
                                 });
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                     event.given += result.cards.length;
@@ -2246,7 +2246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight', 'jxtp_guicai', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -4213,7 +4213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     add: next.custom.add,
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     let cards = result.cards;
                                     if (!cards.length) {
                                         const suits = result.links.map((i) => i[2].slice(6));
@@ -5194,7 +5194,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw(num);
                                 player.removeMark('jxtp_rende', num);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.give(result.cards, player);
                                 }
                             },
@@ -5298,7 +5298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let targets = result.targets;
                                     event.targets = targets;
                                     if (targets[0].group != 'shu') {
@@ -6854,7 +6854,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     let list = result.links;
                                     for (let i = 0; i < list.length; i++) {
                                         if (get.owner(list[i]) == player) {
@@ -7255,7 +7255,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             },
                                         },
                                     });
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     const names = result.links.map((link) => link[2]);
                                     player.setStorage('jxtp_kanpo', names);
                                     player.markSkill('jxtp_kanpo');
@@ -9234,7 +9234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     add: next.custom.add,
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     let cards = result.cards;
                                     if (!cards.length) {
                                         const suits = result.links.map((i) => i[2].slice(6));
@@ -10794,7 +10794,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }) >= 4
                                     );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     const links = result.links;
                                     const list1 = [],
                                         list2 = [];
@@ -12760,7 +12760,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             filterCard: lib.filter.cardDiscardable,
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.discard(result.cards);
                                             _status.currentPhase.removeMark('jxtp_yingjia', 1);
                                             _status.currentPhase.phase('nodelay');
@@ -12996,7 +12996,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 6 - get.value(card);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.recast(result.cards);
                                         }
                                     },
@@ -13369,7 +13369,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('targets', trigger.targets)
                                             .set('card', trigger.card);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.targets = result.targets;
                                         } else {
                                             event.finish();
@@ -14677,7 +14677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt2: '你摸一张牌并选择是:交给当前回合角色一张手牌令其获得【默识】;否:其摸4张牌,然后弃置4张牌',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.give(result.cards, _status.currentPhase);
                                     _status.currentPhase.addTempSkill('jxtp_mozhi');
                                 } else {
@@ -14699,7 +14699,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(_status.event.player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             let targets = result.targets;
                                             targets.add(player);
                                             targets.sortBySeat();
@@ -14733,7 +14733,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             filterCard: lib.filter.cardDiscardable,
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.discard(result.cards);
                                             _status.currentPhase.addTempSkill('jxtp_shuangjia');
                                         } else {

@@ -351,7 +351,7 @@ const skill = {
 			"step 0";
 			target.chooseCard("h", true, "交给" + get.translation(player) + "一张牌");
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards, target);
 				target.$giveAuto(result.cards, player);
 			} else {
@@ -1453,7 +1453,7 @@ const skill = {
 				}
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.respond(result.cards, "highlight");
 			} else {
 				event.finish();
@@ -2231,7 +2231,7 @@ const skill = {
 				return -get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("yuchen", result.targets);
 				player.discardPlayerCard(result.targets[0], true);
 			}
@@ -2366,7 +2366,7 @@ const skill = {
 				return att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("huiqi", result.targets);
 				result.targets[0].draw(player.maxHp - player.hp);
 			}
@@ -2491,7 +2491,7 @@ const skill = {
 				return att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("fzhenwei", result.targets);
 				result.targets[0].gain(event.cards, "gain2", "log");
 			}
@@ -2529,7 +2529,7 @@ const skill = {
 				prompt: get.prompt("shangxi"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				player.logSkill("shangxi", result.targets);
 				result.targets[0].damage();
@@ -2560,7 +2560,7 @@ const skill = {
 				return Math.min(1, eff);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("fuyan", result.targets);
 				var target = result.targets[0];
 				target.changeHujia();
@@ -3210,7 +3210,7 @@ const skill = {
 				prompt: get.prompt("ningxian"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				player.logSkill("ningxian", result.targets);
 				event.targets = result.targets;
@@ -5299,7 +5299,7 @@ const skill = {
 				return 6 - get.value(card);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.changeHujia(result.cards.length);
 				player.storage.daixing = result.cards.length;
 			}
@@ -5691,7 +5691,7 @@ const skill = {
 				game.delayx();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("xielei", result.targets, "thunder");
 				player.discard(result.cards);
 				result.targets[0].damage("thunder");
@@ -7836,7 +7836,7 @@ const skill = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("huanling", result.targets);
 				player.turnOver();
 				result.targets[0].turnOver();
@@ -7890,7 +7890,7 @@ const skill = {
 				return get.effect(target, { name: "sha" }, player, player);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("lxianglong", result.targets);
 				player.useCard({ name: "sha" }, trigger.cards, result.targets).animate = false;
 				game.delay();

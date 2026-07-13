@@ -222,7 +222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.loseToDiscardpile(result.cards).delay = false;
                                     player.draw(result.cards.length);
                                 }
@@ -1452,7 +1452,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var cards = result.cards;
                                     player.showCards(cards, get.translation(player) + '发动【' + get.translation(event.name) + '】展示了');
                                     event.cards = cards;

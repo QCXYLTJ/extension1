@@ -2550,7 +2550,7 @@ const packs = function () {
                             })
                             .set('ai', (button) => button.link[1].ai(get.event().player, get.event().parent.player))
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             list = list.filter((choice) => !result.links.includes(choice[0]));
                             await result.links[0][1].content(current, player);
                         }
@@ -3220,7 +3220,7 @@ const packs = function () {
                             })
                             .set('ai', (button) => button.link[1].ai(get.event().player, get.event().parent.player))
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             list = list.filter((choice) => !result.links.includes(choice[0]));
                             await result.links[0][1].content(current, player);
                         }
@@ -4945,7 +4945,7 @@ const packs = function () {
                             })
                             .set('ai', (button) => button.link[1].ai(get.event().player, get.event().parent.player))
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             list = list.filter((choice) => !result.links.includes(choice[0]));
                             await result.links[0][1].content(current, player);
                         }
@@ -8033,7 +8033,7 @@ const packs = function () {
                             })
                             .set('ai', (button) => button.link[1].ai(get.player()))
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             list = list.filter((choice) => !result.links.includes(choice[0]));
                             await result.links[0][1].content(current, player);
                         }

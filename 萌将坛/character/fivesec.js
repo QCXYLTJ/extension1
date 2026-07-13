@@ -1774,7 +1774,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							result.bool = true;
 							result.cards = ds;
 						} else result.bool = false;
-						if (result.bool) {
+						if (result.cards?.length) {
 							const cards = result.cards || [];
 							if (cards.length) await player.gain(cards, 'gain2');
 						}

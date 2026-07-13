@@ -95,7 +95,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return 1 + 1 / val;
             });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
                 var suits = result.links.map((i) => i[2].slice(6));
                 player.addTempSkill('qingbei_effect', 'roundStart');
                 player.setStorage('qingbei_effect', suits);
@@ -231,7 +231,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return get.attitude(player, target);
             };
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 game.asyncDraw(result.targets.sortBySeat(_status.currentPhase));
             } else event.finish();
         };
@@ -1213,7 +1213,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         });
                 } else event.finish();
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.line(result.targets);
                     player.give(result.cards, result.targets[0]);
                 }
@@ -2372,7 +2372,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return att;
             });
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var targets = result.targets;
                 targets.sortBySeat(player);
                 event.targets = targets;
@@ -2646,7 +2646,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     })()
                 );
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var targets = result.targets;
                 targets.sortBySeat(_status.currentPhase);
                 event.targets = targets;
@@ -3034,7 +3034,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     });
             }
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
                 var list = result.links;
                 game.addVideo('skill', player, ['qiexie', [list]]);
                 game.broadcastAll(function (list) {

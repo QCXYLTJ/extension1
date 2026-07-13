@@ -581,7 +581,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var stat = player.getStat('skill');
                                 if (!stat.jikuiji_targets) stat.jikuiji_targets = [];
                                 stat.jikuiji_targets.push(target);
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var list = result.links;
                                     for (var i = 0; i < list.length; i++) {
                                         if (get.owner(list[i]) == player) {

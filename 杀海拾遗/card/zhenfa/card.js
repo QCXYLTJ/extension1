@@ -287,7 +287,7 @@ const card = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.useCard({ name: "sha" }, result.cards, target, false);
 			}
 			"step 2";
@@ -305,7 +305,7 @@ const card = {
 				return 0;
 			};
 			"step 3";
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.player2.useCard({ name: "sha" }, result.cards, target, false);
 			}
 		},

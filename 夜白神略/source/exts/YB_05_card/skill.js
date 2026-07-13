@@ -435,7 +435,7 @@ const skill = {
 					return get.effect(trigger.player, { name: 'sha' }, player, player) / Math.max(1, get.value(card));
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.useCard({ name: 'sha' }, result.cards, 'ybsl_yangtuo', trigger.player, false);
 			}
 		},
@@ -890,7 +890,7 @@ const skill = {
 				})
 				.set('prompt', `请选择至多${num}名角色,对这些角色各造成一点由这些牌造成的火焰伤害`)
 				.forResult();
-			if (result.bool) {
+			if (result.targets?.length) {
 				const list = result.targets;
 				list.sortBySeat();
 				for (const i of list) {
@@ -1482,7 +1482,7 @@ const skill = {
 					return 5 - get.value(card);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.lose(result.cards, ui.discardPile, 'visible');
 				player.$throw(result.cards, 1000);
 				game.log(player, '将', result.cards, '置入了弃牌堆');

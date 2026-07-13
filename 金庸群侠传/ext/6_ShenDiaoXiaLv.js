@@ -178,7 +178,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             });
             next.set('check', get.effect(trigger.target, trigger.card, player, trigger.target) > 0);
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               event.list2 = result.cards;
             }
             event.maxNumPlayer = (function () {
@@ -636,7 +636,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     );
                   });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                   player.gainMultiple(result.targets, 'he');
                 }
               },
@@ -787,7 +787,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 2');
-            if (result.bool) {
+            if (result.cards?.length) {
               player.addGaintag(result.cards, 'sdxl_guchu');
             }
           },
@@ -1958,7 +1958,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt2: get.translation('sdxl_juao_info'),
             });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               player.discard(result.cards);
               result.targets.filter((i) => i.damage(player));
             }
@@ -3099,7 +3099,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 3');
-            if (result.bool) {
+            if (result.links?.length) {
               for (var i of result.links) {
                 event.cards.remove(i);
               }
@@ -3960,7 +3960,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 .set('prompt2', str);
             }
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var links = event.allCard ? player.getExpansions('sdxl_kaoshang').slice(0) : result.links;
               //trigger.source.gain(links,player,'fromStorage','give','log');
               player.give(links, trigger.source, true);
@@ -4133,7 +4133,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('card', trigger.card);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               event.finish();
@@ -6040,7 +6040,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 } else return 0;
               });
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets, 'fire');
               if (player.isDamaged()) player.recover();
               if (result.targets[0].isDamaged()) result.targets[0].recover();
@@ -6093,7 +6093,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               .set('targets', trigger.targets)
               .set('card', trigger.card);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               event.finish();
@@ -6273,7 +6273,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 }
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.targets = result.targets;
               event.num = 0;
               player.say('罗网恢恢,疏而不漏.');

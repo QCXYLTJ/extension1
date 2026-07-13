@@ -279,7 +279,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         player.chooseButton(num, [str, [trigger.player.getCards('hej'), 'blank']]);
                     }
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         if (result.cards) trigger.player.recast(result.cards);
                         if (result.links) trigger.player.recast(result.links);
                     } else {
@@ -657,7 +657,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 6 - get.value(card);
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.cards = result.cards;
                         player.chooseControl('牌堆顶', '牌堆底').set('ai', function () {
                             return [0, 1].randomGet();
@@ -846,7 +846,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     var num = player.maxHp - player.hp;
                     player.discardPlayerCard(get.prompt('ls_zhenlie', event.tar), event.tar, [1, num], 'hej');
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cs = result.cards;
                         var list1 = [];
                         var list2 = [];
@@ -1301,7 +1301,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                             if (num == 0) player.chooseBool('均田:是否发动〖豊屯〗？').set('ai', () => true);
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 if (result.cards?.length) {
                                     trigger.player.$throw(result.cards, 1000);
                                     game.log(trigger.player, '将', result.cards, '置入了<策>区');
@@ -1423,7 +1423,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                     } else event.finish();
                     ('step 6');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.togive = result.links;
                         event.num -= result.links.length;
                         event.forced = true;
@@ -1912,7 +1912,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     } else event.finish();
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var bool1 = result.targets.length == 0;
                         var bool2 = event.control == 'auto';
                         event.toMove = bool1 ? player : trigger.player;
@@ -2212,7 +2212,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 1 + Math.random();
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 player.loseToDiscardpile(result.links);
                                 player.judge(function (card) {
                                     var suit = card.suit;
@@ -2467,7 +2467,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('rand', [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.storage[event.name].addArray(result.links.map((link) => link[2]));
                         player.storage[event.name].sort((a, b) => lib.inpile.indexOf(a) - lib.inpile.indexOf(b));
                         player.markSkill(event.name);

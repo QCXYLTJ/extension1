@@ -148,7 +148,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						});
 					} else event.finish();
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						for (var link of result.links) {
 							var owner = get.owner(link);
 							if (owner === player) event.ps.push(link);

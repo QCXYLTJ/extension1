@@ -12601,7 +12601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            return get.attitude(player, target) < 0;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                            for (var i = 0; i < result.targets.length; i++) {
                               if (result.targets[i].storage.Fate_bjx > 5) {
                                  result.targets[i].storage.Fate_bjx -= 5;

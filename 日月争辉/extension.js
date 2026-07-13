@@ -1658,7 +1658,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage();
                                 }
@@ -1700,7 +1700,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage();
                                 }
@@ -1767,7 +1767,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage(2, 'thunder');
                                 }
@@ -2150,7 +2150,7 @@ game.import('extension', function () {
                                         2
                                     );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var length = result.targets.length;
                                     for (var i = 0; i < length; i++) {
                                         result.targets[i].addSkill('大雾_1');
@@ -2184,7 +2184,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var length = result.targets.length;
                                     for (var i = 0; i < length; i++) {
                                         result.targets[i].addSkill('狂风_1');
@@ -2526,7 +2526,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].turnOver();
                                 }
@@ -2597,7 +2597,7 @@ game.import('extension', function () {
                                     })
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, '鬼才', 'highlight', 'noOrdering');
                                 } else {
                                     event.finish();
@@ -3467,7 +3467,7 @@ game.import('extension', function () {
                                     return get.effect(target, { name: 'sha' }, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets, false);
                                     player.draw();
                                 }
@@ -3716,7 +3716,7 @@ game.import('extension', function () {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = 0;
                                 } else {
@@ -4270,7 +4270,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage();
                                 }
@@ -4342,7 +4342,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage();
                                 }
@@ -4932,7 +4932,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     targets.sortBySeat();
                                     game.countPlayer(function (current) {
@@ -5469,7 +5469,7 @@ game.import('extension', function () {
                                     return 5.5 - get.value(card);
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.loseToDiscardpile(result.cards);
                                     player.draw();
                                 }
@@ -6275,7 +6275,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage();
                                 }
@@ -6789,7 +6789,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage();
                                 }
@@ -7425,7 +7425,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].addMark('笞');
                                     result.targets[0].addSkill('笞');
@@ -7437,7 +7437,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].addMark('杖');
                                     result.targets[0].addSkill('杖');
@@ -7449,7 +7449,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].addMark('徒');
                                     result.targets[0].addSkill('徒');
@@ -7461,7 +7461,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 7');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].addMark('流');
                                     result.targets[0].addSkill('流');
@@ -7473,7 +7473,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 9');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].addMark('死');
                                     result.targets[0].addSkill('死');
@@ -7579,7 +7579,7 @@ game.import('extension', function () {
                                     .set('card', trigger.card)
                                     .set('targets', trigger.targets);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                 } else {
                                     event.finish();
@@ -8190,7 +8190,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage(player.maxHp - player.hp);
                                     player.loseMaxHp(player.maxHp - player.hp);
@@ -8677,7 +8677,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'white');
                                     result.targets[0].damage(3, 'thunder');
                                 }
@@ -9679,7 +9679,7 @@ game.import('extension', function () {
                                     return 5.5 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.recast(result.cards);
                                 }
                             },
@@ -10450,7 +10450,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'red');
                                     result.targets[0].remove();
                                     result.targets[0].clearSkills();

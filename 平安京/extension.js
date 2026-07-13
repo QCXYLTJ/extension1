@@ -2120,7 +2120,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.goto(1);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.source.give(result.cards, player, true);
                                 } else trigger.source.damage();
                             },
@@ -3246,7 +3246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 10 - get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'thunder');
                                     result.targets.sortBySeat();
                                     for (var i = 0; i < result.targets.length; i++) {
@@ -3645,7 +3645,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.chooseToCompare(result.targets).callback = lib.skill.paj_wshi.callback;
                                 }
                             },
@@ -6730,7 +6730,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt2('paj_xx_Huafu'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     if (result.targets.length == 1) {
                                         result.targets[0].addMark('paj_xx_Huafu');

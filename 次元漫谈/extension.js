@@ -4333,7 +4333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.attitude(player, target) <= 0;
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var targets = result.targets;
 											//game.rainSay(player,'对',targets,'发动了武将技能','<span style=\"color: #FFD700\">【飓风骑士】</span>');
 											for (var a = 0; a < targets.length; a++) {
@@ -5066,7 +5066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 0;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 									var target = event.targets;
 									//game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【世人啊,冀以锁系神明】</span>');
@@ -6116,7 +6116,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.damageEffect(target, player, player);
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											//game.rainSay(player,'对',result.targets,'发动了武将技能','<span style=\"color: #FFD700\">【终极犯罪】</span>');
 											for (var i = 0; i < result.targets.length; i++) {
 												result.targets[i].damage('nocard');
@@ -6212,7 +6212,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.effect(target, trigger.card, trigger.player, _status.event.player);
 											});
 										('step 4');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets, 'water');
 											game.log(result.targets, '成为', trigger.card, '额外目标');
 											for (var i = 0; i < result.targets.length; i++) {
@@ -8129,7 +8129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var targets = result.targets;
 									event.targets = targets;
 								} else event.finish();
@@ -8771,7 +8771,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return '减少';
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targets = result.targets;
 									event.targets.sortBySeat();
 								} else {
@@ -15599,7 +15599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.damageEffect(target, player, player);
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											for (var a of result.targets) {
 												a.damage('nocard');
 											}
@@ -17873,7 +17873,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var tars = result.targets;
 									tars.sortBySeat();
 									player.loseHp(tars.length);
@@ -20617,7 +20617,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.set('att', att)
 											.set('val', val);
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											player.$throw(result.links);
 											player.storage.rain_acgn_project_baYiYongLin_tianWenMiZangFa.remove(result.links[0]);
 											result.links[0].discard();
@@ -20749,7 +20749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.finish();
 										}
 										('step 2');
-										if (result.bool) {
+										if (result.links?.length) {
 											event.togive = result.links.slice(0);
 											player
 												.chooseTarget('将' + get.translation(result.links) + '交给1名角色', true, function (card, player, target) {
@@ -20769,7 +20769,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.finish();
 										}
 										('step 3');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets, 'water');
 											for (var i = 0; i < event.togive.length; i++) {
 												event.cards.remove(event.togive[i]);
@@ -20886,7 +20886,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									target.discard(result.cards);
 									event.finish();
 									return;
@@ -22023,7 +22023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.useCard({ name: 'sha', nature: 'thunder' }, result.cards, false, result.targets, 'rain_acgn_project_suWoTuZiGu_ruLuZhiLei');
 								}
 							},
@@ -22690,7 +22690,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 								});
 								('step 4');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var res = result.cards,
 										target = result.targets[0].playerid;
 									player.addGaintag(res, '已织网');

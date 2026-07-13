@@ -676,7 +676,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 		if (event.forced) next.set('forced', true);
 		('step 1');
 		event.result = result;
-		if (result.bool) {
+		if (result.targets?.length) {
 			player.line2(result.targets, 'green');
 			event.targets = result.targets;
 		} else event.finish();

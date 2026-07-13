@@ -1850,7 +1850,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   'h'
                 );
                 ('step 1');
-                if (result.bool) {
+                if (result.cards?.length) {
                   player.draw(result.cards.length);
                 }
                 let shanCardsNum = 0;
@@ -2170,7 +2170,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return player != target;
                 });
                 ('step 5');
-                if (result.bool) {
+                if (result.targets?.length) {
                   result.targets.sortBySeat();
                   let targets = result.targets;
                   for (const target of targets) {
@@ -3219,7 +3219,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 ('step 2');
-                if (result.bool) {
+                if (result.links?.length) {
                   game.log(player, '获得了', t, result.links.length, '张牌');
                   var color = [];
                   result.links.forEach((item) => {
@@ -3334,7 +3334,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return 100 - get.value(button.link);
                 });
                 ('step 2');
-                if (result.bool) {
+                if (result.links?.length) {
                   event.list = result.links.slice(0);
                   var list = event.list;
                   player.gain(list, 'draw');
@@ -3621,7 +3621,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   else return -1;
                 });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                   result.targets.sortBySeat();
                   game.playThisAudio('voice/' + event.name + [1, 2, 3].randomGet());
                   if (player == game.me) {
@@ -4255,7 +4255,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return get.attitude(_status.event.player, target);
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                   player.line(result.targets, 'green');
                   result.targets[0].draw(2);
                 }
@@ -4264,7 +4264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return -get.attitude(_status.event.player, target);
                 });
                 ('step 3');
-                if (result.bool) {
+                if (result.targets?.length) {
                   player.line(result.targets, 'fire');
                   player.discardPlayerCard(result.targets[0], 'he', [1, 2]);
                 }
@@ -4690,7 +4690,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   prompt: '请选择要送人的卡牌',
                 });
                 ('step 3');
-                if (result.bool) {
+                if (result.targets?.length) {
                   player.line(result.targets, 'green');
                   result.targets[0].gain(result.cards, player, 'giveAuto');
                   event.given += result.cards.length;
@@ -5665,7 +5665,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
           let len = list.length;
           player.chooseButton([0, len]).set('createDialog', ['选择幻化的武将', [list, 'character']]);
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             if (result.links?.length) {
               for (var i of result.links) {
                 let skills = lib.character[i][3];

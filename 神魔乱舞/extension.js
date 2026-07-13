@@ -9137,7 +9137,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     }
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.respond(result.cards, 'highlight');
                                 } else {
                                     event.finish();

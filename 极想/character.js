@@ -1348,7 +1348,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(3);
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.tars[event.num]);
                     } else {
                         player.loseHp();
@@ -1544,7 +1544,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '腊八:你可以将一张红色基本牌置于武将牌上');
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.tar.addToExpansion(result.cards, event.tar, 'giveAuto').gaintag.add('xx_jq_laba');
                     }
                 },
@@ -2639,7 +2639,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 4 - get.value(card) + event.tar.countCards('he');
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cards = result.cards;
                         for (var i = 0; i < cards.length; i++) {
                             ui.cardPile.appendChild(cards[i]);
@@ -2852,7 +2852,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return eff;
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var tars = result.targets;
                         event.inx = 0;
                         event.tars = tars;
@@ -2872,7 +2872,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(4);
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.tar.give(result.cards, player);
                         event.goto(5);
                     } else {
@@ -3017,7 +3017,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 3');
                     var bool = true;
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cs = result.cards;
                         if (get.color(cs[0]) == 'red') {
                             player.gain(cs);
@@ -4282,7 +4282,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '【云志】:你可以展示一张牌并回复一点体力');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var color = get.color(result.cards);
                         player.showCards(result.cards);
                         player.recover();
@@ -4906,7 +4906,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '【魅蝶】你可以将一张手牌交给' + get.translation(tar) + '令其流失一点体力并废除判定区');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.tar);
                         event.tar.loseHp();
                         event.tar.disableJudge();
@@ -5112,7 +5112,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     'step 0';
                     player.moveCard().nojudge = true;
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var tars = result.targets;
                         if (tars[1] == player) {
                             if (player.hasDisabledSlot()) player.chooseToEnable();
@@ -5206,7 +5206,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 },
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.discard(result.cards);
                                 result.targets[0].damage('thunder', player);
                             }
@@ -5805,7 +5805,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             player.changeHujia(1);
                             event.tar.chooseCard('he', true).set('prompt2', '轮回阵:将一张牌置于武将牌上称为<轮回>');
                             ('step 3');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 event.tar.addToExpansion(result.cards, event.tar, 'giveAuto').gaintag.add('xx_lunhui');
                             }
                         },
@@ -6132,7 +6132,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 var num = result.cards.length;
                                 event.num = num;
                             } else {
@@ -6153,7 +6153,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 4');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 event.num -= result.cards.length;
                             }
                             ('step 5');
@@ -6724,7 +6724,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 7 - get.value(card);
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, 'log', 'give', player).gaintag.add('xx_moyan');
                     }
                 },
@@ -6822,7 +6822,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     });
                     event.tar = tar;
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.tar.loseToDiscardpile(result.links, player);
                         event.tar.addTempSkill('fengyin');
                         event.tar.addTempSkill('xx_jingu');
@@ -6845,7 +6845,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return -get.attitude(player, trigger.source);
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 player.loseToDiscardpile(result.links);
                                 trigger.num -= result.links.length;
                                 player.draw();
@@ -6962,7 +6962,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '交给' + get.translation(player) + '两张牌或弃置三张牌,否则获得【诡协】摸两张牌或回复一点体力');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cards = result.cards;
                         if (cards.length >= 3) {
                             event.tar.discard(cards);
@@ -7747,7 +7747,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
                     }
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         if (result.cards && result.cards.length > player.hp) {
                             //QQQ
                             player.recover();
@@ -7821,7 +7821,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.value(c, player);
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 var cx = result.links;
                                 for (var i of cx) {
                                     event.cs.remove(i);
@@ -8892,7 +8892,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '交给' + get.translation(player) + '一张牌,否则其将' + get.translation(cards) + '作为【过河拆桥】对你使用.');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         target.give(result.cards, player);
                     } else {
                         player.useCard({ name: 'guohe' }, cards, true, target, 'xx_chixia');
@@ -9065,7 +9065,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(4);
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.player.give(result.cards, event.tar);
                     } else {
                         player.gain(event.card, 'gain2');
@@ -9139,7 +9139,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 8 - get.value(card);
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.give(result.cards, trigger.source);
                                 trigger.cancel();
                                 player.addTempSkill('jiu_xx_wanbi_3');
@@ -9254,7 +9254,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                             ('step 1');
                             var bool = false;
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 event.tar.give(result.cards, player);
                                 var sum = 0;
                                 for (var card of result.cards) {
@@ -9325,7 +9325,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '会盟:将一张牌作为' + get.translation(trigger.card) + '对' + get.translation(trigger.player) + '使用.');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.useCard({ name: trigger.card.name }, result.cards, true, trigger.player, 'xx_huimeng');
                     }
                 },
@@ -9938,7 +9938,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '顾犬|你可以交给' + get.translation(event.tar) + '一张牌,其可以使用一张【杀】');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.tar);
                         event.tar.chooseToUse({ name: 'sha' }, '顾犬:你可以使用一张【杀】');
                     } else {
@@ -10025,7 +10025,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         else event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.showCards(result.cards);
                         event.target
                             .chooseToDiscard('hes')
@@ -10827,7 +10827,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
                     }
                     ('step 4');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var sx = result.cards;
                         event.tars[event.ix].draw();
                         var cx = event.s;
@@ -11099,7 +11099,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '【法身】:你可以将至多' + num + '张基本牌作为<法身>置于武将牌上');
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_fashen');
                     }
                 },
@@ -11128,7 +11128,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 player.discard(result.links);
                                 trigger.num--;
                                 player.draw();
@@ -12039,7 +12039,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(3);
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.t.showCards(result.cards);
                         event.b = result.cards[0].number;
                         if (get.color(result.cards[0]) == 'black') {
@@ -12268,7 +12268,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 .set('prompt2', '你可以交给' + get.translation(player) + '两张牌并移除<召>');
                             event.p = p;
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 var cards = result.cards;
                                 if (cards) {
                                     event.p.give(cards, player);
@@ -17122,7 +17122,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.tar.respond(result.cards);
                         var cnumx = result.cards[0].number;
                         var bool = false;
@@ -18866,7 +18866,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_chuandao');
                     }
                 },
@@ -19157,7 +19157,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'highlight', 'xx_guidao', 'noOrdering');
                     } else {
                         event.finish();
@@ -19540,7 +19540,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 1');
                     if (event.bool) {
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             event.tar.give(result.cards, player);
                             trigger.parent.excluded.add(event.tar);
                             event.goto(3);
@@ -19605,7 +19605,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     event.t1 = targets[0];
                     event.t2 = targets[1];
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.t1);
                     }
                     event.t2.useCard({ name: 'juedou' }, 'nowuxie', event.t1, 'noai').animate = false;
@@ -19879,7 +19879,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.tar.useCard({ name: 'juedou' }, result.links, true, player, 'xx_yangwei');
                         event.jdbool = true;
                     } else {
@@ -19907,7 +19907,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     }
                     ('step 4');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.addToExpansion(result.links, player, 'giveAuto').gaintag.add('xx_yangwei');
                     }
                 },
@@ -19962,7 +19962,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, tar) < 0;
                                 });
                             ('step 3');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 for (var tar of result.targets) {
                                     tar.chooseToDiscard('he', true);
                                 }
@@ -20328,7 +20328,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.storage.xx_qiaomeng_cards = result.cards;
                     }
                 },
@@ -20363,7 +20363,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 player.gain(result.links, 'gain2');
                             }
                         },
@@ -20767,7 +20767,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '贪狼:交给' + get.translation(player) + event.num + '张牌并令此【杀】对你无效,否则随机弃置一张牌并无法响应此【杀】.');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.tar.give(result.cards, player);
                         trigger.parent.excluded.add(event.tar);
                     } else {
@@ -20933,7 +20933,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         },
                     );
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets.sortBySeat();
                         for (var tar of result.targets) {
                             tar.draw();
@@ -21713,7 +21713,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 8 - get.value(card);
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('xx_yunzhui');
                             }
                         },
@@ -23855,7 +23855,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 prompt: '请选择要送人的卡牌',
                             });
                             ('step 2');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 target.line(result.targets, 'green');
                                 result.targets[0].gain(result.cards, target, 'giveAuto');
                             } else {
@@ -24891,7 +24891,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
 
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cards = result.cards;
                         if (cards[0]) {
                             player.give(cards, event.tar);
@@ -25142,7 +25142,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     'step 0';
                     player.chooseToDiscard([1, Infinity], 'he');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.x = result.cards.length * 2;
                     } else {
                         event.goto(6);
@@ -25800,7 +25800,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return n;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.tar);
                         event.tar.draw();
                         event.tar.addTempSkill('xx_sz_guhuo_1', { player: 'phaseAfter' });
@@ -26459,7 +26459,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '你即将受到' + get.translation(trigger.source) + '造成的' + n + '点伤害,是否发动【功夫】弃置至多' + n + '张牌减少等量伤害？');
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         trigger.num -= result.cards.length;
                     }
                 },
@@ -26545,7 +26545,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 2');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.give(result.cards, event.tar);
                             }
                         },
@@ -27759,7 +27759,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                             event.finish();
                             ('step 2');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 var cs = result.cards;
 
                                 event.s.chooseToDiscard('he', cs.length * 2, true);
@@ -30386,7 +30386,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     });
                     target.addTempSkill('fengyin');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cs = result.cards;
                         var b1 = true;
                         var b2 = false;
@@ -31029,7 +31029,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     });
                     ('step 1');
                     var num = 3;
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         for (var cx of result.cards) {
                             if (get.color(cx) == 'black') {
                                 num--;
@@ -31627,7 +31627,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, tar) > 0;
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.tars = result.targets;
                     } else {
                         event.finish();
@@ -31764,7 +31764,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 1;
                             });
                             ('step 2');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 player.gain(result.links, 'gain2', 'log');
                             }
                         },
@@ -33479,7 +33479,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '集智:你可以重铸一张牌.');
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.recast(result.cards);
                         player.storage.xx_jizhi++;
                         player.markSkill('xx_jizhi');
@@ -33801,7 +33801,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 .set('prompt2', '恩怨:交给' + get.translation(player) + '一张牌');
                             ('step 2');
                             var bool = false;
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 var card = result.cards;
                                 event.tar.give(card, player);
                                 if (card.suit == 'heart') {
@@ -33872,7 +33872,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .set('prompt2', '恩怨:选择要给出的牌');
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 player.give(result.cards, trigger.player);
                             }
                         },
@@ -33918,7 +33918,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return nx;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.tar);
                         player
                             .chooseTarget('眩惑:选择【杀】的目标', function (card, player, tar) {
@@ -33963,7 +33963,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             player.line(event.tar);
                             event.tar.chooseCard('he', true).set('prompt2', '眩惑:交给' + get.translation(player) + '一张牌.');
                             ('step 1');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 event.tar.give(result.cards, player);
                             }
                         },
@@ -34321,7 +34321,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '' + str + '.');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.tar.addToExpansion(result.cards, event.tar, 'giveAuto').gaintag.add('xx_tiaoxin');
                     }
                     ('step 2');
@@ -35265,7 +35265,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '甚贤:你可以交给' + get.translation(trigger.player) + '一张牌');
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, trigger.player);
                     }
                 },
@@ -35725,7 +35725,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 2');
                     player.chooseCard('he', true).set('prompt2', '誉虚:给出一张牌.');
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.cards = result.cards;
                         player
                             .chooseTarget('誉虚:选择给牌的目标', true, function (card, player, tar) {
@@ -36101,7 +36101,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.line(result.targets);
                         player.link(true);
                         player.draw();
@@ -36747,7 +36747,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         prompt: '请选择要送人的卡牌',
                     });
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'green');
                         result.targets[0].gain(result.cards, player, 'giveAuto');
                         event.given += result.cards.length;
@@ -36825,7 +36825,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '十胜:交给' + get.translation(event.t1) + '一张锦囊牌');
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, event.t1);
                     } else {
                         event.finish();
@@ -37060,7 +37060,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('judging', trigger.player.judging[0]);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.respond(result.cards, 'reguicai', 'highlight', 'noOrdering');
                     } else {
                         event.finish();
@@ -37481,7 +37481,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 2');
                     event.goto(4);
                     ('step 3');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.recast(result.links);
                     }
                     ('step 4');
@@ -37645,7 +37645,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         prompt: '【镇军】|请选择要送人的卡牌',
                     });
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.cards.removeArray(result.cards);
                         player.give(result.cards, result.targets[0]);
                     } else {
@@ -37703,7 +37703,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
                     } else event.finish();
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         target.give(result.cards, player);
                     }
                 },
@@ -37832,7 +37832,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     event.finish();
                     ('step 5');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         for (var tar of result.targets) {
                             player.gainPlayerCard(get.prompt('xx_qiaobian', tar), tar, 'hej', 'visibleMove');
                         }
@@ -38260,7 +38260,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 7 - get.value(card);
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.num = result.cards.length;
                         if (event.inx == 1) {
                             event.tar.chooseToDiscard('e', event.num, true);
@@ -38279,7 +38279,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 2');
                     var n = 0;
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         n = result.cards.length;
                     }
                     if (event.inx == 1) {
@@ -38362,7 +38362,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 4 - get.value(card);
                     });
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var num = result.cards.length;
                         if (num > 0) {
                             player.addTempSkill('xx_jiangchi_1');
@@ -38551,7 +38551,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return eff;
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cards = result.cards;
                         var num = cards.length;
                         game.log(player, '将', cards, '置于牌堆顶');
@@ -38712,7 +38712,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                         event.finish();
                     } else {
-                        if (result.bool) {
+                        if (result.links?.length) {
                             var cards = result.links;
                             if (get.position(cards[0]) != 'h') cards.reverse();
                             var next = player.lose(cards[0], ui.cardPile);
@@ -39449,7 +39449,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('prompt2', '弃置两张不同颜色的牌,否则摸一张牌并横置');
                     ('step 3');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var cs = result.cards;
                         var s1 = cs[0].suit;
                         var s2 = cs[1].suit;
@@ -39908,7 +39908,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('targets', trigger.targets);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         trigger.parent.excluded.addArray(result.targets);
                         player.chooseToDiscard('h', result.targets.length, true);
                     }
@@ -40253,7 +40253,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     next.set('goon', get.attitude(player, trigger.target) <= 0);
                     next.set('forceAuto', true);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.cards = result.cards;
                         var target = trigger.target;
                         target.addSkill('xx_pojun_2');
@@ -40625,7 +40625,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         player.give(result.cards, trigger.player);
                     }
                 },

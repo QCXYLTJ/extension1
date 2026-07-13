@@ -3613,7 +3613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.give(result.cards, target, 'giveAuto');
                                 }
                             },
@@ -5637,7 +5637,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (let i of result.links) {
                                         event.choice[i[2]] = true;
                                     }
@@ -5990,7 +5990,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     for (let i of result.links) {
                                         event.cards.remove(i);
                                     }
@@ -6135,7 +6135,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player);
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.num = event.targets[0].getHistory('damage', function (evt) {
                                         return evt.parent.name == 'ymtaiping';
@@ -12310,7 +12310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target) < 0;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard(event.card, false, result.targets);
                                     event.num--;
                                     if (event.num > 0) {
@@ -12811,7 +12811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     trigger.targets.addArray(result.targets);
                                 }
@@ -16065,7 +16065,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) > 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.ymlizhan = [].concat(result.targets);
                                     if (result.targets.length) {
                                         player.markSkill('ymlizhan');
@@ -16260,7 +16260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let list = result.targets;
                                     list.sort(lib.sort.seat);
                                     const list2 = [];
@@ -16305,7 +16305,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let list = result.targets;
                                     list.sort(lib.sort.seat);
                                     const list2 = [];
@@ -16478,7 +16478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards);
                                     const next = player.useSkill('ymqingnang');
                                     next.player = player;
@@ -16969,7 +16969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'green');
                                             trigger.targets.addArray(result.targets);
                                         }
@@ -18267,7 +18267,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.players[event.num].give(result.cards, player);
                                 }
                                 event.num++;

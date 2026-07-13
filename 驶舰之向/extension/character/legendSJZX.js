@@ -996,7 +996,7 @@ game.import('character', function () {
           }
           ('step 2');
           if (target !== player) {
-            if (result.bool) {
+            if (result.cards?.length) {
               target.give(result.cards, player, true);
             }
           }
@@ -1221,7 +1221,7 @@ game.import('character', function () {
             },
           );
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var num2 = result.targets.length;
             result.targets.sortBySeat();
             player.chooseToDiscard(num2, true, 'he');
@@ -2093,7 +2093,7 @@ game.import('character', function () {
                 .set('targets', trigger.targets)
                 .set('card', trigger.card);
               ('step 1');
-              if (result.bool) {
+              if (result.targets?.length) {
                 if (!event.isMine() && !event.isOnline()) event.targets = result.targets;
               } else {
                 event.finish();
@@ -2487,7 +2487,7 @@ game.import('character', function () {
             return card.hasGaintag('caiganmrfz');
           });
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             var cards = result.cards;
             player.draw(cards.length);
             if (!player.storage.caiganmrfz_times) {
@@ -3271,7 +3271,7 @@ game.import('character', function () {
           if (cards.length) player.chooseButton(['你可以选择移去一张与你使用的牌类型不同的<虚影>,令此牌结算两次', cards]);
           else event.finish();
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             player.loseToDiscardpile(result.links);
             player.addTempSkill('xuyingmrfz_buff', 'phaseUseAfter');
             trigger.xuyingmrfz_buff = player;
@@ -3390,7 +3390,7 @@ game.import('character', function () {
             return -get.attitude(player, target);
           };
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             player.line(result.targets);
             result.targets[0].damage();
             if (result.targets[0].hp > player.hp || player.getExpansions('xuyingmrfz').length >= 3) event.finish();
@@ -3447,7 +3447,7 @@ game.import('character', function () {
             return -get.attitude(player, target);
           };
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             for (var i of result.targets) {
               i.addSkill(['huanshimrfz_buff1', 'huanshimrfz_buff2']);
               player.line(i);
@@ -8248,7 +8248,7 @@ game.import('character', function () {
             .set('card', trigger.card)
             .setHiddenSkill(event.name);
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             for (var i = 0; i < result.targets.length; i++) {
               trigger.targets.push(result.targets[i]);
               player.line(result.targets[i]);
@@ -8515,7 +8515,7 @@ game.import('character', function () {
             .set('card', trigger.card)
             .setHiddenSkill(event.name);
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             for (var i = 0; i < result.targets.length; i++) {
               trigger.targets.push(result.targets[i]);
             }
@@ -9201,7 +9201,7 @@ game.import('character', function () {
               return get.value(button.link, _status.event.player);
             });
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             if (history > 0) player.gain(result.links, 'gain2');
             else trigger.targets[0].gain(result.links, 'gain2');
           }
@@ -9336,7 +9336,7 @@ game.import('character', function () {
             return 6 - get.value(card);
           });
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.gainMaxHp(result.cards.length);
           }
           ('step 2');
@@ -10784,7 +10784,7 @@ game.import('character', function () {
             return 6 - get.value(card);
           });
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             player.addGaintag(result.cards, 'huangxiangmrfzx');
             player.removeMark('charge');
           }
@@ -10849,7 +10849,7 @@ game.import('character', function () {
                 });
               }
               ('step 3');
-              if (result.bool) {
+              if (result.cards?.length) {
                 player.addGaintag(result.cards, 'huangxiangmrfzx');
                 player.removeMark('charge');
               }
@@ -11438,7 +11438,7 @@ game.import('character', function () {
             return get.attitude(_status.event.player, target) > 2;
           });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var targets = result.targets;
             for (var i of targets) {
               i.addSkill('dizhumrfzx');
@@ -12849,7 +12849,7 @@ game.import('character', function () {
                 .set('targets', trigger.targets)
                 .set('card', trigger.card);
               ('step 1');
-              if (result.bool) {
+              if (result.targets?.length) {
                 if (!event.isMine() && !event.isOnline()) event.targets = result.targets;
               } else {
                 event.finish();
@@ -12932,7 +12932,7 @@ game.import('character', function () {
                 event.finish();
               } else event.finish();
               ('step 2');
-              if (result.bool) {
+              if (result.targets?.length) {
                 for (var i = 0; i < result.targets.length; i++) {
                   trigger.targets.push(result.targets[i]);
                   player.line(result.targets[i]);
@@ -13348,7 +13348,7 @@ game.import('character', function () {
             },
           );
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             event.targets = result.targets;
             event.num = 0;
             trigger.num -= result.targets.length;
@@ -15259,7 +15259,7 @@ game.import('character', function () {
                 })
                 .set('card', trigger.card);
               ('step 1');
-              if (result.bool) {
+              if (result.targets?.length) {
                 if (!event.isMine() && !event.isOnline()) event.target = result.targets;
               } else {
                 event.finish();

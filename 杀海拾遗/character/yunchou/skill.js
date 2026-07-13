@@ -321,7 +321,7 @@ const skills = {
 				})
 				.set("targets", trigger.targets);
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: "sha" }, result.targets, false);
 			}
 		},

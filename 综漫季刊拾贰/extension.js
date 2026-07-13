@@ -1353,7 +1353,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '【叙事重组】用一张可使用的手牌与一名角色交换两张牌？<br>之后本回合你不能使用这些牌',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.cd = result.cards[0];
                                     event.tr = result.targets[0];
@@ -1510,7 +1510,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(player, target);
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].gain(event.list, 'gain2');
                                         }
@@ -2426,7 +2426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 5 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     game.log(player, '将', result.cards, '置于武将牌上');
                                     player.addToExpansion(result.cards).gaintag.add('zmcuiya');
                                 }
@@ -2547,7 +2547,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'juedou' }, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'thunder');
                                     game.playzm12('zmbeiaduolisi4');
                                     game.webm('zmbeiaduolisi4');
@@ -3036,7 +3036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 9 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     target.useCard({ name: 'sha' }, result.cards, player, false);
                                 } else {
                                     target.loseHp();
@@ -3175,7 +3175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target) * (10 - target.countCards('he'));
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     event.target = result.targets[0];
                                     event.target.chooseCard('【虚换】须交给' + get.translation(player) + '一张牌', 'he', 1, true, function (card) {
@@ -3187,7 +3187,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.target.$give(result.cards, player);
                                     player.gain(result.cards, event.target);
                                     player.storage.zmenanzhimu = result.cards[0].number;
@@ -3446,7 +3446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             const list = result.links;
                                             for (let i = 0; i < list.length; i++) {
                                                 const owner = get.owner(list[i]);
@@ -3552,7 +3552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.value(card);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards);
                                     trigger.player.$give(result.cards.length, player);
                                 }
@@ -3623,7 +3623,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, 'gain2');
                                 }
                                 ('step 5');
@@ -4037,7 +4037,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cds = result.cards;
                                     event.target
                                         .chooseControl('转化杀', '转化桃', function () {
@@ -4329,7 +4329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'green');
                                             game.playzm12('zmkalian');
                                             game.webm('zmkalian');
@@ -4444,7 +4444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, player);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links);
                                     player.$gain2(result.links);
                                 }
@@ -4797,7 +4797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     game.playzm12(['zmshixi'].randomGet());
                                     game.webm('zmshixi');
@@ -5573,7 +5573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links);
                                 }
                             },
@@ -6179,7 +6179,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return true;
                                         };
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2');
                                         } else {
                                             event.finish();
@@ -6311,7 +6311,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     game.log(player, '将', result.cards, '置于' + get.translation(trigger.source) + '武将牌上');
                                     trigger.source.addSkill('zmlangutou_0');
                                     trigger.source.addToExpansion(result.cards).gaintag.add('zmlangutou_0');
@@ -7066,7 +7066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.effect(target, trigger.card, player, player);
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             for (let i = 0; i < result.targets.length; i++) {
                                                 trigger.targets.push(result.targets[i]);

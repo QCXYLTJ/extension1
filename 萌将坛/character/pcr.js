@@ -1560,7 +1560,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								},
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								var cards = result.cards || [];
 								var targets = result.targets || [];
 								var target = targets[0];
@@ -2229,7 +2229,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						});
 					} else event.finish();
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = (result.targets || [])[0] || false;
 						if (target) {
 							var card = {

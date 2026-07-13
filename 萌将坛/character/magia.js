@@ -290,7 +290,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return get.effect(target, card, player, player);
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var targets = result.targets.sortBySeat();
 								player.removeMark('scqhMagia_huakai_dist', 1, false);
 								trigger.targets.addArray(targets);
