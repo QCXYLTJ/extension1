@@ -2551,7 +2551,7 @@ const skill = {
 					game.stopCountChoose();
 				});
 			}
-			let list1 = [];
+			const list1 = [];
 			for (let i in event.given_map) {
 				const source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
 				if (player == source) {
@@ -2567,7 +2567,7 @@ const skill = {
 				animate: 'gain2',
 			}).setContent('gaincardMultiple');
 			('step 7');
-			let list2 = [];
+			const list2 = [];
 			for (let i in event.given_map) {
 				const source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
 				if (event.given_map[i].length >= num) {
@@ -12499,7 +12499,7 @@ const skill = {
 							return -1;
 						});
 					('step 1');
-					let evt1 = event.getParent(2);
+					const evt1 = event.getParent(2);
 					if (result.links?.length) {
 						if (evt1.type == 'wuxie') {
 							game.skipwuxie = true;
@@ -38362,7 +38362,7 @@ const skill = {
 			}
 			event.list = list;
 			('step 3');
-			let list1 = event.list.slice(0);
+			const list1 = event.list.slice(0);
 			switch (event.list.length) {
 				case 0:
 					event.finish();
@@ -42856,7 +42856,7 @@ const skill = {
 			}
 
 			('step 3');
-			let storage1 = event.player.storage.lg_huanjing;
+			const storage1 = event.player.storage.lg_huanjing;
 			let player;
 			let i, j;
 
@@ -44757,7 +44757,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			let aa = get.cardPile2(function (card) {
+			const aa = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'basic';
 			});
 			if (aa) {
@@ -44767,7 +44767,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			let aaa = get.cardPile2(function (card) {
+			const aaa = get.cardPile2(function (card) {
 				return get.color(card) != 'black' && get.type(card) != 'equip';
 			});
 			if (aaa) {
@@ -44777,7 +44777,7 @@ const skill = {
 				event.finish();
 			}
 			('step 4');
-			let aaaa = get.cardPile2(function (card) {
+			const aaaa = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'equip';
 			});
 			if (aaaa) {
@@ -44787,7 +44787,7 @@ const skill = {
 				event.finish();
 			}
 			('step 5');
-			let aaaaa = get.cardPile2(function (card) {
+			const aaaaa = get.cardPile2(function (card) {
 				return get.color(card) != 'black' && get.type(card) != 'trick';
 			});
 			if (aaaaa) {
@@ -44797,7 +44797,7 @@ const skill = {
 				event.finish();
 			}
 			('step 6');
-			let aaaaaa = get.cardPile2(function (card) {
+			const aaaaaa = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'trick';
 			});
 			if (aaaaaa) {
@@ -44817,7 +44817,7 @@ const skill = {
 				event.finish();
 			}
 			('step 8');
-			let bb = get.cardPile2(function (card) {
+			const bb = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'delay';
 			});
 			if (bb) {
@@ -48764,7 +48764,7 @@ const skill = {
 				ui.cardPile.insertBefore(event.card, ui.cardPile.firstChild);
 			}
 			('step 5');
-			let target1 = event.targets;
+			const target1 = event.targets;
 			target1.storage.lg_lingyan = [];
 			target1.storage.lg_lingyan.push(trigger.card);
 		},
@@ -55100,7 +55100,7 @@ const skill = {
 				player.gain(togain, 'gain2', 'log');
 			}
 			('step 11');
-			let togain1 = result.control == '不同花色' ? event.cards2 : event.cardsx;
+			const togain1 = result.control == '不同花色' ? event.cards2 : event.cardsx;
 			togain1.remove(event.cardx);
 			if (togain1.length) {
 				target.gain(togain1, 'gain2', 'log');
@@ -55115,7 +55115,7 @@ const skill = {
 			('step 13');
 			event.current = result.links[0];
 			event.cardsx.remove(event.current);
-			let dialog1 = ui.create.dialog('令一名角色获得之');
+			const dialog1 = ui.create.dialog('令一名角色获得之');
 			dialog1.add([event.current]);
 			player.chooseTarget(1, true, dialog1).set('ai', function (target) {
 				let base = 1;
