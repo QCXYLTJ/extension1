@@ -9495,7 +9495,7 @@ export default async function () {
                             });
                             if (card.name == 'wuxie' && targets.length) {
                                 targets.sort(function (a, b) {
-                                    return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, absolute);
+                                    return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, 'absolute');
                                 });
                                 if (get.attitude(player, targets[0]) < 0) return -1;
                             }
@@ -9507,7 +9507,7 @@ export default async function () {
                             });
                             if (card.name == 'wuxie' && targets.length) {
                                 targets.sort(function (a, b) {
-                                    return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, absolute);
+                                    return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, 'absolute');
                                 });
                                 if (get.attitude(player, targets[0]) < 0) return -1;
                             }
@@ -9520,7 +9520,7 @@ export default async function () {
                             });
                             if (card.name == 'wuxie' && targets.length) {
                                 targets.sort(function (a, b) {
-                                    return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, absolute);
+                                    return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, 'absolute');
                                 });
                                 if (get.attitude(player, targets[0]) < 0) return false;
                             }
@@ -9552,7 +9552,7 @@ export default async function () {
                                 return target.hasSkill('radiance_yanzhen');
                             });
                             targets.sort(function (a, b) {
-                                return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, absolute);
+                                return get.distance(_status.currentPhase, a, 'absolute') - get.distance(_status.currentPhase, b, 'absolute');
                             });
                             if (get.attitude(player, targets[0]) < 0) return -1;
                             return evt.old_ai1();
