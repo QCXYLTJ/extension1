@@ -6320,7 +6320,7 @@ const skill = {
         event.finish();
       }
       ('step 4');
-      let list1 = game.filterPlayer(function (current) {
+      const list1 = game.filterPlayer(function (current) {
         return current.hasSkill('mx_enian2');
       });
       player.useCard(
@@ -11179,7 +11179,7 @@ const skill = {
       game.log('<span class="bluetext">牌堆底</span>的拼点牌为', cards);
       ('step 3');
       event.cards = get.cards(2);
-      let cards1 = event.cards;
+      const cards1 = event.cards;
       const dialog = ui.create.dialog('明日渺远不及', cards1, true);
       event.dialog = dialog;
       _status.dieClose.push(dialog);
@@ -25339,7 +25339,7 @@ const skill = {
           if (result.bool) {
             game.delayex();
           }
-          let cards1 = event.cards.filter((card) => get.owner(card) == player && get.position(card) == 'h' && lib.filter.cardDiscardable(card, player, 'mx_tianshi'));
+          const cards1 = event.cards.filter((card) => get.owner(card) == player && get.position(card) == 'h' && lib.filter.cardDiscardable(card, player, 'mx_tianshi'));
           if (cards1.length) {
             player.recover();
             player.discard(cards1);
@@ -32914,7 +32914,7 @@ const skill = {
         event.goto(2);
       }
       ('step 5');
-      let target1 = event.current;
+      const target1 = event.current;
       player.chooseBool('鲜血沐浴<br/><br/>是否获得' + get.translation(event.current) + '两张牌？').ai = function () {
         let num = player.countCards('h', function (card) {
           return player.canUse(card, target1) && get.tag(card, 'damage');
@@ -40591,7 +40591,7 @@ const skill = {
         event.finish();
       }
       ('step 3');
-      let card1 = event.card;
+      const card1 = event.card;
       if (result && typeof event.directindex != 'number') {
         event.directindex = result.index;
       }
@@ -42112,7 +42112,7 @@ const skill = {
             true,
           );
           ('step 4');
-          let card1 = result.links[0];
+          const card1 = result.links[0];
           trigger.player.gain(card1, 'gain');
           trigger.player.recover();
           player.storage.mx_youyezhiyuan.remove(card1);
@@ -58411,7 +58411,7 @@ const skill = {
       }
       ('step 2');
       const players1 = event.targetss[0];
-      let targets1 = event.targetss[1];
+      const targets1 = event.targetss[1];
       if (event.more && !result.bool) {
         players1.chooseToDiscard('he', players1.countCards('h') - targets1.countCards('h'), true).set('ai', get.disvalue2);
       } else if (event.more && result.bool) {
@@ -63998,7 +63998,7 @@ const skill = {
       event.cards.push(card);
       player.choosePlayerCard(targets[1], true, 'h');
       ('step 3');
-      let card1 = result.cards[0];
+      const card1 = result.cards[0];
       player.line(targets[1]);
       player.showCards(card1, get.translation(player) + '对' + get.translation(targets[1]) + '发动此技能');
       event.cards.push(card1);
