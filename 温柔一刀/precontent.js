@@ -89,7 +89,6 @@ npm install eslint
 npm install @babel/parser @babel/traverse @babel/generator @babel/types
 npm install --save-dev @babel/parser @babel/traverse @babel/generator
 jscodeshift -t $env:TRANSFOR . --extensions js --verbose 2
-jscodeshift -t $env:TRANSVAR . --extensions js --verbose 2
 npx eslint . --ext .js,.jsx,.ts,.tsx --fix
 check\(event, player\) \{\n\s*let player = _status.event.player;
 function \(card, player, target\) \{\n\s*let player = _status.event.player;
