@@ -6878,7 +6878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				};
 				lib.config.all.characters.add('千秋霸业');
 				lib.config.characters.add('千秋霸业');
-				for (let i in QQQ.character) {
+				for (const i in QQQ.character) {
 					QQQ.character[i][4].add(`ext:千秋霸业/image/${i}.jpg`);
 				}
 				lib.translate['千秋霸业_character_config'] = `千秋霸业`;
@@ -7224,7 +7224,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							effect() {
 								if (result.bool == false) {
-									let num = player.hp;
+									const num = player.hp;
 									player.damage(2, 'nosource');
 									player.chooseToDiscard(num, true, 'h');
 								}
@@ -8328,7 +8328,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								useful: [4, 1],
 								result: {
 									player(player) {
-										let num = player.countCards('h');
+										const num = player.countCards('h');
 										if (num <= 1) {
 											return 0;
 										}
@@ -9157,7 +9157,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								let num = target.countCards('h', { suit: 'club' });
+								const num = target.countCards('h', { suit: 'club' });
 								target.loseHp(num);
 							},
 							ai: {
@@ -9249,7 +9249,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								target.chooseToDiscard('h', 2, true).delay = false;
 								('step 1');
-								let num = target.hp;
+								const num = target.hp;
 								target.draw(num);
 								target.addTempSkill('lg_bujiezhiyuan1', { player: 'recoverAfter' });
 							},

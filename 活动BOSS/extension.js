@@ -105,7 +105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               event.dialog = ui.create.dialog(event.str, 'forcebutton', 'hidden');
               event.dialog.addText('<li>点击下方的按钮,可以增加对应特权的等级;或选择默认加点.', false);
               event.dialog.open();
-              for (let i in event.status) {
+              for (const i in event.status) {
                 event.dialog.content.childNodes[0].innerHTML = event.dialog.content.childNodes[0].innerHTML.replace(i, event.status[i]);
               }
               for (const i of event.dialog.buttons) {
@@ -147,14 +147,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.powers[link] = 65;
                   event.status[link] = 5;
                   let str = event.str.slice(0);
-                  for (let i in event.status) {
+                  for (const i in event.status) {
                     str = str.replace(i, event.status[i]);
                   }
                   event.dialog.content.childNodes[0].innerHTML = str;
                   event.finishedx.push(link);
                 } else {
                   let str = event.str.slice(0);
-                  for (let i in event.status) {
+                  for (const i in event.status) {
                     str = str.replace(i, event.status[i]);
                   }
                   event.dialog.content.childNodes[0].innerHTML = str;
@@ -693,7 +693,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             if (event.player == player || !event.cards || player.getCards('h').length == 0 || event.giver || event['bySelf'] != true || event.parent.name == '_yongjian_zengyu' || (player.name1 != 'hzc_zuoci' && player.name2 != 'hzc_zuoci')) {
               return false;
             }
-            for (let i of player.getCards('h')) {
+            for (const i of player.getCards('h')) {
               if (event.cards.includes(i)) {
                 return true;
               }
@@ -729,7 +729,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 return isContains;
               }
             }
-            let evt = event.getl(player);
+            const evt = event.getl(player);
             return evt && evt.player == player && evt.es && evt.es.length;
           }
         },
@@ -778,7 +778,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               return isContains;
             }
           }
-          let evt = event.getl(player);
+          const evt = event.getl(player);
           return evt && evt.player == player && evt.es && evt.es.length;
         },
         content() {
@@ -826,7 +826,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         if (info.clickable) {
           const button = ui.create.div('.TLAo-shunfaanniu', this);
           button.innerHTML = get.translation(skillname);
-          let player = this;
+          const player = this;
           button.listen(function () {
             if (player.hasSkill(skillname, true, true, false)) {
               if (info.clickable) {
@@ -903,7 +903,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
       game.washCardSP = function () {
         const cards = get.cards(ui.cardPile.childElementCount + 1);
         if (Array.isArray(cards)) {
-          for (let i of cards) {
+          for (const i of cards) {
             ui.cardPile.insertBefore(i, ui.cardPile.childNodes[get.rand(ui.cardPile.childElementCount)]);
           }
         }
@@ -1004,7 +1004,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.add('qihuan_du');
             lib.inpile.add('qihuan_cibi');
             lib.inpile.add('qihuan_yinyi');
-            let list = [3, 5, 7, 8];
+            const list = [3, 5, 7, 8];
             for (let i = 0; i < 12; i++) {
               const card = game.createCard2('qihuan_du', ['spade', 'club'].randomGet(), list[i]);
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
@@ -1049,7 +1049,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             };
             lib.inpile.add('nsdzz_baozhu');
             lib.inpile.sort(lib.sort.card);
-            let list = [3, 4, 5, 6, 7, 8];
+            const list = [3, 4, 5, 6, 7, 8];
             for (let i = 0; i < 25; i++) {
               const card = game.createCard2('nsdzz_baozhu', 'heart', list[i]);
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
@@ -1686,7 +1686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             lib.inpile.add('liannu');
             lib.inpile.add('lzzd_zongzi');
             lib.inpile.sort(lib.sort.card);
-            let list = [3, 4, 5, 6, 7, 8];
+            const list = [3, 4, 5, 6, 7, 8];
             for (let i = 0; i < 20; i++) {
               const card = game.createCard2('lzzd_zongzi', 'heart', list[i]);
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
@@ -1772,8 +1772,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             game.addGlobalSkill('sw_shendie');
             game.addGlobalSkill('sw_shensha');
             game.addGlobalSkill('swzs_die');
-            let list = ['lebu', 'bingliang'];
-            for (let i of game.players) {
+            const list = ['lebu', 'bingliang'];
+            for (const i of game.players) {
               switch (i.name1) {
                 case 'shen_guanyu': {
                   i.equip(game.createCard2('guilongzhanyuedao', 'spade', 5));
@@ -10916,7 +10916,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               ai: {
                 equipValue(card, player) {
-                  let num = 4 + (player.getEnemies().length - 1);
+                  const num = 4 + (player.getEnemies().length - 1);
                   return Math.min(num, 6);
                 },
                 basic: {
@@ -10952,7 +10952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               },
               ai: {
                 equipValue(card, player) {
-                  let num = 7.5 + player.getDamagedHp() / 5;
+                  const num = 7.5 + player.getDamagedHp() / 5;
                   return Math.min(num, 9.5);
                 },
                 basic: {
@@ -11158,7 +11158,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               selectTarget: 1,
               content() {
                 'step 0';
-                let num = [1, 2].randomGet();
+                const num = [1, 2].randomGet();
                 target.damage(num).type = 'hezong_shangyangbianfa';
               },
               ai: {
@@ -11219,8 +11219,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 target.update();
                 ('step 1');
                 if (event.skill) {
-                  let list = [];
-                  for (let i in lib.character) {
+                  const list = [];
+                  for (const i in lib.character) {
                     if (lib.character[i][4].includes('boss')) {
                       continue;
                     }
@@ -11231,7 +11231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   if (!event.skills2) {
                     event.skills2 = [];
-                    for (let i of list) {
+                    for (const i of list) {
                       event.skills2.addArray(
                         (lib.character[i][3] || []).filter(function (skill) {
                           const info = get.info(skill);
@@ -11242,7 +11242,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   }
                   const skills = event.skills2;
                   skills.randomSort();
-                  let list1 = [];
+                  const list1 = [];
                   for (let i = 0; i < skills[i].length; i++) {
                     if (!target.storage.nianshou_lingli_skill.includes(skills[i]) && !list1.includes(skills[i]) && !target.getSkills(null, false, false).includes(skills[i]) && !get.skillInfoTranslation(skills[i], player).length == 0) {
                       list1.push(skills[i]);
@@ -11398,7 +11398,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return get.order({ name: 'sha' }) - 0.1;
                 },
                 equipValue(card, player) {
-                  let result = (function () {
+                  const result = (function () {
                     if (
                       !game.hasPlayer(function (current) {
                         return get.distance(player, current) <= 1 && player.canUse('sha', current) && get.effect(current, { name: 'sha' }, player, player) > 0;
@@ -11411,7 +11411,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         return 10;
                       }
                     }
-                    let num = player.countCards('h', 'sha');
+                    const num = player.countCards('h', 'sha');
                     if (num > 1) {
                       return 6 + num;
                     }
@@ -11642,7 +11642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   target.storage.hzc_haoshouqiongjing = [];
                 }
                 let list = [];
-                for (let i in lib.character) {
+                for (const i in lib.character) {
                   if (lib.character[i][4].includes('boss')) {
                     continue;
                   }
@@ -11652,7 +11652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   list.push(i);
                 }
                 const skills = [];
-                for (let i of list) {
+                for (const i of list) {
                   skills.addArray(
                     (lib.character[i][3] || []).filter(function (skill) {
                       const info = get.info(skill);
@@ -11664,7 +11664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 const num1 = 10 * (event.num + 1);
                 const num2 = num1 + 10;
                 const list2 = [];
-                for (let i in lib.skill) {
+                for (const i in lib.skill) {
                   if (!skills.includes(i)) {
                     continue;
                   }
@@ -11741,7 +11741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 basic: {
                   order: 12,
                   useful() {
-                    let player = _status.event.player;
+                    const player = _status.event.player;
                     if (player.name1 != 'hzc_zuoci' && player.name2 != 'hzc_zuoci') {
                       return 6;
                     }
@@ -11784,7 +11784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               ai: {
                 basic: {
                   useful() {
-                    let player = _status.event.player;
+                    const player = _status.event.player;
                     for (const i of game.dead) {
                       if (get.attitude(player, i) > 1) {
                         return 8;
@@ -11934,9 +11934,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 const cards = player.getCards('h').concat(target.getCards('h'));
                 const list1 = [];
                 const list2 = [];
-                let list = [list1, list2];
+                const list = [list1, list2];
                 if (Array.isArray(cards)) {
-                  for (let i of cards) {
+                  for (const i of cards) {
                     list.randomGet().push(i);
                   }
                 }

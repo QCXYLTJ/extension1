@@ -356,7 +356,7 @@ game.import('extension', function () {
                 filterTarget: true,
                 async content(event, trigger, player) {
                     const list = [];
-                    for (let i in lib.card) {
+                    for (const i in lib.card) {
                         if (!lib.card[i].content) {
                             continue;
                         }
@@ -400,7 +400,7 @@ game.import('extension', function () {
                             })
                             .forResult();
                         if (result.links?.length) {
-                            let card = game.createCard(result.links[0][2]);
+                            const card = game.createCard(result.links[0][2]);
                             event.judgecard = card;
                             event.target.$draw(card);
                             event.target.addJudge(event.judgecard);
@@ -413,7 +413,7 @@ game.import('extension', function () {
                     result: {
                         player(player, target) {
                             let eff = 0;
-                            for (let i in lib.card) {
+                            for (const i in lib.card) {
                                 if (lib.card[i].type == 'delay') {
                                     const current = get.effect(target, { name: i }, player, player);
                                     if (current > eff) {
@@ -526,7 +526,7 @@ game.import('extension', function () {
                         player.hiddenSkills.remove(skillx);
                         player.invisibleSkills.remove(skillx);
                         delete player.tempSkills[skillx];
-                        for (let i in player.additionalSkills) {
+                        for (const i in player.additionalSkills) {
                             player.additionalSkills[i].remove(skillx);
                         }
                         player.checkConflict(skillx);
@@ -534,7 +534,7 @@ game.import('extension', function () {
                         if (lib.skill.global.includes(skillx)) {
                             lib.skill.global.remove(skillx);
                             delete lib.skill.globalmap[skillx];
-                            for (let i in lib.hook.globalskill) {
+                            for (const i in lib.hook.globalskill) {
                                 lib.hook.globalskill[i].remove(skillx);
                             }
                         }
@@ -549,7 +549,7 @@ game.import('extension', function () {
                     game.expandSkills(skills);
                     for (const skillx of skills) {
                         player.initedSkills.remove(skillx);
-                        for (let i in lib.hook) {
+                        for (const i in lib.hook) {
                             if (Array.isArray(lib.hook[i]) && lib.hook[i].includes(skillx)) {
                                 try {
                                     delete lib.hook[i];
@@ -558,7 +558,7 @@ game.import('extension', function () {
                                 }
                             }
                         }
-                        for (let i in lib.hook.globalskill) {
+                        for (const i in lib.hook.globalskill) {
                             if (lib.hook.globalskill[i].includes(skillx)) {
                                 lib.hook.globalskill[i].remove(skillx);
                                 if (lib.hook.globalskill[i].length == 0) {
@@ -1153,7 +1153,7 @@ game.import('extension', function () {
                         natures,
                         player,
                     );
-                    let numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
+                    const numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
                     player.$damagepop(-numx, natures[0]);
                     if (player.hp <= 0 && player.isAlive()) {
                         player.dying({ source: source });
@@ -1792,7 +1792,7 @@ game.import('extension', function () {
                                         }, //加强于吉AI
                                         async precontent(event, trigger, player) {
                                             player.addTempSkill('蛊惑_1');
-                                            let card = event.result.cards[0];
+                                            const card = event.result.cards[0];
                                             event.result.card.suit = card.suit;
                                             event.result.card.number = card.number;
                                         },
@@ -1832,7 +1832,7 @@ game.import('extension', function () {
                                     },
                                     async content(event, trigger, player, cards) {
                                         event.fake = false;
-                                        let card = trigger.cards[0];
+                                        const card = trigger.cards[0];
                                         if (card.name != trigger.card.name || (card.name == 'sha' && !get.is.sameNature(trigger.card, card))) {
                                             event.fake = true;
                                         }
@@ -2015,7 +2015,7 @@ game.import('extension', function () {
                             },
                             forced: true,
                             async content(event, trigger, player) {
-                                let cards = trigger.cards.filter((q) => q.suit == 'spade');
+                                const cards = trigger.cards.filter((q) => q.suit == 'spade');
                                 player.gain(cards, 'gain2');
                             },
                         },
@@ -2207,7 +2207,7 @@ game.import('extension', function () {
                                         name = '犀梳';
                                     }
                                     if (lib.card[name] && trigger.player.hasEmptySlot(5)) {
-                                        let card = game.createCard(name);
+                                        const card = game.createCard(name);
                                         trigger.player.$gain2(card, false);
                                         trigger.player.equip(card);
                                     }
@@ -2246,7 +2246,7 @@ game.import('extension', function () {
                                 markcount(storage, player) {
                                     const red = [],
                                         black = [];
-                                    let cards = player.getExpansions('化木');
+                                    const cards = player.getExpansions('化木');
                                     for (const i of cards) {
                                         const color = get.color(i, false);
                                         (color == 'red' ? red : black).push(i);
@@ -2257,7 +2257,7 @@ game.import('extension', function () {
                                 mark(dialog, storage, player) {
                                     const red = [],
                                         black = [];
-                                    let cards = player.getExpansions('化木');
+                                    const cards = player.getExpansions('化木');
                                     for (const i of cards) {
                                         const color = get.color(i, false);
                                         (color == 'red' ? red : black).push(i);
@@ -2319,13 +2319,13 @@ game.import('extension', function () {
                                     return number0(player.getUseValue({ name: button.link[2] }, null, true)) + 10;
                                 },
                                 backup(links, player) {
-                                    let name = links[0][2],
+                                    const name = links[0][2],
                                         color = name == 'tao' ? 'red' : 'black';
-                                    let cards = player.getExpansions('化木').filter((i) => get.color(i, false) == color);
+                                    const cards = player.getExpansions('化木').filter((i) => get.color(i, false) == color);
                                     if (!cards.length) {
                                         return false;
                                     }
-                                    let card = { name: name };
+                                    const card = { name: name };
                                     return {
                                         viewAs: card,
                                         color: color,
@@ -2343,7 +2343,7 @@ game.import('extension', function () {
                                     };
                                 },
                                 prompt(links, player) {
-                                    let name = links[0][2],
+                                    const name = links[0][2],
                                         color = name == 'tao' ? '玉树' : '灵杉';
                                     return `将一枚<${color}>当做【${get.translation(name)}】使用`;
                                 },
@@ -2375,7 +2375,7 @@ game.import('extension', function () {
                                     return event.gaintag.includes('化木');
                                 }
                                 if (event.name == 'lose' && event.getlx !== false) {
-                                    for (let i in event.gaintag_map) {
+                                    for (const i in event.gaintag_map) {
                                         if (event.gaintag_map[i].includes('化木')) {
                                             return true;
                                         }
@@ -2386,7 +2386,7 @@ game.import('extension', function () {
                                     if (evt.name != 'lose' || event != evt.parent) {
                                         return false;
                                     }
-                                    for (let i in evt.gaintag_map) {
+                                    for (const i in evt.gaintag_map) {
                                         if (evt.gaintag_map[i].includes('化木')) {
                                             return true;
                                         }
@@ -2427,7 +2427,7 @@ game.import('extension', function () {
                             async content(event, trigger, player) {
                                 let count = Math.min(numberq1(trigger.num), 9);
                                 while (count-- > 0) {
-                                    let cards = get.cards(5);
+                                    const cards = get.cards(5);
                                     game.cardsGotoOrdering(cards);
                                     player.showCards(cards);
                                     const result = await player.chooseControl('获得两张牌', '使用一张牌').forResult();
@@ -2699,7 +2699,7 @@ game.import('extension', function () {
                                         }).ai = function (card) {
                                             const trigger = _status.event.parent._trigger;
                                             const player = _status.event.player;
-                                            let result = trigger.judge(card) - trigger.judge(trigger.player.judging[0]);
+                                            const result = trigger.judge(card) - trigger.judge(trigger.player.judging[0]);
                                             const attitude = get.attitude(player, trigger.player);
                                             if (attitude == 0 || result == 0) {
                                                 return 0;
@@ -2750,7 +2750,7 @@ game.import('extension', function () {
                                                 }
                                                 const player = _status.event.player;
                                                 const current = _status.currentPhase;
-                                                let dis = current ? get.distance(current, target, 'absolute') : 1;
+                                                const dis = current ? get.distance(current, target, 'absolute') : 1;
                                                 const draw = player.getDamagedHp();
                                                 const att = get.attitude(player, target);
                                                 if (att == 0) {
@@ -2934,9 +2934,9 @@ game.import('extension', function () {
                             forced: true,
                             content() {
                                 trigger.changeToZero();
-                                let cards = [];
+                                const cards = [];
                                 for (const i of lib.suits) {
-                                    let card = get.cardPile2(function (card) {
+                                    const card = get.cardPile2(function (card) {
                                         return card.suit == i;
                                     });
                                     if (card) {
@@ -3281,7 +3281,7 @@ game.import('extension', function () {
                                 let num = 6;
                                 while (num-- > 0) {
                                     const stat = player.getStat();
-                                    for (let i in stat.skill) {
+                                    for (const i in stat.skill) {
                                         const info = lib.skill[i];
                                         if (info?.enable) {
                                             if ((typeof info.enable == 'string' && info.enable == 'phaseUse') || (typeof info.enable == 'object' && info.enable.includes('phaseUse'))) {
@@ -3289,7 +3289,7 @@ game.import('extension', function () {
                                             }
                                         }
                                     }
-                                    for (let i in stat.card) {
+                                    for (const i in stat.card) {
                                         const info = lib.card[i];
                                         if (info?.updateUsable == 'phaseUse') {
                                             stat.card[i] = 0;
@@ -4092,7 +4092,7 @@ game.import('extension', function () {
                                             return 0;
                                         },
                                         ai2(target) {
-                                            let card = ui.selected.cards[0];
+                                            const card = ui.selected.cards[0];
                                             if (get.color(card) == 'red') {
                                                 return get.attitude(player, target);
                                             }
@@ -4696,7 +4696,7 @@ game.import('extension', function () {
                             },
                             logTarget: 'player',
                             content() {
-                                let cards = trigger.cards.filterInD('od');
+                                const cards = trigger.cards.filterInD('od');
                                 player.gain(cards, 'log', 'gain2');
                             },
                         },
@@ -4823,7 +4823,7 @@ game.import('extension', function () {
                                     trigger.parent.targets.push(player);
                                     trigger.player.line(player);
                                 } else {
-                                    let cards = trigger.cards.filterInD();
+                                    const cards = trigger.cards.filterInD();
                                     if (cards.length) {
                                         trigger.player.addSkill('zhenwei2');
                                         trigger.player.addToExpansion(cards, 'gain2').gaintag.add('zhenwei2');
@@ -4859,7 +4859,7 @@ game.import('extension', function () {
                                 markcount: 'expansion',
                             },
                             onremove(player, skill) {
-                                let cards = player.getExpansions(skill);
+                                const cards = player.getExpansions(skill);
                                 if (cards.length) {
                                     player.loseToDiscardpile(cards);
                                 }
@@ -4894,7 +4894,7 @@ game.import('extension', function () {
                                         const storage = player.storage.诓人_draw;
                                         if (storage.length) {
                                             for (let i = 0; i < storage[0].length; i++) {
-                                                let target = storage[0][i],
+                                                const target = storage[0][i],
                                                     num = storage[1][i];
                                                 if (target && target.isIn()) {
                                                     player.line(target);
@@ -5626,7 +5626,7 @@ game.import('extension', function () {
                                     if (list.includes(i)) {
                                         continue;
                                     }
-                                    let card = get.cardPile2(function (card) {
+                                    const card = get.cardPile2(function (card) {
                                         return card.suit == i;
                                     });
                                     if (card) {
@@ -5727,7 +5727,7 @@ game.import('extension', function () {
                             },
                             content() {
                                 trigger.excluded.add(player);
-                                let target = trigger.player,
+                                const target = trigger.player,
                                     cards = trigger.cards.filterInD();
                                 target.addToExpansion('gain2', cards).gaintag.add('埋祸_1');
                                 target.storage.埋祸_target = player;
@@ -5765,7 +5765,7 @@ game.import('extension', function () {
                                         markcount: 'expansion',
                                     },
                                     onremove(player, skill) {
-                                        let cards = player.getExpansions(skill);
+                                        const cards = player.getExpansions(skill);
                                         if (cards.length) {
                                             player.loseToDiscardpile(cards);
                                         }
@@ -5866,7 +5866,7 @@ game.import('extension', function () {
                                 markcount: 'expansion',
                             },
                             async content(event, trigger, player) {
-                                let cards = Array.from(ui.cardPile.childNodes).filter((q) => q.number == 7);
+                                const cards = Array.from(ui.cardPile.childNodes).filter((q) => q.number == 7);
                                 player.addToExpansion(cards, 'draw').gaintag = ['QD_dongfeng'];
                             },
                             group: ['QD_dongfeng_1'],
@@ -5893,7 +5893,7 @@ game.import('extension', function () {
                                             ])
                                             .set('filterMove', (from, to) => typeof to != 'number')
                                             .set('processAI', function (list) {
-                                                let card = list[0][1].concat(list[1][1]);
+                                                const card = list[0][1].concat(list[1][1]);
                                                 card.sort((a, b) => get.value(b) - get.value(a));
                                                 let cardQ = [],
                                                     num = list[1][1].length;
@@ -7721,7 +7721,7 @@ game.import('extension', function () {
                                         })
                                         .forResult();
                                     if (targets?.length) {
-                                        let numx = Math.min(num, targets[0].countCards('he'));
+                                        const numx = Math.min(num, targets[0].countCards('he'));
                                         const { links } = await player
                                             .chooseButton([`将${get.translation(targets[0])}至多${numx}张牌当作<谦逊>牌置于你的武将牌上`, targets[0].getCards('he')], [1, numx])
                                             .set('ai', (button) => 6 + get.value(button.link) * sgn(targets[0].isEnemiesOf(player)))
@@ -7777,7 +7777,7 @@ game.import('extension', function () {
                                     const cards = trigger.player.getCards(i);
                                     return cards.length && cards.every((q) => trigger.cards?.includes(q));
                                 }).length;
-                                let numx = Math.max(player.getExpansions('QD_qianxun').length, 1);
+                                const numx = Math.max(player.getExpansions('QD_qianxun').length, 1);
                                 while (num-- > 0) {
                                     await player.draw(numx);
                                 }

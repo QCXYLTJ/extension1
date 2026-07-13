@@ -9281,7 +9281,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
         };
         lib.config.all.characters.add('梦隐');
         lib.config.characters.add('梦隐');
-        for (let i in QQQ.character) {
+        for (const i in QQQ.character) {
           QQQ.character[i][4].add(`ext:梦隐/image/${i}.jpg`);
         }
         lib.translate.梦隐_character_config = `梦隐`;

@@ -17,7 +17,8 @@ export default [
 			'no-unused-vars': 0,
 			'no-undef': 'warn',
 			'no-redeclare': 'warn',
-			'no-fallthrough': 'off',
+			'no-var': 'error',
+			'prefer-const': 'error',
 		},
 		languageOptions: {
 			ecmaVersion: 13,
@@ -28,7 +29,6 @@ export default [
 				...globals.node,
 				...globals.serviceworker,
 				...globals.worker,
-				sgn: 'readonly',
 				shanhe: 'readonly',
 				factorial: 'readonly',
 				deepClone: 'readonly',

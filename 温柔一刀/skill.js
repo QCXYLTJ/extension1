@@ -293,7 +293,7 @@ const skill = {
     },
     logTarget: 'target',
     content() {
-      let target = trigger.target;
+      const target = trigger.target;
       if (!target.isLinked()) {
         target.link();
       }
@@ -423,7 +423,7 @@ const skill = {
       ('step 1');
       player.popup(result.control, 'thunder');
       target.RS(result.control); //QQQ
-      let Q = game.createCard2('封神', 'club', 12);
+      const Q = game.createCard2('封神', 'club', 12);
       Q.AQ(result.control);
       game.cardsGotoOrdering(Q);
     },
@@ -445,7 +445,7 @@ const skill = {
       return player.countCards('he', { name: '昊天塔' }) > event.player.countCards('he', { name: '昊天塔' });
     },
     content() {
-      let Q = player.countCards('he', { name: '昊天塔' }) - trigger.player.countCards('he', { name: '昊天塔' });
+      const Q = player.countCards('he', { name: '昊天塔' }) - trigger.player.countCards('he', { name: '昊天塔' });
       if (Q > 4) {
         trigger.player.die();
       } else {
@@ -458,7 +458,7 @@ const skill = {
     intro: {
       content(storage, player) {
         let str = '当前伤害';
-        for (let i in player.storage.炼妖壶) {
+        for (const i in player.storage.炼妖壶) {
           str += `<br><li><span class='texiaotext' style='color: #FF0000'>${get.translation(i) + player.storage.炼妖壶[i]}点</span>`;
         }
         str += '<br><li>当前最高伤害:' + game.炼妖;
@@ -471,7 +471,7 @@ const skill = {
     forced: true,
     filter(event, player) {
       let num = 0;
-      for (let j of player.actionHistory) {
+      for (const j of player.actionHistory) {
         if (j.useSkill.length) {
           for (const evt of j.useSkill) {
             if (evt.skill == '炼妖壶') {
@@ -515,7 +515,7 @@ const skill = {
           }
           player.storage.炼妖壶[trigger.source.name] = player.storage.炼妖壶[trigger.source.name] + trigger.num || trigger.num;
           let num = 0;
-          for (let i in player.storage.炼妖壶) {
+          for (const i in player.storage.炼妖壶) {
             if (player.getFriends(true).some((q) => q.name == i)) {
               continue;
             }
@@ -589,10 +589,10 @@ const skill = {
     },
     check(event, player) {
       if (_status.昆仑镜) {
-        let num = player.hp + player.countCards('h') - _status.昆仑镜[0] - _status.昆仑镜[1];
+        const num = player.hp + player.countCards('h') - _status.昆仑镜[0] - _status.昆仑镜[1];
         return num < -1;
       } else {
-        let num = player.hp + player.countCards('h') - 2 * player.maxHp;
+        const num = player.hp + player.countCards('h') - 2 * player.maxHp;
         return num < -1;
       }
     },
@@ -659,7 +659,7 @@ const skill = {
       ('step 1');
       if (result.links?.length) {
         //QQQ
-        let Q = game.createCard2(result.links[0].name, result.links[0].suit, result.links[0].number, result.links[0].nature);
+        const Q = game.createCard2(result.links[0].name, result.links[0].suit, result.links[0].number, result.links[0].nature);
         Q.AQ('毁');
         player.gain(Q);
       }
@@ -822,7 +822,7 @@ const skill = {
     usable: 1,
     filter(event, player) {
       let num = 0;
-      for (let j of player.actionHistory) {
+      for (const j of player.actionHistory) {
         if (j.useSkill.length) {
           for (const evt of j.useSkill) {
             if (evt.skill == '伏羲琴') {
@@ -892,7 +892,7 @@ const skill = {
       'step 0';
       player.loseMaxHp();
       ('step 1');
-      let num = player.maxHp - player.hp;
+      const num = player.maxHp - player.hp;
       if (num > 0) {
         player.recover(num);
       }
@@ -982,7 +982,7 @@ const skill = {
       }
     },
     async precontent(event, trigger, player) {
-      let target = game.players.find((q) => q.isEnemiesOf(player) && q.countCards('he'));
+      const target = game.players.find((q) => q.isEnemiesOf(player) && q.countCards('he'));
       if (target) {
         player.gain(target.getCards('he').randomGet(), 'gain2');
       }
@@ -1405,7 +1405,7 @@ const skill = {
       };
       ('step 1');
       if (result.targets?.length) {
-        let target = result.targets[0];
+        const target = result.targets[0];
         target.addSkill('叛弑');
       }
     },
@@ -1479,7 +1479,7 @@ const skill = {
       player.storage.食尸.add(trigger.player);
       player.storage.食尸.sortBySeat();
       player.markSkill('食尸');
-      let list = trigger.player.getStockSkills().filter(function (skill) {
+      const list = trigger.player.getStockSkills().filter(function (skill) {
         const info = get.info(skill);
         return info;
       });
@@ -1531,7 +1531,7 @@ const skill = {
     },
     forced: true,
     content() {
-      let Q = trigger.target.countCards('h', 'shan')
+      const Q = trigger.target.countCards('h', 'shan')
         ? 'gold'
         : trigger.target.hp >= trigger.target.maxHp || trigger.target.hasSkillTag('maixie')
           ? 'kami'
@@ -2280,7 +2280,7 @@ const skill = {
       },
     },
     async content(event, trigger, player) {
-      let list = [];
+      const list = [];
       for (const i of lib.inpile) {
         if (player.storage.设伏.includes(i)) {
           continue;
@@ -2441,8 +2441,8 @@ const skill = {
     multitarget: true,
     content() {
       'step 0';
-      let list = ['摸', '弃'];
-      let num1 = game.countPlayer(function (current) {
+      const list = ['摸', '弃'];
+      const num1 = game.countPlayer(function (current) {
         return current != player && current.group == 'wei' && get.attitude(current, player) >= 0;
       });
       const num2 = game.countPlayer(function (current) {
@@ -2491,13 +2491,13 @@ const skill = {
     },
     content() {
       'step 0';
-      let num = player.getCards('h').length;
+      const num = player.getCards('h').length;
       player.discard(player.getCards('h'));
       event.num = num;
       player.storage.驭衡 = num;
       ('step 1');
       const skill = [];
-      for (let i in lib.character) {
+      for (const i in lib.character) {
         skill.addArray(lib.character[i][3]);
       }
       const skills = skill.randomGets(event.num);
@@ -2570,8 +2570,8 @@ const skill = {
       if (!player.storage.帝力) {
         player.storage.帝力 = [];
       }
-      let list = [];
-      for (let i in player.tempSkills) {
+      const list = [];
+      for (const i in player.tempSkills) {
         if (player.storage.帝力.includes(i)) {
           continue;
         }
@@ -2963,7 +2963,7 @@ const skill = {
       if (event.parent.name == '全装备') {
         return false;
       }
-      let Q = event.getl(player);
+      const Q = event.getl(player);
       return Q && Q.player == player && Q.es && Q.es.length;
     },
     content() {
@@ -2990,7 +2990,7 @@ const skill = {
           });
           for (let i = 1; i < 6; i++) {
             if (!player.getEquip(i)) {
-              let Q = QQQ.cardList
+              const Q = QQQ.cardList
                 .filter((card) => {
                   return get.subtype(card) == 'equip' + i;
                 })
@@ -3068,7 +3068,7 @@ const skill = {
         async content(event, trigger, player) {
           let count = numberq1(trigger.num);
           while (count-- > 0) {
-            let list = ['隐忍', '隐忍_1', '隐忍_2', '隐忍_3'];
+            const list = ['隐忍', '隐忍_1', '隐忍_2', '隐忍_3'];
             if (player.countMark('隐忍') > 4) {
               list.remove('隐忍');
             }
@@ -3439,7 +3439,7 @@ const skill = {
             suit.add(i.suit);
             number.add(i.number);
           }
-          let num = 4 - number.length + (suit.length - 2);
+          const num = 4 - number.length + (suit.length - 2);
           if (num == 5) {
             result1.targets[0].die();
           } else {
@@ -4684,9 +4684,9 @@ const skill = {
     forced: true,
     init(player) {
       game.扩展 = {};
-      for (let i in lib.characterPack) {
+      for (const i in lib.characterPack) {
         game.扩展[i] = [];
-        for (let j in lib.characterPack[i]) {
+        for (const j in lib.characterPack[i]) {
           game.扩展[i].addArray(lib.characterPack[i][j][3].filter((Q) => Q != 'dualside'));
           for (const e of lib.characterPack[i][j][3]) {
             if (!e) {
@@ -4720,7 +4720,7 @@ const skill = {
               player.addSkill(game.扩展[game.扩展1].randomGet());
               if (player.skills.length > game.扩展[game.扩展1].length / 10) {
                 for (const i of Object.keys(game.扩展)) {
-                  let Q = game.扩展[i].randomGet();
+                  const Q = game.扩展[i].randomGet();
                   if (!Q) {
                     alert(i + '不存在');
                   }
@@ -4770,7 +4770,7 @@ const skill = {
         })
         .set('ai', (button) => {
           let num = 0;
-          let Q = Array.from(ui.cardPile.childNodes).slice(0, 3);
+          const Q = Array.from(ui.cardPile.childNodes).slice(0, 3);
           for (const i of Q) {
             if (i.suit == button.link) {
               num++;
@@ -4810,7 +4810,7 @@ const skill = {
       markcount: (storage) => 0,
       content(storage, player) {
         let str = '花招';
-        for (let i in player.storage.suit) {
+        for (const i in player.storage.suit) {
           str += '<br><li>';
           if (player.storage.suit[i][1]) {
             str += `你可以重铸所有${get.translation(i)}手牌,视为使用` + get.translation(player.storage.suit[i][0]);
@@ -4822,14 +4822,14 @@ const skill = {
       },
     },
     hiddenCard(player, name) {
-      for (let i in player.storage.suit) {
+      for (const i in player.storage.suit) {
         if (player.storage.suit[i][0] == name) {
           return player.storage.suit[i][1];
         }
       }
     },
     filter(event, player) {
-      for (let i in player.storage.suit) {
+      for (const i in player.storage.suit) {
         if (player.storage.suit[i][1] && player.filterCard(player.storage.suit[i][0], true)) {
           return player.countCards('h', { suit: i });
         }
@@ -4848,8 +4848,8 @@ const skill = {
     enable: ['chooseToUse'],
     chooseButton: {
       dialog(event, player) {
-        let list = [];
-        for (let i in player.storage.suit) {
+        const list = [];
+        for (const i in player.storage.suit) {
           if (player.storage.suit[i][1] && player.countCards('h', { suit: i }) && player.filterCard(player.storage.suit[i][0], true)) {
             list.push(player.storage.suit[i][0]);
           }
@@ -4880,7 +4880,7 @@ const skill = {
           async precontent(event, trigger, player) {
             const card = event.result.card;
             if (card && card.name) {
-              for (let i in player.storage.suit) {
+              for (const i in player.storage.suit) {
                 if (player.storage.suit[i][0] == card.name) {
                   if (player.countCards('h', { suit: i })) {
                     await player.recast(player.getCards('h', { suit: i }));
@@ -4890,7 +4890,7 @@ const skill = {
               }
             }
             if (Object.values(player.storage.suit).every((suit) => suit[1] === false)) {
-              for (let i in player.storage.suit) {
+              for (const i in player.storage.suit) {
                 player.storage.suit[i][1] = true;
               }
             }
@@ -4905,7 +4905,7 @@ const skill = {
       respondShan: true,
       skillTagFilter(player, tag) {
         if (tag == 'respondSha') {
-          for (let i in player.storage.suit) {
+          for (const i in player.storage.suit) {
             if (player.storage.suit[i][0] == 'sha' && player.storage.suit[i][1] && player.countCards('h', { suit: i })) {
               return true;
             }
@@ -4913,7 +4913,7 @@ const skill = {
           return false;
         }
         if (tag == 'respondShan') {
-          for (let i in player.storage.suit) {
+          for (const i in player.storage.suit) {
             if (player.storage.suit[i][0] == 'shan' && player.storage.suit[i][1] && player.countCards('h', { suit: i })) {
               return true;
             }
@@ -4944,7 +4944,7 @@ const skill = {
     },
     filter(event, player) {
       if (event.card && event.card.name && player.storage.suit[event.card.suit]) {
-        for (let i in player.storage.suit) {
+        for (const i in player.storage.suit) {
           if (player.storage.suit[i][0] == event.card.name) {
             return false;
           }
@@ -4983,7 +4983,7 @@ const skill = {
         }
         player.storage.suit[trigger.card.suit] = [temp, false];
         if (Object.values(player.storage.suit).every((suit) => suit[1] === false)) {
-          for (let i in player.storage.suit) {
+          for (const i in player.storage.suit) {
             player.storage.suit[i][1] = true;
           }
         }
@@ -5153,7 +5153,7 @@ const skill = {
         for (const i of result.targets[0].getCards('hesxj')) {
           ui.discardPile.appendChild(i);
         }
-        let Q = document.querySelector(`.player.fullskin[data-position='${position}']`);
+        const Q = document.querySelector(`.player.fullskin[data-position='${position}']`);
         if (Q && Q.parentNode) {
           Q.parentNode.removeChild(Q);
         }
@@ -5240,7 +5240,7 @@ const skill = {
         async content(event, trigger, player) {
           for (const i of trigger.cards) {
             if (i.storage.武绝) {
-              let Q = ui.create.player(ui.arena).addTempClass('start');
+              const Q = ui.create.player(ui.arena).addTempClass('start');
               Q.getId();
               Q.init(i.name);
               Q.hp = player.storage.武绝.hp;
@@ -5416,7 +5416,7 @@ const skill = {
       if (!player.phaseList) {
         player.phaseList = ['phaseZhunbei', 'phaseJudge', 'phaseDraw', 'phaseUse', 'phaseDiscard', 'phaseJieshu'];
       }
-      let list = player.phaseList;
+      const list = player.phaseList;
       const result = await player
         .chooseButton(['诗寇蒂的剪刀:裁剪掉自己任意个阶段', [list, 'tdnodes']], [0, list.length])
         .set('ai', (button) => {
@@ -5448,8 +5448,8 @@ const skill = {
             if (!result1.targets[0].phaseList) {
               result1.targets[0].phaseList = ['phaseZhunbei', 'phaseJudge', 'phaseDraw', 'phaseUse', 'phaseDiscard', 'phaseJieshu'];
             }
-            let list = result1.targets[0].phaseList;
-            let Q = [];
+            const list = result1.targets[0].phaseList;
+            const Q = [];
             for (let j = 0; j <= list.length; j++) {
               Q.push(j);
             }
@@ -5787,7 +5787,7 @@ const skill = {
     filter: (event, player) => Array.from(ui.discardPile.childNodes).some((q) => get.type(q) == get.type(event.card)),
     async content(event, trigger, player) {
       //QQQ
-      let num = player.storage.QQQ_taye;
+      const num = player.storage.QQQ_taye;
       const result = await player
         .chooseButton([`从弃牌堆中选择至多${num}张与此牌类型相同的其他牌`, Array.from(ui.discardPile.childNodes).filter((q) => get.type(q) == get.type(trigger.card))], [1, num])
         .set('ai', (button) => get.buttonValue(button))
@@ -5931,7 +5931,7 @@ const skill = {
     },
     init: (player) => (player.storage.QQQ_xiangyun = 1),
     async content(event, trigger, player) {
-      let num = Math.floor(game.players.length / 2);
+      const num = Math.floor(game.players.length / 2);
       const cards = get.cards(num);
       player.addToExpansion(cards, 'draw').gaintag.add('QQQ_xiangyun');
     },
@@ -6210,7 +6210,7 @@ const skill = {
         forced: true,
         filter: (event, player) => event.card && get.tag(event.card, 'damage') && player.countCards('h') < player.maxcard,
         async content(event, trigger, player) {
-          let num = player.maxcard - player.countCards('h');
+          const num = player.maxcard - player.countCards('h');
           player.draw(num);
           if (num > 1) {
             player.maxcard--;
@@ -6232,7 +6232,7 @@ const skill = {
       ui.background.style.backgroundImage = `url(extension/温柔一刀/image/beijing.jpg)`;
       player.awakenSkill('QQQ_tushe');
       player.maxcard = 0;
-      let num = player.countCards('h');
+      const num = player.countCards('h');
       player.discard(player.getCards('h'));
       const cards = Array.from(ui.cardPile.childNodes)
         .filter((q) => q.name == 'sha')

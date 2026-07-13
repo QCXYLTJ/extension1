@@ -177,7 +177,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         if (lib.config.extension_雪月风花_C之声 && _status.E·G·O.includes(player.name)) {
                             return false;
                         }
-                        let skills = player.getSkills(true, false);
+                        const skills = player.getSkills(true, false);
                         for (const i of skills) {
                             if (lib.skill[i] && lib.skill[i].zxqy_ignore && lib.skill[i].zxqy_ignore.includes('_zxqy_shaoshang')) {
                                 return false;
@@ -200,7 +200,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                     intro: {
                         name: '烧伤',
                         content(storage, player, skill) {
-                            let skills = player.getSkills(true, false);
+                            const skills = player.getSkills(true, false);
                             for (const i of skills) {
                                 if (lib.skill[i] && lib.skill[i].zxqy_ignore && lib.skill[i].zxqy_ignore.includes('_zxqy_shaoshang')) {
                                     return '<li>〖烧伤〗对你无效';
@@ -215,7 +215,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return;
                             }
                             let goon = true;
-                            let skills = player.getSkills(true, false);
+                            const skills = player.getSkills(true, false);
                             for (const i of skills) {
                                 if (lib.skill[i] && lib.skill[i].zxqy_ignore && lib.skill[i].zxqy_ignore.includes('_zxqy_shaoshang')) {
                                     goon = false;
@@ -245,7 +245,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 lib.skill[i].EGOLOCK = true;
                             }
                         }
-                        let num = trigger.player.countMark('_zxqy_liuxie');
+                        const num = trigger.player.countMark('_zxqy_liuxie');
                         trigger.player.damage(num, 'kami', 'nosource');
                         trigger.player.removeMark('_zxqy_liuxie');
                     },
@@ -316,7 +316,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 lib.skill[i].EGOLOCK = true;
                             }
                         }
-                        let name = trigger.name;
+                        const name = trigger.name;
                         if (name == 'phaseDraw') {
                             player.popup(event.name);
                             trigger.num -= player.countMark('_zxqy_bingdong');
@@ -344,9 +344,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         }
                         if (name == 'discard' || event.nocards) {
                             const parent = event.nocards ? trigger.parent : trigger.getParent(3);
-                            let count = trigger.cards ? trigger.cards.length : 0;
+                            const count = trigger.cards ? trigger.cards.length : 0;
                             player.popup(event.name);
-                            let num = parent._zxqy_bingdong - count;
+                            const num = parent._zxqy_bingdong - count;
                             player.damage(num, 'ice', 'nosource');
                             parent._zxqy_bingdong = 'damage';
                         }
@@ -426,8 +426,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                     };
                     next.showConfig = true;
                     next.addPlayer = function (player) {
-                        let list = lib.config.mode_config.identity.identity[game.players.length - 3].slice(0);
-                        let list2 = lib.config.mode_config.identity.identity[game.players.length - 2].slice(0);
+                        const list = lib.config.mode_config.identity.identity[game.players.length - 3].slice(0);
+                        const list2 = lib.config.mode_config.identity.identity[game.players.length - 2].slice(0);
                         for (const i of list) {
                             list2.remove(i);
                         }
@@ -442,7 +442,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         ui.arena.classList.add('choose-character');
                         let i;
                         let list;
-                        let list2 = [];
+                        const list2 = [];
                         const list3 = [];
                         const list4 = [];
                         let identityList;
@@ -555,7 +555,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                     _status.event.parent.swapnodialog = function (dialog, list) {
                                         const buttons = ui.create.div('.buttons');
-                                        let node = dialog.buttons[0].parentNode;
+                                        const node = dialog.buttons[0].parentNode;
                                         dialog.buttons = ui.create.buttons(list, 'characterx', buttons);
                                         dialog.content.insertBefore(buttons, node);
                                         buttons.addTempClass('start');
@@ -606,7 +606,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (get.distance(game.zhu, target, 'absolute') == this.link) {
                                         return;
                                     }
-                                    let current = this.parentNode.querySelector('.bluebg');
+                                    const current = this.parentNode.querySelector('.bluebg');
                                     if (current) {
                                         current.classList.remove('bluebg');
                                     }
@@ -631,11 +631,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             }
                         };
                         const removeSetting = function () {
-                            let dialog = _status.event.dialog;
+                            const dialog = _status.event.dialog;
                             if (dialog) {
                                 dialog.style.height = '';
                                 delete dialog._scrollset;
-                                let list = Array.from(dialog.querySelectorAll('.add-setting'));
+                                const list = Array.from(dialog.querySelectorAll('.add-setting'));
                                 while (list.length) {
                                     list.shift().remove();
                                 }
@@ -723,7 +723,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 event.list.push(i);
                                 list4.addArray(ix);
                                 let bool = false;
-                                for (let j of ix) {
+                                for (const j of ix) {
                                     if (lib.character[j][4] && lib.character[j][4].includes('zhu')) {
                                         bool = true;
                                         break;
@@ -818,7 +818,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 const inputValue = this.value;
                                 const buttons = Array.from(dialog.querySelectorAll('.button'));
                                 buttons.forEach((value) => {
-                                    let link = value.link;
+                                    const link = value.link;
                                     let buttonName = link;
                                     if (mode === 'name') {
                                         buttonName = get.translation(link);
@@ -943,7 +943,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             game.addRecentCharacter(result.buttons[0].link);
                         }
                         if (get.config('choose_group') && chooseGroup) {
-                            let list = lib.group.slice(0);
+                            const list = lib.group.slice(0);
                             list.remove('shen');
                             game.me.chooseControl(list).prompt = '请选择神武将的势力';
                         }
@@ -1032,7 +1032,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             }
                             if (get.mode() == 'doudizhu') {
                                 if (['normal', 'huanle', 'kaihei'].includes(_status.mode)) {
-                                    let skill = ['feiyang', 'bahu'];
+                                    const skill = ['feiyang', 'bahu'];
                                     game.broadcastAll(
                                         function (player, skill) {
                                             target.addSkill(skill);
@@ -1042,7 +1042,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     );
                                 }
                                 if (_status.mode == 'binglin') {
-                                    let skill = game.zhuSkill;
+                                    const skill = game.zhuSkill;
                                     game.broadcastAll(
                                         function (player, skill) {
                                             target.addSkill(skill);
@@ -1054,7 +1054,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             }
                         } else {
                             if (_status.mode == 'binglin') {
-                                let skill = ['binglin_shaxue', 'binglin_neihong'];
+                                const skill = ['binglin_shaxue', 'binglin_neihong'];
                                 game.broadcastAll(
                                     function (player, skill) {
                                         target.addSkill(skill);
@@ -1195,11 +1195,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             }
                         };
                         const removeSetting = function () {
-                            let dialog = _status.event.dialog;
+                            const dialog = _status.event.dialog;
                             if (dialog) {
                                 dialog.style.height = '';
                                 delete dialog._scrollset;
-                                let list = Array.from(dialog.querySelectorAll('.add-setting'));
+                                const list = Array.from(dialog.querySelectorAll('.add-setting'));
                                 while (list.length) {
                                     list.shift().remove();
                                 }
@@ -1279,7 +1279,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 get.config('onlyguozhan') ? 'onlypack:mode_guozhan' : undefined,
                                 target,
                             );
-                            let dialog = ui.create.dialog('选择角色', 'hidden', [list, 'character']);
+                            const dialog = ui.create.dialog('选择角色', 'hidden', [list, 'character']);
                             if (!_status.brawl || !_status.brawl.noAddSetting) {
                                 if (get.config('change_identity')) {
                                     addSetting(dialog);
@@ -1407,15 +1407,15 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                     next.set('ai', (bool) => false);
                     ('step 1');
                     if (result.bool) {
-                        for (let current of game.filterPlayer()) {
+                        for (const current of game.filterPlayer()) {
                             current.addSkill('zxqy_designatedHandcard_prohibit');
                         }
-                        let target = result.targets[0];
+                        const target = result.targets[0];
                         player.line(target);
                         lib.choosePlayer.chooseCharacter(target);
                         event.goto(0);
                     } else {
-                        for (let current of game.filterPlayer()) {
+                        for (const current of game.filterPlayer()) {
                             current.removeSkill('zxqy_designatedHandcard_prohibit');
                         }
                     }
@@ -1435,10 +1435,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                     next.set('ai', (bool) => false);
                     ('step 1');
                     if (result.bool) {
-                        for (let current of game.filterPlayer()) {
+                        for (const current of game.filterPlayer()) {
                             current.addSkill('zxqy_designatedHandcard_prohibit');
                         }
-                        let target = result.targets[0];
+                        const target = result.targets[0];
                         event.target = target;
                         const func = () => {
                             const event = get.event();
@@ -1468,10 +1468,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         }
                         const next = player.chooseButton(['你可以选择' + get.cnNumber(target.countCards('h')) + '张牌,更改' + get.translation(target) + '的初始手牌构成', [lib.inpile, 'vcard']]);
                         next.set('filterButton', (button) => {
-                            let cards = [];
+                            const cards = [];
                             cards.addArray(ui.cardPile.childNodes);
                             cards.addArray(ui.discardPile.childNodes);
-                            for (let current of game.players) {
+                            for (const current of game.players) {
                                 cards.addArray(current.getCards('h'));
                             }
                             if (cards.some((i) => i.name == button.link[2])) {
@@ -1522,7 +1522,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     const cards = [];
                                     cards.addArray(ui.cardPile.childNodes);
                                     cards.addArray(ui.discardPile.childNodes);
-                                    for (let current of game.players) {
+                                    for (const current of game.players) {
                                         cards.addArray(current.getCards('h'));
                                     }
                                     const event = get.event(),
@@ -1562,22 +1562,22 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         next.set('sum', target.countCards('h'));
                         next.set('ai', () => Math.random());
                     } else {
-                        for (let current of game.filterPlayer()) {
+                        for (const current of game.filterPlayer()) {
                             current.removeSkill('zxqy_designatedHandcard_prohibit');
                         }
                         event.finish();
                     }
                     ('step 2');
                     if (result.links?.length) {
-                        let cards = [];
+                        const cards = [];
                         cards.addArray(ui.cardPile.childNodes);
                         cards.addArray(ui.discardPile.childNodes);
-                        for (let current of game.players) {
+                        for (const current of game.players) {
                             cards.addArray(current.getCards('h'));
                         }
-                        let list = [];
-                        for (let name of result.links.map((i) => i[2])) {
-                            let card = cards.filter((i) => !list.includes(i) && i.name == name).randomGet();
+                        const list = [];
+                        for (const name of result.links.map((i) => i[2])) {
+                            const card = cards.filter((i) => !list.includes(i) && i.name == name).randomGet();
                             if (card) {
                                 list.add(card);
                             }
@@ -1587,11 +1587,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             event.target.lose(event.target.getCards('h'), ui.cardPile);
                             event.target.gain(list, 'draw').then(() => {
                                 event.target._start_cards = event.target.getCards('h').slice();
-                                for (let current of game.players) {
+                                for (const current of game.players) {
                                     if (JSON.stringify(current.getCards('h')) == JSON.stringify(current._start_cards)) {
                                         continue;
                                     }
-                                    let num = current._start_cards.length - current.countCards('h');
+                                    const num = current._start_cards.length - current.countCards('h');
                                     if (num > 0) {
                                         current.directgain(get.cards(num));
                                         current._start_cards = current.getCards('h').slice();
@@ -2710,7 +2710,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         forced: true,
                                         async content(event, trigger, player) {
                                             const targets = player.getEnemies();
-                                            for (let target of targets) {
+                                            for (const target of targets) {
                                                 const cards = get.cards(),
                                                     card = { name: 'shunshou' };
                                                 if (player.inRange(target) && player.canUse(card, target, false)) {
@@ -2819,7 +2819,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         },
                                         content() {
                                             const sort = [1, 2, 3, 4, 5].filter((sort) => player.countEmptySlot('equip' + sort) > 0).randomGet();
-                                            let card = get.cardPile((card) => {
+                                            const card = get.cardPile((card) => {
                                                 return get.type(card, false) == 'equip' && get.subtype(card, false) == 'equip' + sort && !get.cardtag(card, 'gifts') && player.canEquip(card);
                                             });
                                             if (card) {
@@ -2923,7 +2923,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         },
                                         async content(event, trigger, player) {
                                             const players = game.filterPlayer((current) => player.getEnemies().includes(current) && current != player && trigger.getg(current) && trigger.getg(current).length);
-                                            for (let current of players) {
+                                            for (const current of players) {
                                                 let num = 1;
                                                 num += Math.floor(current.maxHp / 8);
                                                 if (num > 8) {
@@ -3173,7 +3173,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 if (event.name == 'disableEquip') {
                                                     return event.slots.includes('equip1');
                                                 }
-                                                let cards = player.getEquips('xyfh_tianshishengjian');
+                                                const cards = player.getEquips('xyfh_tianshishengjian');
                                                 return event.cards && event.cards.some((card) => cards.includes(card));
                                             },
                                             content() {
@@ -3212,11 +3212,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     cards.forEach((card) => ui.cardPile.appendChild(card));
                                     game.updateRoundNumber();
                                     const num = Math.min(8, player.maxHp + game.roundNumber) + 1;
-                                    let list = [];
+                                    const list = [];
                                     for (const i of ui.cardPile.childNodes) {
                                         list.push(i);
                                     }
-                                    let dialog = ui.create.dialog('获得' + num + '张牌', 'hidden');
+                                    const dialog = ui.create.dialog('获得' + num + '张牌', 'hidden');
                                     dialog.add(list);
                                     const { links } = await player.chooseButton(true, dialog, num).forResult();
                                     if (links) {
@@ -3284,7 +3284,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         game.updateRoundNumber();
                                         let num = Math.min(20, player.maxHp + game.roundNumber) + 2;
                                         while (num > 0) {
-                                            let list = [];
+                                            const list = [];
                                             if (game.hasPlayer((current) => current != player && current.countCards('he'))) {
                                                 list.add('其他角色区域');
                                             }
@@ -3313,7 +3313,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     for (const i of ui.cardPile.childNodes) {
                                                         piles.push(i);
                                                     }
-                                                    let dialog = ui.create.dialog('获得至多' + num + '张牌', 'hidden');
+                                                    const dialog = ui.create.dialog('获得至多' + num + '张牌', 'hidden');
                                                     dialog.add(piles);
                                                     const links = await player.chooseButton(true, dialog, [1, num]).forResult('links');
                                                     if (links) {
@@ -3327,7 +3327,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     for (const i of ui.discardPile.childNodes) {
                                                         piles.push(i);
                                                     }
-                                                    let dialog = ui.create.dialog('获得至多' + num + '张牌', 'hidden');
+                                                    const dialog = ui.create.dialog('获得至多' + num + '张牌', 'hidden');
                                                     dialog.add(piles);
                                                     const links = await player.chooseButton(true, dialog, [1, num]).forResult('links');
                                                     if (links) {
@@ -3644,7 +3644,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return event.player == player ? event.card.name == 'sha' : ['nanman', 'juedou'].includes(event.card.name);
                                 },
                                 async content(event, trigger, player) {
-                                    let card = get.cardPile(function (card) {
+                                    const card = get.cardPile(function (card) {
                                         return card.name == 'sha';
                                     });
                                     if (card) {
@@ -3710,7 +3710,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                                 async content(event, trigger, player) {
                                     if (trigger.name == 'phase') {
-                                        let card = get.cardPile(function (card) {
+                                        const card = get.cardPile(function (card) {
                                             return card.name == 'tao';
                                         });
                                         if (card) {
@@ -3871,7 +3871,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         const ai = event.ai;
                                         const tmp = _status.event;
                                         _status.event = event;
-                                        let result = ai({ name: 'shan' }, _status.event.player, event);
+                                        const result = ai({ name: 'shan' }, _status.event.player, event);
                                         _status.event = tmp;
                                         return result > 0;
                                     }
@@ -4057,8 +4057,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                                 forced: true,
                                 filter(event, player) {
-                                    let cards = [];
-                                    for (let current of game.players) {
+                                    const cards = [];
+                                    for (const current of game.players) {
                                         if (current.countCards('hesj', { type: 'equip' })) {
                                             cards.addArray(
                                                 current.getCards('hejs', {
@@ -4067,7 +4067,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             );
                                         }
                                     }
-                                    for (let card of ui.cardPile.childNodes) {
+                                    for (const card of ui.cardPile.childNodes) {
                                         if (get.type(card) == 'equip') {
                                             cards.push(card);
                                         }
@@ -4084,19 +4084,19 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     'step 0';
                                     event.cards = [];
                                     ('step 1');
-                                    for (let card of ui.discardPile.childNodes) {
+                                    for (const card of ui.discardPile.childNodes) {
                                         if (get.type(card) == 'equip') {
                                             event.cards.push(card);
                                         }
                                     }
                                     ('step 2');
-                                    for (let card of ui.cardPile.childNodes) {
+                                    for (const card of ui.cardPile.childNodes) {
                                         if (get.type(card) == 'equip') {
                                             event.cards.push(card);
                                         }
                                     }
                                     ('step 3');
-                                    for (let card of event.cards) {
+                                    for (const card of event.cards) {
                                         card.fix();
                                         card.remove();
                                         card.destroyed = true;
@@ -4108,13 +4108,13 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (num > 9) {
                                         num = 9;
                                     }
-                                    let cards = [],
+                                    const cards = [],
                                         names = [];
                                     while (num > 0) {
                                         num--;
-                                        let suit = ['heart', 'diamond', 'club', 'spade'].randomGet();
+                                        const suit = ['heart', 'diamond', 'club', 'spade'].randomGet();
                                         const number = Math.floor(Math.random() * 13) + 1;
-                                        let name = ['xyfh_jushu', 'xyfh_langya', 'xyfh_laonanhai', 'xyfh_alasi', 'xyfh_lunpan', 'xyfh_luoji', 'xyfh_mo', 'xyfh_kalisita', 'xyfh_dulandaer'].filter((name) => !names.includes(name)).randomGet();
+                                        const name = ['xyfh_jushu', 'xyfh_langya', 'xyfh_laonanhai', 'xyfh_alasi', 'xyfh_lunpan', 'xyfh_luoji', 'xyfh_mo', 'xyfh_kalisita', 'xyfh_dulandaer'].filter((name) => !names.includes(name)).randomGet();
                                         names.push(name);
                                         cards.push(ui.create.card().init([suit, number, name]));
                                     }
@@ -4429,7 +4429,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return event.player.hasMark('沉沦') && event.parent.name != '沉沦';
                                 },
                                 async content(event, trigger, player) {
-                                    let num = trigger.player.countMark('沉沦');
+                                    const num = trigger.player.countMark('沉沦');
                                     const { control } = await player.chooseControl(lib.inpile_nature.slice(0)).set('prompt', '选择沉沦伤害属性').forResult();
                                     if (control) {
                                         trigger.player.removeMark('沉沦', 1);
@@ -4458,7 +4458,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return event.player.hasMark('沉沦泛滥') && event.parent.name != '沉沦泛滥';
                                 },
                                 async content(event, trigger, player) {
-                                    let num = trigger.player.countMark('沉沦泛滥');
+                                    const num = trigger.player.countMark('沉沦泛滥');
                                     const { control } = await player.chooseControl(lib.inpile_nature.slice(0)).set('prompt', '选择沉沦泛滥伤害属性').forResult();
                                     if (control) {
                                         trigger.player.removeMark('沉沦泛滥', 1);
@@ -4554,7 +4554,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     },
                                 },
                                 onremove(player, skill) {
-                                    let cards = player.getExpansions(skill);
+                                    const cards = player.getExpansions(skill);
                                     if (cards.length) {
                                         player.loseToDiscardpile(cards);
                                     }
@@ -4641,11 +4641,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return player.storage.法则2 && player.storage.法则2[1];
                                 },
                                 async content(event, trigger, player) {
-                                    let list = player.storage.法则2;
+                                    const list = player.storage.法则2;
                                     list[1]--;
                                     if (list[1] == 0) {
                                         game.log(player, '的<法则>生效');
-                                        let num = list[0] * 3;
+                                        const num = list[0] * 3;
                                         const cards = get.cards(num);
                                         game.cardsGotoOrdering(cards);
                                         player.showCards(cards);
@@ -4697,11 +4697,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 charlotte: true,
                                 superCharlotte: true,
                                 async content(event, trigger, player) {
-                                    let list = player.storage.法则3;
+                                    const list = player.storage.法则3;
                                     list[1]--;
                                     if (list[1] == 0) {
                                         game.log(player, '的<法则>生效');
-                                        let num = list[0] * 3;
+                                        const num = list[0] * 3;
                                         const cards = get.cards(num);
                                         game.cardsGotoOrdering(cards);
                                         player.showCards(cards);
@@ -4815,7 +4815,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return (event.name != 'phase' || game.phaseNumber == 0) && player.hasEquipableSlot(1) && !player.getEquips('ruyijingubang').length;
                                 },
                                 content() {
-                                    let card = game.createCard2('xyfh_xiubaixie', 'heart', 9);
+                                    const card = game.createCard2('xyfh_xiubaixie', 'heart', 9);
                                     player.$gain2(card, false);
                                     player.equip(card);
                                 },
@@ -4894,7 +4894,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             if (event.name == 'disableEquip') {
                                                 return event.slots.includes('equip1');
                                             }
-                                            let cards = player.getEquips('xyfh_xiubaixie');
+                                            const cards = player.getEquips('xyfh_xiubaixie');
                                             return event.cards && event.cards.some((card) => cards.includes(card));
                                         },
                                         content() {
@@ -4966,7 +4966,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     },
                                 },
                                 onremove(player, skill) {
-                                    let cards = player.getExpansions(skill);
+                                    const cards = player.getExpansions(skill);
                                     if (cards.length) {
                                         player.loseToDiscardpile(cards);
                                     }
@@ -4992,11 +4992,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 charlotte: true,
                                 superCharlotte: true,
                                 async content(event, trigger, player) {
-                                    let list = player.storage.xyfh_podao2;
+                                    const list = player.storage.xyfh_podao2;
                                     list[1]--;
                                     if (list[1] == 0) {
                                         game.log(player, '的<咒护>魔法生效');
-                                        let num = list[0];
+                                        const num = list[0];
                                         const cards = get.cards(num * 3);
                                         game.cardsGotoOrdering(cards);
                                         player.showCards(cards);
@@ -5140,7 +5140,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     ('step 1');
                                     player.turnOver(false);
                                     ('step 2');
-                                    let cards = [];
+                                    const cards = [];
                                     const card1 = get.cardPile((card) => {
                                         if (cards.includes(card)) {
                                             return false;
@@ -5182,7 +5182,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     } else {
                                                         str = '称象';
                                                     }
-                                                    let dialog = ui.create.dialog(str, cards);
+                                                    const dialog = ui.create.dialog(str, cards);
                                                     dialog.videoId = id;
                                                 },
                                                 player,
@@ -5205,7 +5205,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             });
                                             next.set('maxNum', 13 * player.getDamagedHp());
                                             next.set('ai', function (button) {
-                                                let player = _status.event.player,
+                                                const player = _status.event.player,
                                                     name = button.link.name,
                                                     val = get.value(button.link, player);
                                                 if (name === 'tao') {
@@ -5324,7 +5324,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     const { targets } = await player
                                         .chooseTarget(get.prompt2('xyfh_quesong'))
                                         .set('ai', (target) => {
-                                            let player = _status.event.player;
+                                            const player = _status.event.player;
                                             if (get.attitude(player, target) <= 0) {
                                                 return 0;
                                             }
@@ -5357,7 +5357,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             .set('prompt', '雀颂:请选择一项')
                                             .set('choiceList', choiceList)
                                             .set('ai', () => {
-                                                let player = _status.event.player;
+                                                const player = _status.event.player;
                                                 const len = _status.event.len;
                                                 return get.effect(player, { name: 'draw' }, player, player) * len >= get.recoverEffect(player, player, player) ? 0 : 1;
                                             })
@@ -5392,7 +5392,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (['delay', 'equip'].includes(get.type(trigger.card))) {
                                         return;
                                     }
-                                    let card = {
+                                    const card = {
                                         name: trigger.card.name,
                                         storage: {
                                             xyfh_ruoshui: true,
@@ -5482,7 +5482,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     for (const i of ui.cardPile.childNodes) {
                                         pile.push(i);
                                     }
-                                    let dialog = ui.create.dialog('获得' + num + '张牌', 'hidden');
+                                    const dialog = ui.create.dialog('获得' + num + '张牌', 'hidden');
                                     dialog.add('牌堆');
                                     dialog.add(pile);
                                     if (ui.discardPile.childNodes.length) {
@@ -5896,7 +5896,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (player.storage.天幽毒典_count >= suits.length) {
                                         return false;
                                     }
-                                    for (let name of lib.inpile) {
+                                    for (const name of lib.inpile) {
                                         if (get.type(name) == 'basic' && event.filterCard({ name: name }, player, event)) {
                                             return true;
                                         }
@@ -5905,14 +5905,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                                 chooseButton: {
                                     dialog(event, player) {
-                                        let list = [];
+                                        const list = [];
                                         for (const i of lib.inpile) {
-                                            let name = i;
+                                            const name = i;
                                             if (name == 'sha') {
                                                 if (event.filterCard && event.filterCard({ name }, player, event)) {
                                                     list.push(['基本', '', 'sha']);
                                                 }
-                                                for (let nature of lib.inpile_nature) {
+                                                for (const nature of lib.inpile_nature) {
                                                     if (event.filterCard && event.filterCard({ name, nature }, player, event)) {
                                                         list.push(['基本', '', 'sha', nature]);
                                                     }
@@ -5927,7 +5927,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.parent.type != 'phase') {
                                             return 1;
                                         }
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         return player.getUseValue({
                                             name: button.link[2],
                                             nature: button.link[3],
@@ -6015,7 +6015,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (player.storage.七彩毒经_count >= colors.length) {
                                         return false;
                                     }
-                                    for (let name of lib.inpile) {
+                                    for (const name of lib.inpile) {
                                         if (get.type(name) == 'trick' && event.filterCard({ name: name }, player, event)) {
                                             return true;
                                         }
@@ -6024,9 +6024,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                                 chooseButton: {
                                     dialog(event, player) {
-                                        let list = [];
+                                        const list = [];
                                         for (const i of lib.inpile) {
-                                            let name = i;
+                                            const name = i;
                                             if (get.type(name) == 'trick' && event.filterCard({ name }, player, event)) {
                                                 list.push(['锦囊', '', name]);
                                             }
@@ -6037,7 +6037,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.parent.type != 'phase') {
                                             return 1;
                                         }
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         return player.getUseValue({
                                             name: button.link[2],
                                             nature: button.link[3],
@@ -6149,7 +6149,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return event.player.hasMark('仙援');
                                         },
                                         async cost(event, trigger, player) {
-                                            let list = [];
+                                            const list = [];
                                             if (trigger.player.countCards('h')) {
                                                 list.add('观看其手牌,将其中至多' + Math.min(trigger.player.countCards('h'), trigger.player.countMark('仙援')) + '张牌置于牌堆顶');
                                             }
@@ -6182,7 +6182,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             }
                                         },
                                         async content(event, trigger, player) {
-                                            let list = [];
+                                            const list = [];
                                             if (trigger.player.countCards('h')) {
                                                 list.add('观看其手牌,将其中至多' + Math.min(trigger.player.countCards('h'), trigger.player.countMark('仙援')) + '张牌置于牌堆顶');
                                             }
@@ -6219,7 +6219,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return get.type(event.card) == 'trick';
                                 },
                                 async content(event, trigger, player) {
-                                    let cards = get.cards();
+                                    const cards = get.cards();
                                     player.showCards(cards, '灵隐');
                                     if (get.color(cards) == get.color(trigger.cards)) {
                                         player.gain(cards, 'gain2');
@@ -6244,7 +6244,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return game.roundNumber > 1 && Math.floor((player.countMark('信念') * 2) / 3) > 0;
                                 },
                                 async content(event, trigger, player) {
-                                    let num = Math.floor((player.countMark('信念') * 2) / 3);
+                                    const num = Math.floor((player.countMark('信念') * 2) / 3);
                                     player.removeMark('信念', player.countMark('信念') - num);
                                 },
                             },
@@ -6493,7 +6493,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             await player.chooseDrawRecover(2, '整肃奖励:摸两张牌或回复1点体力');
                                             const cards = [];
                                             for (let i = 0; i < 2; i++) {
-                                                let card = get.cardPile(function (card) {
+                                                const card = get.cardPile(function (card) {
                                                     return !cards.includes(card) && get.type2(card) == 'trick';
                                                 });
                                                 if (card) {
@@ -6530,7 +6530,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             await player.chooseDrawRecover(2, '整肃奖励:摸两张牌或回复1点体力');
                                             const cards = [];
                                             for (let i = 0; i < 2; i++) {
-                                                let card = get.cardPile(function (card) {
+                                                const card = get.cardPile(function (card) {
                                                     return !cards.includes(card) && get.type2(card) == 'trick';
                                                 });
                                                 if (card) {
@@ -6577,7 +6577,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     return;
                                                 }
                                                 for (let i = 1; i < history.length; i++) {
-                                                    let num2 = history[i].card.number;
+                                                    const num2 = history[i].card.number;
                                                     if (!num2 || num2 <= num) {
                                                         return;
                                                     }
@@ -6604,13 +6604,13 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             const list = player.getHistory('useCard', (evt) => evt.isPhaseUsing(player));
                                             let goon = true;
                                             for (let i = 0; i < list.length; i++) {
-                                                let num = list[i].card.number;
+                                                const num = list[i].card.number;
                                                 if (typeof num != 'number') {
                                                     goon = false;
                                                     break;
                                                 }
                                                 if (i > 0) {
-                                                    let num2 = list[i - 1].card.number;
+                                                    const num2 = list[i - 1].card.number;
                                                     if (typeof num2 != 'number' || num2 >= num) {
                                                         goon = false;
                                                         break;
@@ -6668,7 +6668,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return player.isPhaseUsing() && player.storage.大整肃_bianzhen !== false;
                                         },
                                         async content(event, trigger, player) {
-                                            let list = player.getHistory('useCard', (evt) => evt.isPhaseUsing());
+                                            const list = player.getHistory('useCard', (evt) => evt.isPhaseUsing());
                                             let goon = true,
                                                 suit = list[0].card.suit;
                                             if (suit == 'none') {
@@ -6792,7 +6792,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 const evt = event.getParent('phaseDiscard');
                                                 if (evt && evt.player == player) {
                                                     for (const i of event.cards2) {
-                                                        let suit = i.suit;
+                                                        const suit = i.suit;
                                                         if (list.includes(suit)) {
                                                             goon = false;
                                                             break;
@@ -7500,15 +7500,15 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 .forResult();
                                     const list = [];
                                     list.add(['', '', 'sha']);
-                                    for (let nature of lib.inpile_nature) {
+                                    for (const nature of lib.inpile_nature) {
                                         list.add(['', '', 'sha', nature]);
                                     }
                                     const { links } = await player
                                         .chooseButton(['选择使用的【杀】？', [list, 'vcard']])
                                         .set('cards', cards)
                                         .set('ai', function (button) {
-                                            let player = _status.event.player;
-                                            let card = { name: button.link[2], nature: button.link[3], cards: _status.event.cards };
+                                            const player = _status.event.player;
+                                            const card = { name: button.link[2], nature: button.link[3], cards: _status.event.cards };
                                             if (
                                                 game.hasPlayer(function (current) {
                                                     return player.canUse(card, current) && get.effect(current, card, player, player) > 0;
@@ -7526,7 +7526,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         })
                                         .forResult();
                                     if (links) {
-                                        let card = get.autoViewAs(
+                                        const card = get.autoViewAs(
                                             {
                                                 name: links[0][2],
                                                 nature: links[0][3],
@@ -7819,7 +7819,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 player.unmarkSkill(mark);
                                             }
                                             let count = 1;
-                                            let list = Array.from(player.node.marks.childNodes);
+                                            const list = Array.from(player.node.marks.childNodes);
                                             if (list.some((i) => i.name == 'mbdanggu')) {
                                                 count++;
                                             }
@@ -7844,10 +7844,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 count,
                                             );
                                         }
-                                        for (let i in player.tempSkills) {
+                                        for (const i in player.tempSkills) {
                                             player.removeSkill(i);
                                         }
-                                        let skills = player.getSkills();
+                                        const skills = player.getSkills();
                                         for (const i of skills) {
                                             if (lib.skill[i].temp) {
                                                 player.removeSkill(i);
@@ -7988,11 +7988,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     player.say('若能回到过去……');
                                     const restNum = game.getAllGlobalHistory('everything', (evt) => evt.name == 'restEnd').length;
                                     const targets = player.getEnemies().filter((current) => player.inRange(current));
-                                    for (let target of targets) {
+                                    for (const target of targets) {
                                         await target.damage(restNum + 1);
                                     }
                                     let num = 0;
-                                    for (let target of targets) {
+                                    for (const target of targets) {
                                         target.getHistory('damage', (evt) => {
                                             if (evt.parent.name == '蔚蓝之石') {
                                                 num += evt.num;
@@ -8062,7 +8062,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return !player.storage.骑乘;
                                 },
                                 async cost(event, trigger, player) {
-                                    let list = [];
+                                    const list = [];
                                     list.push('获得一张红色牌并跳过摸牌阶段,且有50%的概率随机使用一张坐骑牌');
                                     list.push('获得三张黑色牌并弃置红色手牌');
                                     if (player.countCards('h') > 0) {
@@ -8084,7 +8084,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 async content(event, trigger, player) {
                                     const control = event.cost_data.control;
                                     if (control.startsWith('获得一')) {
-                                        let card = get.cardPile((card) => get.color(card) == 'red');
+                                        const card = get.cardPile((card) => get.color(card) == 'red');
                                         await player.gain([card], 'gain2');
                                         player.skip('phaseDraw');
                                         if (Math.random() >= 0.5) {
@@ -8092,15 +8092,15 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             if (!types.length) {
                                                 types = ['equip3', 'equip4'];
                                             }
-                                            let card = get.cardPile((card) => types.includes(get.subtype(card)));
+                                            const card = get.cardPile((card) => types.includes(get.subtype(card)));
                                             if (card) {
                                                 await player.chooseUseTarget(card, true);
                                             }
                                         }
                                     } else if (control.startsWith('获')) {
-                                        let cards = [];
+                                        const cards = [];
                                         while (cards.length < 3) {
-                                            let card = get.cardPile((card) => get.color(card) == 'black' && !cards.includes(card));
+                                            const card = get.cardPile((card) => get.color(card) == 'black' && !cards.includes(card));
                                             if (card) {
                                                 cards.add(card);
                                             }
@@ -8219,12 +8219,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (player.getStorage('千风罡').includes(name)) {
                                             return false;
                                         }
-                                        for (let card of cards) {
+                                        for (const card of cards) {
                                             if (event.filterCard && event.filterCard({ name: name }, player, event)) {
                                                 return true;
                                             }
                                             if (name == 'sha') {
-                                                for (let nature of lib.inpile_nature) {
+                                                for (const nature of lib.inpile_nature) {
                                                     if (event.filterCard && event.filterCard({ name: name, nature: nature }, player, event)) {
                                                         return true;
                                                     }
@@ -8237,8 +8237,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 chooseButton: {
                                     dialog(event, player) {
                                         const cardx = Object.keys(lib.card).filter((card) => lib.translate[card]);
-                                        let list = [];
-                                        for (let name of cardx) {
+                                        const list = [];
+                                        for (const name of cardx) {
                                             if (!['trick', 'basic', 'equip', 'delay'].includes(lib.card[name].type)) {
                                                 continue;
                                             }
@@ -8250,7 +8250,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             }
                                             list.push([get.translation(get.type(name)), '', name]);
                                             if (name == 'sha') {
-                                                for (let j of lib.inpile_nature) {
+                                                for (const j of lib.inpile_nature) {
                                                     list.push(['基本', '', 'sha', j]);
                                                 }
                                             }
@@ -8261,7 +8261,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.parent.type != 'phase') {
                                             return 1;
                                         }
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         if (['wugu', 'zhulu_card', 'yiyi', 'lulitongxin', 'lianjunshengyan', 'diaohulishan'].includes(button.link[2])) {
                                             return 0;
                                         }
@@ -8674,7 +8674,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 const cards = [];
                                                 while (num > 0) {
                                                     num--;
-                                                    let card = get.cardPile((card) => !cards.includes(card) && get.type2(card) == type);
+                                                    const card = get.cardPile((card) => !cards.includes(card) && get.type2(card) == type);
                                                     if (card) {
                                                         cards.add(card);
                                                     }
@@ -8853,7 +8853,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         },
                                         forced: true,
                                         async content(event, trigger, player) {
-                                            let num = trigger.num;
+                                            const num = trigger.num;
                                             const recover = player.getDamagedHp();
                                             if (player.isDamaged()) {
                                                 await player.recover(num);
@@ -8917,7 +8917,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return event.name != 'phase' || game.phaseNumber == 0;
                                 },
                                 async content(event, trigger, player) {
-                                    let target = game.filterPlayer((i) => i != player).randomGet();
+                                    const target = game.filterPlayer((i) => i != player).randomGet();
                                     target.addMark('xyfh_shouliekaishi', 1);
                                 },
                                 group: ['xyfh_shouliekaishi_1', 'xyfh_shouliekaishi_2', 'xyfh_shouliekaishi_3', 'xyfh_shouliekaishi_4'],
@@ -9365,7 +9365,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             content() {
                                 player.awakenSkill(event.name);
                                 player.removeSkill('nezha_faqi');
-                                let list = ['nezha_huojianqiang', 'nezha_qiankunquan', 'nezha_huntianling'];
+                                const list = ['nezha_huojianqiang', 'nezha_qiankunquan', 'nezha_huntianling'];
                                 for (const i of list) {
                                     player.addSkillLog(i);
                                 }
@@ -9460,7 +9460,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 'step 0';
-                                let list = [
+                                const list = [
                                     ['nezha_huojianqiang', '【火尖枪】' + get.translation('nezha_huojianqiang_info')],
                                     ['nezha_qiankunquan', '【乾坤圈】' + get.translation('nezha_qiankunquan_info')],
                                     ['nezha_huntianling', '【混天绫】' + get.translation('nezha_huntianling_info')],
@@ -9470,8 +9470,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 next.set('ai', () => Math.random());
                                 ('step 1');
                                 if (result.bool) {
-                                    let list = ['nezha_huojianqiang', 'nezha_qiankunquan', 'nezha_huntianling'];
-                                    for (let skill of list) {
+                                    const list = ['nezha_huojianqiang', 'nezha_qiankunquan', 'nezha_huntianling'];
+                                    for (const skill of list) {
                                         player.removeSkill(skill);
                                     }
                                     player.addSkillLog(result.links[0]);
@@ -9521,7 +9521,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             if (evt.parent != event) {
                                                 return false;
                                             }
-                                            for (let i in evt.gaintag_map) {
+                                            for (const i in evt.gaintag_map) {
                                                 for (const tag of evt.gaintag_map[i]) {
                                                     if (tags.includes(tag)) {
                                                         return true;
@@ -9564,12 +9564,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 2');
-                                let list = [],
+                                const list = [],
                                     shown = [];
                                 const piles = ['cardPile', 'discardPile'];
                                 for (const pile of piles) {
                                     for (const i of ui[pile].childNodes) {
-                                        let card = i;
+                                        const card = i;
                                         if (!list.includes(card)) {
                                             list.push(card);
                                             if (pile == 'discardPile') {
@@ -9639,7 +9639,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     },
                                     forced: true,
                                     content() {
-                                        let num = [1, 2].randomGet();
+                                        const num = [1, 2].randomGet();
                                         const numx = player.countMark('jianyi') + num >= 9 ? 9 - player.countMark('jianyi') : num;
                                         if (numx > 0) {
                                             player.addMark('jianyi', numx);
@@ -9702,7 +9702,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 'step 0';
-                                let bool = get.damageEffect(trigger.player, trigger.source, player, trigger.nature) > 0;
+                                const bool = get.damageEffect(trigger.player, trigger.source, player, trigger.nature) > 0;
                                 player.chooseBool().set('bool', bool).ai = function () {
                                     return _status.event.bool;
                                 };
@@ -9805,7 +9805,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             logTarget: 'player',
                             content() {
                                 'step 0';
-                                let cards = get.cards(3);
+                                const cards = get.cards(3);
                                 game.updateRoundNumber();
                                 event.cards = cards;
                                 game.cardsGotoOrdering(cards);
@@ -9838,16 +9838,16 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let list = game.filterPlayer(function (current) {
+                                const list = game.filterPlayer(function (current) {
                                     return current != player && current.getExpansions('hui_suoqi').length;
                                 });
                                 list.sortBySeat();
                                 event.targets = list;
                                 ('step 1');
-                                let target = event.targets.shift();
+                                const target = event.targets.shift();
                                 event.target = target;
                                 if (target.isIn()) {
-                                    let list = [];
+                                    const list = [];
                                     for (const p of ['h', 'e', 'j']) {
                                         if (target.countCards(p) > 0) {
                                             list.push([p, '将' + get.translation(target.getCards(p)) + '交给' + get.translation(player)]);
@@ -9940,7 +9940,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                 }
                                 if (bool != true && player.getDamagedHp() > 0) {
-                                    let num = player.getDamagedHp();
+                                    const num = player.getDamagedHp();
                                     player.loseMaxHp(num);
                                     player.addMark('xyfh_shaoshang', num);
                                 }
@@ -9965,7 +9965,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 event.targets = game.filterPlayer((c) => c != player);
                                 ('step 1');
                                 if (event.targets.length) {
-                                    let target = event.targets.shift();
+                                    const target = event.targets.shift();
                                     target
                                         .chooseToUse(
                                             function (card, player, event) {
@@ -10027,8 +10027,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return target.getEquip(1);
                             },
                             content() {
-                                let cards = [target.getEquip(1)];
-                                let card = {
+                                const cards = [target.getEquip(1)];
+                                const card = {
                                     name: 'sha',
                                     cards: cards,
                                     hui_jianjue: true,
@@ -10049,7 +10049,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 event.num = player.getAllHistory('useSkill', (evt) => evt.skill == 'hui_jianjue').length;
                                 player.awakenSkill('hui_wu');
                                 player.chooseTarget(get.prompt('hui_wu'), '对至多三名角色各造成' + event.num + '点伤害', [1, 3]).set('ai', function (target) {
-                                    let player = _status.event.player;
+                                    const player = _status.event.player;
                                     return get.damageEffect(target, player, player);
                                 });
                                 ('step 1');
@@ -10159,9 +10159,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             forced: true,
                             content() {
-                                let list = ['nanman', 'wanjian', 'wuzhong', 'zhuge', 'bagua'];
-                                for (let name of list) {
-                                    let card = game.createCard2(name);
+                                const list = ['nanman', 'wanjian', 'wuzhong', 'zhuge', 'bagua'];
+                                for (const name of list) {
+                                    const card = game.createCard2(name);
                                     player.chooseUseTarget(card, false, false);
                                 }
                             },
@@ -10364,7 +10364,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let list = [
+                                const list = [
                                     ['1', '消耗5点蓄力值,摸一张牌,获得<净水>标记'],
                                     ['2', '消耗6点蓄力值,摸一张牌,获得<浊水>标记'],
                                 ];
@@ -10451,7 +10451,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         }
                                         ('step 2');
                                         if (result.targets?.length) {
-                                            let target = result.targets[0];
+                                            const target = result.targets[0];
                                             player.line(target);
                                             target.chooseToDiscard(true, 'he');
                                         }
@@ -10485,7 +10485,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 event.bool = 0;
                                 if (trigger.name == 'discard') {
                                     for (const i of trigger.cards) {
-                                        let name = i.name;
+                                        const name = i.name;
                                         if (player.storage.jiyi_mnmxn_record.includes(name)) {
                                             event.bool++;
                                         }
@@ -10504,7 +10504,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 2');
-                                let result = ['增加一点体力上限', '将体力回复至上限', '获得一点护甲', '摸一张牌', '视为对其他角色使用【过河拆桥】'];
+                                const result = ['增加一点体力上限', '将体力回复至上限', '获得一点护甲', '摸一张牌', '视为对其他角色使用【过河拆桥】'];
                                 const random = result.randomGet();
                                 if (random == result[0]) {
                                     player.gainMaxHp();
@@ -10527,9 +10527,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         false,
                                     );
                                 }
-                                let str = get.translation(player) + '随机执行了效果:<font color=orange>' + random;
+                                const str = get.translation(player) + '随机执行了效果:<font color=orange>' + random;
                                 game.broadcastAll(function (str) {
-                                    let dialog = ui.create.dialog(str);
+                                    const dialog = ui.create.dialog(str);
                                     dialog.classList.add('center');
                                     game.pause();
                                     setTimeout(function () {
@@ -10547,7 +10547,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         jiwu_lb_qxsy: {
                             enable: 'phaseUse',
                             filter(event, player) {
-                                let list = ['paoxiao_lb_qxsy', 'leiji_lb_qxsy', 'lianying_lb_qxsy', 'fankui_lb_qxsy'].filter((i) => !player.hasSkill(i));
+                                const list = ['paoxiao_lb_qxsy', 'leiji_lb_qxsy', 'lianying_lb_qxsy', 'fankui_lb_qxsy'].filter((i) => !player.hasSkill(i));
                                 return list.length;
                             },
                             filterCard: true,
@@ -10559,7 +10559,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             position: 'he',
                             content() {
                                 'step 0';
-                                let list = [
+                                const list = [
                                     ['paoxiao_lb_qxsy', '【咆哮】' + get.translation('paoxiao_lb_qxsy_info')],
                                     ['leiji_lb_qxsy', '【雷击】' + get.translation('leiji_lb_qxsy_info')],
                                     ['lianying_lb_qxsy', '【连营】' + get.translation('lianying_lb_qxsy_info')],
@@ -10575,7 +10575,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 next.set('ai', () => Math.random());
                                 ('step 1');
                                 if (result.links?.length) {
-                                    let skill = result.links[0];
+                                    const skill = result.links[0];
                                     player.addTempSkill(skill);
                                     player.popup(get.translation(skill));
                                 }
@@ -10607,7 +10607,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     forced: true,
                                     _priority: 100,
                                     content() {
-                                        let num = player.countCards('h') - 8;
+                                        const num = player.countCards('h') - 8;
                                         if (num > 0) {
                                             player.chooseToDiscard(get.prompt2('juejing_lb_qxsy'), 'h', num, true);
                                         } else {
@@ -10626,7 +10626,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             forced: true,
                             content() {
-                                let num = Math.floor(Math.random() * 100) + 1;
+                                const num = Math.floor(Math.random() * 100) + 1;
                                 if (num <= 60) {
                                     trigger.num--;
                                 }
@@ -10663,7 +10663,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 ('step 1');
                                 const targets = game.filterPlayer((current) => current != player && !current.isLinked());
                                 player.line(targets);
-                                for (let target of targets) {
+                                for (const target of targets) {
                                     target.link();
                                 }
                                 ('step 2');
@@ -10725,7 +10725,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return event.card && ['sha', 'juedou'].includes(event.card.name);
                             },
                             content() {
-                                let num = player.getAttackRange();
+                                const num = player.getAttackRange();
                                 player.draw(num);
                             },
                         },
@@ -10766,7 +10766,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             filterCard(card, player, event) {
                                 event = event || _status.event;
                                 const filter = event._backup.filterCard;
-                                let name = card.suit;
+                                const name = card.suit;
                                 if (
                                     name == 'spade' &&
                                     filter(
@@ -10920,7 +10920,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     forced: true,
                                     _priority: 100,
                                     content() {
-                                        let card = trigger.card;
+                                        const card = trigger.card;
                                         if (get.color(card) == 'red') {
                                             trigger.baseDamage++;
                                             player.draw();
@@ -10937,15 +10937,15 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player: 'phaseBegin',
                             },
                             filter(event, player) {
-                                let list = ['shufazijinguan', 'wushuangfangtianji', 'linglongshimandai', 'chitu'].filter((i) => !player.countCards('he', (card) => card.name == i));
+                                const list = ['shufazijinguan', 'wushuangfangtianji', 'linglongshimandai', 'chitu'].filter((i) => !player.countCards('he', (card) => card.name == i));
                                 return list.length;
                             },
                             forced: true,
                             content() {
-                                let list = ['shufazijinguan', 'wushuangfangtianji', 'linglongshimandai', 'chitu'].filter((i) => !player.countCards('he', (card) => card.name == i));
-                                let cards = [];
-                                for (let name of list) {
-                                    let card = game.createCard2(name);
+                                const list = ['shufazijinguan', 'wushuangfangtianji', 'linglongshimandai', 'chitu'].filter((i) => !player.countCards('he', (card) => card.name == i));
+                                const cards = [];
+                                for (const name of list) {
+                                    const card = game.createCard2(name);
                                     cards.push(card);
                                 }
                                 player.gain(cards, 'gain2', 'log');
@@ -10958,7 +10958,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let list = [];
+                                const list = [];
                                 for (const i of lib.inpile) {
                                     if (get.type2(i) == 'trick') {
                                         list.add(i);
@@ -10968,7 +10968,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 next.set('ai', () => Math.random());
                                 ('step 1');
                                 if (result.links?.length) {
-                                    let name = result.links[0][2];
+                                    const name = result.links[0][2];
                                     player.chooseUseTarget({
                                         name: name,
                                     });
@@ -10994,7 +10994,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.awakenSkill(event.name);
                                 const { targets } = await player
                                     .chooseTarget(get.prompt2(event.name), true, (card, player, target) => {
-                                        let skills = target.getSkills();
+                                        const skills = target.getSkills();
                                         return skills.some((i) => get.info(i).juexingji == true);
                                     })
                                     .set('ai', (target) => get.attitude(player, target))
@@ -11033,7 +11033,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.chooseTarget(get.prompt(event.name), '令一名角色获得技能【佐幸】', true).set('ai', (target) => get.attitude(player, target));
                                 ('step 1');
                                 if (result.targets?.length) {
-                                    let target = result.targets[0];
+                                    const target = result.targets[0];
                                     player.line(target);
                                     target.addSkillLog('zuoxing_qxsy');
                                 }
@@ -11065,7 +11065,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.chooseTarget(get.prompt(event.name), '将' + get.translation(player.storage.huishi_qxsy) + '交于一名角色', true).set('ai', (target) => get.attitude(player, target)); //QQQ
                                 ('step 3');
                                 if (result.targets?.length) {
-                                    let target = result.targets[0];
+                                    const target = result.targets[0];
                                     target.gain(player.storage.huishi_qxsy, 'gain2', 'log');
                                     delete player.storage.huishi_qxsy;
                                     if (!game.hasPlayer((current) => current.countCards('h') > target.countCards('h'))) {
@@ -11154,7 +11154,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         dialog.addText('暂无牌名记录');
                                         return;
                                     }
-                                    let list = lib.inpile.filter((i) => get.type2(i) == 'trick' && player.storage.dinghan_qxsy.includes(i));
+                                    const list = lib.inpile.filter((i) => get.type2(i) == 'trick' && player.storage.dinghan_qxsy.includes(i));
                                     dialog.addText('当前已记录的牌名');
                                     dialog.addSmall([list, 'vcard']);
                                 },
@@ -11177,16 +11177,16 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     prompt2: '准备阶段,你可在【定汉①】的记录中添加或减少至少一种锦囊牌的牌名',
                                     content() {
                                         'step 0';
-                                        let list1 = [],
+                                        const list1 = [],
                                             list2 = [];
-                                        for (let name of lib.inpile.filter((i) => get.type2(i) == 'trick')) {
+                                        for (const name of lib.inpile.filter((i) => get.type2(i) == 'trick')) {
                                             if (player.storage.dinghan_qxsy.includes(name)) {
                                                 list1.add(name);
                                             } else {
                                                 list2.add(name);
                                             }
                                         }
-                                        let dialog = ui.create.dialog('定汉', 'hidden');
+                                        const dialog = ui.create.dialog('定汉', 'hidden');
                                         dialog.noforcebutton = true;
                                         dialog.forcebutton = true;
                                         dialog.addText('请选择至少1种牌名,添加或减少【定汉①】记录');
@@ -11205,7 +11205,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         event.dialog.close();
                                         if (result.links?.length) {
                                             for (const i of result.links) {
-                                                let name = i[2];
+                                                const name = i[2];
                                                 if (player.storage.dinghan_qxsy.includes(name)) {
                                                     player.storage.dinghan_qxsy.remove(name);
                                                 } else {
@@ -11230,7 +11230,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             group: 'tianzuo_qxsy_1',
                             content() {
                                 for (let i = 0; i < 32; i++) {
-                                    let card = game.createCard('qizhengxiangsheng');
+                                    const card = game.createCard('qizhengxiangsheng');
                                     ui.cardPile.insertBefore(card, ui.cardPile.childNodes[get.rand(0, ui.cardPile.childNodes.length)]);
                                 }
                                 game.broadcastAll(function () {
@@ -11272,7 +11272,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let dialog = ui.create.dialog('琴音', 'hidden');
+                                const dialog = ui.create.dialog('琴音', 'hidden');
                                 dialog.noforcebutton = true;
                                 dialog.forcebutton = true;
                                 dialog.add(ui.create.div('.placeholder'));
@@ -11286,9 +11286,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 ('step 1');
                                 event.dialog.close();
                                 if (result.links?.length) {
-                                    let name = result.links[0][2];
+                                    const name = result.links[0][2];
                                     const targets = game.filterPlayer();
-                                    for (let current of targets) {
+                                    for (const current of targets) {
                                         current.useCard(
                                             {
                                                 name: name,
@@ -11317,9 +11317,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.goto(4);
                                     return;
                                 }
-                                let target = targets[event.count];
+                                const target = targets[event.count];
                                 event.target = target;
-                                let list = [];
+                                const list = [];
                                 for (let i = 1; i <= event.damages; i++) {
                                     list.add(i);
                                 }
@@ -11345,14 +11345,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return;
                                 }
                                 player.line(targets, 'fire');
-                                for (let current of targets) {
+                                for (const current of targets) {
                                     current.damage(current.storage.yeyan_qxsy_damage, 'fire');
                                     delete current.storage.yeyan_qxsy_damage;
                                 }
                                 if (event.draw) {
-                                    let list = [];
+                                    const list = [];
                                     for (let i = 0; i < 3; i++) {
-                                        let card = get.cardPile2((card) => get.color(card) == 'red' && !list.includes(card));
+                                        const card = get.cardPile2((card) => get.color(card) == 'red' && !list.includes(card));
                                         if (card) {
                                             list.add(card);
                                         }
@@ -11421,7 +11421,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     _priority: 100,
                                     content() {
                                         const targets = game.filterPlayer((target) => target.hasSkill('dawu_qxsy_1') && target.storage.dawu_qxsy.includes(player));
-                                        for (let target of targets) {
+                                        for (const target of targets) {
                                             target.storage.dawu_qxsy.remove(player);
                                             target.removeSkill('dawu_qxsy_1');
                                         }
@@ -11442,8 +11442,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             group: 'kuangfeng_qxsy_1',
                             content() {
                                 'step 0';
-                                let cards = player.getExpansions('qixing_qxsy');
-                                let dialog = ui.create.dialog('七星', 'hidden');
+                                const cards = player.getExpansions('qixing_qxsy');
+                                const dialog = ui.create.dialog('七星', 'hidden');
                                 dialog.addText('你可以移除任意张<星>牌');
                                 dialog.addSmall([cards, 'vcard']);
                                 event.dialog = dialog;
@@ -11457,7 +11457,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.num = result.links.length;
                                     player.loseToDiscardpile(result.links);
                                     player.chooseTarget([1, event.num], get.prompt2(event.name)).set('ai', function (target) {
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         return get.damageEffect(target, player, player);
                                     });
                                 } else {
@@ -11465,7 +11465,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 ('step 2');
                                 if (result.targets?.length) {
-                                    for (let target of result.targets) {
+                                    for (const target of result.targets) {
                                         player.line(target, 'green');
                                         target.storage.kuangfeng_qxsy = event.num;
                                         target.markSkill('kuangfeng_qxsy_1');
@@ -11496,7 +11496,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     content() {
                                         if (trigger.name == 'phase') {
                                             const targets = game.filterPlayer((current) => current.storage.kuangfeng_qxsy);
-                                            for (let target of targets) {
+                                            for (const target of targets) {
                                                 delete target.storage.kuangfeng_qxsy;
                                                 target.unmarkSkill('kuangfeng_qxsy_1');
                                             }
@@ -11518,7 +11518,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             mod: {
                                 cardUsable(card) {
-                                    for (let card of card.cards) {
+                                    for (const card of card.cards) {
                                         if (card.hasGaintag('qixing_qxsy')) {
                                             return Infinity;
                                         }
@@ -11527,7 +11527,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             group: ['qixing_qxsy_1', 'qixing_qxsy_2', 'qixing_qxsy_3'],
                             content() {
-                                let cards = get.cards(7);
+                                const cards = get.cards(7);
                                 player.$gain2(cards);
                                 player.addToExpansion(cards, player, 'giveAuto').gaintag.add('qixing_qxsy');
                             },
@@ -11542,7 +11542,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     prompt2: '/摸牌阶段结束后,你可用任意数量的手牌等量交换这些<星>(以此法获得的牌,无次数限制)',
                                     content() {
                                         'step 0';
-                                        let list1 = player.getExpansions('qixing_qxsy'),
+                                        const list1 = player.getExpansions('qixing_qxsy'),
                                             list2 = player.getCards('h');
                                         const next = player.chooseToMove('七星:是否交换<星>和手牌？');
                                         next.set('list', [
@@ -11553,7 +11553,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return typeof to != 'number';
                                         });
                                         next.set('processAI', function (list) {
-                                            let cards = list[0][1].concat(list[1][1]).sort(function (a, b) {
+                                            const cards = list[0][1].concat(list[1][1]).sort(function (a, b) {
                                                 return get.useful(a) - get.useful(b);
                                             }),
                                                 cards2 = cards.splice(0, list1.length);
@@ -11615,7 +11615,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 markcount: 'expansion',
                             },
                             onremove(player, skill) {
-                                let cards = player.getExpansions(skill);
+                                const cards = player.getExpansions(skill);
                                 if (cards.length) {
                                     player.loseToDiscardpile(cards);
                                 }
@@ -11667,7 +11667,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 global: ['loseAfter', 'cardsDiscardAfter'],
                             },
                             filter(event, player) {
-                                let cards = event.cards;
+                                const cards = event.cards;
                                 return cards.some((card) => get.position(card, true) == 'd');
                             },
                             forced: true,
@@ -11686,12 +11686,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         player: ['tianren_shenjiangwei_qxsyAfter', 'gainMaxHpAfter', 'loseMaxHpAfter'],
                                     },
                                     filter(event, player) {
-                                        let num = player.maxHp;
+                                        const num = player.maxHp;
                                         return player.countMark('tianren_shenjiangwei_qxsy') >= num;
                                     },
                                     forced: true,
                                     content() {
-                                        let num = player.maxHp;
+                                        const num = player.maxHp;
                                         player.removeMark('tianren_shenjiangwei_qxsy', num);
                                         player.gainMaxHp();
                                         player.draw(2);
@@ -11753,7 +11753,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (result.links?.length) {
                                             player.gain(result.links, 'gain2', 'log');
                                             delete player.storage.jiufa_shenjiangwei_qxsy;
-                                            let cards = event.cards.removeArray(result.links);
+                                            const cards = event.cards.removeArray(result.links);
                                             game.cardsDiscard(cards);
                                             game.log(cards, '进入了弃牌堆');
                                         }
@@ -11772,12 +11772,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player
                                     .chooseTarget(get.prompt2(event.name), (card, player, target) => target != player)
                                     .set('ai', function (target) {
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
                                 if (result.targets?.length) {
-                                    let target = result.targets[0];
+                                    const target = result.targets[0];
                                     event.target = target;
                                     player.choosePlayerCard(target, 'h', true, 'visible');
                                 } else {
@@ -11787,7 +11787,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (result.cards?.length) {
                                     event.cards = result.cards;
                                     player.showCards(result.cards);
-                                    let list = ['弃置此牌,获得一张装备牌', '将此牌置于牌堆顶,获得一张【无中生有】'];
+                                    const list = ['弃置此牌,获得一张装备牌', '将此牌置于牌堆顶,获得一张【无中生有】'];
                                     event.list = list;
                                     event.suits = [];
                                     for (const i of event.target.getCards('h')) {
@@ -11799,10 +11799,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 ('step 3');
                                 if (result.links?.length) {
-                                    let str = result.links[0];
+                                    const str = result.links[0];
                                     if (str == event.list[0]) {
                                         event.target.discard(event.cards);
-                                        let card = get.cardPile((card) => get.type(card) == 'equip');
+                                        const card = get.cardPile((card) => get.type(card) == 'equip');
                                         if (card) {
                                             player.gain(card, 'gain2', 'log');
                                         }
@@ -11810,7 +11810,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (str == event.list[1]) {
                                         event.target.lose(event.cards, ui.cardPile, 'insert');
                                         game.log(event.target, '将', event.cards, '置于了牌堆顶');
-                                        let card = get.cardPile((card) => card.name == 'wuzhong');
+                                        const card = get.cardPile((card) => card.name == 'wuzhong');
                                         if (card) {
                                             player.gain(card, 'gain2', 'log');
                                         }
@@ -11871,7 +11871,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             content() {
                                 'step 0';
                                 trigger.cancel();
-                                let cards = get.cards(5);
+                                const cards = get.cards(5);
                                 player.showCards(cards);
                                 player
                                     .chooseButton(['请选择获得其中点数各不相同的一张牌', [cards, 'vcard']])
@@ -11896,8 +11896,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         player: 'phaseJieshuBegin',
                                     },
                                     filter(event, player) {
-                                        let list = [];
-                                        for (let card of player.getHistory('useCard')) {
+                                        const list = [];
+                                        for (const card of player.getHistory('useCard')) {
                                             list.add(card.suit);
                                         }
                                         return list.length >= 3;
@@ -11923,7 +11923,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             selectCard: 1,
                             position: 'hes',
                             content() {
-                                let card = game.createCard2('longdanliangyinqiang');
+                                const card = game.createCard2('longdanliangyinqiang');
                                 if (card) {
                                     player.equip(card);
                                 }
@@ -11955,7 +11955,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 });
                                 ('step 1');
                                 if (result.bool && result.targets) {
-                                    let card = result.targets[0].getCards('e', {
+                                    const card = result.targets[0].getCards('e', {
                                         subtype: 'equip1',
                                     })[0];
                                     const cardx = game.createCard2(card.name);
@@ -12029,17 +12029,17 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return null;
                             },
                             check(card) {
-                                let player = _status.event.player;
+                                const player = _status.event.player;
                                 if (_status.event.type == 'phase') {
                                     let max = 0;
                                     let name2;
-                                    let list = ['sha', 'jiu'];
+                                    const list = ['sha', 'jiu'];
                                     const map = {
                                         sha: 'heart',
                                         jiu: 'spade',
                                     };
                                     for (const i of list) {
-                                        let name = i;
+                                        const name = i;
                                         if (
                                             player.countCards('hs', function (card) {
                                                 return (name != 'sha' || get.value(card) < 5) && card.suit == map[name];
@@ -12068,7 +12068,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             filterCard(card, player, event) {
                                 event = event || _status.event;
                                 const filter = event._backup.filterCard;
-                                let name = card.suit;
+                                const name = card.suit;
                                 if (
                                     name == 'spade' &&
                                     filter(
@@ -12207,13 +12207,13 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 order(item, player) {
                                     if (player && _status.event.type == 'phase') {
                                         let max = 0;
-                                        let list = ['sha', 'jiu'];
+                                        const list = ['sha', 'jiu'];
                                         const map = {
                                             sha: 'heart',
                                             jiu: 'spade',
                                         };
                                         for (const i of list) {
-                                            let name = i;
+                                            const name = i;
                                             if (
                                                 player.countCards('hs', function (card) {
                                                     return (name != 'sha' || get.value(card) < 5) && card.suit == map[name];
@@ -12276,7 +12276,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (trigger.name != 'discard') {
                                             str = trigger.card.suit;
                                         }
-                                        let card = get.cardPile2(function (card) {
+                                        const card = get.cardPile2(function (card) {
                                             return card.suit == str && !event.cards.includes(card);
                                         });
                                         if (card) {
@@ -12417,10 +12417,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             enable: 'phaseUse',
                             content() {
                                 'step 0';
-                                let cards = [];
-                                let list = [];
+                                const cards = [];
+                                const list = [];
                                 for (let i = 0; i < player.maxHp * 2; i++) {
-                                    let card = get.cards()[0];
+                                    const card = get.cards()[0];
                                     cards.push(card);
                                     if (get.color(card) == 'black') {
                                         list.push(card);
@@ -12436,7 +12436,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return target != player;
                                         })
                                         .set('ai', function (target) {
-                                            let player = _status.event.player;
+                                            const player = _status.event.player;
                                             return get.damageEffect(target, player, player);
                                         });
                                 }
@@ -12457,7 +12457,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     player.recover();
                                     return;
                                 }
-                                let num = Math.floor(Math.random() * (100 - 1)) + 1;
+                                const num = Math.floor(Math.random() * (100 - 1)) + 1;
                                 if (num <= 75) {
                                     trigger.cancel();
                                 }
@@ -12506,7 +12506,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 trigger.player.damage(1, 'fire');
-                                let card = get.cardPile2(function (card) {
+                                const card = get.cardPile2(function (card) {
                                     return get.color(card) == 'red';
                                 });
                                 if (card) {
@@ -12529,7 +12529,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             filterTarget: true,
                             selectTarget: 1,
                             content() {
-                                let card = cards[0];
+                                const card = cards[0];
                                 target.damage(card.number, 'fire');
                             },
                         },
@@ -12568,7 +12568,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 ('step 1');
                                 if (event.num == 1 && result.cards) {
-                                    let card = game.createCard2('toubiao_saiwenX');
+                                    const card = game.createCard2('toubiao_saiwenX');
                                     if (card) {
                                         player.gain(card, 'gain2', 'log');
                                     }
@@ -12624,7 +12624,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (!trigger.player.countMark('SH_jielv')) {
                                     player.recover();
                                 } else {
-                                    let card = {
+                                    const card = {
                                         name: trigger.card.name,
                                         nature: trigger.card.nature,
                                     };
@@ -12649,7 +12649,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 'step 0';
-                                let cards = [];
+                                const cards = [];
                                 player.getHistory('lose', (evt) => {
                                     if (evt.type == 'discard' && evt.getParent('phaseDiscard') == trigger) {
                                         cards.addArray(evt.cards.filterInD('d'));
@@ -12707,7 +12707,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             player.storage.SH_jielv_buff += trigger.num;
                                             player.markSkill('SH_jielv_buff');
                                         } else {
-                                            let num = player.storage.SH_jielv_buff;
+                                            const num = player.storage.SH_jielv_buff;
                                             if (num > 0) {
                                                 player.damage(num);
                                             }
@@ -12791,7 +12791,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .set('choiceList', choiceList)
                                     .set('prompt', get.prompt('SH_diao'))
                                     .set('ai', () => {
-                                        let player = get.player();
+                                        const player = get.player();
                                         const choices = _status.event.controls.slice().remove('cancel2');
                                         if (player.hasSkill('SH_diao_red')) {
                                             choices.remove('选项一');
@@ -12820,8 +12820,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     });
                                 ('step 1');
                                 if (result.control != 'cancel2') {
-                                    let cards = player.getCards('h', { color: result.control == '选项一' ? 'red' : 'black' });
-                                    let name = result.control == '选项一' ? 'red' : 'black';
+                                    const cards = player.getCards('h', { color: result.control == '选项一' ? 'red' : 'black' });
+                                    const name = result.control == '选项一' ? 'red' : 'black';
                                     player.addToExpansion(cards, player, 'give').gaintag.add('SH_diao');
                                     player.addTempSkill('SH_diao_' + name);
                                 }
@@ -12832,7 +12832,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 markcount: 'expansion',
                             },
                             onremove(player, skill) {
-                                let cards = player.getExpansions(skill);
+                                const cards = player.getExpansions(skill);
                                 if (cards.length) {
                                     player.loseToDiscardpile(cards);
                                 }
@@ -12859,7 +12859,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     },
                                     forced: true,
                                     content() {
-                                        let cards = player.getExpansions('SH_diao');
+                                        const cards = player.getExpansions('SH_diao');
                                         player.loseToDiscardpile(cards);
                                     },
                                 },
@@ -12906,7 +12906,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 evt.targets.remove(trigger.target);
                                 evt.targets.push(player);
                                 ('step 1');
-                                let list = ['弃置两张' + get.translation(trigger.card.suit) + '牌', '失去一点体力'];
+                                const list = ['弃置两张' + get.translation(trigger.card.suit) + '牌', '失去一点体力'];
                                 player.line(trigger.player);
                                 const next = trigger.player.chooseControl(list);
                                 next.set('prompt', get.translation(player) + '发动了【' + get.translation(event.name) + '】,请选择一项');
@@ -12934,14 +12934,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player: 'damageEnd',
                             },
                             filter(event, player) {
-                                let list = [];
-                                for (let i in lib.character) {
+                                const list = [];
+                                for (const i in lib.character) {
                                     if (lib.character[i][1] != player.group) {
                                         continue;
                                     }
                                     list.push(i);
                                 }
-                                let skills = [];
+                                const skills = [];
                                 for (const i of list) {
                                     skills.addArray(lib.character[i][3]);
                                 }
@@ -12957,8 +12957,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let list = [];
-                                for (let i in lib.character) {
+                                const list = [];
+                                for (const i in lib.character) {
                                     if (lib.character[i][1] != player.group) {
                                         continue;
                                     }
@@ -12984,7 +12984,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return [skill1];
                                     };
                                     if (event.isMine()) {
-                                        let dialog = ui.create.dialog('forcebutton');
+                                        const dialog = ui.create.dialog('forcebutton');
                                         dialog.add('龙裔:选择获得两个技能');
                                         const clickItem = function () {
                                             if (!Array.isArray(_status.event._result)) {
@@ -13087,9 +13087,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.storage.zxqy_huhan++;
                                 player.markSkill(event.name);
                                 trigger.player = player;
-                                let cards = [];
+                                const cards = [];
                                 for (let i = 1; i <= 13; i++) {
-                                    let card = get.cardPile(function (card) {
+                                    const card = get.cardPile(function (card) {
                                         return card.number == i;
                                     });
                                     if (card) {
@@ -13219,8 +13219,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             mark: true,
                             intro: {
                                 content(storage, player, skill) {
-                                    let str = '已受伤害次数:';
-                                    let num = player.getAllHistory('damage').length;
+                                    const str = '已受伤害次数:';
+                                    const num = player.getAllHistory('damage').length;
                                     if (num == 0) {
                                         return '未受到伤害';
                                     }
@@ -13246,7 +13246,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 ((event.gain = ['basic', 'trick', 'equip']), (event.cards = []));
                                 ('step 1');
                                 for (let i = 1; i <= player.hp; i++) {
-                                    let card = get.cardPile(function (card) {
+                                    const card = get.cardPile(function (card) {
                                         return get.type(card, 'trick') == event.gain[0] && !event.cards.includes(card);
                                     });
                                     if (card) {
@@ -13297,7 +13297,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return false;
                                     }
                                     const players = game.filterPlayer();
-                                    let target = [];
+                                    const target = [];
                                     for (const i of players) {
                                         if (lib.filter.targetEnabled2(event.card, player, i) && !event.targets.includes(i)) {
                                             target.add(i);
@@ -13311,7 +13311,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             content() {
                                 if (event.triggername == 'useCard2') {
                                     const players = game.filterPlayer();
-                                    let target = [];
+                                    const target = [];
                                     for (const i of players) {
                                         if (lib.filter.targetEnabled2(trigger.card, player, i) && !trigger.targets.includes(i)) {
                                             target.add(i);
@@ -13593,7 +13593,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             mod: {
                                 globalTo(from, to, distance) {
                                     let num = 0;
-                                    let cards = to.getCards('hes').slice(0);
+                                    const cards = to.getCards('hes').slice(0);
                                     for (const i of cards) {
                                         if (i.hasGaintag('zxqy_fenhua')) {
                                             num++;
@@ -13671,7 +13671,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return true;
                             },
                             content() {
-                                let name = event.triggername;
+                                const name = event.triggername;
                                 if (name == 'phaseDrawBegin') {
                                     trigger.num += Math.trunc(player.countMark('zxqy_longyanego') / 3);
                                 } else if (name == 'damageEnd') {
@@ -13776,7 +13776,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             usable: 5,
                             filterTarget: true,
                             content() {
-                                let num = player.getStat().skill.zxqy_texiao;
+                                const num = player.getStat().skill.zxqy_texiao;
                                 target.draw(num);
                             },
                             ai: {
@@ -13831,7 +13831,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (card.name != 'tao' && get.color(card) != 'red') {
                                         return;
                                     }
-                                    let cards = player.getCards('hs', function (card) {
+                                    const cards = player.getCards('hs', function (card) {
                                         return card.name == 'tao' || get.color(card) == 'red';
                                     });
                                     cards.sort(function (a, b) {
@@ -13898,14 +13898,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (target.hp < 0 && target != player && target.identity != 'zhu') {
                                             return 0;
                                         }
-                                        let att = get.attitude(player, target);
+                                        const att = get.attitude(player, target);
                                         if (att < 3 && att >= 0 && player != target) {
                                             return 0;
                                         }
                                         const tri = _status.event.getTrigger();
                                         if (mode == 'identity' && player.identity == 'fan' && target.identity == 'fan') {
                                             if (tri && tri.name == 'dying' && tri.source && tri.source.identity == 'fan' && tri.source != target) {
-                                                let num = game.countPlayer(function (current) {
+                                                const num = game.countPlayer(function (current) {
                                                     if (current.identity == 'fan') {
                                                         return current.countCards('hs', 'tao');
                                                     }
@@ -13961,7 +13961,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                                 globalTo(from, to, distance) {
                                     let num = 0;
-                                    let cards = to.getCards('hes').slice(0);
+                                    const cards = to.getCards('hes').slice(0);
                                     for (const i of cards) {
                                         if (i.hasGaintag('zxqy_zangling')) {
                                             num++;
@@ -13979,9 +13979,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (event.target == player) {
                                     return false;
                                 }
-                                let list = event.target.getSkills(true, false);
-                                let skills = [];
-                                for (let i in event.target.disabledSkills) {
+                                const list = event.target.getSkills(true, false);
+                                const skills = [];
+                                for (const i in event.target.disabledSkills) {
                                     if (event.target.disabledSkills[i].includes('zxqy_duosha_fengyin')) {
                                         list.remove(i);
                                     }
@@ -14003,9 +14003,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 'step 0';
-                                let list = trigger.target.getSkills(true, false);
-                                let skills = [];
-                                for (let i in trigger.target.disabledSkills) {
+                                const list = trigger.target.getSkills(true, false);
+                                const skills = [];
+                                for (const i in trigger.target.disabledSkills) {
                                     if (trigger.target.disabledSkills[i].includes('zxqy_duosha_fengyin')) {
                                         list.remove(i);
                                     }
@@ -14030,7 +14030,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return [skill1];
                                 };
                                 if (event.isMine()) {
-                                    let dialog = ui.create.dialog('forcebutton');
+                                    const dialog = ui.create.dialog('forcebutton');
                                     dialog.add('夺煞:选择获得一个技能');
                                     const clickItem = function () {
                                         if (!Array.isArray(_status.event._result)) {
@@ -14054,7 +14054,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     };
                                     for (const i of skills) {
                                         if (lib.translate[i + '_info']) {
-                                            let translation = get.translation(i);
+                                            const translation = get.translation(i);
                                             const item = dialog.add('<div class="popup pointerdiv" style="width:100%;display:inline-block"><div class="skill">【' + translation + '】</div><div>' + lib.translate[i + '_info'] + '</div></div>');
                                             item.firstChild.addEventListener('click', clickItem);
                                             item.firstChild.link = i;
@@ -14114,7 +14114,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     charlotte: true,
                                     intro: {
                                         content(storage, player, skill) {
-                                            let list = Object.keys(player.disabledSkills);
+                                            const list = Object.keys(player.disabledSkills);
                                             if (list.length) {
                                                 let str = '失效技能:';
                                                 for (const i of list) {
@@ -14136,7 +14136,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     silent: true,
                                     popup: false,
                                     content() {
-                                        for (let i in player.storage.zxqy_duosha2) {
+                                        for (const i in player.storage.zxqy_duosha2) {
                                             if (player.storage.zxqy_duosha2[i] > 0) {
                                                 player.storage.zxqy_duosha2[i]--;
                                             }
@@ -14166,7 +14166,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     silent: true,
                                     popup: false,
                                     content() {
-                                        for (let i in player.storage.zxqy_duosha) {
+                                        for (const i in player.storage.zxqy_duosha) {
                                             if (player.storage.zxqy_duosha[i] > 0) {
                                                 player.storage.zxqy_duosha[i]--;
                                             }
@@ -14192,8 +14192,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (!evt || !evt.gaintag_map) {
                                     return false;
                                 }
-                                let suit = lib.suit.slice(0);
-                                let cards = [];
+                                const suit = lib.suit.slice(0);
+                                const cards = [];
                                 for (const i of evt.cards2) {
                                     if (evt.gaintag_map[i.cardid] && evt.gaintag_map[i.cardid].includes('zxqy_zangling')) {
                                         cards.add(i);
@@ -14210,19 +14210,19 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 const evt = trigger.getl(player);
-                                let cards = [];
+                                const cards = [];
                                 for (const i of evt.cards2) {
                                     if (evt.gaintag_map[i.cardid] && evt.gaintag_map[i.cardid].includes('zxqy_zangling')) {
                                         cards.add(i);
                                     }
                                 }
-                                let suit = lib.suit.slice(0);
+                                const suit = lib.suit.slice(0);
                                 const gain = [];
                                 for (const i of cards) {
                                     suit.remove(i.suit);
                                 }
                                 for (const i of suit) {
-                                    let card = get.cardPile(function (card) {
+                                    const card = get.cardPile(function (card) {
                                         return card.suit == i && !gain.includes(card);
                                     });
                                     if (card) {
@@ -14240,7 +14240,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             mod: {
                                 cardUsable(card, player) {
-                                    let cards = player.getCards('h');
+                                    const cards = player.getCards('h');
                                     let goon = false;
                                     for (const i of cards) {
                                         if (i.hasGaintag('zxqy_zangling')) {
@@ -14253,7 +14253,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                 },
                                 targetInRange(card, player) {
-                                    let cards = player.getCards('h');
+                                    const cards = player.getCards('h');
                                     let goon = false;
                                     for (const i of cards) {
                                         if (i.hasGaintag('zxqy_zangling')) {
@@ -14272,7 +14272,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player: 'dying',
                             },
                             filter(event, player) {
-                                let cards = player.getCards('h');
+                                const cards = player.getCards('h');
                                 for (const i of cards) {
                                     if (i.hasGaintag('zxqy_zangling')) {
                                         return true;
@@ -14286,7 +14286,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 event.count = 0;
                                 event.players = game.filterPlayer();
                                 event.players.remove(player).sortBySeat();
-                                let cards = player.getCards('h');
+                                const cards = player.getCards('h');
                                 for (const i of cards) {
                                     if (i.hasGaintag('zxqy_zangling')) {
                                         event.num++;
@@ -14325,7 +14325,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return player.inRange(current);
                                 });
                                 let effect = 0.1;
-                                let name = player.storage.zxqy_hunxiao ? 'taoyuan' : 'nanman';
+                                const name = player.storage.zxqy_hunxiao ? 'taoyuan' : 'nanman';
                                 for (const i of players) {
                                     effect += get.effect(
                                         i,
@@ -14363,7 +14363,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     });
                                 }
                                 if (player.storage[event.name] == true) {
-                                    let list = game.filterPlayer(function (current) {
+                                    const list = game.filterPlayer(function (current) {
                                         return player.canUse('taoyuan', current);
                                     });
                                     list.sort(lib.sort.seat);
@@ -14374,7 +14374,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         list,
                                     );
                                 } else {
-                                    let list = game.filterPlayer(function (current) {
+                                    const list = game.filterPlayer(function (current) {
                                         return player.canUse('nanman', current);
                                     });
                                     list.sort(lib.sort.seat);
@@ -14404,7 +14404,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     mark: true,
                                     intro: {
                                         content(storage, player, skill) {
-                                            let list = player.getSkills(null, false, false).filter(function (i) {
+                                            const list = player.getSkills(null, false, false).filter(function (i) {
                                                 return lib.skill.zxqy_hunxiao_baiban.skillBlocker(i, player);
                                             });
                                             if (list.length) {
@@ -14486,9 +14486,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             chooseButton: {
                                 dialog() {
-                                    let list = [];
+                                    const list = [];
                                     for (const i of lib.inpile) {
-                                        let name = i;
+                                        const name = i;
                                         if (get.type(i) == 'equip') {
                                             list.push(['', '', i]);
                                         }
@@ -14496,12 +14496,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return ui.create.dialog('制武:选择一张装备牌替换', [list, 'vcard'], 'hidden');
                                 },
                                 check(button) {
-                                    let player = _status.event.player;
-                                    let name = button.link[2];
+                                    const player = _status.event.player;
+                                    const name = button.link[2];
                                     if (player.countCards('hes', name) > 0) {
                                         return 0;
                                     }
-                                    let effect = player.getUseValue(name);
+                                    const effect = player.getUseValue(name);
                                     if (effect > 0) {
                                         switch (get.subtype(name)) {
                                             case 'equip1':
@@ -14596,7 +14596,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     'step 0';
                                     player.showCards(cards);
                                     ('step 1');
-                                    let name = lib.skill.zxqy_zhiwu_backup.cardname;
+                                    const name = lib.skill.zxqy_zhiwu_backup.cardname;
                                     const trueName = cards[0].name;
                                     game.log(player, '将', cards[0], '转化成了', '#y' + name);
                                     player.popup(name);
@@ -14627,8 +14627,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         global: ['loseAfter', 'cardsDiscardAfter', 'equipAfter'],
                                     },
                                     filter(event, player) {
-                                        let cards = event.getd();
-                                        let list = [];
+                                        const cards = event.getd();
+                                        const list = [];
                                         for (const i of cards) {
                                             if (i.trueName) {
                                                 list.add(i);
@@ -14641,8 +14641,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     silent: true,
                                     popup: false,
                                     content() {
-                                        let cards = trigger.getd();
-                                        let list = [];
+                                        const cards = trigger.getd();
+                                        const list = [];
                                         for (const i of cards) {
                                             if (i.trueName) {
                                                 i.init([i.suit, i.number, i.trueName]);
@@ -14879,7 +14879,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     return eff1;
                                                 })
                                                 .set('targetprompt', function (target) {
-                                                    let player = _status.event.player;
+                                                    const player = _status.event.player;
                                                     if (
                                                         player.canUse(
                                                             {
@@ -14937,7 +14937,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         )
                                     ) {
                                         event.target = result.targets[0];
-                                        let target = event.target;
+                                        const target = event.target;
                                         trigger.player
                                             .chooseControl('决斗', '杀', function (event, player) {
                                                 const eff1 =
@@ -15041,7 +15041,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     mod: {
                                         cardEnabled(card, player) {
                                             if (player.storage.zxqy_liyu_use.includes(card.suit)) {
-                                                let hs = player.getCards('h'),
+                                                const hs = player.getCards('h'),
                                                     cards = [card];
                                                 if (Array.isArray(card.cards)) {
                                                     cards.addArray(card.cards);
@@ -15055,7 +15055,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         },
                                         cardRespondable(card, player) {
                                             if (player.storage.zxqy_liyu_use.includes(get.type(card, 'trick'))) {
-                                                let hs = player.getCards('h'),
+                                                const hs = player.getCards('h'),
                                                     cards = [card];
                                                 if (Array.isArray(card.cards)) {
                                                     cards.addArray(card.cards);
@@ -15069,7 +15069,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         },
                                         cardSavable(card, player) {
                                             if (player.storage.zxqy_liyu_use.includes(get.type(card, 'trick'))) {
-                                                let hs = player.getCards('h'),
+                                                const hs = player.getCards('h'),
                                                     cards = [card];
                                                 if (Array.isArray(card.cards)) {
                                                     cards.addArray(card.cards);
@@ -15199,7 +15199,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         .set('prompt2', prompt2)
                                         .set('ai', function (target) {
                                             const trigger = _status.event.getTrigger();
-                                            let player = _status.event.player;
+                                            const player = _status.event.player;
                                             return get.effect(target, trigger.card, player, player) * (_status.event.targets.includes(target) ? -1 : 1);
                                         })
                                         .set('targets', trigger.targets)
@@ -15314,8 +15314,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.awakenSkill(event.name);
                                 player.loseMaxHp(2);
                                 ('step 1');
-                                let list = [];
-                                for (let i in lib.character) {
+                                const list = [];
+                                for (const i in lib.character) {
                                     if (lib.character[i][1] != 'shen') {
                                         continue;
                                     }
@@ -15332,7 +15332,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .set('createDialog', ['获得一张武将牌上的所有技能', [list.randomGets(10), 'character']]);
                                 ('step 2');
                                 if (result.links?.length) {
-                                    let skills = lib.character[result.links[0]][3].slice(0);
+                                    const skills = lib.character[result.links[0]][3].slice(0);
                                     player.flashAvatar('zxqy_huaizhi', result.links[0]);
                                     for (const i of skills) {
                                         player.addSkillLog(i);
@@ -15356,7 +15356,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player: 'gainEnd',
                             },
                             filter(event, player) {
-                                let num = [];
+                                const num = [];
                                 if (event.cards && event.cards.length) {
                                     for (const i of event.cards) {
                                         num.add(i.number);
@@ -15364,7 +15364,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 const players = lib.skill.zxqy_zhufu.player;
                                 const ban = lib.skill.zxqy_zhufu.list.slice(0);
-                                for (let i in players) {
+                                for (const i in players) {
                                     if (players[i].includes(player)) {
                                         num.remove(ban.indexOf(i) + 1);
                                     }
@@ -15382,13 +15382,13 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 const players = lib.skill.zxqy_zhufu.player;
                                 const ban = lib.skill.zxqy_zhufu.list.slice(0);
-                                for (let i in players) {
+                                for (const i in players) {
                                     if (players[i].includes(player)) {
                                         num.remove(ban.indexOf(i) + 1);
                                     }
                                 }
                                 for (const i of num) {
-                                    let str = 'zxqy_zhufu_' + ban[i - 1];
+                                    const str = 'zxqy_zhufu_' + ban[i - 1];
                                     player.$fullscreenpop(get.translation(str));
                                     game.log(player, '获得了', '#g【' + get.translation(str) + '】');
                                     lib.skill.zxqy_zhufu.player[ban[i - 1]].add(player);
@@ -15426,7 +15426,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     num = 1;
                                 }
                                 const map = {};
-                                let list = [];
+                                const list = [];
                                 for (let i = 1; i <= player.maxHp; i++) {
                                     const cn = get.cnNumber(i, true);
                                     map[cn] = i;
@@ -15440,7 +15440,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .set('prompt', '减少任意点体力体力上限')
                                     .set('goon', num);
                                 ('step 1');
-                                let num1 = event.map[result.control] || 1;
+                                const num1 = event.map[result.control] || 1;
                                 player.storage.zxqy_binfen = num1;
                                 player.loseMaxHp(num1);
                                 player.draw(num1);
@@ -15492,8 +15492,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     mark: true,
                                     intro: {
                                         content(storage, player, skill) {
-                                            let str = '剩余轮数:';
-                                            let num = player.storage['zxqy_binfen_buff'];
+                                            const str = '剩余轮数:';
+                                            const num = player.storage['zxqy_binfen_buff'];
                                             return str + num;
                                         },
                                     },
@@ -15537,7 +15537,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     };
                                 }
                                 ('step 1');
-                                let name = result.control;
+                                const name = result.control;
                                 player.flashAvatar('zxqy_zhinian2', 'zxqy_donghuangtaiyi');
                                 player.reinit(name, 'zxqy_donghuangtaiyi', false);
                                 player.maxHp = 6;
@@ -15626,7 +15626,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             content() {
                                 'step 0';
                                 if (trigger.source == trigger.player) {
-                                    let list = [];
+                                    const list = [];
                                     if (player.countMark('zxqy_baji_yang') > 0) {
                                         list.add('『阳极』');
                                     }
@@ -15659,7 +15659,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         event.control = result.control;
                                     }
                                     let num, choice;
-                                    let name = event.control == '『阳极』' || (trigger.source == player && trigger.player != player) ? '『阳极』' : '『阴极』';
+                                    const name = event.control == '『阳极』' || (trigger.source == player && trigger.player != player) ? '『阳极』' : '『阴极』';
                                     if (name == '『阳极』') {
                                         num = player.countMark('zxqy_baji_yang');
                                         if (get.attitude(player, event.player) <= 0) {
@@ -15675,7 +15675,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                     if (num > 0) {
                                         const map = {};
-                                        let list = [];
+                                        const list = [];
                                         for (let i = 1; i <= num; i++) {
                                             const cn = get.cnNumber(i, true);
                                             map[cn] = i;
@@ -15707,7 +15707,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 ('step 2');
                                 if (result.control != 'cancel2') {
-                                    let num = event.map[result.control] || 1;
+                                    const num = event.map[result.control] || 1;
                                     event.num = num;
                                     if (event.names == '『阳极』') {
                                         player.removeMark('zxqy_baji_yang', num);
@@ -15930,7 +15930,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             forced: true,
                             filter(event, player) {
-                                let list = game.filterPlayer(function (current) {
+                                const list = game.filterPlayer(function (current) {
                                     return player.canUse('wanjian', current);
                                 });
                                 return list.length;
@@ -15971,11 +15971,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (!player.isDying()) {
                                     return false;
                                 }
-                                let list = player.getSkills(true, false, false).filter((i) => ['zxqy_jinjia', 'zxqy_yuyi', 'zxqy_shengjian'].includes(i));
+                                const list = player.getSkills(true, false, false).filter((i) => ['zxqy_jinjia', 'zxqy_yuyi', 'zxqy_shengjian'].includes(i));
                                 return list.length;
                             },
                             content() {
-                                let skill = player
+                                const skill = player
                                     .getSkills(true, false, false)
                                     .filter((i) => ['zxqy_jinjia', 'zxqy_yuyi', 'zxqy_shengjian'].includes(i))
                                     .randomGet();
@@ -15984,7 +15984,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             ai: {
                                 skillTagFilter(player) {
-                                    let list = player.getSkills(true, false, false).filter((i) => ['zxqy_jinjia', 'zxqy_yuyi', 'zxqy_shengjian'].includes(i));
+                                    const list = player.getSkills(true, false, false).filter((i) => ['zxqy_jinjia', 'zxqy_yuyi', 'zxqy_shengjian'].includes(i));
                                     if (list.length == 0) {
                                         return false;
                                     }
@@ -16070,9 +16070,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 if (!player.isDying()) {
                                                     return false;
                                                 } else if (!player.hasSkill('zxqy_gudebai')) {
-                                                    let cards = player.getCards('h');
+                                                    const cards = player.getCards('h');
                                                     if (cards.length) {
-                                                        let suit = cards[0].suit;
+                                                        const suit = cards[0].suit;
                                                         for (let i = 1; i < cards.length; i++) {
                                                             if (cards[i].suit != suit) {
                                                                 return false;
@@ -16093,9 +16093,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 if (!player.isDying()) {
                                                     return false;
                                                 } else if (!player.hasSkill('zxqy_gudebai')) {
-                                                    let cards = player.getCards('h');
+                                                    const cards = player.getCards('h');
                                                     if (cards.length) {
-                                                        let suit = cards[0].suit;
+                                                        const suit = cards[0].suit;
                                                         for (let i = 1; i < cards.length; i++) {
                                                             if (cards[i].suit != suit) {
                                                                 return false;
@@ -16143,7 +16143,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (event.player.countMark('_zxqy_zhenchan') <= 0) {
                                     return false;
                                 }
-                                let num = [],
+                                const num = [],
                                     cards = player.getCards('h');
                                 for (const i of cards) {
                                     num.add(i.number);
@@ -16199,7 +16199,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             content() {
                                 'step 0';
-                                let choice = [
+                                const choice = [
                                     [1, '你无法响应此牌'],
                                     [2, '此牌结算后,你无法使用或打出任何牌直到此回合结束'],
                                     [3, '令此牌额外结算两次'],
@@ -16209,10 +16209,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     .chooseButton(true, [get.translation(trigger.player) + '对你发动了【' + get.translation(event.name) + '】请选择两项:', [choice, 'textbutton']])
                                     .set('selectButton', 2)
                                     .set('ai', function (button) {
-                                        let player = _status.event.player;
-                                        let target = _status.event.parent.player;
-                                        let card = _status.event.getTrigger().card;
-                                        let effect = -get.effect(target, card, player, player);
+                                        const player = _status.event.player;
+                                        const target = _status.event.parent.player;
+                                        const card = _status.event.getTrigger().card;
+                                        const effect = -get.effect(target, card, player, player);
                                         switch (Number(button.link.toString())) {
                                             case 1:
                                                 if (effect > 0) {
@@ -16339,7 +16339,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return get.type2(event.card, false) == get.type2(evt.card, false);
                             },
                             content() {
-                                let num = 1 + Math.floor(player.countMark('zxqy_qinggan') / 3);
+                                const num = 1 + Math.floor(player.countMark('zxqy_qinggan') / 3);
                                 if (get.type(trigger.card) == 'basic') {
                                     player.addTempSkill('zxqy_qianzhaobaishi_damage');
                                 }
@@ -16460,11 +16460,11 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         }
                                     });
                                 } else {
-                                    let num = 3 + Math.floor(player.countMark('zxqy_qinggan') / 3);
-                                    let cards = [];
+                                    const num = 3 + Math.floor(player.countMark('zxqy_qinggan') / 3);
+                                    const cards = [];
                                     const names = [];
                                     while (cards.length < num) {
-                                        let card = get.cardPile2(function (card) {
+                                        const card = get.cardPile2(function (card) {
                                             return !cards.includes(card);
                                         });
                                         if (card) {
@@ -16519,14 +16519,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return false;
                                     },
                                     prompt2(event, player) {
-                                        let cards = event.getd().filter(function (card) {
+                                        const cards = event.getd().filter(function (card) {
                                             return get.type(card) == 'equip' && get.position(card, true) == 'd';
                                         });
                                         return '是否要获得' + get.translation(cards);
                                     },
                                     content() {
                                         'step 0';
-                                        let cards = trigger.getd().filter(function (card) {
+                                        const cards = trigger.getd().filter(function (card) {
                                             return get.type(card) == 'equip' && get.position(card, true) == 'd';
                                         });
                                         if (cards.length) {
@@ -16753,7 +16753,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     content() {
                                         let num = 0;
                                         for (const i of game.players) {
-                                            let current = i;
+                                            const current = i;
                                             if (current.countMark('_zxqy_liuxie')) {
                                                 num += current.countMark('_zxqy_liuxie');
                                             }
@@ -16793,7 +16793,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 let num1;
                                 let num2;
                                 for (const i of game.players) {
-                                    let current = i;
+                                    const current = i;
                                     if (current.countMark('_zxqy_liuxie')) {
                                         num += current.countMark('_zxqy_liuxie');
                                     }
@@ -16944,7 +16944,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             forced: true,
                             filter(event, player) {
-                                let num = game.countPlayer(function (current) {
+                                const num = game.countPlayer(function (current) {
                                     return current.hasCard(
                                         {
                                             type: 'equip',
@@ -16958,7 +16958,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return event.player.isFriendsOf(player) || event.player == player;
                             },
                             content() {
-                                let num = game.countPlayer(function (current) {
+                                const num = game.countPlayer(function (current) {
                                     return current.hasCard(
                                         {
                                             type: 'equip',
@@ -17036,7 +17036,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     logTarget: 'player',
                                     forced: true,
                                     filter(event, player) {
-                                        let tag1 = 'zxqy_zuiqiangzhiren',
+                                        const tag1 = 'zxqy_zuiqiangzhiren',
                                             tag2 = 'zxqy_houfazhidi',
                                             card = event.card,
                                             evt1 = event.getParent('useCard');
@@ -17047,8 +17047,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     if (evt.parent != evt1) {
                                                         return false;
                                                     }
-                                                    for (let i in evt.gaintag_map) {
-                                                        for (let j of evt.gaintag_map[i]) {
+                                                    for (const i in evt.gaintag_map) {
+                                                        for (const j of evt.gaintag_map[i]) {
                                                             if (j == tag1 || j == tag2) {
                                                                 return true;
                                                             }
@@ -17084,7 +17084,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     trigger.player,
                                     false,
                                 );
-                                let card = get.cardPile(function (card) {
+                                const card = get.cardPile(function (card) {
                                     return card.name == 'sha';
                                 });
                                 if (card) {
@@ -17145,7 +17145,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return player.countMark('zxqy_qinggan') >= 3;
                             },
                             content() {
-                                let num = player.countMark('zxqy_qinggan');
+                                const num = player.countMark('zxqy_qinggan');
                                 trigger.num += Math.ceil(num / 3);
                             },
                             mod: {
@@ -17175,7 +17175,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return event.num >= 5;
                                     },
                                     content() {
-                                        let card = get.cardPile(function (card) {
+                                        const card = get.cardPile(function (card) {
                                             return card.name == 'sha';
                                         });
                                         if (card) {
@@ -17267,7 +17267,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.showCards(event.cards, get.translation(player) + '发动了【星坠】');
                                 ('step 1');
                                 const cards2 = [];
-                                for (let card of event.cards) {
+                                for (const card of event.cards) {
                                     if (get.color(card, false) == 'black') {
                                         cards2.push(card);
                                     }
@@ -17276,22 +17276,22 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 } else {
                                     event.cards2 = cards2;
-                                    let str = '令一名角色获得其中的黑色牌(' + get.translation(cards2) + ')';
+                                    const str = '令一名角色获得其中的黑色牌(' + get.translation(cards2) + ')';
                                     player.chooseTarget('请选择〖星坠〗的目标').set('ai', function (target) {
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         return get.attitude(player, target);
                                     });
                                 }
                                 ('step 2');
                                 if (result.targets?.length) {
-                                    let target = result.targets[0];
+                                    const target = result.targets[0];
                                     player.line(target);
                                     target.gain(event.cards2, 'gain2');
                                 }
                                 if (event.cards2.length) {
-                                    let str = '令一名其他角色受到' + get.cnNumber(event.num) + '点雷属性伤害和一点火属性伤害';
+                                    const str = '令一名其他角色受到' + get.cnNumber(event.num) + '点雷属性伤害和一点火属性伤害';
                                     player.chooseTarget('请选择〖星坠〗的目标', str, lib.filter.notMe).set('ai', function (target) {
-                                        let player = _status.event.player;
+                                        const player = _status.event.player;
                                         return get.damageEffect(target, player, player, 'thunder');
                                     });
                                 } else {
@@ -17299,7 +17299,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 }
                                 ('step 3');
                                 if (result.targets?.length) {
-                                    let target = result.targets[0];
+                                    const target = result.targets[0];
                                     player.line(target);
                                     target.damage(event.num, 'thunder');
                                     target.damage('fire');
@@ -17336,7 +17336,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     i.discard(hs);
                                 }
                                 ('step 2');
-                                let cards = cards.filter(function (i) {
+                                const cards = cards.filter(function (i) {
                                     return get.position(i, true) == 'd' && get.color(i, false) == 'black';
                                 });
                                 if (cards.length) {
@@ -17474,7 +17474,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let list = lib.inpile.filter(function (i) {
+                                const list = lib.inpile.filter(function (i) {
                                     return get.type2(i, false) == 'trick';
                                 });
                                 if (!list.length) {
@@ -17483,7 +17483,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     player.chooseButton(['选择获得一种锦囊牌', [list.map((i) => ['锦囊', '', i]), 'vcard']], true);
                                 }
                                 ('step 1');
-                                let card = get.cardPile(function (i) {
+                                const card = get.cardPile(function (i) {
                                     return i.name == result.links[0][2];
                                 });
                                 if (card) {
@@ -17506,7 +17506,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (player.countCards('h') == player.hp) {
                                     return false;
                                 }
-                                let card = get.copy(event.card);
+                                const card = get.copy(event.card);
                                 return (event._targets || event.targets).some((target) => target.isIn() && player.canUse(card, target, false, false)) && event.isFirstTarget;
                             },
                             prompt2(event, player) {
@@ -17546,8 +17546,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.addTempSkill('zxqy_shezang_clear', 'roundStart');
                                 const togain = [],
                                     suits = lib.suit.slice(0);
-                                for (let suit of suits) {
-                                    let card = get.cardPile((card) => card.suit == suit);
+                                for (const suit of suits) {
+                                    const card = get.cardPile((card) => card.suit == suit);
                                     if (card) {
                                         togain.push(card);
                                     }
@@ -17572,7 +17572,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         },
                         zxqy_yuanyu: {
                             onremove(player, skill) {
-                                let cards = player.getExpansions(skill);
+                                const cards = player.getExpansions(skill);
                                 if (cards.length) {
                                     player.$throw(game.cardsDiscard(cards).cards, 1000);
                                 }
@@ -17586,7 +17586,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.draw('nodelay');
                                 ('step 1');
                                 if (player.countCards('h')) {
-                                    let cards = player.getExpansions(event.name);
+                                    const cards = player.getExpansions(event.name);
                                     const suits = lib.suit
                                         .slice(0)
                                         .reverse()
@@ -17606,7 +17606,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             return 5 - get.value(card);
                                         },
                                         ai2(target) {
-                                            let player = _status.event.player;
+                                            const player = _status.event.player;
                                             if (player.storage['zxqy_yuanyu_effect'] && player.storage['zxqy_yuanyu_effect'].includes(target)) {
                                                 return 0;
                                             }
@@ -17620,7 +17620,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.addTempSkill('zxqy_yuanyu_effect', {
                                     player: 'zxqy_xiyanBegin',
                                 });
-                                let target = result.targets[0];
+                                const target = result.targets[0];
                                 player.storage['zxqy_yuanyu_effect'].add(target);
                                 player.line(target, 'green');
                                 target.markSkill('zxqy_yuanyu_effect');
@@ -17661,8 +17661,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     },
                                     content() {
                                         'step 0';
-                                        let target = trigger.name == 'damage' ? trigger.source : trigger.player;
-                                        let cards = player.getExpansions('zxqy_yuanyu');
+                                        const target = trigger.name == 'damage' ? trigger.source : trigger.player;
+                                        const cards = player.getExpansions('zxqy_yuanyu');
                                         const suits = lib.suit
                                             .slice(0)
                                             .reverse()
@@ -17709,7 +17709,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             logTarget: () => _status.currentPhase,
                             content() {
                                 'step 0';
-                                let cards = player.getExpansions('zxqy_yuanyu');
+                                const cards = player.getExpansions('zxqy_yuanyu');
                                 player.gain(cards, player, 'give');
                                 ('step 1');
                                 if (_status.currentPhase == player) {
@@ -17752,7 +17752,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             enable: 'phaseUse',
                             chooseButton: {
                                 dialog(event, player) {
-                                    let list = [];
+                                    const list = [];
                                     if (
                                         event.filterCard &&
                                         event.filterCard(
@@ -17828,7 +17828,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         },
                                         onuse(result, player) {
                                             if (links[0][2] == 'shunshou' || links[0][2] == 'lebu') {
-                                                let card = get.cardPile2(function (card) {
+                                                const card = get.cardPile2(function (card) {
                                                     return get.color(card, false) == 'red';
                                                 });
                                                 if (card) {
@@ -17836,7 +17836,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 }
                                             }
                                             if (links[0][2] == 'guohe' || links[0][2] == 'bingliang') {
-                                                let card = get.cardPile2(function (card) {
+                                                const card = get.cardPile2(function (card) {
                                                     return get.color(card, false) == 'black';
                                                 });
                                                 if (card) {
@@ -17874,12 +17874,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let dialog = ui.create.dialog('流离:弃置任意名角色区域内任意张牌');
-                                for (let target of game.filterPlayer().sortBySeat()) {
+                                const dialog = ui.create.dialog('流离:弃置任意名角色区域内任意张牌');
+                                for (const target of game.filterPlayer().sortBySeat()) {
                                     if (!target.countDiscardableCards(player, 'hej')) {
                                         continue;
                                     }
-                                    let name = target == player ? '你' : get.translation(target);
+                                    const name = target == player ? '你' : get.translation(target);
                                     if (target.countCards('h')) {
                                         dialog.addText(name + '的手牌区');
                                         if (player.hasSkillTag('viewHandcard', null, target, true) || player == target) {
@@ -17903,8 +17903,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return lib.filter.canBeDiscarded(button.link, player, get.owner(button.link));
                                     })
                                     .set('ai', function (button) {
-                                        let card = button.link;
-                                        let player = _status.event.player,
+                                        const card = button.link;
+                                        const player = _status.event.player,
                                             target = get.owner(card);
                                         if (target == player && ui.cardPile.childNodes.length > 80) {
                                             if (ui.selected.buttons.some((i) => get.owner(i.link) == player)) {
@@ -17915,14 +17915,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             }
                                             return 0;
                                         }
-                                        let num = ui.selected.buttons.filter((i) => get.owner(i.link) == target).length;
+                                        const num = ui.selected.buttons.filter((i) => get.owner(i.link) == target).length;
                                         return -(get.position(card) != 'h' ? get.value(card, target) : 4.5 + Math.random() - 0.2 * (num > 2 ? 1 : 0)) * get.attitude(player, target);
                                     });
                                 ('step 1');
                                 const links = result.links;
                                 const lose_list = [];
-                                for (let target of game.players) {
-                                    let cards = links.filter((card) => get.owner(card) == target);
+                                for (const target of game.players) {
+                                    const cards = links.filter((card) => get.owner(card) == target);
                                     if (cards.length) {
                                         lose_list.push([target, cards]);
                                     }
@@ -17941,7 +17941,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return get.damageEffect(target, player, player);
                                 });
                                 ('step 3');
-                                let target = result.targets[0];
+                                const target = result.targets[0];
                                 player.line(target, 'green');
                                 trigger.player = target;
                             },
@@ -17952,7 +17952,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let str = '你的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',是否发动【天香】修改判定结果？';
+                                const str = '你的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',是否发动【天香】修改判定结果？';
                                 if (player.isUnderControl()) {
                                     game.swapPlayerAuto(player);
                                 }
@@ -17969,12 +17969,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                 };
                                 const chooseButton = function (player, str) {
-                                    let event = _status.event;
+                                    const event = _status.event;
                                     player = player || event.player;
                                     if (!event._result) {
                                         event._result = {};
                                     }
-                                    let dialog = ui.create.dialog(str, 'forcebutton', 'hidden');
+                                    const dialog = ui.create.dialog(str, 'forcebutton', 'hidden');
                                     event.dialog = dialog;
                                     dialog.addText('花色');
                                     const table = document.createElement('div');
@@ -17982,7 +17982,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     table.style.margin = '0';
                                     table.style.width = '100%';
                                     table.style.position = 'relative';
-                                    let listi = ['spade', 'heart', 'club', 'diamond'];
+                                    const listi = ['spade', 'heart', 'club', 'diamond'];
                                     for (const i of listi) {
                                         const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
                                         td.link = i;
@@ -17999,8 +17999,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             setTimeout(function () {
                                                 _status.tempNoButton = false;
                                             }, 500);
-                                            let link = this.link;
-                                            let current = this.parentNode.querySelector('.bluebg');
+                                            const link = this.link;
+                                            const current = this.parentNode.querySelector('.bluebg');
                                             if (current) {
                                                 current.classList.remove('bluebg');
                                             }
@@ -18019,7 +18019,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
                                         td.link = i;
                                         table2.appendChild(td);
-                                        let num = i;
+                                        const num = i;
                                         td.innerHTML = '<span>' + get.strNumber(num) + '</span>';
                                         td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
                                             if (_status.dragged) {
@@ -18032,8 +18032,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             setTimeout(function () {
                                                 _status.tempNoButton = false;
                                             }, 500);
-                                            let link = this.link;
-                                            let current = this.parentNode.querySelector('.bluebg');
+                                            const link = this.link;
+                                            const current = this.parentNode.querySelector('.bluebg');
                                             if (current) {
                                                 current.classList.remove('bluebg');
                                             }
@@ -18054,7 +18054,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         _status.imchoosing = false;
                                     };
                                     event.control = ui.create.control('ok', 'cancel2', function (link) {
-                                        let result = event._result;
+                                        const result = event._result;
                                         if (link == 'cancel2') {
                                             result.bool = false;
                                         } else {
@@ -18206,7 +18206,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             enable: 'phaseUse',
                             chooseButton: {
                                 dialog(event, player) {
-                                    let dialog = ui.create.dialog(get.prompt('zxqy_zhiji'), 'hidden');
+                                    const dialog = ui.create.dialog(get.prompt('zxqy_zhiji'), 'hidden');
                                     dialog.addText(get.translation('zxqy_zhiji', 'info'));
                                     return dialog;
                                 },
@@ -18342,7 +18342,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 let name;
                                 if (info && info.ai && info.ai.tag) {
                                     const tag = info.ai.tag;
-                                    for (let i in tag) {
+                                    for (const i in tag) {
                                         if (i.indexOf('respond') == -1) {
                                             continue;
                                         }
@@ -18388,7 +18388,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 const info = get.info(trigger.parent.card);
                                 if (info && info.ai && info.ai.tag) {
                                     const tag = info.ai.tag;
-                                    for (let i in tag) {
+                                    for (const i in tag) {
                                         if (i.indexOf('respond') == -1) {
                                             continue;
                                         }
@@ -18402,7 +18402,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 ('step 1');
                                 if (event.num > 0) {
                                     trigger.zxqy_fenluanbingyu = true;
-                                    let name = event.card;
+                                    const name = event.card;
                                     let count = event.num;
                                     const map = trigger.getParent(2).customArgs;
                                     const id = trigger.player.playerid;
@@ -18410,7 +18410,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         map[id] = {};
                                         count++;
                                     }
-                                    for (let i in map[id]) {
+                                    for (const i in map[id]) {
                                         if (i.includes(name)) {
                                             if (typeof map[id][i] == 'number') {
                                                 count += map[id][i];
@@ -18418,7 +18418,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             }
                                         }
                                     }
-                                    let target = trigger.player;
+                                    const target = trigger.player;
                                     const func = trigger.name == 'chooseToRespond' ? 'chooseToRespond' : 'chooseToUse';
                                     const text = trigger.name == 'chooseToRespond' ? '打出' : '使用';
                                     const next = target[func](
@@ -18472,7 +18472,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             forced: true,
                             logTarget: 'target',
                             content() {
-                                let num = Math.floor(player.countMark('zxqy_liuyeEGO') / 3);
+                                const num = Math.floor(player.countMark('zxqy_liuyeEGO') / 3);
                                 if (trigger.name != 'damage') {
                                     trigger.target.addMark('_zxqy_bingdong', 1 + num);
                                 } else {
@@ -18492,7 +18492,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             forced: true,
                             content() {
-                                let num = 1 + Math.floor(player.countMark('zxqy_liuyeEGO') / 3);
+                                const num = 1 + Math.floor(player.countMark('zxqy_liuyeEGO') / 3);
                                 player.recover(num);
                                 player.changeHujia(num);
                                 player.draw(num);
@@ -18613,7 +18613,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             mark: true,
                             intro: {
                                 content(storage, player, skill) {
-                                    let list = get.translation(Object.keys(player.disabledSkills).filter((item) => player.disabledSkills[item].includes(skill)));
+                                    const list = get.translation(Object.keys(player.disabledSkills).filter((item) => player.disabledSkills[item].includes(skill)));
                                     return list + '对你无效';
                                 },
                             },
@@ -18629,7 +18629,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return player.getEnemies().includes(event.player);
                             },
                             content() {
-                                let name = event.triggername;
+                                const name = event.triggername;
                                 if (name == 'damageEnd' || name == 'loseHpEnd') {
                                     player.recover(Math.abs(player.maxHp - player.countCards('h')));
                                 } else {
@@ -18652,7 +18652,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return true;
                             },
                             content() {
-                                let num = Math.floor(player.countMark('zxqy_VergiliusEGO') / 3);
+                                const num = Math.floor(player.countMark('zxqy_VergiliusEGO') / 3);
                                 if (trigger.name == 'damage') {
                                     trigger.player.addMark('_zxqy_shaoshang', 1 + num);
                                     player.damage();
@@ -19137,7 +19137,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             forced: true,
                             content() {
-                                let card = [];
+                                const card = [];
                                 const card1 = get.cardPile(function (card) {
                                     return card.name == 'sha';
                                 });
@@ -19861,7 +19861,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 name: '祝福',
                                 content(storage, player, skill) {
                                     let str = '';
-                                    for (let i in lib.skill.zxqy_zhufu.player) {
+                                    for (const i in lib.skill.zxqy_zhufu.player) {
                                         if (lib.skill.zxqy_zhufu.player[i].includes(player)) {
                                             str += "</p><div style='text-align: center;display: block;width: 100%;'>" + get.translation('zxqy_zhufu_' + i) + '</span></div>';
                                             str += '<br><li>' + get.translation('zxqy_zhufu_' + i + '_info');
@@ -19871,7 +19871,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 },
                                 markcount(storage, player) {
                                     let num = 0;
-                                    for (let i in lib.skill.zxqy_zhufu.player) {
+                                    for (const i in lib.skill.zxqy_zhufu.player) {
                                         if (lib.skill.zxqy_zhufu.player[i].includes(player)) {
                                             num++;
                                         }
@@ -19899,7 +19899,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     supperCharlotte: true,
                                     fixed: true,
                                     content() {
-                                        let card = get.cardPile(function (card) {
+                                        const card = get.cardPile(function (card) {
                                             return card.name == 'sha';
                                         });
                                         if (card) {
@@ -19977,7 +19977,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     fixed: true,
                                     content() {
                                         if (event.triggername == 'phaseBegin') {
-                                            let card = get.cardPile(function (card) {
+                                            const card = get.cardPile(function (card) {
                                                 return card.name == 'tao';
                                             });
                                             if (card) {
@@ -20022,7 +20022,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (!lib.skill.zxqy_zhufu.player.tangsan.includes(player)) {
                                             return false;
                                         }
-                                        let list = game.filterPlayer(function (current) {
+                                        const list = game.filterPlayer(function (current) {
                                             return player.canUse('guohe', current) && current.countCards('hej') > 0;
                                         });
                                         return list.length;
@@ -20061,7 +20061,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     mark: true,
                                     intro: {
                                         content(storage, player, skill) {
-                                            let str = '剩余造成伤害次数:';
+                                            const str = '剩余造成伤害次数:';
                                             let num = 7 - (player.getAllHistory('sourceDamage').length % 7);
                                             if (num == 0) {
                                                 num = 7;
@@ -20128,7 +20128,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                             const ai = event.ai || event.ai1;
                                             const tmp = _status.event;
                                             _status.event = event;
-                                            let result = ai(
+                                            const result = ai(
                                                 {
                                                     name: 'shan',
                                                 },
@@ -20200,7 +20200,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     fixed: true,
                                     content() {
                                         trigger.num += 2;
-                                        let num = (6 * game.roundNumber) / 100;
+                                        const num = (6 * game.roundNumber) / 100;
                                         if (Math.random() <= num) {
                                             player.changeHujia();
                                         }
@@ -20265,8 +20265,8 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     mark: true,
                                     intro: {
                                         content(storage, player, skill) {
-                                            let str = '本轮发动次数:';
-                                            let num = player.storage.zxqy_zhufu_hui || 0;
+                                            const str = '本轮发动次数:';
+                                            const num = player.storage.zxqy_zhufu_hui || 0;
                                             return str + num;
                                         },
                                     },
@@ -23025,7 +23025,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.ignoreCard) {
                                             return true;
                                         }
-                                        let cards = player.getEquips('xyfh_jushu');
+                                        const cards = player.getEquips('xyfh_jushu');
                                         if (!cards.includes(card)) {
                                             return true;
                                         }
@@ -23076,7 +23076,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.ignoreCard) {
                                             return true;
                                         }
-                                        let cards = player.getEquips('xyfh_laonanhai');
+                                        const cards = player.getEquips('xyfh_laonanhai');
                                         if (!cards.includes(card)) {
                                             return true;
                                         }
@@ -23143,7 +23143,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.ignoreCard) {
                                             return true;
                                         }
-                                        let cards = player.getEquips('xyfh_lunpan');
+                                        const cards = player.getEquips('xyfh_lunpan');
                                         if (!cards.includes(card)) {
                                             return true;
                                         }
@@ -23226,7 +23226,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.ignoreCard) {
                                             return true;
                                         }
-                                        let cards = player.getEquips('xyfh_kalisita');
+                                        const cards = player.getEquips('xyfh_kalisita');
                                         if (!cards.includes(card)) {
                                             return true;
                                         }
@@ -23269,13 +23269,13 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             },
                             content() {
                                 'step 0';
-                                let target = player == trigger.player ? trigger.target : trigger.player;
+                                const target = player == trigger.player ? trigger.target : trigger.player;
                                 target
                                     .chooseToDiscard('###【卡莉斯塔工作室】###弃置两张牌', 'he', 2, true, function (card, player) {
                                         if (_status.event.ignoreCard) {
                                             return true;
                                         }
-                                        let cards = player.getEquips('xyfh_kalisita');
+                                        const cards = player.getEquips('xyfh_kalisita');
                                         if (!cards.includes(card)) {
                                             return true;
                                         }
@@ -23318,7 +23318,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             logTarget: 'target',
                             content() {
                                 'step 0';
-                                let card = get.cardPile(function (card) {
+                                const card = get.cardPile(function (card) {
                                     return card.name == trigger.card.name;
                                 });
                                 if (card) {
@@ -23363,7 +23363,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (_status.event.ignoreCard) {
                                             return true;
                                         }
-                                        let cards = player.getEquips('xyfh_dulandaer');
+                                        const cards = player.getEquips('xyfh_dulandaer');
                                         if (!cards.includes(card)) {
                                             return true;
                                         }
@@ -23461,7 +23461,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.addSkill('xyfh_wanjie_2');
                                 player.loseHp(player.hp - 1);
                                 const targets = game.filterPlayer((current) => current != player && player.inRange(current));
-                                for (let target of targets) {
+                                for (const target of targets) {
                                     await target.damage(event.cards.length);
                                 }
                             },

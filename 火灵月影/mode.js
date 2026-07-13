@@ -1682,12 +1682,12 @@ game.addMode(
             if (shanhe.zhongzhi) {
               break;
             }
-            let findNext = (current) => {
-              let players = game.players
+            const findNext = (current) => {
+              const players = game.players
                 .slice(0)
                 .concat(game.dead)
                 .sort((a, b) => parseInt(a.dataset.position) - parseInt(b.dataset.position));
-              let position = parseInt(current.dataset.position);
+              const position = parseInt(current.dataset.position);
               for (const i of players) {
                 if (parseInt(i.dataset.position) > position) {
                   return i;

@@ -101,7 +101,7 @@ game.import('extension', function () {
                         player.hiddenSkills.remove(skillx);
                         player.invisibleSkills.remove(skillx);
                         delete player.tempSkills[skillx];
-                        for (let i in player.additionalSkills) {
+                        for (const i in player.additionalSkills) {
                             player.additionalSkills[i].remove(skillx);
                         }
                         player.checkConflict(skillx);
@@ -109,7 +109,7 @@ game.import('extension', function () {
                         if (lib.skill.global.includes(skillx)) {
                             lib.skill.global.remove(skillx);
                             delete lib.skill.globalmap[skillx];
-                            for (let i in lib.hook.globalskill) {
+                            for (const i in lib.hook.globalskill) {
                                 lib.hook.globalskill[i].remove(skillx);
                             }
                         }
@@ -124,7 +124,7 @@ game.import('extension', function () {
                     game.expandSkills(skills);
                     for (const skillx of skills) {
                         player.initedSkills.remove(skillx);
-                        for (let i in lib.hook) {
+                        for (const i in lib.hook) {
                             if (Array.isArray(lib.hook[i]) && lib.hook[i].includes(skillx)) {
                                 try {
                                     delete lib.hook[i];
@@ -133,7 +133,7 @@ game.import('extension', function () {
                                 }
                             }
                         }
-                        for (let i in lib.hook.globalskill) {
+                        for (const i in lib.hook.globalskill) {
                             if (lib.hook.globalskill[i].includes(skillx)) {
                                 lib.hook.globalskill[i].remove(skillx);
                                 if (lib.hook.globalskill[i].length == 0) {
@@ -2172,7 +2172,7 @@ game.import('extension', function () {
                     content() {
                         'step 0';
                         const att = get.attitude(player, trigger.player) <= 0;
-                        let next = player.chooseButton();
+                        const next = player.chooseButton();
                         next.set('att', att);
                         next.set('createDialog', ['是否发动『麒麟弓』,弃置' + get.translation(trigger.player) + '的一张坐骑牌？', trigger.player.getCards('e', { subtype: ['equip3', 'equip4', 'equip6'] })]);
                         next.set('ai', function (button) {
@@ -4975,7 +4975,7 @@ game.import('extension', function () {
                     enable: 'phaseUse',
                     async content(event, trigger, player) {
                         player.awakenSkill('SG_guixux');
-                        let num = Math.max(1, game.roundNumber - 3);
+                        const num = Math.max(1, game.roundNumber - 3);
                         const map = player.storage.SG_guixux_1[num];
                         for (const npc of game.players) {
                             const info = map.get(npc);

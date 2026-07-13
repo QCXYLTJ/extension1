@@ -488,7 +488,7 @@ const precontent = async function () {
                             if (!get.tag(card, 'damage')) {
                                 return;
                             }
-                            var types = [],
+                            let types = [],
                                 bool = 0;
                             types.addArray(game.getGlobalHistory('useCard').map((evt) => get.type2(evt.card)));
                             if (!types.includes(get.type2(card))) {
@@ -544,7 +544,7 @@ const precontent = async function () {
                 },
                 content() {
                     'step 0';
-                    let list = [];
+                    const list = [];
                     if (!player.hasSkill('qiangxix')) {
                         list.push('qiangxix');
                     }
@@ -636,7 +636,7 @@ const precontent = async function () {
                         return 0;
                     })('step 1');
                     if (result.cards?.length) {
-                        let num = result.cards.length;
+                        const num = result.cards.length;
                         const cnum = get.cnNumber(num);
                         event.num = num;
                         trigger.source.chooseToDiscard('he', `章武:弃置${cnum}张牌,或取消并受到${cnum}点伤害`, num).set('ai', function (card) {
@@ -692,7 +692,7 @@ const precontent = async function () {
                         return -1;
                     });
                     ('step 1');
-                    let targets = [],
+                    const targets = [],
                         players = game.players;
                     if (result.color == 'red') {
                         for (const i of players) {
@@ -730,7 +730,7 @@ const precontent = async function () {
                 popup: false,
                 content() {
                     'step 0';
-                    let num = trigger.num;
+                    const num = trigger.num;
                     if (num > 0) {
                         player.storage.xiangxing_count += num;
                     }
@@ -749,7 +749,7 @@ const precontent = async function () {
                         event.finish();
                     }
                     ('step 1');
-                    let list = game.players.filter((c) => c != player);
+                    const list = game.players.filter((c) => c != player);
                     const list2 = [];
                     for (let i = 0; i < list.length; i++) {
                         list2.push(0);
@@ -1010,7 +1010,7 @@ const precontent = async function () {
                 }
             }
         }
-        for (let i in lib.config.Qrecord) {
+        for (const i in lib.config.Qrecord) {
             if (!lib.config.Qrecord[i].win && !lib.config.Qrecord[i].lose) {
                 delete lib.config.Qrecord[i];
             }
@@ -1128,7 +1128,7 @@ const precontent = async function () {
             lib.cardPack[packname] = [];
             lib.cardPackInfo[packname] = pack;
             lib.translate[`${packname}_card_config`] = packagename;
-            for (let i in pack) {
+            for (const i in pack) {
                 if (i == 'mode' || i == 'forbid') {
                     continue;
                 }
@@ -1138,7 +1138,7 @@ const precontent = async function () {
                     }
                     if (lib.config[`extension_${extname}_cards_enable`]) {
                         //QQQ
-                        for (let j of pack[i]) {
+                        for (const j of pack[i]) {
                             if (lib.card[j[2]] && (!lib.card[j[2]].mode || lib.card[j[2]].mode.includes(lib.config.mode))) {
                                 lib.card.list.push(j);
                             }
@@ -1146,7 +1146,7 @@ const precontent = async function () {
                     }
                     continue;
                 }
-                for (let j in pack[i]) {
+                for (const j in pack[i]) {
                     if (i == 'card') {
                         if (pack[i][j].audio == true) {
                             pack[i][j].audio = 'ext:' + extname;
@@ -1649,7 +1649,7 @@ const precontent = async function () {
             if (this.firstElementChild && this.firstElementChild.classList.contains('handcards') && !this.classList.contains('scrollh')) {
                 return;
             }
-            let node = this;
+            const node = this;
             let num = Number(QQQ.config.滚轮速度); //this._scrollnum || 6;
             const speed = 3 * num;
             clearInterval(node.interval);
@@ -1728,7 +1728,7 @@ const precontent = async function () {
             });
             const updateNodes = function () {
                 for (const i of start.firstChild.childNodes) {
-                    let node = i;
+                    const node = i;
                     if (node.mode) {
                         if (node.mode.startsWith('mode_')) {
                             // 扩展卡牌包开启逻辑
@@ -1786,7 +1786,7 @@ const precontent = async function () {
                 }
             };
             const togglePack = function (bool) {
-                let name = this._link.config._name;
+                const name = this._link.config._name;
                 // 扩展卡牌包开启逻辑
                 if (name.startsWith('mode_extension')) {
                     const extName = name.slice(15);
@@ -1816,8 +1816,8 @@ const precontent = async function () {
                 updateNodes();
             };
             const toggleCardPile = function (bool) {
-                let name = this._link.config._name;
-                let number = this._link.config._number;
+                const name = this._link.config._name;
+                const number = this._link.config._number;
                 if (!lib.config.bannedpile[name]) {
                     lib.config.bannedpile[name] = [];
                 }
@@ -1835,7 +1835,7 @@ const precontent = async function () {
                     lib.cardPile[mode] = cardPack.list;
                 }
                 const page = ui.create.div('');
-                let node = ui.create.div('.menubutton.large', lib.translate[`${mode}_card_config`], position, clickMode);
+                const node = ui.create.div('.menubutton.large', lib.translate[`${mode}_card_config`], position, clickMode);
                 if (node.innerHTML.length >= 5) {
                     node.classList.add('smallfont');
                 }
@@ -2075,7 +2075,7 @@ const precontent = async function () {
                         const deletecard = function () {
                             this.parentNode.remove();
                             const info = this.parentNode._info;
-                            let list = lib.config.addedpile[mode];
+                            const list = lib.config.addedpile[mode];
                             for (let i = 0; i < list.length; i++) {
                                 if (list[i][0] == info[0] && list[i][1] == info[1] && list[i][2] == info[2]) {
                                     list.splice(i, 1);
@@ -2085,7 +2085,7 @@ const precontent = async function () {
                             recreatePile();
                         };
                         button.onclick = function () {
-                            let card = [cardpileaddsuit.value, cardpileaddnumber.value, cardpileaddname.value];
+                            const card = [cardpileaddsuit.value, cardpileaddnumber.value, cardpileaddname.value];
                             lib.config.addedpile[mode].push(card);
                             recreatePile();
                             const cfgnode = ui.create.div('.config.toggle.cardpilecfg');
@@ -2102,7 +2102,7 @@ const precontent = async function () {
                         cardpileadd.style.whiteSpace = 'nowrap';
                         cardpileNodes.push(cardpileadd);
                         for (const i of lib.config.addedpile[mode]) {
-                            let card = i;
+                            const card = i;
                             const cfgnode = ui.create.div('.config.toggle.cardpilecfg');
                             cfgnode._info = card;
                             cfgnode.innerHTML = get.translation(card[2]) + ' ' + get.translation(card[0]) + card[1];
@@ -2116,7 +2116,7 @@ const precontent = async function () {
                             page.appendChild(cfgnode);
                         }
                         for (let i = 0; i < lib.cardPile[mode].length; i++) {
-                            let card = lib.cardPile[mode][i];
+                            const card = lib.cardPile[mode][i];
                             const cfgnode = createConfig({
                                 name: (card[2] == 'sha' && card[3] ? get.translation(card[3]) : '') + get.translation(card[2]) + ' ' + get.translation(card[0]) + get.strNumber(card[1]),
                                 _number: i,
@@ -2188,7 +2188,7 @@ const precontent = async function () {
                     return;
                 }
                 const page = ui.create.div('.menu-buttons');
-                let node = ui.create.div('.menubutton.large', '牌堆', clickMode);
+                const node = ui.create.div('.menubutton.large', '牌堆', clickMode);
                 start.firstChild.insertBefore(node, start.firstChild.querySelector('.lefttext'));
                 node.link = page;
                 node.mode = 'cardpile';
@@ -2203,11 +2203,11 @@ const precontent = async function () {
                         if (pileList) {
                             pileList.remove();
                         }
-                        let list = ['默认牌堆'];
+                        const list = ['默认牌堆'];
                         if (lib.config.customcardpile.当前牌堆) {
                             list.push('当前牌堆');
                         }
-                        for (let i in lib.config.customcardpile) {
+                        for (const i in lib.config.customcardpile) {
                             list.add(i);
                         }
                         let currentpile = get.config('cardpilename');
@@ -2230,7 +2230,7 @@ const precontent = async function () {
                         delete lib.config.customcardpile[this.parentNode.link];
                         this.parentNode.remove();
                         game.saveConfig('customcardpile', lib.config.customcardpile);
-                        for (let i in lib.config.mode_config) {
+                        for (const i in lib.config.mode_config) {
                             if (i == 'global') {
                                 continue;
                             }
@@ -2243,7 +2243,7 @@ const precontent = async function () {
                     const restart = ui.create.div('.config.more', '重新启动', game.reload, page);
                     restart.style.display = 'none';
                     const createPileNode = function (name) {
-                        let node = ui.create.div('.config.toggle.cardpilecfg.nomarginleft', name);
+                        const node = ui.create.div('.config.toggle.cardpilecfg.nomarginleft', name);
                         node.link = name;
                         const del = document.createElement('span');
                         del.innerHTML = '删除';
@@ -2256,7 +2256,7 @@ const precontent = async function () {
                             page.insertBefore(node, restart);
                         }
                     };
-                    for (let i in lib.config.customcardpile) {
+                    for (const i in lib.config.customcardpile) {
                         createPileNode(i);
                     }
                     let exportCardPile;
@@ -2288,7 +2288,7 @@ const precontent = async function () {
                         }
                         lib.config.customcardpile[name] = [lib.config.bannedpile, lib.config.addedpile];
                         delete lib.config.customcardpile.当前牌堆;
-                        for (let i in lib.mode) {
+                        for (const i in lib.mode) {
                             if (lib.config.mode_config[i] && (lib.config.mode_config[i].cardpilename == '当前牌堆' || !lib.config.mode_config[i].cardpilename)) {
                                 game.saveConfig('cardpilename', name, i);
                             }
@@ -2434,7 +2434,7 @@ const precontent = async function () {
                 if (method == 'raw') {
                     result = value[0];
                 }
-                let num = geti();
+                const num = geti();
                 if (num < value.length) {
                     result = value[Math.max(0, num)];
                 } else {
@@ -2497,7 +2497,7 @@ const precontent = async function () {
             if (typeof obj != 'object') {
                 return;
             }
-            let name = obj.name;
+            const name = obj.name;
             if (!lib.card[name]) {
                 if (!name) {
                     if (QQQ.作者模式) {
@@ -2629,7 +2629,7 @@ const precontent = async function () {
                             return game.kong;
                         }
                     }
-                    let next = game.createEvent('damage');
+                    const next = game.createEvent('damage');
                     next.player = this;
                     let nocard, nosource;
                     const event = _status.event;
@@ -2844,7 +2844,7 @@ const precontent = async function () {
                     natures,
                     player,
                 );
-                let numx = player.hasSkillTag('nohujia') ? event.num : Math.max(0, event.num - player.hujia);
+                const numx = player.hasSkillTag('nohujia') ? event.num : Math.max(0, event.num - player.hujia);
                 player.$damagepop(-numx, natures[0]);
             } //动画
             if (event.unreal) {
@@ -3050,8 +3050,8 @@ const precontent = async function () {
                 return !lib.character[i];
             }; //取消禁将
             get.gainableSkills = function (func, player) {
-                let list = [];
-                for (let i in lib.character) {
+                const list = [];
+                for (const i in lib.character) {
                     for (let j = 0; j < lib.character[i][3].length; j++) {
                         list.add(lib.character[i][3][j]);
                     }
@@ -3059,7 +3059,7 @@ const precontent = async function () {
                 return list;
             }; //BOSS选将
             get.gainableSkillsName = function (name, func) {
-                let list = [];
+                const list = [];
                 if (name && lib.character[name]) {
                     for (let j = 0; j < lib.character[name][3].length; j++) {
                         list.add(lib.character[name][3][j]);
@@ -3488,8 +3488,8 @@ const precontent = async function () {
                                 }
                                 const aa = a,
                                     bb = b;
-                                let aName = a.includes('_') ? a.slice(a.lastIndexOf('_') + 1) : a;
-                                let bName = b.includes('_') ? b.slice(b.lastIndexOf('_') + 1) : b;
+                                const aName = a.includes('_') ? a.slice(a.lastIndexOf('_') + 1) : a;
+                                const bName = b.includes('_') ? b.slice(b.lastIndexOf('_') + 1) : b;
                                 if (aName != bName) {
                                     return aName > bName ? 1 : -1;
                                 }
@@ -3999,7 +3999,7 @@ const precontent = async function () {
                     // 随着动画进展,颜色逐渐从橙红变为黄色再到白色
                     const r = Math.min(255, 140 + i * 1.15); // 红色分量逐渐增加
                     const g = Math.min(255, 30 + i * 2.25); // 绿色分量逐渐增加
-                    let b = Math.min(255, i * 2.5); // 蓝色分量逐渐增加,但较慢
+                    const b = Math.min(255, i * 2.5); // 蓝色分量逐渐增加,但较慢
                     // 添加一些随机性来模拟火焰的不规则性
                     const randOffsetX = (Math.random() - 0.5) * 2;
                     const randOffsetY = (Math.random() - 0.5) * 2;
@@ -4417,7 +4417,7 @@ const precontent = async function () {
                             }
                             list[i.name].add(i);
                         }
-                        for (let i in list) {
+                        for (const i in list) {
                             if (list[i].length > 1) {
                                 player.recover(list[i].length);
                                 await player.discard(list[i]);
@@ -4804,7 +4804,7 @@ const precontent = async function () {
                         content(storage, player) {
                             let str = '';
                             if (player.storage.QQQ_huozhong) {
-                                for (let j in player.storage.QQQ_huozhong) {
+                                for (const j in player.storage.QQQ_huozhong) {
                                     str += `已经增加过${j}${player.storage.QQQ_huozhong[j]}点<br>`;
                                 }
                             }
@@ -4832,7 +4832,7 @@ const precontent = async function () {
                             if (!i.storage.QQQ_huozhong) {
                                 i.storage.QQQ_huozhong = {};
                             } else {
-                                for (let j in i.storage.QQQ_huozhong) {
+                                for (const j in i.storage.QQQ_huozhong) {
                                     num += i.storage.QQQ_huozhong[j];
                                 }
                             }
@@ -4848,7 +4848,7 @@ const precontent = async function () {
                                     game.playAudio('../extension/温柔一刀/audio/她们是引导褪色者的人.mp3');
                                 }
                                 if (i == player) {
-                                    for (let j of result.cards) {
+                                    for (const j of result.cards) {
                                         await player.chooseUseTarget(j, true, false, 'nodistance');
                                     }
                                 } else {
@@ -5024,7 +5024,7 @@ const precontent = async function () {
                         player.storage.QQQ_fenjin = {};
                         for (const i of game.players) {
                             player.storage.QQQ_fenjin[i.playerid] = 0;
-                            for (let j of i.actionHistory) {
+                            for (const j of i.actionHistory) {
                                 if (j.damage.length) {
                                     for (const x of j.damage) {
                                         player.storage.QQQ_fenjin[i.playerid] += x.num;
@@ -5712,7 +5712,7 @@ const precontent = async function () {
                     async content(event, trigger, player) {
                         player.recover();
                         const cards = [];
-                        for (let i in lib.card) {
+                        for (const i in lib.card) {
                             if (lib.card[i].type == 'food') {
                                 cards.add(i);
                             }
@@ -5888,7 +5888,7 @@ const precontent = async function () {
                     forced: true,
                     async content(event, trigger, player) {
                         const list = [];
-                        for (let i in lib.skill) {
+                        for (const i in lib.skill) {
                             if (lib.skill[i].limited || lib.skill[i].juexingji) {
                                 list.add(i);
                             }
@@ -6429,7 +6429,7 @@ const precontent = async function () {
                             if (!player.zhousi) {
                                 player.zhousi = {};
                             }
-                            for (let i in player.zhousi) {
+                            for (const i in player.zhousi) {
                                 num += player.zhousi[i];
                             }
                             return `当前咒死层数${num}`;
@@ -6449,7 +6449,7 @@ const precontent = async function () {
                         trigger.target.markSkill('QQQ_siwangshanyan');
                         if (info[name] > 1) {
                             let num = 0;
-                            for (let i in info) {
+                            for (const i in info) {
                                 num += info[i];
                                 info[i] = 0;
                             }
@@ -6475,7 +6475,7 @@ const precontent = async function () {
                                             next.zhousi.none += damage - numo + num;
                                             next.markSkill('QQQ_siwangshanyan');
                                             let numx = 0;
-                                            for (let i in next.zhousi) {
+                                            for (const i in next.zhousi) {
                                                 numx += next.zhousi[i];
                                             }
                                             if (numx > next.maxHp) {
@@ -6501,7 +6501,7 @@ const precontent = async function () {
                                             previous.zhousi.none += damage - numo + num;
                                             previous.markSkill('QQQ_siwangshanyan');
                                             let numx = 0;
-                                            for (let i in previous.zhousi) {
+                                            for (const i in previous.zhousi) {
                                                 numx += previous.zhousi[i];
                                             }
                                             if (numx > previous.maxHp) {
@@ -6516,7 +6516,7 @@ const precontent = async function () {
                             }
                         } else {
                             let num = 0;
-                            for (let i in info) {
+                            for (const i in info) {
                                 num += info[i];
                             }
                             if (num > trigger.target.maxHp) {
@@ -6914,7 +6914,7 @@ const precontent = async function () {
                             const dani = trigger.player.useCard({ name: 'QQQ_wodani' }, player);
                             await dani;
                             let bool = true;
-                            for (let j of player.actionHistory) {
+                            for (const j of player.actionHistory) {
                                 if (j.damage.length) {
                                     for (const evt of j.damage) {
                                         if (evt.getParent((q) => q == dani, true)) {

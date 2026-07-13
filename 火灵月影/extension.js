@@ -1762,7 +1762,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }; //取消禁将
                 get.gainableSkills = function (func, player) {
                     const list = [];
-                    for (let i in lib.character) {
+                    for (const i in lib.character) {
                         for (let j = 0; j < lib.character[i][3].length; j++) {
                             list.add(lib.character[i][3][j]);
                         }
@@ -2199,8 +2199,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     const aa = a,
                                         bb = b;
-                                    let aName = a.includes('_') ? a.slice(a.lastIndexOf('_') + 1) : a;
-                                    let bName = b.includes('_') ? b.slice(b.lastIndexOf('_') + 1) : b;
+                                    const aName = a.includes('_') ? a.slice(a.lastIndexOf('_') + 1) : a;
+                                    const bName = b.includes('_') ? b.slice(b.lastIndexOf('_') + 1) : b;
                                     if (aName != bName) {
                                         return aName > bName ? 1 : -1;
                                     }
@@ -2889,7 +2889,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         natures,
                         player,
                     );
-                    let numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
+                    const numx = player.hasSkillTag('nohujia') ? num : Math.max(0, num - player.hujia);
                     player.$damagepop(-numx, natures[0]);
                     if (player.hp <= 0 && player.isAlive()) {
                         player.dying({ source: source });
@@ -3158,7 +3158,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         player.hiddenSkills.remove(skillx);
                         player.invisibleSkills.remove(skillx);
                         delete player.tempSkills[skillx];
-                        for (let i in player.additionalSkills) {
+                        for (const i in player.additionalSkills) {
                             player.additionalSkills[i].remove(skillx);
                         }
                         player.checkConflict(skillx);
@@ -3166,7 +3166,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         if (lib.skill.global.includes(skillx)) {
                             lib.skill.global.remove(skillx);
                             delete lib.skill.globalmap[skillx];
-                            for (let i in lib.hook.globalskill) {
+                            for (const i in lib.hook.globalskill) {
                                 lib.hook.globalskill[i].remove(skillx);
                             }
                         }
@@ -3181,7 +3181,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     game.expandSkills(skills);
                     for (const skillx of skills) {
                         player.initedSkills.remove(skillx);
-                        for (let i in lib.hook) {
+                        for (const i in lib.hook) {
                             if (Array.isArray(lib.hook[i]) && lib.hook[i].includes(skillx)) {
                                 try {
                                     delete lib.hook[i];
@@ -3190,7 +3190,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             }
                         }
-                        for (let i in lib.hook.globalskill) {
+                        for (const i in lib.hook.globalskill) {
                             if (lib.hook.globalskill[i].includes(skillx)) {
                                 lib.hook.globalskill[i].remove(skillx);
                                 if (lib.hook.globalskill[i].length == 0) {
@@ -6491,7 +6491,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             content() {
-                                let card = [];
+                                const card = [];
                                 const card1 = get.cardPile(function (card) {
                                     return card.name == 'sha';
                                 });
@@ -6559,7 +6559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.cancel();
                                 } else {
                                     if (trigger.player == player) {
-                                        let players = player.getEnemies().sortBySeat();
+                                        const players = player.getEnemies().sortBySeat();
                                         for (const i of players) {
                                             i.chooseToDiscard(true, 'he');
                                         }

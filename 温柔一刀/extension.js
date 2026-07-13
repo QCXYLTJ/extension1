@@ -64,7 +64,7 @@ const yuanxing = function () {
       if (set1.size !== set2.size) {
         return false;
       }
-      for (let i of set1) {
+      for (const i of set1) {
         if (!set2.has(i)) {
           return false;
         }
