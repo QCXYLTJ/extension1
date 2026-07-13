@@ -1163,7 +1163,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.targets.remove(player);
                                 trigger.player.draw('visible');
                                 ('step 1');
-                                var gained = result[0];
+                                var gained = result.cards[0];
                                 var info = get.info(gained);
                                 if (!lib.filter.cardEnabled(gained, trigger.player) || !trigger.player.canUse(gained, player) || !info || info.multitarget) {
                                     trigger.player.discard(gained);

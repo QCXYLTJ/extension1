@@ -9490,7 +9490,7 @@ game.import('character', function () {
 					('step 1');
 					player.draw();
 					('step 2');
-					event.card = result[0];
+					event.card = result.cards[0];
 					player.addTempSkill('xjzh_sanguo_feijiang_qipai', 'phaseEnd');
 					if (event.card.name != 'sha') {
 						player.draw(event.card.number);
@@ -11004,7 +11004,7 @@ game.import('character', function () {
 							player.draw();
 							('step 1');
 							player.showCards(result[0]);
-							event.cards = result[0];
+							event.cards = result.cards[0];
 							cardnames = lib.translate[event.cards.name];
 							player.popup(cardnames);
 							('step 2');

@@ -845,7 +845,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) != 'equip') {
                                     player
                                         .chooseBool('是否弃置' + get.translation(event.card) + '？')
@@ -1138,7 +1138,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 event.current.showCards(event.card);
                                 if (get.color(event.card) == 'black') event.current.loseHp();
                                 event.goto(2);
@@ -5616,7 +5616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw();
                                 player.addMark('砺刃', 1);
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (card.name == 'sha' || get.subtype(card) == 'equip1') player.addTempSkill('砺刃_sha');
                             },
                             intro: {

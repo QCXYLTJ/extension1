@@ -976,7 +976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 target.draw();
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (
                                     card &&
                                     game.hasPlayer(function (current) {

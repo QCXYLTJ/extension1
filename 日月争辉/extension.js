@@ -10201,7 +10201,7 @@ game.import('extension', function () {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) == 'trick') {
                                     player.draw(2);
                                 }

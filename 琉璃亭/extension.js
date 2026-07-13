@@ -7058,7 +7058,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) == 'trick' || get.type(event.card) == 'delay') {
                                     game.log(player, '获得了锦囊牌');
                                     event.goto(0);

@@ -40040,7 +40040,7 @@ const skill = {
       event.target = trigger.player;
       trigger.player.draw();
       ('step 1');
-      let card = result[0];
+      let card = result.cards[0];
       target.showCards(card, '沙漠之夜的风');
       if (
         card &&
@@ -57765,7 +57765,7 @@ const skill = {
       player.draw('bottom');
       ('step 1');
       if (Array.isArray(result) && result.length) {
-        const gained = result[0];
+        const gained = result.cards[0];
         if (lib.filter.cardEnabled(gained, target)) {
           const next = player.chooseToUse();
           next.filterCard = function (card) {
@@ -62806,7 +62806,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      let card = result[0];
+      let card = result.cards[0];
       if (card.suit == 'diamond') {
         if (target.getCards('h').includes(card) && target.hasUseTarget(card)) {
           player.chooseUseTarget(card, true, 'nopopup');
@@ -66145,7 +66145,7 @@ const skill = {
       event.target = trigger.player;
       trigger.player.draw();
       ('step 1');
-      let card = result[0];
+      let card = result.cards[0];
       if (
         card &&
         game.hasPlayer(function (current) {

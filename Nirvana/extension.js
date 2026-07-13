@@ -32442,7 +32442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.draw();
                                             player.addTempSkill('szdl_newlongdan_cancel');
                                             ('step 1');
-                                            var suit1 = result[0].suit;
+                                            var suit1 = result.cards[0].suit;
                                             if (player.storage.szdl_newlongdan.includes(suit1)) {
                                                 player
                                                     .chooseCard({

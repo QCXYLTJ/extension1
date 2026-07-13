@@ -11587,7 +11587,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool !== false) {
                                     target.showCards([result[0]]);
-                                    var drawCard = result[0];
+                                    var drawcard = result.cards[0];
                                     if (drawCard.number % 2 == 1) {
                                         target
                                             .loseHp()
@@ -21833,7 +21833,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool !== false) {
                                     target.showCards([result[0]]);
-                                    var drawCard = result[0];
+                                    var drawcard = result.cards[0];
                                     if (get.color(drawCard) == 'red') {
                                         target.addXwBuff('xwjh_public_effect_kangfen');
                                     }
@@ -30937,7 +30937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result[0]) {
                                     player.showCards([result[0]]);
-                                    event.card = result[0];
+                                    event.card = result.cards[0];
                                 } else {
                                     event.finish();
                                 }

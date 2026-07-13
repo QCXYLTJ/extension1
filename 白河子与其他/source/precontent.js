@@ -31378,7 +31378,7 @@ export async function precontent(config, pack) {
                 'step 0';
                 player.draw();
                 ('step 1');
-                var card = result[0];
+                var card = result.cards[0];
                 event.card = card;
                 if (['basic', 'trick', 'equip'].includes(get.type2(card))) {
                     if (['basic', 'trick'].includes(get.type2(card))) {

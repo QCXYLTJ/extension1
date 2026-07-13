@@ -15666,7 +15666,7 @@ const skill = {
             player.chooseToDiscard('弃置一张♦️️牌', 'he', true, { suit: 'diamond' });
             target.draw();
             ('step 1');
-            event.card = result[0];
+            event.card = result.cards[0];
             var c = event.card;
             if (target.hasUseTarget(event.card)) target.chooseUseTarget('使用' + get.translation(c) + '？', c);
             else event.goto(3);
@@ -28475,7 +28475,7 @@ const skill = {
             trigger.targets.remove(player);
             trigger.player.draw('visible');
             ('step 1');
-            var gained = result[0];
+            var gained = result.cards[0];
             var info = get.info(gained);
             if (!lib.filter.cardEnabled(gained, trigger.player) || !trigger.player.canUse(gained, player) || !info || info.multitarget) {
                 trigger.player.discard(gained);
@@ -47084,7 +47084,7 @@ const skill = {
             ('step 1');
             if (result[0]) {
                 player.showCards([result[0]]);
-                event.card = result[0];
+                event.card = result.cards[0];
             } else {
                 event.finish();
             }

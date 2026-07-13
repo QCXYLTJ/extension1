@@ -1419,7 +1419,7 @@ game.import('character', function () {
           'step 0';
           player.draw('visible');
           ('step 1');
-          var card = result[0];
+          var card = result.cards[0];
           if (get.type(card) == 'equip') {
             player.addTempSkill('geyaomrfz_e');
           }
@@ -13454,7 +13454,7 @@ game.import('character', function () {
           player.draw();
           ('step 1');
           if (Array.isArray(result) && result.length) {
-            var card = result[0],
+            var card = result.cards[0],
               cards = player.getCards('h'),
               list = [];
             for (var i of cards) {

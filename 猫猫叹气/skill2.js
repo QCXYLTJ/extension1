@@ -30041,7 +30041,7 @@ const skill = {
             player.draw();
             ('step 1');
             if (Array.isArray(result) && result.length) {
-                const gained = result[0];
+                const gained = result.cards[0];
                 if (player.hasUseTarget(gained, false, 'nodistance')) {
                     let next = player.chooseToUse();
                     next.filterCard = function (card) {
@@ -34291,7 +34291,7 @@ const skill = {
             event.control = result.control;
             ('step 3');
             if (result && result.length) {
-                let card = result[0];
+                let card = result.cards[0];
                 player.showCards(card);
                 if (get.color(card) == event.control) {
                     player.chooseBool('是否重复本次操作.').set('ai', function () {

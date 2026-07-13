@@ -19160,7 +19160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.removeMark('tyj_renjie', 1);
                                         player.draw();
                                         ('step 1');
-                                        event.card = result[0];
+                                        event.card = result.cards[0];
                                         if (get.type(event.card) == 'basic') {
                                             player
                                                 .chooseBool('是否弃置' + get.translation(event.card) + '并令本回合手牌上限+1？')
@@ -20879,7 +20879,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.draw();
                                         ('step 1');
-                                        event.card = result[0];
+                                        event.card = result.cards[0];
                                         if (get.type(event.card) == 'basic') {
                                             player
                                                 .chooseBool('是否弃置' + get.translation(event.card) + '并令本回合手牌上限+1？')
@@ -24232,7 +24232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw();
                                 ('step 1');
                                 if (result && result[0]) {
-                                    event.cardsx = result[0];
+                                    event.cardsx = result.cards[0];
                                     player
                                         .chooseTarget(1, '兴棹:是否交给一名其他角色' + get.translation(result[0]) + '并获得牌堆中一张类型不同的牌', false, function (card, player, target) {
                                             return target != player;
@@ -24274,7 +24274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.draw(1);
                                         ('step 2');
                                         if (result && result[0]) {
-                                            event.cardsx = result[0];
+                                            event.cardsx = result.cards[0];
                                             player
                                                 .chooseTarget(1, '兴棹:是否交给一名其他角色' + get.translation(result[0]) + '并获得牌堆中一张类型不同的牌', false, function (card, player, target) {
                                                     return target != player;

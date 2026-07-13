@@ -4462,7 +4462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.draw('visible');
                                 }
                                 ('step 2');
-                                if (!event.card) event.card = result[0];
+                                if (!event.card) event.card = result.cards[0];
                                 ('step 3');
                                 if (event.card) {
                                     if (event.card.name == 'sha') player.chooseUseTarget('使用' + get.translation(trigger.cards), event.card, false, 'nodistance');

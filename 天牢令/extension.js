@@ -23531,7 +23531,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 }
                                 ('step 2');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (get.type(card) != 'basic') {
                                     player.say(['放肆!你敢以下犯上？!', '你就不怕我父王杀了你吗？', '你疯了？!我可是长公主', '岂敢对本公主无礼', '见到本公主,为何不跪!', '本公主在此,岂容你们放肆？!', '本公主 可是掌上明珠', '定叫你吃不了兜着走', '纵无嫡庶之分,也该论长幼为序'].randomGet());
                                     trigger.untrigger();
@@ -26384,7 +26384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) == 'basic') {
                                     player
                                         .chooseBool('是否弃置' + get.translation(event.card) + '并令本回合手牌上限+1？')
@@ -30835,7 +30835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 targets[0].draw('visible');
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 var list = [],
                                     cards = [];
                                 list.push(get.type2(card, false));

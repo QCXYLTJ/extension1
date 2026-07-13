@@ -24586,7 +24586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.draw('bottom');
                                 }
                                 ('step 2');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (event.index == 1 && player.countCards('h') && card.number > trigger.num) {
                                     player.chooseCard('he', true, '将一张牌置于牌堆顶');
                                 } else if (event.index == 0 && player.countCards('h') && card.number > trigger.num) {

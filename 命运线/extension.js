@@ -10464,7 +10464,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								('step 1');
-								event.card = result[0];
+								event.card = result.cards[0];
 								if (get.type(event.card) == 'basic') {
 									player.storage.myx_boss_decade_jijiang++;
 									player.markSkill('myx_boss_decade_jijiang');

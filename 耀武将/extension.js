@@ -36109,7 +36109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (target.getCards('h').includes(card) && target.hasUseTarget(card)) {
                                     player.chooseUseTarget(card, true, false, 'nodistance').set('filterTarget', function (card, player, target) {
                                         var evt = _status.event;

@@ -5900,7 +5900,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 var trans = get.translation(card);
                                 event.cards = card;
                                 player.storage.xinghe = card;
@@ -11411,7 +11411,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     forced: true,
                                     audio: 'ext:原神杀/audio:2',
                                     content() {
-                                        var card = result[0];
                                         player.chooseToUse({
                                             prompt: '【尘闲】是否使用一张牌？',
                                             filterCard(card, player) {

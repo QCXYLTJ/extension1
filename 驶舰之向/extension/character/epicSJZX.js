@@ -4764,7 +4764,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             player.draw('visible');
           } else event.finish();
           ('step 2');
-          var card = result[0];
+          var card = result.cards[0];
           var cardl = event.card;
           if (get.type2(card) != get.type2(cardl)) {
             trigger.untrigger();
@@ -5232,7 +5232,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           player.draw('visible');
           ('step 1');
           if (result) {
-            var card = result[0];
+            var card = result.cards[0];
             if ((card.suit == 'heart' || card.suit == 'spade') && card.number == 6) {
               player.loseHp(player.hp);
             }
@@ -5756,7 +5756,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               } else event.finish();
               ('step 3');
               if (result) {
-                var card = result[0];
+                var card = result.cards[0];
                 var cards = player.getCards('h');
                 var bool = false;
                 for (var i of cards) {

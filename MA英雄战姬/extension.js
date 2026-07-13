@@ -2887,7 +2887,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.player.draw();
                                 trigger.player.addTempSkill('ja_fengshentai_2');
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 var target = trigger.player;
                                 if (
                                     card &&

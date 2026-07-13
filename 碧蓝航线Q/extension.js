@@ -9314,7 +9314,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                event.cardx = result[0];
+                                event.cardx = result.cards[0];
                                 var cards = event.cardx;
                                 player
                                     .chooseTarget('是否将' + get.translation(cards) + '交给一名其他角色？', (card, player, target) => {

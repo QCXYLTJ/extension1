@@ -9477,7 +9477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								('step 1');
-								event.card = result[0];
+								event.card = result.cards[0];
 								if (Array.isArray(result) && result.length && get.color(result[0]) == 'black') {
 									player
 										.chooseBool('是否展示' + get.translation(result) + '并对' + get.translation(trigger.player) + '造成一点伤害.')

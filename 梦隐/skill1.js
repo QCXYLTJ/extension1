@@ -50295,7 +50295,7 @@ const skill = {
             }
             target.draw(2);
             ('step 1');
-            event.card = result[0];
+            event.card = result.cards[0];
             const c = event.card;
             if (target.hasUseTarget(event.card)) {
                 target.chooseUseTarget('是否使用' + get.translation(c) + '？', c);
@@ -55586,7 +55586,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            let card = result[0];
+            let card = result.cards[0];
             if (card.suit == 'club') {
                 if (target.getCards('h').includes(card) && target.hasUseTarget(card)) {
                     event.target.chooseUseTarget(card, true, 'nopopup');
@@ -72520,7 +72520,7 @@ const skill = {
             player.draw('bottom');
             ('step 3');
             if (Array.isArray(result) && result.length) {
-                event.gained = result[0];
+                event.gained = result.cards[0];
                 if (lib.filter.cardEnabled(event.gained, player)) {
                     let next = player.chooseToUse();
                     next.filterCard = function (card) {

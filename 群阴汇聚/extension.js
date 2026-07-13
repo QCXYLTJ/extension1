@@ -3756,7 +3756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             'step 0';
                             player.draw();
                             ('step 1');
-                            event.card = result[0];
+                            event.card = result.cards[0];
                             player
                                 .chooseBool('是否弃置' + get.translation(event.card) + (event.card.number == trigger.card.number && get.type(trigger.card) == 'trick' ? '并收回' + get.translation(trigger.cards) : '') + '？')
                                 .set('ai', function (evt, player) {
@@ -7769,7 +7769,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             } else event.finish();
                             ('step 2');
-                            player.storage.rejilue_result = result[0];
+                            player.storage.rejilue_result = result.cards[0];
                             var next = game.createEvent('diy_rejizhi', false);
                             next.player = player;
                             next.card = trigger.card;

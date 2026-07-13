@@ -40,7 +40,7 @@ const skill = {
       player.draw();
       ('step 3');
       if (Array.isArray(result) && result.length) {
-        event.gained = result[0];
+        event.gained = result.cards[0];
         if (lib.filter.cardEnabled(event.gained, player)) {
           var next = player.chooseToUse();
           next.filterCard = function (card) {
@@ -13121,7 +13121,7 @@ const skill = {
       player.draw();
       ('step 1');
       if (Array.isArray(result) && result.length) {
-        var gained = result[0];
+        var gained = result.cards[0];
         if (lib.filter.cardEnabled(gained, target)) {
           var next = player.chooseToUse();
           next.filterCard = function (card) {
@@ -38275,7 +38275,7 @@ const skill = {
       event.target = trigger.player;
       trigger.player.draw();
       ('step 1');
-      var card = result[0];
+      var card = result.cards[0];
       target.showCards(card, '乱蝶');
       if (
         card &&

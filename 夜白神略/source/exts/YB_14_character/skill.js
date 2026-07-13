@@ -10528,7 +10528,6 @@ const skill = {
 			player.line(event.target);
 			event.target.draw('visible');
 			('step 1');
-			let card = result[0];
 			if (card.suit == 'heart') {
 				event.target.recover();
 			}

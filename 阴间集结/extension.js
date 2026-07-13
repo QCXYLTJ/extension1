@@ -5381,7 +5381,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (get.type(card) == 'basic') {
                                     if (!event.target.isDisabled(get.subtype(card))) {
                                         event.target.chooseUseTarget(card, true, 'nopopup');
@@ -8456,7 +8456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) == 'basic') {
                                     player
                                         .chooseBool('是否弃置' + get.translation(event.card) + '并令本回合手牌上限+1？')

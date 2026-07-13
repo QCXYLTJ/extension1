@@ -22643,7 +22643,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target0 = event.targets0.shift();
                                 event.target0.draw();
                                 ('step 2');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 event.target0.showCards(card);
                                 if (card.suit == 'club' && event.target0.isDamaged()) event.target0.recover();
                                 if (card.suit == 'diamond') event.target0.addTempSkill('fengyin', { player: 'equipEnd' });
@@ -41831,7 +41831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw();
                                 trigger.player.draw();
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 target.showCards(card, '女王的试炼');
                                 if (
                                     card &&

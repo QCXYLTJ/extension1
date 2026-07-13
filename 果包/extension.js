@@ -3581,7 +3581,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.node.avatar.setBackgroundImage('extension/果包/image/hyy4.jpg');
                                 }
                                 ('step 2');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) == 'basic') {
                                     player
                                         .chooseBool('是否弃置' + get.translation(event.card) + '并令本回合手牌上限+1？')

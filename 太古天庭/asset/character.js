@@ -36934,7 +36934,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     player.draw();
                     player.changeHujia();
                     ('step 1');
-                    event.card = result[0];
+                    event.card = result.cards[0];
                     if (get.type(event.card) == 'basic') {
                         if (!player.hasSkill('tgtt_fshyyjizhi_qingchu')) player.addTempSkill('tgtt_fshyyjizhi_qingchu');
                         if (event.card.name == 'sha' && player.storage.tgtt_fshyyjizhi_sha < 1) player.storage.tgtt_fshyyjizhi_sha++;

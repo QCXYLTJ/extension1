@@ -2177,7 +2177,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.storage.rain_acgn_date_yuanYiZheZhi_jueMieTianShiSuit = [];
 								player.draw('visible');
 								('step 1');
-								var card = result[0];
+								var card = result.cards[0];
 								var type = get.type(card);
 								var suit = card.suit;
 								game.broadcastAll(function (player) {
@@ -7575,7 +7575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//game.rainSay(player,'发动了武将技能','<span style=\"color: #FFD700\">【白鹭城百鬼八天堂大人】</span>');
 								player.draw('visible');
 								('step 1');
-								event.card = result[0];
+								event.card = result.cards[0];
 								var name = '白鹭城百鬼八天堂大人';
 								var info = '<br>请选择至多' + get.cnNumber(player.countMark('rain_acgn_fgo_xingBuJi_baiLu')) + '名角色';
 								player

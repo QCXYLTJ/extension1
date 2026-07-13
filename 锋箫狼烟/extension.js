@@ -1544,7 +1544,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 trigger.target.draw('visible');
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (get.type(card) == 'basic') {
                                     trigger.parent.excluded.add(trigger.target);
                                     trigger.target.chooseToDiscard('he', true);

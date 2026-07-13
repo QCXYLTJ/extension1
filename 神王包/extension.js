@@ -3894,7 +3894,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw(3);
                                 ('step 1');
-                                event.card = result[0];
+                                event.card = result.cards[0];
                                 if (get.type(event.card) == 'basic') {
                                     player
                                         .chooseBool(`是否弃置${get.translation(event.card)}并令本回合手牌上限+1？`)

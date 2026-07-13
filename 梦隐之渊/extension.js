@@ -25392,7 +25392,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.targets.remove(player);
                                 trigger.player.draw('bottom');
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 var info = get.info(card);
                                 if (!lib.filter.cardEnabled(card, trigger.player) || !trigger.player.canUse(card, player) || !info || info.multitarget) {
                                     trigger.player.discard(card);

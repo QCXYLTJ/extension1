@@ -14892,7 +14892,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            let card = result[0];
+            let card = result.cards[0];
             if (get.type(card) == 'basic') {
                 player.draw(2);
             }
@@ -21303,7 +21303,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            let card = result[0];
+            let card = result.cards[0];
             if (get.type(card) == 'equip') {
                 if (target.getCards('h').includes(card) && target.hasUseTarget(card)) {
                     event.target.chooseUseTarget(card, true, 'nopopup');
@@ -48617,7 +48617,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            let card = result[0];
+            let card = result.cards[0];
             event.card = card;
             if (get.type(card) == 'basic') {
                 player.draw();
@@ -51285,7 +51285,7 @@ const skill = {
             'step 0';
             player.draw();
             ('step 1');
-            event.card = result[0];
+            event.card = result.cards[0];
             if (get.type(event.card) == 'basic') {
                 player.storage.mitan_jijiang++;
                 player.markSkill('mitan_jijiang');

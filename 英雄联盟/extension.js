@@ -10326,7 +10326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.storage.yuvf -= 2;
                                 trigger.player.draw('visible');
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (card.suit != 'spade') {
                                     trigger.untrigger();
                                     trigger.set('responded', true);

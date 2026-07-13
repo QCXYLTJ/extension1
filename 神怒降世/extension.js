@@ -9245,7 +9245,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								('step 1');
-								event.card = result[0];
+								event.card = result.cards[0];
 								if (get.type(event.card) == 'basic') {
 									if (!player.hasSkill('jssmyjz_qingchu')) player.addTempSkill('jssmyjz_qingchu');
 									if (event.card.name == 'sha' && player.storage.jssmyjz_sha < 1) player.storage.jssmyjz_sha++;
@@ -31875,7 +31875,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								('step 1');
-								event.card = result[0];
+								event.card = result.cards[0];
 								if (get.type(event.card) == 'basic') {
 									if (!player.hasSkill('exhyyjz_qingchu')) player.addTempSkill('exhyyjz_qingchu');
 									if (event.card.name == 'sha' && player.storage.exhyyjz_sha < 1) player.storage.exhyyjz_sha++;
@@ -40195,7 +40195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								('step 1');
-								event.card = result[0];
+								event.card = result.cards[0];
 								event.pai = result;
 								player
 									.chooseBool('〖烈酒〗:是否将' + get.translation(event.card) + '当作【酒】使用？')

@@ -6373,7 +6373,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.draw();
                                 ('step 1');
-                                var card = result[0];
+                                var card = result.cards[0];
                                 if (get.type(card) == 'basic') lib.skill.手牌上限.change(player, 1);
                                 if (get.type2(card) == 'trick') trigger.effectCount++;
                                 if (get.type(card) == 'equip') lib.skill.阶段摸牌.change(player, 1);

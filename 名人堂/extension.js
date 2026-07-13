@@ -29329,7 +29329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw();
 								('step 3');
 								if (Array.isArray(result) && result.length) {
-									event.gained = result[0];
+									event.gained = result.cards[0];
 									if (lib.filter.cardEnabled(event.gained, player)) {
 										var next = player.chooseToUse();
 										next.filterCard = function (card) {

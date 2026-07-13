@@ -5399,7 +5399,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw(2);
                                 ('step 1');
                                 if (Array.isArray(result) && result.length > 1) {
-                                    var suit = result[0].suit;
+                                    var suit = result.cards[0].suit;
                                     for (var i = 1; i < result.length; i++) {
                                         if (result[i].suit == suit) {
                                             player.storage.lg_changyejiliao++;
@@ -19567,7 +19567,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result[0]) {
                                     player.previous.showCards([result[0]]);
-                                    event.card = result[0];
+                                    event.card = result.cards[0];
                                 } else {
                                     event.finish();
                                 }

@@ -15729,7 +15729,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								} else player.draw();
 								('step 3');
-								event.card = result[0];
+								event.card = result.cards[0];
 								('step 4');
 								if (get.color(event.card) == 'red') trigger.directHit.add(target);
 								else {
@@ -16304,7 +16304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								} else trigger.player.draw();
 								('step 3');
-								event.card = result[0];
+								event.card = result.cards[0];
 								('step 4');
 								var target = trigger.player;
 								if (target.getCards('h').includes(event.card) && get.type(event.card, target) == 'equip') {
@@ -25141,7 +25141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								} else player.draw();
 								('step 3');
-								event.card = result[0];
+								event.card = result.cards[0];
 								('step 4');
 								if (event.card.suit == 'heart') {
 									player.draw();
@@ -27473,7 +27473,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.recover();
 								}
 								('step 1');
-								var card = result[0];
+								var card = result.cards[0];
 								event.card = card;
 								if (['basic', 'trick', 'equip'].includes(get.type2(card))) {
 									if (get.type2(card) == 'basic') {
@@ -46512,7 +46512,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 										event.finish();
 										('step 2');
-										event.card = result[0];
+										event.card = result.cards[0];
 										var dis = 0,
 											suity = event.card.suit;
 										var cards = player.getExpansions('dshj_lingbao_Debuff');

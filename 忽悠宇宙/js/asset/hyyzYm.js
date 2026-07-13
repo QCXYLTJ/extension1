@@ -13246,7 +13246,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         'step 0';
         player.draw();
         ('step 1');
-        event.card = result[0];
+        event.card = result.cards[0];
         player.chooseTarget(`是否将${get.translation(event.card)}交给其他角色？`, function (card, player, target) {
           return target != player;
         }).ai = function () {

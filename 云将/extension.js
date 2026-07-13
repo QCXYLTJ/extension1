@@ -19094,7 +19094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw();
                                 ('step 1');
                                 if (Array.isArray(result) && result.length && _status.currentPhase == player) {
-                                    var gained = result[0];
+                                    var gained = result.cards[0];
                                     if (lib.filter.cardEnabled(gained, target)) {
                                         var next = player.chooseToUse();
                                         next.filterCard = function (card) {

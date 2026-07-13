@@ -7932,7 +7932,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             player.draw();
             ('step 1');
-            event.card = result[0];
+            event.card = result.cards[0];
             if (player.getCards('h').includes(event.card)) {
               var card = { name: 'juedou', cards: [event.card] };
               if (lib.filter.cardEnabled(card)) {
@@ -10590,7 +10590,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             event.target = trigger.player;
             trigger.player.draw();
             ('step 1');
-            var card = result[0];
+            var card = result.cards[0];
             target.showCards(card, '督武');
             if (
               card &&

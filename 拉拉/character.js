@@ -3669,7 +3669,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         player.draw();
                         ('step 1');
-                        event.card = result[0];
+                        event.card = result.cards[0];
                         if (player.hp < player.maxHp && player.canUse({ name: 'tao', cards: cards }, player, false)) {
                             var next = player.useCard({ name: 'tao' }, player, [event.card], true);
                         }

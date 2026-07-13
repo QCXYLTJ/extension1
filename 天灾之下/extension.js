@@ -17032,7 +17032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.draw();
 								('step 1');
-								var card = result[0];
+								var card = result.cards[0];
 								if (get.type(card) != 'equip' && get.type(card) != 'delay') {
 									if (!player.hasSkill('ark_yuyan_useable')) player.addTempSkill('ark_yuyan_useable', { player: 'phaseEnd' });
 									player.storage.ark_yuyan_useable++;

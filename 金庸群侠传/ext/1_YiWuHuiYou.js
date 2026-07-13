@@ -22410,7 +22410,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         event.target0 = event.targets0.shift();
                         event.target0.draw();
                         ('step 2');
-                        var card = result[0];
+                        var card = result.cards[0];
                         event.target0.showCards(card);
                         if (card.suit == 'heart' && event.target0.isDamaged()) event.target0.recover();
                         if (card.suit == 'spade') event.target0.loseHp();
