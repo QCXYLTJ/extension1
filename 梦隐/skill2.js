@@ -181,7 +181,6 @@ const skill = {
         trigger: {
           global: 'useCard',
         },
-        _priority: 4,
         filter(event, player) {
           if (event.targets && event.targets.length) {
             if (player.storage.mx_huaduo && player.storage.mx_huaduo.length) {
@@ -212,7 +211,6 @@ const skill = {
         trigger: {
           player: 'useCard',
         },
-        _priority: 7,
         filter(event, player) {
           return event.getParent(2).name == 'mx_huaduo';
         },
@@ -364,7 +362,6 @@ const skill = {
         filter(event, player) {
           return game.roundNumber % 3 == 0;
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_hufu = 0;
@@ -2242,7 +2239,6 @@ const skill = {
     trigger: {
       player: 'shaMiss',
     },
-    _priority: -1,
     filter(event, player) {
       return event.target.countCards('he') > 0;
     },
@@ -2944,7 +2940,6 @@ const skill = {
       }
       return player.isDamaged();
     },
-    _priority: -998,
     check(event, player) {
       return event.num < player.getDamagedHp();
     },
@@ -3147,7 +3142,6 @@ const skill = {
     },
   },
   mx_guangke: {
-    _priority: 15,
     audio: 'ext:梦隐/Skill dubbing:2',
     trigger: {
       global: ['shaBefore'],
@@ -3396,7 +3390,6 @@ const skill = {
         trigger: {
           global: 'roundStart',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_xunyingtuxi = 0;
@@ -4384,7 +4377,6 @@ const skill = {
         trigger: {
           player: 'phaseUseEnd',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_xingfazhoufu = 0;
@@ -4481,7 +4473,6 @@ const skill = {
         filter(event, player) {
           return game.roundNumber % 2 == 0;
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_tuimo = 0;
@@ -5360,7 +5351,6 @@ const skill = {
     trigger: {
       source: 'damageAfter',
     },
-    _priority: 8,
     filter(event, player) {
       if (!event.card || event.card.name != 'sha' || !event.notLink()) {
         return false;
@@ -5452,7 +5442,6 @@ const skill = {
     trigger: {
       target: 'useCardToTarget',
     },
-    _priority: 10,
     usable: 1,
     filter(event, player) {
       if (!event.cards || !event.cards.length) {
@@ -5480,7 +5469,6 @@ const skill = {
           global: 'recoverBegin',
         },
         forced: true,
-        _priority: 100,
         filter(event, player) {
           if (
             event.player.countCards('h', function (card) {
@@ -5695,7 +5683,6 @@ const skill = {
         trigger: {
           global: 'roundStart',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_shihuangdi = 0;
@@ -6600,7 +6587,6 @@ const skill = {
       }
       return event.player != player && event.parent.name != 'mx_meimiao';
     },
-    _priority: 10,
     content() {
       if (!player.isMinHp()) {
         let card = player.getCards('e', { color: 'red' });
@@ -7258,7 +7244,6 @@ const skill = {
         trigger: {
           player: 'phaseUseEnd',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_zhuolanfu = 0;
@@ -7362,7 +7347,6 @@ const skill = {
         trigger: {
           global: 'roundStart',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_zhuolanpao = 0;
@@ -7908,7 +7892,6 @@ const skill = {
           return event.nature == 'fire';
         },
         firstDo: true,
-        _priority: 8199,
         forced: true,
         content() {
           player.drawTo(3);
@@ -7965,7 +7948,6 @@ const skill = {
           return event.nature == 'fire';
         },
         firstDo: true,
-        _priority: 8199,
         forced: true,
         content() {
           player.drawTo(5);
@@ -8152,7 +8134,6 @@ const skill = {
         trigger: {
           global: 'roundStart',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_fengmang = 0;
@@ -8164,7 +8145,6 @@ const skill = {
     trigger: {
       player: 'discardEnd',
     },
-    forced: true,
     filter(event, player) {
       if (player.storage.mx_fengmang == player.countCards('h', { suit: 'diamond', type: 'basic' })) {
         return false;
@@ -8376,7 +8356,6 @@ const skill = {
       player: 'damageBegin',
     },
     forced: true,
-    _priority: 100,
     filter(event, player) {
       return Math.random() <= 0.65;
     },
@@ -8875,7 +8854,6 @@ const skill = {
         trigger: {
           player: 'dyingBegin',
         },
-        _priority: 22,
         forced: true,
         content() {
           player.draw(2);
@@ -10563,7 +10541,6 @@ const skill = {
           return player.storage.mx_gongzhutuxi > 0;
         },
         forced: true,
-        _priority: 20,
         content() {
           let nh = player.storage.mx_gongzhutuxi;
           player.storage.mx_gongzhutuxi -= nh;
@@ -11760,7 +11737,6 @@ const skill = {
     trigger: {
       player: 'damageBefore',
     },
-    _priority: 22,
     check(event, player) {
       return get.attitude(player, event.source) < 0;
     },
@@ -12024,7 +12000,6 @@ const skill = {
         trigger: {
           player: 'phaseUseAfter',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_chengfa = 0;
@@ -12816,7 +12791,6 @@ const skill = {
         trigger: {
           player: ['shaBegin'],
         },
-        _priority: 78,
         forced: true,
         filter(event, player) {
           return event.skill && event.skill == 'mx_tianling';
@@ -12866,7 +12840,6 @@ const skill = {
     trigger: {
       player: 'shaMiss',
     },
-    _priority: -1,
     filter(event, player) {
       return event.target.countCards('hej') >= 0;
     },
@@ -13140,7 +13113,6 @@ const skill = {
     trigger: {
       target: 'shaMiss',
     },
-    _priority: 5,
     forced: true,
     content() {
       'step 0';
@@ -13562,7 +13534,6 @@ const skill = {
     trigger: {
       global: 'dieBegin',
     },
-    _priority: 100,
     forced: true,
     filter(event, player) {
       if (event.nouseskill == true) {
@@ -13656,7 +13627,6 @@ const skill = {
         filter(event, player) {
           return game.roundNumber % 3 == 0;
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_baikong = 0;
@@ -13722,7 +13692,6 @@ const skill = {
     trigger: {
       player: 'shaMiss',
     },
-    _priority: -1,
     filter(event, player) {
       return event.target.countCards('he') > 0;
     },
@@ -15200,7 +15169,6 @@ const skill = {
     trigger: {
       global: 'judge',
     },
-    _priority: 3,
     check(event, player) {
       const res = event.judge(event.player.judging[0]);
       let att = get.attitude(player, event.player);
@@ -15584,7 +15552,6 @@ const skill = {
     filter(event, player) {
       return player.countCards('h') < player.getHandcardLimit();
     },
-    _priority: 15,
     content() {
       'step 0';
       let num = player.getHandcardLimit() - player.countCards('h');
@@ -15739,7 +15706,6 @@ const skill = {
       player: ['useCard', 'phaseEnd'],
     },
     forced: true,
-    _priority: 10,
     filter(event, player) {
       if (event.name == 'phase') {
         return true;
@@ -15773,7 +15739,6 @@ const skill = {
     subSkill: {
       eff: {
         audio: 'ext:梦隐/Skill dubbing:2',
-        _priority: 9,
         trigger: {
           player: 'useCard',
           source: 'damageEnd',
@@ -17410,7 +17375,6 @@ const skill = {
     trigger: {
       player: 'damageEnd',
     },
-    _priority: 7,
     forced: true,
     content() {
       'step 0';
@@ -17502,7 +17466,6 @@ const skill = {
         trigger: {
           player: 'phaseUseEnd',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_nanwei = 0;
@@ -17579,7 +17542,6 @@ const skill = {
     onremove(player, skill) {
       player.unmarkSkill('mx_nanwei');
     },
-    _priority: -1,
     filter(event, player) {
       return player.storage.mx_nanwei && event.card.suit == 'heart';
     },
@@ -18148,7 +18110,6 @@ const skill = {
     trigger: {
       global: 'useCardEnd',
     },
-    _priority: 3,
     filter(event, player) {
       if (player.countCards('he', { suit: 'diamond' }) <= 1) {
         return false;
@@ -18306,7 +18267,6 @@ const skill = {
         filter(event, player) {
           return game.roundNumber % 2 == 0;
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_xianxueshengyan = 0;
@@ -18339,7 +18299,6 @@ const skill = {
       return event.num > 0;
     },
     forced: true,
-    _priority: -10,
     content() {
       'step 0';
       trigger.cancel();
@@ -18814,7 +18773,6 @@ const skill = {
           player.unmarkSkill('mx_suofu');
         },
         silent: true,
-        _priority: 1.1,
         filter(event, player) {
           return player.storage.mx_suofu && event.skill == 'mx_suofu2';
         },
@@ -19495,7 +19453,6 @@ const skill = {
         trigger: {
           player: 'shaBegin',
         },
-        _priority: -1,
         forced: true,
         filter(event, player) {
           if (typeof event.parent.ADDshan != 'number') {
@@ -19514,7 +19471,6 @@ const skill = {
         _priority: -100,
       },
       dam: {
-        _priority: -1,
         trigger: {
           player: 'shaBegin',
         },
@@ -20290,7 +20246,6 @@ const skill = {
         filter(event, player) {
           return player.storage.mx_huli2 > 0;
         },
-        _priority: 39,
         forced: true,
         content() {
           player.storage.mx_huli2 = 0;
@@ -21668,7 +21623,6 @@ const skill = {
     trigger: {
       player: 'dyingBegin',
     },
-    _priority: 10,
     filter(event, player) {
       if (!player.storage.mx_shierdan1) {
         return false;
@@ -21878,7 +21832,6 @@ const skill = {
         trigger: {
           global: 'roundStart',
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_zhijian = 0;
@@ -22001,7 +21954,6 @@ const skill = {
         return false;
       });
     },
-    _priority: 899,
     content() {
       'step 0';
       event.extars = game
@@ -22112,7 +22064,6 @@ const skill = {
       return game.roundNumber % 2 == 0;
     },
     forced: true,
-    _priority: 7,
     content() {
       'step 0';
       player.storage.mx_lunhuileyuan = [1, 1, 1];
@@ -22207,7 +22158,6 @@ const skill = {
           return false;
         },
         firstDo: true,
-        _priority: 999,
         forced: true,
         content() {
           if (trigger.name == 'sha') {
@@ -22390,7 +22340,6 @@ const skill = {
     trigger: {
       player: 'useCard',
     },
-    _priority: 10,
     filter(event, player) {
       return event.card.suit != 'heart' && !['equip', 'delay'].includes(get.type(event.card));
     },
@@ -23311,7 +23260,6 @@ const skill = {
     trigger: {
       global: 'dying',
     },
-    _priority: 6,
     filter(event, player) {
       if (event.player.isEnemiesOf(player)) {
         return false;
@@ -25265,7 +25213,6 @@ const skill = {
     filter(event, player) {
       return get.color(event.card) != 'none' && !player.storage.mx_shiyue_sha;
     },
-    _priority: 1888,
     content() {
       'step 0';
       if (!player.storage.mx_shiyue.length) {
@@ -26054,7 +26001,6 @@ const skill = {
     trigger: {
       player: 'useCardToBefore',
     },
-    _priority: 15,
     check(event, player) {
       let att = get.attitude(player, event.target);
       if (att > 0) {
@@ -27297,7 +27243,6 @@ const skill = {
         trigger: {
           global: 'roundStart',
         },
-        _priority: 17,
         forced: true,
         content() {
           player.storage.mx_jiahu = [];
@@ -27854,7 +27799,6 @@ const skill = {
     },
   },
   mx_guhuolian3: {
-    _priority: -2,
     trigger: {
       target: 'useCardToTargeted',
     },
@@ -28548,7 +28492,6 @@ const skill = {
         filter(event, player) {
           return game.roundNumber % 3 == 0;
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_duoxinghuan = 0;
@@ -29066,7 +29009,6 @@ const skill = {
         filter(event, player) {
           return player.isLinked();
         },
-        _priority: 99,
         content() {
           player.storage.mx_wuai = 0;
         },
@@ -29077,7 +29019,6 @@ const skill = {
           player: ['useCardAfter'],
         },
         forced: true,
-        _priority: 88,
         filter(event, player) {
           return typeof player.storage.mx_wuai == 'number' && player.isLinked();
         },
@@ -29292,7 +29233,6 @@ const skill = {
         filter(event, player) {
           return game.roundNumber % 3 == 0;
         },
-        _priority: 20,
         forced: true,
         content() {
           player.storage.mx_chuangshili = 0;
@@ -29733,7 +29673,6 @@ const skill = {
     filter(event, player) {
       return player.countCards('h') && event.player.isFriendsOf(player);
     },
-    _priority: -1,
     forced: true,
     content() {
       'step 0';
@@ -30182,7 +30121,6 @@ const skill = {
         prompt(event, player) {
           return '对' + get.translation(event.player) + '发动此技能？';
         },
-        _priority: 50,
         content() {
           player.chooseToDiscard(2, '请弃置两张♥️️基本牌', 'h', true, { type: 'basic', color: 'red', suit: 'heart' });
           trigger.player.changeHujia(-2);
@@ -30201,7 +30139,6 @@ const skill = {
         prompt(event, player) {
           return '对' + get.translation(event.player) + '发动此技能？';
         },
-        _priority: 50,
         filter(event, player) {
           return event.player.hp < player.hp;
         },
@@ -31041,7 +30978,6 @@ const skill = {
     trigger: {
       global: 'damage',
     },
-    _priority: -1,
     forced: true,
     filter(event, player) {
       if (player.hasSkill('mx_zibei_temp1')) {
@@ -31752,7 +31688,6 @@ const skill = {
     trigger: {
       player: 'useCardEnd',
     },
-    _priority: 15,
     group: 'mx_fenqizhidun3',
     filter(event, player) {
       return get.subtype(event.card) == 'equip2' && get.type(event.card) == 'equip';
@@ -31809,7 +31744,6 @@ const skill = {
       content: '决意奋起之盾',
     },
     nopop: true,
-    _priority: 15,
     trigger: {
       target: ['shaBegin', 'nanmanBegin'],
     },
@@ -33289,7 +33223,6 @@ const skill = {
     trigger: {
       player: 'damageAfter',
     },
-    forced: true,
     filter(event, player) {
       return Math.random() <= 0.09;
     },
@@ -37543,7 +37476,6 @@ const skill = {
       order: 1,
       threaten: 1.14,
       unequip: true,
-      unequip: true,
       skillTagFilter(player, tag, arg) {
         if (arg && arg.name == 'sha' && arg.card && arg.card.storage && arg.card.storage.mbguli) {
           return true;
@@ -37921,7 +37853,6 @@ const skill = {
     trigger: {
       global: ['equipAfter'],
     },
-    _priority: 12,
     check(event, player) {
       return get.effect(event.player, { name: 'sha' }, player, player) > 0;
     },
@@ -38128,7 +38059,6 @@ const skill = {
     trigger: {
       global: 'damageAfter',
     },
-    _priority: 8,
     filter(event, player) {
       if (event.num <= 0 || event.cards) {
         return false;
@@ -38522,7 +38452,6 @@ const skill = {
     check(event, player) {
       return get.attitude(player, event.target) <= 0;
     },
-    _priority: 100,
     forced: true,
     content() {
       'step 0';
@@ -40355,7 +40284,6 @@ const skill = {
       global: 'roundStart',
     },
     forced: true,
-    _priority: 7,
     filter(event, player) {
       return game.hasPlayer(function (current) {
         return current != player && current.countCards('h');
@@ -40399,7 +40327,6 @@ const skill = {
         trigger: {
           global: 'phaseAfter',
         },
-        _priority: 11,
         forced: true,
         filter(event, player) {
           if (!player.countCards('he')) {
@@ -41390,7 +41317,6 @@ const skill = {
     trigger: {
       player: 'shaDamage',
     },
-    _priority: 9,
     filter(event, player) {
       return player.countCards('e');
     },
@@ -48369,7 +48295,6 @@ const skill = {
     trigger: {
       target: 'useCardToTargeted',
     },
-    _priority: 5,
     filter(event, player) {
       if (event.card.suit == 'spade') {
         return false;
@@ -48434,7 +48359,6 @@ const skill = {
       target: 'useCardToBegin',
     },
     forced: true,
-    _priority: 15,
     check(event, player) {
       return get.effect(event.target, event.card, event.player, player) < 0;
     },
@@ -48677,7 +48601,6 @@ const skill = {
     trigger: {
       global: 'useCardBegin',
     },
-    _priority: 5,
     filter(event, player) {
       if (player.storage.mx_shibing <= 4) {
         return false;
@@ -50251,7 +50174,6 @@ const skill = {
         trigger: {
           global: 'dying',
         },
-        _priority: 997,
         forced: true,
         filter(event, player) {
           return event.getParent(3).skill == 'mx_kuangre2_sha';
@@ -51663,7 +51585,6 @@ const skill = {
     trigger: {
       global: 'useCard',
     },
-    _priority: 15,
     filter(event, player) {
       return event.card && event.card.name == 'sha' && event.player != player && player.countCards('h', 'wuxie') > 0 && event.targets.includes(player) == false;
     },
@@ -51745,7 +51666,6 @@ const skill = {
     trigger: {
       player: 'zhujinqiyuanBegin',
     },
-    _priority: 13,
     filter(event, player) {
       return player.countCards('h');
     },
@@ -53265,7 +53185,6 @@ const skill = {
     trigger: {
       source: 'damageAfter',
     },
-    _priority: 8,
     filter(event, player) {
       if (!event.card || event.card.name != 'sha' || !event.notLink()) {
         return false;
@@ -53439,7 +53358,6 @@ const skill = {
     filter(event, player) {
       return Math.random() <= 0.15;
     },
-    _priority: 10,
     forced: true,
     content() {
       'step 0';
@@ -56213,7 +56131,6 @@ const skill = {
       return player.countCards('h') > 0 || event.source.countCards('h') > 0;
     },
     logTarget: 'source',
-    _priority: -1,
     check(event, player) {
       return true;
     },
@@ -56521,7 +56438,6 @@ const skill = {
           global: 'roundStart',
         },
         forced: true,
-        _priority: 5,
         content() {
           player.unmarkSkill('mx_huhunjia');
           delete player.storage.mx_huhunjia;
@@ -58000,7 +57916,6 @@ const skill = {
           player: 'gainEnd',
         },
         forced: true,
-        _priority: 100,
         popup: false,
         firstDo: true,
         filter(event, player) {
@@ -58561,7 +58476,6 @@ const skill = {
       global: 'useCardBegin',
     },
     forced: true,
-    _priority: 885,
     filter(event, player) {
       if (!get.tag(event.card, 'damage') || event.player == player || !event.targets.includes(player)) {
         return false;
@@ -58617,7 +58531,6 @@ const skill = {
         onremove(player) {
           player.unmarkSkill('mx_huiguniang_temp');
         },
-        _priority: 18,
         forced: true,
         content() {
           player.chooseDrawRecover(3, 1);
@@ -61924,7 +61837,6 @@ const skill = {
       target: 'useCardToBegin',
     },
     forced: true,
-    _priority: 15,
     check(event, player) {
       return get.effect(event.target, event.card, event.player, player) < 0;
     },
@@ -64124,7 +64036,6 @@ const skill = {
     trigger: {
       target: 'useCardToTargeted',
     },
-    _priority: 5,
     filter(event, player) {
       if (get.type(event.card) != 'trick' || event.card.suit != 'heart') {
         return false;
@@ -68491,7 +68402,6 @@ const skill = {
     trigger: {
       source: 'damageAfter',
     },
-    _priority: 8,
     filter(event, player) {
       if (!event.card || event.card.name != 'sha' || !event.notLink()) {
         return false;
@@ -69012,7 +68922,6 @@ const skill = {
     trigger: {
       global: 'useCardBegin',
     },
-    _priority: 5,
     filter(event, player) {
       if (event.card.suit != 'heart') {
         return false;
@@ -69194,7 +69103,6 @@ const skill = {
     trigger: {
       player: 'useCard',
     },
-    _priority: 10,
     check(event, player) {
       for (let tar of event.targets) {
         return get.attitude(player, tar) <= 0;
@@ -70173,7 +70081,6 @@ const skill = {
       }
       return true;
     },
-    _priority: 7,
     content() {
       'step 0';
       player.chooseToDiscard(2, 'he', true);
@@ -76529,7 +76436,6 @@ const skill = {
     trigger: {
       source: 'damageBegin',
     },
-    _priority: 8,
     filter(event, player) {
       if (get.color(event.card) != 'red') {
         return false;
