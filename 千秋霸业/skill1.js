@@ -20554,7 +20554,7 @@ const skill = {
 						list[t]++;
 					}
 				}
-			}	//QQQ
+			} //QQQ
 			let max = 0,
 				maxType = '';
 			for (t in list) {
@@ -35643,7 +35643,8 @@ const skill = {
 			}
 			event.bool = Math.min(event.basic, event.equip, event.trick);
 			('step 2');
-			const cards1 = [], cardPile = [];
+			const cards1 = [],
+				cardPile = [];
 			for (const i of ui.cardPile.childNodes) {
 				cardPile.push(i);
 			}
@@ -40795,7 +40796,8 @@ const skill = {
 			});
 			('step 4');
 			if (result.cards?.length) {
-				const res = result.cards, target = result.targets[0].playerid;
+				const res = result.cards,
+					target = result.targets[0].playerid;
 				player.addGaintag(res, '绝武');
 				event.distribution--;
 				if (!event.given_map[target]) {

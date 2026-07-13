@@ -8231,7 +8231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							type: 'spell',
 							enable: true,
 							notarget: true,
-							contentBefore() {},
+							contentBefore() { },
 							content() {
 								'step 0';
 								const enemies = player.getEnemies();
