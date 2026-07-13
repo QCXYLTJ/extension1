@@ -29911,7 +29911,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool) {
+            if (result.links?.length) {
                 player.lose(result.links[0], ui.special);
                 player.equip(game.createCard(result.links[0]));
             }
