@@ -524,7 +524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				var ttt = get.translation(event.numb);
 				player.chooseButton([ttt + ':选择获得一张武将牌上的所有技能', [list.randomGets(event.num), 'character']], true);
 				('step 6');
-				if (result.bool) {
+				if (result.links?.length) {
 					var name = result.links[0];
 					player.flashAvatar(event.numb, name);
 					game.log(player, '获得了', '#y' + get.translation(name), '的所有技能');

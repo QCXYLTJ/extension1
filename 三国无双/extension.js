@@ -527,7 +527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseCardButton([trigger.card1, trigger.card2], '请选择需要获得的牌');
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.gain(result.links[0], 'gain2');
 								} else {
 									event.finish();
@@ -1612,7 +1612,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, pl);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.storage.WSS_zhouyan = result.cards[0];
 									player.markSkill('WSS_zhouyan');
 									game.log(player, '将', result.cards[0], '置于其武将牌上');
@@ -1902,7 +1902,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								trigger.player.chooseCard('h', { type: 'basic' });
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									trigger.player.$give(result.cards[0], player);
 									player.gain(result.cards[0]);
 									player.damage(1, trigger.nature, trigger.source);
@@ -2521,7 +2521,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									player.gain(card, 'gain2');
 									trigger.target.storage.WSS_kaiken.remove(card);
@@ -3043,7 +3043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.cards.push(event.card1);
 								ui.cardPile.remove(event.card1);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.showCards(result.cards[0]);
 									event.cards.push(result.cards[0]);
 									player.lose(result.cards[0], ui.special);
@@ -3691,7 +3691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.lose(result.cards[0], ui.special);
 									ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
 								} else {
@@ -3864,7 +3864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										});
 										('step 1');
-										if (result.bool) {
+										if (result.cards?.length) {
 											player.useCard(result.cards[0]);
 											trigger.untrigger();
 											trigger.finish();
@@ -4577,7 +4577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									player.gain(card, 'gain2');
 									delete trigger.target.storage.WSS_qunxing;

@@ -6553,7 +6553,7 @@ const skills = {
                     return att / (1 + get.distance(player, target, 'absolute'));
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
                 result.targets[0].gain(trigger.cards.filterInD(), 'gain2');
                 player.getHistory('custom').push({ Europa_shouneng_name: trigger.card.name });
             }
@@ -9962,7 +9962,7 @@ const skills = {
                     return 6 - get.value(card);
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.cards?.length) {
                 const next = player.addToExpansion(result.cards[0], player, 'give', 'log');
                 next.gaintag.add('Europa_lihui_hui');
                 await next;
@@ -11897,7 +11897,7 @@ const skills = {
                                 return get.damageEffect(target, source, source);
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             target.setStorage('Europa_fuchou_record', [links[0], result.targets[0]]);
                         }
                     }
@@ -14558,7 +14558,7 @@ const skills = {
                     return player.getUseValue(button.link) * (button.link.name === 'Europa_wuerbanjupao' ? 3 : 1);
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.links?.length) {
                 const card = result.links[0];
                 await target.chooseUseTarget(card, true, false);
                 if (card.name === 'Europa_wuerbandapao') {
@@ -14625,7 +14625,7 @@ const skills = {
                         return (Math.max(get.damageEffect(target, player, player, 'fire'), 0) + 1) * (target.countCards('h') + 1);
                     })
                     .forResult();
-                if (result.bool) {
+                if (result.targets?.length) {
                     const target = result.targets[0];
                     await target.damage(1, 'fire');
                     target.addTempSkill('Europa_yaoban_ban', { player: 'phaseUseAfter' });

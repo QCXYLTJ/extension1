@@ -1283,7 +1283,7 @@ window.tgtt_import(function (lib, game, ui, get, ai, _status) {
                     }
                 })
                 'step 1'
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.give(result.cards, result.targets[0], true)
                     player.reduceTgttBuff('lieshi')
                 }
@@ -1321,7 +1321,7 @@ window.tgtt_import(function (lib, game, ui, get, ai, _status) {
                     .set('filterTarget', (card, player, target) => target != player && trigger.targets.includes(target) && target.countCards('he') > 0)
                     .set('ai', target => -get.attitude(player, target))
                 'step 1'
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.target = result.targets[0]
                     event.target.chooseCard('he', true, '将一张牌交给' + get.translation(player) + '.');
                 } else {

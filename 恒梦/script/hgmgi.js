@@ -3257,7 +3257,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'medal');
               result.targets[0].addSkill('iihg_mopd');
             }
@@ -3281,7 +3281,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'fire');
               result.targets[0].addSkill('iihg_gsji');
             }
@@ -3305,7 +3305,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'wood');
               result.targets[0].addSkill('iihg_uzuh');
             }
@@ -3329,7 +3329,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'cyan');
               result.targets[0].addSkill('iihg_hvfu');
             }
@@ -3353,7 +3353,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'lime');
               result.targets[0].addSkill('iihg_syhd');
             }
@@ -3377,7 +3377,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'green');
               result.targets[0].addSkill('iihg_zovu');
             }
@@ -3401,7 +3401,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'water');
               result.targets[0].addSkill('iihg_jing');
             }
@@ -3425,7 +3425,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return 1;
               })
               .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'blue');
               result.targets[0].addSkill('iihg_jkvi');
             }
@@ -4162,7 +4162,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             }).set('target', trigger.player);
           } else event.goto(11);
           ('step 10');
-          if (result.bool) {
+          if (result.links?.length) {
             const card = result.links[0];
             player.chooseUseTarget(true, card, false).set('filterTarget', function (card, player, target) {
               return [trigger.player, player].includes(target);
@@ -4229,7 +4229,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             }).set('target', event.n);
           } else event.goto(17);
           ('step 16');
-          if (result.bool) {
+          if (result.links?.length) {
             const card = result.links[0];
             player.chooseUseTarget(true, card, false).set('filterTarget', function (card, player, target) {
               return target == event.n;
@@ -8482,7 +8482,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               return 10 - get.attitude(player, target);
             })
             .forResult();
-          if (result.bool) {
+          if (result.targets?.length) {
             player.line(result.targets[0], 'green');
             result.targets[0].addSkill('guhx');
           }
@@ -18888,7 +18888,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
             return get.attitude(get.player(), target);
           });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             player.line(target, 'fire');
             lib.skill.yjwu.addMark('iuwu', player, target);
@@ -18913,7 +18913,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
               });
           } else event.finish();
           ('step 3');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             player.line(target, 'thunder');
             lib.skill.yjwu.addMark('vswu', player, target);
@@ -19063,7 +19063,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 });
               } else event.goto(2);
               ('step 1');
-              if (result.bool) {
+              if (result.targets?.length) {
                 var target = result.targets[0];
                 player.line(target, 'fire');
                 lib.skill.yjwu.addMark('iuwu', player, target);
@@ -19076,7 +19076,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 });
               } else event.finish();
               ('step 3');
-              if (result.bool) {
+              if (result.targets?.length) {
                 var target = result.targets[0];
                 player.line(target, 'thunder');
                 lib.skill.yjwu.addMark('vswu', player, target);

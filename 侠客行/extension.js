@@ -672,7 +672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards = result.links[0];
                                     player.chooseTarget('选择一名角色获得' + get.translation(event.cards) + '并增加一点体力上限且回复一点体力值', true).ai = function (target) {
                                         if (result.links[0].name == 'xuantiejian_Angel') {
@@ -682,7 +682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.gain(event.cards, 'gain2');
@@ -1017,7 +1017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 7 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cardd = result.cards[0];
                                     var list = [];
                                     for (var i of lib.inpile) {
@@ -2681,7 +2681,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                             }
                                             ('step 3');
-                                            if (result.bool) {
+                                            if (result.cards?.length) {
                                                 var cards = result.cards[0];
                                                 player.loseToDiscardpile(cards);
                                                 player.draw();

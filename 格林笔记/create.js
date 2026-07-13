@@ -715,7 +715,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return 0;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             trigger.player.equip(result.cards[0]);
           } else {
             event.finish();
@@ -901,7 +901,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return att;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             event.current = result.targets[0];
             player.line(event.current, 'thunder');
             event.current.draw(player.hp * 2);
@@ -1354,7 +1354,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return -2;
             });
           ('step 2');
-          if (result.bool) {
+          if (result.targets?.length) {
             event.target = result.targets[0];
             player.chooseCount('疯乱:请选择要令' + get.translation(event.target) + '摸的牌数', [1, 5], 1).set('ai', function (event, player) {
               if (get.attitude(player, event.target) > 0) {
@@ -1521,7 +1521,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             true
           );
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             target._trueMe = player;
             game.addGlobalSkill('autoswap');
@@ -1853,7 +1853,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             }
           });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             event.target = result.targets[0];
             delete event._result.bool;
             player.discardPlayerCard('h', '弃置其1张手牌,或取消对其造成1点伤害', event.target).ai = function (button) {
@@ -1981,7 +1981,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 player.chooseButton(dialog, get.prompt(event.name));
               }
               ('step 1');
-              if (result.bool) {
+              if (result.links?.length) {
                 trigger.card.gl_yujiao = result.links[0];
               }
             },
@@ -2213,7 +2213,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return att;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             target.recover(target.maxHp - target.hp);
             if (target != player) {
@@ -2248,7 +2248,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return att;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             target.drawTo(target.getHandcardLimit());
             if (target != player) {
@@ -2323,7 +2323,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           'step 0';
           player.chooseTarget(get.prompt2('gl_jisong'));
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             event.target = result.targets[0];
             var target = event.target;
             var skills = target.getSkills(false, false);

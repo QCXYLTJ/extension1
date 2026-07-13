@@ -1753,7 +1753,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0], true);
                                 }
                             },
@@ -2641,7 +2641,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('ai', (button) => _status.event.player.getUseValue(button.link))
                                     .set('cardx', cards)
                                     .forResult();
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     await player.chooseUseTarget(result.links[0], true, false);
                                     if (!player.isIn()) return;
                                     var card = get.autoViewAs(
@@ -3224,7 +3224,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .chooseButton(['选择获得一项增益效果', [list, 'textbutton']], true)
                                     .set('ai', (button) => button.link == _status.event.boolx)
                                     .set('boolx', bool);
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     switch (result.links[0]) {
                                         case 'damage':
                                             event.targets[0].addSkill('daoguishafa_damage');
@@ -6779,7 +6779,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return num;
                                     })
                                     .set('suit', suit);
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.result.cards = player.getCards(result.links[0], (card) => card.suit == suit);
                                 } else evt.goto(0);
                             },
@@ -9601,7 +9601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         break;
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.discardPlayerCard(result.targets[0], 'e', true);
                                     player.draw();
                                     player.removeMark('charge');
@@ -12518,7 +12518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton(player.getExpansions('guiyouyi'), 1);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.discard(result.links[0]);
                                     target.damage();
                                 } else {
@@ -13454,7 +13454,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('att', get.attitude(target[0], player) > 0);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             event.target.give(result.cards[0], player);
                                             event.target.addExpose(0.3);
                                         }
@@ -13720,7 +13720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                 } else {
@@ -13744,7 +13744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getUseValue(card);
                                 });
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.guiyiji.add(result.links[0][2]);
                                     event.target.chooseUseTarget({
                                         name: result.links[0][2],
@@ -18738,7 +18738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     name
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     result.targets[0].recover(result.targets[0].maxHp - result.targets[0].hp);
                                     result.targets[0].drawTo(result.targets[0].maxHp);
@@ -20857,7 +20857,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('random', event.targets[0].awakenedSkills.filter((i) => event.targets[0].getSkills(false, false, false).includes(i) && get.info(i).limited).randomGet());
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             game.log(event.targets[0], '重置了技能', result.links[0]);
                                             event.targets[0].restoreSkill(result.links[0]);
                                         } else event.targets[0].draw();
@@ -22110,7 +22110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         break;
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.discardPlayerCard(result.targets[0], 'e', true);
                                     player.draw();
                                     player.removeMark('charge');
@@ -24372,7 +24372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton(player.getExpansions('guiyouyi'), 1);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.discard(result.links[0]);
                                     target.damage();
                                 } else {
@@ -24842,7 +24842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('att', get.attitude(target[0], player) > 0);
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             event.target.give(result.cards[0], player);
                                             event.target.addExpose(0.3);
                                         }

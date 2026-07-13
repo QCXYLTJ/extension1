@@ -37,7 +37,7 @@ export async function content(config, pack) {
                 player.chooseTarget('选择一名角色,为其更换角色')
                 'step 1'
                 var character = []
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.targets1 = result.targets[0]
                     for (var i in lib.characterPack) {
                         for (var o in lib.characterPack[i]) {
@@ -74,7 +74,7 @@ export async function content(config, pack) {
                 "step 0"
                 player.chooseTarget('选择一名角色,为其更换卡牌')
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0]
                     event.targets1 = result.targets[0]
                     var cards = target.getCards('h')

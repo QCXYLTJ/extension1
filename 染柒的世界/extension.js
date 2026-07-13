@@ -3466,7 +3466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.judge(function (card) {
                                         var suit = card.suit;
@@ -3682,7 +3682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target) / 5;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var card = target
                                         .getCards('h', function (card) {
@@ -3723,7 +3723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }).ai = function (target) {
                                     return -get.attitude(player, target) / 5;
                                 };
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.useSkill('rqsj_addshui');
                                 }
@@ -4152,7 +4152,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player, 'thunder') + 0.1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.damage();
                                 }
@@ -4918,7 +4918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var num = [1, 0].randomGet();
                                     if (get.isLuckyStar(player)) num = 1;
@@ -4945,7 +4945,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var num2 = [1, 0].randomGet();
                                     if (get.isLuckyStar(player)) num2 = 1;
@@ -7860,7 +7860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.addSkill('rqsj_xuanyun');
                                     var hs = event.target.getCards('he');
@@ -8023,7 +8023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player, 'thunder') + 0.1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.damage('thunder');
                                     player.removeMark('rqsj_fali', 2);
@@ -8480,7 +8480,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player) + 0.1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.damage();
                                     trigger.player.removeMark('rqsj_xurui_mark');

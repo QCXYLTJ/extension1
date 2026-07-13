@@ -691,7 +691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.swapHandcards(result.targets[0]);
                                     trigger.player = result.targets[0];
                                 }
@@ -1982,7 +1982,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return player == target;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(3);
                                     player.addTempSkill('zmxingzhitianqiu_0', { player: 'phaseBefore' });
                                 }
@@ -2032,7 +2032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets[0].name == 'zm_13lingluoya' || result.targets[0].name1 == 'zm_13lingluoya' || result.targets[0].name2 == 'zm_13lingluoya') {
                                         game.playzm8(['zmenchoudebifang0', 'zmenchoudebifang00'].randomGet());
                                     } else {
@@ -2094,7 +2094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card1 = result.links[0];
                                     target.lose(card1, ui.special);
                                     ui.cardPile.insertBefore(card1, ui.cardPile.firstChild);
@@ -5072,7 +5072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 18 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var num = result.cards[0].number;
                                     // var cards=target.getCards('e',{number:num});//版本bug
                                     var cards = [];

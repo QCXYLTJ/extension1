@@ -3454,7 +3454,7 @@ const content = async function () {
           'step 0';
           player.chooseButton(['请选择' + get.translation(target) + '的一张手牌', target.getCards('h')], true).set('ai', get.buttonValue);
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             let card = result.links[0];
             event.card = card;
             if (!lib.filter.cardEnabled(card, target)) {
@@ -3912,7 +3912,7 @@ const content = async function () {
             });
           }
           ('step 2');
-          if (result.bool) {
+          if (result.cards?.length) {
             let card = result.cards[0];
             event.card = card;
             event.count++;
@@ -4924,7 +4924,7 @@ const content = async function () {
               return true;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             event.card = result.links[0];
             player.showCards([event.card], get.translation(player) + '展示的手牌');
           } else {
@@ -5159,7 +5159,7 @@ const content = async function () {
             })
             .set('ai', (target) => get.effect(target, { name: 'shunshou_copy2' }, _status.event.player, _status.event.player));
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             if (target.ai.shown > 0) {
               player.addExpose(0.15);
@@ -5310,7 +5310,7 @@ const content = async function () {
             prompt: get.prompt2('new_qingjian'),
           });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             let cards = result.cards;
             let type = [];
@@ -5393,7 +5393,7 @@ const content = async function () {
               .set('ai', (target) => get.attitude(_status.event.player, target));
           }
           ('step 3');
-          if (result.bool) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             player.line(target, 'green');
             target.gain(trigger.cards.filterInD(), player, 'gain2');
@@ -5452,7 +5452,7 @@ const content = async function () {
             })
             .set('animate', false);
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             player.markAuto('dcsilve', [target]);
             player.addSkill('dcsilve_rob');
@@ -6551,7 +6551,7 @@ const content = async function () {
             return 0;
           };
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             player.line(target);
             const mark = player.countMark('drlt_jieying_mark');
@@ -7244,7 +7244,7 @@ const content = async function () {
             trigger.player.disableEquip(Q);
           }
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             trigger.player.discard(result.links[0]);
           }
         },

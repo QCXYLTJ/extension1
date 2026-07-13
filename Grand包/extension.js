@@ -625,7 +625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player) * (target.hp == 1 ? 2 : 1);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target);
@@ -651,7 +651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1;
                                     });
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target, 'green');
@@ -1542,7 +1542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards[0], player, 'give').gaintag.add('Grand_yuelingsuiye');
                                 }
                                 ('step 4');
@@ -3124,7 +3124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.damage(1, 'thunder');
                                     var cards = player.getCards('h', (card) => card.suit == trigger.card.suit);
@@ -4356,7 +4356,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.changeGroup(event.map[result.links[0]]);
                                 }
                             },
@@ -4502,7 +4502,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(_status.event.player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.awakenSkill('Grand_juetao');
@@ -4635,7 +4635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return _status.event.goon ? 1 : 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.give(result.cards[0], player);
                                     player.chooseUseTarget({ name: 'sha' }, true, false);
                                 }
@@ -4668,7 +4668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('targets', trigger.targets);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     trigger.directHit.add(target);
@@ -5701,7 +5701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return Math.random();
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.storage.Grand_zhiwei_draw = target;
                                     player.addSkill('Grand_zhiwei_draw');

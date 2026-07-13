@@ -47,7 +47,7 @@ window.gl_load(function (lib, game, ui, get, ai, _status) {
             return -get.attitude(_status.event.player, target);
           });
           'step 1';
-          if (result.bool) {
+          if (result.targets?.length) {
 
             player.discardPlayerCard(result.targets[0], 'hej', true, [1, 3]);
           }
@@ -82,7 +82,7 @@ window.gl_load(function (lib, game, ui, get, ai, _status) {
             return player != target && target.group == player.group;
           });
           'step 1';
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             event.target = target;
             var skills = player.getSkills(false, false);
@@ -697,7 +697,7 @@ window.gl_load(function (lib, game, ui, get, ai, _status) {
           }
           player.chooseButton([get.prompt('gl_wuhua'), [list, 'vcard']]);
           'step 1';
-          if (result.bool) {
+          if (result.links?.length) {
 
             player.storage.gl_wuhua = result.links[0][2];
             player.addTempSkill('gl_wuhua_use', {

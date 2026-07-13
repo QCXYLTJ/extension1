@@ -1574,7 +1574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target);
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(2);
                                 }
                             },
@@ -1722,7 +1722,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 2'
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     player.chooseUseTarget(card, true);
                                     player.addTempSkill('Lighter_block', 'roundStart');
@@ -2220,7 +2220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 'step 2'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target2 = result.targets[0];
                                     event.target.chooseToUse((c) => lib.filter.filterCard(c, event.target, event.getParent(2)), `游丝:对${get.translation(target2)}使用一张牌`)
                                         .set('targetRequired', true)
@@ -2297,7 +2297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 'step 3'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.reversed1 = result.targets[0];
                                     event.reversed2 = trigger.player;
                                 }
@@ -2424,7 +2424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(player, target) >= 0;
                                         });
                                         'step 1'
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.tarx = result.targets[0];
                                             player.line(event.tarx, 'green');
                                             event.tarx.chooseToDiscard(event.numx, 'he', true);
@@ -3066,7 +3066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('Piersky')
                                 }).set('prompt2', '将一张牌当作【兵临城下】使用');
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'binglinchengxiax' }, result.cards, 'Piersky', result.targets[0], false);
                                 }
                                 else event.finish();
@@ -4886,7 +4886,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target.countCards('h') > 2;
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.addTempSkill('Pedeter_block');
                                     target.addTempSkill('Pedeter_afraid');
@@ -5462,7 +5462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return (get.color(card) == 'red') ? (4 - get.value(card)) : (7 - get.value(card));
                                 }).set('prompt2', '对自己发动【擅专】,再获得场上一张装备牌');
                                 'step 1'
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.$throw(card);
                                     if (get.type(card, false) == 'delay') player.addJudge(card);
@@ -5679,7 +5679,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt('Poemance')
                                 }).set('prompt2', '将一张牌当【桃】使用或交出(选择自己即使用,否则交给目标)');
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     if (player == event.target) player.useCard({ name: 'tao' }, result.cards, event.target, false);
                                     else player.give(result.cards, event.target);
@@ -6341,7 +6341,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (targets.length)
                                             player.chooseTarget('调离一名不为此牌目标的角色至轮次结束', (event, player, target) => targets.includes(target)).set('ai', (t) => -get.attitude(t, player));//QQQ
                                         'step 2'
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].addTempSkill('Highnoon_out', { global: 'roundStart' });
                                         }
                                     },

@@ -62,7 +62,7 @@ const skill = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, "fire");
 				target.damage("fire", "nocard");
@@ -459,7 +459,7 @@ const skill = {
 			"step 0";
 			player.chooseVCardButton(get.typeCard("gwmaoxian").randomGets(3), true, "选择一张冒险牌");
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = game.createCard(result.links[0][2]);
 				player.gain(event.card, "gain2");
 			} else {
@@ -1014,7 +1014,7 @@ const skill = {
 							return -get.attitude(player, target) / Math.sqrt(target.countCards("h"));
 						});
 					"step 1";
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.discardPlayerCard(target, "h", true);
 						player.line(target, "green");
@@ -1438,7 +1438,7 @@ const skill = {
 				return att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill("gwqinwu", target);
 				target.draw();
@@ -1684,7 +1684,7 @@ const skill = {
 						return get.useful(button.link);
 					});
 					"step 1";
-					if (result.bool) {
+					if (result.links?.length) {
 						var card = result.links[0];
 						card.fix();
 						player.gain(card, "draw");
@@ -2079,7 +2079,7 @@ const skill = {
 				event.finish();
 			}
 			"step 4";
-			if (result.bool) {
+			if (result.links?.length) {
 				result.links[0].vanishtag.add("_gwshenyu");
 				event.target.gain(result.links, "gain2", "log");
 			}
@@ -2150,7 +2150,7 @@ const skill = {
 				}
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				target.gain(game.createCard(result.links[0][2]), "gain2");
 			}
 		},

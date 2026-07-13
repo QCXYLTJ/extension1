@@ -68,7 +68,7 @@
 					}
 					if (carding.length) player.chooseButton(true, [get.translation(event.name), carding]);
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.gain(result.links[0]);
 					}
 				},
@@ -98,7 +98,7 @@
 					}
 					if (carding.length) player.chooseButton(true, [get.translation(event.name), carding]);
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.gain(result.links[0]);
 					}
 				},
@@ -1021,7 +1021,7 @@
 					next.set(prompt, get.prompt(event.name));
 					next.set('prompt2', get.translation(event.name + '_info'));
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						event.target = target;
 						if (target.countDiscardableCards(target, 'hej') >= 2) {
@@ -1182,7 +1182,7 @@
 									return -get.attitude(_status.event.player, target);
 								});
 							('step 2');
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.line(result.targets[0], 'green');
 								player.discardPlayerCard(result.targets[0], 'he', true);
 								event.count--;
@@ -1323,7 +1323,7 @@
 								player.chooseButton(true, [get.translation(event.name), mark]);
 							} else event.finish();
 							('step 2');
-							if (result.bool) {
+							if (result.links?.length) {
 								event.ccc = result.links[0];
 								var str = '<b><font color = white>';
 								str += '将你武将牌旁的一张【' + get.translation(event.ccc) + '】置于一名角色的装备区';
@@ -1331,7 +1331,7 @@
 								player.chooseTarget(true, get.prompt(event.name), str);
 							}
 							('step 3');
-							if (result.bool) {
+							if (result.targets?.length) {
 								event.ttt = result.targets[0];
 								event.ttt.equip(event.ccc);
 							}
@@ -1461,7 +1461,7 @@
 								return target != player && !target.hasSkill('千鹤fgo_禁手_mod');
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								targed = result.targets[0];
 								targed.addSkill('千鹤fgo_禁手_mod');
 							}
@@ -1591,7 +1591,7 @@
 								};
 							}
 							('step 1');
-							if (result.bool) {
+							if (result.links?.length) {
 								player.gain(game.found(result.links[0][2], null, null, null), 'draw');
 								var card = get.cardPile(function (card) {
 									return card.name == 'juedou';

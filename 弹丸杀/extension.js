@@ -1792,7 +1792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.finish();
 								event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'green');
 									target.hp = target.maxHp;
@@ -1995,7 +1995,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return num;
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var tgs = result.targets[0];
 											player.storage.zuimu_tar = tgs;
 											tgs.skills.remove('zuimu3');
@@ -2085,7 +2085,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								next.autochoose = lib.filter.autoRespondSha;
 								next.source = trigger.player;
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.useCard(result.card || result.cards[0], trigger.player);
 									trigger.untrigger();
 									trigger.finish();
@@ -3194,7 +3194,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								next.set('source', trigger.source);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.tgs = result.targets[0];
 								} else {
 									event.goto(3);
@@ -3461,7 +3461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('check', check);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].gain(result.cards, event.player);
 									event.player.$give(result.cards.length, result.targets[0]);
 									player.line(result.targets, 'green');

@@ -78,7 +78,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
               return 0;
             };
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               target.changeHujia();
               player.logSkill(event.name, result.targets);
@@ -121,7 +121,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
               }
             };
             'step 3';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.logSkill(event.name, target);
               if (event.color == 'red') {

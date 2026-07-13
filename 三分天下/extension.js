@@ -105,7 +105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(1);
                                 }
                                 ('step 7');
@@ -139,7 +139,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseToDiscard(get.prompt('仁心', event.player), '弃置一张装备牌令' + get.translation(trigger.player) + '回复至一点体力,根据你弃置的装备牌获得不同的效果', { type: 'equip' }, 'he', true);
                                 ('step 1');
                                 trigger.player.recover(1 - trigger.player.hp);
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (get.subtype(result.cards[0]) == 'equip1') {
                                         player.turnOver();
                                         trigger.source.damage(player);
@@ -316,7 +316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1 + Math.random();
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.storage.xieling = target;
                                     var list = [];
@@ -601,7 +601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.draw();
                                     target.draw();
@@ -760,7 +760,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var t = result.targets[0];
                                             t.draw(2);
                                             event.targets = game.filterPlayer();
@@ -1070,7 +1070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.color = result.color;
                                 player.chooseTarget('若判定结果为:♥️️:其回复一点体力;♦️️:其摸一张牌;♠️️:你对其造成一点伤害;♣️️:你弃置其一张牌', true);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets[0];
                                 }
                                 ('step 3');
@@ -1185,7 +1185,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return player != target;
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.gainPlayerCard(result.targets[0], 'hej', true);
                                         }
                                     },
@@ -2808,7 +2808,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && trigger.player != target;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.chooseCard('交给' + get.translation(event.target) + '一张牌', 'he', true);
                                 } else event.finish();
@@ -2838,7 +2838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(card) == 'trick';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.lose(card, ui.discardPile, 'visible');
                                     player.$throw(card, 1000);

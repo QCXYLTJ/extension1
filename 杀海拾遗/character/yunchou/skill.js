@@ -540,7 +540,7 @@ const skills = {
 				event.finish();
 			}
 			"step 4";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.give(result.cards, target);
 			}

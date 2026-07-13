@@ -128,7 +128,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     player.storage.taixu_linglu.add(result.targets[0]);
                                     result.targets[0].markSkill('taixu_linglu_jilu');
@@ -340,7 +340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     player.storage.taixu_zhuosheng.add(result.targets[0]);
                                     result.targets[0].markSkill('taixu_zhuosheng_jilu');
@@ -763,7 +763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 var player = _status.event.player;
                                                 return get.damageEffect(target, player, player);
                                             });
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.line(target, 'green');
                                             await target.damage(2, player);
@@ -791,7 +791,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var { result } = await player.chooseTarget(false, '选择一名其他角色令其本局游戏受到伤害+1', lib.filter.notMe).set('ai', function (target) {
                                     return -get.attitude(_status.event.player, target);
                                 });
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('hy_ny_juejin2');
                                     player.addTempSkill('hy_ny_juetao');
@@ -1150,7 +1150,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return button.link[2] == 'wugu' ? 1 : -1;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget(result.links[0][2], true, false);
                                         }
                                     },
@@ -1335,7 +1335,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     target.judge(function (card) {
@@ -2351,7 +2351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     var s = card.suit,
                                         n = card.number;
@@ -2446,7 +2446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     var player = _status.event.player;
                                     return get.damageEffect(target, player, player);
                                 });
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.damage(player);
                                 }
@@ -2671,7 +2671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.damage(event.num, player);
                                 }
@@ -3132,7 +3132,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('ai', function (card) {
                                             return 5 - get.value(card);
                                         });
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     target.storage.ye_jingang.push(card.suit);
                                     target.give(card, player);
@@ -3183,7 +3183,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('ai', function (card) {
                                             return 5 - get.value(card);
                                         });
-                                    if (result.bool) {
+                                    if (result.cards?.length) {
                                         var card = result.cards[0];
                                         target.storage.hy_jingang.push(card.suit);
                                         target.give(card, player);
@@ -4197,7 +4197,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var num = player.maxHp - player.hp;
                                     player.chooseBool('令' + get.translation(event.target) + '翻面并摸' + get.cnNumber(num) + '张牌,否则其弃置' + get.cnNumber(num) + '张牌并流失一点体力').set('ai', function () {
@@ -5724,7 +5724,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('targets', event.parent.getTrigger().targets);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     player.addTempSkill('yeqingshi_ex');
@@ -6775,7 +6775,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var num = player.maxHp - player.hp;
                                     player.chooseBool('令' + get.translation(event.target) + '翻面并摸' + get.cnNumber(num) + '张牌,否则其弃置' + get.cnNumber(num) + '张牌并流失一点体力').set('ai', function () {

@@ -1404,7 +1404,7 @@ const skill = {
         return -get.attitude(player, target);
       };
       ('step 1');
-      if (result.bool) {
+      if (result.targets?.length) {
         let target = result.targets[0];
         target.addSkill('叛弑');
       }

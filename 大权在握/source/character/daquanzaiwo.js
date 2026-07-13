@@ -1104,7 +1104,7 @@ export let info = {
                 return att;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               var args = [event.name, 'dqzw_lingkong_equip5', ['dqzw_weilou'], 'dqzw_ezhui_inherit'];
               game.addVideo('skill', player, [event.name, [args]]);
@@ -1349,7 +1349,7 @@ export let info = {
             return att;
           });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           var args = [event.name, 'dqzw_lingheng_equip2', ['dqzw_zangsong']];
           game.addVideo('skill', player, [event.name, [args]]);
@@ -1563,7 +1563,7 @@ export let info = {
             return att;
           });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           var args = [event.name, 'dqzw_lingyu_equip6', ['dqzw_zhichi'], player];
           game.addVideo('skill', player, [event.name, [args]]);
@@ -2023,7 +2023,7 @@ export let info = {
             return get.effect(target, { name: 'tiesuo' }, player, player);
           });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.link();
           event.target = target;
@@ -2412,7 +2412,7 @@ export let info = {
                 return target != player ? Math.random() * get.attitude(player, target) : 0;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               target.addTempSkill('qigong_ai', 'dqzw_qingjiao_qigongEnd');
               target
@@ -3148,7 +3148,7 @@ export let info = {
           return 5 - _status.event.player.getUseValue(card);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           event.card = result.cards[0];
           player
             .chooseControl('牌堆顶', '牌堆底')
@@ -3460,7 +3460,7 @@ export let info = {
                 });
             }
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = event.target || result.targets[0];
               target.damage('nocard');
             }
@@ -3844,7 +3844,7 @@ export let info = {
           event.finish();
         }
         ('step 7');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0],
             owner = get.owner(card);
           if (owner) player.line2([owner, target]);
@@ -3922,7 +3922,7 @@ export let info = {
           });
         });
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var viewAs = { name: result.links[0][2], nature: result.links[0][3] };
           var backup = 'dqzw_danxin_backup';
           lib.skill[backup].viewAs = viewAs;
@@ -4562,7 +4562,7 @@ export let info = {
             });
         }
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           trigger.player = target;
           if (trigger.name == 'discard') trigger.cards = target.getCards('he');
@@ -4583,7 +4583,7 @@ export let info = {
         player.chooseTarget(get.prompt(event.name), '你可以将' + get.translation(cards) + '交给一名其他角色', lib.filter.notMe);
         event.cards = cards;
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.gain(cards, 'gain2').giver = player;
         } else {
@@ -4594,7 +4594,7 @@ export let info = {
           return _status.event.player.getUseValue({ name: button.link[2] });
         });
         ('step 3');
-        if (result.bool) {
+        if (result.links?.length) {
           var viewAs = { name: result.links[0][2] };
           player
             .chooseTarget(
@@ -5701,7 +5701,7 @@ export let info = {
                 });
               }
               ('step 3');
-              if (result.bool) {
+              if (result.cards?.length) {
                 var cards = result.cards[0];
                 player.loseToDiscardpile(cards);
                 player.draw();
@@ -6242,7 +6242,7 @@ export let info = {
           event.finish();
         }
         ('step 2');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.line(target, 'green');
           target.draw(event.num);
@@ -6360,7 +6360,7 @@ export let info = {
               .set('sha', trigger.cards[0].name == 'sha')
               .set('wuxie', trigger.cards[0].name == 'wuxie');
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].gain(trigger.cards.filterInD(), 'gain2');
             }
           },
@@ -6408,7 +6408,7 @@ export let info = {
             return att;
           }).animate = false;
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0],
             storage1 = player.storage[event.name + '_same'],
             storage2 = player.storage[event.name + '_different'];
@@ -6457,7 +6457,7 @@ export let info = {
               .set('sha', trigger.cards[0].name == 'sha')
               .set('wuxie', trigger.cards[0].name == 'wuxie');
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].gain(trigger.cards.filterInD(), 'gain2');
             }
           },
@@ -6505,7 +6505,7 @@ export let info = {
             return att;
           }).animate = false;
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0],
             storage1 = player.storage[event.name + '_same'],
             storage2 = player.storage[event.name + '_different'];
@@ -7227,7 +7227,7 @@ export let info = {
             return att * lib.card['guohe_copy2'].ai.result.target(player, target);
           });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           if (trigger.name == 'respond') {
             target.draw();
@@ -7924,7 +7924,7 @@ export let info = {
         'step 0';
         player.chooseTarget('选择一名角色,使用' + get.translation(trigger.cards) + '', (event, player, target) => lib.filter.filterCard(trigger.card, target, event) && target != player);
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           trigger.player = result.targets[0];
         }
       },
@@ -7971,7 +7971,7 @@ export let info = {
         'step 0';
         player.chooseTarget('选择一名角色,令其将势力改为与你相同', (event, player, target) => game.filterPlayer((current) => current.groupyx && player.groupyx && current.groupyx == player.groupyx).includes(target));
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           result.targets[0].group = player.group;
           result.targets[0].chooseUseTarget({ name: 'sha' }, '视为使用一张杀', false, true);
         }
@@ -8643,7 +8643,7 @@ export let info = {
           },
         });
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           var type = get.type2(result.cards[0]);
           player.getHistory('custom').push({
             name: event.name,
@@ -10186,7 +10186,7 @@ export let info = {
           return get.attitude(_status.event.player, target);
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.addTempSkill('dqzw_pixie', { player: 'phaseAfter' });
         }
@@ -11595,7 +11595,7 @@ export let info = {
           event.finish();
         }
         ('step 2');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.addToExpansion(cards, 'gain2').gaintag.add(event.name);
         }
@@ -11733,7 +11733,7 @@ export let info = {
                 return (get.attitude(player, target) - 1) * (target.countCards('h') / 2);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.addTempSkill('dqzw_heqin_clear', 'roundStart');
               player.storage.dqzw_heqin = target;
@@ -12109,7 +12109,7 @@ export let info = {
           },
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.discard(result.cards).discarder = player;
           player.gainPlayerCard(target, true, target == player ? 'ej' : 'hej');
@@ -12287,7 +12287,7 @@ export let info = {
           return target.countCards('h');
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.addTempSkill('dqzw_beitong_effect', 'roundStart');
           target.storage.dqzw_beitong_effect = player;
@@ -14124,7 +14124,7 @@ export let info = {
           },
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.discard(result.cards).discarder = player;
           player.addTempSkill('dqzw_yaozhuo_shadow', { player: 'die' });
@@ -14316,7 +14316,7 @@ export let info = {
             return att / 3;
           });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           var suits = lib.suit.slice(0),
             card;
@@ -14665,7 +14665,7 @@ export let info = {
           event.finish();
         }
         ('step 4');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.line(target);
           target.addMark('jiangyin');
@@ -15729,7 +15729,7 @@ export let info = {
           event.finish();
         }
         ('step 3');
-        if (result.bool) {
+        if (result.targets?.length) {
           var current = result.targets[0];
           current.chooseCard(2, 'h', true, '宦锢:选择要交换的手牌');
           event.target = current;
@@ -16065,7 +16065,7 @@ export let info = {
               event.finish();
             }
             ('step 2');
-            if (result.bool) {
+            if (result.cards?.length) {
               var card = result.cards[0];
               var viewAs = { name: card.name, nature: card.nature };
               player.useCard(viewAs, trigger.player, false);
@@ -16698,7 +16698,7 @@ export let info = {
           event.finish();
         }
         ('step 5');
-        if (result.bool) {
+        if (result.links?.length) {
           var card = result.links[0];
           cards.remove(card);
           player.chooseUseTarget(card, true);
@@ -17142,7 +17142,7 @@ export let info = {
               return get.damageEffect(target, player, player, 'thunder');
             })
             .forResult();
-          if (result.bool) {
+          if (result.targets?.length) {
             const target = result.targets[0];
             player.line(target, 'thunder');
             target.damage(suit == 'spade' ? 2 : 1, 'thunder', 'nocard');
@@ -17182,7 +17182,7 @@ export let info = {
               })
               .set('judging', trigger.player.judging)
               .forResult();
-            if (result.bool) {
+            if (result.links?.length) {
               const link = result.links[0];
               await game.cardsGotoOrdering(link).set('relatedEvent', trigger);
               player.$throw(link);
@@ -17663,7 +17663,7 @@ export let info = {
             return get.attitude(get.player(), target);
           })
           .forResult();
-        if (result.bool) {
+        if (result.targets?.length) {
           const target = result.targets[0];
           target.addSkillLog('dqzw_jiezhen');
           target.storage.dqzw_jiezhen.fixed = true;
@@ -18309,7 +18309,7 @@ export let info = {
               },
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               target.gain(result.cards, player, 'give', 'bySelf');
               if (player.canUse({ name: 'jiedao' }, target, false)) player.useCard({ name: 'jiedao' }, target, false);
@@ -18484,7 +18484,7 @@ export let info = {
           }),
         ]);
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var card = result.links[0];
           player.$gain2(card, false);
           player.storage.dqzw_baiyi_effect = target;
@@ -18615,7 +18615,7 @@ export let info = {
                       });
                   }
                   ('step 1');
-                  if (result.bool) {
+                  if (result.targets?.length) {
                     player.storage.dqzw_jianguo = result.targets[0];
                   } else event.finish();
                 },
@@ -18652,7 +18652,7 @@ export let info = {
               return !player.getShownCards('h').includes(card);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               event.card1 = result.cards[0];
               player.addShownCards(result.cards, 'visible_dqzw_jianguo');
             } else {
@@ -18666,7 +18666,7 @@ export let info = {
               });
             } else event.card2 = event.card1;
             ('step 3');
-            if (result.bool) {
+            if (result.cards?.length) {
               event.card2 = result.cards[0];
               trigger.player.addShownCards(result.cards, 'visible_dqzw_jianguo');
             }
@@ -18850,7 +18850,7 @@ export let info = {
               return typeof button.link == 'string';
             });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               if (result.links[0] == '暗置手牌') player.hideShownCards(player.getCards('h'));
               else {
                 player.gain(player.storage.dqzw_mingfa, 'gain2');
@@ -19022,7 +19022,7 @@ export let info = {
           });
         });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           event.target = target;
           target.chooseCard('he', '交给' + get.translation(player) + '一张不在游戏牌堆内的牌', function (card) {
@@ -19364,7 +19364,7 @@ export let info = {
             });
         } else event._result = { bool: false };
         ('step 3');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.line(target);
           target.draw();
@@ -19383,7 +19383,7 @@ export let info = {
             });
         } else event._result = { bool: false };
         ('step 5');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.line(target);
           player.discardPlayerCard(target, 'he', true);
@@ -20178,7 +20178,7 @@ export let info = {
         'step 0';
         player.chooseTarget(get.prompt2('dqzw_yiyi')).set('ai', function (target) { });
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           game.filterPlayer(function (current) {
             if (current != player) {
@@ -20881,7 +20881,7 @@ export let info = {
           })
           .set('prompt2', str);
         ('step 1');
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0],
             list = ['星垂'],
             hs = [],
@@ -20997,7 +20997,7 @@ export let info = {
           event.finish();
         }
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           var card = result.cards[0];
           if (card.gaintag.some((tag) => tag.startsWith('visible_')) || event.current.countCards('h') == 1) {
             event.current.chooseUseTarget(card, true);
@@ -21034,7 +21034,7 @@ export let info = {
           .set('target', player)
           .set('source', trigger.player);
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var name = result.links[0][2];
           event.Q = name;
           trigger.player.chooseCard('荧悬:弃置一张非【' + get.translation(name) + '】以视为对' + get.translation(player) + '使用【' + get.translation(name) + '】<br>或点<取消>重新选择', function (card) {
@@ -21042,7 +21042,7 @@ export let info = {
           });
         } else event.finish();
         ('step 2');
-        if (result.bool) {
+        if (result.cards?.length) {
           var card = result.cards[0],
             list = [];
           event.card = card;
@@ -21565,7 +21565,7 @@ export let info = {
             return att;
           })
           .forResult();
-        if (result.bool) {
+        if (result.targets?.length) {
           const target = result.targets[0];
           const { links } = await player
             .choosePlayerCard(target, true, 'he')

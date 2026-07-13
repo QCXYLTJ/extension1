@@ -637,7 +637,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 5');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         var name = result.links[0][2];
                         target.chooseUseTarget(result.links[0][2], true, false);
                         event.goto(9);

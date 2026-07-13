@@ -34,7 +34,7 @@ const brawl = {
                         return 1 + Math.random();
                     });
                     'step 1'
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         var str = (target.identity == 'fan' ? '的身份为' + get.bolColor('反贼', '#4EEE94') : '的身份为' + get.bolColor('忠臣', '#FFEC8B') + '/' + get.bolColor('内奸', '#0000FF'));
                         game.log(target, str);

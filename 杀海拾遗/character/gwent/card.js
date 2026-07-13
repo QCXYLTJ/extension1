@@ -498,7 +498,7 @@ const card = {
 				return get.value(button.link, get.owner(button.link));
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				var owner1 = get.owner(result.links[0]);
 				var owner2 = get.owner(result.links[1]);
 				if (owner1 === owner2) {
@@ -812,7 +812,7 @@ const card = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(game.createCard(result.links[0][2]), "gain2");
 			}
 		},
@@ -854,7 +854,7 @@ const card = {
 				event.finish();
 			}
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.useCard(game.createCard(result.links[0][2]));
 			}
 		},

@@ -1582,7 +1582,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return att;
                                 })
                                 .forResult();
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 const target = result.targets[0];
                                 target.addMark('shbihu');
                             }
@@ -1871,7 +1871,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, 'shzhizhuang', evt.player, evt.player);
                                 })
                                 .forResult();
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 target.line(result.targets[0]);
                                 result.skill = 'shzhizhuang';
                                 player.useResult(result, event);
@@ -2223,7 +2223,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return target.countDiscardableCards(player, 'hej') && target != player;
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             const target = result.targets[0];
                             player.discardPlayerCard(target, 'hej', true);
                         } else break;
@@ -3066,7 +3066,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return -att;
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             const current = result.targets[0];
                             vote[current.playerid]++;
                         }
@@ -3209,7 +3209,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return -att;
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             const current = result.targets[0];
                             vote[current.playerid]++;
                         }
@@ -3954,7 +3954,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         target.damage();
                     }
@@ -4400,7 +4400,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt: '偏移:你可以弃置一张手牌并对一名角色造成1点伤',
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         player.discard(result.cards);
                         target.damage();
@@ -6464,7 +6464,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(get.player(), target);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         player.discard(player.getCards('h'));
                         target.skip('phaseUse');
@@ -6576,7 +6576,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt: get.prompt2(event.name),
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.discard(result.cards);
                         if (!player.storage.shpingmo) {
@@ -6613,7 +6613,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt: get.prompt2(event.name),
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.discard(result.cards);
                         if (!player.storage.shpingmo) {
@@ -7419,7 +7419,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt: get.prompt2(event.name),
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         await player.discard(result.cards);
                         const list = [];
@@ -7684,7 +7684,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(get.player(), target) >= 0;
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.give(card, result.targets[0]);
                     }
                 },
@@ -8669,7 +8669,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target) > 0;
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         trigger.cancel();
                         player.loseHp();
@@ -8796,7 +8796,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target) <= 0;
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         player.removeMark('shroujue');
                         target.addMark('shroujue');
@@ -9090,7 +9090,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt: get.prompt2(event.name),
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         player.give(result.cards, target);
                         const { bool } = await target
@@ -9192,7 +9192,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                         prompt2: str,
                                     })
                                     .forResult();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     target.addTempSkill('shhaoli_block');
                                     player.give(result.cards, target);
@@ -9748,7 +9748,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return target.isMaxHp() && target.isDamaged();
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         target.recover();
                     }
@@ -10261,7 +10261,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return player.inRange(target);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].addTempSkill('shqinbao_1');
                         const target = result.targets[0];
                         trigger.num--;
@@ -10303,7 +10303,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt2: get.prompt2(event.name),
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].addTempSkill('shtuoju_1');
                         const target = result.targets[0];
                         await player.discard(result.cards);
@@ -10341,7 +10341,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             prompt2: get.prompt2(event.name),
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         player.discard(result.cards);
                         target.damage(target.hasSkill('shqinbao_1') && target.hasSkill('shtuoju_1') ? 2 : 1);
@@ -10554,7 +10554,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         target.damage();
                     }
@@ -10896,7 +10896,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             const card = result.links[0];
                             cards.remove(card);
                             player.$gain2(card, false);
@@ -10990,7 +10990,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return get.attitude(player, target) > 0;
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             const target = result.targets[0];
                             const skill = 'shpengqi_' + player.playerid;
                             target.addAdditionalSkill(skill, player.additionalSkills['shpengqi']);
@@ -11051,7 +11051,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return target.maxHp - num2;
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         await player.swapHandcards(target);
                         var num = player.countCards('h') - target.maxHp;
@@ -11214,7 +11214,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return att * lib.card.shunshou.ai.result.target(player, target);
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         player.gainPlayerCard(target, 'hej', true);
                     }
@@ -11290,7 +11290,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(get.player(), target) <= 0;
                         })
                         .forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         const target = result.targets[0];
                         const list = [];
                         if (target.countGainableCards(player, 'h')) list.push('选项一');

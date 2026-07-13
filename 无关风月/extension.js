@@ -334,14 +334,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('rand', [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cardname = result.links[0][2];
                                     player.chooseCard('he', '选择一张牌作为<伏兵>', true);
                                 } else {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     event.card = card;
                                     player.addToExpansion(card, player, 'give').gaintag.add('shefu');
@@ -1538,7 +1538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage('fire', 'nocard');
                                 }
                             },
@@ -1602,7 +1602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(_status.event.player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     player.storage.qbtzhaomu = target;

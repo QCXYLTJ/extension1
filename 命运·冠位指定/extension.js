@@ -4006,7 +4006,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                               }
                               ('step 1');
-                              if (result.bool) {
+                              if (result.targets?.length) {
                                  var target = result.targets[0];
                                  ////game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【魔杖支配者】</span>');
                                  player.discardPlayerCard('he', target, true);
@@ -4043,7 +4043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, trigger.card, trigger.player, _status.event.player);
                                  });
                               ('step 1');
-                              if (result.bool) {
+                              if (result.targets?.length) {
                                  var target = result.targets[0];
                                  ////game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【魔杖支配者】</span>');
                                  trigger.targets.push(target);
@@ -13597,7 +13597,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            return Math.random();
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                            var name = result.links[0][2];
                            event.vcard = result.links;
                            event.cardname = name;
@@ -16954,7 +16954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                            return Math.random();
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                            var name = result.links[0][2];
                            event.vcard = result.links;
                            event.cardname = name;

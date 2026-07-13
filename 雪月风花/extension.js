@@ -10967,7 +10967,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 const next = player.chooseButton(['请选择一张锦囊牌视为使用之,并摸4张牌', [list, 'vcard']]);
                                 next.set('ai', () => Math.random());
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     let name = result.links[0][2];
                                     player.chooseUseTarget({
                                         name: name,
@@ -11032,7 +11032,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 player.recover(player.getDamagedHp());
                                 player.chooseTarget(get.prompt(event.name), '令一名角色获得技能【佐幸】', true).set('ai', (target) => get.attitude(player, target));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let target = result.targets[0];
                                     player.line(target);
                                     target.addSkillLog('zuoxing_qxsy');
@@ -11285,7 +11285,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 next.set('ai', () => Math.random());
                                 ('step 1');
                                 event.dialog.close();
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     let name = result.links[0][2];
                                     const targets = game.filterPlayer();
                                     for (let current of targets) {
@@ -11776,7 +11776,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let target = result.targets[0];
                                     event.target = target;
                                     player.choosePlayerCard(target, 'h', true, 'visible');
@@ -14812,7 +14812,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     }
                                     return get.value(button.link); //QQQ
                                 })('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (get.type(result.cards[0]) != 'equip') {
                                         if (!trigger.player.storage.zxqy_liyu_use) {
                                             trigger.player.storage.zxqy_liyu_use = [];
@@ -17283,7 +17283,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let target = result.targets[0];
                                     player.line(target);
                                     target.gain(event.cards2, 'gain2');
@@ -17298,7 +17298,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     let target = result.targets[0];
                                     player.line(target);
                                     target.damage(event.num, 'thunder');

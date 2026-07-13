@@ -898,7 +898,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             target = result.targets[0];
                                             var A = ['佛怒火莲!', '<font color=#FF0000>嘿嘿嘿嘿…</font>'].randomGet();
                                             player.say(A);
@@ -931,7 +931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) < 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var A = result.targets[0];
                                             A.damage('fire');
                                             event.targets = result.targets.slice(0).sortBySeat();
@@ -1214,7 +1214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     var A = ['金帝焚天炎!', '哼!<br> ╯^╰ ', '萧炎哥哥…熏儿……尽力了……'].randomGet();
                                     player.say(A);
@@ -1463,7 +1463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) <= 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     player.removeMark('dpcq_xuanwu', player.maxHp);
                                     target.damage(2, 'thunder');
@@ -1793,7 +1793,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     player.removeMark('dpcq_zhangquan', 1);
                                     var A = ['客人,请您先休息一会儿', '客人稍待,雅妃定会给您一个满意的结果!'].randomGet();
@@ -1866,7 +1866,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     var A = ['要乖哦,可不要伤了别人'].randomGet();
                                     player.say(A);
@@ -1906,7 +1906,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     player.$fullscreenpop('<font color=#00FF00>碧蛇三花瞳</font>');
                                     target.goMad();
@@ -2073,7 +2073,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) <= 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     var A = ['风之极·落日耀!'].randomGet();
                                     player.say(A);
@@ -2831,7 +2831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target) > 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             target = result.targets[0];
                                             player.$fullscreenpop('太虚古龙印', 'thunder');
                                             target.gainMaxHp(player.storage.dpcq_longyin);
@@ -3545,7 +3545,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var A = result.targets[0];
                                     A.damage(1);
                                     player.recover();
@@ -3813,7 +3813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) <= 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     target = result.targets[0];
                                     var A = ['师傅在上,且受弟子一拜', '再造之恩,弟子没齿难忘'].randomGet();
                                     player.say(A);

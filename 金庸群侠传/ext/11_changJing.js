@@ -1653,7 +1653,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           return Math.random();
         });
         'step 1';
-        if (result.bool) {
+        if (result.links?.length) {
           var name = result.links[0][2];
           _status.jycj_wanjuan[player.playerid] = name;
           var skills = get.info({ name: name }).skills;

@@ -737,7 +737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.chooseButton(['请选择你的英雄武器', [['SVDEX', 'QuadBarrel', 'Dualkriss', 'M134EX', 'card_dualswords', 'card_star', 'card_tiger'], 'vcard']], true).set('ai', (button) => Math.random());
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     let card = game.createCard2(result.links[0][2]);
                                     player.chooseUseTarget(card, 'nopopup', true);
                                 }
@@ -2645,7 +2645,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.log(player, '选择了', event.suit + 2);
                                 player.gainPlayerCard(target, true, 'h', 'visibleMove');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     let suit2 = result.cards[0].suit;
                                     if (suit2 == event.suit) {
                                         player.addTempSkill('tiger_attack');
@@ -2903,7 +2903,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     targets.add(result.targets[0]);
                                     player.discardPlayerCard(result.targets[0], 'he', true);
@@ -2922,7 +2922,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'thunder');
                                     result.targets[0].damage();
                                 }

@@ -1807,7 +1807,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('prompt', get.prompt2('CALABIYAU_kaqiuchongsu'))
 									.set('deadTarget', true);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									game.players.add(target);
 									game.dead.remove(target);
@@ -2021,7 +2021,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseToDiscard(get.prompt2('CALABIYAU_zhihuanmeiying'), 'he');
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var color = get.color(result.cards[0]);
 									for (var i of [_status.currentPhase, trigger.getParent(1).source]) {
 										if (i && i.isAlive()) {
@@ -2946,7 +2946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var num = result.links[0];
 									var targets = game.filterPlayer(function (current) {
 										var nums = [1, -1, 0];

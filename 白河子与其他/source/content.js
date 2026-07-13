@@ -131,7 +131,7 @@ export async function content(config, pack) {
         return get.attitude(_status.event.player, target);
       });
       'step 2';
-      if (result.bool) {
+      if (result.targets?.length) {
         var dead = result.targets[0];
         if (dead.hasSkill('zq_huanhundan_die') || _status.zq_huanhundan && _status.zq_huanhundan.includes(dead)) event.finish(); else {
           dead.revive();
@@ -811,7 +811,7 @@ export async function content(config, pack) {
             });
         }
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           let target = result.targets[0];
           player.line(target, 'green');
           player.discardPlayerCard(target, 'he', true);
@@ -1280,7 +1280,7 @@ export async function content(config, pack) {
             return get.threaten(target, player);
           }).animate = false;
       'step 1';
-      if (result.bool) {
+      if (result.targets?.length) {
         result.targets[0].addSkill('hyym_shenmililiangx');
       }
     };

@@ -980,7 +980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												});
 										}
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											////game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【布尔萨的旋舞】</span>');
 											player.discardPlayerCard('he', target, true);
@@ -1017,7 +1017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.effect(target, trigger.card, trigger.player, _status.event.player);
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											////game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【布尔萨的旋舞】</span>');
 											trigger.targets.push(target);
@@ -1293,7 +1293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) + target.maxHp - target.hp;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var tar = result.targets[0];
 									////game.rainSay(player,'对',tar,'发动了武将技能','<span style=\"color: #FFD700\">【科穆宁的薄冰之舞】</span>');
 									tar.draw();
@@ -1388,7 +1388,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 0;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									event.targets = result.targets[0];
 									//game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【从皇冠所见之物】</span>');
@@ -1670,7 +1670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									});
 								('step 4');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									//game.rainSay(player,'对',target,'发动了武将技能','<span style=\"color: #FFD700\">【巴西琉斯】</span>');
 									event.targets[0].discardPlayerCard(target, 'he', true);
@@ -2334,7 +2334,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.damageEffect(target, player, player);
 											});
 										('step 8');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											player.line(target, 'water');
 											if (!target.storage.rain_acgn_date_yuanYiZheZhi_jueMieTianShi_gun_damage) target.storage.rain_acgn_date_yuanYiZheZhi_jueMieTianShi_gun_damage = 0;
@@ -3851,7 +3851,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return basic != type.length && get.attitude(player, target) <= 0;
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											for (var a = 0; a < trigger.cards.length; a++) {
 												if (!target.storage.rain_acgn_date_xingGongLiuCan_fengJieZhu_jieType) {
@@ -6316,7 +6316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 7 - get.useful(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var card = result.cards[0];
 									//game.rainSay(event.targets[0],'触发了',event.targets[1],'武将技能','<span style=\"color: #FFD700\">【龙之魔女】</span>');
 									event.targets[1].gain(card, event.targets[0], 'giveAuto');
@@ -6977,7 +6977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return player.hasValueTarget(card);
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.cards.remove(result.cards[0]);
 									player.storage.rain_acgn_fgo_yiShiTaEr_shanMai_cardUse.push(result.cards[0]);
 								} else {
@@ -7297,7 +7297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.value(button.link);
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											var card = result.links[0];
 											if (trigger.name == 'shunshou') {
 												player.gain(card, trigger.target, 'give');
@@ -7618,7 +7618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 4');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									event.current.discard(card);
 									event.current.draw('nodelay');
@@ -7850,7 +7850,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.distance(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									//game.rainSay(player,'对',result.targets[0],'发动了武将技能','<span style=\"color: #FFD700\">【图穷匕见】</span>');
 									event.targets = result.targets[0];
 								} else event.finish();
@@ -7935,7 +7935,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return p.hasValueTarget(button.link);
 								};
 								('step 9');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									event.showed.remove(card);
 									player.chooseUseTarget(card, true);
@@ -8577,7 +8577,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									event.current.lose(card, ui.special);
 									event.current.$give(card, player, false);
@@ -9278,7 +9278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player, 'thunder');
 									});
 								('step 6');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage('nocard', 'thunder');
 								}
 							},
@@ -13312,7 +13312,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.choosed.push(result.cards[0]);
 									game.log(event.current, '用', result.cards, '替换了', event.button.link);
 									player.gain(result.cards, event.current, 'giveAuto', 'bySelf');
@@ -13525,7 +13525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('targets', trigger.targets);
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var tar = result.targets[0];
 									event.tar = tar;
 									event.choiced = {
@@ -13853,7 +13853,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										};
 										('step 2');
-										if (result.bool) {
+										if (result.links?.length) {
 											var card = result.links[0];
 											event.showed.remove(card);
 											player.chooseUseTarget(
@@ -14378,7 +14378,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.damageEffect(target, player, player, 'fire');
 											});
 										('step 3');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets[0], 'water');
 											result.targets[0].damage('fire');
 										}
@@ -15268,7 +15268,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 5');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage('fire');
 								}
 								player.storage.rain_acgn_fgo_zhiTianXinZhangBerserker_shengXia = 0;
@@ -16755,7 +16755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, targets) + Math.min(2, targets.maxHp - targets.hp);
 								});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].draw(Math.min(2, result.targets[0].maxHp - result.targets[0].hp));
 									result.targets[0]
 										.chooseToUse(function (card, player, event) {
@@ -17247,7 +17247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								player.gainPlayerCard(event.targets, true, 'he', 'visibleMove');
 								('step 3');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var card = result.cards[0];
 									var suit = card.suit;
 									game.broadcastAll(function (player) {
@@ -18851,7 +18851,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return Math.random();
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var tar = result.targets[0];
 									tar.link(true);
 									player.damage('fire', 'nocard');
@@ -19723,7 +19723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return get.damageEffect(target, player, player, 'thunder');
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											player.line(result.targets[0], 'water');
 											result.targets[0].damage('nocard', 'thunder');
 										}
@@ -20170,7 +20170,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.damageEffect(target, player, player);
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.line(result.targets[0], 'water');
 									result.targets[0].damage();
 								}
@@ -20980,7 +20980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								event.targets = target;
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.targets.$give(result.cards[0], player, false);
 									player.addJudge({ name: 'shandian' }, result.cards[0]);
 								}
@@ -21502,7 +21502,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return Math.random();
 								});
 								('step 5');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									player.storage.rain_acgn_project_shengBaiLian_juanZhou.remove(card);
 									player.$throw(card, 1000);
@@ -21767,7 +21767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return num;
 											});
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var tar = result.targets[0];
 											var cards = player.storage.rain_acgn_project_shengBaiLian_juanZhou.slice(0);
 											player.storage.rain_acgn_project_shengBaiLian_juanZhou = [];

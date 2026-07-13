@@ -247,7 +247,7 @@ export let info = {
           event.finish();
         }
         ('step 1');
-        if (result.bool) {
+        if (result.links?.length) {
           var togain = get.cardPile2((event.card || result.links[0]).name);
           if (togain) {
             player.gain(togain, 'gain2');

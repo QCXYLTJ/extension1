@@ -1952,7 +1952,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return Math.random();
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						var name = result.links[0][2];
 						event.vcard = result.links;
 						event.cardname = name;
@@ -5533,7 +5533,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						});
 					} else event.finish();
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.line(target, 'green');
 						player.discardPlayerCard(target, 'hej', true);
@@ -10154,7 +10154,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					}
 					('step 1');
 					var evt = event.getParent(2);
-					if (result.bool) {
+					if (result.links?.length) {
 						var name = result.links[0][2] || '';
 						var nature = result.links[0][3] || '';
 						if (evt.name == 'chooseToUse') {

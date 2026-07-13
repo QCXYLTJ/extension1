@@ -2976,7 +2976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets[0];
                                     if (result.targets[0].getCards('he').length >= 1) {
                                         result.targets[0].chooseToDiscard(true, 'he');
@@ -4095,7 +4095,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.storage.旋枪截杀.add(target);
@@ -4331,7 +4331,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var list = [];
                                     if (lib.character[target.name]) list.addArray(lib.character[target.name][3]);
@@ -6451,7 +6451,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('goon', goon);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();

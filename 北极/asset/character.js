@@ -1222,7 +1222,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return Math.random();
                         });
                     ('step 4');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                     } else {
                         event.finish();
@@ -1411,7 +1411,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return Math.random();
                         });
                     ('step 10');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                     } else {
                         event.finish();
@@ -2737,7 +2737,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 4');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.give(result.cards, target);
                     }
@@ -2996,7 +2996,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         )
                         .set('aicheck', check);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         var translation1 = get.translation(target);
@@ -3687,7 +3687,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 result.targets[0].draw(Math.min(6, 3 * player.countMark('bjrouwan')));
                                 player.removeMark('bjrouwan', player.countMark('bjrouwan'));
                             } else {
@@ -3780,7 +3780,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         '将一名其他角色判定区内的一张牌移动到你的判定区内'
                     ).set('ai', (t) => get.attitude(player, t));
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         player.choosePlayerCard(target, 'j', true).set('filterButton', function (button) {
@@ -3910,7 +3910,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     .set('aicheck', check);
                             }
                             ('step 5');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 var target = result.targets[0];
                                 var evt = trigger.parent;
                                 evt.triggeredTargets2.remove(player);
@@ -4889,7 +4889,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             .set('targets', trigger.targets);
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                     } else {
                         event.finish();
@@ -4976,7 +4976,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 0;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         target.draw(2 * trigger.num);
@@ -6554,7 +6554,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         )
                         .set('aicheck', check);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         var cards = [];
@@ -6679,7 +6679,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return 5 - att;
                                 });
                             'step 1';
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 var target = result.targets[0];
                                 event.target = target;
                                 target.chooseCard('h', true, '哀转:将一张手牌交给' + get.translation(player));
@@ -10562,7 +10562,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 player.storage.bjliangzhu.add(player);
                             }
                         }
-                    } else if (result.bool) {
+                    } else if (result.targets?.length) {
                         var target = result.targets[0];
                         if (target == player) {
                             target.draw();

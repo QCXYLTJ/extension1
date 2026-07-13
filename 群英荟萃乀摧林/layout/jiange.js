@@ -904,7 +904,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 "step 0"
                 player.chooseTarget('〖困牢〗你可以令一名敌方角色翻面', lib.filter.enemies).set('ai', ai.turnoverEffect);
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].turnOver();
                 }
             },
@@ -1042,12 +1042,12 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return target.isDamaged() && target.isFriendsOf(player);
                 }).set('ai', ai.recoverEffect);
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].recover();
                 }
                 event.finish();
                 "step 2"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].damage('fire');
                 }
             },
@@ -1196,7 +1196,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 "step 0"
                 player.chooseTarget('〖惑敌〗你可以令一名敌方角色翻面', lib.filter.enemies).set('ai', ai.turnoverEffect);
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].turnOver();
                 }
             },
@@ -1244,7 +1244,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 "step 0"
                 player.chooseTarget('〖穿云〗你可以对一名敌方角色造成1点伤害', lib.filter.enemies).set('ai', ai.damageEffect);
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].damage();
                 }
             }
@@ -1280,7 +1280,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return target.isEnemiesOf(player);
                 }).set('ai', ai.thunderEffect).set('prompt2', '<center>你可以对不为其的一名敌方角色造成1点雷电伤害</center>').set('notPlayer', trigger.player);
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].damage('thunder');
                 }
             },
@@ -1394,7 +1394,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return target.countCards('j') && target.isEnemiesOf(player);
                 }).set('ai', ai.thunderEffect).set('prompt2', '<center>对其造成1点雷电伤害</center>');
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].damage('thunder');
                 }
             }
@@ -1584,7 +1584,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return eff;
                 }).set('prompt2', '<center>对其造成2点雷电伤害<br>你对一名敌方器械造成1点雷电伤害</center>');
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.target = result.targets[0];
                     event.target.damage(2, 'thunder');
                 } else event.finish();
@@ -1955,7 +1955,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         break;
                 }
                 'step 2'
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.line(result.targets[0]);
                     result.targets[0][event.thing](2, 'fire');
                 }
@@ -2130,7 +2130,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return 0;
                 }).set('prompt2', '<center>对其造成2点火焰伤害且弃置其装备区内所有牌<br>你与一名敌方角色各失去1点体力</center>');
                 "step 1"
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.target = result.targets[0];
                     event.target.damage(2, 'fire');
                 } else event.finish();

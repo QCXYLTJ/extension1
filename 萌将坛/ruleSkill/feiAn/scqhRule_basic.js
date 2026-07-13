@@ -220,7 +220,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					} else event.finish();
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.removeMark('charge', event.num);
 						if (event.num == 4) player.discardPlayerCard(target, 'ej', true);

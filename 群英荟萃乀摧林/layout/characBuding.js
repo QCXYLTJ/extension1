@@ -127,7 +127,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 .set('targets', targets)
                 .set('ai', ai.fireEffect);
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
                 player.line(result.targets[0]);
                 result.targets[0].damage('fire', 'nocard');
             }
@@ -1019,7 +1019,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 .set('ai', ai.getattitude)
                 .set('currents', currents);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 result.targets[0].qyhc_moveMaxhand('clanmuyin');
             }
         };
@@ -1035,7 +1035,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 .set('ai', ai.getattitude)
                 .set('prompt2', lib.config.extension_群英荟萃乀摧林_prom ? '' : '〖忠节>' + lib.translate.zhongjie_info);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 target.gainMaxHp();
                 target.recover();
@@ -1098,7 +1098,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     })(trigger, player)
                 );
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
                 trigger.player.disableSkill('olduorui2', result.links[0]);
                 trigger.player.addTempSkill('olduorui2', { player: 'phaseAfter' });
                 game.log(player, '选择令', trigger.player, '的技能', '#g' + get.colorful([result.links[0]]), '失效直到其回合结束');
@@ -1604,7 +1604,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return -get.attitude(_status.event.player, target);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 event.target = target;
                 player.awakenSkill('juetao');
@@ -2257,7 +2257,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return att;
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 event.target = target;
                 game.asyncDraw([player, target].sortBySeat());
@@ -2325,7 +2325,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     },
                 });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 event.target = target;
                 player.discard(result.cards);
@@ -2675,7 +2675,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 }).direct = true;
             } else event.finish();
             ('step 5');
-            if (result.bool) {
+            if (result.links?.length) {
                 var card = result.links[0];
                 event.card = card;
                 game.cardsGotoOrdering(card).relatedEvent = trigger;

@@ -2027,7 +2027,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         return 0;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         trigger.player.discard(result.links[0]);
                     }
                 },
@@ -2805,7 +2805,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         });
                     };
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.chooseUseTarget(result.links[0][2], true, false);
                     }
                 },
@@ -3138,7 +3138,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                             return -att;
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.discardPlayerCard(target, 'he', true, num);
                     }

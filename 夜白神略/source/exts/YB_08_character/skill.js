@@ -2913,7 +2913,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -2972,7 +2972,7 @@ const skill = {
 				return get.attitude(_status.event.player, target);
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				target.storage.ybmjz_zuoxing = player;

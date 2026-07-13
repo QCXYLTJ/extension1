@@ -487,7 +487,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_lingju);
@@ -513,7 +513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_geduan);
@@ -670,7 +670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									player.chooseTarget('请选择【兼心】的目标', function (card, player, target) {
 										return target != player && target.maxHp > target.hp;
@@ -681,7 +681,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_jianxin);
@@ -709,7 +709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.discardPlayerCard(target, 'hej');
@@ -741,7 +741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_linai);
@@ -770,7 +770,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.chooseControl(['令其摸两张牌', '令其回复一点体力']).set('ai', function (event) {
 										if (get.attitude(player, event.target) < 0 && event.target.maxHp == event.target.hp) return '令其摸两张牌';
@@ -905,7 +905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.discardPlayerCard(target, 1, 'ej');
@@ -953,7 +953,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								targets[0].chooseCard(1, 'h', true);
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.card1 = result.cards[0];
 									targets[0].$give(event.card1, targets[1]);
 									targets[1].gain(event.card1, targets[0]);
@@ -962,7 +962,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.card2 = result.cards[0];
 									targets[1].$give(event.card2, targets[0]);
 									targets[0].gain(event.card2, targets[1]);
@@ -1247,7 +1247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_yunxi);
@@ -1278,7 +1278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.line(event.target);
 									player.popup(lib.translate.TLP_kongji);
@@ -1478,7 +1478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									player.popup(lib.translate.TLP_dacheng);
@@ -1503,7 +1503,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 5 - get.value(card);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.discard(result.cards[0]);
 									player.gain(trigger.card, 'gain2');
 								}

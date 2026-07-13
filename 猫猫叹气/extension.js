@@ -817,7 +817,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return 1 + Math.random();
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     game.log(player, '的查验结果为', '#g' + result.links[0]);
                     if (get.type(result.links[0]) == 'langren') {
                         event.str = get.translation(player) + '查杀成功';
@@ -854,7 +854,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return 1 + Math.random();
                 };
                 ('step 3');
-                if (result.bool) {
+                if (result.links?.length) {
                     game.log(target, '的查验结果为', '#g' + result.links[0]);
                     if (get.type(result.links[0]) == 'langren') {
                         event.str2 = get.translation(target) + '查杀成功';
@@ -1222,7 +1222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 };
                 event.list = list;
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     event.mes = result.links[0];
                     let list = [];
                     if (event.list.includes('yxw_qiangyuzhihu')) {
@@ -1258,7 +1258,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.finish();
                 }
                 ('step 2');
-                if (result.bool) {
+                if (result.links?.length) {
                     event.tes = result.links[0];
                     let mes = event.mes;
                     const tes = event.tes;
@@ -1452,7 +1452,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 };
                 event.list = list;
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     event.link = result.links[0];
                     let str = get.translation(target) + '选择的角色牌为:<br><span><img src="extension/猫猫叹气/image/曦光如月/' + event.link + '.jpg" width="120" height="166"></span>';
                     game.broadcastAll(function (str) {
@@ -2748,7 +2748,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         return true;
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     event.link = result.links[0];
                     let num = event.link + 1;
                     if (num != 9) {
@@ -2823,7 +2823,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     event.finish();
                 }
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.target = result.targets[0];
                     player.line(event.target, {
                         color: [
@@ -3214,7 +3214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 event.list = list;
                 ('step 1');
                 const mouyi1 = event.mouyi;
-                if (result.bool) {
+                if (result.links?.length) {
                     event.mes = result.links[0];
                     const dialog = ui.create.dialog(mouyi1, '请选择你的' + (mouyi1 == '攻城' ? '守城' : mouyi1 == '破阵' ? '守营' : mouyi1 == '海王' ? '反海王' : '防龙') + '之策', 'hidden');
                     const table = [];
@@ -3230,7 +3230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 ('step 2');
                 const mouyi2 = event.mouyi;
-                if (result.bool) {
+                if (result.links?.length) {
                     event.tes = result.links[0];
                     let mes = event.mes;
                     const tes = event.tes;
@@ -3297,7 +3297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return 1 + Math.random();
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     game.log(player, '与', target, '的协力条件为', '#y' + result.links[0]);
                     game.addGlobalSkill('qmm_xieli');
                     game.addGlobalSkill('qmm_xieli2');
@@ -11213,7 +11213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 });
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (result.links[0] == '摸两张牌') {
                                         target.draw(2);
                                     } else {

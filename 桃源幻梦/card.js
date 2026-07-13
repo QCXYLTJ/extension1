@@ -2410,7 +2410,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                             return target.countCards('h');
                         }).animate = false;
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].addSkill('hyym_shenmililiangx');
                     }
                 },

@@ -666,7 +666,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         'step 1';
         player.chooseTarget(1, '选择一名角色,使其获得技能变奏');
         'step 2';
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.addSkill('xxcbianzou');
           event.finish();
@@ -675,7 +675,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         'step 3';
         player.chooseTarget(1, '选择一名角色,使其获得技能和弦');
         'step 4';
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           target.addSkill('xxchexian');
           event.finish();
@@ -913,7 +913,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return -att;
         });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.addTempSkill('xxcsumiyan2', { player: 'phaseBeginStart' });
           player.storage.xxcsumiyan2.add(target);
@@ -939,7 +939,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return 7 - get.value(card);
         });
         'step 1';
-        if (result.bool) {
+        if (result.cards?.length) {
           if (get.position(result.cards[0], true) == 'd') player.gain(result.cards[0], 'gain2');
         } else
         {
@@ -998,7 +998,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return get.attitude(_status.event.player, target) > 0;
         });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           event.target = target;
           if (target.hp < target.maxHp) player.chooseControl('摸牌', '回复体力').set('prompt', `令${get.translation(target)}摸两张牌或回复1点体力`).set('ai', function () {
@@ -1382,7 +1382,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           }
         });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.give(result.cards, target);
           var evt = trigger.parent;
@@ -1500,7 +1500,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           return get.attitude(_status.event.player, target);
         });
         "step 1";
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           player.line(target, 'green');
           target.gainMaxHp();

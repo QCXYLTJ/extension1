@@ -271,7 +271,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								},
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								event.targed = result.targets[0];
 								player.discard(result.cards);
 								player.pcr_攻击(event.targed);
@@ -695,7 +695,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							'step 0';
 							player.chooseTarget();
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								result.targets[0].draw();
 							}
 						},
@@ -948,7 +948,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets[0];
 									player.discard(result.cards);
 								} else event.finish();
@@ -1253,7 +1253,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets[0];
 									player.discard(result.cards);
 								} else event.finish();
@@ -2012,7 +2012,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets[0];
 									player.discard(result.cards);
 								} else event.finish();
@@ -2729,7 +2729,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets[0];
 									player.discard(result.cards);
 								} else event.finish();
@@ -3706,7 +3706,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets[0];
 									player.discard(result.cards);
 								} else event.finish();
@@ -3828,7 +3828,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.targed = result.targets[0];
 									if (result.cards.length) event.cardd = result.cards;
 								} else event.finish();

@@ -192,7 +192,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return Math.random();
 						});
 					('step 5');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						if (game.zhu == player) game.zhu = event.target;
 						game.swapPlayer(event.target);
@@ -326,7 +326,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return Math.random();
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						game.swapPlayer(event.target);
 						game.countPlayer(function (current) {
@@ -1112,7 +1112,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 1;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.addTempSkill('QT_duanyue_ed');
 									player.choosePlayerCard(event.target, 'h').set('filterButton', function (button) {
@@ -1390,7 +1390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -(get.attitude(player, target) + target.getDamagedHp());
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									if (!result.targets[0].isLinked()) {
 										result.targets[0].addSkill('QT_lieqiao2');
 										result.targets[0].link(true);

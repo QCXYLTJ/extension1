@@ -2752,7 +2752,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					next.set(prompt, get.prompt(event.name));
 					next.set('prompt2', get.translation(event.name + '_info'));
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						event.target = target;
 						if (target.countDiscardableCards(target, 'hej') >= 2) {
@@ -2913,7 +2913,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(_status.event.player, target);
 								});
 							('step 2');
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.line(result.targets[0], 'green');
 								player.discardPlayerCard(result.targets[0], 'he', true);
 								event.count--;
@@ -3054,7 +3054,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								player.chooseButton(true, [get.translation(event.name), mark]);
 							} else event.finish();
 							('step 2');
-							if (result.bool) {
+							if (result.links?.length) {
 								event.ccc = result.links[0];
 								var str = '<b><font color = white>';
 								str += '将你武将牌旁的一张【' + get.translation(event.ccc) + '】置于一名角色的装备区';
@@ -3062,7 +3062,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								player.chooseTarget(true, get.prompt(event.name), str);
 							}
 							('step 3');
-							if (result.bool) {
+							if (result.targets?.length) {
 								event.ttt = result.targets[0];
 								event.ttt.equip(event.ccc);
 							}
@@ -3192,7 +3192,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return target != player && !target.hasSkill('scqh_fgo_禁手_mod');
 							});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								targed = result.targets[0];
 								targed.addSkill('scqh_fgo_禁手_mod');
 							}

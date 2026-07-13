@@ -559,7 +559,7 @@ export function gelinPack(lib, game, ui, get, ai, _status, datasrc) {
         event.current.chooseButton(dialog, '选择以下一个技能发动').set('forceDie', true).set('includeOut', true);
       }
       'step 4';
-      if (result.bool) {
+      if (result.links?.length) {
         var skill = result.links[0];
         event.link = result.links[0];
         var next = game.createEvent(skill);

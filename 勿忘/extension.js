@@ -397,7 +397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     get.attitude(player, target) < 0(target, player, player);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.clearSkills();
                                 }
@@ -624,7 +624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(1);
                                 }
                             },
@@ -931,7 +931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.useful(button.link);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     card.fix();
                                     player.gain(card, 'draw');
@@ -2520,7 +2520,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.markAuto('ww_mou_xieji', [target]);
                                     player.addSkill('ww_mou_xieji_damage');
@@ -2640,7 +2640,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     result.targets[0].addTempSkill('ysgnpx', { player: 'phaseAfter' });
                                     result.targets[0].addSkill('ysgnjy1');
@@ -2656,7 +2656,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(target, player);
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addTempSkill('ysgnjy', { player: 'phaseAfter' });
                                 }
                                 ('step 4');
@@ -2669,7 +2669,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(target, player);
                                     });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('ysgnjy1');
                                 }
                             },
@@ -3294,7 +3294,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.judge(function (card) {
                                         var suit = card.suit;
@@ -3535,7 +3535,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(player.getDamagedHp());
                                     result.targets[0].turnOver();
                                 }
@@ -5471,7 +5471,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.judge(function (card) {
                                         var suit = card.suit;
@@ -6461,7 +6461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     result.targets[0].addTempSkill('zenyi_ww', { player: 'phaseAfter' });
                                     result.targets[0].addSkill('jieying1_ww');
@@ -6477,7 +6477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(target, player);
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addTempSkill('jieying_ww', { player: 'phaseAfter' });
                                 }
                                 ('step 4');
@@ -6490,7 +6490,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(target, player);
                                     });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('jieying1_ww');
                                 }
                             },
@@ -7450,7 +7450,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.damage();
                                 }
@@ -7648,7 +7648,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage();
                                 }
                             },

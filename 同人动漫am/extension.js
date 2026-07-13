@@ -1105,7 +1105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(1, 'thunder');
                                 }
                                 ('step 7');
@@ -1494,7 +1494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].addSkill('桃花运_mark');
                                         }
                                     },
@@ -1576,7 +1576,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = game.createCard2(result.links[0][2]);
                                     lib.inpile.add(result.links[0][2]);
                                     player.storage.twsidao = card;
@@ -3113,7 +3113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(player, target);
                                             });
                                         ('step 4');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].showHandcards();
                                         }
                                     },

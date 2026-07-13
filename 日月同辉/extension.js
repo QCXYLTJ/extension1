@@ -687,7 +687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) + 20;
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.storage.ryxieji.push(target);
                                     player.markSkill('ryxieji');
@@ -2383,7 +2383,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target) * target.countCards('h');
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.chooseControl('有', '没有').set('prompt', `猜猜看吧,${get.translation(target)}是否有红色手牌？`).set('ai', function () {
@@ -2888,7 +2888,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 'step 5'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var res = result.cards, target = result.targets[0].playerid;
                                     player.addGaintag(res, 'olsujian_given');
                                     cards.removeArray(res);
@@ -3356,7 +3356,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(_status.event.player, target);
                                 });
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('ryruliao3');
                                     var storage = player.storage.ryruliao2;
@@ -4253,7 +4253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 }).set('goon', get.attitude(player, trigger.player) > 0);
                                 'step 1'
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.chooseToCompare(target);
@@ -4277,7 +4277,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.goto(4);
                                 'step 3'
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     card.fix();
                                     ui.cardPile.insertBefore(card, ui.cardPile.firstChild);
@@ -4446,7 +4446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         else event.goto(2);
                                         'step 1'
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             event.target = target;
                                             player.line(target);
@@ -4504,7 +4504,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 break;
                                         }
                                         'step 4'
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.storage.ryjiezhong.push(target);
                                             player.line(target);

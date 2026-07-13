@@ -4102,7 +4102,7 @@ game.import('extension', function () {
                                         },
                                     })
                                     .forResult();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                     player.addMark('连诛_mark');
                                     player.addSkill('连诛_mark');
@@ -4380,7 +4380,7 @@ game.import('extension', function () {
                                     return target != player && target.isFriendsOf(player);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     if (player.hasMark('橘')) {
                                         player
@@ -6052,7 +6052,7 @@ game.import('extension', function () {
                                         .chooseTarget(`是否发动【摧克】,对一名其他角色造成${num}点伤害`, (c, p, t) => t != p)
                                         .set('ai', (target) => -get.attitude(player, target))
                                         .forResult();
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         result.targets[0].damage(num);
                                     }
                                 } else {
@@ -6060,7 +6060,7 @@ game.import('extension', function () {
                                         .chooseTarget(`是否发动【摧克】,横置一名其他角色并弃置其区域内的${num || 1}张牌`, (c, p, t) => t != p)
                                         .set('ai', (target) => -get.attitude(player, target))
                                         .forResult();
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         result.targets[0].link(true);
                                         player.discardPlayerCard(result.targets[0], num || 1, 'hej', true);
                                     }
@@ -6118,7 +6118,7 @@ game.import('extension', function () {
                                         return event.targets.includes(target);
                                     })
                                     .forResult();
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(num, 'fire', 'nocard');
                                 }
                             },

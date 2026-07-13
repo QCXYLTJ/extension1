@@ -5026,7 +5026,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -5498,7 +5498,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -5580,7 +5580,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -5662,7 +5662,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -5744,7 +5744,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -5859,7 +5859,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -5958,7 +5958,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -6040,7 +6040,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -6180,7 +6180,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -26428,7 +26428,7 @@ game.import('extension', function () {
                                         return true;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     event.skills = ['aq_shenhuan', 'aq_shenwuji', 'aq_shenhuo', 'aq_shenshui', 'aq_shencao', 'aq_shenguang', 'aq_shenan', 'aq_shenling'];
                                     for (let i = 0; i < event.skills.length; i++) result.targets[0].removeSkill(event.skills[i]);
@@ -26474,7 +26474,7 @@ game.import('extension', function () {
                                         return true;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     event.skills = ['aq_shenhuan', 'aq_shenwuji', 'aq_shenhuo', 'aq_shenshui', 'aq_shencao', 'aq_shenguang', 'aq_shenan', 'aq_shenling'];
                                     for (let i = 0; i < event.skills.length; i++) result.targets[0].removeSkill(event.skills[i]);
@@ -27074,7 +27074,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -28502,7 +28502,7 @@ game.import('extension', function () {
                                     return player.getUseValue(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     var nature = result.links[0][3];
                                     var card = game.createCard({ name: name, nature: nature });
@@ -29782,7 +29782,7 @@ game.import('extension', function () {
                                             return true;
                                         });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.reinitCharacter(target.name1, event.target.name1);
                                     target.maxHp = event.target.maxHp;
@@ -33760,7 +33760,7 @@ game.import('extension', function () {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.kelongti = result.targets[0].name;
                                     if (
                                         game.hasPlayer(function (current) {
@@ -33780,7 +33780,7 @@ game.import('extension', function () {
                                     else event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_klt');
@@ -36975,7 +36975,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');
@@ -37698,7 +37698,7 @@ game.import('extension', function () {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.addSkill('aq_zhqyjs');

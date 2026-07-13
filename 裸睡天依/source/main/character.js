@@ -183,7 +183,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 4');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var tar = result.targets[0];
                         player.useCard({ name: event.card.name }, event.ca, true, tar, 'ls_fuxun');
                     } else {
@@ -1241,7 +1241,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.effect(tar, { name: 'shunshou' }, player, player);
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.gainPlayerCard(get.prompt('ls_shen_chongzhen', result.targets[0]), result.targets[0], 'hej', 'visibleMove');
                     }
                 },
@@ -1746,7 +1746,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                     }
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                         player.line(event.target);
                         player
@@ -2156,7 +2156,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 if (trigger.parent.name == 'ls_dihuo_effect') next.set('frequentSkill', event.name);
                             }
                             ('step 1');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 var target = result.targets && result.targets.length ? result.targets[0] : trigger.player;
                                 target.damage(event.num, 'thunder', 'nosource');
                             }
@@ -3603,7 +3603,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var card = result.cards[0];
                         player.showCards(card);
                         if (get.type2(card) == get.type2(trigger.card)) {
@@ -4005,7 +4005,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 10 - target.countCards('h');
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         player.chooseCardButton(target, target.getCards('h'), '选择一张牌并将其所有与此牌类型相同的牌标记为<洞心>');
@@ -4753,7 +4753,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return att;
                                 });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 var target = result.targets[0];
                                 if (!player.storage.ls_wyucan_chose) player.storage.ls_wyucan_chose = target;
                                 target.markSkillCharacter('ls_wyucan', player, '玉惨', '你已成为' + get.translation(player) + '的【玉惨】对象');
@@ -5036,7 +5036,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                     }
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.storage.ls_zhengrong.push(result.links[0][2]);
                         player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, true, false);
                     } else event.finish();
@@ -5192,7 +5192,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         var cardx = result.links[0];
                         event.list = event.list.filter((item) => item != cardx);
                         var card = { name: result.links[0][2] };
@@ -5236,7 +5236,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
                     } else event.finish();
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.useCard({ name: result.links[0][2], nature: result.links[0][3], storage: { yingshan: true } }, target, false);
                     } else event.finish();
                 },
@@ -6545,7 +6545,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         const result = await player.choosePlayerCard(targetx, 'j', true).set('filterButton', function (button) {
                             return targety.canAddJudge(button.link);
                         }).forResult();
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             var card = result.cards[0];
                             targetx.$give(card, targety);
                             var name = card.viewAs || card.name;

@@ -2220,7 +2220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', '请选择维修的目标')
                                     .set('prompt2', '该目标回复1点体力');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.recover();
@@ -2881,7 +2881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (target) => get.attitude(player, target) > 0);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.huhang_gain = result.targets[0];
                                     player.addTempSkill('huhang_gain', { player: 'phaseUseAfter' });
                                 }
@@ -3640,7 +3640,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: button.link[2] }, player, player);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     target.storage.Azure_jihuo_effect = result.links[0][2];
                                     target.addSkill('Azure_jihuo_effect');
                                 }
@@ -4102,7 +4102,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             filterTarget: lib.filter.notMe,
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             var cards = result.cards;
                                             player.line(target, 'green');
@@ -4515,7 +4515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (target) => -get.attitude(player, target));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addMark('liesha');
                                 } else player.getStat('skill').liesha--;
@@ -4607,7 +4607,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '移去一枚<从容>标记令一名角色摸三张牌,弃置一张牌');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.draw(3);
                                     target.chooseToDiscard('he', true);
@@ -4912,7 +4912,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(_status.event.player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             target.addSkillLog('tiance');
                                         }
@@ -5075,7 +5075,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '你与其各获得一张【酒】,并令其获得〖鼓舞〗直到其回合结束');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addTempSkill('guwu', { player: 'phaseJieshuEnd' });
                                 } else {
@@ -5933,7 +5933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '移去一枚<欣赴>标记令一名角色摸三张牌,弃置一张牌,你获得一张【出其不意】');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.draw(3);
                                     target.chooseToDiscard('he', true);
@@ -7217,7 +7217,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', '你与该角色各摸一张牌并进行一次拼点,若你赢,你摸三张牌并令其获得<真理>标记');
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     if (event.control == '攻击范围内') {
                                         event.target.addMark('Wahrheit');
@@ -7404,7 +7404,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', get.translation(targets[0]) + '将对其造成一点伤害');
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     targets[0].line(result.targets[0], 'fire');
                                     result.targets[0].damage().source = targets[0];
                                 }
@@ -7439,7 +7439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '你获得以下效果直到你重新发动〖支援〗:当该角色获得你的手牌时,你记录这些牌的花色;当该角色的牌不因弃置而进入弃牌堆时,你获得其中花色与〖支援〗记录中相同的牌');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.Unicorn_zhiyuan_record = [result.targets[0], []];
                                 }
                             },
@@ -7815,7 +7815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.gain(result.cards, player, 'giveAuto');
                                 } else event.finish();
@@ -8119,7 +8119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 6 - get.value(button.link);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var color = get.color(result.links[0]);
                                             player.loseToDiscardpile(result.links);
                                             player.gain(
@@ -8166,7 +8166,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (target) => get.attitude(player, target) < 0);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     trigger.player.line(target);
                                     target.addMark('tianxi');
@@ -8194,7 +8194,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -att;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.line(target);
                                             target.addMark('tianxi');
@@ -8731,7 +8731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0.01 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     event.type2 = get.type2(card);
                                     target.give(card, player);
@@ -9244,7 +9244,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     filterTarget: lib.filter.notMe,
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.type = get.type2(result.cards[0]);
                                     result.targets[0].gain(result.cards, player, 'giveAuto');
                                 }
@@ -9322,7 +9322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '若如此做,你视为使用一张无距离限制的基本牌');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.cardx, player, 'giveAuto');
                                     var list = [];
                                     get.inpile('basic').forEach((card) => {
@@ -9472,7 +9472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '直到你重新发动〖邀击〗前,你只能成为X次该角色牌的目标(X为你的体力与你使用牌指定其为目标的次数的和与该角色体力的差,最小为0)');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.S_yaoji = [result.targets[0], 0];
                                     result.targets[0].storage.S_yaoji_limit = [player, 0];
                                     result.targets[0].addSkill('S_yaoji_limit');
@@ -9894,7 +9894,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', '请选择一张牌置于牌堆顶');
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.$throw(get.position(card) == 'h' ? 1 : card, 1000);
                                     player.lose(card, ui.cardPile, 'insert');
@@ -10025,7 +10025,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'fire');
                                             result.targets[0].damage('fire').source = player;
                                         }
@@ -10101,7 +10101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             trigger.targets.push(result.targets[0]);
                                         }
                                     },
@@ -10203,7 +10203,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.chooseCardButton(cards, '后勤保障:是否将一张弃牌堆中的牌置于牌堆顶？');
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var card = result.links[0];
                                             ui.cardPile.insertBefore(card, ui.cardPile.firstChild);
                                         }
@@ -10544,7 +10544,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', '对其造成1点伤害');
                                 } else event.goto(5);
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     result.targets[0].damage().source = player;
                                     event.finish();
@@ -10673,7 +10673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('ai', (target) => -get.attitude(player, target) * target.countCards('h'));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].showHandcards();
                                     player.swapHandcards(result.targets[0]);
                                 }
@@ -10888,7 +10888,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '该角色将无法响应你所使用目标包括该角色的牌直到你重新发动〖集中〗');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.jizhong_mark = result.targets[0];
                                     player.addSkill('jizhong_use');
                                 }
@@ -11023,7 +11023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('prompt', '是否发动〖神射〗？')
                                             .set('prompt2', '选择一名拥有<神射手>标记的角色,视为对其使用一张无距离限制的【杀】');
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.useCard({ name: 'sha' }, target, false);
                                         }
@@ -11061,7 +11061,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].addMark('shenshe_mark');
                                         }
                                     },
@@ -11180,7 +11180,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('prompt', '请选择<死神中队>的目标');
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0]);
                                             result.targets[0].damage().source = player;
                                         }
@@ -11320,7 +11320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', '请选择托付<死神中队>的目标')
                                     .set('prompt2', '该角色将获得〖死神〗' + (trigger.source ? ',并对' + get.translation(trigger.source) + '造成的伤害+1' : ''));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkillLog('sishen');
                                     if (trigger.source) {
@@ -11529,7 +11529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('prompt2', '你可将一张牌交给该角色,令此次伤害+1');
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.queen = result.targets[0];
                                             player
                                                 .chooseCard('he', '是否发动〖施威〗？')
@@ -11813,7 +11813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '你弃置该角色角色区域内一张牌;若你以此法弃置的牌中有与你失去的牌类型相同的牌,你摸一张牌,否则你可以视为对' + get.translation(_status.currentPhase) + '使用一张无视防具的【杀】,不可发动〖爵拥〗直到此回合结束');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.discardPlayerCard('hej', result.targets[0], true);
                                 }
                                 ('step 2');
@@ -11924,7 +11924,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', '仙祝:请选择目标')
                                     .set('prompt2', event.state == true ? '令该角色弃置两张花色为' + get.translation(event.cards.suit) + '的牌' : '令该角色从牌堆中获得两张花色各不相同的牌');
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     if (event.state == true) {
                                         if (
@@ -12708,7 +12708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('createDialog', ['请选择变更为的' + (config == 'all' ? '武将' : '舰船'), [Kansens.randomGets(5), 'character']])
                                     .set('ai', (button) => get.rank(button.link, true));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0];
                                     if (player.storage.weizhuang != name) {
                                         var config = lib.config.azure_NoLoseSkillsWeiZhuangGained;
@@ -13094,7 +13094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             .set('prompt2', '令其从牌堆中获得一张锦囊牌');
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(
                                         get.cardPile(function (card) {
                                             return get.type(card) == 'trick';
@@ -13134,7 +13134,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             var num = Math.max(1, player.getExpansions('ChenHai_buqi').length);
                                             var cards = get.bottomCards(num);
@@ -13293,7 +13293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('prompt2', '对其造成1点伤害');
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'fire');
                                             result.targets[0].damage().source = player;
                                         }
@@ -13486,7 +13486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', '迅雷:请选择一名其他角色')
                                     .set('prompt2', '对其造成2点雷电伤害');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(2).nature = 'thunder';
                                     if (player != _status.currentPhase) {
                                         player.phase('nodelay');

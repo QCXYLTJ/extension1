@@ -757,7 +757,7 @@ const card = {
 				};
 			}
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(game.createCard(result.links[0][2]), "draw");
 			}
 		},

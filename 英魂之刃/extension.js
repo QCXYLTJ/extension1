@@ -6918,7 +6918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 								} else {
 									event.finish();
@@ -9325,7 +9325,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -att;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									event.goto(2);
 								} else {
@@ -9759,7 +9759,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].changeHujia();
 									result.targets[0].update();
 								} else {
@@ -9867,7 +9867,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].turnOver();
 								} else {
 									player.draw();
@@ -10084,7 +10084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.line(event.target, 'thunder');
 								} else {
@@ -11024,7 +11024,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.line(event.target);
 								} else {
@@ -11343,7 +11343,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].draw();
 								} else {
 									event.finish();
@@ -11359,7 +11359,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(1, result.targets[0], 'e');
 								} else {
 									event.finish();
@@ -11497,7 +11497,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return target.countCards('h');
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.line(event.target);
 								} else {
@@ -12332,7 +12332,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -att;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									event.goto(2);
 								} else {
@@ -12436,7 +12436,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var pl = result.targets[0];
 									player.storage.nyhzr神雕ol = pl;
 									pl.draw(2);
@@ -14435,7 +14435,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].draw(result.targets[0].maxHp - result.targets[0].hp);
 									result.targets[0].turnOver();
 								}
@@ -14724,7 +14724,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 									player.loseHp();
 								} else {
@@ -15573,7 +15573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 								} else {
 									event.finish();
@@ -16084,7 +16084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return -get.attitude(player, target);
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											result.targets[0].goMad();
 										}
 									},

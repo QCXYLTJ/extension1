@@ -613,7 +613,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return target.hp == player.hp && target != player;
                         });
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             target.draw();
                         }
@@ -1029,7 +1029,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return target != player;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                         } else event.finish();
@@ -1636,7 +1636,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return target != player;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                         } else event.finish();
@@ -3432,7 +3432,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             player.chooseTarget('选择一名角色', 1, true);
                         }
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                             if (player.storage.llbz_jianglin == true) {
@@ -3949,7 +3949,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         player.changeZhuanhuanji('llbz_llbz_huiyi');
                         trigger.target.chooseCard('he', true, '会议:交给' + get.translation(trigger.player) + '一张牌', '若选择装备牌,则其可以使用此牌');
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             var card = result.cards[0];
                             event.card = card;
                             trigger.target.give(card, trigger.player);
@@ -4174,7 +4174,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                 return get.damageEffect(target, player, player);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                             target.addTempSkill('llbz_fuhei2');
@@ -5100,7 +5100,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return 0;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].judge();
                         } else event.finish();
                     },
@@ -6511,7 +6511,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return 1 + Math.random();
                         };
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].link();
                         } else event.finish();
                     },
@@ -6829,7 +6829,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return target.hasMark('llbz_huanhua');
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             target.removeMark('llbz_huanhua', false);
                             target.loseMaxHp();
@@ -7448,7 +7448,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             return target.countCards('e', { subtype: 'equip3' }) + target.countCards('e', { subtype: 'equip4' }) > 0 || target.hasSkill('lailapusi_attack', true);
                         });
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.choosePlayerCard('e', target, 1).set('filterButton', function (button) {
                                 return get.subtype(button.link) == 'equip3' || get.subtype(button.link) == 'equip4' || button.link.name == 'lailapusi';
@@ -7639,7 +7639,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             });
                         } else event.finish();
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.target = result.targets[0];
                             var target = event.target;
                             target.addTempSkill('llbz_kaidi_marked', { player: 'phaseBegin' });
@@ -7936,7 +7936,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                 });
                         } else event.finish();
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             game.broadcastAll(
                                 function (target1, target2) {
@@ -8167,7 +8167,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             player.chooseButton(['选择从牌堆购买的锦囊牌', [list, 'vcard']]);
                         } else event.finish();
                         ('step 2');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             var name = result.links[0][2];
                             var cards = [];
                             var card = get.cardPile2(function (card) {
@@ -8789,7 +8789,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             });
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.discardPlayerCard(result.targets[0], 'ej', true);
                         }
                         ('step 3');
@@ -8800,7 +8800,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                                 return get.damageEffect(target, player, player);
                             };
                         ('step 4');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].damage();
                         }
                         ('step 5');
@@ -9121,7 +9121,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         player.awakenSkill('llbz_fushen');
                         player.chooseTarget('选择一名其他角色附体', 1, lib.filter.notMe, true);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             var num1 = player.countMark('llbz_bianhuan');
                             var num2 = player.hp;
@@ -11149,7 +11149,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             .chooseTarget(true)
                             .set('ai', (target) => get.attitude(player, target) > 0)
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             switch (event.control) {
                                 case '选项一':
@@ -11361,7 +11361,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         ('step 2');
                         player.chooseTarget(1, lib.filter.notMe);
                         ('step 3');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             target.gain(event.cards, 'gain2');
                         }

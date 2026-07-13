@@ -418,7 +418,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return num;
                 });
                 'step 1'
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                 } else event.finish();
@@ -726,7 +726,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return get.drawEffect(target, 1, player);
                 });
                 'step 1'
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].draw();
                 }
             }

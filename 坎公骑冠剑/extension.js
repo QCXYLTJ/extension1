@@ -1454,7 +1454,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return list.length + Math.random();
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									//player.loseMaxHp();
 									var list = [];
@@ -1566,7 +1566,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								list.remove('gt_it');
 								player.chooseButton(['摸鱼:选择获得一张武将牌上的所有技能', [list.randomGets(player.maxHp), 'character']], true);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var name = result.links[0];
 									player.flashAvatar('opanicsido0', name);
 									game.log(player, '获得了', '#y' + get.translation(name), '的所有技能');
@@ -1598,7 +1598,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								list.remove('gt_it');
 								player.chooseButton(['摸鱼:选择获得一张武将牌上的所有技能', [list.randomGets(player.maxHp), 'character']], true);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var name = result.links[0];
 									player.flashAvatar('opanicsido1', name);
 									game.log(player, '获得了', '#y' + get.translation(name), '的所有技能');
@@ -3015,7 +3015,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return eff;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									event.bool = false;
 									event.target.addMark('gt_pingzhang', 1);
@@ -3405,7 +3405,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '交给' + get.translation(player) + '一张牌.',
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									target.give(result.cards, result.targets[0]);
 								}
 							},
@@ -6915,7 +6915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 5 - att;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									event.target = target;
 									target.chooseCard('he', true, '浩劫:将一张牌交给' + get.translation(player));
@@ -8224,7 +8224,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return att;
 											});
 										('step 2');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											event.target = target;
 											target.draw();
@@ -8286,7 +8286,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 5 - att;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									event.target = target;
 									var cards = target.getCards('he');
@@ -8300,7 +8300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									player.chooseUseTarget(card, false);
 								}
@@ -11595,7 +11595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(_status.event.player, target);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									event.bool = false;
 									event.target.addMark('gt_pingzhang', 1);

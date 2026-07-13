@@ -1447,7 +1447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 0;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									trigger.target = result.targets[0];
 									game.log(player, '将', trigger.card, '的目标重新指定为' + get.translation(result.targets[0]));
 									if (result.targets[0] == player) {
@@ -1827,7 +1827,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.gainPlayerCard(event.target, true);
 								} else {
@@ -3431,7 +3431,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.color(card) == 'red';
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.showCards(result.cards[0]);
 									var num = result.cards[0].number;
 									trigger.player.recover(num);
@@ -3479,7 +3479,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard('he', true, 2);
 									result.targets[0].loseHp();
 								}
@@ -3544,7 +3544,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(3, result.targets[0], 'he', true);
 								}
 								('step 3');
@@ -3591,11 +3591,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.choosePlayerCard(result.targets[0], 'he', true);
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.showCards(result.cards[0]);
 									event.num = result.cards[0].number;
 									player
@@ -3607,12 +3607,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.choosePlayerCard(result.targets[0], 'he', true);
 									event.t = result.targets[0];
 								}
 								('step 4');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.showCards(result.cards[0]);
 									event.t.damage(event.num + result.cards[0].number);
 								}
@@ -3715,7 +3715,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.gainPlayerCard(result.targets[0], event.num + trigger.num, true);
 								}
 								('step 3');
@@ -4304,7 +4304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 4');
-								if (result.bool) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									if (get.position(link) == 'e') {
 										event.targets[1].equip(link);
@@ -4488,7 +4488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								};
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									var cards0 = target.getCards('h');
 									var cards1 = player.getCards('h');
@@ -4755,7 +4755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(2);
 								}
 								('step 4');
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.gain(result.cards[0]);
 									target.$give(1, player);
 								}
@@ -4911,7 +4911,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseTarget('请选择【毒逝】的目标', true, (C, P, Q) => Q.isEnemiesOf(P) && !Q.hasSkill('毒逝')).set('ai', (target) => -get.attitude(player, target)); //QQQ
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.markSkill('毒逝');
 									target.addSkillLog('毒逝2');
@@ -5529,7 +5529,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var card = result.cards[0];
 									trigger.player.$throw(card);
 									if (get.type(card, false) == 'delay') trigger.player.addJudge(card);
@@ -5941,7 +5941,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.attitude(player, target) > 0;
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											result.targets[0].gain(player.storage.往烈_discard);
 											result.targets[0].$gain(player.storage.往烈_discard);
 											delete player.storage.往烈_discard;
@@ -6286,7 +6286,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(trigger.num, result.targets[0], 'he', true);
 								}
 							},
@@ -6379,7 +6379,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard('he', true, event.num);
 								}
 							},
@@ -6416,7 +6416,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard('he', true, 1);
 								}
 							},
@@ -6443,14 +6443,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target) <= 0;
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									t = result.targets[0];
 									player.discardPlayerCard(true, t, 'he', 1);
 								} else {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) {
+								if (result.cards?.length) {
 									reca = result.cards[0];
 									if (reca.name == 'shan') {
 										player.gainPlayerCard(t, 'he', 1, true);
@@ -6965,7 +6965,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('dialog', event.videoId);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									event.card = result.links[0];
 									var func = function (card, id) {
 										var dialog = get.idDialog(id);
@@ -7053,7 +7053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].addSkill('溃散');
 								}
 							},
@@ -7084,7 +7084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.gainPlayerCard(result.targets[0], 'he', true);
 								}
 							},
@@ -7103,7 +7103,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(3, result.targets[0], 'he', true);
 									player.draw();
 								}
@@ -7122,7 +7122,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.addSkill('才识2');
 									target.storage.才识2 += 1;
@@ -7199,7 +7199,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.gainPlayerCard(result.targets[0], 'he', true);
 								}
 								('step 3');
@@ -7211,7 +7211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 4');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].addTempSkill('诏颂2', { player: 'phaseAfter' });
 									result.targets[0].draw();
 									result.targets[0].gainMaxHp();
@@ -7226,7 +7226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 6');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].addTempSkill('诏颂3', { player: 'phaseAfter' });
 									result.targets[0].loseHp();
 									player.discardPlayerCard(result.targets[0], 'he', true);
@@ -7636,7 +7636,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].turnOver();
 								}
 							},
@@ -7788,7 +7788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return -1;
 										};
 										('step 1');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											player.line(target);
 											if (player.storage.劫營1 != undefined) {
@@ -7905,7 +7905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.line(event.target);
 									if (event.target.storage.十胜 == undefined) event.target.storage.十胜 = 0;
@@ -7966,7 +7966,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.line(event.target);
 									if (event.target.storage.十败 == undefined) event.target.storage.十败 = 0;
@@ -8028,7 +8028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].addTempSkill('dingcesgj神郭嘉2', { player: 'phaseAfter' });
 								}
 								('step 2');
@@ -8040,7 +8040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].addTempSkill('dingcesgj神郭嘉1', { player: 'phaseAfter' });
 								}
 							},
@@ -8119,7 +8119,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									var card = result.cards[0];
 									trigger.player.$throw(card);
 									if (get.type(card, false) == 'delay') trigger.player.addJudge(card);
@@ -8247,7 +8247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 									player.useCard({ name: 'sha' }, result.targets[0], false);
 									result.targets[0].useCard({ name: 'sha' }, player, false);
@@ -8360,7 +8360,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 									result.targets[0].useCard({ name: 'sha' }, player, false);
 									player.useCard({ name: 'sha' }, result.targets[0], false);
@@ -9469,7 +9469,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(2, result.targets[0], 'he', true);
 									event.target = result.targets[0];
 								} else {
@@ -9480,7 +9480,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return true;
 								});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target2 = result.targets[0];
 									player.line2([event.target2, event.target]);
 								} else event.finish();
@@ -9564,7 +9564,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard('h', true, event.disnum);
 								}
 								('step 3');
@@ -9691,7 +9691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage([1, 5].randomGet());
 								}
 							},
@@ -9717,7 +9717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 								}
 							},
@@ -9862,7 +9862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(result.targets[0], 'he', true);
 									event.target = result.targets[0];
 								}
@@ -10001,7 +10001,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(2, result.targets[0], 'he', true);
 									player.useCard({ name: 'sha', nature: 'thunder' }, result.targets[0], false);
 									result.targets[0].damage(5, 'thunder');
@@ -10028,7 +10028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard(4, result.targets[0], 'he', true);
 									player.useCard({ name: 'sha', nature: 'fire' }, result.targets[0], false);
 									result.targets[0].damage(5, 'fire');
@@ -10128,7 +10128,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage('fire');
 									player.useCard(game.createCard(event.card.name), result.targets[0], false);
 									game.playAudio('../extension/名存实亡/audio/xurong镬惩俘兵音效.mp3');
@@ -10182,7 +10182,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 4');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard('he', true);
 									result.targets[0].chooseToDiscard('he', true, (card) => {
 										return get.color(card) == 'red';
@@ -10263,7 +10263,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard(2, true, 'he');
 									result.targets[0].draw(4);
 								}
@@ -10322,7 +10322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 								}
 								event.finish();
@@ -10351,7 +10351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 5');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 									var card = result.targets[0].getCards('h', function (card) {
 										return card.name == event.name;
@@ -10385,7 +10385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.X = result.targets[0];
 									player
 										.chooseControl('基本牌', '锦囊牌')
@@ -10440,7 +10440,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].damage();
 								}
 							},
@@ -10491,7 +10491,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.linergbl(result.targets[0], { color: [169 / 3, 153 / 3, 251 / 3], brightness: 3 });
 									result.targets[0].loseHp();
 									player.useCard({ name: 'juedou' }, result.targets[0]);
@@ -10518,7 +10518,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.linergbl(result.targets[0], { color: [51 / 3, 79 / 3, 127 / 3], brightness: 3 });
 									player.gainPlayerCard(
 										result.targets[0],
@@ -10575,7 +10575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return target.group == 'wei' || (target.group == 'wu' && target != player);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var pl = result.targets[0];
 									player.storage.ll = pl;
 									pl.markSkill('文鸯不臣');
@@ -10629,7 +10629,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								player.chooseButton(['成章:是否选择一个文字？<div class="text center shiyonghyxk">你可选择七步诗中的一个文字,随机获得1～7张首字母与该文字相同牌名的牌</div>', [words, 'vcard']], 1);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var szm = get.pinyin(result.links[0][2], { pattern: 'first', toneType: 'none' }).slice(0)[0]; //QQQ
 									game.log(result.links[0][2]);
 									game.log(szm);
@@ -10861,7 +10861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return target.group == 'wei' || (target.group == 'qun' && target != player);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var pl = result.targets[0];
 									player.storage.ll = pl;
 									pl.markSkill('曹植不臣');
@@ -10921,7 +10921,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].addTempSkill('fengyin');
 									if (Math.random() < 0.5) player.recover();
 								}
@@ -11180,7 +11180,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(player, target);
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									player.discardPlayerCard([1, 3].randomGet(), result.targets[0], 'he', true);
 									event.t = result.targets[0];
 								}

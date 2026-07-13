@@ -1644,7 +1644,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						card: trigger.card,
 					}).setHiddenSkill(event.name);
 					"step 1"
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.discard(result.cards);
 						var evt = trigger.parent;
@@ -2165,7 +2165,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					// else event.finish();
 					"step 4"
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.line(result.targets[0], 'thunder');
 						result.targets[0].damage();
 					}
@@ -2217,7 +2217,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					// else event.finish();
 					"step 4"
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.line(result.targets[0], 'thunder');
 						result.targets[0].damage();
 					}
@@ -3123,7 +3123,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 1 - get.attitude(player, target);
 					});
 					'step 1'
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.storage.sczs_shefu = result.targets[0];
 						event.type = [];
 						event.list = {};
@@ -5255,7 +5255,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return -get.attitude(_status.event.player, target);
 							});
 							"step 2"
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.line(result.targets[0], 'green');
 								targets.add(result.targets[0]);
 								player.discardPlayerCard(result.targets[0], 'he', true);
@@ -5274,7 +5274,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							}
 							// else event.finish();
 							"step 4"
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.line(result.targets[0], 'thunder');
 								result.targets[0].damage();
 							}
@@ -5337,7 +5337,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.damageEffect(target, player, player);
 					});
 					'step 1'
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].discardPlayerCard(player, 'h', true);
 						result.targets[0].storage.xiefang_yuan = true;
 					}

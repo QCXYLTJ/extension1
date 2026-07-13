@@ -322,7 +322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var num = target.sex == 'male' ? 999 : 999;
                                     target.loseHp(999);
@@ -428,7 +428,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -num;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.hp = target.maxHp;
@@ -1724,7 +1724,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].goMad({ player: 'phaseAfter' });
                                     result.targets[0].draw();
                                 }
@@ -2749,7 +2749,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(player.getDamagedHp());
                                     result.targets[0].turnOver();
                                 }
@@ -2932,7 +2932,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt2: '弃置一张牌,将此【杀】转移给攻击范围内的一名其他角色',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.discard(result.cards);
                                     player.say('有趣.');
@@ -3652,7 +3652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addTempSkill('dmshengqi', { player: 'phaseAfter' });
                                     result.targets[0].say('!!');
                                 }
@@ -5466,7 +5466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('rand', [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.dmjlrd2.push(result.links[0][2]);
                                     player.chooseCard('h', '选择一张手牌作为<弱点>', true);
                                     player.say(['要是这样的话......', '也许能从这里下手.', '找到一处弱点了.', '我一定会杀掉他的.'].randomGet());
@@ -5479,7 +5479,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.lose(card, ui.special, 'toStorage');
                                     player.storage.dmjlrd.push(card);

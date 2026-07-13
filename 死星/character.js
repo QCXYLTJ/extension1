@@ -1158,7 +1158,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return false;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].recover();
                     } else event.finish();
                 },
@@ -1473,7 +1473,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return false;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].recover();
                     } else event.finish();
                 },
@@ -1770,7 +1770,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return false;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].recover();
                     } else event.finish();
                 },
@@ -1947,7 +1947,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return false;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].recover();
                     } else event.finish();
                 },
@@ -2200,7 +2200,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return true;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var terr = result.targets[0];
                         event.terr = terr;
                         terr.recover();
@@ -2281,7 +2281,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 var terr = result.targets[0];
                                 event.terr = terr;
                                 terr.recover();
@@ -3050,7 +3050,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         filterTarget: true,
                     });
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         if (result.targets[0].hp < result.targets[0].maxHp) {
                             result.targets[0].recover();
                         } else {
@@ -3374,7 +3374,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return target == player || player.getFriends().includes(target);
                     });
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         if (result.targets[0].hp < result.targets[0].maxHp) {
                             result.targets[0].recover();
                         } else {
@@ -4357,7 +4357,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         filterTarget: true,
                     });
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         if (result.targets[0].hp < result.targets[0].maxHp) {
                             result.targets[0].recover();
                         } else {
@@ -4779,7 +4779,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         filterTarget: true,
                     });
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         if (result.targets[0].hp < result.targets[0].maxHp) {
                             result.targets[0].recover();
                         } else {
@@ -5083,7 +5083,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return target != player && target.isFriendsOf(player);
                             });
                             ('step 2');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 result.targets[0].changeHujia(5);
                                 event.finish();
                             } else event.finish();
@@ -5092,7 +5092,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return target != player && target.isFriendsOf(player);
                             });
                             ('step 4');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 result.targets[0].changeHujia(5 - trigger.num);
                                 event.finish();
                             } else event.finish();
@@ -5897,7 +5897,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     };
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                         player
                             .chooseControl('视为使用一张无距离限制的杀', '视为使用一张决斗')
@@ -7192,7 +7192,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].hujia += 2;
                         result.targets[0].update();
                         for (var i = 0; i < targets.length; i++) {
@@ -7444,7 +7444,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].hujia += 2;
                         result.targets[0].update();
                         for (var i = 0; i < targets.length; i++) {
@@ -9703,7 +9703,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         position: 'h',
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         player.give(result.cards, target);
@@ -10138,7 +10138,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         position: 'h',
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         player.give(result.cards, target);
@@ -12288,7 +12288,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return 1;
                         };
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].damage('fire', 2);
                     }
                 },
@@ -12518,7 +12518,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('dialog', event.videoId);
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.card = result.links[0];
                         var func = function (card, id) {
                             var dialog = get.idDialog(id);
@@ -13691,7 +13691,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return 0;
                     };
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].addTempSkill('siji_fengsuo1', { player: 'phaseAfter' });
                     }
                 },
@@ -14463,7 +14463,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target);
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.line(target, 'green');
                         game.log(target, '成为了', '【腐守】', '的目标');
@@ -16757,7 +16757,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             };
                             ('step 1');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 result.targets[0].addTempSkill('baiban', { player: 'phaseAfter' });
                             }
                         },
@@ -16866,7 +16866,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return get.attitude(player, target) * (5 - target.hujia) * (target.hujia >= 5 ? -0.25 : 1) + (target.hujia == 5 ? get.attitude(player, target) : 0);
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         target.changeHujia(1);
                         target.draw(2);

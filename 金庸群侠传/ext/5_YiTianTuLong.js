@@ -496,7 +496,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return Math.random();
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               const link = result.links[0];
               if (link == 2) {
                 const bingliang = get.cardPile(function (card) {
@@ -1432,7 +1432,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 });
                 next.set('prompt2', '代替其选择议事牌');
                 'step 1';
-                if (result.bool) {
+                if (result.links?.length) {
                   const cardx = result.links[0];
                   trigger.directresult = [result.links[0]];
                   trigger.parent.set('yttl_ytzyingyang', true);
@@ -1858,7 +1858,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   });
                 } else event.redo();
                 'step 2';
-                if (result.bool) {
+                if (result.links?.length) {
                   if (result.links[0] == 1) {
                     const evt = event.getParent('phase');
                     if (!evt.yttl_meiying_swapSeat) evt.yttl_meiying_swapSeat = [];
@@ -2157,7 +2157,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return player.getUseValue(cardx);
             });
             'step 3';
-            if (result.bool) {
+            if (result.links?.length) {
               player.chooseUseTarget(result.links[0], true, false);
             }
           },
@@ -2882,7 +2882,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.damageEffect(target, player, player, 'jy_du');
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].damage(1, player, 'nocard', 'jy_du');
             }
           }
@@ -3199,7 +3199,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               _trigger: trigger
             });
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               player.discard(result.cards[0]);
               var evt = trigger;
               trigger.targets.add(result.targets[0]);
@@ -3478,7 +3478,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   );
                 });
                 'step 2';
-                if (result.bool) {
+                if (result.targets?.length) {
                   player.choosePlayerCard(result.targets[0], '请选择至多' + get.translation(event.num) + '张牌置入<乾坤一气袋>.', [1, event.num], 'ej').set('ai', lib.card.loseCard_ai.button);
                 }
                 'step 3';
@@ -3531,7 +3531,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   return 8 - get.value(button.link);
                 });
                 'step 1';
-                if (result.bool) {
+                if (result.links?.length) {
                   player.addToExpansion(result.links[0], player, 'draw').gaintag.add('yttl_xingnang');
                 }
               }
@@ -4093,7 +4093,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'fire');
               //result.targets[0].gain(event.togain,player,'give');
               player.give(event.togain, result.targets[0], true);
@@ -5822,7 +5822,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -6511,7 +6511,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   //return -att;
                 });
                 'step 1';
-                if (result.bool) {
+                if (result.targets?.length) {
                   var target = result.targets[0];
                   player.line(target, 'green');
                   game.log(player, '成为了', target, '的亲信.');
@@ -6847,7 +6847,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('targets0', trigger.player);
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               player.gain(result.links[0], 'gain2');
               if (result.links[0].suit == 'club' && !trigger.player.isLinked()) trigger.player.link();
             }
@@ -6899,7 +6899,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addTempSkill('yttl_mouxian_draw', { player: 'phaseEnd' });
             }
           }
@@ -7302,7 +7302,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               } else return -1;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.swapHandcards(result.targets[0]);
               trigger.parent;
               var next = game.createEvent('yttl_shameng_after', false);
@@ -7362,7 +7362,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'green');
               var target = result.targets[0];
               var count = target.maxHp - target.hp;
@@ -7558,7 +7558,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 3';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'green');
               result.targets[0].recover();
             }
@@ -7801,7 +7801,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -9508,7 +9508,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var card2 = { name: result.links[0][2] };
               var info = get.info(card2);
               player.storage.yttl_wudao = { name: result.links[0][2], card: card2, skills: info.skills || [] };
@@ -9637,7 +9637,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 3;
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2] };
               var subtype = get.subtype(card);
               player.enableEquip(subtype);
@@ -9729,7 +9729,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0.5;
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2] };
               trigger.player.disableEquip(get.subtype(card));
               trigger.player.addSkill('yttl_xuanyin_old1');
@@ -9782,7 +9782,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 3;
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2] };
               var subtype = get.subtype(card);
               player.enableEquip(subtype);
@@ -9847,7 +9847,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 3;
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2] };
               var subtype = get.subtype(card);
               targets[0].enableEquip(subtype);
@@ -10185,7 +10185,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -1;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               if (result.targets[0].countCards('he')) result.targets[0].chooseToDiscard(trigger.cards.length, 'he', true);
               result.targets[0].draw(trigger.cards.length);
             }
@@ -10521,7 +10521,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             } else event.finish();
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               var cards = result.cards;
               player.give(cards, target, true).gaintag.add('yttl_tuobiao');
@@ -10762,7 +10762,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   return get.attitude(player, target);
                 });
                 'step 3';
-                if (result.bool) {
+                if (result.targets?.length) {
                   result.targets[0].draw();
                 }
               }
@@ -10790,7 +10790,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('card', trigger.card);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -11041,7 +11041,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             } else event.finish();
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].damage(1, player);
               event.blnum--;
               if (event.blnum > 0) event.goto(1);
@@ -11747,7 +11747,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -1;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0], 'green');
               player.storage.yttl_yinjiu_old.add(result.targets[0]);
               player.markSkill('yttl_yinjiu_old');
@@ -12503,7 +12503,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               //return 1;
             });
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = result.links[0];
               var vcard;
               var color = get.color(card);
@@ -12537,7 +12537,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else event.finish();
             'step 3';
             var targets = [player];
-            if (result.bool) {
+            if (result.targets?.length) {
               targets.add(result.targets[0]);
             }
             player.useCard({ name: event.vcard.name }, targets, event.vcard.cards, false);
@@ -12595,7 +12595,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -1;
             });
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               if (result.links[0].name == 'wuzhong') {
                 player.gain(result.links[0], 'gain2');
                 //player.useCard(result.links[0],player);
@@ -12675,7 +12675,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 6.5 - get.value(card);
             });
             'step 2';
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.source.gain(result.cards[0],player,'giveAuto');
               player.give(result.cards[0], trigger.source);
               trigger.num--;
@@ -12736,7 +12736,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 6.5 - get.value(card);
             });
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               trigger.source.gain(result.cards[0], player, 'giveAuto');
               trigger.num--;
             }
@@ -12966,7 +12966,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return value;
             });
             'step 3';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = game.createCard(result.links[0][2]);
               //card._destroy=true;
               trigger.player.equip(card).pushHandler(function (event, option) {
@@ -13233,7 +13233,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
             );
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               player.chooseToCompare(event.target);
             } else {
@@ -13438,7 +13438,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return max;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               event.target = target;
               target.addSkill('yttl_kuchan2');
@@ -13460,7 +13460,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               game.log(event.target, '不能成为', { name: result.links[0][2] }, '的目标');
               event.target.storage.yttl_kuchan.add(result.links[0][2]);
             }
@@ -13715,7 +13715,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 4';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0]);
               result.targets[0].draw();
             }

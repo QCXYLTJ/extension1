@@ -1005,7 +1005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('check', check);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                     player.line(result.targets, 'green');
                                 }
@@ -1369,7 +1369,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     player.swapHandcards(target);
@@ -1995,7 +1995,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (event.disbool) {
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets[0], 'green');
                                         player.discardPlayerCard(result.targets[0], 'hej', 2, true);
                                     }
@@ -2865,7 +2865,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择弃置的牌和【杀】的目标.',
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var cards = result.cards;
                                     player.discard(cards);
@@ -3404,7 +3404,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     true
                                 );
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(trigger.num);
                                 }
                             },
@@ -3479,7 +3479,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(button.link) != 'equip';
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.呤作 = result.links[0].name;
                                     player.addTempSkill('呤作_use', { player: 'phaseBegin' });
                                 }
@@ -3820,7 +3820,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.canUse('sha', target, false);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.useCard({ name: 'sha' }, target, false);
                                 } else event.finish();
@@ -4112,7 +4112,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.useCard({ name: 'sha' }, target, false);
@@ -4318,7 +4318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var cards = result.cards;
                                     if (target.hasJudge('lebu')) {
@@ -5721,7 +5721,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets[0] == player) player.changeHujia(1);
                                     else result.targets[0].damage('nocard');
                                 }
@@ -6946,7 +6946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseToDiscard((card, player) => !player.getStorage('缭影_count').includes(card.suit));
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             player.markAuto('缭影_count', [result.cards[0].suit]);
                                             game.log(player.storage.缭影_count);
                                         } else trigger.cancel();
@@ -8021,7 +8021,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseToDiscard('he');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     trigger.player.storage.dfqx_jiangzi = [card.suit, player];
                                     trigger.player.addTempSkill('dfqx_jiangzi_effect', 'phaseUseEnd');
@@ -8385,7 +8385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards[0].suit == event.suit) event.recover = 1;
                                     if (trigger.player.judging[0].clone) {
                                         trigger.player.judging[0].clone.classList.remove('thrownhighlight');

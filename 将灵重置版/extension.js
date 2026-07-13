@@ -1868,7 +1868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                   const target = result.targets[0];
                   player.line(target, 'gold');
                   target.damage(event.tanhuaDamage);
@@ -1977,7 +1977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 ('step 3');
-                if (result.bool) {
+                if (result.targets?.length) {
                   const target = result.targets[0];
                   player.line(target, 'gold');
                   target.damage(2);
@@ -4288,7 +4288,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return num;
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                   var target = result.targets[0];
                   if (!player.storage.jl_xizhicai_xianfu) player.storage.jl_xizhicai_xianfu = [];
                   player.storage.jl_xizhicai_xianfu.push(target);

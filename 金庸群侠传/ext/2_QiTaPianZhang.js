@@ -565,7 +565,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return Math.random();
             });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               player.changeGroup(result.links[0][2].slice(6));
             }
             ('step 2');
@@ -1500,7 +1500,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     return get.effect(target, { name: button.link[2] }, player, player);
                   });
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                   player.useCard({ name: result.links[0][2] }, target);
                 }
               },
@@ -2131,7 +2131,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return Math.random();
               });
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addSkill('qtpz_qianbing_mark');
             }
             event.finish();
@@ -2156,7 +2156,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             });
             //next.set('complexSelect',true);
             ('step 4');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].removeSkill('qtpz_qianbing_mark');
               result.targets[1].addSkill('qtpz_qianbing_mark');
             }
@@ -2210,7 +2210,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.attitude(_status.event.player, target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.line(target, 'green');
               target.addSkills('sdyx_danxin');
@@ -3217,7 +3217,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               game.log('没有符合条件的牌名!');
             }
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var vcard = { name: result.links[0][2], nature: result.links[0][3] };
               var bool = player.hasUseTarget(vcard);
               if (bool) {
@@ -3531,7 +3531,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             player.chooseTarget(get.prompt('qtpz_mantian'), str, func).set('ai', AItarget);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               trigger.player = result.targets[0];
               trigger.untrigger();
               trigger.trigger(trigger.name + 'Before');
@@ -3899,7 +3899,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -att;
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               result.targets[0].draw(5);
             } else {
@@ -3949,7 +3949,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             event.cardx = ui.cardPile.childNodes[event.num];
             targets[event.num].chooseCard('请选择一张牌交换牌堆顶第' + get.translation(event.num + 1) + '张牌', 'h', 1, true);
             ('step 2');
-            if (result.bool) {
+            if (result.cards?.length) {
               var next = targets[event.num].lose(result.cards[0], ui.cardPile);
               next.insert_index_card = event.cardx;
               next.insert_index = function (event, card) {
@@ -4039,7 +4039,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               .set('sourcex', trigger.targets)
               .set('evtuse', trigger.parent);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].draw();
               player.storage.qtpz_qingcang2 = { card: trigger.card, target: result.targets[0] };
               player.addTempSkill('qtpz_qingcang2');
@@ -4554,7 +4554,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.attitude(player, target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               var card = get.cardPile(function (cardx) {
                 var type = get.type(cardx);
@@ -4624,7 +4624,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return num;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].discard(result.targets[0].getCards('e'));
             }
           },
@@ -5365,7 +5365,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 3');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addToExpansion(event.togive, 'gain2', 'log').gaintag.add('qtpz_yuandu2');
               result.targets[0].addSkill('qtpz_yuandu2');
             } else {
@@ -5520,7 +5520,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 });
             }
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2], nature: result.links[0][3] };
               var next = player.chooseUseTarget(card, event.nochoose ? null : true, 'nodistance', false);
               if (event.nochoose) {
@@ -8112,7 +8112,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return button.link.suit == 'heart';
             });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               event.link = result.links[0];
             } else {
               event.finish();
@@ -8251,7 +8251,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               .set('createDialog', ['盲信牌', [list, 'vcard']]);
             event.manlist = list;
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               var str = '<span style="color: #FF0000">盲信<br>声明一张牌,' + get.translation(player) + '将牌堆顶的一张牌当此牌使用,若牌堆顶的牌的类型与此牌不同,其失去一点体力</span>';
               event.target
@@ -8303,7 +8303,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return;
             }
             ('step 2');
-            if (result.bool) {
+            if (result.links?.length) {
               game.log(target, '声明了', { name: result.links[0][2] });
               player.storage.qtpz_mangxin.remove(result.links[0][2]);
               player.markSkill('qtpz_mangxin');
@@ -8687,7 +8687,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return;
             }
             ('step 3');
-            if (result.bool) {
+            if (result.links?.length) {
               event.toequips = result.links[0];
               event.equips.remove(result.links[0]);
             } else {
@@ -8706,7 +8706,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.effect(target, event.toequips, target, player);
               });
             ('step 5');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].equip(event.toequips, true).set('delay', true);
             }
             event.goto(2);
@@ -9638,7 +9638,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -get.attitude(player, event.target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2] };
               var subtype = get.subtype(card);
               player.storage.qtpz_sheer_map[subtype].remove(trigger.player);
@@ -9718,7 +9718,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return 0.1;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2] };
               var subtype = get.subtype(card);
               var map = event.target;
@@ -10011,7 +10011,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             next.set('blackGo', blackGo);
             next.set('filterCard', lib.filter.cardDiscardable);
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               const cardx = result.cards[0];
               const color = get.color(cardx);
               player.discard(cardx);
@@ -10039,7 +10039,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -10659,7 +10659,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('targetx', trigger.player.next);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               result.links[0].fix();
               game.log(player, '将', result.links[0], '置于牌堆顶');
               player.$throw(result.links[0], 1000);
@@ -10836,7 +10836,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 );
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               event.set('forceDie', true);
               var list = [];
@@ -10945,7 +10945,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -1;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               var skr = '选择一张红色牌置于牌堆任意前七张';
               player
@@ -11351,7 +11351,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 });
               });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               event.namex = result.links[0][2];
               player.unmarkAuto('qtpz_lingtie', [event.namex]);
               trigger.player
@@ -11864,7 +11864,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: false };
             }
             ('step 5');
-            if (result.bool) {
+            if (result.cards?.length) {
               player.addToExpansion(result.cards[0], target, 'give').gaintag.add('qtpz_tudu');
               target.say(['便是给你,又何妨？', '好汉不吃眼前亏.', '我愿将藏宝图奉上.'].randomGet());
             } else {
@@ -13030,7 +13030,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -1;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               player.discard(result.cards[0]);
               player.addTempSkill('qtpz_honglve_' + get.color(result.cards[0]));
             }
@@ -13138,7 +13138,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.attitude(player, target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].gain(event.togive, 'log', 'gain2');
               event.target = result.targets[0];
             }
@@ -13419,7 +13419,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.value(button.link);
               });
             ('step 3');
-            if (result.bool) {
+            if (result.links?.length) {
               player.chooseUseTarget(result.links[0], true, false, 'nodistance');
             } else event.finish();
           },
@@ -13892,7 +13892,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 );
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line2([trigger.player, result.targets[0]]);
               trigger.player.useCard(
                 {

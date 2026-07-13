@@ -971,7 +971,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     event.card = result.links[0];
                     player.chooseCard('he', true, '用一张牌替换' + get.translation(event.card));
                     ('step 2');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         event.cards[event.cards.indexOf(event.card)] = result.cards[0];
                         player.lose(result.cards, ui.special);
                         var cardx = ui.create.card();
@@ -1099,7 +1099,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     }
                     event.finish();
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         event.target = target;
                         player.line(target);
@@ -1123,7 +1123,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         }
                     } else event.finish();
                     ('step 4');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         var name = result.links[0][2];
                         player.useCard({ name: name }, target, false);
                     }
@@ -1885,7 +1885,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                             return -att;
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         player.discardPlayerCard(target, 'he', true, num);
                     }
@@ -1913,7 +1913,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 trigger.player.discard(result.links[0]);
                             }
                         },

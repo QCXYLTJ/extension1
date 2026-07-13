@@ -38,7 +38,7 @@ const skill = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.chooseUseTarget(true, game.createCard(result.links[0][2]));
 			}
 			event.num--;
@@ -656,7 +656,7 @@ const skill = {
 				event.finish();
 			}
 			"step 6";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], "thunder");
 				result.targets[0].damage("thunder", "nosource", "nocard");
 			}
@@ -1168,7 +1168,7 @@ const skill = {
 				return get.damageEffect(target, player, player);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.line(result.targets[0]);
 				result.targets[0].damage();
 			} else {
@@ -2697,7 +2697,7 @@ const skill = {
 				return att + Math.min(0.5, 5 - target.countCards("h"));
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				game.asyncDraw([player, result.targets[0]]);
 				player.logSkill("lingxian", result.targets);
 			}
@@ -2948,7 +2948,7 @@ const skill = {
 				prompt: get.prompt("hutian"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				event.target = target;
 				player.$give(result.cards, target);
@@ -4214,7 +4214,7 @@ const skill = {
 				return get.attitude(player, target) * (target.isTurnedOver() ? 1 : -1);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill("wangchen", target);
 				target.turnOver();
@@ -5034,7 +5034,7 @@ const skill = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.logSkill("meihuo", event.target);
 				player.choosePlayerCard(event.target, "he", true).ai = function (button) {
@@ -5217,7 +5217,7 @@ const skill = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.card = result.cards[0];
 				trigger.player.judge(function (card) {
 					return get.color(card) === "red" ? 1 : 0;
@@ -7472,7 +7472,7 @@ const skill = {
 				return get.suit(button.link) === "club";
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(result.links[0], target);
 				target.$giveAuto(result.links[0], player);
 			}
@@ -7527,7 +7527,7 @@ const skill = {
 				event.goto(1);
 			}
 			"step 3";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards[0], target);
 				target.$give(1, player);
 			}

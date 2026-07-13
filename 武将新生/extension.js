@@ -939,7 +939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player) && target != player;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.recover();
                                 }
@@ -961,7 +961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.recoverEffect(target, player, player) && target != player;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             target.gainMaxHp();
                                         }
@@ -1788,7 +1788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 };
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], 'gain2');
                                 }
                                 event.finish();
@@ -4031,7 +4031,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.chooseCard('he', true, [1, event.card.length], `选择需要为${get.translation(result.targets[0])}分配的牌`, function (card) {
                                         if (event.card.includes(card)) return true;
@@ -4368,7 +4368,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '选择一张牌,置于一名角色的武将牌上,称为<檄>',
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.player1 = result.targets[0];
                                     result.targets[0].addSkill('zhizuo_xidao_mark');
                                     result.targets[0].addToExpansion(player, 'give', result.cards).gaintag.add('zhizuo_xidao_mark');
@@ -4456,7 +4456,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.gainPlayerCard(trigger.target, false, 'h');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                 } else {
                                     player.draw('visible');

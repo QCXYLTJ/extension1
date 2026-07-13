@@ -99,7 +99,7 @@ const skill = {
 					return 0;
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				if (player.isUnderControl(true)) {
 					player.line(event.target, "green");

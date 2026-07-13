@@ -2445,7 +2445,7 @@ game.import('character', function () {
 							return 0.1 - att / target.countCards('h');
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						event.target = target;
 						player
@@ -4520,7 +4520,7 @@ game.import('character', function () {
 								}
 							}
 							('step 3');
-							if (result.bool) {
+							if (result.targets?.length) {
 								trigger.targets.remove(result.targets[0]);
 							}
 						},
@@ -6236,7 +6236,7 @@ game.import('character', function () {
 									return get.effect(target, trigger.card, player, player);
 								});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								trigger.targets.add(result.targets[0]);
 								event.finish();
 							}
@@ -7472,7 +7472,7 @@ game.import('character', function () {
 					var cards = event.target.getCards('h');
 					player.chooseCardButton(cards, 1, '〖鹰视〗:选择获得' + get.translation(target) + '一张牌');
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.gain(result.links[0], event.target, 'draw');
 					}
 				},
@@ -8094,7 +8094,7 @@ game.import('character', function () {
 						}
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						trigger.player.gain(result.cards[0], 'draw', player);
 						player.addToExpansion(get.cards()[0], 'gain2', trigger.player).gaintag.add('xjzh_sanguo_bujiao');
 					}
@@ -8799,7 +8799,7 @@ game.import('character', function () {
 					targets[0].damage(xnum, 'nocard', 'thunder');
 					event.finish();
 					('step 3');
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].damage(2, 'nocard', 'thunder');
 						for (var i = 0; i < targets.length; i++) {
 							if (result.targets[0] != targets[i]) {
@@ -10279,7 +10279,7 @@ game.import('character', function () {
 									return Math.random();
 								});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var list = result.targets[0].getSkills(null, false, false).filter(function (skill) {
 									var info = lib.skill[skill];
 									return info && info.limited;
@@ -11615,7 +11615,7 @@ game.import('character', function () {
 						event.finish();
 					}
 					('step 3');
-					if (result.bool) {
+					if (result.links?.length) {
 						if (player.hasUseTarget(result.links[0])) {
 							player.chooseUseTarget(result.links[0], true);
 						}
@@ -11871,7 +11871,7 @@ game.import('character', function () {
 							return num;
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.swapHandcards(result.targets[0]);
 						event.target = result.targets[0];
 					} else {
@@ -12902,7 +12902,7 @@ game.import('character', function () {
 						return inpile.randomGet();
 					});
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						var card = game.createCard(result.links[0][2]);
 						if (event.targets2.countCards('h', { name: card.name })) {
 							var card2 = event.targets2
@@ -15687,7 +15687,7 @@ game.import('character', function () {
 						return 0;
 					});
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.showCards(result.links[0]);
 						var card = result.links[0];
 						if (card.suit == 'spade') {
@@ -15763,7 +15763,7 @@ game.import('character', function () {
 							return get.damageEffect(target, player, player, 'thunder');
 						});
 					('step 3');
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].damage(player, 1, 'nocard', 'thunder');
 					}
 				},
@@ -21423,7 +21423,7 @@ game.import('character', function () {
 						});
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.gain(result.cards[0], event.targetx, 'gain2');
 					} else {
 						event.targetx.say('否');
@@ -22489,7 +22489,7 @@ game.import('character', function () {
 							return -get.value(card);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						switch (get.type(result.cards[0])) {
 							case 'basic':
 								trigger.num++;
@@ -22623,7 +22623,7 @@ game.import('character', function () {
 							.set('triggerx', trigger);
 					} else event.finish();
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						var card = game.createCard(result.links[0][2], '', '', '');
 						var skills = get.info(card).skills;
 						skills = skills.slice(0);

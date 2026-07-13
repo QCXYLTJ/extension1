@@ -3126,7 +3126,7 @@ const skills = {
                             return att;
                         },
                     }).forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         await player.give(result.cards, result.targets[0]);
                         player.getHistory('custom').push({ Europa_AfricaViceroy_xitele_shoulieyuanqu_daxiang: true });
                     }
@@ -3181,7 +3181,7 @@ const skills = {
                             return att;
                         },
                     }).forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         await player.give(result.cards, result.targets[0]);
                         player.getHistory('custom').push({ Europa_AfricaViceroy_xitele_shoulieyuanqu_heixingxing: true });
                     }
@@ -3260,7 +3260,7 @@ const skills = {
                             return att;
                         },
                     }).forResult();
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         await player.give(result.cards, result.targets[0]);
                         player.getHistory('custom').push({ Europa_AfricaViceroy_xitele_shoulieyuanqu_lingyang: true });
                     }

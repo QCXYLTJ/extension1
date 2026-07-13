@@ -578,7 +578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         player.chooseTarget('请选择要调整的角色', (event, player, target) => (target.name1 && target.name1 != 'unknown') || (target.name2 && target.name2 != 'unknown')).set('deadTarget', true);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                             event.ctname = target.name1;
@@ -4889,7 +4889,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(button.link, owner) * get.attitude(_status.event.player, owner);
                                 }).direct = true;
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var target = get.owner(result.links[0]);
                                     var next = target.discard(result.links);
                                     next.notBySelf = true;
@@ -5052,7 +5052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return att * lib.card.guohe.ai.result.target(player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.discardPlayerCard(result.targets[0], 'hej', true);
                                         }
                                     },
@@ -5178,7 +5178,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else if (cards.filterInD('d').length == 1) event._result = { bool: true, links: cards.filterInD('d') };
                                 else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     trigger.player.respond(event.card, 'highlight', 'noOrdering').nopopup = true;
                                 } else event.finish();
@@ -5441,7 +5441,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (event.disbool) {
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets[0]);
                                         player.discardPlayerCard(result.targets[0], 'hej', true);
                                     }
@@ -5578,7 +5578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.drawEffect(target, 1, player);
                                     });
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     if (event.moveMap[target.playerid] == player.seatNum) {
@@ -8052,7 +8052,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 else event.goto(4);
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'fire');
                                     player.discardPlayerCard(target, 'hej', true);
@@ -10344,7 +10344,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '<center>除你与其外的吴势力角色计算与其的距离为1直到有轮结束</center>');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addTempSkill('qyhc_zhaofu_effect', 'roundFinish');
                                     result.targets[0].markAuto('qyhc_zhaofu_effect', [player]);
                                 } else event.finish();
@@ -10382,7 +10382,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget('###〖弼政〗你可以选择一名角色,令其摸两张牌###<center>你与其之中手牌数不小于体力的角色依次重铸区域内一张牌</center>').set('ai', (target) => get.drawEffect(target, 2, player) * ((target.countCards('h') + 2 >= target.hp ? target.countCards('j') : 0) * 1.2 + 1));
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.T = result.targets[0];
                                     event.T.draw(2);
                                 } else event.finish();
@@ -10677,7 +10677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 9 - get.value(card);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards[0]) {
                                         qyhcCL.skillid.qyhc_beige2 = 1;
                                         delete qyhcCL.skillid.qyhc_beige2;
@@ -11043,7 +11043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att * lib.card.guohe.ai.result.target(player, target) + get.damageEffect(target, player, player, 'thunder') * 1.2;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.addCountNum('qyhc_leixi');
                                     player.trymarkAutoSkill('qyhc_leixi_QYHCqyhc_cl');
@@ -11051,7 +11051,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target = target;
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (get.color(result.cards[0], null) == 'red') event.target.chooseToDiscard(true, 'e', '〖雷袭〗请弃置装备区内一张牌');
                                     else {
                                         player.line(event.target);
@@ -11096,7 +11096,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(player, target) + 30;
                                         });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var str = `###${get.translation(player)}对你发动〖黄结〗###<center>是否令${get.translation(player)}摸一张牌？</center>`;
                                     if (event.target == player) {
@@ -16766,7 +16766,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('pretargets', targets);
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var RESULT = result.targets[0];
                             event.RESULT = RESULT;
                             player.line(RESULT);
@@ -17429,7 +17429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             next.set('choi', choi);
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             event.pos = get.position(result.cards[0]);
                             target.showCards(target.getCards(event.pos), get.translation(target) + '【水淹七军】展示');
                         } else event.goto(3);
@@ -17757,7 +17757,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return get.damageEffect(target, player, player) / 2 - get.drawEffect(player, _status.event.drawnums);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.line(result.targets[0]);
                             result.targets[0].damage(target, event.baseDamage || 1);
                         } else if (event.drawnums) player.draw(event.drawnums);
@@ -19439,7 +19439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 .set('currentCards', currentCards);
                         }
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             game.log(player, '将', trigger.card, '转化为', '#y【' + get.translation(result.links[0][2]) + '】');
                             trigger.card.name = result.links[0][2];
                             trigger.card.isCard = false;
@@ -20895,7 +20895,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('prompt2', '若其横置,其重置;若其重置,其横置');
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].link();
                         }
                     },

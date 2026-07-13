@@ -2166,7 +2166,7 @@ export async function precontent(config, pack) {
 							},
 						});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							var target = result.targets[0];
 							player.line(target, 'green');
 							target.gain(result.cards, player, 'giveAuto');
@@ -3138,7 +3138,7 @@ export async function precontent(config, pack) {
 								return get.damageEffect(target, player, player);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							const target = result.targets[0];
 							player.line(target);
 							target.loseHp(2);
@@ -3490,7 +3490,7 @@ export async function precontent(config, pack) {
 							});
 						};
 						('step 1');
-						if (result.bool) {
+						if (result.links?.length) {
 							player.chooseUseTarget(result.links[0][2], true, false);
 						}
 					},
@@ -3912,7 +3912,7 @@ export async function precontent(config, pack) {
 								);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							event.target = result.targets[0];
 							player.line(event.target);
 							trigger.targets.push(event.target);
@@ -4113,7 +4113,7 @@ export async function precontent(config, pack) {
 							};
 						} else event.finish();
 						('step 2');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets[0]);
 							trigger.targets[trigger.targets.indexOf(player)] = result.targets[0];
 						}
@@ -4501,7 +4501,7 @@ export async function precontent(config, pack) {
 								return effectTarget - rawEffect;
 							};
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							var target = result.targets[0];
 							trigger.targets[trigger.targets.indexOf(player)] = target;
 						}
@@ -4716,7 +4716,7 @@ export async function precontent(config, pack) {
 							prompt: '请选择交出的牌和交给的对象',
 						});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							var target = result.targets[0];
 							var cards = result.cards;
 							target.gain(cards, player, 'give');
@@ -5337,7 +5337,7 @@ export async function precontent(config, pack) {
 							else event.finish();
 						}
 						('step 4');
-						if (result.bool) {
+						if (result.targets?.length) {
 							const target = result.targets[0];
 							if (event.suit == 'spade') {
 								player.line(target);
@@ -5496,7 +5496,7 @@ export async function precontent(config, pack) {
 						event.target[event.num].chooseCard('he', true, '缴械:将一张牌交给' + get.translation(player));
 						('step 3');
 						game.log(result.cards);
-						if (result.bool) {
+						if (result.cards?.length) {
 							event.target[event.num].give(result.cards[0], player, true);
 							if (event.num < event.target.length - 1) {
 								++event.num;
@@ -6226,7 +6226,7 @@ export async function precontent(config, pack) {
 								return -get.attitude(_status.event.player, target);
 							});
 						('step 2');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets[0], 'green');
 							event.discardTargets.add(result.targets[0]);
 							player.discardPlayerCard(result.targets[0], 'he', true);
@@ -6256,7 +6256,7 @@ export async function precontent(config, pack) {
 								return get.damageEffect(target, player, player);
 							});
 						('step 7');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.line(result.targets[0], 'thunder');
 							result.targets[0].damage();
 						}
@@ -6719,7 +6719,7 @@ export async function precontent(config, pack) {
 									});
 								} else event.finish();
 								('step 9');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'thunder');
 									player.discardPlayerCard(target, true, 'he');
@@ -7186,7 +7186,7 @@ export async function precontent(config, pack) {
 								return 0;
 							});
 						('step 2');
-						if (result.bool) {
+						if (result.targets?.length) {
 							var target = result.targets[0];
 							event.target = target;
 							target.draw(Math.min(5, target.hp));
@@ -7999,7 +7999,7 @@ export async function precontent(config, pack) {
 							next.set('ai', list[1]);
 						} else event.finish();
 						('step 2');
-						if (result.bool) {
+						if (result.targets?.length) {
 							var target = result.targets[0];
 							if (player != target) player.addExpose(0.2);
 							player.addTempSkill('fusion_luochong_turn', 'phaseBegin');
@@ -8137,7 +8137,7 @@ export async function precontent(config, pack) {
 										return get.threaten(target);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.addMark('zongkui_mark', 1);
 								}
@@ -8179,7 +8179,7 @@ export async function precontent(config, pack) {
 									if (event.triggername == 'roundStart') next.set('forced', true);
 								}
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.addMark('zongkui_mark', 1);
 								}
@@ -8204,7 +8204,7 @@ export async function precontent(config, pack) {
 									if (event.triggername == 'roundStart') next.set('forced', true);
 								}
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.addMark('zongkui_mark', 1);
 								}
@@ -9185,7 +9185,7 @@ export async function precontent(config, pack) {
 							})
 							.setHiddenSkill(event.name);
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							player.discardPlayerCard(result.targets[0], 'he', true);
 						}
 					},

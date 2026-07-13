@@ -1884,7 +1884,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return get.effect(target, { name: 'shunshou_copy2' }, player, player) * 0.01;
                 });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 event.P = result.targets[0];
                 if (result.targets[0].countGainableCards(player, 'he')) player.gainPlayerCard('<center>获得' + get.translation(result.targets[0]) + '一张牌,交给其一张牌</center>', result.targets[0], 'he', true)
                 else event.finish();

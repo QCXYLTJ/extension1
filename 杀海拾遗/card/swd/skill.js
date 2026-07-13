@@ -738,7 +738,7 @@ const skill = {
 				prompt: get.prompt("zhuquezhizhang_duanzao"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.logSkill("zhuquezhizhang_equip1", event.target, "fire");
 				player.discard(result.cards);
@@ -834,7 +834,7 @@ const skill = {
 			event.card = result.links[0];
 			player.chooseCard("h", true, "用一张手牌替换" + get.translation(event.card));
 			"step 2";
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.cards[event.cards.indexOf(event.card)] = result.cards[0];
 				player.lose(result.cards, ui.special);
 				var cardx = ui.create.card();
@@ -2137,7 +2137,7 @@ const skill = {
 			};
 			event.card = card;
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, "green");
 				target.equip(event.card)._triggered = null;

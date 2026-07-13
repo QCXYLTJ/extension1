@@ -341,7 +341,7 @@ const brawl = {
                             return lib.skill.zhiheng.check(card);
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             var suit = result.cards[0].suit;
                             var card = get.cardPile2(function (card) {
                                 return card.suit == suit;

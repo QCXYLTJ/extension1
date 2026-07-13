@@ -543,7 +543,7 @@ const brawl = {
                     dialog.add([list, 'character']);
                     game.me.chooseButton(dialog, true).set('onfree', true);
                     'step 2'
-                    if (result.bool) {
+                    if (result.links?.length) {
                         game.me.init(result.links[0]);
                         _status.characterlist.remove(result.links[0]);
                         game.players.forEach(target => {

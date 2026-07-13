@@ -2459,7 +2459,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return att;
             });
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               if (!result.targets[0].hasSkill('sdyx_diexue2')) {
                 result.targets[0].addSkill('sdyx_diexue2');
               }
@@ -2618,7 +2618,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: false };
             }
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var subtype = get.subtype({ name: result.links[0][2] });
               player.disableEquip(subtype);
             } else {
@@ -3226,7 +3226,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -get.attitude(player, target);
             });
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               var storage1 = player.getStorage('sdyx_yinzhua');
               var storage2 = event.target.getStorage('sdyx_yinzhua2');
@@ -3638,7 +3638,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   return v.includes(button.link.name);
                 });
                 'step 1';
-                if (result.bool) {
+                if (result.links?.length) {
                   var rc = result.links[0];
                   const next = target.lose(rc, ui.discardPile, 'visible');
                   next._triggered = 2;
@@ -4454,7 +4454,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('card', trigger.card);
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               trigger.targets.push(event.target);
               if (trigger.player.isDamaged()) {
@@ -4481,7 +4481,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('card', trigger.card);
             'step 4';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               trigger.targets.remove(event.target);
               player.draw();
@@ -4627,7 +4627,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return lib.skill.sdyx_qizhen.numbers[number].length;
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var link = result.links[0];
               game.cardsGotoSpecial(link);
               if (trigger.name == 'damage') {
@@ -5850,7 +5850,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addSkill('sdyx_falu_lu');
             }
           }
@@ -5980,7 +5980,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addSkills('sdyx_wumubingshu');
               var storage = player.getStorage('sdyx_wumubingshu');
               var storage2 = storage.slice(0);
@@ -6268,7 +6268,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return Math.random();
             });
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               var name = result.links[0][2];
               player.markAuto('sdyx_moke', [name]);
               game.log(player, '记录了', { name: name });
@@ -6295,7 +6295,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               target.addSkill('sdyx_moke_use');
               target.storage.sdyx_moke_use = player.getStorage('sdyx_moke').slice(0);
@@ -7085,7 +7085,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             set('sourcex', trigger.player).
             set('cardx', trigger.card);
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               event.cardx = result.cards[0];
               event.cardxx = [result.cards[0]];
               //player.respond(result.cards[0],'highlight','sdyx_huanri','noOrdering');
@@ -7457,7 +7457,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('prompt', get.prompt2('sdxl_zhonggu'));
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               var equip = get.cardPile(function (card) {
                 if (get.type(card) == 'equip') {
@@ -8131,7 +8131,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               set('triggerx', trigger);
             } else event.finish();
             'step 2';
-            if (result.bool) {
+            if (result.links?.length) {
               var card = game.createCard(result.links[0][2], '', '', '');
               var skills = get.info(card).skills;
               skills = skills.slice(0);
@@ -8567,7 +8567,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return _status.event.player.hasUseTarget({ name: button.link[2] });
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               player.chooseUseTarget({ name: result.links[0][2] }, true);
               player.storage.sdyx_chanxin.remove(result.links[0][2]);
               player.markSkill('sdyx_chanxin');
@@ -8835,7 +8835,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               prompt2: '每当你受到一点伤害后,你可以弃置任意数量的牌,令一名其他角色摸双倍数量的牌.'
             });
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.discard(result.cards);
               target.draw(2 * result.cards.length);
@@ -8863,7 +8863,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             'step 2';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addSkill('sdyx_qianquan_old_xie');
               result.targets[0].addMark('sdyx_qianquan_old_xie', 1);
               event.num1--;
@@ -9301,7 +9301,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return att;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.line(target, 'green');
               game.log(target, '成为了', '【割袍】', '的目标');
@@ -9417,7 +9417,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 1;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.tar = result.targets[0];
             } else {
               event.finish();
@@ -9978,7 +9978,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -10212,7 +10212,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('goon', goon);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               event.target = target;
               player.chooseToCompare(target);
@@ -10355,7 +10355,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('suitxx', trigger.card.suit);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
               var str = '选择一张与' + get.translation(trigger.card) + '花色相同的牌令其弃置之';
               player.
@@ -10419,7 +10419,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 4 - get.value(card);
             });
             'step 2';
-            if (result.bool) {
+            if (result.cards?.length) {
               event.tar1.give(result.cards[0], event.tar2, true);
               //event.tar1.line(event.tar2,'green');
               //event.tar2.gain(result.cards[0],event.tar1,'giveAuto');
@@ -10591,7 +10591,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('targetx', trigger.player);
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.player.gain(result.cards[0],player,'give','log');
               player.give(result.cards[0], trigger.player, true);
               player.addTempSkill('sdyx_shouming_off', 'roundStart');
@@ -10724,7 +10724,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -1;
             });
             'step 1';
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.player.gain(result.cards[0],player,'give','log');
               player.give(result.cards[0], trigger.player, true);
               player.addTempSkill('sdyx_shouming_old_off', 'roundStart');
@@ -10973,7 +10973,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 5 - get.value(card);
             });
             'step 2';
-            if (result.bool) {
+            if (result.cards?.length) {
               //player.gain(result.cards[0],trigger.player,'give');
               trigger.player.give(result.cards[0], player, true);
               player.addTempSkill('sdyx_jixia_off', 'roundStart');
@@ -11478,7 +11478,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             next.set('targetprompt', ['被代替拼点', '代替拼点']);
             next.set('prompt', get.prompt2('sdyx_qiaoyan'));
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target1 = result.targets[0];
               event.target2 = result.targets[1];
               event.target2.chooseCard('请选择一张手牌作为拼点牌打出', 'h', true);
@@ -11487,7 +11487,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 2';
-            if (result.bool) {
+            if (result.cards?.length) {
               event.card = result.cards[0];
               event.target2.respond(event.card, 'highlight');
               if (!trigger.fixedResult) trigger.fixedResult = {};
@@ -11523,7 +11523,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0]);
               var target = result.targets[0];
               event.target = target;
@@ -11587,7 +11587,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addSkill('sdyx_qimen2', { player: 'phaseEnd' });
             }
           },
@@ -11952,7 +11952,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             });
             next.set('card', trigger.card);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               //event.targets=result.targets[0];
               event.targets = result.targets;
             } else {
@@ -12251,7 +12251,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -12517,7 +12517,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0;
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();

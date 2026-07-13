@@ -816,7 +816,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], 'log');
                                     player.$gain2(result.links[0]);
                                     if ((event.num0 - result.links[0].number) / 3 - event.num0 / 4 >= 1) event.goto(0);
@@ -1613,7 +1613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.pl.useCard({ name: result.links[0].name }, player, false);
                                 }
                             },
@@ -1821,7 +1821,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -att * target.countCards('h');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else event.finish();
                                 ('step 2');
@@ -1838,7 +1838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return lib.filter.cardEnabled(button.link, event.target) && event.target.hasUseTarget(button.link);
                                 };
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     event.card = card;
                                     if (!lib.filter.cardEnabled(card, event.target)) event._result = { bool: false };
@@ -2246,7 +2246,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     result.targets[0].draw();
                                 }
@@ -2858,7 +2858,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         game.playzm9(['zmxiazhijian21', 'zmxiazhijian22'].randomGet());
                                     } else game.playzm9(['zmxiazhijian11', 'zmxiazhijian12', 'zmxiazhijian13'].randomGet());
                                 }
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0]);
                                 } else {
                                     player.chooseToUse('是否使用一张牌？');
@@ -3350,7 +3350,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (get.attitude(player, result.targets[0]) > 0) {
                                         game.playzm9(['zmbeifengduanjian21', 'zmbeifengduanjian22', 'zmbeifengduanjian23', 'zmbeifengduanjian24'].randomGet());
                                     } else game.playzm9(['zmbeifengduanjian11', 'zmbeifengduanjian12', 'zmbeifengduanjian13', 'zmbeifengduanjian14'].randomGet());
@@ -4150,7 +4150,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.recoverEffect(target, player, player);
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets[0], 'green');
                                             result.targets[0].recover();
                                         }
@@ -5333,7 +5333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets[0] == player) {
                                         game.playzm9(['zmlaiyinhate1', 'zmlaiyinhate2'].randomGet());
                                         game.mp429('zmlaiyinhate');
@@ -5732,7 +5732,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.hasUseTarget(button.link);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cd = result.links[0];
                                     player.chooseTarget(`选择${get.translation(result.links[0])}的目标？`, function (card, player, target) {
                                         return target.countUsed(null, true) > 0 && player.canUse(result.links[0], target);
@@ -5741,7 +5741,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard(event.cd, result.targets[0]);
                                 }
                             },
@@ -5943,7 +5943,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return lib.filter.cardEnabled(button.link, player) && player.hasUseTarget(button.link);
                                 };
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (result.links[0].name == 'sha') event.sha--;
                                     event.list.remove(result.links[0]);
                                     player.chooseUseTarget(result.links[0], true);

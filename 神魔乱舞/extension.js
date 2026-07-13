@@ -6133,7 +6133,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         return att;
                                     }).animate = false; // 让玩家选择目标.
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     game.log(player, '灵魂转入完成,获取了', target, '的身体');
                                     target.reinit(target.name, player.name);
@@ -6498,7 +6498,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     // 如果目标没有量子2效果,则为其添加一个量子2效果,并将该角色加入到其存储列表中
                                     if (!target.storage.量子2) target.storage.量子2 = [];
@@ -6535,7 +6535,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     if (!player.storage.量子2) player.storage.量子2 = [];
                                     player.storage.量子2.push(target); // 将目标添加到该角色的量子2列表中
@@ -9619,7 +9619,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                         return 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     game.log(target, '成为了', '【结义】', '的目标');

@@ -584,7 +584,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
                 return -get.attitude(_status.event.player, target);
               });
               'step 2';
-              if (result.bool) {
+              if (result.targets?.length) {
                 player.line(result.targets[0]);
                 player.discardPlayerCard(result.targets[0], 'he', true);
                 event.count--;
@@ -610,7 +610,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
                 return get.attitude(_status.event.player, target);
               });
               'step 2';
-              if (result.bool) {
+              if (result.targets?.length) {
                 player.line(result.targets[0]);
                 result.targets[0].draw();
                 event.count--;
@@ -641,7 +641,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
                 return get.attitude(_status.event.player, target);
               });
               'step 2';
-              if (result.bool) {
+              if (result.targets?.length) {
                 player.line(result.targets[0]);
                 result.targets[0].gl_changeMp();
                 event.count--;
@@ -671,7 +671,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
                 return -get.attitude(_status.event.player, target);
               });
               'step 2';
-              if (result.bool) {
+              if (result.targets?.length) {
                 player.line(result.targets[0]);
                 result.targets[0].damage('fire');
                 event.count--;

@@ -442,7 +442,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					});
 					if (ccc.length) player.chooseButton(true, [get.translation(event.nnn), ccc]);
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.card = result.links[0];
 						player.gain(event.card);
 					}

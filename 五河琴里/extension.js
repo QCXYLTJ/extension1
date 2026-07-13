@@ -1431,7 +1431,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             .set('addCount', false);
                     } else event.finish();
                     ('step 5');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         target = result.targets[0];
                         target.damage('nocard', 'notrigger');
                         game.log('<span class=\"firetext\">琴里每因【以一当千】的效果使用了虚拟杀,其他所有角色清除所有标记,并额外受到其体力上限+【灼烂歼鬼·狂暴】层数的神圣伤害</span>');

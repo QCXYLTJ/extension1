@@ -465,7 +465,7 @@ const skills = {
 					return get.damageEffect(target, player, player);
 				})
 				.forResult();
-			if (result.bool) {
+			if (result.targets?.length) {
 				const target = result.targets[0];
 				player.logSkill('dddjinggou', target);
 				target.damage();
@@ -888,7 +888,7 @@ const skills = {
 					return get.attitude(get.player(), target) * Math.sqrt(1 + target.countCards('h'));
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill('dddanliu', target);
 				event.target = target;
@@ -918,7 +918,7 @@ const skills = {
 					return get.value(button.link) / 3;
 				});
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.card1 = result.cards[0];
 				target
 					.choosePlayerCard(player, true, 'h', 'visible', [0, 1], get.translation(player) + '选择了你的' + get.translation(event.card1) + '。请选择其的一张牌')
@@ -943,7 +943,7 @@ const skills = {
 					.set('filterOk', () => ui.selected.buttons.length > 0);
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.card2 = result.cards[0];
 				var color = get.color(event.card1);
 				if (color !== 'none' && get.color(event.card2) === color) {
@@ -1182,7 +1182,7 @@ const skills = {
 				event.goto(7);
 			}
 			('step 6');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target2 = result.targets[0];
 				target.line(target2, 'green');
 				var min = Math.min.apply(
@@ -1319,7 +1319,7 @@ const skills = {
 				return get.effect(target, { name: 'draw' }, player, player);
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, 'green');
 				target.draw(lib.skill.dddbingjian_backup.draw);
@@ -1353,7 +1353,7 @@ const skills = {
 				})
 				.set('num', event.num);
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, 'fire');
 				player.discardPlayerCard(target, 'he', true, event.num);
@@ -1370,7 +1370,7 @@ const skills = {
 				return -get.attitude(player, target) * get.threaten(target, player) * Math.sqrt(1 + target.countCards('h'));
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, 'fire');
 				player.chat('你不许使用' + get.translation(event.result.card));
@@ -1407,7 +1407,7 @@ const skills = {
 					});
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, 'fire');
 				var num = target.countCards('h') - player.countCards('h');
@@ -1570,7 +1570,7 @@ const skills = {
 							return att / (1 + get.distance(player, target, 'absolute'));
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.logSkill('dddtongyu_give', target);
 						target.gain(cards, 'gain2');
@@ -1783,7 +1783,7 @@ const skills = {
 				});
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.links?.length) {
 				var name = result.links[0][2];
 				event.usedName.add(name);
 				event.current.chooseUseTarget(
@@ -2387,7 +2387,7 @@ const skills = {
 				event.finish();
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				var card = result.links[0];
 				event.cards.push(card);
 				event.card = card;
@@ -2404,7 +2404,7 @@ const skills = {
 					});
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill('dddxuxiao', target);
 				target.addJudge({ name: 'bingliang' }, [card]);
@@ -2671,7 +2671,7 @@ const skills = {
 				return att;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill('dddtaisi', target);
 				event.target = target;
@@ -3979,7 +3979,7 @@ const skills = {
 				return eff * (eff2 > eff * 2 ? 0.5 : 1.5);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				event.targets.add(target);
 				player.line(target);
@@ -4003,7 +4003,7 @@ const skills = {
 				})
 				.set('targetx', targets[0]);
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				event.targets.add(target);
 				player.line(target);
@@ -4771,7 +4771,7 @@ const skills = {
 				event.result[1] = result.cards[0];
 				event.result[2] = result.skill;
 			} else {
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.result[0] = result.targets[0];
 					event.result[1] = result.cards[0];
 				} else {
@@ -4934,7 +4934,7 @@ const skills = {
 					})()
 				);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill('dddshichao', target);
 				var zhu = get.zhu(player);
@@ -5008,7 +5008,7 @@ const skills = {
 					);
 				});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				var source = game.findPlayer((current) => current.hasMark('dddyouxue'));
 				if (source === player) {
@@ -5326,7 +5326,7 @@ const skills = {
 			event.target = target;
 			player.choosePlayerCard('狼志：展示' + get.translation(target) + '一张牌', 'he', target, true);
 			('step 2');
-			if (result.bool) {
+			if (result.links?.length) {
 				var card = result.links[0];
 				player.showCards(card, get.translation(target) + '被展示');
 				event.cards.push(card);
@@ -5625,7 +5625,7 @@ const skills = {
 				})
 				.set('goon', get.attitude(player, trigger.player));
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				var card = result.cards[0];
 				player.logSkill('dddzhuanshe', trigger.player);
 				player.give(card, trigger.player, true);
@@ -5823,7 +5823,7 @@ const skills = {
 				return get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill('dddanzhi', target);
 				target.addTempSkill('dddanzhi_effect');
@@ -6335,7 +6335,7 @@ const skills = {
 					return 1;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				event.target = target;
 				player.logSkill('dddbailei', target);

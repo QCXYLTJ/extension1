@@ -3384,7 +3384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player, 'fire');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (result.targets[0] == game.boss) {
                                         game.boss.classList.add('dead');
                                         game.over(true);

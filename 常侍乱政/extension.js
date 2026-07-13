@@ -447,7 +447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 1 - get.attitude(_status.event.player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.gainPlayerCard(target, 'he', true);
                                         }
@@ -510,7 +510,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target, 'green');
@@ -797,7 +797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.give(result.cards, target);
                                 }
@@ -1069,7 +1069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target, 'green');

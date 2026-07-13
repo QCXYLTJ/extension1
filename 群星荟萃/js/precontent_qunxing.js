@@ -560,7 +560,7 @@ const packs = function () {
                                 return get.player().getUseValue(button.link);
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.links?.length) {
                             const card = result.links[0];
                             list.remove(card);
                             player.$gain2(card, false);

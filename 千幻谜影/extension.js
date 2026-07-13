@@ -886,7 +886,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return Math.min(13, card.number + 2) / Math.pow(Math.min(2, get.value(card)), 0.25);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     player
                                         .chooseTarget(get.prompt('qhmymingfa'), true, '用' + get.translation(event.card) + '和一名其他角色拼点', function (card, player, target) {
@@ -897,7 +897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     var next = player.chooseToCompare(target);
@@ -1560,7 +1560,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'tiesuo' }, _status.event.player, _status.event.player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     target.link();
@@ -1585,7 +1585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(_status.event.player, target);
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             var zbmp = target.countCards('e') + 1;
                                             player.line(target);
@@ -1992,7 +1992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets[0], false);
                                 }
                             },
@@ -2043,7 +2043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton([get.prompt('spyanji'), [['zhengsu_leijin', 'zhengsu_bianzhen', 'zhengsu_mingzhi'], 'vcard']]).set('ai', () => Math.random());
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     player.addTempSkill('zhengsu', { player: ['phaseDiscardAfter', 'phaseAfter'] });
                                     player.addTempSkill(name, { player: ['phaseDiscardAfter', 'phaseAfter'] });
@@ -2067,7 +2067,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return Math.max(get.effect(target, { name: 'wuzhong' }, target, player), get.recoverEffect(target, target, player));
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             target.draw(2);
                                             target.recover();
@@ -2287,7 +2287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.chooseButton([get.prompt('qhmyxieji'), [['xieli_tongchou', 'xieli_bingjin', 'xieli_shucai', 'xieli_luli'], 'vcard']]);
                                 }
@@ -2538,7 +2538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 9 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.discard(result.cards[0]);
                                     player.addTempSkill('qhmydr3');
                                 } else {
@@ -4144,7 +4144,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 1;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.line(target);
                                             var mark = player.countMark('qhmyjieyin_mark');
@@ -4725,7 +4725,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     event.card = card;
                                     player
@@ -4737,7 +4737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     player.line(event.target2);
                                     event.target2.gain(card, player, 'giveAuto');
@@ -4820,7 +4820,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target, 'green');
@@ -4855,7 +4855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(_status.event.player, target);
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     target.storage.qhmyzuoxing = player;

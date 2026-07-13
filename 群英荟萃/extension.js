@@ -983,7 +983,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('forceDie', true);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].draw(player.getDamagedHp())._triggered = null;
                             result.targets[0].turnOver()._triggered = null;
                         }
@@ -1979,7 +1979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'sha' }, _status.event.player);
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].link(true);
                                 }
                             },
@@ -2176,7 +2176,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'white');
                                     player.useCard(trigger.card, result.targets[0]);
                                 }
@@ -2515,7 +2515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('dialog', event.videoId);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     var func = function (card, id) {
                                         var dialog = get.idDialog(id);
@@ -3477,7 +3477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();

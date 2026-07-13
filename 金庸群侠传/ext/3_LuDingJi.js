@@ -1210,7 +1210,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return player.getUseValue(vcard);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var card = result.links[0];
               player.showCards(card, get.translation(player) + '发动了【佛缘】');
               let vcard = {
@@ -1685,7 +1685,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('card', trigger.card);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -1820,7 +1820,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, target);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].draw();
             }
           },
@@ -1876,7 +1876,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.attitude(player, target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].draw(event.cards.length);
             }
           },
@@ -1918,7 +1918,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return att / (1 + get.distance(player, target, 'absolute'));
               });
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].gain(trigger.cards.filterInD('od'), 'gain2');
             }
           },
@@ -2021,7 +2021,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return 0;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               var cards = result.targets[0].getCards('e', function (card) {
                 return get.subtype(card) == 'equip1' || lib.jy_mijiList.includes(card.name);
               });
@@ -2224,7 +2224,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return true;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               var cards = result.cards[0];
               trigger.player.showCards(cards, '诛心');
             } else {
@@ -3003,7 +3003,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               },
             );
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else event.finish();
             ('step 2');
@@ -3120,7 +3120,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('targetx', target);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               event.cardx = { name: result.links[0][2] };
               game.log(player, '声明了', event.cardx);
               lib.skill.ldj_yuannie_use.viewAs = event.cardx;
@@ -4712,7 +4712,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -1;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.player.gain(result.cards[0],player,'giveAuto');
               player.give(result.cards[0], trigger.player, true);
               player.chooseUseTarget(trigger.card, true);
@@ -4920,7 +4920,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('targetx', player);
             ('step 2');
-            if (result.bool) {
+            if (result.links?.length) {
               event.cardx = { name: result.links[0][2] };
               game.log(target, '声明了', event.cardx);
               lib.skill.qtpz_yunie_use.viewAs = event.cardx;
@@ -6014,7 +6014,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return 1;
               });
             ('step 4');
-            if (result.bool) {
+            if (result.links?.length) {
               player.useCard(result.links[0], player);
               event.cards.remove(result.links[0]);
             }
@@ -6076,7 +6076,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return 0;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               trigger.customArgs.default.customSource = result.targets[0];
               trigger.ldj_weizui = result.targets[0];
             }

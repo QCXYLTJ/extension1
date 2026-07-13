@@ -296,7 +296,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
               return get.effect(target, 'hundun_modao', player, player);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.logSkill('hundun_daoci', target);
               var next = game.createEvent('hundun_modao');

@@ -3213,7 +3213,7 @@ const skills = {
 					return player.getUseValue({ name: button.link[2] });
 				})
 				.forResult();
-			if (result.bool) {
+			if (result.links?.length) {
 				const cardx = { name: result.links[0][2] };
 				const result2 = await player
 					.chooseCard('he', '将一张牌当' + get.translation(cardx) + '使用', true, (card, player) => {
@@ -4006,7 +4006,7 @@ const skills = {
 			var next = player.chooseCardButton(event.cards);
 			next.filterButton((button) => player.hasUseTarget(button.link));
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.chooseUseTarget(result.links[0], false, true, 'nodistance');
 			}
 			('step 2');
@@ -4748,7 +4748,7 @@ const skills = {
 					},
 				})
 				.forResult();
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: 'sha' }, result.cards, result.targets[0], false);
 			}
 		},
@@ -5009,7 +5009,7 @@ const skills = {
 				return get.attitude(player, target) * Math.sqrt(Math.max(1, 4 - target.countCards('h')));
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const target = result.targets[0];
 				player.line(target, 'green');
 				target.draw();
@@ -5038,7 +5038,7 @@ const skills = {
 							return get.effect(target, { name: 'guohe_copy2' }, player, player);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						const target = result.targets[0];
 						player.line(target, 'green');
 						player.discardPlayerCard(target, 'he', true);
@@ -10428,7 +10428,7 @@ const skills = {
 						prompt: '光之雨:是否使用一张展示牌',
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.cards?.length) {
 					const card = result.cards[0];
 					cardsx.remove(card);
 					const stat = player.stat[player.stat.length - 1].card;
@@ -16827,7 +16827,7 @@ const skills = {
 						return get.order(card) + val / 5;
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.links?.length) {
 					const card = result.links[0];
 					cards.remove(card);
 					player.$gain2(card, false);
@@ -17087,7 +17087,7 @@ const skills = {
 				});
 			} else event._result = { bool: false };
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const target = result.targets[0];
 				player.line(target, 'green');
 				target.damage();
@@ -17210,7 +17210,7 @@ const skills = {
 				}
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.links?.length) {
 				var card = result.links[0];
 				cards.remove(card);
 				var cardx = {
@@ -18443,7 +18443,7 @@ const skills = {
 					return get.player().getUseValue(button.link);
 				})
 				.forResult();
-			if (result.bool) {
+			if (result.links?.length) {
 				const card = result.links[0];
 				cards.remove(card);
 				const cardx = {
@@ -18632,7 +18632,7 @@ const skills = {
 						return get.damageEffect(target, player, player);
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					const target = result.targets[0];
 					player.storage.bleach_qingguang_suit = [];
 					target.damage();
@@ -19534,7 +19534,7 @@ const skills = {
 						return get.attitude(get.player(), target) * get.threaten(target);
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					const target = result.targets[0];
 					player.line(target, 'green');
 					player.addSkill('soul_biri_eff');

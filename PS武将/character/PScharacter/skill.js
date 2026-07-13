@@ -535,7 +535,7 @@ const skills = {
 							return get.attitude(_status.event.player, target) < 0;
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].chooseToDiscard(true, 'he', trigger.cards.length);
 					} else event.finish();
 				},
@@ -661,7 +661,7 @@ const skills = {
 				return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				event.target.judge(function (card) {
 					var suit = card.suit;
@@ -1919,7 +1919,7 @@ const skills = {
 						return 1;
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.line(target);
 						var mark = player.countMark('PSjieying_mark');
@@ -3939,7 +3939,7 @@ const skills = {
 					});
 			else event.goto(3);
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				event.bool = true;
 				event.goto(5);
@@ -3958,7 +3958,7 @@ const skills = {
 				})
 				.set('num', num);
 			('step 4');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.chooseToCompare(event.target);
 			}
@@ -4123,7 +4123,7 @@ const skills = {
 				return 0;
 			});
 			('step 4');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				event.target = target;
 				target.draw(5);
@@ -4326,7 +4326,7 @@ const skills = {
 						return 0;
 					});
 					('step 4');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						event.target = target;
 						target.draw(5);
@@ -4625,7 +4625,7 @@ const skills = {
 					return Math.random();
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.choosePlayerCard(target, 'h', true, 'visible');
 			} else event.finish();
@@ -7450,7 +7450,7 @@ const skills = {
 					return att;
 				}).animate = false;
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.storage.PSxianfu_target.push(target);
 				player.addSkill('PSxianfu_target');
@@ -7575,7 +7575,7 @@ const skills = {
 				});
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, 'green');
 				if (event.color == 'black') {
@@ -7729,7 +7729,7 @@ const skills = {
 					return 0;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.give(player.getCards('e'), event.target);
 			}
@@ -8420,7 +8420,7 @@ const skills = {
 				return att / target.hp;
 			});
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].loseHp();
 			} else player.recover();
 			event.finish();
@@ -8669,7 +8669,7 @@ const skills = {
 				});
 			else event.finish();
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -9416,7 +9416,7 @@ const skills = {
 					return -get.attitude(player, target);
 				});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player
 					.discardPlayerCard(target, [1, Infinity], 'h', false, 'visible')
@@ -11362,7 +11362,7 @@ const skills = {
 				event.target = target;
 			} else event.finish();
 			('step 4');
-			if (result.bool) {
+			if (result.links?.length) {
 				let name = result.links[0];
 				event.target.flashAvatar('PStaoyuan', name);
 				game.log(event.target, '获得了', '#y' + get.translation(name), '的所有技能');
@@ -11526,7 +11526,7 @@ const skills = {
 					});
 			} else event.finish();
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				game.broadcastAll(
 					function (target1, target2) {
@@ -14860,7 +14860,7 @@ const skills = {
 				}
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				const list = ['摸牌翻面', '弃牌扣血'];
 				player

@@ -553,7 +553,7 @@ const skill = {
 				event.finish();
 			}
 			('step 13');
-			if (result.bool) {
+			if (result.targets?.length) {
 				game.log(result.targets[0], event.cards, event.cards.length);
 				if (Array.isArray(event.cards)) {
 					for (const i of event.cards) {

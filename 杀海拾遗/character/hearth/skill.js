@@ -1533,7 +1533,7 @@ const skill = {
 				return 1;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill("lieqi", target);
 				if (event.triggername === "phaseBegin") {
@@ -2188,7 +2188,7 @@ const skill = {
 				return -get.attitude(player, target) / 5;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill("mengye", target);
 				var card = target
@@ -2292,7 +2292,7 @@ const skill = {
 				return -att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				var card = target.getCards("h").randomGet();
 				if (card) {
@@ -2504,7 +2504,7 @@ const skill = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.cards?.length) {
 				var card = result.cards[0];
 				var fakecard = game.createCard(event.cardname, card.suit, card.number);
 				player.gain(fakecard, "gain2", "log");
@@ -5248,7 +5248,7 @@ const skill = {
 				return att;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.logSkill("jiaohui", event.target);
 				event.target.chooseDrawRecover(true);
@@ -6661,7 +6661,7 @@ const skill = {
 				return 1 - get.attitude(player, target);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill("jingxiang", target);
 				event.target = target;
@@ -7242,7 +7242,7 @@ const skill = {
 				return get.recoverEffect(target, player, player);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("tuteng7", result.targets[0]);
 				result.targets[0].recover();
 			}

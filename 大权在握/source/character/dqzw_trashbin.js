@@ -677,7 +677,7 @@ export let info = {
 
           });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           var target = result.targets[0];
           var cards = target.getCards('ej');
           target.discard(cards, 'notBySelf');
@@ -2411,7 +2411,7 @@ export let info = {
             return lib.card.diaohulishan.ai.result.player(get.player(), target);
           });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           var current = result.targets[0];
           current.addTempSkill('dqzw_rubbish_lietu_undist');
           if (current == player) {

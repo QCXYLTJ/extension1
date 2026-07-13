@@ -1385,7 +1385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(button.link) == 'basic' || get.type(button.link) == 'trick';
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards1 = result.links[0];
                                     player.markAuto('zmfuxieshifa', [{ use: true, name: event.cards1.name, natu: event.cards1.nature }]);
                                     game.log(player, '记录了', '<span class=yellowtext>' + get.translation(event.cards1.name));
@@ -3511,7 +3511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) / (1 + target.hp);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     game.log(result.targets[0], '获得了【时间零】');
                                     result.targets[0].addTempSkill('zmshijianling', { player: 'phaseEnd' });
@@ -4040,7 +4040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('zmbaishe_1');
                                     var controls = [];
                                     var skills = trigger.player.getCards('s');
@@ -4841,7 +4841,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.line(event.target, 'green');
                                     if (event.target == player) {
@@ -5102,7 +5102,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: result.links[0][2] }, false);
                                 }
                             },
@@ -5221,7 +5221,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.line(target, 'fire');
                                             target.gain(event.cards1, 'gain2');
@@ -6076,7 +6076,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         });
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.target.gain(result.links[0]);
                                             event.target.$gain2(result.links[0]);
                                         }
@@ -6585,7 +6585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.color1 = get.color(result.cards[0]);
                                     player.discard(result.cards[0]);
                                 } else event.finish();
@@ -6597,7 +6597,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else return 4 - get.value(card);
                                 });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var color2 = get.color(result.cards[0]);
                                     if (event.color1 == color2) {
                                         game.playzm3('zmgaowen');
@@ -7368,7 +7368,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.buttonValue(button);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card1 = result.links[0];
                                     // player.gain(result.links[0],event.target1,'giveAuto');
                                 } else event.finish();
@@ -7383,7 +7383,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     player.line(event.target2, 'green');
                                     // var sub=get.subtype(result.links[0]);

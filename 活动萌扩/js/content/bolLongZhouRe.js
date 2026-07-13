@@ -395,7 +395,7 @@ const brawl = {
                             return target != player && target.identity == player.identity;
                         });
                         'step 1'
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                             target.chooseCard('he', true, '问计：将一张牌交给' + get.translation(player));
@@ -482,7 +482,7 @@ const brawl = {
                             return Math.random();
                         });
                         'step 1'
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target, 'green');
                             game.log(target, '成为了', '#g【点虎】', '的目标');

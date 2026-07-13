@@ -2133,7 +2133,7 @@ const skill = {
 			};
 			next.logSkill = "xiandan";
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				if (get.color(result.cards[0]) === "red") {
 					trigger.directHit = true;
 				} else {

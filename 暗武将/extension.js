@@ -1242,7 +1242,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 3;
                                     })
                                     ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (get.type(result.cards[0]) != 'equip') {
                                         trigger.player.draw();
                                         event.finish();
@@ -1351,7 +1351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return type == 'string' || button.link.suit == 'heart';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (typeof result.links[0] != 'string') result.links.reverse();
                                     var card = result.links[1],
                                         choice = result.links[0];
@@ -2205,7 +2205,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget('完杀', '选择一名角色,令其可以对' + get.translation(trigger.player) + '使用一张牌');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var tar = result.targets[0];
                                     if (tar) {
                                         tar.chooseToUse({ name: 'tao' }, '完杀:是否对' + get.translation(trigger.player) + '使用一张桃？', trigger.player, -1);
@@ -2536,7 +2536,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('judge', judge)
                                     .set('attitude', attitude);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.respond(event.card, 'highlight', 'noOrdering').nopopup = true;
                                 } else {

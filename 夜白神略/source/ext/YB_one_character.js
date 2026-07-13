@@ -2539,7 +2539,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								event.i.chooseCard(true, 'h');
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.cardsx.push(result.cards[0]);
 								}
 							});
@@ -3308,7 +3308,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return get.attitude(_status.event.player, tar);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							result.targets[0].draw(2);
 						}
 					} else if (event.triggername == 'phaseJieshuBegin') {
@@ -3319,7 +3319,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return get.damageEffect(tar, _status.event.player, _status.event.player);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							result.targets[0].damage(player);
 						}
 					}
@@ -3485,7 +3485,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.cardx = result.links[0];
 						player
 							.chooseTarget(true)

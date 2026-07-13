@@ -381,7 +381,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     return get.attitude(player, target);
                   });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                   result.targets[0].equip(event.give.equip);
                   player.$give(event.give.equip, result.targets[0]);
                   player.line(result.targets, 'green');
@@ -575,7 +575,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             target.choosePlayerCard('家恨:展示' + get.translation(player) + '一张手牌', 'h', player, true);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               event.cardx = result.links[0];
               target.showCards(event.cardx, get.translation(player) + '被展示');
             } else {
@@ -651,7 +651,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     return get.damageEffect(target, player, player, 'fire');
                   });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                   result.targets[0].damage('fire');
                 }
               },
@@ -1085,7 +1085,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -get.attitude(player, target);
               });
             ('step 2');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].addSkill('sdxl_yuhai_hs');
               event.num1--;
               if (lib.skill[event.name].filter({ num: event.num1 })) event.goto(1);
@@ -2788,7 +2788,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.attitude(player, target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].draw();
             }
           },
@@ -3011,7 +3011,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return 0;
               });
             ('step 4');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].turnOver();
             }
             ('step 5');
@@ -4412,7 +4412,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               .set('boolai', bool)
               .set('sourcex', event.target);
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               //target.gain(result.cards[0],player,'giveAuto');
               player.give(result.cards[0], target, true);
               trigger.untrigger();
@@ -4885,7 +4885,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 3');
-            if (result.bool) {
+            if (result.links?.length) {
               if (player.hasUseTarget(result.links[0])) {
                 player.chooseUseTarget(result.links[0], true);
               } else if (lib.config.extension_金庸群侠传_jiexiantupo) {
@@ -4994,7 +4994,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('sourcex', trigger.player);
             ('step 1');
-            if (result.bool) {
+            if (result.cards?.length) {
               //trigger.player.gain(result.cards[0],player,'give','log');
               player.give(result.cards[0], trigger.player, true);
               trigger.player.addTempSkill('sdxl_qinggu_noheart');
@@ -5078,7 +5078,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return num;
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].link();
             } else {
               player.getStat('triggerSkill').sdxl_zhenwang--;
@@ -5899,7 +5899,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 0;
             });
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
               var card = result.links[0];
               var num = result.links[1];
               ui.cardPile.removeChild(card);
@@ -6232,7 +6232,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return -get.attitude(player, target);
               });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
               player.line(result.targets[0]);
               result.targets[0].turnOver();
             } else {

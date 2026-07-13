@@ -3788,7 +3788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.shzx_wushen.remove(result.links[0]);
                                     game.cardsDiscard(result.links[0]);
                                     game.log(player, '弃置了', result.links[0]);
@@ -5067,7 +5067,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return name == 'nanman' ? 0.8 : 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0][2], true, false);
                                 }
                             },
@@ -5521,7 +5521,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     game.log(target, '选择了:', result.links[0][2]);
                                     target.say('我猜' + lib.translate[result.links[0][2]]);
                                     //player.showCards(cards[0]);

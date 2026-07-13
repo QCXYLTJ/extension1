@@ -8175,7 +8175,7 @@ const skills = {
                     return att * lib.card.shunshou.ai.result.target(player, target);
                 })
                 .forResult();
-            if (result.bool) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 player.line(target);
                 if (target.countGainableCards(player, 'h')) await player.gainPlayerCard('h', target, true);
@@ -8651,7 +8651,7 @@ const skills = {
                                 })
                                 .set('targets', targets)
                                 .forResult();
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 const target = result.targets[0];
                                 target.damage();
                             }
@@ -13351,7 +13351,7 @@ const skills = {
                 })
                 .set('closeDialog', true)
                 .forResult();
-            if (result.bool) {
+            if (result.links?.length) {
                 let skill = result.links[0];
                 player.addSkills(skill);
                 let info = lib.skill[skill];

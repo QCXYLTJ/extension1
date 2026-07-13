@@ -1,4 +1,7 @@
 {
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": false,
     "files.exclude": {
         "**/*.jpg": true,
         "**/*.png": true,
@@ -78,9 +81,6 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "git.openRepositoryInParentFolders": "never",
-    "editor.formatOnPaste": true,
-    "editor.formatOnType": true,
-    "editor.formatOnSave": true,
     "search.searchOnTypeDebouncePeriod": 5000,
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"

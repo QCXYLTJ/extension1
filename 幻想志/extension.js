@@ -2033,7 +2033,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.damageEffect(target, player, player, 'fire') || get.damageEffect(target, player, player, 'thunder') || get.damageEffect(target, player, player, 'ice');
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.damage(lib.skill.zero_kuangxue.naturesDamage());
 									target.update();
@@ -2971,7 +2971,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('choice', event.choice);
 								('step 3');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target, 'green');
 									if (event.choice == '横置') target.link();
@@ -4345,7 +4345,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(player, source) * range;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0],
 										source = trigger.source;
 									let range = lib.card[card.name].distance;
@@ -4532,7 +4532,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return Math.max(Math.random(), get.attitude(player, target));
 									});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									let targets = trigger.targets.filter((c) => c != result.targets[0]),
 										num = targets.length;
 									trigger.targets.removeArray(targets);
@@ -6620,7 +6620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.finish();
 										}
 										('step 2');
-										if (result.bool) {
+										if (result.targets?.length) {
 											var target = result.targets[0];
 											player.line(target);
 											target.damage(event.num);
@@ -6668,7 +6668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return _status.event.playerx.canUse(card, target, false);
 								});
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.line(target);
 									var card = { name: 'sha' };

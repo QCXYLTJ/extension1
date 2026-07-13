@@ -289,7 +289,7 @@ const brawl = {
                         return _status.event.player.OriginalCharacters.includes(button.link) === Boolean(!ui.selected.buttons.length);
                     });
                     'step 6'
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.map[target.playerid] = [result.links[0], result.links[1][2].slice(10)];
                     }
                     if (event.targets.length) event.goto(5);

@@ -661,7 +661,7 @@ const skill = {
 					return -get.attitude(_status.event.player, target);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				if (!player.storage.dz017_zhushi_buff) {
 					player.storage.dz017_zhushi_buff = [];
@@ -4097,7 +4097,7 @@ const skill = {
 				player.choosePlayerCard(target, 'h', true);
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.show_card = result.cards[0];
 				let str = get.translation(player);
 				player.showCards(event.show_card);
@@ -4345,7 +4345,7 @@ const skill = {
 					return 1 + Math.random();
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.loseMaxHp();
 				let list = [],
@@ -5124,7 +5124,7 @@ const skill = {
 					});
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				if (event.suit == 'spade') {
@@ -5867,7 +5867,7 @@ const skill = {
 						}
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						let name = result.links[0][2];
 						if (player.getStorage('yb017_zhenshi').includes(name)) {
 							player.unmarkAuto('yb017_zhenshi', [name]);
@@ -6377,7 +6377,7 @@ const skill = {
 				}
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -6450,7 +6450,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -6511,7 +6511,7 @@ const skill = {
 				return get.attitude(_status.event.player, target);
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				target.storage.yb018_shiwang = player;
@@ -7428,7 +7428,7 @@ const skill = {
 				})
 				.set('dialog', event.videoId);
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = result.links[0];
 				const func = function (card, id) {
 					const dialog = get.idDialog(id);
@@ -7543,7 +7543,7 @@ const skill = {
 				})
 				.set('sha', trigger.cards[0].name == 'sha');
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].gain(trigger.cards.filterInD(), 'gain2');
 				player.getHistory('custom').push({ yb019_misan_name: trigger.card.name });
 			}
@@ -7975,7 +7975,7 @@ const skill = {
 				event.finish();
 			}
 			('step 5');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'water');
 				target.gain(event.list66, 'gain2');
@@ -9026,7 +9026,7 @@ const skill = {
 					});
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				if (typeof result.links[0] != 'string') {
 					result.links.reverse();
 				}
@@ -9347,7 +9347,7 @@ const skill = {
 				})
 				.setHiddenSkill(event.name);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.discard(result.cards);
 				let evt = trigger.parent;
@@ -9369,7 +9369,7 @@ const skill = {
 				})
 				.setHiddenSkill(event.name);
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				game.broadcastAll(
 					function (target1, target2) {
@@ -9427,7 +9427,7 @@ const skill = {
 					return att;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const tar = result.targets[0];
 				tar.draw(2);
 				tar.recover();
@@ -9799,7 +9799,7 @@ const skill = {
 				prompt: '请选择一名角色和一张手牌,令其掉血或回血',
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.card = result.cards[0];
 				event.target = result.targets[0];
 				let list = [];
@@ -12351,7 +12351,7 @@ const skill = {
 					return get.attitude(_status.event.player, target);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				target.draw(2);
@@ -14093,7 +14093,7 @@ const skill = {
 					await event.target.draw();
 				}
 				const result = await player.gainPlayerCard('h', event.target, true).forResult();
-				if (result.bool) {
+				if (result.cards?.length) {
 					await player.chooseUseTarget(result.cards[0], true, false);
 					game.log(result.cards[0], event.num);
 				}
@@ -16505,7 +16505,7 @@ const skill = {
 				},
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				player.give(result.cards, target);
@@ -16719,7 +16719,7 @@ const skill = {
 				})
 				.setHiddenSkill('yb077_shensu1');
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: 'sha' }, result.targets[0], false);
 				trigger.cancel();
 				player.skip('phaseDraw');
@@ -16773,7 +16773,7 @@ const skill = {
 				})
 				.setHiddenSkill('yb077_shensu2');
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards[0]);
 				player.useCard({ name: 'sha' }, result.targets[0], false);
 				trigger.cancel();

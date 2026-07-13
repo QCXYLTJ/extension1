@@ -1756,7 +1756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('createDialog', ['请选择一位将灵', [list.randomGets(6), 'character']]);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.flashAvatar('_qgqc_yinglingfuhun', result.links[0]);
                             var name = result.links[0];
                             var list = [];
@@ -2793,7 +2793,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.order(button.link);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0], true);
                                     event.list.remove(result.links[0]);
                                     if (event.list.length) event.goto(1);
@@ -3370,7 +3370,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     result.targets[0].draw(4);
                                 } else event.finish;
@@ -3698,7 +3698,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(button.link);
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     cards.remove(card);
                                     if (!player.storage.lh_mingdi) {

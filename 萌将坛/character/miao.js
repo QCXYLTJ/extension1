@@ -1316,7 +1316,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							});
 							next.set('check', check);
 							('step 2');
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.give(result.cards, result.targets[0]);
 								player.line(result.targets, 'green');
 							}

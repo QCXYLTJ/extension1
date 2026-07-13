@@ -44720,7 +44720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.give(result.cards, result.targets[0]);
                                     event.tar = result.targets[0];
                                 } else {
@@ -46442,7 +46442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('targetprompt', ['被移走', '获得尸傀标记']);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].removeMark('xwjh_shikui_kui', 1);
                                     result.targets[1].addMark('xwjh_shikui_kui', 1);
                                 }
@@ -56593,7 +56593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 30 - get.value(button.link);
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     player.give(card, trigger.player);
                                 }

@@ -1535,7 +1535,7 @@ import { func as characterListSet } from './character_list_set.js';
 							});
 					}
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						player.line(target, 'green');
 						player.discardPlayerCard(target, 'he', true);

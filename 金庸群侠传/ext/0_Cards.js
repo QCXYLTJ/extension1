@@ -3361,7 +3361,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('targetx', trigger.target);
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var name = result.links[0][2];
               player.popup(name);
               //player.line(trigger.target,'green');
@@ -4041,7 +4041,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('damaged', damaged);
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               result.targets[0].damage();
             }
           }
@@ -5090,7 +5090,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var name = result.links[0][2];
               var skills = name.split('::');
               var skill = skills[1];
@@ -5125,7 +5125,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var name = result.links[0][2];
               var skills = name.split('::');
               var skill = skills[1];
@@ -5160,7 +5160,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var name = result.links[0][2];
               var skills = name.split('::');
               var skill = skills[1];
@@ -5195,7 +5195,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               });
             }
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               var name = result.links[0][2];
               var skills = name.split('::');
               var skill = skills[1];

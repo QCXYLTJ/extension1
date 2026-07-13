@@ -4036,7 +4036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     target.give(card, player).gaintag.add('ImminentThrow');
                                     player.addTempSkill('ImminentThrow_clear');
@@ -5396,7 +5396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.useCard({ name: result.links[0][2], nature: result.links[0][3] }, target, false);
                                 } else event.finish();
                             },
@@ -17358,7 +17358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     event.card = card;
                                     player.gain(card, 'giveAuto');
@@ -18309,7 +18309,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.changeZhuanhuanji('SongDebut');
                                 trigger.target.chooseCard('he', true, '新歌放送:交给' + get.translation(trigger.player) + '一张牌', '若此牌带有伤害标签,则使用者可使用此牌');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     event.card = card;
                                     trigger.target.give(card, trigger.player);

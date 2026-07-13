@@ -903,7 +903,7 @@ export let info = {
           })
           .set('prompt2', '对自己发动【擅专】,再获得场上一张装备牌');
         ('step 1');
-        if (result.bool) {
+        if (result.cards?.length) {
           var card = result.cards[0];
           player.$throw(card);
           if (get.type(card, false) == 'delay') player.addJudge(card);

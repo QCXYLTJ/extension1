@@ -436,7 +436,7 @@ const skills = {
                 player.addSkill('dz_rb_yunjue_buff');
             } else {
                 const result = await player.chooseTarget('陨绝:选择一名角色而后将体力上限增加/减少至与其相同', true).forResult();
-                if (result.bool) {
+                if (result.targets?.length) {
                     let target = result.targets[0];
                     player.line(target);
                     if (!player.storage.dz_rb_yunjue_die) player.storage.dz_rb_yunjue_die = [];

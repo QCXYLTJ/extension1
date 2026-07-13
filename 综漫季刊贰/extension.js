@@ -1061,7 +1061,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets[0];
                                     if (result.targets[0].getCards('he').length >= 1) {
                                         result.targets[0].chooseToDiscard(true, 'he');
@@ -2840,7 +2840,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target) - num;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, { color: [0, 221, 102] });
                                     game.mp422('zmaweisibulong');
@@ -2952,7 +2952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard(1, 'h', true);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.$give(result.cards[0], trigger.player);
                                     player.line(trigger.player);
                                     trigger.player.gain(result.cards[0], player);
@@ -3084,7 +3084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.current.lose(result.links[0], ui.special);
                                             event.current.$give(result.links[0], player);
                                             if (result.links[0].viewAs) {
@@ -4521,7 +4521,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0]);
                                     target.$give(1, player);
                                 }
@@ -4953,7 +4953,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var cards = get.cards();
                                     player.showCards(cards, get.translation(player) + `对${get.translation(result.targets)}发动了【轰雷一闪】`);
@@ -4973,7 +4973,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha', nature: 'thunder' }, player, player);
                                 };
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     var cards = get.cards();
                                     player.showCards(cards, get.translation(player) + `对${get.translation(result.targets)}发动了【轰雷一闪】`);

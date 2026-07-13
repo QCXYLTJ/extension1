@@ -288,7 +288,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, event.target) * get.buttonValue(button);
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.list.push([result.links[0], event.target]);
                                     event.cards1.push(result.links[0]);
                                 }
@@ -743,7 +743,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(_status.event.player, target);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             player.removeSkill('dz_hs_juexiang');
                                             target.draw(3);
@@ -1720,7 +1720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.rank(button.link, true) - lib.character[button.link][2];
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.huan幻化 = result.links[0];
                                     player.reinit(player.name, player.storage.huan幻化);
                                 } else event.finish();
@@ -1911,7 +1911,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return target.isMinHp() && target.countCards('h');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.chooseControl(['其摸一张牌', '其弃一张手牌', 'cancel2'], function (event1, player) {
                                         if (get.attitude(player, event.target) > 0) {

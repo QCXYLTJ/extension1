@@ -11610,7 +11610,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (get.color(result.cards[0]) == 'red') {
                                         trigger.directHit = true;
                                     } else {
@@ -19785,7 +19785,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.recover();
                                 }
@@ -19820,7 +19820,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.recover();
                                 }
@@ -23562,7 +23562,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return ai.get.effect(target, { name: 'sha', nature: 'thunder' }, _status.event.player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha', nature: 'thunder' }, result.targets[0], false);
                                 }
                             },
@@ -28168,7 +28168,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets[0];
                                     player.chooseCardButton('获得两张<视>', 2, targets.getExpansions('银红视线2'), true);
                                 } else {
@@ -28280,7 +28280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var targets = result.targets[0];
                                     player.chooseCardButton('获得两张<视>', 2, targets.getExpansions('银红视线2'), true);
                                 } else {
@@ -29832,7 +29832,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return ai.get.effect(target, { name: 'sha', nature: 'thunder' }, _status.event.player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.removeSkill('恶魔热力学第二定律的否定');

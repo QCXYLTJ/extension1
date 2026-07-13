@@ -1810,7 +1810,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             return -1;
           });
           ('step 1');
-          if (result.bool) {
+          if (result.cards?.length) {
             var suit = result.cards[0].suit;
             var target = trigger.target;
             var num = target.countCards('h', 'shan');
@@ -2119,7 +2119,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
               return _status.event.player.getUseValue(button.link);
             });
           ('step 1');
-          if (result.bool) {
+          if (result.links?.length) {
             player.$gain2(result.links[0], false);
             player.chooseUseTarget(true, result.links[0], false);
           } else player.getStat('triggerSkill').zanpakuto_kyokasuigetsu_skill--;

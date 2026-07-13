@@ -1192,7 +1192,7 @@ const skill = {
 					return -att;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				const list = [];
 				if (event.target.countDiscardableCards(player, 'he') > 0) {
@@ -1373,7 +1373,7 @@ const skill = {
 				return get.effect(target, { name: 'tiesuo' }, _status.event.player, _status.event.player);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const target = result.targets[0];
 				target.link();
 			}

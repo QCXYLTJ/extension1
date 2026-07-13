@@ -1631,7 +1631,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.useful(button.link);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     player.gain(card, 'draw');
                                 }
@@ -1717,7 +1717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     var num = Math.max(1, target.getDamagedHp());
@@ -2009,7 +2009,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw();
                                 }
                             },
@@ -3364,7 +3364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             prompt: '是否发动传奇？',
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.$give(result.cards, result.targets[0]);
                                             result.targets[0].gain(result.cards, player);
                                             event.target = result.targets[0];
@@ -3728,7 +3728,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return Math.random();
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     game.log(target, '成为了', '【照神镜】', '的目标');
@@ -3972,7 +3972,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 1;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.loseToDiscardpile(result.links[0]);
                                         } else {
                                             event.finish();
@@ -5223,7 +5223,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(button.link) != 'basic';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (typeof result.links[0] != 'string') result.links.reverse();
                                     var card = result.links[1],
                                         choice = result.links[0];
@@ -5751,7 +5751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .setHiddenSkill(event.name);
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.discardPlayerCard(event.target, true);
                                 } else {
@@ -6112,7 +6112,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards[0].suit === 'spade') {
                                         game.asyncDraw([player, target].sort(lib.sort.seat));
                                         target.turnOver(false);
@@ -6231,7 +6231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.judging[0] = result.cards[0];
                                     trigger.orderingCards.addArray(result.cards);
                                     game.log(trigger.player, '的判定牌改为', result.cards[0]);
@@ -6307,7 +6307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.judging[0] = result.cards[0];
                                     trigger.orderingCards.addArray(result.cards);
                                     game.log(trigger.player, '的判定牌改为', result.cards[0]);

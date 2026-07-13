@@ -713,7 +713,7 @@ const skill = {
 					game.log(player, '使命失败');
 					player.chooseTarget(true, get.prompt('hairi_zhongxia'), '令一名其他角色获得<终夏>', lib.filter.notMe);
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						target.addSkill('hairi_zhongxia');
 					}
@@ -816,7 +816,7 @@ const skill = {
 										return get.damageEffect(player, target, _status.event.player);
 									})
 									.forResult();
-								if (result.bool) {
+								if (result.targets?.length) {
 									await result.targets[0].damage(player);
 								}
 							});
@@ -869,7 +869,7 @@ const skill = {
 									return get.damageEffect(player, target, _status.event.player);
 								})
 								.forResult();
-							if (result.bool) {
+							if (result.targets?.length) {
 								await result.targets[0].damage(player);
 							}
 						});
@@ -1371,7 +1371,7 @@ const skill = {
 				})
 				.set('sourcex', trigger.source);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				trigger.player.line(target, 'green');
 				target.recover();
@@ -3209,7 +3209,7 @@ const skill = {
 								return players.includes(target);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							await player.discardPlayerCard(result.targets[0], [1, 2], true);
 						}
 					}
@@ -3224,7 +3224,7 @@ const skill = {
 								return players.includes(target);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							await result.targets[0].damage(player, 1, 'thunder');
 						}
 					}
@@ -4058,7 +4058,7 @@ const skill = {
 					break;
 				}
 				const result = await target.chooseCardButton('折折:选择一张牌获得', get.discarded().filterInD('d')).forResult();
-				if (result.bool) {
+				if (result.links?.length) {
 					await target.gain(result.links[0], 'gain2');
 					gains.add(target);
 				}
@@ -10408,7 +10408,7 @@ const skill = {
 				return get.damageEffect(target, player, player);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage();
 			}
 		},

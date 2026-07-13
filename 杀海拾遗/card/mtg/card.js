@@ -405,7 +405,7 @@ const card = {
 				return -get.attitude(_status.event.player, target) / Math.sqrt(target.hp + 1);
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, "green");
 				target.gain(game.createCard("du"), "gain2");

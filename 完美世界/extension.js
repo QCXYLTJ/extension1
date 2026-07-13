@@ -1447,7 +1447,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.logSkill('wmsj_轮回', target);
                                     var hp1 = player.hp;
@@ -2615,7 +2615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.viewHandcards(result.targets[0]);
                                         }
                                     },
@@ -2929,7 +2929,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return name == 'nanman' ? 0.8 : 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0][2], true, false);
                                 }
                             },
@@ -3620,7 +3620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 var target = trigger.player;
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     player.gain(card, target, 'giveAuto');
                                     target.draw();
@@ -4660,7 +4660,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 const npc = trigger.player;
                                 const result = await player.discardPlayerCard('visible').set('target', npc).set('ai', lib.card.guohe.ai.button).forResult();
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     const card = result.cards[0];
                                     if (get.type2(card) == get.type2(trigger.card)) {
                                         trigger.getParent().excluded.add(player);

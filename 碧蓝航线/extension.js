@@ -260,7 +260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             .set('createDialog', ['恭喜你获得了舰娘,点击舰娘进行领取', [event.card, 'character']]);
                     }
                     ('step 4');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         if (result.links[0] == 'wuyue_blackfangzhou') game.saveConfig('wuyue_blackfangzhou', lib.config.wuyue_blackfangzhou + 1);
                         if (result.links[0] == 'wuyue_xiaotiane') game.saveConfig('wuyue_xiaotiane', lib.config.wuyue_xiaotiane + 1);
                         if (result.links[0] == 'wuyue_dafeng') game.saveConfig('wuyue_dafeng', lib.config.wuyue_dafeng + 1);
@@ -1336,7 +1336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             .set('createDialog', ['请选择一个boss进行挑战', [event.card, 'character']]);
                     }
                     ('step 8');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         game.boss.init(result.links[0]);
                         game.boss.addSkill('wuyue_jianniangBoss');
                         if (result.links[0] == 'wuyue_blackfangzhou') {
@@ -2672,7 +2672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('createDialog', ['恭喜你唤醒了舰娘,点击以下舰娘领取', [event.card, 'character']]);
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (result.links[0] == 'wuyue_yingrui') game.saveConfig('wuyue_yingrui', lib.config.wuyue_yingrui + 1);
                                     if (result.links[0] == 'wuyue_edu') game.saveConfig('wuyue_edu', lib.config.wuyue_edu + 1);
                                     if (result.links[0] == 'wuyue_huashengdun') game.saveConfig('wuyue_huashengdun', lib.config.wuyue_huashengdun + 1);
@@ -2950,7 +2950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('createDialog', ['<br>&nbsp;<span style="color: #ffd306">感谢安装碧蓝航线扩展,作为萌新福利,选择一个喜欢的舰娘领取吧~!</span>', [event.card, 'character']]);
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     if (result.links[0] == 'wuyue_yingrui') game.saveConfig('wuyue_yingrui', lib.config.wuyue_yingrui + 1);
                                     if (result.links[0] == 'wuyue_edu') game.saveConfig('wuyue_edu', lib.config.wuyue_edu + 1);
                                     if (result.links[0] == 'wuyue_huashengdun') game.saveConfig('wuyue_huashengdun', lib.config.wuyue_huashengdun + 1);

@@ -347,7 +347,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(5);
 								}
 								'step 4'
-								if (result.bool) {
+								if (result.cards?.length) {
 									player.$giveAuto(result.cards[0], event.current);
 									event.current.gain(result.cards[0], player);
 									event.current.give(event.card, player);
@@ -1610,7 +1610,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -att * Math.sqrt(Math.max(0, val));
 								}).set('targets', trigger.targets).set('cards', event.cards);
 								'step 1'
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									player.say(['以虚虚实实之箭,溃浩浩汤汤之敌!', '清风拂面过,寒芒暗诛心!'].randomGet());
 									game.cardsGotoOrdering(event.cards);
@@ -1887,7 +1887,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '请选择要送人的卡牌,或点<取消>全留给自己'
 								});
 								'step 5'
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].gain(result.cards, player);
 									player.$give(result.cards.length, result.targets[0]);
 									if (Array.isArray(result.cards)) for (var i of result.cards) {
@@ -2048,7 +2048,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return name == 'nanman' ? 0.8 : 0;
 								}
 								'step 1'
-								if (result.bool) {
+								if (result.links?.length) {
 									event.name = result.links[0][2];
 								}
 								else {
@@ -2133,7 +2133,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return false;
 								}));
 								'step 1'
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.chooseToCompare(event.target);
 								}
@@ -2575,7 +2575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(6);
 								}
 								'step 4'
-								if (result.bool) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									player.choosePlayerCard(event.target, 'ej').ai = get.buttonValue;
 								}
@@ -2606,7 +2606,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: '将一张牌置入一名其他角色的合法区域,摸一张牌'
 								}).set('forced', true);
 								'step 7'
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									event.target = result.targets[0];
 									var name = event.card.name;

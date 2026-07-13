@@ -9,7 +9,7 @@ zymzhukou = {
                 target.countCards('h', (Q) => { if (Q.number > num) num = Q.number });
                 return get.player().attitudeTo(target) < 0 && player.countCards('h', (Q) => Q.number > num);
             }).forResult();
-        if (result.bool) {
+        if (result.targets?.length) {
             const result1 = await player.chooseToCompare(result.targets[0], (card) => card.number).forResult();
             if (result1.bool) {
                 var cards = result.targets[0].getCards('he');

@@ -1747,7 +1747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             trigger.target = result.targets[0];
                             game.log(player, '将', trigger.card, '的目标重新指定为' + get.translation(result.targets[0]));
                             if (result.targets[0] == player) {
@@ -1801,7 +1801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return player != target;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             target = result.targets[0];
                             var num = player.countCards('h');
                             var num2 = target.countCards('h');
@@ -1956,7 +1956,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .setHiddenSkill(event.name);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.discard(result.cards);
                             var evt = trigger.parent;
@@ -2041,7 +2041,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return get.attitude(player, target) - 4;
                         }).animate = false;
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.addSkill('wuxing_huxing2');
                             player.storage.wuxing_huxing2 = target;
@@ -2709,7 +2709,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             trigger.target = result.targets[0];
                             game.log(player, '将', trigger.card, '的目标重新指定为' + get.translation(result.targets[0]));
                             if (result.targets[0] == player) {
@@ -3005,7 +3005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             });
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                             target.draw(Math.min(5, target.maxHp));

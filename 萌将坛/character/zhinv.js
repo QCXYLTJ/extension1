@@ -46,7 +46,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						var card = result.links[0];
 						event.list.remove(get.type2(card));
 						var storage = player.storage.scqhZhinv_qinzheng || {};

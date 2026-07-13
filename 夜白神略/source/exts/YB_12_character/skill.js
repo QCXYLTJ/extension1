@@ -1472,7 +1472,7 @@ const skill = {
 				}
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				if (event.color == 'black') {
@@ -3114,7 +3114,7 @@ const skill = {
 						},
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						player.line(target, 'green');
 						player.give(result.cards, target);
@@ -3719,7 +3719,7 @@ const skill = {
 						return 0;
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						player.line(target);
 						const mark = player.countMark('qmsgswkjsgj_jieying_mark');
@@ -5804,7 +5804,7 @@ const skill = {
 				}
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player
 					.chooseControl(['弃牌掉血', '摸牌翻面', 'cancel2'])
@@ -6670,7 +6670,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -6813,7 +6813,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.give(result.cards, target);
 			}
@@ -7412,7 +7412,7 @@ const skill = {
 						}
 					}
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						player.line(target, 'green');
 						player.gainPlayerCard(target, 'e', target.countCards('e'), true);
@@ -7690,7 +7690,7 @@ const skill = {
 				},
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				player.give(result.cards, target);
@@ -9088,7 +9088,7 @@ const skill = {
 								});
 						})
 						.then(function () {
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.discardPlayerCard(result.targets[0], 'ej', true);
 							}
 						});
@@ -11986,7 +11986,7 @@ const skill = {
 					return -att * Math.sqrt(Math.max(0, val));
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				let cards = get.bottomCards(5);
 				game.cardsGotoOrdering(cards);
@@ -12326,7 +12326,7 @@ const skill = {
 				})
 				.set('targets', targets);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				target.damage();
 			}
@@ -14010,7 +14010,7 @@ const skill = {
 				return 1.2 * att;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 			} else {
@@ -14351,7 +14351,7 @@ const skill = {
 				})
 				.set('targets', event.parent.getTrigger().targets);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target);
 				player.addTempSkill('qmsgswkjsgj_shenci_dcqingshi_ex');
@@ -17652,7 +17652,7 @@ const skill = {
 								});
 						})
 						.then(function () {
-							if (result.bool) {
+							if (result.targets?.length) {
 								player.discardPlayerCard(result.targets[0], 'ej', true);
 							}
 						});
@@ -18375,7 +18375,7 @@ const skill = {
 				},
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				player.give(result.cards, target);
@@ -18501,7 +18501,7 @@ const skill = {
 						return get.effect(target, { name: 'draw' }, player, player);
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						target.draw(num);
 					}
@@ -18792,7 +18792,7 @@ const skill = {
 				return -get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.discardPlayerCard(result.targets[0], event.num, 'he', true);
 			} else {
 				event.finish();
@@ -18952,7 +18952,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -19741,7 +19741,7 @@ const skill = {
 						return 0;
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						player.line(target);
 						const mark = player.countMark('sgsxjxfzmnl_drltjieying_mark');
@@ -20467,7 +20467,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -20613,7 +20613,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.give(result.cards, target);
 			}
@@ -21043,7 +21043,7 @@ const skill = {
 							return 1 - get.attitude(_status.event.player, target);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						player.gainPlayerCard(target, 'he', true);
 					}
@@ -22335,7 +22335,7 @@ const skill = {
 				})
 				.set('targets', event.parent.getTrigger().targets);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target);
 				player.addTempSkill('sgsxjxfzmnl_dcqingshi_ex');
@@ -25128,7 +25128,7 @@ const skill = {
 				return getNum(target) + target.countCards('h') / 10;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player
@@ -25311,7 +25311,7 @@ const skill = {
 					return get.effect(target, { name: 'sha' }, player, player);
 				})
 				.forResult();
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				if (get.mode() !== 'identity' || player.identity !== 'nei') {
 					player.addExpose(0.25);
@@ -30754,7 +30754,7 @@ const skill = {
 					});
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = event.target || result.targets[0];
 				target.addMark('sgsxjxfzmnl_dunxi', 1);
 			}
@@ -33242,7 +33242,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let card = result.cards[0];
 				const target2 = result.targets[0];
 				event.card = card;
@@ -33357,7 +33357,7 @@ const skill = {
 				player.choosePlayerCard(trigger.player, true, 'h');
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let card = result.cards[0];
 				event.card = card;
 				let str = get.translation(player);
@@ -33388,7 +33388,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');

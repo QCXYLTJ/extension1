@@ -1504,7 +1504,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var list = [];
                                     if (lib.character[target.name]) list.addArray(lib.character[target.name][3]);
@@ -2209,7 +2209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (list.length) player.chooseCardButton('可选择其中一张立即使用', list, false);
                                         else event.finish();
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget(result.links[0], false);
                                         }
                                         ('step 2');
@@ -2226,7 +2226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (list.length) player.chooseCardButton('可再选择其中一张立即使用', list, false);
                                         else event.finish();
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget(result.links[0], false);
                                         }
                                     },
@@ -3230,7 +3230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'green');
                                     game.swapSeat(player, target);
@@ -3291,7 +3291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].turnOver();
                                 }
                             },
@@ -3483,13 +3483,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var cards = Array.from(ui.discardPile.childNodes).filter((i) => i.name == 'youyashi' || i.name == 'youyaduo' || i.name == 'youyasha');
                                 player.chooseButton(['乌鸦:选择一张鼬的专属牌', cards], cards.length).set('ai', get.buttonValue);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     event.card = card;
                                     player.chooseTarget('选择一名角色获得' + get.translation(card), true).set('ai', (target) => get.attitude(_status.event.player, target));
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     target.gain(card, 'gain2');
@@ -4185,7 +4185,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player.line(target);

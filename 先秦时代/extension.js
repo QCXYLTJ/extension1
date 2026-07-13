@@ -205,7 +205,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									target.draw();
 								}
@@ -667,7 +667,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return get.attitude(_status.event.player, target);
 												});
 											('step 2');
-											if (result.bool) {
+											if (result.targets?.length) {
 												result.targets[0].draw(event.result.cards.length);
 												lib.skill.Xqin_miaoxiao.Zhuanyun(player);
 											}
@@ -800,7 +800,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return button.link.name == trigger.card.name;
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									player.discard(result.links[0]);
 									player
 										.chooseTarget(true)
@@ -811,7 +811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									result.targets[0].draw(1);
 								}
 							},
@@ -842,7 +842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								player.chooseButton(['乱牍:是否使用其中一张牌？', cards]).set('ai', (button) => _status.event.player.getUseValue(button.link));
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									player.$gain2(card, false);
 									player.chooseUseTarget(true, card, false);
@@ -1114,7 +1114,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return get.value(button.link);
 									});
 								('step 2');
-								if (result.bool) {
+								if (result.links?.length) {
 									var card = result.links[0];
 									event.card = card;
 									player
@@ -1672,7 +1672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (!player.storage.Xqin_suzheng || !player.storage.Xqin_suzheng.length) player.storage.Xqin_suzheng = ['zhengsu_leijin', 'zhengsu_bianzhen', 'zhengsu_mingzhi'];
 								player.chooseButton(['肃整', [player.storage.Xqin_suzheng.filter((i) => !player.hasSkill(i)), 'vcard'], true]).set('ai', () => Math.random());
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									var name = result.links[0][2];
 									player.storage.Xqin_suzheng.remove(name);
 									for (var i of game.filterPlayer()) i.addTempSkill('Xqin_suzheng_share', { player: ['phaseDiscardAfter', 'phaseAfter'] });
@@ -2278,7 +2278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 2');
-								if (result.bool) {
+								if (result.targets?.length) {
 									var target = result.targets[0];
 									if (event.control == '选项一') target.changeHujia(1);
 									else target.gain(event.card, 'gain2');

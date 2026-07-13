@@ -734,7 +734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     card.remove();
                                     card.destroyed = true;
@@ -1460,7 +1460,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .setHiddenSkill(event.name);
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.cards.remove(result.links[0]);
                                             player.gain(result.links[0]);
                                             player.$gain2(result.links[0]);
@@ -1506,7 +1506,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 listm = [];
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.storage.ls_xianghais = result.targets[0];
                                     target = player.storage.ls_xianghais;
                                     listm = target.getSkills(null, false, false).filter(function (skill) {
@@ -2009,7 +2009,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.storage.ls_fuhun_name = target.name;
                                     event.target = target;
@@ -2110,7 +2110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                 } else {
@@ -2613,7 +2613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return att;
                                 });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.damage();
                                     target.addSkill('ls_zhongshang');

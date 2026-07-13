@@ -1857,7 +1857,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         'step 0';
                         player.chooseTarget([1, 1], '请选择一名角色并改变其武将牌', lib.filter.all);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.target = result.targets[0];
                             lib.choosePlayer.chooseCharacter(event.target);
                         } else event.finish();
@@ -4463,7 +4463,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0.1 - att / target.countCards('h');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player
@@ -4591,7 +4591,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (event.triggername == 'roundStart') next.set('forced', true);
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addMark('fgoqi_mark', 1);
                                 }
@@ -5997,7 +5997,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return name == 'nanman' ? 0.8 : 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0][2], true, false);
                                 }
                             },
@@ -7045,7 +7045,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('fgozhaomo');
                                     event.finish();
                                 }
@@ -7310,7 +7310,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].turnOver();
                                     game.playAudio('../extension/FGO/audio/zoujuefanmian.mp3');
                                 }
@@ -17643,7 +17643,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1 + Math.random();
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.addSkill('baiban');
                                     var list = [];
@@ -19426,7 +19426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards[0], trigger.target);
                                     trigger.target.$give(result.cards.length, player);
                                 }
@@ -20400,7 +20400,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 1;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             trigger.target.discard(result.cards[0], trigger.target);
                                         }
                                     },
@@ -20646,7 +20646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards[0], trigger.player);
                                     trigger.player.$give(result.cards.length, player);
                                 }
@@ -20708,7 +20708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards[0], trigger.player);
                                     trigger.player.$give(result.cards.length, player);
                                 }
@@ -24220,7 +24220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return name == 'nanman' ? 0.8 : 0;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget(result.links[0][2], true, false);
                                         }
                                     },
@@ -26555,7 +26555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else return 1;
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(1);
                                 }
                             },

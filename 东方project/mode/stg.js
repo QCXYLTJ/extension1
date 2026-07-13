@@ -471,7 +471,7 @@ game.addMode(
                         return true;
                     });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         player.gain(result.links[0]);
                         player.$gain2(result.links[0]);
                     }
@@ -1574,7 +1574,7 @@ game.addMode(
                         event.target.chooseButton(['选择本次闯关使用的装备', [list, 'vcard']], true);
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.target.equip(game.createCard(result.links[0][2]));
                         if (result.links[0][2] == 'gezi_missile') {
                             event.target.addSkill('masterspark');
@@ -2262,7 +2262,7 @@ game.addMode(
                         event.target.chooseButton(['选择本次闯关使用的装备', [list, 'vcard']], true);
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.target.equip(game.createCard(result.links[0][2]));
                         if (result.links[0][2] == 'gezi_missile') {
                             event.target.addSkill('masterspark');
@@ -2417,7 +2417,7 @@ game.addMode(
                         event.target.chooseButton(['选择本次闯关使用的装备', [list, 'vcard']], true);
                     }
                     ('step 2');
-                    if (result.bool) {
+                    if (result.links?.length) {
                         event.target.equip(game.createCard(result.links[0][2]));
                         if (result.links[0][2] == 'gezi_missile') {
                             event.target.addSkill('masterspark');
@@ -3184,7 +3184,7 @@ game.addMode(
                         });
                     } else event.finish();
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.useCard({ name: 'sha' }, result.targets[0], false);
                         event.count++;
                         if (event.count <= 2) event.goto(1);

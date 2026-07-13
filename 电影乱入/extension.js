@@ -4340,7 +4340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('aicheck', check);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -7588,7 +7588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (get.color(card) == 'red') {
                                         player.damage(event.target);
@@ -8329,7 +8329,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return Math.random() + 1;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.kill = result.links[0];
                                             player.addSkill('zmid_dy_benglie_nextkill');
                                             player.storage.zmid_dy_benglie_kill = event.kill;

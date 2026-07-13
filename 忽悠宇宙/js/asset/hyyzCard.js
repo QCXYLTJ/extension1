@@ -1529,7 +1529,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         }).
         set('att', get.attitude(player, target));
         'step 1';
-        if (result.bool) {
+        if (result.links?.length) {
           var name1 = result.links[0][2];
           var name2 = name1 == 'b3_baihua' ? 'b3_heiyuan' : 'b3_baihua';
           var card = player.getEquip(1);

@@ -1315,7 +1315,7 @@ const skill = {
 				return 0;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				var num = 0;
 				player.chooseCard([1, Infinity], "按顺序选择对" + get.translation(result.targets) + "使用的牌", function (card) {
@@ -1946,7 +1946,7 @@ const skill = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				trigger.target.line(result.targets[0], "green");
 				player.discardPlayerCard(result.targets[0], true, "he");
 			}
@@ -2664,7 +2664,7 @@ const skill = {
 				return get.recoverEffect(target, player, player);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.logSkill("lingyu", result.targets[0]);
 				result.targets[0].recover();
 			}
@@ -3059,7 +3059,7 @@ const skill = {
 			"step 0";
 			player.chooseCardButton(get.translation("shuiyun"), player.storage.shuiyun, true);
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.storage.shuiyun.remove(result.links[0]);
 				if (!player.storage.shuiyun.length) {
 					player.unmarkSkill("shuiyun");
@@ -3880,7 +3880,7 @@ const skill = {
 				return num;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				var card = get.cards()[0];
 				target.$draw(card);

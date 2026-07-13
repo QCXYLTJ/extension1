@@ -2160,7 +2160,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget();
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].recover();
                                 }
                             },
@@ -4360,7 +4360,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return card.name == 'sha';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0], true, false, 'nodistance');
                                 }
                             },
@@ -4854,7 +4854,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 3');
                                 if (event.num == 2 || event.num == 1) event.finish();
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.storage.zhiling[1] = result.links[0][2];
                                     event.goto(0);
                                 }
@@ -7462,7 +7462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         else if (card.suit == 'heart') return 10;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0]).gaintag.add('qw_yujian');
                                 }
                             },
@@ -7525,7 +7525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         if (event.list.length) player.chooseButton(['【预见】<br>请选择要获得的牌', event.list]);
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.gain(result.links[0]).gaintag.add('qw_yujian');
                                         }
                                     },
@@ -7561,7 +7561,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 if (event.list.length) trigger.player.chooseButton(['【预见】<br>请选择要获得的牌', event.list]);
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     trigger.player.gain(result.links[0]).gaintag.add('qw_yujian');
                                 }
                             },
@@ -7708,7 +7708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.list
                                 );
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addToExpansion(event.togain, 'gain2').gaintag.add('qw_cs1');
                                 }
                             },
@@ -8031,7 +8031,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton(1, ['「爱之鞭」:弃置一张红色牌为其回复一点体力或弃置一张黑色牌令其流失一点体力', player.getExpansions('qw_aizb')]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links[0]);
                                     if (get.color(result.links[0]) == 'red') trigger.player.recover();
                                     if (get.color(result.links[0]) == 'black') trigger.player.loseHp();
@@ -8105,7 +8105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseButton(['「胡萝卜与鞭子」:选择一名角色对另一名角色使用一张杀和决斗', player.getExpansions('qw_aizb')]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.loseToDiscardpile(result.links[0]);
                                 } else event.finish();
                                 ('step 2');
@@ -9017,7 +9017,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 if (event.list.length) player.chooseButton(['【天体队列】<br>请选择要使用的牌', event.list]);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget(result.links[0], true);
                                     event.list = event.list.filter((x) => x !== result.links[0]);
                                     event.goto(1);
@@ -9908,12 +9908,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('看什么看!');
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(1, player);
                                     event.finish();
                                 }
@@ -12868,7 +12868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     target.gain(result.links[0]);
                                 }
                             },
@@ -12910,7 +12910,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     ui.cardPile.removeChild(card);
                                     ui.cardPile.insertBefore(card, ui.cardPile.firstChild);

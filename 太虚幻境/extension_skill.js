@@ -329,7 +329,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 					return button.link[2] == 'txhj_chongyingshenfu' ? 2 : 1;
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					var card = game.createCard2(result.links[0][2]);
 					lib.inpile.add(result.links[0][2]);
 					player.storage.twsidao = card;
@@ -580,7 +580,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 					next.set('suit', suit);
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					var card = result.cards[0];
 					if (card.suit == trigger.card.suit && get.position(card) == 'd') {
 						player.gain(card, 'gain2');
@@ -824,7 +824,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 					return 0;
 				});
 				('step 2');
-				if (result.bool) {
+				if (result.links?.length) {
 					trigger.player.discard(result.links[0]);
 					event.cs = result.links;
 					if (lib.config.taixuhuanjing.buff.includes('buff_txhj_shenhanxueyin') && player == game.me) {
@@ -4963,7 +4963,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 				})
 				.setHiddenSkill(event.name);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.discardPlayerCard(result.targets[0], 'he', true);
 			}
 		},
@@ -4993,7 +4993,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 				return get.damageEffect(target, player, player);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage();
 			}
 		},
@@ -5075,7 +5075,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 				return get.damageEffect(target, player, player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('thunder');
 			}
 		},
@@ -5136,7 +5136,7 @@ window.txhjModeImport(function (lib, game, ui, get, ai, _status, config) {
 				return get.damageEffect(target, player, player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('thunder');
 				player.recover();
 			}

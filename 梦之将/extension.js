@@ -429,7 +429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     if (!target) target = result.targets[0];
                                     player.line(target);
                                     player.give(result.cards, target);
@@ -1696,7 +1696,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target != player;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     var list = [];
@@ -1829,7 +1829,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     }).animate = false;
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     if (!player.storage.ly_zezhu_effect) player.storage.ly_zezhu_effect = [];
                                     player.storage.ly_zezhu_effect.push(target); //QQQ
@@ -1951,7 +1951,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(_status.event.player, target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.loseHp();
                                     target.addSkill(event.name + '_effect');
@@ -2523,7 +2523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('targets', event.parent.getTrigger().targets);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     player.addTempSkill('genm_jiu_qingshi_ex');
@@ -3080,7 +3080,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att / (1 + get.distance(player, target, 'absolute'));
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.cards, 'gain2');
                                 }
                             },
@@ -4604,7 +4604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.count--;
                                     event.target = target;
@@ -5331,7 +5331,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return 0;
                                     });
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var result2 = await player.chooseToCompare(target);
                                     if (result2.bool) {
@@ -6477,7 +6477,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     target.give(card, player).gaintag.add('genm_qinwang');
                                     player.addTempSkill('miniqinwang_clear');
@@ -6828,7 +6828,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage();
                                 }
                             },

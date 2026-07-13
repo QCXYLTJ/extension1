@@ -391,12 +391,12 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 })
                 .set('rand', [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()]);
             ('step 1');
-            if (result.bool) {
+            if (result.links?.length) {
                 event.cardname = result.links[0][2];
                 player.chooseCard('he', '选择一张牌置于武将牌上');
             } else event.finish();
             ('step 2');
-            if (result.bool) {
+            if (result.cards?.length) {
                 var card = result.cards[0];
                 event.card = card;
                 player.addToExpansion(card, player, 'give').gaintag.add('shefu');
@@ -625,7 +625,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 return get.attitude(player, target);
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 event.target = target;
                 game.countPlayer((current) => {
@@ -1014,7 +1014,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 prompt: '〖谦雅〗你可以将任意张牌交给一名其他角色<br><span class=text>若你手牌数小于其,你将手牌摸至与其相同并令本轮此技能失效(至多摸四张)</span>',
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 player.give(result.cards, result.targets[0]);
                 event.target = result.targets[0];
             } else event.finish();
@@ -1080,7 +1080,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     })
                 );
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 event.target = result.targets[0];
                 player.chooseToCompare(event.target);
             } else event.finish();
@@ -1167,7 +1167,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     )
                     .set('list', list);
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.changeZhuanhuanji('olsaogu');
                     if (!player.storage.olsaogu) {
@@ -1274,7 +1274,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         return get.effect(target, { name: 'sha' }, evt.source, evt.player);
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.target2 = result.targets[0];
                     target.line(event.target2);
                     player.removeSkill('tuishi');
@@ -1321,7 +1321,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return get.drawEffect(target, num, player);
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     var hs = target.countCards('h');
@@ -1934,7 +1934,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             } else if (len == 1) event._result = { bool: true, targets: ps };
             else event._result = { bool: false };
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 result.targets[0].damage(player);
             } else {
                 player.recover();
@@ -2076,7 +2076,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     return 0.01 + att * eff;
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.addTempSkill('yingfeng_mark', 'roundFinish');
                 }
@@ -2171,7 +2171,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 }
                 player.chooseTarget(prompt, filterTarget).set('ai', ai);
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     event.goto(event.num);
@@ -2240,7 +2240,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         }
                         player.chooseTarget(prompt, filterTarget).set('ai', ai);
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.logSkill_qyhccl('bingqing', target);
                             event.target = target;
@@ -2332,7 +2332,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 })
                 .set('prompt2', '<center>除非其弃置一张【' + get.translation(trigger.card.name) + '】,否则其受到你造成的1点伤害</center>');
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 event.target = target;
                 var name = trigger.card.name;
@@ -2494,7 +2494,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             }
             ('step 1');
             if (event.randomtarget) event.randomtarget.classList.remove('glow');
-            if (result.bool) {
+            if (result.targets?.length) {
                 if (!result.targets[0]) {
                     if (!_status.auto && game.me == player) var target = event.randomtarget;
                 } else var target = result.targets[0];
@@ -2968,7 +2968,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             'step 0';
             player.chooseTarget('你可以选择一名角色,对其发动〖传术〗').set('ai', ai.getattitude).set('prompt2', '<center>直到你下回合开始,其:拼点牌亮出时,之点数+3;使用的下一张【杀】对除你外的角色造成伤害时,之+1;使用的下一张【杀】结算结束后,若其不为你,你摸等同于之造成的伤害值张牌</center>');
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 qyhcCL.qyhc_firstGain(0, 'num_twchuanshu');
                 var comparename = 'twchuanshu_qyhcCL_compare' + qyhcCL.num_twchuanshu;
@@ -3179,7 +3179,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 },
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 trigger.cancel();
                 player.give(result.cards, target);
@@ -3503,7 +3503,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             if (player.countCards('he') > 0) player.chooseCard('he', '〖羽化〗请将一张牌置于牌堆顶', true).set('ai', ai.choosecardtop);
             else event.finish();
             ('step 2');
-            if (result.bool) {
+            if (result.cards?.length) {
                 player.$throw(get.position(result.cards[0]) == 'e' ? result.cards[0] : 1, 800);
                 game.log(player, '将', get.position(result.cards[0]) == 'e' ? result.cards[0] : '#y一张手牌', '置于了牌堆顶');
                 player.lose(result.cards, ui.cardPile, 'insert');
@@ -3705,7 +3705,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     })
                     .set('targets', trigger.targets || []);
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 player.addCountNum('qizhi');
                 player.trymarkAutoSkill('qizhi_QYHCqyhc_cl');
@@ -3877,7 +3877,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 prompt2: '<center>若其为你,你弃置此牌,否则你将此牌交给其<br>' + (lib.config.extension_群英荟萃乀摧林_prom ? '你会获得一个技能(请阅读技能描述)' : '若其有技能描述中包含<出牌阶段>的你没有的技能,你选择其这些技能中的一个,直到当前阶段结束后,其的此技能失效且你获得此技能;否则你从随机三个描述的前四个字符为<出牌阶段>且你没有的技能中选择一个获得直到当前阶段结束后') + '</center>',
             });
             ('step 1');
-            if (result.bool) {
+            if (result.targets?.length) {
                 var target = result.targets[0];
                 event.target = target;
                 if (player == target) player.discard(result.cards);
@@ -4082,7 +4082,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         return 0;
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.chooseToCompare(target);
@@ -4257,7 +4257,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         })
                     );
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     target.link();
@@ -4318,7 +4318,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         return target.getUseValue(ts[0]) > 4;
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.chooseToCompare(target).set('small', true);
@@ -4361,7 +4361,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     event.goto(6);
                 }
                 ('step 4');
-                if (result.bool) {
+                if (result.links?.length) {
                     var card = result.links[0];
                     event.cards.remove(card);
                     event.loser.$gain2(card, false);
@@ -4415,7 +4415,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         return get.effect(target, { name: 'tiesuo' }, _status.event.player, _status.event.player);
                     });
                 ('step 4');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.line(result.targets[0]);
                     result.targets[0].link(true);
                 }

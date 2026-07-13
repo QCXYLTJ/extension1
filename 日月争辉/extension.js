@@ -1373,7 +1373,7 @@ game.import('extension', function () {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     player.discardPlayerCard(result.targets[0], 'hej', true);
                                     event.count--;
@@ -1797,7 +1797,7 @@ game.import('extension', function () {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].$gain(event.card);
                                     player.line(result.targets[0], 'thunder');
                                     result.targets[0].addJudge(event.card);
@@ -5074,7 +5074,7 @@ game.import('extension', function () {
                                     });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, true, false);
                                 } else event.finish();
                             },
@@ -5245,7 +5245,7 @@ game.import('extension', function () {
                                     .set('targets', targets)
                                     .set('choice', choice);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(num);
                                 }
                             },
@@ -5550,7 +5550,7 @@ game.import('extension', function () {
                                     }
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     if (player.getStorage('定汉').includes(name)) {
                                         player.unmarkAuto('定汉', [name]);
@@ -8342,7 +8342,7 @@ game.import('extension', function () {
                                     return -get.attitude(player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.chooseToDiscard('he', true).set('ai', function (card) {
                                         return 8 - get.value(card);
@@ -8594,7 +8594,7 @@ game.import('extension', function () {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].$gain(event.card);
                                             player.line(result.targets[0], 'thunder');
                                             result.targets[0].addJudge(event.card);
@@ -9547,7 +9547,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.gainPlayerCard(result.targets[0], 'hej');
                                 }
                             },
@@ -9568,7 +9568,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.discardPlayerCard(result.targets[0], 'hej');
                                 }
                             },
@@ -10009,7 +10009,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(2, 'thunder');
                                 }
                             },
@@ -10087,7 +10087,7 @@ game.import('extension', function () {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage(2, 'fire');
                                 }
                             },
@@ -10409,7 +10409,7 @@ game.import('extension', function () {
                                         return get.effect(target, { name: 'wanjian' }, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var num = player.storage.栾击_cards.length - 1;
                                     for (var i = 0; i < num; i++) {

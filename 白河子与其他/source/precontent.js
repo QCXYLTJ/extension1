@@ -271,7 +271,7 @@ export async function precontent(config, pack) {
                                 return get.effect(target, { name: 'sha' }, player, player);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target, 'fire');
                             player.useCard({ name: 'sha' }, target, false);
@@ -2399,7 +2399,7 @@ export async function precontent(config, pack) {
                     }
                 });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     if (target.ai && target.ai.shown > player.ai.shown) player.addExpose(Math.min(0.4, target.ai.shown - player.ai.shown));
                     player.line(target, 'thunder');
@@ -3102,7 +3102,7 @@ export async function precontent(config, pack) {
                                 return get.effect(target, { name: 'shunshou_copy2' }, player, player);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.gainPlayerCard(target, 'he', true);
                         }
@@ -3396,7 +3396,7 @@ export async function precontent(config, pack) {
                     },
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.give(result.cards, target);
                     for (var phase of ['phaseDraw', 'phaseUse', 'phaseDiscard']) {
@@ -3517,7 +3517,7 @@ export async function precontent(config, pack) {
                     })
                     .set('targets', trigger.targets);
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.discardPlayerCard(result.targets[0], true, 'he');
                     event.target = result.targets[0];
                 } else event.finish();
@@ -4018,7 +4018,7 @@ export async function precontent(config, pack) {
                                 return get.recoverEffect(target, _status.event.player, _status.event.player);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             target.recover();
                         } else player.getStat('triggerSkill').jsrgjishan_recover--;
@@ -7682,7 +7682,7 @@ export async function precontent(config, pack) {
                                 return eff;
                             })
                             .forResult();
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             dams[target.playerid] = (dams[target.playerid] || 0) + 1;
                         } else break;
@@ -8240,7 +8240,7 @@ export async function precontent(config, pack) {
                         });
                 } else event.finish();
                 ('step 3');
-                if (result.bool) {
+                if (result.links?.length) {
                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                     if (get.type(card) == 'equip' || get.type(card) == 'delay') {
                         player.chooseReal_SwsyTarget(game.createCard2(card.name), true);
@@ -8352,7 +8352,7 @@ export async function precontent(config, pack) {
                         return -get.attitude(_status.event.player, target);
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.clearSkills();
                     target.loseMaxHp();
@@ -8677,7 +8677,7 @@ export async function precontent(config, pack) {
                         });
                 }
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     let target = result.targets[0];
                     player.line(target, 'green');
                     player.discardPlayerCard(target, 'he', true);
@@ -9360,7 +9360,7 @@ export async function precontent(config, pack) {
                     })
                     .set('ai', (target) => get.effect(target, { name: 'shunshou_copy2' }, player, player) * (target.countCards('he') > 1 ? 1.5 : 1));
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     if (target.ai && target.ai.shown > player.ai.shown) player.addExpose(Math.min(0.3, target.ai.shown - player.ai.shown));
                     var cards = target.getGainableCards(player, 'he').randomGets(2);
@@ -9691,7 +9691,7 @@ export async function precontent(config, pack) {
                         return get.damageEffect(target, player, player, 'fire');
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     event.target = result.targets[0];
                     event.list.push(event.target);
                     event.target.damage('fire');
@@ -9793,7 +9793,7 @@ export async function precontent(config, pack) {
                         return get.damageEffect(target, _status.event.player, _status.event.player, 'fire');
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.judge(function (card) {
@@ -10219,7 +10219,7 @@ export async function precontent(config, pack) {
                         return get.value(button.link, player) + get.buttonValue(button);
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     event.card = result.links[0];
                     var func = function (card, id) {
                         var dialog = get.idDialog(id);
@@ -10560,7 +10560,7 @@ export async function precontent(config, pack) {
                     return 0;
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.link(false);
                     target.turnOver(false);
@@ -10578,7 +10578,7 @@ export async function precontent(config, pack) {
                         return -att * (num - target.hp);
                     });
                 ('step 3');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.line(target, 'fire');
                     target.chooseToDiscard('h', true, target.countCards('h') - target.hp);
@@ -10755,7 +10755,7 @@ export async function precontent(config, pack) {
                     return 0;
                 });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     (player.line(target), target.draw(2));
                     target.chooseToDiscard('he', true);
@@ -11002,7 +11002,7 @@ export async function precontent(config, pack) {
                 }
                 event.goto(1);
                 ('step 4');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.discardPlayerCard(result.targets[0], 'he', true);
                 }
                 event.goto(1);
@@ -11107,7 +11107,7 @@ export async function precontent(config, pack) {
                 }
                 event.goto(1);
                 ('step 4');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.discardPlayerCard(result.targets[0], 'he', true);
                 }
                 event.goto(1);
@@ -15550,7 +15550,7 @@ export async function precontent(config, pack) {
                     });
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     player.chooseUseTarget(result.links[0][2], true, false);
                 }
             },
@@ -16282,7 +16282,7 @@ export async function precontent(config, pack) {
                                 return -get.effect(target, _status.event.getTrigger().card, player, player);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             trigger.targets.remove(result.targets[0]);
                         }
                     },
@@ -16527,7 +16527,7 @@ export async function precontent(config, pack) {
                     return get.recoverEffect(target, player, player);
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].recover();
                 }
             },
@@ -17110,7 +17110,7 @@ export async function precontent(config, pack) {
                     }
                 } else event.finish();
                 ('step 4');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.addExpose(0.2);
                     if (!player.storage.syr_huixiang) {
@@ -17324,7 +17324,7 @@ export async function precontent(config, pack) {
                     })
                     .set('targets', trigger.targets);
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.discardPlayerCard(result.targets[0], true, 'he');
                     event.target = result.targets[0];
                 } else event.finish();
@@ -17343,7 +17343,7 @@ export async function precontent(config, pack) {
                     return get.damageEffect(target, player, player);
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.draw();
                     target.damage();
@@ -17577,7 +17577,7 @@ export async function precontent(config, pack) {
                         });
                 }
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     if (!lib.inpile.includes('huangtianchuangshi')) {
@@ -17600,7 +17600,7 @@ export async function precontent(config, pack) {
                         });
                 }
                 ('step 4');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     if (target.ai && target.ai.shown > player.ai.shown) player.addExpose(Math.min(0.2, target.ai.shown - player.ai.shown));
@@ -18452,7 +18452,7 @@ export async function precontent(config, pack) {
                         });
                 }
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     if (event.draw) target.draw((num = Math.max((target.countCards('h') + 1) >> 1, 5)));
                     else target.recover();
@@ -18983,7 +18983,7 @@ export async function precontent(config, pack) {
                     },
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     player.give(result.cards, result.targets[0]);
                 }
             },
@@ -20583,7 +20583,7 @@ export async function precontent(config, pack) {
                     return get.attitude(player, target);
                 });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.line(target, 'fire');
                     player.addSkillLog('hmxili');
@@ -21031,7 +21031,7 @@ export async function precontent(config, pack) {
                     }
                 } else event.finish();
                 ('step 4');
-                if (result.bool) {
+                if (result.cards?.length) {
                     var card = result.cards[0];
                     target.$give(card, player, false);
                     player.equip(card);
@@ -21041,7 +21041,7 @@ export async function precontent(config, pack) {
                 if (result.bool) player.chooseButton(['选择获得一张牌', result.cards], true);
                 else event.finish();
                 ('step 6');
-                if (result.bool) {
+                if (result.links?.length) {
                     var card = result.links[0];
                     if (lib.filter.canBeGained(card, player, target)) player.gain(card, target, 'giveAuto', 'bySelf');
                     else game.log('但', card, '不能被', player, '获得!');
@@ -21456,7 +21456,7 @@ export async function precontent(config, pack) {
                         return (-get.attitude(player, target) * (1 + target.countGainableCards(player, 'e'))) / (1 + target.countGainableCards(player, 'j'));
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.chooseToCompare(target, function (card) {
@@ -22956,7 +22956,7 @@ export async function precontent(config, pack) {
                     return eff - get.value(card);
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.cards?.length) {
                     event.card = result.cards[0];
                     var next = player.judge(function (card) {
                         var evt = _status.event.getParent('syr_Saudade'),
@@ -23808,7 +23808,7 @@ export async function precontent(config, pack) {
                     return 0;
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.addExpose(0.3);
                     target.damage(2);
@@ -23908,7 +23908,7 @@ export async function precontent(config, pack) {
                         return get.effect(target, { name: 'sha' }, player, player);
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.loseHp();
                     trigger.cancel();
@@ -23963,7 +23963,7 @@ export async function precontent(config, pack) {
                     },
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0],
                         cards = result.cards;
                     event.target = target;
@@ -23992,7 +23992,7 @@ export async function precontent(config, pack) {
                         });
                 else event.finish();
                 ('step 5');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.popup('syr_porui');
                     game.log(player, '对', target, '发动了', '【破锐】');
@@ -24244,7 +24244,7 @@ export async function precontent(config, pack) {
                         .set('shits', shits);
                 }
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.chooseToDiscard((player.countCards('h') + 1) >> 1, 'h', true);
                     if (target.maxHp > 0) target.loseMaxHp((target.maxHp + 1) >> 1, true);
@@ -25081,7 +25081,7 @@ export async function precontent(config, pack) {
                     return get.threaten(target, player);
                 });
                 ('step 3');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = (event.target = result.targets[0]);
                     player.line(target, 'thunder');
                     player.addExpose(0.25);
@@ -25976,7 +25976,7 @@ export async function precontent(config, pack) {
                     });
                 else event.finish();
                 ('step 3');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.line(target, 'green');
@@ -26596,7 +26596,7 @@ export async function precontent(config, pack) {
                         return 0;
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.cards?.length) {
                     player.useCard(result.cards[0], trigger.player);
                 }
             },
@@ -26829,7 +26829,7 @@ export async function precontent(config, pack) {
                             },
                         );
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             event.target = target;
                             event.target2 = target;
@@ -27091,7 +27091,7 @@ export async function precontent(config, pack) {
                         }
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.links?.length) {
                     var name = result.links[0][2];
                     player.storage.syr_xianlve = name;
                     player.markSkill('syr_xianlve');
@@ -27235,7 +27235,7 @@ export async function precontent(config, pack) {
                                     }
                                 });
                         ('step 6');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             var name = result.links[0][2];
                             player.storage.syr_xianlve = name;
                             player.markSkill('syr_xianlve');
@@ -28518,7 +28518,7 @@ export async function precontent(config, pack) {
                             },
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.addExpose(0.6);
                             player.give(result.cards, target);
@@ -29308,7 +29308,7 @@ export async function precontent(config, pack) {
                     })
                     .set('targets', trigger.targets);
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     var list = ['minilingren_basic', 'minilingren_trick', 'minilingren_equip'];
@@ -29963,7 +29963,7 @@ export async function precontent(config, pack) {
                                     return 50 - val;
                                 });
                             ('step 2');
-                            if (result.bool) {
+                            if (result.cards?.length) {
                                 var card = result.cards[0];
                                 event.card = card;
                                 event.count++;
@@ -30563,7 +30563,7 @@ export async function precontent(config, pack) {
                     return get.damageEffect(target, _status.event.player, _status.event.player);
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     result.targets[0].damage();
                 }
             },
@@ -31399,7 +31399,7 @@ export async function precontent(config, pack) {
                             });
                 } else event.finish();
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.line(target);
                     player.$give(card, target, false);
@@ -33499,7 +33499,7 @@ export async function precontent(config, pack) {
                 event.e = e;
                 event.zhang = zhang;
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.line(target);
                     target.addTempSkill('ygbdandao_empty');
@@ -33911,7 +33911,7 @@ export async function precontent(config, pack) {
                         event.e = e;
                         event.zhang = zhang;
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target);
                             // target.addTempSkill("ygbdandao_empty");
@@ -34179,7 +34179,7 @@ export async function precontent(config, pack) {
                                 return -get.attitude(_status.event.player, target) * (target.countCards('e') + 1);
                             });
                         ('step 3');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target, 'fire');
                             var disables = [];
@@ -34282,7 +34282,7 @@ export async function precontent(config, pack) {
                     return (pos == 'h' ? 7 : 1) - val;
                 });
                 ('step 1');
-                if (result.bool) {
+                if (result.cards?.length) {
                     var cardz = result.cards[0];
                     if (get.type(cardz) == 'equip') {
                         var sub = get.subtype(cardz);
@@ -34352,7 +34352,7 @@ export async function precontent(config, pack) {
                                 return eff;
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             target.damage(player.countCards('e') - target.countCards('e'));
                         }
@@ -34376,7 +34376,7 @@ export async function precontent(config, pack) {
                         return -get.attitude(player, target);
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     // target.addTempSkill("ygbwuren_1");
@@ -34403,7 +34403,7 @@ export async function precontent(config, pack) {
                         return 0;
                     });
                 ('step 3');
-                if (result.bool) {
+                if (result.links?.length) {
                     var name = result.links[0][2];
                 } else {
                     event.finish();
@@ -34593,7 +34593,7 @@ export async function precontent(config, pack) {
                                     return get.event('targets').includes(target);
                                 })
                                 .set('targets', targets);
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             var next = game.createEvent('jsrghuozhong_draw', false);
                             next.set('player', player);
@@ -35662,7 +35662,7 @@ export async function precontent(config, pack) {
                     })
                     .set('targets', targets);
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.damage(player.countCards('h'));
                 }
@@ -36010,7 +36010,7 @@ export async function precontent(config, pack) {
                     return -att * target.countCards('he');
                 });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     event.target = target;
                     player.line(target);
@@ -36344,7 +36344,7 @@ export async function precontent(config, pack) {
                                 return -att * Math.sqrt(Math.max(0, val));
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             var cards = get.bottomCards(3);
                             game.cardsGotoOrdering(cards);
@@ -38626,7 +38626,7 @@ export async function precontent(config, pack) {
                         return eff;
                     });
                 ('step 2');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     player.gainPlayerCard('ej', target, true);
                     if (--event.num) event.goto(1);
@@ -39182,7 +39182,7 @@ export async function precontent(config, pack) {
                     return 0;
                 };
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.addTempSkill('syr_AWand_direct1', { player: 'phaseBegin' });
                     for (var i = 0; i < game.players.length; i++) i.addSkill('syr_AWand_direct2');
@@ -40036,7 +40036,7 @@ export async function precontent(config, pack) {
                         return -get.attitude(_status.event.player, target);
                     });
                 ('step 1');
-                if (result.bool) {
+                if (result.targets?.length) {
                     var target = result.targets[0];
                     target.clearSkills();
                     target.loseMaxHp();
@@ -44877,7 +44877,7 @@ export async function precontent(config, pack) {
                             return get.attitude(_status.event.player, target);
                         });
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var dead = result.targets[0];
                             if (dead.hasSkill('zq_huanhundan_die') || (_status.zq_huanhundan && _status.zq_huanhundan.includes(dead))) event.finish();
                             else {
@@ -45031,7 +45031,7 @@ export async function precontent(config, pack) {
                             return get.attitude(_status.event.player, target);
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var dead = result.targets[0];
                             if (dead.hasSkill('zq_huanhundan_die') || (_status.zq_huanhundan && _status.zq_huanhundan.includes(dead))) event.finish();
                             else {
@@ -46155,7 +46155,7 @@ export async function precontent(config, pack) {
                                     return get.threaten(target, player);
                                 }).animate = false;
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].addSkill('hyym_shenmililiangx');
                         }
                     },

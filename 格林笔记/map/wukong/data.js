@@ -173,7 +173,7 @@ window.gl_init = function (lib, game, ui, get, ai, _status) {
               return -get.attitude(player, target);
             });
             'step 1';
-            if (result.bool) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.logSkill('hundun_manheng', target);
               player.line(target, 'green');

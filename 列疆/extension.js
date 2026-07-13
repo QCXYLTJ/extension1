@@ -882,7 +882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return _status.event.player.getUseValue({ name: button.link[2], nature: button.link[3] });
                             });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.links?.length) {
                                 game.card_equip_liejiang.add(result.links[0][2]);
                                 player.chooseCard('选择获得一张卡牌转化为该装备', true, 'he').set('ai', function (card) {
                                     // AI认为应该选择价值最低的牌
@@ -6306,7 +6306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -1.5 * att;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.addExpose(0.1);
                                 } else {
@@ -9696,12 +9696,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCard('是否发动【占卜】？:选择一张手牌,替换其中一张博弈牌', 'h');
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     event.cardzb = result.cards[0];
                                     player.chooseButton(['选择需要替换的博弈牌', get.translation(player) + '的牌', [trigger.card1], get.translation(trigger.target) + '的牌', [trigger.card2]]);
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], 'gain2');
                                     if (result.links[0] == trigger.card1) {
                                         trigger.card1 = event.cardzb;
@@ -11471,7 +11471,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att > 0;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target1 = result.targets[0];
                                     player.chooseChess(result.targets[0]);
                                 }
@@ -11788,7 +11788,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             };
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.cards?.length) {
                                             if (result.cards[0].name == trigger.card.name) {
                                                 event.card_true = true;
                                             }
@@ -12105,7 +12105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.chooseCard('选择你要交给' + get.translation(event.target) + '的牌', true, 2, 'he').set('ai', function (card) {
                                         return 7 - get.value(card);

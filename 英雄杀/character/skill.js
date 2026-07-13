@@ -70,7 +70,7 @@ const skill = {
 					return get.attitude(player, target);
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, "green");
 				game.log(target, "成为了", "【门神】", "的目标");
@@ -963,7 +963,7 @@ const skill = {
 				prompt: "请选择要送人的卡牌",
 			});
 			"step 3";
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].gain(result.cards, player);
 				player.$give(result.cards.length, result.targets[0]);
 				for (var i = 0; i < result.cards.length; i++) {
@@ -1420,7 +1420,7 @@ const skill = {
 				return 0;
 			};
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].gain(card, player);
 				player.$give(1, result.targets[0]);
 				player.line(result.targets, "green");
@@ -1758,7 +1758,7 @@ const skill = {
 				return att * _status.event.du;
 			};
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.logSkill("lzhangyi", target);
 				var cards = [];
@@ -3040,7 +3040,7 @@ const skill = {
 			"step 0";
 			player.discardPlayerCard(target, true);
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				var type = get.type(result.cards[0]);
 				if (type !== "basic" && type !== "trick") {
 					player.chooseToDiscard("he", true);

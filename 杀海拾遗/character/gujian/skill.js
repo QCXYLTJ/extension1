@@ -39,7 +39,7 @@ const skill = {
 					return true;
 				});
 			"step 1";
-			if (result.bool) {
+			if (result.links?.length) {
 				var skill = result.links[0][2];
 				event.mapSkill = skill;
 				var value = 0;
@@ -60,7 +60,7 @@ const skill = {
 				event.finish();
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				var skill = event.mapSkill + "_skill";
 				player.logSkill("qingshu", target);
@@ -755,7 +755,7 @@ const skill = {
 				})
 				.set("goon", goon);
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.logSkill("cihong", event.target);
 			} else {
@@ -1192,7 +1192,7 @@ const skill = {
 				return name === "zengbin" ? 1 : 0;
 			};
 			"step 2";
-			if (result.bool) {
+			if (result.links?.length) {
 				player.chooseUseTarget(true, result.links[0][2]);
 			}
 		},
@@ -1304,7 +1304,7 @@ const skill = {
 				player.addTempSkill("dangping2");
 			}
 			"step 2";
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage();
 			}
 		},
@@ -1667,7 +1667,7 @@ const skill = {
 				return -get.value(card);
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards[0], trigger.source);
 				trigger.source.$give(1, player);
 			}
@@ -1792,7 +1792,7 @@ const skill = {
 				return num;
 			};
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.logSkill("fanyin", event.target);
 			} else {
@@ -1987,7 +1987,7 @@ const skill = {
 				prompt: get.prompt("xuelu"),
 			});
 			"step 1";
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.logSkill("xuelu", event.target, "fire");
 				event.num = Math.min(2, Math.ceil((player.maxHp - player.hp) / 2));

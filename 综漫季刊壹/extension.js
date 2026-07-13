@@ -1064,7 +1064,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (list.length) player.chooseCardButton('可选择其中一张立即使用', list, false);
                                         else event.finish();
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget(result.links[0], false);
                                         }
                                     },
@@ -2099,7 +2099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     trigger.player.gain(result.cards[0], player);
                                     player.$give(result.cards.length, trigger.player);
                                     player.gain(event.cards, 'gain2');
@@ -3124,7 +3124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 0;
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.target1 = result.targets[0];
                                         } else event.finish();
                                         ('step 2');
@@ -3595,7 +3595,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(player, target);
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                             player.line(event.target);
                                             player.discardPlayerCard(1, 'he', event.target);
@@ -4498,7 +4498,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return att;
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(trigger.cards, 'gain2');
                                             player.addTempSkill('zmwannengjiejueshi_temp');
                                         }
@@ -4708,7 +4708,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 10 - get.value(button.link);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     player.gain(result.links[0], trigger.target, 'giveAuto');
                                 }
                             },
@@ -4745,7 +4745,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 10 - get.value(button.link);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.card = result.links[0];
                                             trigger.player.discard(event.card);
                                         }
@@ -5200,7 +5200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.num += 1;
                                 }
                                 if (event.num >= 1) {
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets[0], 'green');
                                         result.targets[0].draw();
                                     }
@@ -5220,7 +5220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.finish();
                                 ('step 4');
                                 if (event.num == 2) {
-                                    if (result.bool) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets[0], 'green');
                                         result.targets[0].recover();
                                     }
@@ -5253,7 +5253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return num && num > 0;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name;
                                     player.useCard({ name: name }, trigger.player, false);
                                 } else event.finish();
@@ -6538,7 +6538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -1;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.cards?.length) {
                                     if (result.cards[0].suit == trigger.card.suit) {
                                         trigger.baseDamage++;
                                     } else {

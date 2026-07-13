@@ -1575,7 +1575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return 0;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.target = result.targets[0];
                             game.tgttchoosePlayer.chooseCharacter(event.target);
                         } else event.finish();
@@ -1632,7 +1632,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         ('step 2');
                         //选择角色
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             if (!event.back) event.targets = result.targets[0];
                             event.back = false;
                             var list = [];
@@ -1701,7 +1701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         ('step 3');
                         //选择了来源武将包
-                        if (result.bool) {
+                        if (result.links?.length) {
                             var a = get.type(result.links[0][2]);
                             event.pack = lib.characterPack[a];
                             packname = lib.translate[a + '_character_config'];
@@ -1844,7 +1844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         ('step 7');
                         //更换手牌
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             if (!event.back) event.target = result.targets[0];
                             event.back = false;
                             var content = [get.translation(event.target) + '的手牌<br>⊙是否更换其手牌？', event.target.getCards('h')];

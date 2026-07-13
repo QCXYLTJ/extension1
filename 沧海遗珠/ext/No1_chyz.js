@@ -1044,7 +1044,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.chooseButton(1, list).set('prompt2', '先选择你区域内的一张牌,<br>看好了再选,别选错!!!!!');
 					// player.chooseCard('ej').set('prompt2','先选择你区域内的一张牌,<br>看好了再选,别选错!!!!!');
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.card = result.links[0];
 						// var name=result.links;
 						// var name2=result.links[0].viewAs;
@@ -1070,7 +1070,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						var link = event.card;
 						// if(get.type(event.card.viewAs)=='equip') result.targets[0].equip(event.card);
@@ -1169,7 +1169,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						prompt: get.prompt2('ybssx_lieyuanxx'),
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var thisTarget = result.targets[0];
 						var thisCard = result.cards[0];
 						if (get.type(thisCard) == 'equip') {
@@ -1299,7 +1299,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									return get.attitude(_status.event.player, target);
 								});
 							('step 1');
-							if (result.bool) {
+							if (result.targets?.length) {
 								result.targets[0].draw();
 							}
 						},
@@ -1524,7 +1524,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return -get.attitude(_status.event.player, target);
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].damage('fire', 'nocard', event.num);
 					}
 				},
@@ -1757,7 +1757,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							// }
 							// else{event.finish();}
 							('step 2');
-							if (result.bool) {
+							if (result.targets?.length) {
 								var tar = result.targets[0];
 								tar.gain(event.card, 'gain2');
 								if (!tar.hasSkill('ybld_chenxun')) {
@@ -2039,7 +2039,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						});
 					}
 					('step 3');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.line(target, 'green');
 						target.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('ybdc_ruofu_mark');
@@ -2154,7 +2154,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						event.list.push(target);
 						player.gain(target.getExpansions('ybdc_ruofu_mark'), 'gain2');
@@ -2436,7 +2436,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return att;
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						var list = get.ybbmh_chizhang(target);
 						// game.log(list);
@@ -3077,7 +3077,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							}
 							player.chooseButton(1, list);
 							('step 3');
-							if (result.bool) {
+							if (result.links?.length) {
 								event.card = result.links[0];
 								player
 									.chooseTarget(function (card, player, target) {
@@ -3096,7 +3096,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							('step 4');
-							if (result.bool) {
+							if (result.targets?.length) {
 								event.target = result.targets[0];
 								var link = event.card;
 								if (get.position(link) == 'e') {
@@ -3147,7 +3147,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return type == 'equip';
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.discard(result.links[0]);
 						player.addMark('ybcjy_lvzhi');
 					} else {
@@ -4002,7 +4002,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return att < 0 && eff >= 0;
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						if (player.storage.ybshh_yuniao == true) event.list = [player, result.targets[0], 'fire', result.targets[0], 'fire'];
 						else event.list = [result.targets[0], player, 'thunder', result.targets[0], null];
 						player.line(event.list[3], event.list[2]);
@@ -5126,7 +5126,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return player.getUseValue({ name: button.link[2] });
 						})
 						.forResult();
-					if (result.bool) {
+					if (result.links?.length) {
 						player.chooseUseTarget(result.links[0][2], true, false);
 					}
 				},

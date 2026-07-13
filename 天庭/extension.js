@@ -624,7 +624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var dead = result.targets[0];
                                     if (dead.hasSkill('zq_huanhundan_die') || (_status.zq_huanhundan && _status.zq_huanhundan.includes(dead))) event.finish();
                                     else {
@@ -813,7 +813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var dead = result.targets[0];
                                     if (dead.hasSkill('zq_huanhundan_die') || (_status.zq_huanhundan && _status.zq_huanhundan.includes(dead))) event.finish();
                                     else {
@@ -2782,7 +2782,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: get.prompt2('zqchengchen'),
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var cards = result.cards;
                                     player.storage.zqchengchen_mod = target;
@@ -3231,7 +3231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.goto(2);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var zqtuiwei_zhu = result.targets[0];
                                     player.line(zqtuiwei_zhu); //射线
                                     game.broadcastAll(
@@ -3439,7 +3439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0]);
                                     trigger.player = result.targets[0];
                                     game.log('【安乐】:', result.targets[0], '替', player, '受到伤害');
@@ -3878,7 +3878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.resultCard = result.links[0];
                                 } else {
                                     player.storage.zqsanshiSkill = true; //允许
@@ -5042,7 +5042,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(3);
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     player.chooseUseTarget(true, card, false);
                                     player.storage.cs.remove(card);
@@ -6186,7 +6186,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 var evt = trigger.parent;
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addMark('zqhuanhua', 1);
                                     if (result.targets.length > 1) {
                                         result.targets[1].addMark('zqhuanhua', 1);
@@ -6385,7 +6385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     }).animate = false;
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     if (!player.storage.zqjiuzhu2) player.storage.zqjiuzhu2 = [];
                                     player.storage.zqjiuzhu2.push(target);

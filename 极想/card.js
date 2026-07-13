@@ -26,7 +26,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
                     'step 2'
                     event.tars[event.inx].chooseCard('h', true).set('prompt2', '【加减】:展示一张手牌')
                     'step 3'
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var card = result.cards[0]
                         event.tars[event.inx].showCards(card)
                         var nx = card.number
@@ -1453,7 +1453,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
                         event.finish()
                     }
                     'step 2'
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.viewHandcards(result.targets[0]);
                     }
                 },
@@ -1751,7 +1751,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
                         return eff * (hp1 - hp2)
                     })
                     'step 1'
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.tar2 = result.targets[0]
                     } else {
                         event.finish()

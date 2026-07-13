@@ -852,7 +852,7 @@ const skill = {
 					return true;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				let name = result.links[0][2];
 				player.storage.North_dy_qingyu_light.push(name);
 				game.log(player, '点亮了【武库】中的', '#y' + get.translation(name));
@@ -1405,7 +1405,7 @@ const skill = {
 			player.chooseButton(1, list).set('prompt2', '先选择你区域内的一张牌,<br>看好了再选,别选错!!!!!');
 
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = result.links[0];
 
 				player
@@ -1427,7 +1427,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				const link = event.card;
 
@@ -1494,7 +1494,7 @@ const skill = {
 				prompt: get.prompt2('North_ssx_lieyuanxx'),
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const thisTarget = result.targets[0];
 				const thisCard = result.cards[0];
 				if (get.type(thisCard) == 'equip') {
@@ -1638,7 +1638,7 @@ const skill = {
 							return get.attitude(_status.event.player, target);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].draw();
 					}
 				},
@@ -1808,7 +1808,7 @@ const skill = {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.addToExpansion(result.cards[0], player, 'give', 'log').gaintag.add('North_zgl_qizhu');
 					}
 				},
@@ -1880,7 +1880,7 @@ const skill = {
 				return -get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('fire', 'nocard', event.num);
 			}
 		},
@@ -2137,7 +2137,7 @@ const skill = {
 						.set('prompt', '请选择将牌交给一名角色,令其执行一个额外的摸牌阶段和出牌阶段<br>若其未拥有技能〖忱恂〗,则你回复所有体力并将手牌补至体力上限,令其获得〖忱恂〗直到本次额外的摸牌阶段和出牌阶段结束');
 
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						const tar = result.targets[0];
 						tar.gain(event.card, 'gain2');
 						if (!tar.hasSkill('North_ld_chenxun')) {
@@ -2371,7 +2371,7 @@ const skill = {
 							return num * bl;
 						};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target1 = result.targets[0];
 						player.line(event.target1, 'North_smk_shangying');
 						player.gain(event.target1.getEquip(1), event.target1, 'give', 'bySelf');
@@ -2521,7 +2521,7 @@ const skill = {
 				});
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				if (target.isIn()) {
@@ -2653,7 +2653,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				event.list.push(target);
@@ -2958,7 +2958,7 @@ const skill = {
 					return att;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				const list = get.North_bmh_chizhang(target);
 
@@ -3522,7 +3522,7 @@ const skill = {
 					}
 					player.chooseButton(1, list1).set('prompt2', '先选择其区域内的一张牌,<br>看好了再选,别选错!!!!!');
 					('step 3');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.card = result.links[0];
 						player
 							.chooseTarget(function (card, player, target) {
@@ -3540,7 +3540,7 @@ const skill = {
 						event.finish();
 					}
 					('step 4');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						const link = event.card;
 						if (get.position(link) == 'e') {
@@ -3598,7 +3598,7 @@ const skill = {
 				})
 				.set('chooseonly', true);
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.discard(result.links[0]);
 				player.addMark('North_cjy_lvzhi');
 			} else {
@@ -4763,7 +4763,7 @@ const skill = {
 					return get.getUseValue(button.link);
 				});
 			('step 3');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = result.links[0];
 			}
 

@@ -162,7 +162,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           event._result = { bool: true, links: list };
         }
         'step 1';
-        if (result.bool) {
+        if (result.links?.length) {
           var skill = result.links[0][2];
           if (event.callback) {
             event.callback(event, skill);
@@ -318,7 +318,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return Math.random(); //诶 没收益就是玩
             });
             'step 1';
-            if (result.bool) {
+            if (result.links?.length) {
               const Result = (result.links[0] > 0 ? '+' : '') + result.links[0];
               game.log(trigger.player, '判定结果点数', '#g' + Result);
               player.popup(Result, 'fire');
@@ -587,7 +587,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           }).
           set('targets', targets);
         'step 1';
-        if (result.bool) {
+        if (result.links?.length) {
           event.useCardName = result.links[0][2];
           const vcard = game.createCard(result.links[0][2], '', '', '');
           player.showCards(vcard, get.translation(player) + '声明了' + get.translation(vcard));
@@ -3362,7 +3362,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             return 0;
           });
         'step 1';
-        if (result.bool) {
+        if (result.targets?.length) {
           event.target = result.targets[0];
           event.target.
             chooseCard('he', '交出一张♠️️牌或受到' + get.translation(player) + get.cnNumber(trigger.num) + '点毒属性伤害', function (card) {
@@ -3646,7 +3646,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           event._result = { bool: true, links: list };
         }
         'step 1';
-        if (result.bool) {
+        if (result.links?.length) {
           var card = { name: result.links[0][2], nature: result.links[0][3] };
           var next = player.chooseUseTarget(false, card);
           if (!event.onforced) next.set('forced', true);

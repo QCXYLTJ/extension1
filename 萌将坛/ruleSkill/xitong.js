@@ -527,7 +527,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return player != target && target.countCards('h');
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						var target = result.targets[0];
 						player.chooseCardButton(target, target.getCards('h'));
 					}

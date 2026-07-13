@@ -2885,7 +2885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -num;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target1 = result.targets[0];
                                     player.line(event.target1, 'exxibing');
                                     player.gainPlayerCard(event.target1, 99, 'e', true);
@@ -3328,7 +3328,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].turnOver();
                                 }
                             },
@@ -4368,7 +4368,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     let num = target.maxHp - target.hp;
@@ -4397,7 +4397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.draw(Math.min(target.maxHp));
@@ -4420,7 +4420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     let num = target.maxHp - target.hp;
@@ -4444,7 +4444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.chooseToDiscard(3, 'j', true);
@@ -4470,7 +4470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target != player && _status.event.sourcex != target;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     let num = Math.floor(target.countCards('e'));
@@ -4505,7 +4505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.draw(1);
@@ -4552,7 +4552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.chooseToDiscard(1, 'he', true);
@@ -4599,7 +4599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.damage(1, 'thunder', true);
@@ -4646,7 +4646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.recover(1);
@@ -4848,7 +4848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.addSkill('exxiaofengx');
@@ -4964,7 +4964,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.recoverEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.addSkill('exxianfub');
@@ -5100,7 +5100,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player, 'thunder') * (target.hp == 1 ? 2 : 1);
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     event.target = target;
                                     player.line(target, 'thunder');
@@ -5131,7 +5131,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     event.target = target;
                                     player.line(target, 'green');
@@ -5831,7 +5831,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     player.line(target, 'green');
                                     target.addSkill('exfangzhux');
@@ -7176,7 +7176,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, _status.event.player, _status.event.player, 'thunder');
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.judge(function (card) {
                                         const suit = card.suit;
@@ -7975,7 +7975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return att;
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     const target = result.targets[0];
                                     target.draw(1);
                                     let num = target.storage.extongqumark;

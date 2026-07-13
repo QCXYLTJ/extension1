@@ -2182,7 +2182,7 @@ game.import('extension', function () {
                             return 0;
                         });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             trigger.player.discard(result.links[0]);
                         }
                     },

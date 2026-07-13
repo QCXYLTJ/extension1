@@ -403,7 +403,7 @@ game.import('extension', function () {
                                     return '装备牌';
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     game.log(player, '设定的类型是', '#y' + get.strNumber(result.links[0]));
                                     if (result.links == '基本牌') {
                                         trigger.player.storage.y_shiyue_buff_type = 1;
@@ -1009,7 +1009,7 @@ game.import('extension', function () {
                                             } else event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             var card = game.createCard(result.links[0][2]);
                                             trigger.player.addJudge(card);
                                         }
@@ -1152,7 +1152,7 @@ game.import('extension', function () {
                                     return list.randomGet();
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var type = result.links[0][2];
                                     trigger.player.popup(get.translation(type));
                                     var card = get.cardPile2((card) => get.type2(card) == type);
@@ -2118,7 +2118,7 @@ game.import('extension', function () {
                                             return 5 - get.value(button.link);
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             player.equip(result.links[0]);
                                         }
                                     },
@@ -2209,7 +2209,7 @@ game.import('extension', function () {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var targets = [event.target, target];
                                     player.line2(targets);
@@ -3617,7 +3617,7 @@ game.import('extension', function () {
                                     player.chooseCardButton(num, true, '请选择要移除的【资源】', player.getExpansions('in_ziyuan'));
                                 }
                                 ('step 17');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.cards1 = result.links[0];
                                     event.cards2 = result.links[1];
                                     event.cards3 = result.links[2];
@@ -3688,7 +3688,7 @@ game.import('extension', function () {
                                     return target != player;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     game.swapSeat(player, target);
                                     player.gainMaxHp();
@@ -3744,7 +3744,7 @@ game.import('extension', function () {
                                 ('step 4');
                                 player.chooseCardButton(1, '请选择要移除的【人口】', player.getExpansions('in_renkou'));
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.loseToDiscardpile(event.card);
                                     event.trigger('in_yunying_renkou');
@@ -3757,7 +3757,7 @@ game.import('extension', function () {
                                 ('step 6');
                                 player.chooseCardButton(1, '请选择要移除的【电力】', player.getExpansions('in_dianli'));
                                 ('step 7');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.loseToDiscardpile(event.card);
                                     event.trigger('in_yunying_dianli');
@@ -3770,7 +3770,7 @@ game.import('extension', function () {
                                 ('step 8');
                                 player.chooseCardButton(1, '请选择要移除的【资源】', player.getExpansions('in_ziyuan'));
                                 ('step 9');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.chooseUseTarget(event.card).nopopup = true;
                                 }
@@ -3830,7 +3830,7 @@ game.import('extension', function () {
                                     return target != player;
                                 });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     game.swapSeat(player, event.target);
                                     player.gainMaxHp();
@@ -3935,7 +3935,7 @@ game.import('extension', function () {
                                                 return att * lib.card.guohe.ai.result.target(player, target);
                                             });
                                         ('step 5');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             player.discardPlayerCard(result.targets[0], 'hej', true);
                                             event.num++;
                                             if (event.num < 0) event.goto(4);
@@ -4824,7 +4824,7 @@ game.import('extension', function () {
                                     return 1 + Math.random();
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                     var cards = [];
                                     for (var node of ui.cardPile.childNodes) {
@@ -5038,7 +5038,7 @@ game.import('extension', function () {
                                                 return 1 + Math.random();
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             if (typeof result.links[0] == 'object') result.links.reverse();
                                             player.loseToDiscardpile(result.links[1]).delay = false;
                                             switch (result.links[0]) {

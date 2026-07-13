@@ -3696,7 +3696,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return 0;
 					});
 					('step 1');
-					if (result.bool) {
+					if (result.cards?.length) {
 						var card = result.cards[0];
 						var color = get.color(card);
 						if (color === 'red') {

@@ -1108,7 +1108,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           });
           event._result = { bool: true, targets: targets };
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             target.addSkill('sizhanmrfz2');
             player.storage.sizhanmrfz = true;
@@ -1578,7 +1578,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
             return get.attitude(player, target) > 0;
           };
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             result.targets[0].addSkill('shouwangmrfz2');
           }
         },
@@ -4287,7 +4287,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return att > 2;
             });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0],
               list = [];
             event.target = target;
@@ -5859,7 +5859,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               return get.damageEffect(target, player, player);
             });
           ('step 1');
-          if (result.bool) {
+          if (result.targets?.length) {
             var target = result.targets[0];
             target.damage('player');
           }
@@ -8056,7 +8056,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 .set('source', trigger.source)
                 .set('playerx', trigger.player);
               ('step 1');
-              if (result.bool) {
+              if (result.targets?.length) {
                 trigger.player.give(result.cards, result.targets[0]);
                 trigger.player.draw();
                 trigger.source.draw();
@@ -8100,7 +8100,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 .set('source', trigger.source)
                 .set('playerx', trigger.player);
               ('step 1');
-              if (result.bool) {
+              if (result.targets?.length) {
                 trigger.player.give(result.cards, result.targets[0]);
                 trigger.player.draw();
                 trigger.source.draw();

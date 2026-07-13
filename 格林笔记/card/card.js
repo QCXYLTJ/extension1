@@ -1535,7 +1535,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           }
           event.finish();
           'step 1';
-          if (result.bool) {
+          if (result.targets?.length) {
             result.targets[0].damage();
           }
         }

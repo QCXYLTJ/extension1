@@ -2432,7 +2432,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         prompt: '选择你要给出的牌',
                     });
                     ('step 2');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.give(result.cards, result.targets[0]);
                         result.targets[0].chooseDrawRecover();
                         player.loseMaxHp();
@@ -2549,7 +2549,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].changeHujia();
                     }
                 },
@@ -3065,7 +3065,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 2');
                     player.draw(event.card.length - event.num);
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].damage(event.num, 'thunder');
                         player.line(result.targets[0]);
                         player.addMark('rgxtongyu_mark', event.num);
@@ -4045,7 +4045,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         prompt: '选择一名角色并将一张<信徒>牌交给他',
                     });
                     ('step 3');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         player.give(result.cards, result.targets[0]).gaintag.add('myxintu');
                         result.targets[0].addSkill('myjisheng_biliever');
                         player.getStorage('myjisheng').cards.push(result.cards[0]);
@@ -4077,7 +4077,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(_status.event.player, target);
                                 });
                             ('step 1');
-                            if (result.bool) {
+                            if (result.targets?.length) {
                                 result.targets[0].addSkill('myjisheng_biliever');
                                 event.target = result.targets[0];
                                 player.chooseButton(['选择一张牌作为「信徒」', result.targets[0].getCards('h', (card) => !card.hasGaintag('myxintu'))], true).set('ai', function (button) {
@@ -4953,7 +4953,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         let target = result.targets[0];
                         target.addTempSkill('fengyin');
                         target.addTempSkill('hoyohumeng_unequip');
@@ -10874,7 +10874,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player);
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         event.player.line(result.targets[0]);
                         result.targets[0].damage([0, 1, 2].randomGet());
                     }
@@ -10925,7 +10925,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return get.damageEffect(target, player, player, 'fire');
                         });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.targets?.length) {
                         result.targets[0].turnOver();
                         result.targets[0].draw();
                     }

@@ -291,7 +291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget('请选择一名其他角色作为【杀】的目标', lib.filter.notMe);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                 } else {
@@ -317,7 +317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0][2];
                                 } else {
                                     event.finish();
@@ -711,7 +711,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].loseHp();
                                 }
                             },
@@ -735,7 +735,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage('nocard');
                                 } else event.finish();
                             },
@@ -1141,7 +1141,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 } else event.finish();
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, false);
                                 }
@@ -1228,13 +1228,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(7);
                                 ('step 5');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.line(result.targets, 'green');
                                     player.chooseTarget('请选择一名角色使用此牌', true);
                                 } else event.goto(7);
                                 ('step 6');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].chooseUseTarget(event.card, true);
                                 } else event.goto(7);
                                 ('step 7');
@@ -1348,13 +1348,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.line(result.targets, 'green');
                                     player.chooseTarget('请选择一名角色使用此牌', true);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].chooseUseTarget(event.card, true);
                                 } else event.finish();
                             },
@@ -2086,7 +2086,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.num = num;
                                 player.chooseTarget('对一名目标角色造成' + get.cnNumber(num) + '点雷电伤害', true, lib.filter.notMe);
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage('thunder', num);
                                     player.removeMark('xu_tiandao1', player.countMark('xu_tiandao1'));
                                     player.disableJudge();
@@ -2600,7 +2600,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.chooseButton(['金星驱动:请选择一个武将获得其全部技能', [list, 'character']]);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0];
                                     if (name && lib.character[name]) {
                                         var skills = lib.character[name][3];
@@ -3005,7 +3005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.isFriendsOf(target);
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].addTempSkill(trigger.skill, { player: 'phaseAfter' });
                                     event.target = result.targets[0];
                                     _status.imchoosing = true;

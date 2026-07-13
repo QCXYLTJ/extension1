@@ -535,7 +535,7 @@ const brawl = {
                                 return 0.1 + get.effect(target, trigger.card, trigger.player, _status.event.player) - _status.event.rawEffect;
                             };
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             trigger.targets[trigger.targets.indexOf(player)] = target;
                         }
@@ -660,7 +660,7 @@ const brawl = {
                             };
                         } else event.finish();
                         ('step 2');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             player.line(result.targets[0]);
                             trigger.targets[trigger.targets.indexOf(player)] = result.targets[0];
                         }
@@ -860,7 +860,7 @@ const brawl = {
                             return name == 'nanman' ? 0.8 : 0 || name == 'wanjian' ? 0.8 : 0;
                         };
                         ('step 1');
-                        if (result.bool) {
+                        if (result.links?.length) {
                             player.chooseUseTarget(result.links[0][2], true, false);
                         }
                     },
@@ -1041,7 +1041,7 @@ const brawl = {
                                 return get.effect(target, { name: 'sha' }, player, player);
                             });
                         ('step 1');
-                        if (result.bool) {
+                        if (result.targets?.length) {
                             event.target = result.targets[0];
                             player.line(event.target);
                             trigger.targets.push(event.target);

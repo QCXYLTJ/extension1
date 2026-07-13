@@ -88,7 +88,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].chooseToDiscard(999, 'h', true);
                                 }
                             },
@@ -181,7 +181,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(player.countCards('h') - player.hp);
                                     if (result.targets[0].hp < result.targets[0].maxHp) player.chooseToDiscard(true);
                                     var chat = ['有美人兮,见之不忘——<凤求凰>', '皑如山上雪,皎若云间月——<白头吟>'].randomGet();
@@ -304,7 +304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target) / target.countCards('h');
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.chooseToCompare(result.targets[0]);
                                 } else {
                                     event.finish();
@@ -620,7 +620,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.color(button.link) == 'black';
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     target.discard(result.links[0]);
                                     var chat = ['既学,当无拘', '汝何至于此？', '致汝迂腐不化,吾之过也!'].randomGet();
                                     player.say(chat);
@@ -761,7 +761,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].gainPlayerCard(player, player.countCards('h') - player.hp, 'h', true);
                                     player.say('眼下之务,当在养民');
                                 }
@@ -784,7 +784,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw();
                                     result.targets[0].recover();
                                     player.loseHp();
@@ -995,7 +995,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'e') {
                                         event.targets[1].equip(link);
@@ -1040,7 +1040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.damageEffect(target, player, player);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].damage();
                                             player.draw(player.maxHp - player.hp);
                                             player.say('犯吾领地者,定教尔等伤痕累累!');
@@ -1062,7 +1062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.attitude(player, target);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].draw(2);
                                             player.draw();
                                             player.say('四海一家!');
@@ -1084,7 +1084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.damageEffect(target, player, player);
                                             });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             result.targets[0].turnOver();
                                             player.say('平四极,破八荒!');
                                         }
@@ -1271,7 +1271,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(player.hp);
                                     player.say('夫君放心,启儿交于我!');
                                 }
@@ -1448,7 +1448,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw();
                                     result.targets[0].recover();
                                     player.draw();
@@ -1474,7 +1474,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw();
                                     player.say('虽恶之,不犹于亡乎？——<列女传>');
                                 }
@@ -1497,7 +1497,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].chooseToDiscard(1, 'hej', true);
                                     result.targets[0].draw();
                                     var chat = ['画者,所以均不均,服不服也——<列女传>', '幅者,所以正曲枉也——<列女传>'].randomGet();
@@ -1522,7 +1522,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].recover();
                                     player.draw();
                                     player.say('明而动,晦而休——<列女传>');
@@ -1580,7 +1580,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].skip('phaseDraw');
                                     player.say('此非吾子之居所也——<列女传>');
                                 }
@@ -1738,7 +1738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].chooseToDiscard(1, 'j', true);
                                     result.targets[0].draw(player.hp);
                                     result.targets[0].phaseUse();

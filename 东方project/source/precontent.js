@@ -452,7 +452,7 @@ export async function precontent(config, pack) {
 							return 6 - val;
 						};
 						('step 2');
-						if (result.bool) {
+						if (result.cards?.length) {
 							event.card = result.cards[0];
 							target.gain(result.cards);
 						} else {
@@ -1816,7 +1816,7 @@ export async function precontent(config, pack) {
 								return get.attitude(player, target);
 							});
 						('step 1');
-						if (result.bool) {
+						if (result.targets?.length) {
 							event.target = result.targets[0];
 							player.line(result.targets[0], 'green');
 						} else {
@@ -5398,7 +5398,7 @@ export async function precontent(config, pack) {
 						return 1;
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.discard(result.cards[0]);
 					player.loselili(2);
 					player.tempHide();
@@ -8967,7 +8967,7 @@ export async function precontent(config, pack) {
 						return get.attitude(player, target) < 0;
 					});
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					player.line(result.targets[0], 'red');
 					player.gainPlayerCard(result.targets[0], 'hej', true);
 				}
@@ -9220,7 +9220,7 @@ export async function precontent(config, pack) {
 					return button.link[2] == 'tao';
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					var name = result.links[0][2];
 					player.storage.gezi_mingdong = name;
 					player.addTempSkill('gezi_mingdong2');
@@ -9290,7 +9290,7 @@ export async function precontent(config, pack) {
 						return att;
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].draw();
 					result.targets[0].gainlili();
 					if (result.targets[0].name == 'gezi_ran') {
@@ -9523,7 +9523,7 @@ export async function precontent(config, pack) {
 						return get.damageEffect(target, player, player, 'thunder');
 					});
 				('step 5');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].damage('thunder');
 					player.gainlili();
 				}
@@ -11155,13 +11155,13 @@ export async function precontent(config, pack) {
 				'step 0';
 				player.choosePlayerCard(trigger.target, 'hej', true);
 				('step 1');
-				if (result.bool) {
+				if (result.cards?.length) {
 					trigger.target.recast(result.cards[0]);
 					player.line(trigger.target, 'green');
 					player.choosePlayerCard(player, 'hej', true);
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					player.recast(result.cards[0]);
 					if (lib.config.background_audio) {
 						game.playlili('xiaohao1');
@@ -11782,7 +11782,7 @@ export async function precontent(config, pack) {
 						);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].draw();
 					if (lib.config.background_audio) {
 						game.playlili('slash');
@@ -11881,7 +11881,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					game.log(result.targets[0], '成为了', trigger.card, '的额外目标');
 					trigger.targets.push(result.targets[0]);
 				} else {
@@ -12173,7 +12173,7 @@ export async function precontent(config, pack) {
 						return -get.attitude(_status.event.player, target);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].addSkill('fengyin');
 					result.targets[0].markSkillCharacter('gezi_shengbi', player, '梦境诅咒', '陷入梦境的诅咒');
 					player.storage.gezi_mengjing = result.targets[0];
@@ -12467,7 +12467,7 @@ export async function precontent(config, pack) {
 					}
 				);
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					player.choosePlayerCard(event.target, 'he', true).set('ai', function (b) {
 						if (event.target.countCards('h') == 1) return get.position(b.link) == 'h';
@@ -12906,7 +12906,7 @@ export async function precontent(config, pack) {
 					return get.value(button.link);
 				});
 				('step 5');
-				if (result.bool) {
+				if (result.links?.length) {
 					player.gain(result.links[0]);
 					player.$gain2(result.links[0]);
 					player.storage.gezi_tianwen.remove(result.links[0]);
@@ -13380,7 +13380,7 @@ export async function precontent(config, pack) {
 					'弃置3张不同种类的牌,或消耗3点灵力'
 				);
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					event.list.push(result.cards[0]);
 					player.storage.gezi_qipai.push(get.type(result.cards[0]));
 					if (player.storage.gezi_qipai.length < 3) {
@@ -13738,7 +13738,7 @@ export async function precontent(config, pack) {
 					return Math.random() - 0.5;
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					player.showCards(result.links[0]);
 					player.removeSkill('gezi_shiming_3');
 					if (
@@ -14345,7 +14345,7 @@ export async function precontent(config, pack) {
 					})
 					.set('choice', choice);
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					player.show(result.links[0]);
 					trigger.player.judge(function (card) {
 						if (get.color(card) == 'black') return -2;
@@ -14422,7 +14422,7 @@ export async function precontent(config, pack) {
 						return att;
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].draw(player.storage.gezi_mitu.length);
 					game.cardsDiscard(player.storage.gezi_mitu);
 					player.storage.gezi_mitu = [];
@@ -14970,7 +14970,7 @@ export async function precontent(config, pack) {
 					return get.attitude(player, target) < 0;
 				};
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					player.choosePlayerCard(event.target, 'he', true);
 				}
@@ -17898,7 +17898,7 @@ export async function precontent(config, pack) {
 						return get.attitude(player, target) < 0;
 					});
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					player.line(result.targets[0], 'red');
 					player.gainPlayerCard(result.targets[0], 'he', true);
 				}
@@ -19611,7 +19611,7 @@ export async function precontent(config, pack) {
 							});
 				} else event.finish();
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					var target = result.targets[0];
 					trigger.targets.remove(player);
 					//trigger.triggeredTargets1.remove(target);
@@ -19728,7 +19728,7 @@ export async function precontent(config, pack) {
 					return -get.attitude(player, target);
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].discard(result.targets[0].getCards('he'));
 					player.useCard({ name: 'sha' }, result.targets[0], false);
 				}
@@ -20134,7 +20134,7 @@ export async function precontent(config, pack) {
 					return -get.attitude(player, target);
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].damage(3);
 				}
 				('step 2');
@@ -20790,7 +20790,7 @@ export async function precontent(config, pack) {
 					.set('targets', trigger.targets)
 					.set('card', trigger.card);
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					game.log(event.target, '成为了', trigger.card, '的额外目标');
 					player.line(event.target);
@@ -20993,7 +20993,7 @@ export async function precontent(config, pack) {
 					});
 				} else event.finish();
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					event.card = { name: result.links[0][2], nature: result.links[0][3] };
 					var num = game.countPlayer((current) => {
 						return player.canUse({ name: result.links[0][2], nature: result.links[0][3] }, current);
@@ -21282,7 +21282,7 @@ export async function precontent(config, pack) {
 					}
 				);
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					var list = ['对方摸一张牌', '对方回复1点体力', '对方获得1点灵力', '对方贴一张技能牌'];
 					if (!event.target.node.lili) list.remove('对方获得1点灵力');
@@ -21450,7 +21450,7 @@ export async function precontent(config, pack) {
 					return get.attitude(player, target) > 0;
 				};
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					event.control = ['回复1点体力', '获得1点灵力'];
 					if (event.target.storage.shuihp || event.target.isHealthy()) {
@@ -21550,7 +21550,7 @@ export async function precontent(config, pack) {
 					})
 					.set('dialog', event.videoId);
 				('step 1');
-				if (result.bool) {
+				if (result.links?.length) {
 					player.gain(result.links[0], target);
 					if (player.isOnline2()) {
 						player.send('closeDialog', event.videoId);
@@ -21827,7 +21827,7 @@ export async function precontent(config, pack) {
 					return true;
 				});
 				('step 5');
-				if (result.bool) {
+				if (result.links?.length) {
 					event.card = result.links[0];
 					player.chooseControl('heart', 'spade', 'diamond', 'club').set('prompt', '选择' + get.translation(event.card[2]) + '的花色');
 				}
@@ -22439,7 +22439,7 @@ export async function precontent(config, pack) {
 					return -get.attitude(player, target);
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].damage(player.lili);
 				}
 				('step 2');
@@ -22657,7 +22657,7 @@ export async function precontent(config, pack) {
 					return -get.attitude(player, target);
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].damage(player.lili, 'thunder');
 				}
 				('step 2');
@@ -22720,7 +22720,7 @@ export async function precontent(config, pack) {
 							};
 						}
 						('step 2');
-						if (result.bool) {
+						if (result.cards?.length) {
 							event.cards = event.cards.concat(result.cards[0]);
 							event.current.lose(result.cards[0], ui.ordering).set('getlx', false);
 							event.current.$throw(1, 1000);
@@ -22784,7 +22784,7 @@ export async function precontent(config, pack) {
 						return -att;
 					});
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.target = result.targets[0];
 					player.chooseControl(['受到伤害', '回复体力']);
 				} else event.finish();
@@ -23179,7 +23179,7 @@ export async function precontent(config, pack) {
 						return -get.attitude(_status.event.player, target);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					if (result.targets[0].lili) {
 						result.targets[0].loselili();
 					} else {
@@ -23751,7 +23751,7 @@ export async function precontent(config, pack) {
 						);
 					});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					trigger.target = result.targets[0];
 					trigger.targets = [];
 					trigger.targets.push(result.targets[0]);
@@ -24308,7 +24308,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.targets?.length) {
 					result.targets[0].gainlili();
 					event.num--;
 					if (event.num > 0) event.goto(1);
@@ -24859,7 +24859,7 @@ export async function precontent(config, pack) {
 						});
 				}
 				('step 3');
-				if (result.bool) {
+				if (result.targets?.length) {
 					player.discardPlayerCard(result.targets[0], 'ej', true);
 				} else {
 					player.draw();
@@ -25793,7 +25793,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					trigger.player.gain(result.cards[0], player);
 					player.$give(1, trigger.player);
 				}
@@ -25935,7 +25935,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool) {
+				if (result.cards?.length) {
 					trigger.player.gain(result.cards[0], player);
 					player.$give(1, trigger.player);
 				}
@@ -26129,7 +26129,7 @@ export async function precontent(config, pack) {
 					return get.attitude(player, target);
 				});
 				('step 1');
-				if (result.bool) {
+				if (result.targets?.length) {
 					var target = result.targets[0];
 					if (player.getShownCards().filter((card) => get.color(card, player) == 'red').length > 1) {
 						var next = player.phaseDraw();

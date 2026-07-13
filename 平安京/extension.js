@@ -804,7 +804,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, target);
                                     });
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var xt = result.targets[0];
                                     player.line(xt);
                                     if (!player.storage.zhan) player.storage.zhan = [];
@@ -1293,7 +1293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.addTempSkill('sh_damage', { player: 'phaseZhunbeiBegin' });
                                     player.storage.sh_mark_m = target;
@@ -1872,7 +1872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 10 - get.attitude(_status.event.player, target);
                                     });
                                 ('step 3');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     tg = result.targets[0];
                                     player.line(tg);
                                     event.t.push(tg);
@@ -2361,7 +2361,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 nxt.set('multitarget', true);
                                 nxt.set('targetprompt', ['被移走', '移动目标']);
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var z1 = result.targets[0];
                                     var z2 = result.targets[1];
                                     player.line(z1);
@@ -2470,7 +2470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 10 - get.attitude(player, target);
                                 }).animate = false;
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.storage.td2 = target;
                                     player.addSkill('td2');
@@ -2874,7 +2874,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(_status.event.player, target);
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     t = result.targets[0];
                                     if (!t.countCards('h')) event._result = { control: '掉血' };
                                     else {
@@ -3194,7 +3194,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return att;
                                         });
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             z1 = result.targets[0];
                                             var next = player.chooseTarget('请选择要转移的目标', function (card, player, target) {
                                                 return !target.hasMark('paj_hc_youyu');
@@ -3215,7 +3215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             z2 = result.targets[0];
                                             player.line(z2);
                                             if (z1.hasMark('paj_hc_youyu')) z2.addMark('paj_hc_youyu');
@@ -3340,7 +3340,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     t = result.targets[0];
                                     player.addTempSkill('paj_hc_chuanliu_x');
                                     if (!t.countCards('e')) {
@@ -4955,7 +4955,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     target.draw(2);
@@ -5134,7 +5134,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return [-att, att].randomGet();
                                         };
                                         ('step 1');
-                                        if (result.bool) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                         } else {
                                             event.finish();
@@ -5737,7 +5737,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         } else event.finish();
                                         ('step 3');
-                                        if (result.bool) {
+                                        if (result.links?.length) {
                                             event.link = result.links[0];
                                             if (lib.filter.filterCard(event.link, targets[0], event.getParent(2))) targets[0].chooseUseTarget(result.links[0], false);
                                             else event.finish();
@@ -5838,7 +5838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, _status.event.player, _status.event.player) > 0;
                                 };
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, result.targets[0]).card.paj_xx_Lishang = true;
                                 }
                             },
@@ -6043,7 +6043,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getUseValue(button.link);
                                 });
                                 ('step 4');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.link = result.links[0];
                                     if (lib.filter.filterCard(event.link, player, event.getParent(2))) player.chooseUseTarget(result.links[0], false);
                                     else event.finish();

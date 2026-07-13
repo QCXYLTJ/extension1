@@ -199,7 +199,7 @@
                     'step 0';
                     player.chooseToDiscard('h', true, '弃置并销毁一张伙伴牌', { type: 'yy_partner' });
                     ('step 1');
-                    if (result.bool) {
+                    if (result.cards?.length) {
                         var card = result.cards[0];
                         var cardsx = [];
                         if (card.cards) cardsx.addArray(card.cards);

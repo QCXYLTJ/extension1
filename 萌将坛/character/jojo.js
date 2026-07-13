@@ -33,7 +33,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					player.scqhJojo_chooseStand(true, 'usable');
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						var stand = result.links[0];
 						trigger.card.scqhJojo_chooseStand = stand;
 					}
@@ -290,7 +290,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					var list = ['speed', 'usable'];
 					player.scqhJojo_chooseStand(true, list);
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						var stand = result.links[0];
 						event.myStand = stand;
 						event.stand[player.playerid] = player.scqhJojo_lookStatus(stand);

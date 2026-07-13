@@ -839,7 +839,7 @@ const card = {
 				event.finish();
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				target.$give(result.links[0], player);
 				target.lose(result.links[0], ui.special);
 				event.card = result.links[0];

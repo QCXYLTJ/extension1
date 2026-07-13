@@ -257,7 +257,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.showCards([event.card], get.translation(player) + '展示的手牌');
                                 } else {
@@ -462,7 +462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     player.storage.xsl_manre.push(trigger.card.name);
                                 }*/
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(trigger.cards.filterInD(), 'gain2');
                                     player.getHistory('custom').push({ xsl_manre_name: trigger.card.name });
                                 }
@@ -629,7 +629,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool) {
+                                if (result.targets?.length) {
                                     result.targets[0].chooseDrawRecover(true);
                                 }
                             },

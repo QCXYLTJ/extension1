@@ -543,7 +543,7 @@ export function precontent(bilibilicharacter) {
                             return 2;
                         };
                         ('step 1');
-                        if (result.bool) {
+                        if (result.cards?.length) {
                             game.cxyJiangLing.gain(result.cards[0], player);
                             player.$give(result.cards[0], game.cxyJiangLing);
                         } else {
