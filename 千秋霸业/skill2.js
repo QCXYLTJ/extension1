@@ -6,7 +6,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shane: {
 		mark: true,
@@ -106,7 +106,8 @@ const skill = {
 			return event.player != player && event.card.name == 'sha' && event.player.countCards('hej') && !event.targets.includes(player);
 		},
 		check(event, player) {
-			let eff = 0, att = get.attitude(player, event.player);
+			let eff = 0,
+				att = get.attitude(player, event.player);
 			if (att > 0) {
 				return false;
 			}
@@ -200,7 +201,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shibei1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -223,7 +224,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shibei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -370,7 +371,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	// 应变技,当你成为其他角色使用的牌目标时,你可以回复2点体力,此牌对你无效.若以此法回复体力,你可以选择一项:①展示牌堆顶的一张牌,若此牌点数不大于X.你重复此流程,获得之;②展示牌堆顶的一张牌,若点数不小于Y.你重复此流程,获得之(X为你的体力上限;Y为你区域内的黑色牌数)
 	lg_shuchong: {
@@ -517,7 +518,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zunwei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -737,7 +738,8 @@ const skill = {
 						player.chooseTarget(get.prompt('lg_midao'), '你可以令一名角色摸两张牌', 1, false, function (card, player, target) {
 							return true;
 						}).ai = function (target) {
-							let att = get.attitude(player, target), hs = target.countCards('h') + 0.1;
+							let att = get.attitude(player, target),
+								hs = target.countCards('h') + 0.1;
 							return att / hs;
 						};
 					} else {
@@ -1028,7 +1030,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianjin: {
 		audio: 'ext:千秋霸业/Sound:1',
@@ -1299,7 +1301,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yaomei_af: {
 		trigger: {
@@ -1713,7 +1715,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_mafeisan1: {
 		trigger: {
@@ -1849,7 +1851,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_ruxue: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -1901,7 +1903,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qiexu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -1978,7 +1980,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tianfu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -2067,7 +2069,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shushen: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -2156,7 +2158,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiaowu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -2283,7 +2285,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hanyong: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -2427,8 +2429,12 @@ const skill = {
 			('step 1');
 			let list = ['basic', 'trick', 'equip'].filter((type) => cards.some((card) => get.type2(card) == type));
 			player.chooseControl(list).set('ai', function () {
-				const listy = ['basic', 'trick', 'equip'], listz = [0, 0, 0];
-				let num = 0, numx = 0, num2 = 0, numx2 = 0;
+				const listy = ['basic', 'trick', 'equip'],
+					listz = [0, 0, 0];
+				let num = 0,
+					numx = 0,
+					num2 = 0,
+					numx2 = 0;
 				for (let i of _status.event.parent.cards) {
 					for (let j = 0; j < 2; j++) {
 						if (get.type2(i) == listy[j]) {
@@ -2496,11 +2502,14 @@ const skill = {
 						return (map[target.playerid] || []).length + togive.length <= 3;
 					})
 					.set('ai', function (target) {
-						let player = _status.event.player, att = get.attitude(player, target);
+						let player = _status.event.player,
+							att = get.attitude(player, target);
 						const map = _status.event.parent.given_map;
 						const togive = _status.event.parent.togive;
-						let num = (map[player.playerid] || []).length, num2 = (map[target.playerid] || []).length;
-						let value = _status.event.value, eff = num2 ? 0 : get.effect(target, { name: 'losehp' }, player, player);
+						let num = (map[player.playerid] || []).length,
+							num2 = (map[target.playerid] || []).length;
+						let value = _status.event.value,
+							eff = num2 ? 0 : get.effect(target, { name: 'losehp' }, player, player);
 						if (num2 + togive.length >= num && player != target) {
 							return value * Math.sign(att) + eff + 1000;
 						} else {
@@ -2522,7 +2531,8 @@ const skill = {
 			if (result.bool) {
 				event.cardsx.removeArray(event.togive);
 				if (result.targets.length) {
-					const id = result.targets[0].playerid, map = event.given_map;
+					const id = result.targets[0].playerid,
+						map = event.given_map;
 					if (!map[id]) {
 						map[id] = [];
 					}
@@ -2541,7 +2551,7 @@ const skill = {
 					game.stopCountChoose();
 				});
 			}
-			let list = [];
+			let list1 = [];
 			for (let i in event.given_map) {
 				const source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
 				if (player == source) {
@@ -2549,24 +2559,24 @@ const skill = {
 				}
 				player.line(source, 'green');
 				game.log(source, '获得了', event.given_map[i]);
-				list.push([source, event.given_map[i]]);
+				list1.push([source, event.given_map[i]]);
 			}
 			game.loseAsync({
-				gain_list: list,
+				gain_list: list1,
 				giver: player,
 				animate: 'gain2',
 			}).setContent('gaincardMultiple');
 			('step 7');
-			let list = [];
+			let list2 = [];
 			for (let i in event.given_map) {
 				const source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
 				if (event.given_map[i].length >= num) {
-					list.push(source);
+					list2.push(source);
 				}
 			}
-			list.sortBySeat();
-			player.line(list);
-			for (let i of list) {
+			list2.sortBySeat();
+			player.line(list2);
+			for (let i of list2) {
 				i.loseHp(2);
 			}
 		},
@@ -2577,7 +2587,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiongyi: {
 		trigger: {
@@ -2614,7 +2624,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zisui: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -2642,7 +2652,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zisuicount: {},
 	lg_zisui1: {
@@ -2838,7 +2848,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_bingzheng: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -2911,7 +2921,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_bingzheng1: {
 		trigger: {
@@ -3017,7 +3027,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xuanxu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -3219,7 +3229,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianmou: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -3303,7 +3313,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zulong: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -3742,7 +3752,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiongxin: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -3867,7 +3877,8 @@ const skill = {
 		content() {
 			'step 0';
 			const drawlist = [];
-			let tp = player.storage.lg_bifalose, cds = trigger.cards;
+			let tp = player.storage.lg_bifalose,
+				cds = trigger.cards;
 
 			for (const i of tp) {
 				for (const j of cds) {
@@ -3965,7 +3976,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yinlv: {
 		mod: {
@@ -3980,7 +3991,7 @@ const skill = {
 				if (history.length == 0) {
 					return num + 10 * (14 - number);
 				}
-				let num = history[0].card.number;
+				num = history[0].card.number;
 				if (!num) {
 					return;
 				}
@@ -4057,8 +4068,8 @@ const skill = {
 					return event.star
 						? true
 						: target.countCards('he', function (card) {
-								return lib.filter.cardDiscardable(card, target, 'lg_yinlv');
-							}) > 0;
+							return lib.filter.cardDiscardable(card, target, 'lg_yinlv');
+						}) > 0;
 				})
 				.set('ai', function (target) {
 					return event.star ? get.attitude(player, target) : -get.attitude(player, target);
@@ -4270,13 +4281,13 @@ const skill = {
 			('step 4');
 			event.goto(1);
 			/* 'step 5'
-      event.dialog=get.idDialog(event.preResult);
-      if(!event.dialog){
-          event.finish();
-          return;
-      } */
+	  event.dialog=get.idDialog(event.preResult);
+	  if(!event.dialog){
+		  event.finish();
+		  return;
+	  } */
 		},
-		contentAfter() {},
+		contentAfter() { },
 		ai: {
 			order() {
 				let player = _status.event.player;
@@ -4311,7 +4322,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tongshengxiangying1: {
 		charlotte: true,
@@ -4371,7 +4382,8 @@ const skill = {
 			next.set('list', [['牌堆顶', cards], ['牌堆底']]);
 			next.set('prompt', '将其中的任意张牌置于牌堆顶或牌堆底');
 			next.set('processAI', function (list) {
-				let cards = list[0][1], player = _status.event.player;
+				let cards = list[0][1],
+					player = _status.event.player;
 				let target = player.next;
 				let att = get.sgn(get.attitude(player, target));
 				const top = [],
@@ -4668,7 +4680,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuwei: {
 		audio: 'ext:千秋霸业/Archive:2',
@@ -4912,7 +4924,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_falu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -5011,9 +5023,8 @@ const skill = {
 						event.finish();
 						return;
 					}
-					let targets = result.targets;
-					player.line(targets, 'green');
-					player.useCard({ name: 'lg_xuwangshigui' }, targets);
+					player.line(result.targets, 'green');
+					player.useCard({ name: 'lg_xuwangshigui' }, result.targets);
 					('step 5');
 					let num = player.storage.lg_falu.length;
 					let storage = player.storage.lg_falu;
@@ -5226,7 +5237,8 @@ const skill = {
 					return target != player && target.countDiscardableCards(player, 'hej');
 				})
 				.set('ai', function (target) {
-					let player = _status.event.player, num = 1;
+					let player = _status.event.player,
+						num = 1;
 					if (get.attitude(player, target) > 0) {
 						num = 3;
 					} else if (!target.countCards('he') || !target.canUse('sha', player)) {
@@ -5264,7 +5276,8 @@ const skill = {
 					return lib.filter.filterTarget.apply(this, arguments);
 				},
 				ai1(card) {
-					let player = _status.event.player, target = _status.event.parent.player;
+					let player = _status.event.player,
+						target = _status.event.parent.player;
 					let eff = get.effect(target, { name: 'sha' }, player, player);
 					const eff2 = get.damageEffect(player, target, player, 'nosource');
 					if (eff < 0 || eff2 > 0 || eff2 > eff || get.tag(card, 'recover')) {
@@ -5281,7 +5294,8 @@ const skill = {
 			});
 			('step 3');
 			if (result.cards?.length) {
-				let cards = result.cards, targets = result.targets;
+				let cards = result.cards,
+					targets = result.targets;
 				const cardx = { name: 'sha' };
 				target.useCard(cardx, cards, targets, false);
 				event.finish();
@@ -5349,7 +5363,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xirao: {
 		audio: 'ext:千秋霸业/Sound:4',
@@ -5426,7 +5440,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huishi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -5595,7 +5609,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xianqu: {
 		trigger: {
@@ -5638,7 +5652,8 @@ const skill = {
 				},
 				content() {
 					'step 0';
-					let cards = trigger.getg(player), cards2 = [];
+					let cards = trigger.getg(player),
+						cards2 = [];
 
 					for (const i of cards) {
 						if (i.name == 'sha') {
@@ -5733,7 +5748,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qingyan: {
 		trigger: {
@@ -5821,7 +5836,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_baozheng: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -5896,7 +5911,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuyi: {
 		count() {
@@ -6117,7 +6132,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shentong: {
 		subSkill: {
@@ -6238,9 +6253,9 @@ const skill = {
 						return false;
 					}
 					const hs = current.getCards('h'),
-                          cardsx = trigger.getg(current).filter(function (card) {
-                              return hs.includes(card) && cards.includes(card);
-                          });
+						cardsx = trigger.getg(current).filter(function (card) {
+							return hs.includes(card) && cards.includes(card);
+						});
 					return cardsx.length;
 				})
 				.sortBySeat();
@@ -6357,7 +6372,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_baiju: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -6420,7 +6435,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tiejiliguduo1: {
 		trigger: {
@@ -6637,7 +6652,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuwei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -6730,7 +6745,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fenlie: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -6841,7 +6856,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huisheng: {
 		round: 2,
@@ -6917,7 +6932,9 @@ const skill = {
 				}
 
 				player.chooseButton(['寝情:你可以视为使用一张普通锦囊牌', [tricklist, 'vcard']], false).set('ai', function (button) {
-					let recover = 0, lose = 1, players = game.filterPlayer();
+					let recover = 0,
+						lose = 1,
+						players = game.filterPlayer();
 
 					for (const i of players) {
 						if (i.hp == 1 && get.damageEffect(i, player, player) > 0 && !i.hasSha()) {
@@ -6975,7 +6992,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_mangyong1: {
 		trigger: {
@@ -6996,7 +7013,9 @@ const skill = {
 		},
 		content() {
 			'step 0';
-			let list = [], num = false, suit = false;
+			let list = [],
+				num = false,
+				suit = false;
 			for (let j = 0; j < player.getAllHistory().length; j++) {
 				for (let k = 0; k < player.getAllHistory()[j].useCard.length; k++) {
 					if (player.getAllHistory()[j].useCard[k].card.name == trigger.card.name && player.getAllHistory()[j].useCard[k].card != trigger.card) {
@@ -7075,7 +7094,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shoulie: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -7448,7 +7467,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_binglue: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -7519,7 +7538,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_feijun2: {
 		trigger: {
@@ -7563,7 +7582,7 @@ const skill = {
 			player: 'gainMaxHpBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kuanshu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -7641,7 +7660,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chengxiang2: {
 		mod: {
@@ -7888,7 +7907,8 @@ const skill = {
 			order: 7,
 			result: {
 				player(player) {
-					let allshown = true, players = game.filterPlayer();
+					let allshown = true,
+						players = game.filterPlayer();
 
 					for (const i of players) {
 						if (i.ai.shown == 0) {
@@ -8148,7 +8168,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_liuzhuan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -8377,7 +8397,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yizhu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -8485,7 +8505,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zaoxian: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -8568,7 +8588,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lieyi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -8814,7 +8834,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_duju: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -8966,7 +8986,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qiaobian: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9022,7 +9042,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shejian: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9180,7 +9200,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wenji: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9295,7 +9315,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_youhan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9358,7 +9378,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dianpei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9463,7 +9483,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_renxian: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9481,11 +9501,11 @@ const skill = {
 				.chooseControl('摸两张牌', '弃置两张手牌', '取消')
 				.set('prompt', '发动此技能？')
 				.set('choiceList', ['令' + get.translation(trigger.player) + '摸两张牌', '令' + get.translation(trigger.player) + '弃置两张手牌', '取消']).ai = function (event, player) {
-				if (get.attitude(player, trigger.player) <= 0) {
-					return '弃置两张手牌';
-				}
-				return '摸两张牌';
-			};
+					if (get.attitude(player, trigger.player) <= 0) {
+						return '弃置两张手牌';
+					}
+					return '摸两张牌';
+				};
 			('step 1');
 			if (result.control == '取消') {
 				event.finish();
@@ -9551,7 +9571,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shuaici: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -9715,7 +9735,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shuimeng: {
 		mark: true,
@@ -9891,7 +9911,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qianxi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -10011,7 +10031,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_enyu: {
 		trigger: {
@@ -10023,7 +10043,9 @@ const skill = {
 		//若如此做,当你使用牌指定目标时,你摸两张牌,弃置X张手牌(X为你本回合使用过的牌数)
 		async content(event, trigger, player) {
 			//QQQ
-			let count = 0, type = [], cards = [];
+			let count = 0,
+				type = [],
+				cards = [];
 			while (count++) {
 				let card = Array.from(ui.cardPile.childNodes)[count];
 				player.showCards(card);
@@ -10099,7 +10121,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_polu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -10180,14 +10202,13 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			let card = event.card;
 			if (result && typeof event.directindex != 'number') {
 				event.directindex = result.index;
 			}
 			if (event.directindex == 1) {
-				player.chooseUseTarget({ name: 'sha' }, [card], true, false, 'nodistance').set('viewAs', true);
+				player.chooseUseTarget({ name: 'sha' }, [event.card], true, false, 'nodistance').set('viewAs', true);
 			} else {
-				player.chooseUseTarget(card, true, false, 'nodistance');
+				player.chooseUseTarget(event.card, true, false, 'nodistance');
 				player.useSkill('lg_polu1');
 			}
 		},
@@ -10320,7 +10341,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hunyuan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -10419,7 +10440,8 @@ const skill = {
 				},
 				forced: true,
 				content() {
-					let cards = trigger.cards2 || trigger.cards, togain = [];
+					let cards = trigger.cards2 || trigger.cards,
+						togain = [];
 
 					for (const i of cards) {
 						if (i.name == 'wuxie' && get.position(i, true) == 'd') {
@@ -10439,7 +10461,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hunyuan1: {
 		mod: {
@@ -10710,7 +10732,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_youjun2: {
 		onremove(player, skill) {
@@ -11005,7 +11027,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qishu: {
 		trigger: {
@@ -11463,7 +11485,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tianyun: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -11549,8 +11571,7 @@ const skill = {
 					filterTarget: true,
 					content() {
 						'step 0';
-						let card = lib.skill.lg_yuyan1_backup.card;
-						event.card = card;
+						event.card = lib.skill.lg_yuyan1_backup.card;
 						player.removeSkill('lg_yuyan1_effect');
 						let card = get.cardPile2(function (cardx) {
 							return cardx.name == card[2];
@@ -11607,7 +11628,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_ruipo: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -11706,7 +11727,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuanrongnu1: {
 		trigger: {
@@ -11984,7 +12005,7 @@ const skill = {
 			player
 				.chooseTarget(get.prompt2('lg_xiahui'), function (card, player, target) {
 					const trigger = _status.event.getTrigger();
-					let player = _status.event.player;
+					player = _status.event.player;
 					if (trigger.targets.includes(target)) {
 						return false;
 					}
@@ -12023,7 +12044,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_heiguan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -12478,9 +12499,9 @@ const skill = {
 							return -1;
 						});
 					('step 1');
-					let evt = event.getParent(2);
+					let evt1 = event.getParent(2);
 					if (result.links?.length) {
-						if (evt.type == 'wuxie') {
+						if (evt1.type == 'wuxie') {
 							game.skipwuxie = true;
 						}
 						let name = result.links[0].name;
@@ -12495,10 +12516,10 @@ const skill = {
 							result.links[0],
 							name,
 						);
-						evt.set('_backupevent', 'lg_jinghua_backup');
-						evt.backup('lg_jinghua_backup');
+						evt1.set('_backupevent', 'lg_jinghua_backup');
+						evt1.backup('lg_jinghua_backup');
 					}
-					evt.goto(0);
+					evt1.goto(0);
 				},
 			},
 		},
@@ -12654,7 +12675,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kuangbao: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -12952,7 +12973,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_gengu: {
 		audio: 'ext:千秋霸业/Sound:10',
@@ -13138,7 +13159,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jingmo: {
 		forced: true,
@@ -13148,7 +13169,7 @@ const skill = {
 		filter(event, player) {
 			return get.distance(player, event.target, 'attack') <= 1 && ((get.type(event.card) != 'delay' && event.card.name == 'sha') || get.type(event.card) == 'trick');
 		},
-		content() {},
+		content() { },
 		mod: {
 			wuxieRespondable(card, player, target, current) {
 				if (player != current && get.distance(player, current, 'attack') <= 1) {
@@ -13448,7 +13469,8 @@ const skill = {
 		},
 		logTarget: 'target',
 		check(event, player) {
-			let target = event.target, source = event.player;
+			let target = event.target,
+				source = event.player;
 			const eff1 = get.effect(target, event.card, source, player);
 			if (eff1 >= 0) {
 				return false;
@@ -13484,7 +13506,8 @@ const skill = {
 		},
 		content() {
 			'step 0';
-			let target = trigger.target, evt = trigger.parent;
+			let target = trigger.target,
+				evt = trigger.parent;
 			evt.triggeredTargets2.remove(target);
 			evt.targets.remove(target);
 			evt.triggeredTargets2.add(player);
@@ -13571,7 +13594,7 @@ const skill = {
 			content: '流逝',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_liushi1: {
 		mod: {
@@ -14032,7 +14055,7 @@ const skill = {
 					prompt2 += '名' + get.translation(trigger.card) + '的目标';
 					player
 						.chooseTarget([1, player.storage.lg_shanyao[3]], get.prompt('lg_shanyao'), function (card, player, target) {
-							let player = _status.event.player;
+							player = _status.event.player;
 							if (_status.event.targets.includes(target)) {
 								return false;
 							}
@@ -14357,7 +14380,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shanyaoshike1: {
 		trigger: {
@@ -14472,7 +14495,8 @@ const skill = {
 			order: 9,
 			result: {
 				player(player) {
-					let allshown = true, players = game.filterPlayer();
+					let allshown = true,
+						players = game.filterPlayer();
 
 					for (const i of players) {
 						if (i.ai.shown == 0) {
@@ -14527,7 +14551,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_guipo: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -14613,7 +14637,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yizhou: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -14702,7 +14726,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fushi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -14819,7 +14843,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_longzhen2: {
 		trigger: {
@@ -14905,7 +14929,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shicha: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -14980,7 +15004,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fangmei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -15061,7 +15085,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kuimang: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -15194,7 +15218,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lixia: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -15323,7 +15347,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianliang: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -15485,7 +15509,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chongyu: {
 		trigger: {
@@ -15526,7 +15550,8 @@ const skill = {
 			}
 			('step 2');
 			if (result.cards?.length) {
-				let num1 = 0, num2 = 0;
+				let num1 = 0,
+					num2 = 0;
 
 				for (const i of result.cards) {
 					if (i.suit == 'spade') {
@@ -15633,7 +15658,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lingshi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -15759,7 +15784,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tuiyan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -15949,7 +15974,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xuanyin1: {
 		audio: 'ext:千秋霸业/Sound:7',
@@ -16155,7 +16180,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yinnishanyao: {
 		audio: 'ext:千秋霸业/Sound:1',
@@ -16163,7 +16188,7 @@ const skill = {
 			global: 'gameDrawEnd',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_cuirui: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -16223,7 +16248,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huifa: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -16348,7 +16373,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_suizheng: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -16435,7 +16460,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zuojian: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -16570,7 +16595,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xianglu1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -17116,7 +17141,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_cangming: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -17377,7 +17402,8 @@ const skill = {
 								return target != player;
 							})
 							.set('ai', function (target) {
-								let att = get.attitude(player, target), hs = target.countCards('h') + 1;
+								let att = get.attitude(player, target),
+									hs = target.countCards('h') + 1;
 								let tp = att / hs;
 								if (target.hasSkill('lg_jinglan')) {
 									tp *= 10;
@@ -17560,7 +17586,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lingwu: {
 		mod: {
@@ -17593,7 +17619,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fushui: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -17718,7 +17744,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiangyan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -17780,7 +17806,8 @@ const skill = {
 			}
 			('step 2');
 			if (result.cards?.length) {
-				let cards = result.cards, target = result.targets[0];
+				let cards = result.cards,
+					target = result.targets[0];
 				player.line(target, 'green');
 				player.give(cards, target);
 				event.target = target;
@@ -17850,7 +17877,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_guijin1: {
 		trigger: {
@@ -18059,7 +18086,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_sanwen: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -18163,7 +18190,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_manhan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -18246,7 +18273,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_quhu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -18326,7 +18353,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhusi1: {
 		trigger: {
@@ -18461,7 +18488,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhanwan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -18556,7 +18583,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_faji: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -18616,14 +18643,14 @@ const skill = {
 					.set('complexCard', true);
 			}
 			('step 1');
-			let num = cards.length;
+			let num1 = cards.length;
 			if (result.cards?.length) {
-				num -= result.cards.length;
+				num1 -= result.cards.length;
 			}
-			if (num > 0) {
-				player.drawTo(num);
+			if (num1 > 0) {
+				player.drawTo(num1);
 			}
-			if (num > 0) {
+			if (num1 > 0) {
 				player.chooseToDiscard(true, 'h');
 			}
 		},
@@ -18717,7 +18744,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_manheng: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -18813,7 +18840,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xialei: {
 		trigger: {
@@ -18911,7 +18938,9 @@ const skill = {
 					return player.isMinHandcard() && player.storage.lg_anzhi && player.storage.lg_anzhi[0].length;
 				},
 				content() {
-					let list = player.storage.lg_anzhi, card = list[0].shift(), source = list[1].shift();
+					let list = player.storage.lg_anzhi,
+						card = list[0].shift(),
+						source = list[1].shift();
 					// if(source&&source.isIn()&&source.canUse(card,player,false)) source.useCard(card,player,false);
 					// else game.cardsDiscard(card);
 					// if(list[0].length) event.redo();
@@ -18936,7 +18965,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zongshi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -19063,7 +19092,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hunshi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -19258,7 +19287,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_moji1: {
 		trigger: {
@@ -19786,7 +19815,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zuici: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -19830,7 +19859,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jingfa0: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -19980,7 +20009,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kongsheng: {
 		group: ['lg_kongsheng_huang'],
@@ -20070,7 +20099,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kongsheng1: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -20078,7 +20107,7 @@ const skill = {
 			player: 'loseMaxHpAfter',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuyun: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -20262,7 +20291,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chengshang: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -20359,7 +20388,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_rongsheng: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -20529,7 +20558,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shufu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -20713,7 +20742,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_danxue2: {
 		intro: {
@@ -20982,7 +21011,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengshen: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -21251,7 +21280,7 @@ const skill = {
 				next.set('openskilldialog', '将一张手牌当【神杀】使用？');
 				next.set('norestore', true);
 				next.set('_backupevent', 'lg_dashen_use');
-				next.set('custom', { add: {}, replace: { window() {} } });
+				next.set('custom', { add: {}, replace: { window() { } } });
 				next.backup('lg_dashen_use');
 			}
 		},
@@ -21262,7 +21291,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_faze1: {
 		mod: {
@@ -21451,7 +21480,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_weipo1: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -21556,7 +21585,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jieying2_card: {
 		trigger: {
@@ -21643,7 +21672,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dunshi2: {
 		trigger: {
@@ -22001,7 +22030,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_diaoluo: {
 		mark: true,
@@ -22136,7 +22165,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shichong1: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -22225,7 +22254,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_cuifeng2: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -22464,7 +22493,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhenxing: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -22565,7 +22594,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qianxin1: {
 		mark: true,
@@ -22617,7 +22646,8 @@ const skill = {
 				if (get.attitude(viewer, player) <= 0) {
 					return 0;
 				}
-				let base = 0, hit = false;
+				let base = 0,
+					hit = false;
 				if (get.cardtag(card, 'yingbian_hit')) {
 					hit = true;
 					if (
@@ -22780,7 +22810,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kuangfu3: {
 		mod: {
@@ -22917,7 +22947,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_longdan2: {
 		group: ['lg_longdan2_sha', 'lg_longdan2_shan', 'lg_longdan2_wuxie'],
@@ -22987,7 +23017,8 @@ const skill = {
 				if (get.attitude(viewer, player) <= 0) {
 					return 0;
 				}
-				let base = 0, hit = false;
+				let base = 0,
+					hit = false;
 				if (get.cardtag(card, 'yingbian_hit')) {
 					hit = true;
 					if (
@@ -23279,7 +23310,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jueyi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -23343,7 +23374,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jueyi1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -23548,7 +23579,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qixin: {
 		group: ['lg_qixin_add'],
@@ -23672,7 +23703,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_liehou1: {
 		trigger: {
@@ -23737,7 +23768,8 @@ const skill = {
 		},
 		content() {
 			'step 0';
-			let list = [], except = [];
+			let list = [],
+				except = [];
 			player.getHistory('useCard', function (evt) {
 				if (evt.getParent('phaseUse') == trigger) {
 					except.add(evt.card.name);
@@ -23758,7 +23790,8 @@ const skill = {
 			player
 				.chooseButton(['选择其中一张牌使用', [event.list, 'vcard']])
 				.set('ai', function (button) {
-					let card = { name: button.link[2] }, player = _status.event.player;
+					let card = { name: button.link[2] },
+						player = _status.event.player;
 					if (get.tag(card, 'damage') && player.needsToDiscard() < 2) {
 						return -1;
 					}
@@ -23924,7 +23957,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuxue: {
 		trigger: {
@@ -23942,7 +23975,8 @@ const skill = {
 					return target.countCards('he') && (trigger.player == target || player == target);
 				})
 				.set('ai', function (target) {
-					let a = 0, b = 0;
+					let a = 0,
+						b = 0;
 					a = get.attitude(_status.event.player, target) > 0 ? 1 : 0;
 					b = target.hasCard(function (card) {
 						return get.value(card) < 6.5;
@@ -24173,7 +24207,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_duiyi2: {
 		forced: true,
@@ -24391,7 +24425,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiliu: {
 		shaRelated: true,
@@ -24469,7 +24503,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_rangu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -24526,7 +24560,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xingluan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -24631,7 +24665,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xingluan1: {
 		trigger: {
@@ -24721,7 +24755,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_nalu: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -24846,7 +24880,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jikang_zhenwang: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -24854,7 +24888,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jingshi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -24940,7 +24974,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiongyong: {
 		group: ['lg_xiongyong2', 'lg_xiongyong3'],
@@ -25390,7 +25424,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_longwei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -25653,7 +25687,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fudao1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -25726,7 +25760,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuanhuo2: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -26012,9 +26046,8 @@ const skill = {
 				event.finish();
 				return;
 			}
-			let targets = result.targets;
 			player.storage.lg_rijing1.push(trigger.card);
-			event.targets = targets;
+			event.targets = result.targets;
 			('step 2');
 			if (event.targets.length) {
 				event.current = event.targets.shift();
@@ -26445,7 +26478,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiaoyan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -26480,7 +26513,7 @@ const skill = {
 								target.countCards('h', function (card) {
 									return target.hasValueTarget(card) && get.effect(player, card, target, target) > 0;
 								}) *
-									Math.sqrt(target.countCards('h')))
+								Math.sqrt(target.countCards('h')))
 						);
 					}
 
@@ -26490,7 +26523,7 @@ const skill = {
 							target.countCards('h', function (card) {
 								return target.hasValueTarget(card) && get.effect(player, card, target, target) > 0;
 							}) *
-								Math.sqrt(target.countCards('h')))
+							Math.sqrt(target.countCards('h')))
 					);
 				},
 			},
@@ -26582,7 +26615,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wuni: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -26634,7 +26667,7 @@ const skill = {
 					if (player.hp <= 1 || player.countCards('he') < 3) {
 						return 0;
 					}
-					let card = game.createCard(button.link[2]);
+					card = game.createCard(button.link[2]);
 					let name = button.link[2];
 					if (get.type(card) == 'trick') {
 						if (player.hp <= 1) {
@@ -26785,14 +26818,14 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wuni2: {
 		position: 'he',
 		filterCard: true,
 		selectCard: 1,
 		popname: true,
-		onuse(result, player) {},
+		onuse(result, player) { },
 	},
 	lg_piaoping: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -27031,7 +27064,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuqi: {
 		zhuanhuanji: true,
@@ -27118,7 +27151,8 @@ const skill = {
 			player.chooseTarget('令一名角色摸' + player.storage.lg_zhuqi[0] + '张牌', 1, true, function (card, player, target) {
 				return true;
 			}).ai = function (target) {
-				let att = get.attitude(player, target), hs = target.countCards('h') + 0.5;
+				let att = get.attitude(player, target),
+					hs = target.countCards('h') + 0.5;
 				return att / hs;
 			};
 			('step 2');
@@ -27148,7 +27182,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuanxiang: {
 		mark: true,
@@ -27396,7 +27430,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qinglongjingpo1: {
 		forced: true,
@@ -27854,7 +27888,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shuanghua: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -27918,8 +27952,8 @@ const skill = {
 					return player != target && target.countCards('he') > 0;
 				})
 				.set('autodelay', trigger.name == 'respond' ? 0.5 : 1).ai = function (target) {
-				return -get.attitude(player, target);
-			};
+					return -get.attitude(player, target);
+				};
 			('step 1');
 			if (result.targets?.length) {
 				player.discardPlayerCard(result.targets[0], true);
@@ -27978,9 +28012,10 @@ const skill = {
 				event.finish();
 			}
 			('step 1');
-			let cards = target.getCards('h', { name: 'shan' }), card = cards.randomRemove(1)[0];
+			let cards1 = target.getCards('h', { name: 'shan' }),
+				card = cards1.randomRemove(1)[0];
 			target.give(card, event.togive);
-			if (cards.length) {
+			if (cards1.length) {
 				event.togive = event.togive.next;
 				event.redo();
 			}
@@ -27993,11 +28028,14 @@ const skill = {
 			order: 7,
 			result: {
 				target(player, target) {
-					let num = 0, numx = target.countCards('h', { name: 'shan' }), targetx = target;
+					let num = 0,
+						numx = target.countCards('h', { name: 'shan' }),
+						targetx = target;
 					for (let i = 0; i < numx; i++) {
 						targetx = targetx.next;
 					}
-					const att1 = get.attitude(player, target), att2 = get.attitude(player, targetx);
+					const att1 = get.attitude(player, target),
+						att2 = get.attitude(player, targetx);
 					if (att1 > 0 && att2 < 0) {
 						num = 0.25;
 					}
@@ -28015,7 +28053,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_manlie: {
 		mark: true,
@@ -28085,7 +28123,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dumou: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -28145,7 +28183,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huixiao: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -28307,7 +28345,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tongshi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -28575,7 +28613,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yinju1: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -28583,7 +28621,7 @@ const skill = {
 			player: 'gainMaxHpAfter',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengshi: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -28656,7 +28694,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengshi1: {
 		forced: true,
@@ -28763,7 +28801,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengwang: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -28840,7 +28878,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengwang1: {},
 	lg_yingshui: {
@@ -28971,7 +29009,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fuwei: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -29091,7 +29129,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianxin: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -29106,7 +29144,7 @@ const skill = {
 		filterCard: true,
 		selectTarget: -1,
 		changeSeat: true,
-		contentBefore() {},
+		contentBefore() { },
 		content() {
 			'setp 0';
 			event.type = get.type(cards[0]);
@@ -29181,7 +29219,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiudao: {
 		init(player) {
@@ -29197,12 +29235,12 @@ const skill = {
 					return '没有';
 				}
 				/*
-        storage=storage.filter(function(name,index,arr){
-            var id=arr.indexOf(name);
-            if(id!=index) return false;    
-            return true;                             
-        });        
-        */
+		storage=storage.filter(function(name,index,arr){
+			var id=arr.indexOf(name);
+			if(id!=index) return false;    
+			return true;                             
+		});        
+		*/
 				let list = [];
 
 				for (const i of storage) {
@@ -29394,7 +29432,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jinghe1: {
 		trigger: {
@@ -29483,7 +29521,8 @@ const skill = {
 			player
 				.chooseToDiscard('h', get.prompt('lg_yuande', trigger.player), '弃置任意张点数之和不小于' + num + '的手牌,对其视为依次使用两张' + get.translation(card))
 				.set('selectCard', function () {
-					let cards = ui.selected.cards, num = _status.event.cardNumber;
+					let cards = ui.selected.cards,
+						num = _status.event.cardNumber;
 					for (let i of cards) {
 						num -= i.number;
 						if (num <= 0) {
@@ -29507,10 +29546,10 @@ const skill = {
 			('step 1');
 			if (result.bool) {
 				let card = {
-                            name: trigger.card.name,
-                            nature: trigger.card.nature,
-                        },
-                    target = trigger.player;
+					name: trigger.card.name,
+					nature: trigger.card.nature,
+				},
+					target = trigger.player;
 				if (target.isIn() && player.canUse(card, target, false)) {
 					player.useCard(card, target, false) && player.useCard(card, target, false);
 				}
@@ -29596,7 +29635,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chanxin: {
 		trigger: {
@@ -29668,7 +29707,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_langkui: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -29710,7 +29749,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_langkui2: {},
 	lg_douzhen: {
@@ -29810,7 +29849,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_mouni: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -29930,7 +29969,7 @@ const skill = {
 				viewAs: {
 					name: 'zhujinqiyuan',
 				},
-				onuse() {},
+				onuse() { },
 				viewAsFilter(player) {
 					if (!player.hasSkill('lg_guzhan_back')) {
 						return false;
@@ -30063,7 +30102,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_duxingqidao1: {
 		trigger: {
@@ -30267,7 +30306,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhijian: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -30361,7 +30400,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_niluan: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -30422,7 +30461,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xizhen: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -30457,15 +30496,16 @@ const skill = {
 					.set('prompt', '袭阵:请选择一项')
 					.set('ai', function () {
 						let player = _status.event.player;
-						let list = ['tao', 'shan'], list2 = player.getStorage('lg_xizhen_ignore');
+						let list = ['tao', 'shan'],
+							list2 = player.getStorage('lg_xizhen_ignore');
 						list.removeArray(list2);
 						if (!list.length) {
 							return 0;
 						}
 						let num1 = player.countCards('hs', function (card) {
-                                    return get.type(card) != 'basic' && player.hasValueTarget(card, null, true);
-                                }),
-                            num2 = player.getHandcardLimit();
+							return get.type(card) != 'basic' && player.hasValueTarget(card, null, true);
+						}),
+							num2 = player.getHandcardLimit();
 						if (player.countCards('h', list) <= num2 - num1) {
 							return 0;
 						}
@@ -30484,14 +30524,16 @@ const skill = {
 				}
 				event.finish();
 			} else {
-				let list = [], storage = player.getStorage('lg_xizhen_ignore');
+				let list = [],
+					storage = player.getStorage('lg_xizhen_ignore');
 				for (let i of lib.inpile) {
 					if (get.type(i) == 'basic' && !storage.includes(i)) {
 						list.push(i);
 					}
 				}
 				player.chooseButton(['选择一张基本牌', [list, 'vcard']], true).set('ai', function (button) {
-					let name = button.link[2], player = _status.event.player;
+					let name = button.link[2],
+						player = _status.event.player;
 					if (name == 'sha') {
 						return 0;
 					}
@@ -30536,7 +30578,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qingyan1: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -30649,7 +30691,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wangxi: {
 		trigger: {
@@ -30724,7 +30766,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_handi: {
 		mark: true,
@@ -30732,7 +30774,8 @@ const skill = {
 		intro: {
 			mark(dialog, storage, player, skill) {
 				let status = (player.storage.lg_handi_status + 1000000) % 3;
-				let list = [], str = '使用';
+				let list = [],
+					str = '使用';
 				if (player.hasSkill('radiance_xingyi_used')) {
 					str = '本回合不能发动此技能,下次发动此技能:<br>使用';
 				}
@@ -30864,7 +30907,8 @@ const skill = {
 				intro: {
 					mark(dialog, storage, player, skill) {
 						let status = (player.storage.lg_handi_status + 1000000) % 3;
-						let list = [], str = '使用';
+						let list = [],
+							str = '使用';
 						if (player.hasSkill('lg_handi_used')) {
 							str = '本回合不能发动此技能,下次发动此技能:<br>使用';
 						}
@@ -30932,23 +30976,26 @@ const skill = {
 					player: 'phaseDrawEnd',
 				},
 				filter(event, player) {
-					return (event.lg_huangwu1 && player.countCards('h', function (card) {
-                        const info = get.info(card);
-                        if (!info) {
-                            return false;
-                        }
-                        if (!info.selectTarget) {
-                            return false;
-                        }
-                        if (typeof info.selectTarget == 'array') {
-                            if (info[0] != 1 || info[1] != 1) {
-                                return false;
-                            }
-                        } else if (info.selectTarget != 1) {
-                            return false;
-                        }
-                        return get.type(card) == 'basic' || get.type(card) == 'trick';
-                    }));
+					return (
+						event.lg_huangwu1 &&
+						player.countCards('h', function (card) {
+							const info = get.info(card);
+							if (!info) {
+								return false;
+							}
+							if (!info.selectTarget) {
+								return false;
+							}
+							if (typeof info.selectTarget == 'array') {
+								if (info[0] != 1 || info[1] != 1) {
+									return false;
+								}
+							} else if (info.selectTarget != 1) {
+								return false;
+							}
+							return get.type(card) == 'basic' || get.type(card) == 'trick';
+						})
+					);
 				},
 				content() {
 					'step 0';
@@ -31029,7 +31076,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhenglie: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -31091,7 +31138,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhongyong: {
 		enable: 'phaseUse',
@@ -31162,7 +31209,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengliang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -31306,7 +31353,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wuyan: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -31386,7 +31433,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuqueyushan1: {
 		trigger: {
@@ -31496,7 +31543,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhenjun: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -31552,7 +31599,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhenjun2: {
 		intro: {
@@ -31649,7 +31696,7 @@ const skill = {
 			'step 0';
 			let check;
 			let i,
-                nh = game.countPlayer(function (current) {
+				nh = game.countPlayer(function (current) {
 					return current != player && current.countCards('h') && get.attitude(player, current) <= 0;
 				});
 			check = nh >= 1;
@@ -31692,7 +31739,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhanyun: {
 		audio: 'ext:千秋霸业/Centuries:4',
@@ -31790,7 +31837,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dingshu1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -31990,7 +32037,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengya: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -32091,7 +32138,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_minghuo: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -32391,7 +32438,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yanzui1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -32399,7 +32446,7 @@ const skill = {
 			player: '',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shenlian: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -32845,7 +32892,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_duanbing: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -32924,7 +32971,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yijun: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -33030,7 +33077,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yijun1: {
 		enable: 'chooseToUse',
@@ -33393,7 +33440,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_duyou: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -33596,7 +33643,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuyan0: {
 		audio: 'ext:千秋霸业/Sound:2',
@@ -33604,7 +33651,7 @@ const skill = {
 			player: '',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiemeng: {
 		group: ['lg_jiemeng1', 'lg_jiemeng2'],
@@ -33786,7 +33833,9 @@ const skill = {
 							return target != player && target != _status.event.parent.target;
 						})
 						.set('ai', function (target) {
-							let player = _status.event.player, cards = _status.event.parent.cards, target2 = _status.event.parent.target;
+							let player = _status.event.player,
+								cards = _status.event.parent.cards,
+								target2 = _status.event.parent.target;
 							let val = get.value(cards, target) * get.attitude(player, target);
 							if (val <= 0) {
 								return 0;
@@ -33841,7 +33890,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_luochong: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -33995,7 +34044,8 @@ const skill = {
 								.chooseControl(list)
 								.set('choiceList', ['使用的牌没有距离限制', '使用【杀】指定的目标上限+1', '女性角色的判定牌生效后,摸两张牌且获得之'])
 								.set('ai', function () {
-									let player = _status.event.player, controls = _status.event.controls;
+									let player = _status.event.player,
+										controls = _status.event.controls;
 									if (
 										controls.includes('选项一') &&
 										game.hasPlayer(function (current) {
@@ -34069,7 +34119,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qiqing0: {
 		trigger: {
@@ -34319,7 +34369,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chuyi: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -34427,7 +34477,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hongzhuang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -34455,7 +34505,8 @@ const skill = {
 			});
 			('step 1');
 			if (result.bool) {
-				let num = trigger.player.countCards('h'), num2 = 999 - player.countCards('h');
+				let num = trigger.player.countCards('h'),
+					num2 = 999 - player.countCards('h');
 				if (num > 0 && num2 > 0) {
 					player.draw(Math.min(num, num2));
 				}
@@ -34562,7 +34613,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yayan2: {
 		trigger: {
@@ -34863,7 +34914,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lieying: {
 		audio: 'ext:千秋霸业/Centuries:4',
@@ -34914,7 +34965,8 @@ const skill = {
 		},
 		forced: true,
 		filter(event, player) {
-			let cards1 = event.getl(player).hs, cards2 = [];
+			let cards1 = event.getl(player).hs,
+				cards2 = [];
 			if (event.getg) {
 				cards2 = event.getg(player);
 			}
@@ -35068,7 +35120,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_longyan: {
 		group: ['lg_longyan_damage', 'lg_longyan_clear'],
@@ -35352,7 +35404,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jinghong: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -35516,7 +35568,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengwu3: {
 		trigger: {
@@ -35587,9 +35639,11 @@ const skill = {
 				content() {
 					'step 0';
 					let cards = player.getCards('h', (card) => card.hasGaintag('lg_linxian'));
-					let list = [], names = [];
+					let list = [],
+						names = [];
 					for (let card of cards) {
-						let name = card.name, nature = get.nature(card);
+						let name = card.name,
+							nature = get.nature(card);
 						const namex = name + (nature ? nature : '');
 						if (names.includes(namex)) {
 							continue;
@@ -35609,7 +35663,8 @@ const skill = {
 					});
 					('step 1');
 					if (result.links?.length) {
-						let name = result.links[0][2], nature = result.links[0][3];
+						let name = result.links[0][2],
+							nature = result.links[0][3];
 						let cards = player.getCards('h', (card) => card.hasGaintag('lg_linxian'));
 						game.broadcastAll(
 							function (num, card) {
@@ -35626,7 +35681,7 @@ const skill = {
 						next.set('_backupevent', 'lg_linxian_backup');
 						next.set('custom', {
 							add: {},
-							replace: { window() {} },
+							replace: { window() { } },
 						});
 						next.backup('lg_linxian_backup');
 					}
@@ -35648,9 +35703,9 @@ const skill = {
 						if (mod == false) {
 							return false;
 						}
-						const mod = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-						if (mod != 'unchanged') {
-							return mod;
+						const mod1 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+						if (mod1 != 'unchanged') {
+							return mod1;
 						}
 					}
 					if (typeof filter == 'boolean') {
@@ -35662,7 +35717,7 @@ const skill = {
 				},
 				check: (card) => 6 - get.value(card),
 				log: false,
-				precontent() {},
+				precontent() { },
 				selectCard: 5,
 				viewAs: {
 					name: 'sha',
@@ -35673,7 +35728,8 @@ const skill = {
 						if (get.attitude(viewer, player) <= 0) {
 							return 0;
 						}
-						let base = 0, hit = false;
+						let base = 0,
+							hit = false;
 						if (get.cardtag(card, 'yingbian_hit')) {
 							hit = true;
 							if (
@@ -35857,7 +35913,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	// 每回合限一次,当你使用【杀】指定目标时,你可以令除其外的其他角色各选择是否对其使用一张【杀】
 	lg_cuijin: {
@@ -35891,7 +35947,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_cailue: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -36032,7 +36088,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhengding: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -36152,7 +36208,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_paoying: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -36232,7 +36288,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qingjue: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -36295,7 +36351,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_anji: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -36310,7 +36366,8 @@ const skill = {
 			'step 0';
 			let num = trigger.source.countCards('h') - player.countCards('h');
 			event.num = num;
-			let list = [], choiceList = ['令' + get.translation(trigger.source) + '将手牌数调整至' + get.cnNumber(num) + '张', '从牌堆底摸一张牌,获得' + get.translation(trigger.source) + '两张牌', '执行领域机制'];
+			let list = [],
+				choiceList = ['令' + get.translation(trigger.source) + '将手牌数调整至' + get.cnNumber(num) + '张', '从牌堆底摸一张牌,获得' + get.translation(trigger.source) + '两张牌', '执行领域机制'];
 			if (trigger.source.countCards('h') > player.countCards('h')) {
 				list.push('选项一');
 			} else {
@@ -36519,7 +36576,8 @@ const skill = {
 					const hs = player.getCards('h', function (card2) {
 						return card2 != card && card2.name !== 'sha' && get.tag(card2, 'damage');
 					});
-					let count = 0, countx = 0;
+					let count = 0,
+						countx = 0;
 					count += player.countCards('h', function (cardx) {
 						if (
 							cardx != card &&
@@ -36805,7 +36863,8 @@ const skill = {
 				list.push(['gain', '令' + get.translation(source) + '获得' + get.translation(cards)]);
 			}
 			player.chooseButton([get.prompt('lg_zhongyan1', source), [list, 'textbutton'], 'noforcebutton']).set('ai', function (button) {
-				let player = _status.event.player, choice = button.link;
+				let player = _status.event.player,
+					choice = button.link;
 				let evt = _status.event.getTrigger();
 				if (choice == 'exclude') {
 					let effect = 0;
@@ -36863,7 +36922,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhipei1: {
 		trigger: {
@@ -37009,7 +37068,7 @@ const skill = {
 			return player.identity != 'nei';
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wushangzhizun: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -37017,7 +37076,7 @@ const skill = {
 			global: 'gameDrawBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jihu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -37037,7 +37096,7 @@ const skill = {
 		intro: {
 			markcount: 'expansion',
 			mark(dialog, content, player) {
-				const content = player.getExpansions('lg_jihu');
+				content = player.getExpansions('lg_jihu');
 				if (content && content.length) {
 					if (player == game.me || player.isUnderControl()) {
 						dialog.addAuto(content);
@@ -37047,7 +37106,7 @@ const skill = {
 				}
 			},
 			content(content, player) {
-				const content = player.getExpansions('lg_jihu');
+				content = player.getExpansions('lg_jihu');
 				if (content && content.length) {
 					if (player == game.me || player.isUnderControl()) {
 						return get.translation(content);
@@ -37071,7 +37130,8 @@ const skill = {
 			event.num = player.hp;
 			player.addToExpansion(get.cards(event.num)).gaintag.add('lg_极护');
 			('step 1');
-			let next = player.chooseToMove(), num = player.hp;
+			let next = player.chooseToMove(),
+				num = player.hp;
 			next.set('prompt', '将' + get.cnNumber(num) + '张牌置于牌堆顶');
 			next.set('num', num);
 			next.set('forced', true);
@@ -37086,7 +37146,8 @@ const skill = {
 			});
 			next.set('list', [[get.translation(player) + '武将牌上的<雅>', player.getExpansions('lg_jihu')], ['牌堆顶']]);
 			next.set('processAI', function (list) {
-				let cards = list[0][1], cards2 = cards.randomRemove(_status.event.num);
+				let cards = list[0][1],
+					cards2 = cards.randomRemove(_status.event.num);
 				return [cards, cards2];
 			});
 			('step 2');
@@ -37201,7 +37262,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zongguan: {
 		audio: 'ext:千秋霸业/Centuries:1',
@@ -37209,7 +37270,7 @@ const skill = {
 			global: 'gameDrawBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wenxiang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -37314,7 +37375,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_linran: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -37388,7 +37449,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_linran2: {
 		usable: 1,
@@ -37621,7 +37682,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yinxi: {
 		intro: {
@@ -37776,7 +37837,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yinlu1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -37969,7 +38030,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dunbi: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -38215,12 +38276,12 @@ const skill = {
 			let list = lib.skill.lg_jinhua.getList(player, target);
 			player.chooseButton([get.prompt('lg_jinhua', target), '<div class="text center">执行进化机制,对' + get.translation(target) + '视为使用其中一张牌</div>', [list, 'vcard']]).set('ai', function (button) {
 				let card = {
-                            name: button.link[2],
-                            nature: button.link[3],
-                            storage: { cihuang: true },
-                        },
-                    player = _status.event.player,
-                    target = _status.event.getTrigger().player;
+					name: button.link[2],
+					nature: button.link[3],
+					storage: { cihuang: true },
+				},
+					player = _status.event.player,
+					target = _status.event.getTrigger().player;
 				return get.effect(target, card, player, player);
 			});
 			('step 1');
@@ -38301,7 +38362,7 @@ const skill = {
 			}
 			event.list = list;
 			('step 3');
-			let list = event.list.slice(0);
+			let list1 = event.list.slice(0);
 			switch (event.list.length) {
 				case 0:
 					event.finish();
@@ -38312,7 +38373,7 @@ const skill = {
 					};
 					break;
 				case 2:
-					if (list[0] == list[1]) {
+					if (list1[0] == list1[1]) {
 						event._result = {
 							control: event.list[0],
 						};
@@ -38322,9 +38383,9 @@ const skill = {
 							'②': '令一名其他角色不能使用或打出手牌,直到当前回合结束',
 							'③': '摸一张牌',
 						};
-						const choiceList = [map[list[0]], map[list[1]]];
+						const choiceList = [map[list1[0]], map[list1[1]]];
 						player
-							.chooseControl(list)
+							.chooseControl(list1)
 							.set('choiceList', choiceList)
 							.set('ai', function (event, player) {
 								if (_status.event.controls.includes('②')) {
@@ -38543,7 +38604,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiya: {
 		init(player) {
@@ -38721,15 +38782,16 @@ const skill = {
 					});
 					next.set('processAI', function (list) {
 						let player = _status.event.player,
-                            cards = list[0][1].concat(list[1][1]).sort(function (a, b) {
+							cards = list[0][1].concat(list[1][1]).sort(function (a, b) {
 								return get.useful(a) - get.useful(b);
 							}),
-                            cards2 = cards.splice(0, player.storage.lg_jiya.length);
+							cards2 = cards.splice(0, player.storage.lg_jiya.length);
 						return [cards2, cards];
 					});
 					('step 2');
 					if (result.bool) {
-						const push = result.moved[0], gain = result.moved[1];
+						const push = result.moved[0],
+							gain = result.moved[1];
 						push.removeArray(player.storage.lg_jiya);
 						gain.removeArray(player.getCards('h'));
 						if (!push.length || push.length != gain.length) {
@@ -38939,7 +39001,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuocai: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -39055,7 +39117,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chaozhongyan1: {
 		usable: 1,
@@ -39301,7 +39363,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shulie1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -39366,7 +39428,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hushou: {
 		init(player) {
@@ -39400,7 +39462,8 @@ const skill = {
 			('step 1');
 			event.basic = [];
 			event.trick = [];
-			let val1 = 0, val2 = 0;
+			let val1 = 0,
+				val2 = 0;
 			if (Array.isArray(event.cards)) {
 				for (let i of event.cards) {
 					//QQ
@@ -39506,7 +39569,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hongxian1: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -39661,7 +39724,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_bujiezhiyuan1: {
 		trigger: {
@@ -39767,7 +39830,8 @@ const skill = {
 				if (get.attitude(viewer, player) <= 0) {
 					return 0;
 				}
-				let base = 0, hit = false;
+				let base = 0,
+					hit = false;
 				if (get.cardtag(card, 'yingbian_hit')) {
 					hit = true;
 					if (
@@ -40077,7 +40141,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yongji: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -40147,7 +40211,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huansheng: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -40227,7 +40291,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_liesha: {
 		trigger: {
@@ -40365,7 +40429,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuyin: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -40662,7 +40726,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_buwu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -40675,7 +40739,8 @@ const skill = {
 			if (event.type == 'phase' && !game.online) {
 				const map = {};
 				event.player.getHistory('useCard', (evt) => {
-					let evtx = evt.getParent('phaseUse'), suit = evt.card.suit;
+					let evtx = evt.getParent('phaseUse'),
+						suit = evt.card.suit;
 					if (!lib.suit.includes(suit)) {
 						return;
 					}
@@ -40692,7 +40757,8 @@ const skill = {
 		},
 		chooseButton: {
 			dialog(event, player) {
-				let str = get.translation('lg_buwu_info'), str2 = '';
+				let str = get.translation('lg_buwu_info'),
+					str2 = '';
 				if (event.lg_buwu_map) {
 					str2 = '<div class="text center">使用过的花色数:</div>';
 					str2 += '<div class="text center">';
@@ -40737,12 +40803,14 @@ const skill = {
 					},
 					content() {
 						'step 0';
-						let suit = lib.skill.lg_buwu_backup.suit, num = 0;
+						let suit = lib.skill.lg_buwu_backup.suit,
+							num = 0;
 						player.popup(suit + 2);
 						player.addTempSkill('lg_buwu_clear', 'phaseUseAfter');
 						player.markAuto('lg_buwu_clear', [suit]);
 						player.getHistory('useCard', (evt) => {
-							const evtx = evt.getParent('phaseUse'), suitx = evt.card.suit;
+							const evtx = evt.getParent('phaseUse'),
+								suitx = evt.card.suit;
 							if (!evtx || evtx != event.getParent('phaseUse') || suit != suitx) {
 								return false;
 							}
@@ -40787,7 +40855,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xuhua: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -40895,7 +40963,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_anliao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -40911,11 +40979,11 @@ const skill = {
 				.chooseControl('①', '②', '取消')
 				.set('prompt', '你可以选择一项')
 				.set('choiceList', ['令' + get.translation(trigger.player) + '摸三张牌', '摸三张牌', '取消']).ai = function (event, player) {
-				if (get.attitude(player, trigger.player) <= 0) {
-					return '②';
-				}
-				return '①';
-			};
+					if (get.attitude(player, trigger.player) <= 0) {
+						return '②';
+					}
+					return '①';
+				};
 			('step 1');
 			if (result.control == '取消') {
 				event.finish();
@@ -41008,7 +41076,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wangyuan: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -41091,37 +41159,37 @@ const skill = {
 			'step 0';
 			event.num = Math.min(999, player.storage.lg_qianying.length);
 			/* 
-      //手动式:
-        'step 1'                  
-         player.chooseCardButton(player.storage.lg_qianying,1,'获得其中的一张牌',true).set('filterButton',function(button){                                                                                                   
-             return true;
-         }).set('ai',function(button){
-             return get.value(button.link);
-         });                                              
-         'step 2'    
-         if(result.bool){
-             event.num--;
-             player.$throw(result.links[0]);                        
-             player.storage.lg_qianying.remove(result.links[0]);
-             game.cardsDiscard(result.links[0]);
-             if(player.storage.lg_qianying.length<=0){
-                 player.unmarkSkill('lg_qianying');
-             }
-             var list=game.filterPlayer(function(current){ 
-                 return player.canUse('juedou',current); 
-             });                 
-             list.sortBySeat(); 
-             player.useCard({name:'juedou'},list);                               
-         }       
-         else event.finish();                
-       'step 3'                            
-      if(event.num>0){                                                                                                                                                   
-         event.goto(1);
-      }
-      else{
-         event.finish();      
-      } 
-      */
+	  //手动式:
+		'step 1'                  
+		 player.chooseCardButton(player.storage.lg_qianying,1,'获得其中的一张牌',true).set('filterButton',function(button){                                                                                                   
+			 return true;
+		 }).set('ai',function(button){
+			 return get.value(button.link);
+		 });                                              
+		 'step 2'    
+		 if(result.bool){
+			 event.num--;
+			 player.$throw(result.links[0]);                        
+			 player.storage.lg_qianying.remove(result.links[0]);
+			 game.cardsDiscard(result.links[0]);
+			 if(player.storage.lg_qianying.length<=0){
+				 player.unmarkSkill('lg_qianying');
+			 }
+			 var list=game.filterPlayer(function(current){ 
+				 return player.canUse('juedou',current); 
+			 });                 
+			 list.sortBySeat(); 
+			 player.useCard({name:'juedou'},list);                               
+		 }       
+		 else event.finish();                
+	   'step 3'                            
+	  if(event.num>0){                                                                                                                                                   
+		 event.goto(1);
+	  }
+	  else{
+		 event.finish();      
+	  } 
+	  */
 			('step 1');
 			let list = [];
 			let cards = player.getStorage('lg_qianying');
@@ -41166,7 +41234,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qianying2: {
 		trigger: {
@@ -41376,7 +41444,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qianren: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -41438,7 +41506,8 @@ const skill = {
 			if (player.hasUnknown()) {
 				return 0;
 			}
-			let num = 0, players = game.filterPlayer();
+			let num = 0,
+				players = game.filterPlayer();
 
 			for (const i of players) {
 				if (i != player && i != event.player && get.distance(event.player, i) <= 1) {
@@ -41476,7 +41545,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiyan2: {
 		trigger: {
@@ -41530,7 +41599,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_anyue: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -41581,7 +41650,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_eyan: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -41672,7 +41741,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_heiguan1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -41783,9 +41852,8 @@ const skill = {
 				event.finish();
 				return;
 			}
-			let target = result.targets[0];
-			player.line(target, 'green');
-			trigger.targets.push(target);
+			player.line(result.targets[0], 'green');
+			trigger.targets.push(result.targets[0]);
 			event.finish();
 			('step 3');
 			let target = trigger.player;
@@ -41800,8 +41868,7 @@ const skill = {
 				event.finish();
 				return;
 			}
-			let target = trigger.player;
-			target.line(player, 'green');
+			trigger.player.line(player, 'green');
 			trigger.targets.push(player);
 		},
 	},
@@ -42018,7 +42085,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianjing: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -42233,7 +42300,8 @@ const skill = {
 					'choice',
 					(function () {
 						let card = { name: 'sha', nature: 'fire' };
-						let eff = get.effect(player, card, target, player), eff2 = get.effect(target, card, player, player);
+						let eff = get.effect(player, card, target, player),
+							eff2 = get.effect(target, card, player, player);
 						if (eff > eff2) {
 							return '①';
 						} else {
@@ -42273,7 +42341,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lvan: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -42284,7 +42352,8 @@ const skill = {
 			return player.isAlive();
 		},
 		check(event, player) {
-			let active = 0, cfalse = 0;
+			let active = 0,
+				cfalse = 0;
 			for (let i of game.players) {
 				//QQ
 				if (i == player) {
@@ -42337,7 +42406,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lvan2: {
 		trigger: {
@@ -42787,11 +42856,11 @@ const skill = {
 			}
 
 			('step 3');
-			let storage = event.player.storage.lg_huanjing;
+			let storage1 = event.player.storage.lg_huanjing;
 			let player;
 			let i, j;
 
-			for (const i of storage) {
+			for (const i of storage1) {
 				player = i.player;
 				if (player.isAlive()) {
 					for (j = 0; j < i.handcards1.length; j++) {
@@ -42931,7 +43000,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lianmo: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -43011,7 +43080,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dianmo: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -43170,7 +43239,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_luandie: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -43347,40 +43416,40 @@ const skill = {
 			order(skill, player) {
 				return 1;
 				/*
-        var evt=_status.event;
-        player=player||evt.player;
-        if(player.countCards('h','tao')) return -1;
-        if(evt.type=='dying'){
-            if(get.attitude(player,evt.dying)<=0) return -1;
-        }
-        var list=[
-            {name:'sha'},                                
-            {name:'shan'},
-            {name:'tao'},
-            {name:'jiu'},
-        ];
-        for(var j of lib.inpile_nature){
-            list.push({name:'sha',nature:j});
-        }                            
-        var max=-1;
-        for(var i of list){
-            if(!player.countCards('h',i.name)&&evt.filterCard(i,player,evt)){
-                if(evt&&(evt.ai||evt.ai1)){
-                    var result=(evt.ai||evt.ai1)(i,player,evt);
-                    if(i.name=='jiu'&&evt.type!='dying'&&evt.name=='chooseToUse') result=-1;
-                    if(result>max) max=result;
-                }; 
-            }; 
-        };
-        var buff=player.hasSkillTag('taiJiBuff');
-        var count=player.countCards('h');
-        if(evt.type=='dying'){
-            if(count>3&&!buff) max=-10;
-        }else{
-            if(count>2&&!buff) max=-10;
-        }
-        return max-0.2;
-        */
+		var evt=_status.event;
+		player=player||evt.player;
+		if(player.countCards('h','tao')) return -1;
+		if(evt.type=='dying'){
+			if(get.attitude(player,evt.dying)<=0) return -1;
+		}
+		var list=[
+			{name:'sha'},                                
+			{name:'shan'},
+			{name:'tao'},
+			{name:'jiu'},
+		];
+		for(var j of lib.inpile_nature){
+			list.push({name:'sha',nature:j});
+		}                            
+		var max=-1;
+		for(var i of list){
+			if(!player.countCards('h',i.name)&&evt.filterCard(i,player,evt)){
+				if(evt&&(evt.ai||evt.ai1)){
+					var result=(evt.ai||evt.ai1)(i,player,evt);
+					if(i.name=='jiu'&&evt.type!='dying'&&evt.name=='chooseToUse') result=-1;
+					if(result>max) max=result;
+				}; 
+			}; 
+		};
+		var buff=player.hasSkillTag('taiJiBuff');
+		var count=player.countCards('h');
+		if(evt.type=='dying'){
+			if(count>3&&!buff) max=-10;
+		}else{
+			if(count>2&&!buff) max=-10;
+		}
+		return max-0.2;
+		*/
 			},
 			skillTagFilter(player, tag, arg) {
 				if (tag == 'fireAttack') {
@@ -43420,7 +43489,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zuozhou: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -43579,7 +43648,6 @@ const skill = {
 				ui.cardPile.insertBefore(event.cards1.pop(), ui.cardPile.firstChild);
 				event.num1++;
 			}
-			const js = player.getCards('j');
 			player.popup(get.cnNumber(event.num1) + '顶' + get.cnNumber(event.num2) + '底');
 			game.log(player, '将', '#y' + get.cnNumber(event.num1) + '张牌', '置于牌堆顶,', '#y' + get.cnNumber(event.num2) + '张牌', '置于牌堆底');
 		},
@@ -43639,7 +43707,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_canxia: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -43749,7 +43817,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuanbi1: {
 		trigger: {
@@ -43945,7 +44013,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_guiying3: {
 		trigger: {
@@ -44068,7 +44136,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qisha1: {
 		onremove(player) {
@@ -44241,7 +44309,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shenguang2: {
 		trigger: {
@@ -44427,7 +44495,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lianbao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -44522,7 +44590,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_misong: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -44624,7 +44692,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_pianxian: {
 		mod: {
@@ -44689,71 +44757,71 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			let a = get.cardPile2(function (card) {
+			let aa = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'basic';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (aa) {
+				trigger.player.gain(aa, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
 			}
 			('step 3');
-			let a = get.cardPile2(function (card) {
+			let aaa = get.cardPile2(function (card) {
 				return get.color(card) != 'black' && get.type(card) != 'equip';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (aaa) {
+				trigger.player.gain(aaa, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
 			}
 			('step 4');
-			let a = get.cardPile2(function (card) {
+			let aaaa = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'equip';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (aaaa) {
+				trigger.player.gain(aaaa, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
 			}
 			('step 5');
-			let a = get.cardPile2(function (card) {
+			let aaaaa = get.cardPile2(function (card) {
 				return get.color(card) != 'black' && get.type(card) != 'trick';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (aaaaa) {
+				trigger.player.gain(aaaaa, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
 			}
 			('step 6');
-			let a = get.cardPile2(function (card) {
+			let aaaaaa = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'trick';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (aaaaaa) {
+				trigger.player.gain(aaaaaa, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
 			}
 			('step 7');
-			let a = get.cardPile2(function (card) {
+			let b = get.cardPile2(function (card) {
 				return get.color(card) != 'black' && get.type(card) != 'delay';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (b) {
+				trigger.player.gain(b, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
 			}
 			('step 8');
-			let a = get.cardPile2(function (card) {
+			let bb = get.cardPile2(function (card) {
 				return get.color(card) != 'red' && get.type(card) != 'delay';
 			});
-			if (a) {
-				trigger.player.gain(a, 'gain2');
+			if (bb) {
+				trigger.player.gain(bb, 'gain2');
 				event.finish();
 			} else {
 				event.finish();
@@ -44833,7 +44901,7 @@ const skill = {
 			let prompt2 = '执行非技能机制,令' + get.translation(trigger.card) + '额外指定一个目标？';
 			player
 				.chooseTarget(get.prompt('lg_jinjizhe'), function (card, player, target) {
-					let player = _status.event.player;
+					player = _status.event.player;
 					if (_status.event.targets.includes(target)) {
 						return false;
 					}
@@ -44872,7 +44940,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_anguo: {
 		init(player) {
@@ -44930,7 +44998,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xinyou: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -45172,18 +45240,18 @@ const skill = {
 					return target.hp < target.maxHp;
 				})
 				.set('autodelay', true).ai = function (target) {
-				let num = get.attitude(player, target);
-				if (num > 0) {
-					if (noneed && player == target) {
-						num = 0.5;
-					} else if (target.hp == 1) {
-						num += 3;
-					} else if (target.hp == 2) {
-						num += 1;
+					let num = get.attitude(player, target);
+					if (num > 0) {
+						if (noneed && player == target) {
+							num = 0.5;
+						} else if (target.hp == 1) {
+							num += 3;
+						} else if (target.hp == 2) {
+							num += 1;
+						}
 					}
-				}
-				return num;
-			};
+					return num;
+				};
 			('step 1');
 			if (result.targets?.length) {
 				result.targets[0].recover();
@@ -45291,7 +45359,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_gongqing: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -45375,7 +45443,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_bengyu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -45428,7 +45496,9 @@ const skill = {
 			return player != event.player && event.targets && event.targets.includes(player) && player.countCards('h') > 0;
 		},
 		prompt2(event, player) {
-			let suit = event.card.suit, hs = player.getCards('h'), cards = event.cards.filterInD();
+			let suit = event.card.suit,
+				hs = player.getCards('h'),
+				cards = event.cards.filterInD();
 			if (!lib.suit.includes(suit) || !cards.length) {
 				return '展示手牌？';
 			}
@@ -45440,7 +45510,9 @@ const skill = {
 			return '展示手牌,获得' + get.translation(cards) + '？';
 		},
 		check(event, player) {
-			let suit = event.card.suit, hs = player.getCards('h'), cards = event.cards.filterInD();
+			let suit = event.card.suit,
+				hs = player.getCards('h'),
+				cards = event.cards.filterInD();
 			if (!lib.suit.includes(suit) || !cards.length) {
 				return false;
 			}
@@ -45454,7 +45526,8 @@ const skill = {
 		content() {
 			'step 0';
 			player.showHandcards(get.translation(player) + '发动此技能');
-			let suit = trigger.card.suit, hs = player.getCards('h');
+			let suit = trigger.card.suit,
+				hs = player.getCards('h');
 			if (!lib.suit.includes(suit)) {
 				event.finish();
 				return;
@@ -45614,7 +45687,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qiancheng: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -45657,7 +45730,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_rishi: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -45739,7 +45812,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shazhen: {
 		usable: 2,
@@ -45893,7 +45966,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_baolin: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -46039,7 +46112,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zujin2: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -46101,10 +46174,10 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			const _wuxie = event._wuxie_evtt;
+			const _wuxie1 = event._wuxie_evtt;
 			const _useCard = event._wuxie_evt;
-			let func = _wuxie.settle;
-			_wuxie.settle = function () {
+			let func = _wuxie1.settle;
+			_wuxie1.settle = function () {
 				func();
 				const that = this;
 				if (!that.state) {
@@ -46363,7 +46436,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_suli1: {
 		trigger: {
@@ -46598,7 +46671,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fozong: {
 		mod: {
@@ -46774,7 +46847,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fuxing: {
 		mod: {
@@ -46976,7 +47049,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jinzhong: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -47157,7 +47230,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiejin: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -47207,7 +47280,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_tiansuo: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -47349,7 +47422,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shalu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -47543,7 +47616,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_biyou: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -47792,7 +47865,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuhuo: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -47840,7 +47913,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhabian: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -48105,7 +48178,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuyao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -48145,7 +48218,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chazhan: {
 		trigger: {
@@ -48257,7 +48330,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuikou: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -48296,7 +48369,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qingyi: {
 		group: ['lg_qingyi1', 'lg_qingyi2', 'lg_qingyi3'],
@@ -48616,7 +48689,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lingyan: {
 		audio: 'ext:千秋霸业/audio:2',
@@ -48691,9 +48764,9 @@ const skill = {
 				ui.cardPile.insertBefore(event.card, ui.cardPile.firstChild);
 			}
 			('step 5');
-			let target = event.targets;
-			target.storage.lg_lingyan = [];
-			target.storage.lg_lingyan.push(trigger.card);
+			let target1 = event.targets;
+			target1.storage.lg_lingyan = [];
+			target1.storage.lg_lingyan.push(trigger.card);
 		},
 		group: ['lg_lingyan_draw', 'lg_lingyan_roundcount'],
 		subSkill: {
@@ -48742,7 +48815,7 @@ const skill = {
 			content: '灭矢',
 		},
 		prompt(event, player, storage) {
-			let player = _status.event.player;
+			player = _status.event.player;
 			return '你可以从名称字数不大于' + player.storage.lg_mieshi + '的牌中选择至多' + player.storage.lg_mieshi + '张名称字数均不同的牌.';
 		},
 		mark: true,
@@ -49043,7 +49116,10 @@ const skill = {
 			}
 			chooseButton.set('target', target);
 			chooseButton.set('ai', function (button) {
-				let player = _status.event.player, owner = get.owner(button.link), color = get.color(button.link, owner), value = get.value(button.link, owner);
+				let player = _status.event.player,
+					owner = get.owner(button.link),
+					color = get.color(button.link, owner),
+					value = get.value(button.link, owner);
 				if (player.countCards('h')) {
 					if (!ui.selected.buttons.length) {
 						if (
@@ -49093,7 +49169,8 @@ const skill = {
 					if (get.owner(links[0]) != player) {
 						links.reverse();
 					}
-					const card1 = links[0], card2 = links[1];
+					const card1 = links[0],
+						card2 = links[1];
 					player.swapHandcards(target, [card1], [card2]);
 					if (get.color(card1, player) != 'red' || get.color(card2, target) != 'red') {
 						event.finish();
@@ -49144,7 +49221,8 @@ const skill = {
 			);
 		},
 		check(event, player) {
-			let cards = [], names = [];
+			let cards = [],
+				names = [];
 
 			for (const i of ui.discardPile.childNodes) {
 				let card = i;
@@ -49167,7 +49245,8 @@ const skill = {
 			player.draw();
 			player.discard(player.getCards('h'));
 			('step 1');
-			let cards = [], names = [];
+			let cards = [],
+				names = [];
 
 			for (const i of ui.discardPile.childNodes) {
 				let card = i;
@@ -49231,7 +49310,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_rougu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -49314,7 +49393,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chaoxi: {
 		init(player) {
@@ -49357,7 +49436,10 @@ const skill = {
 		},
 		check(card) {
 			let player = _status.event.player;
-			let heart = 0, diamond = 0, club = 0, spade = 0;
+			let heart = 0,
+				diamond = 0,
+				club = 0,
+				spade = 0;
 			const cardss = player.getCards('h');
 
 			for (const i of cardss) {
@@ -49575,7 +49657,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fuyin: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -49640,7 +49722,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_binglun: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -49680,7 +49762,8 @@ const skill = {
 				if (get.attitude(viewer, player) <= 0) {
 					return 0;
 				}
-				let base = 0, hit = false;
+				let base = 0,
+					hit = false;
 				if (get.cardtag(card, 'yingbian_hit')) {
 					hit = true;
 					if (
@@ -50168,7 +50251,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qinbao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50240,7 +50323,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_manqing: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50369,7 +50452,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_caidie: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50463,7 +50546,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jinglan1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50544,7 +50627,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhanyue: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50608,7 +50691,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xunyan: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50726,7 +50809,8 @@ const skill = {
 		selectCard: -1,
 		content() {
 			'step 0';
-			let choose = ['②', '①'], choice;
+			let choose = ['②', '①'],
+				choice;
 			let count = player.countCards('h') - target.countCards('h');
 			if (count < 0) {
 				choice = 0;
@@ -50817,7 +50901,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_ai: {
 		audio: 'ext:千秋霸业/Centuries:1',
@@ -50825,7 +50909,7 @@ const skill = {
 			global: 'gameDrawBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xingwu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -50963,7 +51047,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shenpan1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -51061,7 +51145,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_enze: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -51152,7 +51236,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shiya: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -51239,7 +51323,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_gufu2: {
 		intro: {
@@ -51306,8 +51390,8 @@ const skill = {
 		precontent() {
 			player.addTempSkill('lg_zhuhuang1', 'phaseEndStart');
 		},
-		onuse(result, player) {},
-		onrespond(result, player) {},
+		onuse(result, player) { },
+		onrespond(result, player) { },
 		prompt: '将一张非装备牌当【杀】使用或打出',
 		check(card) {
 			return 7 - get.value(card);
@@ -51325,7 +51409,8 @@ const skill = {
 				if (get.attitude(viewer, player) <= 0) {
 					return 0;
 				}
-				let base = 0, hit = false;
+				let base = 0,
+					hit = false;
 				if (get.cardtag(card, 'yingbian_hit')) {
 					hit = true;
 					if (
@@ -51554,7 +51639,8 @@ const skill = {
 				if (get.type(evt.card) != 'trick') {
 					return;
 				}
-				let name = evt.card.name, nature = evt.card.nature || '';
+				let name = evt.card.name,
+					nature = evt.card.nature || '';
 				if (!list.includes(name + nature)) {
 					list.push(name + nature);
 				}
@@ -51591,12 +51677,14 @@ const skill = {
 				});
 			('step 1');
 			if (result.bool) {
-				let num = 1, list = [];
+				let num = 1,
+					list = [];
 				player.getHistory('useCard', function (evt) {
 					if (get.type(evt.card) != 'trick') {
 						return;
 					}
-					let name = evt.card.name, nature = evt.card.nature || '';
+					let name = evt.card.name,
+						nature = evt.card.nature || '';
 					if (!list.includes(name + nature)) {
 						list.push(name + nature);
 					}
@@ -51616,7 +51704,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chuangheng: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -51673,7 +51761,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_dunying: {
 		audio: 'ext:千秋霸业/At dawn:1',
@@ -51755,8 +51843,8 @@ const skill = {
 					if (js.length) {
 						const jj = js[0].viewAs
 							? {
-									name: js[0].viewAs,
-								}
+								name: js[0].viewAs,
+							}
 							: js[0];
 						if (jj.name == 'guohe' || js.length > 1 || get.effect(target, jj, target, player) < 0) {
 							return 3;
@@ -51862,8 +51950,8 @@ const skill = {
 							if (js.length) {
 								const jj = js[0].viewAs
 									? {
-											name: js[0].viewAs,
-										}
+										name: js[0].viewAs,
+									}
 									: js[0];
 								if (jj.name == 'guohe' || js.length > 1 || get.effect(target, jj, target, player) < 0) {
 									return 3;
@@ -52065,7 +52153,7 @@ const skill = {
 				mod: {},
 				ai: {
 					effect: {
-						target(card, player, target, current) {
+						target(card, player, target) {
 							if (get.type(card) != 'delay') {
 								return;
 							}
@@ -52092,7 +52180,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_mieyu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -52157,7 +52245,9 @@ const skill = {
 			('step 2');
 			if (event.directfalse || result.index == 0) {
 				event.target.showHandcards();
-				let suits = ['heart', 'club', 'spade', 'diamond'], cards = [], hs = target.getCards('h');
+				let suits = ['heart', 'club', 'spade', 'diamond'],
+					cards = [],
+					hs = target.getCards('h');
 				for (let i of hs) {
 					suits.remove(i.suit);
 				}
@@ -52266,7 +52356,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yinyangjing2: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -52456,7 +52546,9 @@ const skill = {
 		forced: true,
 		content() {
 			'step 0';
-			let list = [], list1 = [], list2 = [];
+			let list = [],
+				list1 = [],
+				list2 = [];
 
 			for (const i of lib.inpile) {
 				const info = lib.card[i];
@@ -52545,7 +52637,9 @@ const skill = {
 		autodelay: true,
 		content() {
 			'step 0';
-			let list = [], list1 = [], list2 = [];
+			let list = [],
+				list1 = [],
+				list2 = [];
 
 			for (const i of lib.inpile) {
 				const info = lib.card[i];
@@ -52728,7 +52822,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuzhao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -52853,7 +52947,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huawu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -52924,7 +53018,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_zhuique: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -53034,7 +53128,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiandao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -53105,7 +53199,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lingmao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -53138,7 +53232,7 @@ const skill = {
 					player.countCards('hs', function (card) {
 						return card.name != button.link[2] && player.getUseValue(card) > 0 && get.type(card) == 'trick';
 					}) -
-						player.countCards('hs', button.link[2]) >
+					player.countCards('hs', button.link[2]) >
 					1
 				) {
 					return 0;
@@ -53245,7 +53339,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huanmo: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -53422,7 +53516,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shenzhi1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -53493,7 +53587,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_quye: {
 		trigger: {
@@ -53529,7 +53623,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_quye2: {
 		trigger: {
@@ -53631,7 +53725,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_youshang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -53817,7 +53911,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiongbao: {
 		mod: {
@@ -54133,7 +54227,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fenmie: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -54257,7 +54351,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shiyuan11: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -54642,7 +54736,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_juefeng1: {
 		trigger: {
@@ -54768,7 +54862,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_canxun: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -54821,7 +54915,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_caiguang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55006,10 +55100,10 @@ const skill = {
 				player.gain(togain, 'gain2', 'log');
 			}
 			('step 11');
-			let togain = result.control == '不同花色' ? event.cards2 : event.cardsx;
-			togain.remove(event.cardx);
-			if (togain.length) {
-				target.gain(togain, 'gain2', 'log');
+			let togain1 = result.control == '不同花色' ? event.cards2 : event.cardsx;
+			togain1.remove(event.cardx);
+			if (togain1.length) {
+				target.gain(togain1, 'gain2', 'log');
 			}
 			event.finish();
 			('step 12');
@@ -55021,9 +55115,9 @@ const skill = {
 			('step 13');
 			event.current = result.links[0];
 			event.cardsx.remove(event.current);
-			let dialog = ui.create.dialog('令一名角色获得之');
-			dialog.add([event.current]);
-			player.chooseTarget(1, true, dialog).set('ai', function (target) {
+			let dialog1 = ui.create.dialog('令一名角色获得之');
+			dialog1.add([event.current]);
+			player.chooseTarget(1, true, dialog1).set('ai', function (target) {
 				let base = 1;
 				if (!_status.event.parent.targets2.includes(target) && get.recoverEffect(target, _status.event.player, _status.event.player) > 0) {
 					base++;
@@ -55060,7 +55154,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_qingyu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55114,7 +55208,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_wuji: {
 		mod: {
@@ -55160,7 +55254,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jinshi: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55189,7 +55283,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shujing: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55213,7 +55307,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xinjie: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55306,7 +55400,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_kuangmou: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55331,7 +55425,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianzong: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55405,7 +55499,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jianzong1: {
 		trigger: {
@@ -55669,7 +55763,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yewang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55738,7 +55832,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yanzhui: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55779,7 +55873,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiayao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55805,7 +55899,8 @@ const skill = {
 					_status.maxShuffle--;
 				}
 				game.shuffleNumber++;
-				let cards = [], i;
+				let cards = [],
+					i;
 				for (let i = 0; i < lib.onwash.length; i++) {
 					if (lib.onwash[i]() == 'remove') {
 						lib.onwash.splice(i--, 1);
@@ -55923,7 +56018,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shisha: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -55993,7 +56088,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_nianzao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56066,7 +56161,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lengxiang: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56112,7 +56207,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_pozhan1: {
 		trigger: {
@@ -56136,7 +56231,7 @@ const skill = {
 		},
 		prompt2(event, player) {
 			let evt = event.getl(player),
-                origins = evt.cards2.map(function (i) {
+				origins = evt.cards2.map(function (i) {
 					return get.name(i, evt.hs.includes(i) ? player : false);
 				});
 			return '获得' + get.translation(origins) + '';
@@ -56145,9 +56240,9 @@ const skill = {
 		forced: true,
 		content() {
 			let num = 0,
-                cards = [],
-                evt = trigger.getl(player),
-                origins = evt.cards2.map(function (i) {
+				cards = [],
+				evt = trigger.getl(player),
+				origins = evt.cards2.map(function (i) {
 					return get.name(i, evt.hs.includes(i) ? player : false);
 				});
 			for (let i of origins) {
@@ -56258,7 +56353,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_fengjing: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56301,7 +56396,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jishi1: {
 		trigger: {
@@ -56472,7 +56567,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jishi2: {
 		charlotte: true,
@@ -56511,7 +56606,8 @@ const skill = {
 			return player.countCards('h');
 		},
 		prompt2(event, player) {
-			const cds = player.getCards('h'), lt = [];
+			const cds = player.getCards('h'),
+				lt = [];
 
 			for (const i of cds) {
 				lt.add(i.suit);
@@ -56522,7 +56618,8 @@ const skill = {
 		},
 		content() {
 			'step 0';
-			const cds = player.getCards('h'), lt = [];
+			const cds = player.getCards('h'),
+				lt = [];
 
 			for (const i of cds) {
 				lt.add(i.suit);
@@ -56606,7 +56703,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_juying1: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56728,7 +56825,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jinghui: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56791,7 +56888,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_anyao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56836,7 +56933,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huangxue: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -56892,15 +56989,16 @@ const skill = {
 				event.nm = 0;
 			}
 			('step 1');
+			let str;
 			switch (event.lt[event.nm]) {
 				case 'h':
-					let str = '手牌区';
+					str = '手牌区';
 					break;
 				case 'e':
-					let str = '装备区';
+					str = '装备区';
 					break;
 				case 'j':
-					let str = '判定区';
+					str = '判定区';
 					break;
 			}
 			player.recover();
@@ -57039,7 +57137,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_huzhen: {
 		enable: 'phaseUse',
@@ -57305,7 +57403,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_hainu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -57492,7 +57590,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiafu: {
 		enable: 'phaseUse',
@@ -57567,7 +57665,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jiuxiao: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -57668,7 +57766,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiangshu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -57741,7 +57839,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_saowei: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -57926,7 +58024,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_yuannian: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -57996,7 +58094,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_chijie: {
 		audio: 'ext:千秋霸业/Archive:2',
@@ -58079,7 +58177,7 @@ const skill = {
 			if (player == target) {
 				return false;
 			}
-			let card = ui.selected.cards[0];
+			card = ui.selected.cards[0];
 			if (get.type(card, false) == 'delay') {
 				return target.canAddJudge({ name: card.name });
 			}
@@ -58144,7 +58242,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_shude: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -58226,7 +58324,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lingmei: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -58324,7 +58422,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_lingmei1: {
 		trigger: {
@@ -58432,7 +58530,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_jingxian: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -58465,7 +58563,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_pogu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -58561,7 +58659,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 	lg_xiangcu: {
 		audio: 'ext:千秋霸业/Centuries:2',
@@ -58868,7 +58966,7 @@ const skill = {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() {},
+		content() { },
 	},
 };
 Object.assign(lib.skill, skill);
