@@ -5712,7 +5712,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                         play = _status.event.player;
                                     var bool1 = get.attitude(play, player) < 0;
                                     var bool2 = (source == play && play.maxHp - play.hp > 1) || (source != play && get.attitude(play, source) > 0 && play.isDamaged());
-                                    if (bool1 && bool2 && !play.countCards('h', (card) => game.filterPlayer((playe) => play.canUse(card, playe, false)).length) > 0) return '背水!';
+                                    if (bool1 && bool2 && !play.countCards('h', (card) => game.filterPlayer((player) => play.canUse(card, player, false)).length) > 0) return '背水!';
                                     if (bool1) return '选项一';
                                     if (bool2) return '选项二';
                                 });

@@ -396,7 +396,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										}
 										var hs1 = targe.getCards('h', 'sha');
-										var hs2 = playe.getCards('h', 'sha');
+										var hs2 = player.getCards('h', 'sha');
 										if (hs1.length > hs2.length + 1) {
 											return -2;
 										}
@@ -585,7 +585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (lib.config.mode == 'stone' && !player.isMin()) {
 											if (player.getActCount() + 1 >= player.actcount) return 0;
 										}
-										var shas = playe.getCards('h', 'sha');
+										var shas = player.getCards('h', 'sha');
 										if (shas.length > 1 && player.getCardUsable('sha') > 1) {
 											return 0;
 										}
@@ -2266,7 +2266,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										}
 										var hs1 = targe.getCards('h', 'sha');
-										var hs2 = playe.getCards('h', 'sha');
+										var hs2 = player.getCards('h', 'sha');
 										if (hs1.length > hs2.length + 1) {
 											return -2;
 										}
@@ -2885,7 +2885,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										}
 										var hs1 = targe.getCards('h', 'sha');
-										var hs2 = playe.getCards('h', 'sha');
+										var hs2 = player.getCards('h', 'sha');
 										if (hs1.length > hs2.length + 1) {
 											return -2;
 										}
@@ -3527,9 +3527,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								var cards;
 								if (event.control == '红色') {
-									cards = playe.getCards('h', { color: 'red' });
+									cards = player.getCards('h', { color: 'red' });
 								} else {
-									cards = playe.getCards('h', { color: 'black' });
+									cards = player.getCards('h', { color: 'black' });
 								}
 								player.discard(cards);
 								event.num = cards.length;
@@ -6299,7 +6299,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								result: {
 									player(player, target) {
 										if (get.distance(player, target) <= 1) return 0;
-										var hs = playe.getCards('h', 'shunshou');
+										var hs = player.getCards('h', 'shunshou');
 										if (hs.length && player.canUse(hs[0], target, false)) {
 											return 1;
 										}
@@ -6821,7 +6821,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							check(event, player) {
 								if (event.player.isUnderControl(true, player)) {
 									return (
-										event.playe.getCards('h', function (card) {
+										event.player.getCards('h', function (card) {
 											return get.type(card) != 'food';
 										}).length
 									);
@@ -8085,7 +8085,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (lib.config.mode == 'stone' && !player.isMin()) {
 											if (player.getActCount() + 1 >= player.actcount) return 0;
 										}
-										var shas = playe.getCards('h', 'sha');
+										var shas = player.getCards('h', 'sha');
 										if (shas.length > 1 && player.getCardUsable('sha') > 1) {
 											return 0;
 										}
@@ -10134,7 +10134,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								check(button) {
 									var player = _status.event.player;
 									if (Math.random() < 0.5) {
-										var hcard = playe.getCards('h', function (card) {
+										var hcard = player.getCards('h', function (card) {
 											return card.suit == 'heart';
 										});
 										for (let i = 0; i < hcard.length; i++) {

@@ -13421,7 +13421,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (lib.config.mode == 'stone' && !player.isMin()) {
                                             if (player.getActCount() + 1 >= player.actcount) return 0;
                                         }
-                                        var shas = playe.getCards('h', 'sha');
+                                        var shas = player.getCards('h', 'sha');
                                         if (shas.length > 1) {
                                             if (player.countCards('e', 'zhuge')) return 1;
                                             if (player.hasSkill('paoxiao')) return 1;

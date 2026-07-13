@@ -3872,7 +3872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var controls = [];
                                 /*  var name=player.name;  
                                   skills1=lib.character[name][3];
-                                                     var skills=playe.getCards('s',false,false);     
+                                                     var skills=player.getCards('s',false,false);     
                                   skills.remove(skills1);
                                                      for(i=0;i<skills.length;i++){
                                                          var info=lib.skill[skills[i]];   

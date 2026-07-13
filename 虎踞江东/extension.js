@@ -7100,7 +7100,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							check(event, player) {
 								if (event.player.isUnderControl(true, player)) {
-									return event.playe.getCards('h', function (card) {
+									return event.player.getCards('h', function (card) {
 										return get.type(card) != 'food';
 									}).length;
 								}
@@ -13186,7 +13186,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 0;
 										}
 										var hs1 = targe.getCards('h', 'sha');
-										var hs2 = playe.getCards('h', 'sha');
+										var hs2 = player.getCards('h', 'sha');
 										if (hs1.length > hs2.length) {
 											return 0;
 										}

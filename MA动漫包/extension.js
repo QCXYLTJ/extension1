@@ -8063,7 +8063,7 @@ export default function () {
                             },
                             audio: 'ext:MA动漫包/audio:2',
                             check(event, player) {
-                                var j2 = playe.getCards('j', '2');
+                                var j2 = player.getCards('j', '2');
                                 if (j2) {
                                     if (j2.name == 'lebu') return true;
                                     if (j2.name == 'bingliang') return true;

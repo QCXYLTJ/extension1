@@ -737,7 +737,7 @@ const skill = {
 				}
 			}
 			player
-				.chooseTarget(get.prompt("cihong"), function (card, playe, target) {
+				.chooseTarget(get.prompt("cihong"), function (card, player, target) {
 					return player.canUse("sha", target, false);
 				})
 				.set("ai", function (target) {
@@ -1140,8 +1140,8 @@ const skill = {
 					return !player.storage.yunyin.includes(get.suit(card));
 				})
 				.set("logSkill", "yunyin").ai = function (card) {
-				return 9 - get.value(card);
-			};
+					return 9 - get.value(card);
+				};
 			"step 1";
 			if (!result.bool) {
 				event.finish();

@@ -25435,8 +25435,7 @@ const skill = {
             player.showCards(card, get.translation(player) + '发动此技能');
             player.storage.mx_baiguan.remove(card);
             card.discard();
-            if (player.storage.mx_baiguan.length) {
-            } else {
+            if (!player.storage.mx_baiguan.length) {
               player.unmarkSkill('mx_baiguan');
             }
           }
@@ -25457,8 +25456,7 @@ const skill = {
           player.storage.mx_baiguan.remove(card);
           player.gain(card, 'draw');
           player.chooseToDiscard(1, '是否弃置一张♣️️手牌？', 'h', { suit: 'club' });
-          if (player.storage.mx_baiguan.length) {
-          } else {
+          if (!player.storage.mx_baiguan.length) {
             player.unmarkSkill('mx_baiguan');
           }
         },
@@ -26453,7 +26451,7 @@ const skill = {
       global: 'phaseUseBefore',
     },
     filter(event, player) {
-      return event.player.sex == 'female' && event.player.hp > playe.hp;
+      return event.player.sex == 'female' && event.player.hp > player.hp;
     },
     content() {
       trigger.player.draw(2);

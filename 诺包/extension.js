@@ -22493,7 +22493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     if (targets1.includes(source) && (targets1.length > (get.select(event.selectTarget) || 1) || !event.foeced)) {
                                         event.filterTarget1 = event.filterTarget;
-                                        event.filterTarget = function (card, playe, target) {
+                                        event.filterTarget = function (card, player, target) {
                                             if (target.hasSkill('guisheyan')) return false;
                                             return this.filterTarget1.apply(this, arguments);
                                         };
@@ -22521,7 +22521,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             content() {
                                 trigger.filterTarget1 = trigger.filterTarget;
-                                trigger.filterTarget = function (card, playe, target) {
+                                trigger.filterTarget = function (card, player, target) {
                                     if (target.hasSkill('guisheyan')) return false;
                                     return this.filterTarget1.apply(this, arguments);
                                 };

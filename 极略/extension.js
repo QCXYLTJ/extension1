@@ -28195,7 +28195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return false;
                 },
                 getViewAsCard(card, player) {
-                    var skills = playe.getCards('s', true).concat(lib.skill.global);
+                    var skills = player.getCards('s', true).concat(lib.skill.global);
                     game.expandSkills(skills);
                     var list = [];
                     for (var i = 0; i < skills.length; i++) {
@@ -28211,7 +28211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     return null;
                 },
                 getSkillViewCard(card, name, player, place) {
-                    var skills = playe.getCards('s', true).concat(lib.skill.global);
+                    var skills = player.getCards('s', true).concat(lib.skill.global);
                     game.expandSkills(skills);
                     for (var i = 0; i < skills.length; i++) {
                         var ifo = get.info(skills[i]);

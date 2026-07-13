@@ -291,7 +291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             check(card, player) {
                                 var val = ai.get.equipValue(card);
                                 var player = _status.event.player;
-                                var cards = playe.getCards('h', { subtype: get.subtype(card) });
+                                var cards = player.getCards('h', { subtype: get.subtype(card) });
                                 for (var i = 0; i < cards.length; i++) {
                                     if (ai.get.equipValue(cards[i]) >= val) {
                                         return 1;
@@ -440,7 +440,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (lib.config.mode == 'stone' && !player.isMin()) {
                                             if (player.getActCount() + 1 >= player.actcount) return 0;
                                         }
-                                        var shas = playe.getCards('h', 'sha');
+                                        var shas = player.getCards('h', 'sha');
                                         if (shas.length > 1) {
                                             if (player.countCards('e', 'zhuge')) return 0;
                                             if (player.hasSkill('paoxiao')) return 0;

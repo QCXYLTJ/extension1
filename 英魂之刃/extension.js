@@ -9397,7 +9397,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player: 'phaseBefore',
 									},
 									filter(event, player) {
-										return playe.getCards('h', 'sha').length;
+										return player.getCards('h', 'sha').length;
 									},
 									forced: true,
 									async content(event, trigger, player) {

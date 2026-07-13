@@ -4604,7 +4604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						},
 						AM_guizeyuesu: {
 							init(player, skill) {
-								var skills = playe.getCards('s', true, false);
+								var skills = player.getCards('s', true, false);
 								for (var i = 0; i < skills.length; i++) {
 									if (!lib.ondisabled.includes(skills[i])) {
 										skills.splice(i--, 1);

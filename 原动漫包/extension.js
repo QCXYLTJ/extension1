@@ -6205,8 +6205,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					});
 					('step 1');
 					var num = trigger.player.getCards('h');
-					var cards0 = trigger.playe.getCards('h', 'shan');
-					var cards1 = trigger.playe.getCards('h', 'sha');
+					var cards0 = trigger.player.getCards('h', 'shan');
+					var cards1 = trigger.player.getCards('h', 'sha');
 					switch (result.card.suit) {
 						case 'heart':
 							trigger.player.damage('fire');
