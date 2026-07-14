@@ -6960,7 +6960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     const npc = player.getEnemies().randomGet();
                                     if (npc) {
                                         player.line(npc);
-                                        npc.die();
+                                        npc.die({ source: player });
                                     }
                                 }
                             },
