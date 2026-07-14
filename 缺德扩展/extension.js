@@ -895,7 +895,7 @@ game.import('extension', function () {
             cardfunc();
             //—————————————————————————————————————————————————————————————————————————————解构魔改本体函数
             const mogai = function () {
-                lib.element.player.dyingResult = async function () {
+                lib.element.player.dyingResult = async function (source) {
                     const player1 = this;
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
@@ -940,7 +940,7 @@ game.import('extension', function () {
                         }
                     }
                     if (_status.dying.includes(player1)) {
-                        await player1.die();
+                        await player1.die({ source: source });
                     }
                     return player1;
                 }; //濒死结算
@@ -7678,7 +7678,7 @@ game.import('extension', function () {
                                     ) {
                                         player.gain(cards, 'gain2');
                                         player.gain(targets[0].getExpansions('QD_buqu'), 'gain2');
-                                        await targets[0].dyingResult();
+                                        await targets[0].dyingResult(player);
                                         if (game.players.includes(targets[0])) {
                                             await player.dyingResult();
                                         }

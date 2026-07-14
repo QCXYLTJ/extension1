@@ -355,50 +355,52 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             numfunc();
             //—————————————————————————————————————————————————————————————————————————————解构魔改本体函数
             const mogai = function () {
-                lib.element.player.dyingResult = async function () {
+                lib.element.player.dyingResult = async function (source) {
                     const player1 = this;
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
                     for (const i of game.players) {
-                        const result = await i.chooseToUse({
-                            filterCard(card, player, event) {
-                                return lib.filter.cardSavable(card, player, player1);
-                            },
-                            filterTarget(card, player, target) {
-                                if (!card || target != player1) {
-                                    return false;
-                                }
-                                const info = get.info(card);
-                                if (!info.singleCard || ui.selected.targets.length == 0) {
-                                    const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
-                                    if (mod1 == false) {
+                        const result = await i
+                            .chooseToUse({
+                                filterCard(card, player, event) {
+                                    return lib.filter.cardSavable(card, player, player1);
+                                },
+                                filterTarget(card, player, target) {
+                                    if (!card || target != player1) {
                                         return false;
                                     }
-                                    const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
-                                    if (mod2 != 'unchanged') {
-                                        return mod2;
+                                    const info = get.info(card);
+                                    if (!info.singleCard || ui.selected.targets.length == 0) {
+                                        const mod1 = game.checkMod(card, player, target, 'unchanged', 'playerEnabled', player);
+                                        if (mod1 == false) {
+                                            return false;
+                                        }
+                                        const mod2 = game.checkMod(card, player, target, 'unchanged', 'targetEnabled', target);
+                                        if (mod2 != 'unchanged') {
+                                            return mod2;
+                                        }
                                     }
-                                }
-                                return true;
-                            },
-                            prompt: get.translation(player1) + '濒死,是否帮助？',
-                            ai1() {
-                                return 1;
-                            },
-                            ai2() {
-                                return get.attitude(player1, i);
-                            },
-                            type: 'dying',
-                            targetRequired: true,
-                            dying: player1,
-                        }).forResult();
+                                    return true;
+                                },
+                                prompt: get.translation(player1) + '濒死,是否帮助？',
+                                ai1() {
+                                    return 1;
+                                },
+                                ai2() {
+                                    return get.attitude(player1, i);
+                                },
+                                type: 'dying',
+                                targetRequired: true,
+                                dying: player1,
+                            })
+                            .forResult();
                         if (result?.bool) {
                             _status.dying.remove(player1);
                             break;
                         }
                     }
                     if (_status.dying.includes(player1)) {
-                        await player1.die();
+                        await player1.die({ source: source });
                     }
                     return player1;
                 }; //濒死结算

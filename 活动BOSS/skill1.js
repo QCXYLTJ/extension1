@@ -45596,10 +45596,10 @@ const skill = {
         }
       }
       const card = get.cardPile2(function (card) {
-        return !player.hasCard(card) && subtypes.includes(get.subtype(card)) && player.hasUseTarget(card);
+        return !player.hasCard(card) && subtypes.includes(get.subtype(card))
       });
       const card1 = get.discardPile(function (card) {
-        return !player.hasCard(card) && subtypes.includes(get.subtype(card)) && player.hasUseTarget(card);
+        return !player.hasCard(card) && subtypes.includes(get.subtype(card))
       });
       return subtypes.length && (card || card1);
     },
@@ -45613,12 +45613,12 @@ const skill = {
       if (subtypes.length) {
         subtypes.randomSort();
         for (const subtype of subtypes) {
-          const card = get.cardPile2((card) => !player.hasCard(card) && get.subtype(card) == subtype && player.hasUseTarget(card));
+          const card = get.cardPile2((card) => !player.hasCard(card) && get.subtype(card) == subtype);
           if (card) {
             player.equip(card, player);
             break;
           } else {
-            const card = get.discardPile((card) => !player.hasCard(card) && get.subtype(card) == subtype && player.hasUseTarget(card));
+            const card = get.discardPile((card) => !player.hasCard(card) && get.subtype(card) == subtype);
             if (card) {
               player.equip(card, player);
               break;

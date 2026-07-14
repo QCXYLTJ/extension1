@@ -610,7 +610,7 @@ game.import('extension', function () {
             boss();
             //—————————————————————————————————————————————————————————————————————————————解构魔改本体函数
             const mogai = function () {
-                lib.element.player.dyingResult = async function () {
+                lib.element.player.dyingResult = async function (source) {
                     const player1 = this;
                     game.log(player1, '濒死');
                     _status.dying.unshift(player1);
@@ -655,7 +655,7 @@ game.import('extension', function () {
                         }
                     }
                     if (_status.dying.includes(player1)) {
-                        await player1.die();
+                        await player1.die({ source: source });
                     }
                     return player1;
                 }; //濒死结算
