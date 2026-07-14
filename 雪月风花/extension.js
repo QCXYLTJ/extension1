@@ -22843,7 +22843,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                             ai: {
                                 order: 9,
                                 result: {
-                                    target: -10,
+                                    target: -6,
                                 },
                                 basic: {
                                     useful: [5, 1],
