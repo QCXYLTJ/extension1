@@ -22823,39 +22823,21 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 return target != player;
                             },
                             reverseOrder: true,
-                            content() {
-                                'step 0';
+                            async content(event, trigger, player) {
+                                let result;
                                 if (event.directHit) {
-                                    event._result = { bool: false };
+                                    result = { bool: false };
                                 } else {
-                                    const next = target.chooseToRespond({ name: 'du' });
-                                    next.set('ai', function (card) {
-                                        const evt = _status.event.parent;
-                                        if (get.damageEffect(evt.target, evt.player, evt.target) * 9 >= 0) {
-                                            return 0;
-                                        }
-                                        if (evt.player.hasSkillTag('notricksource')) {
-                                            return 0;
-                                        }
-                                        if (evt.target.hasSkillTag('notrick')) {
-                                            return 0;
-                                        }
-                                        return get.order(card);
-                                    });
+                                    result = await event.target.chooseToRespond({ name: 'du' })
+                                        .set('ai', function (card) {
+                                            return 6;
+                                        }).forResult();
                                 }
-                                ('step 1');
-                                if (result.bool == false) {
-                                    event.count = 9;
-                                } else {
-                                    event.finish();
-                                }
-                                ('step 2');
-                                if (event.count && target.hp > 0) {
-                                    event.count--;
-                                    if (target.hp > 0) {
-                                        player.useCard({ name: 'sha' }, target);
+                                if (!result.bool) {
+                                    let count = 3;
+                                    while (count-- > 0 && event.target.isIn()) {
+                                        await player.useCard({ name: 'sha' }, event.target);
                                     }
-                                    event.redo();
                                 }
                             },
                             ai: {
@@ -23664,7 +23646,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                         xyfh_dulandaer_skill1: '杜兰达尔',
                         xyfh_dulandaer_skill2: '杜兰达尔',
                         Furioso: 'Furioso',
-                        Furioso_info: '出牌阶段,对所有其他角色使用.目标角色需打出一张【毒】,否则视为你对其使用九张【杀】',
+                        Furioso_info: '出牌阶段,对所有其他角色使用.目标角色需打出一张【毒】,否则视为你对其使用3张【杀】',
                         xyfh_xiubaixie: '袖白雪',
                         xyfh_xiubaixie_info: '锁定技,若装备此牌的角色为〖朽木露琪亚〗令其获得技能『始解-解放』、『卍解·白霞罚』.(当你使用伤害类的牌指定目标后,你可额外指定你攻击范围内的其他角色成为此牌的目标;你造成的伤害均视为冰属性伤害)',
                         xyfh_shijie: '始解-解放',
