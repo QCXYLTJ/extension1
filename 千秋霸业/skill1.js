@@ -28300,83 +28300,9 @@ const skill = {
 		},
 		content() { },
 	},
+	// 锁定技,当你对其他角色使用【杀】结算后,你随机弃置一张手牌,对其视为使用一张【决斗】
+	// 若你的♥️️手牌数大于X,你对攻击范围内的一名其他角色视为使用一张【杀】(X为你的♠️️手牌数)
 	lg_pimi: {
-		audio: 'ext:千秋霸业/Archive:2',
-		trigger: {
-			player: ['useCard', 'die'],
-			global: 'recoverBegin',
-		},
-		forceDie: true,
-		forced: true,
-		popup: false,
-		init(player) {
-			player.storage.lg_pimi = [];
-			game.countPlayer(function (current) {
-				if (current != player) {
-					current.storage.lg_pimiUse = [];
-				}
-			});
-		},
-		marktext: ' ',
-		intro: {
-			content(storage) {
-				let str = '其他角色不能使用或打出点数为' + get.translation(storage[0]);
-				for (let i = 1; i < storage.length; i++) {
-					str += '、' + get.translation(storage[i]);
-				}
-				str += '的牌';
-				return str;
-			},
-		},
-		content() {
-			if (trigger.name == 'die') {
-				game.countPlayer(function (current) {
-					if (current != player) {
-						current.storage.lg_pimiUse = [];
-					}
-				});
-				event.finsih();
-				return;
-			} else if (trigger.name == 'useCard') {
-				if (!trigger.card.number) {
-					event.finish();
-					return;
-				}
-				if (!player.storage.lg_pimi.includes(trigger.card.number)) {
-					player.storage.lg_pimi.add(trigger.card.number);
-					player.markSkill('lg_pimi');
-					game.countPlayer(function (current) {
-						if (current != player) {
-							current.storage.lg_pimiUse.push(trigger.card.suit);
-						}
-					});
-				}
-			} else {
-				player.storage.lg_pimi = [];
-				player.unmarkSkill('lg_pimi');
-				game.countPlayer(function (current) {
-					if (current != player) {
-						current.storage.lg_pimiUse = [];
-					}
-				});
-			}
-		},
-		global: ['lg_pimi_use'],
-		subSkill: {
-			use: {
-				popup: false,
-				forced: true,
-				mod: {
-					cardEnabled2(card, player) {
-						if (player.storage.lg_pimiUse && player.storage.lg_pimiUse.includes(card.number)) {
-							return false;
-						}
-					},
-				},
-			},
-		},
-	},
-	lg_pimi1: {
 		audio: 'ext:千秋霸业/Archive:2',
 		trigger: {
 			player: 'useCardToAfter',
@@ -28388,7 +28314,6 @@ const skill = {
 			}
 		},
 		content() {
-			'step 0';
 			player.randomDiscard('h');
 			player.useCard({ name: 'juedou' }, trigger.target, false);
 			if (player.countCards('h', { suit: 'heart' }) > player.countCards('h', { suit: 'spade' })) {
@@ -28405,19 +28330,58 @@ const skill = {
 			},
 		},
 	},
+	// 锁定技,当你使用的牌结算后,其他角色不能使用或打出与此牌点数相同的牌,直到有角色回复体力为止
+	lg_xiongmeng: {
+		audio: 'ext:千秋霸业/At dawn:1',
+		trigger: {
+			player: ['useCard'],
+		},
+		forceDie: true,
+		forced: true,
+		popup: false,
+		filter(event, player) {
+			return event.card.number;
+		},
+		mark: true,
+		intro: {
+			content(storage) {
+				let str = '其他角色不能使用或打出点数为' + get.translation(storage[0]);
+				for (let i = 1; i < storage.length; i++) {
+					str += '、' + get.translation(storage[i]);
+				}
+				str += '的牌';
+				return str;
+			},
+		},
+		content() {
+			game.countPlayer(function (current) {
+				if (current != player) {
+					current.storage.lg_xiongmeng ??= [];
+					current.storage.lg_xiongmeng.add(trigger.card.number);
+				}
+			});
+		},
+		global: ['lg_xiongmeng_use'],
+		subSkill: {
+			use: {
+				popup: false,
+				forced: true,
+				mod: {
+					cardEnabled2(card, player) {
+						if (player.storage.lg_xiongmeng?.includes(card.number)) {
+							return false;
+						}
+					},
+				},
+			},
+		},
+	},
 	lg_yanliangwenchou_zhenwang: {
 		audio: 'ext:千秋霸业/At dawn:1',
 		trigger: {
 			player: 'dieBegin',
 		},
 		forced: true,
-		content() { },
-	},
-	lg_xiongmeng: {
-		audio: 'ext:千秋霸业/At dawn:1',
-		trigger: {
-			player: '',
-		},
 		content() { },
 	},
 	lg_fuhai: {
