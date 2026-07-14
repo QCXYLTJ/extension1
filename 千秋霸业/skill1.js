@@ -28373,6 +28373,15 @@ const skill = {
 						}
 					},
 				},
+				trigger: {
+					player: ['recoverBegin'],
+				},
+				forced: true,
+				content() {
+					game.countPlayer(function (current) {
+						current.storage.lg_xiongmeng = [];
+					});
+				},
 			},
 		},
 	},
