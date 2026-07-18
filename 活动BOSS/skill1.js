@@ -18253,7 +18253,7 @@ const skill = {
     ai: {
       damageBonus: true,
       skillTagFilter(player, tag, arg) {
-        if (arg && arg.target && player.inRangeOf(arg.target)) {
+        if (arg && arg.player && player.inRangeOf(arg.player)) {
           return true;
         }
         return false;
