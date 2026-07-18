@@ -45305,7 +45305,7 @@ const skill = {
 				game.delayx();
 			}
 			('step 3');
-			const cards = cards.filter(function (i) {
+			const cards = event.cards.filter(function (i) {
 				return get.position(i, true) == 'd' && i.number == '9';
 			});
 			if (cards.length) {
