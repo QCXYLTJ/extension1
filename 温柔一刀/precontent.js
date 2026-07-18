@@ -5344,7 +5344,8 @@ const precontent = async function () {
                     async content(event, trigger, player) {
                         game.log(`<span class=Qmenu>${get.translation(player)}与${get.translation(event.targets[0])}交换手牌</span>`);
                         const cards0 = event.targets[0].getCards('h');
-                        const { cards } = await event.targets[0].gain(player.getCards('h'), 'gain2');
+                        const cards = player.getCards('h')
+                        await event.targets[0].gain(cards, 'gain2');
                         if (cards?.length) {
                             if (!cards.some((q) => !q.storage.QQQ_meiying)) {
                                 player.tempBanSkill('QQQ_qingwu');
