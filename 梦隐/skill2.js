@@ -27327,11 +27327,11 @@ const skill = {
       player.storage.mx_zhongyanzhiqiang++;
       ('step 1');
       if (result.suit == 'diamond') {
-        player.addMark(1, 'mx_zhongyanzhiqiang_diamond');
+        player.addMark('mx_zhongyanzhiqiang_diamond', 1);
         target.damage();
       }
       if (result.suit == 'spade') {
-        player.addMark(1, 'mx_zhongyanzhiqiang_spade');
+        player.addMark('mx_zhongyanzhiqiang_spade', 1);
         target.chooseToDiscard('e', 2, true);
       }
       ('step 2');
