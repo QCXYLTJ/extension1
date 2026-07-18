@@ -3936,27 +3936,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 if (event.gaintag) next.gaintag.addArray(event.gaintag);
                 event.result = cards;
             };
-            lib.element.content.xwjh_jingtiewan_recover = function () {
-                'step 0';
-                game.playXwAudio('xwjh_voc_jingtiewanlose');
-                if (!player.isDamaged()) {
-                    player.addXwBuff('xwjh_publicmark_qingshen', 3);
-                    event.finish();
-                } else {
-                    player.chooseBool('是否回复一点体力？否则你获得三点轻身效果.').set('ai', function () {
-                        if (get.recoverEffect(player, player, player) <= 0) {
-                            return false;
-                        }
-                        return true;
-                    });
-                }
-                ('step 1');
-                if (result.bool) {
-                    player.recover();
-                } else {
-                    player.addXwBuff('xwjh_publicmark_qingshen', 3);
-                }
-            };
             lib.element.player.xwThrowTouzi = function () {
                 var next = game.createEvent('xwThrowTouzi');
                 next.player = this;
@@ -16297,14 +16276,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             toself: true,
                             fullskin: true,
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('xwjh_jingtiewan_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent('xwjh_jingtiewan_recover');
+                            async onLose(event, trigger, player) {
+                                game.playXwAudio('xwjh_voc_jingtiewanlose');
+                                if (!player.isDamaged()) {
+                                    player.addXwBuff('xwjh_publicmark_qingshen', 3);
+                                } else {
+                                    const { bool } = await player.chooseBool('是否回复一点体力？否则你获得三点轻身效果.').set('ai', function () {
+                                        if (get.recoverEffect(player, player, player) <= 0) {
+                                            return false;
+                                        }
+                                        return true;
+                                    }).forResult();
+                                    if (bool) {
+                                        player.recover();
+                                    } else {
+                                        player.addXwBuff('xwjh_publicmark_qingshen', 3);
+                                    }
+                                }
                             },
                             filterLose(card, player) {
                                 if (player.hasSkillTag('unequip2')) return false;

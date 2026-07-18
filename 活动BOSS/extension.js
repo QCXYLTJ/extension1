@@ -12102,20 +12102,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
               skills: ['qihuan_yinyi_skill'],
               type: 'equip',
               subtype: 'equip2',
-              onLose() {
-                const next = game.createEvent('qihuan_yinyi_lose');
-                event.next.remove(next);
-                let evt = event.parent;
-                if (evt.getlx === false) {
-                  evt = evt.parent;
+              async onLose(event, trigger, player) {
+                if (_status.currentPhase != player) {
+                  player.loseHp();
                 }
-                evt.after.push(next);
-                next.player = player;
-                next.setContent(function () {
-                  if (_status.currentPhase != player) {
-                    player.loseHp();
-                  }
-                });
               },
               ai: {
                 basic: {

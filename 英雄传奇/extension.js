@@ -547,16 +547,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         yxskp_jinlinjia: {
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('yxskp_jinlinjia_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.recover();
                             },
                             filterLose(card, player) {
                                 if (player.hasSkillTag('unequip2')) return false;
@@ -587,16 +579,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             cardnature: 'yxssx_an',
                         },
                         yxskp_qiankundai: {
-                            onLose() {
-                                var next = game.createEvent('yxskp_qiankundai_draw');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    if (player.hp > 0) player.draw();
-                                });
+                            async onLose(event, trigger, player) {
+                                if (player.hp > 0) {
+                                    player.draw();
+                                }
                             },
                             type: 'equip',
                             subtype: 'equip2',

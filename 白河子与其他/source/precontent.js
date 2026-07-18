@@ -43554,16 +43554,8 @@ export async function precontent(config, pack) {
                     type: 'equip',
                     subtype: 'equip2',
                     loseDelay: false,
-                    onLose() {
-                        var next = game.createEvent('llfx_shuangtou_draw');
-                        event.next.remove(next);
-                        var evt = event.parent;
-                        if (evt.getlx === false) evt = evt.parent;
-                        evt.after.push(next);
-                        next.player = player;
-                        next.setContent(function () {
-                            player.draw(4);
-                        });
+                    async onLose(event, trigger, player) {
+                        player.draw(4);
                     },
                     filterLose(card, player) {
                         if (player.hasSkillTag('unequip2')) return false;

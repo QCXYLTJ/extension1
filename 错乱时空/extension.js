@@ -37333,7 +37333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             image: 'ext:错乱时空/image/烈空坐.jpg',
                         },
                         肯泰罗: {
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.gain(game.createCard('肯泰罗'));
                                 player.$draw();
                             },

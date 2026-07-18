@@ -10420,20 +10420,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'equip',
                             subtype: 'equip2',
                             skills: ['rqsj_jisiliguanskill'],
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    if (player.isDamaged()) player.recover();
-                                    player.removeSkill('rqsj_huo');
-                                    player.removeSkill('rqsj_feng');
-                                    player.removeSkill('rqsj_tu');
-                                    player.removeSkill('rqsj_shui');
-                                });
+                            async onLose(event, trigger, player) {
+                                if (player.isDamaged()) {
+                                    player.recover();
+                                }
+                                player.removeSkill('rqsj_huo');
+                                player.removeSkill('rqsj_feng');
+                                player.removeSkill('rqsj_tu');
+                                player.removeSkill('rqsj_shui');
                             },
                             filterLose(card, player) {
                                 if (player.hasSkillTag('unequip2')) return false;

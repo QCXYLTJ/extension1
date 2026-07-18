@@ -625,19 +625,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                         if (event.type != 'discard') return false;
                         return Math.random() >= 0.5;
                     },
-                    onLose() {
-                        var next = game.createEvent('ywhy_zhizunmojie_equip', false);
-                        event.next.remove(next);
-                        var evt = event.parent;
-                        if (evt.getlx === false) evt = evt.parent;
-                        evt.after.push(next);
-                        next.player = player;
-                        next.card = card;
-                        next.setContent(function () {
+                    async onLose(event, trigger, player) {
+                        if (event.cards?.length) {
+                            const card = event.cards[0];
                             if (get.position(card) == 'd' && player.canUse(card, player)) {
                                 player.useCard(card, player, false, 'noai');
                             }
-                        });
+                        }
                     },
                 },
                 ywhy_luoyangchan: {

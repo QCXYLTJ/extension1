@@ -2304,6 +2304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                         },
+                        // 当你装备此牌时你可以获得一枚【幻·闪】标记;当你失去此装备时,将其销毁,并幻化一张手牌
                         dz_hs_jiasha: {
                             image: 'ext:三国杀·幻/dz_hs_jiasha.png',
                             fullskin: true,
@@ -2321,36 +2322,23 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool) player.addHuanMark({ name: 'shan' });
                             },
-                            onLose() {
-                                var next = game.createEvent('dz_hs_jiasha_onLosex');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.card = card;
-                                next.setContent(lib.card.dz_hs_jiasha.onLosex);
-                            },
-                            onLosex() {
-                                'step 0';
-                                if (player.countCards('h')) {
-                                    player
-                                        .chooseCard('你可以选择一张手牌幻化并将' + get.translation(card) + '移出游戏', function (card) {
-                                            return card != _status.event.cardx;
-                                        })
-                                        .set('cardx', card);
-                                } else event._result = { bool: false };
-                                ('step 1');
-                                if (result.bool) {
-                                    game.log(card, '已被移出游戏');
-                                    var owner = get.owner(card, 'judge');
-                                    if (owner) owner.lose(card, ui.special).set('forceDie', true);
-                                    else game.cardsGotoSpecial(card);
-                                    game.log(result.cards, '已被移出游戏');
-                                    var ownerx = get.owner(result.cards[0], 'judge');
-                                    if (ownerx) ownerx.lose(result.cards, ui.special).set('forceDie', true);
-                                    else game.cardsGotoSpecial(result.cards);
-                                    player.addHuanMark(result.cards);
+                            async onLose(event, trigger, player) {
+                                if (player.countCards('h') && event.cards?.length) {
+                                    const card = event.cards[0];
+                                    setTimeout(async function () {
+                                        game.log(card, '已被销毁');
+                                        const card = event.cards[0];
+                                        const npc = get.owner(card);
+                                        if (npc) {
+                                            await npc.lose(card).set('_triggered', null);
+                                        }
+                                        card.selfDestroy();
+                                    }, 600);
+                                    const { cards } = await player
+                                        .chooseCard('h', '你可以选择一张手牌幻化').forResult();
+                                    if (cards?.length) {
+                                        player.addHuanMark(cards);
+                                    }
                                 }
                             },
                             ai: {
@@ -2482,7 +2470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         dz_hs_huiguang: '回光返照',
                         dz_hs_huiguang_info: '出牌阶段对自己使用,将手牌摸至体力上限(至多摸五张)并将体力回复至体力上限,回合结束时你将体力失去至一点;当一名角色处于濒死状态时对其使用其将体力回复至一点幻化所有手牌',
                         dz_hs_jiasha: '袈裟',
-                        dz_hs_jiasha_info: '当你装备此牌时你可以获得一枚【幻·闪】标记;当你失去此装备时你可以改为幻化一张手牌并将此牌移出游戏',
+                        dz_hs_jiasha_info: '当你装备此牌时你可以获得一枚【幻·闪】标记;当你失去此装备时,将其销毁,并幻化一张手牌',
                         dz_hs_shelizi: '舍利子',
                         dz_hs_shelizi_info: '你令一名角色回复体力后你可以摸一张牌或从移出游戏的牌中选择一张获得;限定技,你的回合内你可以将一张【桃】当做【桃园结义】使用',
                         dz_hs_shelizi_skill: '舍利子',

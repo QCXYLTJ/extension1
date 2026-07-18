@@ -50873,21 +50873,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								},
 							},
 						},
-						snjs_card_qiankunquan_skill: {
-							audio: 'hanbing_skill',
-							equipSkill: true,
-							async content(event, trigger, player) {
-								//QQQ
-								var { result } = await player
-									.chooseTarget('弃置一名其他角色区域内的一张牌', function (card, player, target) {
-										return target != player && target.countCards('hej') && target.countCards('hej', (card) => lib.filter.canBeDiscarded(card, player, target));
-									})
-									.set('ai', (target) => get.effect(target, { name: 'guohe' }, player, player));
-								if (result.targets?.length) {
-									player.discardPlayerCard(result.targets[0], 'hej', true);
-								}
-							},
-						},
 						snjs_shuiyanqijunx: {
 							forced: true,
 							silent: true,
@@ -67571,15 +67556,27 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							fullskin: true,
 							type: 'equip',
 							subtype: 'equip5',
-							onEquip() {
-								var next = game.createEvent('snjs_card_qiankunquan_skill');
-								next.player = player;
-								next.setContent(lib.skill.snjs_card_qiankunquan_skill.content);
+							async onEquip(event, trigger, player) {
+								const { targets } = await player
+									.chooseTarget('弃置一名其他角色区域内的一张牌', function (card, player, target) {
+										return target != player && target.countCards('hej') && target.countCards('hej', (card) => lib.filter.canBeDiscarded(card, player, target));
+									})
+									.set('ai', (target) => get.effect(target, { name: 'guohe' }, player, player))
+									.forResult();
+								if (targets?.length) {
+									player.discardPlayerCard(targets[0], 'hej', true);
+								}
 							},
-							onLose() {
-								var next = game.createEvent('snjs_card_qiankunquan_skill');
-								next.player = player;
-								next.setContent(lib.skill.snjs_card_qiankunquan_skill.content);
+							async onLose(event, trigger, player) {
+								const { targets } = await player
+									.chooseTarget('弃置一名其他角色区域内的一张牌', function (card, player, target) {
+										return target != player && target.countCards('hej') && target.countCards('hej', (card) => lib.filter.canBeDiscarded(card, player, target));
+									})
+									.set('ai', (target) => get.effect(target, { name: 'guohe' }, player, player))
+									.forResult();
+								if (targets?.length) {
+									player.discardPlayerCard(targets[0], 'hej', true);
+								}
 							},
 							ai: {
 								equipValue: 6,

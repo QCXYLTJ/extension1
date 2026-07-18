@@ -33576,17 +33576,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('tx_xlqk_baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(game.roundNumber);
-                                    player.hp = player.maxHp;
-                                }); //QQQ
+                            async onLose(event, trigger, player) {
+                                player.draw(game.roundNumber);
+                                player.hp = player.maxHp;
                             },
                             skills: ['tx_xlqk_baiyin_skill'],
                             tag: {

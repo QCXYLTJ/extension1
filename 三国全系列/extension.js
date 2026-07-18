@@ -7883,6 +7883,7 @@ game.import('extension', function () {
                         player.turnOver(true);
                         if (event.cards?.length) {
                             setTimeout(async function () {
+                                game.log(card, '已被销毁');
                                 const card = event.cards[0];
                                 const npc = get.owner(card);
                                 if (npc) {

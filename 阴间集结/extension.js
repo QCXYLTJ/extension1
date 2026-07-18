@@ -13164,16 +13164,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         loseDelay: false,
-                        onLose() {
-                            var next = game.createEvent('baiyin_recover');
-                            event.next.remove(next);
-                            var evt = event.parent;
-                            if (evt.getlx === false) evt = evt.parent;
-                            evt.after.push(next);
-                            next.player = player;
-                            next.setContent(function () {
-                                player.recover(4);
-                            });
+                        async onLose(event, trigger, player) {
+                            player.recover(4);
                         },
                     },
                     xinpyzhuren_spade: {

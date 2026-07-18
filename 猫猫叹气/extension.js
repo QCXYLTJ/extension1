@@ -12716,18 +12716,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             skills: ['tmxk_wangbashizijiaskill'],
                             image: 'ext:猫猫叹气/image/卡牌/tmxk_wangbashizijia.png',
                             loseDelay: false,
-                            onLose() {
-                                const next = game.createEvent('wangbashizijia_recover');
-                                event.next.remove(next);
-                                let evt = event.parent;
-                                if (evt.getlx === false) {
-                                    evt = evt.parent;
-                                }
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.recover();
                             },
                             filterLose(card, player) {
                                 if (player.hasSkillTag('unequip2')) {

@@ -81417,16 +81417,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						dshj_moshendun: {
 							//魔神盾
 							image: 'ext:第叁幻界/image/card/dshj_moshendun.png',
-							onLose() {
-								var next = game.createEvent('dshj_moshendun_loseHp');
-								event.next.remove(next);
-								var evt = event.parent;
-								if (evt.getlx === false) evt = evt.parent;
-								evt.after.push(next);
-								next.player = player;
-								next.setContent(function () {
-									player.loseHp();
-								});
+							async onLose(event, trigger, player) {
+								player.loseHp();
 							},
 							filterLose(card, player) {
 								if (player.hasSkillTag('unequip2')) return false;

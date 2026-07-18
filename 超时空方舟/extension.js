@@ -13028,16 +13028,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -1,
                             },
-                            onLose() {
-                                var next = game.createEvent('qw_leimingdao_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
                             },
                             skills: ['qw_leimingdao_skill'],
                             enable: true,
@@ -13057,16 +13049,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             image: 'ext:超时空方舟/image/qw_xueyuedao.jpg',
                             type: 'equip',
                             subtype: 'equip1',
-                            onLose() {
-                                var next = game.createEvent('qw_xueyuedao_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
                             },
                             distance: {
                                 attackFrom: -1,
