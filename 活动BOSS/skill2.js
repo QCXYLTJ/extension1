@@ -18419,7 +18419,7 @@ const skill = {
                 }
             }
             if (withme) {
-                result = await next;
+                result = await next.forResult();
                 if (_status.connectMode) {
                     game.me.unwait(result, game.me);
                 } else {
@@ -18538,7 +18538,7 @@ const skill = {
                     const player = _status.event.player;
                     return get.effect(target, _status.event.card, player, player);
                 })
-                .set('card', trigger.card);
+                .set('card', trigger.card).forResult();
             if (result.bool) {
                 if (!event.isMine() && !event.isOnline()) {
                     game.delayex();
@@ -26246,7 +26246,7 @@ const skill = {
                                     const player = get.player();
                                     return get.effect(get.event('currentTarget'), { name: button.link[2] }, player, player);
                                 })
-                                .set('currentTarget', current);
+                                .set('currentTarget', current).forResult();
                         }
                         if (result.links?.length) {
                             const card = { name: result.links[0][2] };

@@ -25476,7 +25476,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     controls.sort((a, b) => getNum(_status.event.cards, b) - getNum(_status.event.cards, a));
                                                     return controls[0];
                                                 })
-                                                .set('cards', cards);
+                                                .set('cards', cards).forResult();
                                         }
                                         var color = result.control;
                                         if (color == 'none2') color = 'none';
@@ -42411,7 +42411,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         return 0;
                                                     })
                                                     .set('target', target)
-                                                    .set('cards', cards);
+                                                    .set('cards', cards).forResult();
                                             if (result.index == 0) {
                                                 var result2 = await player.chooseCard('妙笔:交给' + get.translation(target) + '一张锦囊牌', (card, player) => get.type2(card) == 'trick', 'he', true);
                                                 if (result2.bool) player.give(result2.cards, target);
@@ -45821,7 +45821,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 0;
                                         })
                                         .set('type', type)
-                                        .set('target', player);
+                                        .set('target', player).forResult();
                                 if (result.index == 0) target.discard(target.getCards('h', (card) => get.type2(card) == type));
                                 else {
                                     target.damage();
@@ -48605,7 +48605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     result = await player
                                         .chooseControl('选项一', '选项二', 'cancel2')
                                         .set('choiceList', ['依次弃置其他角色的共计两张牌', '对一名其他角色造成1点伤害'])
-                                        .set('ai', () => 1);
+                                        .set('ai', () => 1).forResult();
                                 if (result.index == 0) {
                                     var num = 2,
                                         forced = true,

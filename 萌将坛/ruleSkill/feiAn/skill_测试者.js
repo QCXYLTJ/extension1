@@ -348,7 +348,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 									if (toChoose[2] <= 0) return 'cancel2';
 									return toChoose[0] > toChoose[1] ? 0 : 1;
 								})()
-							);
+							).forResult();
 					if (result.control == 'cancel2') {
 						if (_status.connectMode) {
 							game.broadcastAll(() => {
@@ -375,7 +375,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							if (index == 1 && delt < 0) delt = 0;
 							return (1 - 2 * index) * att * delt;
 						})
-						.set('index', index);
+						.set('index', index).forResult();
 					if (_status.connectMode) {
 						game.broadcastAll(() => {
 							delete _status.noclearcountdown;

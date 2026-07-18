@@ -23006,7 +23006,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                       return (_status.event.reverse ? 1 : -1) * (get.value(b) - get.value(a));
                     });
                     return [cards];
-                  });
+                  }).forResult();
               }
               if (result.bool) {
                 let cards2 = result.moved[0];

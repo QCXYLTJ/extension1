@@ -16283,7 +16283,7 @@ const skill = {
             return 1 + Math.random();
           })
           .set('color', color)
-          .set('att', get.attitude(player, target) > 0 ? 1 : -1);
+          .set('att', get.attitude(player, target) > 0 ? 1 : -1).forResult();
       } else {
         event.finish();
         return;

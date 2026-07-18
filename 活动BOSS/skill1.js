@@ -6039,7 +6039,7 @@ const skill = {
               const num2 = get.recoverEffect(player, player, player);
               return num1 * list[0] > num2 * list[1] ? 0 : 1;
             })
-            .set('list', [-num1, player.getDamagedHp()]);
+            .set('list', [-num1, player.getDamagedHp()]).forResult();
         }
         if (result.index == 0) {
           if (num1 < 0) {

@@ -4554,7 +4554,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return target.hasMark('daoguishengnv') && !_status.event.targets.includes(target);
                                                 })
                                                 .set('targets', targets)
-                                                .set('ai', () => true);
+                                                .set('ai', () => true).forResult();
                                             targets.push(result.targets[0]);
                                             var id = result.targets[0].playerid;
                                             list[id] = [card];
@@ -4636,7 +4636,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (_status.event.triggerx.bottom || _status.event.triggerx.player == _status.event.player) return 1;
                                         return 0;
                                     })
-                                    .set('triggerx', trigger);
+                                    .set('triggerx', trigger).forResult();
                                 var next = await player
                                     .chooseToMove('以任意顺序置于' + (result.index == '0' ? '牌堆顶' : '牌堆底'), true)
                                     .set('list', [[result.index == '0' ? '牌堆顶' : '牌堆底', cards]])
@@ -6455,7 +6455,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                         var player = _status.event.player;
                                                         var x = num - target.countCards('h');
                                                         return get.attitude(player, target) * x;
-                                                    });
+                                                    }).forResult();
                                                     if (result.targets?.length) {
                                                         for (var target of result.targets) {
                                                             if (target.countCards('h') < num) await target.drawTo(num);
@@ -6467,7 +6467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             } else await player.loseHp(num);
                                             num = Math.min(num, game.players.length);
                                             result = await player.chooseTarget('囚歌:横置' + num + '名角色', [1, num])
-                                                .set('ai', (target) => -get.attitude(player, target));//QQQ
+                                                .set('ai', (target) => -get.attitude(player, target)).forResult();//QQQ
                                             if (result.targets?.length) {
                                                 for (var target of result.targets) {
                                                     await target.link(true);
@@ -16686,7 +16686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                             player.storage.aiarg = list0[0];
                                             return [list0[0][3]];
-                                        });
+                                        }).forResult();
                                 else result = player.storage.guihuiyin2[1];
                                 var result2 = await player
                                     .chooseTarget(player.storage.guihuiyin2 ? '选择一名角色,自该角色为起点,依次按照你选择的顺序顺时针执行效果' : '选择一名角色,自该角色为起点,依次按照你选择的顺序逆时针执行效果')
@@ -25125,7 +25125,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                             player.storage.aiarg = list0[0];
                                             return [list0[0][3]];
-                                        });
+                                        }).forResult();
                                 else result = player.storage.guihuiyin2[1];
                                 var result2 = await player
                                     .chooseTarget(player.storage.guihuiyin2 ? '选择一名角色,自该角色为起点,依次按照你选择的顺序顺时针执行效果' : '选择一名角色,自该角色为起点,依次按照你选择的顺序逆时针执行效果')

@@ -3493,13 +3493,13 @@ const skill = {
                 const delta = 5 - target.countCards('h');
                 let fix = 1;
                 const hs = target.getCards('h');
-                outer: for (let i = 0; i < hs.length - 1; i++) {
+                for (let i = 0; i < hs.length - 1; i++) {
                     const name1 = hs[i].name;
                     for (let j = i + 1; j < hs.length; j++) {
                         const name2 = hs[j].name;
                         if (name1 == name2) {
                             fix = 0.5;
-                            break outer;
+                            break;
                         }
                     }
                 }
@@ -3513,7 +3513,7 @@ const skill = {
                     return fix == 0.5 ? 0.1 : -1;
                 }
                 return (-Math.sqrt(-delta) * att) / 2;
-            });
+            }).forResult();
             if (!result.bool) {
                 return event.finish();
             }
@@ -3525,13 +3525,13 @@ const skill = {
             target.showHandcards();
             const hs = target.getCards('h');
             let hasSame = false;
-            outer: for (let i = 0; i < hs.length - 1; i++) {
+            for (let i = 0; i < hs.length - 1; i++) {
                 const name1 = hs[i].name;
                 for (let j = i + 1; j < hs.length; j++) {
                     const name2 = hs[j].name;
                     if (name1 == name2) {
                         hasSame = true;
-                        break outer;
+                        break;
                     }
                 }
             }
@@ -3555,7 +3555,7 @@ const skill = {
             }
             result = await target.chooseButton(['视为使用其中一张牌？', [list, 'vcard']]).set('ai', (button) => {
                 return get.player().getUseValue({ name: button.link[2] });
-            });
+            }).forResult();
             if (result.bool) {
                 target.chooseUseTarget(
                     new lib.element.VCard({
@@ -44575,7 +44575,7 @@ const skill = {
                             .chooseTarget('发动此技能', true, (card, player, target) => {
                                 return get.event('targets').includes(target);
                             })
-                            .set('targets', targets);
+                            .set('targets', targets).forResult();
                     }
                     if (result.targets?.length) {
                         const target = result.targets[0];

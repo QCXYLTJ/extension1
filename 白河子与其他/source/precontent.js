@@ -5792,7 +5792,7 @@ export async function precontent(config, pack) {
                 event.suit = suit;
                 await target.showCards(cardx);
                 if (player.countCards('he')) {
-                    result = await player.chooseToGive(target, (i) => i.suit != suit, 'he', get.prompt('syr_huixin'), '交给' + get.translation(target) + '一张非' + get.translation(suit) + '牌').set('ai', (card) => 10 - get.value(card));
+                    result = await player.chooseToGive(target, (i) => i.suit != suit, 'he', get.prompt('syr_huixin'), '交给' + get.translation(target) + '一张非' + get.translation(suit) + '牌').set('ai', (card) => 10 - get.value(card)).forResult();
                     if (result.bool) {
                         var B = game.filterPlayer((i) => i != target && get.distance(player, i) <= 1).randomGet();
                         var hps = [player.hp, target.hp, B.hp].sort((a, b) => a - b);
@@ -5801,7 +5801,7 @@ export async function precontent(config, pack) {
                             if (target.hp <= X) return 1;
                             if (get.effect(target, { name: 'syr_shuishuishui' }, B, player) > 0) return 0;
                             return 1;
-                        });
+                        }).forResult();
                         if (result.index == 0) {
                             var card = game.createCard2('syr_shuishuishui');
                             await B.useCard(card, target, 'noai').set('baseDamage', X);
@@ -34586,13 +34586,16 @@ export async function precontent(config, pack) {
                         var player = map.player;
                         var targets = game.filterPlayer((current) => current.hasSkill('jsrghuozhong'));
                         var result;
-                        if (targets.length) result = { bool: true, targets: targets };
-                        else
+                        if (targets.length) {
+                            result = { bool: true, targets: targets };
+                        }
+                        else {
                             result = await player
                                 .chooseTarget('请选择一名传教士,发动其的【惑众】', true, (card, player, target) => {
                                     return get.event('targets').includes(target);
                                 })
-                                .set('targets', targets);
+                                .set('targets', targets).forResult();
+                        }
                         if (result.targets?.length) {
                             var target = result.targets[0];
                             var next = game.createEvent('jsrghuozhong_draw', false);

@@ -15015,7 +15015,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         result = await player
                                             .chooseControl()
                                             .set('choiceList', choiceList)
-                                            .set('ai', () => get.rand(0, 2));
+                                            .set('ai', () => get.rand(0, 2)).forResult();
                                     }
                                     let str = choiceList[result.index];
                                     game.log(player, '选择', '#g' + str);
