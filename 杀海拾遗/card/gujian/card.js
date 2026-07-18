@@ -409,11 +409,6 @@ const card = {
 		subtype: 'equip2',
 		skills: ['mutoumianju_skill'],
 		ai: { equipValue: 4 },
-		onLose() {
-			if (player.getStat().skill.mutoumianju_skill) {
-				delete player.getStat().skill.mutoumianju_skill;
-			}
-		},
 	},
 	yuheng: { fullskin: true },
 	gjyuheng: {
@@ -426,11 +421,6 @@ const card = {
 		unique: true,
 		skills: ['gjyuheng_skill'],
 		ai: { equipValue: 6 },
-		onLose() {
-			if (player.getStat().skill.gjyuheng_skill) {
-				delete player.getStat().skill.gjyuheng_skill;
-			}
-		},
 	},
 	gjyuheng_plus: {
 		fullskin: true,
@@ -443,11 +433,6 @@ const card = {
 		cardimage: 'yuheng',
 		skills: ['gjyuheng_plus_skill'],
 		ai: { equipValue: 7 },
-		onLose() {
-			if (player.getStat().skill.gjyuheng_plus_skill) {
-				delete player.getStat().skill.gjyuheng_plus_skill;
-			}
-		},
 	},
 	gjyuheng_pro: {
 		fullskin: true,

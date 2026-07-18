@@ -11421,9 +11421,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								//立即开始你的回合
-								//player.update();
-								//ui.clear();
 								target.link(false);
 								target.turnOver(false);
 								target.recover(target.maxHp - target.hp);

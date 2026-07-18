@@ -4240,21 +4240,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						dshj_langxian: {
 							//狼筅7
 							image: 'ext:第叁幻界/image/card/dshj_langxian.png',
-							onLose() {
-								'step 0';
-								player
+							async onLose(event, trigger, player) {
+								const { targets } = await player
 									.chooseTarget(get.prompt('dshj_langxian'), '弃置一名角色区域内1张牌', function (card, player, target) {
 										return target.countDiscardableCards(player, 'hej');
 									})
 									.set('ai', function (target) {
-										var player = _status.event.player;
 										return get.effect(target, { name: 'guohe_copy2' }, player, player) > 0;
-									});
-								('step 1');
-								if (result.targets?.length) {
-									var target = result.targets[0];
-									player.line(target, 'thunder');
-									player.discardPlayerCard(target, 'hej', true);
+									}).forResult();
+								if (targets?.length) {
+									player.line(targets[0], 'thunder');
+									player.discardPlayerCard(targets[0], 'hej', true);
 								}
 							},
 							fullskin: true,
@@ -4334,30 +4330,30 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									for (var i of targets) i.addTempSkill('fengyin');
 								}
 							},
-							onLose() {
-								'step 0';
-								var cards = player.getExpansions('dshj_tiandingjian_skill_Deputy');
-								if (cards.length) player.loseToDiscardpile(cards);
-								('step 1');
+							async onLose(event, trigger, player) {
+								const cards = player.getExpansions('dshj_tiandingjian_skill_Deputy');
+								if (cards.length) {
+									player.loseToDiscardpile(cards);
+								}
 								var str = '令任意名其他角色本回合非锁定技失效',
 									num = game.countPlayer(function (current) {
 										return current != player && !current.hasSkill('fengyin');
 									});
 								if (num > 0) {
-									player
+									const { targets } = await player
 										.chooseTarget(get.prompt('dshj_tiandingjian'), str, [1, num], function (card, player, target) {
 											return target != player && !target.hasSkill('fengyin');
 										})
 										.set('ai', function (target) {
 											var player = _status.event.player;
 											return get.attitude(player, target) < 0;
-										});
-								} else event.finish();
-								('step 2');
-								if (result.targets?.length) {
-									var targets = result.targets.sortBySeat();
-									player.line(targets, 'fire');
-									for (var i of targets) i.addTempSkill('fengyin');
+										}).forResult();
+									if (targets?.length) {
+										player.line(targets, 'fire');
+										for (var i of targets) {
+											i.addTempSkill('fengyin');
+										}
+									}
 								}
 							},
 							fullskin: true,
@@ -4380,12 +4376,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							onEquip() {
 								player.addSkill('dshj_tianjieke_skill_Look');
 							},
-							onLose() {
-								'step 0';
+							async onLose(event, trigger, player) {
 								player.removeSkill('dshj_tianjieke_skill_Look');
-								('step 1');
-								var cards = get.cards(3);
-								player.gain(cards, 'draw');
+								player.gain(get.cards(3), 'draw');
 							},
 							fullskin: true,
 							type: 'equip',
@@ -81373,8 +81366,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							tag: {
 								discard: 1,
 							},
-							onLose() {
-								var num = player.countMark('dshj_lvshemao_skill');
+							async onLose(event, trigger, player) {
+								const num = player.countMark('dshj_lvshemao_skill');
 								if (num > 0) {
 									player.removeMark('dshj_lvshemao_skill', num);
 									player.randomDiscard(num * 2, 'he', true);

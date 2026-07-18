@@ -32,7 +32,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						player.addSkill('scqhCard_trident_' + book);
 					}
 				},
-				onLose() {
+				async onLose(event, trigger, player) {
 					player.removeSkill('scqhCard_trident_loyalty');
 					player.removeSkill('scqhCard_trident_riptide');
 				},

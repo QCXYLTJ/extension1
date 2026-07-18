@@ -4996,14 +4996,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 }
                 return player.group;
             };
-            lib.element.content.xwjh_jiebiao_content = function () {
-                'step 0';
-                game.cardsGotoOrdering(cards);
-                game.log(player, '丢失了镖车,散落了货物:', cards, '.');
-                player.$fullscreenpop('镖物散落', 'fire');
-                ('step 1');
-                event.trigger('xwjh_card_wanlibiaoche_jiebiao_qiang');
-            };
             lib.element.content.xwjh_yuzhong_daomu = function () {
                 'step 0';
                 this.player
@@ -11026,8 +11018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             onEquip() {
                                 player.storage.xwjh_card_linglongjijianhe_skill = [];
                             },
-                            onLose() {
-                                'step 0';
+                            async onLose(event, trigger, player) {
                                 player.unmarkSkill('xwjh_card_linglongjijianhe_skill');
                                 delete player.storage.xwjh_card_linglongjijianhe_skill;
                             },
@@ -15589,13 +15580,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             forceDie: true,
-                            onLose() {
-                                if (player.storage.xwjh_card_wanlibiaoche_skill && player.storage.xwjh_card_wanlibiaoche_skill.length) {
-                                    var next = game.createEvent('xwjh_card_wanlibiaoche_jiebiao');
-                                    next.set('player', _status.event.player);
-                                    next.set('cards', player.storage.xwjh_card_wanlibiaoche_skill.slice(0));
-                                    next.setContent('xwjh_jiebiao_content');
-                                    next.forceDie = true;
+                            async onLose(event, trigger, player) {
+                                const cards = player.storage.xwjh_card_wanlibiaoche_skill;
+                                if (cards?.length) {
+                                    game.cardsGotoOrdering(cards);
+                                    game.log(player, '丢失了镖车,散落了货物:', cards, '.');
+                                    player.$fullscreenpop('镖物散落', 'fire');
+                                    event.trigger('xwjh_card_wanlibiaoche_jiebiao_qiang');
                                 }
                                 player.unmarkSkill('xwjh_card_wanlibiaoche_skill');
                                 delete player.storage.xwjh_card_wanlibiaoche_skill;
@@ -15756,7 +15747,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             subtype: 'equip4',
                             distance: { globalFrom: -1 },
                             skills: ['xwjh_card_yugu_skill'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 game.playXwAudio('xwjh_card_lantianju_skill1');
                                 player
                                     .damage(1, 'nosource')
@@ -17145,10 +17136,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             toself: true,
                             fullskin: true,
-                            onLose() {
-                                player.unmarkSkill('xwjh_card_anyabianjian_skill_bian');
-                                player.unmarkSkill('xwjh_card_anyabianjian_skill_jian');
-                            },
                             ai: {
                                 basic: {
                                     equipValue(card, player) {

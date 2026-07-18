@@ -35,11 +35,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						target.storage[cards[0].name + '_skill'] = result.control;
 					}
 				},
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						player.markSkill(card.name + '_skill');
+					}
+				},
 				onEquip() {
 					player.markSkill(card.name + '_skill');
-				},
-				onLose() {
-					player.unmarkSkill(card.name + '_skill');
 				},
 				ai: {
 					basic: {

@@ -807,15 +807,6 @@ const card = {
 		onEquip() {
 			player.markSkill("lianyaohu_skill");
 		},
-		onLose() {
-			player.unmarkSkill("lianyaohu_skill");
-			if (player.getStat().skill.lianhua) {
-				delete player.getStat().skill.lianhua;
-			}
-			if (player.getStat().skill.shouna) {
-				delete player.getStat().skill.shouna;
-			}
-		},
 		clearLose: true,
 		ai: { equipValue: 6 },
 		skills: ["lianhua", "shouna", "lianyaohu_skill"],
@@ -841,11 +832,6 @@ const card = {
 		nopower: true,
 		unique: true,
 		ai: { equipValue: 6 },
-		onLose() {
-			if (player.getStat().skill.kongxin) {
-				delete player.getStat().skill.kongxin;
-			}
-		},
 	},
 	shennongding: {
 		fullskin: true,
@@ -856,11 +842,6 @@ const card = {
 		nopower: true,
 		unique: true,
 		ai: { equipValue: 6 },
-		onLose() {
-			if (player.getStat().skill.shennongding) {
-				delete player.getStat().skill.shennongding;
-			}
-		},
 	},
 	kongdongyin: {
 		fullskin: true,
@@ -894,11 +875,6 @@ const card = {
 		nopower: true,
 		unique: true,
 		ai: { equipValue: 6 },
-		onLose() {
-			if (player.getStat().skill.kunlunjingc) {
-				delete player.getStat().skill.kunlunjingc;
-			}
-		},
 	},
 	nvwashi: {
 		fullskin: true,
@@ -1642,11 +1618,6 @@ const card = {
 		subtype: "equip5",
 		skills: ["shentou"],
 		ai: { basic: { equipValue: 7 } },
-		onLose() {
-			if (player.getStat().skill.shentou) {
-				delete player.getStat().skill.shentou;
-			}
-		},
 	},
 	xianluhui: {
 		fullskin: true,
@@ -1893,11 +1864,6 @@ const card = {
 		subtype: "equip5",
 		skills: ["longfan"],
 		ai: { basic: { equipValue: 7 } },
-		onLose() {
-			if (player.getStat().skill.longfan) {
-				delete player.getStat().skill.longfan;
-			}
-		},
 	},
 	guiyoujie: {
 		fullskin: true,
@@ -2226,11 +2192,6 @@ const card = {
 		subtype: "equip5",
 		skills: ["yiluan"],
 		ai: { basic: { equipValue: 7 } },
-		onLose() {
-			if (player.getStat().skill.yiluan) {
-				delete player.getStat().skill.yiluan;
-			}
-		},
 	},
 	shuchui: {
 		fullskin: true,
@@ -2238,11 +2199,6 @@ const card = {
 		subtype: "equip5",
 		skills: ["shuchui"],
 		ai: { basic: { equipValue: 5.5 } },
-		onLose() {
-			if (player.getStat().skill.shuchui) {
-				delete player.getStat().skill.shuchui;
-			}
-		},
 	},
 	guiyanfadao: {
 		fullskin: true,

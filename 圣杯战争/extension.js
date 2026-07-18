@@ -51371,17 +51371,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             fullimage: true,
                         },
                         laiwatingsbzz: {
-                            onLose() {
-                                var cards = [];
-                                if (card.cards) cards.addArray(card.cards);
-                                if (get.itemtype(card) == 'card') cards.push(card);
-                                for (var cardx of cards) {
-                                    cardx.fix();
-                                    cardx.remove();
-                                    cardx.destroyed = true;
-                                }
-                                game.log(card, '被销毁了');
-                            },
                             type: 'equip',
                             subtype: 'equip5',
                             ai: {
@@ -51606,17 +51595,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             fullimage: true,
                         },
                         tiancongyunjiansbzz: {
-                            onLose() {
-                                var cards = [];
-                                if (card.cards) cards.addArray(card.cards);
-                                if (get.itemtype(card) == 'card') cards.push(card);
-                                for (var cardx of cards) {
-                                    cardx.fix();
-                                    cardx.remove();
-                                    cardx.destroyed = true;
-                                }
-                                game.log(card, '被销毁了');
-                            },
                             type: 'equip',
                             subtype: 'equip1',
                             distance: {
@@ -51688,15 +51666,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 attackFrom: -2,
                             },
                             onLose() {
-                                var cards = [];
-                                if (card.cards) cards.addArray(card.cards);
-                                if (get.itemtype(card) == 'card') cards.push(card);
-                                for (var cardx of cards) {
-                                    cardx.fix();
-                                    cardx.remove();
-                                    cardx.destroyed = true;
-                                }
-                                game.log(card, '被销毁了');
                                 if (!player.hasSkill('sbzz_shuangren_2')) player.sbzzop('sbzz_shuangren');
                             },
                             ai: {
@@ -51773,15 +51742,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 attackFrom: -1,
                             },
                             onLose() {
-                                var cards = [];
-                                if (card.cards) cards.addArray(card.cards);
-                                if (get.itemtype(card) == 'card') cards.push(card);
-                                for (var cardx of cards) {
-                                    cardx.fix();
-                                    cardx.remove();
-                                    cardx.destroyed = true;
-                                }
-                                game.log(card, '被销毁了');
                                 if (!player.hasSkill('sbzz_shuangren_2')) player.sbzzop('sbzz_shuangren');
                             },
                             ai: {

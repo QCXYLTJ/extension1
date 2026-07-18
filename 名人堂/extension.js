@@ -46963,9 +46963,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							selectTarget: 1,
 						},
 						XS_yuxi: {
-							onLose() {
-								player.unmarkSkill('XS_yuxiskill_show');
-							},
 							image: 'ext:名人堂/image/card/XS_yuxi.png',
 							fullskin: true,
 							type: 'equip',
@@ -47106,9 +47103,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 						},
 						XS_jiuding: {
-							onLose() {
-								player.unmarkSkill('XS_jiudingskill');
-							},
 							image: 'ext:名人堂/image/card/XS_jiuding.png',
 							fullskin: true,
 							type: 'equip',

@@ -15426,18 +15426,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'equip',
                             subtype: 'equip5',
                             skills: ['天耀盾甲'],
-                            onLose() {
-                                event.card = get.discardPile(function (card) {
+                            async onLose(event, trigger, player) {
+                                let card = get.discardPile(function (card) {
                                     return card.name == '血盾';
                                 });
-                                if (!event.card) {
-                                    event.card = get.drawcardPile(function (card) {
+                                if (!card) {
+                                    card = get.drawcardPile(function (card) {
                                         return card.name == '血盾';
                                     });
                                 }
-                                if (event.card) {
-                                    player.equip(event.card);
-                                } else player.say('我不高兴……');
+                                if (card) {
+                                    player.equip(card);
+                                } else {
+                                    player.say('我不高兴……');
+                                }
                             },
                             ai: {
                                 basic: {

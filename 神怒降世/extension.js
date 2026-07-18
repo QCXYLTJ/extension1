@@ -67362,9 +67362,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.storage.snjs_card_ruyijingubang_skill = card.storage.snjs_card_ruyijingubang_skill;
 								player.markSkill('snjs_card_ruyijingubang_skill');
 							},
-							onLose() {
-								player.unmarkSkill('snjs_card_ruyijingubang_skill');
-							},
 							enable: true,
 							selectTarget: -1,
 							filterTarget(card, player, target) {

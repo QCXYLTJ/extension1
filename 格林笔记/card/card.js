@@ -15,12 +15,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         enable: true,
         selectTarget: 1,
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            return get.suit(card) == 'diamond';
-          },
-          num: 2
-        }],
+          {
+            filter: function (card, player, check) {
+              return get.suit(card) == 'diamond';
+            },
+            num: 2
+          }],
 
         filterTarget: function (card, player, target) {
           return target != player;
@@ -52,12 +52,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         enable: true,
         selectTarget: 1,
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            return get.suit(card) == 'heart';
-          },
-          num: 2
-        }],
+          {
+            filter: function (card, player, check) {
+              return get.suit(card) == 'heart';
+            },
+            num: 2
+          }],
 
         filterTarget: function (card, player, target) {
           return target != player;
@@ -93,12 +93,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         enable: true,
         selectTarget: 1,
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            return get.suit(card) == 'club';
-          },
-          num: 2
-        }],
+          {
+            filter: function (card, player, check) {
+              return get.suit(card) == 'club';
+            },
+            num: 2
+          }],
 
         filterTarget: function (card, player, target) {
           return target != player;
@@ -128,12 +128,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         enable: true,
         selectTarget: 1,
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            return get.suit(card) == 'spade';
-          },
-          num: 2
-        }],
+          {
+            filter: function (card, player, check) {
+              return get.suit(card) == 'spade';
+            },
+            num: 2
+          }],
 
         filterTarget: function (card, player, target) {
           return target != player;
@@ -181,13 +181,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         },
         image: 'ext:格林笔记/card/gl_jintuiziru.jpg',
         gl_material: [
-        {
-          filter: function (card) {
-            var name = get.name(card);
-            return name == 'sha' || name == 'shan';
-          },
-          num: 1
-        }],
+          {
+            filter: function (card) {
+              var name = get.name(card);
+              return name == 'sha' || name == 'shan';
+            },
+            num: 1
+          }],
 
         ai: {
           basic: {
@@ -208,13 +208,13 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         enable: true,
         selectTarget: 1,
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            if (!player.isMaxHandcard(true)) return false;
-            return true;
-          },
-          num: 4
-        }],
+          {
+            filter: function (card, player, check) {
+              if (!player.isMaxHandcard(true)) return false;
+              return true;
+            },
+            num: 4
+          }],
 
         filterTarget: function (card, player, target) {
           return target != player;
@@ -262,12 +262,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         gl_mp: 1,
         image: 'ext:格林笔记/card/gl_hunshuimoyu.png',
         gl_material: [
-        {
-          filter: function (card) {
-            return get.type(card) == 'basic' && get.number(card) <= 7;
-          },
-          num: 1
-        }]
+          {
+            filter: function (card) {
+              return get.type(card) == 'basic' && get.number(card) <= 7;
+            },
+            num: 1
+          }]
 
       },
       gl_weiweijiuzhao: {
@@ -307,12 +307,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         gl_mp: 1,
         image: 'ext:格林笔记/card/gl_weiweijiuzhao.jpg',
         gl_material: [
-        {
-          filter: function (card) {
-            return get.name(card) == 'sha';
-          },
-          num: 2
-        }]
+          {
+            filter: function (card) {
+              return get.name(card) == 'sha';
+            },
+            num: 2
+          }]
 
       },
       gl_jishuzhili: {
@@ -323,30 +323,30 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         enable: true,
         selectTarget: 1,
         gl_material: [
-        {
-          filter: function (card) {
-            return get.suit(card) == 'heart';
+          {
+            filter: function (card) {
+              return get.suit(card) == 'heart';
+            },
+            num: 1
           },
-          num: 1
-        },
-        {
-          filter: function (card) {
-            return get.suit(card) == 'spade';
+          {
+            filter: function (card) {
+              return get.suit(card) == 'spade';
+            },
+            num: 1
           },
-          num: 1
-        },
-        {
-          filter: function (card) {
-            return get.type2(card) == 'trick';
+          {
+            filter: function (card) {
+              return get.type2(card) == 'trick';
+            },
+            num: 1
           },
-          num: 1
-        },
-        {
-          filter: function (card) {
-            return get.type2(card) == 'equip';
-          },
-          num: 1
-        }],
+          {
+            filter: function (card) {
+              return get.type2(card) == 'equip';
+            },
+            num: 1
+          }],
 
         filterTarget: function (card, player, target) {
           return target != player && target.countCards('e');
@@ -425,25 +425,25 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           }
         },
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            if (check) {
-              var colors = [];
-              for (var i of player.getCards('he')) {
-                if (get.type(i) != 'equip') continue;
-                colors.add(get.color(i, player));
+          {
+            filter: function (card, player, check) {
+              if (check) {
+                var colors = [];
+                for (var i of player.getCards('he')) {
+                  if (get.type(i) != 'equip') continue;
+                  colors.add(get.color(i, player));
+                }
+                return colors.length > 1;
+              } else {
+                if (get.type(card) != 'equip') return false;
+                if (ui.selected.cards.length && !ui.selected.cards.includes(card)) {
+                  return get.color(ui.selected.cards[0]) != get.color(card);
+                }
+                return true;
               }
-              return colors.length > 1;
-            } else {
-              if (get.type(card) != 'equip') return false;
-              if (ui.selected.cards.length && !ui.selected.cards.includes(card)) {
-                return get.color(ui.selected.cards[0]) != get.color(card);
-              }
-              return true;
-            }
-          },
-          num: 2
-        }],
+            },
+            num: 2
+          }],
 
         ai: {
           basic: {
@@ -498,15 +498,15 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         image: 'ext:格林笔记/card/gl_dageming.jpg',
         cardcolor: 'red',
         gl_material: [
-        {
-          filter: function (card) {
-            return false;
-          },
-          num: function () {
-            if (_status.event.player.countCards('h') == 0) return -1;
-            return 1;
-          }
-        }],
+          {
+            filter: function (card) {
+              return false;
+            },
+            num: function () {
+              if (_status.event.player.countCards('h') == 0) return -1;
+              return 1;
+            }
+          }],
 
         ai: {
           basic: {
@@ -528,24 +528,24 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         selectTarget: -1,
         cardcolor: 'black',
         gl_material: [
-        {
-          filter: function (card) {
-            return get.suit(card) == 'heart';
+          {
+            filter: function (card) {
+              return get.suit(card) == 'heart';
+            },
+            num: 1
           },
-          num: 1
-        },
-        {
-          filter: function (card) {
-            return get.number(card) > 10;
+          {
+            filter: function (card) {
+              return get.number(card) > 10;
+            },
+            num: 1
           },
-          num: 1
-        },
-        {
-          filter: function (card) {
-            return get.type2(card) == 'trick';
-          },
-          num: 1
-        }],
+          {
+            filter: function (card) {
+              return get.type2(card) == 'trick';
+            },
+            num: 1
+          }],
 
         toself: true,
         filterTarget: function (card, player, target) {
@@ -583,12 +583,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         autoViewAs: 'sha',
         cardcolor: 'black',
         gl_material: [
-        {
-          filter: function (card, player, check) {
-            return get.position(card) == 'h';
-          },
-          num: [1, 2]
-        }],
+          {
+            filter: function (card, player, check) {
+              return get.position(card) == 'h';
+            },
+            num: [1, 2]
+          }],
 
         global: 'g_bishajvhe_gl',
         ai: {
@@ -873,16 +873,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         forceDie: true,
         onLose: function () {
           player.unmarkSkill('gl_lieqiang_skill');
-          if (!card || !card.cards || !card.cards.length) return;
-          if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.getParent().type != 'equip' || event.getParent().swapEquip)) {
-            player.lose(card.cards, ui.discardPile);
-            player.$throw(card.cards, 1000);
-            player.popup('gl_lieqiang');
-            game.log(card, '掉落了', card.cards);
-            card.cards.length = 0;
-          } else {
-            player.lose(card.cards, ui.special);
-          }
         },
         clearLose: true,
         equipDelay: false,
@@ -967,10 +957,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           var nh = player.countCards('h');
           var pos = get.position(card);
           if (
-          player.countCards('he', {
-            subtype: get.subtype(card)
-          }) > 1)
-          {
+            player.countCards('he', {
+              subtype: get.subtype(card)
+            }) > 1) {
             return 11 - get.equipValue(card) + (pos == 'e' ? 0.4 : 0);
           }
           return 5.5 - get.value(card) + (pos == 'e' ? 0.4 : 0);

@@ -53666,11 +53666,10 @@ const skill = {
                 }
             },
             forceDie: true,
-            onLose() {
-                if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                    if (lib.card[card.name].yuancard) {
-                        card.init(lib.card[card.name].yuancard);
-                    }
+            async onLose(event, trigger, player) {
+                if (event.cards?.length) {
+                    const card = event.cards[0];
+                    card.init(lib.card[card.name].yuancard);
                 }
             },
             equipDelay: false,
@@ -53736,11 +53735,10 @@ const skill = {
                 }
             },
             forceDie: true,
-            onLose() {
-                if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                    if (lib.card[card.name].yuancard) {
-                        card.init(lib.card[card.name].yuancard);
-                    }
+            async onLose(event, trigger, player) {
+                if (event.cards?.length) {
+                    const card = event.cards[0];
+                    card.init(lib.card[card.name].yuancard);
                 }
             },
             equipDelay: false,
@@ -61338,10 +61336,10 @@ const skill = {
             loseDelay: false,
             equipDelay: false,
             skills: ['tmxk_nanmanxianghpskill'],
-            onLose() {
-                const nmx = card;
-                if (nmx) {
-                    nmx.init([nmx.suit, nmx.number, 'tmxk_nanmanxianghp']).delay = false;
+            async onLose(event, trigger, player) {
+                if (event.cards?.length) {
+                    const card = event.cards[0];
+                    card.init([nmx.suit, nmx.number, 'tmxk_nanmanxianghp']);
                 }
                 delete player.storage.nanmanxiang;
                 player.unmarkSkill('tmxk_nanmanxianghpskill');

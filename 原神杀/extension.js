@@ -15192,17 +15192,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             subtype: 'equip5',
                             nomod: true,
                             forceDie: true,
-                            onLose() {
-                                player.unmarkSkill('cgh_skill');
-                                delete player.getStat('skill').cgh_skill;
-                                if (event.getParent(2) && event.getParent(2).name != 'swapEquip' && event.parent.type != 'equip' && card && card.cards && card.cards.length) {
-                                    player.$throw(card.cards, 1000);
-                                    player.popup('cgh');
-                                    game.log(card, '掉落了', card.cards);
-                                    game.cardsDiscard(card.cards);
-                                    card.cards.length = 0;
-                                }
-                            },
                             clearLose: true,
                             equipDelay: false,
                             loseDelay: false,

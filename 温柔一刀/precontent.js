@@ -100,7 +100,7 @@ game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
 const { result
-onLose\(\) \{\n\s*.+creat
+\n{0}onLose\([^}]*unmark
 if \(result.bool(\) \{\n\s*.+result.targets)
 if (result.targets?.length$1
 if \(result.bool(\) \{\n\s*.+result.links)

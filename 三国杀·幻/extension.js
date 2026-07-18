@@ -2132,10 +2132,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.markSkill('dz_hs_shuangtieji_skill_Cons');
                             },
                             onLose() {
+                                delete player.storage.dz_hs_shuangtieji_skill_Cons;
                                 player.unmarkSkill('dz_hs_shuangtieji_skill_Cons');
-                                if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                                    delete player.storage.dz_hs_shuangtieji_skill_Cons;
-                                }
                             },
                             customSwap(card) {
                                 var type = get.subtype(card, false);
@@ -2157,17 +2155,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (!player.storage.dz_hs_shuangtieji_skill_Cons) player.storage.dz_hs_shuangtieji_skill_Cons = true;
                                 player.markSkill('dz_hs_shuangtieji_skill_Cons');
                             },
-                            onLose() {
-                                player.unmarkSkill('dz_hs_shuangtieji_skill_Cons');
-                                if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                                    delete player.storage.dz_hs_shuangtieji_skill_Cons;
-                                    game.broadcastAll(
-                                        function (card, name) {
-                                            card.init([card.suit, card.number, name]);
-                                        },
-                                        card,
-                                        'dz_hs_shuangtieji'
-                                    );
+                            async onLose(event, trigger, player) {
+                                if (event.cards?.length) {
+                                    const card = event.cards[0];
+                                    card.init([card.suit, card.number, 'dz_hs_shuangtieji']);
                                 }
                             },
                             customSwap(card) {

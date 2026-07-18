@@ -33023,9 +33023,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 },
                             },
-                            async onLose(event, trigger, player) {
-                                player.unmarkSkill('天使的七圆环');
-                            },
                             skills: ['天使的七圆环', '圆环保护'],
                             enable: true,
                             selectTarget: -1,

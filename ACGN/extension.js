@@ -7298,20 +7298,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.markSkill('bxyr_bagualu');
                             },
                             forceDie: true,
-                            onLose() {
-                                delete player.getStat('skill').bxyr_bagualu_skill;
-                                player.unmarkSkill('bxyr_bagualu');
-                                if (!card || !card.cards || !card.cards.length) return;
-                                if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                                    player.lose(card.cards, ui.discardPile);
-                                    player.$throw(card.cards, 1000);
-                                    player.popup('bxyr_bagualu');
-                                    game.log(card, '掉落了', card.cards);
-                                    card.cards.length = 0;
-                                } else {
-                                    player.lose(card.cards, ui.special);
-                                }
-                            },
                             clearLose: true,
                             equipDelay: false,
                             loseDelay: false,
@@ -8689,7 +8675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             type: 'equip',
                             subtype: 'equip5',
                             skills: ['bxyr_sunzibingfa'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 var num;
                                 num = player.countCards('h') - player.getHandcardLimit();
                                 if (num > 0 && _status.currentPhase != player) {

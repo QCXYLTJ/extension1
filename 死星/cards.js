@@ -100,13 +100,10 @@
                     attackFrom: -4,
                 },
                 skills: ['gaosihanshuang'],
-                onLose() {
-                    player.enableEquip('equip1');
-                    if (card.cards?.length) {
-                        player.equip(card.cards[0]);
-                    }
-                    else {
-                        player.equip(game.createCard('gaosihanshuang'));
+                async onLose(event, trigger, player) {
+                    if (event.cards?.length) {
+                        const card = event.cards[0];
+                        player.equip(card);
                     }
                 },
                 forceDie: true,
@@ -119,13 +116,10 @@
                 subtype: 'equip5',
                 nomod: true,
                 skills: ['xuesitongyi'],
-                onLose() {
-                    player.enableEquip('equip5');
-                    if (card.cards?.length) {
-                        player.equip(card.cards[0]);
-                    }
-                    else {
-                        player.equip(game.createCard('xuesitongyi'));
+                async onLose(event, trigger, player) {
+                    if (event.cards?.length) {
+                        const card = event.cards[0];
+                        player.equip(card);
                     }
                 },
                 forceDie: true,

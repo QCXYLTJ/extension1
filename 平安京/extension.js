@@ -8354,16 +8354,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             player.markSkill('paj_xx_Fengyexinjian_skill');
                         },
                         forceDie: true,
-                        onLose() {
-                            player.unmarkSkill('paj_xx_Fengyexinjian_skill', card.cards);
-                            if (event.getParent(2) && event.getParent(2).name != 'swapEquip' && event.parent.type != 'equip' && card && card.cards && card.cards.length) {
-                                player.$throw(card.cards, 1000);
-                                player.popup('叶信笺');
-                                game.log(player, '掉落了', card.cards);
-                                game.cardsDiscard(card.cards);
-                                card.cards.length = 0;
-                            }
-                        },
                         clearLose: true,
                         equipDelay: false,
                         loseDelay: false,

@@ -12,13 +12,12 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
       type: 'equip',
       subtype: 'equip1',
       skills: ['mengjianqi_skill'],
-      onLose() {
-        card.fix();
-        card.remove();
-        card.destroyed = true;
+      async onLose(event, trigger, player) {
         if (event.getParent(3).name != 'mengtaixu') {
-          var cards = player.getExpansions('mengjianqi_skill');
-          if (cards) player.loseToDiscardpile(cards);
+          const cards = player.getExpansions('mengjianqi_skill');
+          if (cards) {
+            player.loseToDiscardpile(cards);
+          }
         }
       }
     },
@@ -39,10 +38,9 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
           player._meng_layasite_temp = true;
           var result = function () {
             if (
-            !game.hasPlayer(function (current) {
-              return get.distance(player, current) <= 1 && player.canUse('sha', current) && get.effect(current, { name: 'sha' }, player, player) > 0;
-            }))
-            {
+              !game.hasPlayer(function (current) {
+                return get.distance(player, current) <= 1 && player.canUse('sha', current) && get.effect(current, { name: 'sha' }, player, player) > 0;
+              })) {
               return 1;
             }
             if (player.hasSha() && _status.currentPhase == player) {
@@ -100,98 +98,98 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
       toself: true
     },
     /* "meng_helusi": {
-    	legend: true,
-    	fullskin: true,
-    	type: "equip",
-    	subtype: "equip1",
-    	distance: {
-    		attackFrom: -1,
-    	},
-    	ai: {
-    		equipValue: 5,
-    		basic: {
-    			equipValue: 5,
-    			order(card, player){
-    				const equipValue = get.equipValue(card, player) / 20;
-    				return player && player.hasSkillTag('reverseEquip') ? 8.5 - equipValue : 8 + equipValue;
-    			},
-    			useful: 2,
-    			value(card, player, index, method){
-    				if (!player.getCards('e').includes(card) && !player.canEquip(card, true)) return 0.01;
-    				const info = get.info(card), current = player.getEquip(info.subtype), value = current && card != current && get.value(current, player);
-    				let equipValue = info.ai.equipValue || info.ai.basic.equipValue;
-    				if (typeof equipValue == 'function') {
-    					if (method == 'raw') return equipValue(card, player);
-    					if (method == 'raw2') return equipValue(card, player) - value;
-    					return Math.max(0.1, equipValue(card, player) - value);
-    				}
-    				if (typeof equipValue != 'number') equipValue = 0;
-    				if (method == 'raw') return equipValue;
-    				if (method == 'raw2') return equipValue - value;
-    				return Math.max(0.1, equipValue - value);
-    			},
-    		},
-    		result: {
-    			target: (player, target, card) => get.equipResult(player, target, card.name),
-    		},
-    	},
-    	skills: ["menghelusi_skill"],
-    	enable: true,
-    	selectTarget: -1,
-    	filterTarget: (card, player, target) => player == target && target.canEquip(card, true),
-    	modTarget: true,
-    	allowMultiple: false,
-    	content () {
-    		if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
-    	},
-    	toself: true,
+      legend: true,
+      fullskin: true,
+      type: "equip",
+      subtype: "equip1",
+      distance: {
+        attackFrom: -1,
+      },
+      ai: {
+        equipValue: 5,
+        basic: {
+          equipValue: 5,
+          order(card, player){
+            const equipValue = get.equipValue(card, player) / 20;
+            return player && player.hasSkillTag('reverseEquip') ? 8.5 - equipValue : 8 + equipValue;
+          },
+          useful: 2,
+          value(card, player, index, method){
+            if (!player.getCards('e').includes(card) && !player.canEquip(card, true)) return 0.01;
+            const info = get.info(card), current = player.getEquip(info.subtype), value = current && card != current && get.value(current, player);
+            let equipValue = info.ai.equipValue || info.ai.basic.equipValue;
+            if (typeof equipValue == 'function') {
+              if (method == 'raw') return equipValue(card, player);
+              if (method == 'raw2') return equipValue(card, player) - value;
+              return Math.max(0.1, equipValue(card, player) - value);
+            }
+            if (typeof equipValue != 'number') equipValue = 0;
+            if (method == 'raw') return equipValue;
+            if (method == 'raw2') return equipValue - value;
+            return Math.max(0.1, equipValue - value);
+          },
+        },
+        result: {
+          target: (player, target, card) => get.equipResult(player, target, card.name),
+        },
+      },
+      skills: ["menghelusi_skill"],
+      enable: true,
+      selectTarget: -1,
+      filterTarget: (card, player, target) => player == target && target.canEquip(card, true),
+      modTarget: true,
+      allowMultiple: false,
+      content () {
+        if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
+      },
+      toself: true,
     },
     meng_white: {
-    	legend: true,
-    	fullskin: true,
-    	type: "equip",
-    	subtype: "equip1",
-    	distance: {
-    		attackFrom: -1,
-    	},
-    	ai: {
-    		equipValue: 5,
-    		basic: {
-    			equipValue: 5,
-    			order(card, player){
-    				const equipValue = get.equipValue(card, player) / 20;
-    				return player && player.hasSkillTag('reverseEquip') ? 8.5 - equipValue : 8 + equipValue;
-    			},
-    			useful: 2,
-    			value(card, player, index, method){
-    				if (!player.getCards('e').includes(card) && !player.canEquip(card, true)) return 0.01;
-    				const info = get.info(card), current = player.getEquip(info.subtype), value = current && card != current && get.value(current, player);
-    				let equipValue = info.ai.equipValue || info.ai.basic.equipValue;
-    				if (typeof equipValue == 'function') {
-    					if (method == 'raw') return equipValue(card, player);
-    					if (method == 'raw2') return equipValue(card, player) - value;
-    					return Math.max(0.1, equipValue(card, player) - value);
-    				}
-    				if (typeof equipValue != 'number') equipValue = 0;
-    				if (method == 'raw') return equipValue;
-    				if (method == 'raw2') return equipValue - value;
-    				return Math.max(0.1, equipValue - value);
-    			},
-    		},
-    		result: {
-    			target: (player, target, card) => get.equipResult(player, target, card.name),
-    		},
-    	},
-    	skills: ["mengwhite_skill"],
-    	enable: true,
-    	selectTarget: -1,
-    	filterTarget: (card, player, target) => player == target && target.canEquip(card, true),
-    	modTarget: true,
-    	allowMultiple: false,
-    	content () {
-    		if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
-    	},
-    	toself: true,
+      legend: true,
+      fullskin: true,
+      type: "equip",
+      subtype: "equip1",
+      distance: {
+        attackFrom: -1,
+      },
+      ai: {
+        equipValue: 5,
+        basic: {
+          equipValue: 5,
+          order(card, player){
+            const equipValue = get.equipValue(card, player) / 20;
+            return player && player.hasSkillTag('reverseEquip') ? 8.5 - equipValue : 8 + equipValue;
+          },
+          useful: 2,
+          value(card, player, index, method){
+            if (!player.getCards('e').includes(card) && !player.canEquip(card, true)) return 0.01;
+            const info = get.info(card), current = player.getEquip(info.subtype), value = current && card != current && get.value(current, player);
+            let equipValue = info.ai.equipValue || info.ai.basic.equipValue;
+            if (typeof equipValue == 'function') {
+              if (method == 'raw') return equipValue(card, player);
+              if (method == 'raw2') return equipValue(card, player) - value;
+              return Math.max(0.1, equipValue(card, player) - value);
+            }
+            if (typeof equipValue != 'number') equipValue = 0;
+            if (method == 'raw') return equipValue;
+            if (method == 'raw2') return equipValue - value;
+            return Math.max(0.1, equipValue - value);
+          },
+        },
+        result: {
+          target: (player, target, card) => get.equipResult(player, target, card.name),
+        },
+      },
+      skills: ["mengwhite_skill"],
+      enable: true,
+      selectTarget: -1,
+      filterTarget: (card, player, target) => player == target && target.canEquip(card, true),
+      modTarget: true,
+      allowMultiple: false,
+      content () {
+        if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
+      },
+      toself: true,
     }, */
     meng_chiyuezhixing: {
       legend: true,
@@ -427,46 +425,46 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
       _priority: -25
     },
     /* "menghelusi_skill": {
-    	equipSkill: true,
-    	trigger: {
-    		global: "damageBegin1",
-    	},
-    	filter (event, player) {
-    		return event.source && event.source == player && get.distance(event.player, player) == 1
-    	},
-    	prompt: "是否发动【荷鲁斯之眼】,令此伤害+1",
-    	content () {
-    		trigger.num++;
-    	},
-    	audio: "ext:新白子:true",
-    	firstDo: true,
-    	mod: {
-    		cardUsable (card, player, num) {
-    			if (card.name == 'sha') {
-    				return num + 1;
-    			}
-    		},
-    	},
+      equipSkill: true,
+      trigger: {
+        global: "damageBegin1",
+      },
+      filter (event, player) {
+        return event.source && event.source == player && get.distance(event.player, player) == 1
+      },
+      prompt: "是否发动【荷鲁斯之眼】,令此伤害+1",
+      content () {
+        trigger.num++;
+      },
+      audio: "ext:新白子:true",
+      firstDo: true,
+      mod: {
+        cardUsable (card, player, num) {
+          if (card.name == 'sha') {
+            return num + 1;
+          }
+        },
+      },
     _priority: -25,
     },
     mengwhite_skill: {
-    	equipSkill: true,
-    	firstDo: true,
-    	mod: {
-    		cardUsable (card, player, num) {
-    			if (card.name == 'sha' && !card.nature) {
-    				return Infinity;
-    			}
-    		},
-    	},
-    	ai: {
-    		unequip: true,
+      equipSkill: true,
+      firstDo: true,
+      mod: {
+        cardUsable (card, player, num) {
+          if (card.name == 'sha' && !card.nature) {
+            return Infinity;
+          }
+        },
+      },
+      ai: {
+        unequip: true,
     unequip: true,
-    		skillTagFilter (player, tag, arg) {
-    			if (arg && arg.name == 'sha') return player.countUsed('sha') <= 3;
-    			return false;
-    		},
-    	},
+        skillTagFilter (player, tag, arg) {
+          if (arg && arg.name == 'sha') return player.countUsed('sha') <= 3;
+          return false;
+        },
+      },
     _priority: -25,
     }, */
     mengchiyuezhixing_skill: {
@@ -558,10 +556,9 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
       content() {
         'step 0';
         if (
-        player.countCards('he', function (card) {
-          return card != player.getEquip('meng_xiuchanyun');
-        }) == 2)
-        {
+          player.countCards('he', function (card) {
+            return card != player.getEquip('meng_xiuchanyun');
+          }) == 2) {
           event._result = {
             bool: true,
             cards: player.getCards('he', function (card) {
@@ -653,10 +650,9 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
       filter(event, player) {
         if (event.filterCard({ name: 'wuxie' }, player, event) || event.filterCard({ name: 'shan' }, player, event)) return false;
         if (
-        player.countCards('hes', function (card) {
-          if (['meng_taohuasu', 'meng_meihuagao', 'meng_caomeibing', 'meng_chashaobao'].includes(card.name)) return true;
-        }))
-        {
+          player.countCards('hes', function (card) {
+            if (['meng_taohuasu', 'meng_meihuagao', 'meng_caomeibing', 'meng_chashaobao'].includes(card.name)) return true;
+          })) {
           for (var i of lib.inpile) {
             var type = get.type2(i);
             if ((type == 'basic' || type == 'trick') && event.filterCard({ name: i }, player, event)) return true;
@@ -763,22 +759,22 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
         if (!lib.inpile.includes(name)) return false;
         var type = get.type(name);
         if (
-        player.countCards('hes', function (card) {
-          if (['meng_taohuasu', 'meng_meihuagao', 'meng_caomeibing', 'meng_chashaobao'].includes(card.name)) return true;
-        }))
+          player.countCards('hes', function (card) {
+            if (['meng_taohuasu', 'meng_meihuagao', 'meng_caomeibing', 'meng_chashaobao'].includes(card.name)) return true;
+          }))
 
-        return type == 'basic' || type == 'trick';
+          return type == 'basic' || type == 'trick';
       },
       ai: {
         fireAttack: true,
         respondSha: true,
         skillTagFilter(player) {
           if (
-          !player.countCards('hes', function (card) {
-            if (['meng_taohuasu', 'meng_meihuagao', 'meng_caomeibing', 'meng_chashaobao'].includes(card.name)) return true;
-          }))
+            !player.countCards('hes', function (card) {
+              if (['meng_taohuasu', 'meng_meihuagao', 'meng_caomeibing', 'meng_chashaobao'].includes(card.name)) return true;
+            }))
 
-          return false;
+            return false;
         },
         order: 10,
         result: {
@@ -853,8 +849,8 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
             popname: true,
             precontent() {
               var equip = lib.skill.JLPmengxiang1_skill_backup.equip;
-              if (player.hasDisabledSlot(equip)) player.enableEquip(equip);else
-              player.disableEquip(equip);
+              if (player.hasDisabledSlot(equip)) player.enableEquip(equip); else
+                player.disableEquip(equip);
               if (player.hasSkill('JLPwuwo')) {
                 game.playAudio('../extension/忽悠宇宙/audio/skill/JLPmengxiang2_skill.mp3');
               }
@@ -873,7 +869,8 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
         cardUsable(card, player) {
 
           //if (_status.event.skill == 'JLPmengxiang1_skill_buckp') return true;
-        } },
+        }
+      },
       ai: {
         respondSha: true,
         order: 1,
@@ -1098,9 +1095,9 @@ game.import('card', (lib, game, ui, get, ai, _status) => {
     JLPmengxiang2_skill_info: ''
   };
   hyyzYm.list = [
-  ['heart', '1', 'meng_chiyuezhixing'], //赤月
-  ['club', '12', 'meng_xiuchanyun'], //袖缠云
-  ['heart', '1', 'JLP_mengxiang'] //梦想
+    ['heart', '1', 'meng_chiyuezhixing'], //赤月
+    ['club', '12', 'meng_xiuchanyun'], //袖缠云
+    ['heart', '1', 'JLP_mengxiang'] //梦想
   ];
   for (var i in hyyzYm.card) {
     if (hyyzYm.card[i].fullskin) {

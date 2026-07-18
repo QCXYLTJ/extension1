@@ -5091,7 +5091,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									modTarget: true,
 									allowMultiple: false,
 									toself: true,
-									onLose() {
+									async onLose(event, trigger, player) {
 										player.storage.rain_acgn_fgo_enQiDu_xiShen_card = false;
 										player.enableSkill('rain_acgn_fgo_enQiDu_xiShen');
 									},

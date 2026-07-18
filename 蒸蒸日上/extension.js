@@ -7175,18 +7175,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							subtype: 'equip5',
 							chongzhu: true,
 							skills: ['qishamuniu'],
-							onLose() {
-								'step 0';
-								player
+							async onLose(event, trigger, player) {
+								const { bool } = await player
 									.chooseToDiscard('h', '木牛流马:请弃置一张基本牌,否则失去1点体力', function (card) {
 										return get.type(card) == 'basic';
 									})
 									.set('ai', function (card) {
 										if (player.hp == 1) return 15 - get.value(card);
 										return 8 - get.value(card);
-									});
-								('step 1');
-								if (!result.bool) {
+									}).forResult();
+								if (!bool) {
 									player.loseHp();
 								}
 							},

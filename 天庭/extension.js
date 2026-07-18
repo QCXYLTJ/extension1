@@ -942,9 +942,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             subtype: 'equip5',
                             skills: ['zqhuangjinsheng'], //,'zqhuangjinsheng1','zqhuangjinsheng2'
                             selectTarget: [-1, -2],
-                            onLose() {
-                                player.unmarkSkill('zqhuangjinsheng');
-                            },
                             ai: {
                                 tag: {
                                     zq_gifts: true,

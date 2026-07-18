@@ -18774,20 +18774,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         player.markSkill('muniu_skill');
                     },
                     forceDie: true,
-                    onLose() {
-                        delete player.getStat('skill').muniu_skill;
-                        player.unmarkSkill('muniu_skill');
-                        if (!card || !card.cards || !card.cards.length) return;
-                        if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                            player.lose(card.cards, ui.discardPile);
-                            player.$throw(card.cards, 1000);
-                            player.popup('muniu');
-                            game.log(card, '掉落了', card.cards);
-                            card.cards.length = 0;
-                        } else {
-                            player.lose(card.cards, ui.special);
-                        }
-                    },
                     clearLose: true,
                     equipDelay: false,
                     loseDelay: false,

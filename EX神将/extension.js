@@ -11615,7 +11615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             fullskin: true,
                             type: 'equip',
                             subtype: 'equip5',
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.chooseToDiscard(99, 'h', true);
                                 player.removeSkill('exfuzhoux');
                                 player.update();

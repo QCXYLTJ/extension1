@@ -5415,10 +5415,8 @@ game.import('character', function () {
 								if (player != target) return false;
 								return target.canEquip(card, true);
 							},
-							onLose() {
-								let player = _status.event.player;
+							async onLose(event, trigger, player) {
 								player.drawTo(player.maxHp);
-								player.lose(card, ui.special).set('getlx', false);
 							},
 							modTarget: true,
 							allowMultiple: false,
@@ -26210,8 +26208,10 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					ecard.name = name;
 					ecard.origin_name = origin_name;
 				},
-				onLose() {
-					if (player.storage.xjzh_card_shuangran_skill) delete player.storage.xjzh_card_shuangran_skill;
+				async onLose(event, trigger, player) {
+					if (player.storage.xjzh_card_shuangran_skill) {
+						delete player.storage.xjzh_card_shuangran_skill;
+					}
 				},
 				skills: ['xjzh_card_shuangran_skill'],
 				ai: {
@@ -26265,7 +26265,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					ecard.origin_name = origin_name;
 					game.log(player, '的无限效果为:', '#y' + get.translation(list));
 				},
-				onLose() {
+				async onLose(event, trigger, player) {
 					if (player.storage.xjzh_card_wuxian_skill_fanshe) delete player.storage.xjzh_card_wuxian_skill_fanshe;
 					if (player.storage.xjzh_card_wuxian_skill_zhufu) delete player.storage.xjzh_card_wuxian_skill_zhufu;
 					if (player.storage.xjzh_card_wuxian_skill_jianren) delete player.storage.xjzh_card_wuxian_skill_jianren;
@@ -26292,8 +26292,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				subtype: 'equip2',
 				audio: 'ext:仙家之魂/skillaudio/equip/',
 				image: 'ext:仙家之魂/image/cardpicture/xjzh_card_rongyankaijia.png',
-				async onLose() {
-					let player = get.player();
+				async onLose(event, trigger, player) {
 					if (player.storage.xjzh_card_rongyankaijia_skill && player.storage.xjzh_card_rongyankaijia_skill.length) {
 						let storage = player.storage.xjzh_card_rongyankaijia_skill.slice(0);
 						for (let damageList of storage) {
@@ -26374,8 +26373,10 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				clearLose: true,
 				equipDelay: false,
 				loseDelay: false,
-				onLose() {
-					if (player.storage.xjzh_card_yizhihuhuan_skill) delete player.storage.xjzh_card_yizhihuhuan_skill;
+				async onLose(event, trigger, player) {
+					if (player.storage.xjzh_card_yizhihuhuan_skill) {
+						delete player.storage.xjzh_card_yizhihuhuan_skill;
+					}
 				},
 				skills: ['xjzh_card_yizhihuhuan_skill'],
 				ai: {

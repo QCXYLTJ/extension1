@@ -12,10 +12,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				distance: {
 					attackFrom: 1,
 				},
-				onLose() {
-					var player = _status.event.player,
-						hs = player.getCards('h', (card) => get.is.shownCard(card));
-					if (hs.length > 0) player.hideShownCards(hs);
+				async onLose(event, trigger, player) {
+					const hs = player.getCards('h', (card) => get.is.shownCard(card));
+					if (hs.length > 0) {
+						player.hideShownCards(hs);
+					}
 				},
 				equipDelay: false,
 				loseDelay: false,
@@ -42,10 +43,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				image: 'ext:驶舰之向/image/card/jingtouE2mrfz.jpg',
 				type: 'equip',
 				subtype: 'equip2',
-				onLose() {
-					var player = _status.event.player,
-						hs = player.getCards('h', (card) => get.is.shownCard(card));
-					if (hs.length > 0) player.hideShownCards(hs);
+				async onLose(event, trigger, player) {
+					const hs = player.getCards('h', (card) => get.is.shownCard(card));
+					if (hs.length > 0) {
+						player.hideShownCards(hs);
+					}
 				},
 				equipDelay: false,
 				loseDelay: false,
@@ -75,10 +77,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				distance: {
 					globalTo: -1,
 				},
-				onLose() {
-					var player = _status.event.player,
-						hs = player.getCards('h', (card) => get.is.shownCard(card));
-					if (hs.length > 0) player.hideShownCards(hs);
+				async onLose(event, trigger, player) {
+					const hs = player.getCards('h', (card) => get.is.shownCard(card));
+					if (hs.length > 0) {
+						player.hideShownCards(hs);
+					}
 				},
 				equipDelay: false,
 				loseDelay: false,
@@ -108,10 +111,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				distance: {
 					globalFrom: 1,
 				},
-				onLose() {
-					var player = _status.event.player,
-						hs = player.getCards('h', (card) => get.is.shownCard(card));
-					if (hs.length > 0) player.hideShownCards(hs);
+				async onLose(event, trigger, player) {
+					const hs = player.getCards('h', (card) => get.is.shownCard(card));
+					if (hs.length > 0) {
+						player.hideShownCards(hs);
+					}
 				},
 				equipDelay: false,
 				loseDelay: false,
@@ -138,10 +142,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				image: 'ext:驶舰之向/image/card/jingtouE5mrfz.jpg',
 				type: 'equip',
 				subtype: 'equip5',
-				onLose() {
-					var player = _status.event.player,
-						hs = player.getCards('h', (card) => get.is.shownCard(card));
-					if (hs.length > 0) player.hideShownCards(hs);
+				async onLose(event, trigger, player) {
+					const hs = player.getCards('h', (card) => get.is.shownCard(card));
+					if (hs.length > 0) {
+						player.hideShownCards(hs);
+					}
 				},
 				equipDelay: false,
 				loseDelay: false,

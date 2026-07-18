@@ -36009,7 +36009,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         distance: {
                             attackFrom: -2,
                         },
-                        onLose() {
+                        async onLose(event, trigger, player) {
                             for (var i = 0; i < game.players.length; i++) {
                                 if (game.players[i].hasSkill('sk_zhangba_skill_mark')) {
                                     game.players[i].removeSkill('sk_zhangba_skill_mark');
@@ -36058,11 +36058,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         distance: {
                             attackFrom: -1,
                         },
-                        onLose() {
-                            player.unmarkSkill('sk_cixiong_skill');
+                        async onLose(event, trigger, player) {
                             if (player.hasSkill('sk_cixiong_skill_black')) {
                                 player.removeSkill('sk_cixiong_skill_black');
-                                var card = get.cardPile(function (card) {
+                                const card = get.cardPile(function (card) {
                                     if (get.color(card) == 'black') return true;
                                     return false;
                                 });
@@ -36070,7 +36069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }
                             if (player.hasSkill('sk_cixiong_skill_red')) {
                                 player.removeSkill('sk_cixiong_skill_red');
-                                var card = get.cardPile(function (card) {
+                                const card = get.cardPile(function (card) {
                                     if (get.color(card) == 'red') return true;
                                     return false;
                                 });
@@ -36222,18 +36221,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         onEquip() {
                             player.markSkill('sk_bagua_skill');
                         },
-                        onLose() {
-                            player.unmarkSkill('sk_bagua_skill');
-                        },
                     },
                     sk_rewrite_bagua: {
                         type: 'equip',
                         subtype: 'equip2',
                         onEquip() {
                             player.markSkill('sk_rewrite_bagua_skill');
-                        },
-                        onLose() {
-                            player.unmarkSkill('sk_rewrite_bagua_skill');
                         },
                     },
                     sk_renwang: {
@@ -36281,7 +36274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     sk_lanyinjia: {
                         type: 'equip',
                         subtype: 'equip2',
-                        onLose() {
+                        async onLose(event, trigger, player) {
                             if (player.hasSkill('sk_lanyinjia_skill_dam') && player.countMark('sk_lanyinjia_skill_dam') > 0) {
                                 var num = player.countMark('sk_lanyinjia_skill_dam');
                                 player.removeMark('sk_lanyinjia_skill_dam', player.countMark('sk_lanyinjia_skill_dam'));
@@ -36293,7 +36286,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     sk_rewrite_lanyinjia: {
                         type: 'equip',
                         subtype: 'equip2',
-                        onLose() {
+                        async onLose(event, trigger, player) {
                             if (player.hasSkill('sk_lanyinjia_skill_dam') && player.countMark('sk_lanyinjia_skill_dam') > 0) {
                                 var num = player.countMark('sk_lanyinjia_skill_dam');
                                 player.removeMark('sk_lanyinjia_skill_dam', player.countMark('sk_lanyinjia_skill_dam'));
@@ -36357,27 +36350,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         distance: {
                             globalTo: 1,
                         },
-                        onLose() {
-                            'step 0';
-                            player.chooseTarget(get.prompt2('sk_dilu_skill'), function (card, player, target) {
+                        async onLose(event, trigger, player) {
+                            const { targets } = await player.chooseTarget(get.prompt2('sk_dilu_skill'), function (card, player, target) {
                                 return target.isEmpty(3) && target != player;
-                            }).ai = function (target) {
+                            }).set('ai', function (target) {
                                 if (get.attitude(player, target) > 0) {
                                     return target.hp - 2.5;
                                 } else {
                                     return 3 - target.hp;
                                 }
-                            };
-                            ('step 1');
-                            if (result.targets?.length) {
-                                event.target = result.targets[0];
-                                var newcard = game.createCard({ name: card.name });
-                                card.fix();
-                                card.remove();
-                                card.destroyed = true;
-                                game.log(card, '被销毁了');
-                                event.target.gain(newcard);
-                                event.target.equip(newcard);
+                            }).forResult();
+                            if (targets?.length) {
+                                const newcard = game.createCard({ name: card.name });
+                                targets[0].gain(newcard);
+                                targets[0].equip(newcard);
                             }
                         },
                     },
@@ -36452,20 +36438,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.directgains(card.cards, null, 'muniu');
                             }
                             player.markSkill('muniu_skill');
-                        },
-                        onLose() {
-                            delete player.getStat('skill').muniu_skill;
-                            player.unmarkSkill('muniu_skill');
-                            if (!card || !card.cards || !card.cards.length) return;
-                            if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                                player.lose(card.cards, ui.discardPile);
-                                player.$throw(card.cards, 1000);
-                                player.popup('muniu');
-                                game.log(card, '掉落了', card.cards);
-                                card.cards.length = 0;
-                            } else {
-                                player.lose(card.cards, ui.special);
-                            }
                         },
                     },
                 },

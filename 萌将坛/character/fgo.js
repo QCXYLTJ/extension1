@@ -1363,12 +1363,14 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						},
 						content: lib.element.content.equipCard,
 						toself: true,
-						onLose() {
-							if (!card) return;
-							let storage = card.storage[card.name] || false;
-							if (storage) {
-								storage.enableSkill(card.name);
-								storage.unmarkSkill('scqhFgo_duofeng');
+						async onLose(event, trigger, player) {
+							if (event.cards?.length) {
+								const card = event.cards[0];
+								const storage = card.storage[card.name];
+								if (storage) {
+									storage.enableSkill(card.name);
+									storage.unmarkSkill('scqhFgo_duofeng');
+								}
 							}
 						},
 						ai: {},

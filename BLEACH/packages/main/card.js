@@ -185,9 +185,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           player.storage.zanpakuto_shinso_skill = card.storage.zanpakuto_shinso_skill;
           player.markSkill('zanpakuto_shinso_skill');
         },
-        onLose() {
-          player.unmarkSkill('zanpakuto_shinso_skill');
-        },
         fullskin: true,
         skills: ['zanpakuto_shinso_skill', 'zanpakuto_shinso_skill_effect'],
         ai: {
@@ -965,7 +962,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         image: 'ext:BLEACH/card/bleach_card_hushenfu.png',
         type: 'equip',
         subtype: 'equip5',
-        onLose() {
+        async onLose(event, trigger, player) {
           player.addTempSkill('bleach_card_hushenfu_skill_lose');
         },
         skills: ['bleach_card_hushenfu_skill'],

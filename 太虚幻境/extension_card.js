@@ -1331,10 +1331,8 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
             txyunliangche: {
                 type: 'equip',
                 subtype: 'equip5',
-                onLose() {
-                    if (event.getParent(2) && event.getParent(2).name != 'swapEquip' && event.parent.type != 'equip' && player.countCards('he')) {
-                        player.chooseToDiscard(true, 'he');
-                    }
+                async onLose(event, trigger, player) {
+                    player.chooseToDiscard(true, 'he');
                 },
                 filterLose(card, player) {
                     return;

@@ -18273,7 +18273,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						filterLose(card, player) {
 							return player.sex == 'male';
 						},
-						onLose() {
+						async onLose(event, trigger, player) {
 							player.chooseToDiscard('he', true);
 						},
 						onEquip() {

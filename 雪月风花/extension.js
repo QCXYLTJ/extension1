@@ -22913,16 +22913,6 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 attackFrom: -4,
                             },
                             forceDie: true,
-                            onLose() {
-                                if ((!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
-                                    cards.forEach((card) => {
-                                        card.fix();
-                                        card.remove();
-                                        card.destroyed = true;
-                                        game.log(card, '被销毁了');
-                                    });
-                                }
-                            },
                             equipDelay: false,
                             loseDelay: false,
                             ai: {

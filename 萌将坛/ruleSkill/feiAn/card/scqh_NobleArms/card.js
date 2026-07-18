@@ -29,29 +29,31 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				onEquip() {
 					player.gain(get.cards(4), 'draw').gaintag.add(card.name);
 				},
-				onLose() {
-					'step 0';
-					var carded = player.getCards('h', function (cary) {
-						return cary.hasGaintag(card.name);
-					});
-					if (carded.length) player.loseToDiscardpile(carded);
-					var num = 4 - carded.length;
-					var card2 = player.getCards('h');
-					if (num && card2.length) {
-						if (num >= card2.length) {
-							player.loseToDiscardpile(card2);
-						} else {
-							var str = get.translation(card.name);
-							str += '：将' + get.cnNumber(num) + '张手牌置入弃牌堆';
-							player.chooseCard(true, num, str);
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						const carded = player.getCards('h', function (cary) {
+							return cary.hasGaintag(card.name);
+						});
+						if (carded.length) {
+							player.loseToDiscardpile(carded);
 						}
+						var num = 4 - carded.length;
+						var card2 = player.getCards('h');
+						if (num && card2.length) {
+							if (num >= card2.length) {
+								player.loseToDiscardpile(card2);
+							} else {
+								var str = get.translation(card.name);
+								str += '：将' + get.cnNumber(num) + '张手牌置入弃牌堆';
+								const { cards } = await player.chooseCard(true, num, str).forResult();
+								if (cards?.length) {
+									player.loseToDiscardpile(cards);
+								}
+							}
+						}
+						player.ReviveNobleArms(card);
 					}
-					('step 1');
-					if (result.cards?.length) {
-						player.loseToDiscardpile(result.cards);
-					}
-					('step 2');
-					player.ReviveNobleArms(card);
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -90,29 +92,31 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					player.sew_skillUsable(card.name + '_skill', -1);
 					player.gain(get.cards(2), 'draw').gaintag.add(card.name);
 				},
-				onLose() {
-					'step 0';
-					var carded = player.getCards('h', function (cary) {
-						return cary.hasGaintag(card.name);
-					});
-					if (carded.length) player.loseToDiscardpile(carded);
-					var num = 2 - carded.length;
-					var card2 = player.getCards('h');
-					if (num && card2.length) {
-						if (num >= card2.length) {
-							player.loseToDiscardpile(card2);
-						} else {
-							var str = get.translation(card.name);
-							str += '：将' + get.cnNumber(num) + '张手牌置入弃牌堆';
-							player.chooseCard(true, num, str);
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						const carded = player.getCards('h', function (cary) {
+							return cary.hasGaintag(card.name);
+						});
+						if (carded.length) {
+							player.loseToDiscardpile(carded);
 						}
+						var num = 2 - carded.length;
+						var card2 = player.getCards('h');
+						if (num && card2.length) {
+							if (num >= card2.length) {
+								player.loseToDiscardpile(card2);
+							} else {
+								var str = get.translation(card.name);
+								str += '：将' + get.cnNumber(num) + '张手牌置入弃牌堆';
+								const { cards } = await player.chooseCard(true, num, str).forResult();
+								if (cards?.length) {
+									player.loseToDiscardpile(cards);
+								}
+							}
+						}
+						player.ReviveNobleArms(card);
 					}
-					('step 1');
-					if (result.cards?.length) {
-						player.loseToDiscardpile(result.cards);
-					}
-					('step 2');
-					player.ReviveNobleArms(card);
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -148,9 +152,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				onEquip() {
 					player.sew_skillUsable(card.name + '_skill', -1);
 				},
-				onLose() {
-					'step 0';
-					player.ReviveNobleArms(card);
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						player.ReviveNobleArms(card);
+					}
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -186,9 +192,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				onEquip() {
 					player.sew_skillUsable(card.name + '_skill', -1);
 				},
-				onLose() {
-					'step 0';
-					player.ReviveNobleArms(card);
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						player.ReviveNobleArms(card);
+					}
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -224,9 +232,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				onEquip() {
 					player.sew_skillUsable(card.name + '_skill', -1);
 				},
-				onLose() {
-					'step 0';
-					player.ReviveNobleArms(card);
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						player.ReviveNobleArms(card);
+					}
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -259,9 +269,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						target.equipygoCard(cards[0]);
 					}
 				},
-				onLose() {
-					'step 0';
-					player.ReviveNobleArms(card);
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						player.ReviveNobleArms(card);
+					}
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -296,13 +308,14 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				onEquip() {
 					player.storage.ygo_atk += 300;
 				},
-				onLose() {
-					'step 0';
+				async onLose(event, trigger, player) {
 					player.storage.ygo_atk -= 300;
 					if (player.storage.ygo_atk < 0) player.storage.ygo_atk = 0;
 					event.nnn = card.name;
-					('step 1');
-					player.ReviveNobleArms(card, 'sp');
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						player.ReviveNobleArms(card);
+					}
 				},
 				filterLose(card, player) {
 					if (player.hasSkillTag('unequip1')) return false;
@@ -331,37 +344,35 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				content() {
 					if (cards.length && get.position(cards[0], true) == 'o') target.equipygoCard(cards[0]);
 				},
-				onLose() {
-					'step 0';
-					event.nnn = card.name;
-					('step 1');
-					var isEquip = true;
-					var lose = player.getHistory('lose');
-					for (let i = 0; i < lose.length; i++) {
-						if (lose[i].es.length > 0) {
-							const evt = lose[i];
-							const equips = evt.es;
-							for (let j = 0; j < equips.length; j++) {
-								if (equips[j] == card && evt.type != 'discard') {
-									isEquip = false;
+				async onLose(event, trigger, player) {
+					if (event.cards?.length) {
+						const card = event.cards[0];
+						event.nnn = card.name;
+						var isEquip = true;
+						var lose = player.getHistory('lose');
+						for (let i = 0; i < lose.length; i++) {
+							if (lose[i].es.length > 0) {
+								const evt = lose[i];
+								const equips = evt.es;
+								for (let j = 0; j < equips.length; j++) {
+									if (equips[j] == card && evt.type != 'discard') {
+										isEquip = false;
+									}
 								}
 							}
 						}
-					}
-					var name1 = player.name.includes('ygo_') && (player.name.includes('圣骑士') || player.name.includes('勇者'));
-					var name2 = player.name2 && player.name2.includes('ygo_') && (player.name2.includes('圣骑士') || player.name2.includes('勇者'));
-					if (isEquip == true && (name1 || name2)) {
-						var str = '<b><font color = white>';
-						str += '是否将【' + get.translation(event.nnn) + '】置于你的装备区？';
-						str += '</font></b>';
-						var next = player.chooseBool();
-						next.set('prompt', ' ');
-						next.set('prompt2', str);
-					}
-					('step 2');
-					if (result.bool) {
-						game.log(player, '发动了', event.nnn);
-						player.equipygoCard(card);
+						var name1 = player.name.includes('ygo_') && (player.name.includes('圣骑士') || player.name.includes('勇者'));
+						var name2 = player.name2 && player.name2.includes('ygo_') && (player.name2.includes('圣骑士') || player.name2.includes('勇者'));
+						if (isEquip == true && (name1 || name2)) {
+							var str = '<b><font color = white>';
+							str += '是否将【' + get.translation(event.nnn) + '】置于你的装备区？';
+							str += '</font></b>';
+							const { bool } = await player.chooseBool().set('prompt', ' ').set('prompt2', str).forResult();
+							if (bool) {
+								game.log(player, '发动了', event.nnn);
+								player.equipygoCard(card);
+							}
+						}
 					}
 				},
 				filterLose(card, player) {

@@ -832,9 +832,6 @@ export let info = {
                 modTarget: true,
                 allowMultiple: false,
                 content: lib.element.content.equipCard,
-                onLose() {
-                  cards?.forEach((q) => q.selfDestroy(event));
-                },
                 skills: [],
                 ai: {},
               };
@@ -1163,9 +1160,6 @@ export let info = {
                 modTarget: true,
                 allowMultiple: false,
                 content: lib.element.content.equipCard,
-                onLose() {
-                  cards?.forEach((q) => q.selfDestroy(event));
-                }, //QQQ
                 skills: init ? (Array.isArray(init) ? init : [init]) : [],
                 ai: {},
               };
@@ -1406,13 +1400,6 @@ export let info = {
             modTarget: true,
             allowMultiple: false,
             content: lib.element.content.equipCard,
-            onLose() {
-              //card可能是vcard,销毁应该用cards[0]
-              if (!player.hasSkill('dqzw_zangsong', null, true, false)) {
-                player.unmarkSkill('dqzw_zangsong');
-              }
-              cards?.forEach((q) => q.selfDestroy(event));
-            },
             skills: [],
             ai: {},
           };
@@ -1628,7 +1615,6 @@ export let info = {
             },
             onLose() {
               player.removeSkill('dqzw_tianya_replace');
-              cards?.forEach((q) => q.selfDestroy(event));
             },
             skills: [],
             ai: {},
