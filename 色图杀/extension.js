@@ -21733,16 +21733,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.addTempSkill('很多的刀', { player: 'phaseUseAfter' });
-                                });
+                            async onLose(event, trigger, player) {
+                                player.addTempSkill('很多的刀', { player: 'phaseUseAfter' });
                             },
                             enable: true,
                             selectTarget: -1,
@@ -21778,16 +21770,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.addTempSkill('很冰的斧', { player: 'phaseUseAfter' });
-                                });
+                            async onLose(event, trigger, player) {
+                                player.addTempSkill('很冰的斧', { player: 'phaseUseAfter' });
                             },
                             enable: true,
                             selectTarget: -1,
@@ -21824,16 +21808,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.addTempSkill('很硬的锤', { player: 'phaseUseAfter' });
-                                });
+                            async onLose(event, trigger, player) {
+                                player.addTempSkill('很硬的锤', { player: 'phaseUseAfter' });
                             },
                             enable: true,
                             selectTarget: -1,
@@ -21870,16 +21846,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.addTempSkill('很热的剑', { player: 'phaseUseAfter' });
-                                });
+                            async onLose(event, trigger, player) {
+                                player.addTempSkill('很热的剑', { player: 'phaseUseAfter' });
                             },
                             enable: true,
                             selectTarget: -1,
@@ -21916,16 +21884,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.addTempSkill('很长的棍', { player: 'phaseUseAfter' });
-                                });
+                            async onLose(event, trigger, player) {
+                                player.addTempSkill('很长的棍', { player: 'phaseUseAfter' });
                             },
                             enable: true,
                             selectTarget: -1,
@@ -21962,17 +21922,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.chooseToDiscard('he', 1, true);
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.chooseToDiscard('he', 1, true);
                             },
                             enable: true,
                             selectTarget: -1,
@@ -22009,16 +21961,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('baiyin_recover');
-                                event.next.remove(next);
-                                var evt = event.parent;
-                                if (evt.getlx === false) evt = evt.parent;
-                                evt.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.addTempSkill('很重的枪', { player: 'phaseUseAfter' });
-                                });
+                            async onLose(event, trigger, player) {
+                                player.addTempSkill('很重的枪', { player: 'phaseUseAfter' });
                             },
                             enable: true,
                             selectTarget: -1,

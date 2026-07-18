@@ -9144,7 +9144,7 @@ const skill = {
                     }
                 }
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 const mode = get.mode();
                 if ((mode == 'identity' || (mode == 'versus' && _status.mode == 'four')) && player != game.zhu) {
                     if (game.zhu.hasSkill('jxtp_zhuahuang')) {
@@ -9402,7 +9402,7 @@ const skill = {
             type: 'equip',
             subtype: 'equip2',
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 if (player.isDamaged()) {
                     player
@@ -9557,7 +9557,7 @@ const skill = {
                 player.markSkill('jxtp_muniu');
             },
             forceDie: true,
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.unmarkSkill('jxtp_muniu');
                 delete player.getStat('skill').jxtp_muniu;
                 if (!card || !card.cards || !card.cards.length) {
@@ -10072,7 +10072,7 @@ const skill = {
                     }
                 }
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 if (player.sex != 'male') {
                     return;
                 }
@@ -10284,20 +10284,10 @@ const skill = {
             customSwap() {
                 return true;
             },
-            onLose() {
-                const next = game.createEvent('jxtp_numa_discard');
-                event.next.remove(next);
-                let evt = event.parent;
-                if (evt.getlx === false) {
-                    evt = evt.parent;
+            async onLose(event, trigger, player) {
+                if (player.countCards('e')) {
+                    player.discard(true, player.getCards('e'));
                 }
-                evt.after.push(next);
-                next.player = player;
-                next.setContent(function () {
-                    if (player.countCards('e')) {
-                        player.discard(true, player.getCards('e'));
-                    }
-                });
             },
             ai: {
                 order: 9,
@@ -10394,15 +10384,18 @@ const skill = {
                 game.updateRoundNumber();
                 target.markSkill('jxtp_jinhe_skill');
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.unmarkSkill('jxtp_jinhe_skill');
-                const id = card.cardid;
-                if (event.getParent(2) && event.getParent(2).name != 'swapEquip' && get.position(card) != 'd' && event.parent.type != 'equip' && _status.jinhe && _status.jinhe[id]) {
-                    const card2 = _status.jinhe[id].card;
-                    player.$throw(card2, 1000);
-                    game.log(card, '掉落了', card2);
-                    game.cardsDiscard(card2);
-                    delete _status.jinhe[id];
+                if (event.cards?.length) {
+                    const card = event.cards[0];
+                    const id = card.cardid;
+                    if (event.getParent(2) && event.getParent(2).name != 'swapEquip' && get.position(card) != 'd' && event.parent.type != 'equip' && _status.jinhe && _status.jinhe[id]) {
+                        const card2 = _status.jinhe[id].card;
+                        player.$throw(card2, 1000);
+                        game.log(card, '掉落了', card2);
+                        game.cardsDiscard(card2);
+                        delete _status.jinhe[id];
+                    }
                 }
             },
             ai: {
@@ -10635,7 +10628,7 @@ const skill = {
                     }
                 }
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 if (player.countCards('h') < 5) {
                     player
@@ -10745,7 +10738,7 @@ const skill = {
                     player.link();
                 }
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.draw();
                 if (player.isLinked()) {
                     player.link();
@@ -11258,7 +11251,7 @@ const skill = {
             equipDelay: false,
             loseDelay: false,
             clearLose: true,
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 if (player.storage.jxtp_nigong == 1) {
                     player.draw();
@@ -11468,7 +11461,7 @@ const skill = {
             onEquip() {
                 player.markSkill('jxtp_lianyaohu_skill');
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.unmarkSkill('jxtp_lianyaohu_skill');
                 const storage = card.storage.jshouna;
                 if (storage && (!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
@@ -11554,7 +11547,7 @@ const skill = {
             fullskin: true,
             type: 'equip',
             subtype: 'equip5',
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.draw();
             },
             onEquip() {
@@ -12152,7 +12145,7 @@ const skill = {
                     },
                 },
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 if (player.isTurnedOver()) {
                     player.turnOver();
                 }
@@ -12975,7 +12968,7 @@ const skill = {
             onEquip() {
                 player.draw();
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.draw();
             },
             ai: {
@@ -13149,7 +13142,7 @@ const skill = {
                 },
             },
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 const next = game.createEvent('baiyin_recover');
                 event.next.remove(next);
                 let evt = event.parent;
@@ -13466,7 +13459,7 @@ const skill = {
                 return true;
             },
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 const next = game.createEvent('jxtp_rewrite_baiyin_recover');
                 event.next.remove(next);
                 let evt = event.parent;
@@ -13555,7 +13548,7 @@ const skill = {
                 }
             },
             toself: true,
-            onLose() {
+            async onLose(event, trigger, player) {
                 delete player.storage.jjingyinjia;
             },
             image: 'ext:猫猫叹气/image/界限突破/jxtp_rewrite_lanyinjia.png',
@@ -13601,7 +13594,7 @@ const skill = {
             type: 'equip',
             subtype: 'equip2',
             skills: ['jxtp_rewrite_renwang'],
-            onLose() {
+            async onLose(event, trigger, player) {
                 if (!event.parent.swapEquip) {
                     const list = [];
                     get.cardPile(function (card) {
@@ -13712,7 +13705,7 @@ const skill = {
             distance: {
                 globalTo: 1,
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 if (player.isDamaged()) {
                     player.recover();
                 }
@@ -13763,7 +13756,7 @@ const skill = {
             onEquip() {
                 player.changeHujia();
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.changeHujia();
             },
             equipDelay: false,
@@ -13875,7 +13868,7 @@ const skill = {
             type: 'equip',
             subtype: 'equip5',
             skills: ['jxtp_miki_binoculars'],
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 player
                     .chooseTarget('手牌中♥️️️牌最多的角色会是谁呢？', function (card, player, target) {
@@ -14063,7 +14056,7 @@ const skill = {
                 ('step 1');
                 player.changeGroup('shen');
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 if (!player.storage.xiunvfu) {
                     event.finish();
@@ -14353,7 +14346,7 @@ const skill = {
                 return true;
             },
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 const next = game.createEvent('jxtp_taipingyaoshu');
                 event.next.remove(next);
                 let evt = event.parent;
@@ -14403,7 +14396,7 @@ const skill = {
                     player.storage.zhiheng = 'gzzhiheng';
                 }
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 if (player.storage.zhiheng) {
                     player.addSkill('gzzhiheng');
                     player.removeSkill('jxtp_gzzhiheng');
@@ -35766,7 +35759,7 @@ const skill = {
             onEquip() {
                 player.markSkill('mym_kaheskill');
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.unmarkSkill('mym_kaheskill');
                 const storage = card.storage.kahe;
                 if (storage && (!event.getParent(2) || event.getParent(2).name != 'swapEquip') && (event.parent.type != 'equip' || event.parent.swapEquip)) {
@@ -37718,7 +37711,7 @@ const skill = {
                 return true;
             },
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 player.chooseTarget(
                     '反射盾:对一名其他角色造成3点伤害.',
@@ -37779,7 +37772,7 @@ const skill = {
             type: 'equip',
             subtype: 'equip5',
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 if (player.getEquip('xdz_fanshedun')) {
                     player.chooseTarget(
@@ -39206,7 +39199,7 @@ const skill = {
                     player.markSkill('xdz_nenglifengjinskill');
                 }
             },
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.unmarkSkill('xdz_nenglifengjinskill');
                 player.enableSkill('nenglifengjin');
                 delete player.storage.nenglifengjin;
@@ -40464,7 +40457,7 @@ const skill = {
             type: 'equip',
             subtype: 'equip5',
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 player.recover();
                 player.draw(3);
             },
@@ -41721,7 +41714,7 @@ const skill = {
             type: 'equip',
             subtype: 'equip5',
             loseDelay: false,
-            onLose() {
+            async onLose(event, trigger, player) {
                 'step 0';
                 player.chooseTarget(
                     '上古五彩神石:对一名其他角色造成一点伤害.',

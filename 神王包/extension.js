@@ -15557,16 +15557,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.gainMaxHp();
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.gainMaxHp();
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill'],
                             tag: {
@@ -15967,15 +15961,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'reguicai', 'refankui', 'lianpo'],
                             tag: {
@@ -16022,15 +16010,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'yiji', 'tiandu', 'bagua_skill'],
                             tag: {
@@ -16077,15 +16059,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'paoxiao', 'zhangba_skill'],
                             tag: {
@@ -16132,15 +16108,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'wusheng', 'nuzhan'],
                             tag: {
@@ -16227,15 +16197,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'zhiheng', 'rezhiheng'],
                             tag: {
@@ -16282,15 +16246,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'reyingzi', 'yinghun', 'jiang'],
                             tag: {
@@ -16337,15 +16295,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'xinlonghun', 'qinggang_skill'],
                             tag: {
@@ -16392,15 +16344,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'keji', 'gongxin', 'shelie'],
                             tag: {
@@ -16447,15 +16393,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'swtieqi', 'mashu'],
                             tag: {
@@ -16502,15 +16442,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'rejizhi', 'qicai'],
                             tag: {
@@ -16597,15 +16531,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'wansha', 'weimu', 'luanwu'],
                             tag: {
@@ -16652,15 +16580,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'lijian', 'rebiyue'],
                             tag: {
@@ -16707,15 +16629,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'reyingzi', 'refanjian', 'yeyan'],
                             tag: {
@@ -16762,15 +16678,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'wushuang', 'shenji'],
                             tag: {
@@ -16817,15 +16727,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'reguanxing', 'kongcheng'],
                             tag: {
@@ -16873,15 +16777,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'bagua_skill', 'renwang_skill', 'tengjia1', 'tengjia2', 'tengjia3'],
                             tag: {
@@ -16986,15 +16884,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             loseDelay: false,
-                            onLose() {
-                                var next = game.createEvent('rw_baiyin_recover');
-                                event.next.remove(next);
-                                event.parent.after.push(next);
-                                next.player = player;
-                                next.setContent(function () {
-                                    player.draw(2);
-                                    player.recover();
-                                });
+                            async onLose(event, trigger, player) {
+                                player.draw(2);
+                                player.recover();
                             },
                             skills: ['rw_baiyin_skill', 'rw_bagua_skill', 'rw_renwang_skill', 'rw_tengjia1', 'rw_tengjia2', 'rw_tengjia3', 'rw_tengjia4'],
                             tag: {

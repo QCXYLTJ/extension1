@@ -33023,7 +33023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 },
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.unmarkSkill('天使的七圆环');
                             },
                             skills: ['天使的七圆环', '圆环保护'],
@@ -33466,7 +33466,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             enable: true,
                             selectTarget: -1,
                             skills: ['雷霆钥匙', '变身钥匙', '雷霆雅卡莱斯变身'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('拿瓦铠甲召唤器', 'spade', 5), player)._triggered = null;
                                 if (player.name == '雅塔莱斯') {
                                     game.playAudio('../extension/异闻带/audio/雷霆雅卡莱斯.mp3');
@@ -33497,7 +33497,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 attackFrom: -6,
                             },
                             skills: ['拿瓦1', '激昂10'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('拿瓦钥匙', 'spade', 1), player)._triggered = null;
                                 if (player.name == '拿瓦') {
                                     game.playAudio('../extension/异闻带/audio/熔岩.mp3');
@@ -33559,7 +33559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 globalTo: 1,
                             },
                             skills: ['拿瓦3'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('驮拏多钥匙', 'spade', 3), player)._triggered = null;
                                 if (player.name == '驮拏多') {
                                     game.playAudio('../extension/异闻带/audio/飓风.mp3');
@@ -33626,7 +33626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 attackFrom: -5,
                             },
                             skills: ['拿瓦2'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('茨纳米钥匙', 'spade', 2), player)._triggered = null;
                                 if (player.name == '茨纳米') {
                                     game.playAudio('../extension/异闻带/audio/狂啸.mp3');
@@ -33694,7 +33694,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 globalTo: -1,
                             },
                             skills: ['拿瓦4', '酷雷伏岩壁'],
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('酷雷伏钥匙', 'spade', 4), player)._triggered = null;
                                 if (player.name == '酷雷伏') {
                                     game.playAudio('../extension/异闻带/audio/绝峭.mp3');
@@ -33974,7 +33974,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         神火试炼: {
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('神火试炼', 'spade', 1), player)._triggered = null;
                             },
                             derivation: '崩坏',
@@ -34201,7 +34201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             image: 'ext:异闻带/image/魔力【储蓄】.jpg',
                         },
                         罗兰的剑: {
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的剑', 'spade', 1), player);
                             },
                             derivation: '宝具',
@@ -34237,7 +34237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         凯尔希的Mon3tr: {
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 if (player.identity == 'nei' || get.mode() != 'identity') {
                                     player.disableEquip('equip2');
                                     player.node.avatar.setBackgroundImage('extension/异闻带/image/老猞猁2阶段.jpg');
@@ -34322,7 +34322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -1,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的桦树工坊', 'spade', 1), player);
                             },
                             ai: {
@@ -34358,7 +34358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: 0,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的琅琊工坊', 'spade', 1), player);
                             },
                             ai: {
@@ -34394,7 +34394,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -3,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的老男孩工坊', 'spade', 1), player);
                             },
                             ai: {
@@ -34431,7 +34431,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -4,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的阿拉斯工坊', 'spade', 1), player);
                             },
                             ai: {
@@ -34468,7 +34468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -2,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的墨工坊', 'spade', 1), player);
                             },
                             ai: {
@@ -34505,7 +34505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -2,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的卡莉斯塔工作室', 'spade', 1), player);
                             },
                             ai: {
@@ -34542,7 +34542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -8,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的逻辑工作室', 'spade', 1), player);
                             },
                             ai: {
@@ -34573,7 +34573,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             image: 'ext:异闻带/image/罗兰的老男孩工坊.jpg',
                         },
                         罗兰的杜朗达尔: {
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的杜朗达尔', 'spade', 1), player)._triggered = null;
                             },
                             derivation: '武具',
@@ -34616,7 +34616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             distance: {
                                 attackFrom: -5,
                             },
-                            onLose() {
+                            async onLose(event, trigger, player) {
                                 player.equip(game.createCard('罗兰的轮盘重工', 'spade', 1), player);
                             },
                             ai: {
