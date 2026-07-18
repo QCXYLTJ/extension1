@@ -2393,6 +2393,29 @@ const content = async function () {
     zhijie();
     //————————————————————————————————————————————————————————————————————————————————————————————————————浅层检测
     const qianceng = function () {
+      lib.card.diaohulishan.ai = {
+        order: 10,
+        value: 4,
+        useful: [2, 1],
+        wuxie() {
+          return 0;
+        },
+        result: {
+          target(player, target, card) {
+            if (target.hasSkill('undist') || target.hasSkill('diaohulishan')) {
+              return 0;
+            }
+            if (!_status.diaohubaozhan) {
+              _status.diaohubaozhan = true;
+              const num1 = player.countCards('hs', (card) => get.effect(target, card, player, player) > 0);
+              const num2 = player.countCards('hs', (card) => get.effect(target, card, player, player) < 0);
+              delete _status.diaohubaozhan;
+              return num2 - num1;
+            }
+            return 0;
+          },
+        },
+      };
       if (lib.card.yunvyuanshen) {
         lib.card.yunvyuanshen.content = async function (event, trigger, player) {
           let card = event.card;
