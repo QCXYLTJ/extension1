@@ -7919,11 +7919,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     result.targets[0].addSkill('extongqumark');
                                     result.targets[0].storage.extongqumark++;
                                     result.targets[0].markSkill('extongqumark');
-                                }
-                                ('step 2');
-                                if (result.targets[0].storage.extongqumark < 2) {
-                                    result.targets[0].storage.extongqumark++;
-                                    result.targets[0].markSkill('extongqumark');
+                                    if (result.targets[0].storage.extongqumark < 2) {
+                                        result.targets[0].storage.extongqumark++;
+                                        result.targets[0].markSkill('extongqumark');
+                                    }
                                 }
                             },
                         },

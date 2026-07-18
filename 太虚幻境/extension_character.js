@@ -12572,12 +12572,12 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								.randomGet();
 							if (list) {
 								if (list.countCards('he') > 0) {
-									event.card = list.getCards('he').randomGets(2);
-									list.discard(event.card);
+									const cards = list.getCards('he').randomGets(2);
+									list.discard(cards);
 								}
 								list.damage();
 							}
-						},
+						},//QQQ
 						ai: {
 							directHit_ai: true,
 							threaten: 2,

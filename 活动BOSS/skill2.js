@@ -48488,6 +48488,7 @@ const skill = {
         async content(event, trigger, player) {
             //QQQ
             if (event.triggername == 'phaseJieshuBegin') {
+                const num = trigger.player.countCards('h');
                 const { bool } = await player
                     .chooseBool(get.prompt('fenghuo_danshou', trigger.player), '对' + get.translation(trigger.player) + '造成1点伤害')
                     .set('ai', (event, player) => trigger.player.isEnemiesOf(player))
