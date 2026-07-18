@@ -1253,9 +1253,9 @@ if (decadeModule) {
 				var trigger = {
 					card: {
 						nvzhuang: {
-							onEquip() {
-								if (card.cards?.length) {
-									const cardx = card.cards[0];
+							async onEquip(event, trigger, player) {
+								if (event.card?.cards?.length) {
+									const cardx = event.card.cards[0];
 									if (player.sex == 'male' && player.countCards('he', (card) => card != cardx)) {
 										lib.animate.skill.nvzhuang.call(player, 'nvzhuang');
 										player.chooseToDiscard(true, 'he', (card) => card != cardx);

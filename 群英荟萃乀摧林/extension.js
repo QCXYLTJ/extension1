@@ -18767,9 +18767,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     type: 'equip',
                     subtype: 'equip5',
                     nomod: true,
-                    onEquip() {
-                        if (card && card.cards && card.cards.length) {
-                            player.directgains(card.cards, null, 'muniu');
+                    async onEquip(event, trigger, player) {
+                        if (event.card?.cards?.length) {
+                            player.directgains(event.card.cards, null, 'muniu');
                         }
                         player.markSkill('muniu_skill');
                     },

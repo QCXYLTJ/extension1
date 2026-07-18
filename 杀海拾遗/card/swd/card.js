@@ -771,11 +771,14 @@ const card = {
 			return player.hasSkill("xuanyuan") || player.hp > 2;
 		},
 		distance: { attackFrom: -2 },
-		onEquip() {
-			if (!player.hasSkill("xuanyuan") && player.hp <= 2) {
-				player.discard(card);
-			} else {
-				player.changeHujia();
+		async onEquip(event, trigger, player) {
+			if (event.card?.cards?.length) {
+				const card = event.card.cards[0];
+				if (!player.hasSkill("xuanyuan") && player.hp <= 2) {
+					player.discard(card);
+				} else {
+					player.changeHujia();
+				}
 			}
 		},
 		ai: {

@@ -36319,17 +36319,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         distance: {
                             globalFrom: -0,
                         },
-                        onEquip() {
-                            if (
-                                !game.hasPlayer(function (current) {
-                                    return current != player && current.hasSkill('sk_chitu_skill_lose') && current.storage.sk_chitu && current.storage.sk_chitu == card;
-                                })
-                            ) {
-                                if (!player.hasSkill('sk_chitu_skill_lose')) {
-                                    player.storage.sk_chitu = card;
-                                    player.addTempSkill('sk_chitu_skill_lose', { player: 'die' });
-                                    player.storage.sk_chitu_skill_lose = 0;
-                                    player.addMark('sk_chitu_skill_lose', 3);
+                        async onEquip(event, trigger, player) {
+                            if (event.card?.cards?.length) {
+                                const card = event.card.cards[0];
+                                if (
+                                    !game.hasPlayer(function (current) {
+                                        return current != player && current.hasSkill('sk_chitu_skill_lose') && current.storage.sk_chitu && current.storage.sk_chitu == card;
+                                    })
+                                ) {
+                                    if (!player.hasSkill('sk_chitu_skill_lose')) {
+                                        player.storage.sk_chitu = card;
+                                        player.addTempSkill('sk_chitu_skill_lose', { player: 'die' });
+                                        player.storage.sk_chitu_skill_lose = 0;
+                                        player.addMark('sk_chitu_skill_lose', 3);
+                                    }
                                 }
                             }
                         },
@@ -36430,14 +36433,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     sk_muniu: {
                         type: 'equip',
                         subtype: 'equip5',
-                        onEquip() {
-                            lib.translate.muniu_skill_bg = '♜';
-                            lib.translate.muniu_skill = '木牛流马';
-                            lib.translate.sk_muniu_skill = '辎粮';
-                            if (card && card.cards && card.cards.length) {
-                                player.directgains(card.cards, null, 'muniu');
+                        async onEquip(event, trigger, player) {
+                            if (event.card?.cards?.length) {
+                                const card = event.card.cards[0];
+                                lib.translate.muniu_skill_bg = '♜';
+                                lib.translate.muniu_skill = '木牛流马';
+                                lib.translate.sk_muniu_skill = '辎粮';
+                                player.directgains(event.cards, null, 'muniu');
+                                player.markSkill('muniu_skill');
                             }
-                            player.markSkill('muniu_skill');
                         },
                     },
                 },

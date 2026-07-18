@@ -9550,9 +9550,9 @@ const skill = {
             type: 'equip',
             subtype: 'equip5',
             nomod: true,
-            onEquip() {
-                if (card && card.cards && card.cards.length) {
-                    player.directgains(card.cards, null, 'jxtp_muniu');
+            async onEquip(event, trigger, player) {
+                if (event.card?.cards?.length) {
+                    player.directgains(event.card.cards, null, 'jxtp_muniu');
                 }
                 player.markSkill('jxtp_muniu');
             },
@@ -10025,9 +10025,9 @@ const skill = {
             selectTarget: 1,
             toself: false,
             loseDelay: false,
-            onEquip() {
-                if (card.cards?.length) {
-                    const cardx = card.cards[0];
+            async onEquip(event, trigger, player) {
+                if (event.card?.cards?.length) {
+                    const cardx = event.card.cards[0];
                     if (player.sex == 'male' && player.countCards('he', (card) => cardx != card)) {
                         let num = 0;
                         if (player.countCards('h')) {
@@ -10583,7 +10583,7 @@ const skill = {
             subtype: 'equip5',
             loseDelay: false,
             async onEquip(event, trigger, player) {
-                if (event.card.cards?.length) {
+                if (event.card?.cards?.length) {
                     const cardx = event.card.cards[0];
                     if (player.countCards('he', (card) => cardx != card)) {
                         const { cards, targets } = await player
@@ -15258,7 +15258,7 @@ const skill = {
                 }
             },
             async onEquip(event, trigger, player) {
-                if (event.card.cards?.length) {
+                if (event.card?.cards?.length) {
                     const cardx = event.card.cards[0];
                     player.addToExpansion(cardx, 'giveAuto').gaintag.add('jxtp_zhaoshu_skill');
                     player.markAuto('jxtp_zhaoshu_skill', [cardx]);

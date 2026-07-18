@@ -67357,10 +67357,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							distance: {
 								attackFrom: -2,
 							},
-							onEquip() {
-								if (!card.storage.snjs_card_ruyijingubang_skill) card.storage.snjs_card_ruyijingubang_skill = 3;
-								player.storage.snjs_card_ruyijingubang_skill = card.storage.snjs_card_ruyijingubang_skill;
-								player.markSkill('snjs_card_ruyijingubang_skill');
+							async onEquip(event, trigger, player) {
+								if (event.card?.cards?.length) {
+									const card = event.card.cards[0];
+									if (!card.storage.snjs_card_ruyijingubang_skill) card.storage.snjs_card_ruyijingubang_skill = 3;
+									player.storage.snjs_card_ruyijingubang_skill = card.storage.snjs_card_ruyijingubang_skill;
+									player.markSkill('snjs_card_ruyijingubang_skill');
+								}
 							},
 							enable: true,
 							selectTarget: -1,

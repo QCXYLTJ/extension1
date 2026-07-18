@@ -7291,9 +7291,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             subtype: 'equip1',
                             distance: { attackFrom: -2 },
                             nomod: true,
-                            onEquip() {
-                                if (card && card.cards && card.cards.length) {
-                                    player.directgains(card.cards, null, 'bxyr_bagualu');
+                            async onEquip(event, trigger, player) {
+                                if (event.card?.cards?.length) {
+                                    player.directgains(event.card.cards, null, 'bxyr_bagualu');
                                 }
                                 player.markSkill('bxyr_bagualu');
                             },

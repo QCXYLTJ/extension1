@@ -864,9 +864,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         type: 'equip',
         image: 'ext:格林笔记/card/gl_lieqiang.png',
         subtype: 'equip1',
-        onEquip: function () {
-          if (card && card.cards && card.cards.length) {
-            player.directgains(card.cards, null, 'gl_lieqiang');
+        async onEquip(event, trigger, player) {
+          if (event.card?.cards?.length) {
+            player.directgains(event.card.cards, null, 'gl_lieqiang');
             player.markSkill('gl_lieqiang_skill');
           }
         },
@@ -892,7 +892,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
           for (const target of game.players) {
             await target.draw(2);
           }
-          if (event.card.cards?.length) {
+          if (event.card?.cards?.length) {
             game.gl_changeMap(event.card.cards[0]);
           }
         },
@@ -912,16 +912,17 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
         subtype: 'gl_map',
         replaceEquip: lib.element.content.gl_uniqueEquip,
         async onEquip(event, trigger, player) {
-          for (const target of game.players) {
-            const equip = get.cardPile(function (card) {
-              return get.type(card) == 'equip' && target.hasUseTarget(card);
-            });
-            if (equip) {
-              await target.chooseUseTarget(equip, 'nothrow', 'nopopup', true);
+          if (event.card?.cards?.length) {
+            const cardx = event.card.cards[0];
+            for (const target of game.players) {
+              const equip = get.cardPile(function (card) {
+                return get.type(card) == 'equip' && target.hasUseTarget(card);
+              });
+              if (equip) {
+                await target.chooseUseTarget(equip, 'nothrow', 'nopopup', true);
+              }
             }
-          }
-          if (event.card.cards?.length) {
-            game.gl_changeMap(event.card.cards[0]);
+            game.gl_changeMap(cardx);
           }
         },
         forceDie: true,

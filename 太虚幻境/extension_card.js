@@ -1540,8 +1540,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         game.addGlobalSkill('txzhaoshu_global');
                     }
                 },
-                onEquip() {
-                    if (player.isAlive()) {
+                async onEquip(event, trigger, player) {
+                    if (event.card?.cards?.length) {
+                        const card = event.card.cards[0];
                         player.addToExpansion(card, 'giveAuto').gaintag.add('txzhaoshu_skill');
                         player.markAuto('txzhaoshu_skill', [card]);
                         player.addSkill('txzhaoshu_skill');

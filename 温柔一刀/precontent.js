@@ -100,7 +100,14 @@ game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
 const { result
-\n{0}onLose\([^}]*unmark
+\n{0}onLose\([^}]*card
+\n{0}onequip\([^}]*event.cards?.
+
+                    async onEquip(event, trigger, player) {
+                        if (event.card?.cards?.length) {
+                                const card = event.card.cards[0];
+                        }
+                    },
 if \(result.bool(\) \{\n\s*.+result.targets)
 if (result.targets?.length$1
 if \(result.bool(\) \{\n\s*.+result.links)
