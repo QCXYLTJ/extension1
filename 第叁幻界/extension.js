@@ -64664,10 +64664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										nature: get.nature(card, get.owner(card)),
 										cards: [card],
 									};
-									var next = player.chooseUseTarget(cardx, [card], true, false).set('oncard', (card) => {
-										var owner = _status.event.parent.owner;
-										if (owner) owner.$throw(card.cards);
-									});
+									var next = player.chooseUseTarget(cardx, [card], true, false);
 									if (card.name != cardx.name || card.nature != cardx.nature) next.viewAs = true;
 									var owner = get.owner(card);
 									if (owner != player && get.position(card) == 'h') {

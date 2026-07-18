@@ -17099,10 +17099,7 @@ const skills = {
 					nature: get.nature(card, get.owner(card)),
 					cards: [card],
 				};
-				const next = player.chooseUseTarget(cardx, [card], true, false).set('oncard', (card) => {
-					const owner = _status.event.parent.owner;
-					if (owner) owner.$throw(card.cards);
-				});
+				const next = player.chooseUseTarget(cardx, [card], true, false);
 				if (card.name === cardx.name && get.is.sameNature(card, cardx, true)) next.viewAs = false;
 				const owner = get.owner(card);
 				if (owner != player && get.position(card) == 'h') {

@@ -17217,10 +17217,7 @@ const skills = {
 					nature: get.nature(card, get.owner(card)),
 					cards: [card],
 				};
-				var next = player.chooseUseTarget(cardx, [card], true, false).set('oncard', (card) => {
-					var owner = _status.event.parent.owner;
-					if (owner) owner.$throw(card.cards);
-				});
+				var next = player.chooseUseTarget(cardx, [card], true, false);
 				if (card.name != cardx.name || !get.is.sameNature(card, cardx)) next.viewAs = true;
 				var owner = get.owner(card);
 				if (owner != player && get.position(card) == 'h') {
@@ -18464,10 +18461,7 @@ const skills = {
 							}
 						});
 				}
-				const next = await player.chooseUseTarget(cardx, [card], true, false, 'nodistance').set('oncard', (card) => {
-					const owner = _status.event.parent.owner;
-					if (owner) owner.$throw(card.cards);
-				});
+				const next = await player.chooseUseTarget(cardx, [card], true, false, 'nodistance');
 				if (card.name === cardx.name && get.is.sameNature(card, cardx, true)) next.viewAs = false;
 			}
 		},
