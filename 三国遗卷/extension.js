@@ -3425,12 +3425,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							async content(event, trigger, player) {
 								player.loseMaxHp(true);
-								const { result: { index } } = await player.chooseControl()
+								const { index } = await player.chooseControl()
 									.set('choiceList', ['额外结算一次', '摸三张牌', '此牌不可被抵消'])
 									.set('ai', function () {
 										if (player.countCards('h') < 3) return 1;
 										return [0, 1, 2].randomGet();
-									});
+									})
+									.forResult();
 								if (index == 0) {
 									for (var i of trigger.targets) {
 										await player.useCard(trigger.card, i, false);//QQQ
@@ -6443,7 +6444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.showCards(cardsx);
 								player.gain(cardsx, 'gain2');
 								if (cardsy.length) {
-									const { result: { moved } } = await player
+									const { moved } = await player
 										.chooseToMove()
 										.set('list', [['牌堆顶', cardsy], ['牌堆底']])
 										.set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -6464,7 +6465,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												top.push(bottom.shift());
 											}
 											return [top, bottom];
-										}); //给别人观星
+										})
+										.forResult();//给别人观星
 									if (moved?.length) {
 										moved[0].reverse();
 										for (var i of moved[0]) {

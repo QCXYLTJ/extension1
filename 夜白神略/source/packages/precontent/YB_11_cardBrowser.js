@@ -1,4 +1,4 @@
-﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 import { YB_tujian } from '../../pile/ybtujian.js';
 import { YBSL_characterIntro } from '../function.js';
 export { YB_11_cardBrowser };
@@ -9,24 +9,24 @@ export { YB_11_cardBrowser };
  * 原用于卡包浏览
  */
 const YB_11_cardBrowser = function () {
-	if (lib?.config?.extension_夜白神略_6attack == true) {
-		game.addMode(
-			'YB_6attack',
-			{
-				start() {
-					'step 0';
-					const dialog = ui.create.div('.yb6attack');
+  if (lib?.config?.extension_夜白神略_6attack == true) {
+    game.addMode(
+      'YB_6attack',
+      {
+        start() {
+          'step 0';
+          const dialog = ui.create.div('.yb6attack');
 
-					dialog.innerHTML = '<br><div class="yb6attack_title">夜白神略</div>';
+          dialog.innerHTML = '<br><div class="yb6attack_title">夜白神略</div>';
 
-					ui.create.dialog(dialog);
-					('step 1');
-				},
-				init() { },
-			},
-			{
-				translate: 'rpg模拟器',
-			},
-		);
-	}
+          ui.create.dialog(dialog);
+          'step 1';
+        },
+        init() {}
+      },
+      {
+        translate: 'rpg模拟器'
+      }
+    );
+  }
 };

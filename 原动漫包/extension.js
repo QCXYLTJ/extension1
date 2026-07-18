@@ -336,11 +336,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					while (num-- > 0) {
 						card = get.cards()[0];
 						player.showCards(card);
-						const { result: { bool } } = await player.chooseBool('是否改判？')
+						const { bool } = await player.chooseBool('是否改判？')
 							.set('ai', function () {
 								if (card1) return get.attitude(player, trigger.player) * (trigger.judge(card) - trigger.judge(card1));
 								return get.attitude(player, trigger.player) * trigger.judge(card);
-							});
+							}).forResult();
 						if (bool) {
 							if (card1) {
 								cards.push(card1);

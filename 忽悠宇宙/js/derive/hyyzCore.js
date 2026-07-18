@@ -69,12 +69,12 @@ window.hyyzImport(function (lib, game, ui, get, ai, _status) {
 				return player.countCards('he') > 0 && event.hasNature('hyyz_wind');
 			},
 			async content(event, trigger, player) {
-				const { result: { cards } } = await player.chooseToDiscard(`风蚀`, `弃置至少一张牌;每多弃置一张,防止1点伤害`, 'he', [1, trigger.num + 1], true).set('ai', function (card) {
+				const { cards } = await player.chooseToDiscard(`风蚀`, `弃置至少一张牌;每多弃置一张,防止1点伤害`, 'he', [1, trigger.num + 1], true).set('ai', function (card) {
 					var num = _status.event.numx;
 					if (num >= 0) return true;
 					if (player.hp < 2) return true;
 					return 10 - get.value(card);
-				}).set('numx', trigger.num - player.hp);
+				}).set('numx', trigger.num - player.hp).forResult();
 				if (cards) {
 					var count = cards.length;
 					if (count - 1 > 0) {
@@ -103,9 +103,9 @@ window.hyyzImport(function (lib, game, ui, get, ai, _status) {
 				return player.countCards('he', (card) => player.canRecast(card)) && event.card.name == 'sha' && game.hasNature(event.card, 'hyyz_quantum');
 			},
 			async content(event, trigger, player) {
-				const { result: { cards } } = await player.chooseCard(`纠缠`, `你可以重铸一张牌,${get.translation(trigger.target)}将随机重铸一张同类型的牌`, 'he', function (card) {
+				const { cards } = await player.chooseCard(`纠缠`, `你可以重铸一张牌,${get.translation(trigger.target)}将随机重铸一张同类型的牌`, 'he', function (card) {
 					return _status.event.player.canRecast(card);
-				}).set('ai', (card) => 8 - get.value(card));
+				}).set('ai', (card) => 8 - get.value(card)).forResult();
 				if (cards) {
 					player.recast(cards);
 					const loses = trigger.target.getCards('he', card => {

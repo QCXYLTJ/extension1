@@ -6234,7 +6234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('judging', trigger.player.judging[0])
                                     .set('_replace', ok);
-                                let { result: { cards, targets, bool } } = await next;
+                                const { cards, targets, bool } = await next.forResult();
                                 if (bool || !bool && (!cards || !cards.length || !targets || !targets.length)) {
                                     if (!bool) {
                                         let result = await player.chooseBool(
@@ -6398,10 +6398,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 for (var i of cards) {
                                     if (map[i.suit] && !suit.includes(i.suit)) suit.push(i);
                                 }
-                                const { result: { bool } } = await target.chooseBool(
+                                const { bool } = await target.chooseBool(
                                     `###是否令${get.translation(player)}发动【${get.skillTranslation(name, player)
                                     }】？###令${get.translation(player)}${map[suit]}`
-                                ).set('choice', (/heart|diamond/).test(suit) ? att > 2 : att < 0);
+                                ).set('choice', (/heart|diamond/).test(suit) ? att > 2 : att < 0).forResult();
                                 if (bool) {
                                     player.line(target, 'green');
                                     let content = lib.skill.beige.content.toString();

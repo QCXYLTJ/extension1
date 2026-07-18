@@ -66,13 +66,13 @@ const GlobalSkills = {
             trigger.cancel();
             const target = trigger.player;
             if (!target.countCards('e', card => !card.storage?.dustdestroy)) return;
-            const { result: { bool, cards } } = await player
+            const { bool, cards } = await player
                 .choosePlayerCard(target, true, 'e', button => {
                     return !button.link.storage?.dustdestroy;
                 })
                 .set('ai', button => {
                     return -get.value(button.link, target) * get.attitude(player, target);
-                });
+                }).forResult();
             if (bool) {
                 cards[0].storage.dustdestroy = true;
                 target.removeEquipTrigger(cards[0]);

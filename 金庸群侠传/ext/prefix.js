@@ -674,6 +674,6 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
       qtpz_supu: "白苏普"
     };
     var jyyuan = {
+
       //鸳鸯刀
-    };});
-});
+    };});});

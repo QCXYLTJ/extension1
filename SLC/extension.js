@@ -14950,7 +14950,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             async content(event, trigger, player) {
                                 //QQQ
                                 var list = Array.from(lib.nature.keys());
-                                var { result } = await player
+                                const result = await player
                                     .chooseControl(list)
                                     .set('ai', function () {
                                         if (trigger.target.hasSkillTag('nofire')) {
@@ -14958,9 +14958,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         return Math.floor(Math.random() * list.length);
                                     })
-                                    .set('prompt', '请选择杀的属性');
+                                    .set('prompt', '请选择杀的属性').forResult();
                                 if (result.control) {
-                                    var { result: result1 } = await player.chooseTarget([1, 2], (card, player, target) => player != target).set('ai', (target) => -get.attitude(player, target));
+                                    const result1 = await player.chooseTarget([1, 2], (card, player, target) => player != target).set('ai', (target) => -get.attitude(player, target)).forResult();
                                     if (result1.targets && result1.targets[0]) {
                                         if (result1.targets.length == 1) trigger.directHit = true;
                                         for (var i of result1.targets) {

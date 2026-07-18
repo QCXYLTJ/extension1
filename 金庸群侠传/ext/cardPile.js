@@ -435,15 +435,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
 
 
 
+
+
+
+
         //替换前牌名:替换后牌名
         //八卦阵替换为桃花阵，请在自定义卡牌列表列表删掉桃花阵
         //其他卡牌皆以此法替换
         //"bagua":'jydiytaohuazhen',
-      };for (var i = 0; i < lib.card.list.length; i++) {var name = lib.card.list[i][2];if (replaced[name]) {var map = replaced[name];
-          if (lib.card[map]) {
-            lib.card.list[i][2] = map;
-          } else {
-            alert('卡牌' + map + '未定义请仔细检查!');
+      };for (var i = 0; i < lib.card.list.length; i++) {var name = lib.card.list[i][2];if (replaced[name]) {var map = replaced[name];if (lib.card[map]) {lib.card.list[i][2] = map;} else {alert('卡牌' + map + '未定义请仔细检查!');
           }
         } else if (names.includes(name)) {
           lib.card.list.splice(i--, 1);

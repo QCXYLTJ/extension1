@@ -3541,14 +3541,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }).forResult();
                                 if (result.links?.length) {
                                     cards.remove(result.links[0]);
-                                    const { result: result1 } = await player.chooseControl([0, 1, 2, 3, 4]);
+                                    const result1 = await player.chooseControl([0, 1, 2, 3, 4]).forResult();
                                     cards.splice(result1.control, 0, result.links[0]);
                                     while (cards.length) {
                                         ui.cardPile.insertBefore(cards.pop(), ui.cardPile.firstChild);
                                     }
-                                    const { result: result2 } = await player.chooseCard('h').set('ai', function (card) {
+                                    const result2 = await player.chooseCard('h').set('ai', function (card) {
                                         return 8 - get.value(card);
-                                    });
+                                    }).forResult();
                                     if (result2.cards && result2.cards[0]) {
                                         await player.chooseUseTarget({ name: result.links[0].name }, result2.cards, true, false);
                                     }

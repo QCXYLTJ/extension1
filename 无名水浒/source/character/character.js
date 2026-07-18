@@ -10572,7 +10572,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 },
                 async content(event, trigger, player) {
                     const sha = new lib.element.VCard({ name: 'sha' });
-                    var { result } = await player.chooseToCompare(trigger.source);
+                    const result = await player.chooseToCompare(trigger.source).forResult();
                     if (result.bool) {
                         if (!player.canUse(sha, trigger.source)) return;
                         player.useCard(sha, trigger.source);
@@ -10613,7 +10613,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 async content(event, trigger, player) {
                     const sha = new lib.element.VCard({ name: 'sha' });
                     const target = event.target;
-                    var { result } = await player.chooseToCompare(target);
+                    const result = await player.chooseToCompare(target).forResult();
                     if (result.bool) {
                         if (!player.canUse(sha, target)) return;
                         player.useCard(sha, target);

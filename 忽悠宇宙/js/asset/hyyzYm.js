@@ -21828,7 +21828,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
       async content(event, trigger, player) {
         player.draw(2);
         if (trigger.source && trigger.source.isIn() && player.hasSkill('mengwugui') && player.hasSkill('menggushen')) {
-          let { result } = await trigger.source.chooseControl('交换选项', `令${trigger.source == player ? '你' : get.translation(player)}控顶`).set('ai', () => `令${trigger.source == player ? '你' : get.translation(player)}控顶`);
+          const result = await trigger.source.chooseControl('交换选项', `令${trigger.source == player ? '你' : get.translation(player)}控顶`).set('ai', () => `令${trigger.source == player ? '你' : get.translation(player)}控顶`).forResult();
           if (result.control) {
             if (result.control == '交换选项') {
               const choice1 = lib.skill.mengwugui.choices.slice(),
@@ -21887,7 +21887,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
                 [lib.skill.mengwugui.choices[index1], lib.skill.menggushen.choices[index2]] = [lib.skill.menggushen.choices[index2], lib.skill.mengwugui.choices[index1]];
               } else return;
             } else if (player.countCards('he') > 0) {
-              let { result } = await player.chooseCard('将一张牌控顶', true);
+              const result = await player.chooseCard('将一张牌控顶', true).forResult();
               if (result.cards?.length) {
                 player.lose(result.cards[0], ui.cardPile, 'insert');
                 player.$throw(result.cards, 1000);

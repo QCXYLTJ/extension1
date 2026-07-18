@@ -3727,7 +3727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.cards && result.targets && result.targets[0]) {
                                     player.discard(result.cards);
                                     player.storage.Grand_caiyi.add(result.targets[0]);
-                                    const { result: result1 } = await player.chooseControl('zhong', 'fan', 'nei').set('ai', () => result.targets[0].identity);
+                                    const result1 = await player.chooseControl('zhong', 'fan', 'nei').set('ai', () => result.targets[0].identity).forResult();
                                     if (result.targets[0].identity == result1.control) {
                                         game.log(result.targets[0], '的身份是', result.targets[0].identity);
                                         player.draw(3);

@@ -177,9 +177,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
       },
       characterIntro: {
 
+
         //武将事迹
-      }, characterTitle: {
-        tlbb_xie_liqingluo: '娇花陷泥',
+      }, characterTitle: { tlbb_xie_liqingluo: '娇花陷泥',
         tlbb_xie_yeerniang: '思孤泣血',
         tlbb_youjiyouju: '游氏双雄',
         tlbb_duanyuwangyuyan: '步罡踏斗',
@@ -5344,9 +5344,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           onremove(player, skill) {
 
+
             //delete player._tempTranslate;
-          }, audio: 'ext:金庸群侠传/peiyin:2',
-          trigger: {
+          }, audio: 'ext:金庸群侠传/peiyin:2', trigger: {
             player: 'damageAfter'
           },
           _priority: 13,
@@ -9066,9 +9066,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.clearSkills();
             if (player.hp < player.maxHp) {
 
+
               //player.recover(player.maxHp-player.hp);
-            }'step 3';
-            player.addSkills('tlbb_xisui');
+            }'step 3';player.addSkills('tlbb_xisui');
           },
           ai: {
             order: 10,

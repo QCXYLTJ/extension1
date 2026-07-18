@@ -1370,7 +1370,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                         }
                         if (!isDamage) {
-                            const { result: result1 } = await player.chooseButton(['独角仙', [cards2, 'card']], true);
+                            const result1 = await player.chooseButton(['独角仙', [cards2, 'card']], true).forResult();
                             if (result1.links && result1.links[0]) {
                                 player.gain(result1.links, 'gain2');
                             }

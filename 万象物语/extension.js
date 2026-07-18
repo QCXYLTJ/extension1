@@ -16638,10 +16638,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('Elio_Wandering');
                                     });
                                     if (hs.length) {//QQQ
-                                        const { result: { links } } = await player.chooseButton(['向阳:是否获得其中的一张牌？', hs])
+                                        const { links } = await player.chooseButton(['向阳:是否获得其中的一张牌？', hs])
                                             .set('ai', (button) => {
                                                 return player.getUseValue(button.link) || 0;
-                                            });
+                                            })
+                                            .forResult();
                                         if (links?.length) {
                                             player.gain(links, 'draw');
                                         }

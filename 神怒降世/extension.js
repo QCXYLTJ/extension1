@@ -7098,7 +7098,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var num = 2;
 								while (num-- > 0) {
 									if (player.countCards('h')) {
-										var { result } = await player.chooseCard(true, 1, 'h', '将一张手牌置于牌堆底').set('ai', (card) => 10 - get.value(card));
+										const result = await player
+											.chooseCard(true, 1, 'h', '将一张手牌置于牌堆底')
+											.set('ai', (card) => 10 - get.value(card))
+											.forResult();
 										if (result.cards?.length) {
 											ui.cardPile.appendChild(result.cards[0]);
 											game.log(player, '将' + get.cnNumber(result.cards.length) + '张牌置入了牌堆底');
@@ -23686,7 +23689,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								while (Q.length > 1) {
 									if (Q[num].countCards('h') == 1) game.playAudio('../extension/神怒降世/audio/spmzfs_ddz_' + Q[num].sex + '_yzp.mp3');
 									if (Q[num].countCards('h') == 2) game.playAudio('../extension/神怒降世/audio/spmzfs_ddz_' + Q[num].sex + '_lzp.mp3');
-									var { result } = await Q[num].chooseCard('〖富商〗:是否打出一张比' + cardnum + '大的手牌？', 'h', (card) => card.number > cardnum).set('ai', (card) => 20 - get.value(card));
+									const result = await Q[num]
+										.chooseCard('〖富商〗:是否打出一张比' + cardnum + '大的手牌？', 'h', (card) => card.number > cardnum)
+										.set('ai', (card) => 20 - get.value(card))
+										.forResult();
 									if (result.cards?.length) {
 										game.cardsGotoOrdering(result.cards);
 										W.push(result.cards[0]);
@@ -23706,13 +23712,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								if (Q[0].countCards('h') == 1) game.playAudio('../extension/神怒降世/audio/spmzfs_ddz_' + Q[0].sex + '_yzp.mp3');
 								if (Q[0].countCards('h') == 2) game.playAudio('../extension/神怒降世/audio/spmzfs_ddz_' + Q[0].sex + '_lzp.mp3');
-								var { result } = await Q[0]
+								const result = await Q[0]
 									.chooseControl('获得〖富商〗牌', '摸三张牌')
 									.set('prompt', '〖富商〗:选择一项')
 									.set('ai', function (target) {
 										if (W.length > 3) return '获得〖富商〗牌';
 										else return '摸三张牌';
-									});
+									})
+									.forResult();
 								if (result.control == '获得〖富商〗牌') Q[0].gain(W, 'gain2');
 								else Q[0].draw(3);
 								if (Q[0] != player) player.draw(W.length);
@@ -27686,13 +27693,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								for (var i = 0; i <= lib.suits.length; i++) {
 									list.push(i);
 								}
-								var { result } = await trigger.target
+								const result = await trigger.target
 									.chooseControl(list, () => {
 										if (player.countCards('h') == 3) return 2;
 										if (player.countCards('h') > 3) return 4;
 										return player.countCards('h');
 									})
-									.set('prompt', '〖暗矢〗:猜测' + get.translation(player) + '的手牌中包含几种花色');
+									.set('prompt', '〖暗矢〗:猜测' + get.translation(player) + '的手牌中包含几种花色')
+									.forResult();
 								game.log(trigger.target, '猜测', player, '的手牌中包含', result.control, '种花色');
 								game.log(player, '的手牌中实际包含', suit.length, '种花色');
 								var num = Math.abs(suit.length - result.control);

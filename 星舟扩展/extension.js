@@ -7892,14 +7892,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 6 - player.countCards('h', { suit: button.link });
 									}).forResult();
 								if (result.links?.length) {
-									const { result: result1 } = await player
+									const result1 = await player
 										.chooseTarget('观看一名其他角色的手牌并弃置其中一种花色的所有牌', (card, player, target) => target != player && target.countCards('h'))
 										.set('ai', (target) => {
 											var player = _status.event.player,
 												att = get.attitude(player, target);
 											if (att >= 0) return 0;
 											return 1 - att / 2 + Math.sqrt(target.countCards('h'));
-										});
+										}).forResult();
 									if (result1.targets && result1.targets[0]) {
 										const target = result1.targets[0];
 										const card1 = player.getCards('h', { suit: result.links[0] });
@@ -7914,7 +7914,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										}
 										if (list.length) {
-											const { result: result2 } = await player
+											const result2 = await player
 												.chooseControl(list)
 												.set('dialog', dialog)
 												.set('ai', () => {
@@ -7922,7 +7922,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return list.sort((a, b) => {
 														return getv(target.getCards('h', { suit: b })) - getv(target.getCards('h', { suit: a }));
 													})[0];
-												});
+												}).forResult();
 											const card2 = target.getCards('h', { suit: result2.control });
 											target.discard(card2, 'notBySelf').set('discarder', player);
 											if (card1.length > card2.length) {

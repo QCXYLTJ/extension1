@@ -7340,7 +7340,14 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         }
                                     }
                                     while (cards.length) {
-                                        const temp = cards.length > 1 ? await player.chooseCardButton([1, cards.length], cards, true, '选择要分配的牌').forResultLinks() : cards;
+                                        let temp;
+                                        if (cards.length > 1) {
+                                            const { links } = await player.chooseCardButton([1, cards.length], cards, true, '选择要分配的牌').forResult();
+                                            temp = links;
+                                        }
+                                        else {
+                                            temp = cards;
+                                        }
                                         const { targets } = await player
                                             .chooseTarget('把' + get.translation(temp) + '分配给谁？')
                                             .set('filterTarget', (card, player, target) => players.includes(target))

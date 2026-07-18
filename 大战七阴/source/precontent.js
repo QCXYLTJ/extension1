@@ -1991,14 +1991,14 @@ export async function precontent(config, pack) {
 					},
 					async content(event, trigger, player) {
 						const sha1 = player.countCards('h', { name: 'sha' });
-						const { result: chosenCardsResult } = await player.chooseCard('h', '请选择不超过3张手牌', [1, 3], function (card) {
+						const chosenCardsResult = await player.chooseCard('h', '请选择不超过3张手牌', [1, 3], function (card) {
 							return lib.filter.cardRecastable.apply(this, arguments);
-						});
+						}).forResult();
 						if (chosenCardsResult.bool) {
 							await player.recast(chosenCardsResult.cards);
 							const sha2 = player.countCards('h', { name: 'sha' });
 							if (sha2 > sha1) {
-								const { result: chosenTargetResult } = await player.chooseTarget(1, '选取一名角色,对其造成' + (sha2 - sha1) + '点伤害');
+								const chosenTargetResult = await player.chooseTarget(1, '选取一名角色,对其造成' + (sha2 - sha1) + '点伤害').forResult();
 								if (chosenTargetResult.bool) {
 									const tg = chosenTargetResult.targets[0];
 									player.line(tg, 'red');
@@ -2028,7 +2028,7 @@ export async function precontent(config, pack) {
 					},
 					async content(event, trigger, player) {
 						const tg = trigger.source;
-						const { result: chosenCardsResult } = await player.chooseCard('he', [1, Infinity], '请选择任意张手牌作为杀对' + get.translation(tg.name) + '使用');
+						const chosenCardsResult = await player.chooseCard('he', [1, Infinity], '请选择任意张手牌作为杀对' + get.translation(tg.name) + '使用').forResult();
 						if (chosenCardsResult.bool) {
 							await player.useCard({ name: 'sha' }, chosenCardsResult.cards, tg, false);
 						}

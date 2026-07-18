@@ -13471,11 +13471,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							async content(event, trigger, player) {
 								//QQQ
 								player.draw();
-								var { result } = await player.chooseTarget(get.prompt('媵予'), 2, (card, player, target) => target.countCards('he')).set('ai', (target) => -get.attitude(player, target));
+								const result = await player.chooseTarget(get.prompt('媵予'), 2, (card, player, target) => target.countCards('he')).set('ai', (target) => -get.attitude(player, target)).forResult();
 								if (result.targets?.length) {
 									var Q = result.targets;
 									for (var i of Q) {
-										var { result } = await player.discardPlayerCard(i, 'he', true);
+										const result = await player.discardPlayerCard(i, 'he', true).forResult();
 										if (result.links && result.links[0] && get.color(result.links[0]) == 'red') {
 											await player.gainPlayerCard(i, 'he', true);
 										}

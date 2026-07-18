@@ -247,22 +247,24 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             //结束阶段,你可以将一张装备牌置入一名角色的装备区.若如此做,其选择一项,你选择另一项:①回复1点体力;②摸两张牌;③弃置距离1以内的一名角色区域内一张牌;④获得技能〖飞影〗直到你的下个回合开始
                             async content(event, trigger, player) {
-                                const result = await player.chooseCardTarget({
-                                    prompt: get.prompt2('zi_yuanhu'),
-                                    filterCard: (card) => get.type(card) == 'equip',
-                                    position: 'he',
-                                    filterTarget(card, player, target) {
-                                        return target.isEmpty(get.subtype(card));
-                                    },
-                                    ai1: (card) => 8 - get.value(card),
-                                    ai2: (target) => get.attitude(player, target),
-                                }).forResult();
+                                const result = await player
+                                    .chooseCardTarget({
+                                        prompt: get.prompt2('zi_yuanhu'),
+                                        filterCard: (card) => get.type(card) == 'equip',
+                                        position: 'he',
+                                        filterTarget(card, player, target) {
+                                            return target.isEmpty(get.subtype(card));
+                                        },
+                                        ai1: (card) => 8 - get.value(card),
+                                        ai2: (target) => get.attitude(player, target),
+                                    })
+                                    .forResult();
                                 if (result.targets && result.targets[0] && result.cards && result.cards[0]) {
                                     result.targets[0].equip(result.cards[0]);
                                     const list = ['回血', '摸牌', '弃牌', '飞影'];
                                     var choiceList = ['回复1点体力', '摸两张牌', '弃置距离为1以内的一名角色区域内的一张牌', '获得【飞影】直到你的下个回合开始'];
                                     for (var i of [result.targets[0], player]) {
-                                        const { result: result1 } = await i
+                                        const result1 = await i
                                             .chooseControl(list)
                                             .set('prompt', '援护:请选择一项')
                                             .set('choiceList', choiceList)
@@ -293,7 +295,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     case num4:
                                                         return '飞影';
                                                 }
-                                            });
+                                            })
+                                            .forResult();
                                         var num = list.indexOf(result1.control);
                                         list.remove(result1.control);
                                         choiceList.remove(choiceList[num]);
@@ -306,7 +309,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 break;
                                             case '弃牌':
                                                 {
-                                                    const { result: result2 } = await i.chooseTarget('弃置距离为1以内的一名角色的一张牌', true, (c, p, target) => get.distance(i, target) <= 1 && target.countDiscardableCards(i, 'hej')).set('ai', (target) => get.effect(target, { name: 'guohe' }, i, i));
+                                                    const result2 = await i
+                                                        .chooseTarget('弃置距离为1以内的一名角色的一张牌', true, (c, p, target) => get.distance(i, target) <= 1 && target.countDiscardableCards(i, 'hej'))
+                                                        .set('ai', (target) => get.effect(target, { name: 'guohe' }, i, i))
+                                                        .forResult();
                                                     if (result2.targets && result2.targets[0]) {
                                                         i.discardPlayerCard(result2.targets[0], 'hej', true);
                                                     }
@@ -451,11 +457,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 game.cardsGotoSpecial(cards);
                                 player.showCards(cards);
                                 while (true) {
-                                    const result = await player.chooseButton(['精典:请选择一张拼点牌', cards], true).set('ai', function (button) {
-                                        return button.link.number;
-                                    }).forResult();
+                                    const result = await player
+                                        .chooseButton(['精典:请选择一张拼点牌', cards], true)
+                                        .set('ai', function (button) {
+                                            return button.link.number;
+                                        })
+                                        .forResult();
                                     if (result.links?.length) {
-                                        const { result: result1 } = await player.chooseTarget('请选择拼点目标', true, (card, player, target) => target != player).set('ai', (target) => -get.attitude(player, target));
+                                        const result1 = await player
+                                            .chooseTarget('请选择拼点目标', true, (card, player, target) => target != player)
+                                            .set('ai', (target) => -get.attitude(player, target))
+                                            .forResult();
                                         if (result1.targets && result1.targets[0]) {
                                             cards.remove(result.links[0]);
                                             const event = player.chooseToCompare(result1.targets[0]);
@@ -464,7 +476,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (event.result.bool) {
                                                 //QQQ
                                                 if (cards[0]) {
-                                                    const { result: result3 } = await player.chooseBool('是否继续进行拼点？');
+                                                    const result3 = await player.chooseBool('是否继续进行拼点？').forResult();
                                                     if (!result3.bool) break;
                                                 } else break;
                                             } else {
@@ -1048,7 +1060,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         trigger.directHit.addArray(
                                             game.filterPlayer(function (current) {
                                                 return current != player;
-                                            })
+                                            }),
                                         );
                                     },
                                     ai: {
@@ -2288,7 +2300,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             nature: button.link[3],
                                         },
                                         null,
-                                        true
+                                        true,
                                     );
                                     return number0(num) + 10;
                                 },
@@ -3441,7 +3453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         function (card, player, target) {
                                             return target != player;
                                         },
-                                        '滔乱<br><br><div class="text center">令一名其他角色选择一项:1.交给你一张与你以此法使用的牌类别相同的牌并记录牌名;2.你于当前回合结束时失去1点体力'
+                                        '滔乱<br><br><div class="text center">令一名其他角色选择一项:1.交给你一张与你以此法使用的牌类别相同的牌并记录牌名;2.你于当前回合结束时失去1点体力',
                                     )
                                     .set('ai', function (target) {
                                         var player = _status.event.player;
@@ -4576,7 +4588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return getn(b) - getn(a);
                                             });
                                             return list[0];
-                                        })()
+                                        })(),
                                     );
                                 ('step 1');
                                 if (result.control != 'cancel2') {
@@ -4586,7 +4598,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.draw(
                                         game.countPlayer(function (current) {
                                             return current.group == result.control;
-                                        })
+                                        }),
                                     );
                                 } else player.getStat('triggerSkill').zi_lyweicheng--;
                             },
@@ -4895,7 +4907,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     3,
                                     player.getHistory('useSkill', function (evt) {
                                         return evt.skill == 'zi_xuejiu';
-                                    }).length
+                                    }).length,
                                 );
                                 var cards = get.cards(num);
                                 event.cards = cards;
@@ -6393,7 +6405,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 i.discard(
                                                     i.getCards('hs', function (card) {
                                                         return card.hasGaintag('zi_zhangchuan');
-                                                    })
+                                                    }),
                                                 );
                                         }
                                     },
@@ -6746,7 +6758,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             },
                                             function (button) {
                                                 return _status.event.player.hasUseTarget({ name: button.link[2], nature: button.link[3] });
-                                            }
+                                            },
                                         );
                                         ('step 1');
                                         player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, true);
@@ -7058,13 +7070,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     5,
                                     player.countCards('h', function (cardx) {
                                         return get.type(cardx, player) != 'basic';
-                                    })
+                                    }),
                                 );
                                 var num2 = Math.min(
                                     5,
                                     player.countCards('h', function (cardx) {
                                         return get.type(cardx, player) == 'basic';
-                                    })
+                                    }),
                                 );
                                 player
                                     .chooseControl()
@@ -7079,7 +7091,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     5,
                                     player.countCards('h', function (cardx) {
                                         return (name == 'zi_neifa_basic') != (get.type(cardx, player) == 'basic');
-                                    })
+                                    }),
                                 );
                                 if (num > 0) player.addMark(name, num, false);
                             },

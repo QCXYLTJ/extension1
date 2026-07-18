@@ -70,7 +70,7 @@ const skills = {
             for (var i = 0; i < list.length; i++) {
                 list[i] = [list[i], get.cnNumber(list[i], true)];
             }
-            const { result } = list.length == 1 ? { result: { bool: true, links: [1] } } : await player.chooseButton([get.prompt('dz_rb_aicang'), '选择你要受到的伤害值', [list, 'tdnodes']]);
+            const result = list.length == 1 ? { result: { bool: true, links: [1] } } : await player.chooseButton([get.prompt('dz_rb_aicang'), '选择你要受到的伤害值', [list, 'tdnodes']]).forResult();
             event.result = {
                 bool: result.bool,
                 cost_data: {
@@ -1251,7 +1251,7 @@ const skills = {
                     return player.storage.dz_rbk_zhengdang && player.storage.dz_rbk_zhengdang.wu.length > player.storage.dz_rbk_zhengdang.wen.length;
                 },
                 async content(event, trigger, player) {
-                    let { result } = await player.chooseButton(['阵党:请重置任意张武将牌', [player.storage.dz_rbk_zhengdang.wen.concat(player.storage.dz_rbk_zhengdang.wu), 'character']], true, [1, player.storage.dz_rbk_zhengdang.wen.concat(player.storage.dz_rbk_zhengdang.wu).length]);
+                    const result = await player.chooseButton(['阵党:请重置任意张武将牌', [player.storage.dz_rbk_zhengdang.wen.concat(player.storage.dz_rbk_zhengdang.wu), 'character']], true, [1, player.storage.dz_rbk_zhengdang.wen.concat(player.storage.dz_rbk_zhengdang.wu).length]).forResult();
                     if (result.links?.length) {
                         let character = result.links,
                             characters = [];

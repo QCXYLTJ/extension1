@@ -2819,7 +2819,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('ai', (target) => 10 - get.attitude(player, target))
 									.forResult();
 								if (result.targets?.length) {
-									const { result: result1 } = await player.chooseTarget().set('ai', (target) => -get.attitude(player, target));
+									const result1 = await player.chooseTarget().set('ai', (target) => -get.attitude(player, target)).forResult();
 									if (result1.targets && result1.targets[0]) {
 										await player.discardPlayerCard(result.targets[0], 'hej', true);
 										trigger.targets = result1.targets;
@@ -3734,7 +3734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								//QQQ
 								await player.draw();
 								if (player.countCards('he')) {
-									var { result } = await player.chooseCard(true).set('ai', function (card) {
+									const result = await player.chooseCard(true).set('ai', function (card) {
 										var trigger = _status.event.getTrigger();
 										var player = _status.event.player;
 										var judging = _status.event.judging;
@@ -3743,7 +3743,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (attitude == 0 || result == 0) return 0;
 										if (attitude > 0) return result;
 										return -result;
-									});
+									}).forResult();
 									if (result.cards?.length) {
 										player.showCards(result.cards[0]);
 										const card = game.createCard(result.cards[0]);

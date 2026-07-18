@@ -3979,7 +3979,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							(card, player, target) => trigger.targets.includes(target) && target.countCards('he'))
 							.set('ai', (target) => -get.attitude(player, target)).forResult();
 						if (result.targets?.length) {
-							const { result: result1 } = await player.gainPlayerCard(result.targets[0], 'he', true);
+							const result1 = await player.gainPlayerCard(result.targets[0], 'he', true).forResult();
 							if (result1 && result1.cards && result1.cards[0]) {
 								player.changeZhuanhuanji('sczs_juzhan');
 								if (trigger.card.name == 'sha') {

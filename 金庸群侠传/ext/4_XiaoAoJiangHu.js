@@ -128,9 +128,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
       },
       characterIntro: {
 
+
         //笑傲江湖角色资料
-      }, characterTitle: {
-        xajh_xie_taoguliuxian: '诡辩如簧',
+      }, characterTitle: { xajh_xie_taoguliuxian: '诡辩如簧',
         xajh_tongbaixiong: '义绝恩断',
         xajh_yurenyan: '欺男霸女',
         xajh_xie_zuolengchan: '吞并五岳',
@@ -173,10 +173,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
       },
       perfectPair: {
 
+
         //"jyqxz_xajh_genie":['jyqxz_xajh_weizhuang'],
       }, //笑傲包衍生卡牌
-      card: {
-        jydiy_bixiejianpu: {
+      card: { jydiy_bixiejianpu: {
           derivation: 'xajh_xieyuebuqun',
           type: 'equip',
           subtype: 'equip5',
@@ -3735,9 +3735,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 var event = _status.event;
                 if (event.type == 'dying') {
 
+
                   //return 1;
-                }return lib.card.jiu.ai.result.target(player, player);
-              }
+                }return lib.card.jiu.ai.result.target(player, player);}
             }
           }
         },
@@ -7599,9 +7599,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 1';
             if (source.isAlive() && lib.config.extension_金庸群侠传_jiexiantupo) {
 
+
               //player.restoreSkill('xajh_weijian');
-            }if (!source.isIn()) {
-              event.finish();
+            }if (!source.isIn()) {event.finish();
               return;
             }
             if (targets.length) {

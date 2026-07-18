@@ -3288,8 +3288,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.countCards('hs') > 0;
                             },
                             async content(event, trigger, player) {//QQQ
-                                const { result: { cards } } = await player.chooseCard('选择1~3张牌', 'h', true, [1, 3])
-                                    .set('ai', (c) => 6 - get.value(c));
+                                const { cards } = await player.chooseCard('选择1~3张牌', 'h', true, [1, 3])
+                                    .set('ai', (c) => 6 - get.value(c))
+                                    .forResult();
                                 if (cards?.length) {
                                     const list = player.qcard('trick', true, false);
                                     if (cards.length == 1) {
@@ -3299,14 +3300,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         await player.chooseUseTarget({ name: list.randomGet()[2] }, cards, true, false, 'nodistance');
                                     }
                                     if (cards.length == 3) {
-                                        const { result: { links } } = await player.chooseButton(['将' + get.translation(cards) + '牌当作一张锦囊牌使用', [list, 'vcard']])
+                                        const { links } = await player.chooseButton(['将' + get.translation(cards) + '牌当作一张锦囊牌使用', [list, 'vcard']])
                                             .set('ai', (button) => {
                                                 const num = player.getUseValue({
                                                     name: button.link[2],
                                                     nature: button.link[3],
                                                 }, null, true);
                                                 return number0(num) / 2 + 10;
-                                            });
+                                            }).forResult();
                                         if (links?.length) {
                                             await player.chooseUseTarget({ name: links[0][2] }, cards, true, false, 'nodistance');
                                         }
@@ -3733,7 +3734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'phaseZhunbeiBegin',
                             },
                             async content(event, trigger, player) {//QQQ
-                                const { result: { cards } } = await player.chooseCard('选择要展示的牌', 'h', true);
+                                const { cards } = await player.chooseCard('选择要展示的牌', 'h', true).forResult();
                                 if (cards?.length) {
                                     player.showCards(cards);
                                     player.addTempSkill('狩境_use', { player: 'phaseBegin' });
@@ -5984,8 +5985,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return player.countCards('h') > 0;
                             },
                             async content(event, trigger, player) {
-                                const { result: { cards } } = player.chooseToDiscard('选择要弃置的牌', 'h', Math.max(Math.floor(player.countCards('h') / 2)))
-                                    .set('ai', (c) => -get.attitude(player, trigger.player) - get.value(c));
+                                const { cards } = player.chooseToDiscard('选择要弃置的牌', 'h', Math.max(Math.floor(player.countCards('h') / 2)))
+                                    .set('ai', (c) => -get.attitude(player, trigger.player) - get.value(c)).forResult();
                                 if (cards?.length) {
                                     if (trigger.player == player) {
                                         trigger.num--;

@@ -1,35 +1,35 @@
-﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_ybgz };
 /**
  * 掌管添加至国战
  */
 const YBSL_ybgz = function () {
-	const packages = [
-		'ybslj',
-		'ybxh',
-		'ybdd',
-		'ybgod',
-		'ybslc',
-		'ybart',
-		'ybnew1',
-		'ybmjz',
-		'yhky',
-		'sgstrxs',
-		'ybMagic',
-		'ybnew3',
-		'cyyydsgs',
-		'jhjx',
-		// 'YB_one'
-	];
-	if (!lib.characterGuozhanFilter) {
-		lib.characterGuozhanFilter = [];
-	}
-	// lib.characterGuozhanFilter.addArray(packages)
-	for (const pack of packages) {
-		if (lib.characterPack[pack]) {
-			if (Object.keys(lib.characterPack[pack]).length) {
-				lib.characterGuozhanFilter.add(pack);
-			}
-		}
-	}
+  const packages = [
+  'ybslj',
+  'ybxh',
+  'ybdd',
+  'ybgod',
+  'ybslc',
+  'ybart',
+  'ybnew1',
+  'ybmjz',
+  'yhky',
+  'sgstrxs',
+  'ybMagic',
+  'ybnew3',
+  'cyyydsgs',
+  'jhjx'
+  // 'YB_one'
+  ];
+  if (!lib.characterGuozhanFilter) {
+    lib.characterGuozhanFilter = [];
+  }
+  // lib.characterGuozhanFilter.addArray(packages)
+  for (const pack of packages) {
+    if (lib.characterPack[pack]) {
+      if (Object.keys(lib.characterPack[pack]).length) {
+        lib.characterGuozhanFilter.add(pack);
+      }
+    }
+  }
 };

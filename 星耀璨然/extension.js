@@ -46,7 +46,7 @@ export default async function () {
                                                 resolve(list);
                                             }, reject);
                                         },
-                                        reject
+                                        reject,
                                     );
                                 });
                             };
@@ -159,7 +159,7 @@ export default async function () {
                                     fileWriter.onerror = function (e) { };
                                     fileWriter.write(csvBlob);
                                 });
-                            }
+                            },
                         );
                     });
                 } else {
@@ -285,7 +285,7 @@ export default async function () {
                         cards: [card],
                     },
                     player,
-                    viewer
+                    viewer,
                 );
             };
             lib.element.player.getWeightedUseValue = function (card, distance, includecard, user, isEquip, list) {
@@ -348,11 +348,12 @@ export default async function () {
                                     name: 'sha',
                                 },
                                 enemy,
-                                viewer
+                                viewer,
                             ) *
                             -1.1 *
                             base
                         );
+
                     case 'wuxie':
                         return (
                             Math.min(
@@ -362,7 +363,7 @@ export default async function () {
                                         name: 'nanman',
                                     },
                                     enemy,
-                                    viewer
+                                    viewer,
                                 ),
                                 get.effect(
                                     player,
@@ -370,12 +371,13 @@ export default async function () {
                                         name: 'guohe',
                                     },
                                     enemy,
-                                    viewer
-                                )
+                                    viewer,
+                                ),
                             ) *
                             -1.1 *
                             base
                         );
+
                     case 'tao':
                         var players = game.filterPlayer((current) => (current == player || get.attitude(player, current) > 1) && current.isDamaged());
                         if (players.length == 0) return 1.5 * get.attitude(viewer, player);
@@ -1145,7 +1147,7 @@ export default async function () {
                             card: card,
                             step: step,
                         },
-                        true
+                        true,
                     )
                 )
                     return false;
@@ -4244,7 +4246,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             player,
-                                            player
+                                            player,
                                         ) > 0
                                     );
                                 })
@@ -4527,7 +4529,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -4551,7 +4553,7 @@ export default async function () {
                                             name: name,
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0
                                 )
                                     return 0;
@@ -5261,12 +5263,12 @@ export default async function () {
                         } else {
                             await target.gain(card, player, 'give');
                         }
-                        let { result } = await target
+                        const result = await target
                             .chooseToUse(
                                 {
                                     name: 'sha',
                                 },
-                                '对' + get.translation(targetx) + '使用一张【杀】'
+                                '对' + get.translation(targetx) + '使用一张【杀】',
                             )
                             .set('targetRequired', true)
                             .set('complexSelect', true)
@@ -5278,7 +5280,7 @@ export default async function () {
                                             name: 'sha',
                                         },
                                         target,
-                                        false
+                                        false,
                                     )
                                 );
                             })
@@ -5304,7 +5306,8 @@ export default async function () {
                                 }
                                 return 1;
                             })
-                            .set('target', targetx);
+                            .set('target', targetx)
+                            .forResult();
                         if (result.bool) {
                             await player
                                 .gainPlayerCard(target, 'he', 'visible', 'visibleMove', '获得' + get.translation(target) + '的一张非伤害牌')
@@ -5581,7 +5584,7 @@ export default async function () {
                                                     name: 'losehp',
                                                 },
                                                 player,
-                                                player
+                                                player,
                                             );
                                         } else if (effect == 0) {
                                             effect += 0.01;
@@ -5810,7 +5813,7 @@ export default async function () {
                                 get.cardPile(function (card) {
                                     return card.name == 'sha';
                                 }),
-                                'gain2'
+                                'gain2',
                             );
                             event.num--;
                             event.redo();
@@ -6584,12 +6587,14 @@ export default async function () {
                                 },
                                 '手牌数不大于你',
                             ],
+
                             hp: [
                                 function (player, target) {
                                     return target.hp <= player.hp;
                                 },
                                 '体力值不大于你',
                             ],
+
                             equip: [
                                 function (player, target) {
                                     return target.countCards('e') <= player.countCards('e');
@@ -6741,7 +6746,7 @@ export default async function () {
                             return {
                                 choice: links[0],
                                 content: async function (event, trigger, player) {
-                                    let { result } = await player
+                                    const result = await player
                                         .chooseTarget(1, true, '令一名其他角色随机弃置装备区和手牌区中较多区域的一张牌,受到1点伤害', function (card, player, target) {
                                             return player.inRange(target);
                                         })
@@ -6753,7 +6758,8 @@ export default async function () {
                                                 return 10 - target.hp;
                                             }
                                             return 0;
-                                        });
+                                        })
+                                        .forResult();
                                     if (!result.bool) return;
                                     let target = result.targets[0];
                                     player.line(target, 'water');
@@ -6841,7 +6847,7 @@ export default async function () {
                     },
                     content: async function (event, trigger, player) {
                         let target = event.targets[0];
-                        let { result } = await player.choosePlayerCard(target, 'h', 1, true, '展示' + get.translation(target) + '的一张手牌');
+                        const result = await player.choosePlayerCard(target, 'h', 1, true, '展示' + get.translation(target) + '的一张手牌').forResult();
                         let card = result.cards[0];
                         await target.showCards(result.cards, get.translation(target) + '的一张手牌');
                         if (!player.countCards('h')) {
@@ -6849,7 +6855,7 @@ export default async function () {
                         } else {
                             let dialog = ui.create.dialog('弃置一张牌来执行后续效果？');
                             dialog.add([card]);
-                            let { result } = await player
+                            const result = await player
                                 .chooseToDiscard('h', dialog, 1)
                                 .set('ai', function (card) {
                                     var valt = get.value(_status.event.card2, _status.event.target);
@@ -6865,7 +6871,8 @@ export default async function () {
                                     return valt + 1 - val;
                                 })
                                 .set('card2', card)
-                                .set('target', target);
+                                .set('target', target)
+                                .forResult();
                             if (result.cards?.length) {
                                 let cardx = result.cards[0];
                                 if (get.color(cardx) == get.color(card)) {
@@ -7241,7 +7248,7 @@ export default async function () {
                                 }
                             },
                             player,
-                            'radiance_xingyi'
+                            'radiance_xingyi',
                         );
                         ('step 1');
                         var type = get.type2(trigger.card);
@@ -7310,7 +7317,7 @@ export default async function () {
                                         }
                                     },
                                     player,
-                                    'radiance_xingyi'
+                                    'radiance_xingyi',
                                 );
                             },
                             mark: true,
@@ -7343,7 +7350,7 @@ export default async function () {
                                 radiance_jiegong: true,
                             },
                             true,
-                            false
+                            false,
                         );
                     },
                     ai: {
@@ -7354,7 +7361,7 @@ export default async function () {
                                     {
                                         name: 'taoyuan',
                                     },
-                                    player
+                                    player,
                                 ) + 0.5
                             );
                         },
@@ -7417,7 +7424,7 @@ export default async function () {
                             cost: async function (event, trigger, player) {
                                 let dialog = ui.create.dialog('是否对一名角色发动【洁弓】？', 'hidden');
                                 dialog.addText('你可以令一名回复过体力的角色不能使用或打出牌响应牌,且你对其使用牌无距离限制,对其造成的下一次伤害+1,直至回合结束');
-                                let { result } = await player
+                                const result = await player
                                     .chooseTarget([1, 1], dialog, function (card, player, target) {
                                         if (target == player) return false;
                                         var trigger = _status.event.getTrigger();
@@ -7437,7 +7444,8 @@ export default async function () {
                                             });
                                         if (target.hasSkillTag('nodamage')) base = -0.5;
                                         return base * get.attitude(player, target);
-                                    });
+                                    })
+                                    .forResult();
                                 event.result = result;
                             },
                             content: async function (event, trigger, player) {
@@ -7517,7 +7525,7 @@ export default async function () {
                         let logged = false;
                         if (trigger.parent.radiance_hunji) {
                             let str = '###是否发动【魂纪】？###本回合有角色体力变为1,可以摸一张牌';
-                            let { result } = await player.chooseBool(str).set('frequentSkill', 'radiance_hunji');
+                            const result = await player.chooseBool(str).set('frequentSkill', 'radiance_hunji').forResult();
                             if (result.bool) {
                                 logged = true;
                                 await player.draw();
@@ -7535,7 +7543,7 @@ export default async function () {
                         ) {
                             let str = '本回合有角色体力值变化合计大于2,可以回复1点体力';
                             if (!logged) str = '###是否发动【魂纪】？###' + str;
-                            let { result } = await player.chooseBool(str).set('frequentSkill', 'radiance_hunji');
+                            const result = await player.chooseBool(str).set('frequentSkill', 'radiance_hunji').forResult();
                             if (result.bool) {
                                 if (!logged) {
                                     logged = true;
@@ -7682,7 +7690,7 @@ export default async function () {
                                                 }
                                                 return -1;
                                             },
-                                            target
+                                            target,
                                         )
                                         .set('filterButton', function (button) {
                                             var player = _status.event.player;
@@ -8315,7 +8323,7 @@ export default async function () {
                         }
                         let str = '对' + get.translation(trigger.player) + '发动【禁制】';
                         if (!player.hasSkill('radiance_jinzhi_used')) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseToDiscard('h', 1, '是否弃置一张手牌以激活<禁制>？(对' + get.translation(trigger.player) + '发动)')
                                 .set('ai', function (card) {
                                     var trigger = _status.event.getTrigger();
@@ -8324,7 +8332,8 @@ export default async function () {
                                     if (_status.event.controls.includes('获得手牌') && get.attitude(player, trigger.player) < 0) return 5 - get.useful(card);
                                     return 0;
                                 })
-                                .set('controls', choices);
+                                .set('controls', choices)
+                                .forResult();
                             if (result.bool) {
                                 logged = true;
                                 player.addTempSkill('radiance_jinzhi_used', 'roundStart');
@@ -8338,7 +8347,7 @@ export default async function () {
                             choices.push('cancel2');
                             str = '是否' + str + '？';
                         }
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(choices)
                             .set('prompt', str)
                             .set('ai', function (event, player) {
@@ -8347,7 +8356,8 @@ export default async function () {
                                 if (_status.event.controls.includes('获得手牌') && get.attitude(player, trigger.player) <= 0) return '获得手牌';
                                 return 'cancel2';
                             })
-                            .set('choiceList', choiceList);
+                            .set('choiceList', choiceList)
+                            .forResult();
                         if (result.control == 'cancel2') {
                             event.result = {
                                 bool: false,
@@ -8600,7 +8610,7 @@ export default async function () {
                                             cards: cards,
                                         },
                                         false,
-                                        cards
+                                        cards,
                                     )
                                     .set('prompt2', '获得了【杀】,可以使用自己弃置的【杀】');
                             }
@@ -8667,7 +8677,7 @@ export default async function () {
                                         radiance_huawu: true,
                                     },
                                     player,
-                                    event
+                                    event,
                                 )
                             )
                                 return true;
@@ -8740,7 +8750,7 @@ export default async function () {
                                             name: name,
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0
                                 )
                                     return 0;
@@ -8759,9 +8769,10 @@ export default async function () {
                                                     name: 'sha',
                                                 },
                                                 player,
-                                                player
+                                                player,
                                             ) * 1.1
                                         );
+
                                     case 'wuxie':
                                         return (
                                             Math.max(
@@ -8771,7 +8782,7 @@ export default async function () {
                                                         name: 'nanman',
                                                     },
                                                     player,
-                                                    player
+                                                    player,
                                                 ),
                                                 get.effect(
                                                     player,
@@ -8779,10 +8790,11 @@ export default async function () {
                                                         name: 'guohe',
                                                     },
                                                     player,
-                                                    player
-                                                )
+                                                    player,
+                                                ),
                                             ) * 1.1
                                         );
+
                                     case 'tao':
                                         var players = game.filterPlayer((current) => get.attitude(player, current) > 1);
                                         players.sort((a, b) => a.hp - b.hp);
@@ -8834,7 +8846,7 @@ export default async function () {
                                                         name: 'sha',
                                                     },
                                                     player,
-                                                    player
+                                                    player,
                                                 );
                                             case 'wuxie':
                                                 return Math.max(
@@ -8844,7 +8856,7 @@ export default async function () {
                                                             name: 'nanman',
                                                         },
                                                         player,
-                                                        player
+                                                        player,
                                                     ),
                                                     get.effect(
                                                         player,
@@ -8852,8 +8864,8 @@ export default async function () {
                                                             name: 'guohe',
                                                         },
                                                         player,
-                                                        player
-                                                    )
+                                                        player,
+                                                    ),
                                                 );
                                             case 'tao':
                                                 var players = game.filterPlayer((current) => get.attitude(player, current) > 1);
@@ -9040,11 +9052,14 @@ export default async function () {
                         let targets = game.filterPlayer((current) => current != player, null, true);
                         targets.sort(lib.sort.seat);
                         for (const current of targets) {
-                            let { result } = await current.chooseCard('h', 1, '可以将一张手牌交给' + get.translation(trigger.player) + ',以此触发其<以太>效果并回复').set('ai', function (card) {
-                                if (_status.event.parent.player.getHistory('useSkill', (evt) => evt.skill == 'radiance_yitai').length && !['sha', 'shan', 'jiu'].includes(card.name)) return -1;
-                                if (get.attitude(_status.event.player, _status.event.parent.player) > 1) return 6 - get.useful(card);
-                                return 0;
-                            });
+                            const result = await current
+                                .chooseCard('h', 1, '可以将一张手牌交给' + get.translation(trigger.player) + ',以此触发其<以太>效果并回复')
+                                .set('ai', function (card) {
+                                    if (_status.event.parent.player.getHistory('useSkill', (evt) => evt.skill == 'radiance_yitai').length && !['sha', 'shan', 'jiu'].includes(card.name)) return -1;
+                                    if (get.attitude(_status.event.player, _status.event.parent.player) > 1) return 6 - get.useful(card);
+                                    return 0;
+                                })
+                                .forResult();
                             if (result.cards?.length) {
                                 await current.give(result.cards, player, false);
                                 if (!player.isDamaged()) break;
@@ -9159,7 +9174,7 @@ export default async function () {
                                     radiance_mobao: true,
                                 },
                                 player,
-                                _status.event.parent
+                                _status.event.parent,
                             );
                         },
                         check(button) {
@@ -9250,7 +9265,7 @@ export default async function () {
                                     }
                                     trigger.addCount = false;
                                 }
-                                let { result } = await player
+                                const result = await player
                                     .chooseTarget('可以让自己本回合手牌上限归0来选一名已受伤的目标角色失去1点体力', function (card, player, target) {
                                         if (!_status.event.getTrigger().targets.includes(target)) return false;
                                         return target.isDamaged();
@@ -9258,7 +9273,8 @@ export default async function () {
                                     .set('ai', function (target) {
                                         if (player.countCards('h', (card) => get.tag(card, 'save')) > 0 && game.hasPlayer((current) => get.attitude(player, current) > 1 && current.hp == 1)) return 0;
                                         return -get.attitude(_status.event.player, target) / Math.max(target.hp, 1);
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool) {
                                     player.addTempSkill('radiance_mobao_db');
                                     player.line(result.targets[0], 'red');
@@ -9348,7 +9364,7 @@ export default async function () {
                         if (list.length == 1) {
                             await player.discard(player.getCards('h', (card) => card.suit == list[0]));
                         } else if (list.length > 1) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseControl(list)
                                 .set('ai', function (event, player) {
                                     var list = _status.event.controls;
@@ -9363,7 +9379,8 @@ export default async function () {
                                     }
                                     return index;
                                 })
-                                .set('prompt', '弃置手牌中' + (type ? '最多' : '最少') + '的一种花色的所有牌');
+                                .set('prompt', '弃置手牌中' + (type ? '最多' : '最少') + '的一种花色的所有牌')
+                                .forResult();
                             await player.discard(player.getCards('h', (card) => card.suit == result.control));
                         }
                     },
@@ -9708,7 +9725,7 @@ export default async function () {
                                     {
                                         player: next,
                                     },
-                                    player
+                                    player,
                                 );
                                 if (bool) {
                                     delete player.storage._radiance_liangbai_check;
@@ -9815,7 +9832,7 @@ export default async function () {
                                 radiance_yangfeng: true,
                             },
                             player,
-                            event
+                            event,
                         );
                     },
                     chooseButton: {
@@ -9847,7 +9864,7 @@ export default async function () {
                                     cards: [button.link].concat(get.links(ui.selected.buttons)),
                                 },
                                 player,
-                                _status.event.getParent('chooseToUse')
+                                _status.event.getParent('chooseToUse'),
                             );
                         },
                         select: [1, 1],
@@ -9984,7 +10001,7 @@ export default async function () {
                                         {
                                             name: 'sha',
                                         },
-                                        player
+                                        player,
                                     ) == 0
                                 )
                                     return val / (100 - player.getUseValue(card));
@@ -10021,11 +10038,11 @@ export default async function () {
                                                 {
                                                     name: 'sha',
                                                 },
-                                                player
+                                                player,
                                             ),
                                             player.countCards('hs', function (card) {
                                                 return card.name == 'sha' && player.canUse(card, current) && get.effect(current, card, player, player, current.isLinked()) > 0;
-                                            })
+                                            }),
                                         );
                                         return current.hp <= num1 + num2;
                                     })
@@ -10210,11 +10227,14 @@ export default async function () {
                             return get.tag(evt.card, 'damage');
                         });
                         if (used.length == 0) {
-                            let { result } = await player.chooseBool('###是否发动<终乱>？###回合角色没有使用过伤害牌,可以摸一张牌');
+                            const result = await player.chooseBool('###是否发动<终乱>？###回合角色没有使用过伤害牌,可以摸一张牌').forResult();
                             result.cost_data = 0;
                             event.result = result;
                         } else {
-                            let { result } = await player.chooseBool('###是否对' + get.translation(trigger.player) + '发动<终乱>？###回合角色使用牌造成的伤害小于' + Math.max(1, player.getDamagedHp()) + ',可以对其造成1点伤害').set('choice', get.damageEffect(trigger.player, player, player) > 1);
+                            const result = await player
+                                .chooseBool('###是否对' + get.translation(trigger.player) + '发动<终乱>？###回合角色使用牌造成的伤害小于' + Math.max(1, player.getDamagedHp()) + ',可以对其造成1点伤害')
+                                .set('choice', get.damageEffect(trigger.player, player, player) > 1)
+                                .forResult();
                             result.targets = [trigger.player];
                             result.cost_data = 1;
                             event.result = result;
@@ -10414,7 +10434,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -10432,7 +10452,7 @@ export default async function () {
                                             name: name,
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0
                                 )
                                     return 0;
@@ -10564,7 +10584,7 @@ export default async function () {
                             choiceList.push('将此次使用的【闪】' + get.translation(trigger.target) + '以外的一名角色');
                         }
                         choices.push('cancel2');
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(choices, function (event, player) {
                                 var choices = _status.event.controls;
                                 var trigger = _status.event.getTrigger();
@@ -10591,7 +10611,8 @@ export default async function () {
                                 return choices[0];
                             })
                             .set('prompt', get.prompt('radiance_shouwu'))
-                            .set('choiceList', choiceList);
+                            .set('choiceList', choiceList)
+                            .forResult();
                         let final = {},
                             control = result.control;
                         if (control == 'cancel2') {
@@ -10602,7 +10623,7 @@ export default async function () {
                             let type = control == '获得闪' ? false : true;
                             let source = control == '获得闪' ? trigger.target : trigger.player;
                             let cards = control == '获得闪' ? shan : sha;
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget('将' + get.translation(cards) + '交给' + get.translation(source) + '以外的一名角色', true, function (card, player, target) {
                                     return target != _status.event.source;
                                 })
@@ -10627,7 +10648,8 @@ export default async function () {
                                     if (base > 1 && target == player) base -= 1;
                                     return att / base;
                                 })
-                                .set('source', source);
+                                .set('source', source)
+                                .forResult();
                             if (result.bool) {
                                 final.bool = true;
                                 final.cards = cards;
@@ -10647,10 +10669,13 @@ export default async function () {
                             player.addTempSkill('radiance_shouwu_shaned', 'roundStart');
                         }
                         if (player.hasMark('radiance_junhun') && target != player) {
-                            let { result } = await player.chooseBool('是否将一个<军魂>移给' + get.translation(target) + '？').set('ai', function (event, player) {
-                                var target = event.targets[0];
-                                return get.attitude(player, target) > 1 && target.hp + target.countMark('radiance_junhun') < player.hp + player.countMark('radiance_junhun');
-                            });
+                            const result = await player
+                                .chooseBool('是否将一个<军魂>移给' + get.translation(target) + '？')
+                                .set('ai', function (event, player) {
+                                    var target = event.targets[0];
+                                    return get.attitude(player, target) > 1 && target.hp + target.countMark('radiance_junhun') < player.hp + player.countMark('radiance_junhun');
+                                })
+                                .forResult();
                             if (result.bool) {
                                 player.removeJunhun(1, true);
                                 target.addJunhun(1, true);
@@ -11083,35 +11108,37 @@ export default async function () {
                         );
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player.chooseCardTarget({
-                            prompt: get.prompt('radiance_muyi'),
-                            prompt2: '是否弃置一张牌,令一名有<母仪>的角色回复1点体力并摸一张牌,若其未受伤则摸两张牌？',
-                            filterCard(card, player) {
-                                return lib.filter.cardDiscardable(card, player);
-                            },
-                            position: 'he',
-                            filterTarget(card, player, target) {
-                                return target.hasSkill('radiance_muyi');
-                            },
-                            ai1(card) {
-                                var player = _status.event.player;
-                                var effect = 0,
-                                    eff = 0;
-                                for (var i of game.players) {
-                                    if (!i.hasSkill('radiance_muyi')) continue;
-                                    eff = i.isDamaged() ? get.recoverEffect(i, player, player) : player.getViewerValue('wuzhong', i);
-                                    effect = Math.max(effect, eff);
-                                }
-                                if (effect <= 0) return 0;
-                                if (!player.needsToDiscard()) return effect - player.getWeightedUseValue(card);
-                                return 1 / Math.max(0.1, player.getWeightedUseValue(card));
-                            },
-                            ai2(target) {
-                                var player = _status.event.player;
-                                var eff = target.isDamaged() ? get.recoverEffect(target, player, player) : player.getViewerValue('wuzhong', target);
-                                return eff;
-                            },
-                        });
+                        const result = await player
+                            .chooseCardTarget({
+                                prompt: get.prompt('radiance_muyi'),
+                                prompt2: '是否弃置一张牌,令一名有<母仪>的角色回复1点体力并摸一张牌,若其未受伤则摸两张牌？',
+                                filterCard(card, player) {
+                                    return lib.filter.cardDiscardable(card, player);
+                                },
+                                position: 'he',
+                                filterTarget(card, player, target) {
+                                    return target.hasSkill('radiance_muyi');
+                                },
+                                ai1(card) {
+                                    var player = _status.event.player;
+                                    var effect = 0,
+                                        eff = 0;
+                                    for (var i of game.players) {
+                                        if (!i.hasSkill('radiance_muyi')) continue;
+                                        eff = i.isDamaged() ? get.recoverEffect(i, player, player) : player.getViewerValue('wuzhong', i);
+                                        effect = Math.max(effect, eff);
+                                    }
+                                    if (effect <= 0) return 0;
+                                    if (!player.needsToDiscard()) return effect - player.getWeightedUseValue(card);
+                                    return 1 / Math.max(0.1, player.getWeightedUseValue(card));
+                                },
+                                ai2(target) {
+                                    var player = _status.event.player;
+                                    var eff = target.isDamaged() ? get.recoverEffect(target, player, player) : player.getViewerValue('wuzhong', target);
+                                    return eff;
+                                },
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -11238,7 +11265,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             player,
-                                            player
+                                            player,
                                         );
                                     });
                                 ('step 2');
@@ -11249,7 +11276,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             false,
-                                            result.targets[0]
+                                            result.targets[0],
                                         )
                                         .set('animate', true);
                                 }
@@ -11289,7 +11316,7 @@ export default async function () {
                     content: async function (event, trigger, player) {
                         var target = trigger.targets[0];
                         await target.draw(2, player);
-                        let { result } = await target
+                        const result = await target
                             .chooseToUse('使用一张装备牌并被残废,否则将武将牌翻面', function (card) {
                                 var player = _status.event.player;
                                 return get.type(card) == 'equip' && player.canEquip(card, true);
@@ -11312,7 +11339,8 @@ export default async function () {
                                     base += get.equipValue(player.getEquip(get.subtype(card)));
                                 }
                                 return get.equipValue(card) - base;
-                            });
+                            })
+                            .forResult();
                         if (result.bool) {
                             await target.injure();
                         } else {
@@ -11388,7 +11416,7 @@ export default async function () {
                     shaRelated: true,
                     content: async function (event, trigger, player) {
                         let target = trigger.target;
-                        let { result } = await target
+                        const result = await target
                             .chooseToRespond({
                                 name: 'sha',
                             })
@@ -11399,7 +11427,8 @@ export default async function () {
                                 if (get.effect(player, trigger.card, trigger.player, player) >= 0) return 0;
                                 return 11 - get.useful(card);
                             })
-                            .set('autochoose', lib.filter.autoRespondSha);
+                            .set('autochoose', lib.filter.autoRespondSha)
+                            .forResult();
                         if (result.bool) {
                             await player.draw();
                             trigger.parent.excluded.add(target);
@@ -11544,7 +11573,7 @@ export default async function () {
                     content: async function (event, trigger, player) {
                         let card = trigger.card;
                         event.card = card;
-                        let { result } = await trigger.player
+                        const result = await trigger.player
                             .chooseControl(['选项一', '选项二'])
                             .set('ai', function (event, player) {
                                 var card = event.card;
@@ -11563,7 +11592,8 @@ export default async function () {
                                 if (player.hp - event.player.hp < 2 && event.player.countCards('he') > 2) return 0;
                                 return 1;
                             })
-                            .set('choiceList', ['令' + get.translation(player) + '获得' + get.cnNumber(trigger.player.hp - player.hp > 1 && get.tag(trigger.card, 'damage') ? 2 : 1) + '张♥️️牌', '令' + get.translation(player) + '本回合可以将任意牌当做【杀】或【闪】用' + (player.countCards('h') == 0 ? '并摸一张牌' : '')]);
+                            .set('choiceList', ['令' + get.translation(player) + '获得' + get.cnNumber(trigger.player.hp - player.hp > 1 && get.tag(trigger.card, 'damage') ? 2 : 1) + '张♥️️牌', '令' + get.translation(player) + '本回合可以将任意牌当做【杀】或【闪】用' + (player.countCards('h') == 0 ? '并摸一张牌' : '')])
+                            .forResult();
                         if (result.index == 0) {
                             let num = 1;
                             if (trigger.player.hp - player.hp > 1 && get.tag(card, 'damage')) num++;
@@ -11910,7 +11940,7 @@ export default async function () {
                         choiceList.push('摸一张牌,失去1点体力');
                         list.push('手牌上限');
                         choiceList.push('本回合的手牌上限-2');
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(list)
                             .set('ai', function (event, player) {
                                 var list = _status.event.controls;
@@ -11920,7 +11950,7 @@ export default async function () {
                                     player.getCards('ej', (card) =>
                                         get.buttonValue({
                                             link: card,
-                                        })
+                                        }),
                                     ).length < 0 &&
                                     get.attitude(player, target) > 0
                                 )
@@ -11936,7 +11966,8 @@ export default async function () {
                             })
                             .set('prompt', '论心:需选择一项')
                             .set('choiceList', choiceList)
-                            .set('winner', winner);
+                            .set('winner', winner)
+                            .forResult();
                         switch (result.control) {
                             case '被弃牌':
                                 await winner.discardPlayerCard(player, 'hej', 1, true);
@@ -12060,7 +12091,7 @@ export default async function () {
                         let str = '' + get.translation(trigger.targets) + '为了【杀】的目标,是否发动<志和>';
                         if (!trigger.targets.includes(player)) str += ',成为此【杀】的目标';
                         str += '？';
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(['选项一', '选项二', 'cancel2'])
                             .set('choiceList', ['取消全部其他目标,摸' + get.cnNumber(num) + '张牌', '对' + get.translation(trigger.player) + '造成1点伤害'])
                             .set('ai', function (event, player) {
@@ -12083,7 +12114,8 @@ export default async function () {
                                 }
                                 return 2;
                             })
-                            .set('prompt', str);
+                            .set('prompt', str)
+                            .forResult();
                         event.result = {
                             bool: false,
                             cost_data: result.index,
@@ -12265,7 +12297,7 @@ export default async function () {
                                             function (card, player, event) {
                                                 return card.name == 'sha' && lib.filter.filterCard.apply(this, arguments);
                                             },
-                                            '使用一张杀,或交给' + get.translation(player) + '两张牌'
+                                            '使用一张杀,或交给' + get.translation(player) + '两张牌',
                                         );
                                     } else {
                                         event.directfalse = true;
@@ -12456,7 +12488,7 @@ export default async function () {
                                         target.discard(
                                             target.getCards('e', function (card) {
                                                 return lib.filter.cardDiscardable(card, target, 'shuiyanqijunx');
-                                            })
+                                            }),
                                         );
                                         target.damage('thunder', event.baseDamage || 1);
                                         event.finish();
@@ -12484,7 +12516,7 @@ export default async function () {
                                         target.discard(
                                             target.getCards('e', function (card) {
                                                 return lib.filter.cardDiscardable(card, target, 'shuiyanqijunx');
-                                            })
+                                            }),
                                         );
                                     } else {
                                         var next = target.damage(event.baseDamage || 1);
@@ -12588,6 +12620,7 @@ export default async function () {
                                 ['锦囊', '', 'shengdong'],
                                 ['锦囊', '', 'shuiyanqijunx'],
                             ];
+
                             return ui.create.dialog('六韬', [list, 'vcard']);
                         },
                         filter(button, player) {
@@ -12601,7 +12634,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -12728,7 +12761,7 @@ export default async function () {
                                 radiance_fenggong: true,
                             },
                             true,
-                            false
+                            false,
                         );
                     },
                     ai: {
@@ -12739,7 +12772,7 @@ export default async function () {
                                     {
                                         name: 'wugu',
                                     },
-                                    player
+                                    player,
                                 ) + 0.5
                             );
                         },
@@ -12752,8 +12785,8 @@ export default async function () {
                                             name: 'wugu',
                                             radiance_fenggong: true,
                                         },
-                                        target
-                                    )
+                                        target,
+                                    ),
                                 );
                                 var eff = 0,
                                     count = 0;
@@ -12826,7 +12859,7 @@ export default async function () {
                                     table.appendChild(tr);
                                 }
                                 dialog.content.appendChild(table);
-                                let { result } = await player
+                                const result = await player
                                     .chooseTarget([1, 1], dialog, function (card, player, target) {
                                         return Array.isArray(_status.event.parent.map[target.playerid]);
                                     })
@@ -12849,7 +12882,8 @@ export default async function () {
                                             return get.damageEffect(target, player, player, 'fire');
                                         }
                                         return eff;
-                                    });
+                                    })
+                                    .forResult();
                                 event.result = result;
                             },
                             content: async function (event, trigger, player) {
@@ -12867,7 +12901,7 @@ export default async function () {
                                 if (cards.length == 0) {
                                     await target.damage(1, player, 'fire', 'nocard');
                                 } else {
-                                    let { result } = await player
+                                    const result = await player
                                         .chooseButton(1, ['选择要对' + get.translation(target) + '使用的牌', cards], true)
                                         .set('ai', function (button) {
                                             var player = _status.event.player,
@@ -12875,7 +12909,8 @@ export default async function () {
                                                 card = button.link;
                                             return get.effect(target, card, player, player);
                                         })
-                                        .set('target', target);
+                                        .set('target', target)
+                                        .forResult();
                                     if (result.links?.length) {
                                         let card = result.links[0];
                                         togain = [card];
@@ -13039,7 +13074,7 @@ export default async function () {
                                         name: button.link[2],
                                         nature: button.link[3],
                                     },
-                                    false
+                                    false,
                                 );
                             })
                             .forResult();
@@ -13049,7 +13084,7 @@ export default async function () {
                                 {
                                     name: links[0][2],
                                 },
-                                false
+                                false,
                             )
                             .set('forced', true)
                             .forResult();
@@ -13113,7 +13148,7 @@ export default async function () {
                                     {
                                         name: result.links[0][2],
                                     },
-                                    false
+                                    false,
                                 )
                                 .set('forced', true);
                         } else {
@@ -13463,7 +13498,7 @@ export default async function () {
                             return false;
                         });
                         if (colors.length < 2) {
-                            let { result } = await player.chooseBool('###是否发动<两仪>？###你手牌中的颜色少于两种,可以展示所有手牌,依次摸牌并展示直至手牌包含两种颜色.').set('choice', true);
+                            const result = await player.chooseBool('###是否发动<两仪>？###你手牌中的颜色少于两种,可以展示所有手牌,依次摸牌并展示直至手牌包含两种颜色.').set('choice', true).forResult();
                             if (result.bool) {
                                 await player.showHandcards();
                                 await game.asyncDelay(0.2);
@@ -13499,7 +13534,8 @@ export default async function () {
                                 return get.color(card, player) == get.color(ui.selected.cards[0], player);
                             })
                             .set('complexCard', true)
-                            .set('color', red <= black ? 'red' : 'black').forResult();
+                            .set('color', red <= black ? 'red' : 'black')
+                            .forResult();
                         if (!bool) return;
                         await player.showCards(cards, get.translation(player) + '两仪展示的牌');
                         player.addTempSkill('radiance_liangyi_af', {
@@ -13754,7 +13790,7 @@ export default async function () {
                                     radiance_jiuse: true,
                                 },
                                 player,
-                                event
+                                event,
                             ) && player.hasMark('radiance_jiuse')
                         );
                     },
@@ -13813,7 +13849,7 @@ export default async function () {
                                 {
                                     name: 'sha',
                                 },
-                                '可以对' + get.translation(player) + '使用一张【杀】,其摸一张牌'
+                                '可以对' + get.translation(player) + '使用一张【杀】,其摸一张牌',
                             )
                             .set('targetRequired', true)
                             .set('complexSelect', true)
@@ -13825,7 +13861,7 @@ export default async function () {
                                         name: 'sha',
                                     },
                                     target,
-                                    false
+                                    false,
                                 );
                             })
                             .set('ai2', function (target, card) {
@@ -13843,7 +13879,7 @@ export default async function () {
                                                 target: target,
                                                 card: card,
                                             },
-                                            true
+                                            true,
                                         ) ||
                                         target.hasSkillTag('forbid_card', true)
                                         ? effect
@@ -14174,7 +14210,7 @@ export default async function () {
                         } else {
                             str += '一名角色的结束阶段,你可以将一张进攻坐骑置于其装备区内,令其获得一张【闪】,且你获得一个<军魂>;或是将一张防御坐骑置于其装备区内,其摸三张牌.';
                         }
-                        let { result } = await player
+                        const result = await player
                             .chooseCard(
                                 1,
                                 'he',
@@ -14182,7 +14218,7 @@ export default async function () {
                                     var trigger = _status.event.getTrigger();
                                     return get.type(card) == 'equip' && ((trigger.player.isEmpty(3) && get.subtypes(card).includes('equip3')) || (trigger.player.isEmpty(4) && get.subtypes(card).includes('equip4'))) && trigger.player.canEquip(card);
                                 },
-                                str
+                                str,
                             )
                             .set('ai', function (card) {
                                 var trigger = _status.event.getTrigger();
@@ -14209,7 +14245,8 @@ export default async function () {
                                     }
                                 }
                                 return 0;
-                            });
+                            })
+                            .forResult();
                         result.targets = [trigger.player];
                         event.result = result;
                     },
@@ -14265,7 +14302,7 @@ export default async function () {
                                 return event.num > 0;
                             },
                             cost: async function (event, trigger, player) {
-                                let { result } = await player
+                                const result = await player
                                     .chooseCard(
                                         1,
                                         'he',
@@ -14273,7 +14310,7 @@ export default async function () {
                                             var trigger = _status.event.getTrigger();
                                             return get.type(card) == 'equip' && get.subtypes(card).includes('equip3') && trigger.player.canEquip(card);
                                         },
-                                        '###是否对' + get.translation(trigger.player) + '发动【育麒】？###一名角色的摸牌阶段,可以将一张防御坐骑置于该角色的装备区内,若是从手牌/装备区则该阶段摸牌数+2/你摸两张牌'
+                                        '###是否对' + get.translation(trigger.player) + '发动【育麒】？###一名角色的摸牌阶段,可以将一张防御坐骑置于该角色的装备区内,若是从手牌/装备区则该阶段摸牌数+2/你摸两张牌',
                                     )
                                     .set('ai', function (card) {
                                         var trigger = _status.event.getTrigger();
@@ -14286,7 +14323,8 @@ export default async function () {
                                         if (count <= 1 && pos != 'e') return 0;
                                         if (pos == 'e') return 3;
                                         return 1;
-                                    });
+                                    })
+                                    .forResult();
                                 result.targets = [trigger.player];
                                 event.result = result;
                             },
@@ -14412,7 +14450,7 @@ export default async function () {
                                 radiance_zhuyuan: true,
                             },
                             false,
-                            '可以再视为使用一张【杀】'
+                            '可以再视为使用一张【杀】',
                         );
                     },
                     mod: {
@@ -14459,7 +14497,7 @@ export default async function () {
                                 get.cardPile(function (card) {
                                     return card.name == 'sha';
                                 }),
-                                'gain2'
+                                'gain2',
                             );
                             event.finish();
                         }
@@ -14469,7 +14507,7 @@ export default async function () {
                                 {
                                     name: 'sha',
                                 },
-                                '腾龙:对' + get.translation(trigger.player) + '或他的上下家使用一张【杀】'
+                                '腾龙:对' + get.translation(trigger.player) + '或他的上下家使用一张【杀】',
                             )
                             .set('targetRequired', true)
                             .set('complexSelect', true)
@@ -14482,7 +14520,7 @@ export default async function () {
                                         name: 'sha',
                                     },
                                     target,
-                                    false
+                                    false,
                                 );
                             });
                         ('step 2');
@@ -14716,7 +14754,7 @@ export default async function () {
                         player: 'phaseJieshuBegin',
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget([1, 3], get.prompt2('radiance_caopan'), function (card, player, target) {
                                 if (target.countCards('h', (card) => lib.filter.cardDiscardable(card, player)) > 0) return true;
                                 if (target.countDiscardableCards(player, 'hej') > 1) return true;
@@ -14735,7 +14773,7 @@ export default async function () {
                                             (card) =>
                                                 get.buttonValue({
                                                     link: card,
-                                                }) <= 0
+                                                }) <= 0,
                                         ) > 1
                                     )
                                         return 10 + att;
@@ -14746,7 +14784,7 @@ export default async function () {
                                             (card) =>
                                                 get.buttonValue({
                                                     link: card,
-                                                }) <= 0
+                                                }) <= 0,
                                         ) == 1 &&
                                         target.countCards('he') > 4
                                     )
@@ -14766,7 +14804,8 @@ export default async function () {
                                     return base - att * 1.5;
                                 }
                                 return base - att / hs.length;
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -14785,7 +14824,7 @@ export default async function () {
                             }
                             map[target.playerid] = choices[0];
                             if (choices.length == 2) {
-                                let { result } = await target
+                                const result = await target
                                     .chooseControl(choices)
                                     .set('choiceList', choiceList)
                                     .set('ai', function (event, player) {
@@ -14797,7 +14836,7 @@ export default async function () {
                                                     (card) =>
                                                         get.buttonValue({
                                                             link: card,
-                                                        }) <= 0
+                                                        }) <= 0,
                                                 ) > 1
                                             )
                                                 return 1;
@@ -14808,7 +14847,7 @@ export default async function () {
                                                     (card) =>
                                                         get.buttonValue({
                                                             link: card,
-                                                        }) <= 0
+                                                        }) <= 0,
                                                 ) == 1
                                             ) {
                                                 if (
@@ -14818,7 +14857,7 @@ export default async function () {
                                                         (card) =>
                                                             get.buttonValue({
                                                                 link: card,
-                                                            }) < 1
+                                                            }) < 1,
                                                     ) > 1
                                                 )
                                                     return 1;
@@ -14832,7 +14871,7 @@ export default async function () {
                                                     (card) =>
                                                         get.buttonValue({
                                                             link: card,
-                                                        }) > 1
+                                                        }) > 1,
                                                 ) <= 1
                                             )
                                                 return 1;
@@ -14841,7 +14880,8 @@ export default async function () {
                                         }
                                         return 0;
                                     })
-                                    .set('prompt', '操盘:请选择能执行的一项');
+                                    .set('prompt', '操盘:请选择能执行的一项')
+                                    .forResult();
                                 map[target.playerid] = result.control;
                             }
                         }
@@ -14858,7 +14898,7 @@ export default async function () {
                         for (const target of targets) {
                             if (target == player) continue;
                             if (player.countCards('h') == 0) return;
-                            let { result } = await player
+                            const result = await player
                                 .chooseCard('h', '选择一张手牌给' + get.translation(target) + ',是装备或者延时锦囊则置于其对应区域内', true)
                                 .set('ai', function (card) {
                                     var player = _status.event.player,
@@ -14879,7 +14919,8 @@ export default async function () {
                                     if (card.name == 'shan' && !target.hasShan() && player.countCards('hs', 'shan') > 1) return val + 7;
                                     return val;
                                 })
-                                .set('target', target);
+                                .set('target', target)
+                                .forResult();
                             if (result.cards?.length) {
                                 let card = result.cards[0];
                                 if (get.type(card, player) == 'delay' && target.canAddJudge(card)) {
@@ -15034,7 +15075,7 @@ export default async function () {
                                 dialog.add(hs);
                                 dialog.addText('能弃置' + get.translation(trigger.player) + '的装备牌');
                                 dialog.add(es);
-                                let { result } = await player
+                                const result = await player
                                     .chooseButton(dialog, 2, function (button) {
                                         if (ui.selected.buttons.length == 0) return true;
                                         return button.link.suit == ui.selected.buttons[0].suit && get.owner(button.link) != get.owner(ui.selected.buttons[0]);
@@ -15044,7 +15085,8 @@ export default async function () {
                                             target = _status.event.getTrigger().player;
                                         if (get.attitude(player, target) <= 0) return 0;
                                         return 10 - get.value(button.link);
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool) {
                                     event.result = {
                                         bool: true,
@@ -15655,7 +15697,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -15678,7 +15720,7 @@ export default async function () {
                                             name: name,
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0
                                 )
                                     return 0;
@@ -15696,9 +15738,10 @@ export default async function () {
                                                     name: 'sha',
                                                 },
                                                 player,
-                                                player
+                                                player,
                                             ) * 1.1
                                         );
+
                                     case 'wuxie':
                                         return (
                                             Math.max(
@@ -15708,7 +15751,7 @@ export default async function () {
                                                         name: 'nanman',
                                                     },
                                                     player,
-                                                    player
+                                                    player,
                                                 ),
                                                 get.effect(
                                                     player,
@@ -15716,10 +15759,11 @@ export default async function () {
                                                         name: 'guohe',
                                                     },
                                                     player,
-                                                    player
-                                                )
+                                                    player,
+                                                ),
                                             ) * 1.1
                                         );
+
                                     case 'tao':
                                         var players = game.filterPlayer((current) => get.attitude(player, current) > 1);
                                         players.sort((a, b) => a.hp - b.hp);
@@ -15767,9 +15811,10 @@ export default async function () {
                                                             name: 'sha',
                                                         },
                                                         player,
-                                                        player
+                                                        player,
                                                     ) * 1.1
                                                 );
+
                                             case 'wuxie':
                                                 return (
                                                     Math.max(
@@ -15779,7 +15824,7 @@ export default async function () {
                                                                 name: 'nanman',
                                                             },
                                                             player,
-                                                            player
+                                                            player,
                                                         ),
                                                         get.effect(
                                                             player,
@@ -15787,10 +15832,11 @@ export default async function () {
                                                                 name: 'guohe',
                                                             },
                                                             player,
-                                                            player
-                                                        )
+                                                            player,
+                                                        ),
                                                     ) * 1.1
                                                 );
+
                                             case 'tao':
                                                 var players = game.filterPlayer((current) => get.attitude(player, current) > 1);
                                                 players.sort((a, b) => a.hp - b.hp);
@@ -15910,21 +15956,21 @@ export default async function () {
                                         name: 'tao',
                                     },
                                     player,
-                                    'raw'
+                                    'raw',
                                 ) +
                                     get.value(
                                         {
                                             name: 'wuxie',
                                         },
                                         player,
-                                        'raw'
+                                        'raw',
                                     ) +
                                     get.value(
                                         {
                                             name: 'shan',
                                         },
                                         player,
-                                        'raw'
+                                        'raw',
                                     )) /
                                 2;
                             delete player._radiance_huanxing_mod;
@@ -15939,19 +15985,19 @@ export default async function () {
                                     {
                                         name: 'tao',
                                     },
-                                    player
+                                    player,
                                 ) +
                                     get.useful(
                                         {
                                             name: 'wuxie',
                                         },
-                                        player
+                                        player,
                                     ) +
                                     get.useful(
                                         {
                                             name: 'shan',
                                         },
-                                        player
+                                        player,
                                     )) /
                                 2;
                             delete player._radiance_huanxing_mod;
@@ -15974,7 +16020,7 @@ export default async function () {
                     forced: true,
                     shaRelated: true,
                     content: async function (event, trigger, player) {
-                        let { result } = await player.judge();
+                        const result = await player.judge().forResult();
                         player.storage.radiance_huajian_suit = result.suit;
                         player.storage.radiance_huajian_af = result.card;
                         await player.addTempSkill('radiance_huajian_af', {
@@ -16010,13 +16056,14 @@ export default async function () {
                         if (hs.length) {
                             await player.gain(hs, target, 'log');
                         } else {
-                            let { result } = await player
+                            const result = await player
                                 .chooseControl('增伤', '无双')
                                 .set('ai', function (event, player) {
                                     if (event.target.canRespondTo(event)) return 1;
                                     return 0;
                                 })
-                                .set('prompt', '令以下一项对于' + get.translation(trigger.card) + '对' + get.translation(target) + '适用');
+                                .set('prompt', '令以下一项对于' + get.translation(trigger.card) + '对' + get.translation(target) + '适用')
+                                .forResult();
                             let id = target.playerid;
                             let map = trigger.parent.customArgs;
                             if (!map[id]) map[id] = {};
@@ -16082,69 +16129,71 @@ export default async function () {
                         cards = cards.filter(function (card) {
                             return card.suit == 'heart' || get.type2(card, false) == 'equip';
                         });
-                        let { result } = await player.chooseCardTarget({
-                            filterCard(card, player) {
-                                return lib.filter.cardDiscardable(card, player, _status.event);
-                            },
-                            filterTarget(card, player, target) {
-                                var trigger = _status.event.getTrigger();
-                                return target != trigger.player;
-                            },
-                            selectCard: 1,
-                            position: 'he',
-                            _ai1: {},
-                            _ai2: {},
-                            aix(card) {
-                                if (_status.event._ai1[card.cardid]) return _status.event._ai1[card.cardid];
-                                var player = _status.event.player;
-                                var map = [],
-                                    eff = 0,
-                                    result = [card],
-                                    subtype,
-                                    es;
-                                for (const target of game.players) {
-                                    if (target == _status.event.getTrigger().player) continue;
-                                    if (!target.hasMeaningfulTarget(card)) {
-                                        eff = 0;
-                                    } else {
-                                        eff = player.getViewerValue(card, target);
-                                        if (eff > 0 && get.type2(card, target) == 'equip') {
-                                            subtype = get.subtype(card, target);
-                                            if (!target.hasEmptySlot(subtype)) {
-                                                es = target.getEquip(subtype);
-                                                eff *= (get.equipValue(card, target) - get.equipValue(es, target)) * 0.5;
+                        const result = await player
+                            .chooseCardTarget({
+                                filterCard(card, player) {
+                                    return lib.filter.cardDiscardable(card, player, _status.event);
+                                },
+                                filterTarget(card, player, target) {
+                                    var trigger = _status.event.getTrigger();
+                                    return target != trigger.player;
+                                },
+                                selectCard: 1,
+                                position: 'he',
+                                _ai1: {},
+                                _ai2: {},
+                                aix(card) {
+                                    if (_status.event._ai1[card.cardid]) return _status.event._ai1[card.cardid];
+                                    var player = _status.event.player;
+                                    var map = [],
+                                        eff = 0,
+                                        result = [card],
+                                        subtype,
+                                        es;
+                                    for (const target of game.players) {
+                                        if (target == _status.event.getTrigger().player) continue;
+                                        if (!target.hasMeaningfulTarget(card)) {
+                                            eff = 0;
+                                        } else {
+                                            eff = player.getViewerValue(card, target);
+                                            if (eff > 0 && get.type2(card, target) == 'equip') {
+                                                subtype = get.subtype(card, target);
+                                                if (!target.hasEmptySlot(subtype)) {
+                                                    es = target.getEquip(subtype);
+                                                    eff *= (get.equipValue(card, target) - get.equipValue(es, target)) * 0.5;
+                                                }
                                             }
                                         }
+                                        map[target.playerid] = eff;
                                     }
-                                    map[target.playerid] = eff;
-                                }
-                                _status.event._ai1[card.cardid] = map;
-                                return map;
-                            },
-                            ai1(card) {
-                                var cards = _status.event.cards.slice(0),
-                                    cardsx,
-                                    map = {};
-                                if (get.type2(card, false) == 'equip' || card.suit == 'heart') cards.add(card);
-                                for (const target of game.players) {
-                                    if (target == _status.event.getTrigger().player || get.attitude(player, target) <= 0) continue;
-                                    cards.sort((a, b) => _status.event.aix(b)[target.playerid] - _status.event.aix(a)[target.playerid]);
-                                    cardsx = cards.slice(0, Math.min(cards.length, 2));
-                                    map = get.value(cards, target, 'raw') - get.value(card, player, 'raw');
-                                }
-                                var max = 0,
-                                    id = Object.keys(_status.event._ai2)[0];
-                                for (const playerid in _status.event._ai2) {
-                                    max = Math.max(_status.event._ai2[playerid], max);
-                                } //QQQ
-                                return max;
-                            },
-                            ai2(target) {
-                                return _status.event._ai2[target.playerid] || -1;
-                            },
-                            cards: cards,
-                            prompt: '月吟:是否弃置一张牌并令一名角色获得' + get.translation(cards) + '中的至多两张？',
-                        });
+                                    _status.event._ai1[card.cardid] = map;
+                                    return map;
+                                },
+                                ai1(card) {
+                                    var cards = _status.event.cards.slice(0),
+                                        cardsx,
+                                        map = {};
+                                    if (get.type2(card, false) == 'equip' || card.suit == 'heart') cards.add(card);
+                                    for (const target of game.players) {
+                                        if (target == _status.event.getTrigger().player || get.attitude(player, target) <= 0) continue;
+                                        cards.sort((a, b) => _status.event.aix(b)[target.playerid] - _status.event.aix(a)[target.playerid]);
+                                        cardsx = cards.slice(0, Math.min(cards.length, 2));
+                                        map = get.value(cards, target, 'raw') - get.value(card, player, 'raw');
+                                    }
+                                    var max = 0,
+                                        id = Object.keys(_status.event._ai2)[0];
+                                    for (const playerid in _status.event._ai2) {
+                                        max = Math.max(_status.event._ai2[playerid], max);
+                                    } //QQQ
+                                    return max;
+                                },
+                                ai2(target) {
+                                    return _status.event._ai2[target.playerid] || -1;
+                                },
+                                cards: cards,
+                                prompt: '月吟:是否弃置一张牌并令一名角色获得' + get.translation(cards) + '中的至多两张？',
+                            })
+                            .forResult();
                         if (result.cards?.length) {
                             result.cost_data = result.cards[0];
                             await player.discard(result.cards);
@@ -16163,9 +16212,12 @@ export default async function () {
                         cards = cards.filter(function (card) {
                             return card.suit == 'heart' || get.type(card) == 'equip';
                         });
-                        let { result } = await target.chooseCardButton(cards, [1, 2], true, '获得至多两张本回合被弃置装备或♥️️牌').set('ai', function (button) {
-                            return get.value(button.link, _status.event.player);
-                        });
+                        const result = await target
+                            .chooseCardButton(cards, [1, 2], true, '获得至多两张本回合被弃置装备或♥️️牌')
+                            .set('ai', function (button) {
+                                return get.value(button.link, _status.event.player);
+                            })
+                            .forResult();
                         if (result.links?.length) {
                             bool = result.links.includes(event.cost_data);
                             cards = result.links.slice(0);
@@ -16184,14 +16236,15 @@ export default async function () {
                         }
                         let num = cards.length;
                         while (num > 0) {
-                            let { result } = await target
+                            const result = await target
                                 .chooseToUse((card) => {
                                     return _status.event.cards.includes(card) && _status.event.player.canEquip(card, true);
                                 }, '可以使用因此获得的牌')
                                 .set('ai1', function (card) {
                                     return _status.event.player.getUseValue(card);
                                 })
-                                .set('cards', cards);
+                                .set('cards', cards)
+                                .forResult();
                             if (result.bool) num--;
                             else num = 0;
                         }
@@ -16293,17 +16346,20 @@ export default async function () {
                         return player.countCards('he') > 0;
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player.chooseCard(1, 'he', '工巧:是否将一张牌交给' + get.translation(trigger.source) + '？').set('ai', function (card) {
-                            var base = 6,
-                                player = _status.event.player,
-                                trigger = _status.event.getTrigger();
-                            if (get.attitude(player, trigger.source) <= 0) base -= 6;
-                            if (get.color(card) == 'red' && player.isDamaged()) base += 3.1;
-                            if (get.color(card) == 'red' && !player.isDamaged() && trigger.source.needsToDiscard()) base -= 6;
-                            if (get.color(card) == 'black' && get.attitude(player, trigger.player) < 0) base += 1.1;
-                            if (get.color(card) == 'black' && get.attitude(player, trigger.player) > 1) base -= 9;
-                            return base - get.value(card);
-                        });
+                        const result = await player
+                            .chooseCard(1, 'he', '工巧:是否将一张牌交给' + get.translation(trigger.source) + '？')
+                            .set('ai', function (card) {
+                                var base = 6,
+                                    player = _status.event.player,
+                                    trigger = _status.event.getTrigger();
+                                if (get.attitude(player, trigger.source) <= 0) base -= 6;
+                                if (get.color(card) == 'red' && player.isDamaged()) base += 3.1;
+                                if (get.color(card) == 'red' && !player.isDamaged() && trigger.source.needsToDiscard()) base -= 6;
+                                if (get.color(card) == 'black' && get.attitude(player, trigger.player) < 0) base += 1.1;
+                                if (get.color(card) == 'black' && get.attitude(player, trigger.player) > 1) base -= 9;
+                                return base - get.value(card);
+                            })
+                            .forResult();
                         if (result.bool) result.targets = [trigger.source];
                         event.result = result;
                     },
@@ -16695,50 +16751,52 @@ export default async function () {
                                 );
                             },
                             cost: async function (event, trigger, player) {
-                                let { result } = await player.chooseCardTarget({
-                                    filterCard(card, player) {
-                                        return (
-                                            get.type(card) == 'equip' &&
-                                            game.hasPlayer((target) => {
-                                                var bool = target.hasZhuSkill('radiance_xuancheng', player) && player.group == target.group;
-                                                return target.hasSkill('radiance_dangshou') && target.canEquip(card, bool);
-                                            })
-                                        );
-                                    },
-                                    filterTarget(card, player, target) {
-                                        var bool = target.hasZhuSkill('radiance_xuancheng', player) && player.group == target.group;
-                                        return target.hasSkill('radiance_dangshou') && target.canEquip(ui.selected.cards[0], bool);
-                                    },
-                                    selectCard: 1,
-                                    position: 'hes',
-                                    ai1(card) {
-                                        var player = _status.event.player;
-                                        var targets = game.filterPlayer((target) => {
+                                const result = await player
+                                    .chooseCardTarget({
+                                        filterCard(card, player) {
+                                            return (
+                                                get.type(card) == 'equip' &&
+                                                game.hasPlayer((target) => {
+                                                    var bool = target.hasZhuSkill('radiance_xuancheng', player) && player.group == target.group;
+                                                    return target.hasSkill('radiance_dangshou') && target.canEquip(card, bool);
+                                                })
+                                            );
+                                        },
+                                        filterTarget(card, player, target) {
                                             var bool = target.hasZhuSkill('radiance_xuancheng', player) && player.group == target.group;
-                                            return target.hasSkill('radiance_dangshou') && get.attitude(player, target) > 1 && target.canEquip(card, bool);
-                                        });
-                                        if (targets.length == 0) return -1;
-                                        if (player.needsToDiscard() > 1 && card.name == 'muniu') return -1;
-                                        targets.sort(function (a, b) {
-                                            return get.attitude(player, b) - get.attitude(player, a);
-                                        });
-                                        var target = targets[0];
-                                        if (target.hasActionTag('to_keep_equip') || player.hasActionTag('extra_gain', 'draw')) return Math.max(10 - get.value(card), 1);
-                                        if (
-                                            player.countCards('hes', {
-                                                subtype: get.subtype(card),
-                                            }) > 1
-                                        )
-                                            return Math.max(10 - get.value(card), 1);
-                                        return 5 - get.value(card);
-                                    },
-                                    ai2(target) {
-                                        if (target.storage.radiance_dangshou < 2) return 0;
-                                        var att = get.attitude(_status.event.player, target);
-                                        return att * target.storage.radiance_dangshou;
-                                    },
-                                    prompt: '可以将一张装备牌置于<党首>的装备区,本回合内获得<党羽>的效果',
-                                });
+                                            return target.hasSkill('radiance_dangshou') && target.canEquip(ui.selected.cards[0], bool);
+                                        },
+                                        selectCard: 1,
+                                        position: 'hes',
+                                        ai1(card) {
+                                            var player = _status.event.player;
+                                            var targets = game.filterPlayer((target) => {
+                                                var bool = target.hasZhuSkill('radiance_xuancheng', player) && player.group == target.group;
+                                                return target.hasSkill('radiance_dangshou') && get.attitude(player, target) > 1 && target.canEquip(card, bool);
+                                            });
+                                            if (targets.length == 0) return -1;
+                                            if (player.needsToDiscard() > 1 && card.name == 'muniu') return -1;
+                                            targets.sort(function (a, b) {
+                                                return get.attitude(player, b) - get.attitude(player, a);
+                                            });
+                                            var target = targets[0];
+                                            if (target.hasActionTag('to_keep_equip') || player.hasActionTag('extra_gain', 'draw')) return Math.max(10 - get.value(card), 1);
+                                            if (
+                                                player.countCards('hes', {
+                                                    subtype: get.subtype(card),
+                                                }) > 1
+                                            )
+                                                return Math.max(10 - get.value(card), 1);
+                                            return 5 - get.value(card);
+                                        },
+                                        ai2(target) {
+                                            if (target.storage.radiance_dangshou < 2) return 0;
+                                            var att = get.attitude(_status.event.player, target);
+                                            return att * target.storage.radiance_dangshou;
+                                        },
+                                        prompt: '可以将一张装备牌置于<党首>的装备区,本回合内获得<党羽>的效果',
+                                    })
+                                    .forResult();
                                 event.result = result;
                             },
                             content: async function (event, trigger, player) {
@@ -16869,7 +16927,7 @@ export default async function () {
                         return game.hasPlayer((target) => target != player && target.countCards('h') > 0);
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget([1, game.countPlayer() - 1], '###是否对任意名角色发动<予告>？###选择将要被你弃牌的受害者', function (card, player, target) {
                                 if (target == player) return false;
                                 var targets = [];
@@ -16877,16 +16935,19 @@ export default async function () {
                             })
                             .set('ai', function (target) {
                                 return 1 - get.attitude(_status.event.player, target);
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
                         let map = {};
                         event.targets.sort(lib.sort.seat);
                         for (const target of event.targets) {
-                            let { result } = await player.choosePlayerCard(target, 'h', true, '选择展示' + get.translation(target) + '的一张牌', function (button) {
-                                return lib.filter.canBeDiscarded(button.link, _status.event.player, get.owner(button.link));
-                            });
+                            const result = await player
+                                .choosePlayerCard(target, 'h', true, '选择展示' + get.translation(target) + '的一张牌', function (button) {
+                                    return lib.filter.canBeDiscarded(button.link, _status.event.player, get.owner(button.link));
+                                })
+                                .forResult();
                             if (result.cards?.length) {
                                 await player.showCards(result.cards, get.translation(player) + '展示' + get.translation(target) + '的牌');
                                 map[result.cards[0].cardid] = [target, result.cards];
@@ -16901,7 +16962,7 @@ export default async function () {
                             dialog.add(map[id][1]);
                             suits.add(map[id][1].suit);
                         }
-                        let { result } = await player
+                        const result = await player
                             .chooseButton(dialog, [1, suits.length])
                             .set('ai', function (button) {
                                 return get.value(button.link);
@@ -16916,7 +16977,8 @@ export default async function () {
                                 )
                                     return false;
                                 return true;
-                            });
+                            })
+                            .forResult();
                         if (result.links?.length) {
                             let cards = result.links.slice(0);
                             player.addTempSkill('radiance_yugao_gain');
@@ -16926,7 +16988,7 @@ export default async function () {
                             });
                             player.line(
                                 cards.map((card) => map[card.cardid][0]),
-                                'green'
+                                'green',
                             );
                             for (const card of cards) {
                                 if (map[card.cardid][0].getCards('h').includes(card)) {
@@ -17015,9 +17077,12 @@ export default async function () {
                                         );
                                     });
                                 dialog.add(cards);
-                                let { result } = await player.chooseButton(dialog, [1, 1]).set('ai', function (button) {
-                                    return get.value(button.link);
-                                });
+                                const result = await player
+                                    .chooseButton(dialog, [1, 1])
+                                    .set('ai', function (button) {
+                                        return get.value(button.link);
+                                    })
+                                    .forResult();
                                 event.result = result;
                                 event.result.cards = result.links || [];
                             },
@@ -17060,34 +17125,37 @@ export default async function () {
                         if (trigger.name == 'phaseDraw') {
                             let str = '从身:可以让你直至回合结束所有牌的花色逆转';
                             if (player.hasSkill('radiance_congshen_af')) str += '(当前已逆转)';
-                            let { result } = await player.chooseBool(str).set('ai', function (event, player) {
-                                if (player.hasSkill('radiance_yugao')) {
-                                    return player.countCards('hs', (card) => get.color(card) == 'red' && player.hasMeaningfulTarget(card, false)) <= player.countCards('hs', (card) => get.color(card) == 'black' && player.hasMeaningfulTarget(card, false));
-                                }
-                                if (player.hasSkill('radiance_wuta')) {
-                                    var sha = player.getCards('hs', 'sha');
-                                    var count = 0;
-                                    var suits = [];
-                                    for (var i = 0; i < sha.length; i++) {
-                                        var card = sha[i];
-                                        var suit;
-                                        switch (card.suit) {
-                                            case 'heart':
-                                                suit = 'spade';
-                                            case 'spade':
-                                                suit = 'heart';
-                                            case 'diamond':
-                                                suit = 'club';
-                                            case 'club':
-                                                suit = 'diamond';
-                                        }
-                                        if (!player.storage.radiance_wuta_suit.includes(card.suit)) count--;
-                                        if (!player.storage.radiance_wuta_suit.includes(suit)) count++;
+                            const result = await player
+                                .chooseBool(str)
+                                .set('ai', function (event, player) {
+                                    if (player.hasSkill('radiance_yugao')) {
+                                        return player.countCards('hs', (card) => get.color(card) == 'red' && player.hasMeaningfulTarget(card, false)) <= player.countCards('hs', (card) => get.color(card) == 'black' && player.hasMeaningfulTarget(card, false));
                                     }
-                                    return count > 0;
-                                }
-                                return false;
-                            });
+                                    if (player.hasSkill('radiance_wuta')) {
+                                        var sha = player.getCards('hs', 'sha');
+                                        var count = 0;
+                                        var suits = [];
+                                        for (var i = 0; i < sha.length; i++) {
+                                            var card = sha[i];
+                                            var suit;
+                                            switch (card.suit) {
+                                                case 'heart':
+                                                    suit = 'spade';
+                                                case 'spade':
+                                                    suit = 'heart';
+                                                case 'diamond':
+                                                    suit = 'club';
+                                                case 'club':
+                                                    suit = 'diamond';
+                                            }
+                                            if (!player.storage.radiance_wuta_suit.includes(card.suit)) count--;
+                                            if (!player.storage.radiance_wuta_suit.includes(suit)) count++;
+                                        }
+                                        return count > 0;
+                                    }
+                                    return false;
+                                })
+                                .forResult();
                             if (result.bool) {
                                 if (player.hasSkill('radiance_congshen_af')) player.removeSkill('radiance_congshen_af');
                                 else player.addTempSkill('radiance_congshen_af');
@@ -17178,7 +17246,7 @@ export default async function () {
                                         'he',
                                         function (card) {
                                             return get.type(card) != 'basic' && get.value(card, target) < 4;
-                                        } > 1
+                                        } > 1,
                                     )
                                 )
                                     return 5;
@@ -17311,7 +17379,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -17327,7 +17395,7 @@ export default async function () {
                                             name: 'tao',
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0 ||
                                         !player.hasCard((card) => !lib.filter.cardSavable(card, player, evt.dying), 'hs'))
                                 )
@@ -17545,7 +17613,7 @@ export default async function () {
                                 }
                             }
                         }
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(str, 1)
                             .set('ai', function (target) {
                                 var player = _status.event.player,
@@ -17581,7 +17649,8 @@ export default async function () {
                                 return (base * target.hp) / 2;
                             })
                             .set('suits', suits)
-                            .set('cards', search);
+                            .set('cards', search)
+                            .forResult();
                         result.cost_data = search;
                         event.result = result;
                     },
@@ -17612,7 +17681,10 @@ export default async function () {
                                     }
                                 }
                                 if (search.length) await target.gain(search, 'draw2');
-                                let { result } = await player.chooseBool('是否令' + get.translation(target) + '进行一个能进行' + num + '个阶段的回合').set('choice', get.attitude(player, target) > 0);
+                                const result = await player
+                                    .chooseBool('是否令' + get.translation(target) + '进行一个能进行' + num + '个阶段的回合')
+                                    .set('choice', get.attitude(player, target) > 0)
+                                    .forResult();
                                 if (result.bool) {
                                     target.phase('nodelay');
                                     target.storage.radiance_guanshi_gl = num;
@@ -17650,28 +17722,31 @@ export default async function () {
                         player: 'phaseUseBegin',
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player.chooseTarget(1, get.prompt2('radiance_fengqi'), lib.filter.notMe).set('ai', function (target) {
-                            var player = _status.event.player;
-                            var att = -get.attitude(player, target);
-                            if (att === 0) att = 0.1 * get.threaten(target, player);
-                            var num =
-                                player.countCards('hs', function (card) {
-                                    if (!player.canUse(card, target, false)) return false;
-                                    return get.type2(card, player) == 'trick';
-                                }) +
-                                Math.min(
-                                    player.getCardUsable('sha'),
+                        const result = await player
+                            .chooseTarget(1, get.prompt2('radiance_fengqi'), lib.filter.notMe)
+                            .set('ai', function (target) {
+                                var player = _status.event.player;
+                                var att = -get.attitude(player, target);
+                                if (att === 0) att = 0.1 * get.threaten(target, player);
+                                var num =
                                     player.countCards('hs', function (card) {
                                         if (!player.canUse(card, target, false)) return false;
-                                        return card.name == 'sha';
-                                    })
-                                ) +
-                                player.countCards('hs', function (card) {
-                                    return get.tag(card, 'gain');
-                                }) +
-                                1;
-                            return att * num;
-                        });
+                                        return get.type2(card, player) == 'trick';
+                                    }) +
+                                    Math.min(
+                                        player.getCardUsable('sha'),
+                                        player.countCards('hs', function (card) {
+                                            if (!player.canUse(card, target, false)) return false;
+                                            return card.name == 'sha';
+                                        }),
+                                    ) +
+                                    player.countCards('hs', function (card) {
+                                        return get.tag(card, 'gain');
+                                    }) +
+                                    1;
+                                return att * num;
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -17723,7 +17798,7 @@ export default async function () {
                                 if (!get.tag(trigger.card, 'damage')) list.remove('增伤');
                                 let choiceList = list.map((key) => map[key]);
                                 list.push('cancel2');
-                                let { result } = await player
+                                const result = await player
                                     .chooseControl(list)
                                     .set('prompt', '锋骑:是否令' + get.translation(trigger.card) + '对' + get.translation(trigger.target) + '追加效果？')
                                     .set('ai', function (event, player) {
@@ -17764,7 +17839,8 @@ export default async function () {
                                         if (list.includes('强命')) return '强命';
                                         return 'cancel2';
                                     })
-                                    .set('choiceList', choiceList);
+                                    .set('choiceList', choiceList)
+                                    .forResult();
                                 event.result = {
                                     bool: result.control != 'cancel2',
                                     cost_data: result.control,
@@ -17903,14 +17979,15 @@ export default async function () {
                             await player.removeSkill('radiance_fengqi');
                         } else {
                             await player.recover(1);
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget(1, '是否令一名没有<锋骑>的角色获得之？', function (card, player, target) {
                                     var skills = target.getSkills('invisible', false, false);
                                     return !skills.includes('radiance_fengqi');
                                 })
                                 .set('ai', function (target) {
                                     return (get.attitude(_status.event.player, target) - 1) * (target.hp * 2 + target.countCards('h'));
-                                });
+                                })
+                                .forResult();
                             if (result.targets?.length) {
                                 game.log(result.targets, '获得了', 'radiance_fengqi');
                                 player.line(result.targets, 'green');
@@ -17951,7 +18028,7 @@ export default async function () {
                                     name: 'sha',
                                 },
                                 false,
-                                'nodistance'
+                                'nodistance',
                             );
                         }
                     },
@@ -18591,7 +18668,7 @@ export default async function () {
                                         return targets0.getWeightedUseValue(button.link) + targets1.getWeightedUseValue(button.link);
                                     }
                                 },
-                                targets[0]
+                                targets[0],
                             )
                             .set('targets0', targets[0])
                             .set('targets1', targets[1])
@@ -18624,7 +18701,7 @@ export default async function () {
                                         name: 'sha',
                                     },
                                     targets[1],
-                                    false
+                                    false,
                                 )
                             ) {
                                 targets[0]
@@ -18634,7 +18711,7 @@ export default async function () {
                                         },
                                         targets[1],
                                         'noai',
-                                        false
+                                        false,
                                     )
                                     .set('animate', true);
                             }
@@ -18688,7 +18765,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             target,
-                                            false
+                                            false,
                                         )
                                     ) {
                                         var effect = get.effect(
@@ -18697,7 +18774,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             ui.selected.targets[0],
-                                            target
+                                            target,
                                         );
                                         if (effect > 0) return 3.5;
                                         else if (effect == 0) return 1;
@@ -18760,7 +18837,7 @@ export default async function () {
                                     }
                                 },
                                 player,
-                                'radiance_zhemian'
+                                'radiance_zhemian',
                             );
                             event.finish();
                         } else {
@@ -18806,7 +18883,7 @@ export default async function () {
                                     }
                                 },
                                 player,
-                                'radiance_zhemian'
+                                'radiance_zhemian',
                             );
                         }
                     },
@@ -18826,7 +18903,7 @@ export default async function () {
                                 radiance_qugong: true,
                             },
                             true,
-                            false
+                            false,
                         );
                     },
                     ai: {
@@ -18837,7 +18914,7 @@ export default async function () {
                                     {
                                         name: 'nanman',
                                     },
-                                    player
+                                    player,
                                 ) + 0.5
                             );
                         },
@@ -18920,7 +18997,7 @@ export default async function () {
                                     choiceList.push('以下目标未进行响应:' + get.translation(event.targets2) + '');
                                 }
                                 choices.push('cancel2');
-                                let { result } = await player
+                                const result = await player
                                     .chooseControl(choices)
                                     .set('prompt', '驱弓:可以令一组角色各摸一张牌,不少于三名且不包含你则你回复1点体力')
                                     .set('ai', function (event, player) {
@@ -18940,7 +19017,8 @@ export default async function () {
                                         if (profit1 < profit2) return '未响应目标';
                                         return 0;
                                     })
-                                    .set('choiceList', choiceList);
+                                    .set('choiceList', choiceList)
+                                    .forResult();
                                 if (result.control == 'cancel2') {
                                     event.result = {
                                         bool: false,
@@ -19630,7 +19708,7 @@ export default async function () {
                                             name: trigger.card.name,
                                             nature: trigger.card.nature,
                                         },
-                                        target
+                                        target,
                                     )
                                 );
                             })
@@ -19645,7 +19723,7 @@ export default async function () {
                                             nature: trigger.card.nature,
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) + 0.1
                                 );
                             });
@@ -19658,7 +19736,7 @@ export default async function () {
                                     nature: trigger.card.nature,
                                 },
                                 target,
-                                false
+                                false,
                             );
                         }
                     },
@@ -19814,34 +19892,36 @@ export default async function () {
                         let targets = get.sort(event.targets.slice(0), 'seat', player),
                             bool = false;
                         for (const target of targets) {
-                            let { result } = await target.chooseCardTarget({
-                                filterCard: true,
-                                filterTarget(card, player, target) {
-                                    return target != player;
-                                },
-                                selectCard: 1,
-                                ai1(card) {
-                                    var player = _status.event.player;
-                                    if (_status.event.du) return -get.value(card, player, 'raw');
-                                    return 7 - get.value(card, player, 'raw');
-                                },
-                                ai2(target) {
-                                    var player = _status.event.player;
-                                    var att = get.attitude(player, target);
-                                    if (
-                                        player.hasCard(function (card) {
-                                            return get.value(card, player, 'raw') < 0;
-                                        })
-                                    )
-                                        return 0.5 - att;
-                                    if (att < 0) return 0;
-                                    if (target.countCards('h') == 0) return (4 * att) / get.distance(target, player, 'absolute');
-                                    var nh2 = target.countCards('h') + target.hp * 1.5;
-                                    var num = Math.sqrt(1 + nh2);
-                                    return att / num;
-                                },
-                                prompt: '将一张手牌交给其他角色,摸一张牌',
-                            });
+                            const result = await target
+                                .chooseCardTarget({
+                                    filterCard: true,
+                                    filterTarget(card, player, target) {
+                                        return target != player;
+                                    },
+                                    selectCard: 1,
+                                    ai1(card) {
+                                        var player = _status.event.player;
+                                        if (_status.event.du) return -get.value(card, player, 'raw');
+                                        return 7 - get.value(card, player, 'raw');
+                                    },
+                                    ai2(target) {
+                                        var player = _status.event.player;
+                                        var att = get.attitude(player, target);
+                                        if (
+                                            player.hasCard(function (card) {
+                                                return get.value(card, player, 'raw') < 0;
+                                            })
+                                        )
+                                            return 0.5 - att;
+                                        if (att < 0) return 0;
+                                        if (target.countCards('h') == 0) return (4 * att) / get.distance(target, player, 'absolute');
+                                        var nh2 = target.countCards('h') + target.hp * 1.5;
+                                        var num = Math.sqrt(1 + nh2);
+                                        return att / num;
+                                    },
+                                    prompt: '将一张手牌交给其他角色,摸一张牌',
+                                })
+                                .forResult();
                             if (result.targets?.length) {
                                 await target.give(result.cards, result.targets[0]);
                                 if (target == player || result.targets[0] == player) bool = true;
@@ -19858,13 +19938,14 @@ export default async function () {
                             }
                         }
                         if (player.isMaxHandcard(true) && bool) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget(1, '是否令一名体力值最低的角色回复1点体力？', function (card, player, target) {
                                     return target.isDamaged() && target.isMinHp();
                                 })
                                 .set('ai', function (target) {
                                     return get.recoverEffect(target, _status.event.player, _status.event.player);
-                                });
+                                })
+                                .forResult();
                             if (result.targets?.length) {
                                 await result.targets[0].recover(1, player, 'nocard');
                             }
@@ -20031,7 +20112,7 @@ export default async function () {
                             player.line(target, 'green');
                             await target.draw(1, player);
                             let str = '察异:请弃置一张手牌' + (suits.length ? '(当前已有花色:' + get.translation(suits) + ')' : '');
-                            let { result } = await target
+                            const result = await target
                                 .chooseToDiscard('h', 1, true)
                                 .set('ai', function (card) {
                                     var att = get.attitude(_status.event.player, _status.event.parent.player);
@@ -20046,7 +20127,8 @@ export default async function () {
                                     return base - get.value(card);
                                 })
                                 .set('prompt', str)
-                                .set('suits', suits);
+                                .set('suits', suits)
+                                .forResult();
                             if (result.cards?.length) {
                                 suits.add(result.cards[0].suit);
                                 cards.add(result.cards[0]);
@@ -20062,7 +20144,7 @@ export default async function () {
                                 let dialog = ui.create.dialog('察异');
                                 dialog.add('获得至多' + get.cnNumber(suits.length) + '张牌并将此阶段摸牌数改为' + suits.length + '减去获得的张数');
                                 dialog.add(cards);
-                                let { result } = await player
+                                const result = await player
                                     .chooseButton(dialog, [1, suits.length])
                                     .set('ai', function (button) {
                                         var card = button.link,
@@ -20080,7 +20162,8 @@ export default async function () {
                                         return val - 3.5;
                                     })
                                     .set('bool', trigger.numFixed)
-                                    .set('cards', cards);
+                                    .set('cards', cards)
+                                    .forResult();
                                 if (result.links?.length) {
                                     await player.gain(result.links, 'draw2');
                                     if (!trigger.numFixed) trigger.num -= result.links.length;
@@ -20115,7 +20198,7 @@ export default async function () {
                             list = [trigger.player];
                             bool = false;
                         }
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(1, bool, get.prompt2('radiance_biyou'), function (card, player, target) {
                                 return _status.event.list.includes(target) && !target.hasSkill('radiance_wudi');
                             })
@@ -20124,7 +20207,8 @@ export default async function () {
                                 if (target == _status.currentPhase) att *= 0.1;
                                 return att / Math.max(target.hp, 0.5);
                             })
-                            .set('list', list);
+                            .set('list', list)
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -20145,7 +20229,7 @@ export default async function () {
                         let num = 2;
                         let str1 = '令所有角色各摸一张牌,且你可以令至多' + get.cnNumber(num) + '名角色不能摸牌且本回合你对其使用牌无距离限制,若少选则摸牌阶段摸牌数增加',
                             str2 = '本回合的结束阶段摸' + get.cnNumber(num + 1) + '张牌';
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(['选项一', '选项二', 'cancel2'], function (event, player) {
                                 if (player.hp <= 1) return 1;
                                 var bool1 = true;
@@ -20166,7 +20250,8 @@ export default async function () {
                                 return 1;
                             })
                             .set('prompt', get.prompt('radiance_huizhao'))
-                            .set('choiceList', [str1, str2]);
+                            .set('choiceList', [str1, str2])
+                            .forResult();
                         result.cost_data = result.index;
                         event.result = result;
                     },
@@ -20178,7 +20263,7 @@ export default async function () {
                             return;
                         }
                         player.addTempSkill('radiance_huizhao_draw');
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget([1, 2], '令至多两名角色不能摸牌且对其使用牌无距离限制,每少选一名则摸牌阶段摸牌数+1', function (card, player, target) {
                                 return target != player;
                             })
@@ -20189,7 +20274,8 @@ export default async function () {
                                 if (!player.inRange(target) && target.hp <= 2) att *= 1.2;
                                 return -att;
                             })
-                            .set('complexTarget', true);
+                            .set('complexTarget', true)
+                            .forResult();
                         if (result.targets?.length) {
                             result.targets.forEach((current) => player.storage.radiance_huizhao_draw.push(current));
                             player.markSkill('radiance_huizhao_draw');
@@ -20327,7 +20413,7 @@ export default async function () {
                         return player.getHistory('lose', (evt) => evt.cards2.length).length || game.getGlobalHistory('changeHp', (evt) => evt.player == player && evt.num < 0).length;
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(1, '###选择【涤罪】的目标###选择一名攻击范围内未选择过的角色,令其打出一张【闪】,否则其受到1点雷电伤害', function (card, player, target) {
                                 return player.inRange(target) && !player.storage.radiance_dizui.includes(target);
                             })
@@ -20337,7 +20423,8 @@ export default async function () {
                                     base *= 0;
                                 }
                                 return base * -get.attitude(player, target);
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -20347,11 +20434,12 @@ export default async function () {
                             player: ['phaseAfter', 'dyingBefore'],
                         });
                         player.storage.radiance_dizui.add(target);
-                        let { result } = await target
+                        const result = await target
                             .chooseToRespond({
                                 name: 'shan',
                             })
-                            .set('autochoose', lib.filter.autoRespondShan);
+                            .set('autochoose', lib.filter.autoRespondShan)
+                            .forResult();
                         if (!result.bool) {
                             await target.damage(1, 'nocard', 'thunder', player);
                         }
@@ -20748,7 +20836,7 @@ export default async function () {
                                         name: 'wuzhong',
                                     },
                                     event.player,
-                                    event.player
+                                    event.player,
                                 ) *
                                     Math.ceil(num / 2)) /
                                 2;
@@ -20759,7 +20847,7 @@ export default async function () {
                                         name: 'wuzhong',
                                     },
                                     player,
-                                    player
+                                    player,
                                 ) *
                                     Math.floor(num / 2)) /
                                 2;
@@ -20802,7 +20890,7 @@ export default async function () {
                                     {
                                         name: result.links[0][2],
                                     },
-                                    false
+                                    false,
                                 )
                                 .set('forced', true);
                         }
@@ -20824,7 +20912,7 @@ export default async function () {
                                     {
                                         link: i,
                                     },
-                                    player
+                                    player,
                                 );
                                 if (!bool) str += '<div style="opacity:0.5">';
                                 str += list[i];
@@ -20848,6 +20936,7 @@ export default async function () {
                                     return target.countMark('radiance_kejie') > 0;
                                 },
                             ];
+
                             return game.hasPlayer(function (current) {
                                 return choices[button.link](null, player, current);
                             });
@@ -20864,6 +20953,7 @@ export default async function () {
                                     return get.attitude(player, target) > 1 && target.countMark('radiance_kejie') > 0;
                                 },
                             ];
+
                             if (game.hasPlayer((current) => choices[button.link](current))) return button.link + 1;
                             return 0;
                         },
@@ -20926,6 +21016,7 @@ export default async function () {
                                     },
                                 },
                             ];
+
                             return toreturn[links[0]];
                         },
                     },
@@ -20943,6 +21034,7 @@ export default async function () {
                                         return get.attitude(player, target) > 1 && target.countMark('radiance_kejie') > 0;
                                     },
                                 ];
+
                                 if (game.hasPlayer((current) => choices[0](current))) return 1;
                                 if (game.hasPlayer((current) => choices[1](current))) return 1;
                                 return 0;
@@ -21457,20 +21549,23 @@ export default async function () {
                             .sortBySeat();
                         for (const target of targets) {
                             player.line(target, 'red');
-                            let { result } = await target.chooseBool('是否向' + get.translation(player) + '公开手牌？不展示则本回合可能不能再使用或打出牌').set('ai', function (event, player) {
-                                if (player.countCards('h') == 0) return true;
-                                if (get.attitude(player, event.player) > 1) return true;
-                                if (!player.canSave(player)) return true;
-                                if (player.isMinHp() && player.hasFriend()) return false;
-                                if (player.hasSkillTag('forbid_card') || player.hp >= 3) return false;
-                                if (
-                                    game.hasPlayer(function (target) {
-                                        return target.hp <= player.hp && player.canSave(target) && get.recoverEffect(target, player, player) > 1;
-                                    })
-                                )
+                            const result = await target
+                                .chooseBool('是否向' + get.translation(player) + '公开手牌？不展示则本回合可能不能再使用或打出牌')
+                                .set('ai', function (event, player) {
+                                    if (player.countCards('h') == 0) return true;
+                                    if (get.attitude(player, event.player) > 1) return true;
+                                    if (!player.canSave(player)) return true;
+                                    if (player.isMinHp() && player.hasFriend()) return false;
+                                    if (player.hasSkillTag('forbid_card') || player.hp >= 3) return false;
+                                    if (
+                                        game.hasPlayer(function (target) {
+                                            return target.hp <= player.hp && player.canSave(target) && get.recoverEffect(target, player, player) > 1;
+                                        })
+                                    )
+                                        return true;
                                     return true;
-                                return true;
-                            });
+                                })
+                                .forResult();
                             if (result.bool) {
                                 target.popup('公开了手牌');
                                 await player.viewHandcards(target);
@@ -21478,13 +21573,14 @@ export default async function () {
                             }
                         }
                         if (game.hasPlayer((target) => target != player && !player.storage.radiance_kaicheng.includes(target))) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget(function (card, player, target) {
                                     return target != player && !player.storage.radiance_kaicheng.includes(target);
                                 }, '选择一名未公开的角色本回合不能再使用或打出牌')
                                 .set('ai', function (target) {
                                     return -get.attitude(_status.event.player, target) * Math.sqrt(target.countCards('hs'));
-                                });
+                                })
+                                .forResult();
                             if (result.targets?.length) {
                                 result.targets[0].addTempSkill('radiance_forbid');
                             }
@@ -21532,7 +21628,7 @@ export default async function () {
                                         name: 'sha',
                                     },
                                     player,
-                                    player
+                                    player,
                                 );
                                 if (effect > 0) {
                                     if ((isVisible || get.position(button.link) != 'h') && get.color(button.link, target) == color) return 1.5 * val;
@@ -21565,7 +21661,7 @@ export default async function () {
                                     name: 'sha',
                                 },
                                 player,
-                                target
+                                target,
                             )
                         ) {
                             player
@@ -21573,7 +21669,7 @@ export default async function () {
                                     {
                                         name: 'sha',
                                     },
-                                    target
+                                    target,
                                 )
                                 .set('addCount', false);
                         }
@@ -21890,7 +21986,7 @@ export default async function () {
                                             name: 'sha',
                                         },
                                         target,
-                                        false
+                                        false,
                                     );
                                 },
                                 ai1(card) {
@@ -21905,7 +22001,7 @@ export default async function () {
                                             radiance_yujian: true,
                                         },
                                         _status.event.player,
-                                        _status.event.player
+                                        _status.event.player,
                                     );
                                 },
                             });
@@ -21920,7 +22016,7 @@ export default async function () {
                                             name: 'sha',
                                         },
                                         target,
-                                        false
+                                        false,
                                     );
                                 })
                                 .set('ai', function (target) {
@@ -21931,7 +22027,7 @@ export default async function () {
                                             radiance_yujian: true,
                                         },
                                         _status.event.player,
-                                        _status.event.player
+                                        _status.event.player,
                                     );
                                 });
                         }
@@ -21950,7 +22046,7 @@ export default async function () {
                                 radiance_yujian: true,
                             },
                             target,
-                            false
+                            false,
                         );
                         ('step 3');
                         var bool = game.hasPlayer(function (current) {
@@ -22201,7 +22297,7 @@ export default async function () {
                         let dialog = ui.create.dialog('英灵'),
                             str = event.triggername == 'damageBegin1' ? '是否弃置' + get.cnNumber(num) + '张手牌对' + get.translation(trigger.player) + '额外造成1点伤害？' : '是否弃置' + get.cnNumber(num) + '张牌来减少' + (trigger.source ? get.translation(trigger.source) + '对你的' : '此') + '伤害？';
                         dialog.addText(str);
-                        let { result } = await player
+                        const result = await player
                             .chooseToDiscard(dialog, 'h', num, function (card) {
                                 return true;
                             })
@@ -22230,7 +22326,8 @@ export default async function () {
                                         base += 2;
                                 }
                                 return base - num - get.alteredValue(card);
-                            });
+                            })
+                            .forResult();
                         if (type == 'add') result.targets = [trigger.player];
                         event.result = result;
                     },
@@ -22846,6 +22943,7 @@ export default async function () {
                                                                 return get.value(card, current) > 0;
                                                             }) > 1
                                                         );
+
                                                     return (
                                                         current.countCards('ej', function (card) {
                                                             return get.position(card) == 'j' || get.value(card, current) <= 0;
@@ -23051,12 +23149,12 @@ export default async function () {
                                     get.value(
                                         player.getCards('h', {
                                             color: 'red',
-                                        })
+                                        }),
                                     ) >=
                                     get.value(
                                         player.getCards('h', {
                                             color: 'black',
-                                        })
+                                        }),
                                     )
                                 )
                                     return 'black';
@@ -23089,7 +23187,7 @@ export default async function () {
                                 radiance_zhugong: true,
                             },
                             true,
-                            false
+                            false,
                         );
                     },
                     ai: {
@@ -23100,7 +23198,7 @@ export default async function () {
                                     {
                                         name: 'wanjian',
                                     },
-                                    player
+                                    player,
                                 ) + 0.5
                             );
                         },
@@ -23147,7 +23245,7 @@ export default async function () {
                                     choiceList.push('以下目标角色未受到伤害:' + get.translation(event.targets2) + '');
                                 }
                                 choices.push('cancel2');
-                                let { result } = await player
+                                const result = await player
                                     .chooseControl(choices)
                                     .set('prompt', '祝弓:可以令一组角色各回复1点体力,你摸一张牌')
                                     .set('ai', function (event, player) {
@@ -23164,7 +23262,8 @@ export default async function () {
                                         if (profit1 < profit2) return '未受伤目标';
                                         return 0;
                                     })
-                                    .set('choiceList', choiceList);
+                                    .set('choiceList', choiceList)
+                                    .forResult();
                                 if (result.control == 'cancel2') {
                                     event.result = {
                                         bool: false,
@@ -23217,7 +23316,7 @@ export default async function () {
                             if (cards.length == 3) str += '或获得一张你没有可用目标的牌';
                             let dialog = ui.create.dialog(str);
                             dialog.add(cards);
-                            let { result } = await player
+                            const result = await player
                                 .chooseButton(dialog)
                                 .set('ai', function (button) {
                                     var card = button.link;
@@ -23232,7 +23331,8 @@ export default async function () {
                                     var player = _status.event.player;
                                     return player.hasUseTarget(card);
                                 })
-                                .set('cards', cards);
+                                .set('cards', cards)
+                                .forResult();
                             if (result.links?.length) {
                                 let card = result.links[0];
                                 cards.remove(card);
@@ -23337,7 +23437,7 @@ export default async function () {
                                     {
                                         name: result.links[0][2],
                                     },
-                                    false
+                                    false,
                                 )
                                 .set('forced', true);
                         }
@@ -23434,7 +23534,7 @@ export default async function () {
                                     {
                                         name: result.links[0][2],
                                     },
-                                    false
+                                    false,
                                 )
                                 .set('forced', true);
                         }
@@ -23500,7 +23600,7 @@ export default async function () {
                                                 name: result.links[0][2],
                                                 nature: result.links[0][3],
                                             },
-                                            false
+                                            false,
                                         )
                                         .set('forced', true);
                                 }
@@ -23674,6 +23774,7 @@ export default async function () {
                                 ['锦囊', '', 'sha'],
                                 ['锦囊', '', 'guohe'],
                             ];
+
                             var dialog = ui.create.dialog('视为使用【杀】或【过河拆桥】', [list, 'vcard']);
                             trigger.player
                                 .chooseButton(dialog, true)
@@ -23937,7 +24038,7 @@ export default async function () {
                                         name: i,
                                     },
                                     player,
-                                    event
+                                    event,
                                 )
                             )
                                 return true;
@@ -23956,7 +24057,7 @@ export default async function () {
                                                 name: name,
                                             },
                                             player,
-                                            event
+                                            event,
                                         )
                                     )
                                         list.push(['基本', '', 'sha']);
@@ -23968,7 +24069,7 @@ export default async function () {
                                                     nature: j,
                                                 },
                                                 player,
-                                                event
+                                                event,
                                             )
                                         )
                                             list.push(['基本', '', 'sha', j]);
@@ -23980,7 +24081,7 @@ export default async function () {
                                             name: name,
                                         },
                                         player,
-                                        event
+                                        event,
                                     )
                                 )
                                     list.push(['锦囊', '', name]);
@@ -23991,7 +24092,7 @@ export default async function () {
                                             name: name,
                                         },
                                         player,
-                                        event
+                                        event,
                                     )
                                 )
                                     list.push(['基本', '', name]);
@@ -24004,7 +24105,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                _status.event.parent
+                                _status.event.parent,
                             );
                         },
                         check(button) {
@@ -24088,13 +24189,14 @@ export default async function () {
                     },
                     cost: async function (event, trigger, player) {
                         let num = trigger.player.countCards('h') - trigger.player.getHandcardLimit();
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget([1, num], get.prompt2('radiance_chengyu', trigger.player), function (card, player, target) {
                                 return target != _status.event.getTrigger().player;
                             })
                             .set('ai', function (target) {
                                 return get.attitude(_status.event.player, target);
-                            });
+                            })
+                            .forResult();
                         event.result = {
                             bool: result.bool,
                             targets: [trigger.player],
@@ -24104,30 +24206,32 @@ export default async function () {
                     content: async function (event, trigger, player) {
                         let targets = event.cost_data;
                         game.log(player, '选择了', targets);
-                        let { result } = await trigger.player.chooseCardTarget({
-                            prompt: '交给' + get.translation(targets) + (targets.length > 1 ? '各' : '') + '一张手牌,否则受到1点伤害',
-                            filterTarget(card, player, target) {
-                                return _status.event.targets.includes(target);
-                            },
-                            filterCard(card, player) {
-                                return true;
-                            },
-                            selectCard: targets.length,
-                            selectTarget: targets.length,
-                            targets: targets,
-                            position: 'h',
-                            ai1(card) {
-                                var player = _status.event.player;
-                                var base = 4;
-                                if (player.hp <= 1 || get.attitude(player, _status.event.parent.player) > 0) base = 10;
-                                else if (player.hp > 5 || get.damageEffect(player, _status.event.parent.player, player) > 0) base = 2.5;
-                                if (get.tag(card, 'save')) return 0;
-                                return base - get.useful(card, player);
-                            },
-                            ai2(target) {
-                                return 100 - get.attitude(_status.event.player, target);
-                            },
-                        });
+                        const result = await trigger.player
+                            .chooseCardTarget({
+                                prompt: '交给' + get.translation(targets) + (targets.length > 1 ? '各' : '') + '一张手牌,否则受到1点伤害',
+                                filterTarget(card, player, target) {
+                                    return _status.event.targets.includes(target);
+                                },
+                                filterCard(card, player) {
+                                    return true;
+                                },
+                                selectCard: targets.length,
+                                selectTarget: targets.length,
+                                targets: targets,
+                                position: 'h',
+                                ai1(card) {
+                                    var player = _status.event.player;
+                                    var base = 4;
+                                    if (player.hp <= 1 || get.attitude(player, _status.event.parent.player) > 0) base = 10;
+                                    else if (player.hp > 5 || get.damageEffect(player, _status.event.parent.player, player) > 0) base = 2.5;
+                                    if (get.tag(card, 'save')) return 0;
+                                    return base - get.useful(card, player);
+                                },
+                                ai2(target) {
+                                    return 100 - get.attitude(_status.event.player, target);
+                                },
+                            })
+                            .forResult();
                         if (result.cards?.length) {
                             let cards = result.cards,
                                 targets = result.targets;
@@ -24205,7 +24309,7 @@ export default async function () {
                     },
                     firstDo: true,
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseCard('h', get.prompt2('radiance_jueren', trigger.player), function (card) {
                                 return get.type2(card, player) == 'basic';
                             })
@@ -24232,7 +24336,8 @@ export default async function () {
                                 if (bool1) base += 4;
                                 if (bool2) base += 4;
                                 return base - get.value(card);
-                            });
+                            })
+                            .forResult();
                         if (result.cards?.length) {
                             await player.addToExpansion(result.cards, player, 'give').gaintag.add('radiance_jueren');
                             event.result = {
@@ -24257,12 +24362,12 @@ export default async function () {
                         } else {
                             str += '' + get.translation(player) + '与所有目标均会摸两张牌';
                         }
-                        let { result } = await trigger.player
+                        const result = await trigger.player
                             .chooseToRespond(
                                 {
                                     name: 'shan',
                                 },
-                                str
+                                str,
                             )
                             .set('ai', function (card) {
                                 var player = _status.event.player,
@@ -24283,7 +24388,8 @@ export default async function () {
                                 return base - get.value(card);
                             })
                             .set('autochoose', lib.filter.autoRespondShan)
-                            .set('cards', cards);
+                            .set('cards', cards)
+                            .forResult();
                         if (result.bool) {
                             trigger.all_excluded = true;
                             trigger.finished = true;
@@ -24555,7 +24661,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             player,
-                                            player
+                                            player,
                                         ) > 0
                                     );
                                 });
@@ -24570,7 +24676,7 @@ export default async function () {
                                     {
                                         name: 'sha',
                                     },
-                                    false
+                                    false,
                                 );
                             },
                         },
@@ -25067,11 +25173,11 @@ export default async function () {
                         };
                         if (player == trigger.player) {
                             str += '###你的判定牌生效前,你可以选择此判定结果的花色和点数.';
-                            let { result } = await player.chooseBool(str).set('choice', true);
+                            const result = await player.chooseBool(str).set('choice', true).forResult();
                             event.result = result;
                         } else {
                             str += '###其他角色的判定牌生效前,你可以打出一张黑色牌,则你选择此判定结果的花色和点数.';
-                            let { result } = await player
+                            const result = await player
                                 .chooseCard(str, 'hes', function (card) {
                                     return get.color(card) == 'black';
                                 })
@@ -25091,7 +25197,8 @@ export default async function () {
                                     }
                                     return 0;
                                 })
-                                .set('map', map);
+                                .set('map', map)
+                                .forResult();
                             if (result.bool) await player.respond('highlight', result.cards);
                             event.result = result;
                         }
@@ -25104,13 +25211,14 @@ export default async function () {
                         let list = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
                         let choice = get.attitude(player, trigger.player) > 0 ? event.cost_data.max.result : event.cost_data.min.result;
                         if (choice.suit) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseControl(suits)
                                 .set('ai', function () {
                                     return _status.event.suit;
                                 })
                                 .set('suit', choice.suit)
-                                .set('prompt', '运命:选择一个花色');
+                                .set('prompt', '运命:选择一个花色')
+                                .forResult();
                             game.log(trigger.player, '判定结果花色为', '#g' + result.control);
                             player.popup(result.control, 'fire');
                             trigger.fixedResult.suit = result.control;
@@ -25121,13 +25229,14 @@ export default async function () {
                             }
                         }
                         if (choice.number) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseControl(list)
                                 .set('ai', function () {
                                     return _status.event.index;
                                 })
                                 .set('index', choice.number - 1)
-                                .set('prompt', '运命:选择一个点数');
+                                .set('prompt', '运命:选择一个点数')
+                                .forResult();
                             ('step 5');
                             game.log(trigger.player, '判定结果点数为', '#g' + result.control);
                             player.popup(result.control, 'fire');
@@ -25392,23 +25501,24 @@ export default async function () {
                         let str = '###' + lib.skill.radiance_dongming.prompt(trigger, player) + '###' + lib.skill.radiance_dongming.prompt2(trigger, player);
                         let bool = lib.skill.radiance_dongming.check(trigger, player);
                         if (!player.hasSkill('radiance_dongming_used')) {
-                            let { result } = await player.chooseBool(str, bool);
+                            const result = await player.chooseBool(str, bool).forResult();
                             event.result = result;
                             if (result.bool) player.addTempSkill('radiance_dongming_used', 'roundStart');
                         } else {
-                            let { result } = await player
+                            const result = await player
                                 .chooseToDiscard(
                                     'h',
                                     function (card) {
                                         return get.color(card) == 'red';
                                     },
-                                    str
+                                    str,
                                 )
                                 .set('bool', bool)
                                 .set('ai', function (card) {
                                     if (!_status.event.bool) return 0;
                                     return 10 - get.value(card);
-                                });
+                                })
+                                .forResult();
                             event.result = result;
                         }
                     },
@@ -25426,13 +25536,16 @@ export default async function () {
                             return;
                         }
                         let str = '观看四种花色的牌各一张,选择其中一张牌并获得,此次的' + (trigger.judgestr || '') + '判定结果视为此牌';
-                        let { result } = await player.chooseCardButton(1, cards, str, true).set('ai', function (button) {
-                            var trigger = _status.event.getTrigger();
-                            var player = _status.event.player;
-                            var att_cur = get.sgn(get.attitude(player, trigger.player));
-                            var result = trigger.judge(button.link);
-                            return att_cur * 1000 * result + get.value(button.link);
-                        });
+                        const result = await player
+                            .chooseCardButton(1, cards, str, true)
+                            .set('ai', function (button) {
+                                var trigger = _status.event.getTrigger();
+                                var player = _status.event.player;
+                                var att_cur = get.sgn(get.attitude(player, trigger.player));
+                                var result = trigger.judge(button.link);
+                                return att_cur * 1000 * result + get.value(button.link);
+                            })
+                            .forResult();
                         if (result.links?.length) {
                             let card = result.links[0];
                             await player.gain(card, 'gain2');
@@ -25703,7 +25816,7 @@ export default async function () {
                                     'e',
                                     {
                                         subtype: ['equip2', 'equip3', 'equip4', 'equip5', 'equip3_4'],
-                                    } == 0
+                                    } == 0,
                                 ) &&
                                 player.getEquip(1)
                             ) {
@@ -25954,7 +26067,7 @@ export default async function () {
                                     name: 'tao',
                                 },
                                 player,
-                                event
+                                event,
                             )
                         ) {
                             var color = {
@@ -26000,7 +26113,7 @@ export default async function () {
                                             name: 'tao',
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0
                                 )
                                     return 0;
@@ -26362,7 +26475,7 @@ export default async function () {
                                 let choices = ['draw', 'damage', 'recover'].removeArray(player.storage.radiance_sanyue_disable).map((key) => map[key]);
                                 let choice = choices[0];
                                 if (choices.length > 1) {
-                                    let { result } = await player
+                                    const result = await player
                                         .chooseControl(choices)
                                         .set('prompt', '三约:选择要失去的一个效果')
                                         .set('ai', function (event, player) {
@@ -26371,7 +26484,8 @@ export default async function () {
                                             if (list.includes('伤害')) return '伤害';
                                             if (list.includes('回复')) return '回复';
                                             return '摸牌';
-                                        });
+                                        })
+                                        .forResult();
                                     choice = result.control;
                                 }
                                 map = {
@@ -26993,7 +27107,7 @@ export default async function () {
                                             radiance_xinggong: true,
                                         },
                                         _status.event.player,
-                                        _status.event.player
+                                        _status.event.player,
                                     );
                                 });
                         }
@@ -27005,7 +27119,7 @@ export default async function () {
                                         name: 'wanjian',
                                         radiance_xinggong: true,
                                     },
-                                    result.targets
+                                    result.targets,
                                 )
                                 .set('baseDamage', event.num3 > 0 ? 2 : 1);
                         }
@@ -27260,7 +27374,7 @@ export default async function () {
                         return true;
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(1, get.prompt2('radiance_fengyou'), function (card, player, target) {
                                 if (!target.isIn() || player.storage.radiance_fengyou.includes(target)) return false;
                                 var source = _status.event.getTrigger().player;
@@ -27271,7 +27385,8 @@ export default async function () {
                             .set('ai', function (target) {
                                 var player = _status.event.player;
                                 return get.attitude(player, target) / target.hp;
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content() {
@@ -27668,7 +27783,7 @@ export default async function () {
                                     {
                                         link: i,
                                     },
-                                    player
+                                    player,
                                 );
                                 if (!bool) str += '<div style="opacity:0.5">';
                                 str += list[i];
@@ -27697,6 +27812,7 @@ export default async function () {
                                     return !lib.watersky.radiance.radiance_huoshi.includes(target);
                                 },
                             ];
+
                             return game.hasPlayer(function (current) {
                                 return choices[button.link](null, player, current);
                             });
@@ -27717,6 +27833,7 @@ export default async function () {
                                     return !lib.watersky.radiance.radiance_huoshi.includes(target);
                                 },
                             ];
+
                             var eff = game.countPlayer(function (target) {
                                 if (choices[button.link](null, player, target)) {
                                     var base = -2;
@@ -27780,6 +27897,7 @@ export default async function () {
                                     return !lib.watersky.radiance.radiance_huoshi.includes(target);
                                 },
                             ];
+
                             toreturn.filterTarget = choices[links[0]];
                             return toreturn;
                         },
@@ -27802,6 +27920,7 @@ export default async function () {
                                         return !lib.watersky.radiance.radiance_huoshi.includes(target);
                                     },
                                 ];
+
                                 for (var i = 0; i < choices.length; i++) {
                                     var eff = game.countPlayer(function (target) {
                                         if (choices[i](null, player, target)) {
@@ -27887,7 +28006,7 @@ export default async function () {
                                     radiance_jiguang: true,
                                 },
                                 player,
-                                _status.event.parent
+                                _status.event.parent,
                             );
                         },
                         check(button) {
@@ -27913,7 +28032,7 @@ export default async function () {
                                             radiance_jiguang: true,
                                         },
                                         player,
-                                        player
+                                        player,
                                     ) <= 0
                                 )
                                     return 0;
@@ -28336,7 +28455,7 @@ export default async function () {
                                 event.list = get.sort(
                                     player.storage.radiance_wenyi.filter((current) => current.isAlive()),
                                     'seat',
-                                    _status.currentPhase
+                                    _status.currentPhase,
                                 );
                                 dialog.addText('是否令' + get.translation(event.list) + '各受到1点无来源伤害');
                                 player
@@ -28413,7 +28532,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -28612,7 +28731,7 @@ export default async function () {
                         }
                         let control = '扣血摸牌';
                         if (target.countCards('h') > 1) {
-                            let { result } = await target
+                            const result = await target
                                 .chooseControl(['弃牌回血', '扣血摸牌'])
                                 .set('ai', function (event, player) {
                                     var target = _status.event.player;
@@ -28629,7 +28748,8 @@ export default async function () {
                                     return 0;
                                 })
                                 .set('prompt', '魔香:从以下两项中选择一项执行')
-                                .set('choiceList', ['随机弃置两张手牌,回复1点体力,并在下个回合后失去1点体力', '失去1点体力,令' + get.translation(player) + '摸两张牌并交给你两张牌,并在下个回合后随机弃置两张牌']);
+                                .set('choiceList', ['随机弃置两张手牌,回复1点体力,并在下个回合后失去1点体力', '失去1点体力,令' + get.translation(player) + '摸两张牌并交给你两张牌,并在下个回合后随机弃置两张牌'])
+                                .forResult();
                             control = result.control;
                         }
                         if (control == '弃牌回血') {
@@ -28640,14 +28760,15 @@ export default async function () {
                             await target.loseHp(1);
                             await player.draw(2);
                             if (target.isAlive()) {
-                                let { result } = await player
+                                const result = await player
                                     .chooseCard(2, 'he', true)
                                     .set('ai', function (card) {
                                         var player = _status.event.player,
                                             target = _status.event.target;
                                         return 20 - get.value(card, player) - get.value(card, target);
                                     })
-                                    .set('target', target);
+                                    .set('target', target)
+                                    .forResult();
                                 if (result.cards?.length) {
                                     await player.give(result.cards, target, false);
                                 }
@@ -28749,7 +28870,10 @@ export default async function () {
                     content: async function (event, trigger, player) {
                         let bool = false;
                         if (player.countCards('h') > 1) {
-                            let { result } = await player.chooseBool('是否令' + get.translation(trigger.player) + '观看并选择要弃置的牌？').set('choice', get.attitude(player, trigger.player) > 1);
+                            const result = await player
+                                .chooseBool('是否令' + get.translation(trigger.player) + '观看并选择要弃置的牌？')
+                                .set('choice', get.attitude(player, trigger.player) > 1)
+                                .forResult();
                             bool = result.bool;
                         }
                         let next = trigger.player.discardPlayerCard(player, 'h', true);
@@ -28916,7 +29040,7 @@ export default async function () {
                                         name: 'sha',
                                         radiance_nanming: true,
                                     },
-                                    event.targets1
+                                    event.targets1,
                                 )
                                 .set('addCount', false);
                         }
@@ -29118,7 +29242,7 @@ export default async function () {
                                     return card.name == 'sha';
                                 }),
                                 'gain2',
-                                'log'
+                                'log',
                             );
                             event.num--;
                             event.redo();
@@ -29762,7 +29886,7 @@ export default async function () {
                                             lib.skill.radiance_moshi_backup.prompt = '选择' + get.translation(result) + '的目标';
                                         },
                                         result.links[0],
-                                        name
+                                        name,
                                     );
                                     evt.set('_backupevent', 'radiance_moshi_backup');
                                     evt.backup('radiance_moshi_backup');
@@ -30104,6 +30228,7 @@ export default async function () {
                                 ['trick', '', 'wanjian'],
                                 ['trick', '', 'nanman'],
                             ];
+
                             return ui.create.dialog('绝弓', [list, 'vcard']);
                         },
                         filter(button, player) {
@@ -30113,7 +30238,7 @@ export default async function () {
                                     name: button.link[2],
                                 },
                                 player,
-                                evt
+                                evt,
                             );
                         },
                         check(button) {
@@ -30294,14 +30419,15 @@ export default async function () {
                                         }),
                                         get.order({
                                             name: 'nanman',
-                                        })
+                                        }),
                                     ) + 0.3
                                 );
+
                             return Math.max(
                                 get.order({
                                     name: 'sha',
                                 }) - 1,
-                                4
+                                4,
                             );
                         },
                         result: {
@@ -30485,7 +30611,7 @@ export default async function () {
                                 radiance_zuiqi: true,
                             },
                             target,
-                            false
+                            false,
                         );
                     },
                     filterCard(card, player) {
@@ -30503,7 +30629,7 @@ export default async function () {
                                         radiance_zuiqi: true,
                                     },
                                     target,
-                                    false
+                                    false,
                                 ) &&
                                 get.effect(
                                     target,
@@ -30512,8 +30638,8 @@ export default async function () {
                                         radiance_zuiqi: true,
                                     },
                                     player,
-                                    player
-                                ) > 0
+                                    player,
+                                ) > 0,
                         );
                         if (ui.selected.cards.length >= targets.length) return 0;
                         var hs = player.getCards('h');
@@ -30533,7 +30659,7 @@ export default async function () {
                                     name: 'sha',
                                     radiance_zuiqi: true,
                                 },
-                                targets
+                                targets,
                             )
                             .set('addCount', false);
                         ('step 1');
@@ -30559,7 +30685,7 @@ export default async function () {
                                         radiance_zuiqi: true,
                                     },
                                     player,
-                                    player
+                                    player,
                                 ) > 0
                                     ? get.sgn(get.attitude(player, target))
                                     : 0;
@@ -30787,7 +30913,7 @@ export default async function () {
                                         name: 'losehp',
                                     },
                                     player,
-                                    target
+                                    target,
                                 );
                                 if (target == player && player.hasSkill('radiance_huihun')) {
                                     var hs = player.getCards('hs', function (card) {
@@ -31193,9 +31319,10 @@ export default async function () {
                                         name: button.link[2],
                                         nature: button.link[3],
                                     },
-                                    false
+                                    false,
                                 );
-                            }).forResult();
+                            })
+                            .forResult();
                         if (!bool) return;
                         let card = {
                             name: links[0][2],
@@ -31203,15 +31330,16 @@ export default async function () {
                         };
                         let select = [1, 1];
                         str = '视为对一名角色使用' + get.translation(card) + '';
-                        const { targets, bool } = await player
+                        const { targets } = await player
                             .chooseTarget(select, str, function (card, player, target) {
                                 return player.canUse(_status.event.card, target, false);
                             })
                             .set('ai', function (target) {
                                 return get.effect(target, _status.event.card, _status.event.player, _status.event.player);
                             })
-                            .set('card', card).forResult();
-                        if (!bool) return;
+                            .set('card', card)
+                            .forResult();
+                        if (!targets?.length) return;
                         var choices = [];
                         var choiceList = [];
                         var bool1 = false;
@@ -31235,7 +31363,8 @@ export default async function () {
                                 .set('ai', function (event, player) {
                                     return 0;
                                 })
-                                .set('choiceList', choiceList).forResult();
+                                .set('choiceList', choiceList)
+                                .forResult();
                             if (control == '弃牌') {
                                 await targets[0].chooseToDiscard('he', 1, true);
                             } else if (control == '强命') {
@@ -31326,7 +31455,7 @@ export default async function () {
                                         name: button.link[2],
                                         nature: button.link[3],
                                     },
-                                    false
+                                    false,
                                 );
                             });
                         ('step 1');
@@ -31424,9 +31553,12 @@ export default async function () {
                             if (!lib.translate[skill] || !lib.translate[skill + '_info']) continue;
                             dialog.add(str + lib.translate[skill] + ':' + lib.translate[skill + '_info'] + '</div>');
                         }
-                        let { result } = await player.chooseToDiscard(dialog, 3, 'he').set('ai', function (card) {
-                            return 0;
-                        });
+                        const result = await player
+                            .chooseToDiscard(dialog, 3, 'he')
+                            .set('ai', function (card) {
+                                return 0;
+                            })
+                            .forResult();
                         if (result.bool) {
                             player.storage.radiance_zhenyi_used.push(name);
                             player.addAdditionalSkill('radiance_zhenyi', skills, true);
@@ -31500,7 +31632,7 @@ export default async function () {
                                     nature: 'ice',
                                     radiance_zhouguo: true,
                                 },
-                                false
+                                false,
                             ) - value
                         );
                     },
@@ -31513,7 +31645,7 @@ export default async function () {
                                     radiance_zhouguo: true,
                                 },
                                 player,
-                                event
+                                event,
                             ) &&
                             player.countCards('hes') > 0 &&
                             player.hasMark('radiance_sizu')
@@ -31730,7 +31862,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             ) &&
                             player.countCards('hes', {
                                 suit: 'spade',
@@ -31745,7 +31877,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             ) &&
                             player.countCards('hes', {
                                 suit: 'heart',
@@ -31760,7 +31892,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             ) &&
                             player.countCards('hes', {
                                 suit: 'club',
@@ -31775,7 +31907,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             ) &&
                             player.countCards('hes', {
                                 suit: 'diamond',
@@ -31798,7 +31930,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             )
                         )
                             return true;
@@ -31811,7 +31943,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             )
                         )
                             return true;
@@ -31824,7 +31956,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             )
                         )
                             return true;
@@ -31837,7 +31969,7 @@ export default async function () {
                                     radiance_shengzi: true,
                                 },
                                 player,
-                                event
+                                event,
                             )
                         )
                             return true;
@@ -32020,7 +32152,7 @@ export default async function () {
                                 event.targets = get.sort(
                                     game.filterPlayer((target) => target != player && target.hasSkill('radiance_shengzi')),
                                     'seat',
-                                    _status.currentPhase
+                                    _status.currentPhase,
                                 );
                                 event.count = 0;
                                 ('step 1');
@@ -32800,7 +32932,7 @@ export default async function () {
                                                         name: 'losehp',
                                                     },
                                                     player,
-                                                    player
+                                                    player,
                                                 ) > 0
                                             );
                                         });
@@ -33169,11 +33301,14 @@ export default async function () {
                         if (cards.length) {
                             let dialog = ui.create.dialog('灵宝:获得至多三张弃牌堆中的牌');
                             dialog.addSmall(cards);
-                            let { result } = await player.chooseButton(dialog, [1, 3], true).set('ai', function (button) {
-                                var player = _status.event.player,
-                                    card = button.link;
-                                return player.getWeightedUseValue(card);
-                            });
+                            const result = await player
+                                .chooseButton(dialog, [1, 3], true)
+                                .set('ai', function (button) {
+                                    var player = _status.event.player,
+                                        card = button.link;
+                                    return player.getWeightedUseValue(card);
+                                })
+                                .forResult();
                             if (result.links?.length) {
                                 await player.gain(result.links, 'gain2');
                             }
@@ -33210,7 +33345,7 @@ export default async function () {
                                     link: card,
                                 }) *
                                 att >
-                                0
+                                0,
                         );
                     },
                     content() {
@@ -33397,7 +33532,7 @@ export default async function () {
                                             name: 'wuzhong',
                                         },
                                         player,
-                                        player
+                                        player,
                                     );
                                 var map = _status.event.map;
                                 if (Object.keys(map).length == 1) {
@@ -33428,7 +33563,8 @@ export default async function () {
                                 }
                                 return get.damageEffect(target, player, player);
                             })
-                            .set('complexTarget', true).forResult();
+                            .set('complexTarget', true)
+                            .forResult();
                         if (!bool) return;
                         if (targets.length == 1) {
                             var target = targets[0];
@@ -33438,7 +33574,8 @@ export default async function () {
                                     .set('ai', function (event, player) {
                                         return 0;
                                     })
-                                    .set('prompt', '选择要对自己使用的一项').forResult();
+                                    .set('prompt', '选择要对自己使用的一项')
+                                    .forResult();
                                 if (index == 0) {
                                     await target.draw(2);
                                 } else {
@@ -33464,7 +33601,8 @@ export default async function () {
                                         return 0;
                                     })
                                     .set('prompt', '选择要对' + get.translation(target) + '使用的一项')
-                                    .set('target', target).forResult();
+                                    .set('target', target)
+                                    .forResult();
                                 if (index == 0) {
                                     await target.damage(1, player, 'nocard');
                                 } else {
@@ -33593,7 +33731,7 @@ export default async function () {
                                                     name: 'sha',
                                                 },
                                                 player,
-                                                'raw'
+                                                'raw',
                                             ) * Math.sqrt(Math.abs(card1.att));
                                     }
                                 } else if (card2.owner == player) {
@@ -33604,7 +33742,7 @@ export default async function () {
                                                     name: 'sha',
                                                 },
                                                 player,
-                                                'raw'
+                                                'raw',
                                             ) * Math.sqrt(Math.abs(card2.att));
                                     }
                                 }
@@ -33616,7 +33754,7 @@ export default async function () {
                                                     name: 'tao',
                                                 },
                                                 player,
-                                                'raw'
+                                                'raw',
                                             ) *
                                             0.8 *
                                             Math.sqrt(Math.abs(card1.att)) *
@@ -33688,14 +33826,15 @@ export default async function () {
                             }
                         }
                         if (event.hs != 2 && event.es != 2 && event.js != 2) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget([1, targets.length], '可以令任意名被弃牌的角色摸一张牌', function (card, player, target) {
                                     return _status.event.targets.includes(target);
                                 })
                                 .set('ai', function (target) {
                                     return get.attitude(_status.event.player, target);
                                 })
-                                .set('targets', targets);
+                                .set('targets', targets)
+                                .forResult();
                             if (result.targets?.length) {
                                 for (const target of result.targets) {
                                     await target.draw(1, player);
@@ -33709,7 +33848,7 @@ export default async function () {
                                 },
                                 '弃置了自己区域内的牌,可以视为使用【杀】',
                                 'nodistance',
-                                false
+                                false,
                             );
                         }
                     },
@@ -34374,13 +34513,13 @@ export default async function () {
                         return player.getExpansions('radiance_canglin').length == 0;
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player.chooseBool('准备阶段,若你武将牌上没有<鳞>,你可以摸三张牌,将三张手牌置于武将牌上称为<鳞>').set('frequentSkill', 'radiance_canglin');
+                        const result = await player.chooseBool('准备阶段,若你武将牌上没有<鳞>,你可以摸三张牌,将三张手牌置于武将牌上称为<鳞>').set('frequentSkill', 'radiance_canglin').forResult();
                         event.result = result;
                     }, //QQQ
                     content: async function (event, trigger, player) {
                         if (player.getExpansions('radiance_canglin').length == 0) {
                             await player.draw(3);
-                            let { result } = await player
+                            const result = await player
                                 .chooseCard('h', [3, 3], true, '将三张手牌置于武将牌上作为<鳞>', function (card) {
                                     return true;
                                 })
@@ -34388,7 +34527,8 @@ export default async function () {
                                     var trigger = _status.event.getTrigger();
                                     var player = _status.event.player;
                                     return 10 - get.value(card);
-                                });
+                                })
+                                .forResult();
                             if (result.cards?.length) {
                                 player.addToExpansion(result.cards, 'giveAuto').gaintag.add('radiance_canglin');
                             }
@@ -34408,14 +34548,15 @@ export default async function () {
                             },
                             cost: async function (event, trigger, player) {
                                 let num = player.getExpansions('radiance_canglin').filter((card) => get.color(trigger.card) != get.color(card)).length;
-                                let { result } = await player
+                                const result = await player
                                     .chooseTarget('藏鳞:可以弃置一名目标角色至多' + get.cnNumber(num) + '张牌', function (card, player, target) {
                                         return _status.event.getTrigger().targets.includes(target) && target.countDiscardableCards(player, 'he') > 0 && target != player;
                                     })
                                     .set('ai', function (target) {
                                         return get.attitude(_status.event.player, target) * -1 * Math.max(target.countDiscardableCards(player, 'he'), _status.event.num);
                                     })
-                                    .set('num', num);
+                                    .set('num', num)
+                                    .forResult();
                                 event.result = result;
                             },
                             usable: 1,
@@ -34434,9 +34575,12 @@ export default async function () {
                             },
                             cost: async function (event, trigger, player) {
                                 let num = player.getExpansions('radiance_canglin').filter((card) => get.color(trigger.card) != get.color(card)).length;
-                                let { result } = await player.chooseBool('藏鳞:是否弃置' + get.translation(trigger.player) + '至多' + get.cnNumber(num) + '张牌？').set('ai', function (event, player) {
-                                    return get.attitude(player, event._trigger.player) <= 0;
-                                });
+                                const result = await player
+                                    .chooseBool('藏鳞:是否弃置' + get.translation(trigger.player) + '至多' + get.cnNumber(num) + '张牌？')
+                                    .set('ai', function (event, player) {
+                                        return get.attitude(player, event._trigger.player) <= 0;
+                                    })
+                                    .forResult();
                                 event.result = {
                                     bool: result.bool,
                                     targets: [trigger.player],
@@ -34459,7 +34603,7 @@ export default async function () {
                             charlotte: true,
                             content: async function (event, trigger, player) {
                                 let num = 3 - player.getExpansions('radiance_canglin').length;
-                                let { result } = await player
+                                const result = await player
                                     .chooseCard('h', [1, num], '将至多' + get.cnNumber(num) + '张手牌置于武将牌上作为<鳞>', function (card) {
                                         return true;
                                     })
@@ -34467,7 +34611,8 @@ export default async function () {
                                         var trigger = _status.event.getTrigger();
                                         var player = _status.event.player;
                                         return 10 - get.value(card);
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto').gaintag.add('radiance_canglin');
                                 }
@@ -34487,9 +34632,12 @@ export default async function () {
                                 if (player.isDamaged()) {
                                     let dialog = ui.create.dialog('藏鳞:准备阶段,若你有<鳞>而你已受伤,需获得一张<鳞>');
                                     dialog.add(player.getExpansions('radiance_canglin'));
-                                    let { result } = await player.chooseButton(dialog, 1, true).set('ai', function (button) {
-                                        return get.value(button.link);
-                                    });
+                                    const result = await player
+                                        .chooseButton(dialog, 1, true)
+                                        .set('ai', function (button) {
+                                            return get.value(button.link);
+                                        })
+                                        .forResult();
                                     if (result.links?.length) {
                                         player.gain(result.links, 'draw');
                                     }
@@ -34536,7 +34684,7 @@ export default async function () {
                                     dialog.addText('手牌');
                                     dialog.add(player.getCards('h'));
                                 }
-                                let { result } = await player
+                                const result = await player
                                     .chooseButton(dialog, true)
                                     .set('ai', function (button) {
                                         var player = _status.event.player,
@@ -34555,7 +34703,8 @@ export default async function () {
                                             return false;
                                         }
                                         return true;
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.links?.length) {
                                     let bool = exp.includes(result.links[0]);
                                     await player.give(result.links, trigger.player, bool);
@@ -34782,7 +34931,7 @@ export default async function () {
                                     get.order({
                                         name: 'sha',
                                     }) - 1,
-                                    current - 4
+                                    current - 4,
                                 );
                         },
                         targetInRange(card, player, target) {
@@ -34821,19 +34970,22 @@ export default async function () {
                         }
                         let dialog = ui.create.dialog('选择要召唤的角色');
                         dialog.add([list.randomGets(3), 'character']);
-                        let { result } = await player.chooseButton(dialog, true).set('ai', function (button) {
-                            var name = button.link;
-                            var info = lib.character[name];
-                            var hp = get.infoHp(info[2]);
-                            if (info[2] == 'shen') {
-                                if (info[4] && info[4].includes('boss')) return hp + Math.random();
-                                if (name.indexOf('liubei') >= 0) return 3.5;
-                                return 55 / hp;
-                            } else if (name.indexOf('radiance') >= 0) {
-                                return 6.5 + Math.random();
-                            }
-                            return 45 / hp;
-                        });
+                        const result = await player
+                            .chooseButton(dialog, true)
+                            .set('ai', function (button) {
+                                var name = button.link;
+                                var info = lib.character[name];
+                                var hp = get.infoHp(info[2]);
+                                if (info[2] == 'shen') {
+                                    if (info[4] && info[4].includes('boss')) return hp + Math.random();
+                                    if (name.indexOf('liubei') >= 0) return 3.5;
+                                    return 55 / hp;
+                                } else if (name.indexOf('radiance') >= 0) {
+                                    return 6.5 + Math.random();
+                                }
+                                return 45 / hp;
+                            })
+                            .forResult();
                         if (!result.bool) return;
                         let name = result.links[0];
                         let info = lib.character[name];
@@ -35105,7 +35257,7 @@ export default async function () {
                                             },
                                             player,
                                             player,
-                                            true
+                                            true,
                                         ) >= 0 ||
                                         player.hasSkillTag('nothunder')
                                     )
@@ -35191,7 +35343,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             trigger.player,
-                                            player
+                                            player,
                                         )
                                     )
                                         return 0;
@@ -35273,7 +35425,7 @@ export default async function () {
                         player: 'phaseUseBegin',
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(get.prompt2('radiance_suping'), function (card, player, target) {
                                 return player.canCompare(target);
                             })
@@ -35282,12 +35434,13 @@ export default async function () {
                                 var num = player.countCards('hs', (card) => target.isMeaningfulTargetOf(card, player, false));
                                 if (target.countCards('h') < player.countCards('h')) num++;
                                 return (-1 * get.attitude(player, target) * num) / (target.hp * 2 + target.countCards('h') + 0.5);
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
                         let target = event.targets[0];
-                        let { result } = await player.chooseToCompare(target);
+                        const result = await player.chooseToCompare(target).forResult();
                         if (result.bool) {
                             let hs = target.getCards('h');
                             await player.addTempSkill('radiance_suping_af');
@@ -35295,14 +35448,15 @@ export default async function () {
                             if (hs.length) {
                                 await target.addToExpansion(hs, 'giveAuto', target).gaintag.add('radiance_suping_db');
                             }
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget('是否令一名其他角色获得<肃平>直至你的下个回合开始？', function (card, player, target) {
                                     return target != player && !target.hasSkill('radiance_suping') && !target.hasSkill('radiance_suping_give');
                                 })
                                 .set('ai', function (target) {
                                     var player = _status.event.player;
                                     return get.attitude(player, target) * (1 + Math.sqrt(target.countCards('h')));
-                                });
+                                })
+                                .forResult();
                             if (result.targets?.length) {
                                 player.line(result.targets[0]);
                                 game.log(result.targets, '获得了', 'radiance_suping');
@@ -35409,7 +35563,7 @@ export default async function () {
                         player: 'phaseUseBegin',
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(get.prompt2('radiance_suping'), function (card, player, target) {
                                 return player.canCompare(target);
                             })
@@ -35418,12 +35572,13 @@ export default async function () {
                                 var num = player.countCards('hs', (card) => target.isMeaningfulTargetOf(card, player, false));
                                 if (target.countCards('h') < player.countCards('h')) num++;
                                 return (-1 * get.attitude(player, target) * num) / (target.hp * 2 + target.countCards('h') + 0.5);
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
                         let target = event.targets[0];
-                        let { result } = await player.chooseToCompare(target);
+                        const result = await player.chooseToCompare(target).forResult();
                         if (result.bool) {
                             let hs = target.getCards('h');
                             await player.addTempSkill('radiance_suping_af');
@@ -35458,7 +35613,7 @@ export default async function () {
                         return true;
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(get.prompt2('radiance_xiaohu'), function (card, player, target) {
                                 var trigger = _status.event.getTrigger();
                                 return target == trigger.player || target == trigger.target;
@@ -35481,7 +35636,8 @@ export default async function () {
                                         if (att2 > 1 && target == trigger.target && trigger.player.countCards('hs') > 2 && target.hp <= 1) return 1;
                                     }
                                 }
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -35506,8 +35662,8 @@ export default async function () {
                                     return card.number <= max && card.number >= min;
                                 },
                                 2,
-                                'cardPile'
-                            )
+                                'cardPile',
+                            ),
                         );
                         if (togain.length) {
                             await player.gain(togain, 'gain2');
@@ -35684,7 +35840,7 @@ export default async function () {
                         return game.hasPlayer((target) => player.canCompare(target));
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(get.prompt2('radiance_wanxiang'), function (card, player, target) {
                                 return player.canCompare(target);
                             })
@@ -35692,7 +35848,8 @@ export default async function () {
                                 var player = _status.event.player;
                                 if (get.attitude(player, target) > 0) return 0.1 * (target.countCards('h') - 3);
                                 return 10 / target.countCards('h');
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -35706,7 +35863,7 @@ export default async function () {
                             }
                             if (list.some((link) => player.hasUseTarget(link[2], false))) {
                                 let dialog = ui.create.dialog('视为使用一张非延时类锦囊牌', [list, 'vcard']);
-                                let { result } = await player
+                                const result = await player
                                     .chooseButton(dialog, true)
                                     .set('ai', function (button) {
                                         if (['wugu', 'jiedao'].includes(button.link[2])) return 0;
@@ -35718,9 +35875,10 @@ export default async function () {
                                             {
                                                 name: button.link[2],
                                             },
-                                            false
+                                            false,
                                         );
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool) {
                                     await player
                                         .chooseUseTarget(
@@ -35728,7 +35886,7 @@ export default async function () {
                                                 name: result.links[0][2],
                                             },
                                             false,
-                                            'nodistance'
+                                            'nodistance',
                                         )
                                         .set('forced', true);
                                 }
@@ -35804,7 +35962,7 @@ export default async function () {
                             list.push('找牌');
                         }
                         list.push('cancel2');
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(list)
                             .set('ai', function (event, player) {
                                 if (_status.event.controls.includes('')) {
@@ -35845,7 +36003,8 @@ export default async function () {
                                 return 0;
                             })
                             .set('prompt', '可以执行一项')
-                            .set('prompt2', '摸一张牌,或是将一张牌置于武将牌上,从弃牌堆中获得点数为此牌的倍数或因数的牌');
+                            .set('prompt2', '摸一张牌,或是将一张牌置于武将牌上,从弃牌堆中获得点数为此牌的倍数或因数的牌')
+                            .forResult();
                         if (result.control == '摸牌') {
                             await player.draw(1);
                         } else if (result.control == '找牌') {
@@ -35883,7 +36042,7 @@ export default async function () {
                                 let discardPile = Array.from(ui.discardPile.childNodes);
                                 let togain = discardPile.filter((cardx) => (cardx.number % card.number) * (card.number % cardx.number) === 0);
                                 await player.addToExpansion(evt.result.cards, player, 'give').gaintag.add('radiance_qiongjiu');
-                                let { result } = await player
+                                const result = await player
                                     .chooseButton(['获得其中的一张', togain], [1, 1], true)
                                     .set('ai', function (button) {
                                         var card = button.link,
@@ -35901,7 +36060,8 @@ export default async function () {
                                     })
                                     .set('filterButton', function (button) {
                                         return true;
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.links?.length) {
                                     await player.gain(result.links, 'gain2', 'log');
                                 }
@@ -35997,8 +36157,8 @@ export default async function () {
                                                 nature: 'thunder',
                                             },
                                             target,
-                                            false
-                                        )
+                                            false,
+                                        ),
                                     )
                                 ) {
                                     player.chooseUseTarget(
@@ -36009,7 +36169,7 @@ export default async function () {
                                         },
                                         true,
                                         false,
-                                        'nodistance'
+                                        'nodistance',
                                     );
                                 }
                             },
@@ -36254,7 +36414,7 @@ export default async function () {
                                         name: 'sha',
                                     },
                                     player,
-                                    player
+                                    player,
                                 );
                                 if (eff <= 0) return 0;
                                 if (_status.event.controls.includes('tao') && !target.hasShan() && !target.getEquip('bagua')) return 'tao';
@@ -36276,7 +36436,7 @@ export default async function () {
                                     radiance_zhouyan: true,
                                 },
                                 target,
-                                false
+                                false,
                             );
                         } else if (result.control == 'tao' && player.canUse('sha', target, false)) {
                             var next = player.useCard(
@@ -36284,7 +36444,7 @@ export default async function () {
                                     name: 'sha',
                                 },
                                 target,
-                                false
+                                false,
                             );
                             next.baseDamage = 2;
                         }
@@ -36301,7 +36461,7 @@ export default async function () {
                                         name: 'sha',
                                     },
                                     player,
-                                    target
+                                    target,
                                 );
                                 if (target.hasSkillTag('nodamage')) return 0;
                                 return ((eff - 1) * target.countCards('h')) / Math.max(1, target.hp);
@@ -36362,7 +36522,7 @@ export default async function () {
                             name = 'sha';
                         }
                         let str = '###是否发动<灵觉>？###令一名手牌不大于体力上限的角色获得一张' + get.translation(name) + ',且若不为你则你摸牌.';
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(str, function (card, player, target) {
                                 return target.countCards('h') <= target.maxHp;
                             })
@@ -36371,7 +36531,8 @@ export default async function () {
                                 var att = get.attitude(_status.event.player, target);
                                 return (att * 10) / Math.sqrt(1 + target.countCards('h', name)) / Math.max(1, target.hp);
                             })
-                            .set('sha', name);
+                            .set('sha', name)
+                            .forResult();
                         event.result = result;
                         event.result.cost_data = name;
                     },
@@ -36532,15 +36693,17 @@ export default async function () {
                                             name: 'shan',
                                         }) / 6
                                     );
+
                                 if (player.countCards('hs', 'sha') < 1)
                                     return (
                                         player.getWeightedUseValue(
                                             {
                                                 name: 'sha',
                                             },
-                                            false
+                                            false,
                                         ) / 6
                                     );
+
                                 return -1.3;
                             },
                             target(player, target) {
@@ -36828,7 +36991,7 @@ export default async function () {
                                     name: 'losehp',
                                 },
                                 player,
-                                target
+                                target,
                             );
                             if (att > 0) {
                                 cards.reverse();
@@ -36936,7 +37099,7 @@ export default async function () {
                             if (evt.parent.name == 'discard' && evt.getParent('phaseDiscard') == trigger && evt.hs) cards.addArray(evt.hs);
                         });
                         cards = cards.filterInD('d');
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget('令一名其他角色成为<奸商>的对象', lib.filter.notMe)
                             .set('ai', function (target) {
                                 var player = _status.event.player;
@@ -36945,7 +37108,8 @@ export default async function () {
                                 if (result[target.playerid].choice == 0) return 0;
                                 return get.sgn(att) * result[target.playerid].eff;
                             })
-                            .set('cards', cards);
+                            .set('cards', cards)
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -36957,7 +37121,7 @@ export default async function () {
                         cards = cards.filterInD('d');
                         event.cards = cards.slice(0);
                         let cardsx = [];
-                        let { result } = await player
+                        const result = await player
                             .chooseCardButton(cards, '奸商:选择任意张你于此阶段弃置的牌', true, [1, cards.length])
                             .set('ai', function (button) {
                                 var target = _status.event.target,
@@ -36970,14 +37134,15 @@ export default async function () {
                                 return 0;
                             })
                             .set('target', target)
-                            .set('cards', cards);
+                            .set('cards', cards)
+                            .forResult();
                         if (result.bool && result.links.length) {
                             cardsx = result.links;
                         }
                         if (cardsx.length) {
                             cards.removeArray(cardsx);
                             let str = '将' + get.cnNumber(cardsx.length) + '张手牌交给' + get.translation(player) + '并获得' + get.translation(cardsx) + ',否则失去1点体力并获得' + get.translation(cards) + '';
-                            let { result } = await target
+                            const result = await target
                                 .chooseCard(cardsx.length, 'h')
                                 .set('ai', function (card) {
                                     var target = _status.event.player;
@@ -36997,12 +37162,13 @@ export default async function () {
                                             name: 'losehp',
                                         },
                                         player,
-                                        target
+                                        target,
                                     );
                                     return val - target.getWeightedUseValue(card);
                                 })
                                 .set('cardsx', cardsx)
-                                .set('prompt', str);
+                                .set('prompt', str)
+                                .forResult();
                             if (result.cards?.length) {
                                 await target.give(result.cards, player, false);
                                 await target.gain(cardsx, 'gain2');
@@ -37038,7 +37204,7 @@ export default async function () {
                                 function (card, player) {
                                     return get.color(card) == get.color(_status.event.getTrigger().card);
                                 },
-                                get.prompt2('radiance_bixian')
+                                get.prompt2('radiance_bixian'),
                             )
                             .set('ai', function (card) {
                                 var player = _status.event.player;
@@ -37455,7 +37621,7 @@ export default async function () {
                                 natureList = lib.inpile_nature.slice(0);
                             natureList.add('ice');
                             natureList.forEach((nature) => list.push(['基本', '', 'sha', nature]));
-                            let { result } = await player
+                            const result = await player
                                 .chooseButton([get.prompt('radiance_sanyuan'), [list, 'vcard']])
                                 .set('ai', function (button) {
                                     var eff = 0,
@@ -37469,7 +37635,8 @@ export default async function () {
                                     }
                                     return eff;
                                 })
-                                .set('targets', trigger.targets);
+                                .set('targets', trigger.targets)
+                                .forResult();
                             event.result = {
                                 bool: result.bool,
                                 cost_data: result.links,
@@ -37539,7 +37706,7 @@ export default async function () {
                                     function (card, player) {
                                         return get.subtypes(card).includes('equip2');
                                     },
-                                    true
+                                    true,
                                 );
                             },
                         },
@@ -37965,7 +38132,7 @@ export default async function () {
                                     function (card) {
                                         return card.suit == _status.event.parent.suit;
                                     },
-                                    '是否为了不让' + get.translation(target) + '受到2点雷电伤害而弃一张' + get.translation(event.suit) + '手牌并失去1点体力？'
+                                    '是否为了不让' + get.translation(target) + '受到2点雷电伤害而弃一张' + get.translation(event.suit) + '手牌并失去1点体力？',
                                 )
                                 .set('ai', function (card) {
                                     var player = _status.event.player;
@@ -37987,7 +38154,7 @@ export default async function () {
                                                 name: 'losehp',
                                             },
                                             source,
-                                            player
+                                            player,
                                         ) -
                                         (player.getWeightedUseValue(card) * 3) / (player.countCards('hs', (cardx) => cardx.name == card.name) + 3);
                                     if (target.isZhu && target.hp <= Math.max(2, player.hp)) return Math.max(final, 0.5);
@@ -38308,7 +38475,7 @@ export default async function () {
                         if (count % 3 != 0) table += '</tr>';
                         table += '</table>';
                         dialog.content.innerHTML += table;
-                        let { result } = await player
+                        const result = await player
                             .chooseTarget(dialog, function (card, player, target) {
                                 return lib.skill.radiance_huangyan.getNum(player, target) > 0;
                             })
@@ -38324,7 +38491,8 @@ export default async function () {
                                     return (-num * get.attitude(player, target) * (target.hp + 2.5)) / (target.hp + 0.5);
                                 }
                                 return (-num * get.attitude(player, target) * (target.hp + 2.5)) / (target.hp + 0.5);
-                            });
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -38792,7 +38960,7 @@ export default async function () {
                             },
                             cost: async function (event, trigger, player) {
                                 let target = trigger.player == player ? trigger.source : trigger.player;
-                                let { result } = await player.choosePlayerCard(target, 1, 'he', '森宝:可以将' + get.translation(target) + '的一张牌作为<宝>');
+                                const result = await player.choosePlayerCard(target, 1, 'he', '森宝:可以将' + get.translation(target) + '的一张牌作为<宝>').forResult();
                                 event.result = {
                                     bool: result.bool,
                                     targets: [target],
@@ -39263,6 +39431,7 @@ export default async function () {
                                     return event.player.getUseValue(card) > 0 && card.name > 1;
                                 }) > 1
                             );
+
                         return true;
                     },
                     logTarget: 'player',
@@ -39671,14 +39840,17 @@ export default async function () {
                             cost: async function (event, trigger, player) {
                                 let dialog = ui.create.dialog('是否对' + get.translation(trigger.player) + '发动<天狼>？');
                                 dialog.addText('每回合一次,当你武将牌翻面时,可以弃一张手牌令造成的伤害+1');
-                                let { result } = await player.chooseToDiscard(1, 'h', dialog).set('ai', function (card) {
-                                    var player = _status.event.player;
-                                    var trigger = _status.event.getTrigger();
-                                    var target = trigger.player;
-                                    if (target.getEquip('baiyin') || target.hasSkillTag('nodamage') || target.hasSkillTag('noExtraDamage')) return -1;
-                                    if (get.damageEffect(target, player, player, event.nature) > 0 && get.attitude(player, target) < 0) return 5 - get.useful(card);
-                                    return -1;
-                                });
+                                const result = await player
+                                    .chooseToDiscard(1, 'h', dialog)
+                                    .set('ai', function (card) {
+                                        var player = _status.event.player;
+                                        var trigger = _status.event.getTrigger();
+                                        var target = trigger.player;
+                                        if (target.getEquip('baiyin') || target.hasSkillTag('nodamage') || target.hasSkillTag('noExtraDamage')) return -1;
+                                        if (get.damageEffect(target, player, player, event.nature) > 0 && get.attitude(player, target) < 0) return 5 - get.useful(card);
+                                        return -1;
+                                    })
+                                    .forResult();
                                 result.skill_popup = false;
                                 event.result = result;
                             },
@@ -39915,7 +40087,7 @@ export default async function () {
                                                 name: 'sha',
                                             },
                                             player,
-                                            player
+                                            player,
                                         ) > 0 &&
                                         get.attitude(player, target) < 0
                                     );
@@ -40172,15 +40344,15 @@ export default async function () {
                                         name: 'shan',
                                     },
                                     player,
-                                    'raw'
+                                    'raw',
                                 ),
                                 get.value(
                                     {
                                         name: 'wuxie',
                                     },
                                     player,
-                                    'raw'
-                                ) - 1
+                                    'raw',
+                                ) - 1,
                             );
                             delete player._radiance_moju_value;
                             return Math.max(num, val + 0.1);
@@ -40194,14 +40366,14 @@ export default async function () {
                                     {
                                         name: 'shan',
                                     },
-                                    player
+                                    player,
                                 ),
                                 get.useful(
                                     {
                                         name: 'wuxie',
                                     },
-                                    player
-                                ) - 1
+                                    player,
+                                ) - 1,
                             );
                             delete player._radiance_moju_value;
                             return Math.max(num, val + 0.1);
@@ -40516,69 +40688,71 @@ export default async function () {
                         return player.countCards('hs') > 0;
                     },
                     cost: async function (event, trigger, player) {
-                        let { result } = await player.chooseCardTarget({
-                            filterCard(card, player) {
-                                return true;
-                            },
-                            position: 'hs',
-                            selectCard: [1, player.countCards('hs')],
-                            filterTarget(card, player, target) {
-                                return player.canUse(
-                                    {
-                                        name: 'juedou',
-                                        cards: ui.selected.cards,
-                                        radiance_zhudi: true,
-                                    },
-                                    target,
-                                    false
-                                );
-                            },
-                            complexCard: true,
-                            complexTarget: true,
-                            prompt: '是否发动<逐地>？',
-                            prompt2: '出牌阶段开始时,你可以将任意张手牌当【决斗】使用;此牌结算后,你摸X张牌(X为此技能结算中所有角色失去的【杀】数量的一半,向上取整).',
-                            ai1(card) {
-                                var player = _status.event.player;
-                                if (card.name == 'sha') {
-                                    var num = player.countCards('hs', 'sha');
-                                    var base;
-                                    switch (num) {
-                                        case 0:
-                                        case 1:
-                                            base = 0;
-                                            break;
-                                        case 2:
-                                        case 3:
-                                            base = 1;
-                                            break;
-                                        case 4:
-                                        case 5:
-                                            base = 3;
-                                            break;
-                                        default:
-                                            base = 5;
+                        const result = await player
+                            .chooseCardTarget({
+                                filterCard(card, player) {
+                                    return true;
+                                },
+                                position: 'hs',
+                                selectCard: [1, player.countCards('hs')],
+                                filterTarget(card, player, target) {
+                                    return player.canUse(
+                                        {
+                                            name: 'juedou',
+                                            cards: ui.selected.cards,
+                                            radiance_zhudi: true,
+                                        },
+                                        target,
+                                        false,
+                                    );
+                                },
+                                complexCard: true,
+                                complexTarget: true,
+                                prompt: '是否发动<逐地>？',
+                                prompt2: '出牌阶段开始时,你可以将任意张手牌当【决斗】使用;此牌结算后,你摸X张牌(X为此技能结算中所有角色失去的【杀】数量的一半,向上取整).',
+                                ai1(card) {
+                                    var player = _status.event.player;
+                                    if (card.name == 'sha') {
+                                        var num = player.countCards('hs', 'sha');
+                                        var base;
+                                        switch (num) {
+                                            case 0:
+                                            case 1:
+                                                base = 0;
+                                                break;
+                                            case 2:
+                                            case 3:
+                                                base = 1;
+                                                break;
+                                            case 4:
+                                            case 5:
+                                                base = 3;
+                                                break;
+                                            default:
+                                                base = 5;
+                                        }
+                                        if (ui.selected.cards.filter((cardx) => cardx.name == 'sha').length >= base) return 0;
+                                        return 7;
                                     }
-                                    if (ui.selected.cards.filter((cardx) => cardx.name == 'sha').length >= base) return 0;
-                                    return 7;
-                                }
-                                var val = get.value(card);
-                                if (card.name != 'du' && val <= 1) return 6;
-                                if (ui.selected.cards.length) return 0;
-                                return 7 - val;
-                            },
-                            ai2(target) {
-                                return get.effect_use(
-                                    target,
-                                    {
-                                        name: 'juedou',
-                                        cards: ui.selected.cards,
-                                        radiance_zhudi: true,
-                                    },
-                                    _status.event.player,
-                                    _status.event.player
-                                );
-                            },
-                        });
+                                    var val = get.value(card);
+                                    if (card.name != 'du' && val <= 1) return 6;
+                                    if (ui.selected.cards.length) return 0;
+                                    return 7 - val;
+                                },
+                                ai2(target) {
+                                    return get.effect_use(
+                                        target,
+                                        {
+                                            name: 'juedou',
+                                            cards: ui.selected.cards,
+                                            radiance_zhudi: true,
+                                        },
+                                        _status.event.player,
+                                        _status.event.player,
+                                    );
+                                },
+                            })
+                            .forResult();
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -40590,7 +40764,7 @@ export default async function () {
                                 radiance_zhudi: true,
                             },
                             cards,
-                            target
+                            target,
                         );
                         let sha = 0;
                         game.getGlobalHistory('cardMove', function (evt) {
@@ -40900,11 +41074,12 @@ export default async function () {
                     },
                     forced: true,
                     content: async function (event, trigger, player) {
-                        let { result } = await player
+                        const result = await player
                             .chooseToUse('狂怒:需要使用一张【杀】,否则残废自身', function (card, player, event) {
                                 return card.name == 'sha' && lib.filter.filterCard(card, player, event);
                             })
-                            .set('addCount', false);
+                            .set('addCount', false)
+                            .forResult();
                         if (!result.bool) {
                             await player.injure();
                         }
@@ -40935,7 +41110,7 @@ export default async function () {
                         if (!player.hasSkill('radiance_hongwei')) list.push('radiance_hongwei');
                         if (!player.hasSkill('radiance_junpo')) list.push('radiance_junpo');
                         list.push('cancel2');
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(list)
                             .set('prompt', '祖魂:你可以获得一个技能')
                             .set('ai', function (event, player) {
@@ -40944,7 +41119,8 @@ export default async function () {
                                 if (list.includes('radiance_hongwei')) return 'radiance_hongwei';
                                 if (player.countCards('h', (card) => player.hasMeaningfulTarget(card)) <= 1) return 0;
                                 return 'cancel2';
-                            });
+                            })
+                            .forResult();
                         if (result.control != 'cancel2') {
                             player.addSkill(result.control);
                             game.log(player, '选择失去1点体力上限获得', result.control);
@@ -41050,7 +41226,7 @@ export default async function () {
                             choiceList.push('适用此技能的全部三个选项,并重置此技能');
                         }
                         choices.push('cancel2');
-                        let { result } = await player
+                        const result = await player
                             .chooseControl(choices)
                             .set('prompt', '舞踏:使用了' + get.translation(trigger.card.suit) + '杀,可以为之附加效果')
                             .set('ai', function (event, player) {
@@ -41099,7 +41275,8 @@ export default async function () {
                                 if (num4 == arr[0]) return '目标';
                                 return choices.remove('cancel2').randomGet();
                             })
-                            .set('choiceList', choiceList);
+                            .set('choiceList', choiceList)
+                            .forResult();
                         if (result.control != 'cancel2') {
                             event.result = {
                                 bool: true,
@@ -41118,7 +41295,7 @@ export default async function () {
                         switch (event.cost_data) {
                             case '全部效果':
                             case '目标':
-                                let { result } = await player
+                                const result = await player
                                     .chooseTarget('额外指定至多' + get.cnNumber(2) + '名目标角色', [1, 2], function (card, player, target) {
                                         var trigger = _status.event.getTrigger();
                                         return !trigger.targets.includes(target) && player.canUse(trigger.card, target, false);
@@ -41126,7 +41303,8 @@ export default async function () {
                                     .set('ai', function (target) {
                                         var trigger = _status.event.getTrigger();
                                         return get.effect(target, trigger.card, _status.event.player, _status.event.player);
-                                    });
+                                    })
+                                    .forResult();
                                 if (result.bool && result.targets.length) {
                                     player.line(result.targets, 'green');
                                     trigger.parent.targets.addArray(result.targets);
@@ -41601,7 +41779,7 @@ export default async function () {
                     cost: async function (event, trigger, player) {
                         let final;
                         while (!final) {
-                            let { result } = await player
+                            const result = await player
                                 .chooseTarget(1, get.prompt2('radiance_shenyi'), function (card, player, target) {
                                     return true;
                                 })
@@ -41652,13 +41830,14 @@ export default async function () {
                                         }
                                     }
                                     return 0;
-                                });
+                                })
+                                .forResult();
                             if (result.bool && result.targets.length) {
                                 let target = result.targets[0];
                                 if (target.isAlive()) {
                                     let list = ['1血', '持平', '上限', 'cancel2'],
                                         choiceList = ['变为1,其回复体力后复原', '变为与你相同,其以外的角色濒死后复原', '变为与其体力上限相同,其下个回合结束后复原'];
-                                    let { result } = await player
+                                    const result = await player
                                         .chooseControl(list)
                                         .set('ai', function (event, player) {
                                             var target = _status.event.target;
@@ -41674,7 +41853,8 @@ export default async function () {
                                         })
                                         .set('prompt', '将' + get.translation(target) + '的体力值变化(点取消返回目标选择)')
                                         .set('choiceList', choiceList)
-                                        .set('target', target);
+                                        .set('target', target)
+                                        .forResult();
                                     switch (result.control) {
                                         case '1血':
                                             final = {
@@ -42065,7 +42245,7 @@ export default async function () {
                             }
                             return [cards, top, bottom, todiscard];
                         };
-                        let { result } = await next;
+                        const result = await next.forResult();
                         let top = result.moved[1],
                             bottom = result.moved[2],
                             todiscard = result.moved[3];
@@ -42434,9 +42614,12 @@ export default async function () {
                             dialog.addText('红色手牌');
                             dialog.add(player.getCards('h', (card) => get.color(card) == 'red'));
                         }
-                        let { result } = await player.chooseButton(dialog).set('ai', function (button) {
-                            return 0;
-                        });
+                        const result = await player
+                            .chooseButton(dialog)
+                            .set('ai', function (button) {
+                                return 0;
+                            })
+                            .forResult();
                         if (result.links?.length) {
                             result.cards = result.links;
                             result.targets = [trigger.player];
@@ -42489,20 +42672,24 @@ export default async function () {
                                 }
                                 let choice = choices[0];
                                 if (choices.length > 1) {
-                                    let { result } = await trigger.player
+                                    const result = await trigger.player
                                         .chooseControl(choices)
                                         .set('ai', function (event, player) {
                                             return 0;
                                         })
-                                        .set('prompt', '授火:选择一项');
+                                        .set('prompt', '授火:选择一项')
+                                        .forResult();
                                     choice = result.control;
                                 }
                                 if (choice == '摸牌') {
                                     await player.draw(targets.length, trigger.player);
                                 } else {
-                                    let { result } = await trigger.player.chooseCard(1, 'h', true, '保留一张手牌,将其余的交给' + get.translation(player)).set('ai', function (card) {
-                                        return get.useful(card);
-                                    });
+                                    const result = await trigger.player
+                                        .chooseCard(1, 'h', true, '保留一张手牌,将其余的交给' + get.translation(player))
+                                        .set('ai', function (card) {
+                                            return get.useful(card);
+                                        })
+                                        .forResult();
                                     let cards = hs.filter((card) => !result.cards.includes(card));
                                     await trigger.player.give(cards, player, false);
                                 }
@@ -42690,27 +42877,32 @@ export default async function () {
                         let bool = false,
                             num = 0;
                         for (var i = 0; i < player.storage.radiance_leibao; i++) {
-                            let { result } = await trigger.player.judge(function (result) {
-                                var player = _status.event.player;
-                                var trigger = _status.event.getTrigger();
-                                var cur = get.sgn(get.damageEffect(trigger.player, player, player, 'thunder'));
-                                if (cur < 0 && trigger.player.hp < 2 && !trigger.player.hasSkillTag('noExtraDamage') && !trigger.player.getEquip('baiyin')) cur = 1;
-                                var base = result.suit == 'spade' ? 6 : -2;
-                                if (trigger.player.hasSkillTag('nothunder') || trigger.player.hasSkillTag('nodirectdamage')) base = 0;
-                                return base * cur;
-                            });
+                            const result = await trigger.player
+                                .judge(function (result) {
+                                    var player = _status.event.player;
+                                    var trigger = _status.event.getTrigger();
+                                    var cur = get.sgn(get.damageEffect(trigger.player, player, player, 'thunder'));
+                                    if (cur < 0 && trigger.player.hp < 2 && !trigger.player.hasSkillTag('noExtraDamage') && !trigger.player.getEquip('baiyin')) cur = 1;
+                                    var base = result.suit == 'spade' ? 6 : -2;
+                                    if (trigger.player.hasSkillTag('nothunder') || trigger.player.hasSkillTag('nodirectdamage')) base = 0;
+                                    return base * cur;
+                                })
+                                .forResult();
                             if (result.suit == 'spade') {
                                 bool = true;
                                 num++;
                             }
                         }
                         if (bool) {
-                            let { result } = await player.chooseBool('是否对' + get.translation(trigger.player) + '造成' + num + '点雷电伤害且<雷暴>的数值+1？若不造成则摸' + get.cnNumber(num) + '张牌' + (player.storage.radiance_leibao > 1 ? '并重置数值' : '') + '').set('ai', function (event, player) {
-                                if (get.damageEffect(trigger.player, player, player, 'thunder') > 0) return true;
-                                if (get.attitude(player, trigger.player) < 0 && trigger.player.hp < 2 && !trigger.player.hasSkillTag('noExtraDamage') && !trigger.player.getEquip('baiyin')) return true;
-                                if (player.hasSkill('radiance_bijue')) return true;
-                                return false;
-                            }); //QQQ
+                            const result = await player
+                                .chooseBool('是否对' + get.translation(trigger.player) + '造成' + num + '点雷电伤害且<雷暴>的数值+1？若不造成则摸' + get.cnNumber(num) + '张牌' + (player.storage.radiance_leibao > 1 ? '并重置数值' : '') + '')
+                                .set('ai', function (event, player) {
+                                    if (get.damageEffect(trigger.player, player, player, 'thunder') > 0) return true;
+                                    if (get.attitude(player, trigger.player) < 0 && trigger.player.hp < 2 && !trigger.player.hasSkillTag('noExtraDamage') && !trigger.player.getEquip('baiyin')) return true;
+                                    if (player.hasSkill('radiance_bijue')) return true;
+                                    return false;
+                                })
+                                .forResult(); //QQQ
                             if (result.bool) {
                                 await trigger.player.damage(num, player, 'nocard', 'thunder');
                                 player.storage.radiance_leibao++;

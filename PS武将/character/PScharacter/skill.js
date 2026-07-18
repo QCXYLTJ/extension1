@@ -14700,22 +14700,6 @@ const skills = {
 			}
 		},
 		async content(event, trigger, player) {
-			/**
-			 * 旧写法
-			 */
-			/* if (!lib.skill.PSrenjie.derivation.filter(skill => !player.hasSkill(skill)).length) return;
-	  if (player.storage.PSrenjie === void 0) player.storage.PSrenjie = event.triggername === "damageEnd" ? trigger.num : trigger.getl(player).cards2.length;
-	  const skills = lib.skill.PSrenjie.derivation.filter(skill => !player.hasSkill(skill));
-	  const choiceList = skills.map(skill => get.translation(skill) + ':' + get.translation(skill + '_info'));
-	  const { result: { control } } = await player.chooseControl(skills)
-			.set('prompt', '忍戒:选择获得一个技能')
-			.set('choiceList', choiceList).set('displayIndex', false).set('ai', () => get.event('controls').randomGet());
-	  await player.addSkills(control);
-	  player.storage.PSrenjie--;
-	  if (player.storage.PSrenjie > 0) {
-			await lib.skill.PSrenjie.content(event, trigger, player);
-	  }
-	  player.storage.PSrenjie === 0 && delete player.storage.PSrenjie; */
 			const num = event.triggername === 'damageEnd' ? trigger.num : trigger.getl(player).cards2.length;
 			const skills = lib.skill.PSrenjie.derivation.filter((skill) => !player.hasSkill(skill));
 			if (num >= skills.length) {

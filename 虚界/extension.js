@@ -1988,7 +1988,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var cards = player.showCards(get.cards(1));
                                 const result = await player.chooseTarget('展示一名其他角色的一张手牌', true, (card, player, target) => target != player && target.countCards('h')).set('ai', (target) => target.isEnemiesOf(player)).forResult();
                                 if (result.targets?.length) {
-                                    const { result: result1 } = await player.choosePlayerCard('h', result.targets[0], true);
+                                    const result1 = await player.choosePlayerCard('h', result.targets[0], true).forResult();
                                     if (result1.cards && result1.cards[0]) {
                                         if (get.color(result1.cards[0]) == get.color(cards[0])) {
                                             player.gain(cards, 'gain2');

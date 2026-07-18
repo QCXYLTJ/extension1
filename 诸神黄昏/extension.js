@@ -40477,11 +40477,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('ai', (button) => player.getUseValue(button.link) + (lib.card[button.link.name].toself ? 40 : 0)).forResult();
                                     if (result.links?.length) {
                                         cards.remove(result.links[0]);
-                                        const { result: result1 } = await player.chooseUseTarget(result.links[0], true, false);
+                                        const result1 = await player.chooseUseTarget(result.links[0], true, false).forResult();
                                         if (result1.targets && result1.targets[0]) {
                                             for (var i of result1.targets) {
                                                 if (cards.length) {
-                                                    const { result: result2 } = await i.chooseButton(['选择获得其中亮出的一张牌', cards]).set('ai', (button) => get.value(button.link) + (i.hasUseTarget(button.link, true, true) ? 0 : 10));
+                                                    const result2 = await i.chooseButton(['选择获得其中亮出的一张牌', cards]).set('ai', (button) => get.value(button.link) + (i.hasUseTarget(button.link, true, true) ? 0 : 10)).forResult();
                                                     if (result2.links && result2.links[0]) {
                                                         i.gain(result2.links, 'gain2');
                                                         cards.remove(result2.links[0]);

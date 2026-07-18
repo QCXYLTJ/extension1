@@ -6775,7 +6775,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (player.countCards('he') > 0) {
-                                    const { result: result1 } = await player.chooseCard('he', '是否将一张牌置于牌堆顶？').set('ai', function (card) {
+                                    const result1 = await player.chooseCard('he', '是否将一张牌置于牌堆顶？').set('ai', function (card) {
                                         var player = _status.event.player,
                                             js = player.getCards('j');
                                         if (js.length) {
@@ -6783,7 +6783,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (judge && judge(card) >= 0) return 20 - get.value(card);
                                         }
                                         return 0;
-                                    });
+                                    }).forResult();
                                     if (result1.cards && result1.cards[0]) {
                                         ui.cardPile.insertBefore(result1.cards[0], ui.cardPile.firstChild);
                                     }

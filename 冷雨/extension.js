@@ -5330,14 +5330,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return true;
                             },
                             async content(event, trigger, player) {
-                                const { result: { cards } } = await player.chooseCard(1, 'hej').set('ai', function (card) {
+                                const { cards } = await player.chooseCard(1, 'hej').set('ai', function (card) {
                                     if (card.suit == 'club') return 10 - get.value(card);
                                     if (get.tag(card, 'save')) {
                                         return -1;
                                     }
                                     if (get.tag(card, 'damage')) return -2;
                                     return 8 - get.value(card);
-                                });
+                                }).forResult();
                                 if (cards?.length) {
                                     player.recast(cards);
                                     if (cards[0].suit == 'club') {

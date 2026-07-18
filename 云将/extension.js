@@ -6823,6 +6823,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     ['gain', '令一名体力值不大于你的其他角色交给你一张手牌'],
                                     ['sha', '视为对一名手牌数不大于你的其他角色使用一张【杀】'],
                                 ],
+
                                 'textbutton',
                             ]);
                             return dialog;
@@ -6998,6 +6999,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return lib.filter.cardDiscardable(card, player);
                                 }) > 0
                             );
+
                         return target.countDiscardableCards(player, 'e') > 0;
                     },
                     filter(event, player) {
@@ -10548,7 +10550,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     {
                                         var ingame = game.hasPlayer((current) => ['sp_zhugeliang', 're_sp_zhugeliang', 'ol_sp_zhugeliang', 'prp_zhugeliang'].includes(current.name)) ? true : false;
                                         var range = ingame ? [1, 2] : [1, 1];
-                                        const { result: result1 } = await player.chooseTarget(`请选择${ingame ? '至多两名' : '一名'}角色,对其造成1点火焰伤害`, range).set('ai', (target) => get.damageEffect(target, player, player, 'fire'));
+                                        const result1 = await player
+                                            .chooseTarget(`请选择${ingame ? '至多两名' : '一名'}角色,对其造成1点火焰伤害`, range)
+                                            .set('ai', (target) => get.damageEffect(target, player, player, 'fire'))
+                                            .forResult();
                                         if (result1.targets && result1.targets[0]) {
                                             for (var i of result1.targets) {
                                                 i.damage('fire');
@@ -10561,7 +10566,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var ingame = game.hasPlayer((current) => ['re_pangtong', 'pangtong', 'ol_pangtong'].includes(current.name)) ? true : false;
                                         var prompt = `请选择${ingame ? '至多四名' : '至多三名'}要横置的角色`;
                                         var range = ingame ? [1, 4] : [1, 3];
-                                        const { result: result1 } = await player.chooseTarget(prompt, range).set('ai', (target) => get.effect(target, { name: 'tiesuo' }, player, player));
+                                        const result1 = await player
+                                            .chooseTarget(prompt, range)
+                                            .set('ai', (target) => get.effect(target, { name: 'tiesuo' }, player, player))
+                                            .forResult();
                                         if (result1.targets && result1.targets[0]) {
                                             for (var i of result1.targets) {
                                                 i.link();
@@ -10573,7 +10581,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     {
                                         var ingame = game.hasPlayer((current) => ['re_xushu', 'xin_xushu', 'xushu', 'dc_xushu'].includes(current.name)) ? true : false;
                                         var prompt = `请选择一名角色,令其回复1点体力并摸一张牌${ingame ? ',你摸一张牌.' : '.'}`;
-                                        const { result: result1 } = await player.chooseTarget(prompt).set('ai', (target) => get.attitude(player, target) * (target.isDamaged() ? 2 : 1));
+                                        const result1 = await player
+                                            .chooseTarget(prompt)
+                                            .set('ai', (target) => get.attitude(player, target) * (target.isDamaged() ? 2 : 1))
+                                            .forResult();
                                         if (result1.targets && result1.targets[0]) {
                                             result1.targets[0].draw();
                                             result1.targets[0].recover();
@@ -10585,7 +10596,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     {
                                         var ingame = game.hasPlayer((current) => current.name == 'simahui') ? true : false;
                                         var prompt = `将一名角色装备区中的${ingame ? '一张牌' : '防具牌'}移动到另一名角色的装备区中`;
-                                        const { result: result1 } = await player
+                                        const result1 = await player
                                             .chooseTarget(2, function (card, player, target) {
                                                 if (ui.selected.targets.length) {
                                                     return true;
@@ -10627,7 +10638,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('multitarget', true)
                                             .set('targetprompt', ['被移走', '移动目标'])
-                                            .set('prompt', prompt);
+                                            .set('prompt', prompt)
+                                            .forResult();
                                         if (result1.targets && result1.targets[0]) {
                                             if (result1.targets.length == 2) {
                                                 if (!ingame) {
@@ -10635,13 +10647,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     if (cards.length == 1) {
                                                         result1.targets[1].equip(cards[0]);
                                                     } else {
-                                                        const { result: result2 } = await player.choosePlayerCard('e', true, (button) => get.equipValue(button.link), result1.targets[0]).set('filterButton', (button) => get.subtypes(button.link, false).includes('equip2'));
+                                                        const result2 = await player
+                                                            .choosePlayerCard('e', true, (button) => get.equipValue(button.link), result1.targets[0])
+                                                            .set('filterButton', (button) => get.subtypes(button.link, false).includes('equip2'))
+                                                            .forResult();
                                                         if (result2.links && result2.links[0]) {
                                                             result1.targets[1].equip(result2.links[0]);
                                                         }
                                                     }
                                                 } else {
-                                                    const { result: result2 } = await player.choosePlayerCard('e', true, (button) => get.equipValue(button.link), result1.targets[0]);
+                                                    const result2 = await player.choosePlayerCard('e', true, (button) => get.equipValue(button.link), result1.targets[0]).forResult();
                                                     if (result2.links && result2.links[0]) {
                                                         result1.targets[1].equip(result2.links[0]);
                                                     }
@@ -10720,7 +10735,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .forResult(); //对目标正价值就乘get.att,负价值就乘-get.att
                             if (result.targets?.length) {
-                                const { result: result1 } = await player.chooseButton(['将整理出的经典置于一名角色的武将牌上', cards]).set('ai', (button) => 6 - get.value(button.link));
+                                const result1 = await player
+                                    .chooseButton(['将整理出的经典置于一名角色的武将牌上', cards])
+                                    .set('ai', (button) => 6 - get.value(button.link))
+                                    .forResult();
                                 if (result1.links && result1.links[0]) {
                                     cards.remove(result1.links[0]);
                                     result.targets[0].addSkill('zhengjing2');

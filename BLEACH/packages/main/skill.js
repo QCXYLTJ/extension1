@@ -1946,7 +1946,7 @@ const skills = {
 			if (num > 0) {
 				await player.draw(num);
 				if (player.countCards('he')) {
-					const cards = await player.chooseCard('将' + get.cnNumber(num) + '张牌置于武将牌上,称为「灵」', num, true).forResult('cards');
+					const { cards } = await player.chooseCard('将' + get.cnNumber(num) + '张牌置于武将牌上,称为「灵」', num, true).forResult();
 					if (cards?.length) {
 						player.addToExpansion(cards, player, 'giveAuto').gaintag.add('bleach_jiling');
 					}
@@ -14619,15 +14619,14 @@ const skills = {
 			let count = 1,
 				number = event.cards[0].number;
 			while (number < 13 && player.hasCard((card) => _status.connectMode || card.number > number)) {
-				const cards = await player
+				const { cards } = await player
 					.chooseCard('重铸一张点数大于' + number + '的牌', 'he', (card) => {
 						return card.number > get.event('number') && get.player().canRecast(card);
 					})
 					.set('number', number)
 					.set('ai', (card) => {
 						return 14 - card.number - get.value(card);
-					})
-					.forResult('cards');
+					}).forResult();
 				if (!cards || !cards.length) break; //QQQ
 				await player.recast(cards);
 				count++;
@@ -19091,7 +19090,8 @@ const skills = {
 				async content(event, trigger, player) {
 					player.changeZhuanhuanji('bleach_yinyi');
 					player.gain(trigger.cards, 'gain2');
-					const cards = await player.chooseCard('将一张牌置于武将牌上,称为「翼」', true, 'he').forResult('cards');
+					const { cards } = await player.chooseCard('将一张牌置于武将牌上,称为「翼」', true, 'he')
+						.forResult();
 					if (cards?.length) {
 						player.addToExpansion(cards, player, 'giveAuto').gaintag.add('bleach_yinyi_x');
 					}
@@ -19111,7 +19111,8 @@ const skills = {
 				async content(event, trigger, player) {
 					player.changeZhuanhuanji('bleach_yinyi');
 					player.gain(trigger.cards, 'gain2');
-					const cards = await player.chooseCard('将一张牌置于武将牌上,称为「翼」', true, 'he').forResult('cards');
+					const { cards } = await player.chooseCard('将一张牌置于武将牌上,称为「翼」', true, 'he')
+						.forResult();
 					if (cards?.length) {
 						player.addToExpansion(cards, player, 'giveAuto').gaintag.add('bleach_yinyi_x');
 					}

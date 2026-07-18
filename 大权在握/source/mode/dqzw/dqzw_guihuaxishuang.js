@@ -2215,7 +2215,7 @@ import { func as characterListSet } from './character_list_set.js';
 				forced: true,
 				async content(event, trigger, player) {//QQQ
 					const num = Math.ceil(trigger.cards.length / 2);
-					const { result: { links } } = await player.chooseButton([get.prompt2(event.name), trigger.cards], [1, num], button => get.value(button.link));
+					const { links } = await player.chooseButton([get.prompt2(event.name), trigger.cards], [1, num], button => get.value(button.link)).forResult();
 					if (links?.length) {
 						player.gain(links, 'gain2');
 					}

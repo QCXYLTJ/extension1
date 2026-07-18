@@ -37,8 +37,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           //少林
           sdxl_shaolin: ['sdxl_wusechanshi'],
           //江湖侠客
-          sdxl_xiake: [''],
-        },
+          sdxl_xiake: ['']
+        }
       },
       character: {
         //神雕侠侣侠客信息
@@ -81,12 +81,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_qiuqianchi: ['female', Group('wei', 'jy_song'), 3, ['sdxl_guofu', 'sdxl_heji', 'sdxl_zifu'], ['bangpai:jy_jueqinggu'], { drawer: '画师:佚名', skinLevel: 1 }],
         sdxl_zhaozhijin: ['male', Group('wei', 'jy_song'), 4, ['sdxl_lingxie', 'sdxl_bishan', 'sdxl_tongbi'], ['bangpai:jy_quanzhen'], { drawer: '画师:超', skinLevel: 1 }],
         sdxl_guofuX: ['female', Group('wei', 'jy_song'), 4, ['sdxl_jiaozi', 'sdxl_danni'], ['bangpai:jy_taohuadao'], { drawer: '画师:剑网3', skinLevel: 3, videos: ['<iframe src="http://player.bilibili.com/player.html?aid=507572519&bvid=BV1Gu411S72g&cid=469147735&page=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'] }],
-        sdxl_guopolu: ['male', Group('wei', 'jy_song'), 3, ['sdxl_zhulu', 'sdxl_zhonggu'], ['bangpai:jy_taohuadao'], { drawer: '画师:九阴真经', skinLevel: 3 }],
+        sdxl_guopolu: ['male', Group('wei', 'jy_song'), 3, ['sdxl_zhulu', 'sdxl_zhonggu'], ['bangpai:jy_taohuadao'], { drawer: '画师:九阴真经', skinLevel: 3 }]
       },
       characterIntro: {
+
         //神雕侠侣侠客小传
-      },
-      characterTitle: {
+      }, characterTitle: {
         //武将称号
         sdxl_maguangzuo: '匹夫之勇',
         sdxl_wusechanshi: '物薄情厚',
@@ -114,10 +114,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_qiuqianchi: '铁掌莲花',
         sdxl_zhaozhijin: '通敌叛教',
         sdxl_guofuX: '鲜衣白驹',
-        sdxl_guopolu: '满门忠烈',
+        sdxl_guopolu: '满门忠烈'
       },
       perfectPair: {
-        sdxl_yangguo: ['sdxl_xiaolongnv'],
+        sdxl_yangguo: ['sdxl_xiaolongnv']
       },
       //------------------技能开始----------------------------
       skill: {
@@ -127,7 +127,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           shaRelated: true,
           audio: 'ext:金庸群侠传/peiyin:3',
           trigger: {
-            player: 'useCardToPlayered',
+            player: 'useCardToPlayered'
           },
           filter(event, player) {
             if (!player.countCards('h')) return false;
@@ -148,18 +148,18 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return card.number;
             });
             next.set('check', get.effect(trigger.target, trigger.card, player, player) > 0);
-            ('step 1');
+            'step 1';
             if (result.bool) {
               event.result = {
                 bool: true,
                 targets: [trigger.target],
                 cost_data: {
-                  cards: result.cards,
-                },
+                  cards: result.cards
+                }
               };
             } else {
               event.result = {
-                bool: false,
+                bool: false
               };
             }
           },
@@ -177,11 +177,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return card.number;
             });
             next.set('check', get.effect(trigger.target, trigger.card, player, trigger.target) > 0);
-            ('step 1');
+            'step 1';
             if (result.cards?.length) {
               event.list2 = result.cards;
             }
-            event.maxNumPlayer = (function () {
+            event.maxNumPlayer = function () {
               const playerCount = event.list1.reduce(function (sum, card) {
                 return sum + card.number;
               }, 0);
@@ -196,8 +196,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return trigger.target;
               }
               return null;
-            })();
-            event.maxLengthPlayer = (function () {
+            }();
+            event.maxLengthPlayer = function () {
               game.log(player, '弃置牌张数:', event.list1.length);
               game.log(trigger.target, '弃置牌张数:', event.list2.length);
               if (event.list1.length > event.list2.length) {
@@ -206,20 +206,20 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return trigger.target;
               }
               return null;
-            })();
+            }();
             if (event.list1.length && event.list2.length) {
               game.loseAsync({
                 lose_list: [
-                  [player, event.list1],
-                  [trigger.target, event.list2],
-                ],
+                [player, event.list1],
+                [trigger.target, event.list2]],
 
-                discarder: player,
+
+                discarder: player
               }).setContent('discardMultiple');
             } else if (event.list2.length) {
               trigger.target.discard(event.list2);
             } else player.discard(event.list1);
-            ('step 2');
+            'step 2';
             if (event.maxNumPlayer) {
               const strsha = get.translation(trigger.card);
               const strtarget = get.translation(trigger.target);
@@ -227,7 +227,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.goto(4);
             }
-            ('step 3');
+            'step 3';
             if (result.bool) {
               trigger.parent.excluded.add(trigger.target);
               game.log(trigger.card, '对', trigger.target, '无效!');
@@ -235,7 +235,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               trigger.parent.directHit.add(trigger.target);
               game.log(trigger.card, '对', trigger.target, '不可响应!');
             }
-            ('step 4');
+            'step 4';
             if (event.maxLengthPlayer) {
               const strsha = get.translation(trigger.card);
               const strtarget = get.translation(trigger.target);
@@ -243,7 +243,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 5');
+            'step 5';
             const id = trigger.target.playerid;
             const map = trigger.parent.customArgs;
             if (!map[id]) map[id] = {};
@@ -257,7 +257,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               map[id].extraDamage -= 1;
               game.log(trigger.card, '对', trigger.target, '伤害-1');
             }
-          },
+          }
         },
         sdxl_manba: {
           mod: {
@@ -265,11 +265,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (get.itemtype(card) != 'card') return;
               if (typeof number != 'number') return;
               if ([1, 11, 12].includes(number)) return 13;
-            },
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: ['useCard1', 'respond'],
+            player: ['useCard1', 'respond']
           },
           filter(event, player) {
             //if(event.skill) return false;
@@ -280,12 +280,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           forced: true,
           firstDo: true,
-          content() { },
+          content() {}
         },
         sdxl_zhuangzhi: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'phaseJieshuBegin',
+            player: 'phaseJieshuBegin'
           },
           forced: true,
           getCount(player) {
@@ -312,14 +312,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             player.draw(lib.skill.sdxl_zhuangzhi.getCount(player));
-          },
+          }
         },
         //无色禅师 霸天 20240609
         sdxl_zengou: {
           subSkill: {
             removeSkill: {
               trigger: {
-                global: ['phaseBegin', 'die'],
+                global: ['phaseBegin', 'die']
               },
               forced: true,
               forceDie: true,
@@ -340,16 +340,16 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     player.removeAdditionalSkills('sdxl_zengou_gainSkill', element);
                   });
                 }
-                ('step 1');
+                'step 1';
                 if (!player.storage.sdxl_zengou_gainSkill.length) {
                   player.removeSkill('sdxl_zengou_gainSkill');
                 }
-              },
+              }
             },
             gainSkill: {
               group: 'sdxl_zengou_removeSkill',
               trigger: {
-                player: 'phaseEnd',
+                player: 'phaseEnd'
               },
               init(player, skill) {
                 if (!player.storage[skill]) player.storage[skill] = [];
@@ -360,7 +360,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               content() {
                 'step 0';
                 event.gives = player.storage.sdxl_zengou_gainSkill.filter((i) => Boolean(i.equip) && player.getCards('e').includes(i.equip));
-                ('step 1');
+                'step 1';
                 if (event.gives.length) {
                   event.give = event.gives.shift();
                   if (!event.give || !player.getCards('e').includes(event.give.equip)) {
@@ -371,16 +371,16 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   event.finish();
                   return;
                 }
-                player
-                  .chooseTarget(`令一名其他角获得【${get.translation(event.give.equip)}】和【${get.translation(event.give.skill)}】`, function (card, player, target) {
-                    if (!target.canEquip(event.give.equip)) return false;
-                    return target != player && target != event.give.source;
-                  })
-                  .set('ai', function (target) {
-                    const player = _status.event.player;
-                    return get.attitude(player, target);
-                  });
-                ('step 2');
+                player.
+                chooseTarget(`令一名其他角获得【${get.translation(event.give.equip)}】和【${get.translation(event.give.skill)}】`, function (card, player, target) {
+                  if (!target.canEquip(event.give.equip)) return false;
+                  return target != player && target != event.give.source;
+                }).
+                set('ai', function (target) {
+                  const player = _status.event.player;
+                  return get.attitude(player, target);
+                });
+                'step 2';
                 if (result.targets?.length) {
                   result.targets[0].equip(event.give.equip);
                   player.$give(event.give.equip, result.targets[0]);
@@ -390,12 +390,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   result.targets[0].storage.sdxl_zengou_gainSkill.push({
                     source: event.give.source,
                     skill: event.give.skill,
-                    equip: null,
+                    equip: null
                   });
                 }
                 event.goto(1);
-              },
-            },
+              }
+            }
           },
           enable: 'phaseUse',
           filterCard() {
@@ -429,7 +429,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             target.storage.sdxl_zengou_gainSkill.push({
               source: player,
               skill: gainSkill,
-              equip: equip,
+              equip: equip
             });
           },
           ai: {
@@ -438,9 +438,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               target(player, target) {
                 if (target.hasEmptySlot('equip5')) return 5;
                 return 2;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_boyan: {
           getNoPlayerSkill(player) {
@@ -469,7 +469,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'phaseDrawBegin2',
+            player: 'phaseDrawBegin2'
           },
           forced: true,
           mod: {
@@ -485,7 +485,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 const maxnum = Math.max(...nums);
                 return num + maxnum;
               }
-            },
+            }
           },
           content() {
             'step 0';
@@ -509,7 +509,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 }
               }
             }
-            ('step 1');
+            'step 1';
             player.changeZhuanhuanji(event.name);
           },
           zhuanhuanji: true,
@@ -519,15 +519,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             content(storage, player) {
               if (storage) return '摸牌阶段摸牌时,你可多摸:阳: X张牌,本回合手牌上限+X(X为场上拥有非武将牌上技能的角色数)';
               return '摸牌阶段摸牌时,阴: Y张牌,本回合手牌上限+Y(Y为场上拥有技能最多的角色或之一的技能数) .';
-            },
-          },
+            }
+          }
         },
         //陆无双 霸天 20240607
         sdxl_jiahen2: {
           audio: 'sdxl_jiahen',
           trigger: {
             player: 'loseEnd',
-            global: ['equipEnd', 'addJudgeEnd', 'gainEnd', 'loseAsyncEnd', 'addToExpansionEnd'],
+            global: ['equipEnd', 'addJudgeEnd', 'gainEnd', 'loseAsyncEnd', 'addToExpansionEnd']
           },
           cost() {
             'step 0';
@@ -541,9 +541,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               function (target) {
                 const player = _status.event.player;
                 return get.effect(target, { name: 'tiesuo_ai' }, player, player);
-              },
+              }
             );
-            ('step 1');
+            'step 1';
             event.result = result;
           },
           filter(event, player) {
@@ -553,7 +553,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             event.targets.filter((i) => i.link());
-          },
+          }
         },
         sdxl_jiahen: {
           group: 'sdxl_jiahen2',
@@ -574,14 +574,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             'step 0';
             target.choosePlayerCard('家恨:展示' + get.translation(player) + '一张手牌', 'h', player, true);
-            ('step 1');
+            'step 1';
             if (result.links?.length) {
               event.cardx = result.links[0];
               target.showCards(event.cardx, get.translation(player) + '被展示');
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             if (event.cardx) {
               const color = get.color(event.cardx);
               if (color == 'red') {
@@ -596,9 +596,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             result: {
               target(player, target) {
                 return 1;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_guchu: {
           subSkill: {
@@ -606,7 +606,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               disContent() {
                 'step 0';
                 player.chooseBool(get.prompt('sdxl_guchu'), `获得三张${get.translation(event.loseCard.suit)}牌`);
-                ('step 1');
+                'step 1';
                 if (result.bool) {
                   const suit = event.loseCard.suit;
                   const gains = get.randomCards(3, (card) => card.suit == suit);
@@ -619,38 +619,38 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               },
               gainContent() {
                 'step 0';
-                player
-                  .chooseTarget(get.prompt('sdxl_guchu'), '获得其他一至三名角色的各一张手牌', [1, 3], function (card, player, target) {
-                    return target != player && target.countGainableCards(player, 'he') > 0;
-                  })
-                  .set('ai', function (target) {
-                    const player = _status.event.player;
-                    return get.effect(
-                      target,
-                      {
-                        name: 'shunshou_ai',
-                        position: 'he',
-                      },
-                      player,
-                      player,
-                    );
-                  });
-                ('step 1');
+                player.
+                chooseTarget(get.prompt('sdxl_guchu'), '获得其他一至三名角色的各一张手牌', [1, 3], function (card, player, target) {
+                  return target != player && target.countGainableCards(player, 'he') > 0;
+                }).
+                set('ai', function (target) {
+                  const player = _status.event.player;
+                  return get.effect(
+                    target,
+                    {
+                      name: 'shunshou_ai',
+                      position: 'he'
+                    },
+                    player,
+                    player
+                  );
+                });
+                'step 1';
                 if (result.targets?.length) {
                   player.gainMultiple(result.targets, 'he');
                 }
               },
               respondContent() {
                 'step 0';
-                player
-                  .chooseTarget(get.prompt('sdxl_guchu'), '分配一点火焰伤害', function (card, player, target) {
-                    return target != player;
-                  })
-                  .set('ai', function (target) {
-                    const player = _status.event.player;
-                    return get.damageEffect(target, player, player, 'fire');
-                  });
-                ('step 1');
+                player.
+                chooseTarget(get.prompt('sdxl_guchu'), '分配一点火焰伤害', function (card, player, target) {
+                  return target != player;
+                }).
+                set('ai', function (target) {
+                  const player = _status.event.player;
+                  return get.damageEffect(target, player, player, 'fire');
+                });
+                'step 1';
                 if (result.targets?.length) {
                   result.targets[0].damage('fire');
                 }
@@ -671,29 +671,29 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 for (let use of libVcard) {
                   libVcards.push([get.type(use), '', use]);
                 }
-                player
-                  .chooseButton([get.prompt('sdxl_guchu') + '视为使用一张普通锦囊牌', [libVcards, 'vcard']])
-                  .set('filterButton', function (button) {
-                    const player = _status.event.player;
-                    const Vcard = {
-                      name: button.link[2],
-                      nature: button.link[3],
-                    };
-                    return player.hasUseTarget(Vcard);
-                  })
-                  .set('ai', function (button) {
-                    const player = _status.event.player;
-                    const Vcard = {
-                      name: button.link[2],
-                      nature: button.link[3],
-                    };
-                    return player.getUseValue(Vcard);
-                  });
-                ('step 1');
+                player.
+                chooseButton([get.prompt('sdxl_guchu') + '视为使用一张普通锦囊牌', [libVcards, 'vcard']]).
+                set('filterButton', function (button) {
+                  const player = _status.event.player;
+                  const Vcard = {
+                    name: button.link[2],
+                    nature: button.link[3]
+                  };
+                  return player.hasUseTarget(Vcard);
+                }).
+                set('ai', function (button) {
+                  const player = _status.event.player;
+                  const Vcard = {
+                    name: button.link[2],
+                    nature: button.link[3]
+                  };
+                  return player.getUseValue(Vcard);
+                });
+                'step 1';
                 if (result.bool) {
                   const Vcard = {
                     name: result.links[0][2],
-                    nature: result.links[0][3],
+                    nature: result.links[0][3]
                   };
                   player.chooseUseTarget(Vcard, true, false);
                   if (!event.noUseName) {
@@ -710,7 +710,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               popup: false,
               trigger: {
                 player: 'loseAfter',
-                global: ['gainAfter', 'loseAsyncAfter', 'useCardAfter', 'respondAfter'],
+                global: ['gainAfter', 'loseAsyncAfter', 'useCardAfter', 'respondAfter']
               },
               getIndex(event, player, triggername) {
                 const loseEvt = [];
@@ -764,8 +764,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   next.player = player;
                   next.setContent(lib.skill.sdxl_guchu_lose.respondContent);
                 }
-              },
-            },
+              }
+            }
           },
           group: 'sdxl_guchu_lose',
           audio: 'ext:金庸群侠传/peiyin:4',
@@ -778,7 +778,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             'step 0';
             player.draw();
-            ('step 1');
+            'step 1';
             if (player.countCards('h', (i) => !i.hasGaintag('sdxl_guchu'))) {
               player.chooseCard('将一张未标记过的手牌标记为<雏>牌', true, function (card) {
                 return !card.hasGaintag('sdxl_guchu');
@@ -786,11 +786,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             if (result.cards?.length) {
               player.addGaintag(result.cards, 'sdxl_guchu');
             }
-          },
+          }
         },
         //尼摩星 霸天   2024 - 05
         sdxl_zhengxun2: {
@@ -798,13 +798,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           marktext: '争',
           forced: true,
           intro: {
-            content: '$造成伤害时,你成为此伤害来源',
+            content: '$造成伤害时,你成为此伤害来源'
           },
           silent: true,
           nopop: true,
           audio: 'sdxl_zhengxun',
           trigger: {
-            global: 'damageBefore',
+            global: 'damageBefore'
           },
           filter(event, player) {
             if (!event.source) return false;
@@ -816,13 +816,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             game.log(player, '代替', trigger.source, '成为了伤害来源');
             trigger.source = player;
-          },
+          }
         },
         sdxl_zhengxun: {
           logTarget: 'source',
           audio: 'ext:金庸群侠传/peiyin:3',
           trigger: {
-            global: 'damageEnd',
+            global: 'damageEnd'
           },
           filter(event, player) {
             if (!event.source) return false;
@@ -836,20 +836,20 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             const next = trigger.source.chooseBool('是否令' + get.translation(player) + '将手牌摸着至与你手牌相等?否则其成为你成为其本局造成伤害的来源');
             next.set('choice', get.attitude(trigger.source, player) > 0);
-            ('step 1');
+            'step 1';
             if (result.bool) {
               player.drawTo(trigger.source.countCards('h'));
             } else {
               player.addSkill('sdxl_zhengxun2');
               player.markAuto('sdxl_zhengxun2', [trigger.source]);
             }
-          },
+          }
         },
         sdxl_duanzu: {
           subSkill: {
             link: {
               trigger: {
-                player: 'linkBefore',
+                player: 'linkBefore'
               },
               silent: true,
               nopop: true,
@@ -873,15 +873,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 effect: {
                   target(card) {
                     if (card.name == 'tiesuo') return 'zeroplayertarget';
-                  },
-                },
-              },
-            },
+                  }
+                }
+              }
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             player: ['damageAfter', 'dying'],
-            target: 'useCardToTargeted',
+            target: 'useCardToTargeted'
           },
           mark: true,
           limited: true,
@@ -902,22 +902,22 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.removeSkills('sdxl_zhengxun');
           },
           intro: {
-            content: 'limited',
+            content: 'limited'
           },
           init(player, skill) {
             player.storage[skill] = false;
-          },
+          }
         },
         sdxl_kuxing: {
           mod: {
             maxHandcard(player, num) {
               return num + get.jy_deEffect2(player);
-            },
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             player: 'damageEnd',
-            source: 'damageSource',
+            source: 'damageSource'
           },
           prompt2(event, player) {
             return '摸' + get.jy_deEffect2(player) + '张牌';
@@ -929,27 +929,27 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             player.draw(get.jy_deEffect2(player));
           },
-          usable: 1,
+          usable: 1
         },
         //邪李莫愁 霸天 20240508
         sdxl_daoge: {
           audio: 'ext:金庸群侠传/peiyin:4',
           trigger: {
-            player: 'chooseToUseBegin',
+            player: 'chooseToUseBegin'
           },
           filterRed() {
             return (
               game.countPlayer(function (i) {
                 return i.countCards('ej', { color: 'red' }) - i.countCards('ej', { color: 'black' });
-              }) > 0
-            );
+              }) > 0);
+
           },
           filterBlack() {
             return (
               game.countPlayer(function (i) {
                 return i.countCards('ej', { color: 'red' }) - i.countCards('ej', { color: 'black' });
-              }) < 0
-            );
+              }) < 0);
+
           },
           filter(event, player) {
             if (event.responded) return false;
@@ -977,7 +977,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               trigger.result = {
                 bool: true,
                 card: { name: cardName },
-                targets: [trigger.useTarget],
+                targets: [trigger.useTarget]
               };
             } else {
               if (!player.hasUsableCard(cardName, 'all')) trigger.cancel();
@@ -996,8 +996,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (arg && arg.name == 'jydiy_bingpoyinzhen' && !lib.skill.sdxl_daoge.filterBlack()) return false;
               //game.log("argcard222",arg.card)
               return true;
-            },
-          },
+            }
+          }
         },
         sdxl_duzhuan: {
           enable: 'phaseUse',
@@ -1015,8 +1015,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             return (
               player.countCards('h', function (card) {
                 return lib.skill.sdxl_duzhuan.filterCard(card, player);
-              }) > 0
-            );
+              }) > 0);
+
           },
           discard: false,
           lose: false,
@@ -1035,14 +1035,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return 1;
             },
             result: {
-              player: 1,
-            },
-          },
+              player: 1
+            }
+          }
         },
         sdxl_duzhuan2: {
           audio: 'sdxl_duzhuan',
           trigger: {
-            target: 'useCardToTargeted',
+            target: 'useCardToTargeted'
           },
           filter(event, player) {
             if (lib.jy_anqiList.includes(event.card.name)) return true;
@@ -1058,14 +1058,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               target(card, player, target, current) {
                 if (lib.jy_anqiList.includes(card.name)) return [1, 3];
                 if (lib.jy_duyaoList.includes(card.name)) return [1, 3];
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_yuhai: {
           audio: 'ext:金庸群侠传/peiyin:3',
           trigger: {
-            player: 'damageEnd',
+            player: 'damageEnd'
           },
           filter(event, player) {
             if (!game.hasPlayer((i) => !i.hasSkill('sdxl_yuhai_hs'))) return false;
@@ -1075,16 +1075,16 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             'step 0';
             event.num1 = trigger.num;
-            ('step 1');
-            player
-              .chooseTarget(get.prompt2(event.name), function (card, player, target) {
-                return !target.hasSkill('sdxl_yuhai_hs');
-              })
-              .set('ai', function (target) {
-                if (player.hasSkill('sdxl_duzhuan') && target == player) return get.attitude(player, target);
-                return -get.attitude(player, target);
-              });
-            ('step 2');
+            'step 1';
+            player.
+            chooseTarget(get.prompt2(event.name), function (card, player, target) {
+              return !target.hasSkill('sdxl_yuhai_hs');
+            }).
+            set('ai', function (target) {
+              if (player.hasSkill('sdxl_duzhuan') && target == player) return get.attitude(player, target);
+              return -get.attitude(player, target);
+            });
+            'step 2';
             if (result.targets?.length) {
               result.targets[0].addSkill('sdxl_yuhai_hs');
               event.num1--;
@@ -1095,37 +1095,37 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             hs: {
               marktext: '欲',
               intro: {
-                content: '红色非装备手牌视为情花',
+                content: '红色非装备手牌视为情花'
               },
               mark: true,
               charlotte: true,
               mod: {
                 cardname(card, player) {
                   if (get.color(card) == 'red' && get.type(card, null, false) != 'equip') return 'jydiy_qinghua';
-                },
-              },
-            },
-          },
+                }
+              }
+            }
+          }
         },
         //邪公孙止 霸天20230709
         sdxl_fenqing2: {
           marktext: '焚',
           intro: {
             name: '焚情',
-            content: 'mark',
-          },
+            content: 'mark'
+          }
         },
         sdxl_fenqing: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             source: 'damageSource',
-            player: 'damageEnd',
+            player: 'damageEnd'
           },
           forced: true,
           marktext: '焚',
           intro: {
             name: '焚情',
-            content: 'mark',
+            content: 'mark'
           },
           filter(event, player) {
             if (player.countMark('sdxl_fenqing2') >= 3) return false;
@@ -1155,7 +1155,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               ui.cardPile.insertBefore(card, ui.cardPile.childNodes[num]);
             }
             game.updateRoundNumber();
-          },
+          }
         },
         sdxl_boqing: {
           mod: {
@@ -1164,11 +1164,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             },
             cardDiscardable(card, player, name) {
               if (name == 'phaseDiscard' && card.suit == 'heart') return false;
-            },
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'phaseJieshuBegin',
+            global: 'phaseJieshuBegin'
           },
           filter(event, player) {
             return event.player != player;
@@ -1201,33 +1201,33 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 event.lose = true;
               }
             }
-            const { bool } = await player
-              .chooseBool()
-              .set('createDialog', [get.prompt(event.name), '获得这些牌', gainCards])
-              .set('ai', (evt, playerx) => {
-                const effect = get.damageEffect(playerx, playerx, playerx);
-                if (evt.lose && effect > 0) return true;
-                if (evt.lose && evt.recover) {
-                  if (playerx.isDamaged()) {
-                    if (playerx.hp == 1) return false;
-                    return true;
-                  } else {
-                    return true;
-                  }
+            const { bool } = await player.
+            chooseBool().
+            set('createDialog', [get.prompt(event.name), '获得这些牌', gainCards]).
+            set('ai', (evt, playerx) => {
+              const effect = get.damageEffect(playerx, playerx, playerx);
+              if (evt.lose && effect > 0) return true;
+              if (evt.lose && evt.recover) {
+                if (playerx.isDamaged()) {
+                  if (playerx.hp == 1) return false;
+                  return true;
+                } else {
+                  return true;
                 }
-                if (evt.lose && !evt.recover) {
-                  if (evt.cards.length < 2) return false;
-                }
-                return true;
-              })
-              .forResult();
+              }
+              if (evt.lose && !evt.recover) {
+                if (evt.cards.length < 2) return false;
+              }
+              return true;
+            }).
+            forResult();
 
             if (bool) {
               player.gain(gainCards, 'log', 'gain2');
               if (event.lose) player.damage('nosource', 'nocard');
               if (event.recover) player.recover();
             }
-          },
+          }
         },
         sdxl_wuqing: {
           trigger: { player: 'phaseZhunbeiBegin' },
@@ -1247,7 +1247,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.loseMaxHp();
             player.recover();
             player.addSkills('sdxl_jieqing');
-          },
+          }
         },
         sdxl_jieqing: {
           enable: ['chooseToUse', 'chooseToRespond'],
@@ -1290,40 +1290,40 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             //获取当前时机的卡牌选择限制
             var filter = event.filterCard;
             if (
-              filter({ name: 'jydiy_duanchangcao' }, player, event) &&
-              player.countCards('hs', function (i) {
-                return i.suit == 'club';
-              })
-            )
-              return true;
+            filter({ name: 'jydiy_duanchangcao' }, player, event) &&
+            player.countCards('hs', function (i) {
+              return i.suit == 'club';
+            }))
+
+            return true;
             //如果当前时机能够使用/打出无懈可击并且角色有♠️️ 那么可以发动技能
             if (
-              filter({ name: 'jydiy_jueqindan' }, player, event) &&
-              player.countCards('hs', function (i) {
-                return i.suit == 'spade';
-              })
-            )
-              return true;
+            filter({ name: 'jydiy_jueqindan' }, player, event) &&
+            player.countCards('hs', function (i) {
+              return i.suit == 'spade';
+            }))
+
+            return true;
             return false;
           },
           ai: { order: 1 },
           hiddenCard(player, name) {
             if (name == 'jydiy_duanchangcao')
-              return (
-                player.countCards('hs', function (i) {
-                  return i.suit == 'club';
-                }) > 0
-              );
+            return (
+              player.countCards('hs', function (i) {
+                return i.suit == 'club';
+              }) > 0);
+
 
             if (name == 'jydiy_jueqindan')
-              return (
-                player.countCards('hs', function (i) {
-                  return i.suit == 'spade';
-                }) > 0
-              );
+            return (
+              player.countCards('hs', function (i) {
+                return i.suit == 'spade';
+              }) > 0);
+
 
             return false;
-          },
+          }
         },
         //尹克西潇湘子 -霸天20230621
         sdxl_qiejing2: {
@@ -1335,7 +1335,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           nopop: true,
           audio: 'sdxl_qiejing',
           trigger: {
-            player: ['loseChongWu', 'loseEnd', 'die'],
+            player: ['loseChongWu', 'loseEnd', 'die']
           },
           content() {
             var cards = player.storage['sdxl_qiejing2'];
@@ -1353,12 +1353,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 player.storage['sdxl_qiejing2'] = cards2;
               }
             }
-          },
+          }
         },
         sdxl_qiejing: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'gainChongWu',
+            global: 'gainChongWu'
           },
           filter(event, player) {
             return event.type == 'lingShou';
@@ -1396,32 +1396,32 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 }
               }
             }
-          },
+          }
         },
         sdxl_huji_count: {
           audio: 'sdxl_huji',
           trigger: {
-            player: 'phaseUseBegin',
+            player: 'phaseUseBegin'
           },
           forced: true,
           async content(event, trigger, player) {
             let list = ['蓝色', '红色'];
-            if (player.storage.sdxl_huji[0] == 0) list = ['蓝色'];
-            else if (player.storage.sdxl_huji[1] == 0) list = ['红色'];
+            if (player.storage.sdxl_huji[0] == 0) list = ['蓝色'];else
+            if (player.storage.sdxl_huji[1] == 0) list = ['红色'];
             const {
-              result: { control },
+              result: { control }
             } =
-              list.length == 1
-                ? { result: { control: list[0] } }
-                : await player
-                  .chooseControl(list)
-                  .set('ai', () => {
-                    let player = get.player();
-                    if (player.storage.sdxl_huji[0] > 1) return '红色';
-                    if (player.storage.sdxl_huji[1] > 1) return '蓝色';
-                    return '红色';
-                  })
-                  .set('prompt', '互忌:令红色数字或蓝色数字其中一项加1,另一项减1 ');
+            list.length == 1 ?
+            { result: { control: list[0] } } :
+            await player.
+            chooseControl(list).
+            set('ai', () => {
+              let player = get.player();
+              if (player.storage.sdxl_huji[0] > 1) return '红色';
+              if (player.storage.sdxl_huji[1] > 1) return '蓝色';
+              return '红色';
+            }).
+            set('prompt', '互忌:令红色数字或蓝色数字其中一项加1,另一项减1 ');
             switch (control) {
               case '蓝色':
                 {
@@ -1443,7 +1443,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (player.storage.sdxl_huji[0] == 0 || player.storage.sdxl_huji[1] == 0) {
               player.loseHp(1);
             }
-          },
+          }
         },
         sdxl_huji_draw: {
           audio: 'sdxl_huji',
@@ -1482,9 +1482,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             result: {
               player(player, target) {
                 return player.storage.sdxl_huji[1];
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_huji: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -1498,11 +1498,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (!game.hasNature(card, 'jy_du')) return;
               if (Array.isArray(range) && range[1] == -1) return;
               range[1] += player.storage.sdxl_huji[0];
-            },
+            }
           },
           forced: true,
           trigger: {
-            player: 'useCard',
+            player: 'useCard'
           },
           filter(event, player) {
             let name = event.card.name;
@@ -1522,14 +1522,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (name != 'sha') return false;
               if (!game.hasNature(card, 'jy_du')) return false;
               return true;
-            },
-          },
+            }
+          }
         },
         //绝杨改之--20221221霸天
         sdxl_xikuang: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'useCardToPlayered',
+            player: 'useCardToPlayered'
           },
           usable: 1,
           check(event, player) {
@@ -1547,13 +1547,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           logTarget: 'target',
           content() {
             'step 0';
-            player
-              .chooseControl('sdxl_xikuang_discard', 'sdxl_xikuang_usecard', function (event, player) {
-                return 'sdxl_xikuang_usecard';
-              })
-              .set('prompt', '西狂')
-              .set('prompt2', '执行下列两项中的一项并令目标执行另一项:<br>1.弃置所有♥️️牌(无♥️️牌则改为失去一点体力) ; <br>2.下个回合内至多只能使用两张牌.');
-            ('step 1');
+            player.
+            chooseControl('sdxl_xikuang_discard', 'sdxl_xikuang_usecard', function (event, player) {
+              return 'sdxl_xikuang_usecard';
+            }).
+            set('prompt', '西狂').
+            set('prompt2', '执行下列两项中的一项并令目标执行另一项:<br>1.弃置所有♥️️牌(无♥️️牌则改为失去一点体力) ; <br>2.下个回合内至多只能使用两张牌.');
+            'step 1';
             let playerx = player,
               targetx = trigger.target;
             if (result.control == 'sdxl_xikuang_discard') {
@@ -1573,19 +1573,19 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           subSkill: {
             discard: {
-              name: '选项一',
+              name: '选项一'
             },
             usecard: {
               name: '选项二',
               mark: true,
               trigger: {
-                player: 'phaseZhunbeiBegin',
+                player: 'phaseZhunbeiBegin'
               },
               marktext: '狂',
               intro: {
                 name: '西狂',
                 name2: '狂',
-                content: '下个回合内至多只能使用两张牌',
+                content: '下个回合内至多只能使用两张牌'
               },
               forced: true,
               popup: false,
@@ -1593,7 +1593,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               charlotte: true,
               content() {
                 player.addTempSkill('sdxl_xikuang_usecard2');
-              },
+              }
             },
             usecard2: {
               mark: true,
@@ -1601,7 +1601,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               intro: {
                 name: '西狂',
                 name2: '狂',
-                content: '回合内至多只能使用两张牌',
+                content: '回合内至多只能使用两张牌'
               },
               forced: true,
               popup: false,
@@ -1618,15 +1618,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 },
                 cardSavable(card, player) {
                   return lib.skill['sdxl_xikuang_usecard2'].mod.cardEnabled2(card, player);
-                },
-              },
-            },
-          },
+                }
+              }
+            }
+          }
         },
         sdxl_shangqing: {
           audio: 'ext:金庸群侠传/peiyin:4',
           trigger: {
-            player: 'phaseJieshuBegin',
+            player: 'phaseJieshuBegin'
           },
           forced: true,
           filter(event, player) {
@@ -1650,7 +1650,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           subSkill: {
             buff: {
               trigger: {
-                player: 'useCard',
+                player: 'useCard'
               },
               audio: 'sdxl_shangqing',
               forced: true,
@@ -1670,15 +1670,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 player.loseHp(hp);
                 trigger.effectCount += hp;
                 game.log(trigger.card, '额外结算', hp, '次');
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_gaizhi: {
           audio: 'ext:金庸群侠传/peiyin:4',
           trigger: {
             player: 'useCardToPlayer',
-            target: 'useCardToTarget',
+            target: 'useCardToTarget'
           },
           //usable:2,
           shaRelated: true,
@@ -1699,7 +1699,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               const vcard = {
                 name: name,
                 suit: event.card.suit,
-                number: event.card.number,
+                number: event.card.number
               };
               const info = get.info(vcard);
               if (info.notarget) return false;
@@ -1729,7 +1729,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               const vcard = {
                 name: name,
                 suit: trigger.card.suit,
-                number: trigger.card.number,
+                number: trigger.card.number
               };
               const info = get.info(vcard);
               if (info.notarget) return false;
@@ -1738,25 +1738,25 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             });
             let text = get.prompt2(event.name);
             if (trigger.player != player) text = '是否发动' + get.translation(player) + '的【改之】？';
-            trigger.player
-              .chooseVCardButton(inpile, text)
-              .set('ai', function (button) {
-                const name = button.link[2];
-                const player = _status.event.player;
-                const evt = _status.event._trigger;
-                const vcard = {
-                  name: name,
-                  suit: evt.card.suit,
-                  number: evt.card.number,
-                };
-                const effect = _status.event.funcx(evt.player, vcard, evt.targets) - _status.event.aicheck;
-                //game.log("effectx",name,effect)//测试用//------------------//
-                return effect;
-              })
-              .set('aicheck', result1)
-              .set('_trigger', trigger)
-              .set('funcx', func);
-            ('step 1');
+            trigger.player.
+            chooseVCardButton(inpile, text).
+            set('ai', function (button) {
+              const name = button.link[2];
+              const player = _status.event.player;
+              const evt = _status.event._trigger;
+              const vcard = {
+                name: name,
+                suit: evt.card.suit,
+                number: evt.card.number
+              };
+              const effect = _status.event.funcx(evt.player, vcard, evt.targets) - _status.event.aicheck;
+              //game.log("effectx",name,effect)//测试用//------------------//
+              return effect;
+            }).
+            set('aicheck', result1).
+            set('_trigger', trigger).
+            set('funcx', func);
+            'step 1';
             if (result.bool) {
               const evt = trigger.parent;
               const card = evt.card;
@@ -1815,7 +1815,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     let vcard = {
                       name: name,
                       suit: card.suit,
-                      number: card.number,
+                      number: card.number
                     };
                     let info = get.info(vcard);
                     if (info.notarget) return false;
@@ -1867,7 +1867,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     let vcard = {
                       name: name,
                       suit: card.suit,
-                      number: card.number,
+                      number: card.number
                     };
                     let info = get.info(vcard);
                     if (info.notarget) return false;
@@ -1892,8 +1892,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     return value <= 0 ? [0, 0, 1, 3] : [0, 0, 1, 1.6];
                   }
                 }
-              },
-            },
+              }
+            }
           },
           global: 'sdxl_gaizhi_unequip',
           subSkill: {
@@ -1914,16 +1914,16 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   const chooseUseTarget = evt.getParent(2);
                   if (usecard && chooseUseTarget.name != 'chooseUseTarget' && evt.name != 'chooseToUse') return false;
                   return true;
-                },
-              },
-            },
-          },
+                }
+              }
+            }
+          }
         },
         //新霍都 霸天 230715
         sdxl_juao: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'phaseZhunbeiBegin',
+            player: 'phaseZhunbeiBegin'
           },
           forced: true,
           filter(event, player) {
@@ -1933,11 +1933,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             var next = player.chooseCardTarget({
               position: 'h',
-              selectCard: (function (player) {
+              selectCard: function (player) {
                 var num = player.countCards('h') - player.hp;
                 if (num >= 2) return [1, 2];
                 return [1, 1];
-              })(player),
+              }(player),
               selectTarget() {
                 return [1, ui.selected.cards.length];
               },
@@ -1955,14 +1955,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.damageEffect(target, player, player);
               },
               prompt: get.prompt('sdxl_juao'),
-              prompt2: get.translation('sdxl_juao_info'),
+              prompt2: get.translation('sdxl_juao_info')
             });
-            ('step 1');
+            'step 1';
             if (result.cards?.length) {
               player.discard(result.cards);
               result.targets.filter((i) => i.damage(player));
             }
-          },
+          }
         },
         sdxl_tuoqiao3: {
           forced: true,
@@ -1973,7 +1973,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           charlotte: true,
           audio: 'sdxl_tuoqiao',
           trigger: {
-            player: 'damageBegin4',
+            player: 'damageBegin4'
           },
           forced: true,
           filter(event, player) {
@@ -1995,11 +1995,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             next.set('ai', function (card) {
               return 4;
             });
-            ('step 1');
+            'step 1';
             if (result.bool) {
               trigger.cancel();
             }
-          },
+          }
         },
         sdxl_tuoqiao2: {
           group: 'sdxl_tuoqiao3',
@@ -2027,11 +2027,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             },
             cardDiscardable(card, player, name) {
               if (name == 'phaseDiscard' && card.hasGaintag('sdxl_tuoqiao')) return false;
-            },
+            }
           },
           audio: 'sdxl_tuoqiao',
           trigger: {
-            player: 'loseEnd',
+            player: 'loseEnd'
           },
           content() {
             var cards = player.getCards('h', function (card) {
@@ -2047,7 +2047,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               if (num > 0) player.draw(num);
             }
-          },
+          }
         },
         sdxl_tuoqiao: {
           filterCard: true,
@@ -2079,12 +2079,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player(player) {
                 if (player.countCards('h') > 3) return 10;
                 return 0;
-              },
-            },
+              }
+            }
           },
           intro: {
-            content: 'limited',
-          },
+            content: 'limited'
+          }
         },
         sdxl_xianzha: {
           filter(event, player) {
@@ -2108,23 +2108,23 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else if (get.tag(event.card, 'damage')) {
               if (event.card.name == 'shuiyanqijunx') return player.countCards('e') == 0;
               return true;
-            } else if ((event.card.name == 'shunshou' || (event.card.name == 'zhujinqiyuan' && (event.card.yingbian || get.distance(event.player, player) < 0))) && player.hp > 2) {
+            } else if ((event.card.name == 'shunshou' || event.card.name == 'zhujinqiyuan' && (event.card.yingbian || get.distance(event.player, player) < 0)) && player.hp > 2) {
               return true;
             }
             return false;
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            target: 'useCardToTargeted',
+            target: 'useCardToTargeted'
           },
           content() {
             'step 0';
             player.loseHp();
-            ('step 1');
+            'step 1';
             trigger.parent.excluded.add(player);
-            ('step 2');
+            'step 2';
             player.draw();
-          },
+          }
         },
         /////////////////////////////////
         //旧霍都
@@ -2151,13 +2151,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.storage.sdxl_tuoqiao_old = true;
             var cards = player.getCards('hej');
             if (cards.length) player.discard(cards);
-            ('step 1');
+            'step 1';
             if (player.isLinked()) player.link();
-            ('step 2');
+            'step 2';
             if (player.isTurnedOver()) player.turnOver();
-            ('step 3');
+            'step 3';
             player.draw(3);
-            ('step 4');
+            'step 4';
             if (player.hp < 1) {
               player.recover(1 - player.hp);
             }
@@ -2174,12 +2174,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 if (player.hp <= 0) return 10;
                 if (player.hp <= 1 && player.countCards('he') <= 1) return 10;
                 return 0;
-              },
+              }
             },
             threaten(player, target) {
               if (!target.storage.sdxl_tuoqiao_old) return 0.6;
-            },
-          },
+            }
+          }
         },
         sdxl_juao_old: {
           ai: {
@@ -2187,7 +2187,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             skillTagFilter(player, tag, arg) {
               if (!player._sdxl_juao_old) return false;
               return true;
-            },
+            }
           },
           trigger: { player: 'gainEnd' },
           prompt: '是否发动【倨傲】观看牌堆顶三张牌',
@@ -2202,28 +2202,28 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player._sdxl_juao_old = true;
             var cards = get.cards(3);
             if (Array.isArray(cards))
-              for (var i of cards) {
-                ui.cardPile.insertBefore(i.fix(), ui.cardPile.firstChild);
-              }
-            player
-              .chooseButton(['倨傲:选择要使用的牌', cards])
-              .set('filterButton', function (button) {
-                return _status.event.cards.includes(button.link);
+            for (var i of cards) {
+              ui.cardPile.insertBefore(i.fix(), ui.cardPile.firstChild);
+            }
+            player.
+            chooseButton(['倨傲:选择要使用的牌', cards]).
+            set('filterButton', function (button) {
+              return _status.event.cards.includes(button.link);
+            }).
+            set(
+              'cards',
+              cards.filter(function (card) {
+                return player.hasUseTarget(card);
               })
-              .set(
-                'cards',
-                cards.filter(function (card) {
-                  return player.hasUseTarget(card);
-                }),
-              )
-              .set('ai', function (button) {
-                return _status.event.player.getUseValue(button.link);
-              });
-            ('step 1');
+            ).
+            set('ai', function (button) {
+              return _status.event.player.getUseValue(button.link);
+            });
+            'step 1';
             if (result.links?.length) {
               var card = result.links[0];
               var next = player.chooseUseTarget(card, true, false);
-              var bool = get.type(card) == 'trick' || (get.type(card) == 'basic' && !['shan', 'tao', 'jiu', 'du'].includes(card.name));
+              var bool = get.type(card) == 'trick' || get.type(card) == 'basic' && !['shan', 'tao', 'jiu', 'du'].includes(card.name);
               if (bool) {
                 next.set('oncard', function (card, player) {
                   delete player._sdxl_juao_old;
@@ -2231,7 +2231,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   that.directHit.addArray(
                     game.filterPlayer(function (current) {
                       return current != player;
-                    }),
+                    })
                   );
                 });
               }
@@ -2239,11 +2239,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (bool) str = '且此牌不能被响应!';
               next.set('prompt2', '此牌不计入次数' + str);
             }
-            ('step 2');
+            'step 2';
             if (player._sdxl_juao_old) {
               delete player._sdxl_juao_old;
             }
-          },
+          }
         },
         sdxl_xianzha_old: {
           filter(event, player) {
@@ -2273,19 +2273,19 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             'step 0';
             player.loseHp();
-            ('step 1');
+            'step 1';
             trigger.parent.excluded.add(player);
-            ('step 2');
+            'step 2';
             //摸牌时机移动到此牌结算完毕//
             var next = player.draw();
             event.next.remove(next);
             trigger.parent.after.push(next);
           },
-          ai: { expose: 0.3 },
+          ai: { expose: 0.3 }
         },
         sdxl_duozhang: {
           trigger: {
-            player: 'phaseBefore',
+            player: 'phaseBefore'
           },
           forced: true,
           content() {
@@ -2294,9 +2294,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (card) {
               player.gain(card, 'gain2', 'log');
             }
-            ('step 1');
+            'step 1';
             player.removeSkill('sdxl_duozhang');
-          },
+          }
         },
         //绝周伯通
         //互搏(霸天)
@@ -2314,7 +2314,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             wanjian: 'nanman',
             jiu: 'tao',
             tao: 'jiu',
-            wuzhong: 'wuzhong',
+            wuzhong: 'wuzhong'
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: { player: 'useCardAfter' },
@@ -2325,19 +2325,19 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             var used = lib.skill.sdxl_hubo.name_used[event.card.name];
             if (!used) return false;
             var card = {
-              name: used,
+              name: used
             };
             return player.hasUseTarget(card);
           },
           content() {
             var used = lib.skill.sdxl_hubo.name_used[trigger.card.name];
             var card = {
-              name: used,
+              name: used
             };
             var next = player.chooseUseTarget(card, false);
             next.set('prompt', get.prompt(event.name));
             next.set('prompt2', '视为使用一张' + get.translation(card) + '？');
-          },
+          }
         },
         //逐戏(藏海)
         sdxl_zhuxi: {
@@ -2361,8 +2361,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           ai: {
             order: 11,
-            result: { player: 1 },
-          },
+            result: { player: 1 }
+          }
         },
         sdxl_zhuxi2: {
           trigger: { global: 'useCard' },
@@ -2393,7 +2393,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.type(card) == 'trick';
             });
             if (gain.length) player.gain(gain, 'log', 'gain2');
-          },
+          }
         },
         //-------空明(藏海)
         sdxl_kongming: {
@@ -2414,7 +2414,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               marktext2: '空',
               markimage: 'extension/金庸群侠传/image/icon/jykongming.jpg',
               intro: {
-                content: '你只能使用比此杀点数小的闪来抵消之.',
+                content: '你只能使用比此杀点数小的闪来抵消之.'
               },
               mod: {
                 cardEnabled(card, player) {
@@ -2428,10 +2428,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 },
                 cardRespondable(card, player) {
                   return lib.skill.sdxl_kongming_dianshu.mod.cardEnabled(card, player);
-                },
-              },
-            },
-          },
+                }
+              }
+            }
+          }
         },
         //公孙绿萼
         //----<献丹>
@@ -2439,7 +2439,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             player: ['loseAfter'],
-            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
           },
           forced: true,
           filter(event, player) {
@@ -2461,13 +2461,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             player.damage('jy_du', 'nosource', 'nocard');
-          },
+          }
         },
         //-----<献丹>
         sdxl_xiandan: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: ['damageEnd', 'linkAfter'],
+            player: ['damageEnd', 'linkAfter']
           },
           filter(event, player) {
             if (event.name == 'damage') return event.num > 0;
@@ -2480,7 +2480,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (trigger.name == 'damage') {
               event.count = Math.min(trigger.num, 9);
             } else event.count = 1;
-            ('step 1');
+            'step 1';
             event.count--;
             var cards1 = [];
             for (var i = 0; i < 3; i++) {
@@ -2503,15 +2503,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             event.cards1 = cards1;
-            ('step 2');
+            'step 2';
             if (result.targets?.length) {
               var target = result.targets[0];
               target.gain(event.cards1, 'gain2');
             }
-            ('step 3');
-            if (event.count > 0) player.chooseBool(get.prompt2(event.name)).set('frequentSkill', event.name);
-            else event.finish();
-            ('step 4');
+            'step 3';
+            if (event.count > 0) player.chooseBool(get.prompt2(event.name)).set('frequentSkill', event.name);else
+            event.finish();
+            'step 4';
             if (result.bool) {
               event.goto(1);
             }
@@ -2536,9 +2536,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   if (target.hp == 3) return [1, num * 1.5];
                   if (target.hp == 2) return [1, num * 0.5];
                 }
-              },
-            },
-          },
+              }
+            }
+          }
         },
         //大武小武
         sdxl_xiqiang: {
@@ -2552,7 +2552,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           marktext: '阋',
           intro: {
             name: '阋墙',
-            content: 'players',
+            content: 'players'
           },
           mode: ['identity', 'guozhan'],
           available(mode) {
@@ -2575,9 +2575,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             player.storage.sdxl_xiqiang.add(target);
             player.markSkill('sdxl_xiqiang');
-            ('step 1');
+            'step 1';
             player.chooseToCompare(target);
-            ('step 2');
+            'step 2';
             if (result.bool) {
               //list.sortBySeat(_status.jy_roundStart||game.zhu);
               if (target.seatNum == 1) {
@@ -2588,14 +2588,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 function () {
                   return lib.skill.sdxl_xiqiang.ai.result.player(player, target) > 0;
                 },
-                '是否与' + get.translation(target) + '交换位置？',
+                '是否与' + get.translation(target) + '交换位置？'
               );
             } else {
               var cards = player.getCards('he');
               if (cards.length) player.discard(cards);
               event.finish();
             }
-            ('step 3');
+            'step 3';
             if (result.bool) {
               game.jy_swapSeat(player, target);
             }
@@ -2604,11 +2604,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             order(name, player) {
               var cards = player.getCards('h');
               if (Array.isArray(cards))
-                for (var i of cards) {
-                  if (i.number >= 11 && get.value(i) < 7) {
-                    return 9;
-                  }
+              for (var i of cards) {
+                if (i.number >= 11 && get.value(i) < 7) {
+                  return 9;
                 }
+              }
               //if(player.needsToDiscard()){
               //return 0.7;
               //};
@@ -2631,9 +2631,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 if (num == 1) return -1;
                 if (num == 2) return -0.7;
                 return -0.5;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_shubian: {
           enable: 'phaseUse',
@@ -2667,21 +2667,21 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               game.log('牌堆没有合法的装备牌!!');
             }
-            ('step 1');
+            'step 1';
             target.draw();
           },
           ai: {
             result: {
-              target: 1,
+              target: 1
             },
-            order: 12,
-          },
+            order: 12
+          }
         },
         //达尔巴
         sdxl_qitun: {
           audio: 'ext:金庸群侠传/peiyin:3',
           trigger: {
-            player: 'useCard',
+            player: 'useCard'
           },
           filter(event, player) {
             return event.targets && event.targets.length && (event.card.name == 'sha' || event.card.name == 'juedou');
@@ -2698,9 +2698,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             skillTagFilter(player, tag, arg) {
               //无双  杀的ai
               // 决斗的有点特殊 就没抄
-              if ((arg && arg.card.name != 'sha') || arg.target.countCards('h', 'shan') > 1) return false;
-            },
-          },
+              if (arg && arg.card.name != 'sha' || arg.target.countCards('h', 'shan') > 1) return false;
+            }
+          }
         },
         sdxl_kuangchu: {
           mod: {
@@ -2710,7 +2710,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   if (Array.isArray(range) && range[1] != -1) range[1] += 1;
                 }
               }
-            },
+            }
           },
           enable: 'phaseUse',
           filterCard(card, player) {
@@ -2735,9 +2735,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             basic: {
               order: 10, //改了优先度5为10  免得顶装备 浪费装备牌 装备牌的优先度是8.5左右
               useful: 1,
-              value: 5.5,
-            },
-          },
+              value: 5.5
+            }
+          }
         },
         //陆展元
         sdxl_wenqing: {
@@ -2758,13 +2758,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             player.draw();
-          },
+          }
         },
         sdxl_wenqing2: {
           audio: 'sdxl_wenqing',
           trigger: {
             player: ['loseAfter'],
-            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
           },
           forced: true,
           filter(event, player) {
@@ -2775,23 +2775,23 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               evt.cards2.length > 1 &&
               game.hasPlayer(function (current) {
                 return current.hasSex('female');
-              })
-            );
+              }));
+
           },
           content() {
             'step 0';
-            player
-              .chooseTarget(get.prompt('sdxl_wenqing'), '令一名女性角色摸一张牌', function (card, player, target) {
-                return target.hasSex('female');
-              })
-              .set('ai', function (target) {
-                return get.attitude(player, target);
-              });
-            ('step 1');
+            player.
+            chooseTarget(get.prompt('sdxl_wenqing'), '令一名女性角色摸一张牌', function (card, player, target) {
+              return target.hasSex('female');
+            }).
+            set('ai', function (target) {
+              return get.attitude(player, target);
+            });
+            'step 1';
             if (result.targets?.length) {
               result.targets[0].draw();
             }
-          },
+          }
         },
         sdxl_huaijuan_number: {
           mark: true,
@@ -2801,7 +2801,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           audio: 'sdxl_huaijuan',
           trigger: {
             player: 'useCard',
-            target: 'useCardToPlayered',
+            target: 'useCardToPlayered'
           },
           forced: true,
           charlotte: true,
@@ -2820,9 +2820,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               },
               player(card, player, target) {
                 if (get.type(card) != 'equip' && player.storage.sdxl_huaijuan_number && card.number == player.storage.sdxl_huaijuan_number && player.isDamaged()) return [1, 2];
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_huaijuan_suit: {
           mark: true,
@@ -2832,7 +2832,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           audio: 'sdxl_huaijuan',
           trigger: {
             player: 'useCard',
-            target: 'useCardToPlayered',
+            target: 'useCardToPlayered'
           },
           forced: true,
           charlotte: true,
@@ -2851,9 +2851,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               },
               player(card, player, target) {
                 if (get.type(card) != 'equip' && player.storage.sdxl_huaijuan_suit && card.suit == player.storage.sdxl_huaijuan_suit) return [1, 2];
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_huaijuan: {
           limited: true,
@@ -2902,18 +2902,18 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             result: {
               target(player, target) {
                 return 3;
-              },
+              }
             },
             expose: 0.4,
-            threaten: 2,
-          },
+            threaten: 2
+          }
         },
         //SP杨过
         sdxl_zhangqing: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             player: 'useCardAfter',
-            target: 'useCardToPlayered',
+            target: 'useCardToPlayered'
           },
           forced: true,
           filter(event, player, name) {
@@ -2922,7 +2922,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            if (player.storage.sdxl_zhangqing || (get.mode() == 'guozhan' && player.hiddenSkills.includes('sdxl_zhangqing'))) {
+            if (player.storage.sdxl_zhangqing || get.mode() == 'guozhan' && player.hiddenSkills.includes('sdxl_zhangqing')) {
               if (!player.storage.sdxl_zhangqing) {
                 event.skillHidden = true;
               }
@@ -2936,20 +2936,20 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.forced = true;
             }
-            ('step 1');
+            'step 1';
             if (event.forced || result.bool) {
               player.loseHp();
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             player.draw(4);
-            ('step 3');
+            'step 3';
             player.chooseToDiscard(2, true);
           },
           ai: {
-            threaten: 1.5,
-          },
+            threaten: 1.5
+          }
         },
         sdxl_liufang: {
           juexingji: true,
@@ -2986,35 +2986,35 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.storage.sdxl_zhangqing = true;
             player.awakenSkill('sdxl_liufang');
             player.loseMaxHp();
-            ('step 1');
+            'step 1';
             if (player.isDamaged()) {
               player.recover();
             }
-            ('step 2');
+            'step 2';
             player.addSkills('sdxl_xiaohun');
-            ('step 3');
-            player
-              .chooseTarget('令一名其他角色将侠客牌翻面', true, function (card, player, target) {
-                return player != target;
-              })
-              .set('ai', function (target) {
-                if (target.hasSkillTag('noturn')) return 0;
-                var player = _status.event.player;
-                if (get.attitude(_status.event.player, target) == 0) return 0;
-                if (get.attitude(_status.event.player, target) > 0) {
-                  if (target.isTurnedOver()) return 3;
-                  return -1;
-                } else {
-                  if (target.isTurnedOver()) return -3;
-                  return 3;
-                }
-                return 0;
-              });
-            ('step 4');
+            'step 3';
+            player.
+            chooseTarget('令一名其他角色将侠客牌翻面', true, function (card, player, target) {
+              return player != target;
+            }).
+            set('ai', function (target) {
+              if (target.hasSkillTag('noturn')) return 0;
+              var player = _status.event.player;
+              if (get.attitude(_status.event.player, target) == 0) return 0;
+              if (get.attitude(_status.event.player, target) > 0) {
+                if (target.isTurnedOver()) return 3;
+                return -1;
+              } else {
+                if (target.isTurnedOver()) return -3;
+                return 3;
+              }
+              return 0;
+            });
+            'step 4';
             if (result.targets?.length) {
               result.targets[0].turnOver();
             }
-            ('step 5');
+            'step 5';
             if (!player.name2) {
               //赋值白板武将
               lib.skill.sdxl_liufang.addfujiang(player, 'sdxl_shendiao');
@@ -3022,7 +3022,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.addSkills('sdxl_shouzhong');
               player.addSkills('qtpz_duwu');
             }
-          },
+          }
         },
         sdxl_xiaohun: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -3034,15 +3034,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            trigger.target
-              .chooseToDiscard('弃置一张♥️️牌,或令' + get.translation(player) + '随机获得一张♥️️牌', 'he', function (card) {
-                return card.suit == 'heart';
-              })
-              .set('ai', function (card) {
-                var trigger = _status.event.getTrigger();
-                return -get.attitude(trigger.target, trigger.player) - get.value(card);
-              });
-            ('step 1');
+            trigger.target.
+            chooseToDiscard('弃置一张♥️️牌,或令' + get.translation(player) + '随机获得一张♥️️牌', 'he', function (card) {
+              return card.suit == 'heart';
+            }).
+            set('ai', function (card) {
+              var trigger = _status.event.getTrigger();
+              return -get.attitude(trigger.target, trigger.player) - get.value(card);
+            });
+            'step 1';
             if (result.bool == false) {
               var heart = get.randomCard(function (cardx) {
                 return cardx.suit == 'heart';
@@ -3051,11 +3051,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 player.gain(heart, 'log', 'gain2');
               }
             }
-          },
+          }
         },
         //神雕
         sdxl_duwushendiao: {
-          audio: 'ext:金庸群侠传/peiyin:2',
+          audio: 'ext:金庸群侠传/peiyin:2'
         },
         sdxl_shouzhong: {
           ai: {
@@ -3063,8 +3063,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             result: {
               player(player) {
                 return 1;
-              },
-            },
+              }
+            }
           },
           enable: 'phaseUse',
           usable: 1,
@@ -3075,7 +3075,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             event.cards = cards;
             var content = ['牌堆顶的五张牌', event.cards];
             player.chooseControl('ok').set('dialog', content);
-            ('step 1');
+            'step 1';
             var list = [];
             while (cards.length) {
               var cardx = event.cards.pop();
@@ -3086,7 +3086,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
             }
             event.cards = list;
-            ('step 2');
+            'step 2';
             if (event.cards.length > 1) {
               var next = player.chooseCardButton(event.cards, true, 1, '选择分配一张装备牌');
               next.set('ai', function (button) {
@@ -3098,29 +3098,29 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 3');
+            'step 3';
             if (result.links?.length) {
               for (var i of result.links) {
                 event.cards.remove(i);
               }
               event.togive = result.links.slice(0);
-              player
-                .chooseTarget('将' + get.translation(result.links) + '交给一名角色', true)
-                .set('ai', function (target) {
-                  var att = get.attitude(_status.event.player, target);
-                  if (get.type(_status.event.cardx) == 'equip' && target.hasEmptySlot(get.subtype(_status.event.cardx))) return 3 * att;
-                  return att;
-                })
-                .set('cardx', event.togive[0]);
+              player.
+              chooseTarget('将' + get.translation(result.links) + '交给一名角色', true).
+              set('ai', function (target) {
+                var att = get.attitude(_status.event.player, target);
+                if (get.type(_status.event.cardx) == 'equip' && target.hasEmptySlot(get.subtype(_status.event.cardx))) return 3 * att;
+                return att;
+              }).
+              set('cardx', event.togive[0]);
             }
-            ('step 4');
+            'step 4';
             if (result.targets.length) {
               player.give(event.togive, result.targets[0], true);
               //result.targets[0].gain(event.togive,'draw','gain2');
               //player.line(result.targets[0],'green');
               event.goto(2);
             }
-          },
+          }
         },
         //甄志丙
         sdxl_qieyu: {
@@ -3130,13 +3130,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           filterTarget(card, player, target) {
             if (player == target) return false;
             if (
-              !target.countCards('j', function (card) {
-                return (card.viewAs || card.name) != 'jydiy_yungongliaoshang';
-              }) &&
-              !target.isTurnedOver() &&
-              !target.isLinked()
-            )
-              return false;
+            !target.countCards('j', function (card) {
+              return (card.viewAs || card.name) != 'jydiy_yungongliaoshang';
+            }) &&
+            !target.isTurnedOver() &&
+            !target.isLinked())
+
+            return false;
             return target.countGainableCards(player, 'hej') > 0;
           },
           filterCard() {
@@ -3147,13 +3147,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             return game.hasPlayer(function (current) {
               if (player == current) return false;
               if (
-                !current.countCards('j', function (card) {
-                  return (card.viewAs || card.name) != 'jydiy_yungongliaoshang';
-                }) &&
-                !current.isTurnedOver() &&
-                !current.isLinked()
-              )
-                return false;
+              !current.countCards('j', function (card) {
+                return (card.viewAs || card.name) != 'jydiy_yungongliaoshang';
+              }) &&
+              !current.isTurnedOver() &&
+              !current.isLinked())
+
+              return false;
               return current.countGainableCards(player, 'hej') > 0;
             });
           },
@@ -3169,10 +3169,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             result: {
               target(player, target) {
                 return lib.card.shunshou.ai.result.target(player, target);
-              },
+              }
             },
-            threaten: 2,
-          },
+            threaten: 2
+          }
         },
         sdxl_dajie2: {
           mod: {
@@ -3181,7 +3181,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             },
             aiValue(player, card, num) {
               if (get.itemtype(card) == 'card' && card.hasGaintag('sdxl_dajie')) return 0;
-            },
+            }
           },
           trigger: { player: ['respond', 'useCard'] },
           forced: true,
@@ -3201,11 +3201,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               for (var card of cards) {
                 if (get.position(card) == 'd' && card.storage && card.storage.sdxl_dajie && card.storage.sdxl_dajie_respondTo && card.storage.sdxl_dajie_respondTo == event.respondTo[1]) {
                   if (
-                    game.hasPlayer(function (current) {
-                      return !card.storage.sdxl_dajie.includes(current);
-                    })
-                  )
-                    return true;
+                  game.hasPlayer(function (current) {
+                    return !card.storage.sdxl_dajie.includes(current);
+                  }))
+
+                  return true;
                 }
               }
             }
@@ -3220,7 +3220,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return iiii.storage && iiii.storage.sdxl_dajie && iiii.storage.sdxl_dajie_respondTo && iiii.storage.sdxl_dajie_respondTo == trigger.respondTo[1];
             });
             event.togive = cards.slice(0);
-            ('step 1');
+            'step 1';
             event.card = [event.togive.shift()];
             var players = game.filterPlayer(function (current) {
               return current != player && get.attitude(player, current) > 0 && !event.card[0].storage.sdxl_dajie.includes(current);
@@ -3234,7 +3234,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return target == _status.event.choice ? 1 : -1;
             });
             next.set('choice', choice);
-            ('step 2');
+            'step 2';
             if (result.targets?.length) {
               //player.line(result.targets[0]);
               player.give(event.card, result.targets[0], true).gaintag.add('sdxl_dajie');
@@ -3244,7 +3244,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
             }
             if (event.togive.length) event.goto(1);
-          },
+          }
         },
         sdxl_dajie: {
           global: 'sdxl_dajie2',
@@ -3279,7 +3279,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return target == _status.event.choice ? 1 : -1;
             });
             next.set('choice', choice);
-            ('step 1');
+            'step 1';
             if (result.targets?.length) {
               player.give(event.togive, result.targets[0], true).gaintag.add('sdxl_dajie');
               //result.targets[0].gain(event.togive,'gain2','log').gaintag.add('sdxl_dajie');
@@ -3312,7 +3312,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 });
               }
             }
-          },
+          }
         },
         //冯默风:巧匠、潜营
         sdxl_qianying: {
@@ -3322,13 +3322,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               marktext2: '潜',
               markimage: 'extension/金庸群侠传/image/icon/jy_icon_qianying.jpg',
               intro: {
-                content: '你本轮已发动【潜营】.',
-              },
-            },
+                content: '你本轮已发动【潜营】.'
+              }
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'phaseUseBefore',
+            global: 'phaseUseBefore'
           },
           logTarget: 'player',
           check(event, player) {
@@ -3348,7 +3348,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             //trigger.player.gain(cards,player,'giveAuto');
             player.give(cards, trigger.player, true);
             player.addTempSkill('sdxl_qianying_off', 'roundStart');
-            ('step 1');
+            'step 1';
             if (trigger.player.countGainableCards(player, 'h')) {
               if (event.count > trigger.player.countGainableCards(player, 'h')) event.count = trigger.player.countGainableCards(player, 'h');
               player.gainPlayerCard(event.count, 'h', trigger.player, true, 'visible').set('ai', function (button) {
@@ -3359,13 +3359,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return bool ? -value : value;
               });
             }
-          },
+          }
         },
         sdxl_qiaojiang: {
           mod: {
             selectTarget(card, player, range) {
               if (card.name == 'tiesuo' && Array.isArray(range) && range[1] != -1) range[1] = 4;
-            },
+            }
           },
           derivation2: ['jydiytaohuazhen', 'jydiy_shenghuoling', 'jydiy_ruanweijia', 'jydiy_tulongdao', 'jydiy_dagoubang', 'jydiy_yitianjian'],
           enable: 'phaseUse',
@@ -3405,26 +3405,26 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (cards.length == 1) {
               event._result = { bool: true, links: cards };
             } else {
-              player
-                .choosePlayerCard('e', target, true)
-                .set('filterButton', function (button) {
-                  if (button.link.origin_name) {
-                    return false;
-                  }
-                  return lib.skill.sdxl_qiaojiang.derivation2.includes(button.link.name);
-                })
-                .set('ai', function (button) {
-                  return 1;
-                });
+              player.
+              choosePlayerCard('e', target, true).
+              set('filterButton', function (button) {
+                if (button.link.origin_name) {
+                  return false;
+                }
+                return lib.skill.sdxl_qiaojiang.derivation2.includes(button.link.name);
+              }).
+              set('ai', function (button) {
+                return 1;
+              });
             }
-            ('step 1');
+            'step 1';
             var card = result.links[0];
             //var info=get.info(card);
             target.removeEquipTrigger(card);
             card.init([card.suit, card.number, card.name + '_re', card.nature]);
             target.addEquipTrigger(card);
           },
-          ai: { order: 9, result: { target: 2 }, threaten: 2 },
+          ai: { order: 9, result: { target: 2 }, threaten: 2 }
         },
         //程英:神通、箫吟
         sdxl_shentong: {
@@ -3448,25 +3448,25 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (lengthx && !player.getCards('e').includes(card)) return -1;
             if (lengthx) {
               if (
-                game.hasPlayer(function (target) {
-                  return target != player && lib.skill.sdxl_shentong.ai.result.target(player, target) > 50;
-                })
-              ) {
+              game.hasPlayer(function (target) {
+                return target != player && lib.skill.sdxl_shentong.ai.result.target(player, target) > 50;
+              }))
+              {
                 if (lengthx < num) return 12 - get.value(card);
                 return -1;
               }
               if (
-                game.hasPlayer(function (target) {
-                  return target != player && lib.skill.sdxl_shentong.ai.result.target(player, target) > 0;
-                })
-              ) {
+              game.hasPlayer(function (target) {
+                return target != player && lib.skill.sdxl_shentong.ai.result.target(player, target) > 0;
+              }))
+              {
                 return -1;
               }
               if (
-                game.hasPlayer(function (target) {
-                  return target != player && lib.skill.sdxl_shentong.ai.result.target(player, target) < 0;
-                })
-              ) {
+              game.hasPlayer(function (target) {
+                return target != player && lib.skill.sdxl_shentong.ai.result.target(player, target) < 0;
+              }))
+              {
                 return -1;
               }
               if (lengthx <= 2) return 8 - get.value(card);
@@ -3485,13 +3485,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               return 6 - get.jyValue(card, tar);
             });
-            ('step 1');
+            'step 1';
             if (result.bool) {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             target.draw(event.discount);
-            ('step 3');
+            'step 3';
             target.turnOver();
           },
           ai: {
@@ -3509,9 +3509,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 if (att <= 0 && num > 0) return 0;
                 if (att < 0) return -1;
                 return 0;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_xiaoyin: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -3538,19 +3538,19 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               return true;
             });
-            ('step 1');
+            'step 1';
             if (result.bool) {
               player.draw();
             } else {
               player.line(trigger.player);
               trigger.player.chooseToDiscard(1, true, 'he');
             }
-          },
+          }
         },
         sdxl_gulei: {
           trigger: {
             global: 'gameStart',
-            player: 'enterGame',
+            player: 'enterGame'
           },
           forced: true,
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -3567,7 +3567,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             player.useCard(card, player);
             player.storage.sdxl_gulei_end = true;
-            ('step 1');
+            'step 1';
             var card1 = get.cardPile(function (cardx) {
               return cardx.name == 'jydiy_wumuyishu';
             });
@@ -3577,15 +3577,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.useCard(card1, player);
             player.storage.sdxl_gulei_end = true;
             player.awakenSkill('sdxl_gulei');
-          },
+          }
         },
         sdxl_yingguan: {
           audio: 'ext:金庸群侠传/peiyin:2',
           derivation: ['sdxl_yuxue', 'sdxl_yuanshou'],
           global: 'sdxl_yingguan1',
           ai: {
-            threaten: 2.5,
-          },
+            threaten: 2.5
+          }
         },
         sdxl_yingguan1: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -3626,26 +3626,26 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.addAdditionalSkills('sdxl_yuanshou', info.skills);
             }
             player.storage.sdxl_yingguan1_end = true;
-            ('step 1');
+            'step 1';
             target.gainMaxHp(1);
-            ('step 2');
+            'step 2';
             target.recover(1);
-            ('step 3');
+            'step 3';
             player.loseMaxHp(1);
           },
           ai: {
             order: 5,
             expose: 2,
             result: {
-              target: 10,
-            },
-          },
+              target: 10
+            }
+          }
         },
         sdxl_weicheng: {
           audio: 'ext:金庸群侠传/peiyin:2',
           forced: true,
           trigger: {
-            player: 'phaseDrawBegin1',
+            player: 'phaseDrawBegin1'
           },
           filter(event, player) {
             return !event.numFixed;
@@ -3673,7 +3673,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               audio: 'ext:金庸群侠传/peiyin:2',
               forced: true,
               trigger: {
-                player: 'useCard',
+                player: 'useCard'
               },
               filter(event, player) {
                 if (!player.isPhaseUsing()) return false;
@@ -3692,7 +3692,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 player.chooseToDiscard(1, true, '请弃置一张牌', 'he', function (card) {
                   return true;
                 });
-              },
+              }
             },
             die: {
               audio: 'ext:金庸群侠传/peiyin:2',
@@ -3708,9 +3708,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 game.playJY(['sdxl_yuanshou1', 'sdxl_yuanshou2'].randomGet());
                 player.say(['我痛失一臂矣!', '将军安息,这血债郭某必让鞑子血偿!', '逝者长已矣,生者当奋进!'].randomGet());
                 player.loseMaxHp(1);
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_yuxue: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -3734,7 +3734,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             targetx.chooseBool('是否代替' + get.translation(player) + '受到伤害？').set('ai', function () {
               return get.attitude(targetx, trigger.player) > 0;
             });
-            ('step 1');
+            'step 1';
             if (result.bool) {
               player.storage.sdxl_yingguan_target.say(['鞑子兵精将猛,你们快些入城!', '我等勠力同心,方可克敌制胜!'].randomGet());
               trigger.player = player.storage.sdxl_yingguan_target;
@@ -3742,8 +3742,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
           },
           ai: {
-            threaten: 0,
-          },
+            threaten: 0
+          }
         },
         sdxl_yuanshou: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -3774,13 +3774,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             var card = cards[0];
             player.useCard(card, target, false);
-            ('step 1');
+            'step 1';
             player.draw(1);
           },
           ai: {
             order: 10,
             expose: 1,
-            result: { target: 2 },
+            result: { target: 2 }
           },
           subSkill: {
             equip: {
@@ -3788,7 +3788,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               forced: true,
               popup: false,
               trigger: {
-                global: ['equipEnd', 'loseEnd'],
+                global: ['equipEnd', 'loseEnd']
               },
               filter(event, player) {
                 if (event.player != player.storage.sdxl_yingguan_target && event.player != player) return false;
@@ -3832,14 +3832,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                     }
                   }
                 }
-              },
-            },
-          },
+              }
+            }
+          }
         },
         //神雕侠侣mark
         sdxl_quanxiang: {
           trigger: {
-            source: 'damageEnd',
+            source: 'damageEnd'
           },
           filter(event, player) {
             if (!event.player.countCards('e')) return false;
@@ -3854,15 +3854,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             var str = '劝降:是否将一张装备牌置于' + get.translation(player) + '侠客牌上作为<赏>?';
             str += '否则你弃置一张装备牌';
-            trigger.player
-              .chooseCard(1, 'he', str, function (card) {
-                return get.type(card) == 'equip';
-              })
-              .set('ai', function (card) {
-                if (get.position(card) == 'h') return 12 - get.value(card);
-                return 10 - get.value(card);
-              });
-            ('step 1');
+            trigger.player.
+            chooseCard(1, 'he', str, function (card) {
+              return get.type(card) == 'equip';
+            }).
+            set('ai', function (card) {
+              if (get.position(card) == 'h') return 12 - get.value(card);
+              return 10 - get.value(card);
+            });
+            'step 1';
             if (result.cards?.length) {
               player.addToExpansion(result.cards, 'gain2', 'log', 'fromStorage', player).gaintag.add('sdxl_kaoshang');
               if (trigger.player.isDamaged()) trigger.player.recover();
@@ -3871,7 +3871,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return get.type(card) == 'equip';
               });
             }
-          },
+          }
         },
         sdxl_kaoshang: {
           group: ['sdxl_kaoshang2'],
@@ -3879,7 +3879,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           markimage: 'extension/金庸群侠传/image/icon/jy_avatar_kaoshang.jpg',
           intro: {
             content: 'expansion',
-            markcount: 'expansion',
+            markcount: 'expansion'
           },
           onremove(player, skill) {
             var cards = player.getExpansions(skill);
@@ -3908,12 +3908,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 1');
+            'step 1';
             if (result.cards?.length) {
               player.addToExpansion(result.cards, 'gain2', 'log', player).gaintag.add('sdxl_kaoshang');
               player.say('立下大功者,赏千金,封万户侯!');
             }
-          },
+          }
         },
         sdxl_kaoshang2: {
           trigger: { global: ['damageAfter', 'die'] },
@@ -3934,32 +3934,32 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             'step 0';
             if (trigger.name == 'damage' && player.getExpansions('sdxl_kaoshang').length > 1) {
-              player
-                .chooseCardButton(get.prompt('sdxl_kaoshang', trigger.source), player.getExpansions('sdxl_kaoshang'), [1, 1])
-                .set('ai', function (button) {
-                  if (_status.event.att < 0) {
-                    if (button.link.name == 'du') return 2;
-                    return 0;
-                  } else if (_status.event.att > 0) {
-                    return get.value(button.link, _status.event.sourcex);
-                  }
+              player.
+              chooseCardButton(get.prompt('sdxl_kaoshang', trigger.source), player.getExpansions('sdxl_kaoshang'), [1, 1]).
+              set('ai', function (button) {
+                if (_status.event.att < 0) {
+                  if (button.link.name == 'du') return 2;
                   return 0;
-                })
-                .set('att', get.attitude(player, trigger.source))
-                .set('sourcex', trigger.source)
-                .set('prompt2', '交给' + get.translation(trigger.source) + '一张"赏"');
+                } else if (_status.event.att > 0) {
+                  return get.value(button.link, _status.event.sourcex);
+                }
+                return 0;
+              }).
+              set('att', get.attitude(player, trigger.source)).
+              set('sourcex', trigger.source).
+              set('prompt2', '交给' + get.translation(trigger.source) + '一张"赏"');
             } else {
               event.allCard = true;
               var str = '交给' + get.translation(trigger.source) + (trigger.name == 'damage' ? '一张"赏"' : get.translation(player.getExpansions('sdxl_kaoshang')));
-              player
-                .chooseBool(get.prompt('sdxl_kaoshang', trigger.source))
-                .set('ai', function (evt, playerx) {
-                  return _status.event.bool;
-                })
-                .set('bool', get.attitude(player, trigger.source) > 0)
-                .set('prompt2', str);
+              player.
+              chooseBool(get.prompt('sdxl_kaoshang', trigger.source)).
+              set('ai', function (evt, playerx) {
+                return _status.event.bool;
+              }).
+              set('bool', get.attitude(player, trigger.source) > 0).
+              set('prompt2', str);
             }
-            ('step 1');
+            'step 1';
             if (result.links?.length) {
               var links = event.allCard ? player.getExpansions('sdxl_kaoshang').slice(0) : result.links;
               //trigger.source.gain(links,player,'fromStorage','give','log');
@@ -3968,12 +3968,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 trigger.source.say('多谢王爷!');
               }
             }
-          },
+          }
         },
         sdxl_bihe: {
           audio: 'ext:金庸群侠传/peiyin:3',
           trigger: {
-            player: 'phaseZhunbeiBegin',
+            player: 'phaseZhunbeiBegin'
           },
           filter(event, player) {
             if (player.getEquip(1)) {
@@ -3983,20 +3983,20 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            player
-              .chooseControl(['玄铁重剑', '君子淑女剑'])
-              .set('prompt', '请选择你本回合视为装备的武器')
-              .set('ai', function () {
-                var count = game.countPlayer(function (current) {
-                  //if(!current.hasSex('female')) return false;
-                  if (!player.differentSexFrom(current)) return false;
-                  if (get.attitude(player, current) > 0) return false;
-                  if (get.distance(player, current) > player.getAttackRange()) return false;
-                  return true;
-                });
-                return count > 0 ? '君子淑女剑' : '玄铁重剑';
+            player.
+            chooseControl(['玄铁重剑', '君子淑女剑']).
+            set('prompt', '请选择你本回合视为装备的武器').
+            set('ai', function () {
+              var count = game.countPlayer(function (current) {
+                //if(!current.hasSex('female')) return false;
+                if (!player.differentSexFrom(current)) return false;
+                if (get.attitude(player, current) > 0) return false;
+                if (get.distance(player, current) > player.getAttackRange()) return false;
+                return true;
               });
-            ('step 1');
+              return count > 0 ? '君子淑女剑' : '玄铁重剑';
+            });
+            'step 1';
             if (result && result.control) {
               if (result.control == '君子淑女剑') {
                 player.addTempSkills('sdxl_bihe_junzishunv', 'phaseUseEnd');
@@ -4013,13 +4013,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               mod: {
                 attackRange(from, distance) {
                   if (from.hasEmptySlot(1)) return distance + 1;
-                },
+                }
               },
               filter(event, player) {
                 if (!lib.skill.jydiy_junzishunvjian_skill.filter(event, player)) return false;
                 if (!player.hasEmptySlot(1)) return false;
                 return true;
-              },
+              }
             },
             xuantie: {
               audio: 'ext:金庸群侠传/peiyin:2',
@@ -4027,20 +4027,20 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               mod: {
                 attackRange(from, distance) {
                   if (from.hasEmptySlot(1)) return distance + 1;
-                },
+                }
               },
               filter(event, player) {
                 if (!lib.skill.jydiy_xuantiezhongjian_skill.filter(event, player)) return false;
                 if (!player.hasEmptySlot(1)) return false;
                 return true;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_xianlv: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: ['gainAfter', 'loseAfter'],
+            player: ['gainAfter', 'loseAfter']
           },
           forced: true,
           filter(event, player) {
@@ -4059,8 +4059,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (tag == 'noh') {
                 if (player.countCards('h') % 2 != 0) return false;
               }
-            },
-          },
+            }
+          }
         },
         sdxl_jiaozi: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -4088,15 +4088,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (!player.isDisabledJudge()) list.push('判定区');
             if (player.countDisabledSlot() < 5) list.push('装备区');
             if (list.length == 2) {
-              player
-                .chooseControl(list, function (event, player) {
-                  return '判定区';
-                })
-                .set('prompt', '娇恣:选择废除装备区或判定区');
+              player.
+              chooseControl(list, function (event, player) {
+                return '判定区';
+              }).
+              set('prompt', '娇恣:选择废除装备区或判定区');
             } else {
               event._dis = list[0];
             }
-            ('step 1');
+            'step 1';
             var dis = result.control || event._dis;
             if (dis == '装备区') {
               if (!player.hasDisabledSlot(1)) player.disableEquip(1);
@@ -4108,7 +4108,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.disableJudge();
             }
             trigger.source.turnOver();
-          },
+          }
         },
         sdxl_baiju2: {
           shaRelated: true,
@@ -4122,26 +4122,26 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           forced: true,
           content() {
             'step 0';
-            player
-              .chooseTarget('白驹', '是否为' + get.translation(trigger.card) + '增加至多一个目标?', function (card, player, target) {
-                return !_status.event.sourcex.includes(target) && player.canUse(_status.event.card, target);
-              })
-              .set('sourcex', trigger.targets)
-              .set('ai', function (target) {
-                var player = _status.event.player;
-                return get.effect(target, _status.event.card, player, player);
-              })
-              .set('card', trigger.card);
-            ('step 1');
+            player.
+            chooseTarget('白驹', '是否为' + get.translation(trigger.card) + '增加至多一个目标?', function (card, player, target) {
+              return !_status.event.sourcex.includes(target) && player.canUse(_status.event.card, target);
+            }).
+            set('sourcex', trigger.targets).
+            set('ai', function (target) {
+              var player = _status.event.player;
+              return get.effect(target, _status.event.card, player, player);
+            }).
+            set('card', trigger.card);
+            'step 1';
             if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             player.line(event.targets);
             trigger.targets.addArray(event.targets);
-          },
+          }
         },
         sdxl_baiju: {
           group: 'sdxl_baiju2',
@@ -4151,7 +4151,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             //},
             globalFrom(from, to, distance) {
               return distance - 2;
-            },
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           position: 'he',
@@ -4206,7 +4206,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           discard: false,
           ai: {
             basic: {
-              order: 10,
+              order: 10
             },
             result: {
               player: 1,
@@ -4214,16 +4214,16 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 var card = ui.selected.cards[0];
                 if (card) return get.effect(target, card, target, target);
                 return 0;
-              },
+              }
             },
-            threaten: 1.3,
-          },
+            threaten: 1.3
+          }
         },
         sdxl_danni: {
           audio: 'ext:金庸群侠传/peiyin:2',
           juexingji: true,
           trigger: {
-            player: ['disableJudgeEnd', 'disableEquipEnd'],
+            player: ['disableJudgeEnd', 'disableEquipEnd']
           },
           init(player) {
             player.storage.sdxl_danni = false;
@@ -4242,7 +4242,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.addSkills('sdyx_baojia');
             player.storage.sdxl_danni = true;
             player.awakenSkill('sdxl_danni');
-          },
+          }
         },
         sdxl_lingxie: {
           group: 'sdxl_lingxie_damage',
@@ -4250,7 +4250,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             damage: {
               audio: 'ext:金庸群侠传/peiyin:2',
               trigger: {
-                global: 'damageAfter',
+                global: 'damageAfter'
               },
               mode: ['identity'],
               filter(event, player) {
@@ -4264,7 +4264,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 player.draw();
                 player.storage.sdxl_lingxie++;
                 player.markSkill('sdxl_lingxie');
-              },
+              }
             },
             names: {
               mark: true,
@@ -4284,9 +4284,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 },
                 markcount(storage, player) {
                   return storage.length;
-                },
-              },
-            },
+                }
+              }
+            }
           },
           init(player, skill) {
             player.storage[skill] = 0;
@@ -4297,11 +4297,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           intro: {
             content(storage) {
               return '你当前因【凌胁】共摸了' + storage + '张牌.';
-            },
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'damageEnd',
+            global: 'damageEnd'
           },
           mode: ['identity'],
           logTarget(event, player) {
@@ -4320,7 +4320,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             trigger.source.addSkill('sdxl_lingxie_names');
             trigger.source.storage.sdxl_lingxie_names.add(trigger.card.name);
             trigger.source.markSkill('sdxl_lingxie_names');
-          },
+          }
         },
         sdxl_bishan: {
           mode: ['identity'],
@@ -4329,7 +4329,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'phaseZhunbeiBegin',
+            player: 'phaseZhunbeiBegin'
           },
           filter(event, player) {
             if (player.storage.sdxl_lingxie && player.storage.sdxl_lingxie >= 7) {
@@ -4356,11 +4356,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.isZhu = true;
               player.identityShown = true;
             }
-            ('step 1');
+            'step 1';
             player.gainMaxHp();
             player.awakenSkill('sdxl_bishan');
             player.storage.sdxl_bishan = true;
-          },
+          }
         },
         sdxl_tongbi: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -4397,21 +4397,21 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             event.target = event.targets[0];
             var bool = lib.skill.sdxl_tongbi.checkx(trigger, player); //QQQ
-            player
-              .chooseCard('hs', get.prompt2('sdxl_tongbi', event.target))
-              .set('ai', function (card) {
-                if (!_status.event.boolai) return -1;
-                var player = _status.event.player;
-                var target = _status.event.sourcex;
-                var att = get.attitude(player, target);
-                if (att > 0) {
-                  return 15 - get.value(card);
-                }
-                return 4 - get.value(card);
-              })
-              .set('boolai', bool)
-              .set('sourcex', event.target);
-            ('step 1');
+            player.
+            chooseCard('hs', get.prompt2('sdxl_tongbi', event.target)).
+            set('ai', function (card) {
+              if (!_status.event.boolai) return -1;
+              var player = _status.event.player;
+              var target = _status.event.sourcex;
+              var att = get.attitude(player, target);
+              if (att > 0) {
+                return 15 - get.value(card);
+              }
+              return 4 - get.value(card);
+            }).
+            set('boolai', bool).
+            set('sourcex', event.target);
+            'step 1';
             if (result.cards?.length) {
               //target.gain(result.cards[0],player,'giveAuto');
               player.give(result.cards[0], target, true);
@@ -4419,31 +4419,31 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               trigger.set('responded', true);
               trigger.result = { bool: true, card: { name: 'shan' } };
             }
-          },
+          }
         },
         sdxl_qinmu: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'phaseJieshuBegin',
+            player: 'phaseJieshuBegin'
           },
           derivation: ['sdxl_guizong'],
           filter(event, player) {
             return (
               game.filterPlayer(function (current) {
                 return current != player && current.hasSex('male') && !current.hasSkill('sdxl_qinmu2') && !current.hasSkill('sdxl_qinmu3') && !current.hasSkill('sdxl_qinmu4');
-              }).length >= 1
-            );
+              }).length >= 1);
+
           },
           content() {
             'step 0';
-            player
-              .chooseTarget(get.prompt2('sdxl_qinmu'), true, function (card, player, target) {
-                return target.hasSex('male') && target != player && !target.hasSkill('sdxl_qinmu2') && !target.hasSkill('sdxl_qinmu3') && !target.hasSkill('sdxl_qinmu4');
-              })
-              .set('ai', function (target) {
-                return get.attitude(player, target);
-              });
-            ('step 1');
+            player.
+            chooseTarget(get.prompt2('sdxl_qinmu'), true, function (card, player, target) {
+              return target.hasSex('male') && target != player && !target.hasSkill('sdxl_qinmu2') && !target.hasSkill('sdxl_qinmu3') && !target.hasSkill('sdxl_qinmu4');
+            }).
+            set('ai', function (target) {
+              return get.attitude(player, target);
+            });
+            'step 1';
             if (result.bool) {
               player.say('大哥哥,你答应我要帮我实现三个愿望的!');
               var target = result.targets[0];
@@ -4459,7 +4459,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.addSkill('sdxl_qinmu5');
               player.awakenSkill('sdxl_qinmu');
             }
-          },
+          }
         },
         sdxl_qinmu1: {},
         sdxl_qinmu2: {
@@ -4481,11 +4481,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.turnOver();
             target.turnOver(false);
             player.awakenSkill('sdxl_qinmu2');
-          },
+          }
         },
         sdxl_qinmu3: {
           intro: {
-            content: '<b>限定技.</b>当你进入濒死状态时,你可以将体力回复至一点,$回复一点体力.',
+            content: '<b>限定技.</b>当你进入濒死状态时,你可以将体力回复至一点,$回复一点体力.'
           },
           nopop: true,
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -4503,17 +4503,17 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.recover(1 - player.hp);
             target.recover();
             player.awakenSkill('sdxl_qinmu3');
-          },
+          }
         },
         sdxl_qinmu4: {
           intro: {
-            content: '<b>限定技.</b>当你失去最后的手牌时,你可摸等同于体力值的牌,$摸等量的牌.',
+            content: '<b>限定技.</b>当你失去最后的手牌时,你可摸等同于体力值的牌,$摸等量的牌.'
           },
           nopop: true,
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             player: ['loseAfter'],
-            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
           },
           forced: true,
           _priority: -2019,
@@ -4536,14 +4536,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             result: {
               player(player) {
                 return 1;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_qinmu5: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'dieBegin',
+            global: 'dieBegin'
           },
           forced: true,
           filter(event, player) {
@@ -4555,13 +4555,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.addSkills('sdxl_guizong');
             player.awakenSkill('sdxl_qinmu5');
             player.update();
-          },
+          }
         },
         sdxl_renxia: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
             player: ['loseAfter'],
-            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter'],
+            global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter']
           },
           filter(event, player) {
             var evt = event.getl(player);
@@ -4572,27 +4572,27 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               evt.es.length &&
               game.hasPlayer(function (current) {
                 return player.canUse({ name: 'sha' }, current, false);
-              })
-            );
+              }));
+
           },
           forced: true,
           content() {
-            player
-              .chooseUseTarget(
-                get.prompt2('sdxl_renxia'),
-                {
-                  name: 'sha',
-                },
-                false,
-                'nodistance',
-              )
-              .set('selectTarget', [1, 1])
-              .set('oncard', function (card, player) {
-                if (!player) player = this.player;
-                var chat = ['明枪易躲,暗箭难防', '巾帼不让须眉'].randomGet();
-                player.say(chat);
-                player.draw();
-              });
+            player.
+            chooseUseTarget(
+              get.prompt2('sdxl_renxia'),
+              {
+                name: 'sha'
+              },
+              false,
+              'nodistance'
+            ).
+            set('selectTarget', [1, 1]).
+            set('oncard', function (card, player) {
+              if (!player) player = this.player;
+              var chat = ['明枪易躲,暗箭难防', '巾帼不让须眉'].randomGet();
+              player.say(chat);
+              player.draw();
+            });
           },
           ai: {
             expose: 2,
@@ -4601,14 +4601,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             effect: {
               target(card, player, target, current) {
                 if (get.type(card) == 'equip' && !get.cardtag(card, 'gifts')) return [1, 3];
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_guizong: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: "shaUnhirt'",
+            global: "shaUnhirt'"
           },
           forced: true,
           filter(event, player) {
@@ -4616,8 +4616,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.isAlive() &&
               get.randomCard(function (card) {
                 return get.type(card) == 'equip' && !player.hasDisabledSlot(get.subtype(card));
-              })
-            );
+              }));
+
           },
           content() {
             event.card = get.randomCard(function (card) {
@@ -4629,12 +4629,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           ai: {
             order: 1,
-            expose: 0.2,
-          },
+            expose: 0.2
+          }
         },
         sdxl_shixin: {
           trigger: {
-            player: 'damageEnd',
+            player: 'damageEnd'
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           filter(event, player) {
@@ -4704,22 +4704,22 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return _status.event.getResult;
             });
             next.set('prompt', get.prompt('sdxl_shixin', source));
-            ('step 1');
+            'step 1';
             if (result.control == '手牌区') {
               event.result = {
                 bool: true,
                 targets: [trigger.source],
                 cost_data: {
-                  pos: 'h',
-                },
+                  pos: 'h'
+                }
               };
             } else if (result.control == '装备区') {
               event.result = {
                 bool: true,
                 targets: [trigger.source],
                 cost_data: {
-                  pos: 'e',
-                },
+                  pos: 'e'
+                }
               };
             } else {
               event.result = { bool: false };
@@ -4732,11 +4732,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (sourceCards.length && playerCards.length) {
               game.loseAsync({
                 lose_list: [
-                  [player, playerCards],
-                  [trigger.source, sourceCards],
-                ],
+                [player, playerCards],
+                [trigger.source, sourceCards]],
 
-                discarder: player,
+
+                discarder: player
               }).setContent('discardMultiple');
             } else if (sourceCards.length) {
               trigger.source.discard(sourceCards);
@@ -4753,7 +4753,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             var nhh = target.countCards('h');
             player.chooseControl('手牌区', '装备区', '取消').ai = function () {
               if (get.attitude(player, target) > 0) {
-                if (target.hasSkillTag('receiveEquip') || (target.hasSkillTag('noe') && nh > 1 && num < 3)) return '装备区';
+                if (target.hasSkillTag('receiveEquip') || target.hasSkillTag('noe') && nh > 1 && num < 3) return '装备区';
                 if (target.isDamaged() && nh < 3 && num < 2 && target.getEquip('baiyin')) return '装备区';
                 if (nh < 2 && num < 3 && player.getEquip('baiyin')) return '装备区';
                 if (numh < 3 && !player.countCards('h', { name: 'tao' }) && target.hasSkillTag('noh') && nhh < 3) return '手牌区';
@@ -4780,7 +4780,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               return '取消';
             };
-            ('step 2');
+            'step 2';
             if (result.control == '取消') event.finish();
             if (result.control == '手牌区') {
               var card = player.getCards('h');
@@ -4794,11 +4794,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.discard(card);
               trigger.source.discard(card1);
             }
-            ('step 3');
+            'step 3';
             event.num--;
-            ('step 4');
+            'step 4';
             if (event.num > 0) event.goto(1);
-          },
+          }
         },
         //新冰魄
         sdxl_bingpo: {
@@ -4816,11 +4816,11 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           prompt: '将一张黑色牌当过【冰魄银针】使用',
           check(card) {
             return 6 - get.value(card);
-          },
+          }
         },
         sdxl_sanwu: {
           trigger: {
-            global: ['equipEnd', 'addJudgeEnd', 'loseEnd', 'gainEnd', 'loseAsyncEnd', 'addToExpansionEnd'],
+            global: ['equipEnd', 'addJudgeEnd', 'loseEnd', 'gainEnd', 'loseAsyncEnd', 'addToExpansionEnd']
           },
           forced: true,
           filter(event, player) {
@@ -4836,7 +4836,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           audio: 'ext:金庸群侠传/peiyin:2',
           content() {
             player.draw(3);
-          },
+          }
         },
         sdxl_guofu: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -4865,26 +4865,26 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (cards.length) {
               event.use = cards;
             }
-            ('step 2');
+            'step 2';
             if (event.use.length) {
               var str = '是否发动果腹<br>选择一张♥️️牌使用之?';
               if (lib.config.extension_金庸群侠传_jiexiantupo) str += '不能使用则你改为获得之.';
-              player
-                .chooseCardButton(event.use, 1, str)
-                .set('filterButton', function (button) {
-                  if (lib.config.extension_金庸群侠传_jiexiantupo) return true;
-                  return _status.event.player.hasUseTarget(button.link);
-                })
-                .set('ai', function (button) {
-                  var player = _status.event.player;
-                  if (player.hasUseTarget(button.link)) return player.getUseValue(button.link);
-                  if (lib.config.extension_金庸群侠传_jiexiantupo) return get.value(button.link);
-                  return 0;
-                });
+              player.
+              chooseCardButton(event.use, 1, str).
+              set('filterButton', function (button) {
+                if (lib.config.extension_金庸群侠传_jiexiantupo) return true;
+                return _status.event.player.hasUseTarget(button.link);
+              }).
+              set('ai', function (button) {
+                var player = _status.event.player;
+                if (player.hasUseTarget(button.link)) return player.getUseValue(button.link);
+                if (lib.config.extension_金庸群侠传_jiexiantupo) return get.value(button.link);
+                return 0;
+              });
             } else {
               event.finish();
             }
-            ('step 3');
+            'step 3';
             if (result.links?.length) {
               if (player.hasUseTarget(result.links[0])) {
                 player.chooseUseTarget(result.links[0], true);
@@ -4893,13 +4893,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               event.finish();
             }
-          },
+          }
         },
         sdxl_heji: {
           mod: {
             targetInRange(card) {
               if (card.suit == 'spade' && card.name == 'sha') return true;
-            },
+            }
           },
           group: ['sdxl_heji_hit'],
           subSkill: {
@@ -4920,10 +4920,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               ai: {
                 directHit_ai: true,
                 skillTagFilter(player, tag, arg) {
-                  if ((arg && arg.card.name != 'sha') || arg.card.suit != 'spade') return false;
-                },
-              },
-            },
+                  if (arg && arg.card.name != 'sha' || arg.card.suit != 'spade') return false;
+                }
+              }
+            }
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: { source: 'damageSource' },
@@ -4941,14 +4941,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             effect: {
               player(card, player, target) {
                 if (card.name == 'sha' && card.suit == 'spade') return [1, 1];
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_zifu: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'phaseUseBegin',
+            global: 'phaseUseBegin'
           },
           logTarget: 'player',
           filter(event, player) {
@@ -4968,12 +4968,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.loseHp();
             player.link();
             trigger.player.useCard({ name: 'jiu' }, trigger.player);
-          },
+          }
         },
         sdxl_qinggu: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'phaseUseBegin',
+            global: 'phaseUseBegin'
           },
           filter(event, player) {
             if (event.player == player) return false;
@@ -4982,18 +4982,18 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           forced: true,
           content() {
             'step 0';
-            player
-              .chooseCard(1, 'he', get.prompt2('sdxl_qinggu', trigger.player), function (card, player) {
-                return card.suit == 'heart';
-              })
-              .set('ai', function (card) {
-                var sourcex = _status.event.sourcex;
-                var att = get.attitude(_status.event.player, sourcex);
-                if (sourcex.countCards('h', { suit: 'heart' }) == sourcex.countCards('h')) return att;
-                return -att;
-              })
-              .set('sourcex', trigger.player);
-            ('step 1');
+            player.
+            chooseCard(1, 'he', get.prompt2('sdxl_qinggu', trigger.player), function (card, player) {
+              return card.suit == 'heart';
+            }).
+            set('ai', function (card) {
+              var sourcex = _status.event.sourcex;
+              var att = get.attitude(_status.event.player, sourcex);
+              if (sourcex.countCards('h', { suit: 'heart' }) == sourcex.countCards('h')) return att;
+              return -att;
+            }).
+            set('sourcex', trigger.player);
+            'step 1';
             if (result.cards?.length) {
               //trigger.player.gain(result.cards[0],player,'give','log');
               player.give(result.cards[0], trigger.player, true);
@@ -5008,7 +5008,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               marktext2: '情',
               markimage: 'extension/金庸群侠传/image/icon/jy_avatar_qinggu.jpg',
               intro: {
-                content: '你本回合内不能使用非♥️️牌.',
+                content: '你本回合内不能使用非♥️️牌.'
               },
               charlotte: true,
               mod: {
@@ -5023,8 +5023,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 },
                 targetInRange(card) {
                   if (card.suit != 'heart') return false;
-                },
-              },
+                }
+              }
             },
             draw: {
               trigger: { player: 'useCard' },
@@ -5048,9 +5048,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 }
                 delete player.storage.sdxl_qinggu_draw2;
                 delete player.storage.sdxl_qinggu_draw;
-              },
-            },
-          },
+              }
+            }
+          }
         },
         sdxl_zhenwang: {
           usable: 1,
@@ -5065,25 +5065,25 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            player
-              .chooseTarget(get.prompt2('sdxl_zhenwang'), function (card, player, target) {
-                return !target.isLinked();
-              })
-              .set('ai', function (target) {
-                var player = _status.event.player;
-                var att = get.attitude(player, target);
-                if (att == 0) return 0;
-                var num = lib.card.tiesuo.ai.result.target(player, target);
-                if (att < 0) num = -num;
-                return num;
-              });
-            ('step 1');
+            player.
+            chooseTarget(get.prompt2('sdxl_zhenwang'), function (card, player, target) {
+              return !target.isLinked();
+            }).
+            set('ai', function (target) {
+              var player = _status.event.player;
+              var att = get.attitude(player, target);
+              if (att == 0) return 0;
+              var num = lib.card.tiesuo.ai.result.target(player, target);
+              if (att < 0) num = -num;
+              return num;
+            });
+            'step 1';
             if (result.targets?.length) {
               result.targets[0].link();
             } else {
               player.getStat('triggerSkill').sdxl_zhenwang--;
             }
-          },
+          }
         },
         sdxl_fasong: {
           mod: {
@@ -5094,10 +5094,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   var group = 'qun';
                   if (lib.jy_changeSkill) group = 'jy_lie';
                   return current.group == group;
-                })
-              );
-            },
-          },
+                }));
+
+            }
+          }
         },
         sdxl_xiezhi: {
           audio: 'ext:金庸群侠传/peiyin:4',
@@ -5110,8 +5110,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 get.distance(player, current1) <= 1 &&
                 game.hasPlayer(function (current) {
                   return current1 != player && current != player && current1 != current && current.inRange(player);
-                })
-              );
+                }));
+
             });
           },
           filterCard() {
@@ -5124,21 +5124,21 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               get.distance(player, target) <= 1 &&
               game.hasPlayer(function (current) {
                 return target != player && current != player && target != current && current.inRange(player);
-              })
-            );
+              }));
+
           },
           content() {
             'step 0';
-            event.targets = game
-              .filterPlayer(function (current) {
-                return current != targets[0] && current != player && current.inRange(player);
-              })
-              .sortBySeat();
+            event.targets = game.
+            filterPlayer(function (current) {
+              return current != targets[0] && current != player && current.inRange(player);
+            }).
+            sortBySeat();
             event.source = targets[0];
             event.num1 = 0;
             event.num2 = 0;
             //player.line(event.targets,'fire');
-            ('step 1');
+            'step 1';
             if (!source.isIn()) {
               event.finish();
               return;
@@ -5153,23 +5153,23 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.line(target, 'fire');
               target.addTempClass('target');
               var str = '是否弃置一张牌保护' + get.translation(source) + '？若弃牌角色数不大于未弃牌角色数则' + get.translation(source) + '受到一点伤害';
-              target
-                .chooseToDiscard(1, 'he', str)
-                .set('aicheck', get.attitude(target, source) > 0)
-                .set('ai', function (card) {
-                  var evt = _status.event;
-                  if (!evt.aicheck) return -1;
-                  if (evt.num1 >= evt.num2) {
-                    return 6 - get.value(card);
-                  }
-                  return -1;
-                })
-                .set('num1', event.num1)
-                .set('num2', event.num2);
+              target.
+              chooseToDiscard(1, 'he', str).
+              set('aicheck', get.attitude(target, source) > 0).
+              set('ai', function (card) {
+                var evt = _status.event;
+                if (!evt.aicheck) return -1;
+                if (evt.num1 >= evt.num2) {
+                  return 6 - get.value(card);
+                }
+                return -1;
+              }).
+              set('num1', event.num1).
+              set('num2', event.num2);
             } else {
               event.goto(3);
             }
-            ('step 2');
+            'step 2';
             if (result.bool) {
               event.num1++;
               game.log('已弃牌' + event.num1 + '人', '没有弃牌' + event.num2 + '人');
@@ -5180,7 +5180,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               game.log('已弃牌' + event.num1 + '人', '没有弃牌' + event.num2 + '人');
             }
             event.goto(1);
-            ('step 3');
+            'step 3';
             if (event.num2 >= event.num1) {
               if (event.damage) {
                 event.source.damage(player);
@@ -5197,17 +5197,17 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               target(player, target) {
                 if (target.hp == 1) return -5;
                 return -2;
-              },
+              }
             },
-            threaten: 2,
-          },
+            threaten: 2
+          }
         },
         sdxl_banruo: {
           audio: 'sdxl_longxiang',
           shaRelated: true,
           forced: true,
           trigger: {
-            player: 'useCard1',
+            player: 'useCard1'
           },
           logTarget: 'targets',
           filter(event, player) {
@@ -5245,8 +5245,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (arg && arg.card.name != 'juedou' && arg.card.name != 'sha') return false;
               if (arg && arg.card.name == 'juedou' && Math.floor(arg.target.countCards('h', 'sha') / game.roundNumber) > player.countCards('h', 'sha')) return false;
               if (arg && arg.card.name == 'sha' && arg.target.countCards('h', 'shan') > game.roundNumber) return false;
-            },
-          },
+            }
+          }
         },
         sdxl_feilun_new: {
           audio: 'sdxl_mizong',
@@ -5273,12 +5273,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.countCards('hes', function (card) {
                 var num = card.number;
                 return !numbers.includes(num);
-              }) > 0
-            );
+              }) > 0);
+
           },
           position: 'hes',
           viewAs: {
-            name: 'juedou',
+            name: 'juedou'
           },
           usable: 1,
           prompt() {
@@ -5301,12 +5301,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           check(card) {
             var val = get.value(card);
             return 5 - val;
-          },
+          }
         },
         sdxl_mizong: {
           //audioname:["qtpz_sangjielama"],
           audioname2: {
-            qtpz_sangjielama: 'qtpz_mizong',
+            qtpz_sangjielama: 'qtpz_mizong'
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           mod: {
@@ -5314,7 +5314,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               if (card.name == 'juedou' && card.sdxl_mizong && ui.selected.cards.length) {
                 if (Array.isArray(range) && range[1] != -1) range[1] += ui.selected.cards.length - 1;
               }
-            },
+            }
           },
           enable: 'phaseUse',
           usable: 1,
@@ -5334,7 +5334,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             for (var i = 1; i < all; i++) {
               var array = [];
               for (var j = 0; j < l; j++) {
-                if (Math.floor((i % Math.pow(2, j + 1)) / Math.pow(2, j)) > 0) array.push(cards[j]);
+                if (Math.floor(i % Math.pow(2, j + 1) / Math.pow(2, j)) > 0) array.push(cards[j]);
               }
               var num = 0;
               for (var k of array) {
@@ -5358,18 +5358,18 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           filterCard(card, player) {
             var num = 0;
             if (Array.isArray(ui.selected.cards))
-              for (var i of ui.selected.cards) {
-                num += i.number;
-              }
+            for (var i of ui.selected.cards) {
+              num += i.number;
+            }
             return card.number + num <= 13;
           },
           complexCard: true,
           filterOk() {
             var num = 0;
             if (Array.isArray(ui.selected.cards))
-              for (var i of ui.selected.cards) {
-                num += i.number;
-              }
+            for (var i of ui.selected.cards) {
+              num += i.number;
+            }
             return num == 13;
           },
           selectCard: [1, Infinity],
@@ -5377,14 +5377,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (!player.countCards('h')) return false;
             return lib.skill.sdxl_mizong.getResult(player.getCards('h'), player, true);
           },
-          viewAs: { name: 'juedou', sdxl_mizong: true },
+          viewAs: { name: 'juedou', sdxl_mizong: true }
         },
         //龙象开始
         sdxl_longxiang: {
           shaRelated: true,
           audio: 'ext:金庸群侠传/peiyin:2',
           forced: true,
-          group: ['sdxl_longxiang1', 'sdxl_longxiang2'],
+          group: ['sdxl_longxiang1', 'sdxl_longxiang2']
         },
         sdxl_longxiang1: {
           audio: 'sdxl_longxiang',
@@ -5408,9 +5408,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           ai: {
             directHit_ai: true,
             skillTagFilter(player, tag, arg) {
-              if ((arg && arg.card.name != 'sha') || arg.target.countCards('h', 'shan') > 1) return false;
-            },
-          },
+              if (arg && arg.card.name != 'sha' || arg.target.countCards('h', 'shan') > 1) return false;
+            }
+          }
         },
         sdxl_longxiang2: {
           audio: 'sdxl_longxiang',
@@ -5435,9 +5435,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           ai: {
             directHit_ai: true,
             skillTagFilter(player, tag, arg) {
-              if ((arg && arg.card.name != 'juedou') || Math.floor(arg.target.countCards('h', 'sha') / 2) > player.countCards('h', 'sha')) return false;
-            },
-          },
+              if (arg && arg.card.name != 'juedou' || Math.floor(arg.target.countCards('h', 'sha') / 2) > player.countCards('h', 'sha')) return false;
+            }
+          }
         },
         //龙象结束
         //龙象结束
@@ -5445,7 +5445,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           //audio:"jue_wuzhao",//太吵,隐藏
           trigger: {
             player: 'gainBefore',
-            global: 'gameDrawAfter',
+            global: 'gameDrawAfter'
           },
           init(player, skill) {
             const cards = player.getCards('h');
@@ -5463,8 +5463,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               //if(false){
               trigger.cancel();
               var owner = get.owner(trigger.cards[0]);
-              if (owner && owner.getCards('hejsx').includes(trigger.cards[0])) owner.lose(trigger.cards, ui.discardPile);
-              else game.cardsDiscard(trigger.cards);
+              if (owner && owner.getCards('hejsx').includes(trigger.cards[0])) owner.lose(trigger.cards, ui.discardPile);else
+              game.cardsDiscard(trigger.cards);
               game.log(trigger.cards, '进入了弃牌堆');
               event.trigger('jue_wuzhaoDicCard');
             } else {
@@ -5475,8 +5475,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
           },
           ai: {
-            nokeep: true,
-          },
+            nokeep: true
+          }
         },
         jue_wuzhao: {
           group: ['jue_wuzhao2'],
@@ -5491,7 +5491,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 var evt = get.event();
                 //if(evt.name!='chooseToRespond'&&evt.name!='chooseToUse') return false;
               }
-            },
+            }
           },
           onremove(player, skill) {
             const cards2 = player.getCards('s', function (card) {
@@ -5509,7 +5509,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   if (player == game.me) ui.updatehl();
                 },
                 cards2,
-                player,
+                player
               );
             }
             cards2.forEach((i) => i.delete());
@@ -5552,7 +5552,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                       if (player == game.me) ui.updatehl();
                     },
                     playerCards,
-                    player,
+                    player
                   );
                 }
                 playerCards.forEach((i) => i.delete());
@@ -5574,7 +5574,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               } else {
                 return '';
               }
-            },
+            }
           },
           ai: {
             respondShan: true,
@@ -5583,18 +5583,18 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             skillTagFilter(player, tag, arg) {
               const cards = get.cards(4, true);
               if (Array.isArray(cards))
-                for (var i of cards) {
-                  if (tag == 'respondSha') {
-                    if (i.name == 'sha') return true;
-                  } else if (tag == 'respondShan') {
-                    if (i.name == 'shan') return true;
-                  } else if (tag == 'save') {
-                    if (i.name == 'jiu' || i.name == 'tao') return true;
-                  }
+              for (var i of cards) {
+                if (tag == 'respondSha') {
+                  if (i.name == 'sha') return true;
+                } else if (tag == 'respondShan') {
+                  if (i.name == 'shan') return true;
+                } else if (tag == 'save') {
+                  if (i.name == 'jiu' || i.name == 'tao') return true;
                 }
+              }
               return false;
-            },
-          },
+            }
+          }
         },
         jue_wuzhao_old: {
           marktext2: '无',
@@ -5626,7 +5626,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               } else {
                 return '';
               }
-            },
+            }
           },
           group: 'jue_wuzhao2',
           enable: ['chooseToUse', 'chooseToRespond'],
@@ -5711,12 +5711,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 viewAs: links[0],
                 precontent() {
                   game.playJY(['jue_wuzhao1', 'jue_wuzhao2', 'jue_wuzhao3', 'jue_wuzhao4', 'jue_wuzhao5', 'jue_wuzhao6', 'jue_wuzhao7', 'jue_wuzhao8', 'jue_wuzhao9', 'jue_wuzhao10', 'jue_wuzhao11'].randomGet());
-                },
+                }
               };
             },
             prompt(links) {
               return '选择' + get.translation(links) + '的目标';
-            },
+            }
           },
           ai: {
             respondShan: true,
@@ -5756,27 +5756,27 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               var order = 0;
               if (Array.isArray(cards))
-                for (var i of cards) {
-                  if (player.getUseValue(i) > 0) {
-                    var order2 = get.order(i);
-                    if (order2 > order) order = order2;
-                  }
+              for (var i of cards) {
+                if (player.getUseValue(i) > 0) {
+                  var order2 = get.order(i);
+                  if (order2 > order) order = order2;
                 }
+              }
               return order;
             },
             result: {
               player(player) {
                 if (_status.event.dying) return get.attitude(player, _status.event.dying);
                 return 1;
-              },
+              }
             },
             useful: -1,
-            value: -1,
-          },
+            value: -1
+          }
         },
         jue_zangjian2: {
           trigger: {
-            global: 'phaseDrawEnd',
+            global: 'phaseDrawEnd'
           },
           check(event, player) {
             return get.attitude(player, event.player) <= 0;
@@ -5785,35 +5785,35 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           filter(event, player) {
             if (!event.cards || !event.cards.length) return false;
             if (Array.isArray(event.cards))
-              for (var i of event.cards) {
-                if (player.storage.jue_zangjian.includes(i)) {
-                  return true;
-                }
+            for (var i of event.cards) {
+              if (player.storage.jue_zangjian.includes(i)) {
+                return true;
               }
+            }
             return false;
           },
           content() {
             'step 0';
             game.playJY(['jue_zangjian1', 'jue_zangjian2'].randomGet()); //重复触发,故加两条空配音
             player.line(trigger.player, 'green');
-            ('step 1');
+            'step 1';
             if (Array.isArray(trigger.cards))
-              for (var i of trigger.cards) {
-                if (player.storage.jue_zangjian.includes(i)) {
-                  player.storage.jue_zangjian.remove(i);
-                  player.markSkill('jue_zangjian');
-                  trigger.player.showCards(i, '葬剑');
-                  var Skills = get.info(i, false).skills;
-                  if (Skills && Skills.length) trigger.player.addSkills(Skills);
-                }
+            for (var i of trigger.cards) {
+              if (player.storage.jue_zangjian.includes(i)) {
+                player.storage.jue_zangjian.remove(i);
+                player.markSkill('jue_zangjian');
+                trigger.player.showCards(i, '葬剑');
+                var Skills = get.info(i, false).skills;
+                if (Skills && Skills.length) trigger.player.addSkills(Skills);
               }
+            }
           },
           ai: {
             order: 3,
             result: {
-              player: 1,
-            },
-          },
+              player: 1
+            }
+          }
         },
         jue_zangjian: {
           ai: {
@@ -5837,9 +5837,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   }
                 }
                 return Num;
-              },
+              }
             },
-            threaten: 0.8,
+            threaten: 0.8
           },
           group: ['jue_zangjian2'],
           init(player) {
@@ -5848,7 +5848,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           marktext2: '葬',
           markimage: 'extension/金庸群侠传/image/icon/jy_avatar_zangjian.jpg',
           intro: {
-            content: 'cards',
+            content: 'cards'
           },
           enable: 'phaseUse',
           usable: 1,
@@ -5898,7 +5898,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
               return 0;
             });
-            ('step 1');
+            'step 1';
             if (result.links?.length) {
               var card = result.links[0];
               var num = result.links[1];
@@ -5911,14 +5911,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 ui.cardPile.insertBefore(card, ui.cardPile.childNodes[num]);
               }
             }
-          },
+          }
         },
         sdxl_anhun: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: { player: 'damage' },
           ai: {
             maixie: true,
-            maixie_hp: true,
+            maixie_hp: true
           },
           filter(event, player) {
             return player.isAlive();
@@ -5930,19 +5930,19 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             player.showCards(cards);
             game.cardsGotoOrdering(cards);
             if (Array.isArray(cards))
-              for (var i of cards) {
-                if (lib.config.extension_金庸群侠传_jiexiantupo) {
-                  if (get.tag(i, 'damage')) {
-                    list.push(i);
-                  }
-                } else {
-                  if (i.name == 'sha') {
-                    list.push(i);
-                  }
+            for (var i of cards) {
+              if (lib.config.extension_金庸群侠传_jiexiantupo) {
+                if (get.tag(i, 'damage')) {
+                  list.push(i);
+                }
+              } else {
+                if (i.name == 'sha') {
+                  list.push(i);
                 }
               }
+            }
             event.list = list;
-            ('step 1');
+            'step 1';
             if (event.list.length && event.list.length != 1) {
               var next = player.chooseCardButton('<img style=width:150px height=38px src=extension/金庸群侠传/image/button/jy_button_anranxiaohunzhang.jpg><br>请选择要使用的<杀>:', event.list);
               next.set('filterButton', function (button) {
@@ -5960,7 +5960,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             if (result.bool) {
               event._result = { bool: false };
               event.using = result.links[0];
@@ -5968,7 +5968,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 3');
+            'step 3';
             if (result && result.bool) {
               event.list.remove(event.using);
               var chat = ['黯然销魂者,唯别而已矣', '人不犯我,我不犯人.人若犯我,十倍奉还', ''].randomGet();
@@ -5976,12 +5976,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.say(chat);
               if (event.list.length) event.goto(1);
             }
-          },
+          }
         },
         sdxl_biefu: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'phaseJieshuBegin',
+            player: 'phaseJieshuBegin'
           },
           _priority: 16,
           checkx(event, player) {
@@ -6026,20 +6026,20 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             'step 0';
             player.turnOver();
-            ('step 1');
-            player
-              .chooseTarget(true, '请选择【别赋】的目标', function (card, player, target) {
-                return target != player;
-              })
-              .set('ai', function (target) {
-                var num = 0;
-                if (target.isDamaged()) num += 2;
-                if (target.hasSex('female')) num += 1;
-                if (get.attitude(player, target) >= 0) {
-                  return num;
-                } else return 0;
-              });
-            ('step 2');
+            'step 1';
+            player.
+            chooseTarget(true, '请选择【别赋】的目标', function (card, player, target) {
+              return target != player;
+            }).
+            set('ai', function (target) {
+              var num = 0;
+              if (target.isDamaged()) num += 2;
+              if (target.hasSex('female')) num += 1;
+              if (get.attitude(player, target) >= 0) {
+                return num;
+              } else return 0;
+            });
+            'step 2';
             if (result.targets?.length) {
               player.line(result.targets, 'fire');
               if (player.isDamaged()) player.recover();
@@ -6051,8 +6051,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
           },
           ai: {
-            expose: 0.8,
-          },
+            expose: 0.8
+          }
         },
         sdxl_biefu2: {
           trigger: { player: 'useCard2' },
@@ -6067,10 +6067,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             if (info.allowMultiple == false) return false;
             if (event.targets && !info.multitarget) {
               if (
-                game.hasPlayer(function (current) {
-                  return lib.filter.targetEnabled2(event.card, player, current) && !event.targets.includes(current);
-                })
-              ) {
+              game.hasPlayer(function (current) {
+                return lib.filter.targetEnabled2(event.card, player, current) && !event.targets.includes(current);
+              }))
+              {
                 return true;
               }
             }
@@ -6078,32 +6078,32 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            player
-              .chooseTarget(1, '【别赋】', function (card, player, target) {
-                var player = _status.event.player;
-                if (_status.event.targets.includes(target)) return false;
-                return lib.filter.targetEnabled2(_status.event.card, player, target);
-              })
-              .set('prompt2', '额外指定一名' + get.translation(trigger.card) + '的目标')
-              .set('ai', function (target) {
-                var trigger = _status.event.getTrigger();
-                var player = _status.event.player;
-                return get.effect(target, trigger.card, player, player);
-              })
-              .set('targets', trigger.targets)
-              .set('card', trigger.card);
-            ('step 1');
+            player.
+            chooseTarget(1, '【别赋】', function (card, player, target) {
+              var player = _status.event.player;
+              if (_status.event.targets.includes(target)) return false;
+              return lib.filter.targetEnabled2(_status.event.card, player, target);
+            }).
+            set('prompt2', '额外指定一名' + get.translation(trigger.card) + '的目标').
+            set('ai', function (target) {
+              var trigger = _status.event.getTrigger();
+              var player = _status.event.player;
+              return get.effect(target, trigger.card, player, player);
+            }).
+            set('targets', trigger.targets).
+            set('card', trigger.card);
+            'step 1';
             if (result.targets?.length) {
               event.targets = result.targets;
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             if (event.targets) {
               player.line(event.targets);
               trigger.targets.addArray(event.targets);
             }
-          },
+          }
           //mod:{
           //    selectTarget:function(card,player,range){
           //        if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1)range[1]++;
@@ -6116,7 +6116,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             remove: {
               trigger: {
                 global: 'gameStart',
-                player: 'enterGame',
+                player: 'enterGame'
               },
               popup: false,
               forced: true,
@@ -6125,8 +6125,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               },
               content() {
                 player.removeSkill('sdxl_shangli');
-              },
-            },
+              }
+            }
           },
           check(event, player) {
             var group = 'wei';
@@ -6156,7 +6156,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'turnOverEnd',
+            player: 'turnOverEnd'
           },
           _priority: 6,
           zhuSkill: true,
@@ -6176,12 +6176,12 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return current == player || group == current.group;
             });
             game.asyncDraw(targets);
-          },
+          }
         },
         sdxl_muzong: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'phaseJieshuBegin',
+            global: 'phaseJieshuBegin'
           },
           _priority: 6,
           forced: true,
@@ -6196,27 +6196,27 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            trigger.player
-              .chooseBool('是否横置或重置侠客牌？')
-              .set('ai', function () {
-                var player = _status.event.player;
-                var source = _status.event.sourcex;
-                if (get.attitude(player, source) > 0 && !player.isLinked() && source.hasSkill('sdxl_luowang')) return true;
-                if (get.attitude(player, source) < 0 && !player.isLinked() && source.hasSkill('sdxl_luowang')) return false;
-                return lib.card.tiesuo.ai.result.target(player, player) > 0;
-              })
-              .set('sourcex', player);
-            ('step 1');
+            trigger.player.
+            chooseBool('是否横置或重置侠客牌？').
+            set('ai', function () {
+              var player = _status.event.player;
+              var source = _status.event.sourcex;
+              if (get.attitude(player, source) > 0 && !player.isLinked() && source.hasSkill('sdxl_luowang')) return true;
+              if (get.attitude(player, source) < 0 && !player.isLinked() && source.hasSkill('sdxl_luowang')) return false;
+              return lib.card.tiesuo.ai.result.target(player, player) > 0;
+            }).
+            set('sourcex', player);
+            'step 1';
             if (result.bool) {
               trigger.player.line(player);
               trigger.player.link();
             }
-          },
+          }
         },
         sdxl_hebi: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'turnOverEnd',
+            global: 'turnOverEnd'
           },
           usable: 1,
           filter(event, player) {
@@ -6224,14 +6224,14 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           },
           content() {
             'step 0';
-            player
-              .chooseTarget(get.prompt('sdxl_hebi'), function (card, player, target) {
-                return target != player && !target.isTurnedOver();
-              })
-              .set('ai', function (target) {
-                return -get.attitude(player, target);
-              });
-            ('step 1');
+            player.
+            chooseTarget(get.prompt('sdxl_hebi'), function (card, player, target) {
+              return target != player && !target.isTurnedOver();
+            }).
+            set('ai', function (target) {
+              return -get.attitude(player, target);
+            });
+            'step 1';
             if (result.targets?.length) {
               player.line(result.targets[0]);
               result.targets[0].turnOver();
@@ -6242,37 +6242,37 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           ai: {
             basic: {
               result: {
-                player: 1,
+                player: 1
               },
-              expose: 0.8,
-            },
-          },
+              expose: 0.8
+            }
+          }
         },
         sdxl_luowang: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            player: 'damageEnd',
+            player: 'damageEnd'
           },
           forced: true,
           group: 'sdxl_luowang2',
           content() {
             'step 0';
-            player
-              .chooseTarget(get.prompt2('sdxl_luowang'), [1, 2], function (card, player, target) {
-                return true;
-              })
-              .set('ai', function (target) {
-                var player = _status.event.player;
-                var att = get.attitude(player, target);
-                var num = lib.card.tiesuo.ai.result.target(player, target);
-                if (att < 0) {
-                  return -num;
-                } else {
-                  if (target.isLinked()) return num;
-                  return 0.2;
-                }
-              });
-            ('step 1');
+            player.
+            chooseTarget(get.prompt2('sdxl_luowang'), [1, 2], function (card, player, target) {
+              return true;
+            }).
+            set('ai', function (target) {
+              var player = _status.event.player;
+              var att = get.attitude(player, target);
+              var num = lib.card.tiesuo.ai.result.target(player, target);
+              if (att < 0) {
+                return -num;
+              } else {
+                if (target.isLinked()) return num;
+                return 0.2;
+              }
+            });
+            'step 1';
             if (result.targets?.length) {
               event.targets = result.targets;
               event.num = 0;
@@ -6280,7 +6280,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             } else {
               event.finish();
             }
-            ('step 2');
+            'step 2';
             if (event.num < event.targets.length) {
               event.targets[event.num].link();
               event.num++;
@@ -6288,13 +6288,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
           },
           ai: {
-            expose: 0.3,
-          },
+            expose: 0.3
+          }
         },
         sdxl_luowang2: {
           audio: 'ext:金庸群侠传/peiyin:2',
           trigger: {
-            global: 'linkAfter',
+            global: 'linkAfter'
           },
           forced: true,
           filter(event, player) {
@@ -6303,8 +6303,8 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           content() {
             //game.playJY(['sdxl_luowang1','sdxl_luowang2'].randomGet());
             player.draw();
-          },
-        },
+          }
+        }
       },
       translate: {
         //神雕侠侣mark
@@ -6413,10 +6413,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_tongbi_info: '当你需要使用【闪】时,你可以一张手牌交给手牌数最多的一名其他角色,视为你使用了一张【闪】.',
         sdxl_qiuqianchi: lib.config.extension_金庸群侠传_jiexiantupo ? '界裘千尺' : '裘千尺',
         sdxl_guofu: '果腹',
-        sdxl_guofu_info: (function () {
+        sdxl_guofu_info: function () {
           if (lib.config.extension_金庸群侠传_jiexiantupo) return '每回合限一次,一名角色的牌因弃置进入弃牌堆后,你可以使用其中一张♥️️牌(若不能使用则改为获得一张牌)';
           return '每回合限一次,一名角色的牌因弃置进入弃牌堆后,你可以使用其中一张♥️️牌.';
-        })(),
+        }(),
         sdxl_heji: '核击',
         sdxl_heji_info: '<b>锁定技.</b>你的♠️️【杀】无距离限制且不能被【闪】抵消.你使用【杀】目标造成伤害后,你可以观看其手牌并弃置其中一张♥️️牌.',
         sdxl_zifu: '自缚',
@@ -6451,10 +6451,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_zhenwang_info: '每回合限一次,当有角色横置侠客牌时,你可以横置一名角色的侠客牌.',
         sdxl_mengge: '蒙哥',
         sdxl_fasong: '伐宋',
-        sdxl_fasong_info: (function () {
+        sdxl_fasong_info: function () {
           if (lib.config.extension_金庸群侠传_changeGroup) return '<b>锁定技.</b>你的攻击范围+X(X为存活的列国势力角色数).';
           return '<b>锁定技.</b>你的攻击范围+X(X为存活的群雄势力角色数).';
-        })(),
+        }(),
         //"sdxl_fasong_info":"<b>锁定技.</b>你的攻击范围+X(X为存活的XXX势力角色数).",
         sdxl_xiezhi: '挟制',
         sdxl_xiezhi_info: '出牌阶段限一次,你可以选择一名距离1以内的其他角色,称为<人质>,并令攻击范围有你的除人质以外的所有其他角色选择是否弃置一张牌,若选择弃牌的角色数不大于未弃牌的角色数,你对<人质>造成一点伤害.',
@@ -6471,17 +6471,17 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_luowang: '罗网',
         sdxl_luowang2: '罗网',
         sdxl_anhun: '黯然',
-        sdxl_anhun_info: (function () {
+        sdxl_anhun_info: function () {
           if (lib.config.extension_金庸群侠传_jiexiantupo) return '每当你受到伤害时,你可以亮出牌堆顶5张牌,你可以无距离限制地使用其中任意张伤害类卡牌.';
           return '每当你受到伤害时,你可以亮出牌堆顶5张牌,你可以无距离限制地使用其中任意张【杀】.';
-        })(),
+        }(),
         sdxl_biefu: '别赋',
         sdxl_biefu_info: '回合结束时,你可以翻面,令一名其他角色与你各回复一点体力(若为女性角色,则其再摸1张牌).直到其下回合结束,其使用黑色普通锦囊牌或基本牌时,可额外指定一名目标.',
         sdxl_shangli: '伤离',
-        sdxl_shangli_info: (function () {
+        sdxl_shangli_info: function () {
           if (lib.config.extension_金庸群侠传_changeGroup) return '<b>主公技.</b>当你的侠客牌翻面时,你可以与其他宋势力角色各摸1张牌.';
           return '<b>主公技.</b>当你的侠客牌翻面时,你可以与其他魏势力角色各摸1张牌.';
-        })(),
+        }(),
         //"sdxl_shangli_info":"<b>主公技.</b>当你的侠客牌翻面时,你可以与其他XXX势力角色各摸1张牌.",
         sdxl_biefu2: '别赋',
         sdxl_biefu2_info: '',
@@ -6491,10 +6491,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_hebi: '合璧',
         sdxl_hebi_info: '每回合限一次,当一名角色的将侠客牌翻至背面向上时,你可令另一名侠客牌正面向上的其他角色翻面.',
         sdxl_muzong: '墓宗',
-        sdxl_muzong_info: (function () {
+        sdxl_muzong_info: function () {
           if (lib.config.extension_金庸群侠传_changeGroup) return '<b>主公技.</b>其他宋势力角色的回合结束时,其可以横置或重置其侠客牌.';
           return '<b>主公技.</b>其他魏势力角色的回合结束时,其可以横置或重置其侠客牌.';
-        })(),
+        }(),
         //"sdxl_muzong_info":"<b>主公技.</b>其他XXX势力角色的回合结束时,其可以横置或重置其侠客牌.",
         sdxl_jueshi: '绝世高手',
         //襄阳郭家
@@ -6631,15 +6631,15 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
         sdxl_manba: '蛮霸',
         sdxl_manba_info: '<b>锁定技.</b>你的字母点数牌点数均视为K.',
         sdxl_zhuangzhi: '戆直',
-        sdxl_zhuangzhi_info: '回合结束时,你摸X张牌(X为你本回合使用过但未造成伤害的伤害牌数,若本回合未使用过伤害牌则X为2).',
+        sdxl_zhuangzhi_info: '回合结束时,你摸X张牌(X为你本回合使用过但未造成伤害的伤害牌数,若本回合未使用过伤害牌则X为2).'
       },
       dynamicTranslate: {
         sdxl_huji(player) {
           if (!player.storage.sdxl_huji) player.storage.sdxl_huji = [2, 2];
           var strinfo = ["你使用的【毒杀】不能被抵消;你使用【毒杀】的额定目标数+<span class='bluetext'>", player.storage.sdxl_huji[0], '</span>.', "出牌阶段限一次,你可弃置一张♥️️牌, 摸<span class='firetext'>", player.storage.sdxl_huji[1], '</span>张牌.', '锁定技,出牌阶段开始时,你需令红色数字和蓝色数字其中一项加1,另一项减1 (若已经为0,则该项数字只能加不能减).若有数字因此变成0,你失去一点体力..'];
           return strinfo.join('');
-        },
-      },
+        }
+      }
     };
     for (var i in sdxl.character) {
       sdxl.character[i][4].push('jy_die_audio');

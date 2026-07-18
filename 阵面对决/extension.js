@@ -6472,7 +6472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.direct = true;
                                     cards.remove(result.links[0]);
                                     if (cards.length) {
-                                        const { result: result1 } = await player
+                                        const result1 = await player
                                             .chooseToMove()
                                             .set('list', [['牌堆顶', cards], ['牌堆底']])
                                             .set('prompt', '将牌移动到牌堆顶或牌堆底')
@@ -6493,7 +6493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     top.push(bottom.shift());
                                                 }
                                                 return [top, bottom];
-                                            }); //给别人观星
+                                            }).forResult(); //给别人观星
                                         result1.moved[0].reverse();
                                         for (var i of result1.moved[0]) {
                                             ui.cardPile.insertBefore(i, ui.cardPile.firstChild);

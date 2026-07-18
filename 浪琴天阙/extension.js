@@ -3570,10 +3570,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const name = trigger.skill;
 								const info = lib.skill[name];
 								var zi = '弃置一张牌令' + get.translation(trigger.player) + '技能【' + get.translation(name) + '】无效';
-								const { result: { cards } } = await player.chooseToDiscard(zi, 'he').set('ai', function (card) {
+								const { cards } = await player.chooseToDiscard(zi, 'he').set('ai', function (card) {
 									if (get.attitude(player, trigger.player) > 0) return false;
 									return 10 - get.value(card);
-								});
+								}).forResult();
 								if (cards?.length) {
 									const arr = trigger.parent.next;
 									for (let i = arr.length - 1; i >= 0; i--) {
@@ -5585,10 +5585,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											} else alert('没有翻译' + i);
 										}
 										if (chaii.length) {
-											const { result: result1 } = await player
+											const result1 = await player
 												.chooseButton(true)
 												.set('ai', (button) => lib.character[button.link][2])
-												.set('createDialog', ['获得一张武将牌的所有技能', [chaii, 'character']]);
+												.set('createDialog', ['获得一张武将牌的所有技能', [chaii, 'character']]).forResult();
 											if (result1.links && result1.links[0]) {
 												player.name2 = result1.links[0];
 												player.classList.add('fullskin2');

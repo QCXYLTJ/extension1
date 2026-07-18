@@ -31490,9 +31490,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 const result = await event.targets[0].chooseToDiscard('he', '弃置一张牌,判定一次.若不为♠️️,你摸两张牌,随机弃置区域内的两张牌').set('ai', (card) => 4 - get.value(card)).forResult();
                                 if (result.cards?.length) {
-                                    const { result: result1 } = await event.targets[0].judge(function (card) {
+                                    const result1 = await event.targets[0].judge(function (card) {
                                         return card.suit == 'spade' ? -1 : 1;
-                                    });
+                                    }).forResult();
                                     if (result1.suit != 'spade') {
                                         event.targets[0].draw(2);
                                         event.targets[0].randomDiscard(2, 'hej');

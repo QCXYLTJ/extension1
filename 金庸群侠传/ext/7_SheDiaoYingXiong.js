@@ -179,9 +179,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
       },
       perfectPair: {
 
+
         //"jyqxz_sdyx_tian":['jyqxz_sdyx_shixing'],
-      }, skill: {
-        //射雕英雄标记
+      }, skill: { //射雕英雄标记
         //武眠风 霸天 20240525
         sdyx_renshu: {
           audio: 'ext:金庸群侠传/peiyin:2',
@@ -5106,9 +5106,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               //}
             } else {
 
+
               //target.loseHp();
-            }event.goto(1);
-            'step 4';
+            }event.goto(1);'step 4';
             if (event.UseList.length) {
               var getnum = function (target2, evt2) {
                 var damagenum = 0;
@@ -5226,9 +5226,9 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.UseList.add(target);
             } else {
 
+
               //target.loseHp();
-            }event.goto(1);
-            'step 4';
+            }event.goto(1);'step 4';
             if (event.UseList.length) {
               var getnum = function (target2, evt2) {
                 var damagenum = 0;

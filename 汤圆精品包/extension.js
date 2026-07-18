@@ -23990,9 +23990,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (suit) player.storage.tyj_tongbo_add++;
                                         event.W = player.getExpansions('tyj_bizhuan');
                                         while (event.W && event.W[0]) {
-                                            var { result: result1 } = await player.chooseCardButton('是否将<书>交给任意名其他角色？', event.W, [0, event.W.length]).set('ai', (button) => get.value(button.link));
+                                            const result1 = await player.chooseCardButton('是否将<书>交给任意名其他角色？', event.W, [0, event.W.length]).set('ai', (button) => get.value(button.link)).forResult();
                                             if (result1.links && result1.links[0]) {
-                                                var { result: result2 } = await player.chooseTarget('将' + get.translation(result1.links) + '交给一名其他角色', (card, player, target) => target != player).set('ai', (target) => get.attitude(player, target));
+                                                const result2 = await player.chooseTarget('将' + get.translation(result1.links) + '交给一名其他角色', (card, player, target) => target != player).set('ai', (target) => get.attitude(player, target)).forResult();
                                                 if (result2.targets && result2.targets[0]) {
                                                     await result2.targets[0].gain(result1.links, 'gain2');
                                                     player.line(result2.targets[0], 'green');

@@ -29963,11 +29963,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         player.sslz.push(result.card.number);
                                         if (player.sslz[player.sslz.length - 1] > player.sslz[player.sslz.length - 2]) {
-                                            const { result: result1 } = await player
+                                            const result1 = await player
                                                 .chooseTarget('是否改变目标为其上家或下家.', (card, player, target) => [event.target.next, event.target.previous].includes(target))
                                                 .set('ai', function (target) {
                                                     return -get.attitude(player, target);
-                                                });
+                                                }).forResult();
                                             if (result1.targets && result1.targets[0]) {
                                                 event.target = result1.targets[0];
                                             }

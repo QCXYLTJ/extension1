@@ -19232,7 +19232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }).forResult();
                                 if (result.targets?.length) {
                                     for (var i of result.targets) {
-                                        const { result: result1 } = await i.chooseToCompare(player);
+                                        const result1 = await i.chooseToCompare(player).forResult();
                                         if (result1.bool) {
                                             player.loseHp(3);
                                         } else {

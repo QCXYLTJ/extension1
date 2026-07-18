@@ -8897,13 +8897,13 @@ game.import('character', function () {
         async content(event, trigger, player) {
           await player.draw(player.countMark('yuechuimrfz') > 0 ? player.countMark('yuechuimrfz') : 1);
           if (player.countMark('yuechuimrfz') < 3 && player.countCards('he', { type: 'equip' }) > 0) {
-            const cards = await player
+            const { cards } = await player
               .chooseToDiscard('he', (card) => get.type(card) == 'equip')
               .set('prompt', `【跃锤】:你可以弃置一张装备牌令‘跃锤’中[]内的数字+1(当前:${player.countMark('yuechuimrfz') > 0 ? player.countMark('yuechuimrfz') : 1})`)
               .set('ai', (card) => {
                 return get.value(card) < 8;
               })
-              .forResult('cards');
+              .forResult();
             if (cards) player.addMark('yuechuimrfz', 1, false);
           }
           let targets = trigger.targets,
@@ -17457,7 +17457,7 @@ game.import('character', function () {
           if (!control) return;
           switch (control) {
             case '选项一':
-              const cards = await target.chooseToDiscard(true, 'he', 3, '请弃置三张牌').forResult('cards');
+              const { cards } = await target.chooseToDiscard(true, 'he', 3, '请弃置三张牌').forResult();
               if (!cards) return;
               for (var i of cards) {
                 if (get.position(i) != 'd') cards.remove(i);
@@ -17826,14 +17826,14 @@ game.import('character', function () {
         forced: true,
         async content(event, trigger, player) {
           let num = get.cardNameLength(trigger.card);
-          const cards = await player
+          const { cards } = await player
             .chooseCard(`【敛芒】:请重铸至多${get.cnNumber(num)}张牌`, [0, num], true)
             .set('ai', function (card) {
               if (get.tag(card, 'damage')) return 10 - get.value(card);
               return 6 - get.value(card);
             })
             .set('filterCard', (card) => player.canRecast(card))
-            .forResult('cards');
+            .forResult();
           if (!cards || cards.length == 0) {
             lib.skill.lianmangmrfz.banHs(event, trigger, player);
             return;
@@ -18046,7 +18046,7 @@ game.import('character', function () {
           if (hs.length == 0) return;
           let list = [];
           while (hs.length) {
-            const cards = await player
+            const { cards } = await player
               .chooseCard(true, `【秉烛】:请分配第${get.cnNumber(list.length + 1)}组手牌`)
               .set('selectCard', function () {
                 var player = _status.event.player;
@@ -18071,7 +18071,7 @@ game.import('character', function () {
                 return hs.includes(card);
               })
               .set('hs', hs)
-              .forResult('cards');
+              .forResult();
             if (!cards) continue;
             list.push([cards]);
             hs.removeArray(cards);
@@ -18656,7 +18656,7 @@ game.import('character', function () {
         },
         forced: true,
         async content(event, trigger, player) {
-          const cards = await player
+          const { cards } = await player
             .chooseToUse(
               function (card, player, event) {
                 if (card.name != 'sha') return false;
@@ -18670,7 +18670,7 @@ game.import('character', function () {
               return lib.filter.targetEnabled.apply(this, arguments);
             })
             .set('sourcex', trigger.player)
-            .forResult('cards');
+            .forResult();
           if (!cards) return;
           var isDamaged = player.hasHistory('useCard', (evt) => {
             return (
@@ -18987,12 +18987,12 @@ game.import('character', function () {
           return false;
         },
         async content(event, trigger, player) {
-          const cards = await player
+          const { cards } = await player
             .chooseCard('s')
             .set('filterCard', (card) => lib.skill.haolimrfz.compare(card, trigger.card))
             .set('prompt', `【好礼】:你可以弃置一张‘死魂灵’,视为使用一张${get.translation(trigger.card.name)}`)
             .set('ai', (card) => get.value(trigger.card) - get.value(card))
-            .forResult('cards');
+            .forResult();
           if (!cards) return;
           player.discard(cards);
           player.chooseUseTarget({ name: trigger.card.name }, true, false);
@@ -20250,7 +20250,7 @@ game.import('character', function () {
               } else {
                 let current = trigger.player;
                 var num = Math.ceil(current.countCards('h') / 2);
-                const cards = await current
+                const { cards } = await current
                   .chooseCard(true)
                   .set('prompt', `请选择${get.cnNumber(num, false)}张牌`)
                   .set('selectCard', num)
@@ -20258,7 +20258,7 @@ game.import('character', function () {
                     var player = get.event('player');
                     return 6 - get.value(card);
                   })
-                  .forResult('cards');
+                  .forResult();
                 current.addToExpansion(cards, 'giveAuto', current).gaintag.add('quliemrfz');
                 current.markSkill('quliemrfz');
               }
@@ -20355,7 +20355,7 @@ game.import('character', function () {
         prompt: '【巡心】:请选择一名没有明置牌的角色',
         async content(event, trigger, player) {
           const target = event.targets[0];
-          const cards = await player
+          const { cards } = await player
             .choosePlayerCard('h', target)
             .set('prompt', `请选择明置${get.translation(target)}一张手牌`)
             .set('visible', true)
@@ -20373,7 +20373,7 @@ game.import('character', function () {
               return value;
             })
             .set('target', target)
-            .forResult('cards');
+            .forResult();
           if (!cards) return;
           await target.addShownCards(cards, 'visible_xunxinmrfz');
           let showncards = [];

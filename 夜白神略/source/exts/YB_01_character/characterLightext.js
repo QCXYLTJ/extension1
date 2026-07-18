@@ -1,48 +1,48 @@
-﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterLightext, characterLightextParent };
 /**@type {importCharacterConfig[characterLightextParent]} */
 const characterLightextParent = {
-	ybsl_020jiayutong: [
-		[
-			'副将搭配房佳瑜,手牌上限+1',
-			{
-				forced: true,
-				YB_filterOk(player) {
-					return player.name == 'ybsl_020jiayutong' && player.name2 && player.name2 == 'ybsl_043fangjiayu';
-				},
-				mod: {
-					maxHandcard(player, num) {
-						if (player.name2 && player.name2 == 'ybsl_043fangjiayu') {
-							return num + 1;
-						} else {
-							return num;
-						}
-					},
-				},
-			},
-		],
-	],
-	ybsl_043fangjiayu: [
-		[
-			'副将搭配贾雨桐,摸牌阶段额外摸一张牌',
-			{
-				forced: true,
-				trigger: {
-					player: 'phaseDrawBegin',
-				},
-				YB_filterOk(player) {
-					return player.name == 'ybsl_043fangjiayu' && player.name2 && player.name2 == 'ybsl_020jiayutong';
-				},
-				filter(event, player) {
-					return player.name2 && player.name2 == 'ybsl_020jiayutong';
-					// return true;
-				},
-				content() {
-					trigger.num++;
-				},
-			},
-		],
-	],
+  ybsl_020jiayutong: [
+  [
+  '副将搭配房佳瑜,手牌上限+1',
+  {
+    forced: true,
+    YB_filterOk(player) {
+      return player.name == 'ybsl_020jiayutong' && player.name2 && player.name2 == 'ybsl_043fangjiayu';
+    },
+    mod: {
+      maxHandcard(player, num) {
+        if (player.name2 && player.name2 == 'ybsl_043fangjiayu') {
+          return num + 1;
+        } else {
+          return num;
+        }
+      }
+    }
+  }]],
+
+
+  ybsl_043fangjiayu: [
+  [
+  '副将搭配贾雨桐,摸牌阶段额外摸一张牌',
+  {
+    forced: true,
+    trigger: {
+      player: 'phaseDrawBegin'
+    },
+    YB_filterOk(player) {
+      return player.name == 'ybsl_043fangjiayu' && player.name2 && player.name2 == 'ybsl_020jiayutong';
+    },
+    filter(event, player) {
+      return player.name2 && player.name2 == 'ybsl_020jiayutong';
+      // return true;
+    },
+    content() {
+      trigger.num++;
+    }
+  }]]
+
+
 };
 /**@type {importCharacterConfig[characterLightext]} */
 const characterLightext = {};

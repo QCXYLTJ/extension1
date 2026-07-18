@@ -1518,7 +1518,7 @@ const packs = function () {
                                 if (result.control !== 'cancel2') {
                                     if (result.control === '摸牌') await target.draw(num);
                                     else if (target.hasCard((card) => target.canRecast(card), 'he')) {
-                                        const { resultx } = await target.chooseCard('he', true, '重铸任意张牌', lib.filter.cardRecastable, [1, Infinity]).set('ai', lib.skill.zhiheng.check);
+                                        const resultx = await target.chooseCard('he', true, '重铸任意张牌', lib.filter.cardRecastable, [1, Infinity]).set('ai', lib.skill.zhiheng.check).forResult();
                                         if (resultx?.bool && resultx.cards?.length) await target.recast(resultx.cards);
                                     }
                                 }
@@ -3043,7 +3043,7 @@ const packs = function () {
                 logTarget: 'player',
                 async content(event, trigger, player) {
                     const target = trigger.player;
-                    const cards = await player.gainPlayerCard(target, 'h', true).forResult('cards');
+                    const { cards } = await player.gainPlayerCard(target, 'h', true).forResult();
                     if (cards?.length) {
                         const [card] = cards,
                             type = get.type2(card, false);
@@ -6883,9 +6883,9 @@ const packs = function () {
                 },
                 prompt2: () => '将所有<象>置入弃牌堆并亮出牌堆顶等量张牌,然后你依次使用其中的非基本牌',
                 async content(event, trigger, player) {
-                    let cards = player.getExpansions(event.name);
-                    await player.loseToDiscardpile(cards);
-                    cards = await game.cardsGotoOrdering(get.cards(cards.length)).forResult('cards');
+                    const cards1 = player.getExpansions(event.name);
+                    await player.loseToDiscardpile(cards1);
+                    const { cards } = await game.cardsGotoOrdering(get.cards(cards.length)).forResult();
                     if (cards.length) {
                         await player.showCards(cards, get.translation(player) + '发动了【' + get.translation(event.name) + '】');
                         while (cards.some((card) => get.type(card) !== 'basic' && player.hasUseTarget(card))) {

@@ -9410,7 +9410,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return -get.attitude(player, target);
 											}).forResult();
 										if (result.targets?.length) {
-											const { result: result1 } = await player.chooseCard(1, 'h', { name: 'sha' }, true, '将一张【杀】转化为【火杀】并对目标使用');
+											const result1 = await player.chooseCard(1, 'h', { name: 'sha' }, true, '将一张【杀】转化为【火杀】并对目标使用').forResult();
 											if (result1 && result1.cards && result1.cards[0]) {
 												player.useCard({ name: 'sha', nature: 'fire' }, result.targets[0], result1.cards);
 												result.targets[0].storage.nyhzr火之箭矢ol++;

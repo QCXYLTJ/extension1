@@ -1861,8 +1861,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return event.player;
                             },
                             async content(event, trigger, player) {
-                                const { result: { number } } = await player.judge();
-                                const { result: { cards } } = await trigger.player.chooseToDiscard('〖difu_疾咒〗:弃置任意张点数之和大于' + number + '的牌,否则失去1点体力', 'he')
+                                const { number } = await player.judge().forResult();
+                                const { cards } = await trigger.player.chooseToDiscard('〖difu_疾咒〗:弃置任意张点数之和大于' + number + '的牌,否则失去1点体力', 'he')
                                     .set('filterOk', function () {
                                         var num = 0;
                                         for (const i of ui.selected.cards) {
@@ -1871,7 +1871,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return num > number;
                                     }).set('ai', function (card) {
                                         return 20 - get.value(card);
-                                    });
+                                    }).forResult();
                                 if (cards?.length) {
                                     const shuliang = player.hp > 15 ? 1 : 2;
                                     if (cards.length > shuliang) {

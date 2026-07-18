@@ -28413,25 +28413,25 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     player.storage.tx_xhjs_shicao_aiRecord.pop();
                                                 }
                                             }
-                                            const drawnCards = await next.forResult();
-                                            if (get.type2(drawnCards[0], player) === type) return;
-                                            let cards;
+                                            const { cards } = await next.forResult();
+                                            if (get.type2(cards[0], player) === type) return;
+                                            let cards1;
                                             if (!bottom) {
-                                                cards = get.bottomCards(2);
-                                                cards.reverse();
-                                            } else cards = get.cards(2);
+                                                cards1 = get.bottomCards(2);
+                                                cards1.reverse();
+                                            } else cards1 = get.cards(2);
                                             await player.addTempSkill('tx_xhjs_shicao_1', { player: 'phaseUseAfter' });
-                                            await game.cardsGotoOrdering(cards);
-                                            await player.viewCards(`${bottom ? '牌堆顶' : '牌堆底'}的两张牌(靠左的在牌堆更靠上)`, cards);
-                                            player.storage.tx_xhjs_shicao_record = cards.slice();
-                                            player.storage.tx_xhjs_shicao_aiRecord = cards.slice();
+                                            await game.cardsGotoOrdering(cards1);
+                                            await player.viewCards(`${bottom ? '牌堆顶' : '牌堆底'}的两张牌(靠左的在牌堆更靠上)`, cards1);
+                                            player.storage.tx_xhjs_shicao_record = cards1.slice();
+                                            player.storage.tx_xhjs_shicao_aiRecord = cards1.slice();
                                             player.storage.tx_xhjs_shicao_bottom = !bottom;
                                             const func = lib.skill.dctongguan.localMark,
                                                 skill = 'tx_xhjs_shicao';
                                             if (event.player.isUnderControl(true)) func(skill, player);
                                             else if (event.isOnline()) player.send(func, skill, player);
-                                            if (bottom) cards.reverse();
-                                            await game.cardsGotoPile(cards, bottom ? 'insert' : null);
+                                            if (bottom) cards1.reverse();
+                                            await game.cardsGotoPile(cards1, bottom ? 'insert' : null);
                                             player.addMark('tx_xhjs_shicao_1');
                                             if (player.countMark('tx_xhjs_shicao_1') > 1) player.tempBanSkill('tx_xhjs_shicao', { player: 'phaseUseAfter' });
                                         },

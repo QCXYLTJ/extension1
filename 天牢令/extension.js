@@ -29803,7 +29803,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             trigger.player.gain(result.cards[0], 'gain2');
                                         } else {
                                             if (trigger.cards[0]) {
-                                                const { result: result1 } = await player.chooseButton(['龙吟:请选择要获得的牌', [trigger.cards[0], result.cards[0]]], true); //QQQ
+                                                const result1 = await player.chooseButton(['龙吟:请选择要获得的牌', [trigger.cards[0], result.cards[0]]], true).forResult(); //QQQ
                                                 if (result1.links && result1.links[0]) {
                                                     player.gain(result1.links[0], 'gain2');
                                                 }

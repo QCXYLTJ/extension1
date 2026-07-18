@@ -8768,7 +8768,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .forResult();
                                 if (result.targets?.length) {
                                     result.targets[0].addTempSkill('retieji');
-                                    const { result: result1 } = await result.targets[0].chooseToDiscard('he', '是否弃置一张牌,视为对' + get.translation(trigger.source) + '使用一张【杀】？').set('ai', (card) => -get.attitude(result.targets[0], trigger.source) - get.value(card));
+                                    const result1 = await result.targets[0].chooseToDiscard('he', '是否弃置一张牌,视为对' + get.translation(trigger.source) + '使用一张【杀】？').set('ai', (card) => -get.attitude(result.targets[0], trigger.source) - get.value(card)).forResult();
                                     if (result1.cards && result1.cards[0]) {
                                         await result.targets[0].useCard({ name: 'sha' }, trigger.source, false);
                                         if (result.targets[0].hasHistory('sourceDamage', (evt) => evt.getParent(event.name) == event)) {

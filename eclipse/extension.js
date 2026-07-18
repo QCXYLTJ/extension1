@@ -5420,9 +5420,10 @@ game.import('extension', function () {
                                 content: 'expansion',
                             },
                             async content(event, trigger, player) {
-                                const { result: { links } } = await player.choosePlayerCard(trigger.player, 'h', [1, game.roundNumber], 'visible')
+                                const { links } = await player.choosePlayerCard(trigger.player, 'h', [1, game.roundNumber], 'visible')
                                     .set('filterButton', (b) => !b.link.gaintag?.includes('QQQ_xingchen'))
-                                    .set('ai', (b) => get.value(b.link) * sgn(trigger.player.isEnemiesOf(player)));
+                                    .set('ai', (b) => get.value(b.link) * sgn(trigger.player.isEnemiesOf(player)))
+                                    .forResult();
                                 if (links?.length) {
                                     trigger.player.addGaintag(links, 'QQQ_xingchen');
                                     game.log(trigger.player, links, '添加了星辰标记');
@@ -5463,8 +5464,9 @@ game.import('extension', function () {
                                         const num = player.countCards('x', (c) => c.gaintag?.includes('QQQ_xingchen'));
                                         const numx = num + 1;
                                         if (player.countCards('he')) {
-                                            const { result: { cards } } = await player.chooseToDiscard(`弃置${numx}张牌,否则受到无来源的${num}点伤害`, 'he', numx)
-                                                .set('ai', (c) => 6 - get.value(c));
+                                            const { cards } = await player.chooseToDiscard(`弃置${numx}张牌,否则受到无来源的${num}点伤害`, 'he', numx)
+                                                .set('ai', (c) => 6 - get.value(c))
+                                                .forResult();
                                             if (cards?.length) {
                                             }
                                             else {

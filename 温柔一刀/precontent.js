@@ -99,7 +99,7 @@ game[otherFunction[6]](game.zmtzd13Gif('zmcuibin.gif', null, null, true), 3600);
 game\[otherFunction\[.+\]\]\(game.+\('(.+)\.gif',.+\);
 game.webm1('$1')
 //-------------------------------------------------------正则替换
-var { result
+const { result
 onLose\(\) \{\n\s*.+creat
 if \(result.bool(\) \{\n\s*.+result.targets)
 if (result.targets?.length$1
@@ -395,25 +395,6 @@ const precontent = async function () {
             },
             silent: true,
             async content(event, trigger, player) {
-                /*
-        lib.card.list.some((q)=>q[2]=='火链')
-        const { result: { control } } = await player.chooseControl('获得', '替换')
-        .set('ai', (e, p) => ['获得', '替换'].randomGet());
-        if (control == '获得') {
-        }
-        const { result: { cards } } = await player.chooseCard('he', [1, player.countCards('he')])
-        .set('ai', (c) => 6 - get.value(c));
-        if (cards?.length) {
-        }
-        const { result: { targets } } = await player.chooseTarget('对一名角色造成一点伤害', (c, p, t) => p != t)
-        .set('ai', (t) => -get.attitude(player, t));
-        if (targets?.length) {
-        }
-        const { result: { links } } = await player.chooseButton(['请选择卡牌', list], true, trigger.num)
-        .set('ai', (button) => get.value(button.link));
-        if (links?.length) {
-        }
-        */
                 // Reflect.defineProperty(game.me, 'hp', {
                 //     get() {
                 //         return 4;

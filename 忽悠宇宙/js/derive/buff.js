@@ -239,11 +239,11 @@ window.hyyzImport(function (lib, game, ui, get, ai, _status) {
 			return get.type(event.card) != 'delay' && get.type(event.card) != 'equip';
 		},
 		async content(event, trigger, player) {
-			const { result: { cards } } = await player.chooseCard(`纠缠:重铸一张${get.translation(get.type2(trigger.card))}牌,否则${get.translation(trigger.card)}结算两次`, function (card) {
+			const { cards } = await player.chooseCard(`纠缠:重铸一张${get.translation(get.type2(trigger.card))}牌,否则${get.translation(trigger.card)}结算两次`, function (card) {
 				return get.type2(card) == _status.event.typex;
 			})
 				.set('typex', get.type2(trigger.card))
-				.set('ai', (card) => 8 - get.value(card) && !game.canToRespend([card, trigger.card]));
+				.set('ai', (card) => 8 - get.value(card) && !game.canToRespend([card, trigger.card])).forResult();
 			if (cards) {
 				game.log(trigger.player, '因', '#r[纠缠]', player, '重铸了', cards);
 				player.recast(cards)

@@ -1,84 +1,84 @@
-﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_rank };
 /**
  * 掌管第五格武将评级和异构加入的数据
  */
 const YBSL_rank = function () {
-	const packages = ['ybslj', 'ybxh', 'ybdd', 'ybgod', 'ybslc', 'ybart', 'ybnew1', 'ybmjz', 'yhky', 'sgstrxs', 'ybMagic', 'ybnew3', 'cyyydsgs', 'jhjx'];
-	lib.arenaReady.push(function () {
-		for (const pack of packages) {
-			for (const name in lib.characterPack[pack]) {
-				const infoy = lib.characterPack[pack][name][4];
-				for (const infox of infoy) {
-					if (infox.startsWith('rankAdd:')) {
-						const rarity = infox.slice(8);
-						if (lib.rank.rarity[rarity]) {
-							lib.rank.rarity[rarity].add(name);
-						}
-					}
-					if (infox.startsWith('rankS:')) {
-						const infoz = infox.slice(6);
-						if (lib.rank[infoz]) {
-							lib.rank[infoz].add(name);
-						}
-					}
-				}
-				if (lib.characterPack[pack][name].rankAdd) {
-					const rarity = lib.characterPack[pack][name].rankAdd;
-					if (lib.rank.rarity[rarity]) {
-						lib.rank.rarity[rarity].add(name);
-					}
-					const rarityS = lib.characterPack[pack][name].rankS;
-					if (lib.rank[rarityS]) {
-						lib.rank[rarityS].add(name);
-					}
-				}
-			}
-		}
-	});
-	lib.arenaReady.push(function () {
-		for (const pack of packages) {
-			for (const name in lib.characterPack[pack]) {
-				const infoy = lib.characterPack[pack][name][4];
-				for (const infox of infoy) {
-					if (infox.startsWith('linkTo:')) {
-						const char = infox.slice(7);
+  const packages = ['ybslj', 'ybxh', 'ybdd', 'ybgod', 'ybslc', 'ybart', 'ybnew1', 'ybmjz', 'yhky', 'sgstrxs', 'ybMagic', 'ybnew3', 'cyyydsgs', 'jhjx'];
+  lib.arenaReady.push(function () {
+    for (const pack of packages) {
+      for (const name in lib.characterPack[pack]) {
+        const infoy = lib.characterPack[pack][name][4];
+        for (const infox of infoy) {
+          if (infox.startsWith('rankAdd:')) {
+            const rarity = infox.slice(8);
+            if (lib.rank.rarity[rarity]) {
+              lib.rank.rarity[rarity].add(name);
+            }
+          }
+          if (infox.startsWith('rankS:')) {
+            const infoz = infox.slice(6);
+            if (lib.rank[infoz]) {
+              lib.rank[infoz].add(name);
+            }
+          }
+        }
+        if (lib.characterPack[pack][name].rankAdd) {
+          const rarity = lib.characterPack[pack][name].rankAdd;
+          if (lib.rank.rarity[rarity]) {
+            lib.rank.rarity[rarity].add(name);
+          }
+          const rarityS = lib.characterPack[pack][name].rankS;
+          if (lib.rank[rarityS]) {
+            lib.rank[rarityS].add(name);
+          }
+        }
+      }
+    }
+  });
+  lib.arenaReady.push(function () {
+    for (const pack of packages) {
+      for (const name in lib.characterPack[pack]) {
+        const infoy = lib.characterPack[pack][name][4];
+        for (const infox of infoy) {
+          if (infox.startsWith('linkTo:')) {
+            const char = infox.slice(7);
 
-						const char2 = get.sourceCharacter(char);
-						if (!lib.characterReplace[char2]) {
-							lib.characterReplace[char2] = [char2];
-						}
-						if (!lib.characterReplace[char2].includes(name)) {
-							lib.characterReplace[char2].push(name);
-						}
-					}
-				}
-				if (lib.characterPack[pack][name].linkTo) {
-					const linkTo = lib.characterPack[pack][name].linkTo;
+            const char2 = get.sourceCharacter(char);
+            if (!lib.characterReplace[char2]) {
+              lib.characterReplace[char2] = [char2];
+            }
+            if (!lib.characterReplace[char2].includes(name)) {
+              lib.characterReplace[char2].push(name);
+            }
+          }
+        }
+        if (lib.characterPack[pack][name].linkTo) {
+          const linkTo = lib.characterPack[pack][name].linkTo;
 
-					const char2 = get.sourceCharacter(linkTo);
-					if (!lib.characterReplace[char2]) {
-						lib.characterReplace[char2] = [char2];
-					}
-					if (!lib.characterReplace[char2].includes(name)) {
-						lib.characterReplace[char2].push(name);
-					}
-				}
-			}
-		}
-	});
-	const gxcfbool = lib.config.YB_guixiecifu;
-	const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+          const char2 = get.sourceCharacter(linkTo);
+          if (!lib.characterReplace[char2]) {
+            lib.characterReplace[char2] = [char2];
+          }
+          if (!lib.characterReplace[char2].includes(name)) {
+            lib.characterReplace[char2].push(name);
+          }
+        }
+      }
+    }
+  });
+  const gxcfbool = lib.config.YB_guixiecifu;
+  const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
 
-	const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e';
-	const whjxbool = lib.config.YB_wuhunjuexing;
-	let whjxstr = `
+  const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e';
+  const whjxbool = lib.config.YB_wuhunjuexing;
+  let whjxstr = `
 			开局每名角色觉醒武魂()
 			<br>随游戏进行,获得魂力,达到瓶颈之后,准备阶段可以发动猎魂,选择想要觉醒的方向:转化,过牌,辅助,卖血等,然后用南华天书般的系统摇几个技能供玩家选择,可以放弃选择,下次再选.魂力达到瓶颈后不会升级,但会积累,最高积累到下次升级的瓶颈.
 			<br>其他的有待设定
 			<br>点击下方按钮可以开启或关闭武魂觉醒系统(调整后需重置游戏方可生效)
 		`;
-	whjxstr += `
+  whjxstr += `
 			<div style="position:relative;display:inline-block;width:200px;">
 				<button id="wuhunBtn"
 						onclick="
@@ -94,15 +94,15 @@ const YBSL_rank = function () {
 			</div>
 		`;
 
-	if (typeof lib !== 'undefined' && lib.config) {
-		lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
-	}
-	/**
- * 开局根据初始列表设定重置列表
-然后根据重置列表设定现存列表
-现存列表每一项执行后移除,全部移除后根据重置列表刷新
- */
-	lib.translate.ybslj_charactersInfo = `
+  if (typeof lib !== 'undefined' && lib.config) {
+    lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
+  }
+  /**
+  * 开局根据初始列表设定重置列表
+  然后根据重置列表设定现存列表
+  现存列表每一项执行后移除,全部移除后根据重置列表刷新
+  */
+  lib.translate.ybslj_charactersInfo = `
 		夜白神略主体武将包<br>
 		<li>重置技机制:<br>
 		①,简单来说,每项各限一次,用完重置<br>
@@ -118,18 +118,18 @@ const YBSL_rank = function () {
 		<li>永续转换技机制;<br>
 		同普通的转换技,一般为发动后获得一个永续效果,效果消失时才转换<br>
 	`;
-	lib.translate.ybart_charactersInfo = '温馨提示:<br>开启本将包会一并开启<六艺>机制,详情请右键六艺篇查看,简单来说就是全场自带私人木牛流马.<br>因之前有群友反馈,说不喜欢这个机制,因此被我放在这里隔离,开启与否视个人喜好吧';
-	lib.translate.ybxh_charactersInfo = '校花的贴身高手,很多武将虚位以待,敬请投稿';
-	lib.translate.ybdd_charactersInfo = '本人接单制作的武将';
-	lib.translate['ybnew3_charactersInfo'] = '杂设,部分为闲暇之余的设计,部分为参与其他投稿的落榜之作';
-	lib.translate.ybmjz_charactersInfo = '夜白自己的界限突破……';
-	lib.translate.ybMagic_charactersInfo = '理论上应该有武将的,但没设计好呢,再等等';
-	lib.translate.yhky_charactersInfo = '永恒刻印,意为永恒的持恒技.不出意外的话,本包武将均为持恒技道心值武将';
-	lib.translate.ybllyz_charactersInfo = '连招宇宙,以夜白自己设计的连招技框架构成';
-	lib.translate.sgstrxs_charactersInfo = '三国杀同人小说也是一个丰富的diy宝库,里面不乏优秀或有趣的设计<br>本人在此立下宏愿:每看一本三国杀同人文,都要将其中可以复现的武将都复现出来!<br>提示:右键子将包或查看武将简介可查看作者';
-	lib.translate.YB_one_charactersInfo = '本包本来是我接的单.因金主失联疑似逃单,因此将这组技能代码兼并至此,以期复用';
+  lib.translate.ybart_charactersInfo = '温馨提示:<br>开启本将包会一并开启<六艺>机制,详情请右键六艺篇查看,简单来说就是全场自带私人木牛流马.<br>因之前有群友反馈,说不喜欢这个机制,因此被我放在这里隔离,开启与否视个人喜好吧';
+  lib.translate.ybxh_charactersInfo = '校花的贴身高手,很多武将虚位以待,敬请投稿';
+  lib.translate.ybdd_charactersInfo = '本人接单制作的武将';
+  lib.translate['ybnew3_charactersInfo'] = '杂设,部分为闲暇之余的设计,部分为参与其他投稿的落榜之作';
+  lib.translate.ybmjz_charactersInfo = '夜白自己的界限突破……';
+  lib.translate.ybMagic_charactersInfo = '理论上应该有武将的,但没设计好呢,再等等';
+  lib.translate.yhky_charactersInfo = '永恒刻印,意为永恒的持恒技.不出意外的话,本包武将均为持恒技道心值武将';
+  lib.translate.ybllyz_charactersInfo = '连招宇宙,以夜白自己设计的连招技框架构成';
+  lib.translate.sgstrxs_charactersInfo = '三国杀同人小说也是一个丰富的diy宝库,里面不乏优秀或有趣的设计<br>本人在此立下宏愿:每看一本三国杀同人文,都要将其中可以复现的武将都复现出来!<br>提示:右键子将包或查看武将简介可查看作者';
+  lib.translate.YB_one_charactersInfo = '本包本来是我接的单.因金主失联疑似逃单,因此将这组技能代码兼并至此,以期复用';
 
-	lib.translate.ybslc_cardsInfo = `
+  lib.translate.ybslc_cardsInfo = `
 		夜白神略主体卡牌包<br>
 		<li>血属性机制:<br>
 		造成伤害后,回复等同伤害值的体力值,仅存在血属性时不传导铁索<br>
@@ -150,8 +150,8 @@ const YBSL_rank = function () {
 		※方天画戟、乌铁锁链=>方天锁链鞭,<br>
 		※护心镜=>护心铠,<br>
 	`;
-	lib.translate.ybgod_cardsInfo = 'boss模式卡牌搬运';
-	lib.translate['ybnew2_cardsInfo'] = `
+  lib.translate.ybgod_cardsInfo = 'boss模式卡牌搬运';
+  lib.translate['ybnew2_cardsInfo'] = `
 		风花雪月<br>
 		<li>风属性机制:<br>
 		①,此属性可以和其他属性共存,也就是说你可以看到诸如风雷杀,风火属性伤害之类的牌或描述<br>
@@ -165,5 +165,5 @@ const YBSL_rank = function () {
 		由于不能变属性,所以看似藤甲有绝对防御,但是朱雀羽扇和火攻也是无限供应……<br>
 	`;
 
-	lib.translate.yunchou_cardsInfo = '运筹帷幄,原本体卡包,被本体拆了.为确保引用相关内容的稳定性,夜白把这些包放进了夜白神略';
+  lib.translate.yunchou_cardsInfo = '运筹帷幄,原本体卡包,被本体拆了.为确保引用相关内容的稳定性,夜白把这些包放进了夜白神略';
 };

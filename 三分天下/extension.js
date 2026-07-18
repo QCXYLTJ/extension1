@@ -2453,7 +2453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.targets?.length) {
                                     await player.gainPlayerCard(result.targets[0].hp, result.targets[0], 'h');
                                     var y = result.targets[0].maxHp - result.targets[0].hp + 1;
-                                    const { result: result1 } = await player.chooseCard(Math.min(y, player.countCards('h')), 'he', '选择要交给' + get.translation(result.targets[0]) + '的牌', true);
+                                    const result1 = await player.chooseCard(Math.min(y, player.countCards('h')), 'he', '选择要交给' + get.translation(result.targets[0]) + '的牌', true).forResult();
                                     if (result1.cards && result1.cards[0]) {
                                         result.targets[0].gain(result1.cards, player, 'give');
                                         player.storage.sfzhenlie = true;
@@ -3103,7 +3103,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 //QQQ
                                 const result = await player.chooseTarget(2).forResult();
                                 if (result.targets && result.targets[0] && result.targets[1]) {
-                                    const { result: result1 } = await player.chooseControl('手牌区', '装备区');
+                                    const result1 = await player.chooseControl('手牌区', '装备区').forResult();
                                     if (result1.control == '手牌区') {
                                         result.targets[0].swapHandcards(result.targets[1]);
                                     } else {

@@ -672,7 +672,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }).forResult();
                                 if (result.targets?.length) {
                                     for (var i of result.targets.concat(player.storage.问技_target)) {
-                                        const { result: result1 } = await i.chooseCard(`交给${get.translation(player)}1张牌`, true, 'he').set('ai', (card) => get.attitude(player, i) * get.value(card));
+                                        const result1 = await i.chooseCard(`交给${get.translation(player)}1张牌`, true, 'he').set('ai', (card) => get.attitude(player, i) * get.value(card)).forResult();
                                         if (result1.cards && result1.cards[0]) {
                                             player.storage.问计_1.add(get.type(result.cards[0]));
                                             player.gain(result1.cards, i, 'giveAuto');
@@ -4119,12 +4119,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.cards?.length) {
                                     trigger.player.gain(result.cards, 'giveAuto');
                                     if (trigger.source && trigger.source.countCards('he')) {
-                                        const { result: result1 } = await player
+                                        const result1 = await player
                                             .choosePlayerCard(trigger.source, 'he', [1, Math.min(trigger.player.getDamagedHp(), trigger.source.countCards('he'))])
                                             .set('ai', function (button) {
                                                 return get.value(button.link) * -get.attitude(player, trigger.source);
                                             })
-                                            .set('forceAuto', true);
+                                            .set('forceAuto', true).forResult();
                                         if (result1.cards && result1.cards[0]) {
                                             player.addToExpansion('giveAuto', result1.cards, player).gaintag.add('zhuiyuanwjxs');
                                         }

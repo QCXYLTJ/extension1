@@ -9070,7 +9070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('targetprompt', ['胜利者', '失败者']).forResult();
                                 if (result.targets?.length) {
                                     if (result.targets[0].canCompare(result.targets[1])) {
-                                        const { result: result1 } = await result.targets[0].chooseToCompare(result.targets[1]);
+                                        const result1 = await result.targets[0].chooseToCompare(result.targets[1]).forResult();
                                         if (result1) {
                                             if (result1.winner != result.targets[0] || !result1.winner) {
                                                 game.log(player, '猜错了');
