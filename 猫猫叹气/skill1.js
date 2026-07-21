@@ -55012,7 +55012,7 @@ const skill = {
                 }
             });
             for (const i of list) {
-                if (event.filterCard && event.filterCard({ name: i }, player, event)) {
+                if (i != 'wuxie'  && event.filterCard({ name: i }, player, event)) {
                     return true;
                 }
             }
