@@ -16450,7 +16450,7 @@
 									.chooseButton(dialog, isDouble || isDoubleSameForce ? 2 : 1, true)
 									.set('onfree', true)
 									.set('filterButton', filterButton);
-								if (lib.config.mode_config.liangjunduilei.change_choice == true) {
+								if (lib.config.mode_config.quankuochongpai.change_choice == true) {
 									ui.create.cheat = function () {
 										_status.createControl = ui.cheat2;
 										ui.cheat = ui.create.control('更换', function () {
@@ -16488,7 +16488,7 @@
 									};
 									ui.create.cheat();
 								}
-								if (lib.config.mode_config.liangjunduilei.free_choose == true) {
+								if (lib.config.mode_config.quankuochongpai.free_choose == true) {
 									event.dialogxx = ui.create.characterDialog('heightset');
 									ui.create.cheat2 = function () {
 										ui.cheat2 = ui.create.control('自由选将', function () {
@@ -16962,7 +16962,7 @@
 							next.showConfig = true;
 							next.setContent(function () {
 								'step 0';
-								const num = get.config('choice_num');
+								const num = get.config('choice_num') || 20;
 								var isDouble = get.config('double_character');
 								var isDoubleSameForce = get.config('double_tongshili');
 								var isDoubleSameForceAlly = get.config('double_tongshiliduiyou');
@@ -17002,6 +17002,7 @@
 								} else {
 									list = event.list.randomGets(num);
 								}
+								debugger;
 								const dialog = ui.create.dialog('选择角色', 'hidden', [list, 'character']);
 								dialog.setCaption('选择角色');
 								let filterButton = (button) => {
@@ -17016,7 +17017,7 @@
 									.chooseButton(dialog, isDouble || isDoubleSameForce ? 2 : 1, true)
 									.set('onfree', true)
 									.set('filterButton', filterButton);
-								if (lib.config.mode_config.liangjunduilei.change_choice == true) {
+								if (lib.config.mode_config.shenfenguozhan.change_choice == true) {
 									ui.create.cheat = function () {
 										_status.createControl = ui.cheat2;
 										ui.cheat = ui.create.control('更换', function () {
@@ -17054,7 +17055,7 @@
 									};
 									ui.create.cheat();
 								}
-								if (lib.config.mode_config.liangjunduilei.free_choose == true) {
+								if (lib.config.mode_config.shenfenguozhan.free_choose == true) {
 									event.dialogxx = ui.create.characterDialog('heightset');
 									ui.create.cheat2 = function () {
 										ui.cheat2 = ui.create.control('自由选将', function () {
