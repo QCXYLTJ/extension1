@@ -19,6 +19,8 @@ export default [
 			'no-redeclare': 'warn',
 			'no-var': 'error',
 			'prefer-const': 'error',
+			'no-unreachable': 'error',
+			'no-empty': 'error',
 		},
 		languageOptions: {
 			ecmaVersion: 13,
