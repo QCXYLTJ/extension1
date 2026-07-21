@@ -17002,7 +17002,6 @@
 								} else {
 									list = event.list.randomGets(num);
 								}
-								debugger;
 								const dialog = ui.create.dialog('选择角色', 'hidden', [list, 'character']);
 								dialog.setCaption('选择角色');
 								let filterButton = (button) => {
