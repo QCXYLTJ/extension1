@@ -184,7 +184,7 @@
 							}
 						};
 						const playback = localStorage.getItem(lib.configprefix + 'playback');
-						for (const i in lib.characterPack.mode_guozhan) {
+						for (var i in lib.characterPack.mode_guozhan) {
 							if (!get.config('onlyguozhan') && !playback) {
 								if (lib.character[i.slice(3)]) {
 									continue;
@@ -198,7 +198,7 @@
 								lib.translate[i] = lib.translate[i.slice(3)];
 							}
 						}
-						for (const i in lib.character) {
+						for (var i in lib.character) {
 							if (lib.character[i][1] == 'shen') {
 								if (lib.character[i][4] && lib.group.includes(lib.character[i][4][0])) {
 									lib.character[i][1] = lib.character[i][4][0];
@@ -845,7 +845,7 @@
 							nopop: true,
 							mark: true,
 							intro: {
-								content: '@<div style="margin-top:-5px"><div class="skill">【武圣】</div><div>将<红色牌>改为<任意牌></div><div class="skill">【咆哮】</div><div>增加描述<你使用的【杀】无视其他角色的防具></div><div class="skill">【龙胆】</div><div>增加描述<你每发动一次‘龙胆’便摸一张牌></div><div class="skill">【烈弓】</div><div>增加描述<你的攻击范围+1></div><div class="skill">【铁骑】</div><div>将<若结果为红色>改为<若结果不为♠️️️></div></div>',
+								content: '@<div style="margin-top:-5px"><div class="skill">【武圣】</div><div>将<红色牌>改为<任意牌></div><div class="skill">【咆哮】</div><div>增加描述<你使用的【杀】无视其他角色的防具></div><div class="skill">【龙胆】</div><div>增加描述<你每发动一次‘龙胆’便摸一张牌></div><div class="skill">【烈弓】</div><div>增加描述<你的攻击范围+1></div><div class="skill">【铁骑】</div><div>将<若结果为红色>改为<若结果不为♠️️></div></div>',
 							},
 						},
 						jizhao: {
@@ -911,7 +911,7 @@
 								if (event.player.countCards('h')) {
 									return false;
 								}
-								if (event.player.isEnemiesOf(player)) {
+								if (!event.player.isFriendsOf(player)) {
 									return false;
 								}
 								if (_status.currentPhase == event.player) {
@@ -2208,7 +2208,7 @@
 								}
 							}
 
-							for (const i in map) {
+							for (var i in map) {
 								if (map[i].length < 2) {
 									if (map[i].length == 1) {
 										choice.remove(map[i][0]);
@@ -2601,14 +2601,14 @@
 								game.saveConfig('continue_name');
 								event.chosen = chosen;
 
-								let i;
+								var i;
 								var list = {
 									wei: [],
 									shu: [],
 									wu: [],
 									qun: [],
 								};
-								for (const i in lib.character) {
+								for (var i in lib.character) {
 									if (i.indexOf('gz_shibing') == 0) {
 										continue;
 									}
@@ -2877,7 +2877,7 @@
 						huangjintianbingfu_info: '锁定技 :当你计算群势力角色数时,每一张<天兵>均可视为一名群势力角色.<br>每当你失去体力时,你可改为将一张<天兵>置入弃牌堆.<br>与你势力相同的角色可将一张<天兵>当【杀】使用或打出',
 						wuhujiangdaqi: '五虎将大旗',
 						wuhujiangdaqi_bg: '旗',
-						wuhujiangdaqi_info: '存活的蜀势力角色的技能按以下规则改动:<br><strong>武圣</strong>:将<红色牌>改为<任意牌><br><strong>咆哮</strong>:增加描述<你使用的【杀】无视其他角色的防具><br><strong>龙胆</strong>:增加描述<你每发动一次‘龙胆’便摸一张牌><br><strong>烈弓</strong>:增加描述<你的攻击范围+1><br><strong>铁骑</strong>:将<若结果为红色>改为<若结果不为♠️️️>',
+						wuhujiangdaqi_info: '存活的蜀势力角色的技能按以下规则改动:<br><strong>武圣</strong>:将<红色牌>改为<任意牌><br><strong>咆哮</strong>:增加描述<你使用的【杀】无视其他角色的防具><br><strong>龙胆</strong>:增加描述<你每发动一次‘龙胆’便摸一张牌><br><strong>烈弓</strong>:增加描述<你的攻击范围+1><br><strong>铁骑</strong>:将<若结果为红色>改为<若结果不为♠️️>',
 						zhangwu: '章武',
 						zhangwu_info: '锁定技.当【飞龙夺凤】进入弃牌堆或其他角色的装备区时,你获得之.当你失去【飞龙夺风】时,展示之,然后将此牌置于牌堆底并摸两张牌',
 						shouyue: '授钺',
@@ -4418,7 +4418,7 @@
 								蓝方城池: ['', '', 20, ['threatencfz'], ['ext:龙舟国战模式/城池1.jpg']],
 								红方城池: ['', '', 20, ['threatencfz'], ['ext:龙舟国战模式/城池2.jpg']],
 							};
-							for (const i in character) {
+							for (var i in character) {
 								lib.character[i] = character[i];
 							}
 
@@ -4600,14 +4600,14 @@
 									},
 								},
 							};
-							for (const i in skill) {
+							for (var i in skill) {
 								lib.skill[i] = skill[i];
 							}
 							const translate = {
 								蓝方城池: '城池',
 								红方城池: '城池',
 							};
-							for (const i in translate) {
+							for (var i in translate) {
 								lib.translate[i] = translate[i];
 							}
 						},
@@ -4623,7 +4623,7 @@
 						game.prepareArena(get.config('player_num'));
 						game.showChangeLog();
 						const list = [];
-						for (const i in lib.character) {
+						for (var i in lib.character) {
 							list.push(i);
 						}
 						const dialog = ui.create.characterDialog('请选择角色', [list, 'character']);
@@ -5333,7 +5333,7 @@
 							}
 						};
 						const playback = localStorage.getItem(lib.configprefix + 'playback');
-						for (const i in lib.characterPack.mode_guozhan) {
+						for (var i in lib.characterPack.mode_guozhan) {
 							if (!get.config('onlyguozhan') && !playback) {
 								if (lib.character[i.slice(3)]) {
 									continue;
@@ -5347,7 +5347,7 @@
 								lib.translate[i] = lib.translate[i.slice(3)];
 							}
 						}
-						for (const i in lib.character) {
+						for (var i in lib.character) {
 							if (lib.character[i][1] == 'shen') {
 								if (lib.character[i][4] && lib.group.includes(lib.character[i][4][0])) {
 									lib.character[i][1] = lib.character[i][4][0];
@@ -6096,7 +6096,7 @@
 							nopop: true,
 							mark: true,
 							intro: {
-								content: '@<div style="margin-top:-5px"><div class="skill">【武圣】</div><div>将<红色牌>改为<任意牌></div><div class="skill">【咆哮】</div><div>增加描述<你使用的【杀】无视其他角色的防具></div><div class="skill">【龙胆】</div><div>增加描述<你每发动一次‘龙胆’便摸一张牌></div><div class="skill">【烈弓】</div><div>增加描述<你的攻击范围+1></div><div class="skill">【铁骑】</div><div>将<若结果为红色>改为<若结果不为♠️️️></div></div>',
+								content: '@<div style="margin-top:-5px"><div class="skill">【武圣】</div><div>将<红色牌>改为<任意牌></div><div class="skill">【咆哮】</div><div>增加描述<你使用的【杀】无视其他角色的防具></div><div class="skill">【龙胆】</div><div>增加描述<你每发动一次‘龙胆’便摸一张牌></div><div class="skill">【烈弓】</div><div>增加描述<你的攻击范围+1></div><div class="skill">【铁骑】</div><div>将<若结果为红色>改为<若结果不为♠️️></div></div>',
 							},
 						},
 						jizhao: {
@@ -6162,7 +6162,7 @@
 								if (event.player.countCards('h')) {
 									return false;
 								}
-								if (event.player.isEnemiesOf(player)) {
+								if (!event.player.isFriendsOf(player)) {
 									return false;
 								}
 								if (_status.currentPhase == event.player) {
@@ -7459,7 +7459,7 @@
 								}
 							}
 
-							for (const i in map) {
+							for (var i in map) {
 								if (map[i].length < 2) {
 									if (map[i].length == 1) {
 										choice.remove(map[i][0]);
@@ -7858,14 +7858,14 @@
 								game.saveConfig('continue_name');
 								event.chosen = chosen;
 
-								let i;
+								var i;
 								var list = {
 									wei: [],
 									shu: [],
 									wu: [],
 									qun: [],
 								};
-								for (const i in lib.character) {
+								for (var i in lib.character) {
 									if (i.indexOf('gz_shibing') == 0) {
 										continue;
 									}
@@ -8109,7 +8109,7 @@
 								let list;
 								if (lib.configOL.onlyguozhan) {
 									list = [];
-									for (const i in lib.characterPack.mode_guozhan) {
+									for (var i in lib.characterPack.mode_guozhan) {
 										if (i.indexOf('gz_shibing') == 0) {
 											continue;
 										}
@@ -8203,14 +8203,14 @@
 									});
 								('step 1');
 								let sort = true;
-								for (const i in result) {
+								for (var i in result) {
 									if (result[i] && result[i].links) {
 										for (const j of result[i].links) {
 											event.list.remove(j);
 										}
 									}
 								}
-								for (const i in result) {
+								for (var i in result) {
 									if (result[i] == 'ai' || !result[i].links || result[i].links.length < 1) {
 										if (sort) {
 											sort = false;
@@ -8321,7 +8321,7 @@
 						huangjintianbingfu_info: '锁定技 :当你计算群势力角色数时,每一张<天兵>均可视为一名群势力角色.<br>每当你失去体力时,你可改为将一张<天兵>置入弃牌堆.<br>与你势力相同的角色可将一张<天兵>当【杀】使用或打出',
 						wuhujiangdaqi: '五虎将大旗',
 						wuhujiangdaqi_bg: '旗',
-						wuhujiangdaqi_info: '存活的蜀势力角色的技能按以下规则改动:<br><strong>武圣</strong>:将<红色牌>改为<任意牌><br><strong>咆哮</strong>:增加描述<你使用的【杀】无视其他角色的防具><br><strong>龙胆</strong>:增加描述<你每发动一次‘龙胆’便摸一张牌><br><strong>烈弓</strong>:增加描述<你的攻击范围+1><br><strong>铁骑</strong>:将<若结果为红色>改为<若结果不为♠️️️>',
+						wuhujiangdaqi_info: '存活的蜀势力角色的技能按以下规则改动:<br><strong>武圣</strong>:将<红色牌>改为<任意牌><br><strong>咆哮</strong>:增加描述<你使用的【杀】无视其他角色的防具><br><strong>龙胆</strong>:增加描述<你每发动一次‘龙胆’便摸一张牌><br><strong>烈弓</strong>:增加描述<你的攻击范围+1><br><strong>铁骑</strong>:将<若结果为红色>改为<若结果不为♠️️>',
 						zhangwu: '章武',
 						zhangwu_info: '锁定技.当【飞龙夺凤】进入弃牌堆或其他角色的装备区时,你获得之.当你失去【飞龙夺风】时,展示之,然后将此牌置于牌堆底并摸两张牌',
 						shouyue: '授钺',
@@ -9716,7 +9716,7 @@
 							},
 						};
 						const playback = localStorage.getItem(lib.configprefix + 'playback');
-						for (const i in lib.characterPack.mode_guozhan) {
+						for (var i in lib.characterPack.mode_guozhan) {
 							if (!get.config('onlyguozhan') && !playback) {
 								if (lib.character[i.slice(3)]) {
 									continue;
@@ -9730,7 +9730,7 @@
 								lib.translate[i] = lib.translate[i.slice(3)];
 							}
 						}
-						for (const i in lib.character) {
+						for (var i in lib.character) {
 							if (lib.character[i][1] == 'shen') {
 								if (lib.character[i][4] && lib.group.includes(lib.character[i][4][0])) {
 									lib.character[i][1] = lib.character[i][4][0];
@@ -10479,7 +10479,7 @@
 							nopop: true,
 							mark: true,
 							intro: {
-								content: '@<div style="margin-top:-5px"><div class="skill">【武圣】</div><div>将<红色牌>改为<任意牌></div><div class="skill">【咆哮】</div><div>增加描述<你使用的【杀】无视其他角色的防具></div><div class="skill">【龙胆】</div><div>增加描述<你每发动一次‘龙胆’便摸一张牌></div><div class="skill">【烈弓】</div><div>增加描述<你的攻击范围+1></div><div class="skill">【铁骑】</div><div>将<若结果为红色>改为<若结果不为♠️️️></div></div>',
+								content: '@<div style="margin-top:-5px"><div class="skill">【武圣】</div><div>将<红色牌>改为<任意牌></div><div class="skill">【咆哮】</div><div>增加描述<你使用的【杀】无视其他角色的防具></div><div class="skill">【龙胆】</div><div>增加描述<你每发动一次‘龙胆’便摸一张牌></div><div class="skill">【烈弓】</div><div>增加描述<你的攻击范围+1></div><div class="skill">【铁骑】</div><div>将<若结果为红色>改为<若结果不为♠️️></div></div>',
 							},
 						},
 						jizhao: {
@@ -10545,7 +10545,7 @@
 								if (event.player.countCards('h')) {
 									return false;
 								}
-								if (event.player.isEnemiesOf(player)) {
+								if (!event.player.isFriendsOf(player)) {
 									return false;
 								}
 								if (_status.currentPhase == event.player) {
@@ -11842,7 +11842,7 @@
 								}
 							}
 
-							for (const i in map) {
+							for (var i in map) {
 								if (map[i].length < 2) {
 									if (map[i].length == 1) {
 										choice.remove(map[i][0]);
@@ -12255,14 +12255,14 @@
 								game.saveConfig('continue_name');
 								event.chosen = chosen;
 
-								let i;
+								var i;
 								var list = {
 									wei: [],
 									shu: [],
 									wu: [],
 									qun: [],
 								};
-								for (const i in lib.character) {
+								for (var i in lib.character) {
 									if (i.indexOf('gz_shibing') == 0) {
 										continue;
 									}
@@ -12506,7 +12506,7 @@
 								let list;
 								if (lib.configOL.onlyguozhan) {
 									list = [];
-									for (const i in lib.characterPack.mode_guozhan) {
+									for (var i in lib.characterPack.mode_guozhan) {
 										if (i.indexOf('gz_shibing') == 0) {
 											continue;
 										}
@@ -12600,14 +12600,14 @@
 									});
 								('step 1');
 								let sort = true;
-								for (const i in result) {
+								for (var i in result) {
 									if (result[i] && result[i].links) {
 										for (const j of result[i].links) {
 											event.list.remove(j);
 										}
 									}
 								}
-								for (const i in result) {
+								for (var i in result) {
 									if (result[i] == 'ai' || !result[i].links || result[i].links.length < 1) {
 										if (sort) {
 											sort = false;
@@ -12722,7 +12722,7 @@
 						huangjintianbingfu_info: '锁定技 :当你计算群势力角色数时,每一张<天兵>均可视为一名群势力角色.<br>每当你失去体力时,你可改为将一张<天兵>置入弃牌堆.<br>与你势力相同的角色可将一张<天兵>当【杀】使用或打出',
 						wuhujiangdaqi: '五虎将大旗',
 						wuhujiangdaqi_bg: '旗',
-						wuhujiangdaqi_info: '存活的蜀势力角色的技能按以下规则改动:<br><strong>武圣</strong>:将<红色牌>改为<任意牌><br><strong>咆哮</strong>:增加描述<你使用的【杀】无视其他角色的防具><br><strong>龙胆</strong>:增加描述<你每发动一次‘龙胆’便摸一张牌><br><strong>烈弓</strong>:增加描述<你的攻击范围+1><br><strong>铁骑</strong>:将<若结果为红色>改为<若结果不为♠️️️>',
+						wuhujiangdaqi_info: '存活的蜀势力角色的技能按以下规则改动:<br><strong>武圣</strong>:将<红色牌>改为<任意牌><br><strong>咆哮</strong>:增加描述<你使用的【杀】无视其他角色的防具><br><strong>龙胆</strong>:增加描述<你每发动一次‘龙胆’便摸一张牌><br><strong>烈弓</strong>:增加描述<你的攻击范围+1><br><strong>铁骑</strong>:将<若结果为红色>改为<若结果不为♠️️>',
 						zhangwu: '章武',
 						zhangwu_info: '锁定技.当【飞龙夺凤】进入弃牌堆或其他角色的装备区时,你获得之.当你失去【飞龙夺风】时,展示之,然后将此牌置于牌堆底并摸两张牌',
 						shouyue: '授钺',
@@ -16114,7 +16114,7 @@
 							function shedingjinengjuesepai() {
 								const list = [];
 								let i, j, name;
-								for (const i in lib.character) {
+								for (let i in lib.character) {
 									if (lib.config.forbidai.includes(i)) {
 										continue;
 									}
