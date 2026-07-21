@@ -5900,7 +5900,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3], sbzz_jiamian: true };
                                     if (card.name == 'tao' || card.name == 'jiu') {
                                         player.useCard(card, player, false);
@@ -6550,7 +6550,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 4');
-                                if (result.bool && result.cards[0]) {
+                                if (result.cards?.length) {
                                     event.tt = player;
                                     event.cc = result.cards[0];
                                     for (let i = 0; i < result.cards[0].number; i++) {
@@ -10011,7 +10011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }, 4505);
                                         } else {
                                         }
-                                        if (result.cards) player.loseToDiscardpile(result.cards);
+                                        if (result.cards?.length) player.loseToDiscardpile(result.cards);
                                         player.line(target);
                                         target.draw(2);
                                     },
@@ -10057,7 +10057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }, 4505);
                                         } else {
                                         }
-                                        if (result.cards) player.loseToDiscardpile(result.cards);
+                                        if (result.cards?.length) player.loseToDiscardpile(result.cards);
                                         for (const i of targets) i.damage();
                                     },
                                     ai: {
@@ -14193,7 +14193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3], sbzz_jiamian: true };
                                     if (card.name == 'tao' || card.name == 'jiu') {
                                         player.useCard(card, player, false);
@@ -14384,7 +14384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool && result.cards[0]) {
+                                if (result.cards?.length) {
                                     player.line(event.target[0]);
                                     if (!trigger.card.suit || result.cards[0].suit != trigger.card.suit) {
                                         trigger.directHit.addArray(
@@ -20738,7 +20738,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result && result.bool && result.links[0]) {
+                                        if (result.links?.length) {
                                             var card = { name: result.links[0][2], nature: result.links[0][3] };
                                             if (card.name == 'tao' || card.name == 'jiu') player.useCard(card, player, false);
                                             else player.chooseUseTarget(card, false);
@@ -27751,7 +27751,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 5');
                                 var card = result.cards;
-                                if (result.cards.length) {
+                                if (result.cards?.length) {
                                     target.line(player);
                                     player.gain(card, target);
                                     target.$give(result.cards.length, player);
@@ -34721,7 +34721,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(3);
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                     event.goto(3);
@@ -34787,7 +34787,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                     event.goto(3);
@@ -35334,7 +35334,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.unmarkAuto('sbzz_modaocount', [card.name]);
                                     player.chooseUseTarget(card, true);
@@ -35881,7 +35881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                     event.finish();
@@ -38189,7 +38189,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 if (result.bool) {
                                     var cards = player.getCards('h');
-                                    if (result.cards[0]) cards.remove(result.cards[0]);
+                                    if (result.cards?.length) cards.remove(result.cards[0]);
                                     player.loseToDiscardpile(cards);
                                     player.draw(cards.length);
                                     target.damage(player, 'fire', 1);
@@ -41321,7 +41321,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2] };
                                     if (card.name != 'wuzhong' && card.name != 'nanman' && card.name != 'wanjian') {
                                         event.fakecard = card;
@@ -51557,7 +51557,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 var cards = target.getCards('h', function (card, player) {
                                     return event.togain.includes(card);
                                 });
-                                if (result.cards[0]) cards.remove(result.cards[0]);
+                                if (result.cards?.length) cards.remove(result.cards[0]);
                                 if (result.cards[1]) cards.remove(result.cards[1]);
                                 if (result.cards[2]) cards.remove(result.cards[2]);
                                 target.discard(cards);

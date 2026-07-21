@@ -5478,7 +5478,7 @@ const skill = {
         event.finish();
       }
       'step 2';
-      if (result.targets.length) {
+      if (result.targets?.length) {
         player.line(result.targets, 'fire');
         result.targets[0].damage(2, 'fire');
       }
@@ -6409,7 +6409,7 @@ const skill = {
         event.finish();
       }
       'step 2';
-      if (result.targets.length) {
+      if (result.targets?.length) {
         player.line(result.targets);
         result.targets[0].loseHp();
       }
@@ -7694,7 +7694,7 @@ const skill = {
         return 6 - get.value(card);
       };
       'step 1';
-      if (result.bool && result.cards.length) {
+      if (result.cards?.length) {
         player.gain(result.cards, trigger.player, 'give');
         if (get.type(result.cards[0]) == 'trick') {
           player.addTempSkill('wenji2', { player: 'phaseBegin' });

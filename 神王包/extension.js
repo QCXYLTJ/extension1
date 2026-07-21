@@ -2684,7 +2684,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('target1', event.target1);
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     event.target1.line(event.target2);
                                     event.target1.chooseToCompare(event.target2);
@@ -9655,7 +9655,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('target1', event.target1);
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     event.target1.line(event.target2);
                                     event.target1.chooseToCompare(event.target2);
@@ -11710,7 +11710,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player, 'fire', 3);
                                 });
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'fire', 3);
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].damage('fire', 3);
@@ -11734,7 +11734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'tiesuo' }, player, player);
                                 });
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     for (var i = 0; i < result.targets.length; i++) {
                                         result.targets[i].link();
@@ -11755,7 +11755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) * (target.isDamaged() ? 2 : 1);
                                 });
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'thunder');
                                     player.addTempSkill('rekanpo', 'phaseAfter');
@@ -11869,7 +11869,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'e') event.targets[1].equip(link);
                                     else if (link.viewAs) event.targets[1].addJudge({ name: link.viewAs }, [link]);

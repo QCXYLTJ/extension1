@@ -13714,7 +13714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 if (result.targets?.length) {
-                                    if (result.targets.length) {
+                                    if (result.targets?.length) {
                                         for (var target of result.targets) {
                                             if (!target.hasSkill('slc_elv_zhanfang_mark')) target.addSkill('slc_elv_zhanfang_mark');
                                             target.damage(Math.floor(Math.random() * 2 + 1), 'fire');

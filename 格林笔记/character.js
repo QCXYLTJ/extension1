@@ -3476,7 +3476,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							('step 1');
-							if (result.bool && result.targets.length) {
+							if (result.targets?.length) {
 								event.target = result.targets[0];
 							} else {
 								event.finish();
@@ -6090,7 +6090,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							}
 						});
 					('step 1');
-					if (result.bool && result.links.length) {
+					if (result.links?.length) {
 						var link = result.links[0];
 						if (get.position(link) == 'e') {
 							event.targets[1].equip(link);
@@ -6259,7 +6259,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							('step 1');
-							if (result.bool && result.targets.length) {
+							if (result.targets?.length) {
 								event.target = result.targets[0];
 							} else {
 								event.finish();
@@ -8079,7 +8079,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							.set('enemy', get.value(event.togive[0], player, 'raw') < 0);
 					}
 					('step 5');
-					if (result.targets.length) {
+					if (result.targets?.length) {
 						result.targets[0].gain(event.togive, 'draw');
 						if (result.targets[0] == player) event.bool = false;
 						player.line(result.targets[0], 'green');
@@ -8751,7 +8751,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return trigger.targets.includes(target);
 					});
 					('step 1');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						trigger.targets.removeArray(result.targets);
 						var history = player.getAllHistory('useCard', function (evt) {
 							return evt != trigger.parent;
@@ -12009,7 +12009,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							('step 1');
-							if (result.bool && result.targets.length) {
+							if (result.targets?.length) {
 								event.target = result.targets[0];
 							} else {
 								event.finish();

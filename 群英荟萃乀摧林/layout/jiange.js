@@ -2669,7 +2669,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
         'step 1'
         if (result.targets?.length) {
             if (!result.targets || !result.targets.length) result.targets = game.filterPlayer((current) => (current.isDamaged() && current.isFriendsOf(player)));
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 game.asyncDraw(result.targets.sortBySeat(_status.currentPhase));
             }
         }

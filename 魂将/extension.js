@@ -4123,7 +4123,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 ('step 5');
-                if (result.bool && result.links.length) {
+                if (result.links?.length) {
                   var link = result.links[0];
                   cards.add(link);
                   event.targets[1].equip(link);

@@ -1425,7 +1425,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('target1', event.target1);
 								('step 2');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									event.target2 = result.targets[0];
 									event.target1.line(event.target2);
 									event.target1.chooseToCompare(event.target2);
@@ -6897,7 +6897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.addTempSkill('qqwz_镇军血', 'phaseAfter');
 								player.choosePlayerCard(trigger.target, 'he', [1, Math.min(trigger.target.countCards('he'), trigger.target.hp * 2)], get.prompt('qqwz_镇军', trigger.target));
 								('step 1');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									if (trigger.target.storage.qqwz_镇军2) {
 										trigger.target.storage.qqwz_镇军2 = trigger.target.storage.qqwz_镇军2.concat(result.links);
 									} else {
@@ -8158,7 +8158,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(2);
 								}
 								('step 4');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									event.current.lose(result.cards, ui.special);
 									game.broadcastAll(function (player) {
@@ -14237,7 +14237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 8');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].gain(event.togive, 'draw');
 									player.line(result.targets[0], 'green');
 									game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张', '#g<古>');

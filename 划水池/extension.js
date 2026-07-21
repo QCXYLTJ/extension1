@@ -6952,7 +6952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								var num;
 								if (get.isLuckyStar(player)) {
-									if (result.links) num = qian;
+									if (result.links?.length) num = qian;
 									else num = 0;
 								} else num = list.randomGet();
 								event.num = num;
@@ -12430,7 +12430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (result.bool) {
 											player.storage.hs_kongcheng_damage = true;
 											event.list = player.getExpansions('hs_kongcheng');
-											if (result.cards.length) event.list.addArray(result.cards);
+											if (result.cards?.length) event.list.addArray(result.cards);
 											game.hs_loseCards(event.list);
 											event.list1 = [];
 											player.showCards(event.list);
@@ -13024,7 +13024,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 1');
 								player.storage.hs_ansong_log = player.getCards('h');
-								if (result.links) event.links = result.links;
+								if (result.links?.length) event.links = result.links;
 								else event.finish();
 								('step 2');
 								if (event.cards) {

@@ -1057,7 +1057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 2');
                                 event.target = result.targets[0];
                                 player.line(result.targets, 'green');
-                                if (result.cards.length) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     result.targets[0].gain(result.cards, player, 'give');
                                 } else {
@@ -2402,7 +2402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -2591,7 +2591,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     game.log(player, '指定的视为出杀目标为', result.targets);
                                     event.target.line(result.targets);
                                     event.target.useCard({ name: 'sha' }, result.targets, false);
@@ -2884,7 +2884,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     game.log(player, '指定的视为出火杀目标为', result.targets);
                                     event.target.line(result.targets);
                                     event.target.useCard({ name: 'sha', nature: 'fire' }, result.targets, false);
@@ -9203,7 +9203,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.choosePlayerCard(targets[num], 'he', true);
                                 ('step 1');
                                 if (result.links?.length) {
-                                    if (result.links.length) targets[num].discard(result.links[0]);
+                                    if (result.links?.length) targets[num].discard(result.links[0]);
                                     if (targets.length) {
                                         event.cards = get.cards(targets.length);
                                         if (event.isMine() == false) {
@@ -9870,7 +9870,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.choosePlayerCard(targets[num], 'he', true);
                                 ('step 1');
                                 if (result.links?.length) {
-                                    if (result.links.length) targets[num].discard(result.links[0]);
+                                    if (result.links?.length) targets[num].discard(result.links[0]);
                                     if (targets.length) {
                                         event.cards = get.cards(targets.length);
                                         if (event.isMine() == false) {
@@ -12579,7 +12579,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     player.discardPlayerCard(true, result.targets[0], 'hej');
                                     player.draw(2);
                                 }
@@ -13264,7 +13264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     event.targets[1].equip(link);
                                     event.targets[0].$give(link, event.targets[1]);
@@ -14981,7 +14981,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     if (card.name == 'sha') {
                                         event.fakecard = card;

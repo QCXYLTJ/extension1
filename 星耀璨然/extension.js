@@ -5715,7 +5715,7 @@ export default async function () {
                                     return button.link.suit == ui.selected.buttons[0].suit;
                                 });
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     target.discard(result.links).set('source', player);
                                     if (
                                         player.countCards('h', {
@@ -6234,7 +6234,7 @@ export default async function () {
                                 return target.countCards('h');
                             });
                         ('step 1');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             event.target = result.targets[0];
                             player.line(event.target);
                         } else {
@@ -6538,7 +6538,7 @@ export default async function () {
                                 return base * get.attitude(player, target);
                             });
                         ('step 3');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             player.line(target, 'red');
                             game.log('radiance_xuling', player, '选择令', target, target.countCards('h') < target.hp ? '摸牌' : '弃牌');
@@ -7587,7 +7587,7 @@ export default async function () {
                             return att - 1;
                         });
                         ('step 1');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             player.line(result.targets[0], 'blue');
                             player.link();
                             result.targets[0].link();
@@ -7659,7 +7659,7 @@ export default async function () {
                                         return -att * target.countCards('he');
                                     });
                                 ('step 3');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
                                     player
@@ -10193,7 +10193,7 @@ export default async function () {
                                 return true;
                             });
                         ('step 2');
-                        if (result.bool && result.links.length) {
+                        if (result.links?.length) {
                             player.gain(result.links, 'log', 'draw');
                             trigger.changeToZero();
                         }
@@ -16459,7 +16459,7 @@ export default async function () {
                             event.goto(5);
                         }
                         ('step 4');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             result.targets[0].gain(event.give, player, 'gain2');
                         }
                         ('step 5');
@@ -17560,7 +17560,7 @@ export default async function () {
                             })
                             .set('pos', event.count > 0 ? 'hej' : 'he');
                         ('step 2');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             if (event.count > 0) {
                                 player.discardPlayerCard(result.targets[0], true, 'hej', 1);
                             } else {
@@ -18677,7 +18677,7 @@ export default async function () {
                                 return _status.event.targets1.canEquip(get.subtype(button.link, true));
                             });
                         ('step 1');
-                        if (result.bool && result.links.length) {
+                        if (result.links?.length) {
                             var card = result.links[0];
                             event.card2 = card;
                             player.addTempSkill('radiance_huoluan_clear', 'phaseUseEnd');
@@ -19998,7 +19998,7 @@ export default async function () {
                                 return att / (target.hp * 1.5 + target.countCards('h') + 0.1);
                             });
                         ('step 1');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             var targets = result.targets.slice(0);
                             targets = get.sortSeat(targets, trigger.source || _status.currentPhase);
                             if (trigger.source !== undefined && trigger.source.isIn()) {
@@ -20548,7 +20548,7 @@ export default async function () {
                             })
                             .set('suits', suits);
                         ('step 1');
-                        if (result.bool && result.cards.length) {
+                        if (result.cards?.length) {
                             player.addToExpansion(result.cards, trigger.player, 'giveAuto').gaintag.add('radiance_suzheng');
                             player.markSkill('radiance_suzheng');
                             game.log(player, '将', result.cards, '置于武将牌上');
@@ -21317,7 +21317,7 @@ export default async function () {
                             return get.value(button.link) - 4;
                         });
                         ('step 1');
-                        if (result.bool && result.links.length) {
+                        if (result.links?.length) {
                             player.gain(result.links[0], 'gain2');
                             player.addTempSkill('radiance_shiwei_used');
                         }
@@ -21718,7 +21718,7 @@ export default async function () {
                                 return num * get.attitude(player, target);
                             });
                         ('step 2');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             var target = result.targets[0];
                             var num = target.getHandcardLimit() - target.countCards('h');
                             if (num > 4) {
@@ -22034,7 +22034,7 @@ export default async function () {
                         ('step 1');
                         if (result.targets?.length) {
                             player.line(result.targets, 'red');
-                            if (result.cards) player.discard(result.cards);
+                            if (result.cards?.length) player.discard(result.cards);
                             event.target = result.targets[0];
                         } else {
                             event.finish();
@@ -25348,7 +25348,7 @@ export default async function () {
                             };
                         }
                         ('step 3');
-                        if (result.bool && result.cards.length) {
+                        if (result.cards?.length) {
                             event.current.chooseBool('是否令' + get.translation(player) + '摸一张牌').set('choice', get.attitude(event.current, player) > 0);
                             event.num = result.cards[0].number;
                             event.cardsx.add(result.cards[0]);
@@ -26668,7 +26668,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 3');
-                        if (result.bool && result.cards.length) {
+                        if (result.cards?.length) {
                             target.give(result.cards, player, true);
                         } else {
                             target.damage(1, player, 'nocard');
@@ -28286,7 +28286,7 @@ export default async function () {
                             return true;
                         });
                         ('step 2');
-                        if (result.bool && result.links.length) {
+                        if (result.links?.length) {
                             result.links.sort();
                             player.showCards(result.links);
                             player.gain(result.links, 'gain2', 'log');
@@ -31485,7 +31485,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 2');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             var targets = result.targets.slice(0);
                             event.targets = targets;
                             if (targets.length == 1 && event.bool2) {
@@ -37136,7 +37136,7 @@ export default async function () {
                             .set('target', target)
                             .set('cards', cards)
                             .forResult();
-                        if (result.bool && result.links.length) {
+                        if (result.links?.length) {
                             cardsx = result.links;
                         }
                         if (cardsx.length) {
@@ -37867,7 +37867,7 @@ export default async function () {
                             event.finish();
                         }
                         ('step 2');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             var num = 1;
                             if (result.cards?.length) {
                                 player.discard(result.cards);
@@ -39502,7 +39502,7 @@ export default async function () {
                         }
                         ('step 1');
                         if (result.targets?.length) {
-                            if (result.targets.length) {
+                            if (result.targets?.length) {
                                 player.give(result.cards, result.targets[0], false);
                             } else {
                                 player.discard(result.cards);
@@ -41305,7 +41305,7 @@ export default async function () {
                                         return get.effect(target, trigger.card, _status.event.player, _status.event.player);
                                     })
                                     .forResult();
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     trigger.parent.targets.addArray(result.targets);
                                     game.log(player, '额外指定了', result.targets, '为目标');
@@ -41832,7 +41832,7 @@ export default async function () {
                                     return 0;
                                 })
                                 .forResult();
-                            if (result.bool && result.targets.length) {
+                            if (result.targets?.length) {
                                 let target = result.targets[0];
                                 if (target.isAlive()) {
                                     let list = ['1血', '持平', '上限', 'cancel2'],
@@ -42439,7 +42439,7 @@ export default async function () {
                             });
                         }
                         ('step 5');
-                        if (result.bool && result.targets.length) {
+                        if (result.targets?.length) {
                             if (result.cards?.length) {
                                 player.discard(result.cards);
                             }

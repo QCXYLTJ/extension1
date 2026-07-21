@@ -1758,7 +1758,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard(trigger.target, 'he', [1, Math.min(trigger.target.countCards('he'), trigger.target.maxHp)], get.prompt('yun_jjxgpojun', trigger.target)).set('forceAuto', true);
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var target = trigger.target;
                                     target.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('yun_jjxgpojun2');
                                     target.addSkill('yun_jjxgpojun2');
@@ -4366,7 +4366,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('filterCard', lib.filter.cardDiscardable);
                                 ('step 3');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type(result.cards[0]) == 'equip') {
                                         player.$give(result.cards, player);
                                         player.lose(result.cards, ui.special);

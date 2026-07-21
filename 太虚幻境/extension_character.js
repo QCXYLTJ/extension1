@@ -2213,7 +2213,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 3');
-					if (result.targets.length) {
+					if (result.targets?.length) {
 						player.line(result.targets, 'thunder');
 						result.targets[0].damage(2, 'thunder');
 						player.storage.txhj_guimen--;
@@ -2587,7 +2587,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return get.damageEffect(target, player, player, 'thunder');
 							};
 							('step 2');
-							if (result.targets.length) {
+							if (result.targets?.length) {
 								player.line(result.targets, 'thunder');
 								result.targets[0].damage(36, 'thunder');
 								result.targets[0].addTempSkill('txhj_renfang_miss');
@@ -4564,7 +4564,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.targets.length) {
+					if (result.targets?.length) {
 						player.line(result.targets, 'fire');
 						result.targets[0].damage(2, 'fire');
 					}
@@ -6444,7 +6444,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return -get.attitude(_status.event.player, target);
 						});
 					('step 2');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						result.targets[0].storage.mdqianxi72 = event.color;
 						result.targets[0].addTempSkill('mdqianxi72');
 						player.line(result.targets, 'green');
@@ -6504,7 +6504,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return -get.attitude(_status.event.player, target);
 						});
 					('step 2');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						result.targets[0].storage.mdqianxi72 = event.color;
 						result.targets[0].addSkill('mdqianxi72');
 						player.line(result.targets, 'green');
@@ -13338,7 +13338,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						});
 					} else event.finish();
 					('step 1');
-					if (result.bool && result.cards.length) {
+					if (result.cards?.length) {
 						var list = [];
 						for (var i = 0; i < result.targets.length; i++) {
 							var target = result.targets[i];
@@ -14263,7 +14263,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								});
 					} else event.finish();
 					('step 3');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						player.line(result.targets[0]);
 						result.targets[0].damage();
 					}
@@ -14749,7 +14749,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									.set('enemy', get.value(event.togive[0], player, 'raw') < 0);
 							}
 							('step 4');
-							if (result.targets.length) {
+							if (result.targets?.length) {
 								var id = result.targets[0].playerid,
 									map = event.given_map;
 								if (!map[id]) map[id] = [];

@@ -773,7 +773,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -3430,7 +3430,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.targets) event.target = result.targets[0];
+                                if (result.targets?.length) event.target = result.targets[0];
                                 ('step 2');
                                 event.num = Math.max(player.maxHp, 6);
                                 if (player.identity == 'zhu' && player.hasSkill('tuliao_fqsg')) {
@@ -4418,7 +4418,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         trigger.player.chooseCard('he', false, [1, event.cards.length], `将至多${event.cards.length}张牌交给${get.translation(player)}之后移除等量的‘檄’`);
                                         ('step 2');
-                                        if (result.bool && result.cards.length) {
+                                        if (result.cards?.length) {
                                             event.i = result.cards.length;
                                             trigger.player.give(result.cards, player, true);
                                         }

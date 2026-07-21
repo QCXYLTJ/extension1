@@ -10439,7 +10439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return (get.position(button.link) == 'e' && event.tar1.isEmpty(get.subtype(button.link))) || (get.position(button.link) == 'j' && !event.tar1.hasJudge(button.link));
 									});
 								('step 5');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									event.cards.add(link);
 									if (get.position(link) == 'e') {
@@ -11319,7 +11319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												.set('enemy', get.value(event.togive[0]) < 0);
 										}
 										('step 3');
-										if (result.targets.length) {
+										if (result.targets?.length) {
 											result.targets[0].gain(event.togive, 'draw');
 											player.line(result.targets[0], 'green');
 											game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -11376,7 +11376,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								('step 1');
 								if (result.cards?.length) {
-									if (result.cards.length) {
+									if (result.cards?.length) {
 										player.discard(result.cards);
 										player.gain(game.createCard(get.inpile('basic').randomGet()), 'draw');
 									} else {
@@ -15415,7 +15415,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 1');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									trigger.cancel();
 									player.storage.lg_liangzizhongquan.push(result.links[0][2]);
 									player.markSkill('lg_liangzizhongquan');
@@ -18108,7 +18108,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.gainPlayerCard(trigger.source, 'e');
 								('step 1');
-								if (result && result.links) {
+								if (result.links?.length) {
 									player.showCards([result.links[0]], '坚心苦修');
 									event.card = result.links[0];
 								} else {
@@ -19265,7 +19265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										} else event.finish();
 										('step 2');
-										if (result && result.bool && result.links[0]) {
+										if (result.links?.length) {
 											player.chooseUseTarget({ name: result.links[0][2] }, false);
 										}
 									},
@@ -19575,7 +19575,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									if (get.position(link) == 'e') {
 										event.targets[1].equip(link);
@@ -21278,7 +21278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 8 - get.value(card);
 								});
 								('step 5');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									event.cd = result.cards[0];
 									event.current.$throw(event.cd, 1000);
 									event.current.lose(event.cd);

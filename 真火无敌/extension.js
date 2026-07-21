@@ -6012,7 +6012,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -12579,7 +12579,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.chooseUseTarget(result.cards[0], true, 'nopopup');
                                 }
                             },
@@ -15976,7 +15976,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     let card = { name: result.links[0][2], nature: result.links[0][3] };
                                     let name = result.links[0][2] + result.links[0][3];
                                     player.getHistory('custom').push({ ymjushou_name: name });
@@ -16069,7 +16069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.targets?.length) {
                                     player.storage.ymlizhan = [].concat(result.targets);
-                                    if (result.targets.length) {
+                                    if (result.targets?.length) {
                                         player.markSkill('ymlizhan');
                                     } else {
                                         player.unmarkSkill('ymlizhan');

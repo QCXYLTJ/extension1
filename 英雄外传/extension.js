@@ -2961,7 +2961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('filterCard', lib.filter.cardDiscardable);
 								('step 2');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									if (get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0]))) {
 										player.chooseUseTarget(result.cards[0], true, 'nopopup');
 									}
@@ -3946,7 +3946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.choosePlayerCard(targets[num], true);
 								('step 1');
 								if (result.links?.length) {
-									if (result.links.length) targets[num].discard(result.links[0]);
+									if (result.links?.length) targets[num].discard(result.links[0]);
 									if (result.links[0].suit == 'spade') targets[num].draw(0);
 									player.chooseDrawRecover(1, true);
 								}
@@ -4601,7 +4601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 								} else {
 									event.finish();
@@ -12592,7 +12592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.chooseCard('he', true, '将一张牌置于牌堆顶');
 								('step 1');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.cardPile, 'insert');
 									game.log(player, '将一张牌置于牌堆顶');
 									game.broadcastAll(function (player) {

@@ -1966,7 +1966,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 1');
-                    if (result && result.bool && result.links[0]) {
+                    if (result.links?.length) {
                         var card = { name: result.links[0][2], nature: result.links[0][3] };
                         player.chooseUseTarget(card, true);
                     }
@@ -9919,7 +9919,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 1');
-                    if (result && result.cards) {
+                    if (result.cards?.length) {
                         event.card = result.cards[0];
                         player.lose(result.cards, ui.cardPile, 'insert');
                         var cardx = ui.create.card();

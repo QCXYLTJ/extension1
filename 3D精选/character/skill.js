@@ -4130,7 +4130,7 @@ const skills = {
 					.set('enemy', get.value(event.togive[0], player, 'raw') < 0);
 			}
 			('step 3');
-			if (result.targets.length) {
+			if (result.targets?.length) {
 				var id = result.targets[0].playerid,
 					map = event.given_map;
 				if (!map[id]) {

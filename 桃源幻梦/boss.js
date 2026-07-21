@@ -570,7 +570,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                     }
                     'step 2'
-                    if (result.cards.length) {
+                    if (result.cards?.length) {
                         trigger.player.give(result.cards, player, true)
                     }
                 }

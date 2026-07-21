@@ -2248,7 +2248,7 @@ game.import('character', function () {
 						}
 					}
 					('step 3');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						var list = player.storage.xjzh_meiren_shumei.slice(0);
 						var link = list.randomGet();
 						player.line(result.targets[0], 'green');
@@ -4503,7 +4503,7 @@ game.import('character', function () {
 								});
 							}
 							('step 2');
-							if (result && result.links) {
+							if (result.links?.length) {
 								var card2 = game.createCard(result.links[0][2]);
 								trigger.player.$throw(card2, 1000, 'nobroadcast');
 								player.$throw(event.cardx, 1000, 'nobroadcast');
@@ -13700,7 +13700,7 @@ game.import('character', function () {
 								event.finish();
 							}
 							('step 2');
-							if (result.bool && result.cards.length) {
+							if (result.cards?.length) {
 								player.gain(result.cards, event.target, 'draw');
 							} else {
 								event.target.damage(1, trigger.player, 'nocard');

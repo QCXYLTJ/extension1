@@ -1572,7 +1572,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								else event.finish();
 								'step 3'
-								if (result.links) player.chooseUseTarget(result.links[0], false);
+								if (result.links?.length) player.chooseUseTarget(result.links[0], false);
 							},
 						},
 						lr_lanfeng: {

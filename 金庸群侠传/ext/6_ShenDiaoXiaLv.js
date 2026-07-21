@@ -3114,7 +3114,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               set('cardx', event.togive[0]);
             }
             'step 4';
-            if (result.targets.length) {
+            if (result.targets?.length) {
               player.give(event.togive, result.targets[0], true);
               //result.targets[0].gain(event.togive,'draw','gain2');
               //player.line(result.targets[0],'green');

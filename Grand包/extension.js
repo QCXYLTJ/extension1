@@ -1704,7 +1704,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.count = 0;
                                     event.target.chooseCard('h', '请展示一张牌', true).set('ai', function (card) {
@@ -6005,7 +6005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 3 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addTempSkill('Grand_tongli_use');
                                     player.storage.Grand_tongli_use += result.cards.length;
                                     player.markSkill('Grand_tongli_use');
@@ -6232,7 +6232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         else event.finish();
                                         ('step 1');
-                                        if (result.bool && result.targets.length) event.target = result.targets[0];
+                                        if (result.targets?.length) event.target = result.targets[0];
                                         else event.finish();
                                         ('step 2');
                                         player.chooseCard('h', 1, true);
@@ -6283,7 +6283,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         } else event.finish();
                                         ('step 4');
-                                        if (result && result.bool && result.links[0]) {
+                                        if (result.links?.length) {
                                             var card = { name: result.links[0][2], nature: result.links[0][3] };
                                             player.chooseUseTarget(card, true, false);
                                         }

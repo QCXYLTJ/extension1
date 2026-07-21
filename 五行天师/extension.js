@@ -3069,7 +3069,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             })
                             .set('filterCard', lib.filter.cardDiscardable);
                         ('step 2');
-                        if (result.bool && result.cards.length) {
+                        if (result.cards?.length) {
                             if (get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0]))) {
                                 player.chooseUseTarget(result.cards[0], true, 'nopopup');
                             } else {

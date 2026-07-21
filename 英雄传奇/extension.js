@@ -5164,7 +5164,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -7505,7 +7505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('enemy', get.value(event.togive[0]) < 3);
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(player, '交给', result.targets[0], get.cnNumber(event.togive.length) + '张拼点牌');
@@ -9937,7 +9937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return;
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     event.target1.line(event.target2);
                                     var num = event.target2.countCards('h', { suit: 'spade' });
@@ -17277,7 +17277,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(player, '交给', result.targets[0], get.cnNumber(event.togive.length) + '张牌');
@@ -18808,7 +18808,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return !get.info(button.link).unique;
                                 };
                                 ('step 1');
-                                if (result.links[0]) {
+                                if (result.links?.length) {
                                     cards[0].init([cards[0].suit, cards[0].number, result.links[0].name, result.links[0].nature]);
                                     event.card = cards[0];
                                     player.chooseTarget(
@@ -20142,7 +20142,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(player, '交给', result.targets[0], get.cnNumber(event.togive.length) + '张牌');

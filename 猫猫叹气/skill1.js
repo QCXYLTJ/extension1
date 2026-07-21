@@ -31592,7 +31592,7 @@ const skill = {
                 );
             }
             ('step 4');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 result.targets[0].equip(event.card);
                 player.$give(event.card, result.targets[0], false);
                 event.goto(1);
@@ -31655,7 +31655,7 @@ const skill = {
                     .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             }
             ('step 10');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 result.targets[0].gain(event.togive, 'draw');
                 player.line(result.targets[0], 'green');
                 game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -31765,7 +31765,7 @@ const skill = {
                         })
                         .set('enemy', get.value(trigger.cards, player, 'raw') < 0);
                     ('step 1');
-                    if (result.targets.length) {
+                    if (result.targets?.length) {
                         result.targets[0].gain(trigger.cards, 'draw2');
                         player.line(result.targets[0], 'thunder');
                     }
@@ -52805,7 +52805,7 @@ const skill = {
                 event.finish();
             }
             ('step 4');
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
                 event.count2--;
                 const card = { name: result.links[0][2], nature: result.links[0][3] };
                 player.chooseUseTarget(card, event.card, true, false, 'nodistance');
@@ -56544,7 +56544,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 const link = result.links[0];
                 if (link.viewAs) {
                     event.target.addJudge({ name: link.viewAs }, [link]);

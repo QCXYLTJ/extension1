@@ -8280,7 +8280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     for (var i = 0; i < result.links.length; i++) {
                                         var link = result.links[i];
                                         if (get.position(link) == 'e') {
@@ -8298,7 +8298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.finish();
                                 ('step 6');
-                                if (result.links) player.gain(result.links, 'gain2');
+                                if (result.links?.length) player.gain(result.links, 'gain2');
                                 event.finish();
                                 ('step 7');
                                 if (result.targets?.length) {
@@ -8946,7 +8946,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.targets) result.targets[0].gain(event.cardsx, 'gain2').gaintag.addArray(['zhizheon', 'zhizheon_clear']);
+                                        if (result.targets?.length) result.targets[0].gain(event.cardsx, 'gain2').gaintag.addArray(['zhizheon', 'zhizheon_clear']);
                                     },
                                 },
                                 clear: {

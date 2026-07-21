@@ -3143,7 +3143,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     var id = result.targets[0].playerid,
                                         map = event.given_map;
                                     if (!map[id]) map[id] = [];
@@ -3209,7 +3209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets);
                                             result.targets[0].damage('ice', 2);
                                         }
@@ -6961,7 +6961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 9 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.useCard({ name: result.links[0][2], nature: result.links[0][3] }, target, false);
                                 }
                             },
@@ -13393,7 +13393,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         ('step 1');
                                         player.choosePlayerCard(trigger.target, 'he', get.prompt('StickyJellyfish', trigger.target)).set('forceAuto', true);
                                         ('step 2');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             var target = trigger.target;
                                             player.removeMark('StickyJellyfish');
                                             player.gain(result.cards, target);
@@ -21292,14 +21292,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (result.bool) {
                                         event.shanRequired--;
                                         if (event.turn == target) {
-                                            if (result.cards) event.targetCards.addArray(result.cards);
+                                            if (result.cards?.length) event.targetCards.addArray(result.cards);
                                             if (event.shanRequired > 0) event.goto(2);
                                             else {
                                                 event.turn = player;
                                                 event.goto(1);
                                             }
                                         } else {
-                                            if (result.cards) event.playerCards.addArray(result.cards);
+                                            if (result.cards?.length) event.playerCards.addArray(result.cards);
                                             if (event.shanRequired > 0) event.goto(2);
                                             else {
                                                 event.turn = target;

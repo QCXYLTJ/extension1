@@ -9168,7 +9168,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             cardPile = cardPile.slice(0, Math.min(cardPile.length, 7));
             player.chooseCardButton('请选择一张牌', true, cardPile);
             ('step 1');
-            if (result && result.links) {
+            if (result.links?.length) {
               event.card1 = result.links[0];
             } else event.finish();
             ('step 2');
@@ -11090,7 +11090,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             var text = '猜测牌堆顶的一张牌的名字<br>提示字符:' + list.join('+');
             player.chooseVCardButton(true, inpile, text);
             ('step 1');
-            if (result && result.links) {
+            if (result.links?.length) {
               //game.log('step2')
               if (result.links[0][2] == card.name) {
                 player.gain(card, 'log', 'gain2');
@@ -11120,7 +11120,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             player.chooseButton(true, ['演绎:猜测' + get.translation(target) + '一张牌', [target.getCards('h'), 'blank']]).set('ai', () => 1);
             ('step 1');
-            if (result && result.links) {
+            if (result.links?.length) {
               event.cardx = result.links[0];
               var str = lib.translate[result.links[0].name + '_info'];
               var list = Array.from(str); //转为数组
@@ -11149,7 +11149,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.chooseVCardButton(true, inpile, text);
             } else event.finish();
             ('step 2');
-            if (result && result.links) {
+            if (result.links?.length) {
               //game.log('step2')
               if (result.links[0][2] == event.cardx.name) {
                 player.gain(event.cardx, target, 'give', 'bySelf');
@@ -16541,7 +16541,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               };
             }
             ('step 1');
-            if (result.links[0]) {
+            if (result.links?.length) {
               event.name2 = result.links[0];
               var cardname = 'ywhy_huapi_card_' + event.name2;
               player.$gain2(game.createCard(cardname, '', ''));
@@ -19617,7 +19617,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 var cards = player.getExpansions('ywhy_mingcha');
                 var next = player.chooseButton(true, ui.create.dialog('明察', cards, 'hidden'));
                 ('step 1');
-                if (result && result.links) {
+                if (result.links?.length) {
                   event.result.cards = result.links.slice(0);
                 }
               },
@@ -20302,7 +20302,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -22326,7 +22326,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.unuseful(card) + 2.5 * (5 - get.owner(card).hp);
             });
             ('step 1');
-            if (result && result.cards) {
+            if (result.cards?.length) {
               player.$fullscreenpop('佛山无影脚', 'thunder');
               trigger.targets[0].judge(function (card) {
                 if (result.cards.length == 1 && card.suit == 'heart') return 2;
@@ -22433,7 +22433,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 .set('player0', event.target0);
             }
             ('step 4');
-            if (result && result.cards) {
+            if (result.cards?.length) {
               event.card = result.cards[0];
               //event.target0.lose(result.cards,ui.special);
               event.target0.$throw(result.cards, 1000, 'nobroadcast');

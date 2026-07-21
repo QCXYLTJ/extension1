@@ -3865,7 +3865,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 1 - get.attitude(player, target);
 					});
 					'step 2'
-					if (result.targets) for (var i of result.targets) {
+					if (result.targets?.length) for (var i of result.targets) {
 						i.link(true);
 					}
 					'step 3'
@@ -3908,7 +3908,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return 1 - get.attitude(player, target);
 					});
 					'step 2'
-					if (result.targets) for (var i of result.targets) {
+					if (result.targets?.length) for (var i of result.targets) {
 						i.link(true);
 					}
 					'step 3'

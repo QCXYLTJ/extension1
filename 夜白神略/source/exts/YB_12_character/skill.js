@@ -1653,7 +1653,7 @@ const skill = {
       set('target1', event.target1).
       set('forceDie', true);
       'step 3';
-      if (result.targets.length) {
+      if (result.targets?.length) {
         event.target2 = result.targets[0];
         event.target1.line(event.target2);
         event.target1.chooseToCompare(event.target2);
@@ -12669,7 +12669,7 @@ const skill = {
         }).
         forResult();
       }
-      if (result.targets.length) {
+      if (result.targets?.length) {
         const target = result.targets[0];
         gainer.line(target);
         if (target.countGainableCards(gainer, 'he')) {

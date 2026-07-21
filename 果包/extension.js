@@ -8381,7 +8381,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.addTempSkill('yyy_qinghua_use', 'useCardAfter');
                                         player.chooseUseTarget(event.card, false);
                                         ('step 9');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                         } else {
                                             player.removeSkill('yyy_qinghua_use');
                                         }
@@ -8403,7 +8403,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return !trigger.targets.includes(target) && player.canUse(trigger.card, target, false);
                                         });
                                         ('step 1');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             for (var i = 0; i < result.targets.length; i++) {
                                                 trigger.targets.push(result.targets[i]);
                                             }

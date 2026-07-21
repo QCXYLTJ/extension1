@@ -2841,7 +2841,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         }
                         break;
                     case 2:
-                        if (result.targets[0]) {
+                        if (result.targets?.length) {
                             event._result = { bool: true, targets: result.targets.slice(0) };
                             event.goto(5);
                         }

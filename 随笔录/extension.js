@@ -3525,7 +3525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     var id = result.targets[0].playerid,
                                         map = event.given_map;
                                     if (!map[id]) map[id] = [];
@@ -18292,7 +18292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     var id = result.targets[0].playerid,
                                         map = event.given_map;
                                     if (!map[id]) map[id] = [];
@@ -19481,14 +19481,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (result.bool) {
                                                 event.shanRequired--;
                                                 if (event.turn == target) {
-                                                    if (result.cards) event.targetCards.addArray(result.cards);
+                                                    if (result.cards?.length) event.targetCards.addArray(result.cards);
                                                     if (event.shanRequired > 0) event.goto(3);
                                                     else {
                                                         event.turn = player;
                                                         event.goto(2);
                                                     }
                                                 } else {
-                                                    if (result.cards) event.playerCards.addArray(result.cards);
+                                                    if (result.cards?.length) event.playerCards.addArray(result.cards);
                                                     if (event.shanRequired > 0) event.goto(3);
                                                     else {
                                                         event.turn = target;
@@ -19556,14 +19556,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (result.bool) {
                                                 event.shaRequired--;
                                                 if (event.turn == target) {
-                                                    if (result.cards) event.targetCards.addArray(result.cards);
+                                                    if (result.cards?.length) event.targetCards.addArray(result.cards);
                                                     if (event.shaRequired > 0) event.goto(8);
                                                     else {
                                                         event.turn = player;
                                                         event.goto(7);
                                                     }
                                                 } else {
-                                                    if (result.cards) event.playerCards.addArray(result.cards);
+                                                    if (result.cards?.length) event.playerCards.addArray(result.cards);
                                                     if (event.shaRequired > 0) event.goto(8);
                                                     else {
                                                         event.turn = target;

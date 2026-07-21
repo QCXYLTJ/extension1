@@ -918,7 +918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                         } else {
                                             event.finish();
@@ -1461,7 +1461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                 }
@@ -1881,14 +1881,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 if (skip) event.target.skip('phaseDiscard');
-                                if (result.cards) event.target.recast(result.cards);
+                                if (result.cards?.length) event.target.recast(result.cards);
                                 else {
                                     if (!player.storage.ly_zezhu_effect.includes(event.target)) event.finish;
                                 }
                                 ('step 4');
                                 player.chooseCard('h', [1, Infinity], '重铸任意张牌');
                                 ('step 5');
-                                if (result.cards) player.recast(result.cards);
+                                if (result.cards?.length) player.recast(result.cards);
                             },
                         },
                         genm_meng_zuoce: {

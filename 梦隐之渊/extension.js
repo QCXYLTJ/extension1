@@ -8935,7 +8935,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.addTempSkill('mx2_guiyiji_card', { player: 'mx2_guiyijiAfter' });
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                     ('step 2');
@@ -11570,7 +11570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                 }
                             },
@@ -17948,7 +17948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result && result.bool && result.links[0]) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                             ('step 2');
                                             player.popup('如你所见');
@@ -18712,7 +18712,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result && result.bool && result.links[0]) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                         }
                                     },
@@ -22562,7 +22562,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('cardx', event.togive[0]);
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     player.give(event.togive, result.targets[0], true);
                                     event.goto(2);
                                 }
@@ -24842,7 +24842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                 }
                             },
@@ -25268,7 +25268,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                 }
                             },

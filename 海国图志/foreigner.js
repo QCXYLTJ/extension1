@@ -9471,7 +9471,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         player.choosePlayerCard(result.targets[0], 'hej', true);
                     } else event.finish();
                     ('step 4');
-                    if (result.links) target.addToExpansion(result.links, 'give', event.target2).gaintag.add('haitu_shangzhan');
+                    if (result.links?.length) target.addToExpansion(result.links, 'give', event.target2).gaintag.add('haitu_shangzhan');
                 },
             },
             haitu_shangzhan: {
@@ -13058,7 +13058,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 5');
-                    if (result.bool && result.links.length) {
+                    if (result.links?.length) {
                         var link = result.links[0];
                         if (get.position(link) == 'e') {
                             event.targets[1].equip(link);
@@ -13350,7 +13350,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         card: null,
                         choice: null,
                     };
-                    if (result.bool && result.links.length) {
+                    if (result.links?.length) {
                         var link = result.links[0];
                         event.list.remove(link);
                         var togain = null;

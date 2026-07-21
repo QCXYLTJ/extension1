@@ -5737,20 +5737,20 @@ const skills = {
 				var nifu_hit = (require == '顺' && name != 'sha') || (require == '逆' && name != 'shan');
 				if (result.bool && !nifu_hit) {
 					if (event.turn == target) {
-						if (result.cards) event.targetCards.addArray(result.cards);
+						if (result.cards?.length) event.targetCards.addArray(result.cards);
 						event.turn = player;
 						event.goto(1);
 					} else {
-						if (result.cards) event.playerCards.addArray(result.cards);
+						if (result.cards?.length) event.playerCards.addArray(result.cards);
 						event.turn = target;
 						event.goto(1);
 					}
 				} else {
 					if (event.turn == target) {
-						if (result.cards) event.targetCards.addArray(result.cards);
+						if (result.cards?.length) event.targetCards.addArray(result.cards);
 						target.damage(event.baseDamage + event.extraDamage);
 					} else {
-						if (result.cards) event.playerCards.addArray(result.cards);
+						if (result.cards?.length) event.playerCards.addArray(result.cards);
 						player.damage(target, event.baseDamage + event.extraDamage);
 					}
 				}

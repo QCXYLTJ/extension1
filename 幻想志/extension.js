@@ -5372,7 +5372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								('step 1');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									//trigger.cancel();
 									trigger.target.removeMark('RE_niwang_mark', 1);
 									var targets = result.targets;
@@ -5395,7 +5395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('forceDie', true);
 								}
 								('step 3');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									event.list = [];
 									for (var i = 0; i < result.cards.length; i++) {
 										event.list.push(get.type2(result.cards[i]));

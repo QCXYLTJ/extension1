@@ -3768,7 +3768,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.goto(3);
                                 } else event.goto(5);
                                 ('step 2');
-                                if (result && result.links) event.linksx = result.links;
+                                if (result.links?.length) event.linksx = result.links;
                                 event.orderingCards.removeArray(event.linksx);
                                 event.cardsx = event.cardsx.filter(function (i) {
                                     return !event.linksx.includes(i);
@@ -4515,7 +4515,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.moveCard(true);
                                 } else event.finish();
                                 ('step 8');
-                                if (result && result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[1];
                                     if (target != player) {
                                         if (!player.storage.qimou_chuli_effect2) player.storage.qimou_chuli_effect2 = [];
@@ -4626,7 +4626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         for (var i = 0; i < ui.discardPile.childNodes.length; i++) cards.add(ui.discardPile.childNodes[i].name);
                                         player.chooseButton(['选择要获得的牌', [cards, 'vcard']], true);
                                         ('step 1');
-                                        if (result.links)
+                                        if (result.links?.length)
                                             player.gain(
                                                 get.cardPile((card) => card.name == result.links[0][2]),
                                                 'gain2'
@@ -5123,7 +5123,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.target = target;
                                 player.choosePlayerCard(target, 'he');
                                 ('step 3');
-                                if (result.links) player.addToExpansion(result.links, target, 'give').gaintag.add('chuli_xiansi');
+                                if (result.links?.length) player.addToExpansion(result.links, target, 'give').gaintag.add('chuli_xiansi');
                                 if (event.targets.length) event.goto(2);
                                 ('step 4');
                                 if (event.count >= player.maxHp) {
@@ -5480,7 +5480,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true, false);
                                 }

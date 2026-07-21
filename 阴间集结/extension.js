@@ -272,7 +272,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 4');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             var link = result.links[0];
                                             if (get.position(link) == 'e') {
                                                 event.targets[1].equip(link);
@@ -4694,7 +4694,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     event.targets[1].equip(link);
                                     event.targets[0].$give(link, event.targets[1]);
@@ -8871,7 +8871,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                 }
@@ -10859,7 +10859,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     player.gainMaxHp(5);
                                     player.recover(5);
                                     result.targets[0].gain(event.togive, 'draw');

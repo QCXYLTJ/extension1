@@ -2195,7 +2195,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.choosePlayerCard(trigger.target, 'he', [1, Math.min(trigger.target.countCards('he'), trigger.target.hp)], get.prompt('pojun', trigger.target));
 								('step 1');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									trigger.target.discard(result.links);
 								}
 							},
@@ -2525,7 +2525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 8');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].gain(event.togive, 'draw');
 									player.line(result.targets[0], 'green');
 									game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张', '#g<古>');

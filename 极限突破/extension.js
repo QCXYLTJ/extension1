@@ -10134,7 +10134,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .forResult();
                                             if (result.bool) {
                                                 expansions.removeArray(toGive);
-                                                if (result.targets.length) {
+                                                if (result.targets?.length) {
                                                     const id = result.targets[0].playerid;
                                                     if (!given_map[id]) {
                                                         given_map[id] = [];

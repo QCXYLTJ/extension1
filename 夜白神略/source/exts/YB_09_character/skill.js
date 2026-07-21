@@ -407,7 +407,7 @@ const skill = {
         set('prompt2', '请选择一名有<惠>或<狭>的角色');
       }
       'step 2';
-      if (result.targets[0]) {
+      if (result.targets?.length) {
         event.target = result.targets[0];
         const list = [];
         if (result.targets[0].hasMark('North_yhy_xuyin4')) {
@@ -448,7 +448,7 @@ const skill = {
         }
       };
       'step 4';
-      if (result.targets[0]) {
+      if (result.targets?.length) {
         result.targets[0].turnOver();
       }
       'step 5';
@@ -522,7 +522,7 @@ const skill = {
       'step 0';
       event.goto(2);
       'step 1';
-      if (result.targets[0]) {
+      if (result.targets?.length) {
         result.targets[0].addMark('North_yhy_minzeng_zeng');
       }
       event.finish();
@@ -761,7 +761,7 @@ const skill = {
         }
       });
       'step 1';
-      if (result.targets[0]) {
+      if (result.targets?.length) {
         result.targets[0].addMark('North_yhy_minzeng_zeng');
       }
       event.finish();
@@ -5790,7 +5790,7 @@ const skill = {
             event.finish();
           }
           'step 5';
-          if (result.bool && result.links.length) {
+          if (result.links?.length) {
             const link = result.links[0];
             cards.add(link);
             if (get.position(link) == 'e') {

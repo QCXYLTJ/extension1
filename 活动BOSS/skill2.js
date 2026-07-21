@@ -3593,7 +3593,7 @@ const skill = {
                 event.goto(4);
             }
             ('step 3');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 const id = result.targets[0].playerid,
                     map = event.given_map;
                 if (!map[id]) {
@@ -12033,7 +12033,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 player.line(target, 'green');
                 target.storage.shanhe_qianxi2 = [event.color, player];
@@ -12130,7 +12130,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 player.line(target, 'green');
                 target.storage.shanhe_qianxi2 = [event.color, player];
@@ -14436,7 +14436,7 @@ const skill = {
                 event.goto(4);
             }
             ('step 3');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 const id = result.targets[0].playerid,
                     map = event.given_map;
                 if (!map[id]) {
@@ -16306,7 +16306,7 @@ const skill = {
                     .set('att', get.attitude(target, player) > 0 && lib.skill.shanhe_sankuanga.findTarget(player) == target);
             }
             ('step 3');
-            if (result.cards.length) {
+            if (result.cards?.length) {
                 player.gain(result.cards, target, 'giveAuto');
             }
         },
@@ -17377,7 +17377,7 @@ const skill = {
                     .set('target', event.target);
             }
             ('step 3');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 game.log(player, '指定的出杀目标为', result.targets);
                 event.target.line(result.targets);
                 event.target.chooseToUse('对' + get.translation(result.targets) + '使用一张杀,或令' + get.translation(player) + '获得你的两张牌', { name: 'sha' }, result.targets[0], -1);
@@ -19451,7 +19451,7 @@ const skill = {
                 event.finish();
             }
             ('step 5');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 const link = result.links[0];
                 cards.add(link);
                 event.targets[1].equip(link);
@@ -23582,7 +23582,7 @@ const skill = {
             'step 0';
             player.choosePlayerCard(trigger.target, 'he', [1, Math.min(trigger.target.countCards('he'), trigger.target.hp)], get.prompt('shanhe_pojun', trigger.target)).set('forceAuto', true);
             ('step 1');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 const target = trigger.target;
                 target.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('shanhe_pojun2');
                 target.addSkill('shanhe_pojun2');
@@ -27514,7 +27514,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'fire');
                 result.targets[0].damage('fire');
             }
@@ -27554,7 +27554,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'fire');
                 result.targets[0].damage(2, 'fire');
             }
@@ -62459,7 +62459,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 event.target = result.targets[0];
             } else {
                 event.finish();

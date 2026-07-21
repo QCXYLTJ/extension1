@@ -7859,7 +7859,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 5 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('bhleisuo_card');
                                     player.addSkill('bhleisuo_card');
                                 }
@@ -7881,7 +7881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(card);
                                 });
                                 ('step 5');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     var target = event.target;
                                     player.line(event.target);
                                     target.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('bhleisuo_card');
@@ -18797,7 +18797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 2');
                                 event.num = 5 - result.links.length;
-                                if (result.links.length) {
+                                if (result.links?.length) {
                                     for (var i of result.links) player.addSkill(i);
                                 }
                                 ('step 3');
@@ -24682,7 +24682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -att;
                                     });
                                 ('step 4');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets.sortBySeat();
                                     for (var i = 0; i < result.targets.length; i++) {
                                         player.useCard({ name: 'sha' }, result.targets[i], false);
@@ -26610,7 +26610,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return target != player && target.countCards('h') && target.group == 'bhtianming';
                                 });
                                 ('step 1');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     player.chooseToDiscard(1, true, 'h');
                                     event.target = result.targets[0];
                                     event.target.chooseBool(`是否弃置一张手牌,令${get.translation(player)}获得你的一个技能？`);
@@ -30233,7 +30233,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     player.line(event.target);
                                     var namelist = ['bhlanmeitegong'];
@@ -30792,7 +30792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 result.targets[0].damage('fire', player);
                                 event.goto(9);
                                 ('step 11');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     event.num = event.cards.length;
                                     player.discard(event.cards);
@@ -39952,7 +39952,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, target) > 0;
                                 });
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.targets.sortBySeat();
                                     event.num = 0;

@@ -179,7 +179,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							.set('prompt2', '请选择一名有<惠>或<狭>的角色');
 					}
 					('step 2');
-					if (result.targets[0]) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						var list = [];
 						if (result.targets[0].hasMark('ybyhy_xuyin4')) list.push('惠');
@@ -208,7 +208,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						}
 					};
 					('step 4');
-					if (result.targets[0]) {
+					if (result.targets?.length) {
 						result.targets[0].turnOver();
 					}
 					('step 5');
@@ -225,7 +225,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						}
 					};
 					('step 7');
-					if (result.targets) event.target = result.targets[0];
+					if (result.targets?.length) event.target = result.targets[0];
 					player.chooseCard('he', [0, Infinity]).set('ai', function (card) {
 						return 6 - get.value(card);
 					});
@@ -275,7 +275,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					event.goto(2);
 					('step 1');
-					if (result.targets[0]) result.targets[0].addMark('ybyhy_minzeng_zeng');
+					if (result.targets?.length) result.targets[0].addMark('ybyhy_minzeng_zeng');
 					event.finish();
 					('step 2');
 					if (
@@ -487,7 +487,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (get.attitude(_status.event.player, target) <= 0) return true;
 					});
 					('step 1');
-					if (result.targets[0]) result.targets[0].addMark('ybyhy_minzeng_zeng');
+					if (result.targets?.length) result.targets[0].addMark('ybyhy_minzeng_zeng');
 					event.finish();
 				},
 			},

@@ -4064,7 +4064,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(4);
 								} else player.discardPlayerCard('是否弃置' + get.translation(trigger.source) + '一张牌,否则' + get.translation(trigger.source) + '摸一张牌', trigger.source, 'he');
 								('step 2');
-								if (result.bool && result.cards.length) event.color = get.color(result.cards[0]);
+								if (result.cards?.length) event.color = get.color(result.cards[0]);
 								else {
 									trigger.source.draw();
 									if (trigger.source.countDiscardableCards(trigger.source, 'he') > 0) {
@@ -6083,7 +6083,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											prompt2: '将一张获得的且已记录的牌交给一名其他角色',
 										});
 										('step 1');
-										if (result.bool && result.cards.length) {
+										if (result.cards?.length) {
 											var name = result.cards[0].name;
 											if (player.getStorage('lqtq_xuelin').includes(name)) {
 												player.unmarkAuto('lqtq_xuelin', [name]);
@@ -7002,7 +7002,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										})
 										.set('filterCard', lib.filter.cardDiscardable);
 								('step 2');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									event.a = result.cards[0];
 									if (get.type(event.a) == 'basic') player.changeHujia();
 									else if (get.type(event.a, 'trick') == 'trick') trigger.cancel();
@@ -10090,7 +10090,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.gainPlayerCard(2, 'he', current, true);
 								}); //可获得
 								('step 3');
-								if (result.cards)
+								if (result.cards?.length)
 									player
 										.chooseCard('h', '将一张获得的牌置于武将牌上作为<财>', true, function (card, player, target) {
 											return result.cards.includes(card);
@@ -10099,7 +10099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 100 - get.value(card);
 										});
 								('step 4');
-								if (result.cards) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_tiaobo');
+								if (result.cards?.length) player.addToExpansion(result.cards, player, 'giveAuto').gaintag.add('lqhc_tiaobo');
 							},
 							intro: {
 								content: 'expansion',
@@ -24533,7 +24533,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else player.getStat('triggerSkill').lqtz_heiya--;
 								('step 2');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, event.target, 'give');
 									player.getStat('triggerSkill').lqtz_heiya--;
 								}

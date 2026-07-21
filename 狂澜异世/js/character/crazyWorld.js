@@ -7794,7 +7794,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                 async content(event, trigger, player) {
                     if ((player.countCards('j', { color: 'red' }) && player.storage.pixelweimuL) || (player.countCards('j', { color: 'black' }) && !player.storage.pixelweimuL)) {
                         const result = await player.loseToDiscardpile(player.getCards('j', { color: player.storage.pixelweimuL ? 'red' : 'black' })).forResult();
-                        if (result && result.cards) {
+                        if (result.cards?.length) {
                             player.changeZhuanhuanji('pixelweimuL');
                             player.draw(result.cards.length, 'nodelay');
                         }

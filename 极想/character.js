@@ -5880,7 +5880,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 }
                             });
                             ('step 1');
-                            if (result.links.length && result.links.length) {
+                            if (result.links?.length) {
                                 for (var i = 0; i < result.links.length; i++) {
                                     if (result.links[i] == 0) {
                                         var cards = event.tar.getExpansions('xx_lunhui');
@@ -7084,7 +7084,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 event.finish();
                             }
                             ('step 3');
-                            if (result.targets[0]) {
+                            if (result.targets?.length) {
                                 result.targets[0].draw();
                             }
                         },
@@ -8078,7 +8078,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 }
                             });
                             ('step 1');
-                            if (result.links.length && result.links.length) {
+                            if (result.links?.length) {
                                 for (var i = 0; i < result.links.length; i++) {
                                     if (result.links[i] == 0) {
                                         trigger.cancel();
@@ -13317,7 +13317,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return n;
                         });
                     ('step 3');
-                    if (result.cards[0]) {
+                    if (result.cards?.length) {
                         var type = get.type(result.cards[0]);
                         if (type == 'basic') {
                             player.recover();
@@ -19303,7 +19303,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     player.draw();
                     player.gainPlayerCard(trigger.player, 'he').set('prompt2', '你可以收回' + get.translation(trigger.player) + '的<咒>并获得其一张牌.');
                     ('step 1');
-                    if (result && result.links) {
+                    if (result.links?.length) {
                         var cards = trigger.player.getExpansions('xx_zhouhuo');
                         player.gain(cards, trigger.player, 'give', 'bySelf');
                         trigger.player.update();
@@ -28460,7 +28460,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return true;
                     });
                     ('step 2');
-                    if (result.targets[0]) {
+                    if (result.targets?.length) {
                         var cards = player.getCards('h');
                         for (var i = 0; i < cards.length; i++) {
                             if (cards[i].name == 'sha') {
@@ -28857,7 +28857,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     player.chooseCardButton('灵视', cards, [1, num2]).set('prompt2', '你可以消耗一枚<灵>选择一张牌令一名角色获得.');
                     ('step 1');
-                    if (result.bool && result.links[0]) {
+                    if (result.links?.length) {
                         event.card = result.links[0];
                         player
                             .chooseTarget(function (card, player, target) {
@@ -28868,7 +28868,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.goto(3);
                     }
                     ('step 2');
-                    if (result.targets[0]) {
+                    if (result.targets?.length) {
                         player.removeMark('xx_lingzhu');
                         event.card.fix();
                         result.targets[0].gain(event.card, 'draw');
@@ -28933,7 +28933,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 })
                                 .set('prompt2', '令一名角色获得' + get.translation(event.card) + '或弃置.');
                             ('step 2');
-                            if (result.targets[0]) {
+                            if (result.targets?.length) {
                                 result.targets[0].gain(event.card, 'give');
                             } else {
                                 target.discard(event.card);
@@ -32984,7 +32984,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     });
                     ('step 1');
-                    if (result.links.length && result.links.length) {
+                    if (result.links?.length) {
                         if (result.links.length == 3) {
                         } else {
                         }
@@ -39287,7 +39287,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         false,
                     );
                     ('step 1');
-                    if (result.cards[0]) {
+                    if (result.cards?.length) {
                         player.give(result.cards[0], trigger.player);
                         player.draw();
                     }

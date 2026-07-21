@@ -3766,7 +3766,7 @@ const skill = {
             'step 0';
             player.gainPlayerCard(trigger.source, 'ej');
             ('step 1');
-            if (result && result.links) {
+            if (result.links?.length) {
                 player.showCards([result.links[0]], '法奇奥里冥奏');
                 event.card = result.links[0];
             } else {
@@ -8798,7 +8798,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result && result.links) {
+            if (result.links?.length) {
                 const tuobiao = player.storage.mx_eyaokaiyan[trigger.player.playerid];
                 player.$compare(tuobiao, trigger.player, result.links[0]);
                 if (tuobiao != result.links[0]) {
@@ -15723,7 +15723,7 @@ const skill = {
                     return (get.position(button.link) == 'e' && event.tar1.isEmpty(get.subtype(button.link))) || (get.position(button.link) == 'j' && !event.tar1.hasJudge(button.link));
                 });
             ('step 5');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 const link = result.links[0];
                 event.cards.add(link);
                 if (get.position(link) == 'e') {
@@ -17404,7 +17404,7 @@ const skill = {
                 event._result = { cards: num1 - len };
             }
             ('step 2');
-            if (result && result.cards) {
+            if (result.cards?.length) {
                 const cards = result.cards;
             }
             event.result = cards;
@@ -18020,7 +18020,7 @@ const skill = {
                 }
             }
             ('step 2');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 event.target = result.targets[0];
             } else {
                 trigger.excluded.addArray(game.filterPlayer());
@@ -20845,7 +20845,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result.bool && result.links[0]) {
+            if (result.links?.length) {
                 const name = result.links[0][2];
                 player.storage.mx_lingleideai.push(name);
                 player.storage.mx_lingleideai_a = name;
@@ -24341,7 +24341,7 @@ const skill = {
                 return base - get.value(card);
             });
             ('step 1');
-            if (result.bool && result.cards.length) {
+            if (result.cards?.length) {
                 const card = result.cards[0];
                 if (trigger.source != player) {
                     trigger.source.gain(card, 'give', player);
@@ -24842,7 +24842,7 @@ const skill = {
                 event.goto(2);
             }
             ('step 1');
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
                 player.storage.mx_zhuran++;
                 player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
             }
@@ -24900,7 +24900,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
                 player.storage.mx_zhuran++;
                 player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
             }
@@ -26297,7 +26297,7 @@ const skill = {
                 return att - 1;
             });
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 player.line(result.targets[0], 'red');
                 player.link();
                 result.targets[0].link();
@@ -31220,7 +31220,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 event.target = result.targets[0];
             } else {
                 event.finish();
@@ -32570,7 +32570,7 @@ const skill = {
             if (result.targets?.length) {
                 const target = result.targets[0];
                 event.target = target;
-                if (result.cards.length) {
+                if (result.cards?.length) {
                     player.give(result.cards, target);
                     event.source = target;
                     event.num = result.cards.length;
@@ -35020,7 +35020,7 @@ const skill = {
                 event.goto(2);
             }
             ('step 4');
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
                 event.cd = result.links[0][2];
                 player.choosePlayerCard('选择' + get.translation(event.current) + '的' + event.mk + '张牌', event.current, 'he', event.mk, false);
             } else {
@@ -35313,7 +35313,7 @@ const skill = {
                 }
             }
             ('step 4');
-            if (result.cards.length) {
+            if (result.cards?.length) {
                 event.youpai = true;
                 event.targets[event.num].showCards(result.cards);
             }
@@ -41518,7 +41518,7 @@ const skill = {
                 event.goto(2);
             }
             ('step 4');
-            if (result && result.cards) {
+            if (result.cards?.length) {
                 event.current.lose(result.cards, ui.special);
                 event.current.$throw(result.cards, 1000, 'nobroadcast');
                 event.cards1.push(result.cards[0]);
@@ -48125,7 +48125,7 @@ const skill = {
             }
             player.discardPlayerCard(trigger.player, 'he', true);
             ('step 2');
-            if (result.cards[0]) {
+            if (result.cards?.length) {
                 const card = result.cards[0];
                 if (get.type(card) == 'equip' && get.position(card) == 'd') {
                     player.showHandcards() && player.chooseUseTarget(card);
@@ -51922,7 +51922,7 @@ const skill = {
                         return button.link.suit == ui.selected.buttons[0].suit;
                     });
                     ('step 2');
-                    if (result.bool && result.links.length) {
+                    if (result.links?.length) {
                         event.target.showHandcards();
                         target.discard(result.links).set('source', player);
                         if (
@@ -54122,7 +54122,7 @@ const skill = {
                 return 8 - get.value(card);
             });
             ('step 5');
-            if (result && result.cards) {
+            if (result.cards?.length) {
                 event.cd = result.cards[0];
                 event.current.$throw(event.cd, 1000);
                 event.current.lose(event.cd);
@@ -54723,7 +54723,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result && result.bool && result.links) {
+            if (result.links?.length) {
                 if (result.links.includes(event.cardx)) {
                     player.useSkill('mx_kongxiangjuxianhua2');
                     targets[0].useSkill('mx_kongxiangjuxianhua2');
@@ -54819,7 +54819,7 @@ const skill = {
                 event.goto(1);
             }
             ('step 3');
-            if (result && result.cards) {
+            if (result.cards?.length) {
                 event.current.lose(result.cards, ui.cardPile, 'visible', 'insert');
                 event.current.$throw(result.cards, 1000, 'nobroadcast');
             }
@@ -56162,7 +56162,7 @@ const skill = {
                 event._result = { bool: true, links: player.storage.mx_yirenqianyi };
             }
             ('step 1');
-            if (result.links[0]) {
+            if (result.links?.length) {
                 const name = result.links[0];
                 const cardname = 'mx_yirenqianyi_card_' + name;
                 trigger.player.$gain2(game.createCard(cardname, '', ''));
@@ -58587,7 +58587,7 @@ const skill = {
                 event.finish();
             }
             ('step 3');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 const link = result.links[0];
                 if (get.position(link) == 'e') {
                     event.targets[1].equip(link);
@@ -58875,7 +58875,7 @@ const skill = {
             ('step 5');
             if (result.bool) {
                 event.cardsx.removeArray(event.togive);
-                if (result.targets.length) {
+                if (result.targets?.length) {
                     const id = result.targets[0].playerid,
                         map = event.given_map;
                     if (!map[id]) {
@@ -59252,7 +59252,7 @@ const skill = {
                 return 1 - get.attitude(player, target);
             });
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 event.targets = result.targets;
                 event.targets.sort(lib.sort.seat);
                 event.targets2 = event.targets.slice(0);
@@ -59726,7 +59726,7 @@ const skill = {
                 event.finish();
             }
             ('step 1');
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
                 if (!player.storage.mx_xingxu_momeier1) {
                     player.$skill('✧', 'legend', 'thunder');
                 }
@@ -59940,7 +59940,7 @@ const skill = {
                 return true;
             });
             ('step 2');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 result.links.sort();
                 player.$skill('✧', 'legend', 'water');
                 player.storage.mx_xingxu_shuoyue1 += 2;
@@ -65416,7 +65416,7 @@ const skill = {
                     return base * get.attitude(player, target);
                 });
             ('step 3');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 player.line(target, 'red');
                 game.log('mx_bingjihuanghou', player, '令', target, target.countCards('h') < target.hp ? '摸两张牌' : '弃置四张手牌');
@@ -67831,7 +67831,7 @@ const skill = {
                     return true;
                 });
             ('step 2');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 const num = player.countCards('e');
                 player.draw(num);
                 player.gain(result.links, 'log', 'draw');
@@ -73560,7 +73560,7 @@ const skill = {
                 }
             }
             ('step 2');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
                 event.target = result.targets[0];
             } else {
                 trigger.excluded.addArray(game.filterPlayer());
@@ -74355,7 +74355,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.links.length) {
+            if (result.links?.length) {
                 event.cardsx = result.links;
                 event.cards.removeArray(event.cardsx);
                 let value1 = 0,

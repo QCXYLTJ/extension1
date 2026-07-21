@@ -280,8 +280,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 1');
                     if (result.cards?.length) {
-                        if (result.cards) trigger.player.recast(result.cards);
-                        if (result.links) trigger.player.recast(result.links);
+                        if (result.cards?.length) trigger.player.recast(result.cards);
+                        if (result.links?.length) trigger.player.recast(result.links);
                     } else {
                         event.finish();
                     }
@@ -997,7 +997,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result && result.bool && result.links[0]) {
+                    if (result.links?.length) {
                         var card = { name: result.links[0][2], nature: result.links[0][3] };
                         event.card = card;
                         var tnum = game.countPlayer(function (current) {
@@ -1022,7 +1022,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     ('step 3');
                     if (result.bool) {
                         var tar;
-                        if (result.targets[0]) {
+                        if (result.targets?.length) {
                             tar = result.targets[0];
                         } else {
                             tar = player;
@@ -1940,7 +1940,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
                     } else event.finish();
                     ('step 3');
-                    if (result.bool && result.links.length) {
+                    if (result.links?.length) {
                         player.line2([event.toMove, event.beMove]);
                         var card = result.links[0];
                         event.beMove.equip(card);

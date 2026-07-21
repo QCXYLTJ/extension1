@@ -3957,7 +3957,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.choosePlayerCard(trigger.target, 'hej', 1, get.prompt('m_tuxi_1', trigger.target)).set('forceAuto', true);
                                         ('step 1');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             var target = trigger.target;
                                             player.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('m_tuxi2');
                                             player.addSkill('m_tuxi2');
@@ -5343,7 +5343,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard(trigger.target, 'he', 1, get.prompt('m_paoxiao', trigger.target)).set('forceAuto', true);
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var target = trigger.target;
                                     player.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('m_paoxiao_1');
                                     player.addSkill('m_paoxiao_1');
@@ -6374,7 +6374,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -7495,7 +7495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             delay: false,
                             precontent() {
                                 var result = event.result;
-                                if (result.targets.length) result.card = { name: 'tiesuo' };
+                                if (result.targets?.length) result.card = { name: 'tiesuo' };
                             },
                             content() {
                                 player.recast(cards);
@@ -13135,7 +13135,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     //var card={name:result.links[0][2]};
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     event.target.chooseUseTarget(card, true);
@@ -15720,7 +15720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 else if (target.countCards('he') <= 2) result.cards = target.getCards('he');
                                 else target.chooseCard('安内:交给' + get.translation(player) + Math.min(game.roundNumber, player.maxHp) + '张牌', 'he', Math.min(game.roundNumber, player.maxHp), true);
                                 ('step 2');
-                                if (result.cards) player.gain(result.cards, target, 'give');
+                                if (result.cards?.length) player.gain(result.cards, target, 'give');
                                 ('step 3');
                                 if (targets.length) event.goto(1);
                                 else {
@@ -16165,7 +16165,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             })
                                             .set('enemy', get.value(trigger.cards, player, 'raw') < 0);
                                         ('step 1');
-                                        if (result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(trigger.cards, 'draw2');
                                             player.line(result.targets[0], 'thunder');
                                         }
@@ -16993,7 +16993,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.type(card) != 'delay';
                                 }, '迅捷:是否使用一张牌？');
                                 ('step 1');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     var xax = Math.floor(Math.random() * 2) + 1;
                                     game.playAudio('../extension/琉璃亭/audio/skill/m_xunjie' + xax);
                                     if (get.type(result.cards[0]) == 'basic' && !player.isDisabled(get.subtype(result.cards[0]))) {
@@ -19842,7 +19842,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.addTempSkill('m_jianchu_asa');
                                         player.addMark('m_jianchu_asa', 1, false);
                                     } else {
-                                        if (result.links) player.gain(result.links, 'gain2');
+                                        if (result.links?.length) player.gain(result.links, 'gain2');
                                     }
                                 } else event.finish();
                             },

@@ -1385,7 +1385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.cards) event.cards1 = result.cards;
+                                if (result.cards?.length) event.cards1 = result.cards;
                                 else event.cards1 = [];
                                 if (event.num2 > 0) {
                                     target.chooseCard('选择弃置的牌', 'h', event.num2, true).set('ai', function (card) {
@@ -1395,7 +1395,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 4');
-                                if (result.cards) event.cards2 = result.cards;
+                                if (result.cards?.length) event.cards2 = result.cards;
                                 else event.cards2 = [];
                                 if (event.cards1) player.discard(event.cards1);
                                 if (event.cards2) target.discard(event.cards2);
@@ -3616,7 +3616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 } else event.finish();
                                 ('step 3');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = {
                                         name: result.links[0][2],
                                         nature: result.links[0][3],
@@ -5638,7 +5638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         } else if (event.count > 1) event.goto(5);
                                         else event.finish();
                                         ('step 4');
-                                        if (result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(event.togive, 'gain2');
                                             player.line(result.targets[0], 'green');
                                             game.log(result.targets[0], '获得了一张', '#g<丰政>牌');
@@ -6291,7 +6291,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -9616,7 +9616,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'e') {
                                         event.targets[1].equip(link);
@@ -11695,7 +11695,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = {
                                         name: result.links[0][2],
                                         nature: result.links[0][3],
@@ -26213,7 +26213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'e') {
                                         event.targets[1].equip(link);

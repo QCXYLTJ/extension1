@@ -9651,7 +9651,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('enemy', get.value(event.togive[0], player, 'raw') < 0);
 								}
 								('step 4');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									result.targets[0].gain(event.togive, 'draw');
 									player.line(result.targets[0], 'green');
@@ -9664,7 +9664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								else event.goto(2);
 								('step 6');
-								if (result.cards.length) {
+								if (result.cards?.length) {
 									var list = [result.cards[0]];
 									var hs = event.target.getCards('h');
 									for (var i = 0; i < hs.length; i++) {
@@ -10042,7 +10042,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if ([player.name1, player.name2].includes('ark_meibiwusi')) game.tzzx_playAudio('ark_shetui_revive' + Math.ceil(2 * Math.random()));
 								}
 								('step 1');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									player.lose(result.cards, ui.cardPile).insert_card = true;
 									player.getStat()['_' + event.name + 'Cards'] = result.cards;
 									if ([player.name1, player.name2].includes('ark_meibiwusi')) game.tzzx_playAudio('ark_shetui' + Math.ceil(2 * Math.random()));
@@ -11265,7 +11265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.chooseToCompare(result.targets);
 								} else event.finish();
 								('step 2');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									var wons = 0;
 									for (var i = 0; i < result.targets.length; i++) {
 										if (result.num1[i] > result.num2[i]) wons++;

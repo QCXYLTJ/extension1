@@ -8847,7 +8847,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.attitude(_status.event.player, target);
                                         });
                                         ('step 4');
-                                        if (result.bool && result.targets[0]) result.targets[0].recover();
+                                        if (result.targets?.length) result.targets[0].recover();
                                     },
                                 },
                             },

@@ -2149,7 +2149,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.links) {
+                                if (result.links?.length) {
                                     if (/*player.canUse(result.links[0],trigger.player,false)*/ lib.filter.targetEnabled2(result.links[0], player, trigger.player)) {
                                         player.useCard(result.links[0], trigger.player);
                                         if (!player.storage.tyj_aimou_gain) {
@@ -2283,7 +2283,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (result && result.links) {
+                                        if (result.links?.length) {
                                             if (event.currentuse) {
                                                 if (lib.filter.targetEnabled2(result.links[0], event.currentuse, trigger.player)) {
                                                     event.currentuse.useCard(result.links[0], trigger.player);
@@ -5101,7 +5101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 2');
                                 if (result.links?.length) {
-                                    if (result.links.length) {
+                                    if (result.links?.length) {
                                         event.card = result.links[0];
                                     } else {
                                         event.finish();
@@ -6180,7 +6180,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -7686,7 +7686,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (result.cards?.length) {
-                                    if (result.cards && result.cards.length && result.cards.length) {
+                                    if (result.cards?.length) {
                                         trigger.num++;
                                     } else {
                                         player.draw();
@@ -15717,7 +15717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     if (card) {
                                         player.chooseUseTarget(card, event.cardsx2, get.prompt('tyj_jiaoman'), '将' + get.translation(event.cardsx2) + '当做' + get.translation(result.links[0][2]) + '使用', true);
@@ -16790,7 +16790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                         } else {
                                             event.finish();
@@ -30369,7 +30369,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 1');
-                                if (result.links && result.links.length && result.links.length) {
+                                if (result.links?.length) {
                                     player.awakenSkill('tyj_bingguan');
                                     var disablelist = [];
                                     var list = [1, 2, 3, 4, 5];
@@ -31817,7 +31817,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         player.draw(2);
                                         event.tyj_mingzang_used = true;
-                                    } else if (result.cards && result.cards.length && result.cards.length) {
+                                    } else if (result.cards?.length) {
                                         trigger.targets.remove(player);
                                         trigger.parent.triggeredTargets2.remove(player);
                                         trigger.untrigger();
@@ -35265,7 +35265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else event.finish();
                                 ('step 3');
                                 if (event.choosejudge) {
-                                    if (result && result.targets) {
+                                    if (result.targets?.length) {
                                         event.judgestr = get.translation('shandian');
                                         event.currenttarget = result.targets[0];
                                         result.targets[0].judge(lib.card.shandian.judge, event.judgestr).judge2 = lib.card.shandian.judge2;
@@ -40350,7 +40350,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return targets1.canEquip(button.link);
                                     });
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     event.targets[1].equip(link);
                                     event.targets[0].$give(link, event.targets[1]);

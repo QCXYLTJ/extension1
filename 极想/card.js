@@ -179,7 +179,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
                         if (result.bool) {
                             event.shaRequired--;
                             if (event.turn == target) {
-                                if (result.cards) event.targetCards.addArray(result.cards);
+                                if (result.cards?.length) event.targetCards.addArray(result.cards);
                                 if (event.shaRequired > 0) event.goto(2);
                                 else {
                                     event.turn = player;
@@ -187,7 +187,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
                                 }
                             }
                             else {
-                                if (result.cards) event.playerCards.addArray(result.cards);
+                                if (result.cards?.length) event.playerCards.addArray(result.cards);
                                 if (event.shaRequired > 0) event.goto(2);
                                 else {
                                     event.turn = target;

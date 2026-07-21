@@ -746,7 +746,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 });
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.storage.zmbaichuying.push(result.links[0][2]);
                                     if (result.links[0][2] == 'sha' || result.links[0][2] == 'juedou' || result.links[0][2] == 'huogong' || result.links[0][2] == 'nanman' || result.links[0][2] == 'wanjian' || result.links[0][2] == 'shunshou' || result.links[0][2] == 'guohe' || result.links[0][2] == 'jiedao') {
                                         player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
@@ -4985,7 +4985,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: button.link[2] }, player, player);
                                 });
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     if (result.links[0][2] == 'sha') {
                                         game.playzm12(['zmhaizeitidu01', 'zmhaizeitidu02', 'zmhaizeitidu03'].randomGet());
                                     }

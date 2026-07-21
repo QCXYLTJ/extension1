@@ -328,7 +328,7 @@ export let info = {
                 'step 0';
                 player.chooseCard('缓释:是否重铸一张牌？', 'he').set('ai', (card) => 6 - get.value(card));
                 'step 1';
-                if (result.cards) player.recast(result.cards);
+                if (result.cards?.length) player.recast(result.cards);
               },
               {
                 player: target
@@ -1564,7 +1564,7 @@ export let info = {
         }
       },
       onuse(result, player) {
-        if (result.targets) for (let target of result.targets) target.addTempSkill('dqzw_rubbish_shangxu_ai');
+        if (result.targets?.length) for (let target of result.targets) target.addTempSkill('dqzw_rubbish_shangxu_ai');
       },
       group: 'dqzw_rubbish_shangxu_discard',
       subSkill: {

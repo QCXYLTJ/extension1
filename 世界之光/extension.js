@@ -3050,7 +3050,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     event.cardsx = result.links;
                                     event.cards.removeArray(event.cardsx);
                                     var value1 = 0,
@@ -5610,7 +5610,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return base * get.attitude(player, target);
                                     });
                                 ('step 3');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'red');
                                     game.log('lg_moshidaowen', player, '令', target, target.countCards('h') < target.hp ? '摸两张牌' : '弃置两张牌');
@@ -9828,7 +9828,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return name == '' ? 0.8 : 0;
                                 };
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                 }
@@ -10380,7 +10380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 6');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'h') {
                                         event.targets[1].gain(link);
@@ -16464,7 +16464,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.cards.push(result.cards[0]);
                                 }
                                 event.goto(2);
@@ -19759,7 +19759,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return base - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     var card = result.cards[0];
                                     if (trigger.source != player) trigger.source.gain(card, 'give', player);
                                     if (get.color(card) == 'black') {
@@ -27095,7 +27095,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -27232,7 +27232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         } else event.finish();
                                         ('step 2');
-                                        if (result && result.bool && result.links[0]) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget({ name: result.links[0][2] }, false);
                                         }
                                     },

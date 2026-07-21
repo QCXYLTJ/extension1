@@ -4470,7 +4470,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 'step 0';
                 player.choosePlayerCard(trigger.target, 'he', [1, Math.min(trigger.target.countCards('he'), trigger.target.hp)], get.prompt('魄軍', trigger.target));
                 'step 1';
-                if (result.bool && result.links.length) {
+                if (result.links?.length) {
                   trigger.target.discard(result.links);
                 }
               },
@@ -4933,7 +4933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   event.finish();
                 }
                 'step 5';
-                if (result.bool && result.links.length) {
+                if (result.links?.length) {
                   var link = result.links[0];
                   event.targets[1].equip(link);
                   event.targets[0].$give(link, event.targets[1]);
@@ -9501,7 +9501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   set('enemy', get.value(event.togive[0]) < 0);
                 }
                 'step 4';
-                if (result.targets.length) {
+                if (result.targets?.length) {
                   result.targets[0].gain(event.togive, 'draw');
                   player.line(result.targets[0], 'green');
                   game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -11193,7 +11193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   set('enemy', get.value(event.togive[0]) < 0);
                 }
                 'step 4';
-                if (result.targets.length) {
+                if (result.targets?.length) {
                   result.targets[0].gain(event.togive, 'draw');
                   player.line(result.targets[0], 'green');
                   game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -11553,7 +11553,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   result.targets[0].addTempSkill('破军mxs7', { player: 'phaseAfter' });
                 }
                 'step 2';
-                if (result.bool && result.links.length) {
+                if (result.links?.length) {
                   if (player.storage.破军mxs2) {
                     player.storage.破军mxs2 = player.storage.破军mxs2.concat(result.links);
                   } else {
@@ -11583,7 +11583,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 game.JPG0('xushengPoJun', 2000);
                 player.choosePlayerCard(trigger.target, 'he', [1, trigger.target.countCards('he')], get.prompt('破军mxs4', trigger.target));
                 'step 1';
-                if (result.bool && result.links.length) {
+                if (result.links?.length) {
                   trigger.target.addTempSkill('破军mxs7', { player: 'phaseAfter' });
                   if (player.storage.破军mxs2) {
                     player.storage.破军mxs2 = player.storage.破军mxs2.concat(result.links);
@@ -12942,7 +12942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return -get.attitude(player, target);
                 };
                 'step 2';
-                if (result.bool && result.targets.length) {
+                if (result.targets?.length) {
                   result.targets[0].storage.qianxi2 = event.color; //QQQ
                   result.targets[0].addSkill('qianxi2');
                   player.line(result.targets, 'green');

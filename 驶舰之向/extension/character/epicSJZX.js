@@ -6245,7 +6245,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
               .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
           }
           ('step 4');
-          if (result.targets.length) {
+          if (result.targets?.length) {
             var id = result.targets[0].playerid,
               map = event.given_map;
             if (!map[id]) map[id] = [];

@@ -6387,7 +6387,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 2');
-                                        if (result.targets.length) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'fire');
                                             result.targets[0].damage(1, 'fire');
                                         }
@@ -7874,7 +7874,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 else return -result - get.value(card) / 2;
                                             });
                                         ('step 2');
-                                        if (result.bool && result.cards.length) {
+                                        if (result.cards?.length) {
                                             var card1 = result.cards[0];
                                             player.lose(card1, ui.cardPile);
                                             player.update();
@@ -7891,7 +7891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return _status.event.player.getUseValue(card);
                                             });
                                         ('step 4');
-                                        if (result.bool && result.cards.length) {
+                                        if (result.cards?.length) {
                                             var card2 = result.cards[0];
                                             player.lose(card2, ui.cardPile);
                                             player.update();

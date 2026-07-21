@@ -5209,7 +5209,7 @@ const skill = {
         })
         .set('filterCard', lib.filter.cardDiscardable);
       ('step 2');
-      if (result.bool && result.cards.length) {
+      if (result.cards?.length) {
         const card = result.cards[0];
         if (get.type(card) == 'equip' && player.hasUseTarget(card)) {
           player.chooseUseTarget(card, true, 'nopopup');
@@ -46486,7 +46486,7 @@ const skill = {
         .set('target1', event.target1)
         .set('forceDie', true);
       ('step 3');
-      if (result.targets.length) {
+      if (result.targets?.length) {
         event.target2 = result.targets[0];
         event.target1.line(event.target2);
         event.target1.chooseToCompare(event.target2);

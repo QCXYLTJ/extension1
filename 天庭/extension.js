@@ -2584,7 +2584,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 5');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     event.targets[1].equip(link);
                                     event.targets[0].$give(link, event.targets[1]);
@@ -2639,7 +2639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('ai', (button) => get.value(button.link));
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     const cardxs = result.links.slice(0);
                                     player.gain(cardxs, event.target, 'give', 'bySelf');
                                 }
@@ -5215,7 +5215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else return 1;
                                 });
                                 ('step 3');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     player.loseToDiscardpile(card);
                                     for (var i = 0; i < 5; i++) {

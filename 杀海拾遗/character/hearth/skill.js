@@ -2660,7 +2660,7 @@ const skill = {
 				event.goto(4);
 			}
 			"step 3";
-			if (result.bool && result.cards.length) {
+			if (result.cards?.length) {
 				event.cards.push(result.cards[0]);
 			}
 			event.goto(2);

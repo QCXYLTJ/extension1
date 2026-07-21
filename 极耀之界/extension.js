@@ -4754,7 +4754,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                         ('step 1');
                                         if (result.targets?.length) {
-                                            if (result.targets.length) {
+                                            if (result.targets?.length) {
                                                 event.target = result.targets[0];
                                                 player.give(result.cards, event.target);
                                                 event.card = result.cards[0];
@@ -5129,7 +5129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, false, false);
                                 }
@@ -14873,7 +14873,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('target1', event.target1)
                                     .set('forceDie', true);
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     event.target1.line(event.target2);
                                     event.target1.chooseToCompare(event.target2);
@@ -17961,7 +17961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'e') event.targets[1].equip(link);
                                     else if (link.viewAs) event.targets[1].addJudge({ name: link.viewAs }, [link]);
@@ -18099,7 +18099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = target;
-                                    if (result.cards.length) {
+                                    if (result.cards?.length) {
                                         player.give(result.cards, target);
                                         event.source = target;
                                         event.num = result.cards.length;
@@ -21593,7 +21593,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     lib.skill.阶段摸牌.change(mb2, 1);
                                 }
                                 ('step 3');
-                                if (result.cards) player.recast(result.cards);
+                                if (result.cards?.length) player.recast(result.cards);
                             },
                         },
                         tx_shzl_zhenglun: {
@@ -29619,7 +29619,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 4');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             var link = result.links[0];
                                             if (get.position(link) == 'e') {
                                                 event.targets[1].equip(link);
@@ -30151,7 +30151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                         } else {
                                             event.finish();
@@ -35464,7 +35464,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(2);
                                 }
                                 ('step 4');
-                                if (result && result.cards) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     if (!result.targets || !result.targets.length) {
                                         event.current.lose(result.cards, ui.cardPile, 'insert');
@@ -36488,7 +36488,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 10');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     event.targets[1].equip(link);
                                     event.targets[0].$give(link, event.targets[1]);
@@ -38261,7 +38261,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true, false);
                                 }

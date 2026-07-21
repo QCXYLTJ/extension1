@@ -26427,7 +26427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('judging', trigger.player.judging[0]);
                                 ('step 1');
                                 if (result.links?.length) {
-                                    if (result.links.length) {
+                                    if (result.links?.length) {
                                         var card = result.links[0];
                                         trigger.player.judging[0] = card;
                                         ui.cardPile.removeChild(card);
@@ -27736,7 +27736,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     );
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     game.log(player, '指定的出杀目标为', result.targets);
                                     event.target.line(result.targets);
                                     if (event.target.storage.破歌_mei && event.target.storage.破歌_mei == true) {
@@ -32247,7 +32247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.targets) event.tr = result.targets[0];
+                                if (result.targets?.length) event.tr = result.targets[0];
                                 if (event.tr) {
                                     var list = [];
                                     var skills = player.getSkills(true, false);

@@ -867,7 +867,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							});
 							next.set('listed', listed);
 							('step 1');
-							if (result && result.bool && result.links[0]) {
+							if (result.links?.length) {
 								trigger.rushied = true;
 								var card = { name: result.links[0][2], nature: result.links[0][3] };
 								player.addTempSkill('rushi_damage');

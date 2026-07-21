@@ -464,7 +464,7 @@ const brawl = {
                             return 114514 - target.countCards();
                         }).set('source', trigger.player);
                         'step 1'
-                        if (result.targets.length) {
+                        if (result.targets?.length) {
                             result.targets[0].draw(2);
                         }
                     },

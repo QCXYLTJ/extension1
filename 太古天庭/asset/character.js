@@ -13910,7 +13910,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     else if (target.countCards('he') <= 2) result.cards = target.getCards('he');
                     else target.chooseCard('章武:交给' + get.translation(player) + '两张牌', 'he', 2, true);
                     ('step 2');
-                    if (result.cards) player.gain(result.cards, target, 'give');
+                    if (result.cards?.length) player.gain(result.cards, target, 'give');
                     ('step 3');
                     if (targets.length) event.goto(1);
                     else {
@@ -23033,7 +23033,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         if (get.attitude(player, player.storage.tgtt_fsczshamenga[0]) < 0) return -get.value(card);
                     });
                     ('step 3');
-                    if (result.bool && result.cards.length) {
+                    if (result.cards?.length) {
                         player.line(player.storage.tgtt_fsczshamenga[0]);
                         player.give(result.cards, player.storage.tgtt_fsczshamenga[0]);
                         player.draw(2);
@@ -26058,7 +26058,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     });
                             } else event.goto(3);
                             ('step 2');
-                            if (result.bool && result.links.length) {
+                            if (result.links?.length) {
                                 event.list.add(result.links[0]);
                                 player.useCard(result.links[0], event.target).card.tgtt_fswyduoguan = true;
                             } else {
@@ -30634,7 +30634,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return 10 - get.value(card);
                                 });
                             ('step 2');
-                            if (result.bool && result.cards.length) player.lose(result.cards[0], ui.special);
+                            if (result.cards?.length) player.lose(result.cards[0], ui.special);
                             ('step 3');
                             result.cards[0].fix();
                             ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
@@ -30647,7 +30647,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return 10 - get.value(card);
                                 });
                             ('step 5');
-                            if (result.bool && result.cards.length) player.lose(result.cards[0], ui.special);
+                            if (result.cards?.length) player.lose(result.cards[0], ui.special);
                             ('step 6');
                             result.cards[0].fix();
                             ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
@@ -36063,7 +36063,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.targets.length) {
+                    if (result.targets?.length) {
                         player.line(result.targets, 'kami');
                         result.targets[0].damage(2, 'kami');
                     }

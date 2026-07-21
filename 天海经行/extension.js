@@ -915,7 +915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else return 4 - get.value(card);
                                 });
                                 'step 1'
-                                if (result.cards) player.discard(result.cards);
+                                if (result.cards?.length) player.discard(result.cards);
                                 else player.draw(2);
                             },
                             prompt: '发动【观歙】,视为使用【无懈可击】',
@@ -2462,7 +2462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         else event.finish();
                                         'step 4'
-                                        if (result.targets[0]) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             event.tarx.chooseControl(['一', '二'], function () {
                                                 if (get.attitude(player, target) > 0) return '二';
@@ -2890,7 +2890,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                         event.cur = cur;
                                         'step 2'
-                                        if (result && result.bool && result.links[0]) {
+                                        if (result.links?.length) {
                                             var card = { name: result.links[0][2], nature: result.links[0][3] };
                                             event.cur.useCard(card, trigger.player);
                                         }
@@ -3531,7 +3531,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 3'
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var target = event.tar;
                                     target.addToExpansion(result.cards, 'giveAuto', target).gaintag.add('xinpojun2');
                                     target.addSkill('xinpojun2');
@@ -4324,7 +4324,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 else event.finish();
                                 'step 3'
-                                if (result.cards.length) {
+                                if (result.cards?.length) {
                                     target.useCard({ name: 'sha' }, result.cards, 'Business', event.tar, false);
                                 }
                             },
@@ -6056,7 +6056,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                             return game.hasPlayer(current => player.canUse(button.link, current));
                                                         })
                                                         .forResult();
-                                                    if (result && result.links) {
+                                                    if (result.links?.length) {
                                                         let links = result.links;
                                                         cards.remove(...links);
                                                         unmark(links);

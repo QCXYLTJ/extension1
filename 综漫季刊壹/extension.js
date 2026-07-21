@@ -4293,7 +4293,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseCard('h', [0, 2], true, '可保留至多两张手牌').ai = get.value;
                                 ('step 2');
                                 var cards = player.getCards('h');
-                                if (result.cards[0]) cards.remove(result.cards[0]);
+                                if (result.cards?.length) cards.remove(result.cards[0]);
                                 if (result.cards[1]) cards.remove(result.cards[1]);
                                 player.discard(cards);
                                 ('step 3');
@@ -6409,7 +6409,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set(event.fored);
                                         }
                                         ('step 3');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(event.togive, 'draw');
                                             game.log(result.targets[0], `获得了${get.cnNumber(event.togive.length)}张牌`);
                                         }

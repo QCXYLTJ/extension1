@@ -3002,7 +3002,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                   await current.draw();
                   if (current.countCards('h')) {
                     const result = await current.chooseCard('将一张手牌置于武将牌上作为<寂>', true).forResult();
-                    if (result.bool && result.cards.length) {
+                    if (result.cards?.length) {
                       await current.addToExpansion(result.cards, current).gaintag.add('yb_wan_linzuo_mark2');
                     }
                   }

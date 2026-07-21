@@ -905,7 +905,7 @@ const skills = {
                         .forResult();
                     if (!result.bool) break;
                     event.toGive.addArray(result.cards);
-                    if (result.targets.length) {
+                    if (result.targets?.length) {
                         const id = result.targets[0].playerid,
                             map = event.given_map;
                         if (!map[id]) map[id] = [];

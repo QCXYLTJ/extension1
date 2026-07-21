@@ -4940,7 +4940,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('enemy', get.value(event.togive[0]) < 0);
 								}
 								('step 3');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].gain(event.togive, 'draw');
 									player.line(result.targets[0], 'green');
 									game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -9151,7 +9151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.cards = result.cards;
 									event.target = result.targets[0];
 								} else {
@@ -11891,7 +11891,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.gainPlayerCard('he', trigger.target, true, 'visible');
 								('step 1');
-								if (result.cards[0]) {
+								if (result.cards?.length) {
 									var gaincard = [];
 									var gaincard1 = [];
 									for (var i = 0; i < ui.cardPile.childNodes.length; i++) {
@@ -15969,19 +15969,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.n = 0;
 								trigger.player.chooseToDiscard(true, 'he', (c) => c.suit == 'club');
 								('step 1');
-								if (result.cards) event.n++;
+								if (result.cards?.length) event.n++;
 								('step 2');
 								trigger.player.chooseToDiscard(true, 'he', (c) => c.suit == 'spade');
 								('step 3');
-								if (result.cards) event.n++;
+								if (result.cards?.length) event.n++;
 								('step 4');
 								trigger.player.chooseToDiscard(true, 'he', (c) => c.suit == 'diamond');
 								('step 5');
-								if (result.cards) event.n++;
+								if (result.cards?.length) event.n++;
 								('step 6');
 								trigger.player.chooseToDiscard(true, 'he', (c) => c.suit == 'heart');
 								('step 7');
-								if (result.cards) event.n++;
+								if (result.cards?.length) event.n++;
 								trigger.player.loseHp(4 - event.n);
 							},
 						},

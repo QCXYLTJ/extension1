@@ -3298,7 +3298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             }
                             ('step 3');
                             var num = trigger.getl(player).hs.length - 1;
-                            if (result.bool && result.targets.length) {
+                            if (result.targets?.length) {
                                 var players = game.countPlayer(function (current) {
                                     var player = _status.event.player;
                                     return ![player, result.targets[0]].includes(current);
@@ -3322,7 +3322,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                             }
                             ('step 4');
-                            if (result.bool && result.targets.length) {
+                            if (result.targets?.length) {
                                 game.asyncDraw(result.targets, function (target) {
                                     return !target.countCards('h') ? 2 : 1;
                                 });
@@ -4921,7 +4921,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             if (target.isAlive() && target.countCards('h') && target.countCards('h') > target.maxHp) target.chooseCard('he', true, '将一张牌置于牌堆顶');
                             else event.goto(3);
                             ('step 5');
-                            if (result && result.cards) {
+                            if (result.cards?.length) {
                                 event.card = result.cards[0];
                                 target.lose(result.cards, ui.special);
                                 game.log(target, '将', get.position(event.card) == 'h' ? '一张牌' : event.card, '置于牌堆顶');
@@ -6992,7 +6992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.value(card);
                                 });
                             ('step 3');
-                            if (result.bool && result.cards.length) {
+                            if (result.cards?.length) {
                                 if (get.position(result.cards[0]) == 'h' && get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0])) && lib.filter.cardEnabled(result.cards[0], trigger.target)) player.chooseUseTarget(result.cards[0], true, 'nopopup');
                                 else player.discard(result.cards[0]);
                             }
@@ -7570,7 +7570,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                             }
                             ('step 3');
-                            if (result.links) player.gain(result.links, 'gain2');
+                            if (result.links?.length) player.gain(result.links, 'gain2');
                             event.goto(1);
                         },
                         ai: {

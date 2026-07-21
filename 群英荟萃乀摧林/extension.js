@@ -9975,7 +9975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('fromer', player)
                                     .set('aichoose', aichoose);
                                 ('step 1');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     target.line(player);
                                     target.give(result.cards, player, true);
                                     event.finish();
@@ -10303,7 +10303,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.goto(2);
                                 ('step 4');
-                                if (result && result.cards) {
+                                if (result.cards?.length) {
                                     if (!result.targets || !result.targets.length) {
                                         event.current.lose(result.cards, ui.cardPile, 'insert');
                                         game.broadcastAll(function (player) {
@@ -10678,7 +10678,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 ('step 1');
                                 if (result.cards?.length) {
-                                    if (result.cards[0]) {
+                                    if (result.cards?.length) {
                                         qyhcCL.skillid.qyhc_beige2 = 1;
                                         delete qyhcCL.skillid.qyhc_beige2;
                                         player.recast(result.cards);

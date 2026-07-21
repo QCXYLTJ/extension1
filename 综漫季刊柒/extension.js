@@ -4810,7 +4810,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.kg++;
                                     game.playzm7(['zmailiya', 'zmailiya1'].randomGet());
                                     game.mp427('zmailiya');

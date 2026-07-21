@@ -462,7 +462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return Math.random();
 							});
 							('step 4');
-							if (result && result.bool && result.links[0]) {
+							if (result.links?.length) {
 								for (var i = 0; i < event.cards2.length; i++) {
 									if (event.cards2[i].suit == result.links[0].suit) {
 										event.cards3.push(event.cards2[i]);
@@ -1388,7 +1388,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							('step 3');
-							if (result && result.bool && result.links[0]) {
+							if (result.links?.length) {
 								var card = { name: result.links[0][2], nature: result.links[0][3] };
 								player.chooseUseTarget(card, true);
 							}
@@ -4731,7 +4731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return Math.random();
 								});
 								('step 3');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									target.addTempSkill('sgyj_chumou1');
 									var card = result.links[0];
 									target.chooseUseTarget(card, true);
@@ -4744,7 +4744,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return Math.random();
 								});
 								('step 6');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									target.addTempSkill('sgyj_chumou2');
 									target.chooseUseTarget(result.links[0], true);
 								}
@@ -6588,7 +6588,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									var card = { name: result.links[0][2], nature: result.links[0][3] };
 									event.target.chooseUseTarget(card, true);
 								}
@@ -7941,7 +7941,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									var card = { name: result.links[0][2] };
 									player.chooseUseTarget(card, true);
 								}
@@ -8372,7 +8372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									var card = { name: result.links[0][2], nature: result.links[0][3] };
 									player.chooseUseTarget(card, true);
 								}
@@ -8984,7 +8984,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								);
 								('step 5');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									for (var i = 0; i < result.targets.length; i++) {
 										result.targets[i].damage();
 										result.targets[i].draw(result.targets[i].getDamagedHp());
@@ -11401,7 +11401,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('target1', event.target1);
 								('step 2');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									event.target2 = result.targets[0];
 									event.target1.line(event.target2);
 									event.target1.chooseToCompare(event.target2);
@@ -12091,7 +12091,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 								} else {
 									event.finish();

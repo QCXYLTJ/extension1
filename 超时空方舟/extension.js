@@ -4432,7 +4432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseTarget([1, Math.ceil(Math.max(player.maxHp - player.hp, 1))]);
                                 ('step 2');
-                                if (result.targets)
+                                if (result.targets?.length)
                                     for (var i of result.targets) {
                                         i.link();
                                     }
@@ -8462,7 +8462,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target);
                                             });
                                         ('step 2');
-                                        if (result.targets) player.useCard(trigger.card, result.targets[0], false);
+                                        if (result.targets?.length) player.useCard(trigger.card, result.targets[0], false);
                                     },
                                 },
                             },
@@ -8644,7 +8644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 1');
-                                if (result.targets) player.useCard({ name: 'sha', nature: 'thunder' }, result.targets[0], false);
+                                if (result.targets?.length) player.useCard({ name: 'sha', nature: 'thunder' }, result.targets[0], false);
                             },
                         },
                         qw_fljlw: {},
@@ -9225,7 +9225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.gain(event.card1);
                                 player.chooseTarget().set('prompt', '请选择一名角色装备此牌');
                                 ('step 2');
-                                if (result.targets[0]) {
+                                if (result.targets?.length) {
                                     result.targets[0].$give(event.card1, result.targets[0], false);
                                     result.targets[0].equip(event.card1);
                                 }
@@ -9247,7 +9247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseTarget().set('prompt', '请选择一名角色弃置其' + event.num + '张牌');
                                 ('step 2');
-                                if (result.targets[0]) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 }
                                 ('step 3');
@@ -9505,7 +9505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target;
                                 });
                                 ('step 1');
-                                if (result.targets[0]) {
+                                if (result.targets?.length) {
                                     var skills;
                                     skills = result.targets[0].getStockSkills(false, true);
                                     if (skills.length) {
@@ -9524,7 +9524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.targets[0]) result.targets[0].addTempSkill(event.skill, { player: 'phaseAfter' });
+                                if (result.targets?.length) result.targets[0].addTempSkill(event.skill, { player: 'phaseAfter' });
                             },
                             group: 'qw_zhizhao_jishu',
                             subSkill: {
@@ -9667,7 +9667,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.targets) player.useCard({ name: 'sha' }, result.targets[0], false);
+                                if (result.targets?.length) player.useCard({ name: 'sha' }, result.targets[0], false);
                                 else player.getStat().skill.qw_xzxc--;
                             },
                             group: ['qw_xzxc_num', 'qw_xzxc_add'],
@@ -9934,7 +9934,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     prompt: '请选择一张面包并指定一名角色',
                                 });
                                 ('step 6');
-                                if (result.targets[0]) {
+                                if (result.targets?.length) {
                                     player.lose(result.cards[0]);
                                     player.draw();
                                     result.targets[0].damage(1, player);

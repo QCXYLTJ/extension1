@@ -1955,7 +1955,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                 }
@@ -3277,7 +3277,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                 }
@@ -5177,7 +5177,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result && result.links) {
+                                if (result.links?.length) {
                                     //player.showCards(result.links,'✦')
                                     var e = player.storage.lg_emoshatang[trigger.player.playerid];
                                     player.$compare(e, trigger.player, result.links[0]);
@@ -5252,7 +5252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(1);
                                 }
                                 ('step 3');
-                                if (result && result.cards) {
+                                if (result.cards?.length) {
                                     event.current.lose(result.cards, ui.cardPile, 'visible', 'insert');
                                     event.current.$throw(result.cards, 1000, 'nobroadcast');
                                     var evt = event.getParent('');
@@ -5351,7 +5351,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 4');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.give, player, 'gain2');
                                 } else {
                                     player.next.showHandcards();

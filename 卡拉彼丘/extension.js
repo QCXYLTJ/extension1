@@ -1320,7 +1320,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.bool) {
 									//if(trigger.name=='useCard') player.removeGaintag('CALABIYAU_miaomiaopaota');
-									if (result.cards.length) {
+									if (result.cards?.length) {
 										player.addGaintag(result.cards, 'CALABIYAU_miaomiaopaota');
 									} else player.useSkill('CALABIYAU_huolidamiao');
 								} else event.finish();

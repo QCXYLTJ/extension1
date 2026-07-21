@@ -848,7 +848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard(trigger.target, 'he', [1, trigger.target.countCards('he')], get.prompt('lyzyinjun', trigger.target));
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     if (trigger.target.storage.lyzyinjun2) {
                                         trigger.target.storage.lyzyinjun2 = trigger.target.storage.lyzyinjun2.concat(result.links);
                                     } else {

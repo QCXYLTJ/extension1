@@ -1628,7 +1628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 4');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									player.addTempSkill('msxinghui_equip', { player: 'phaseBeginStart' });
 									player.storage.msxinghui_equip = link;

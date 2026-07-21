@@ -2641,7 +2641,7 @@ export async function precontent(config, pack) {
                     return player.getUseValue(card);
                 });
                 ('step 1');
-                if (result && result.bool && result.links[0]) {
+                if (result.links?.length) {
                     player.addSkill('syr_zhenmeng_viewed');
                     player.markAuto('syr_zhenmeng_viewed', [result.links[0][2]]);
                     var card = { name: result.links[0][2], nature: result.links[0][3] };
@@ -9430,7 +9430,7 @@ export async function precontent(config, pack) {
                     });
                 } else event.finish();
                 ('step 2');
-                if (result && result.bool && result.links[0]) {
+                if (result.links?.length) {
                     var card = { name: result.links[0][2] };
                     player.useCard(card, event.targets);
                 }
@@ -14892,7 +14892,7 @@ export async function precontent(config, pack) {
                     }
                 }
                 ('step 1');
-                if (result.bool && result.targets.length) {
+                if (result.targets?.length) {
                     event.target = result.targets[0];
                 } else {
                     event.finish();
@@ -14947,7 +14947,7 @@ export async function precontent(config, pack) {
                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                 } else event.goto(6);
                 ('step 5');
-                if (result.targets.length) {
+                if (result.targets?.length) {
                     var id = result.targets[0].playerid,
                         map = event.given_map;
                     if (!map[id]) map[id] = [];
@@ -28118,7 +28118,7 @@ export async function precontent(config, pack) {
                         return get.value(button.link, player);
                     };
                 ('step 5');
-                if (result.links) player.gain(result.links, 'gain2');
+                if (result.links?.length) player.gain(result.links, 'gain2');
                 event.finish();
                 ('step 6');
                 player
@@ -29343,7 +29343,7 @@ export async function precontent(config, pack) {
                 event.num = 0;
                 var list1 = [],
                     list2 = [];
-                if (result.links) for (var name of result.links) list1.push(name[2].slice(12));
+                if (result.links?.length) for (var name of result.links) list1.push(name[2].slice(12));
                 if (target.countCards('h')) for (var card of target.getCards('h')) if (!list2.includes(get.type2(card))) list2.push(get.type2(card));
                 for (var type of ['basic', 'trick', 'equip']) if ((list1.includes(type) && list2.includes(type)) || (!list1.includes(type) && !list2.includes(type))) event.num++;
                 ('step 3');

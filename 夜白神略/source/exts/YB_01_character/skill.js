@@ -1452,7 +1452,7 @@ const skill = {
         set('prompt', '请选择一名其他角色,令其摸两张牌');
       }
       'step 2';
-      if (result.targets[0]) {
+      if (result.targets?.length) {
         result.targets[0].draw(2);
       }
     }

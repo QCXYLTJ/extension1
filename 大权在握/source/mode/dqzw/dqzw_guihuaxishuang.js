@@ -1820,7 +1820,7 @@ import { func as characterListSet } from './character_list_set.js';
 							return 8 - get.value(card);
 						});
 					('step 2');
-					if (result.cards) player.give(result.cards, target);
+					if (result.cards?.length) player.give(result.cards, target);
 				},
 				contentAfter() {
 					let list = [];
@@ -2517,7 +2517,7 @@ import { func as characterListSet } from './character_list_set.js';
 					player.gainPlayerCard(target, [1, _status.dqzw_checkpoint_level || 1], 'he', 'visible');
 					delete result.cards;
 					('step 3');
-					if (result.cards) player.addShownCards(result.cards, 'visible_card');
+					if (result.cards?.length) player.addShownCards(result.cards, 'visible_card');
 					if (event.targets.length) event.goto(2);
 				},
 			},
@@ -4044,7 +4044,7 @@ import { func as characterListSet } from './character_list_set.js';
 					if (!trigger.cards.length) trigger.cancel();
 					if (num > 0) trigger.player.chooseCard(`你可重铸${get.cnNumber(num)}张牌`, num, lib.filter.cardRecastable, card => 6 - get.value(card));
 					('step 1');
-					if (result.cards) trigger.player.recast(result.cards);
+					if (result.cards?.length) trigger.player.recast(result.cards);
 				},
 			},
 			dqzw_boss_leader_rage: {
@@ -5560,7 +5560,7 @@ import { func as characterListSet } from './character_list_set.js';
 						Object.keys(map).forEach(id => {
 							let result = map[id],
 								player = (lib.playerOL || game.playerMap)[id] || (event.player);
-							if (result.cards.length) player.gain(result.cards, 'gain2');
+							if (result.cards?.length) player.gain(result.cards, 'gain2');
 							if (result.skills.length) player.addSkill(result.skills);
 							if (result.buffs) player.dqzw_gainBuffs(result.buffs);
 							if (result.gold) player.dqzw_changeGold(-result.gold);

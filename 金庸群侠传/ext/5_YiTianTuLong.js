@@ -3589,7 +3589,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             }
             ('step 3');
-            if (result.targets.length) {
+            if (result.targets?.length) {
               result.targets[0].gain(event.togive, 'draw');
               player.line(result.targets[0], 'green');
               game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -6221,7 +6221,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return att;
               });
             ('step 4');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               if (player.storage.yttl_qianwoold_qx) {
                 if (player.storage.yttl_qianwoold_qx.hasSkill('yttl_qianwoold_qinxin')) {
                   player.storage.yttl_qianwoold_qx.say(['苦头陀,你藏得好深啊!', '我待你不薄,你为何背叛于我？'].randomGet());
@@ -8048,7 +8048,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 2');
-            if (result && result.bool && result.links) {
+            if (result.links?.length) {
               if (result.links.includes(event.cardx)) {
                 if (targets[event.num].isDamaged()) {
                   targets[event.num].recover();
@@ -10562,7 +10562,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             ('step 1');
-            if (result && result.links) {
+            if (result.links?.length) {
               //player.showCards(result.links,'托镖')
               var tuobiao = player.storage.yttl_tuobiao[trigger.player.playerid];
               player.$compare(tuobiao, trigger.player, result.links[0]);

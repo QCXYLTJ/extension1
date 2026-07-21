@@ -2229,7 +2229,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = {
                                         name: result.links[0][2],
                                         nature: result.links[0][3],
@@ -2388,7 +2388,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var next = player.chooseToUse('是否发动【心渠】将一张♥️️手牌当做' + get.translation(result.links[0].name) + '使用？').set('ai', function (card) {
                                         return 7 - get.value(card);
                                     });
@@ -5815,7 +5815,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('enemy', get.value(event.togive[0]) < 0);
                                         }
                                         ('step 2');
-                                        if (result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets[0].gain(event.togive, 'draw');
                                             player.line(result.targets[0], 'green');
                                             game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -8318,7 +8318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0]) < 0);
                                 }
                                 ('step 5');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -13080,7 +13080,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     if (get.position(link) == 'e') {
                                         event.targets[1].equip(link);

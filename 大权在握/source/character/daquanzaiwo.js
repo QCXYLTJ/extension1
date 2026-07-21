@@ -4499,7 +4499,7 @@ export let info = {
                 return 5 - get.value(card);
               });
           ('step 1');
-          if (result && result.cards) player.recast(result.cards);
+          if (result.cards?.length) player.recast(result.cards);
         },
       },
       mark: true,
@@ -9368,7 +9368,7 @@ export let info = {
             if (cardsx.length) player.chooseCardButton(cardsx, '请选择一张牌交给其他角色');
             else event.finish();
             ('step 1');
-            if (result.links[0]) {
+            if (result.links?.length) {
               event.card == result.links[0];
               player.chooseTarget(
                 true,
@@ -9442,7 +9442,7 @@ export let info = {
               event.finish();
             }
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();

@@ -243,7 +243,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 		if (result.bool) {
 			event.shaRequired--;
 			if (event.turn == target) {
-				if (result.cards) event.targetCards.addArray(result.cards);
+				if (result.cards?.length) event.targetCards.addArray(result.cards);
 				if (event.shaRequired > 0) event.goto(2);
 				else {
 					event.one = false;
@@ -251,7 +251,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					event.goto(1);
 				}
 			} else {
-				if (result.cards) event.playerCards.addArray(result.cards);
+				if (result.cards?.length) event.playerCards.addArray(result.cards);
 				if (event.shaRequired > 0) event.goto(2);
 				else {
 					event.one = false;
@@ -690,7 +690,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 			event.finish();
 		}
 		('step 4');
-		if (result.bool && result.links.length) {
+		if (result.links?.length) {
 			var link = result.links[0];
 			if (get.position(link) == 'e') {
 				event.targets[1].equip(link);
@@ -1424,7 +1424,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 			});
 		} else event.goto(5);
 		('step 4');
-		if (result.targets.length) {
+		if (result.targets?.length) {
 			player.line(result.targets, 'green');
 			event.targets2 = result.targets;
 		}

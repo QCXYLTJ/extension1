@@ -1028,7 +1028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     event.win.gain(result.links, 'gain2');
                                 }
                             },
@@ -1280,7 +1280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     trigger.cancel();
                                 }
                             },
@@ -3592,7 +3592,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (const i of result.cards) {
                                             event.cds.push(i);

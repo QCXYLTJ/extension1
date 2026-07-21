@@ -7664,7 +7664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'fire');
                                     result.targets[0].damage(2, 'fire');
                                 }

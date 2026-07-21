@@ -4767,7 +4767,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 });
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                 }
                                 ('step 2');

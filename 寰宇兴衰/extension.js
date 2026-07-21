@@ -7353,7 +7353,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('source', trigger.player);
                                 ('step 1');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(2);
                                 }
                             },

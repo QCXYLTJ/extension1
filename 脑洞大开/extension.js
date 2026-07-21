@@ -7028,7 +7028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     }).animate = false;
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     var targets = result.targets;
                                     if (targets.length == 1) targets.push(targets[0]);
                                     if (!player.storage.sl_sidi) player.storage.sl_sidi = [];

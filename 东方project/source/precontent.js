@@ -4643,7 +4643,7 @@ export async function precontent(config, pack) {
 				'step 0';
 				player.choosePlayerCard('hej', trigger.player, true);
 				('step 1');
-				if (result.cards.length) {
+				if (result.cards?.length) {
 					player.gain(result.cards[0], trigger.player, 'giveAuto');
 				}
 			},
@@ -7995,7 +7995,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result && result.bool && result.links[0]) {
+				if (result.links?.length) {
 					var card = {
 						name: result.links[0][2],
 					};
@@ -9127,7 +9127,7 @@ export async function precontent(config, pack) {
 					return 7 - get.value(card);
 				});
 				('step 1');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					player.say('<符卡>上吊的蓬莱人形!');
 					player.loselili();
 					player.lose(result.cards, ui.special);
@@ -9154,7 +9154,7 @@ export async function precontent(config, pack) {
 					return get.value(button.link);
 				};
 				('step 1');
-				if (result.bool && result.links.length) {
+				if (result.links?.length) {
 					event.card = result.links[0];
 					trigger.target.gain(event.card);
 					player.storage.gezi_huanfa.remove(event.card);
@@ -9176,7 +9176,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool && result.targets.length) {
+				if (result.targets?.length) {
 					trigger.target.useCard(event.card, result.targets);
 				}
 			},
@@ -9966,7 +9966,7 @@ export async function precontent(config, pack) {
 				}
 				('step 3');
 				if (result.bool && event.control == '获得弃置的一张牌') {
-					if (result.links.length) {
+					if (result.links?.length) {
 						if (lib.config.background_audio) {
 							game.playlili('xiaotiqin3');
 						}
@@ -10254,7 +10254,7 @@ export async function precontent(config, pack) {
 				}
 				('step 3');
 				if (result.bool && event.control == '获得弃置的一张牌') {
-					if (result.links.length) {
+					if (result.links?.length) {
 						if (lib.config.background_audio) {
 							game.playlili('xiaotiqin3');
 						}
@@ -11561,7 +11561,7 @@ export async function precontent(config, pack) {
 						return get.attitude(_status.event.player, target);
 					});
 				('step 1');
-				if (result.bool && result.targets.length) {
+				if (result.targets?.length) {
 					event.target = trigger.targets[0];
 					var list = [];
 					if (result.targets[0].canUse(trigger.card, trigger.targets[0])) {
@@ -11682,7 +11682,7 @@ export async function precontent(config, pack) {
 						return get.attitude(_status.event.player, target) && target.hp > _status.event.player.hp;
 					});
 				('step 1');
-				if (result.bool && result.targets.length) {
+				if (result.targets?.length) {
 					result.targets[0].removeSkill('gezi_shiqu2');
 					player.line(result.targets[0], 'blue');
 					result.targets[0].loseHp(trigger.num);
@@ -13080,7 +13080,7 @@ export async function precontent(config, pack) {
 					player.choosePlayerCard(targets[0], 'he', Math.min(targets[0].countCards('he'), cards.length), '重铸没有回答出难题的角色的牌', true);
 				}
 				('step 3');
-				if (result.bool && result.links.length) {
+				if (result.links?.length) {
 					game.log(targets[0], '重铸了', result.links);
 					targets[0].recast(result.links);
 				}
@@ -13129,7 +13129,7 @@ export async function precontent(config, pack) {
 					return 7 - get.value(card);
 				});
 				('step 1');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					var suits = [];
 					if (Array.isArray(result.cards))
 						for (const i of result.cards) {
@@ -13926,7 +13926,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result && result.bool && result.links[0]) {
+				if (result.links?.length) {
 					player.gainlili();
 					var card = {
 						name: result.links[0][2],
@@ -14975,7 +14975,7 @@ export async function precontent(config, pack) {
 					player.choosePlayerCard(event.target, 'he', true);
 				}
 				('step 2');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					event.target.showCards(result.cards);
 					var cards = game.createCard(result.cards[0].name, result.cards[0].suit, result.cards[0].number);
 					event.target.addTempSkill('gezi_jidong_2');
@@ -15464,7 +15464,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					player.line(trigger.player, 'blue');
 					trigger.player.recast(result.cards[0]);
 					trigger.player.gainlili();
@@ -15494,7 +15494,7 @@ export async function precontent(config, pack) {
 						return 0;
 					});
 				('step 1');
-				if (result.bool && result.targets[0]) {
+				if (result.targets?.length) {
 					result.targets[0].showHandcards();
 					var cards = result.targets[0].getCards('h');
 					var list = [];
@@ -15923,7 +15923,7 @@ export async function precontent(config, pack) {
 					player.draw(2);
 				}
 				('step 2');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					player.recast(result.cards[0]);
 				}
 			},
@@ -16455,7 +16455,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 2');
-				if (result.targets.length) {
+				if (result.targets?.length) {
 					player.line(result.targets, 'green');
 					result.targets[0].gain(event.card, 'gain2');
 					if (result.targets[0].name == 'gezi_aya') result.targets[0].say('嗯,摄影技术大大提高了呢,果');
@@ -19006,7 +19006,7 @@ export async function precontent(config, pack) {
 					});
 				}
 				('step 1');
-				if (result && result.bool && result.links[0]) {
+				if (result.links?.length) {
 					player.gain(game.createCard(result.links[0][2]));
 					player.loselili();
 				}
@@ -24378,7 +24378,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 1');
-				if (result && result.bool && result.links[0]) {
+				if (result.links?.length) {
 					var card = {
 						name: result.links[0][2],
 					};
@@ -24476,7 +24476,7 @@ export async function precontent(config, pack) {
 					event.finish();
 				}
 				('step 1');
-				if (result && result.bool && result.links[0]) {
+				if (result.links?.length) {
 					var card = {
 						name: result.links[0][2],
 					};
@@ -25428,7 +25428,7 @@ export async function precontent(config, pack) {
 					return 5 - get.value(card);
 				});
 				('step 1');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					target.recast(result.cards);
 				}
 			},
@@ -25451,7 +25451,7 @@ export async function precontent(config, pack) {
 					return 6 - get.value(card);
 				});
 				('step 1');
-				if (result.bool && result.cards.length) {
+				if (result.cards?.length) {
 					player.recast(result.cards);
 				}
 			},

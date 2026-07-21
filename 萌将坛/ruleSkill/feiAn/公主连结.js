@@ -3830,7 +3830,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							if (event.triggername) {
 								if (result.targets?.length) {
 									event.targed = result.targets[0];
-									if (result.cards.length) event.cardd = result.cards;
+									if (result.cards?.length) event.cardd = result.cards;
 								} else event.finish();
 							} else {
 								event.targed = target;

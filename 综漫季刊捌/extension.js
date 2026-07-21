@@ -3385,7 +3385,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 });
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     if (player.hasSkill('zmliangzijiuchan')) {
                                         game.playzm8(['zmwuliheixiang1', 'zmwuliheixiang2', 'zmwuliheixiang3', 'zmwuliheixiang4', 'zmwuliheixiang5', 'zmwuliheixiang6', 'zmwuliheixiang6'].randomGet());
                                     }

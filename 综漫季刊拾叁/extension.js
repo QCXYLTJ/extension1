@@ -3457,7 +3457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 8 - get.value(card);
                                 };
                                 ('step 1');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.$give(result.cards, event.tr);
                                     event.tr.gain(result.cards, player);
                                     result.cards[0].init([result.cards[0].color, result.cards[0].number, 'du']);
@@ -3491,7 +3491,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 8 - get.value(card);
                                         };
                                         ('step 1');
-                                        if (result.bool && result.cards.length) {
+                                        if (result.cards?.length) {
                                             player.$give(result.cards, event.tr);
                                             event.tr.gain(result.cards, player);
                                             result.cards[0].init([result.cards[0].color, result.cards[0].number, 'du']);
@@ -3525,7 +3525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 8 - get.value(card);
                                         };
                                         ('step 1');
-                                        if (result.bool && result.cards.length) {
+                                        if (result.cards?.length) {
                                             player.$give(result.cards, event.tr);
                                             event.tr.gain(result.cards, player);
                                             result.cards[0].init([result.cards[0].color, result.cards[0].number, 'du']);
@@ -5969,7 +5969,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 });
                                 ('step 3');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     if (result.links[0][2] == 'sha' || result.links[0][2] == 'juedou' || result.links[0][2] == 'huogong' || result.links[0][2] == 'nanman' || result.links[0][2] == 'wanjian' || result.links[0][2] == 'shunshou' || result.links[0][2] == 'guohe' || result.links[0][2] == 'jiedao') {
                                         player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
                                     } else {
@@ -6446,7 +6446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 });
                                 ('step 3');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     event.n = result.links[0][2];
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, event.cd, false);
                                 } else {

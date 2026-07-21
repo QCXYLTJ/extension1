@@ -1718,7 +1718,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                         player.chooseToDiscard(get.prompt('llbz_xinao'), '弃置一张手牌,可以移动场上的一张牌', lib.filter.cardDiscardable);
                         ('step 1');
                         if (result.cards?.length) {
-                            if (result.cards.length) {
+                            if (result.cards?.length) {
                                 if (get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0]))) {
                                     player.chooseUseTarget(result.cards[0], true, 'nopopup');
                                 }

@@ -12002,7 +12002,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         player.gainPlayerCard(trigger.player, [0, num], 'visible', 'h', true);
         ('step 1');
         if (result.cards?.length) {
-          if (result.cards.length) trigger.player.removeMark('mengzhaiquan', result.cards.length);
+          if (result.cards?.length) trigger.player.removeMark('mengzhaiquan', result.cards.length);
         }
       },
     },
@@ -12173,7 +12173,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           }
         }
         ('step 2');
-        if (result.bool && result.targets.length) {
+        if (result.targets?.length) {
           player.useCard({ name: 'sha', nature: 'ice' }, result.targets[0], false).set('addCount', false);
         } else {
           player.draw();
@@ -12327,7 +12327,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
         player.storage.mengmiaobu_log = 0;
         player.chooseToDiscard(get.prompt2('mengmiaobu'), 'he', [1, 3 - player.getStorage('mengmiaobu').length]).set('ai', (card) => 10 - get.value(card));
         ('step 1');
-        if (result.bool && result.cards.length) {
+        if (result.cards?.length) {
           var num = result.cards.length;
           var list = [];
           for (var i = 0; i < lib.inpile.length; i++) {
@@ -12475,7 +12475,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           };
         }
         ('step 1');
-        if (result.bool && result.targets.length) {
+        if (result.targets?.length) {
           result.targets.sortBySeat();
           event.targets = result.targets;
           player.line(result.targets, 'green');
@@ -14674,7 +14674,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           } else event._result = { bool: true, cards: [] };
         } else event.finish();
         ('step 4');
-        if (result.cards.length) {
+        if (result.cards?.length) {
           event.cardr = result.cards[0];
           if (
             game.countPlayer(function (current) {
@@ -17282,7 +17282,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
               event.finish();
             }
             ('step 1');
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();

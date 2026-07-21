@@ -6467,7 +6467,7 @@ export default function () {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -11543,7 +11543,7 @@ export default function () {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张', '#g<混沌的碎片>');
@@ -11936,7 +11936,7 @@ export default function () {
                                             event.finish();
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             event.target = result.targets[0];
                                         } else {
                                             event.finish();
@@ -22236,7 +22236,7 @@ export default function () {
                                         })
                                         .set('ai', (target) => get.attitude(_status.event.player, target));
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.draw();
                                     player.addTempSkill('bg_Roselia_2', 'roundStart');
@@ -25082,7 +25082,7 @@ export default function () {
                                     });
                                 }
                                 ('step 2');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     trigger.player.chooseUseTarget(card, true, false);
                                 }
@@ -27719,7 +27719,7 @@ export default function () {
                                         })
                                         .set('ai', (target) => get.attitude(_status.event.player, target));
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                     event.target.chooseDrawRecover(1, true);
                                     player.addTempSkill('bg_RAISEASUILEN_2', 'roundStart');
@@ -29316,7 +29316,7 @@ export default function () {
                                                 return 10;
                                             });
                                         ('step 1');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             event.cards = result.links;
                                             var num = 2 - event.cards.length;
                                             if (num > 0) {
@@ -30178,7 +30178,7 @@ export default function () {
                                         next.set('goon', get.attitude(player, trigger.player) <= 0);
                                         next.set('forceAuto', true);
                                         ('step 1');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             var target = trigger.player;
                                             target.addTempSkill('zjjc_yinwan_debuff');
                                             target.addToExpansion(result.cards, target, 'give').gaintag.add('zjjc_yinwan_debuff');

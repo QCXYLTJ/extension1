@@ -8434,7 +8434,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     result.targets[0].addMark('rqsj_xurui_mark');
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.draw();
                                 }
                                 player.addSkill('rqsj_yongqi');
@@ -8448,7 +8448,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 4');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.line(trigger.source);
                                     trigger.source.addMark('rqsj_xurui_mark');
                                     player.draw();

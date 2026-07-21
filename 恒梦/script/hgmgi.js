@@ -12934,7 +12934,7 @@ game.import('character', function (lib, game, ui, get, ai, _statu) {
                 return get.attitude(player, target);
               })
               .forResult();
-            if (result.targets.length) {
+            if (result.targets?.length) {
               game.asyncDraw(result.targets);
             }
           }

@@ -1430,7 +1430,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           }
         } else event.finish();
         'step 1';
-        if (result && result.links) {
+        if (result.links?.length) {
           event.result.cards = result.links.slice(0);
         }
       },

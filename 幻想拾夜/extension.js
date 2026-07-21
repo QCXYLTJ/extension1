@@ -3247,7 +3247,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('target1', event.target1);
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     event.target1.line(event.target2);
                                     event.target1.chooseToCompare(event.target2);

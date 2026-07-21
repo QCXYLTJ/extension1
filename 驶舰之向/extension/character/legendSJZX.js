@@ -338,7 +338,7 @@ game.import('character', function () {
             };
           }
           ('step 2');
-          if (result.links) player.gain(result.links, 'gain2');
+          if (result.links?.length) player.gain(result.links, 'gain2');
         },
       },
       liechaomrfz: {
@@ -3318,7 +3318,7 @@ game.import('character', function () {
                 });
               }
               ('step 2');
-              if (result.bool && result.links.length) {
+              if (result.links?.length) {
                 player.addToExpansion(result.links, player, 'giveAuto').gaintag.add('xuyingmrfz');
               }
             },
@@ -3347,7 +3347,7 @@ game.import('character', function () {
                   return get.value(button.link, _status.event.player, 'raw');
                 });
               ('step 1');
-              if (result.bool && result.links.length) {
+              if (result.links?.length) {
                 player.addToExpansion(result.links, player, 'giveAuto').gaintag.add('xuyingmrfz');
               }
             },
@@ -5168,7 +5168,7 @@ game.import('character', function () {
             return 6 - get.value(card);
           });
           ('step 1');
-          if (result.cards) player.draw();
+          if (result.cards?.length) player.draw();
           if (result.cards && get.type(result.cards[0]) == 'equip') {
             player.draw();
           } else if (result.cards?.length) {
@@ -5867,7 +5867,7 @@ game.import('character', function () {
                 return 6 - get.value(card);
               });
               ('step 1');
-              if (result.cards)
+              if (result.cards?.length)
                 player.chooseTarget(true, [1, result.cards.length], '请选择至多' + result.cards.length + '名角色').set('ai', function (target) {
                   return get.attitude(_status.event.player, target);
                 });
@@ -6328,7 +6328,7 @@ game.import('character', function () {
           if (trigger.player.hasMark('jixiongxmrfz')) event.goto(0);
           else event.finish();
           ('step 2');
-          if (result.cards) player.gain(result.cards, 'gain2');
+          if (result.cards?.length) player.gain(result.cards, 'gain2');
           if (trigger.player.hasMark('jixiongxmrfz')) event.goto(0);
         },
         ai: {
@@ -7732,7 +7732,7 @@ game.import('character', function () {
               return get.value(button.link, _status.event.player);
             });
           ('step 3');
-          if (result.links) player.gain(result.links, 'gain2');
+          if (result.links?.length) player.gain(result.links, 'gain2');
         },
         ai: {
           order: 10,
@@ -9154,7 +9154,7 @@ game.import('character', function () {
           }
           player.choosePlayerCard(trigger.target, 'he', [1, Math.min(trigger.target.countCards('he'), num)], get.prompt('juximrfz', trigger.target) + '(可选' + num + '张牌)').set('forceAuto', true);
           ('step 1');
-          if (result.bool && result.links.length) {
+          if (result.links?.length) {
             var target = trigger.target;
             player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('juximrfz2');
             player.addSkill('juximrfz2');

@@ -1667,7 +1667,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return !get.info(button.link).unique;
                                 };
                                 ('step 1');
-                                if (result.links[0]) {
+                                if (result.links?.length) {
                                     cards[0].init([result.links[0].suit, result.links[0].number, result.links[0].name, result.links[0].nature]);
                                     event.card = cards[0];
                                     player.chooseTarget('选择一个角色装备' + get.translation(result.links), function (card, player, target) {
@@ -6615,7 +6615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.cards.push(result.cards[0]);
                                 }
                                 event.goto(2);

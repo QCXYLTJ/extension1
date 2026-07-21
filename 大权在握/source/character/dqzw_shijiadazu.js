@@ -1240,7 +1240,7 @@ export let info = {
         },
       },
       onuse(result, player) {
-        if (result.targets) for (let target of result.targets) target.addTempSkill('dqzw_shangxu_ai');
+        if (result.targets?.length) for (let target of result.targets) target.addTempSkill('dqzw_shangxu_ai');
       },
       group: 'dqzw_shangxu_discard',
       subSkill: {

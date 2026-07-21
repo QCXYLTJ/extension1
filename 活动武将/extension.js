@@ -9662,7 +9662,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.num = 0;
                                 var list1 = [],
                                     list2 = [];
-                                if (result.links) for (var name of result.links) list1.push(name[2].slice(12));
+                                if (result.links?.length) for (var name of result.links) list1.push(name[2].slice(12));
                                 if (target.countCards('h')) for (var card of target.getCards('h')) if (!list2.includes(get.type2(card))) list2.push(get.type2(card));
                                 for (var type of ['basic', 'trick', 'equip']) if ((list1.includes(type) && list2.includes(type)) || (!list1.includes(type) && !list2.includes(type))) event.num++;
                                 if (!event.isMine() && !event.isOnline()) game.delayx();
@@ -14792,7 +14792,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 } else event.finish();
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true);
                                 }
@@ -15727,7 +15727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('target', event.target);
                                 ('step 3');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     game.log(player, '指定的出杀目标为', result.targets[0]);
                                     event.target.line(result.targets[0]);
                                     target
@@ -24170,7 +24170,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.goto(2);
                                 ('step 4');
-                                if (result && result.cards) {
+                                if (result.cards?.length) {
                                     if (!result.targets || !result.targets.length) {
                                         event.current.lose(result.cards, ui.cardPile, 'insert');
                                         event.current.$throw(result.cards.length, 1000);
@@ -41696,7 +41696,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         } else event.finish();
                                         ('step 2');
-                                        if (result.links) player.gain(result.links, 'gain2');
+                                        if (result.links?.length) player.gain(result.links, 'gain2');
                                     },
                                 },
                             },
@@ -42766,7 +42766,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 } else event.finish();
                                 ('step 5');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw').giver = player;
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张', '#g<书>');
@@ -47607,7 +47607,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 }
                                 ('step 2');
-                                if (result && result.cards) event.card = result.cards[0];
+                                if (result.cards?.length) event.card = result.cards[0];
                                 ('step 3');
                                 if (event.card && event.card.suit == 'club') player.draw();
                             },
@@ -53179,7 +53179,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('source', trigger.player);
                                 ('step 1');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].draw(2);
                                 }
                             },
@@ -55026,7 +55026,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.addTempSkill('bolchunlao_round', 'roundStart');
                                         player.addMark('bolchunlao_round', 1, false);
                                         if (target != player) player.addExpose(0.2);
-                                        if (result.links) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                         event.type = 'dying';
                                         target.useCard({ name: 'jiu' }, target);
                                         target.addSkill('bolchunlao_judge');

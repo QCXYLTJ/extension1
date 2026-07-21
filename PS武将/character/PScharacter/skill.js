@@ -5325,7 +5325,7 @@ const skills = {
 				}
 			} else event.goto(5);
 			('step 4');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				var card = {
 					name: result.links[0][2],
 					nature: result.links[0][3],
@@ -10095,7 +10095,7 @@ const skills = {
 						event.finish();
 					}
 					('step 1');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 					} else {
 						event.finish();
@@ -12958,7 +12958,7 @@ const skills = {
 				event.finish();
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				var card = { name: result.links[0][2], nature: result.links[0][3] };
 				player.chooseUseTarget(card, true);
 			}
@@ -13023,7 +13023,7 @@ const skills = {
 				event.finish();
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				player.turnOver();
 				var card = { name: result.links[0][2], nature: result.links[0][3] };
 				player.chooseUseTarget(card, true);

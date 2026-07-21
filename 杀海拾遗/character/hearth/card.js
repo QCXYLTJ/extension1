@@ -21,7 +21,7 @@ const card = {
 			"step 0";
 			target.chooseCard("h", true, "重铸一张手牌", lib.filter.cardRecastable);
 			"step 1";
-			if (result.bool && result.cards.length) {
+			if (result.cards?.length) {
 				target.recast(result.cards, void 0, (player, cards) => {
 					var type = get.type(cards[0], "trick"),
 						name = cards[0].name,

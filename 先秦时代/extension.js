@@ -568,7 +568,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									});
 								('step 4');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									if (get.position(link) == 'e') {
 										event.targets[1].equip(link);

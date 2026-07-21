@@ -771,7 +771,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.attitude(player, trigger.player);
             });
             'step 1';
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
               player.unmarkAuto('sdxl_candou2', [3]);
               trigger.player.addSkill('tlbb_wcy_tianxuan3_nodamage');
               trigger.player.markAuto('tlbb_wcy_tianxuan3_nodamage', [result.links[0][3]]);
@@ -1688,7 +1688,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             } else event.goto(4);
             'step 3';
-            if (result.targets.length) {
+            if (result.targets?.length) {
               var id = result.targets[0].playerid,
                 map = event.given_map;
               if (!map[id]) map[id] = [];
@@ -2729,7 +2729,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }).
             set('filterCard', lib.filter.cardDiscardable);
             'step 1';
-            if (result.bool && result.cards.length) {
+            if (result.cards?.length) {
               var number = result.cards[0].number;
               player.discard(result.cards[0]);
               var cards = get.randomCards(5, (cardx) => cardx.number == number, 'cardPile');
@@ -7587,7 +7587,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.goto(1);
             }
             'step 3';
-            if (result && result.cards) {
+            if (result.cards?.length) {
               event.current.lose(result.cards, ui.cardPile, 'visible', 'insert');
               event.current.$throw(result.cards, 1000, 'nobroadcast');
               var evt = event.getParent('sdyx_qingdou');

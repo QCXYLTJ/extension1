@@ -3032,7 +3032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         } else event.goto(3);
                                         ('step 2');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             event.list.add(result.links[0]);
                                             player.useCard(result.links[0], event.target).card.zom_benxi = true;
                                         } else {

@@ -698,7 +698,7 @@ const skill = {
 				event.finish();
 			}
 			"step 1";
-			if (result && result.cards) {
+			if (result.cards?.length) {
 				event.card = result.cards[0];
 				player.lose(result.cards, ui.special);
 				var cardx = ui.create.card();
@@ -1968,7 +1968,7 @@ const skill = {
 				return -att / 2;
 			};
 			"step 1";
-			if (result.bool && result.targets[0]) {
+			if (result.targets?.length) {
 				var target = result.targets[0];
 				player.line(target, "green");
 				var cards = target.getCards("h");

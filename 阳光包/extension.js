@@ -2525,7 +2525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 1');
-                                if (result.cards) player.give(result.cards, trigger.player, true);
+                                if (result.cards?.length) player.give(result.cards, trigger.player, true);
                             },
                         },
                         ygbjuebei2: {
@@ -3271,7 +3271,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('eff', eff);
                                         }
                                         ('step 1');
-                                        if (result.cards) trigger.source.give(result.cards, player, true);
+                                        if (result.cards?.length) trigger.source.give(result.cards, player, true);
                                         else trigger.cancel();
                                     },
                                 },
@@ -6105,7 +6105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 4');
-                                if (result.links) event.target.addGaintag(result.links, 'ygbshuming');
+                                if (result.links?.length) event.target.addGaintag(result.links, 'ygbshuming');
                                 ('step 5');
                                 if (event.count > 0) event.goto(1);
                             },
@@ -7742,7 +7742,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 0;
                                     });
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     event.links = result.links;
                                     event.num = 0;
                                 } else event.finish();
@@ -10848,7 +10848,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.finish();
                                 ('step 4');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var card = { name: result.links[0][2], nature: result.links[0][3] };
                                     player.chooseUseTarget(card, true, false);
                                 }
@@ -16740,7 +16740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.choosePlayerCard(trigger.target, 'he', [1, trigger.target.countCards('he')], get.prompt('ygbyinjun', trigger.target));
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     if (trigger.target.storage.ygbyinjun2) {
                                         trigger.target.storage.ygbyinjun2 = trigger.target.storage.ygbyinjun2.concat(result.links);
                                     } else {

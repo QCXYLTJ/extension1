@@ -1174,7 +1174,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     game.log(player, '指定的出杀目标为', result.targets);
                                     event.target.line(result.targets);
                                     event.target.chooseToUse(

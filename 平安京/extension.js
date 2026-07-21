@@ -1607,7 +1607,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.removeMark('xin_gz', event.num);
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets.length) {
+                                        if (result.targets?.length) {
                                             result.targets.sortBySeat();
                                             for (var i = 0; i < result.targets.length; i++) {
                                                 player.gainPlayerCard(result.targets[i], 'he');

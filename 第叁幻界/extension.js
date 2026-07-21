@@ -1495,7 +1495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							player.chooseButton([str, [cardlist, 'vcard']]);
 						}
 						('step 5');
-						if (result && result.bool && result.links[0]) {
+						if (result.links?.length) {
 							var list = [],
 								card = { name: result.links[0][2] };
 							var name = lib.dshj_ChooseRole[card.name];
@@ -1907,7 +1907,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							});
 						}
 						('step 5');
-						if (result && result.bool && result.links[0]) {
+						if (result.links?.length) {
 							var list = [],
 								card = { name: result.links[0][2] };
 							var name = lib.dshj_ChooseRole[card.name];
@@ -8458,7 +8458,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												});
 										}
 										('step 1');
-										if (result.bool && result.targets.length) event.target = result.targets[0];
+										if (result.targets?.length) event.target = result.targets[0];
 										else event.finish();
 										('step 2');
 										if (event.target) {
@@ -18013,7 +18013,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else event.goto(6);
 								}
 								('step 4');
-								if (result && result.cards) event.card = result.cards[0];
+								if (result.cards?.length) event.card = result.cards[0];
 								('step 5');
 								if (event.card && event.card.suit == 'club') {
 									player.recover();
@@ -20614,7 +20614,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.goto(9);
 								('step 6');
-								if (result.bool && result.targets.length) event.target = result.targets[0];
+								if (result.targets?.length) event.target = result.targets[0];
 								else event.goto(9);
 								('step 7');
 								if (event.target) {
@@ -25402,7 +25402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												});
 										} else event.finish();
 										('step 1');
-										if (result.bool && result.targets.length) event.target = result.targets[0];
+										if (result.targets?.length) event.target = result.targets[0];
 										else event.finish();
 										('step 2');
 										if (event.target) {
@@ -32882,7 +32882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (!player.countCards('he')) event.finish();
 								else player.chooseCard('he', true, '甚贤:将1张牌置于牌堆顶');
 								('step 4');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									player.lose(event.card, ui.cardPile, 'insert');
 									game.log(player, '将', event.card, '置于牌堆顶');
@@ -33835,7 +33835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 2');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									player.lose(result.cards, ui.cardPile, 'insert');
 									game.log(player, '将1张牌置于牌堆顶');
@@ -36626,7 +36626,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								var hs = target.countCards('h');
 								target.chooseToDiscard(Math.ceil(hs / 2), 'h', true);
 								('step 1');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									var list = [],
 										dhp = false;
 									for (var i of result.cards) {
@@ -41000,7 +41000,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0 - get.value(card);
 								});
 								('step 2');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									target.lose(event.card, ui.cardPile, 'insert');
 									game.log(target, '将', event.card, '置于牌堆顶');
@@ -47706,7 +47706,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.choosePlayerCard(targets[num], 'hej', true);
 								('step 1');
 								if (result.links?.length) {
-									if (result.links.length) targets[num].discard(result.links[0]);
+									if (result.links?.length) targets[num].discard(result.links[0]);
 									if (result.links[0].suit == 'spade') targets[num].draw();
 									if (result.links[0].suit == 'club') {
 										delete player.getStat().skill.dshj_chuli;
@@ -48537,7 +48537,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('enemy', get.value(event.togive[0], player, 'raw') < 0);
 								} else event.goto(4);
 								('step 3');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									var id = result.targets[0].playerid,
 										map = event.given_map;
 									if (!map[id]) map[id] = [];
@@ -58825,7 +58825,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.removeMark('dshj_lihun', 1);
 								target.chooseToDiscard(target.countCards('he'), 'he', true);
 								('step 1');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									player.gain(result.cards, 'gain2').gaintag.add('dshj_lihun');
 								}
 							},
@@ -59071,7 +59071,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.choosePlayerCard(target, 'e', true).ai = get.buttonValue;
 								('step 1');
-								if (result.links[0]) {
+								if (result.links?.length) {
 									var eq = result.links[0];
 									var hs = game.createCard2(eq.name, eq.suit, eq.number, eq.nature);
 									player.gain(hs);
@@ -64759,7 +64759,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (player.countCards('hes')) player.chooseCard('hes', true, '将1张牌置于牌堆顶');
 								else event.finish();
 								('step 3');
-								if (result && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									player.lose(result.cards, ui.cardPile, 'insert');
 									game.log(player, '将', event.card, '置于牌堆顶');
@@ -82164,14 +82164,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (result.bool) {
 										event.shanRequired--;
 										if (event.turn == target) {
-											if (result.cards) event.targetCards.addArray(result.cards);
+											if (result.cards?.length) event.targetCards.addArray(result.cards);
 											if (event.shanRequired > 0) event.goto(2);
 											else {
 												event.turn = player;
 												event.goto(1);
 											}
 										} else {
-											if (result.cards) event.playerCards.addArray(result.cards);
+											if (result.cards?.length) event.playerCards.addArray(result.cards);
 											if (event.shanRequired > 0) event.goto(2);
 											else {
 												event.turn = target;

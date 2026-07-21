@@ -1854,7 +1854,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 4');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.line(event.target, 'green');
                                     if (get.type2(result.cards[0]) == 'trick') {
                                         player.gain(result.cards[0], event.target, 'give').gaintag.add('tuoxui');

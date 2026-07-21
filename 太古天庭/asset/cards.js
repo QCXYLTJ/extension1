@@ -2518,7 +2518,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                                 return 10 - get.value(card);
                             });
                     ('step 2');
-                    if (result.bool && result.cards.length) player.lose(result.cards[0], ui.special);
+                    if (result.cards?.length) player.lose(result.cards[0], ui.special);
                     ('step 3');
                     result.cards[0].fix();
                     ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);
@@ -2535,7 +2535,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                                 return 10 - get.value(card);
                             });
                     ('step 5');
-                    if (result.bool && result.cards.length) player.lose(result.cards[0], ui.special);
+                    if (result.cards?.length) player.lose(result.cards[0], ui.special);
                     ('step 6');
                     result.cards[0].fix();
                     ui.cardPile.insertBefore(result.cards[0], ui.cardPile.firstChild);

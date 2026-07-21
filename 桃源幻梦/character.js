@@ -1514,7 +1514,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     } else event.finish();
                     ('step 1');
                     game.playAudio('../extension/桃源幻梦/audio/技能配音/魔关凤', ['hyym_modujiaomengyan5', 'hyym_modujiaomengyan6'].randomGet());
-                    if (result.cards.length) {
+                    if (result.cards?.length) {
                         var source = player.storage[event.name];
                         delete source.storage[event.name];
                         source.gain(result.cards, player, 'give');
@@ -8029,7 +8029,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             }
                         });
                     ('step 2');
-                    if (result.cards) player.addGaintag(result.cards[0], 'hyym_huayingxuan');
+                    if (result.cards?.length) player.addGaintag(result.cards[0], 'hyym_huayingxuan');
                 },
                 group: ['hyym_huayingxuan_1', 'hyym_huayingxuan_2', 'hyym_huayingxuan_3', 'hyym_huayingxuan_4'],
                 subSkill: {

@@ -2213,7 +2213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 6');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -4536,7 +4536,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.value(button.link);
                                     });
                                 ('step 4');
-                                if (result && result.links) {
+                                if (result.links?.length) {
                                     player.gain(result.links);
                                     for (var c of result.links) {
                                         event.cards.remove(c);
@@ -19571,7 +19571,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 if (result.bool || event.cards) {
                                     _status.dying.remove(target);
-                                    if (result.cards) event.cards = result.cards;
+                                    if (result.cards?.length) event.cards = result.cards;
                                     player.showCards(event.cards);
                                     if (!result.cards) {
                                         event.cards[0].discard();
@@ -24632,7 +24632,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('filterCard', lib.filter.cardDiscardable);
                                 ('step 1');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     if (get.type(result.cards[0]) == 'basic' && !player.isDisabled(get.subtype(result.cards[0]))) {
                                         player.chooseUseTarget(result.cards[0], true, 'nopopup');
                                     } else {
@@ -24688,7 +24688,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     event.list.add(result.links[0]);
                                     player.useCard(result.links[0], trigger.source).card.zymliuying = true;
                                 } else {
@@ -25032,7 +25032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return 1;
                                                 });
                                         ('step 3');
-                                        if (result.bool && result.links.length) {
+                                        if (result.links?.length) {
                                             player.chooseUseTarget(result.links[0]);
                                             event.list.add(result.links[0]);
                                         } else {

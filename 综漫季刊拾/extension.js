@@ -1384,7 +1384,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.goto(5);
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.num--;
                                     player.line(result.targets);
                                     event.tr = result.targets[0];
@@ -4540,7 +4540,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.goto(5);
                                 ('step 4');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     event.current.showCards(result.cards);
                                     event.current.draw();
                                 }
@@ -6292,7 +6292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == 'wuzhong' ? 1 : -1;
                                 });
                                 ('step 4');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     player.storage.zmzidanzhongdian.push(result.links[0][2]);
                                     player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, true);
                                 } else event.finish();
@@ -6900,7 +6900,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.goto(5);
                                 ('step 4');
-                                if (result.bool && result.cards.length) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, event.current, 'giveAuto');
                                 } else {
                                     event.current.damage();

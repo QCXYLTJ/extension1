@@ -418,7 +418,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					} else result.cards = cards;
 					const targets = [];
 					const color = {};
-					if (result.cards.length) {
+					if (result.cards?.length) {
 						player.showCards(result.cards);
 						color.show = get.color(result.cards[0]);
 						const gamers = game.filterPlayer((current) => current != player);

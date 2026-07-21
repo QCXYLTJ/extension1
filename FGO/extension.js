@@ -4911,7 +4911,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
                                 }
                                 ('step 4');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     var id = result.targets[0].playerid,
                                         map = event.given_map;
                                     if (!map[id]) map[id] = [];
@@ -22142,7 +22142,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.addTempSkill('fgogddyld_2', { source: 'damageAfter' });
                                 player.choosePlayerCard(trigger.target, 'h', [Math.floor(trigger.target.countCards('h') * 0.5), Math.floor(trigger.target.countCards('h') * 0.5)], get.prompt('fgogddyld', trigger.target)).set('forceAuto', true);
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     player.gain(result.cards, trigger.target, 'gain2');
                                     trigger.target.$give(result.cards.length, player);
                                 }

@@ -838,7 +838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     trigger.source.chooseButton(['获得其中至多五张牌', cards], [1, 5]);
                                 } else event.finish();
                                 ('step 3');
-                                if (result.links) trigger.source.gain(result.links, 'gain2');
+                                if (result.links?.length) trigger.source.gain(result.links, 'gain2');
                                 game.updateRoundNumber();
                             },
                             ai: {

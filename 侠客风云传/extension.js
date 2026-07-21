@@ -3287,7 +3287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 1');
-								if (result.bool && result.links[0]) {
+								if (result.links?.length) {
 									var name = result.links[0][2];
 									game.log(player, '声明并记录了', name);
 									player.storage.XK_xiaoao.push(name);
@@ -4198,7 +4198,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.goto(3);
 								('step 2');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
 									for (var i = 0; i < event.basiclist.length; i++) {
 										if (event.basiclist[i][2] == result.links[0][2] && event.basiclist[i][3] == result.links[0][3]) event.basiclist.splice(i--, 1);
@@ -7404,7 +7404,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 2');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									trigger.player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
 								}
 								('step 3');
@@ -8765,7 +8765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return Math.random();
 								});
 								('step 1');
-								if (result && result.links) {
+								if (result.links?.length) {
 									var sk = result.links[0][2];
 									player.storage.XK_wuwang.remove(sk.slice(10));
 									game.log(player, '获得了招式【' + get.translation(sk) + '】!');
@@ -10584,7 +10584,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return eff;
 								});
 								('step 3');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									target.addBuff('XK_zhuoying', 1, player);
 									target.addBuff('XK_liuxue', 1, player);
 									var card1 = { name: result.links[0][2], nature: result.links[0][3] };
@@ -10931,7 +10931,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return eff;
 								});
 								('step 1');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									player.addBuff('XK_shayibodong', 2, player);
 									event.ShanNum = cards.length;
 									var card1 = { name: result.links[0][2], nature: result.links[0][3] };
@@ -11599,7 +11599,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return eff;
 								});
 								('step 3');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									var card1 = { name: result.links[0][2], nature: result.links[0][3] };
 									player.useCard(card1, event.tar, false);
 								}
@@ -12174,7 +12174,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 1');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].addBuff('XK_sangong', 1, player);
 								}
 							},

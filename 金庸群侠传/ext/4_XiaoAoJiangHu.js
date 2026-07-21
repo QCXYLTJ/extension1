@@ -1845,7 +1845,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 1';
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2], nature: result.links[0][3] };
               player.chooseUseTarget(card, true, false, 'nodistance');
             }
@@ -1948,7 +1948,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return Math.random() + 1;
             });
             'step 1';
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
               var oldCard = trigger.card;
               trigger.card.nature = result.links[0][3];
               game.log(oldCard, '改为了', trigger.card);
@@ -6498,7 +6498,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 1';
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
               var card = { name: result.links[0][2], nature: result.links[0][3] };
               player.chooseUseTarget(card, true, false);
             }

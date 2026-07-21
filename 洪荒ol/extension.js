@@ -6693,7 +6693,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('enemy', get.value(event.togive[0]) < 0);
 								}
 								('step 3');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].gain(event.togive, 'draw');
 									player.line(result.targets[0], 'green');
 									game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -8611,7 +8611,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									game.log(player, '指定的出杀目标为', result.targets);
 									event.target.line(result.targets);
 									event.target.chooseToUse('对' + get.translation(result.targets) + '使用一张杀,或令' + get.translation(player) + '获得你的两张牌', { name: 'sha' }, result.targets[0], -1);
@@ -9251,7 +9251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 								} else {
 									event.finish();
@@ -12172,7 +12172,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('enemy', get.value(event.togive[0]) < 0);
 								}
 								('step 3');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].gain(event.togive, 'draw');
 									player.line(result.targets[0], 'green');
 									game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -12535,7 +12535,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.discardPlayerCard(target, 'he', true);
 								}
 								('step 2');
-								if (result.cards[0]) {
+								if (result.cards?.length) {
 									if (get.type(result.cards[0]) == 'equip') event.target.damage();
 									else {
 										player.gain(game.createCard('sha'));
@@ -15638,7 +15638,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								player.chooseCard('he', true, '选择一张牌展示之');
 								('step 2');
-								if (result.cards) player.showCards(result.cards);
+								if (result.cards?.length) player.showCards(result.cards);
 								event.color = get.color(result.cards[0]);
 								player
 									.chooseTarget(
@@ -15652,7 +15652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 3');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets.forEach((i) => {
 										i.storage.潜袭mdqx2 = event.color;
 										i.addSkill('潜袭mdqx2');
@@ -18661,7 +18661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							'step 0';
 							target.chooseToDiscard([1, 2], 'he', true).ai = get.disvalue;
 							('step 1');
-							if (result.bool && result.cards.length) {
+							if (result.cards?.length) {
 								var num = result.cards.length;
 								var bool = false;
 								for (var i = 0; i < result.cards.length; i++) {

@@ -869,7 +869,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							})
 							.set('filterCard', lib.filter.cardDiscardable);
 						('step 2');
-						if (result.bool && result.cards.length) {
+						if (result.cards?.length) {
 							if (get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0]))) {
 								player.chooseUseTarget(result.cards[0], true, 'nopopup');
 							} else {
@@ -2276,7 +2276,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.targets.length) {
+								if (result.targets?.length) {
 									player.line(result.targets);
 									result.targets[0].loseHp();
 								}
@@ -17375,7 +17375,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 5');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									cards.add(link);
 									event.targets[1].equip(link);
@@ -19444,7 +19444,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 9');
-								if (result.bool && result.links.length) {
+								if (result.links?.length) {
 									var link = result.links[0];
 									event.targets[1].equip(link);
 									event.targets[0].$give(link, event.targets[1]);
@@ -24513,7 +24513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 1');
-								if (result && result.bool && result.links[0]) {
+								if (result.links?.length) {
 									var card = {
 										name: result.links[0][2],
 										nature: result.links[0][3],
@@ -27117,7 +27117,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('filterCard', lib.filter.cardDiscardable);
 								('step 2');
-								if (result.bool && result.cards.length) {
+								if (result.cards?.length) {
 									if (get.type(result.cards[0]) == 'equip' && !player.isDisabled(get.subtype(result.cards[0]))) {
 										player.chooseUseTarget(result.cards[0], true, 'nopopup');
 									} else {

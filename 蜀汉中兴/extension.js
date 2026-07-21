@@ -2850,7 +2850,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -3298,7 +3298,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.choosePlayerCard(event.pl, 'h', [hp, hp], get.prompt('shzx_fuji', event.pl), true);
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var cards = get.copy(event.pl.getCards('h'));
                                     cards.remove(result.links);
                                     if (event.pl.storage.shzx_fuji2) {
@@ -3973,7 +3973,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 10;
                                 });
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     result.links.sort(function (b, a) {
                                         return lib.suit.indexOf(a.suit) - lib.suit.indexOf(b.suit);
                                     });

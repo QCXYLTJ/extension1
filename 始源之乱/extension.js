@@ -2938,7 +2938,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return base * get.attitude(player, target);
                                     });
                                 ('step 3');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target, 'red');
                                     game.log('xlg_baota', player, '令', target, target.countCards('h') < target.hp ? '摸四张牌' : '弃置四张牌');
@@ -3440,7 +3440,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return _status.event.targets1.isEmpty(get.subtype(button.link)) && !player.storage.xlg_yisheng.includes(get.subtype(button.link));
                                     });
                                 ('step 1');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     var link = result.links[0];
                                     player.storage.xlg_yisheng.add(get.subtype(link));
                                     player.addTempSkill('xlg_yisheng_clear', 'phaseUseEnd');
@@ -5777,7 +5777,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return button.link[2] == '' ? 1 : -1;
                                 });
                                 ('step 1');
-                                if (result && result.bool && result.links[0]) {
+                                if (result.links?.length) {
                                     var num = player.countCards('j');
                                     player.chooseUseTarget({ name: result.links[0][2] }, false);
                                     player.storage.xlg_nuhou.push(result.links[0][2]);

@@ -1029,7 +1029,7 @@
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.current.line(result.targets, 'green');
 									player.discardPlayerCard(true, result.targets[0], 'he');
 								}
@@ -1414,7 +1414,7 @@
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].storage.qianxi2 = event.color;
 									result.targets[0].addSkill('qianxi2');
 									player.line(result.targets, 'green');
@@ -6280,7 +6280,7 @@
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.current.line(result.targets, 'green');
 									player.discardPlayerCard(true, result.targets[0], 'he');
 								}
@@ -6665,7 +6665,7 @@
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].storage.qianxi2 = event.color;
 									result.targets[0].addSkill('qianxi2');
 									player.line(result.targets, 'green');
@@ -10663,7 +10663,7 @@
 									event.finish();
 								}
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									event.current.line(result.targets, 'green');
 									player.discardPlayerCard(true, result.targets[0], 'he');
 								}
@@ -11048,7 +11048,7 @@
 										return -get.attitude(_status.event.player, target);
 									});
 								('step 2');
-								if (result.bool && result.targets.length) {
+								if (result.targets?.length) {
 									result.targets[0].storage.qianxi2 = event.color;
 									result.targets[0].addSkill('qianxi2');
 									player.line(result.targets, 'green');

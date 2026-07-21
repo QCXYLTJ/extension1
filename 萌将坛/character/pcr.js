@@ -1647,7 +1647,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 					player.scqh_changeStatus('tp', -1000);
 					player.scqh_ubAnimation(event.name);
 					var targets = [player];
-					if (result && result.targets) targets.addArray(result.targets);
+					if (result.targets?.length) targets.addArray(result.targets);
 					player.addTempSkill('scqhPcr_shahu_cancel');
 					player.markAuto('scqhPcr_shahu_cancel', targets);
 				},

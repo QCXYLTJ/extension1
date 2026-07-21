@@ -280,7 +280,7 @@ export let info = {
                       (button) => get.player().hasUseTarget(button.link)
                     )
                     .forResult();
-                  if (result && result.links) {
+                  if (result.links?.length) {
                     let links = result.links;
                     cards.remove(...links);
                     unmark(links);
@@ -677,7 +677,7 @@ export let info = {
             else return 4 - get.value(card);
           });
         ('step 1');
-        if (result.cards) player.discard(result.cards);
+        if (result.cards?.length) player.discard(result.cards);
         else player.draw(2);
       },
       prompt: '发动【观歙】,视为使用【无懈可击】',
@@ -770,7 +770,7 @@ export let info = {
           });
         } else event.finish();
         ('step 3');
-        if (result.cards.length) {
+        if (result.cards?.length) {
           target.useCard({ name: 'sha' }, result.cards, 'dqzw_boss_activity_tianhai_Business', event.tar, false);
         }
       },

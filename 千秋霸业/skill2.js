@@ -1085,7 +1085,7 @@ const skill = {
 			trigger.source.damage(num);
 			player.gainPlayerCard(trigger.source, 'h');
 			('step 1');
-			if (result && result.links) {
+			if (result.links?.length) {
 				player.showCards([result.links[0]], '猛战');
 				event.card = result.links[0];
 			} else {
@@ -2364,7 +2364,7 @@ const skill = {
 				});
 			}
 			('step 3');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				const card = { name: result.links[0][2], nature: result.links[0][3] };
 				event.target.chooseUseTarget(card, true);
 			}
@@ -2507,7 +2507,7 @@ const skill = {
 			('step 5');
 			if (result.bool) {
 				event.cardsx.removeArray(event.togive);
-				if (result.targets.length) {
+				if (result.targets?.length) {
 					const id = result.targets[0].playerid,
 						map = event.given_map;
 					if (!map[id]) {
@@ -2730,7 +2730,7 @@ const skill = {
 				event.goto(3);
 			}
 			('step 2');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				const card = { name: result.links[0][2], nature: result.links[0][3] };
 				player.chooseUseTarget(card, true);
 				event.finish();
@@ -4779,7 +4779,7 @@ const skill = {
 				event.finish();
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				const card = { name: result.links[0][2], nature: result.links[0][3] };
 				player.chooseUseTarget(card, true, false);
 			}
@@ -6853,7 +6853,7 @@ const skill = {
 				event.goto(2);
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
 			}
 			('step 2');
@@ -6910,7 +6910,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				trigger.player.next.chooseToDiscard(true, 'h');
 				trigger.player.previous.chooseToDiscard(true, 'h');
 				player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, false);
@@ -10855,7 +10855,7 @@ const skill = {
 				return (base * (Math.max(get.attitude(player, target), 0) + is)) / (target.hp * 2 + target.countCards('h') + 1);
 			});
 			('step 1');
-			if (result.targets.length) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.line(event.target, 'green');
 				game.countPlayer(function (current) {
@@ -13494,7 +13494,7 @@ const skill = {
 							return -att * target.countCards('he');
 						});
 					('step 3');
-					if (result.bool && result.targets.length) {
+					if (result.targets?.length) {
 						const target = result.targets[0];
 						event.target = target;
 						player
@@ -14531,7 +14531,7 @@ const skill = {
 				event.goto(4);
 			}
 			('step 3');
-			if (result.bool && result.cards.length) {
+			if (result.cards?.length) {
 				event.cards.push(result.cards[0]);
 			}
 			event.goto(2);
@@ -15359,7 +15359,7 @@ const skill = {
 					return 0;
 				});
 			('step 1');
-			if (result.bool && result.targets[0]) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				const mum = result.targets[0].countCards('h') - result.targets[0].hp;
 				result.targets[0]
@@ -16673,7 +16673,7 @@ const skill = {
 				};
 			}
 			('step 3');
-			if (result.bool && result.cards.length) {
+			if (result.cards?.length) {
 				event.current.chooseBool('令' + get.translation(player) + '摸一张牌').set('choice', get.attitude(event.current, player) > 0);
 				event.num = result.cards[0].number;
 				event.cardsx.add(result.cards[0]);
@@ -37940,7 +37940,7 @@ const skill = {
 				});
 			}
 			('step 5');
-			if (result.bool && result.targets.length) {
+			if (result.targets?.length) {
 				if (result.cards?.length) {
 					player.discard(result.cards);
 				}
@@ -38980,7 +38980,7 @@ const skill = {
 				event.goto(5);
 			}
 			('step 4');
-			if (result.bool && result.targets.length) {
+			if (result.targets?.length) {
 				result.targets[0].gain(event.give, player, 'gain2');
 			}
 			('step 5');
@@ -42954,7 +42954,7 @@ const skill = {
 				event.goto(2);
 			}
 			('step 4');
-			if (result && result.cards) {
+			if (result.cards?.length) {
 				event.current.lose(result.cards, ui.special);
 				event.current.$throw(result.cards, 1000, 'nobroadcast');
 				event.cards1.push(result.cards[0]);
@@ -44838,7 +44838,7 @@ const skill = {
 				return att - 1;
 			});
 			('step 1');
-			if (result.bool && result.targets.length) {
+			if (result.targets?.length) {
 				player.line(result.targets[0], 'thunder');
 				player.link();
 				result.targets[0].link();
@@ -46686,7 +46686,7 @@ const skill = {
 			player.line(trigger.player, 'thunder');
 			player.discardPlayerCard(trigger.player, 'he', true);
 			('step 2');
-			if (result.cards[0]) {
+			if (result.cards?.length) {
 				const card = result.cards[0];
 				if (get.type(card) == 'equip' && get.position(card) == 'd') {
 					player.chooseUseTarget(card) && player.chooseUseTarget(false, { name: 'lg_yueyatianchong' });
@@ -46791,7 +46791,7 @@ const skill = {
 				return 1 - get.attitude(player, target);
 			});
 			('step 1');
-			if (result.bool && result.targets.length) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 				event.targets.sort(lib.sort.seat);
 				event.targets2 = event.targets.slice(0);
@@ -47759,7 +47759,7 @@ const skill = {
 				event.goto(3);
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				const card = { name: result.links[0][2], nature: result.links[0][3] };
 				player.chooseUseTarget(card, true);
 				event.goto(3);
@@ -47896,7 +47896,7 @@ const skill = {
 				event.finish();
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				const card = { name: result.links[0][2], nature: result.links[0][3] };
 				player.chooseUseTarget(card, true);
 				event.goto(3);
@@ -48208,7 +48208,7 @@ const skill = {
 					return 0;
 				});
 			('step 1');
-			if (result.bool && result.links.length) {
+			if (result.links?.length) {
 				event.links = result.links;
 				event.num = 0;
 			} else {
@@ -48302,7 +48302,7 @@ const skill = {
 						return get.type(button.link) == get.type(ui.selected.buttons[0]);
 					});
 					('step 2');
-					if (result.bool && result.links.length) {
+					if (result.links?.length) {
 						event.target.showHandcards();
 						target.discard(result.links).set('source', player);
 						if (
@@ -54972,7 +54972,7 @@ const skill = {
 				});
 			}
 			('step 1');
-			if (result && result.bool && result.links[0]) {
+			if (result.links?.length) {
 				const card = {
 					name: result.links[0][2],
 					nature: result.links[0][3],
@@ -55218,7 +55218,7 @@ const skill = {
 					return true;
 				});
 			('step 2');
-			if (result.bool && result.links.length) {
+			if (result.links?.length) {
 				player.gain(result.links, 'log', 'draw');
 				trigger.changeToZero();
 			}
@@ -55905,7 +55905,7 @@ const skill = {
 					.set('enemy', get.value(event.togive[0]) < 0);
 			}
 			('step 3');
-			if (result.targets.length) {
+			if (result.targets?.length) {
 				result.targets[0].gain(event.togive, 'draw');
 				player.line(result.targets[0], 'green');
 				game.log(result.targets[0], '获得' + get.cnNumber(event.togive.length) + '张牌');
@@ -56714,7 +56714,7 @@ const skill = {
 				});
 			('step 1');
 			//海神领域:<br/>出牌阶段限一次,你可以选择一名角色装备区内的一张此阶段未以此法移动过类别的牌,将此牌移动至本回合未因此使用过牌的另一名角色的装备区.若以此法使用牌的角色不为你,该角色对因此使用牌的角色视为使用一张【杀】(无视防具)
-			if (result.bool && result.links.length) {
+			if (result.links?.length) {
 				const link = result.links[0];
 				player.storage.lg_hainu.add(get.subtype(link)); //QQQ
 				player.addTempSkill('lg_hainu_clear', 'phaseUseEnd');

@@ -19437,7 +19437,7 @@ const skill = {
                     return true;
                 });
             ('step 1');
-            if (result && result.bool && result.links[0]) {
+            if (result.links?.length) {
                 const card = { name: result.links[0][2] };
                 const equip = game.createCard(card);
                 player.equip(equip).type = 'qmyy_huoqi';
@@ -29187,7 +29187,7 @@ const skill = {
                     .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             }
             ('step 3');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 const id = result.targets[0].playerid,
                     map = event.given_map;
                 if (!map[id]) {
@@ -32753,7 +32753,7 @@ const skill = {
                     .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             }
             ('step 4');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 result.targets[0].gain(event.togive, 'gain2');
                 player.line(result.targets[0], 'green');
                 //    game.log(result.targets[0],'获得了'+get.cnNumber(event.togive.length)+'张牌');
@@ -37623,7 +37623,7 @@ const skill = {
                     .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             }
             ('step 3');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 result.targets[0].gain(event.togive, 'gain2');
                 player.line(result.targets[0], 'green');
                 if (event.count.length) {
@@ -50120,7 +50120,7 @@ const skill = {
                     .set('enemy', get.value(event.togive[0], player, 'raw') < 0);
             }
             ('step 4');
-            if (result.targets.length) {
+            if (result.targets?.length) {
                 const id = result.targets[0].playerid,
                     map = event.given_map;
                 if (!map[id]) {

@@ -2920,7 +2920,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               player.chooseVCardButton(true, list, '选择重置【妒毁】中的一张牌名');
             }
             'step 2';
-            if (result && result.links) {
+            if (result.links?.length) {
               player.unmarkAuto('tlbb_duhui_xiekangming', [result.links[0][2]]);
               game.log(player, '重置【妒毁】中的', { name: result.links[0][2] });
             }
@@ -8159,7 +8159,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return target.identity == 'nei' ? num + num2 : num;
             };
             'step 1';
-            if (result.targets.length) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               player.storage.tlbb_zhuixiong = target;
               game.log(player, '指定了', target, '为内奸');
@@ -12222,7 +12222,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
             }
             'step 2';
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               trigger.excluded.addArray(game.filterPlayer());
@@ -15492,7 +15492,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 1';
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -15964,7 +15964,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 1';
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -16509,7 +16509,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               };
             } else event._result = { bool: true, links: player.storage.tlbb_yirong };
             'step 1';
-            if (result.links[0]) {
+            if (result.links?.length) {
               var name = result.links[0];
               var cardname = 'yirong_card_' + name;
               trigger.player.$gain2(game.createCard(cardname, '', ''));

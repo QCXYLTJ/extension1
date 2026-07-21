@@ -700,7 +700,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             }
             'step 2';
             if (result.cards?.length) {
-              if (result.cards.length) {
+              if (result.cards?.length) {
                 target.give(result.cards, player);
               }
               const tocount = event.togive.length - result.cards.length;
@@ -6320,7 +6320,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                   });
                 }
                 'step 1';
-                if (result && result.bool && result.links) {
+                if (result.links?.length) {
                   var cardx = player.getExpansions('qtpz_huoxin_cards');
                   cardx.remove(result.links[0]);
                   player.useCard({ name: 'jiu' }, result.links, player, false);
@@ -12046,7 +12046,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 1';
-            if (result.bool && result.targets.length) {
+            if (result.targets?.length) {
               event.target = result.targets[0];
             } else {
               event.finish();
@@ -12378,7 +12378,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return !list.includes(button.link);
             });
             'step 1';
-            if (result && result.links) {
+            if (result.links?.length) {
               player.storage.qtpz_ruxue.add(result.links[0]);
               result.links[0].hide();
             }
@@ -13606,7 +13606,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             cardx = cardx.randomGets(4);
             player.chooseCardButton('选择置于牌堆顶的牌(先选在上)', cardx, true, 2);
             'step 1';
-            if (result && result.links) {
+            if (result.links?.length) {
               var top = result.links;
               while (top.length) {
                 var card = top.pop();

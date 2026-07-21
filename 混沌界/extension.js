@@ -1399,7 +1399,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('enemy', get.value(event.togive[0]) < 0);
                                 }
                                 ('step 3');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(event.togive, 'draw');
                                     player.line(result.targets[0], 'green');
                                     game.log(result.targets[0], '获得了', player, `分配的${get.cnNumber(event.togive.length)}张牌`);
@@ -2428,7 +2428,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 1');
                                 if (result.targets?.length) {
-                                    if (result.targets.length) {
+                                    if (result.targets?.length) {
                                         result.targets[0].gain(result.cards, player, 'giveAuto');
                                     } else {
                                         player.discard(result.cards);
@@ -6089,7 +6089,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(5);
                                 }
                                 ('step 4');
-                                if (result && result.cards) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     player.lose(result.cards, ui.cardPile, 'insert');
                                     game.log(player, '将', event.card, '置于牌堆顶');
@@ -9809,13 +9809,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 2');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     player.storage.圣_qianxi_to = result.targets[0];
                                     player.addTempSkill('圣_qianxi_to');
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     result.targets[0].storage.圣_qianxi_End = event.suit;
                                     result.targets[0].addTempSkill('圣_qianxi_End');
                                     game.addVideo('storage', result.targets[0], ['圣_qianxi_End', event.suit]);
@@ -10735,7 +10735,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target = result.targets[0];
                                 } else {
                                     event.finish();
@@ -11273,7 +11273,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('target1', event.target1);
                                 ('step 2');
-                                if (result.targets.length) {
+                                if (result.targets?.length) {
                                     event.target2 = result.targets[0];
                                     event.target1.line(event.target2);
                                     event.target1.chooseToCompare(event.target2);
@@ -15224,7 +15224,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (result.cards?.length) {
-                                    if (result.cards.length) {
+                                    if (result.cards?.length) {
                                         player.discard(result.cards);
                                     } else {
                                         if (player.countCards('h')) {
@@ -15446,7 +15446,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.choosePlayerCard(trigger.target, 'h', [1, Math.min(trigger.target.countCards('h'), trigger.target.hp)], get.prompt2('圣_yidu', trigger.target)).set('forceAuto', true);
                                 ('step 2');
-                                if (result.bool && result.links.length) {
+                                if (result.links?.length) {
                                     trigger.target.showCards(result.cards);
                                     var red = trigger.target.getCards(result.cards, { color: 'red' });
                                     var black = trigger.target.getCards(result.cards, { color: 'black' });

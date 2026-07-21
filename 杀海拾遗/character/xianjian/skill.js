@@ -676,7 +676,7 @@ const skill = {
 				event.goto(4);
 			}
 			"step 3";
-			if (result.targets.length) {
+			if (result.targets?.length) {
 				result.targets[0].gain(event.togive, "draw");
 				result.targets[0].skip("phaseDraw");
 				result.targets[0].addTempSkill("guijin2", { player: "phaseBegin" });
