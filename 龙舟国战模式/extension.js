@@ -1,5 +1,5 @@
 ﻿import { lib, game, ui, get, ai, _status } from '../../noname.js'
-const extensionInfo = await lib.init.promises.json(`extension/雪月风花/info.json`);
+const extensionInfo = await lib.init.promises.json(`extension/龙舟国战模式/info.json`);
 game.import('extension', function (lib, game, ui, get, ai, _status) {
 	return {
 		name: '龙舟国战模式',
