@@ -3,7 +3,7 @@ const extensionInfo = await lib.init.promises.json(`extension/龙舟国战模式
 game.import('extension', function (lib, game, ui, get, ai, _status) {
 	return {
 		name: '龙舟国战模式',
-		content(config, pack) {},
+		content(config, pack) { },
 		precontent() {
 			lib.skill.jinshilichoince = {
 				trigger: { player: ['gameDrawAfter', 'phaseBegin'] },
@@ -4308,16 +4308,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										_status.hasAddcheng = true;
 										const chengFriend = game.addChessPlayer('红方城池', true, 0);
 										chengFriend.moveTo(12, 12);
-										chengFriend.phase = function () {};
-										chengFriend.draw = function () {};
-										chengFriend.recover = function () {};
-										chengFriend.moveTo = function () {};
+										chengFriend.phase = function () { };
+										chengFriend.draw = function () { };
+										chengFriend.recover = function () { };
+										chengFriend.moveTo = function () { };
 										const chengEnemy = game.addChessPlayer('蓝方城池', false, 0);
 										chengEnemy.moveTo(2, 2);
-										chengEnemy.phase = function () {};
-										chengEnemy.draw = function () {};
-										chengEnemy.recover = function () {};
-										chengEnemy.moveTo = function () {};
+										chengEnemy.phase = function () { };
+										chengEnemy.draw = function () { };
+										chengEnemy.recover = function () { };
+										chengEnemy.moveTo = function () { };
 										let e_num_x = 1;
 										let e_num_y = 1;
 										let e_num_count = 0;
@@ -14057,7 +14057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									game.countPlayer(function (current) {
 										return to.identity == current.identity;
 									}) *
-										3
+									3
 								);
 							},
 						},
@@ -14898,16 +14898,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										list = event.listyuanshaojun.filter((general) => general !== 'new_yuanshao');
 										break;
 								}
+								list = list.filter((i) => lib.character[i]);
+								if (!list.length) {
+									list = ['QQQ_hongwenliu'];
+								}
 								const dialog = ui.create.dialog('选择角色', 'hidden', [list, 'character']);
 								game.me.chooseButton(dialog, true).set('onfree', true);
 								('step 1');
-								game.me.init(result.buttons[0].link);
-								switch (lib.character[result.buttons[0].link][1]) {
+								const name = result.buttons[0].link;
+								game.me.init(name);
+								switch (lib.character[name][1]) {
 									case 'wei':
-										event.listcaocaojun.remove(result.buttons[0].link);
+										event.listcaocaojun.remove(name);
 										break;
 									case 'qun':
-										event.listyuanshaojun.remove(result.buttons[0].link);
+										event.listyuanshaojun.remove(name);
 										break;
 								}
 								for (const i of game.players) {
@@ -14927,6 +14932,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											case 'yuanshaojunzhong':
 												character = event.listyuanshaojun.filter((general) => general !== 'new_yuanshao').randomGet();
 												break;
+										}
+										if (!lib.character[character]) {
+											character = 'QQQ_hongwenliu';
 										}
 										pl.init(character);
 										const selectshili = lib.character[character][1];
