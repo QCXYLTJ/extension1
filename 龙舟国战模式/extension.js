@@ -274,7 +274,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 
 								lib.characterPack.mode_guozhan = pack;
-								for (var i in pack) {
+								for (const i in pack) {
 									if (!lib.configOL.onlyguozhan) {
 										if (lib.character[i.slice(3)]) {
 											continue;
@@ -333,7 +333,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 
 						const players = get.players(lib.sort.position);
 						const info = [];
-						for (var i = 0; i < players.length; i++) {
+						for (let i = 0; i < players.length; i++) {
 							info.push({
 								name: game.players[i].name,
 								translate: lib.translate[game.players[i].name],
@@ -653,7 +653,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											}
 										}
-										for (var i = 0; i < ui.discardPile.childElementCount; i++) {
+										for (let i = 0; i < ui.discardPile.childElementCount; i++) {
 											if (ui.discardPile.childNodes[i].name == 'feilongduofeng') {
 												return true;
 											}
@@ -2549,7 +2549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return;
 									}
 								}
-								for (var i = 0; i < list.length - 1; i++) {
+								for (let i = 0; i < list.length - 1; i++) {
 									for (let j = i + 1; j < list.length; j++) {
 										if (lib.character[list[i]][1] == lib.character[list[j]][1]) {
 											player.init(list[i], list[j], true);
@@ -2847,7 +2847,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.hiddenSkills.add(j);
 									}
 
-									for (var j = 0; j < i.hiddenSkills.length; j++) {
+									for (let j = 0; j < i.hiddenSkills.length; j++) {
 										if (!lib.skill[i.hiddenSkills[j]]) {
 											i.hiddenSkills.splice(j--, 1);
 										}
@@ -3442,7 +3442,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									this.node.identity.classList.remove('guessing');
 
 									if (_status.clickingidentity && _status.clickingidentity[0] == this) {
-										for (var i = 0; i < _status.clickingidentity[1].length; i++) {
+										for (let i = 0; i < _status.clickingidentity[1].length; i++) {
 											_status.clickingidentity[1][i].delete();
 											_status.clickingidentity[1][i].style.transform = '';
 										}
@@ -3644,7 +3644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								let next = this,
 									previous = this;
 								const list = [];
-								for (var i = 0; next || previous; i++) {
+								for (let i = 0; next || previous; i++) {
 									if (next) {
 										next = next.getNext();
 										if (next.identity != this.identity || next == this) {
@@ -4953,7 +4953,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.chosen = chosen;
 
 								event.list = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (chosen.contains(i)) {
 										continue;
 									}
@@ -5452,7 +5452,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 
 								lib.characterPack.mode_guozhan = pack;
-								for (var i in pack) {
+								for (const i in pack) {
 									if (!lib.configOL.onlyguozhan) {
 										if (lib.character[i.slice(3)]) {
 											continue;
@@ -5511,7 +5511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 
 						const players = get.players(lib.sort.position);
 						const info = [];
-						for (var i = 0; i < players.length; i++) {
+						for (let i = 0; i < players.length; i++) {
 							info.push({
 								name: game.players[i].name,
 								translate: lib.translate[game.players[i].name],
@@ -5933,7 +5933,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											}
 										}
-										for (var i = 0; i < ui.discardPile.childElementCount; i++) {
+										for (let i = 0; i < ui.discardPile.childElementCount; i++) {
 											if (ui.discardPile.childNodes[i].name == 'feilongduofeng') {
 												return true;
 											}
@@ -7835,7 +7835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return;
 									}
 								}
-								for (var i = 0; i < list.length - 1; i++) {
+								for (let i = 0; i < list.length - 1; i++) {
 									for (let j = i + 1; j < list.length; j++) {
 										if (lib.character[list[i]][1] == lib.character[list[j]][1]) {
 											player.init(list[i], list[j], true);
@@ -8133,7 +8133,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.hiddenSkills.add(j);
 									}
 
-									for (var j = 0; j < i.hiddenSkills.length; j++) {
+									for (let j = 0; j < i.hiddenSkills.length; j++) {
 										if (!lib.skill[i.hiddenSkills[j]]) {
 											i.hiddenSkills.splice(j--, 1);
 										}
@@ -8314,7 +8314,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 
 								game.broadcastAll(function (result) {
-									for (var i in result) {
+									for (const i in result) {
 										if (!lib.playerOL[i].name) {
 											lib.playerOL[i].init(result[i][0], result[i][1], false);
 										}
@@ -8916,7 +8916,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									this.node.identity.classList.remove('guessing');
 
 									if (_status.clickingidentity && _status.clickingidentity[0] == this) {
-										for (var i = 0; i < _status.clickingidentity[1].length; i++) {
+										for (let i = 0; i < _status.clickingidentity[1].length; i++) {
 											_status.clickingidentity[1][i].delete();
 											_status.clickingidentity[1][i].style.transform = '';
 										}
@@ -9118,7 +9118,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								let next = this,
 									previous = this;
 								const list = [];
-								for (var i = 0; next || previous; i++) {
+								for (let i = 0; next || previous; i++) {
 									if (next) {
 										next = next.getNext();
 										if (next.identity != this.identity || next == this) {
@@ -9864,7 +9864,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 
 								lib.characterPack.mode_guozhan = pack;
-								for (var i in pack) {
+								for (const i in pack) {
 									if (!lib.configOL.onlyguozhan) {
 										if (lib.character[i.slice(3)]) {
 											continue;
@@ -9923,7 +9923,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 
 						const players = get.players(lib.sort.position);
 						const info = [];
-						for (var i = 0; i < players.length; i++) {
+						for (let i = 0; i < players.length; i++) {
 							info.push({
 								name: game.players[i].name,
 								translate: lib.translate[game.players[i].name],
@@ -10345,7 +10345,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												}
 											}
 										}
-										for (var i = 0; i < ui.discardPile.childElementCount; i++) {
+										for (let i = 0; i < ui.discardPile.childElementCount; i++) {
 											if (ui.discardPile.childNodes[i].name == 'feilongduofeng') {
 												return true;
 											}
@@ -12237,7 +12237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return;
 									}
 								}
-								for (var i = 0; i < list.length - 1; i++) {
+								for (let i = 0; i < list.length - 1; i++) {
 									for (let j = i + 1; j < list.length; j++) {
 										if (lib.character[list[i]][1] == lib.character[list[j]][1]) {
 											player.init(list[i], list[j], true);
@@ -12559,7 +12559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.hiddenSkills.add(j);
 									}
 
-									for (var j = 0; j < i.hiddenSkills.length; j++) {
+									for (let j = 0; j < i.hiddenSkills.length; j++) {
 										if (!lib.skill[i.hiddenSkills[j]]) {
 											i.hiddenSkills.splice(j--, 1);
 										}
@@ -12740,7 +12740,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 
 								game.broadcastAll(function (result) {
-									for (var i in result) {
+									for (const i in result) {
 										if (!lib.playerOL[i].name) {
 											lib.playerOL[i].init(result[i][0], result[i][1], false);
 										}
@@ -13346,7 +13346,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									this.node.identity.classList.remove('guessing');
 
 									if (_status.clickingidentity && _status.clickingidentity[0] == this) {
-										for (var i = 0; i < _status.clickingidentity[1].length; i++) {
+										for (let i = 0; i < _status.clickingidentity[1].length; i++) {
 											_status.clickingidentity[1][i].delete();
 											_status.clickingidentity[1][i].style.transform = '';
 										}
@@ -13548,7 +13548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								let next = this,
 									previous = this;
 								const list = [];
-								for (var i = 0; next || previous; i++) {
+								for (let i = 0; next || previous; i++) {
 									if (next) {
 										next = next.getNext();
 										if (next.identity != this.identity || next == this) {
@@ -14226,7 +14226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.list1 = [];
 								event.list2 = [];
 								event.list3 = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (lib.filter.characterDisabled(i)) {
 										continue;
 									}
@@ -14830,7 +14830,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.wulist = [];
 								event.qunlist = [];
 								event.list = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (lib.filter.characterDisabled(i)) {
 										continue;
 									}
@@ -15735,7 +15735,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.qunlist = [];
 								event.list = [];
 
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (lib.filter.characterDisabled(i)) {
 										continue;
 									}
@@ -16200,7 +16200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							}
 							function shedingjinengjuesepai() {
 								const list = [];
-								var i, j, name;
+								let i, j, name;
 								for (i in lib.character) {
 									if (lib.config.forbidai.contains(i)) {
 										continue;
@@ -16486,7 +16486,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.wulist = [];
 								event.qunlist = [];
 								event.list = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (lib.filter.characterDisabled(i)) {
 										continue;
 									}
@@ -17047,7 +17047,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.wulist = [];
 								event.qunlist = [];
 								event.list = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (lib.filter.characterDisabled(i)) {
 										continue;
 									}
