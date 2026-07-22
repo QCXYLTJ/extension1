@@ -17873,7 +17873,7 @@ export let info = {
                 })
                 .set('source', trigger.player)
                 .forResult();
-              if (result.bool) player.gainPlayerCard(result.targets[0], true, 'he').set('boolline', true);
+              if (result.targets?.length) player.gainPlayerCard(result.targets[0], true, 'he').set('boolline', true);
             }
           },
           mark: true,
@@ -17995,7 +17995,7 @@ export let info = {
             const result = await player.chooseCard('悍骑:选择要重铸的牌', [1, player.hp], lib.filter.cardRecastable).set('ai', function (card) {
               return 5 - get.value(card);
             });
-            if (result.bool) player.recast(result.cards);
+            if (result.cards?.length) player.recast(result.cards);
           }
         },
         async function (event, arg) {

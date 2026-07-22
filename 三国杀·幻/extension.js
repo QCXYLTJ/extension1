@@ -1118,7 +1118,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseButton(['选择要获得的牌或点击〖取消〗摸一张牌', cards]);
                                 } else event._result = { bool: false };
                                 ('step 1');
-                                if (result.bool) player.gain(result.links, 'gain2');
+                                if (result.links?.length) player.gain(result.links, 'gain2');
                                 else player.draw();
                             },
                             group: 'dz_hs_shelizi_skill_use',

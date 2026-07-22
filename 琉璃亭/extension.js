@@ -3156,7 +3156,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.draw(2);
                                 player.chooseCard('忘隙:选择交给' + get.translation(event.target) + '一张牌', 'he', true);
                                 ('step 2');
-                                if (result.bool) player.give(result.cards, event.target, 'giveAuto');
+                                if (result.cards?.length) player.give(result.cards, event.target, 'giveAuto');
                                 ('step 3');
                                 if (event.count) player.chooseBool(get.prompt2('m_wangxi', event.target));
                                 else event.finish();

@@ -6804,7 +6804,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             'step 0';
             player.chooseCard(get.prompt2('qtpz_tianyou'), 1, 'h').forceDie = true;
             'step 1';
-            if (result && result.bool) {
+            if (result.cards?.length) {
               player.$throw(result.cards.length);
               player.lose(result.cards, ui.special);
               event.card1 = result.cards[0];

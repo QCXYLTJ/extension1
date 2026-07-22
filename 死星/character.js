@@ -16874,7 +16874,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.target = target;
                     }
                     ('step 2');
-                    if (result.bool) target.give(result.cards, player, true);
+                    if (result.cards?.length) target.give(result.cards, player, true);
                 },
             },
             ai: {

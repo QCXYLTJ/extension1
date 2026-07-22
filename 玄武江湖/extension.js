@@ -58605,7 +58605,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     )
                                     .set('prompt', 'xwjh_zhili');
                                 ('step 2');
-                                if (result && result.bool) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     game.cardsGotoOrdering([event.card]);
                                     game.xwMarkCard(event.card, 'xwjh_zhili_chujun');

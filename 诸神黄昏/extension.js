@@ -14508,7 +14508,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                 });
                                 ('step 1');
-                                if (result && result.bool) {
+                                if (result.cards?.length) {
                                     event.type = get.type(result.cards[0], 'trick');
                                     event.tar = result.targets[0];
                                     player.lose(result.cards);
@@ -16683,7 +16683,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'sha', nature: 'ice' }, player, player);
                                     });
                                 ('step 1');
-                                if (result.bool) player.useCard({ name: 'sha', nature: 'ice' }, result.targets[0], 'lg_yedandapao', false);
+                                if (result.targets?.length) player.useCard({ name: 'sha', nature: 'ice' }, result.targets[0], 'lg_yedandapao', false);
                             },
                             ai: {
                                 threaten: 1.6,
@@ -17034,7 +17034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 6');
-                                if (result.bool) event.cd = result.links[0];
+                                if (result.links?.length) event.cd = result.links[0];
                                 else event.finish();
                                 ('step 7');
                                 player.chooseTarget('令一名未受伤的角色获得' + get.translation(event.cd), 1, false, function (card, player, target) {
@@ -31144,7 +31144,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getUseValue(button.link);
                                 });
                                 ('step 4');
-                                if (result.bool) event.win.chooseUseTarget(result.links[0], true, false);
+                                if (result.links?.length) event.win.chooseUseTarget(result.links[0], true, false);
                                 else event.goto(2);
                             },
                             ai: {
@@ -35218,7 +35218,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 event.from = from;
                                 event.to = to;
                                 ('step 1');
-                                if (result.bool) event.from.give(result.cards, event.to);
+                                if (result.cards?.length) event.from.give(result.cards, event.to);
                                 player.recover();
                                 player.gainMaxHp();
                             },
@@ -72120,7 +72120,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) trigger.targets.push(result.targets[0]);
+                                if (result.targets?.length) trigger.targets.push(result.targets[0]);
                                 ('step 3');
                                 player.storage.lg_zaizhantianhuang += 1;
                                 player.markSkill('lg_zaizhantianhuang');
@@ -73587,7 +73587,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCardButton('弃置一张<兰>', true, player.getExpansions('lg_bumiezhixin'));
                                         ('step 1');
-                                        if (result.bool) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                     },
                                 },
                             },
@@ -75007,7 +75007,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else player.damage(num, 'ice');
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) target.gain(result.cards, player, 'giveAuto');
+                                if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                             },
                             ai: {
                                 order: 5,

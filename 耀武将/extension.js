@@ -6222,7 +6222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool) player.gain(result.cards, trigger.player, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, trigger.player, 'giveAuto');
                                 ('step 2');
                                 player.chooseCardTarget({
                                     prompt: '请选择【举才】的牌和目标',
@@ -10311,7 +10311,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 trigger.player.chooseCard('h', true, '将一张手牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.bool) player.gain(result.cards, trigger.player, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, trigger.player, 'giveAuto');
                                 ('step 2');
                                 if (trigger.player.countCards('h') < trigger.player.hp) {
                                     trigger.player.draw();
@@ -17512,7 +17512,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             trigger.player.chooseCard('he', true, '将一张牌交给' + get.translation(player));
                                         }
                                         ('step 3');
-                                        if (result.bool) player.gain(result.cards, trigger.player, 'giveAuto');
+                                        if (result.cards?.length) player.gain(result.cards, trigger.player, 'giveAuto');
                                     },
                                     charlotte: true,
                                 },
@@ -42348,7 +42348,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'step 0';
                                         player.chooseCardButton('移去一张引兵牌', true, player.getExpansions('yao_yinbing'));
                                         ('step 1');
-                                        if (result.bool) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                         ('step 2');
                                         if (player.getExpansions('yao_yinbing').length == 0) {
                                             player.recover();

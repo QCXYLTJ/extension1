@@ -5420,7 +5420,7 @@ game.import('character', function () {
               if (cards.length) player.chooseButton(['选择移去一张<清平>', cards], true);
               else event.finish();
               ('step 1');
-              if (result.bool) player.loseToDiscardpile(result.links);
+              if (result.links?.length) player.loseToDiscardpile(result.links);
               trigger.num--;
               player.popup('清平');
               game.log(player, '移去了一张‘清平’');
@@ -6941,7 +6941,7 @@ game.import('character', function () {
               if (cards.length) player.chooseButton(['获得一张牌', cards], true);
               else event.finish();
               ('step 1');
-              if (result.bool) player.gain(result.links, 'gain2');
+              if (result.links?.length) player.gain(result.links, 'gain2');
             },
           },
           gain2: {

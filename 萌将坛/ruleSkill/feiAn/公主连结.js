@@ -2341,7 +2341,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) event.targed = result.targets[0];
+								if (result.targets?.length) event.targed = result.targets[0];
 								else event.finish();
 							} else event.targed = target;
 							('step 2');
@@ -2432,7 +2432,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) event.targed = result.targets[0];
+								if (result.targets?.length) event.targed = result.targets[0];
 								else event.finish();
 							} else event.targed = target;
 							('step 2');
@@ -2636,7 +2636,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) event.targed = result.targets[0];
+								if (result.targets?.length) event.targed = result.targets[0];
 								else event.finish();
 							} else event.targed = target;
 							('step 2');
@@ -3043,7 +3043,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							}
 							('step 1');
 							if (event.triggername) {
-								if (result.bool) event.targed = result.targets[0];
+								if (result.targets?.length) event.targed = result.targets[0];
 								else event.finish();
 							} else event.targed = target;
 							('step 2');

@@ -76,7 +76,7 @@ const brawl = {
                         break;
                 }
                 'step 2'
-                if (result.bool) player.draw(result.cards.length);
+                if (result.cards?.length) player.draw(result.cards.length);
                 'step 3'
                 if (!_status.xingyunCard.length) _status.xingyunCard = ['bolxingyun_tao', 'bolxingyun_tao', 'bolxingyun_wuzhong', 'bolxingyun_wuzhong', 'bolxingyun_zhuanyun', 'bolxingyun_tianqian'];
             },

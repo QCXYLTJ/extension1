@@ -9555,7 +9555,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                 });
                             } else event.finish();
                             ('step 2');
-                            if (result.bool) player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] });
+                            if (result.links?.length) player.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] });
                         },
                     },
                 },

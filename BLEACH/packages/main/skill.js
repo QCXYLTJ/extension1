@@ -9221,7 +9221,7 @@ const skills = {
 					return 0;
 				})
 				.forResult();
-			if (result.bool) player.discardPlayerCard(result.targets[0], true, 'he');
+			if (result.targets?.length) player.discardPlayerCard(result.targets[0], true, 'he');
 			else player.draw();
 		},
 		ai: {
@@ -11677,7 +11677,7 @@ const skills = {
 						return att / (1 + get.distance(player, target, 'absolute'));
 					})
 					.forResult();
-				if (result.bool) result.targets[0].gain(trigger.target.getExpansions('bleach_yeren'), 'gain2');
+				if (result.targets?.length) result.targets[0].gain(trigger.target.getExpansions('bleach_yeren'), 'gain2');
 			} else {
 				const result = await player.choosePlayerCard(trigger.target, true, 'h').forResult();
 				trigger.target.addToExpansion(result.cards, 'giveAuto', trigger.target).gaintag.add('bleach_yeren');
@@ -14537,7 +14537,7 @@ const skills = {
 					.set('ai', (button) => get.player().getUseValue(button.link))
 					.set('forceDie', true)
 					.forResult();
-				if (result.bool) target.gain(result.links, 'gain2');
+				if (result.links?.length) target.gain(result.links, 'gain2');
 			}
 		},
 		ai: {
@@ -17771,7 +17771,7 @@ const skills = {
 					}
 				)
 				.forResult();
-			if (result.bool) event.result = { bool: true, cost_data: result.links };
+			if (result.links?.length) event.result = { bool: true, cost_data: result.links };
 		},
 		async content(event, trigger, player) {
 			const card = event.cost_data[0];

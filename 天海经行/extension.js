@@ -3030,7 +3030,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', `推荐弃置${get.translation(x)}牌`);
                                 'step 2'
-                                if (result.bool) for (var i of result.cards) if (!event.suit.includes(i.suit)) event.suit.push(i.suit);
+                                if (result.cards?.length) for (var i of result.cards) if (!event.suit.includes(i.suit)) event.suit.push(i.suit);
                                 if (event.suit.length < 4) player.recover();
                             },
                             ai: {

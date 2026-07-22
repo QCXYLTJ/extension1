@@ -2676,7 +2676,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				trigger.targets.push(result.targets[0]);
 			}
 		},
@@ -2849,7 +2849,7 @@ const skill = {
 					return get.effect(target, { name: 'sha' }, player, player);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: 'sha' }, 'lg_lihuo', result.targets[0], false);
 			}
 		},
@@ -27588,7 +27588,7 @@ const skill = {
 				return player.getUseValue(button.link);
 			});
 			('step 4');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.win.chooseUseTarget(result.links[0], true, false);
 			} else {
 				event.goto(2);
@@ -33100,7 +33100,7 @@ const skill = {
 			('step 2');
 			trigger.target.chooseCard('展示一张手牌', true);
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.card1 = result.cards[0];
 			} else {
 				event.goto(8);
@@ -33108,7 +33108,7 @@ const skill = {
 			('step 4');
 			event.jnmb.chooseCard('展示一张手牌', true);
 			('step 5');
-			if (result.bool) {
+			if (result.cards?.length) {
 				event.card2 = result.cards[0];
 			} else {
 				event.goto(8);
@@ -35691,7 +35691,7 @@ const skill = {
 			trigger.player.recover();
 			player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.getCards('h'), true);
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				trigger.player.discard(result.links[0]);
 			}
 		},
@@ -36261,7 +36261,7 @@ const skill = {
 				return 10 + get.value(button.link);
 			});
 			('step 3');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.targets[0].discard(result.links[0], 'notBySelf');
 			}
 		},
@@ -47664,7 +47664,7 @@ const skill = {
 				},
 			});
 			('step 1');
-			if (result && result.bool) {
+			if (result.cards?.length) {
 				event.type = get.type(result.cards[0], 'trick');
 				event.tar = result.targets[0];
 				player.lose(result.cards);

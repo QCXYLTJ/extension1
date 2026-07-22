@@ -2474,7 +2474,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 next.set('complexSelect', true);
                                 next.set('ai', (button) => get.value(button.link));
                                 ('step 2');
-                                if (result && result.bool) {
+                                if (result.links?.length) {
                                     const cardxs = result.links.slice(0);
                                     player.gain(cardxs, 'draw');
                                     game.log(player, '获得了', get.cnNumber(cardxs.length), '张宝物牌');

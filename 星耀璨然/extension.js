@@ -16360,7 +16360,7 @@ export default async function () {
                                 return base - get.value(card);
                             })
                             .forResult();
-                        if (result.bool) result.targets = [trigger.source];
+                        if (result.targets?.length) result.targets = [trigger.source];
                         event.result = result;
                     },
                     content: async function (event, trigger, player) {
@@ -25199,7 +25199,7 @@ export default async function () {
                                 })
                                 .set('map', map)
                                 .forResult();
-                            if (result.bool) await player.respond('highlight', result.cards);
+                            if (result.cards?.length) await player.respond('highlight', result.cards);
                             event.result = result;
                         }
                         event.result.targets = [trigger.player];

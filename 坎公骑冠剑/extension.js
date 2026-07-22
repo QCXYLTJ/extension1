@@ -9453,7 +9453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.chooseCardButton('移去一张<棋>', true, player.getExpansions('gt_qiju'));
 								}
 								('step 2');
-								if (result.bool) player.loseToDiscardpile(result.links);
+								if (result.links?.length) player.loseToDiscardpile(result.links);
 							},
 							group: ['gt_rimu_die'],
 							subSkill: {

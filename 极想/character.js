@@ -30075,7 +30075,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 });
                             ('step 2');
-                            if (result.bool) player.addToExpansion(result.cards[0], player, 'give', 'log').gaintag.add('xx_kj_henghuo');
+                            if (result.cards?.length) player.addToExpansion(result.cards[0], player, 'give', 'log').gaintag.add('xx_kj_henghuo');
                         },
                     },
                     1: {
@@ -33931,7 +33931,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 2');
-                    if (result.bool) event.tar.chooseToUse('对' + get.translation(result.targets[0]) + '使用一张【杀】,否则本回合你使用牌后需交给' + get.translation(player) + '一张牌', { name: 'sha' }, result.targets[0]);
+                    if (result.targets?.length) event.tar.chooseToUse('对' + get.translation(result.targets[0]) + '使用一张【杀】,否则本回合你使用牌后需交给' + get.translation(player) + '一张牌', { name: 'sha' }, result.targets[0]);
                     else event.finish();
                     ('step 3');
                     if (result.bool) {
@@ -38341,7 +38341,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     if (player.getStat().card.sha) player.getStat().card.sha--;
                     event.finish();
                     ('step 3');
-                    if (result.bool) player.discardPlayerCard(get.prompt('xx_jiewei', result.targets[0]), result.targets[0], 'hej');
+                    if (result.targets?.length) player.discardPlayerCard(get.prompt('xx_jiewei', result.targets[0]), result.targets[0], 'hej');
                 },
                 ai: {
                     order: 4,

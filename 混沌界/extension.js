@@ -15951,7 +15951,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 ('step 1');
                                 if (!result.bool || result.cards.length < player.storage.ow_jijia) {
-                                    if (result.bool) target.damage(player.storage.ow_jijia - result.cards.length, 'fire');
+                                    if (result.cards?.length) target.damage(player.storage.ow_jijia - result.cards.length, 'fire');
                                     else target.damage(player.storage.ow_jijia);
                                 }
                                 if (target == targets[targets.length - 1]) {

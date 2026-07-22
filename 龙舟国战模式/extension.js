@@ -394,7 +394,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('goon', player.countCards('h', 'sha') == 0);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const card = result.links[0];
 									trigger.untrigger();
 									trigger.responded = true;
@@ -493,7 +493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 1;
 										});
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											const card = result.links[0];
 											card.discard();
 											player.storage.huangjintianbingfu.remove(card);
@@ -582,7 +582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const list = result.links.slice(0);
 									while (list.length) {
 										ui.cardPile.insertBefore(list.pop(), ui.cardPile.firstChild);
@@ -937,7 +937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const card = result.links[0];
 									player.storage.tuntian.remove(card);
 									if (!player.storage.tuntian.length) {
@@ -979,7 +979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: get.prompt('yuanhu'),
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									const target = result.targets[0];
 									event.current = target;
 									target.equip(result.cards[0]);
@@ -5472,7 +5472,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('goon', player.countCards('h', 'sha') == 0);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const card = result.links[0];
 									trigger.untrigger();
 									trigger.responded = true;
@@ -5571,7 +5571,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 1;
 										});
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											const card = result.links[0];
 											card.discard();
 											player.storage.huangjintianbingfu.remove(card);
@@ -5660,7 +5660,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const list = result.links.slice(0);
 									while (list.length) {
 										ui.cardPile.insertBefore(list.pop(), ui.cardPile.firstChild);
@@ -6015,7 +6015,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const card = result.links[0];
 									player.storage.tuntian.remove(card);
 									if (!player.storage.tuntian.length) {
@@ -6057,7 +6057,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: get.prompt('yuanhu'),
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									const target = result.targets[0];
 									event.current = target;
 									target.equip(result.cards[0]);
@@ -9727,7 +9727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('goon', player.countCards('h', 'sha') == 0);
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const card = result.links[0];
 									trigger.untrigger();
 									trigger.responded = true;
@@ -9826,7 +9826,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 1;
 										});
 										('step 1');
-										if (result.bool) {
+										if (result.links?.length) {
 											const card = result.links[0];
 											card.discard();
 											player.storage.huangjintianbingfu.remove(card);
@@ -9915,7 +9915,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const list = result.links.slice(0);
 									while (list.length) {
 										ui.cardPile.insertBefore(list.pop(), ui.cardPile.firstChild);
@@ -10270,7 +10270,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link);
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.links?.length) {
 									const card = result.links[0];
 									player.storage.tuntian.remove(card);
 									if (!player.storage.tuntian.length) {
@@ -10312,7 +10312,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									prompt: get.prompt('yuanhu'),
 								});
 								('step 1');
-								if (result.bool) {
+								if (result.targets?.length) {
 									const target = result.targets[0];
 									event.current = target;
 									target.equip(result.cards[0]);
@@ -15543,7 +15543,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					const list = names.randomGets(100);
 					player.chooseButton(ui.create.dialog('请选择十军之战另外8名武将', [list, 'character']), 8, true);
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						result.links.map((k) => lib.character[k][3].map((i) => player.addSkill(i)));
 						result.links.forEach((key, index) => {
 							const leftVal = `calc(40% - 95px + ${index * 60}px)`;

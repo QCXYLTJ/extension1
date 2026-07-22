@@ -2230,7 +2230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .chooseCard(get.prompt2('zhiheng'), 'he', [1, Infinity], lib.filter.cardDiscardable)
                                         .set('ai', (card) => lib.skill.zhiheng.check(card))
                                         .forResult();
-                                    if (result.bool) await player.useSkill('zhiheng', result.cards);
+                                    if (result.cards?.length) await player.useSkill('zhiheng', result.cards);
                                 }
                             },
                         },

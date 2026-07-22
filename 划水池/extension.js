@@ -4010,7 +4010,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return att * lib.card.shunshou.ai.result.target(player, target);
 									});
 								('step 2');
-								if (result.bool) player.gainPlayerCard(result.targets[0], 'hej', true);
+								if (result.targets?.length) player.gainPlayerCard(result.targets[0], 'hej', true);
 								if (_status.currentPhase == player) player.changeHujia(1);
 							},
 						},
@@ -4525,7 +4525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									else return 11 - get.value(card);
 								});
 								('step 2');
-								if (result.bool) trigger.target.gain(result.cards, trigger.player, 'giveAuto');
+								if (result.cards?.length) trigger.target.gain(result.cards, trigger.player, 'giveAuto');
 								else {
 									if (get.itemtype(trigger.cards) == 'cards' && get.position(trigger.cards[0], true) == 'o') trigger.target.gain(trigger.cards.filterInD(), 'gain2');
 									trigger.target.draw();
@@ -7082,7 +7082,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.goto(2);
 								('step 1');
-								if (result.bool) player.loseToDiscardpile(result.links);
+								if (result.links?.length) player.loseToDiscardpile(result.links);
 								event.finish();
 								('step 2');
 								var cards0 = [];
@@ -8175,7 +8175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return att * lib.card.guohe.ai.result.target(player, target);
 									});
 								('step 1');
-								if (result.bool) player.discardPlayerCard(result.targets[0], 'hej', true);
+								if (result.targets?.length) player.discardPlayerCard(result.targets[0], 'hej', true);
 								('step 2');
 								var use = false,
 									evt = trigger.parent;
@@ -8188,7 +8188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								} else if (!evt.relatedEvent || evt.relatedEvent.name != 'useCard') use = true;
 								if (use) {
 									var cards = [];
-									if (result.bool) cards = result.cards.filterInD('d');
+									if (result.cards?.length) cards = result.cards.filterInD('d');
 									for (var i of trigger.cards) {
 										if (i.original == 'h') cards.push(i);
 									}
@@ -8261,7 +8261,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 3');
-								if (result.bool) player.gain(result.cards, trigger.player, 'giveAuto');
+								if (result.cards?.length) player.gain(result.cards, trigger.player, 'giveAuto');
 							},
 							subSkill: {
 								audio: {
@@ -13979,7 +13979,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								} else event.finish();
 								('step 3');
-								if (result.bool) event.target.gain(result.cards, 'give', player);
+								if (result.cards?.length) event.target.gain(result.cards, 'give', player);
 							},
 						},
 						//大耳
@@ -15191,7 +15191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 2');
-								if (result.bool) _status.currentPhase.gain(result.cards, player, 'giveAuto');
+								if (result.cards?.length) _status.currentPhase.gain(result.cards, player, 'giveAuto');
 							},
 							group: 'hs_xiemu_begin',
 							subSkill: {

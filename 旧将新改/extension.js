@@ -17085,7 +17085,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) event.gainner.gain(result.cards, event.giver, 'giveAuto');
+                                if (result.cards?.length) event.gainner.gain(result.cards, event.giver, 'giveAuto');
                             },
                             ai: {
                                 order: 8,
@@ -18011,7 +18011,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) target.useCard({ name: 'sha' }, result.cards, player, false);
+                                if (result.cards?.length) target.useCard({ name: 'sha' }, result.cards, player, false);
                             },
                             ai: {
                                 order: 9,

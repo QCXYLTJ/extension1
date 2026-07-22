@@ -705,7 +705,7 @@ window.hyyzImport(function (lib, game, ui, get, ai, _status) {
 			else event.goto(3);
 		}
 		'step 2';
-		if (result.bool) event.cards.addArray(result.links);
+		if (result.links?.length) event.cards.addArray(result.links);
 		'step 3';
 		event.num++;
 		if (event.num < event.slotsx.length) event.goto(1);//继续循环

@@ -5850,7 +5850,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return eff / tp;
 								};
 								('step 3');
-								if (result.bool) event.tars = result.targets.slice(0);
+								if (result.targets?.length) event.tars = result.targets.slice(0);
 								else event.finish();
 								('step 4');
 								if (event.tars.length == event.nm) {
@@ -20517,7 +20517,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								}
 								('step 6');
-								if (result.bool) event.cd = result.links[0];
+								if (result.links?.length) event.cd = result.links[0];
 								else event.finish();
 								('step 7');
 								player.chooseTarget('你可令场上一名未受伤的角色获得' + get.translation(event.cd), 1, false, function (card, player, target) {
@@ -33985,7 +33985,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 										}
 										('step 1');
-										if (result && result.bool) {
+										if (result.links?.length) {
 											var id = player.storage.XS_lizhan[0].indexOf(result.links[0]);
 											if (id >= 0) {
 												player.storage.XS_lizhan[0].splice(id, 1);
@@ -47307,7 +47307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								}
 								('step 2');
-								if (result.bool) player.discardPlayerCard(result.targets[0], 'e', 1);
+								if (result.targets?.length) player.discardPlayerCard(result.targets[0], 'e', 1);
 							},
 							ai: {
 								expose: 0.3,

@@ -9191,7 +9191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else event.redo();
 								} else event.goto(3);
 								('step 2');
-								if (result.bool) target.give(result.cards, player);
+								if (result.cards?.length) target.give(result.cards, player);
 								event.goto(1);
 								('step 3');
 								if (event.targets2.length) {

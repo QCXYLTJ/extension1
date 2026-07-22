@@ -598,7 +598,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						} else event.finish();
 					} else event.finish();
 					('step 2');
-					if (result.bool) player.useCard(result.links[0], player);
+					if (result.links?.length) player.useCard(result.links[0], player);
 				},
 				group: '千鹤ygo_圣刻_round',
 				subSkill: {
@@ -1515,7 +1515,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						if (list.length) player.gain(list, 'gain2');
 					}
 					('step 3');
-					if (result.bool) player.gain(result.links[0]);
+					if (result.links?.length) player.gain(result.links[0]);
 					if (event.count > 0) event.goto(1);
 				},
 			},

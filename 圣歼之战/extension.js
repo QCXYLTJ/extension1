@@ -3415,7 +3415,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 target.chooseCard('he', '瑟韵:将一张牌交给' + get.translation(player), true);
                                 ('step 2');
-                                if (result.bool) player.gain(result.cards, target, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, target, 'giveAuto');
                                 ('step 3');
                                 switch (player.tgtt_tsliuyingseyun || '平') {
                                     case '平':

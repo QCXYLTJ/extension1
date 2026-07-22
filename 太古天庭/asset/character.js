@@ -2842,7 +2842,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         .set('ai', () => Math.random())
                         .set('skills', skills)
                         .forResult(); //QQQ
-                    if (result.bool) player.removeSkills(result.links);
+                    if (result.links?.length) player.removeSkills(result.links);
                 },
             },
             tgtt_dyngdilie: {
@@ -6958,7 +6958,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         .set('ai', () => Math.random())
                         .set('skills', skills)
                         .forResult(); //QQQ
-                    if (result.bool) player.removeSkills(result.links);
+                    if (result.links?.length) player.removeSkills(result.links);
                 },
             },
             tgtt_dyxnylhchita: {
@@ -9736,7 +9736,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     }
                     ('step 1');
                     if (event.skillName) {
-                        if (result && result.bool) {
+                        if (result.targets?.length) {
                             result.targets[0].addSkillLog(event.skillName);
                         } else {
                             player.addSkillLog(event.skillName);
@@ -23507,7 +23507,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         if (get.attitude(player, target) <= 0) next.set('du', true);
                     }
                     ('step 4');
-                    if (result.bool) target.gain(result.cards, player, 'giveAuto');
+                    if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
                 },
             },
             tgtt_fsdysheyan: {
@@ -24043,7 +24043,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         .set('ai', () => Math.random())
                         .set('skills', skills)
                         .forResult(); //QQQ
-                    if (result.bool) player.removeSkills(result.links);
+                    if (result.links?.length) player.removeSkills(result.links);
                 },
                 group: 'tgtt_fsyhzhuizei_lianxu',
                 subSkill: {
@@ -25144,7 +25144,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         event.finish();
                     }
                     ('step 5');
-                    if (result.bool) target.useCard({ name: result.links[0][2], nature: result.links[0][3] }, false, event.target2);
+                    if (result.links?.length) target.useCard({ name: result.links[0][2], nature: result.links[0][3] }, false, event.target2);
                 },
                 ai: {
                     expose: 0.17,

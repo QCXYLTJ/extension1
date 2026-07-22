@@ -6106,7 +6106,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.effect(target, { name: 'sha' }, evt.source, evt.player);
 								});
 								('step 1');
-								if (result.bool) player.useCard({ name: 'sha' }, result.targets[0], false);
+								if (result.targets?.length) player.useCard({ name: 'sha' }, result.targets[0], false);
 								else {
 									event.finish;
 								}

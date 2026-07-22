@@ -3154,7 +3154,7 @@ export async function precontent(config, pack) {
                     player.chooseButton(['请选择要移去的<星>', player.getExpansions('qixing')], targets.length, true).set('ai', (button) => -get.value(button.link));
                 } else event.finish();
                 ('step 2');
-                if (result.bool) player.loseToDiscardpile(result.links);
+                if (result.links?.length) player.loseToDiscardpile(result.links);
                 else event.finish();
                 ('step 3');
                 for (var i of targets) i.damage();
@@ -4543,7 +4543,7 @@ export async function precontent(config, pack) {
                     }
                 }
                 ('step 2');
-                if (result.bool) player.give(result.cards, target);
+                if (result.cards?.length) player.give(result.cards, target);
             },
             ai: {
                 threaten: 2,
@@ -5947,7 +5947,7 @@ export async function precontent(config, pack) {
                     }
                 } else event.finish();
                 ('step 2');
-                if (result.bool) for (var i of result.targets) player.discardPlayerCard(i, 'he', true);
+                if (result.targets?.length) for (var i of result.targets) player.discardPlayerCard(i, 'he', true);
             },
             subSkill: {
                 use: {
@@ -6001,7 +6001,7 @@ export async function precontent(config, pack) {
                                 .set('card', trigger.card);
                         }
                         ('step 1');
-                        if (result.bool) for (var i of result.targets) trigger.targets.push(i);
+                        if (result.targets?.length) for (var i of result.targets) trigger.targets.push(i);
                     },
                 },
             },
@@ -8296,7 +8296,7 @@ export async function precontent(config, pack) {
                     };
                     ('step 1');
                     if (!result.bool || result.cards.length < 2) {
-                        if (result.bool) target.damage(2 - result.cards.length, 'thunder');
+                        if (result.cards?.length) target.damage(2 - result.cards.length, 'thunder');
                         else target.damage(2, 'thunder');
                     }
                 };
@@ -9997,7 +9997,7 @@ export async function precontent(config, pack) {
                     if (card.name == 'syr_bailongma' && get.position(card) == 'e' && player.hasSkill('syr_zhantan')) return 6;
                     return 6 - get.value(card);
                 })('step 1');
-                if (result.bool) player.recast(result.cards);
+                if (result.cards?.length) player.recast(result.cards);
             },
             ai: { order: 11 },
             mark: true,
@@ -18135,7 +18135,7 @@ export async function precontent(config, pack) {
                         const player = map.player,
                             num = player.getExpansions('minireguanxing').length - Math.min(game.countPlayer() <= 2 ? 3 : 5);
                         let result = await player.chooseButton(['观星:请移去' + get.cnNumber(num) + '张多余的<星>', player.getExpansions('minireguanxing')], true, num);
-                        if (result.bool) player.loseToDiscardpile(result.links);
+                        if (result.links?.length) player.loseToDiscardpile(result.links);
                     },
                 },
             },
@@ -21038,7 +21038,7 @@ export async function precontent(config, pack) {
                 }
                 event.finish();
                 ('step 5');
-                if (result.bool) player.chooseButton(['选择获得一张牌', result.cards], true);
+                if (result.cards?.length) player.chooseButton(['选择获得一张牌', result.cards], true);
                 else event.finish();
                 ('step 6');
                 if (result.links?.length) {
@@ -21588,7 +21588,7 @@ export async function precontent(config, pack) {
                     var cards = Array.from(ui.discardPile.childNodes).filter((card) => get.type(card) == 'trick');
                     if (!cards.length) break;
                     var result = await i.chooseButton(['魔瘾:获得一张普通锦囊牌', cards], true).set('ai', get.buttonValue);
-                    if (result.bool) await i.gain(result.links, 'gain2');
+                    if (result.links?.length) await i.gain(result.links, 'gain2');
                 }
             },
             group: 'syr_moyin_draw',
@@ -36386,7 +36386,7 @@ export async function precontent(config, pack) {
                 if (humans.length) {
                     const solve = function (resolve, reject) {
                         return function (result, player) {
-                            if (result && result.bool) {
+                            if (result.links?.length) {
                                 choice[player.playerid] = result.links;
                                 resolve();
                             } else reject();
@@ -36414,7 +36414,7 @@ export async function precontent(config, pack) {
                 if (locals.length) {
                     for (let current of locals) {
                         const result = await lib.skill.bolfenfou.chooseButton(current).forResult();
-                        if (result && result.bool) {
+                        if (result.links?.length) {
                             choice[current.playerid] = result.links;
                         }
                     }

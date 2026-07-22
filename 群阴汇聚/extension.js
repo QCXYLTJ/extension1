@@ -4682,7 +4682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return 0;
                             });
                             ('step 1');
-                            if (result.bool) event.card = result.cards[0];
+                            if (result.cards?.length) event.card = result.cards[0];
                             else event.finish();
                             ('step 2');
                             var next = player.chooseToCompare(target);
@@ -8218,7 +8218,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 .set('target', target)
                                 .set('type', get.type2(event.card));
                             ('step 4');
-                            if (result.bool) target.gain(result.cards[0], player, 'give');
+                            if (result.cards?.length) target.gain(result.cards[0], player, 'give');
                             else {
                                 player.addTempSkill('diy_rewenji_respond');
                                 player.storage.diy_rewenji_respond = {

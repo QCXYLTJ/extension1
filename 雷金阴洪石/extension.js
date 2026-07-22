@@ -265,7 +265,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) event.target.useCard({ name: 'sha' }, result.targets[0]);
+								if (result.targets?.length) event.target.useCard({ name: 'sha' }, result.targets[0]);
 							},
 						},
 						ljyhsl_drlz_yanju: {
@@ -1625,7 +1625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.num--;
 								player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.getCards('h'), true);
 								('step 1');
-								if (result.bool) trigger.player.discard(result.links[0]);
+								if (result.links?.length) trigger.player.discard(result.links[0]);
 							},
 						},
 						ljyhsl_lrfj_weisha: {
@@ -2574,7 +2574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) player.useCard({ name: 'sha' }, result.targets[0], false);
+								if (result.targets?.length) player.useCard({ name: 'sha' }, result.targets[0], false);
 							},
 							ai: {
 								order: 5,
@@ -3133,7 +3133,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 2');
-								if (result.bool) trigger.targets.push(result.targets[0]);
+								if (result.targets?.length) trigger.targets.push(result.targets[0]);
 							},
 						},
 						ljyhsl_gmrh_dezong: {
@@ -3838,7 +3838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.gainPlayerCard(1, 'j', target, true);
 								('step 1');
-								if (result.bool) player.useCard(result.cards[0], player);
+								if (result.cards?.length) player.useCard(result.cards[0], player);
 								player.addTempSkill('ljyhsl_hyrs_yangzhan1', { player: 'phaseAfter' });
 							},
 							ai: {

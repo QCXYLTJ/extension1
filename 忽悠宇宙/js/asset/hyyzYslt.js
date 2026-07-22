@@ -1755,7 +1755,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           });
         }
         'step 2';
-        if (result.bool) target.give(result.cards, player);else
+        if (result.cards?.length) target.give(result.cards, player);else
         target.loseHp();
         player.gain(target.getExpansions('xxcabjielv2'), 'draw');
         'step 3';

@@ -12890,7 +12890,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', '当你存活时,你选择的这些角色使用【杀】的次数上限+1且对你选择的第二批角色造成的伤害+1,受到伤害时此伤害转移给你;否则这些角色手牌上限+1,摸牌阶段摸牌数+1');
                                 ('step 1');
-                                if (result.bool) event.targets1 = result.targets;
+                                if (result.targets?.length) event.targets1 = result.targets;
                                 player
                                     .chooseTarget([1, Infinity], function (card, player, target) {
                                         return !event.targets1.includes(target) && target != player;
@@ -12901,7 +12901,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('prompt2', event.targets1.length ? get.translation(event.targets1) + '对这些角色造成伤害时,此伤害+1' : '您第一批没有选择目标');
                                 ('step 2');
-                                if (result.bool) event.targets2 = result.targets;
+                                if (result.targets?.length) event.targets2 = result.targets;
                                 event.targets1.forEach(function (target) {
                                     if (!target.storage.zhanhua_effect) {
                                         target.storage.zhanhua_effect = [[], []];

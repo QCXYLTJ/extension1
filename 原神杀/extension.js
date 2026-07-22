@@ -8894,7 +8894,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.value(card);
                                     });
                                 ('step 1');
-                                if (result.bool) event.cards = result.cards;
+                                if (result.cards?.length) event.cards = result.cards;
                                 else event.finish();
                                 ('step 2');
                                 player
@@ -12433,7 +12433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) player.useCard({ name: 'sha', nature: 'ice' }, result.cards, false, target);
+                                if (result.cards?.length) player.useCard({ name: 'sha', nature: 'ice' }, result.cards, false, target);
                                 else player.draw();
                             },
                             ai: {

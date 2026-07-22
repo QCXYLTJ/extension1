@@ -33345,7 +33345,7 @@ const skill = {
                 return 6 - get.value(card);
             };
             ('step 1');
-            if (result && result.bool) {
+            if (result.cards?.length) {
                 player.lose(result.cards);
                 event.card1 = result.cards[0];
                 event.card2 = get.cards(1)[0];

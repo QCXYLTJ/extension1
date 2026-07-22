@@ -4050,7 +4050,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 else event.goto(7);
                                 ('step 6');
-                                if (result.bool) result.targets[0].gain(event.card, player, 'giveAuto');
+                                if (result.targets?.length) result.targets[0].gain(event.card, player, 'giveAuto');
                                 ('step 7');
                                 if (player.countCards('h') < player.maxHp) {
                                     var card = get.cardPile2(function (card) {

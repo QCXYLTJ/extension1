@@ -6745,7 +6745,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 };
                                 ('step 4');
-                                if (result.bool) player.chooseUseTarget(true, result.links[0][2]);
+                                if (result.links?.length) player.chooseUseTarget(true, result.links[0][2]);
                             },
                             mod: {
                                 attackFrom(from, to, distance) {
@@ -16569,7 +16569,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool) result.targets[0].chooseToDiscard('h', true);
+                                if (result.targets?.length) result.targets[0].chooseToDiscard('h', true);
                             },
                             ai: {
                                 order: 1,

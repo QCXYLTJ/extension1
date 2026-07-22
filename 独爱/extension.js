@@ -527,7 +527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(event.loser, { name: button.link[2], nature: button.link[3] }, event.winner, event.winner);
                                     });
                                 ('step 4');
-                                if (result.bool) event.winner.useCard({ name: result.links[0][2], nature: result.links[0][3] }, false, event.loser);
+                                if (result.links?.length) event.winner.useCard({ name: result.links[0][2], nature: result.links[0][3] }, false, event.loser);
                             },
                         },
                         //张郃
@@ -1801,7 +1801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     `选择一张手牌当做【过河拆桥】对${get.translation(player)}使用`
                                 );
                                 ('step 6');
-                                if (result.bool) event.target.useCard({ name: 'guohe' }, result.cards, player, false);
+                                if (result.cards?.length) event.target.useCard({ name: 'guohe' }, result.cards, player, false);
                             },
                         },
                         //司马懿
@@ -1914,7 +1914,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.gainPlayerCard(get.prompt('ua_fankui', trigger.source), trigger.source, get.buttonValue, trigger.source != player ? 'he' : 'e');
                                 } //QQQ
                                 ('step 3');
-                                if (result.bool) player.gain(result.links, 'draw');
+                                if (result.links?.length) player.gain(result.links, 'draw');
                                 game.updateRoundNumber();
                                 ('step 4');
                                 if (event.count > 0) event.goto(1);

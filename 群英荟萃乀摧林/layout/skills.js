@@ -294,7 +294,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     });
             } else event.goto(2);
             ('step 5');
-            if (result.bool) event.current.give(result.cards, player, true);
+            if (result.cards?.length) event.current.give(result.cards, player, true);
             else event.current.damage(player, 2);
             event.goto(2);
         },
@@ -1955,7 +1955,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     break;
             }
             ('step 1');
-            if (result.bool) player.chooseUseTarget('〖觊觎〗请选择【' + get.translation(result.links[0][2]) + '】的目标(亦可不使用)', { name: result.links[0][2] })
+            if (result.links?.length) player.chooseUseTarget('〖觊觎〗请选择【' + get.translation(result.links[0][2]) + '】的目标(亦可不使用)', { name: result.links[0][2] })
         },
     };
     lib.skill.qyhc_tongji = {

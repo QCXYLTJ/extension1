@@ -612,7 +612,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         next.setContent('chooseButton');
                     }
                     ('step 1');
-                    if (result.bool) event.cards = result.links;
+                    if (result.links?.length) event.cards = result.links;
                     if (event.drawDeck) {
                         event.cards = event.cards.concat(player.getDeckCards(event.drawDeck));
                     }

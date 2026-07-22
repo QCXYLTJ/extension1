@@ -11014,7 +11014,7 @@ const skills = {
                                     return 1 + Math.random();
                                 })
                                 .forResult();
-                            if (result.bool) targets2.push(result.targets[0]);
+                            if (result.targets?.length) targets2.push(result.targets[0]);
                         }
                         for (const target of targets) {
                             target.addMark('Europa_fanzhu_ban', targets2.filter((targetx) => targetx == target).length);

@@ -10260,7 +10260,7 @@ game.import('extension', function () {
                                 'step 0';
                                 player.chooseCardButton('移去一张储', true, player.getExpansions('chuyuan'));
                                 ('step 1');
-                                if (result.bool) player.loseToDiscardpile(result.links);
+                                if (result.links?.length) player.loseToDiscardpile(result.links);
                                 trigger.cancel();
                             },
                         },
@@ -10367,7 +10367,7 @@ game.import('extension', function () {
                                         return get.buttonValue(card);
                                     });
                                 ('step 2');
-                                if (result.bool) target.recast(result.links);
+                                if (result.links?.length) target.recast(result.links);
                             },
                             ai: {
                                 expose: 0.1,

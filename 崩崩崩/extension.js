@@ -22642,7 +22642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('du', card.name == 'du');
                                 ('step 2');
-                                if (result && result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     target.gain(card, 'gain2');
                                     delete player.storage.sanyi;

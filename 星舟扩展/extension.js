@@ -7020,7 +7020,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 2');
-								if (result.bool) event.targets = result.targets.sortBySeat();
+								if (result.targets?.length) event.targets = result.targets.sortBySeat();
 								else event.finish();
 								('step 3');
 								event.target = event.targets.shift();

@@ -581,7 +581,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         return value / 30;
                     });
                 ('step 1');
-                if (result.bool) event.removeskill = result.links[0];
+                if (result.links?.length) event.removeskill = result.links[0];
                 event.dialog = ui.create.dialog('〖蹈节〗请选择一名颍川荀氏角色,令其获得以下牌');
                 event.dialog.addText('你失去1点体力或一个锁定技');
                 qyhcCL.addClosebutton(event.dialog);
@@ -1295,7 +1295,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             }
             ('step 1');
             var num = event.delta;
-            if (result.bool) num -= result.cards.length;
+            if (result.cards?.length) num -= result.cards.length;
             if (num > 0) player.draw(num);
         },
         ai: {
@@ -2665,7 +2665,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 else return 0.01 - result;
             });
             ('step 3');
-            if (result.bool) event.cards.addArray(result.cards);
+            if (result.cards?.length) event.cards.addArray(result.cards);
             if (targets.length) event.goto(2);
             ('step 4');
             var cards = event.cards.filterInD('d');
@@ -2874,7 +2874,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 .set('type', type)
                 .set('goon', get.damageEffect(target, player, target, 'thunder') < 0);
             ('step 2');
-            if (result.bool) target.recast(result.cards);
+            if (result.cards?.length) target.recast(result.cards);
             else target.damage(player, 'thunder');
         },
         ai: {

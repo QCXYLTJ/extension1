@@ -21262,7 +21262,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 trigger.player.chooseCard('he', '将一张牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.bool) player.gain(result.cards, trigger.player, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, trigger.player, 'giveAuto');
                                 trigger.player.addTempSkill('公道4', 'phaseZhunbeiBefore');
                             },
                         },

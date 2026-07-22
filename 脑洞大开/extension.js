@@ -4940,7 +4940,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) num += result.cards.length;
+                                if (result.cards?.length) num += result.cards.length;
                                 player.draw(num);
                                 if (event.num > 13 - player.maxHp) player.loseHp();
                                 if (event.num < 13 - player.hp) player.recover();
@@ -5622,7 +5622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (cards.length) player.chooseButton(['选择移去一张<旋>', cards], true);
                                         else event.finish();
                                         ('step 2');
-                                        if (result.bool) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                     },
                                 },
                                 discard: {
@@ -6302,7 +6302,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool) result.targets[0].gain(result.cards, player, 'giveAuto');
+                                if (result.targets?.length) result.targets[0].gain(result.cards, player, 'giveAuto');
                             },
                             ai: {
                                 order: 6,

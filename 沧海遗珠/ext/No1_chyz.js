@@ -4302,7 +4302,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return get.getUseValue(button.link);
 						});
 					('step 3');
-					if (result.bool) event.card = result.links[0];
+					if (result.links?.length) event.card = result.links[0];
 					// player.YB_temp('ybgz_shujian_used');
 					('step 4');
 					if (event.card && player.hasUseTarget(event.card)) {

@@ -4763,7 +4763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 };
                                 ('step 1');
-                                if (result && result.bool) {
+                                if (result.links?.length) {
                                     var name = result.links[0].name;
                                     player.chooseUseTarget({ name: name }, false);
                                 }

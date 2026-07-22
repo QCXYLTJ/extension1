@@ -890,7 +890,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             'step 0';
             target.chooseCard('h', get.translation(player) + '对你发动〖谋诛〗,请交给其一张手牌<br><span class=text>若你手牌数小于其,你视为对其使用一张【决斗】</span>', true);
             ('step 1');
-            if (result.bool) target.give(result.cards, player);
+            if (result.cards?.length) target.give(result.cards, player);
             ('step 2');
             if (player.countCards('h') > target.countCards('h') && target.canUse('juedou', player)) target.useCard({ name: 'juedou' }, player);
         };
@@ -1486,7 +1486,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     else event.finish();
                 } else event.finish();
                 ('step 2');
-                if (result.bool) player.gain(result.links[0], 'gain2');
+                if (result.links?.length) player.gain(result.links[0], 'gain2');
             },
         };
         lib.skill.shiduo.creatTrigger = true;
@@ -2380,7 +2380,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 .set('prompt2', '<center>点取消则默认选择自己<br><span class=redtext>此阶段少摸一张牌</span></center>');
             ('step 1');
             if (!player.storage.olfengji_draw) player.storage.olfengji_draw = 0;
-            if (result.bool) var target = result.targets[0];
+            if (result.targets?.length) var target = result.targets[0];
             else var target = player;
             player.line(target, 'thunder');
             if (!target.storage.olfengji_draw) target.storage.olfengji_draw = 0;
@@ -2398,7 +2398,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 .set('prompt2', '<center>点取消则默认选择自己<br><span class=redtext>你本回合使用【杀】的次数限制-1</span></center>');
             ('step 3');
             if (!player.storage.olfengji_sha) player.storage.olfengji_sha = 0;
-            if (result.bool) var target = result.targets[0];
+            if (result.targets?.length) var target = result.targets[0];
             else var target = player;
             player.line(target, 'fire');
             if (!target.storage.olfengji_sha) target.storage.olfengji_sha = 0;
@@ -2868,7 +2868,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             if (!cards.length) event.goto(10);
             else player.chooseButton(['〖兴乱〗请获得以下一张牌', cards], true).set('ai', get.buttonValue).direct = true;
             ('step 3');
-            if (result.bool) player.gain(result.links, 'draw'), player.$gainLog('draw', result.links, 'auto');
+            if (result.links?.length) player.gain(result.links, 'draw'), player.$gainLog('draw', result.links, 'auto');
             event.finish();
             ('step 4');
             player
@@ -2935,7 +2935,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
             if (!result.bool) target.chooseCard('he', true, '〖兴乱〗请交给' + get.translation(player) + '一张牌');
             else event.finish();
             ('step 9');
-            if (result.bool) target.give(result.cards, player, 'giveAuto');
+            if (result.cards?.length) target.give(result.cards, player, 'giveAuto');
             event.finish();
             ('step 10');
             event.cards = get.cards(6);
@@ -3289,7 +3289,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 if (event.num > 3) player.chooseCard('〖恩怨〗交给' + get.translation(event.target) + '一张牌', true, 'he');
                 else event.goto(4);
                 ('step 3');
-                if (result.bool) player.give(result.cards, event.target);
+                if (result.cards?.length) player.give(result.cards, event.target);
                 ('step 4');
                 if (event.num < 2) {
                     target.loseHp();
@@ -4032,7 +4032,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         }
                         ('step 1');
                         var fromer = player.storage[event.name];
-                        if (result.bool) player.give(result.cards, fromer);
+                        if (result.cards?.length) player.give(result.cards, fromer);
                         else fromer.draw(num + 1);
                     },
                     mark: true,
@@ -4145,7 +4145,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                     } else event.goto(7);
                 } else event.finish();
                 ('step 6');
-                if (result.bool) player.removeSkillLog(result.links[0]);
+                if (result.links?.length) player.removeSkillLog(result.links[0]);
                 event.finish();
                 ('step 7');
                 player.useSkill('clanlianhe');
@@ -4285,7 +4285,7 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 ('step 3');
                 player.chooseCard('〖放赈〗交给' + get.translation(target) + '两张牌', 'he', 2, true);
                 ('step 4');
-                if (result.bool) player.give(result.cards, target);
+                if (result.cards?.length) player.give(result.cards, target);
                 ('step 5');
                 if (player != target) lib.skill.clanfangzhen.addcreateSkill(target);
             },

@@ -1275,7 +1275,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         event.count--;
                                         player.chooseCardButton('弃置一张『千』', true, player.getExpansions('masaki_qianshu'));
                                         ('step 2');
-                                        if (result.bool) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                         if (event.count > 0) {
                                             event.goto(1);
                                         }

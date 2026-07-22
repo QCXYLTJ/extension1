@@ -2921,7 +2921,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseTarget('熾魂:是否令一名角色翻面？');
                                 }
                                 ('step 1');
-                                if (result.bool) result.targets[0].turnOver();
+                                if (result.targets?.length) result.targets[0].turnOver();
                             },
                         },
                         五岳: {
@@ -6036,7 +6036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) result.targets[0].damage();
+                                if (result.targets?.length) result.targets[0].damage();
                                 else event.finish();
                             },
                         },
@@ -6918,7 +6918,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     [1, game.players.length - 1]
                                 );
                                 ('step 1');
-                                if (result.bool) event.players = result.targets;
+                                if (result.targets?.length) event.players = result.targets;
                                 else event.finish();
                                 ('step 2');
                                 if (event.players.length) {
@@ -7765,7 +7765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player != target && target.hasSex('male') && target.countCards('he') > 0;
                                 });
                                 ('step 1');
-                                if (result.bool) player.gainPlayerCard(2, result.targets[0], true);
+                                if (result.targets?.length) player.gainPlayerCard(2, result.targets[0], true);
                             },
                         },
                         dfqx_boming: {
@@ -8406,7 +8406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 4');
                                 if ((event.lx = 'rep')) player.chooseTarget();
                                 ('step 5');
-                                if (result.bool) player.damage(result.targets[0]);
+                                if (result.targets?.length) player.damage(result.targets[0]);
                                 ('step 6');
                                 if (event.recover == 1) player.recover();
                             },

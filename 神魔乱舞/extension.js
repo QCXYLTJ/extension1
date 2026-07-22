@@ -1107,7 +1107,7 @@ line-height: 0.8em; /* 或者是 2em 等其他数值 */
                                     }
                                 }
                                 ('step 1');
-                                if (result && result.bool) {
+                                if (result.links?.length) {
                                     var card = result.links[0];
                                     player.storage.捏泥.remove(card);
                                     card.discard();

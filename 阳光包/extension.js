@@ -3475,7 +3475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 5');
-                                if (result.bool) player.gain(result.links, 'gain2');
+                                if (result.links?.length) player.gain(result.links, 'gain2');
                                 event.finish();
                                 ('step 6');
                                 if (event.cards.length == 0) {
@@ -6483,7 +6483,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.finish();
                                 ('step 10');
-                                if (result.bool) result.targets[0].damage('thunder');
+                                if (result.targets?.length) result.targets[0].damage('thunder');
                             },
                         },
                         ygblingxiang: {
@@ -6801,7 +6801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool) result.targets[0].recover();
+                                if (result.targets?.length) result.targets[0].recover();
                             },
                             ai: {
                                 order: 10,
@@ -7151,7 +7151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.effect(target, { name: 'sha' }, player, player);
                                             });
                                         ('step 2');
-                                        if (result.bool) event.related = player.useCard({ name: 'sha', nature: 'fire' }, result.targets[0], false);
+                                        if (result.targets?.length) event.related = player.useCard({ name: 'sha', nature: 'fire' }, result.targets[0], false);
                                         else event.finish();
                                         ('step 3');
                                         if (
@@ -11508,7 +11508,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (lib.filter.cardEnabled({ name: 'tao' }, event.target)) vcards.push('tao');
                                 player.chooseButton(['请选择要令' + get.translation(event.target) + '使用的牌', [vcards, 'vcard']], true);
                                 ('step 4');
-                                if (result.bool) event.target.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, true, 'nodistance');
+                                if (result.links?.length) event.target.chooseUseTarget({ name: result.links[0][2], nature: result.links[0][3] }, true, 'nodistance');
                             },
                         },
                         ygbfengjun: {
@@ -14040,7 +14040,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 ('step 1');
                                 if (event.skillName) {
-                                    if (result && result.bool) {
+                                    if (result.targets?.length) {
                                         result.targets[0].addSkillLog(event.skillName);
                                     } else {
                                         player.addSkillLog(event.skillName);

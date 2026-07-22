@@ -316,7 +316,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('goon', get.effect(target, { name: 'losehp' }, target, target) >= 0);
                                 ('step 3');
-                                if (result.bool) target.give(result.cards, player, true);
+                                if (result.cards?.length) target.give(result.cards, player, true);
                                 else target.randomGain(player, 2, 'h', true);
                                 if (targets.length) event.goto(2);
                             },
@@ -25097,7 +25097,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.countCards('h', { suit: 'club' }) && player.getUseValue(button.link);
                                 });
                                 ('step 4');
-                                if (result.bool) event.win.chooseUseTarget(result.links[0], true, false);
+                                if (result.links?.length) event.win.chooseUseTarget(result.links[0], true, false);
                                 else event.goto(2);
                             },
                             ai: {

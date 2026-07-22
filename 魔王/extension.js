@@ -4183,13 +4183,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.chooseToDiscard('h', num, true);
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool) player.draw(result.cards.length);
+                                if (result.cards?.length) player.draw(result.cards.length);
                                 ('step 4');
                                 if (player.countCards('he')) {
                                     player.chooseCard('将' + event.count + '张牌交给其', 'he', event.count);
                                 } else event.finish();
                                 ('step 5');
-                                if (result.bool) target.gain(result.cards, 'giveAuto', player);
+                                if (result.cards?.length) target.gain(result.cards, 'giveAuto', player);
                             },
                         },
                         chuli_sancai: {
@@ -4497,7 +4497,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseCard('交给其' + num + '张牌', 'he', num, true);
                                 } else event.goto(5);
                                 ('step 4');
-                                if (result.bool) trigger.player.gain(result.cards, 'giveAuto', player);
+                                if (result.cards?.length) trigger.player.gain(result.cards, 'giveAuto', player);
                                 ('step 5');
                                 if (event.count == 2) {
                                     player.chooseBool(get.prompt2('yingbian_Angel'));

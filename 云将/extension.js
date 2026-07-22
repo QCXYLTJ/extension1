@@ -6882,7 +6882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.addTempSkill('dcfengyan_gain', 'phaseUseAfter');
                                 target.chooseCard('h', true, '交给' + get.translation(player) + '一张牌');
                                 ('step 1');
-                                if (result.bool) target.give(result.cards, player);
+                                if (result.cards?.length) target.give(result.cards, player);
                             },
                             ai: {
                                 tag: {

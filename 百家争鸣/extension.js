@@ -2796,7 +2796,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseCard('h', [1, Infinity], '请选择要标记的牌', (card) => get.tag(card, 'damage'));
                                 ('step 2');
-                                if (result.bool) player.storage['ansory_youjiao'].addArray(result.cards);
+                                if (result.cards?.length) player.storage['ansory_youjiao'].addArray(result.cards);
                                 ('step 3');
                                 player.addTempSkill('ansory_youjiao2');
                                 player.addTempSkill('ansory_youjiao3');
@@ -6035,7 +6035,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseCard([1, 4 - player.storage.gongting.length], '请选择' + get.translation(player.storage.gongting.length - 4) + '张牌分配', 'he');
                                 ('step 2');
-                                if (result.bool) event.cards = result.cards;
+                                if (result.cards?.length) event.cards = result.cards;
                                 else event.goto(8);
                                 ('step 3');
                                 player
@@ -6117,7 +6117,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 2');
-                                if (result.bool) result.targets[0].gain(event.num, player, 'giveAuto');
+                                if (result.targets?.length) result.targets[0].gain(event.num, player, 'giveAuto');
                             },
                             group: 'lici_Angel_1',
                             subSkill: {
@@ -6161,7 +6161,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         }
                                         ('step 2');
-                                        if (result.bool) result.targets[0].gain(event.num, player, 'giveAuto');
+                                        if (result.targets?.length) result.targets[0].gain(event.num, player, 'giveAuto');
                                     },
                                 },
                                 2: {},

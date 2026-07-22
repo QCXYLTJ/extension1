@@ -12892,7 +12892,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 trigger.player.chooseCard('he', true, '将一张牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.bool) player.gain(result.cards, trigger.player, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, trigger.player, 'giveAuto');
                                 ('step 2');
                                 var card = player.getEquips('DIY_feilunzhanyu');
                                 if (card) player.discard(card);
@@ -35961,7 +35961,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return current.name == 'dshj_AUmenghuo' || current.name2 == 'dshj_AUmenghuo';
                                     })
                                 ) {
-                                    if (result.bool) trigger.player.gain(result.cards, player, 'give');
+                                    if (result.cards?.length) trigger.player.gain(result.cards, player, 'give');
                                     player
                                         .chooseCardButton(trigger.cards, '巨象:请选择要使用的牌')
                                         .set('filterButton', function (button) {

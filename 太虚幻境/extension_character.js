@@ -6237,7 +6237,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return get.value(button.link, _status.event.player);
 					});
 					('step 1');
-					if (result.bool) player.gain(result.links, 'gain2');
+					if (result.links?.length) player.gain(result.links, 'gain2');
 				},
 			},
 			txzhulian: {

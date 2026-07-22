@@ -1408,7 +1408,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               }
             });
             'step 1';
-            if (result && result.bool) {
+            if (result.links?.length) {
               var link = result.links[0];
               if (link == 0) {
                 game.countPlayer(function (current) {

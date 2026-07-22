@@ -6105,7 +6105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.finish();
                                 ('step 3');
-                                if (result.bool) player.chooseButton(['选择获得一张牌', result.cards], true);
+                                if (result.cards?.length) player.chooseButton(['选择获得一张牌', result.cards], true);
                                 else event.finish();
                                 ('step 4');
                                 if (result.links?.length) {
@@ -9493,7 +9493,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.chooseCard('he', true, '交给' + get.translation(player) + '一张牌');
                                 } else event.finish();
                                 ('step 9');
-                                if (result.bool) player.gain(result.cards, target, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, target, 'giveAuto');
                             },
                         },
                         ty_xiangu: {

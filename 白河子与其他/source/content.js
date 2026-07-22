@@ -296,7 +296,7 @@ export async function content(config, pack) {
         }
       } else event.finish();
       'step 2';
-      if (result.bool) for (var i of result.targets) player.discardPlayerCard(i, 'he', true);
+      if (result.targets?.length) for (var i of result.targets) player.discardPlayerCard(i, 'he', true);
     };
     lib.skill.lqhc_chuqiao.ai = { threaten: 10 };
   }

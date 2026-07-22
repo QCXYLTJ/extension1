@@ -3293,10 +3293,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget([0, Infinity], '请选择要观看手牌的角色(直接点确定默认选己方角色)').set('ai', () => -1);
                                 ('step 1');
-                                if (result.bool) qyhcCL.showcard = result.targets.length ? result.targets : game.me.getFriends(true);
+                                if (result.targets?.length) qyhcCL.showcard = result.targets.length ? result.targets : game.me.getFriends(true);
                                 player.chooseTarget([0, Infinity], '请选择要控制的角色(直接点确定默认选己方角色)').set('ai', () => -1);
                                 ('step 2');
-                                if (result.bool) qyhcCL.kongzhi = result.targets.length ? result.targets : game.me.getFriends(true);
+                                if (result.targets?.length) qyhcCL.kongzhi = result.targets.length ? result.targets : game.me.getFriends(true);
                             },
                             ai: {
                                 viewHandcard: true,
@@ -6478,7 +6478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool) player.gain(result.links[0], 'gain2');
+                                if (result.links?.length) player.gain(result.links[0], 'gain2');
                                 ('step 4');
                                 player.trymarkAutoSkill('clwt_funan_QYHCqyhc_cl');
                                 event.finish();
@@ -6527,7 +6527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     if (cards.length) result.targets[0].chooseButton(['〖复难〗请获得以下一张牌', cards], true).set('ai', get.buttonValue).direct = true;
                                 } else event.goto(4);
                                 ('step 8');
-                                if (result.bool) event.TA.gain(result.links[0], 'gain2');
+                                if (result.links?.length) event.TA.gain(result.links[0], 'gain2');
                             },
                             ai: {
                                 effect: {
@@ -7519,7 +7519,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 8 - get.value(card);
                                         });
                                         ('step 3');
-                                        if (result.bool) player.useSkill('qyhc_poli', result.cards);
+                                        if (result.cards?.length) player.useSkill('qyhc_poli', result.cards);
                                     },
                                 },
                             },
@@ -8251,7 +8251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt', `〖月旦〗:请重铸一张牌<br><span class=bluetext>共需重铸三张牌</span><br><span class=greentext>目前是${ttf[event.counter - 1]}</span>`)
                                     .set('prompt2', lib.config.extension_群英荟萃乀摧林_prom ? '' : '〖月旦>锁定技,转换技,每轮开始时,你<span class=promptext>:〖阴〗</span>依次重铸三张牌<span class=promptext>;〖阳〗摸五张牌并将三张牌置于牌堆顶</span>.<\center>');
                                 ('step 2');
-                                if (result.bool) player.recast(result.cards);
+                                if (result.cards?.length) player.recast(result.cards);
                                 if (event.counter < 3) event.goto(1);
                                 else event.finish();
                                 ('step 3');
@@ -12101,7 +12101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - value;
                                 });
                                 ('step 2');
-                                if (result.bool) trigger.source.give(result.cards[0], player);
+                                if (result.cards?.length) trigger.source.give(result.cards[0], player);
                                 else trigger.source.loseHp();
                             },
                             ai: {
@@ -13270,7 +13270,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', lib.config.extension_群英荟萃乀摧林_prom ? '' : '〖索穴>' + lib.translate.clyl_suoxue_info);
                                 } else event.goto(3);
                                 ('step 2');
-                                if (result.bool) event.current.give(result.cards[0], player);
+                                if (result.cards?.length) event.current.give(result.cards[0], player);
                                 ('step 3');
                                 if (event.list.length) event.goto(1);
                             },
@@ -16560,7 +16560,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         else if (cards.length) event._result = { links: cards, bool: true };
                         else event.finish();
                         ('step 2');
-                        if (result.bool) player.gain(result.links, 'gain2');
+                        if (result.links?.length) player.gain(result.links, 'gain2');
                     },
                     ai: {
                         basic: {
@@ -16892,7 +16892,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 .set('targetx', target);
                         } else event.finish();
                         ('step 2');
-                        if (result.bool) target.give(result.cards, player);
+                        if (result.cards?.length) target.give(result.cards, player);
                     },
                     ai: {
                         value: 7,
@@ -16977,7 +16977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             else player.chooseCard('h', true, num, '【推心置腹】交给' + get.translation(target) + get.cnNumber(num) + '张牌');
                         } else event.finish();
                         ('step 2');
-                        if (result.bool) player.give(result.cards, target);
+                        if (result.cards?.length) player.give(result.cards, target);
                     },
                     ai: {
                         order: 5,

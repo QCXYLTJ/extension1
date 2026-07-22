@@ -5241,7 +5241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('du', card.name == 'du');
                                 ('step 2');
-                                if (result && result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.storage.duyion.push(result.targets[0]);
                                     target.gain(card, 'gain2');
@@ -6615,7 +6615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             };
                                         } else player.chooseButton(['请选择获得其中一张牌', cards], true);
                                         ('step 1');
-                                        if (result.bool) player.gain(result.links[0], 'gain2');
+                                        if (result.links?.length) player.gain(result.links[0], 'gain2');
                                     },
                                 },
                             },
@@ -9426,7 +9426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player, 'fire');
                                     };
                                 ('step 2');
-                                if (result.bool) result.targets[0].damage('fire', [1, 2, 2, 3, 3].randomGet());
+                                if (result.targets?.length) result.targets[0].damage('fire', [1, 2, 2, 3, 3].randomGet());
                             },
                             subSkill: {
                                 1: {

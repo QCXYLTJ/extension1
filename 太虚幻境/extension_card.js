@@ -1198,7 +1198,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                         } else event.finish();
                     }
                     ('step 2');
-                    if (result.bool) player.chooseUseTarget({ name: result.links[0][2] }, player.getCards('h'), true);
+                    if (result.links?.length) player.chooseUseTarget({ name: result.links[0][2] }, player.getCards('h'), true);
                 },
                 ai: {
                     basic: {

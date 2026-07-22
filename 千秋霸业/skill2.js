@@ -30278,7 +30278,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target.useCard({ name: 'lg_linjizhibian' }, result.targets[0]);
 			}
 		},
@@ -45912,7 +45912,7 @@ const skill = {
 				player.addTempSkill('lg_qiaoli2');
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.useCard({ name: 'sha' }, result.cards, target);
 			}
 			('step 4');

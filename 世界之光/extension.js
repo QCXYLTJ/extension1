@@ -5494,7 +5494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool) trigger.targets.push(result.targets[0]);
+                                if (result.targets?.length) trigger.targets.push(result.targets[0]);
                             },
                         },
                         lg_yezhong: {
@@ -15897,7 +15897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.draw();
                                         player.chooseCardButton('将以此法移出游戏的一张牌置入弃牌堆', true, player.getExpansions('lg_baonuemowang'));
                                         ('step 1');
-                                        if (result.bool) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                     },
                                 },
                             },
@@ -17728,7 +17728,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return 6 - get.value(card);
                                         });
                                 ('step 1');
-                                if (result.bool) trigger.player.give(result.cards, player);
+                                if (result.cards?.length) trigger.player.give(result.cards, player);
                                 else {
                                     player.draw(5);
                                     trigger.targets.remove(player);

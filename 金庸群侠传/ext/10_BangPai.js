@@ -2044,7 +2044,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           return 7 - get.value(card);
         };
         'step 1';
-        if (result.bool) event.card1 = result.cards;
+        if (result.cards?.length) event.card1 = result.cards;
         target.chooseToDiscard([1, Infinity], '请弃置至少一张手牌', 'h', true).ai = function (card) {
           return 7 - get.value(card);
         };

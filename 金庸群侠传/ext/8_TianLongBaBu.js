@@ -874,7 +874,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return lib.card.loseCard_ai.iCard(button.link, player, target);
             });
             'step 1';
-            if (result.bool) player.addToExpansion(result.links, target, 'give').gaintag.add('tlbb_woyu');
+            if (result.links?.length) player.addToExpansion(result.links, target, 'give').gaintag.add('tlbb_woyu');
           }
         },
         //邪叶二娘 棉花糖 20240702

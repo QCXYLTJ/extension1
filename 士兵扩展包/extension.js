@@ -7469,7 +7469,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								});
 								('step 1');
-								if (result.bool) player.gainPlayerCard('he', result.targets[0], 1, 'visible');
+								if (result.targets?.length) player.gainPlayerCard('he', result.targets[0], 1, 'visible');
 								else event.finish();
 								('step 2');
 								if (get.type(result.cards[0]) == 'basic') {
@@ -11508,7 +11508,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(player, target);
 								});
 								('step 1');
-								if (result.bool) player.gainPlayerCard('he', result.targets[0], 1, 'visible');
+								if (result.targets?.length) player.gainPlayerCard('he', result.targets[0], 1, 'visible');
 								else event.finish();
 								('step 2');
 								event.num = [1, 3].randomGet();

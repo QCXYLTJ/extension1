@@ -2241,7 +2241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 1');
-                                if (result.bool) trigger.player.give(result.cards, player);
+                                if (result.cards?.length) trigger.player.give(result.cards, player);
                                 else {
                                     trigger.player.skip('phaseUse');
                                 }
@@ -3524,7 +3524,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }, name);
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) event.target.give(result.cards, player);
+                                if (result.cards?.length) event.target.give(result.cards, player);
                             },
                         },
                         qw_guao: {
@@ -4110,7 +4110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCardButton('将任意张牌当作杀对伤害来源使用', player.getExpansions('qw_ljmark'), [1, Infinity]);
                                 ('step 1');
-                                if (result.bool) player.useCard({ name: 'sha' }, result.links, trigger.source, false);
+                                if (result.links?.length) player.useCard({ name: 'sha' }, result.links, trigger.source, false);
                             },
                             group: 'qw_tgfs_damage',
                             subSkill: {

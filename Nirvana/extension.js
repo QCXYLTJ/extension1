@@ -10235,7 +10235,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             });
                                         }
                                         ('step 3');
-                                        if (result.bool) player.gain(result.cards, event.target, 'giveAuto');
+                                        if (result.cards?.length) player.gain(result.cards, event.target, 'giveAuto');
                                         if (event.target1 && event.target != event.target1) {
                                             event.target = event.target1;
                                             event.goto(2);
@@ -14789,7 +14789,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(2);
                                 }
                                 ('step 1');
-                                if (result.bool) event.xuanze = result.targets[0];
+                                if (result.targets?.length) event.xuanze = result.targets[0];
                                 ('step 2');
                                 for (var i = 0; i < targets.length; i++) {
                                     if (targets.length == cards.length) targets[i].damage('fire', 'nocard');
@@ -18932,7 +18932,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.goto(4);
                                 }
                                 ('step 3');
-                                if (result.bool) var num = result.cards.length;
+                                if (result.cards?.length) var num = result.cards.length;
                                 player.draw(num);
                                 ('step 4');
                             },
@@ -23467,7 +23467,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }).animate = false;
                                 }
                                 ('step 2');
-                                if (result.bool) result.targets[0].damage();
+                                if (result.targets?.length) result.targets[0].damage();
                             },
                         },
                         szdl_songci: {
@@ -30840,7 +30840,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 2');
-                                if (result.bool) player.gain(result.links, 'draw');
+                                if (result.links?.length) player.gain(result.links, 'draw');
                                 ('step 3');
                                 if (player.maxHp - player.hp >= 2) player.addTempSkill('szdl_juesi1_tao', { player: 'phaseBegin' });
                                 if (player.maxHp - player.hp >= 3) player.addTempSkill('szdl_juesi1_sha', { player: 'phaseBegin' });

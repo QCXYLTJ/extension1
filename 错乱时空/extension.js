@@ -33455,7 +33455,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool) player.storage.祈愿.push(result.targets[0]);
+                                if (result.targets?.length) player.storage.祈愿.push(result.targets[0]);
                             },
                             group: ['祈愿_recover'],
                             subSkill: {

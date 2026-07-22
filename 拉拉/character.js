@@ -3177,7 +3177,7 @@ window.lala_import(function (lib, game, ui, get, ai, _status) {
                             event.goto(3);
                         }
                         ('step 2');
-                        if (result.bool) player.give(result.cards, target);
+                        if (result.cards?.length) player.give(result.cards, target);
                         ('step 3');
                         if (targets.length) event.goto(1);
                     },

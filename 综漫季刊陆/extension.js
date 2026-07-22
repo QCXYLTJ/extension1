@@ -2349,7 +2349,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.goto(3);
                                 ('step 2');
-                                if (result.bool) player.gain(result.cards, event.current, 'giveAuto');
+                                if (result.cards?.length) player.gain(result.cards, event.current, 'giveAuto');
                                 ('step 3');
                                 if (event.current.hp <= 0) {
                                     event.current.dying({ source: player });

@@ -2568,7 +2568,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.goto(2);
 								}
 								('step 1');
-								if (result.bool) event.xuanze = result.targets[0];
+								if (result.targets?.length) event.xuanze = result.targets[0];
 								('step 2');
 								for (var i = 0; i < targets.length; i++) {
 									if (targets.length == cards.length) targets[i].damage('fire', 'nocard');
@@ -10652,12 +10652,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								trigger.target.chooseCard('展示一张手牌', true);
 								('step 3');
-								if (result.bool) event.card1 = result.cards[0];
+								if (result.cards?.length) event.card1 = result.cards[0];
 								else event.goto(8);
 								('step 4');
 								event.jnmb.chooseCard('展示一张手牌', true);
 								('step 5');
-								if (result.bool) event.card2 = result.cards[0];
+								if (result.cards?.length) event.card2 = result.cards[0];
 								else event.goto(8);
 								('step 6');
 								trigger.target.$compare(event.card1, event.jnmb, event.card2);
@@ -25579,7 +25579,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									else return false;
 								});
 								('step 1');
-								if (result.bool) player.chooseUseTarget({ name: 'wanjian' }, result.cards, true).viewAs = true;
+								if (result.cards?.length) player.chooseUseTarget({ name: 'wanjian' }, result.cards, true).viewAs = true;
 								else player.addTempSkill('yscy_xiaoguo');
 							},
 							subSkill: {
@@ -33084,7 +33084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										});
 								} else event.finish();
 								('step 2');
-								if (result.bool) player.useCard(result.cards[0], event.mubiao, true);
+								if (result.cards?.length) player.useCard(result.cards[0], event.mubiao, true);
 							},
 						},
 						ifmsxz: {

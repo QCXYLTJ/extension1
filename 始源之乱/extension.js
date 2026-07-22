@@ -796,7 +796,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 1');
-                                if (result.bool) player.gain(result.links, 'gain2');
+                                if (result.links?.length) player.gain(result.links, 'gain2');
                             },
                         },
                         xlg_yaoshen: {
@@ -2525,7 +2525,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 trigger.cancel();
                                 player.chooseCardButton(lib.translate[trigger.player.name] + '的手牌', trigger.player.getCards('h'), 2, true);
                                 ('step 1');
-                                if (result.bool) trigger.player.discard(result.links[0]);
+                                if (result.links?.length) trigger.player.discard(result.links[0]);
                             },
                             group: ['xlg_bibodangyang_roundcount'],
                         },
@@ -4691,7 +4691,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('goon', get.effect(target, { name: 'losehp' }, target, target) >= 0);
                                 ('step 3');
-                                if (result.bool) target.give(result.cards, player, true);
+                                if (result.cards?.length) target.give(result.cards, player, true);
                                 else target.loseHp(2);
                                 if (targets.length) event.goto(2);
                             },

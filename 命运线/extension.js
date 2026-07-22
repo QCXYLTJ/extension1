@@ -11937,7 +11937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							};
 							('step 1');
 							if (!result.bool || result.cards.length < 1) {
-								if (result.bool) target.damage(1 - result.cards.length, 'thunder');
+								if (result.cards?.length) target.damage(1 - result.cards.length, 'thunder');
 								else target.damage(1, 'thunder');
 							}
 						},

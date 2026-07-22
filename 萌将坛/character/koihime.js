@@ -6060,7 +6060,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						};
 					} else event.finish();
 					('step 2');
-					if (result && result.bool) {
+					if (result.cards?.length) {
 						var cards = result.cards || [];
 						if (cards.length) {
 							player.showCards(cards);
@@ -11235,7 +11235,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						}
 					} else event.finish();
 					('step 2');
-					if (result && result.bool) {
+					if (result.targets?.length) {
 						var targets = result.targets || [];
 						if (targets.length) {
 							game.log(targets, '成为了', trigger.card, '的额外目标');

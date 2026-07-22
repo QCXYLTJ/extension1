@@ -1376,7 +1376,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     })
                                     .set('du', card.name == 'du');
                                 ('step 2');
-                                if (result && result.bool) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line(target);
                                     target.gain(event.card, 'gain2');
@@ -1633,7 +1633,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var cards = player.getExpansions('zi_cangjuan');
                                         player.chooseButton(['授学:选择移去一张<典>', cards], true);
                                         ('step 1');
-                                        if (result.bool) player.loseToDiscardpile(result.links);
+                                        if (result.links?.length) player.loseToDiscardpile(result.links);
                                     },
                                 },
                             },
@@ -4954,7 +4954,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('filterButton', (button) => get.type2(button.link) == 'trick')
                                     .set('ai', (button) => get.value(button.link)); //QQQ
                                 ('step 3');
-                                if (result.bool) player.gain(result.links, 'gain2');
+                                if (result.links?.length) player.gain(result.links, 'gain2');
                             },
                             subSkill: {
                                 achieve: {
@@ -5072,7 +5072,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.value(button.link, player);
                                     });
                                 ('step 3');
-                                if (result.bool) player.gain(result.links, 'gain2');
+                                if (result.links?.length) player.gain(result.links, 'gain2');
                             },
                         },
                         zi_xingbu: {
@@ -5582,7 +5582,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (!trigger.fixedResult) trigger.fixedResult = {};
                                 player.chooseCard('e', '天难:请选择一张装备牌作为拼点牌', true);
                                 ('step 1');
-                                if (result.bool) trigger.fixedResult[player.playerid] = result.cards[0];
+                                if (result.cards?.length) trigger.fixedResult[player.playerid] = result.cards[0];
                             },
                             subSkill: {
                                 number: {
@@ -6574,7 +6574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt', '弃置' + get.translation(target) + '每个区域内的一张牌');
                                 }
                                 ('step 1');
-                                if (result.bool) target.discard(result.links);
+                                if (result.links?.length) target.discard(result.links);
                                 player.addSkill('zi_baobian_remove');
                             },
                             subSkill: {
@@ -6630,7 +6630,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 .set('prompt', '弃置' + get.translation(target) + '每个区域内的一张牌');
                                         }
                                         ('step 3');
-                                        if (result.bool) target.discard(result.links);
+                                        if (result.links?.length) target.discard(result.links);
                                         if (event.num < event.targets.length - 1) {
                                             event.num++;
                                             event.goto(2);

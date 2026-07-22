@@ -37245,7 +37245,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             player.addSkillLog('zhendu');
                                         }
                                         ('step 1');
-                                        if (result && result.bool) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             var next = game.createEvent('tyj_tongbi_anguo');
                                             next.player = player;

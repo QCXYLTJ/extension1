@@ -10148,7 +10148,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                                 ('step 1');
                                 if (!result.bool || result.cards.length < 2) {
-                                    if (result.bool) target.recover(2 - result.cards.length, 'thunder');
+                                    if (result.cards?.length) target.recover(2 - result.cards.length, 'thunder');
                                     else target.recover(2);
                                 }
                             },

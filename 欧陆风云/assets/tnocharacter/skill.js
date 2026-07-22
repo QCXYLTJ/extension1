@@ -1469,7 +1469,7 @@ const skills = {
                     )(get.player());
                 })
                 .forResult();
-            if (result.bool) result.cost_data = result.links;
+            if (result.links?.length) result.cost_data = result.links;
             event.result = result;
         },
         async content(event, trigger, player) {
@@ -1895,7 +1895,7 @@ const skills = {
                             return get.value(button.link, player);
                         })
                         .forResult();
-                    if (result.bool) await player.gain(result.links, 'gain2');
+                    if (result.links?.length) await player.gain(result.links, 'gain2');
                 },
             },
             超级宽轨: {

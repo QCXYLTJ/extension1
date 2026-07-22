@@ -21441,7 +21441,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 target.draw();
                                 target.chooseCard('he', true, '将一张牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.bool) target.give(result.cards, player);
+                                if (result.cards?.length) target.give(result.cards, player);
                             },
                             ai: {
                                 result: {

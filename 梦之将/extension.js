@@ -3044,7 +3044,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool) player.addSkill(result.links);
+                                if (result.links?.length) player.addSkill(result.links);
                             },
                         },
                         genm_meng_shulv: {

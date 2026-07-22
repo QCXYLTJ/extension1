@@ -41,7 +41,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						},
 					});
 					('step 1');
-					if (result && result.bool) {
+					if (result.cards?.length) {
 						event.cards = result.cards;
 						event.target = result.targets[0];
 						player.showCards(event.cards);
@@ -1784,7 +1784,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						if (list.length) player.gain(list, 'gain2');
 					}
 					('step 3');
-					if (result.bool) player.gain(result.links[0]);
+					if (result.links?.length) player.gain(result.links[0]);
 					if (event.count > 0) event.goto(1);
 				},
 			},

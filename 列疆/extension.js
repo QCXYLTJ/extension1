@@ -9302,7 +9302,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 ('step 3');
-                                if (result.bool) result.targets[0].gain(event.cards1, 'gain2');
+                                if (result.targets?.length) result.targets[0].gain(event.cards1, 'gain2');
                             },
                             ai: {
                                 basic: {
@@ -9769,7 +9769,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool) player.gain(result.cards, 'gain');
+                                if (result.cards?.length) player.gain(result.cards, 'gain');
                             },
                         },
                         zhulan_skill: {
@@ -10965,7 +10965,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseTarget('你令一名角色摸' + get.cnNumber(trigger.cards.length) + '张牌', true);
                                 ('step 1');
-                                if (result.bool) result.targets[0].draw(trigger.cards.length);
+                                if (result.targets?.length) result.targets[0].draw(trigger.cards.length);
                             },
                             mod: {
                                 canBeGained(card) {
@@ -12060,7 +12060,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool) result.targets[0].draw();
+                                if (result.targets?.length) result.targets[0].draw();
                             },
                             ai: {
                                 threaten: 2.4,

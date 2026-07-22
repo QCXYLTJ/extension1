@@ -5777,7 +5777,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                 player.removeSkill('离宫');
                 player.chooseButton(ui.create.dialog('请选择你要进行替换的两名武将', [femalenames, 'character']), 2);
                 'step 1';
-                if (result.bool) player.init(result.links[0], result.links[1]);
+                if (result.links?.length) player.init(result.links[0], result.links[1]);
               },
               ai: {
                 maixie_defend: true,
@@ -20406,7 +20406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   return -get.attitude(player, target);
                 });
                 'step 1';
-                if (result.bool) player.gainPlayerCard('he', result.targets[0], 1, 'visible');else
+                if (result.targets?.length) player.gainPlayerCard('he', result.targets[0], 1, 'visible');else
                 event.finish();
                 'step 2';
                 if (result.cards?.length) {

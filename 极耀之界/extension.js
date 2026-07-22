@@ -3790,7 +3790,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                     return get.effect(target, { name: 'guohe_copy2' }, player, player) > 0;
                                                 });
                                         ('step 1');
-                                        if (result.bool) player.discardPlayerCard(result.targets[0], 'hej', true);
+                                        if (result.targets?.length) player.discardPlayerCard(result.targets[0], 'hej', true);
                                     },
                                 },
                             },
@@ -9323,7 +9323,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (cards.length) player.chooseButton(['选择获得一张<创>', cards], true);
                                         else event.finish();
                                         ('step 1');
-                                        if (result.bool) player.gain(result.links, player, 'giveAuto');
+                                        if (result.links?.length) player.gain(result.links, player, 'giveAuto');
                                     },
                                 },
                             },
@@ -10652,7 +10652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'guohe_copy2' }, player, player) > 0;
                                     });
                                 ('step 1');
-                                if (result.bool) player.discardPlayerCard(result.targets[0], 'hej', true);
+                                if (result.targets?.length) player.discardPlayerCard(result.targets[0], 'hej', true);
                                 else event.finish();
                             },
                             threaten: 1.5,
@@ -31260,7 +31260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 5');
-                                if (result.bool) target.useCard({ name: result.links[0][2], nature: result.links[0][3] }, false, event.target2);
+                                if (result.links?.length) target.useCard({ name: result.links[0][2], nature: result.links[0][3] }, false, event.target2);
                                 ('step 6');
                                 var bool = game.hasPlayer2(function (current) {
                                     return current.getHistory('damage', function (evt) {
@@ -40394,7 +40394,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }); //QQQ
                                 }
                                 ('step 2');
-                                if (result.bool) player.useCard({ name: 'sha' }, result.cards[0], target).viewAs = false;
+                                if (result.cards?.length) player.useCard({ name: 'sha' }, result.cards[0], target).viewAs = false;
                                 else event.finish();
                             },
                             group: 'kpjx_guowu_1',
@@ -42222,7 +42222,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 trigger.player.chooseCard('he', true, '将一张牌交给' + get.translation(player));
                                 ('step 1');
-                                if (result.bool) trigger.player.give(result.cards, player);
+                                if (result.cards?.length) trigger.player.give(result.cards, player);
                                 ('step 2');
                                 var card = player.getEquip('tx_feilunzhanyu');
                                 if (card) player.discard(card);
