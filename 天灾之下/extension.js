@@ -5769,15 +5769,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											var player = get.player();
 											return get.effect(target, { name: 'guohe', cards: [ui.selected.buttons[0].link] }, player, player);
 										})
-										.set('ai2', function (button) {
-											var player = get.player(),
-												target = get.owner(button.link);
-											var att = 0,
-												val = get.buttonValue(button);
-											if (target) att = get.attitude(player, target); //QQQ
-											if (att > 0) return player.getUseValue(button.link) > player.getUseValue({ name: 'guohe', cards: [ui.selected.buttons[0].link] }) ? 0 : -player.getUseValue(button.link);
-											if (target != player && get.position(button.link) == 'e') return 10;
-											return get.buttonValue(button);
+										.set('ai2', function (target) {
+											if (target) {
+												return get.effect_use(target) + 0.01;
+											}
 										});
 								}
 								('step 4');
@@ -6592,10 +6587,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if (get.tag(card, 'damage')) return _status.currentPhase == get.player() && card.name == 'sha' && !(get.player().countCards('j', 'lebu') || get.player().skipList.includes('phaseUse')) ? 0 : _status.event.player.getUseValue(card);
 											return (get.type2(card, false) == 'trick' ? 100 : 0) + 6 - get.value(card);
 										})
-										.set('ai2', function () {
-											//QQQ
-											if (get.tag(get.card(true), 'damage')) return get.effect_use.apply(this, arguments);
-											return 1;
+										.set('ai2', function (target) {
+											if (target) {
+												return get.effect_use(target) + 0.01;
+											}
 										})
 										.set('position', 'he')
 										.set('addCount', false);
@@ -23969,8 +23964,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return lib.filter.filterTarget.apply(this, arguments);
 										}
 									)
-									.set('ai2', function () {
-										return get.effect_use.apply(this, arguments) + 0.01;
+									.set('ai2', function (target) {
+										if (target) {
+											return get.effect_use(target) + 0.01;
+										}
 									});
 								('step 2');
 								if (result.bool == false) event.current.loseHp();

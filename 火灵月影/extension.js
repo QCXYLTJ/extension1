@@ -22,7 +22,7 @@ const kangxing1 = function () {
 		get() {
 			return qcontains;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	const qappend = HTMLElement.prototype.appendChild;
@@ -30,7 +30,7 @@ const kangxing1 = function () {
 		get() {
 			return qappend;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	const qgetstyle = window.Element.prototype.getAttribute;
@@ -38,7 +38,7 @@ const kangxing1 = function () {
 		get() {
 			return qgetstyle;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	const qsetstyle = window.Element.prototype.setAttribute;
@@ -46,7 +46,7 @@ const kangxing1 = function () {
 		get() {
 			return qsetstyle;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	const qpush = Array.prototype.push;
@@ -54,7 +54,7 @@ const kangxing1 = function () {
 		get() {
 			return qpush;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	const qincludes = Array.prototype.includes;
@@ -62,7 +62,7 @@ const kangxing1 = function () {
 		get() {
 			return qincludes;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	const qfilter = Array.prototype.filter;
@@ -70,7 +70,7 @@ const kangxing1 = function () {
 		get() {
 			return qfilter;
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	if (!lib.config.HL_kangxing) {
@@ -405,7 +405,7 @@ const kangxing1 = function () {
 					return this;
 				};
 			},
-			set() {},
+			set() { },
 			configurable: false,
 		});
 		Reflect.defineProperty(player, 'isAlive', {
@@ -420,7 +420,7 @@ const kangxing1 = function () {
 					return !this.classList.contains('dead');
 				};
 			},
-			set() {},
+			set() { },
 			configurable: false,
 		});
 		Reflect.defineProperty(player, 'isDead', {
@@ -435,7 +435,7 @@ const kangxing1 = function () {
 					return this.classList.contains('dead');
 				};
 			},
-			set() {},
+			set() { },
 			configurable: false,
 		});
 		Reflect.defineProperty(player, 'isIn', {
@@ -450,7 +450,7 @@ const kangxing1 = function () {
 					return !this.classList.contains('dead') && !this.classList.contains('out') && !this.removed;
 				};
 			},
-			set() {},
+			set() { },
 			configurable: false,
 		});
 		return player;
@@ -567,7 +567,7 @@ const kangxing1 = function () {
 				}
 			};
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	}); //临时技能锁定,技能钩子锁定,lib.skill锁定
 	Reflect.defineProperty(game, 'nkangxing', {
@@ -611,7 +611,7 @@ const kangxing1 = function () {
 				}
 			};
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	}); //名字抗性加入,类列表节点监听
 	Reflect.defineProperty(game, 'HL_dead', {
@@ -635,7 +635,7 @@ const kangxing1 = function () {
 				}
 			};
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	}); //斩杀测试
 	//—————————————————————————————————————————————————————————————————————————————可有可无的部分,但是防止某些人强制胜利就自以为赢了
@@ -731,7 +731,7 @@ const kangxing2 = function () {
 						global: ['roundStart'],
 					};
 				},
-				set trigger(v) {},
+				set trigger(v) { },
 				forced: true,
 				usable(skill, player) {
 					for (const npc of game.players) {
@@ -780,7 +780,7 @@ const kangxing2 = function () {
 				group: ['bossfinish'],
 			};
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 	HL.PJban = {
@@ -906,7 +906,7 @@ const kangxing2 = function () {
 							[namex]: game.triggerlist[namex].slice(),
 						};
 					},
-					set trigger(v) {},
+					set trigger(v) { },
 					forced: true,
 					popup: false,
 					filter(event, player, namey) {
@@ -1069,7 +1069,7 @@ const kangxing2 = function () {
 					_priority: 20,
 				};
 			},
-			set() {},
+			set() { },
 			configurable: false,
 		});
 	}
@@ -1092,7 +1092,7 @@ const kangxing2 = function () {
 						global: ['phaseAfter'],
 					};
 				},
-				set trigger(v) {},
+				set trigger(v) { },
 				forced: true,
 				async content(event, trigger, player) {
 					HL.PJban.trigger = [];
@@ -1100,7 +1100,7 @@ const kangxing2 = function () {
 				group: ['bossfinish', 'HL_pingjian_player', 'HL_pingjian_target', 'HL_pingjian_source', 'HL_pingjian_global'],
 			};
 		},
-		set() {},
+		set() { },
 		configurable: false,
 	});
 };
@@ -1117,7 +1117,7 @@ const boss = function () {
 		filter() {
 			game.sort();
 		},
-		content() {},
+		content() { },
 	}; //排座位
 	let _me;
 	Reflect.defineProperty(game, 'me', {
@@ -1226,7 +1226,7 @@ const boss = function () {
 			cards: [],
 		},
 		gaintag: [],
-		forResult() {},
+		forResult() { },
 	};
 	game.changeBossQ = function (name) {
 		_status.event.forceDie = true;
@@ -1408,7 +1408,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					get() {
 						return list.randomSort().slice(); //每次生成新数组,不加slice的话每次都是原数组,修改会被映射进去
 					},
-					set() {},
+					set() { },
 				});
 			}
 			const bgm = lib.config.extension_火灵月影_BGM;
@@ -1418,7 +1418,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			}
 		},
 		content(config, pack) {
-			get.vcardInfo = function (card) {}; //卡牌storage里面存了DOM元素会循环引用导致不能JSON.stringify
+			get.vcardInfo = function (card) { }; //卡牌storage里面存了DOM元素会循环引用导致不能JSON.stringify
 			game.addGroup('仙', `<img src="extension/火灵月影/other/xian.png"width="30"height="30">`, '仙', {
 				color: ' #28e3ce',
 				image: 'ext:火灵月影/other/xian.png',
@@ -1490,7 +1490,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						get() {
 							return [];
 						},
-						set() {},
+						set() { },
 						configurable: false,
 					});
 				},
@@ -1526,7 +1526,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							get() {
 								return trigger.step > 5;
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 						let damage = trigger.num;
@@ -1546,7 +1546,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							get() {
 								return npc;
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 					}
@@ -1555,21 +1555,21 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							get() {
 								return trigger.step > 16;
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 						Reflect.defineProperty(trigger, 'excluded', {
 							get() {
 								return [];
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 						Reflect.defineProperty(trigger, 'all_excluded', {
 							get() {
 								return false;
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 						if (get.tag(trigger.card, 'damage')) {
@@ -1578,7 +1578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								get() {
 									return targets;
 								}, //用变量保存一下,防止杀死一名敌人之后targets数组变化导致漏过一个
-								set() {},
+								set() { },
 								configurable: false,
 							});
 						} //用牌击穿
@@ -1588,14 +1588,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							get() {
 								return trigger.step > 12;
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 						Reflect.defineProperty(trigger, 'player', {
 							get() {
 								return player;
 							},
-							set() {},
+							set() { },
 							configurable: false,
 						});
 					}
@@ -1755,7 +1755,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return !lib.character[i];
 						};
 					},
-					set() {},
+					set() { },
 				}); //取消禁将
 				lib.filter.characterDisabled2 = function (i) {
 					return !lib.character[i];
@@ -2375,7 +2375,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return dialog;
 						};
 					},
-					set() {},
+					set() { },
 				});
 			} //武将全部可选
 		},
@@ -3955,7 +3955,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												get() {
 													return 'shen';
 												},
-												set() {},
+												set() { },
 											});
 										}
 										player.when({ source: 'damageAfter' }).then(() => {
@@ -4297,7 +4297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											get() {
 												return {};
 											},
-											set() {},
+											set() { },
 											configurable: false,
 										});
 									}
@@ -4307,7 +4307,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												get() {
 													return [];
 												},
-												set() {},
+												set() { },
 												configurable: false,
 											});
 										}
@@ -4318,7 +4318,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												get() {
 													return [];
 												},
-												set() {},
+												set() { },
 												configurable: false,
 											});
 										}
@@ -4327,28 +4327,28 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										get() {
 											return [];
 										},
-										set() {},
+										set() { },
 										configurable: false,
 									});
 									Reflect.defineProperty(player, 'invisibleSkills', {
 										get() {
 											return [];
 										},
-										set() {},
+										set() { },
 										configurable: false,
 									});
 									Reflect.defineProperty(player, 'hiddenSkills', {
 										get() {
 											return [];
 										},
-										set() {},
+										set() { },
 										configurable: false,
 									});
 									Reflect.defineProperty(player, 'tempSkills', {
 										get() {
 											return {};
 										},
-										set() {},
+										set() { },
 										configurable: false,
 									});
 									Reflect.defineProperty(player, 'additionalSkills', {
@@ -4362,7 +4362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												},
 											);
 										},
-										set() {},
+										set() { },
 										configurable: false,
 									});
 								};
@@ -4566,8 +4566,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											(card) => card.name == 'sha',
 											(c, p, target) => target.isFriendsOf(npc),
 										)
-										.set('ai2', function () {
-											return 1;
+										.set('ai2', function (target) {
+											if (target) {
+												return get.effect_use(target) + 0.01;
+											}
 										})
 										.forResult();
 									if (result?.card) {
@@ -8122,7 +8124,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									get() {
 										return {};
 									},
-									set() {},
+									set() { },
 									configurable: false,
 								}); //装备区废除抗性
 								game.skangxing(player); //移除/赋空技能抗性
@@ -8418,7 +8420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filter(event, player) {
 										return event.num < 0;
 									}, //掉真血才触发
-									async content(event, trigger, player) {},
+									async content(event, trigger, player) { },
 								}, // 受伤语音
 								2: {
 									markimage: 'extension/火灵月影/image/HL_wufan_2.png',
@@ -8824,14 +8826,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									get() {
 										return player.maxHp - 1;
 									},
-									set() {},
+									set() { },
 									configurable: false,
 								});
 								Reflect.defineProperty(player, 'skipList', {
 									get() {
 										return [];
 									},
-									set() {},
+									set() { },
 									configurable: false,
 								});
 							},
@@ -9092,7 +9094,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											get() {
 												return [];
 											},
-											set() {},
+											set() { },
 											configurable: false,
 										});
 									},
@@ -9108,7 +9110,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											get() {
 												return trigger.step > num;
 											},
-											set() {},
+											set() { },
 											configurable: false,
 										});
 									},
@@ -10419,7 +10421,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									get() {
 										return [];
 									},
-									set() {},
+									set() { },
 									configurable: false,
 								});
 							},

@@ -1536,7 +1536,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_paoying1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -1731,7 +1731,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xiefengwuye: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -1902,7 +1902,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_monibaozhu: {
 							nobracket: true,
@@ -1983,7 +1983,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_fennuzhiyan1: {
 							audio: 'ext:幻颜风华/audio:1',
@@ -2106,7 +2106,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_simianchuge1: {
 							audio: 'ext:幻颜风华/audio:1',
@@ -2406,7 +2406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_tiandijiaotai: {
 							mod: {
@@ -2522,7 +2522,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_bingyuansu: {
 							trigger: {
@@ -2615,7 +2615,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filter(event, player) {
 								return get.distance(player, event.target, 'attack') <= 1 && ((get.type(event.card) != 'delay' && event.card.name == 'sha') || get.type(event.card) == 'trick');
 							},
-							content() {},
+							content() { },
 							mod: {
 								wuxieRespondable(card, player, target, current) {
 									if (player != current && get.distance(player, current, 'attack') <= 1) {
@@ -2680,7 +2680,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_junshenzhijian2: {
 							trigger: {
@@ -2813,7 +2813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_leiyuansu: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -2862,7 +2862,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_zhiyehuanxian0After',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_ziyezhiniao1: {
 							audio: 'ext:幻颜风华/audio:1',
@@ -2921,11 +2921,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								'step 0';
-								var ai2 = function (button) {
-									var val = get.buttonValue(button);
-									if (get.attitude(_status.event.player, get.owner(button.link)) > 0) return -val;
-									return val;
-								};
 								var att = get.attitude(player, trigger.target) <= 0;
 								//var boolai=trigger.parent.directHit.includes(trigger.target);
 								event.suits = [];
@@ -2946,7 +2941,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return result;
 									})
 									.set('att', att)
-									.set('ai2', ai2);
+									.set('ai2', function (target) {
+										if (target) {
+											return get.effect_use(target) + 0.01;
+										}
+									});
 								('step 1');
 								if (result.links?.length) {
 									var suits = [];
@@ -2990,7 +2989,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_yexunyingyi1: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -3026,7 +3025,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_yexunyingyi1Begin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_lumiya0: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -3293,7 +3292,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_quanzouhua0: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -3603,7 +3602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_bingzhuifengbao1: {
 							trigger: {
@@ -3800,7 +3799,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jianshichuansong: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -3943,7 +3942,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jianshichuansong1: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -4008,10 +4007,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return player != target && get.distance(player, target, 'attack') <= 1;
 									})
 									.set('prompt2', '对攻击范围内的一名其他角色造成1点冰属性伤害？').ai = function (target) {
-									if (player.hp == 1) return 0;
-									if (player.hp == 2 && target.hp >= 3) return 0;
-									return get.damageEffect(target, player, player);
-								};
+										if (player.hp == 1) return 0;
+										if (player.hp == 2 && target.hp >= 3) return 0;
+										return get.damageEffect(target, player, player);
+									};
 								('step 1');
 								if (result.targets?.length) {
 									player.line(result.targets[0]);
@@ -4072,7 +4071,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jinglingqiyue: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -4510,7 +4509,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_kai: {
 							nobracket: true,
@@ -4850,7 +4849,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_fang1: {
 							trigger: {
@@ -5285,7 +5284,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_chengshuang: {
 							trigger: {
@@ -5775,7 +5774,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_bengbengzhadan1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -5852,7 +5851,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_kongjuyinmaiBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xuezhikewang: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -6226,7 +6225,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_huoyanboli: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -6360,7 +6359,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_anliu: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -6476,7 +6475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_duzou: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -6698,7 +6697,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_yeyanshiling: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -6839,7 +6838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_asilanzuzhou: {
 							nobracket: true,
@@ -6869,7 +6868,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jinjimishu: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -6895,7 +6894,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_ershidewuyue: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -7020,7 +7019,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_lianzhimonv0After',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_huhuomiaoran: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -7093,7 +7092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_wujianzhixiajian: {
 							trigger: {
@@ -7272,7 +7271,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xiaoyezhongxiaoding1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -7554,7 +7553,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_caiyi: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -7623,7 +7622,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('custom', {
 										add: {},
 										replace: {
-											window() {},
+											window() { },
 										},
 									});
 									next.backup('lg_caiyi_use');
@@ -7880,7 +7879,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jinmieshan1: {
 							usable: 1,
@@ -8067,7 +8066,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_jinmieshan1Begin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xiezhizaohuo: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -8433,7 +8432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_anshenmifa11: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -8974,7 +8973,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_chunhu1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -9290,7 +9289,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_tanqiuhuanchong: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -9442,7 +9441,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_zhexue0: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -9913,7 +9912,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_wukong: {
 							trigger: {
@@ -10466,7 +10465,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_tiaozhi: {
 							enable: 'phaseUse',
@@ -10809,9 +10808,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							check(event, player) {
 								var card = {
-										name: 'sha',
-										cards: event.cards.filterInD(),
-									},
+									name: 'sha',
+									cards: event.cards.filterInD(),
+								},
 									target = event.source;
 								return !player.canUse(card, target, false) || get.effect(target, card, player, player) > 0;
 							},
@@ -10977,8 +10976,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										'对' + get.translation(player) + '使用一张【杀】？',
 									)
-									.set('ai2', function (target, card, player, player2, isLink) {
-										return true;
+									.set('ai2', function (target) {
+										if (target) {
+											return get.effect_use(target) + 0.01;
+										}
 									})
 									.set('filterTarget', function (card, player, target) {
 										if (target != event.pla) return false;
@@ -11014,7 +11015,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_zhongyan: {
 							subSkill: {
@@ -11387,7 +11388,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_wuxielingmei: {
 							audio: 'ext:幻颜风华/audio:4',
@@ -11714,7 +11715,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jisi: {
 							trigger: {
@@ -12135,7 +12136,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_yinjiuzhike1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -12556,7 +12557,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_qingying: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -12865,7 +12866,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_dongshang: {
 							trigger: {
@@ -13253,7 +13254,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_youyazhiyi: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -13354,7 +13355,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_liuyun: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -13475,7 +13476,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_suchong: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -13681,7 +13682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_poyuejianying: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -14101,7 +14102,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jiyuanfan: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -14174,7 +14175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_duoluo: {
 							usable: 1,
@@ -14364,7 +14365,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_hundun1: {
 							trigger: {
@@ -14659,7 +14660,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jiren: {
 							trigger: {
@@ -14966,7 +14967,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_wujianhundun: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -15336,8 +15337,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return event.star
 											? true
 											: target.countCards('he', function (card) {
-													return lib.filter.cardDiscardable(card, target, 'lg_baiqiangweizhilei');
-												}) > 0;
+												return lib.filter.cardDiscardable(card, target, 'lg_baiqiangweizhilei');
+											}) > 0;
 									})
 									.set('ai', function (target) {
 										return event.star ? get.attitude(player, target) : -get.attitude(player, target);
@@ -15360,7 +15361,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_baiqiangweizhilei1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -15554,7 +15555,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_yunsui1: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -15839,7 +15840,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_shouhufangzhen: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -15936,7 +15937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_lunhui: {
 							usable: 3,
@@ -16197,7 +16198,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_shengfeishizhuiBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_erzhidan: {
 							trigger: {
@@ -17199,7 +17200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_shierzhidan1: {
 							trigger: {
@@ -17276,7 +17277,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: ['lg_yizhidanAfter', 'lg_erzhidanAfter', 'lg_sanzhidanAfter', 'lg_sizhidanAfter', 'lg_wuzhidanAfter', 'lg_liuzhidanAfter', 'lg_qizhidanAfter', 'lg_bazhidanAfter', 'lg_jiuzhidanAfter', 'lg_shizhidanAfter', 'lg_shiyizhidanAfter', 'lg_shierzhidanAfter'],
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_shishizhicheng: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -17284,7 +17285,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_shishizhicheng00After',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_shishizhicheng00: {
 							nobracket: true,
@@ -17440,7 +17441,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_chimizhinian: {
 							trigger: {
@@ -17589,7 +17590,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xixueguizhiye1: {
 							nobracket: true,
@@ -17627,7 +17628,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_xixueguizhiye1Begin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_mingyun: {
 							usable: 1,
@@ -17882,7 +17883,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_leimiliya0: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -18086,7 +18087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_feisemingjieAfter',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jianxinkuxiu1: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -18432,7 +18433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xingxiang: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -18794,7 +18795,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xinjinghuancheng11: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -19278,7 +19279,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_pomochenghua: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -19760,7 +19761,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xushuhuan: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -20031,7 +20032,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_beicanmingyun: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -20357,7 +20358,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xuancaizhixu: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -20510,7 +20511,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_shimeng: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -20919,7 +20920,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xiemozhizhui: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -21033,7 +21034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_huangshi: {
 							nobracket: true,
@@ -21213,7 +21214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_heiying: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -21419,7 +21420,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xushukongjian: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -21938,7 +21939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_suixiang0: {
 							trigger: {
@@ -22047,7 +22048,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_linliezhihui: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -22212,7 +22213,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_jielika_zhenwang: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -22220,7 +22221,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_yuanshengxing: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -22333,7 +22334,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_chunjingqingyu: {
 							trigger: {
@@ -22438,7 +22439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_chunjingqingyu1: {
 							trigger: {
@@ -22719,7 +22720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_fanxingwanxiang: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -22774,7 +22775,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								global: 'discardBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xukong0: {
 							usable: 1,
@@ -22947,7 +22948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xinlingqinzhan: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -23079,7 +23080,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xinlingqinzhan1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -23432,7 +23433,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_sisha: {
 							mod: {
@@ -23526,7 +23527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_lunmubianyu: {
 							nobracket: true,
@@ -23610,7 +23611,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'lg_lunmubianyuBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_shenyuanzhitong: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -23660,7 +23661,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_aoshagong: {
 							audio: 'ext:幻颜风华/audio:3',
@@ -23800,7 +23801,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_molangzhiyin: {
 							trigger: {
@@ -24108,7 +24109,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_tuilun: {
 							trigger: {
@@ -24318,7 +24319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_yuxia: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -25052,7 +25053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_bayunzi0: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -25276,7 +25277,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_qiangzhiqingjie: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -25474,7 +25475,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_miyu1: {
 							audio: 'ext:幻颜风华/At dawn:2',
@@ -25549,7 +25550,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_xinyue: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -25575,8 +25576,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return player != target && target.countCards('he') > 0;
 									})
 									.set('autodelay', trigger.name == 'respond' ? 0.5 : 1).ai = function (target) {
-									return -get.attitude(player, target);
-								};
+										return -get.attitude(player, target);
+									};
 								('step 1');
 								if (result.targets?.length) {
 									player.gainPlayerCard(result.targets[0], true);
@@ -25652,7 +25653,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_gaoxiaochongji: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -25757,7 +25758,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_pozhanbaichu: {
 							audio: 'ext:幻颜风华/audio:2',
@@ -25826,7 +25827,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'dieBegin',
 							},
 							forced: true,
-							content() {},
+							content() { },
 						},
 						lg_huanjing: {
 							trigger: {

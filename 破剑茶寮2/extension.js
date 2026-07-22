@@ -20379,14 +20379,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.order(card);
                                     })
                                     .set('ai2', function (target) {
-                                        var source = _status.event.source;
-                                        if (source.isTurnedOver()) return -1;
-                                        if (get.attitude(source, target) > 0) {
-                                            if (4 - source.countCards('h') >= 3) return -1;
-                                            if (source.countCards('h') == 1 || source.countCards('h') >= 4) return 10;
-                                            if (target.hp > source.hp || target.countCards('h', 'shan') > 0) return source.countCards('h') - 2;
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
                                         }
-                                        return 1;
                                     })
                                     .set('source', targets[0])
                                     .set('target2', targets[1]);

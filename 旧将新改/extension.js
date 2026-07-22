@@ -13150,8 +13150,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 2');
                                 if (result.bool == false) event.current.loseHp();

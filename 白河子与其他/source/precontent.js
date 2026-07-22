@@ -40116,10 +40116,9 @@ export async function precontent(config, pack) {
                         return true;
                     })
                     .set('ai2', (target) => {
-                        if (_status.currentPhase) {
-                            return get.attitude(player, _status.currentPhase) < 0 && get.effect(player, trigger.card, trigger.player, player) < 0;
+                        if (target) {
+                            return get.effect_use(target) + 0.01;
                         }
-                        return get.effect(player, trigger.card, trigger.player, player) < 0;
                     }).targetRequired = false; //QQQ
             },
             ai: {

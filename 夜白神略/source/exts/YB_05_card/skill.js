@@ -25,8 +25,10 @@ const skill = {
         }
         return true;
       });
-      next.set('ai2', function () {
-        return get.effect_use.apply(this, arguments) + 0.01;
+      next.set('ai2', function (target) {
+        if (target) {
+          return get.effect_use(target) + 0.01;
+        }
       });
     }
   },
@@ -172,13 +174,12 @@ const skill = {
         return false;
       }
       if (
-      event.source &&
-      event.source.hasSkillTag('unequip', false, {
-        name: event.card ? event.card.name : null,
-        target: player,
-        card: event.card
-      }))
-      {
+        event.source &&
+        event.source.hasSkillTag('unequip', false, {
+          name: event.card ? event.card.name : null,
+          target: player,
+          card: event.card
+        })) {
         return false;
       }
       if (_status.currentPhase == player || event.source == player) {
@@ -205,12 +206,11 @@ const skill = {
         return false;
       }
       if (
-      event.player.hasSkillTag('unequip', false, {
-        name: event.card ? event.card.name : null,
-        target: player,
-        card: event.card
-      }))
-      {
+        event.player.hasSkillTag('unequip', false, {
+          name: event.card ? event.card.name : null,
+          target: player,
+          card: event.card
+        })) {
         return false;
       }
       if (get.type2(event.card) != 'trick') {
@@ -245,12 +245,11 @@ const skill = {
         return false;
       }
       if (
-      event.player.hasSkillTag('unequip', false, {
-        name: event.card ? event.card.name : null,
-        target: player,
-        card: event.card
-      }))
-      {
+        event.player.hasSkillTag('unequip', false, {
+          name: event.card ? event.card.name : null,
+          target: player,
+          card: event.card
+        })) {
         return false;
       }
       return event.card && event.card.name == 'sha' && event.card.suit == 'heart';
@@ -270,17 +269,16 @@ const skill = {
             return;
           }
           if (
-          player.hasSkillTag('unequip', false, {
-            name: card ? card.name : null,
-            target: target,
-            card: card
-          }) ||
-          player.hasSkillTag('unequip', false, {
-            name: card ? card.name : null,
-            target: target,
-            card: card
-          }))
-          {
+            player.hasSkillTag('unequip', false, {
+              name: card ? card.name : null,
+              target: target,
+              card: card
+            }) ||
+            player.hasSkillTag('unequip', false, {
+              name: card ? card.name : null,
+              target: target,
+              card: card
+            })) {
             return;
           }
           if (card.name == 'sha' && card.suit == 'heart') {
@@ -307,21 +305,21 @@ const skill = {
       player.draw();
       'step 1';
       player.
-      chooseToUse(
-        get.prompt('rewrite_qinglong', trigger.target),
-        function (card, player, event) {
-          if (card.name != 'sha') {
-            return false;
-          }
-          if (player.getEquip('rewrite_qinglong') == card) {
-            return false;
-          }
-          return lib.filter.filterCard.apply(this, arguments);
-        },
-        trigger.target,
-        -1
-      ).
-      set('addCount', false);
+        chooseToUse(
+          get.prompt('rewrite_qinglong', trigger.target),
+          function (card, player, event) {
+            if (card.name != 'sha') {
+              return false;
+            }
+            if (player.getEquip('rewrite_qinglong') == card) {
+              return false;
+            }
+            return lib.filter.filterCard.apply(this, arguments);
+          },
+          trigger.target,
+          -1
+        ).
+        set('addCount', false);
     }
   },
   rewrite_qinglong_fengyin: {
@@ -417,23 +415,23 @@ const skill = {
     content() {
       'step 0';
       player.
-      chooseCard(
-        'h',
-        function (card, player) {
-          if (!game.checkMod(card, player, 'unchanged', 'cardEnabled2', player)) {
-            return false;
-          }
-          if (get.color(card) == get.color(trigger.card)) {
-            return false;
-          }
-          return player.canUse({ name: 'sha' }, trigger.player, false);
-        },
-        '选择一张手牌当做【杀】对' + get.translation(trigger.source) + '使用'
-      ).
-      set('ai', function (card) {
-        let player = _status.event.player;
-        return get.effect(trigger.player, { name: 'sha' }, player, player) / Math.max(1, get.value(card));
-      });
+        chooseCard(
+          'h',
+          function (card, player) {
+            if (!game.checkMod(card, player, 'unchanged', 'cardEnabled2', player)) {
+              return false;
+            }
+            if (get.color(card) == get.color(trigger.card)) {
+              return false;
+            }
+            return player.canUse({ name: 'sha' }, trigger.player, false);
+          },
+          '选择一张手牌当做【杀】对' + get.translation(trigger.source) + '使用'
+        ).
+        set('ai', function (card) {
+          let player = _status.event.player;
+          return get.effect(trigger.player, { name: 'sha' }, player, player) / Math.max(1, get.value(card));
+        });
       'step 1';
       if (result.cards?.length) {
         player.useCard({ name: 'sha' }, result.cards, 'ybsl_yangtuo', trigger.player, false);
@@ -813,11 +811,10 @@ const skill = {
         return false;
       }
       if (
-      hs.some((card) => {
-        const mod2 = game.checkMod(card, player, 'unchanged', 'cardEnabled2', player);
-        return mod2 === false;
-      }))
-      {
+        hs.some((card) => {
+          const mod2 = game.checkMod(card, player, 'unchanged', 'cardEnabled2', player);
+          return mod2 === false;
+        })) {
         return false;
       }
       return lib.inpile.some((name) => {
@@ -883,13 +880,13 @@ const skill = {
     content: async function (event, trigger, player) {
       const num = trigger.cards.length;
       const result = await player.
-      chooseTarget([1, num]).
-      set('ai', function (target) {
-        let player = _status.event.player;
-        return get.damageEffect(target, player, player, 'fire');
-      }).
-      set('prompt', `请选择至多${num}名角色,对这些角色各造成一点由这些牌造成的火焰伤害`).
-      forResult();
+        chooseTarget([1, num]).
+        set('ai', function (target) {
+          let player = _status.event.player;
+          return get.damageEffect(target, player, player, 'fire');
+        }).
+        set('prompt', `请选择至多${num}名角色,对这些角色各造成一点由这些牌造成的火焰伤害`).
+        forResult();
       if (result.targets?.length) {
         const list = result.targets;
         list.sortBySeat();
@@ -912,13 +909,12 @@ const skill = {
         return false;
       }
       if (
-      event.player &&
-      event.player.hasSkillTag('unequip', false, {
-        name: event.card ? event.card.name : null,
-        target: player,
-        card: event.card
-      }))
-      {
+        event.player &&
+        event.player.hasSkillTag('unequip', false, {
+          name: event.card ? event.card.name : null,
+          target: player,
+          card: event.card
+        })) {
         return false;
       }
       if (!(event.card.name == 'juedou' || event.card.name == 'sha')) {
@@ -1181,16 +1177,16 @@ const skill = {
       }
       event.suits = suits.length;
       player.
-      chooseTarget(get.prompt('ybsl_qingming'), '选择一名其他角色,弃置其的' + get.cnNumber(event.num) + '张牌或对其造成' + get.cnNumber(event.suits) + '点伤害', function (card, player, target) {
-        return player != target;
-      }).
-      set('ai', function (target) {
-        let att = get.attitude(_status.event.player, target);
-        if (target.countDiscardableCards(_status.event.player, 'he') >= _status.event.parent.num) {
-          att = att * 2;
-        }
-        return -att;
-      });
+        chooseTarget(get.prompt('ybsl_qingming'), '选择一名其他角色,弃置其的' + get.cnNumber(event.num) + '张牌或对其造成' + get.cnNumber(event.suits) + '点伤害', function (card, player, target) {
+          return player != target;
+        }).
+        set('ai', function (target) {
+          let att = get.attitude(_status.event.player, target);
+          if (target.countDiscardableCards(_status.event.player, 'he') >= _status.event.parent.num) {
+            att = att * 2;
+          }
+          return -att;
+        });
       'step 1';
       if (result.targets?.length) {
         event.target = result.targets[0];
@@ -1347,14 +1343,13 @@ const skill = {
       effect: {
         player(card, player, target, current, isLink) {
           if (
-          card.name == 'sha' &&
-          !isLink &&
-          target.countCards('h') == 0 &&
-          !target.hasSkillTag('filterDamage', null, {
-            player: player,
-            card: card
-          }))
-          {
+            card.name == 'sha' &&
+            !isLink &&
+            target.countCards('h') == 0 &&
+            !target.hasSkillTag('filterDamage', null, {
+              player: player,
+              card: card
+            })) {
             return [1, 0, 1, -3];
           }
         }
@@ -1476,11 +1471,11 @@ const skill = {
     content() {
       'step 0';
       player.
-      chooseCard('h', '阴勾玉隐隐闪烁,是否重铸一张手牌？').
-      set('prompt2', '重铸后,若此牌不为红手牌数小于体力值,则摸一张牌;<br>若此牌为红且体力值小于手牌数,则回复一点体力').
-      set('ai', function (card) {
-        return 5 - get.value(card);
-      });
+        chooseCard('h', '阴勾玉隐隐闪烁,是否重铸一张手牌？').
+        set('prompt2', '重铸后,若此牌不为红手牌数小于体力值,则摸一张牌;<br>若此牌为红且体力值小于手牌数,则回复一点体力').
+        set('ai', function (card) {
+          return 5 - get.value(card);
+        });
       'step 1';
       if (result.cards?.length) {
         player.lose(result.cards, ui.discardPile, 'visible');
@@ -1507,12 +1502,12 @@ const skill = {
     content() {
       'step 0';
       player.
-      chooseControl('发动', '不发动', true).
-      set('prompt', '阳勾玉上隐隐跳动着电光,是否判定？').
-      set('prompt2', '判定若为黑色,则令一名其他角色进入横置状态,并对其造成一点雷电伤害').
-      set('ai', function (event, player) {
-        return '发动';
-      });
+        chooseControl('发动', '不发动', true).
+        set('prompt', '阳勾玉上隐隐跳动着电光,是否判定？').
+        set('prompt2', '判定若为黑色,则令一名其他角色进入横置状态,并对其造成一点雷电伤害').
+        set('ai', function (event, player) {
+          return '发动';
+        });
       'step 1';
       if (result.control == '发动') {
         player.judge(function (card) {
@@ -1595,12 +1590,11 @@ const skill = {
       'step 1';
       let choice;
       if (
-      player.isDamaged() &&
-      get.recoverEffect(player) > 0 &&
-      player.countCards('hs', function (card) {
-        return card.name == 'sha' && player.hasValueTarget(card);
-      }) >= player.getCardUsable('sha'))
-      {
+        player.isDamaged() &&
+        get.recoverEffect(player) > 0 &&
+        player.countCards('hs', function (card) {
+          return card.name == 'sha' && player.hasValueTarget(card);
+        }) >= player.getCardUsable('sha')) {
         choice = 'recover_hp';
       } else {
         choice = 'draw_card';

@@ -17383,8 +17383,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													return lib.filter.filterTarget.apply(this, arguments);
 												},
 											)
-											.set('ai2', function () {
-												return get.effect_use.apply(this, arguments) + 0.01;
+											.set('ai2', function (target) {
+												if (target) {
+													return get.effect_use(target) + 0.01;
+												}
 											});
 									}
 								}
@@ -30095,8 +30097,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										'对' + get.translation(player) + '使用一张杀,否则你本回合无法使用杀.',
 									)
-									.set('ai2', function (target, card, player, player2, isLink) {
-										return true;
+									.set('ai2', function (target) {
+										if (target) {
+											return get.effect_use(target) + 0.01;
+										}
 									})
 									.set('filterTarget', function (card, player, target) {
 										if (target != event.pla) return false;
@@ -38385,9 +38389,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													},
 													'对' + get.translation(event.tar) + '使用一张杀,否则你失去1点体力.',
 												)
-												.set('ai2', function (target, card, player, player2, isLink) {
-													var eff = get.effect(event.tar, { name: 'sha' }, event.current, event.current);
-													return eff >= -2;
+												.set('ai2', function (target) {
+													if (target) {
+														return get.effect_use(target) + 0.01;
+													}
 												})
 												.set('filterTarget', function (card, player, target) {
 													if (target != event.tar) return false;
@@ -43904,9 +43909,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										'对' + get.translation(event.pla) + '使用一张杀,否则你失去1点体力.',
 									)
-									.set('ai2', function (target, card, player, player2, isLink) {
-										var eff = get.effect(event.pla, { name: 'sha' }, event.tar, event.tar);
-										return eff + 2;
+									.set('ai2', function (target) {
+										if (target) {
+											return get.effect_use(target) + 0.01;
+										}
 									})
 									.set('filterTarget', function (card, player, target) {
 										if (target != event.pla) return false;

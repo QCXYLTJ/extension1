@@ -3771,11 +3771,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             forced: true,
                             content() {
                                 'step 0';
-                                var ai2 = function (button) {
-                                    var val = get.buttonValue(button);
-                                    if (get.attitude(_status.event.player, get.owner(button.link)) > 0) return -val;
-                                    return val;
-                                };
                                 var att = get.attitude(player, trigger.target) <= 0;
                                 event.suits = [];
                                 trigger.target.countCards('h', function (cardx) {
@@ -3795,7 +3790,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return result;
                                     })
                                     .set('att', att)
-                                    .set('ai2', ai2);
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
+                                    });
                                 ('step 1');
                                 if (result.links?.length) {
                                     var suits = [];

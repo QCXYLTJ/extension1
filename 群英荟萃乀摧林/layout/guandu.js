@@ -960,10 +960,10 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                         replace: { window() { } }
                     }).set('ai1', function (card) {
                         return 20 - get.value(card) - get.useful(card);
-                    }).set('ai2', function (target, card, player, player2, isLink) {
-                        if (get.itemtype(card) == 'card') return get.effect_use(target, { name: 'sha', cards: [card] }, player, player2, isLink);
-                        if (get.itemtype(card) == 'cards') return get.effect_use(target, { name: 'sha', cards: card }, player, player2, isLink);
-                        return get.effect_use(target, { name: 'sha' }, player, player2, isLink);
+                    }).set('ai2', function (target) {
+                        if (target) {
+                            return get.effect_use(target) + 0.01;
+                        }
                     }).set('selectTarget', [-1, -1]).backup('clgd_jieliangx');
             }
         },

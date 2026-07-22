@@ -1872,15 +1872,15 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
 					.set('_backupevent', 'cljg_biyanx')
 					.set('custom', {
 						add: {},
-						replace: { window() {} },
+						replace: { window() { } },
 					})
 					.set('ai1', function (card) {
 						return 20 - get.value(card) - get.useful(card);
 					})
-					.set('ai2', function (target, card, player, player2, isLink) {
-						if (get.itemtype(card) == 'card') return get.effect_use(target, { name: 'sha', cards: [card], nature: 'ice' }, player, player2, isLink);
-						if (get.itemtype(card) == 'cards') return get.effect_use(target, { name: 'sha', cards: card, nature: 'ice' }, player, player2, isLink);
-						return get.effect_use(target, { name: 'sha', nature: 'ice' }, player, player2, isLink);
+					.set('ai2', function (target) {
+						if (target) {
+							return get.effect_use(target) + 0.01;
+						}
 					})
 					.set('selectTarget', [-1, -1])
 					.backup('cljg_biyanx');
@@ -1931,12 +1931,12 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
 			},
 		},
 		/*cljg_jiguan:{
-            mod:{
-                targetEnabled:function(card,player,target){
-                    if(game.getGlobalHistory('useCard',(evt)=>(evt.card!=card)).length==0&&get.tag(card,'damage')) return false;
-                }
-            }
-        },*/
+			mod:{
+				targetEnabled:function(card,player,target){
+					if(game.getGlobalHistory('useCard',(evt)=>(evt.card!=card)).length==0&&get.tag(card,'damage')) return false;
+				}
+			}
+		},*/
 		cljg_jiguan: {
 			trigger: {
 				global: 'roundStart',
@@ -2446,29 +2446,29 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
 			},
 		},
 		/*{
-            audio:'cljg2',
-            trigger:{
-                global:['useCardToPlayered','useCardToTargeted']
-            },
-            filter:function(event,player,name){
-                if(!(event.card.name=='juedou'||(event.card.name=='sha'&&get.color(event.card)=='red'))) return false;
-                if(name=='useCardToPlayered'&&event.player.isFriendsOf(player)) return true;
-                if(name=='useCardToTargeted'&&event.target.isFriendsOf(player)) return true;
-                return false;
-            },
-            prompt:function(event){
-                var target;
-                if(!event.parent.triggeredTargets4||!event.parent.triggeredTargets4.length) target=event.player;else target=event.target;
-                return '是否发动〖昂扬〗令'+get.translation(target)+'摸一张牌？';
-            },
-            logTarget:function(event){
-                if(!event.parent.triggeredTargets4||!event.parent.triggeredTargets4.length) return event.player;else return event.target;
-            },
-            frequent:true,
-            content:function(){
-                qyhcCL.getLogTargets(event).draw();
-            }
-        }*/
+			audio:'cljg2',
+			trigger:{
+				global:['useCardToPlayered','useCardToTargeted']
+			},
+			filter:function(event,player,name){
+				if(!(event.card.name=='juedou'||(event.card.name=='sha'&&get.color(event.card)=='red'))) return false;
+				if(name=='useCardToPlayered'&&event.player.isFriendsOf(player)) return true;
+				if(name=='useCardToTargeted'&&event.target.isFriendsOf(player)) return true;
+				return false;
+			},
+			prompt:function(event){
+				var target;
+				if(!event.parent.triggeredTargets4||!event.parent.triggeredTargets4.length) target=event.player;else target=event.target;
+				return '是否发动〖昂扬〗令'+get.translation(target)+'摸一张牌？';
+			},
+			logTarget:function(event){
+				if(!event.parent.triggeredTargets4||!event.parent.triggeredTargets4.length) return event.player;else return event.target;
+			},
+			frequent:true,
+			content:function(){
+				qyhcCL.getLogTargets(event).draw();
+			}
+		}*/
 		cljg_douhun: {
 			audio: 'cljg2',
 			derivation: ['cljg_yingzi', 'cljg_jiang'],

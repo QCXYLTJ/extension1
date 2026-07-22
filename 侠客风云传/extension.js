@@ -4705,9 +4705,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										'对' + get.translation(pla) + '使用一张杀,否则其摸1张牌.'
 									)
-									.set('ai2', function (target, card, player, player2, isLink) {
-										var eff = get.effect(pla, { name: 'sha' }, tar, tar);
-										return eff;
+									.set('ai2', function (target) {
+										if (target) {
+											return get.effect_use(target) + 0.01;
+										}
 									})
 									.set('filterTarget', function (card, player, target) {
 										if (target != pla) return false;

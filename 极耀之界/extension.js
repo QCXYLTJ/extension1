@@ -12981,8 +12981,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) - _status.event.effect;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     })
                                     .set('effect', get.effect(target, { name: 'losehp' }, target, target));
                                 ('step 1');

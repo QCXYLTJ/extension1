@@ -18112,8 +18112,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     })
                                     .set('addCount', false);
                                 ('step 3');
@@ -18332,8 +18334,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     })
                                     .set('addCount', false);
                                 ('step 2');
@@ -19314,7 +19318,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.targetEnabled.apply(this, arguments);
                                     })
                                     .set('ai2', function (target) {
-                                        return get.attitude(player, target) < 0;
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     }); //QQQ
                                 ('step 1');
                                 if (result.bool) {

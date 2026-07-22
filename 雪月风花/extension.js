@@ -10241,8 +10241,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     return lib.filter.filterTarget.apply(this, arguments);
                                                 },
                                             )
-                                            .set('ai2', function () {
-                                                return get.effect_use.apply(this, arguments) - _status.event.effect;
+                                            .set('ai2', function (target) {
+                                                if (target) {
+                                                    return get.effect_use(target) + 0.01;
+                                                }
                                             })
                                             .set(
                                                 'effect',
@@ -18439,11 +18441,10 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         }
                                         return 0;
                                     });
-                                    next.set('ai2', function () {
-                                        if (target.countCards('h', name) >= count) {
-                                            return 1;
+                                    next.set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
                                         }
-                                        return 0;
                                     });
                                     if (event.num > 1) {
                                         next.set('prompt2', '共需额外' + text + get.cnNumber(event.num) + '张【' + get.translation(event.card) + '】');

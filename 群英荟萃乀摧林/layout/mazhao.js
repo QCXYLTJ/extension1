@@ -2563,8 +2563,10 @@ qyhcCL.arenaReady.push((lib, game, ui, get, ai, _status, config) => {
                 })
                 .set('sourcex', player)
                 .set('prompt2', prompt2)
-                .set('ai2', function (target, card, player, player2, isLink) {
-                    return get.effect_use.apply(this, arguments) + (get.attitude(target, player) > 0 ? 0 : 4);
+                .set('ai2', function (target) {
+                    if (target) {
+                        return get.effect_use(target) + 0.01;
+                    }
                 });
             ('step 1');
             if (

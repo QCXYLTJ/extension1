@@ -5297,14 +5297,9 @@ export default async function () {
                                 return (get.order(card) + 1) * (get.effect(target, card, player, player) + 1);
                             })
                             .set('ai2', function (target) {
-                                var player = _status.event.player;
-                                if (player.isTurnedOver()) return -1;
-                                if (get.attitude(player, target) > 0) {
-                                    if (5 - player.countCards('h') >= 2) return -1;
-                                    if (player.countCards('h') == 1 || player.countCards('h') >= 4) return 10;
-                                    if (target.hp > player.hp || target.countCards('h', 'shan') > 0) return player.countCards('h') - 2;
+                                if (target) {
+                                    return get.effect_use(target) + 0.01;
                                 }
-                                return 1;
                             })
                             .set('target', targetx)
                             .forResult();
@@ -5571,25 +5566,10 @@ export default async function () {
                                     .set('filterCard', function (card) {
                                         return card == _status.event.parent.card;
                                     })
-                                    .set('ai2', function (target, card, player, viewer) {
-                                        if (!player) player = _status.event.player;
-                                        if (!card) card = get.card();
-                                        if (!card) return 1;
-                                        var info = get.info(card);
-                                        var effect = get.effect_use(target, card, player, player);
-                                        if (ui.selected.targets.length == 0) {
-                                            effect -= get.effect(
-                                                player,
-                                                {
-                                                    name: 'losehp',
-                                                },
-                                                player,
-                                                player,
-                                            );
-                                        } else if (effect == 0) {
-                                            effect += 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
                                         }
-                                        return effect;
                                     });
                             }
                         }
@@ -13864,27 +13844,10 @@ export default async function () {
                                     false,
                                 );
                             })
-                            .set('ai2', function (target, card) {
-                                var player = _status.event.player;
-                                var effect = get.effect_use(target, card, player, player);
-                                if (effect <= 0 || target.hasSkillTag('nodamage')) {
-                                    return get.attitude(player, target) > 1 && player.countCards('hs', 'sha') > 2;
+                            .set('ai2', function (target) {
+                                if (target) {
+                                    return get.effect_use(target) + 0.01;
                                 }
-                                if (target.hasShan() && get.attitude(player, target) < 0)
-                                    return target.hp == 1 ||
-                                        player.hasSkillTag(
-                                            'directHit_ai',
-                                            true,
-                                            {
-                                                target: target,
-                                                card: card,
-                                            },
-                                            true,
-                                        ) ||
-                                        target.hasSkillTag('forbid_card', true)
-                                        ? effect
-                                        : 0;
-                                return effect;
                             });
                         ('step 2');
                         if (result.bool) {
@@ -26201,30 +26164,10 @@ export default async function () {
                         player
                             .chooseToUse('指引:可以对一名角色使用一张牌,当前阶段角色再对其使用牌时你可以摸牌', 1)
                             .set('targetRequired', true)
-                            .set('ai2', function (target, card) {
-                                var player = _status.event.player;
-                                var trigger = _status.event.getTrigger();
-                                var eff = get.effect_use(target, card, player, player);
-                                var att = get.attitude(player, trigger.player);
+                            .set('ai2', function (target) {
                                 if (target) {
-                                    //QQQ
-                                    if (att < 0) {
-                                        if (target == trigger.player) return eff * 1.3;
-                                        if (!get.tag(card, 'damage') && player.countMark('radiance_zhiyin_mark') >= 5) return 0;
-                                        if (get.attitude(player, target) < 1 && target.next != _status.roundStart) return 0;
-                                        if (trigger.player.inRange(target)) {
-                                            if (target.hp <= 1) return eff * 1.5;
-                                            else if (target.hp == 2) return eff * 1.2;
-                                        }
-                                    } else if (att == 0) {
-                                        if (target != trigger.player || player.countMark('radiance_zhiyin_mark') >= 5) return 0;
-                                        if (target.countCards('hs') <= 2) return 0;
-                                    } else {
-                                        if (player.countMark('radiance_zhiyin_mark') >= 5) return 0;
-                                        if (get.attitude(player, target) >= 0) return 0;
-                                    }
+                                    return get.effect_use(target) + 0.01;
                                 }
-                                return eff;
                             })
                             .set('filterTarget', function (card, player, target) {
                                 var bool = _status.currentPhase != target;

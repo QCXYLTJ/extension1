@@ -16876,8 +16876,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 .chooseToUse(`使用一张【杀】,或交给${get.translation(player)}两张牌`)
                                 .set('addCount', false)
                                 .set('respondTo', [player, card])
-                                .set('ai2', function (target, card, player, player2, isLink) {
-                                    return get.effect_use(target, card, player, player2, isLink) + (get.attitude(player2, _status.event.fromer) > 0 ? 0 : 3);
+                                .set('ai2', function (target) {
+                                    if (target) {
+                                        return get.effect_use(target) + 0.01;
+                                    }
                                 })
                                 .set('filterCard', function (card, player) {
                                     if (card.name != 'sha') return false;
@@ -19120,11 +19122,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (card.name != 'zengbin') return false;
                                 return lib.filter.cardEnabled(card, player, 'forceEnable');
                             })
-                            .set('ai2', function (target, card, player, player2, isLink) {
-                                if (player == undefined) player = _status.event.player;
-                                if (target != player) return 0;
-                                if (target.countCards('j') == 0) return 0;
-                                return get.effect_use(target, card, player, player2, isLink);
+                            .set('ai2', function (target) {
+                                if (target) {
+                                    return get.effect_use(target) + 0.01;
+                                }
                             });
                     },
                     ai: {

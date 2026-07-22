@@ -2489,8 +2489,10 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							return lib.filter.filterTarget.apply(this, arguments);
 						}
 					);
-					next.set('ai2', function () {
-						return get.effect_use.apply(this, arguments) - _status.event.effect;
+					next.set('ai2', function (target) {
+						if (target) {
+							return get.effect_use(target) + 0.01;
+						}
 					});
 					next.set('effect', get.effect(target, { name: 'losehp' }, target, target));
 					('step 1');
@@ -5080,8 +5082,10 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						if (target2.length > 1) prompt += '中的一人';
 						prompt += '使用一张【杀】？';
 						var next = player.chooseToUse(prompt, filterCard, filterTarget);
-						next.set('ai2', function () {
-							return get.effect_use.apply(this, arguments);
+						next.set('ai2', function (target) {
+							if (target) {
+								return get.effect_use(target) + 0.01;
+							}
 						});
 					}
 				},

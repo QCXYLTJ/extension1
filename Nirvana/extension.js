@@ -14473,8 +14473,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 2');
                                 if (result.bool == false) {
@@ -16132,8 +16134,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return true;
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 1');
                                 if (result.bool == false) {
@@ -16151,8 +16155,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return true;
                                         }
                                     )
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     })
                                     .set('targets', targets[0]);
                                 ('step 3');
@@ -16284,8 +16290,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return lib.filter.filterTarget.apply(this, arguments);
                                             }
                                         )
-                                        .set('ai2', function () {
-                                            return get.effect_use.apply(this, arguments) + 0.01;
+                                        .set('ai2', function (target) {
+                                            if (target) {
+                                                return get.effect_use(target) + 0.01;
+                                            }
                                         });
                                 }
                                 ('step 2');
@@ -17045,8 +17053,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.filterTarget.apply(this, arguments);
                                     })
                                     .set('sourcex', player)
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 3');
                                 if (result.bool == false) {
@@ -19926,8 +19936,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return lib.filter.filterTarget.apply(this, arguments);
                                             })
                                             .set('sourcex', player)
-                                            .set('ai2', function () {
-                                                return get.effect_use.apply(this, arguments) + 0.01;
+                                            .set('ai2', function (target) {
+                                                if (target) {
+                                                    return get.effect_use(target) + 0.01;
+                                                }
                                             });
                                     }
                                 });
@@ -27121,8 +27133,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return lib.filter.filterTarget.apply(this, arguments);
                                             })
                                             .set('sourcex', target)
-                                            .set('ai2', function () {
-                                                return get.effect_use.apply(this, arguments) + 0.01;
+                                            .set('ai2', function (target) {
+                                                if (target) {
+                                                    return get.effect_use(target) + 0.01;
+                                                }
                                             });
                                     }
                                 });
@@ -35336,8 +35350,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         })
                                         .set('sourcex', player)
-                                        .set('ai2', function () {
-                                            return get.effect_use.apply(this, arguments) + 0.01;
+                                        .set('ai2', function (target) {
+                                            if (target) {
+                                                return get.effect_use(target) + 0.01;
+                                            }
                                         });
                                 }
                                 ('step 5');
@@ -35373,8 +35389,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return lib.filter.filterTarget.apply(this, arguments);
                                         })
                                         .set('sourcex', trigger.targets[0])
-                                        .set('ai2', function () {
-                                            return get.effect_use.apply(this, arguments) + 0.01;
+                                        .set('ai2', function (target) {
+                                            if (target) {
+                                                return get.effect_use(target) + 0.01;
+                                            }
                                         });
                                 }
                                 ('step 7');
@@ -39744,8 +39762,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return lib.filter.filterTarget.apply(this, arguments);
                                     })
                                     .set('sourcex', trigger.player)
-                                    .set('ai2', function () {
-                                        return get.effect_use.apply(this, arguments) + 0.01;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 1');
                                 if (!result.bool) {

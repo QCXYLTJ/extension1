@@ -3183,11 +3183,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             },
                                             '兵论:对' + get.translation(event.target_1) + '使用一张杀,或令' + get.translation(player) + '对你造成一点伤害'
                                         )
-                                        .set('ai2', function (target, card, player) {
-                                            if (event.target.hp >= 3) return get.effect_use(target, card, player);
-                                            if (event.target.hp <= 1 && event.target_1.hp > 1) return 2;
-                                            if (event.target.hp == 2 && event.target_1.hp >= event.target.hp) return 2;
-                                            return get.effect_use(target, card, player);
+                                        .set('ai2', function (target) {
+                                            if (target) {
+                                                return get.effect_use(target) + 0.01;
+                                            }
                                         })
                                         .set('targetRequired', true)
                                         .set('complexSelect', true)

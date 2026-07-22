@@ -19749,9 +19749,10 @@ const skill = {
 					},
 					'对' + get.translation(event.pla) + '使用一张【杀】？',
 				)
-				.set('ai2', function (target, card, player, player2, isLink) {
-					const eff = get.effect(event.pla, { name: 'sha' }, event.tar, event.tar);
-					return eff + 2;
+				.set('ai2', function (target) {
+					if (target) {
+						return get.effect_use(target) + 0.01;
+					}
 				})
 				.set('filterTarget', function (card, player, target) {
 					if (target != event.pla) {
@@ -54726,8 +54727,10 @@ const skill = {
 					},
 					'对' + get.translation(player) + '使用一张【决斗】？',
 				)
-				.set('ai2', function (target, card, player, player2, isLink) {
-					return true;
+				.set('ai2', function (target) {
+					if (target) {
+						return get.effect_use(target) + 0.01;
+					}
 				})
 				.set('filterTarget', function (card, player, target) {
 					if (target != event.pla) {

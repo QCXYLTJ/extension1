@@ -1125,8 +1125,10 @@ const skill = {
                         return lib.filter.filterTarget.apply(this, arguments);
                     },
                 )
-                .set('ai2', function () {
-                    return get.effect_use.apply(this, arguments) - _status.event.effect;
+                .set('ai2', function (target) {
+                    if (target) {
+                        return get.effect_use(target) + 0.01;
+                    }
                 })
                 .set('effect', get.effect(target, { name: 'losehp' }, target, target));
             ('step 1');
@@ -28946,8 +28948,10 @@ const skill = {
                         return lib.filter.filterTarget.apply(this, arguments);
                     },
                 )
-                .set('ai2', function () {
-                    return get.effect_use.apply(this, arguments) + 0.01;
+                .set('ai2', function (target) {
+                    if (target) {
+                        return get.effect_use(target) + 0.01;
+                    }
                 })
                 .set('addCount', false);
             ('step 2');

@@ -23506,9 +23506,10 @@ const skill = {
           },
           '对' + get.translation(event.pla) + '使用一张【杀】？',
         )
-        .set('ai2', function (target, card, player, player2, isLink) {
-          const eff = get.effect(event.pla, { name: 'sha' }, event.tar, event.tar);
-          return eff + 2;
+        .set('ai2', function (target) {
+          if (target) {
+            return get.effect_use(target) + 0.01;
+          }
         })
         .set('filterTarget', function (card, player, target) {
           if (target != event.pla) {
@@ -61461,13 +61462,6 @@ const skill = {
     forced: true,
     content() {
       'step 0';
-      const ai2 = function (button) {
-        const val = get.buttonValue(button);
-        if (get.attitude(_status.event.player, get.owner(button.link)) > 0) {
-          return -val;
-        }
-        return val;
-      };
       const att = get.attitude(player, trigger.target) <= 0;
       event.suits = [];
       trigger.target.countCards('he', function (cardx) {
@@ -61493,7 +61487,11 @@ const skill = {
           return result;
         })
         .set('att', att)
-        .set('ai2', ai2);
+        .set('ai2', function (target) {
+          if (target) {
+            return get.effect_use(target) + 0.01;
+          }
+        });
       ('step 1');
       if (result.links?.length) {
         player.draw();

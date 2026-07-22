@@ -13842,29 +13842,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 target
                                     .chooseToUse(get.xwEnableFilter({ name: 'sha' }), '是否对' + get.translation(tars2) + (tars2.length == 1 ? '' : '之一') + '使用一张【杀】？')
-                                    .set('ai2', function (target, card, player, player2, isLink) {
-                                        if (!target) {
-                                            return -1;
-                                        }
-                                        if (!card) {
-                                            card = { name: 'sha' };
-                                        }
-                                        var player = _status.event.player;
-                                        var player2 = _status.event.player;
-                                        if (get.attitude(player, up) > 0) {
-                                            return get.effect_use(target, card, player, player2, isLink);
-                                        }
-                                        if (!player.countGainableCards(up, 'he')) {
-                                            return get.effect_use(target, card, player, player2, isLink) > 0 ? 2 : -2;
-                                        }
-                                        if (target.hasShan() && Math.random() > 0.123) {
-                                            return get.effect_use(target, card, player, player2, isLink) + 4;
-                                        } else {
-                                            const eff = get.effect_use(target, card, player, player2, isLink);
-                                            if (eff <= 0 && Math.random() > 0.111 && target.hp > 2) {
-                                                return 2;
-                                            }
-                                            return eff;
+                                    .set('ai2', function (target) {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
                                         }
                                     })
                                     .set('complexSelect', true)
@@ -24584,10 +24564,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         '先攻效果触发,是否对' + get.translation(trigger.player) + '使用一张【杀】？',
                                     )
                                     .set('ai2', function (target) {
-                                        if (target.countCards('h') <= 2) {
-                                            return -10;
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
                                         }
-                                        return -get.attitude(player, target);
                                     })
                                     .set('complexSelect', true)
                                     .set('filterTarget', function (card, player, target) {
@@ -39520,11 +39499,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('ai1', function () {
                                             return 2;
                                         })
-                                        .set('ai2', function (target, card, player, player2, isLink) {
-                                            if (get.attitude(p0, t0) <= 0) {
-                                                return get.effect_use(target, card, player, player2, isLink) >= 0 ? 2 : -1;
-                                            } else {
-                                                return 2;
+                                        .set('ai2', function (target) {
+                                            if (target) {
+                                                return get.effect_use(target) + 0.01;
                                             }
                                         })
                                         .set('filterTarget', function (card, player, target) {
@@ -45095,7 +45072,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 target
                                     .chooseToUse(get.xwEnableFilter({ name: 'sha' }), '是否对' + get.translation(player) + '使用一张【杀】？')
-                                    .set('ai2', () => get.attitude(player, target) < 0) //QQQ
+                                    .set('ai2', (target) => {
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
+                                    }) //QQQ
                                     .set('complexSelect', true)
                                     .set('filterTarget', function (card, player, target) {
                                         if (target != _status.event.sourcex && !ui.selected.targets.includes(_status.event.sourcex)) {
@@ -61589,10 +61570,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         '技能【先攻】触发,是否对' + get.translation(trigger.player) + '使用一张【杀】？',
                                     )
                                     .set('ai2', function (target) {
-                                        if (target.countCards('h') <= 2) {
-                                            return -10;
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
                                         }
-                                        return -get.attitude(player, target);
                                     })
                                     .set('complexSelect', true)
                                     .set('filterTarget', function (card, player, target) {
@@ -63185,11 +63165,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (target.isIn()) {
                                     target
                                         .chooseToUse(get.xwEnableFilter({ name: 'sha' }), '是否对' + get.translation(player) + '使用一张【杀】？否则其视为对你使用一张【杀】')
-                                        .set('ai2', function (target, card, player, player2, isLink) {
-                                            if (get.attitude(player, target) <= 0) {
-                                                return get.effect_use(target, card, player, player2, isLink) > 0 ? 2 : -1;
-                                            } else {
-                                                return get.effect_use(target, card, player, player2, isLink);
+                                        .set('ai2', function (target) {
+                                            if (target) {
+                                                return get.effect_use(target) + 0.01;
                                             }
                                         })
                                         .set('complexSelect', true)
@@ -65614,12 +65592,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 player: 'xwYiMoveBack',
                             },
-                            filter(event, player) {
-                                return true;
-                            },
                             forced: true,
                             content() {
-                                'step 0';
                                 player.draw();
                             },
                             group: ['xwjh_jianxia_tar'],
@@ -65640,14 +65614,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return 2;
                                             })
                                             .set('ai2', function (target) {
-                                                const att = get.attitude(player, target);
-                                                if (att < 0) {
-                                                    return 3;
+                                                if (target) {
+                                                    return get.effect_use(target) + 0.01;
                                                 }
-                                                if (att == 0) {
-                                                    return 1;
-                                                }
-                                                return -2;
                                             });
                                         ('step 1');
                                         if (result.targets?.length) {

@@ -508,9 +508,10 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 							if (get.type(card) != 'basic') return false;
 							return lib.filter.filterCard.apply(this, arguments);
 						});
-						next.set('ai2', function () {
-							let eff = get.effect_use.apply(this, arguments);
-							return eff + 0.01;
+						next.set('ai2', function (target) {
+							if (target) {
+								return get.effect_use(target) + 0.01;
+							}
 						});
 						next.set('addCount', false);
 					}

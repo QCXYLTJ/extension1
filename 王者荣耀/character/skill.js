@@ -16127,9 +16127,9 @@ const skills = {
                 .backup('hokwuweizhanche_backup')
                 .set('target', trigger.source)
                 .set('ai2', (target) => {
-                    const player = get.player();
-                    if (player.getHp() + player.countCards('hs', (card) => player.canSaveCard(card, player)) <= 1) return 0;
-                    return get.effect(target, { name: 'juedou' }, player, player);
+                    if (target) {
+                        return get.effect_use(target) + 0.01;
+                    }
                 })
                 .set('nouse', true)
                 .forResult();

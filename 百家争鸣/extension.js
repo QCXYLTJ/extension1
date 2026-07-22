@@ -17573,7 +17573,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     })
                                     .set('ai2', function (target) {
-                                        return get.attitude(player, target) > 0;
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 1');
                                 if (result.targets?.length) {
@@ -17687,7 +17689,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return true;
                                     })
                                     .set('ai2', function (target) {
-                                        return get.attitude(player, target) > 0;
+                                        if (target) {
+                                            return get.effect_use(target) + 0.01;
+                                        }
                                     });
                                 ('step 1');
                                 if (result.targets?.length) {

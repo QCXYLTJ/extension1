@@ -1208,8 +1208,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.line(targets[0], 'YB_demon');
 					targets[0].line(targets[1], 'YB_demon');
 					game.log(player, '对', targets[0], '发动了乱武,要求他对', targets[1], '使用一张杀,若不执行则失去一点体力.')
-					targets[0].chooseToUse('对' + get.translation(targets[1]) + '使用一张杀,或失去一点体力', { name: 'sha' }, targets[1], -1).set('ai2', function () {
-						return get.effect_use.apply(this, arguments) + 0.01;
+					targets[0].chooseToUse('对' + get.translation(targets[1]) + '使用一张杀,或失去一点体力', { name: 'sha' }, targets[1], -1).set('ai2', function (target) {
+						if (target) {
+							return get.effect_use(target) + 0.01;
+						}
 					}).set('addCount', false);;
 					"step 1"
 					if (result.bool == false) {
@@ -1289,8 +1291,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.line(targets[0], 'YB_demon');
 					targets[0].line(targets[1], 'YB_demon');
 					game.log(player, '对', targets[0], '发动了乱武,要求他对', targets[1], '使用一张杀,若不执行则失去一点体力.')
-					targets[0].chooseToUse('对' + get.translation(targets[1]) + '使用一张杀,或失去一点体力', { name: 'sha' }, targets[1], -1).set('ai2', function () {
-						return get.effect_use.apply(this, arguments) + 0.01;
+					targets[0].chooseToUse('对' + get.translation(targets[1]) + '使用一张杀,或失去一点体力', { name: 'sha' }, targets[1], -1).set('ai2', function (target) {
+						if (target) {
+							return get.effect_use(target) + 0.01;
+						}
 					}).set('addCount', false);;
 					"step 1"
 					if (result.bool == false) {
@@ -4921,8 +4925,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (card.name != 'sgscq_xuehen') return false;
 						return true;
 					});
-					next.set('ai2', function () {
-						return get.effect_use.apply(this, arguments) + 0.01;
+					next.set('ai2', function (target) {
+						if (target) {
+							return get.effect_use(target) + 0.01;
+						}
 					})
 				},
 			},

@@ -2129,9 +2129,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                             return lib.filter.filterCard.apply(this, arguments);
                         }, '比武大会:是否使用一张伤害牌并摸一张牌？')
                         .set('ai2', function (target) {
-                            let player = _status.event.player;
-                            if (get.attitude(player, target) > 0 && !target.hasMark('hyym_zhuangshengmengdie')) return 99;
-                            else return 0.1;
+                            if (target) {
+                                return get.effect_use(target) + 0.01;
+                            }
                         });
                     ('step 8');
                     if (result.bool) event.list1[event.num1].draw();
