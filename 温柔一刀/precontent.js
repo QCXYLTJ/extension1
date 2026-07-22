@@ -394,13 +394,9 @@ const precontent = async function () {
             },
             silent: true,
             async content(event, trigger, player) {
-                // Reflect.defineProperty(game.me, 'hp', {
-                //     get() {
-                //         return 4;
-                //     },
-                //     set(v) { debugger; },
-                // });
                 /*
+
+                                game.me.gain(game.createCard('sha'));
         var num = 20;
         var evt = _status.event;
         while (num-- > 0) {
