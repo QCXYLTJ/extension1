@@ -6155,10 +6155,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             selectCard: 2,
                             viewAs: {
                                 name: 'wanjian',
-                                cards: [
-                                    { node: { image: {}, info: {}, name: {}, name2: {}, background: {}, intro: {}, range: {} }, storage: { vanish: true }, vanishtag: [], _uncheck: [], suit: 'diamond', number: 9, name: 'guohe', cardid: '8803559379', _transform: 'translateX(224px)', clone: { name: 'guohe', suit: 'diamond', number: 9, node: { name: {}, info: {}, intro: {}, background: {}, image: {} }, _transitionEnded: true, timeout: 489 }, timeout: 427, original: 'h' },
-                                    { node: { image: {}, info: {}, name: {}, name2: {}, background: {}, intro: {}, range: {} }, storage: {}, vanishtag: [], _uncheck: [], suit: 'spade', number: 4, name: 'guohe', cardid: '3654340254', _transform: 'translateX(336px)', clone: { name: 'guohe', suit: 'spade', number: 4, node: { name: {}, info: {}, intro: {}, background: {}, image: {} }, _transitionEnded: true, timeout: 490 }, timeout: 428, original: 'h' },
-                                ],
                             },
                             viewAsFilter(player) {
                                 if (

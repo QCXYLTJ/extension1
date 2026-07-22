@@ -394,7 +394,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				subtype: 'ygo_通常陷阱',
 				selectTarget: -1,
 				enable: true,
-				vanish: true,
 				allowMultiple: true,
 				filterTarget(card, player, target) {
 					return target == player;

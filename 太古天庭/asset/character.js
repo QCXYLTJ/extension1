@@ -15764,7 +15764,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         selectCard: -1,
                         viewAs: {
                             name: 'sha',
-                            cards: [{ node: { image: {}, info: {}, name: {}, name2: {}, background: {}, intro: {}, range: {}, gaintag: {} }, storage: { vanish: true }, vanishtag: [], gaintag: [], _uncheck: [], suit: 'heart', number: 3, name: 'jingfanma', cardid: '33841661170', clone: { name: 'jingfanma', suit: 'heart', number: 3, node: { name: {}, info: {}, intro: {}, background: {}, image: {}, gaintag: {} }, _transitionEnded: true, timeout: 2247 }, original: 'e' }],
                             storage: {
                                 tgtt_fsmcshouli: true,
                             },

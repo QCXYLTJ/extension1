@@ -41225,7 +41225,6 @@ const skill = {
         },
         qysj_kongqipao: {
             //空气炮
-            //   vanish:true,
             derivation: 'qysj_duolaameng',
             type: 'qysjdaoju',
             enable: true,
@@ -41252,7 +41251,6 @@ const skill = {
         },
         qysj_zhuqingting: {
             //竹蜻蜓
-            //   vanish:true,
             derivation: 'qysj_duolaameng',
             type: 'qysjdaoju',
             notarget: true,
@@ -41276,7 +41274,6 @@ const skill = {
         },
         qysj_jiyimianbao: {
             //记忆面包
-            //   vanish:true,
             derivation: 'qysj_duolaameng',
             type: 'qysjdaoju',
             cardcolor: 'red',
@@ -41319,7 +41316,6 @@ const skill = {
         },
         qysj_renyimen: {
             //任意门
-            //  vanish:true,
             derivation: 'qysj_duolaameng',
             type: 'qysjdaoju',
             toself: true,
@@ -41367,7 +41363,6 @@ const skill = {
         },
         qysj_fanyiniangao: {
             //翻译年糕
-            //   vanish:true,
             derivation: 'qysj_duolaameng',
             type: 'qysjdaoju',
             enable: true,
@@ -41396,7 +41391,6 @@ const skill = {
         },
         qysj_xunshoushoutao: {
             //驯兽手套
-            //   vanish:true,
             derivation: 'qysj_duolaameng',
             type: 'qysjdaoju',
             enable: true,

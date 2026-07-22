@@ -4115,7 +4115,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             selectCard: -1,
                             viewAs: {
                                 name: 'sha',
-                                cards: [{ node: { image: {}, info: {}, name: {}, name2: {}, background: {}, intro: {}, range: {}, gaintag: {} }, storage: { vanish: true }, vanishtag: [], gaintag: [], _uncheck: [], suit: 'spade', number: 5, name: 'chitu', cardid: '1946736832', clone: { name: 'chitu', suit: 'spade', number: 5, node: { name: {}, info: {}, intro: {}, background: {}, image: {}, gaintag: {} }, _transitionEnded: true, timeout: 3717 }, original: 'e', timeout: 3678 }],
                                 storage: {
                                     shouli: true,
                                 },
