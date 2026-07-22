@@ -65713,7 +65713,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'useCard',
                             },
                             ai: {
-                                xwLinkCanYi: 1,
+                                xwLinkCanYi: true,
                             },
                             mod: {
                                 aiValue(player, card, num) {
