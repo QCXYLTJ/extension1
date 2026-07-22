@@ -1120,7 +1120,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.goto(4);
                                 ('step 2');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     event.tr.addSkill('zmniejingtaiqian_0');
                                     event.mb = result.targets[0];
                                     event.tr
@@ -1132,7 +1132,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 } else event.goto(1);
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     event.tr.storage.zmniejingtaiqian_0++;
                                     result.targets[0].gainPlayerCard(event.mb, 1, 'h', true);
                                     event.goto(1);

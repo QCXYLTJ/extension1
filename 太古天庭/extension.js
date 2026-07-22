@@ -1779,7 +1779,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         }
                         ('step 4');
                         //选择了更换的武将
-                        if (result.bool && result.links) {
+                        if (result.links?.length) {
                             event.back = false;
                             if (event.targets.name2) {
                                 event.changejiang = result.links[0][2];

@@ -264,7 +264,7 @@ const skill = {
 				})
 				.set('prompt', '邪门:请展示任意张花色不同的手牌');
 			('step 1');
-			if (result.bool && result.cards) {
+			if (result.cards?.length) {
 				player.showCards(result.cards, get.translation(player) + '发动了【邪门】');
 				player.addGaintag(result.cards, 'PSsp_xiemen');
 				result.cards.forEach((card) => (card.storage.PSsp_xiemen = true));

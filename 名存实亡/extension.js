@@ -9821,7 +9821,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								event.num = num;
 								('step 1');
-								if (result.bool && result.targets) {
+								if (result.targets?.length) {
 									result.targets[0].chooseToDiscard('he', true, 2);
 								}
 							},
@@ -9867,7 +9867,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.target = result.targets[0];
 								}
 								('step 2');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									var color = get.color(result.cards[0]);
 									if (color == 'black') {
 										for (var i = 0; i < 3; i++) {

@@ -12914,7 +12914,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 next.set('ai', get.buttonValue);
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();

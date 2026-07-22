@@ -6028,7 +6028,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('lg_nvpugantan2');
                                     result.targets[0].addToExpansion(trigger.cards, player, 'give').gaintag.add('lg_nvpugantan2');
                                     event.target = result.targets[0];
@@ -9336,7 +9336,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 6 - get.value(card);
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     var bool = 0;
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (result.cards[i].suit == 'club') {

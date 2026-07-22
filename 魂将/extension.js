@@ -872,7 +872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                   };
                 } else event.finish();
                 ('step 3');
-                if (result.bool && result.targets) {
+                if (result.targets?.length) {
                   player.useCard({ name: 'sha' }, result.targets, false);
                 } else event.finish();
               },

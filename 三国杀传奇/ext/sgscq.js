@@ -5556,7 +5556,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					// player.viewHandcards(trigger.player);
 					player.choosePlayerCard(trigger.player, 'h', 1, true, get.prompt2('sczs_tiaoxinxx', trigger.player, 'visible'))
 					"step 1"
-					if (result.bool && result.cards) {
+					if (result.cards?.length) {
 						event.card = result.cards[0];
 						trigger.targets.length = 0;
 						trigger.parent.triggeredTargets1.length = 0;

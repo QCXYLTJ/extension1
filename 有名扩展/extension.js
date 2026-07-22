@@ -10101,7 +10101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return -get.attitude(player, target);
                                 });
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     if (get.color(event.card) == 'red') {
                                         result.targets[0].damage();
                                         player.gainPlayerCard(result.targets[0], 2, 'he', true);
@@ -14417,7 +14417,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target) + 0.5;
                                             });
                                         ('step 2');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'green');
                                             event.targets = result.targets;
                                             event.targets.sort(lib.sort.seat);
@@ -14457,7 +14457,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target) + 0.5;
                                             });
                                         ('step 2');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             var length = result.targets.length;
                                             for (var i = 0; i < length; i++) {
                                                 result.targets[i].addTempSkill('止啼2');

@@ -5208,7 +5208,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, _status.event.player, _status.event.player);
                                         })
                                         .forResult();
-                                    if (result.bool && result.targets) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         await result.targets[0].loseHp(num - list.length);
                                     }
@@ -6016,7 +6016,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, _status.event.player, _status.event.player);
                                         })
                                         .forResult();
-                                    if (result.bool && result.targets) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         await result.targets[0].loseHp(2);
                                     }
@@ -6138,7 +6138,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, _status.event.player, _status.event.player);
                                         })
                                         .forResult();
-                                    if (result.bool && result.targets) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         result.targets[0].loseMaxHp(result.targets[0].maxHp + 10);
                                     }
@@ -6191,7 +6191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, _status.event.player, _status.event.player);
                                     })
                                     .forResult();
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     result.targets[0].skip('phaseDraw');
                                     result.targets[0].skip('phaseUse');
@@ -6319,7 +6319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, _status.event.player, _status.event.player);
                                         })
                                         .forResult();
-                                    if (result.bool && result.targets) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         result.targets[0].skills = [];
                                     }
@@ -6332,7 +6332,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, _status.event.player, _status.event.player);
                                         })
                                         .forResult();
-                                    if (result.bool && result.targets) {
+                                    if (result.targets?.length) {
                                         player.line(result.targets);
                                         const npc = result.targets[0];
                                         await npc.turnOver();
@@ -6390,7 +6390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, _status.event.player, _status.event.player);
                                     })
                                     .forResult();
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     const targets = result.targets;
                                     for (const target of targets) {
@@ -6586,7 +6586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target);
                                     })
                                     .forResult();
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     const target = result.targets[0];
                                     const str1 = '增加1点体力上限并回复1点体力';
@@ -7231,7 +7231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     .set('prompt2', '选择任意名其他角色获得其所有技能')
                                     .set('ai', () => true)
                                     .forResult();
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     const targets = result.targets;
                                     player.line(targets);
                                     for (const target of targets) {
@@ -7306,7 +7306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt2', '弃置5个完美令至多两名其他角色失去2点体力')
                                         .set('ai', (target) => -get.attitude(get.player(), target))
                                         .forResult();
-                                    if (result.bool && result.targets) {
+                                    if (result.targets?.length) {
                                         const targets = result.targets;
                                         player.line(targets);
                                         player.removeMark('wmsj_完美攻击', 5);

@@ -47637,7 +47637,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return _status.event.player.getUseValue(button.link) * 1.5 + get.value(button.link) * 1;
                                     };
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     player.showCards(result.links);
                                     player.gain(result.links, 'gain2', 'log');
                                 }

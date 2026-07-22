@@ -1060,7 +1060,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return true;
                                 });
                                 ('step 1');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var card2 = result.links;
                                     var list = lib.skill.tgtt_srqsqkslijie.group;
                                     for (var i = 0; i < card2.length; i++) {

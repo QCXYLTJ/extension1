@@ -3542,7 +3542,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target) + 0.5;
 									});
 								('step 4');
-								if (result.bool && result.targets) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									event.targets = result.targets;
 									event.targets.sort(lib.sort.seat);

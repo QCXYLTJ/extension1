@@ -1957,7 +1957,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 
                     ('step 4');
                     //选择了更换的武将
-                    if (result.bool && result.links) {
+                    if (result.links?.length) {
                         event.back = false;
                         if (event.targets.name2) {
                             event.changejiang = result.links[0][2];
@@ -4098,7 +4098,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             return name == choose;
                         };
                         ('step 1');
-                        if (result.bool && result.links) {
+                        if (result.links?.length) {
                             player.addSkill('jianghun');
                             player.storage.hunskill = result.links[0][2];
                             player.markSkill('hunskill');
@@ -14690,7 +14690,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 player.chooseButton(['请选择大将英魂', [list, 'vcard']]);
                                 ('step 1');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     player.storage.qi = result.links[0][2];
                                 }
                                 player.removeSkill('qiyue');
@@ -19505,7 +19505,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         });
                                         ('step 2');
-                                        if (result.bool && result.links) {
+                                        if (result.links?.length) {
                                             var him = trigger.player;
                                             if (!him.hasSkill('ssr_liegong_equip')) {
                                                 him.addSkill('ssr_liegong_equip');
@@ -21618,7 +21618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();
@@ -28897,7 +28897,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 ('step 6');
                                 game.broadcastAll('closeDialog', event.videoId);
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();

@@ -18538,7 +18538,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('att', target.attitudeTo(player));
 								('step 1');
 								target.recover();
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									var list = [];
 									for (var i of result.cards) {
 										if (i.name == 'sha') list.push(i);
@@ -24406,7 +24406,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								}
 								('step 3');
-								if (result.bool && result.targets) {
+								if (result.targets?.length) {
 									event.target = result.targets[0];
 									if (event.target != player) player.line(event.target);
 									if (event.target.isTurnedOver()) event.target.turnOver();
@@ -26960,7 +26960,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link, get.player());
 								});
 								('step 4');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									game.broadcastAll('closeDialog', event.videoId);
 									event.cards.removeArray(result.links);
 									player.gain(result.links, 'log', 'gain2');

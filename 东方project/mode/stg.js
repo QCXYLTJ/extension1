@@ -3377,7 +3377,7 @@ game.addMode(
                             return -get.attitude(target, player);
                         });
                     ('step 1');
-                    if (result.bool && result.targets) {
+                    if (result.targets?.length) {
                         event.target = result.targets[0];
                         event.target.chooseControl('受到1点伤害', '下一次对' + get.translation(player) + '造成的伤害-1').set('ai', function () {
                             return '下一次对' + get.translation(player) + '造成的伤害-1';

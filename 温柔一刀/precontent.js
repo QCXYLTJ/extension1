@@ -112,60 +112,6 @@ const { result
 async content(event, map) {
 
 
-if \(result.bool(\) \{\n\s*.+result.targets)
-if (result.targets?.length$1
-if \(result.bool(\) \{\n\s*.+result.links)
-if (result.links?.length$1
-if \(result.bool(\) \{\n\s*.+result.cards)
-if (result.cards?.length$1
-
-
-
-if[^\)=?]*result.cards[^\)=?]*\)
-result.cards && result.cards
-if (result.cards && result.cards.length && result.cards.length)
-if (result.bool && result.cards.length)
-if (result && result.bool && result.cards)
-if (result && result.cards)
-if (result.cards)
-if (result.cards.length)
-if (result.bool && result.cards[0])
-if (result && result.bool && result.cards[0])
-if (result.cards.length && result.cards.length)
-if (result.cards[0])
-if (result.cards?.length)
-
-
-if[^\)=?]*result.targets[^\)=?]*\)
-result.targets && result.targets
-if (result.targets && result.targets.length && result.targets.length)
-if (result.bool && result.targets.length)
-if (result && result.bool && result.targets)
-if (result && result.targets)
-if (result.targets)
-if (result.targets.length)
-if (result.bool && result.targets[0])
-if (result && result.bool && result.targets[0])
-if (result.targets.length && result.targets.length)
-if (result.targets[0])
-if (result.targets?.length)
-
-
-if[^\)=?]*result.links[^\)=?]*\)
-result.links && result.links
-if (result.links && result.links.length && result.links.length)
-if (result.bool && result.links.length)
-if (result && result.bool && result.links)
-if (result && result.links)
-if (result.links)
-if (result.links.length)
-if (result.bool && result.links[0])
-if (result && result.bool && result.links[0])
-if (result.links.length && result.links.length)
-if (result.links[0])
-if (result.links?.length)
-
-
 
 
 !((?!\(\b)[^&|\s]*) == //$1 !=

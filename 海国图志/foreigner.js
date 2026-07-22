@@ -15719,7 +15719,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         }
                     });
                     ('step 1');
-                    if (result.bool && result.cards) {
+                    if (result.cards?.length) {
                         for (var i = 0; i < result.cards.length; i++) {
                             event.num1 = 0;
                             if (5 - event.num1 <= 0) {
@@ -17790,7 +17790,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return value;
                     });
                     ('step 1');
-                    if (result.bool && result.links) {
+                    if (result.links?.length) {
                         var card = result.links[0];
                         player.gain(result.links, 'nolog', 'draw');
                     }

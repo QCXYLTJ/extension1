@@ -62,7 +62,7 @@ game.import("card", function (lib, game, ui, get, ai, _status) {
                         event.goto(7)
                     }
                     'step 6'
-                    if (result.bool && result.cards) {
+                    if (result.cards?.length) {
                         var cnum = result.cards[0].number
                         var card = result.cards[0]
                         event.tars[event.inx].showCards(card)

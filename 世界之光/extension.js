@@ -18725,7 +18725,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else event.finish();
                                 } else event.finish();
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var pos = event.pos;
                                     var name = result.links[0][2];
                                     var skill = lib.skill.lg_xingzhizi2_a;
@@ -19668,7 +19668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num2 = Math.min(event.target.countCards('h', { name: 'lg_jingong' }), event.num);
                                         if (num2 > 0) event.target.chooseToDiscard('h', num2, true, { name: 'lg_jingong' });
                                         ('step 3');
-                                        if (result.bool && result.cards) event.num -= result.cards.length;
+                                        if (result.cards?.length) event.num -= result.cards.length;
                                         ('step 4');
                                         if (event.num && player.canUse({ name: 'lg_baoyan' }, event.target, false) && event.target.isAlive()) {
                                             event.num--;

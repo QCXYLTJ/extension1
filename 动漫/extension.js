@@ -514,7 +514,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseToDiscard('he', num, true);
                                 ('step 2');
                                 var useCard = false;
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards)) for (var i of result.cards) {
                                         if (i.original == 'e') {
                                             useCard = true;
@@ -5046,7 +5046,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = [];
                                     for (var i of result.links) {
                                         cards2.push(i);

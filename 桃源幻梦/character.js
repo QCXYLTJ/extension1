@@ -1562,7 +1562,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             else return 6 - get.value(card);
                         });
                     ('step 3');
-                    if (result.bool && result.cards) {
+                    if (result.cards?.length) {
                         event.target.recast(result.cards);
                     }
                 },
@@ -14326,7 +14326,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         });
                     }
                     ('step 3');
-                    if (result.bool && result.cards) {
+                    if (result.cards?.length) {
                         player.recast(result.cards);
                     }
                     event.num--;

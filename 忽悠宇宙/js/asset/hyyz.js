@@ -3725,7 +3725,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.chooseUseTarget({ name: 'sha', nature: 'fire' }, '视为使用一张火【杀】', false);
 				}
 				('step 2');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					//    var target = result.targets[0];
 					//    player.line(target, 'fire');
 					game.playAudio('../extension/忽悠宇宙/audio/skill/b3poxiao' + [1, 2, 3].randomGet());
@@ -3755,7 +3755,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					else event._result = { bool: true, links: event.list.black };
 				}
 				('step 4');
-				if (result.bool && result.links) {
+				if (result.links?.length) {
 					game.playAudio('../extension/忽悠宇宙/audio/skill/b3poxiao' + [4, 5, 6, 7].randomGet());
 					if (!player.storage.b3poxiao) {
 						player.when({ global: 'phaseAfter' }).then(() => {

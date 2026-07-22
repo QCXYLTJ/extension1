@@ -2663,7 +2663,7 @@ export async function precontent(config, pack) {
 								return -get.attitude(_status.event.player, target) + 0.5;
 							});
 						('step 2');
-						if (result.bool && result.targets) {
+						if (result.targets?.length) {
 							event.targets = result.targets;
 							event.targets.sort(lib.sort.seat);
 						} else {
@@ -6680,7 +6680,7 @@ export async function precontent(config, pack) {
 									event.finish();
 								}
 								('step 4');
-								if (result.bool && result.links) event.index = result.links[0];
+								if (result.links?.length) event.index = result.links[0];
 								else event.index = 0;
 								event.togain = event.getedResult[event.index];
 								player.showCards(event.togain[0], get.translation(player) + '分出的第一份牌');
@@ -6881,7 +6881,7 @@ export async function precontent(config, pack) {
 							event.target.chooseButton(choiceList, true);
 						}
 						('step 4');
-						if (result.bool && result.links) event.index = result.links[0];
+						if (result.links?.length) event.index = result.links[0];
 						else event.index = 0;
 						event.togain = event.getedResult[event.index];
 						event.target.showCards(event.togain[0], get.translation(event.target) + '分出的第一份牌');

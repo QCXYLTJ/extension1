@@ -2445,7 +2445,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.effect(player, button.link, player, player);
             });
             'step 1';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               target.useCard(result.links[0], target);
               player.draw();
             }
@@ -3301,7 +3301,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             //    return 12-value;
             //});
             'step 1';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               if (result.links.length == 1) {
                 const count2 = get.cardNameLength(result.links[0]);
                 const gains = get.randomCards(count2, function (card) {

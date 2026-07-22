@@ -4390,7 +4390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets[0] != undefined) {
+                                if (result.targets?.length) {
                                     event.tr = result.targets[0];
                                     player.useCard({ name: 'juedou' }, event.cds, result.targets[0], false);
                                 }

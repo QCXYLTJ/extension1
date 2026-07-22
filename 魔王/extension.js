@@ -4490,7 +4490,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.goto(5);
                                 } else event.goto(5);
                                 ('step 2');
-                                if (result.bool && result.cards) player.draw(result.cards.length);
+                                if (result.cards?.length) player.draw(result.cards.length);
                                 ('step 3');
                                 if (player.countCards('he') && trigger.player.countCards('h')) {
                                     var num = trigger.player.countCards('h');

@@ -20034,7 +20034,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 4');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 }
                                 var time = 1000 - (get.utc() - event.time);
@@ -27380,7 +27380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.damageEffect(target, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     var card = player.getEquips(5);
                                     if (card) {

@@ -15584,7 +15584,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           event.goto(6);
         }
         ('step 5');
-        if (result.bool && result.cards) {
+        if (result.cards?.length) {
           game.log(player, '替换了', '#y【毒】');
           player.loseToDiscardpile(result.cards);
           var card = ui.create.card().init([card.suit, card.number, 'du']);
@@ -15603,7 +15603,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
           event.finish();
         }
         ('step 7');
-        if (result.bool && result.cards) {
+        if (result.cards?.length) {
           game.log(target, '替换了', '#y【毒】');
           target.loseToDiscardpile(result.cards);
           var card = ui.create.card().init([card.suit, card.number, 'du']);
@@ -20416,7 +20416,7 @@ game.import('character', (lib, game, ui, get, ai, _status) => {
             .set('prompt', '重铸一张牌且此【杀】不计入次数');
         }
         ('step 1');
-        if (result.bool && result.cards) {
+        if (result.cards?.length) {
           player.recast(result.cards);
           player.getStat().card.sha--;
           event.finish();

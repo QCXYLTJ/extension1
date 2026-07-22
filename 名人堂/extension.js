@@ -23317,7 +23317,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									player.showCards(result.cards);
 									player.storage.XS_quanzhen_use = result.cards;
 									player.addTempSkill('XS_quanzhen_use');

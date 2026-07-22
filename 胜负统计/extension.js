@@ -90,7 +90,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						return 0;
 					};
 					('step 3');
-					if (result.bool && result.links) event.names = result.links;
+					if (result.links?.length) event.names = result.links;
 					else event.finish();
 					('step 4');
 					player

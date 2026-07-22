@@ -35000,7 +35000,7 @@ const skill = {
           return get.effect(target, { name: 'guohe_copy' }, player, player);
         });
       ('step 3');
-      if (result.bool && result.targets) {
+      if (result.targets?.length) {
         event.targets = result.targets;
         event.targets.sort(lib.sort.seat);
       } else {
@@ -35324,7 +35324,7 @@ const skill = {
         event.finish();
       }
       ('step 2');
-      if (result && result.bool && result.targets.length) {
+      if (result.targets?.length) {
         player.give(event.togive, result.targets[0]);
         if (result.targets[0].isEnemiesOf(player)) {
           result.targets[0].loseHp(2);
@@ -50761,7 +50761,7 @@ const skill = {
         delete player.storage.mx_duwen;
       }
       ('step 2');
-      if (result.bool && result.links) {
+      if (result.links?.length) {
         if (result.links[0] == event.card) {
           player.addTempSkill('mx_duwen_add', { player: 'damageAfter' });
         } else {
@@ -56466,7 +56466,7 @@ const skill = {
         return get.value(button.link, _status.event.player);
       });
       ('step 2');
-      if (result.bool && result.links) {
+      if (result.links?.length) {
         event.cards2 = result.links;
       } else {
         event.finish();
@@ -64194,7 +64194,7 @@ const skill = {
           .set('forced', event.fored);
       }
       ('step 3');
-      if (result && result.bool && result.targets.length) {
+      if (result.targets?.length) {
         result.targets[0].gain(event.togive, 'draw');
         game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
       }
@@ -68323,7 +68323,7 @@ const skill = {
         })
         .set('judging', top[0]);
       ('step 1');
-      if (result.bool && result.cards) {
+      if (result.cards?.length) {
         const cardx = get.cards(1);
         event.cardx = cardx;
         event.card = result.cards[0];

@@ -7104,7 +7104,7 @@ const skill = {
                     return -get.attitude(_status.event.player, target) + 0.5;
                 });
             ('step 4');
-            if (result.bool && result.targets) {
+            if (result.targets?.length) {
                 player.line(result.targets, 'green');
                 event.targets = result.targets;
                 event.targets.sort(lib.sort.seat);
@@ -24797,7 +24797,7 @@ const skill = {
                 }
             }
             ('step 2');
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
                 event.target.give(result.cards, player, true);
                 event.target.removeMark('yjcksy_shangqing_a', 1);
             }
@@ -25581,7 +25581,7 @@ const skill = {
             }
             player.addTempSkill('yjckyy_xiangzhi_a');
             let nu = 0;
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
                 nu = result.cards.length;
                 player.gain(result.cards, target, 'giveAuto');
             }
@@ -43935,7 +43935,7 @@ const skill = {
                 player.chooseToDiscard(true, player.countCards('h') - player.hp);
             }
             ('step 1');
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
                 player.chooseUseTarget({ name: 'sha' }, false, 'nodistance');
             }
         },

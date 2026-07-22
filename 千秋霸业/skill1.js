@@ -529,7 +529,7 @@ const skill = {
 				return get.value(button.link);
 			});
 			('step 3');
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				event.win.gain(result.links, 'gain2');
 				event.list.remove(result.links[0]);
 			} else {
@@ -20449,7 +20449,7 @@ const skill = {
 					.set('forced', event.fored);
 			}
 			('step 3');
-			if (result && result.bool && result.targets.length) {
+			if (result.targets?.length) {
 				result.targets[0].gain(event.togive, 'draw');
 				//player.line(result.targets[0],'green');
 				game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');
@@ -21191,7 +21191,7 @@ const skill = {
 					return true;
 				});
 			('step 1');
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 				trigger.player.damage();
 			} else {
@@ -36176,7 +36176,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool && result.cards) {
+			if (result.cards?.length) {
 				player.showCards(result.cards);
 				player.storage.lg_yizhan_use = result.cards;
 				player.useSkill('lg_yizhan1');
@@ -39625,7 +39625,7 @@ const skill = {
 						event.target.chooseToDiscard('h', num2, true, { name: 'shan' });
 					}
 					('step 3');
-					if (result.bool && result.cards) {
+					if (result.cards?.length) {
 						event.num -= result.cards.length;
 					}
 					('step 4');
@@ -52261,7 +52261,7 @@ const skill = {
 				return get.value(button.link, _status.event.player);
 			});
 			('step 2');
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				event.cards2 = result.links;
 			} else {
 				event.finish();

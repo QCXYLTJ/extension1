@@ -5211,7 +5211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();
@@ -5297,7 +5297,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();
@@ -15663,7 +15663,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(player, current);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     event.targetx1 = result.targets[0];
                                     if (trigger.source && trigger.source.isAlive() && result.targets[0] && result.targets[0].isAlive) {
                                         trigger.source.chooseToCompare(result.targets[0]);
@@ -15852,7 +15852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     player.line([trigger.player, target]);
                                     result.targets[0].gain(event.cardsx, player, 'giveAuto');
@@ -16432,7 +16432,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 
                                 ('step 1');
 
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     player.gain(result.cards, trigger.player, 'giveAuto');
                                 } else {
                                     trigger.player.damage();
@@ -30079,7 +30079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         }
                                         ('step 1');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             var playertr = trigger.player;
                                             if (playertr.canUse({ name: 'sha', nature: 'fire' }, result.targets[0], false)) {
                                                 playertr.useCard({ name: 'sha', nature: 'fire' }, result.targets[0]);
@@ -35101,7 +35101,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     game.asyncDraw([player, result.targets[0]]);
                                     player
                                         .chooseToUse(
@@ -36373,7 +36373,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 1');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     if (get.owner(result.links[0])) {
                                         event.piren = get.owner(result.links[0]);
                                         if (event.piren == player) {
@@ -39895,7 +39895,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     } else event.finish();
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     if (!event.getParent('phaseJudge') || event.getParent('phaseJudge').name != 'phaseJudge' || event.getParent('phaseJudge').player != player) {
                                         for (var i = result.links.length - 1; i >= 0; i--) {
                                             player.addJudge({ name: 'xumou_jsrg' }, result.links[i]);

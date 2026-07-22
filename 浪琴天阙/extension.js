@@ -6261,7 +6261,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.discardPlayerCard(target, true, 'h');
 								('step 1');
-								if (result.bool && result.cards) target.damage(result.cards[0].number);
+								if (result.cards?.length) target.damage(result.cards[0].number);
 								('step 2');
 								if (!target.isDead()) player.draw(2);
 							},
@@ -8460,7 +8460,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link, _status.event.player);
 								});
 								('step 2');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									event.cards2 = result.links;
 								} else {
 									event.finish();
@@ -13311,7 +13311,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 								} else player.discardPlayerCard(target, true, 'h');
 								('step 1');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var num = get.translation(result.links[0].name).length;
 									if (num > 2) target.damage('thunder');
 									else player.draw(2);
@@ -13338,7 +13338,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 1');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									trigger.parent.excluded.add(player);
 									var fool = true;
 									if (!trigger.cards.length) fool = false;
@@ -14975,7 +14975,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												};
 										}
 										('step 2');
-										if (result.bool && result.targets) {
+										if (result.targets?.length) {
 											var b = result.targets[0],
 												c = event.a == 2 ? Math.floor(b.hp / 2) : b.hp - 1;
 											if (c < 1) c = 1;
@@ -15087,7 +15087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								}
 								('step 9');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var g = get.cardPile(function (card) {
 										return card.name == result.links[0][2];
 									});
@@ -20133,7 +20133,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 6 - get.value(card);
 								});
 								('step 2');
-								if (result.bool && result.cards) player.addMark('lqtz_jizhou', result.cards.length);
+								if (result.cards?.length) player.addMark('lqtz_jizhou', result.cards.length);
 								else trigger.player.loseHp();
 							},
 						},
@@ -21685,7 +21685,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('effect', effect)
 									('step 1');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									trigger.targets.length = 0;
 									trigger.parent.triggeredTargets1.length = 0;

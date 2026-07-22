@@ -6751,7 +6751,7 @@ game.import('character', function () {
             player.removeMark('wowumrfz', 3, false);
           } else event.finish();
           ('step 2');
-          if (result.bool && result.targets) {
+          if (result.targets?.length) {
             player.useCard({ name: 'sha' }, true, false, result.targets);
             if (player.countMark('wowumrfz_draw') >= 5) player.draw();
           }
@@ -6924,7 +6924,7 @@ game.import('character', function () {
             return -get.attitude(player, target);
           };
           ('step 1');
-          if (result.bool && result.targets) {
+          if (result.targets?.length) {
             result.targets[0].addMark('fanzhongmrfz');
           }
         },
@@ -7069,7 +7069,7 @@ game.import('character', function () {
             };
           } else event.finish();
           ('step 6');
-          if (result.bool && result.targets) {
+          if (result.targets?.length) {
             result.targets[0].addMark('fanzhongmrfz');
           }
         },
@@ -7439,7 +7439,7 @@ game.import('character', function () {
                 return get.attitude(player, target) > 0;
               };
               ('step 1');
-              if (result.bool && result.targets) {
+              if (result.targets?.length) {
                 var target = result.targets[0];
                 target.addMark('hongsongmrfz');
                 player.removeMark('hongsongmrfz');
@@ -8037,7 +8037,7 @@ game.import('character', function () {
                   });
               } else event.finish();
               ('step 5');
-              if (result.bool && result.targets) {
+              if (result.targets?.length) {
                 event.target = result.targets[0];
                 var cards = player.getExpansions('nianshoumrfz');
                 if (cards.length) player.chooseButton(['选择一个‘巨剑’', cards], true);
@@ -8185,7 +8185,7 @@ game.import('character', function () {
             return -get.attitude(player, target);
           };
           ('step 1');
-          if (result.bool && result.targets) {
+          if (result.targets?.length) {
             result.targets[0].damage();
             if (trigger.num > 0) result.targets[0].chooseToDiscard('h', true, get.prompt('chongjimrfz'), `请选择弃置${trigger.num}张手牌`, trigger.num);
           }

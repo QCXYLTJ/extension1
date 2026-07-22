@@ -9379,7 +9379,7 @@ export let info = {
               );
             } else event.finish();
             ('step 2');
-            if (result.bool && result.targets) {
+            if (result.targets?.length) {
               var target = result.targets[0];
               target.gain(event.card, player, 'giveAuto');
             }

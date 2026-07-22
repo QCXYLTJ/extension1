@@ -12409,7 +12409,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						};
 					}
 					('step 2');
-					if (result.bool && result.targets) {
+					if (result.targets?.length) {
 						var card = get.cardPile(function (c) {
 							return c.suit == 'heart';
 						});

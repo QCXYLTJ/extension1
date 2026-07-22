@@ -2929,7 +2929,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                     });
                     next.set('choice', choice);
                     ('step 1');
-                    if (result.bool && result.targets) {
+                    if (result.targets?.length) {
                         var target = result.targets[0];
                         var card = player.getEquip(5);
                         player.line(target);

@@ -7252,7 +7252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 };
                             ('step 2');
                             event.count = 1;
-                            if (result.bool && result.cards) {
+                            if (result.cards?.length) {
                                 if (Array.isArray(result.cards))
                                     for (var i of result.cards) {
                                         if (get.type(i, i.original == 'h' ? player : false) == 'equip') {
@@ -7642,7 +7642,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 return get.attitude(player, target) > 0;
                             };
                             ('step 1');
-                            if (result.bool && result.targets) {
+                            if (result.targets?.length) {
                                 var list = [];
                                 if (lib.character.sp_mifuren) list.add('sp_mifuren');
                                 if (lib.character.mifuren) list.add('mifuren');

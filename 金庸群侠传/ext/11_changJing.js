@@ -1371,7 +1371,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
           return value;
         });
         'step 1';
-        if (result.bool && result.links) {
+        if (result.links?.length) {
           player.gain(result.links, 'log', 'draw');
           var name = result.links[0].name;
           var str = get.translation(name);

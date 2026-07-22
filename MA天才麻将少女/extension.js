@@ -1578,7 +1578,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.card = get.cards();
                                     player.showCards(event.card);
                                     if (event.card.suit == result.cards[0].suit) {
@@ -1814,7 +1814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     player.addTempSkill('masaki_jushou_buff');
                                     player.markAuto('masaki_jushou_buff', [trigger.player]);
                                 }
@@ -4188,7 +4188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     var num = 0;
                                     for (const i of game.players) {
                                         if (i != player) {
@@ -4241,7 +4241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 });
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     var source = trigger.player;
                                     var target = trigger.target;
                                     target.line(source);
@@ -4380,7 +4380,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();

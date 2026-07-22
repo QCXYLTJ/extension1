@@ -2717,7 +2717,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.value(button.link, _status.event.player);
 										});
 										('step 3');
-										if (result.bool && result.links) {
+										if (result.links?.length) {
 											player.gain(result.links, target);
 											target.$give(result.links.length, player);
 										} else {
@@ -2992,7 +2992,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return -get.attitude(_status.event.player, button.link);
 								});
 								('step 1');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									player.$throw(player.storage.tumeiRem);
 									player.line(target);
 									player.line(target, 'green');

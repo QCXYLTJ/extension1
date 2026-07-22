@@ -79,7 +79,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = [];
                                     for (var i of result.links) {
                                         event.cards2.push(i);

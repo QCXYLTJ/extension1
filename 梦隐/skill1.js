@@ -6642,7 +6642,7 @@ const skill = {
                 event.finish();
             }
             ('step 2');
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
                 player.showCards(result.cards);
                 player.storage.mx_suowenbianji_use = result.cards;
                 player.addTempSkill('mx_suowenbianji_use');
@@ -13754,7 +13754,7 @@ const skill = {
                     return att;
                 });
             ('step 1');
-            if (result.bool && result.targets) {
+            if (result.targets?.length) {
                 const target = result.targets[0];
                 event.target = result.targets[0];
                 target.draw();
@@ -15833,7 +15833,7 @@ const skill = {
                 return get.value(button.link, _status.event.player);
             });
             ('step 2');
-            if (result.bool && result.links) {
+            if (result.links?.length) {
                 event.cards2 = result.links;
             } else {
                 event.finish();
@@ -19287,7 +19287,7 @@ const skill = {
                     return get.effect(target, { name: 'guohe_copy' }, player, player);
                 });
             ('step 3');
-            if (result.bool && result.targets) {
+            if (result.targets?.length) {
                 event.targets = result.targets;
                 event.targets.sort(lib.sort.seat);
             } else {
@@ -25514,7 +25514,7 @@ const skill = {
                 };
             }
             ('step 1');
-            if (result.bool && result.targets) {
+            if (result.targets?.length) {
                 player.addTempSkill('mx_zhaoliang3', { player: 'mx_zhaoliangAfter' });
                 result.targets[0].addSkill('mx_zhaoliang2');
                 result.targets[0].addToExpansion(trigger.cards, player, 'give').gaintag.add('mx_zhaoliang2');
@@ -43620,7 +43620,7 @@ const skill = {
             ('step 3');
             targets[2].chooseToDiscard(true, 'h', event.disnum);
             ('step 4');
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
                 if (targets[2].isDamaged()) {
                     targets[2].recover(2);
                 }
@@ -49886,7 +49886,7 @@ const skill = {
                 return get.value(button.link, _status.event.player);
             });
             ('step 2');
-            if (result.bool && result.links) {
+            if (result.links?.length) {
                 event.cards2 = result.links;
             } else {
                 event.finish();
@@ -75705,7 +75705,7 @@ const skill = {
                     const num = trigger.target.countCards('e');
                     player.discardPlayerCard('你可以弃置其区域内的至多' + get.cnNumber(num) + '张牌', 'hej', trigger.target, [1, trigger.target.countCards('e')]);
                     ('step 1');
-                    if (result.bool && result.cards) {
+                    if (result.cards?.length) {
                         if (Array.isArray(result.cards)) {
                             for (const i of result.cards) {
                                 if (i.original == 'e') {
@@ -77046,7 +77046,7 @@ const skill = {
                     return true;
                 });
             ('step 1');
-            if (result.bool && result.links) {
+            if (result.links?.length) {
                 player.gain(result.links, 'gain');
             } else {
                 event.finish();
@@ -79504,7 +79504,7 @@ const skill = {
                 return get.value(button.link, _status.event.player);
             });
             ('step 3');
-            if (result.bool && result.links) {
+            if (result.links?.length) {
                 event.cards2 = result.links;
             } else {
                 event.cards2 = [];

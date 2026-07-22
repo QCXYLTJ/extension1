@@ -3996,7 +3996,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, tax);
                                 });
                                 'step 2'
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = result.links;
                                     var tax = event.tar[event.num];
                                     tax.gain(cards2, 'log', 'gain2');
@@ -5256,7 +5256,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 }
                                 'step 1'
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     player.loseToDiscardpile(result.cards);
                                     player.draw().gaintag = ['Miss'];
                                     event.finish();

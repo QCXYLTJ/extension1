@@ -4937,7 +4937,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return _status.event.skillsx.randomGets(event.num);
 								});
 								('step 2');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									for (var s of result.links) {
 										player.addSkillLog(s);
 									}

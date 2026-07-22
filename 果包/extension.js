@@ -6974,7 +6974,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     var name = Object.keys(lib.characterPack.果包).randomGet(function (name) {
                                         return game.filterPlayer((current) => current.name == name || current.name1 == name || current.name2 == name);
@@ -7159,7 +7159,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 });
                                         }
                                         ('step 3');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             var target = result.targets[0];
                                             var name = Object.keys(lib.characterPack.果包).randomGet(function (name) {
                                                 return game.filterPlayer((current) => current.name == name || current.name1 == name || current.name2 == name);

@@ -12336,7 +12336,7 @@ game.import('character', function () {
 						})(),
 					});
 					('step 1');
-					if (result.bool && result.targets) {
+					if (result.targets?.length) {
 						player.discard(result.cards[0])._triggered = null;
 						result.targets[0].damage(trigger.num, trigger.source, trigger.nature);
 						player.$fullscreenpop('翻云覆雨', 'thunder');

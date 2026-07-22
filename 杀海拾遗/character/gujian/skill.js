@@ -1245,7 +1245,7 @@ const skill = {
 			player.chooseToDiscard("he", event.num, true);
 			"step 2";
 			var useCard = false;
-			if (result.bool && result.cards) {
+			if (result.cards?.length) {
 				for (var i = 0; i < result.cards.length; i++) {
 					if (result.cards[i].name === "sha") {
 						useCard = true;

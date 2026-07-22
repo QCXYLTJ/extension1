@@ -1577,7 +1577,7 @@ const skill = {
 				delete player.storage.lieqi;
 			}
 			"step 2";
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				if (result.links[0] === event.card) {
 					player.gain(game.createCard(event.card), "draw");
 				} else {

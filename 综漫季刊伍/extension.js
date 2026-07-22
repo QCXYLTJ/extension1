@@ -572,7 +572,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets[0] != undefined) {
+                                if (result.targets?.length) {
                                     if (result.targets[0].hp == 1) {
                                         game.playzm5('zmweilaq1');
                                         game.mp425('zmweilaq');
@@ -6684,7 +6684,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             event.finish();
                                         }
                                         ('step 3');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             event.num1++;
                                             if (event.num > 0 && player.countCards('h') > 0) {
                                                 event.goto(1);

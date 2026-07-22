@@ -2806,7 +2806,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 0;
 								});
 								('step 2');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var num = result.links[0].number;
 									switch (num) {
 										case 3:
@@ -3372,7 +3372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.value(button.link, _status.event.player) >= 7;
 										});
 										('step 3');
-										if (result.bool && result.links) {
+										if (result.links?.length) {
 											//game.rainSay(player,'发动了武将技能','<span style=\"color: #FFD700\">【刻刻帝·十之弹】</span>');
 											player.removeMark('rain_acgn_date_shiQiKuangSan_shiShiZhiCheng', 10, false);
 											player.popup('十之弹');
@@ -21828,7 +21828,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.value(button.link, _status.event.player);
 										});
 										('step 2');
-										if (result.bool && result.links) {
+										if (result.links?.length) {
 											event.cards2 = result.links;
 										} else {
 											event.finish();

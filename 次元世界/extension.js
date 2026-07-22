@@ -24896,7 +24896,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return val;
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = [];
                                     for (const i of result.links) {
                                         cards2.push(i);
@@ -25062,7 +25062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();

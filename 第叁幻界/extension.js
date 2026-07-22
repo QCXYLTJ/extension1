@@ -5604,7 +5604,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								next.set('goon', get.attitude(player, trigger.target) < 0);
 								('step 1');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									var target = trigger.target;
 									target.discard(result.cards, player);
 									if (result.cards.length > 1 && get.type(result.cards[0]) == get.type(result.cards[1])) {
@@ -9381,7 +9381,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											player.gainPlayerCard([1, trigger.num], 'hej', target, true);
 										} else event.finish();
 										('step 2');
-										if (result.bool && result.cards) {
+										if (result.cards?.length) {
 											if (result.cards.length > 1) event.target.removeMark('dshj_diewu', 1);
 										}
 									},
@@ -21086,7 +21086,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 7 - get.value(card);
 										});
 										('step 1');
-										if (result.bool && result.cards) {
+										if (result.cards?.length) {
 											event.card = result.cards;
 											var str = `将${get.translation(event.card) + '交给一名不为' + get.translation(trigger.player)}的角色`;
 											player
@@ -30319,7 +30319,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									})
 									.set('effect', effect)
 									('step 1');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									trigger.targets.length = 0;
 									trigger.parent.triggeredTargets1.length = 0;
@@ -35765,7 +35765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.chooseButton(['星舞:请选择要移去的<星舞>', cards], event.num * 2, true);
 								} else event.finish();
 								('step 4');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var cards = result.links;
 									player.loseToDiscardpile(result.links);
 									player.draw(event.num);
@@ -37760,7 +37760,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('visible', true);
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									var cards = result.cards;
 									target.lose(cards, ui.cardPile, 'insert');
 									game.log(player, '将', target, '区域内的', cards, '置于牌堆顶');
@@ -49756,7 +49756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											player.discardPlayerCard(result.targets[0], 'hej', true);
 										} else event.finish();
 										('step 4');
-										if (result.bool && result.links) {
+										if (result.links?.length) {
 											if (get.color(result.links[0]) != event.color) {
 												player.chooseTarget(get.prompt('dshj_zhenliang'), '令一名角色失去1点体力').set('ai', function (target) {
 													var player = _status.event.player;
@@ -49765,7 +49765,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											} else event.finish();
 										} else event.finish();
 										('step 5');
-										if (result.bool && result.targets) {
+										if (result.targets?.length) {
 											player.line(result.targets[0]);
 											result.targets[0].loseHp();
 										}
@@ -49872,7 +49872,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.markAuto('dshj_zhuli', [trigger.player]);
 								player.gainPlayerCard(trigger.player, 'hej', true);
 								('step 1');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									if (!player.countCards('hes')) event._result = { bool: false };
 									else {
 										var str = `请交给${get.translation(trigger.player)}1张牌,或令其摸1张牌`;
@@ -55279,7 +55279,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.storage.dshj_lveming++;
 								player.gainPlayerCard(target, 'hej', true);
 								('step 1');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									event.card = result.cards[0];
 									player.showCards(event.card);
 								} else event.finish();
@@ -62382,7 +62382,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else event.finish();
 								('step 3');
-								if (result.bool && result.cards) target.gain(result.cards, player, 'giveAuto');
+								if (result.cards?.length) target.gain(result.cards, player, 'giveAuto');
 							},
 							ai: {
 								order() {
@@ -68373,7 +68373,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link, _status.event.player);
 								});
 								('step 4');
-								if (result.bool && result.links) event.cards2 = result.links;
+								if (result.links?.length) event.cards2 = result.links;
 								else event.finish();
 								('step 5');
 								game.broadcastAll('closeDialog', event.videoId);
@@ -77269,7 +77269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										.set('prompt', '弃置任意张牌并摸X张牌(X为弃置牌的数量+2)');
 								} else event.finish();
 								('step 3');
-								if (result.bool && result.cards) target.draw(result.cards.length + 2);
+								if (result.cards?.length) target.draw(result.cards.length + 2);
 							},
 							ai: {
 								order() {
@@ -83522,7 +83522,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.color = get.color(result[0]);
 								trigger.player.gainPlayerCard(player, 'h', true);
 								('step 2');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									if (event.color == get.color(result.cards[0])) player.loseHp();
 								}
 							},

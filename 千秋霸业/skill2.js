@@ -5084,7 +5084,7 @@ const skill = {
 				.set('source', trigger.player)
 				.set('target', trigger.target);
 			('step 1');
-			if (result.bool && result.cards) {
+			if (result.cards?.length) {
 				player.line(trigger.target, 'green');
 				if (trigger.target != player) {
 					player.storage.lg_zhenyi.add(trigger.target);
@@ -7361,7 +7361,7 @@ const skill = {
 				delete player.storage.lg_moxue;
 			}
 			('step 2');
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				if (result.links[0] != event.card) {
 					player.gain(game.createCard(event.card), 'draw');
 					player.gain(game.createCard(event.card), 'draw');
@@ -20482,7 +20482,7 @@ const skill = {
 				};
 			}
 			('step 1');
-			if (result.bool && result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].addSkill('lg_danxue2');
 				result.targets[0].addToExpansion(trigger.cards, player, 'give').gaintag.add('lg_danxue2');
 				event.target = result.targets[0];
@@ -27857,7 +27857,7 @@ const skill = {
 				return get.value(button.link, _status.event.player);
 			});
 			('step 3');
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				event.cards2 = result.links;
 			} else {
 				event.cards2 = [];
@@ -45379,7 +45379,7 @@ const skill = {
 					return att;
 				});
 			('step 1');
-			if (result.bool && result.targets) {
+			if (result.targets?.length) {
 				const target = result.targets[0];
 				event.target = result.targets[0];
 				target.draw(2);
@@ -45932,7 +45932,7 @@ const skill = {
 				event.finish();
 			}
 			('step 5');
-			if (result.bool && result.cards) {
+			if (result.cards?.length) {
 				player.useCard({ name: 'juedou' }, result.cards, target);
 			}
 		},

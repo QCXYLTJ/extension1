@@ -2465,7 +2465,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 }
                                 event.finish();
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.links = result.links;
                                     event.num = 0;
                                 } else event.finish();
@@ -6426,7 +6426,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.effect(target, { name: 'guohe_copy' }, player, player);
                                     });
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     event.targets.sort(lib.sort.seat);
                                 } else {
@@ -8201,7 +8201,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 event.hh = false;
                                 event.ee = false;
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (result.cards[i].original == 'h') {
                                             event.hh = true;
@@ -9431,7 +9431,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target) + 0.5;
                                             });
                                         ('step 2');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'green');
                                             event.targets = result.targets;
                                             event.targets.sort(lib.sort.seat);
@@ -9478,7 +9478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target) + 0.5;
                                             });
                                         ('step 2');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             var length = result.targets.length;
                                             for (var i = 0; i < length; i++) {
                                                 result.targets[i].addTempSkill('ygbxiasha2');
@@ -10481,7 +10481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target);
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     event.targets = result.targets;
                                     event.targets.sort(lib.sort.seat);

@@ -2813,7 +2813,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return -get.attitude(player, target);
                                         };
                                         ('step 3');
-                                        if (result.bool && result.targets[0] != undefined) {
+                                        if (result.targets?.length) {
                                             player.useCard({ name: 'juedou' }, trigger.cards, result.targets[0], false);
                                         }
                                     },
@@ -7419,7 +7419,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             return get.effect(target, { name: 'sha' }, player, player);
                                         };
                                         ('step 1');
-                                        if (result.bool && result.targets[0] != undefined) {
+                                        if (result.targets?.length) {
                                             player.storage.zmt_np -= 20;
                                             player.useCard({ name: 'sha' }, trigger.cards, result.targets[0], false);
                                         }

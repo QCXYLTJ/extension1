@@ -12792,7 +12792,7 @@ const skill = {
         });
       }
       'step 2';
-      if (result.bool && result.links) {
+      if (result.links?.length) {
         const gaintag = [];
         gaintag.add('yb049_rongxiao');
         player.addSkill('yb049_rongxiao_use');

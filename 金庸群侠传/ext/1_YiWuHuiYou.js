@@ -18438,7 +18438,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               .set('haspiayer', haspiayer)
               .set('forceDie', true);
             ('step 3');
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
               event.togive = result.cards.slice(0);
               //'将'+get.translation(event.togive)+'交给一名角色',
               player
@@ -20838,7 +20838,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               })
               .set('judging', top[0]);
             ('step 1');
-            if (result.bool && result.cards) {
+            if (result.cards?.length) {
               var cardx = get.cards(1);
               event.cardx = cardx;
               event.card = result.cards[0];

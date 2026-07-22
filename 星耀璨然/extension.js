@@ -32559,7 +32559,7 @@ export default async function () {
                                 return num;
                             });
                         ('step 5');
-                        if (result.bool && result.targets) {
+                        if (result.targets?.length) {
                             player.line(result.targets, 'water');
                             for (var i = 0; i < result.targets.length; i++) {
                                 result.targets[i].addTempSkill('radiance_wudi', {
@@ -37986,7 +37986,7 @@ export default async function () {
                             .set('source', trigger.player)
                             .set('target', trigger.target);
                         ('step 1');
-                        if (result.bool && result.cards) {
+                        if (result.cards?.length) {
                             player.line(trigger.target, 'green');
                             if (trigger.target != player) player.storage.radiance_rongbi.add(trigger.target);
                             player.markSkill('radiance_rongbi');

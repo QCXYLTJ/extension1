@@ -6211,7 +6211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 6');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 }
                                 var time = 1000 - (get.utc() - event.time);
@@ -13459,7 +13459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         });
                                 }
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'gain2');
                                 }
                             },
@@ -17306,7 +17306,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return -get.attitude(_status.event.player, target) + 0.5;
                                     });
                                 ('step 4');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets, 'green');
                                     event.targets = result.targets;
                                     event.targets.sort(lib.sort.seat);
@@ -17389,7 +17389,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return -get.attitude(_status.event.player, target) + 0.5;
                                             });
                                         ('step 4');
-                                        if (result.bool && result.targets) {
+                                        if (result.targets?.length) {
                                             player.line(result.targets, 'green');
                                             event.targets = result.targets;
                                             event.targets.sort(lib.sort.seat);
@@ -24936,7 +24936,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.chooseToDiscard('he', num, true);
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (get.type(result.cards[i]) == 'equip') {
                                             if (!player.storage.DIY_shanjia) player.storage.DIY_shanjia = 0;
@@ -35115,7 +35115,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.value(button.link, _status.event.player);
                                             });
                                         ('step 1');
-                                        if (result.bool && result.links) {
+                                        if (result.links?.length) {
                                             player.gain(result.links, 'gain2');
                                         }
                                     },

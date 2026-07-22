@@ -22287,7 +22287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 event.goto(5);
                                 ('step 5');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = result.links;
                                     player.gain(cards2, 'log', 'gain2');
                                     game.broadcastAll('closeDialog', event.videoId);
@@ -27248,7 +27248,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     if (player.storage.szdl_huantian != true) {
                                         game.playAudio('../extension/Nirvana/audio/神诸葛', ['szdl_dawu1.mp3', 'szdl_dawu2.mp3'].randomGet());
@@ -35703,7 +35703,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 2');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.gainPlayerCard(result.targets[0], 'h');
                                 }
                             },
@@ -37494,7 +37494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                 }
                                 ('step 6');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     player.gain(result.links, 'draw');
                                 }
                                 if (player.storage.szdl_zhuifeng != true) event.finish();
@@ -40107,7 +40107,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             }
                                         }
                                         ('step 2');
-                                        if (result.bool && result.links) {
+                                        if (result.links?.length) {
                                             player.useCard(result.links[0], trigger.targets[0]).animate = false;
                                         }
                                     },
@@ -40190,7 +40190,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('target1', trigger.targets[0]);
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'giveAuto', player).gaintag.add('szdl_xushi');
                                 } else {
                                     trigger.targets[0].discard(trigger.targets[0].storage.szdl_guilv);
@@ -45719,7 +45719,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('targetx', trigger.targets);
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     for (var i = 0; i < result.targets.length; i++) {
                                         var numx1 = 0;
                                         for (var k = 0; k < trigger.player.storage.szdl_xinbinglue.length; k++) {
@@ -46278,7 +46278,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('prompt', '肆政:交给' + get.translation(player) + '一张牌');
                                 if (result.control == '目标') player.storage.szdl_sizheng.push(event.current);
                                 ('step 3');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.current.give(result.cards[0], player);
                                 }
                                 ('step 4');
@@ -47560,7 +47560,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         };
                                 }
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage('fire', 'nocard');
                                 }
                             },
@@ -51819,7 +51819,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     player.addToExpansion(result.cards, 'give', trigger.player).gaintag.add('szdl_wangtu_card');
                                 }
                             },

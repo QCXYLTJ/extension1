@@ -10997,7 +10997,7 @@ const skills = {
 					})
 					.set('prompt', '交给' + get.translation(player) + '一张牌,否则获得负面效果');
 			('step 4');
-			if (result.bool && result.cards) {
+			if (result.cards?.length) {
 				player.gain(result.cards[0], target, 'give', 'bySelf');
 				if (target.hp < target.maxHp) {
 					player.chooseBool('是否让' + get.translation(target) + '回复一点体力？').ai = function (event, player) {
@@ -12733,7 +12733,7 @@ const skills = {
 					});
 			}
 			('step 1');
-			if (result.bool && result.targets) {
+			if (result.targets?.length) {
 				player.gainPlayerCard(result.targets[0], 1, 'he', true);
 			}
 		},

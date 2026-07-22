@@ -7263,7 +7263,7 @@ const skills = {
 			}
 			const result = await next.forResult();
 			game.broadcastAll('closeDialog', videoId);
-			if (result.bool && result.links) {
+			if (result.links?.length) {
 				cards.remove(result.links[0]);
 				player.gain(result.links, 'log', 'gain2');
 			}
@@ -13900,7 +13900,7 @@ const skills = {
 					};
 			}
 			('step 3');
-			if (result.bool && result.targets) {
+			if (result.targets?.length) {
 				game.playBleach(['bleach_ligong3', 'bleach_ligong4', 'bleach_ligong5g', 'bleach_ligong6'].randomGet());
 				result.targets[0].damage(1, 'thunder');
 			}

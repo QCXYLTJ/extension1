@@ -5223,7 +5223,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                 return val;
                                             });
                                             ('step 2');
-                                            if (result.bool && result.links) {
+                                            if (result.links?.length) {
                                                 const cards2 = [];
                                                 for (const i of result.links) {
                                                     cards2.push(i);
@@ -11961,7 +11961,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     });
                                 });
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     const card = result.targets[0].getCards('e', {
                                         subtype: 'equip1',
                                     })[0];
@@ -12448,7 +12448,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         });
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets[0], 'green');
                                     result.targets[0].damage(player.maxHp, 'fire');
                                 }

@@ -13235,7 +13235,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 return lib.card[name].aiNum(_status.event.player);
               });
             'step 1';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               var link = result.links[0][2];
               var next = game.createEvent('tlbb_daoying_content', false);
               next.player = player;

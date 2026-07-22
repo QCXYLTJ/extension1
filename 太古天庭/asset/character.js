@@ -23673,7 +23673,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         })
                         .set('effect', effect)
                         ('step 1');
-                    if (result.bool && result.cards) {
+                    if (result.cards?.length) {
                         event.card = result.cards[0];
                         trigger.targets.length = 0;
                         trigger.parent.triggeredTargets1.length = 0;
@@ -25311,7 +25311,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return true;
                     });
                     ('step 2');
-                    if (result.bool && result.links) {
+                    if (result.links?.length) {
                         event.cards2 = result.links;
                     } else {
                         event.finish();

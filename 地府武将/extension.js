@@ -2437,7 +2437,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.source);
                                 });
                                 ('step 4');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     trigger.source.discard(result.links);
                                 } else {
                                     trigger.source.loseHp();

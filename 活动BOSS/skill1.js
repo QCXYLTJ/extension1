@@ -9938,7 +9938,7 @@ const skill = {
           'effect',
           effect,
         )('step 1');
-      if (result.bool && result.cards) {
+      if (result.cards?.length) {
         event.card = result.cards[0];
         trigger.targets.length = 0;
         trigger.parent.triggeredTargets1.length = 0;
@@ -53875,7 +53875,7 @@ const skill = {
         return get.value(button.link, _status.event.player);
       });
       ('step 2');
-      if (result.bool && result.links) {
+      if (result.links?.length) {
         const cards2 = [];
         for (const i of result.links) {
           cards2.push(i);

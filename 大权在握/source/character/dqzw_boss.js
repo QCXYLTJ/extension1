@@ -994,7 +994,7 @@ export let info = {
             });
         }
         ('step 1');
-        if (result.bool && result.cards) {
+        if (result.cards?.length) {
           player.loseToDiscardpile(result.cards);
           player.draw().gaintag = ['dqzw_boss_activity_tianhai_Miss'];
           event.finish();

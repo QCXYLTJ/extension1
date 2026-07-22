@@ -24809,7 +24809,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return att > 0 ? 3 : 0.5;
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     if (result.targets[0].yuansu_joutai) {
                                         for (var i = 0; i < result.targets[0].yuansu_joutai.length; i++) {
                                             result.targets[0].yuansu_kie(result.targets[0].yuansu_joutai[i][0], null, player);
@@ -27035,7 +27035,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.target = target;
                                 }
                                 ('step 2');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.target.give(result.cards, player);
                                     //        player.gain(result.cards,'giveAuto',target);
                                     player.addTempSkill('acgn_linggan_respond');
@@ -27129,7 +27129,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 'step 0';
                                 player.chooseCard([1, Infinity], 'he').set('prompt', '选择置于牌堆顶的牌,先选的在上.');
                                 ('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
                                             i.acgn_houce = true;
@@ -38296,7 +38296,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].addSkill('acgn_yigou2');
                                     result.targets[0].addToExpansion(trigger.cards, player, 'give').gaintag.add('acgn_yigou2');
                                     event.target = result.targets[0];
@@ -40214,7 +40214,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();
@@ -42210,7 +42210,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return 1;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     game.broadcastAll(
                                         function (player, target) {
@@ -42359,7 +42359,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return att;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     var target = result.targets[0];
                                     event.target = result.targets[0];
                                     target.draw(2);
@@ -43559,7 +43559,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.card = result.links[0];
                                     player.chooseCard('he', true, '请选择用一张手牌替换' + get.translation(event.card));
                                 } else {

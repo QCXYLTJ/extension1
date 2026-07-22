@@ -8308,7 +8308,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     });
                                 } else event.goto(4);
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     target.discard(result.links);
                                 }
                                 ('step 4');

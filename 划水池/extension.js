@@ -12935,7 +12935,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 										event.finish();
 										('step 2');
-										if (result.bool && result.cards) {
+										if (result.cards?.length) {
 											if (trigger.hs_targets.length == 1) trigger.hs_targets[0].gain(result.cards, player, 'giveAuto');
 											else player.hs_distributeCards(result.cards, trigger.hs_targets, true);
 										}
@@ -15286,7 +15286,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else event.goto(3);
 								} else event.goto(3);
 								('step 1');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var skill = result.links[0],
 										info = get.info(skill),
 										cardinfo = { ...lib.skill.hs_shoulu.createFulu };

@@ -4639,7 +4639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 });
                                 next.set('maxNum', event.name == 'ua_chengxiang' ? 13 : 12);
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = [];
                                     for (var i of result.links) {
                                         cards2.push(i);
@@ -4971,7 +4971,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 1');
                                 player.chooseToDiscard('he', player.storage.ua_shanjia, true);
                                 ('step 2');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     if (Array.isArray(result.cards))
                                         for (var i of result.cards) {
                                             if (get.type(i) == 'equip') {
@@ -5763,7 +5763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target.chooseButton(choiceList, true);
                                 }
                                 ('step 4');
-                                if (result.bool && result.links) event.index = result.links[0];
+                                if (result.links?.length) event.index = result.links[0];
                                 else event.index = 0;
                                 event.togain = event.getedResult[event.index];
                                 target.showCards(event.togain[0], get.translation(target) + '分出的第一份牌');

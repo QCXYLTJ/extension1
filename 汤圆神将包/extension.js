@@ -2092,7 +2092,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = [];
                                     for (var i = 0; i < result.links.length; i++) {
                                         cards2.push(result.links[i]);

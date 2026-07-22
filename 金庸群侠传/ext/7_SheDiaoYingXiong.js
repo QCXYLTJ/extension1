@@ -10490,7 +10490,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.value(button.link, _status.event.player);
             });
             'step 3';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               event.cards2 = result.links;
             } else {
               event.cards2 = [];
@@ -10646,7 +10646,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return get.value(button.link, _status.event.player);
             });
             'step 3';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               event.cards2 = result.links;
             } else {
               event.finish();
@@ -12478,7 +12478,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event.finish();
             }
             'step 2';
-            if (result && result.bool && result.targets.length) {
+            if (result.targets?.length) {
               player.give(event.togive, result.targets[0]);
             }
           }
@@ -12659,7 +12659,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               set('forced', event.fored);
             }
             'step 3';
-            if (result && result.bool && result.targets.length) {
+            if (result.targets?.length) {
               result.targets[0].gain(event.togive, 'draw');
               //player.line(result.targets[0],'green');
               game.log(result.targets[0], '获得了' + get.cnNumber(event.togive.length) + '张牌');

@@ -3861,7 +3861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link, _status.event.player);
 								});
 								('step 2');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var cards2 = [];
 									for (var i = 0; i < result.links.length; i++) {
 										cards2.push(result.links[i]);
@@ -17392,7 +17392,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.gainPlayerCard(result.targets[0], 'he', true);
 								}
 								('step 2');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									if (result.cards[0].number <= 9) player.useCard({ name: 'sha' }, event.x, false);
 								}
 							},

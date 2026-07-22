@@ -4220,7 +4220,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								trigger.player.chooseToDiscard('he', 7, true);
 								('step 2');
 								var useCard = false;
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									for (var i = 0; i < result.cards.length; i++) {
 										if (result.cards[i].original == 'e') {
 											useCard = true;

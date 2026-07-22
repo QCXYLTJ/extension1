@@ -4372,7 +4372,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     next.set('forceAuto', true);
                                 }
                                 ('step 6');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     player.equip(result.cards[0]);
                                 }
                                 if (event.numx + 1 < event.targetx.length) {
@@ -8574,7 +8574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(_status.event.player, target) < 0;
                                     });
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     var list = ['chenmodegaoyangon'];
                                     if (lib.character['chenmodegaoyangon']) list.add('chenmodegaoyangon');
                                     event.target = result.targets[0];

@@ -3062,7 +3062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link, _status.event.player);
 								});
 								('step 3');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var cards2 = [];
 									for (var i of result.links) {
 										cards2.push(i);
@@ -4236,7 +4236,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return get.value(button.link, _status.event.player);
 							});
 							('step 2');
-							if (result.bool && result.links) {
+							if (result.links?.length) {
 								event.cards2 = result.links;
 							} else {
 								event.finish();
@@ -4413,7 +4413,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							return get.value(button.link, _status.event.player);
 						});
 						('step 3');
-						if (result.bool && result.links) {
+						if (result.links?.length) {
 							event.cards2 = result.links;
 						} else {
 							event.finish();
@@ -5841,7 +5841,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return get.value(button.link, _status.event.player);
 							});
 							('step 3');
-							if (result.bool && result.links) {
+							if (result.links?.length) {
 								var cards2 = [];
 								for (var i of result.links) {
 									cards2.push(i);
@@ -7838,7 +7838,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.damageEffect(target, player, player);
 								};
 								('step 1');
-								if (result.bool && result.targets) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									var card = player.getEquips(5);
 									if (card) {
@@ -16646,7 +16646,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return -get.attitude(_status.event.player, target) + 0.5;
 									});
 								('step 4');
-								if (result.bool && result.targets) {
+								if (result.targets?.length) {
 									player.line(result.targets, 'green');
 									event.targets = result.targets;
 									event.targets.sort(lib.sort.seat);
@@ -22362,7 +22362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return value;
 								});
 								('step 2');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									var cards2 = [];
 									for (var i of result.links) {
 										cards2.push(i);

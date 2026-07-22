@@ -6782,7 +6782,7 @@ export async function precontent(config, pack) {
 					player.choosePlayerCard(trigger.player, 'he', 1);
 				}
 				('step 2');
-				if (result.bool && result.links) {
+				if (result.links?.length) {
 					game.log(player, '将', trigger.player, '的', result.links[0], '置入牌堆顶');
 					trigger.player.showCards(result.links[0]);
 					trigger.player.lose(result.links[0]);
@@ -7038,7 +7038,7 @@ export async function precontent(config, pack) {
 						);
 					});
 				('step 1');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					player.gainlili();
 					player.useCard(
 						{
@@ -7510,7 +7510,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					player.line(result.targets, 'red');
 					player.gainlili();
 					result.targets[0].addnSkill('gezi_qishu2');
@@ -10384,7 +10384,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					if (lib.config.background_audio) {
 						game.playlili('hezou');
 					}
@@ -10449,7 +10449,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					if (lib.config.background_audio) {
 						game.playlili('hezou');
 					}
@@ -14058,7 +14058,7 @@ export async function precontent(config, pack) {
 					}
 				}
 				('step 2');
-				if (result.bool && result.links) {
+				if (result.links?.length) {
 					player.$throw(event.card, 1000);
 					player.lose(event.card);
 					game.log(player, '将', event.card, '当作', result.links[0][2], '打出');
@@ -16261,7 +16261,7 @@ export async function precontent(config, pack) {
 						return -get.attitude(_status.event.player, target);
 					});
 				('step 1');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					if (lib.config.background_audio) {
 						game.playlili('shutter');
 					}
@@ -16412,7 +16412,7 @@ export async function precontent(config, pack) {
 						});
 				}
 				('step 2');
-				if (result.bool && result.targets) {
+				if (result.targets?.length) {
 					player.useCard(
 						{
 							name: 'guohe',
@@ -20931,7 +20931,7 @@ export async function precontent(config, pack) {
 						});
 						if (player.lili < trigger.num) next.set('forced', true);
 						('step 1');
-						if (result.bool && result.links) {
+						if (result.links?.length) {
 							var num = 0;
 							player.loseToDiscardpile(result.links);
 							for (const i of result.links) {

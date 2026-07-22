@@ -490,7 +490,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						player.chooseButton(['选择获得一张牌', result.cards], true);
 					}
 					('step 4');
-					if (result.bool && result.links) {
+					if (result.links?.length) {
 						var card = result.links[0];
 						if (lib.filter.canBeGained(card, player, event.target)) player.gain(card, event.target, 'giveAuto', 'bySelf');
 					}
@@ -1117,7 +1117,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 						return 7 - get.value(card);
 					});
 					('step 2');
-					if (result.bool && result.cards) {
+					if (result.cards?.length) {
 						player.give(result.cards, trigger.player);
 					}
 					('step 3');
@@ -1241,7 +1241,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return 7 - get.value(card);
 							});
 							('step 2');
-							if (result.bool && result.cards) {
+							if (result.cards?.length) {
 								player.give(result.cards, trigger.player);
 							}
 						},
@@ -1294,7 +1294,7 @@ window.scqh = function (lib, game, ui, get, ai, _status) {
 								return att >= 2;
 							});
 							('step 1');
-							if (result.bool && result.targets) {
+							if (result.targets?.length) {
 								event.target = result.targets[0];
 							}
 							var list = [];

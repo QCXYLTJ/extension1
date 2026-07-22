@@ -5009,7 +5009,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									};
 								} else event.finish();
 								('step 2');
-								if (result.bool && result.cards) {
+								if (result.cards?.length) {
 									player.showCards(result.cards);
 									player.storage.lg_tunshiguangye_use = result.cards;
 									player.addTempSkill('lg_tunshiguangye_use');
@@ -7860,7 +7860,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return get.value(button.link, _status.event.player);
 								});
 								('step 2');
-								if (result.bool && result.links) {
+								if (result.links?.length) {
 									event.cards2 = result.links;
 								} else {
 									event.finish();

@@ -3687,7 +3687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     player.choosePlayerCard(trigger.player, 'he', 1);
                                 }
                                 ('step 2');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     game.log(player, '将', trigger.player, '的', result.links[0], '置入牌堆顶');
                                     trigger.player.showCards(result.links[0]);
                                     trigger.player.lose(result.links[0]);

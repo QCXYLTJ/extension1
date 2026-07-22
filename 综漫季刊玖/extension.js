@@ -6327,7 +6327,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.effect(target, { name: 'sha' }, player, player);
                                 };
                                 ('step 1');
-                                if (result.bool && result.targets[0] != undefined) {
+                                if (result.targets?.length) {
                                     game.playzm9('zmaerfa');
                                     game.mp429('zmaerfa');
                                     player.useCard({ name: 'sha' }, result.targets[0], false);

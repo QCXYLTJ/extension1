@@ -10073,7 +10073,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'lg_shiyuezhizhan' }, result.targets, false);
                                     player.chooseToDiscard(1, true, 'h');
                                     player.getStat().card.sha--;
@@ -12980,7 +12980,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var num = trigger.target.countCards('e');
                                         player.discardPlayerCard('弃置至多' + get.cnNumber(num) + '张牌', 'hej', trigger.target, [1, trigger.target.countCards('e')]);
                                         ('step 1');
-                                        if (result.bool && result.cards) {
+                                        if (result.cards?.length) {
                                             for (var i = 0; i < result.cards.length; i++) {
                                                 if (result.cards[i].original == 'j') {
                                                     player.useCard(trigger.target, { name: 'sha', nature: 'fire' }, true, false);
@@ -17552,7 +17552,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 ('step 3');
                                 player.chooseToDiscard('he', 2, true);
                                 ('step 4');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     var list = [];
                                     if (player.hasUseTarget({ name: 'sha' })) list.push(['基本', '', 'sha']);
                                     var nats = lib.xysgz ? ['fire', 'lg_dark', 'lg_arch'] : ['fire', 'thunder'];
@@ -51315,7 +51315,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 4');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     var cards2 = [];
                                     for (var i of result.links) {
                                         cards2.push(i);
@@ -54342,7 +54342,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     next.set('ai', ai);
                                 }
                                 ('step 3');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.current.respond(result.cards, 'highlight', 'noOrdering');
                                 } else event.finish();
                                 ('step 4');
@@ -66785,7 +66785,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.chooseToDiscard('h', 3, true);
                                 ('step 2');
                                 var useCard = false;
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     for (var i = 0; i < result.cards.length; i++) {
                                         if (result.cards[i].suit == 'heart') {
                                             useCard = true;

@@ -5639,7 +5639,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.attitude(player, target) < 0;
                                     });
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     event.targets = result.targets;
                                     for (const t of result.targets) {
                                         if (player.countDiscardableCards(t, 'he')) {
@@ -28186,7 +28186,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return get.value(button.link, _status.event.player);
                                 });
                                 ('step 3');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.cards2 = result.links;
                                 } else {
                                     event.finish();
@@ -28461,7 +28461,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return 0;
                                 })('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.cards = result.cards;
                                     //取消杀的所有目标
                                     trigger.targets.length = 0;
@@ -28607,7 +28607,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     target1.storage.bjzm错叹 = player;
                                 } else event.finish();
                                 ('step 4');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     var target2 = result.targets[0];
                                     if (target2.hasSkill('bjzm复霸_mark')) {
                                         target2.removeSkill('bjzm复霸_mark');
@@ -30481,7 +30481,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     event.finish();
                                 }
                                 ('step 4');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].damage();
                                 }
                             },

@@ -5196,7 +5196,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'effect',
                                         effect
                                     )('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     trigger.targets.length = 0;
                                     trigger.parent.triggeredTargets1.length = 0;
@@ -5244,7 +5244,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         };
                                         event.cards = cards;
                                         ('step 1');
-                                        if (result.bool && result.links) {
+                                        if (result.links?.length) {
                                             var card = result.links;
                                             var name = lib.skill.lunyan_backup.cardname;
                                             player.chooseUseTarget({ name: name }, card, true, false).viewAs = true;
@@ -5495,7 +5495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     cards.push(trigger.card1);
                                     cards.push(trigger.card2);
                                 }
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     result.targets[0].gain(cards, 'gain2', 'log');
                                     event.finish();
                                 } else {
@@ -5568,7 +5568,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool && result.links) player.gain(result.links, 'gain2', 'log');
+                                if (result.links?.length) player.gain(result.links, 'gain2', 'log');
                             },
                         },
                         xingmie: {
@@ -12882,7 +12882,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     else return 0.03;
                                 });
                                 ('step 1');
-                                if (result.bool && result.links) {
+                                if (result.links?.length) {
                                     event.target = result.links[0];
                                     player.line(event.target, 'fire');
                                     player.loseMaxHp();

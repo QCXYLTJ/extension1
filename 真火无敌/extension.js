@@ -3226,7 +3226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         .set('card', trigger.card);
                                 }
                                 ('step 1');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     player.line(result.targets);
                                     trigger.targets.add(result.targets[0]);
                                 }
@@ -10236,7 +10236,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 2');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         let num = [1, 2, 3].randomGet();
                                         let cards = result.targets[i].getCards('he').randomGets(num);
@@ -10260,7 +10260,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.damageEffect(target, player, player);
                                     });
                                 ('step 4');
-                                if (result.bool && result.targets) {
+                                if (result.targets?.length) {
                                     for (let i = 0; i < result.targets.length; i++) {
                                         let num = [1, 2, 3].randomGet();
                                         result.targets[i].damage(num);

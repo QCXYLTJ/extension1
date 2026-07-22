@@ -18752,7 +18752,7 @@ const skill = {
                     return 6 - get.value(card);
                 });
                 ('step 1');
-                if (result.bool && result.cards) {
+                if (result.cards?.length) {
                     let bool = 0,
                         bo = 0;
                     if (Array.isArray(result.cards)) {
@@ -40313,7 +40313,7 @@ const skill = {
                     },
                 );
                 ('step 2');
-                if (result.bool && result.targets) {
+                if (result.targets?.length) {
                     target.line(result.targets[0]);
                     target.discardPlayerCard(true, 'ej', result.targets[0]);
                 }

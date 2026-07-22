@@ -6742,7 +6742,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             });
                             ('step 1');
                             event.moyans = null;
-                            if (result.bool && result.links) {
+                            if (result.links?.length) {
                                 event.moyans = result.links;
                             } else {
                                 event.finish();

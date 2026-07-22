@@ -1235,7 +1235,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     };
                                 } else event.finish();
                                 ('step 3');
-                                if (result.bool && result.targets[0] != undefined) {
+                                if (result.targets?.length) {
                                     player.useCard({ name: 'sha' }, event.cards, result.targets[0], false);
                                 }
                                 ('step 4');

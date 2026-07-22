@@ -5253,7 +5253,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         'effect',
                                         effect
                                     )('step 1');
-                                if (result.bool && result.cards) {
+                                if (result.cards?.length) {
                                     event.card = result.cards[0];
                                     trigger.targets.length = 0;
                                     trigger.parent.triggeredTargets1.length = 0;

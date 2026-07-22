@@ -971,7 +971,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               event._result = { bool: true, links: list };
             }
             'step 1';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               player.useCard(result.links[0], player);
             }
           },
@@ -1551,7 +1551,7 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
               return -get.effect(owner, button.link, owner, player);
             });
             'step 1';
-            if (result.bool && result.links) {
+            if (result.links?.length) {
               result.links.filter(function (i) {
                 var target = get.owner(i);
                 var next = player.gain(target, i, 'bySelf');
