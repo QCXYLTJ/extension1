@@ -3811,7 +3811,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player.awakenSkill('shichou');
                                 target.gain(cards, player, 'giveAuto');
                                 player.storage.shichou_target = target;
-                                player.addSkill('shichou2');
+                                player.addSkill('ol_shichou2');
                                 target.markSkillCharacter('shichou', player, '誓仇', '代替' + get.translation(player) + '承受伤害直到首次进入濒死状态');
                             },
                             intro: {

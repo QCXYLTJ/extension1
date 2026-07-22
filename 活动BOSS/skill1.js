@@ -34442,7 +34442,7 @@ const skill = {
         player.line(targets, trigger.card.nature);
         trigger.targets.addArray(targets);
         trigger.fenghuo_shichou = true;
-        player.addTempSkill('fenghuo_shichou2');
+        player.addTempSkill('ol_shichou2');
       }
     },
   },
@@ -34479,7 +34479,7 @@ const skill = {
         player.line(targets, trigger.card.nature);
         trigger.targets.addArray(targets);
         trigger.fenghuo_shichou = true;
-        player.addTempSkill('fenghuo_shichou2');
+        player.addTempSkill('ol_shichou2');
       }
     },
   },
