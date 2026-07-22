@@ -53,13 +53,13 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 7: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(4, 'xwjh_juqing_wuma'),
                         game.addPlayer(5, 'xwjh_juqing_weiyang'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(7, 'xwjh_juqing_gongzhuzhuaya')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                     },
@@ -189,7 +189,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                         return 'end';
                     },
                     exec() {
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             player.hp = player.maxHp;
                             player.draw(3);
                             player.xwRestore();
@@ -204,13 +204,13 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 8: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(4, 'xwjh_juqing_shenhou'),
                         game.addPlayer(5, 'xwjh_juqing_youji'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(7, 'xwjh_juqing_gongzhuzhuaya')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                         game.asyncDraw(arr, 4);
@@ -374,7 +374,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 11: {
                     skip: false,
                     exec() {
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             player.hp = player.maxHp;
                             player.draw(3);
                             player.xwRestore();
@@ -384,13 +384,13 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 12: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(4, 'xwjh_juqing_yinhu'),
                         game.addPlayer(5, 'xwjh_juqing_maotu'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(7, 'xwjh_juqing_gongzhuzhuaya')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                         game.asyncDraw(arr, 4);
@@ -583,7 +583,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                     execNotSkip: true,
                     content: ['既来之则安之.搞清楚这里的秘密,若真的都是大奸大恶之徒,帮盟主收拾了,也算有个交代.', '走吧.'],
                     exec() {
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             player.hp = player.maxHp;
                             player.draw(3);
                             player.xwRestore();
@@ -635,13 +635,13 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 enemyAppear: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuxinfu'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(4, 'xwjh_juqing_haizhu'),
                         game.addPlayer(5, 'xwjh_juqing_xugou'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(7, 'xwjh_juqing_gongzhuxinfu')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                         game.asyncDraw(arr, 4);
@@ -737,7 +737,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                     content: ['大哥,这后边有动静,看我一刀劈开这狗屁石门!', '喝啊!'],
                     exec() {
                         game.playXwAudio('xwjh_voc_break');
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             if (player.side == 'zhu') {
                                 player.hp = player.maxHp;
                                 player.draw(3);
@@ -866,7 +866,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                     execNotSkip: true,
                     exec() {
                         game.playXwAudio('xwjh_voc_baozha2');
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             player.hp = player.maxHp;
                             player.draw(3);
                             player.xwRestore();
@@ -877,13 +877,13 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 enemyAppear: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(4, 'xwjh_juqing_zishu'),
                         game.addPlayer(5, 'xwjh_juqing_chouniu'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(7, 'xwjh_juqing_gongzhuzhuaya')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                         game.asyncDraw(arr, 4);
@@ -1019,7 +1019,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                     next: 'enemyAppear',
                     exec() {
                         game.playXwAudio('xwjh_voc_baozha2');
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             player.hp = player.maxHp;
                             player.draw(3);
                             player.xwRestore();
@@ -1147,7 +1147,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                     execNotSkip: true,
                     exec() {
                         game.playXwAudio('xwjh_voc_opendoor');
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             if (player.side == 'zhu') {
                                 player.hp = player.maxHp;
                                 player.draw(3);
@@ -1159,13 +1159,13 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 bk: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuermu'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(4, 'xwjh_juqing_sishe'),
                         game.addPlayer(5, 'xwjh_juqing_chenlong'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(7, 'xwjh_juqing_gongzhuermu')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                         game.asyncDraw(arr, 4);
@@ -1328,7 +1328,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                     execNotSkip: true,
                     exec() {
                         game.playXwAudio('xwjh_voc_opendoor');
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             if (player.side == 'zhu') {
                                 player.hp = player.maxHp;
                                 player.draw(3);
@@ -1502,7 +1502,7 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 },
                 bk: {
                     exec() {
-                        for (var player of game.players) {
+                        for (const player of game.players) {
                             player.hp = player.maxHp;
                             player.draw(3);
                             player.xwRestore();
@@ -1514,12 +1514,12 @@ window.xwImportJuqing(function (lib, game, ui, get, ai, _status, drama) {
                 enemyAppear: {
                     skip: false,
                     exec() {
-                        var arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
+                        const arr = [game.addPlayer(2, 'xwjh_juqing_gongzhuzhuaya'),
                         game.addPlayer(3, 'xwjh_juqing_gongzhuxinfu'),
                         game.addPlayer(4, 'xwjh_juqing_yanjianqing'),
                         game.addPlayer(5, 'xwjh_juqing_gongzhuermu'),
                         game.addPlayer(6, 'xwjh_juqing_gongzhuzhuaya')];
-                        for (var m of arr) {
+                        for (const m of arr) {
                             m.side = 'enemy';
                         }
                         game.asyncDraw(arr, 4);

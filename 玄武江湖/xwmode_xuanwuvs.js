@@ -2,15 +2,15 @@ import { lib, game, ui, get, ai, _status } from '../../noname.js';
 const modexwvs = {
     name: 'xuanwuvs',
     startBefore() {
-        lib.translate['zhu'] = '主';
-        lib.translate['zhong'] = '忠';
-        lib.translate['fan'] = '反';
-        lib.translate['nei'] = '内';
+        lib.translate.zhu = '主';
+        lib.translate.zhong = '忠';
+        lib.translate.fan = '反';
+        lib.translate.nei = '内';
         lib.translate['zhu2'] = '盟主';
         lib.translate['zhong2'] = '侠士';
         lib.translate['fan2'] = '逆贼';
         lib.translate['nei2'] = '细作';
-        for (var m in lib.xwjh_modexwvs.element.content) {
+        for (const m in lib.xwjh_modexwvs.element.content) {
             lib.element.content[m] = lib.xwjh_modexwvs.element.content[m];
         }
     },
@@ -19,10 +19,10 @@ const modexwvs = {
         _status.xuanwuvsmode = true;
         game.prepareArena(4);
         'step 1'
-        var side = Math.random() < 0.5;
+        let side = Math.random() < 0.5;
         _status.xwvsZhong = [];
         _status.xwvsFan = [];
-        for (var cur of game.players) {
+        for (const cur of game.players) {
             cur.side = side;
             cur.identity = side ? 'zhong' : 'fan';
             cur.setIdentity(side ? 'zhong' : 'fan');
@@ -66,27 +66,27 @@ const modexwvs = {
             game.log(_status.xwvsFan, "触发了羁绊:", 'xwvs_' + jiban, "!");
         }
         'step 5'
-        var fanAdd = true;
-        var zhongAdd = true;
+        let fanAdd = true;
+        let zhongAdd = true;
         if (event.fanJiban == 'yaquewusheng') {
             zhongAdd = false;
         } else if (event.zhongJiban == 'yaquewusheng') {
             fanAdd = false;
         }
         if (zhongAdd && event.zhongJiban) {
-            for (var i of _status.xwvsZhong) {
+            for (const i of _status.xwvsZhong) {
                 i.addSkill('xwvs_' + event.zhongJiban);
             }
         }
         if (fanAdd && event.fanJiban) {//QQQ
-            for (var i of _status.xwvsFan) {
+            for (const i of _status.xwvsFan) {
                 i.addSkill('xwvs_' + event.fanJiban);
             }
         }
         event.trigger('gameStart');
         'step 6'
         game.gameDraw(_status.firstAct, function (cur) {
-            if (cur == _status.firstAct) return 3;
+            if (cur == _status.firstAct) {return 3;}
             return 4;
         });
         game.phaseLoop(_status.firstAct);
@@ -94,16 +94,16 @@ const modexwvs = {
     game: {
         syncMenu: true,
         xwGet2v2CharacterList() {
-            var jiban = lib.xuanwu2v2jiban;
-            var ret = [];
-            for (var i in jiban) {
+            const jiban = lib.xuanwu2v2jiban;
+            const ret = [];
+            for (const i in jiban) {
                 ret.add(i);
-                var m = jiban[i];
+                const m = jiban[i];
                 for (var j in m) {
                     ret.add(j);
                 }
             }
-            for (var i in lib.xuanwu2v2jibanGroup) {
+            for (const i in lib.xuanwu2v2jibanGroup) {
                 for (var j of lib.xuanwu2v2jibanGroup[i]) {
                     ret.add(j);
                 }
@@ -111,7 +111,7 @@ const modexwvs = {
             return ret;
         },
         chooseCharacter() {
-            var next = game.createEvent('chooseCharacter', false);
+            const next = game.createEvent('chooseCharacter', false);
             next.showConfig = true;
             next.setContent(function () {
                 'step 0'
@@ -122,7 +122,7 @@ const modexwvs = {
                 'step 1'
                 event.current = event.players.shift();
                 if (event.current) {
-                    var toChoice = [];
+                    let toChoice = [];
                     if (lib.config.xwvs_all_choose && event.current.isUnderControl(true)) {
                         toChoice = event.chooseList.slice(0);
                         toChoice.sort(function (a, b) {
@@ -130,7 +130,7 @@ const modexwvs = {
                         });
                     } else {
                         if (event.current.xwFriend && event.current.xwFriend.name) {
-                            for (var c of event.chooseList) {
+                            for (const c of event.chooseList) {
                                 if (get.xwJiban(c, event.current.xwFriend.name)) {
                                     toChoice.push(c);
                                     event.chooseList.remove(c);
@@ -140,7 +140,7 @@ const modexwvs = {
                             if (toChoice.length == 0) {
                                 toChoice = event.chooseList.slice(0, 5);
                             } else {
-                                var li = event.chooseList.slice(0, 4);
+                                const li = event.chooseList.slice(0, 4);
                                 toChoice.addArray(li);
                                 event.chooseList.push(toChoice[0]);
                                 toChoice.randomSort();
@@ -299,7 +299,7 @@ const modexwvs = {
         xwvs_guanyeshangqian: '官爷赏钱',
         xwvs_guanyeshangqian_info: '敌方体力值大于一时,海捕标记数因受伤而减少到的下限为一.',
         xwvs_xiaorenyizhi: "小人亦知",
-        xwvs_xiaorenyizhi_info: "己方非周安夏的角色出牌阶段开始时,可以查看一名有海捕标记的敌方角色X张牌(X为海捕标记数量),并选择其中任意张♥️️牌令其重铸.",
+        xwvs_xiaorenyizhi_info: "己方非周安夏的角色出牌阶段开始时,可以查看一名有海捕标记的敌方角色X张牌(X为海捕标记数量),并选择其中任意张♥️️️牌令其重铸.",
         xwvs_chuantongmiyue: "串通密约",
         xwvs_chuantongmiyue_info: "己方使用【倾巢而出】、【谁与争锋】时,己方摸一张牌.",
         xwvs_langshenbiyou: '狼神庇佑',
@@ -331,7 +331,7 @@ const modexwvs = {
         xwvs_nimoerxing: "逆墨而兴",
         xwvs_nimoerxing_info: '乾谦隆装备天机枪弩车后,可以视为使用一张【杀】.',
         xwvs_xiaoxiangrushi: '潇湘入世',
-        xwvs_xiaoxiangrushi_info: "令狐丘、蓝歌在准备阶段,可以弃置一张♥️️牌并装备【澜湘集♥️️5】.",
+        xwvs_xiaoxiangrushi_info: "令狐丘、蓝歌在准备阶段,可以弃置一张♥️️️牌并装备【澜湘集♥️️️5】.",
         xwvs_ruyudeshui: "如鱼得水",
         xwvs_ruyudeshui_info: '令狐丘受到伤害后,己方各摸一张牌.',
         xwvs_huangshizhizheng: '皇室之争',
@@ -382,24 +382,24 @@ const modexwvs = {
     },
     get: {
         rawAttitude(a, b) {
-            if (a.side == b.side) return 10;
+            if (a.side == b.side) {return 10;}
             return -10;
         },
         xwJiban(a, b) {
-            if (a == b) return false;
-            var namea = (typeof a == 'string' ? a : a.name);
-            var nameb = (typeof b == 'string' ? b : b.name);
+            if (a == b) {return false;}
+            const namea = (typeof a == 'string' ? a : a.name);
+            const nameb = (typeof b == 'string' ? b : b.name);
             if (lib.xuanwu2v2jiban[namea]) {
                 var ret = lib.xuanwu2v2jiban[namea][nameb];
-                if (ret) return ret;
+                if (ret) {return ret;}
             }
             if (lib.xuanwu2v2jiban[nameb]) {
                 var ret = lib.xuanwu2v2jiban[nameb][namea];
-                if (ret) return ret;
+                if (ret) {return ret;}
             }
             if (lib.xuanwu2v2jibanGroup) {
-                for (var m in lib.xuanwu2v2jibanGroup) {
-                    var arr = lib.xuanwu2v2jibanGroup[m];
+                for (const m in lib.xuanwu2v2jibanGroup) {
+                    const arr = lib.xuanwu2v2jibanGroup[m];
                     if (arr && arr.includes(namea) && arr.includes(nameb)) {
                         return m;
                     }
@@ -416,14 +416,14 @@ const modexwvs = {
                     event.finish();
                     return;
                 }
-                var end = player;
-                var numx = num;
+                const end = player;
+                let numx = num;
                 do {
                     if (typeof num == 'function') {
                         numx = num(player);
                     }
-                    if (player.getTopCards) player.directgain(player.getTopCards(numx));
-                    else player.directgain(get.cards(numx));
+                    if (player.getTopCards) {player.directgain(player.getTopCards(numx));}
+                    else {player.directgain(get.cards(numx));}
                     if (player.singleHp === true && get.mode() != 'guozhan' && (lib.config.mode != 'doudizhu' || _status.mode != 'online')) {
                         player.doubleDraw();
                     }
@@ -466,17 +466,19 @@ const modexwvs = {
                     if (game.changeCoin) {
                         game.changeCoin(-3);
                     }
-                    var hs = game.me.getCards('h');
+                    const hs = game.me.getCards('h');
                     game.addVideo('lose', game.me, [get.cardsInfo(hs), [], [], []]);
-                    for (var i = 0; i < hs.length; i++) {
-                        hs[i].discard(false);
+
+                    for (const i of hs) {
+                        i.discard(false);
                     }
+
                     game.me.directgain(get.cards(hs.length));
                     event.goto(2);
                 }
                 else {
-                    if (event.dialog) event.dialog.close();
-                    if (ui.confirm) ui.confirm.close();
+                    if (event.dialog) {event.dialog.close();}
+                    if (ui.confirm) {ui.confirm.close();}
                     event.finish();
                 }
             },
@@ -487,7 +489,7 @@ const modexwvs = {
             },
             dieAfter2(source) {
                 if (this.xwFriend && this.xwFriend.isAlive()) {
-                    var next = game.createEvent('xwvsfrienddie');
+                    const next = game.createEvent('xwvsfrienddie');
                     next.set('player', this.xwFriend);
                     next.setContent(function () {
                         'step 0'
@@ -495,7 +497,7 @@ const modexwvs = {
                         player.removeSkill('xwvs_' + jiban);
                         game.log(player, '失去了羁绊效果', 'xwvs_' + jiban);
                         if (jiban == 'yaquewusheng') {
-                            var side = (player.identity == 'zhong' ? _status.xwvsFan : _status.xwvsZhong);
+                            const side = (player.identity == 'zhong' ? _status.xwvsFan : _status.xwvsZhong);
                             if (side[0].isAlive() && side[1].isAlive()) {
                                 var jiban = get.xwJiban(side[0], side[1]);
                                 if (jiban) {
@@ -518,7 +520,7 @@ const modexwvs = {
                 }
             },
             xwGetFriend() {
-                var that = this;
+                const that = this;
                 return game.findPlayer(function (current) {
                     return current.side == that.side;
                 });
@@ -544,13 +546,13 @@ const modexwvs = {
                     return target.side != player.side && target.countMark('xwjh_publicmark_haibu') && target.countCards('h');
                 })
                     .set('ai', function (target) {
-                        var r = target.countCards('h') / 2 + (5 - target.hp) + target.countMark('xwjh_publicmark_haibu');
+                        const r = target.countCards('h') / 2 + (5 - target.hp) + target.countMark('xwjh_publicmark_haibu');
                         return r <= 0 ? 1 : r;
                     });
                 'step 1'
                 if (result.targets?.length) {
                     event.tar = result.targets[0];
-                    var num = Math.min(event.tar.countMark('xwjh_publicmark_haibu'), event.tar.countCards('h'));
+                    const num = Math.min(event.tar.countMark('xwjh_publicmark_haibu'), event.tar.countCards('h'));
                     player.choosePlayerCard(true, num, 'h', result.targets[0])
                         .set('ai', function () {
                             return Math.random() + 1;
@@ -558,7 +560,7 @@ const modexwvs = {
                 }
                 'step 2'
                 if (result.cards?.length) {
-                    player.chooseCardButton([1, Infinity], "请选择其中的♥️️牌令其重铸", result.cards)
+                    player.chooseCardButton([1, Infinity], "请选择其中的♥️️️牌令其重铸", result.cards)
                         .set('filterButton', function (button) {
                             return button.link.suit == 'heart';
                         })
@@ -605,7 +607,7 @@ const modexwvs = {
                 target: "useCardToTargeted",
             },
             filter(event, player) {
-                return event.card.name == 'xwjh_card_qingchaoerchu' && event.player.side == event.target.side;
+                return event.card && event.card.name == 'xwjh_card_qingchaoerchu' && event.player.side == event.target.side;
             },
             content() {
                 'step 0'
@@ -830,9 +832,9 @@ const modexwvs = {
             forceDie: true,
             forced: true,
             filter(event, player) {
-                if (event.player.side != player.side) return false;
-                if (event.player == player) return false;
-                if (event.xwvs_linkevt) return false;
+                if (event.player.side != player.side) {return false;}
+                if (event.player == player) {return false;}
+                if (event.xwvs_linkevt) {return false;}
                 return true;
             },
             content() {
@@ -903,20 +905,20 @@ const modexwvs = {
                 player: 'phaseZhunbeiBegin',
             },
             filter(event, player) {
-                if (player.getEquip(5) && player.getEquip(5).name == 'xwjh_card_lanxiangji') return false;
-                if (player.isDisabled(5)) return false;
+                if (player.getEquip(5) && player.getEquip(5).name == 'xwjh_card_lanxiangji') {return false;}
+                if (player.isDisabled(5)) {return false;}
                 return player.countCards('he', function (card) {
-                    if (card.suit != 'heart') return false;
+                    if (card.suit != 'heart') {return false;}
                     return lib.filter.cardDiscardable(card, player);
                 });
             },
             content() {
                 'step 0'
-                player.chooseToDiscard('he', 1, "是否弃置一张♥️️牌装备【澜湘集♥️️5】？", function (card) {
+                player.chooseToDiscard('he', 1, "是否弃置一张♥️️️牌装备【澜湘集♥️️️5】？", function (card) {
                     return card.suit == 'heart';
                 })
                     .set('ai', function (card) {
-                        if (card.suit != 'heart') return false;
+                        if (card.suit != 'heart') {return false;}
                         if (_status.event.player.xwFriend.getEquip(5) && _status.event.player.xwFriend.getEquip(5).name == 'xwjh_card_lanxiangji') {
                             return -2;
                         }
@@ -932,7 +934,7 @@ const modexwvs = {
             charlotte: true,
             nobracket: true,
             forced: true,
-            priority: 92221,
+            _priority: 92221,
             trigger: {
                 player: 'damageEnd',
             },
@@ -1082,7 +1084,7 @@ const modexwvs = {
             charlotte: true,
             nobracket: true,
             forced: true,
-            priority: 879,
+            _priority: 879,
             trigger: {
                 player: 'dying'
             },
@@ -1110,7 +1112,7 @@ const modexwvs = {
             viewAsFilter(player) {
                 if (!player.countCards('hes', function (card) {
                     return get.type(card) == 'equip';
-                })) return false;
+                })) {return false;}
                 return true;
             },
             prompt: '将一张装备牌当【大赦天下】使用.',
@@ -1127,7 +1129,7 @@ const modexwvs = {
             nobracket: true,
             mod: {
                 targetEnabled(card, player, target) {
-                    var name = card.name;
+                    const name = card.name;
                     if (name == 'xwjh_card_haibuwenshu') {
                         return false;
                     }
@@ -1142,7 +1144,7 @@ const modexwvs = {
             charlotte: true,
             nobracket: true,
             forced: true,
-            priority: 12,
+            _priority: 12,
             trigger: {
                 player: 'damageBegin4',
             },
@@ -1186,12 +1188,12 @@ const modexwvs = {
             charlotte: true,
             nobracket: true,
             forced: true,
-            priority: 12,
+            _priority: 12,
             trigger: {
                 player: 'useCard2',
             },
             filter(event, player) {
-                if (!event.cards || event.cards.length != 1) return false;
+                if (!event.cards || event.cards.length != 1) {return false;}
                 if (player.storage.xwjh_kuanqu_qu && player.storage.xwjh_kuanqu_qu.includes(event.cards[0])) {
                     return player.xwIs('xwjh_nangongyu');
                 }
@@ -1254,7 +1256,7 @@ const modexwvs = {
             charlotte: true,
             forced: true,
             filter(event, player) {
-                if (event.player.side != event.target.side) return false;
+                if (event.player.side != event.target.side) {return false;}
                 return event.target.xwIs('xwjh_yuwenxingcheng') || event.target.xwIs('xwjh_suqiaoxin');
             },
             content() {
@@ -1272,7 +1274,7 @@ const modexwvs = {
             mod: {
                 maxHandcard(player, num) {
                     if (player.xwIs('xwjh_qianyuanlong')) {
-                        var lange = game.findPlayer(function (current) {
+                        const lange = game.findPlayer(function (current) {
                             return current.side == player.side && current.xwIs('xwjh_lange');
                         });
                         if (lange) {
@@ -1334,18 +1336,18 @@ const modexwvs = {
                     if (ui.selected.targets.length == 0) {
                         return target.countMark('xwjh_zhixie_xie') > 0;
                     } else {
-                        var m = ui.selected.targets[0];
+                        const m = ui.selected.targets[0];
                         return target == m.next || target == m.previous;
                     }
                 })
                     .set('ai', function (target) {
-                        var friend = player.xwGetFriend();
+                        const friend = player.xwGetFriend();
                         if (friend && friend.hasSkill('xwjh_baoyin') && !friend.storage.xwjh_baoyin) {
                             if (ui.selected.targets.length == 0) {
                                 var attitude = get.attitude(player, target);
                                 if (attitude > 0) {
-                                    var nextCount = get.attitude(player, target.next) < 0 ? target.next.countMark('xwjh_zhixie_xie') + 1 : -3;
-                                    var previousCount = get.attitude(player, target.previous) < 0 ? target.previous.countMark('xwjh_zhixie_xie') + 1 : -3;
+                                    const nextCount = get.attitude(player, target.next) < 0 ? target.next.countMark('xwjh_zhixie_xie') + 1 : -3;
+                                    const previousCount = get.attitude(player, target.previous) < 0 ? target.previous.countMark('xwjh_zhixie_xie') + 1 : -3;
                                     return Math.max(nextCount, previousCount);
                                 }
                                 return -2;
@@ -1358,7 +1360,7 @@ const modexwvs = {
                                 }
                             }
                         } else {
-                            var count = game.countPlayer(function (current) {
+                            const count = game.countPlayer(function (current) {
                                 return current != player;
                             });
                             if (ui.selected.targets.length == 0) {

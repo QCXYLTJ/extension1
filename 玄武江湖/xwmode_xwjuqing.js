@@ -1,8 +1,8 @@
 import { lib, game, ui, get, ai, _status } from '../../noname.js';
 lib.element.player.xwRestore = function () {
-	var skills = this.getOriginalSkills();
-	for (var skill of skills) {
-		var info = get.info(skill);
+	const skills = this.getOriginalSkills();
+	for (const skill of skills) {
+		const info = get.info(skill);
 		if (info && info.limited && !info.xwjh_zhudongjuexingji) {
 			this.restoreSkill(skill);
 		}
@@ -20,7 +20,7 @@ if (lib.config.xwjuqing_quickpass) {
 		},
 	};
 }
-lib.translate['_xwDramaPass'] = '速通';
+lib.translate._xwDramaPass = '速通';
 lib.skill._xwDramaChangeCard = {
 	prompt(event, player) {
 		return '请选择需要更换的牌,至多五张.消耗换牌卡x1(目前共有' + game.xwbag.countThing('changecard') + '张).';
@@ -51,9 +51,9 @@ lib.skill._xwDramaChangeCard = {
 		game.cardsDiscard(event.lcards);
 	},
 };
-lib.translate['_xwDramaChangeCard'] = "<b style='color:orange;'>换牌</b>";
-lib.animate.skill['_xwDramaChangeCard'] = game.kongfunc;
-var checkFiles = function (updates, proceed) {
+lib.translate._xwDramaChangeCard = "<b style='color:orange;'>换牌</b>";
+lib.animate.skill._xwDramaChangeCard = game.kongfunc;
+const checkFiles = function (updates, proceed) {
 	if (game.xwjh_originCheckFileList) {
 		return game.xwjh_originCheckFileList(updates, proceed);
 	} else {
@@ -64,7 +64,7 @@ lib.group.add('xwjh_qiu');
 lib.translate.xwjh_qiu = '囚';
 lib.translate.xwjh_qiu2 = '囚';
 lib.groupnature.xwjh_qiu = 'xwjh_qiu';
-var style = document.createElement('style');
+const style = document.createElement('style');
 style.innerHTML = ".player .identity[data-color='xwjh_qiu'],";
 style.innerHTML += "div[data-nature='xwjh_qiu'],";
 style.innerHTML += "span[data-nature='xwjh_qiu'] {text-shadow: black 0 0 1px,rgba(40, 40, 40,1) 0 0 2px,rgba(40, 40, 40,1) 0 0 5px,rgba(40, 40, 40,1) 0 0 10px,rgba(40, 40, 40,1) 0 0 10px}";
@@ -74,11 +74,11 @@ style.innerHTML += "div[data-nature='xwjh_qiumm'],";
 style.innerHTML += "span[data-nature='xwjh_qiumm'] {text-shadow: black 0 0 1px,rgba(40, 40, 40,1) 0 0 2px,rgba(40, 40, 40,1) 0 0 2px,rgba(40, 40, 40,1) 0 0 2px,rgba(40, 40, 40,1) 0 0 2px,black 0 0 1px;}";
 document.head.appendChild(style);
 lib.element.player.xwSayLong = function (str) {
-	var dialog = ui.create.div('.xwjh-duihua', this);
+	const dialog = ui.create.div('.xwjh-duihua', this);
 	dialog.innerHTML = str;
 	return dialog;
 };
-lib.element.content['xwPlayDramaChats'] = function () {
+lib.element.content.xwPlayDramaChats = function () {
 	'step 0';
 	event.page = 'begin';
 	('step 1');
@@ -102,20 +102,20 @@ lib.element.content['xwPlayDramaChats'] = function () {
 		event.goto(6);
 	}
 	('step 3');
-	var dialogPlayer = event.pageContent.character;
+	let dialogPlayer = event.pageContent.character;
 	if (typeof dialogPlayer == 'string') {
 		dialogPlayer = game.findPlayer(function (current) {
-			if (!current.name) return false;
+			if (!current.name) {return false;}
 			return current.name == dialogPlayer || current.name.replace('xwjh_sp', 'xwjh_') == dialogPlayer || current.name.replace('xwjh_xsp', 'xwjh_') == dialogPlayer;
 		});
 	} else {
-		var charlist = _status.xwJuqingStatus.juqing.characters[_status.xwJuqingStatus.groupId];
+		const charlist = _status.xwJuqingStatus.juqing.characters[_status.xwJuqingStatus.groupId];
 		if (charlist) {
 			dialogPlayer = charlist.group[dialogPlayer - 1];
 		}
 		if (typeof dialogPlayer == 'string') {
 			dialogPlayer = game.findPlayer(function (current) {
-				if (!current.name) return false;
+				if (!current.name) {return false;}
 				return current.name == dialogPlayer || current.name.replace('xwjh_sp', 'xwjh_') == dialogPlayer || current.name.replace('xwjh_xsp', 'xwjh_') == dialogPlayer;
 			});
 		}
@@ -124,7 +124,7 @@ lib.element.content['xwPlayDramaChats'] = function () {
 		event.goto(6);
 		return;
 	}
-	var sent = event.chatSents.shift();
+	const sent = event.chatSents.shift();
 	if (event.curDialog) {
 		event.curDialog.delete();
 	}
@@ -164,7 +164,7 @@ lib.element.content['xwPlayDramaChats'] = function () {
 		event.curDialog.delete();
 		delete event.curDialog;
 	}
-	var nextPage = event.pageContent.next;
+	let nextPage = event.pageContent.next;
 	if (nextPage === undefined) {
 		if (typeof event.page == 'number') {
 			nextPage = event.page + 1;
@@ -183,19 +183,19 @@ lib.element.content['xwPlayDramaChats'] = function () {
 	event.goto(1);
 };
 game.xwPlayDramaChats = function (drama) {
-	var next = game.createEvent('xwjuqing_drame_chats');
+	const next = game.createEvent('xwjuqing_drame_chats');
 	next.player = game.me;
-	var chats = _status.xwJuqingStatus.juqing.chats;
+	const chats = _status.xwJuqingStatus.juqing.chats;
 	next.drama = chats[drama];
 	next.setContent('xwPlayDramaChats');
 };
 lib.element.player.xwChooseControlBig = function (prompt, maps, ai) {
-	var dialog = ui.create.dialog(prompt, 'hidden', 'forcebutton');
-	for (var c in maps) {
-		var str = '<div class="popup text" style="width:80%;display:inline-block">';
+	const dialog = ui.create.dialog(prompt, 'hidden', 'forcebutton');
+	for (const c in maps) {
+		let str = '<div class="popup text" style="width:80%;display:inline-block">';
 		str += maps[c];
 		str += '</div>';
-		var item = dialog.add(str);
+		const item = dialog.add(str);
 		item.firstChild.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', ui.click.button);
 		item.firstChild.link = c;
 		Object.setPrototypeOf(item, lib.element.Button.prototype);
@@ -339,8 +339,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				content() {
 					'step 0';
-					var x = player.getStat('kill');
-					if (!x) x = 0;
+					let x = player.getStat('kill');
+					if (!x) {x = 0;}
 					player.draw(2 + x);
 					('step 1');
 					player.gainMaxHp();
@@ -358,7 +358,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			xwjh_jianyao: {
 				audio: 'ext:玄武江湖/audio:2',
 				forced: true,
-				priority: 213123000,
+				_priority: 213123000,
 				trigger: {
 					player: 'useCardBegin',
 				},
@@ -370,9 +370,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				},
 				filter(event, player) {
-					if (!player.isPhaseUsing()) return false;
-					if (player.hp >= player.maxHp && !player.countMark('xwjh_jianyao_yao')) return false;
-					var his = player.getHistory('useCard', function (evt) {
+					if (!player.isPhaseUsing()) {return false;}
+					if (player.hp >= player.maxHp && !player.countMark('xwjh_jianyao_yao')) {return false;}
+					const his = player.getHistory('useCard', function (evt) {
 						return evt.addCount && evt.card.name == 'sha' && evt != event;
 					});
 					return his.length;
@@ -419,7 +419,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					global: ['phaseJieshuEnd'],
 				},
 				filter(event, player) {
-					if (_status.xwRoundCount - _status.xwPoxiuRound >= 3) return true;
+					if (_status.xwRoundCount - _status.xwPoxiuRound >= 3) {return true;}
 					return game.hasPlayer(function (current) {
 						return current.hp >= current.maxHp && !current.isTurnedOver() && current != player && current.side != player.side;
 					});
@@ -438,7 +438,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					});
 					event.tars.sortBySeat();
 					('step 4');
-					var tar = event.tars.shift();
+					const tar = event.tars.shift();
 					if (tar) {
 						if (tar.isAlive()) {
 							tar.damage(1, player);
@@ -455,7 +455,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				forced: true,
 				filter(event, player) {
-					if (event.name == 'phaseZhunbei') return true;
+					if (event.name == 'phaseZhunbei') {return true;}
 					return event.player == game.me;
 				},
 				content() {
@@ -555,8 +555,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						},
 						content() {
 							'step 0';
-							var rate = 12 * player.getHistory('useCard').length;
-							var judge = Math.random() * 100;
+							const rate = 12 * player.getHistory('useCard').length;
+							const judge = Math.random() * 100;
 							if (judge <= rate) {
 								player.popup(get.translation('xwjh_quehoujq'));
 								game.log(player, '【', 'xwjh_quehoujq', '】概率判定生效.');
@@ -577,7 +577,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				content() {
 					'step 0';
-					var rand = Math.random() * 100;
+					const rand = Math.random() * 100;
 					if (rand <= 40) {
 						event.goto(1);
 					} else if (rand <= 80) {
@@ -616,10 +616,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							source: 'damageBegin2',
 						},
 						filter(event, player) {
-							if (event.nature == 'fire') return false;
-							if (event.xwjh_yanxijq_success === 1) return true;
-							else if (event.xwjh_yanxijq_success === 2) return false;
-							var rate = 15 * player.hp;
+							if (event.nature == 'fire') {return false;}
+							if (event.xwjh_yanxijq_success === 1) {return true;}
+							else if (event.xwjh_yanxijq_success === 2) {return false;}
+							const rate = 15 * player.hp;
 							if (Math.random() * 100 <= rate) {
 								event.xwjh_yanxijq_success = 1;
 								return true;
@@ -649,19 +649,19 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				forced: true,
 				usable: 3,
 				filter(event, player) {
-					if (event.card.name != 'sha') return false;
+					if (event.card.name != 'sha') {return false;}
 					if (
 						!event.targets.filter(function (current) {
 							return current.isAlive();
 						}).length
 					)
-						return false;
+						{return false;}
 					if (event.xwjh_longjianjq_success === 1) {
 						return true;
 					} else if (event.xwjh_longjianjq_success === 2) {
 						return false;
 					}
-					var rate = (player.maxHp - player.hp) * 15;
+					const rate = (player.maxHp - player.hp) * 15;
 					event.xwjh_longjianjq_success = Math.random() * 100 <= rate ? 1 : 2;
 					return event.xwjh_longjianjq_success === 1;
 				},
@@ -724,7 +724,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player: ['useCard', 'respond'],
 				},
 				filter(event, player) {
-					return event.card.name == 'sha' && event.cards && event.cards.length == 1 && event.cards[0].suit == 'diamond';
+					return event.card && event.card.name == 'sha' && event.cards && event.cards.length == 1 && event.cards[0].suit == 'diamond';
 				},
 				firstDo: true,
 				content() {
@@ -791,7 +791,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					});
 					event.tars.sortBySeat();
 					('step 3');
-					var tar = event.tars.shift();
+					const tar = event.tars.shift();
 					if (tar) {
 						tar.addXwBuff('xwjh_publicmark_zhongdu', Math.ceil(event.countE / 2));
 						event.redo();
@@ -801,8 +801,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					order: 1,
 					result: {
 						player(player, target) {
-							if (player.maxHp - player.hp >= 3) return 2;
-							if (player.countCards('e') >= 3) return 1;
+							if (player.maxHp - player.hp >= 3) {return 2;}
+							if (player.countCards('e') >= 3) {return 1;}
 							return -2;
 						},
 					},
@@ -824,7 +824,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return get.type(card) == 'basic';
 						})
 					)
-						return false;
+						{return false;}
 					return true;
 				},
 				prompt: '将一张基本牌当闪使用或打出',
@@ -837,11 +837,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 					respondShan: true,
 					skillTagFilter(player) {
-						if (!player.countCards('he')) return false;
+						if (!player.countCards('he')) {return false;}
 					},
 					effect: {
 						target(card, player, target, current) {
-							if (get.tag(card, 'respondShan')) return 0.8;
+							if (get.tag(card, 'respondShan')) {return 0.8;}
 						},
 					},
 				},
@@ -902,7 +902,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return card.suit == 'spade' && get.type(card) != 'basic';
 					});
 				},
-				prompt: '将一张♠️️非基本牌当罡使用',
+				prompt: '将一张♠️️️非基本牌当罡使用',
 				check(card) {
 					return 9 - get.value(card);
 				},
@@ -960,7 +960,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					('step 1');
 					event.tar = event.tars.shift();
 					if (event.tar) {
-						var card = game.xwCopyCard(trigger.card);
+						const card = game.xwCopyCard(trigger.card);
 						if (event.tar.canEquip(card)) {
 							event.tar.equip(card);
 						}
@@ -1010,7 +1010,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return player.maxHp > player.hp;
 						},
 						forced: true,
-						priority: 1390,
+						_priority: 1390,
 						content() {
 							'step 0';
 							player.draw(player.maxHp - player.hp);
@@ -1049,7 +1049,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					if (player.countCards('h') >= player.getHandcardLimit() && player.hp >= player.maxHp) {
 						return false;
 					}
-					var evt = event.parent;
+					const evt = event.parent;
 					return evt.name == '_xwjh_liuxie';
 				},
 				forced: true,
@@ -1101,7 +1101,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					effect: {
 						target(card, player, target) {
 							if (get.tag(card, 'damage') && player == target) {
-								if (target.hp > 1) return [1, 2];
+								if (target.hp > 1) {return [1, 2];}
 							}
 						},
 					},
@@ -1145,8 +1145,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						})
 						.set('forced', true)
 						.set('ai', function (target) {
-							if (get.attitude(player, target) <= 0) return 0;
-							if (target.hasSkill('xwjh_xingyuesh')) return 10;
+							if (get.attitude(player, target) <= 0) {return 0;}
+							if (target.hasSkill('xwjh_xingyuesh')) {return 10;}
 							return 10 - target.hp > 0 ? 10 - target.hp : 1;
 						});
 					('step 2');
@@ -1159,7 +1159,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							event.goto(4);
 						} else {
 							event.target.chooseBool('是否增加一点体力上限？否则你回复一点体力.').set('ai', function () {
-								if (event.target.hasSkill('xwjh_xingyuesh')) return true;
+								if (event.target.hasSkill('xwjh_xingyuesh')) {return true;}
 								return false;
 							});
 						}
@@ -1218,7 +1218,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							player
 								.chooseCardButton('请选择其中的【杀】使用.', event.cards, 1)
 								.set('filterButton', function (button) {
-									var card = button.link;
+									const card = button.link;
 									return card.name == 'sha' && player.hasUseTarget(card);
 								})
 								.set('ai', function (button) {
@@ -1242,8 +1242,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				ai: {
 					order() {
-						var player = _status.event.player;
-						if (player.hp <= 1) return 0;
+						const player = _status.event.player;
+						if (player.hp <= 1) {return 0;}
 						return 5;
 					},
 					effect: {
@@ -1304,7 +1304,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						},
 						forced: true,
 						filter(event, player) {
-							if (event.cards && event.cards.length == 1 && player.storage.xwjh_ancha_cha.includes(event.cards[0])) return event.target.name == 'xwjh_juqing_gongzhuermu' || get.xwJuqingBosses().includes(event.target.name);
+							if (event.cards && event.cards.length == 1 && player.storage.xwjh_ancha_cha.includes(event.cards[0])) {return event.target.name == 'xwjh_juqing_gongzhuermu' || get.xwJuqingBosses().includes(event.target.name);}
 							return false;
 						},
 						content() {
@@ -1400,7 +1400,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					return player.countCards('he');
 				},
 				check(card) {
-					if (card.name == 'sha') return 10;
+					if (card.name == 'sha') {return 10;}
 					return get.value(card);
 				},
 				selectTarget: 1,
@@ -1510,9 +1510,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			xwjh_yanxijq: '炎息',
 			xwjh_yanxijq_info: "<b>锁定效果:</b>你造成伤害时,若此伤害非火焰伤害,有15%X的概率转化为火焰伤害.(X为你的体力值).你对一名角色造成火焰伤害后,其获得两层【<a style='color: #FF0000' href=\"javascript:window.xwIntroduceBuff('xwjh_publicmark_zhuoshao');\">灼烧</a>】状态.",
 			xwjh_canlve: '残掠',
-			xwjh_canlve_info: '<b>锁定效果:</b>你对一名角色造成伤害后,其进行一次判定,若结果不为♥️️,其获得两层撕裂状态.',
+			xwjh_canlve_info: '<b>锁定效果:</b>你对一名角色造成伤害后,其进行一次判定,若结果不为♥️️️,其获得两层撕裂状态.',
 			xwjh_jinjia: '金甲',
-			xwjh_jinjia_info: '<b>锁定效果:</b>你的♦️️牌视为【罡】.',
+			xwjh_jinjia_info: '<b>锁定效果:</b>你的♦️️️牌视为【罡】.',
 			xwjh_chiqing: '赤晴',
 			xwjh_chiqing_info: '<b>锁定效果:</b>准备阶段,你召出X张【杀】.X为你已损失的体力值.你使用因此召出的牌,不计入出牌阶段使用次数限制.',
 			xwjh_qiegou: '窃钩',
@@ -1522,7 +1522,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			xwjh_funian: '腐念',
 			xwjh_funian_info: '限定技:出牌阶段,你可以弃置所有的装备牌并回复等量体力值,敌方角色均分(向上取整)X层【中毒】状态,X为你弃置的装备牌数.',
 			xwjh_kuiran: '岿然',
-			xwjh_kuiran_info: '你可以将♠️️非基本牌当作【罡】使用.你使用【罡】抵消伤害时,进行一次判定,若结果不为♦️️,对伤害来源造成一点伤害.',
+			xwjh_kuiran_info: '你可以将♠️️️非基本牌当作【罡】使用.你使用【罡】抵消伤害时,进行一次判定,若结果不为♦️️️,对伤害来源造成一点伤害.',
 			xwjh_juxin: '聚心',
 			xwjh_juxin_info: '<b>锁定效果:</b>你装备一张牌后,其他己方角色若对应的装备区没有牌,复制此牌并装备之.',
 			xwjh_zhongwei: '忠卫',
@@ -1573,13 +1573,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	});
 	lib.config.all.characters.add('xwjuqing');
 	lib.config.characters.add('xwjuqing');
-	lib.translate['xwjuqing_character_config'] = `玄武剧情`;
+	lib.translate.xwjuqing_character_config = `玄武剧情`;
 	return QQQ;
 });
 const modejuqing = {
 	name: 'xwjuqing',
 	startBefore() {
-		for (var m in lib.xwjh_modejuqing.element.content) {
+		for (const m in lib.xwjh_modejuqing.element.content) {
 			lib.element.content[m] = lib.xwjh_modejuqing.element.content[m];
 		}
 	},
@@ -1597,7 +1597,7 @@ const modejuqing = {
 			game.log('正在加载剧本');
 			_status.xwImportingDrama = {
 				onload() {
-					var juqing = _status.xwImportingDrama.juqing;
+					const juqing = _status.xwImportingDrama.juqing;
 					delete _status.xwImportingDrama;
 					_status.xwJuqingStatus.juqing = juqing;
 					game.log('剧本加载完成.');
@@ -1613,9 +1613,9 @@ const modejuqing = {
 			game.reload();
 		}
 		('step 4');
-		var chars = _status.xwJuqingStatus.juqing.characters;
-		var map = {};
-		for (var i = 0; i < chars.length; i++) {
+		const chars = _status.xwJuqingStatus.juqing.characters;
+		const map = {};
+		for (let i = 0; i < chars.length; i++) {
 			map[i] = chars[i].name;
 		}
 		game.me.xwChooseControlBig('请选择人物', map, function () {
@@ -1623,7 +1623,7 @@ const modejuqing = {
 		});
 		('step 5');
 		if (result.links?.length) {
-			var charlist = _status.xwJuqingStatus.juqing.characters[result.links[0]];
+			const charlist = _status.xwJuqingStatus.juqing.characters[result.links[0]];
 			_status.xwJuqingStatus.groupId = result.links[0];
 			game.me.getId();
 			game.me.next.getId();
@@ -1674,21 +1674,23 @@ const modejuqing = {
 			if (!b) {
 				b = _status.event.player || game.me;
 			} //QQQ
-			if (a == b) return 10;
-			if (a.side == b.side) return 10;
+			if (a == b) {return 10;}
+			if (a.side == b.side) {return 10;}
 			return -10;
 		},
 	},
 	element: {
 		content: {
 			phaseLoop() {
-				'step 0';
-				for (var i = 0; i < lib.onphase.length; i++) {
-					lib.onphase[i]();
+                'step 0';
+
+                for (const i of lib.onphase) {
+					i();
 				}
-				player.phase();
-				('step 1');
-				if (event.tempNext) {
+
+                player.phase('nodelay');
+                ('step 1');
+                if (event.tempNext) {
 					event.player = event.tempNext;
 					delete event.tempNext;
 				} else if (!game.players.includes(event.player.next)) {
@@ -1696,8 +1698,8 @@ const modejuqing = {
 				} else {
 					event.player = event.player.next;
 				}
-				event.goto(0);
-			},
+                event.goto(0);
+            },
 		},
 		player: {
 			dieAfter(source) {
@@ -1713,15 +1715,15 @@ const modejuqing = {
 						return current.side != game.me.side;
 					}) == 0
 				) {
-					var pls = game.dead.slice(0);
-					for (var pl of pls) {
+					const pls = game.dead.slice(0);
+					for (const pl of pls) {
 						if (pl.side == 'zhu') {
 							pl.revive(Math.min(2, game.me.maxHp));
 						} else {
 							game.removePlayer(pl);
 						}
 					}
-					var next = game.createEvent('dramaEnd');
+					const next = game.createEvent('dramaEnd');
 					next.setContent(function () {
 						'step 0';
 						if (_status.xwJuqingStatus.scene.end) {
@@ -1734,12 +1736,12 @@ const modejuqing = {
 							}
 						}
 						('step 1');
-						var cards = Array.from(ui.ordering.childNodes);
+						const cards = Array.from(ui.ordering.childNodes);
 						while (cards.length) {
 							cards.shift().discard();
 						}
 						('step 2');
-						var evt = _status.event.getParent('phase');
+						const evt = _status.event.getParent('phase');
 						if (evt && evt.name == 'phase') {
 							//QQQ
 							evt.finish();

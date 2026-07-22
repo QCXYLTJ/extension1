@@ -6,7 +6,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
         ui.xwjhsheet = lib.init.sheet();
         ui.xwjhsheet.sheet.insertRule("@font-face {font-family: 'xw_longyinshoushu';src: url(extension/玄武江湖/xw_longyinshoushu.ttf);}", 0);
     }
-    if (!(lib.config.extensions && lib.config.extensions.includes('千幻聆音') && lib.config['extension_千幻聆音_enable'])) {
+    if (!(lib.config.extensions && lib.config.extensions.includes('千幻聆音') && lib.config.extension_千幻聆音_enable)) {
         if (ui && ui.css && ui.css.fontsheet && ui.css.fontsheet.sheet && ui.css.fontsheet.sheet.insertRule) {
             ui.css.fontsheet.sheet.insertRule("@font-face {font-family: 'qh_songhei';src: url(extension/玄武江湖/qianhuanlingyin/songhei.ttf);}", 0);
         } else {
@@ -80,7 +80,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
         明察秋毫: {
             type: 'character',
             hard: 2,
-            text: '使用周安夏,发动【激浊】,弃置的三张牌均为♦️️.',
+            text: '使用周安夏,发动【激浊】,弃置的三张牌均为♦️️️.',
             extra: '这些小伎俩,逃不过本官的法眼.',
         },
         优待俘虏: {
@@ -157,22 +157,24 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 );
             },
             progress() {
-                var oarr = [];
-                var str =
+                const oarr = [];
+                let str =
                     '已完成' +
                     game.xwChengjiu.achievementList(function (cjname) {
-                        var ret = game.xwChengjiu.hasType(cjname, 'firstWin') && game.xwChengjiu.hasAchievement(cjname);
+                        const ret = game.xwChengjiu.hasType(cjname, 'firstWin') && game.xwChengjiu.hasAchievement(cjname);
                         if (ret && lib.xwjhAch[cjname] && lib.xwjhAch[cjname].relateName) {
                             oarr.push(lib.xwjhAch[cjname].relateName);
                         }
                         return ret;
                     }).length +
                     '名角色的首胜成就';
-                if (oarr.length >= 100) return ['已完成'];
+                if (oarr.length >= 100) {
+                    return ['已完成'];
+                }
                 oarr.sort();
                 if (oarr.length) {
                     str += ",分别为:<font color='black'>";
-                    for (var name of oarr) {
+                    for (const name of oarr) {
                         str += name;
                         str += '、';
                     }
@@ -188,14 +190,24 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             text: '达成以下条件(不懂的地方请阅读角色故事).',
             extra: '剑如漆,发如雪,墨心如铁.',
             hasAchievement() {
-                if (game.xwChengjiu.score() < 100) return false;
-                if (!game.xwChengjiu.hasAchievement('非命绽刀')) return false;
-                if (!game.xwChengjiu.hasAchievement('玲珑慧心')) return false;
-                if (!game.xwChengjiu.hasAchievement('丹心墨道')) return false;
-                if (!game.xwChengjiu.hasAchievement('巧器天成')) return false;
+                if (game.xwChengjiu.score() < 100) {
+                    return false;
+                }
+                if (!game.xwChengjiu.hasAchievement('非命绽刀')) {
+                    return false;
+                }
+                if (!game.xwChengjiu.hasAchievement('玲珑慧心')) {
+                    return false;
+                }
+                if (!game.xwChengjiu.hasAchievement('丹心墨道')) {
+                    return false;
+                }
+                if (!game.xwChengjiu.hasAchievement('巧器天成')) {
+                    return false;
+                }
                 if (lib.config.xwWinHistory) {
-                    if (lib.config.xwWinHistory['xwjh_chenrunyu']) {
-                        var count = lib.config.xwWinHistory['xwjh_chenrunyu'];
+                    if (lib.config.xwWinHistory.xwjh_chenrunyu) {
+                        const count = lib.config.xwWinHistory.xwjh_chenrunyu;
                         if (count >= 10) {
                             return true;
                         }
@@ -204,17 +216,17 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 return false;
             },
             progress() {
-                var ret = [];
-                var str = '成就积分达到100点';
+                const ret = [];
+                let str = '成就积分达到100点';
                 if (game.xwChengjiu.score() >= 100) {
                     str += '(已完成)';
                 }
                 ret.push(str);
                 str = '使用【天机枪弩车的制造者】胜利十场';
-                var set = false;
+                let set = false;
                 if (lib.config.xwWinHistory) {
-                    if (lib.config.xwWinHistory['xwjh_chenrunyu']) {
-                        var count = lib.config.xwWinHistory['xwjh_chenrunyu'];
+                    if (lib.config.xwWinHistory.xwjh_chenrunyu) {
+                        const count = lib.config.xwWinHistory.xwjh_chenrunyu;
                         if (count >= 10) {
                             str += '(已完成)';
                             set = true;
@@ -262,11 +274,11 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             hard: 4,
             type: ['character'],
         },
-        '♣️️三弄': {
+        '♣️️️三弄': {
             type: 'card',
             hard: 4,
             text: '连续使用三次实体牌为【梅开二度】的牌.',
-            extra: '♣️️一弄断人肠,♣️️二弄费思量,♣️️三弄风波起,云烟深处水茫茫.',
+            extra: '♣️️️一弄断人肠,♣️️️二弄费思量,♣️️️三弄风波起,云烟深处水茫茫.',
         },
         仁者无敌: {
             type: 'game',
@@ -377,7 +389,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
         },
         孔雀开屏: {
             hard: 4,
-            text: '使用孔雀翎亮出五张♣️️牌且击杀一名角色.',
+            text: '使用孔雀翎亮出五张♣️️️牌且击杀一名角色.',
             extra: '在终结敌手前,让他最后再看一眼这美丽的色彩.',
             type: 'card',
         },
@@ -515,7 +527,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             type: 'card',
         },
         鸡毛暗器: {
-            text: '使用孔雀翎,亮出的♣️️牌少于一张.',
+            text: '使用孔雀翎,亮出的♣️️️牌少于一张.',
             hard: 2,
             extra: '如此厉害的神器,被你打出了废铁的效果……',
             type: 'card',
@@ -862,16 +874,24 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
     }
     game.xwChengjiu = {
         init(QQQ) {
-            if (this.inited) return;
+            if (this.inited) {
+                return;
+            }
             for (var name in QQQ.character) {
-                if (!QQQ.characterTitle[name]) continue;
-                if (!QQQ.translate[name]) continue;
-                if (name == 'xwjh_jixiangwu_xiaoqian') continue;
+                if (!QQQ.characterTitle[name]) {
+                    continue;
+                }
+                if (!QQQ.translate[name]) {
+                    continue;
+                }
+                if (name == 'xwjh_jixiangwu_xiaoqian') {
+                    continue;
+                }
                 (function (name) {
-                    var extraFunc = function () {
+                    const extraFunc = function () {
                         return lib.xwWinSay[name];
                     };
-                    var info = {
+                    const info = {
                         text: '使用' + QQQ.translate[name] + '获得一场胜利.',
                         relateName: QQQ.translate[name],
                         hard: 1,
@@ -884,8 +904,8 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             if (!lib.config.newAchInXwjh) {
                 if (lib.config.xwAchievement) {
                     for (var name in lib.xwjhAch) {
-                        var info = this.info(name);
-                        var tname = name;
+                        const info = this.info(name);
+                        let tname = name;
                         if (info.count) {
                             tname = 'count_' + info.count + '_' + name;
                         }
@@ -911,24 +931,27 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             return Object.keys(lib.xwjhAch).length;
         },
         numberOfGainedAchievements() {
-            var count = 0;
-            for (var name in lib.xwjhAch) {
-                if (this.hasAchievement(name)) count++;
+            let count = 0;
+            for (const name in lib.xwjhAch) {
+                if (this.hasAchievement(name)) {
+                    count++;
+                }
             }
             return count;
         },
         achievementList(filter, sort) {
-            if (!filter)
+            if (!filter) {
                 filter = function () {
                     return true;
                 };
+            }
             if (!sort) {
                 sort = function (a, b) {
                     return game.xwChengjiu.info(a).hard - game.xwChengjiu.info(b).hard;
                 };
             }
-            var ret = [];
-            for (var name in lib.xwjhAch) {
+            const ret = [];
+            for (const name in lib.xwjhAch) {
                 if (filter(name)) {
                     ret.push(name);
                 }
@@ -946,9 +969,15 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             game.saveConfig('xwjh_chengjiuScore', this.score() + num);
         },
         addGot(name, info) {
-            if (!info) info = this.info(name);
-            if (!info) return;
-            if (lib.config.xwChengjiuStorage.got[name]) return;
+            if (!info) {
+                info = this.info(name);
+            }
+            if (!info) {
+                return;
+            }
+            if (lib.config.xwChengjiuStorage.got[name]) {
+                return;
+            }
             lib.config.xwChengjiuStorage.got[name] = true;
             this.saveConfig();
         },
@@ -959,10 +988,18 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             return 0;
         },
         addCount(name, num, info) {
-            if (!info) info = this.info(name);
-            if (!num) num = 1;
-            if (!info) return false;
-            if (info.count === undefined) return true;
+            if (!info) {
+                info = this.info(name);
+            }
+            if (!num) {
+                num = 1;
+            }
+            if (!info) {
+                return false;
+            }
+            if (info.count === undefined) {
+                return true;
+            }
             if (!lib.config.xwChengjiuStorage.count[name]) {
                 lib.config.xwChengjiuStorage.count[name] = 0;
             }
@@ -977,22 +1014,36 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             game.saveConfig('xwChengjiuStorage', lib.config.xwChengjiuStorage);
         },
         tempGainAchievement(name, num, player) {
-            if (player && player != game.me) return;
-            if (this.hasAchievement(name)) return;
-            if (!num) num = 1;
+            if (player && player != game.me) {
+                return;
+            }
+            if (this.hasAchievement(name)) {
+                return;
+            }
+            if (!num) {
+                num = 1;
+            }
             if (!_status.xwTempGainAchievement) {
                 _status.xwTempGainAchievement = {};
             }
-            var info = this.info(name);
-            if (!info) return;
+            const info = this.info(name);
+            if (!info) {
+                return;
+            }
             if (info.count === undefined) {
-                if (_status.xwTempGainAchievement[name]) return;
+                if (_status.xwTempGainAchievement[name]) {
+                    return;
+                }
                 _status.xwTempGainAchievement[name] = 1;
                 window.xwShowBanner('达成成就:' + (info.replaceName ? info.replaceName : name));
             } else {
-                var count = _status.xwTempGainAchievement[name];
-                if (count && count + this.currentCount(name) >= info.count) return;
-                if (!count) count = 0;
+                let count = _status.xwTempGainAchievement[name];
+                if (count && count + this.currentCount(name) >= info.count) {
+                    return;
+                }
+                if (!count) {
+                    count = 0;
+                }
                 _status.xwTempGainAchievement[name] = count + num;
                 if (_status.xwTempGainAchievement[name] >= info.count) {
                     window.xwShowBanner('达成成就:' + (info.replaceName ? info.replaceName : name));
@@ -1001,26 +1052,42 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
         },
         checkAchievementsInTemp() {
             if (_status.xwTempGainAchievement) {
-                for (var name in _status.xwTempGainAchievement) {
-                    var info = this.info(name);
-                    if (!info) continue;
+                for (const name in _status.xwTempGainAchievement) {
+                    const info = this.info(name);
+                    if (!info) {
+                        continue;
+                    }
                     this.gainAchievementSilent(name, _status.xwTempGainAchievement[name]);
                 }
             }
         },
         gainAchievementDirect(name, player) {
-            if (player && player != game.me) return;
-            var info = this.info(name);
-            if (!info) return;
-            if (this.hasAchievement(name)) return;
+            if (player && player != game.me) {
+                return;
+            }
+            const info = this.info(name);
+            if (!info) {
+                return;
+            }
+            if (this.hasAchievement(name)) {
+                return;
+            }
             this.addGot(name, info);
         },
         gainAchievement(name, num, player) {
-            if (player && player != game.me) return;
-            var info = this.info(name);
-            if (!info) return;
-            if (this.hasAchievement(name)) return;
-            if (!num) num = 1;
+            if (player && player != game.me) {
+                return;
+            }
+            const info = this.info(name);
+            if (!info) {
+                return;
+            }
+            if (this.hasAchievement(name)) {
+                return;
+            }
+            if (!num) {
+                num = 1;
+            }
             if (this.addCount(name, num, info)) {
                 this.addGot(name, info);
             }
@@ -1030,17 +1097,19 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             return lib.xwjhAch[name];
         },
         currentCount(name) {
-            var count = lib.config.xwChengjiuStorage.count[name];
-            if (!count) return 0;
+            const count = lib.config.xwChengjiuStorage.count[name];
+            if (!count) {
+                return 0;
+            }
             return count;
         },
         achievementCode() {
-            var str = JSON.stringify(lib.config.xwChengjiuStorage);
+            const str = JSON.stringify(lib.config.xwChengjiuStorage);
             return "game.xwChengjiu.importAchievementCode('" + btoa(str) + "')";
         },
         importAchievementCode(str) {
             try {
-                var sto = JSON.parse(atob(str));
+                const sto = JSON.parse(atob(str));
                 game.saveConfig('xwChengjiuStorage', sto);
                 alert('成就码输入成功,重启游戏中');
                 game.reload();
@@ -1049,22 +1118,24 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             }
         },
         hasAchievement(name) {
-            var info = this.info(name);
+            const info = this.info(name);
             if (info && info.hasAchievement) {
                 return info.hasAchievement();
             }
             return lib.config.xwChengjiuStorage.got[name] == true;
         },
         rewardCanGain(name) {
-            if (this.scoreRewardCanGain(name)) return true;
-            var info = this.info(name);
+            if (this.scoreRewardCanGain(name)) {
+                return true;
+            }
+            const info = this.info(name);
             return info.reward && !info.rewardGained() && this.hasAchievement(name);
         },
         gainAllScore() {
-            var sum = 0;
-            for (var cj in lib.xwjhAch) {
+            let sum = 0;
+            for (const cj in lib.xwjhAch) {
                 if (this.scoreRewardCanGain(cj)) {
-                    var info = this.info(cj);
+                    const info = this.info(cj);
                     sum += info.hard;
                     lib.config.xwChengjiuStorage.score[cj] = true;
                 }
@@ -1079,12 +1150,16 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             game.saveConfig('xwjh_chengjiuScore', 0);
         },
         scoreRewardCanGain(name) {
-            if (!this.hasAchievement(name)) return false;
+            if (!this.hasAchievement(name)) {
+                return false;
+            }
             if (!lib.config.xwChengjiuStorage.score) {
                 lib.config.xwChengjiuStorage.score = {};
                 game.xwChengjiu.saveConfig();
             }
-            if (lib.config.xwChengjiuStorage.score[name]) return false;
+            if (lib.config.xwChengjiuStorage.score[name]) {
+                return false;
+            }
             return true;
         },
         gainScoreReward(name) {
@@ -1092,7 +1167,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 lib.config.xwChengjiuStorage.score = {};
                 game.xwChengjiu.saveConfig();
             }
-            var info = game.xwChengjiu.info(name);
+            const info = game.xwChengjiu.info(name);
             if (info.hard) {
                 lib.config.xwChengjiuStorage.score[name] = true;
                 game.xwChengjiu.saveConfig();
@@ -1101,17 +1176,25 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             }
         },
         gainAchievementSilent(name, num, player) {
-            if (player && player != game.me) return;
-            var info = this.info(name);
-            if (!info) return;
-            if (this.hasAchievement(name)) return;
-            if (!num) num = 1;
+            if (player && player != game.me) {
+                return;
+            }
+            const info = this.info(name);
+            if (!info) {
+                return;
+            }
+            if (this.hasAchievement(name)) {
+                return;
+            }
+            if (!num) {
+                num = 1;
+            }
             if (this.addCount(name, num, info)) {
                 this.addGot(name, info);
             }
         },
         gainAllAchievement() {
-            for (var name in lib.xwjhAch) {
+            for (const name in lib.xwjhAch) {
                 this.gainAchievementSilent(name, 999);
             }
         },
@@ -1120,37 +1203,57 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
         },
         sortBy: {
             reward(a, b) {
-                var ar = game.xwChengjiu.rewardCanGain(a);
-                var br = game.xwChengjiu.rewardCanGain(b);
-                if (ar == br) return 0;
-                if (ar) return -1;
+                const ar = game.xwChengjiu.rewardCanGain(a);
+                const br = game.xwChengjiu.rewardCanGain(b);
+                if (ar == br) {
+                    return 0;
+                }
+                if (ar) {
+                    return -1;
+                }
                 return 1;
             },
             name(a, b) {
-                var rs = game.xwChengjiu.sortBy.reward(a, b);
-                if (rs != 0) return rs;
-                var infoA = game.xwChengjiu.info(a);
-                var infoB = game.xwChengjiu.info(b);
+                const rs = game.xwChengjiu.sortBy.reward(a, b);
+                if (rs != 0) {
+                    return rs;
+                }
+                const infoA = game.xwChengjiu.info(a);
+                const infoB = game.xwChengjiu.info(b);
                 return a < b ? -1 : 1;
             },
             starAsc(a, b) {
-                var rs = game.xwChengjiu.sortBy.reward(a, b);
-                if (rs != 0) return rs;
-                var infoA = game.xwChengjiu.info(a);
-                var infoB = game.xwChengjiu.info(b);
-                if (infoA.hard < infoB.hard) return -1;
-                if (infoA.hard > infoB.hard) return 1;
+                const rs = game.xwChengjiu.sortBy.reward(a, b);
+                if (rs != 0) {
+                    return rs;
+                }
+                const infoA = game.xwChengjiu.info(a);
+                const infoB = game.xwChengjiu.info(b);
+                if (infoA.hard < infoB.hard) {
+                    return -1;
+                }
+                if (infoA.hard > infoB.hard) {
+                    return 1;
+                }
                 return game.xwChengjiu.sortBy.name(a, b);
             },
             starDesc(a, b) {
                 var rs = game.xwChengjiu.sortBy.reward(a, b);
-                if (rs != 0) return rs;
+                if (rs != 0) {
+                    return rs;
+                }
                 var rs = game.xwChengjiu.sortBy.reward(a, b);
-                if (rs != 0) return rs;
-                var infoA = game.xwChengjiu.info(a);
-                var infoB = game.xwChengjiu.info(b);
-                if (infoA.hard < infoB.hard) return 1;
-                if (infoA.hard > infoB.hard) return -1;
+                if (rs != 0) {
+                    return rs;
+                }
+                const infoA = game.xwChengjiu.info(a);
+                const infoB = game.xwChengjiu.info(b);
+                if (infoA.hard < infoB.hard) {
+                    return 1;
+                }
+                if (infoA.hard > infoB.hard) {
+                    return -1;
+                }
                 return game.xwChengjiu.sortBy.name(a, b);
             },
         },
@@ -1253,42 +1356,46 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             },
         },
         hasType(name, type) {
-            var info = this.info(name);
-            if (!info.type) return type == 'game';
-            if (Array.isArray(info.type)) return info.type.includes(type);
+            const info = this.info(name);
+            if (!info.type) {
+                return type == 'game';
+            }
+            if (Array.isArray(info.type)) {
+                return info.type.includes(type);
+            }
             return info.type == type;
         },
         openAchievementView() {
             game.pause2();
-            var chengjiuWindow = ui.create.div('.xwjh-xchengjiu');
-            var chengjiu = ui.create.div('.xwjh-xchengjiu-bk', chengjiuWindow);
-            var cover = ui.create.div('.xwjh-xchengjiu-bk-cover', chengjiu);
-            var contentWrapper = ui.create.div('.xwjh-xchengjiu-text', chengjiu);
-            var content = ui.create.div('.xwjh-xchengjiu-textinner', contentWrapper);
-            var backarrow = ui.create.div('.xwjh-xchengjiu-return', chengjiu);
-            var pageButtonBelow = ui.create.div('.xwjh-xchengjiu-bk-otherbook', chengjiu);
-            var pageButtonBelowText = ui.create.div('.xwjh-xchengjiu-pagename-inner', ui.create.div('.xwjh-xchengjiu-pagename', pageButtonBelow));
-            var pageButton = ui.create.div('.xwjh-xchengjiu-leftbelowbt', chengjiu);
-            var leftButtonLight = ui.create.div('.xwjh-xchengjiu-bk-light', chengjiu);
-            var leftButtonLightText = ui.create.div('.xwjh-xchengjiu-pagename-inner', ui.create.div('.xwjh-xchengjiu-pagename', leftButtonLight));
+            const chengjiuWindow = ui.create.div('.xwjh-xchengjiu');
+            const chengjiu = ui.create.div('.xwjh-xchengjiu-bk', chengjiuWindow);
+            const cover = ui.create.div('.xwjh-xchengjiu-bk-cover', chengjiu);
+            const contentWrapper = ui.create.div('.xwjh-xchengjiu-text', chengjiu);
+            const content = ui.create.div('.xwjh-xchengjiu-textinner', contentWrapper);
+            const backarrow = ui.create.div('.xwjh-xchengjiu-return', chengjiu);
+            const pageButtonBelow = ui.create.div('.xwjh-xchengjiu-bk-otherbook', chengjiu);
+            const pageButtonBelowText = ui.create.div('.xwjh-xchengjiu-pagename-inner', ui.create.div('.xwjh-xchengjiu-pagename', pageButtonBelow));
+            const pageButton = ui.create.div('.xwjh-xchengjiu-leftbelowbt', chengjiu);
+            const leftButtonLight = ui.create.div('.xwjh-xchengjiu-bk-light', chengjiu);
+            const leftButtonLightText = ui.create.div('.xwjh-xchengjiu-pagename-inner', ui.create.div('.xwjh-xchengjiu-pagename', leftButtonLight));
             leftButtonLight.hide();
             pageButtonBelow.hide();
             if (lib.config.xwChengjiuSize) {
                 pageButtonBelowText.style.fontSize = lib.config.xwChengjiuSize + 'px';
                 leftButtonLightText.style.fontSize = lib.config.xwChengjiuSize + 'px';
             }
-            var rightButtonLight = ui.create.div('.xwjh-xchengjiu-bk-hideGot');
+            const rightButtonLight = ui.create.div('.xwjh-xchengjiu-bk-hideGot');
             rightButtonLight.hide();
             chengjiu.appendChild(rightButtonLight);
-            var rightButton = ui.create.div('.xwjh-xchengjiu-righttext', chengjiu);
+            const rightButton = ui.create.div('.xwjh-xchengjiu-righttext', chengjiu);
             rightButton.innerHTML = '隐藏已完成';
-            var scoreTitle = ui.create.div('.xwjh-xchengjiu-score', chengjiu);
-            var setSize = function () {
-                var screenWidth = ui.window.offsetWidth;
-                var screenHeight = ui.window.offsetHeight;
-                var whr = 1.77778;
-                var width;
-                var height;
+            const scoreTitle = ui.create.div('.xwjh-xchengjiu-score', chengjiu);
+            const setSize = function () {
+                const screenWidth = ui.window.offsetWidth;
+                const screenHeight = ui.window.offsetHeight;
+                const whr = 1.77778;
+                let width;
+                let height;
                 if (screenWidth / whr > screenHeight) {
                     height = screenHeight;
                     width = height * whr;
@@ -1300,7 +1407,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 chengjiu.style.width = Math.round(width) + 'px';
             };
             setSize();
-            var resize = function () {
+            const resize = function () {
                 setTimeout(setSize, 500);
             };
             lib.onresize.push(resize);
@@ -1312,33 +1419,33 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             });
             lib.setScroll(content);
             document.body.appendChild(chengjiuWindow);
-            var books;
+            let books;
             if (lib.config.xwChengjiuBookKind) {
                 books = this.booksPage[lib.config.xwChengjiuBookKind];
             } else {
-                books = this.booksPage['stars'];
+                books = this.booksPage.stars;
             }
             var state = {
                 book: books,
                 currentPageIndex: 0,
                 gained: true,
                 pages() {
-                    var pageTitle = Object.keys(this.book);
-                    var that = this;
+                    const pageTitle = Object.keys(this.book);
+                    const that = this;
                     pageTitle.sort(function (a, b) {
                         return that.book[a].order - that.book[b].order;
                     });
-                    var ret = [];
-                    for (var title of pageTitle) {
+                    const ret = [];
+                    for (const title of pageTitle) {
                         ret.push(this.book[title]);
                     }
                     return ret;
                 },
                 refreshScoreTitle() {
-                    var filter = this.currentPageInfo().filter;
-                    var sum = 0;
-                    var got = 0;
-                    for (var chengjiu in lib.xwjhAch) {
+                    const filter = this.currentPageInfo().filter;
+                    let sum = 0;
+                    let got = 0;
+                    for (const chengjiu in lib.xwjhAch) {
                         if (filter(chengjiu)) {
                             sum++;
                             if (game.xwChengjiu.hasAchievement(chengjiu)) {
@@ -1349,16 +1456,18 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                     scoreTitle.innerHTML = '成就积分:' + game.xwChengjiu.score() + '&nbsp;&nbsp;&nbsp;&nbsp;成就达成率:' + got + '/' + sum + '(' + ((got * 100) / sum).toFixed(2) + '%)';
                 },
                 page(index) {
-                    var pageTitle = Object.keys(this.book);
-                    var that = this;
+                    const pageTitle = Object.keys(this.book);
+                    const that = this;
                     pageTitle.sort(function (a, b) {
                         return that.book[a].order - that.book[b].order;
                     });
                     return pageTitle[index];
                 },
                 nextPage(after) {
-                    var nextIndex = this.currentPageIndex + 1;
-                    if (!after) nextIndex -= 2;
+                    let nextIndex = this.currentPageIndex + 1;
+                    if (!after) {
+                        nextIndex -= 2;
+                    }
                     if (nextIndex >= this.pageCount()) {
                         nextIndex -= this.pageCount();
                     } else if (nextIndex < 0) {
@@ -1376,28 +1485,34 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                     isPressed: false,
                     animationPlaying: false,
                     computeAngle(x, y) {
-                        var rect = chengjiu.getBoundingClientRect();
-                        var baseX = rect.left;
-                        var baseY = rect.top + rect.height;
-                        if (x - baseX <= 0) x = baseX + 1;
-                        if (y - baseY >= 0) y = baseY - 1;
+                        const rect = chengjiu.getBoundingClientRect();
+                        const baseX = rect.left;
+                        const baseY = rect.top + rect.height;
+                        if (x - baseX <= 0) {
+                            x = baseX + 1;
+                        }
+                        if (y - baseY >= 0) {
+                            y = baseY - 1;
+                        }
                         if (x > baseX && y < baseY) {
-                            var deltaX = Math.abs(x - baseX);
-                            var deltaY = Math.abs(y - baseY);
+                            const deltaX = Math.abs(x - baseX);
+                            const deltaY = Math.abs(y - baseY);
                             return Math.atan(deltaY / deltaX);
                         } else {
                             return 0;
                         }
                     },
                     handleMouseLeave() {
-                        if (this.animationPlaying) return;
+                        if (this.animationPlaying) {
+                            return;
+                        }
                         if (this.isPressed) {
                             this.isPressed = false;
                             delete this.pressedX;
                             delete this.pressedY;
                             if (this.angle) {
-                                var beginAngle = this.angle;
-                                var endAngle;
+                                const beginAngle = this.angle;
+                                let endAngle;
                                 if (this.angle >= (Math.PI / 180) * 2) {
                                     endAngle = Math.PI / 2;
                                 } else if (this.angle <= (-Math.PI / 180) * 2) {
@@ -1421,14 +1536,16 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                                         if (endAngle != 0) {
                                             state.leftButton.handlePageChange(endAngle < 0);
                                         } else {
-                                            var nextPage = state.page(state.currentPageIndex);
+                                            const nextPage = state.page(state.currentPageIndex);
                                             if (nextPage == 'main') {
                                                 pageButtonBelow.hide();
                                                 pageButtonBelowText.style.color = 'black';
                                             } else {
                                                 pageButtonBelowText.innerHTML = get.verticalStr(state.book[nextPage].name);
-                                                var color = state.book[nextPage].color;
-                                                if (!color) color = 'black';
+                                                let color = state.book[nextPage].color;
+                                                if (!color) {
+                                                    color = 'black';
+                                                }
                                                 pageButtonBelowText.style.color = color;
                                                 pageButtonBelow.show();
                                             }
@@ -1436,7 +1553,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                                         state.leftButton.animationPlaying = false;
                                         leftButtonLight.hide();
                                         leftButtonLight.style.transform = 'rotate(0rad)';
-                                    }
+                                    },
                                 );
                             } else {
                                 leftButtonLight.hide();
@@ -1444,43 +1561,51 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                         }
                     },
                     handleMouseMove(event) {
-                        if (state.leftButton.animationPlaying) return;
+                        if (state.leftButton.animationPlaying) {
+                            return;
+                        }
                         if (state.leftButton.isPressed) {
-                            var x = event.clientX;
-                            var y = event.clientY;
+                            let x = event.clientX;
+                            let y = event.clientY;
                             if (['android', 'ios'].includes(lib.device) && event.touches.length) {
                                 x = event.touches[0].clientX;
                                 y = event.touches[0].clientY;
                             }
-                            var angle0 = state.leftButton.computeAngle(state.leftButton.pressedX, state.leftButton.pressedY);
-                            var angle1 = state.leftButton.computeAngle(x, y);
-                            var da = angle0 - angle1;
+                            const angle0 = state.leftButton.computeAngle(state.leftButton.pressedX, state.leftButton.pressedY);
+                            const angle1 = state.leftButton.computeAngle(x, y);
+                            const da = angle0 - angle1;
                             da.toFixed(3);
                             leftButtonLight.style.transform = 'rotate(' + da + 'rad)';
                             state.leftButton.angle = da;
-                            var nextPage = state.nextPage(da < 0);
+                            const nextPage = state.nextPage(da < 0);
                             if (nextPage == 'main') {
                                 pageButtonBelow.hide();
                                 pageButtonBelowText.style.color = 'black';
                             } else {
                                 pageButtonBelowText.innerHTML = get.verticalStr(state.book[nextPage].name);
-                                var color = state.book[nextPage].color;
-                                if (!color) color = 'black';
+                                let color = state.book[nextPage].color;
+                                if (!color) {
+                                    color = 'black';
+                                }
                                 pageButtonBelowText.style.color = color;
                                 pageButtonBelow.show();
                             }
                         }
                     },
                     handleMouseDown(event) {
-                        if (state.leftButton.animationPlaying) return;
+                        if (state.leftButton.animationPlaying) {
+                            return;
+                        }
                         if (state.page(state.currentPageIndex) == 'main') {
                             leftButtonLightText.innerHTML = '';
                             leftButtonLightText.style.color = 'black';
                             leftButtonLight.setBackgroundImage('extension/玄武江湖/xwjh_pic_xchengjiubk_cover_light1.png');
                         } else {
                             leftButtonLightText.innerHTML = get.verticalStr(state.pages()[state.currentPageIndex].name);
-                            var color = state.pages()[state.currentPageIndex].color;
-                            if (!color) color = 'black';
+                            let color = state.pages()[state.currentPageIndex].color;
+                            if (!color) {
+                                color = 'black';
+                            }
                             leftButtonLightText.style.color = color;
                             leftButtonLight.setBackgroundImage('extension/玄武江湖/xwjh_pic_xchengjiubk_cover_light2.png');
                         }
@@ -1509,41 +1634,41 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                     this.refreshPage();
                 },
                 refreshPage() {
-                    var pageInfo = this.currentPageInfo();
+                    const pageInfo = this.currentPageInfo();
                     this.refreshScoreTitle();
-                    var filter = function (name) {
+                    const filter = function (name) {
                         if (state.gained) {
-                            var ret = pageInfo.filter(name);
+                            const ret = pageInfo.filter(name);
                             return ret;
                         }
                         return pageInfo.filter(name) && !game.xwChengjiu.hasAchievement(name);
                     };
-                    var sortBy;
+                    let sortBy;
                     if (lib.config.xwChengjiuSortBy) {
                         sortBy = game.xwChengjiu.sortBy[lib.config.xwChengjiuSortBy];
                     } else {
                         sortBy = game.xwChengjiu.sortBy.starDesc;
                     }
-                    var ret = [];
+                    const ret = [];
                     for (var name in lib.xwjhAch) {
                         if (filter(name)) {
                             ret.push(name);
                         }
                     }
                     ret.sort(sortBy);
-                    var text = '';
-                    var rewardButtons = {};
-                    var isBegin = true;
+                    let text = '';
+                    const rewardButtons = {};
+                    let isBegin = true;
                     for (var name of ret) {
                         if (isBegin) {
                             isBegin = false;
                         } else {
                             text += "<br><span style='background-color: #DCDCDC;display:block;width:90%;height:1px;margin-left:5%;margin-right:5%;'></span><br>";
                         }
-                        var info = game.xwChengjiu.info(name);
+                        const info = game.xwChengjiu.info(name);
                         text += '<p';
                         text += ' style="';
-                        var ach = game.xwChengjiu.hasAchievement(name);
+                        const ach = game.xwChengjiu.hasAchievement(name);
                         if (ach) {
                             text += 'min-height:200px;';
                             text += "background-image:url('";
@@ -1567,7 +1692,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                             text += name;
                         }
                         text += '</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                        for (var i = 0; i < info.hard; i++) {
+                        for (let i = 0; i < info.hard; i++) {
                             text += "<img src='extension/玄武江湖/xwjh_pic_chengjiustar.png' style='height:30px;'/>";
                             text += '&nbsp;&nbsp;&nbsp;&nbsp;';
                         }
@@ -1578,13 +1703,13 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                         text += info.text;
                         text += '</b></span>';
                         if (!game.xwChengjiu.hasAchievement(name) || info.progress) {
-                            var ppro = '';
+                            let ppro = '';
                             if (info.progress) {
-                                var progress = info.progress();
+                                let progress = info.progress();
                                 if (typeof progress == 'string') {
                                     progress = [progress];
                                 }
-                                for (var p of progress) {
+                                for (const p of progress) {
                                     ppro += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;◆';
                                     ppro += p;
                                     ppro += '<br>';
@@ -1644,14 +1769,14 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                     }
                     text += '<br><br><br><br><br><br><br>';
                     content.innerHTML = text;
-                    for (var id in rewardButtons) {
-                        var img = document.getElementById(id);
+                    for (const id in rewardButtons) {
+                        const img = document.getElementById(id);
                         (function (img, name) {
                             img.addEventListener('click', function () {
                                 if (game.xwChengjiu.scoreRewardCanGain(name)) {
                                     game.xwChengjiu.gainScoreReward(name);
                                 }
-                                var info = game.xwChengjiu.info(name);
+                                const info = game.xwChengjiu.info(name);
                                 if (!(info.rewardGained && info.rewardGained()) && info.gainReward) {
                                     info.gainReward();
                                 }
@@ -1701,7 +1826,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             state.refreshPage();
         },
     };
-    if (!game.xwChengjiu.hasAchievement('♣️️三弄')) {
+    if (!game.xwChengjiu.hasAchievement('♣️️️三弄')) {
         lib.skill._xwchengjiu_meihua = {
             forced: true,
             charlotte: true,
@@ -1711,15 +1836,20 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 player: 'useCard2',
             },
             filter(event, player) {
-                if (player != game.me) return false;
-                if (game.xwChengjiu.hasAchievement('♣️️三弄')) return false;
+                if (player != game.me) {
+                    return false;
+                }
+                if (game.xwChengjiu.hasAchievement('♣️️️三弄')) {
+                    return false;
+                }
                 if (event.cards && event.cards.length == 1 && event.cards[0].name == 'xwjh_card_meikaierdu') {
-                    var evts = player.getHistory('useCard', function () {
+                    const evts = player.getHistory('useCard', function () {
                         return true;
                     });
-                    var count = 0;
-                    for (var i = 0; i < evts.length; i++) {
-                        var evt2 = evts[i];
+                    let count = 0;
+
+                    for (const i of evts) {
+                        const evt2 = i;
                         if (evt2.cards && evt2.cards.length == 1 && evt2.cards[0].name == 'xwjh_card_meikaierdu') {
                             count++;
                         } else {
@@ -1733,7 +1863,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 return false;
             },
             content() {
-                game.xwChengjiu.tempGainAchievement('♣️️三弄');
+                game.xwChengjiu.tempGainAchievement('♣️️️三弄');
             },
         };
     }
@@ -1756,9 +1886,9 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
         };
     }
     lib.xwjh_characterChengjiuList = function (name) {
-        var ret = '';
-        var list = game.xwChengjiu.achievementList(function (cjn) {
-            var info = game.xwChengjiu.info(cjn);
+        let ret = '';
+        const list = game.xwChengjiu.achievementList(function (cjn) {
+            const info = game.xwChengjiu.info(cjn);
             if (info) {
                 if (info.relationCharacter) {
                     if (Array.isArray(info.relationCharacter)) {
@@ -1772,9 +1902,11 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             }
             return false;
         });
-        if (list.length == 0) return;
-        for (var cj of list) {
-            var info = game.xwChengjiu.info(cj);
+        if (list.length == 0) {
+            return;
+        }
+        for (const cj of list) {
+            const info = game.xwChengjiu.info(cj);
             ret += "<br><table style='width:200px;height:29.9px;'  border='0' frame='void' rules='none'>";
             ret += "<tr><td style='vertical-align:middle;text-align:left;";
             ret += 'font-family:xingkai;color:white;font-size:24px;text-shadow:none;';
@@ -1783,14 +1915,14 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
             ret += '</td></tr>';
             ret += '</table>';
             ret += '<br><font color="#990000">';
-            for (var i = 0; i < info.hard; i++) {
+            for (let i = 0; i < info.hard; i++) {
                 ret += '★';
             }
-            for (var i = info.hard; i < 5; i++) {
+            for (let i = info.hard; i < 5; i++) {
                 ret += '☆';
             }
             ret += '</font>&nbsp;&nbsp;&nbsp;';
-            var finished = false;
+            let finished = false;
             if (game.xwChengjiu.hasAchievement(cj)) {
                 finished = true;
                 ret += "<img src='extension/玄武江湖/xwjh_pic_finished.png' style='width:70px;height:auto;'/>";
@@ -1803,7 +1935,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
                 ret += '/' + info.count + ')';
             }
             if (info.extra && game.xwChengjiu.hasAchievement(cj)) {
-                var extra = typeof info.extra == 'function' ? info.extra() : info.extra;
+                let extra = typeof info.extra == 'function' ? info.extra() : info.extra;
                 extra = extra.replace('<br>', '');
                 ret += '<br><span style=\'display:block;width:100%;text-align:right;\'><font color="#666666" size="2">';
                 ret += extra;

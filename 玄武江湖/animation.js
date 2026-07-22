@@ -309,8 +309,10 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
 			if (typeof obj == 'string') {
 				obj = lib.xwjh_animations[obj];
 			}
-			if (!obj) return ui.create.div();
-			var ret = ui.create.div('.xwjh_animation');
+			if (!obj) {
+				return ui.create.div();
+			}
+			const ret = ui.create.div('.xwjh_animation');
 			ret.style.backgroundImage = "url(\'" + obj.src + "\')";
 			ret.style.backgroundSize = obj.column * 100 + '% ' + obj.row * 100 + '%';
 			ret.style.backgroundPosition = '0% 0%';
@@ -319,8 +321,10 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
 			ret.xwjh_animation = obj;
 			ret.xwjh_animation_frame = 0;
 			ret.xwjh_animation_setFrame = function (m) {
-				if (m == this.xwjh_animation_frame) return;
-				var obj = this.xwjh_animation;
+				if (m == this.xwjh_animation_frame) {
+					return;
+				}
+				const obj = this.xwjh_animation;
 				if (obj.reverse) {
 					if (m >= obj.frame_count) {
 						m = obj.frame_count * 2 - m - 1;
@@ -332,8 +336,8 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
 						m = 0;
 					}
 				}
-				var row = Math.floor(m / obj.column);
-				var column = m % obj.column;
+				const row = Math.floor(m / obj.column);
+				const column = m % obj.column;
 				this.style.backgroundPosition = (obj.column == 1 ? 0 : ((column * 100) / (obj.column - 1)).toFixed(2)) + '% ' + (obj.row == 1 ? 0 : (row * 100) / (obj.row - 1)).toFixed(2) + '%';
 				this.xwjh_animation_frame = m;
 			};
@@ -344,7 +348,7 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
 				this.norepeat = true;
 			};
 			ret.xwjh_animation_play_repeat = function () {
-				var that = this;
+				const that = this;
 				this.norepeat = false;
 				this.animState = lib.xwjh_animation_helper(
 					0,
@@ -352,16 +356,18 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
 					this.xwjh_animation.duration,
 					Math.round(this.xwjh_animation.duration / this.xwjh_animation.frame_count),
 					function (value) {
-						var frame = Math.floor(value);
+						const frame = Math.floor(value);
 						that.xwjh_animation_setFrame(frame);
 					},
 					function () {
-						if (!that.norepeat) that.xwjh_animation_play_repeat();
-					}
+						if (!that.norepeat) {
+							that.xwjh_animation_play_repeat();
+						}
+					},
 				);
 			};
 			ret.xwjh_animation_play = function (playerEndCallback) {
-				var that = this;
+				const that = this;
 				this.norepeat = true;
 				this.animState = lib.xwjh_animation_helper(
 					0,
@@ -369,14 +375,14 @@ window.xwImport(function (lib, game, ui, get, ai, _status) {
 					this.xwjh_animation.duration,
 					Math.round(this.xwjh_animation.duration / this.xwjh_animation.frame_count),
 					function (value) {
-						var frame = Math.floor(value);
+						const frame = Math.floor(value);
 						that.xwjh_animation_setFrame(frame);
 					},
 					function () {
 						if (playerEndCallback) {
 							playerEndCallback();
 						}
-					}
+					},
 				);
 			};
 			return ret;

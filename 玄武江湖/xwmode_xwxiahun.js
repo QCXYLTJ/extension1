@@ -1,10 +1,10 @@
 import { lib, game, ui, get, ai, _status } from '../../noname.js';
-lib.translate['xwxhzhu'] = '主';
-lib.translate['xwxhhuwei'] = '卫';
-lib.translate['xwxhluankou'] = '寇';
-lib.translate['xwxhcike'] = '刺';
-lib.translate['xwxhxizuo'] = '细';
-lib.translate['xwxhjianzhu'] = '僭';
+lib.translate.xwxhzhu = '主';
+lib.translate.xwxhhuwei = '卫';
+lib.translate.xwxhluankou = '寇';
+lib.translate.xwxhcike = '刺';
+lib.translate.xwxhxizuo = '细';
+lib.translate.xwxhjianzhu = '僭';
 lib.translate['xwxhzhu2'] = '盟主';
 lib.translate['xwxhhuwei2'] = '护卫';
 lib.translate['xwxhluankou2'] = '乱寇';
@@ -17,7 +17,7 @@ lib.xwjh_onclickIdentity = function (player) {
         delete player.node.xwIdentityListView;
         return;
     }
-    var pls = game.players.slice(0);
+    const pls = game.players.slice(0);
     pls.addArray(game.dead);
     pls.filter(function (pl) {
         if (pl.node.xwIdentityListView && pl != player) {
@@ -25,20 +25,20 @@ lib.xwjh_onclickIdentity = function (player) {
             delete pl.node.xwIdentityListView;
         }
     });
-    if (player == game.me) return;
-    var identityListView = ui.create.div();
+    if (player == game.me) {return;}
+    const identityListView = ui.create.div();
     identityListView.style.backgroundColor = 'brown';
-    var identityToChoose = [];
+    let identityToChoose = [];
     if (game.zhu == player) {
         identityToChoose = ['xwxhzhu', 'xwxhjianzhu'];
     } else {
         identityToChoose = ['xwxhcike', 'xwxhluankou', 'xwxhxizuo', 'xwxhhuwei'];
     }
-    var size = 33;
+    const size = 33;
     identityListView.style.width = size + 'px';
     identityListView.style.height = (size * identityToChoose.length) + 'px';
-    for (var i = 0; i < identityToChoose.length; i++) {
-        var identity = identityToChoose[i];
+    for (let i = 0; i < identityToChoose.length; i++) {
+        const identity = identityToChoose[i];
         var idIcon = ui.create.div();
         idIcon.style.left = '0px';
         idIcon.style.backgroundPosition = 'center';
@@ -84,7 +84,7 @@ lib.skill._xwjh_xiahunGameStartInit = {
 const modexiahun = {
     name: 'xwxiahun',
     startBefore() {
-        for (var m in lib.xwjh_modexiahun.element.content) {
+        for (const m in lib.xwjh_modexiahun.element.content) {
             lib.element.content[m] = lib.xwjh_modexiahun.element.content[m];
         }
     },
@@ -93,18 +93,22 @@ const modexiahun = {
         _status.mode = 'xwxiahun';
         game.prepareArena(8);
         "step 1"
-        for (var i = 0; i < game.players.length; i++) {
-            game.players[i].getId();
+
+        for (const i of game.players) {
+            i.getId();
         }
+
         game.chooseCharacter();
         "step 2"
-        for (var i = 0; i < game.players.length; i++) {
-            if (game.players[i].identity == 'xwxhzhu') {
-                game.players[i].ai.shown = 1;
+
+        for (const i of game.players) {
+            if (i.identity == 'xwxhzhu') {
+                i.ai.shown = 1;
             } else {
-                game.players[i].ai.shown = 0;
+                i.ai.shown = 0;
             }
         }
+
         if (game.me.identity == 'xwxhxizuo') {
             game.players.filter(function (current) {
                 if (current.identity == 'xwxhcike') {
@@ -126,16 +130,16 @@ const modexiahun = {
     game: {
         syncMenu: true,
         xwShowRealIdentity() {
-            var arr = game.players.slice(0);
+            const arr = game.players.slice(0);
             arr.addArray(game.dead);
-            for (var p of arr) {
+            for (const p of arr) {
                 p.xwShowRealIdentity();
             }
         },
         getState() {
-            var state = {};
-            for (var i in lib.playerOL) {
-                var player = lib.playerOL[i];
+            const state = {};
+            for (const i in lib.playerOL) {
+                const player = lib.playerOL[i];
                 state[i] = { identity: player.identity };
                 if (player == game.zhu) {
                     state[i].zhu = true;
@@ -156,10 +160,10 @@ const modexiahun = {
         updateState(state) {
         },
         chooseCharacter() {
-            var next = game.createEvent('chooseCharacter', false);
+            const next = game.createEvent('chooseCharacter', false);
             next.showConfig = true;
             next.addPlayer = function (player) {
-                var list = ['xwxhzhu', 'xwxhhuwei', 'xwxhcike', 'xwxhhuwei', 'xwxhluankou', 'xwxhxizuo', 'xwxhluankou', 'xwxhluankou'];
+                const list = ['xwxhzhu', 'xwxhhuwei', 'xwxhcike', 'xwxhhuwei', 'xwxhluankou', 'xwxhxizuo', 'xwxhluankou', 'xwxhluankou'];
                 player.identity = list[game.players.length - 1];
                 player.setIdentity('cai');
             };
@@ -189,7 +193,7 @@ const modexiahun = {
                 else if ((player.identity == 'xwxhxiashi' || player.identity == 'xwxhxizuo') && Math.random() < 0.5) {
                     var listc = list.slice(0);
                     var choice = 0;
-                    for (var i = 0; i < listc.length; i++) {
+                    for (let i = 0; i < listc.length; i++) {
                         if (lib.character[listc[i]][1] == game.zhu.group) {
                             choice = i; break;
                         }
@@ -205,26 +209,26 @@ const modexiahun = {
             next.setContent(function () {
                 "step 0"
                 ui.arena.classList.add('choose-character');
-                var i;
-                var list;
-                var list2 = [];
-                var list3 = [];
-                var list4 = [];
-                var identityList;
-                var chosen = lib.config.continue_name || [];
+                let i;
+                let list;
+                const list2 = [];
+                const list3 = [];
+                const list4 = [];
+                let identityList;
+                const chosen = lib.config.continue_name || [];
                 game.saveConfig('continue_name');
                 event.chosen = chosen;
                 identityList = ['xwxhzhu', 'xwxhhuwei', 'xwxhcike', 'xwxhhuwei', 'xwxhluankou', 'xwxhxizuo', 'xwxhluankou', 'xwxhluankou'];
-                var addSetting = function (dialog) {
+                const addSetting = function (dialog) {
                     dialog.add('选择身份').classList.add('add-setting');
-                    var table = document.createElement('div');
+                    const table = document.createElement('div');
                     table.classList.add('add-setting');
                     table.style.margin = '0';
                     table.style.width = '100%';
                     table.style.position = 'relative';
-                    var listi;
+                    let listi;
                     listi = ['random', 'xwxhzhu', 'xwxhhuwei', 'xwxhcike', 'xwxhluankou', 'xwxhxizuo'];
-                    for (var i = 0; i < listi.length; i++) {
+                    for (let i = 0; i < listi.length; i++) {
                         var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
                         td.link = listi[i];
                         if (td.link === game.me.identity) {
@@ -233,13 +237,13 @@ const modexiahun = {
                         table.appendChild(td);
                         td.innerHTML = '<span>' + get.translation(listi[i] + '2') + '</span>';
                         td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
-                            if (_status.dragged) return;
-                            if (_status.justdragged) return;
+                            if (_status.dragged) {return;}
+                            if (_status.justdragged) {return;}
                             _status.tempNoButton = true;
                             setTimeout(function () {
                                 _status.tempNoButton = false;
                             }, 500);
-                            var link = this.link;
+                            let link = this.link;
                             if (game.zhu.name) {
                                 if (link != 'random') {
                                     _status.event.parent.fixedseat = get.distance(game.me, game.zhu, 'absolute');
@@ -248,7 +252,7 @@ const modexiahun = {
                                 delete game.zhu.isZhu;
                                 delete game.zhu.identityShown;
                             }
-                            var current = this.parentNode.querySelector('.bluebg');
+                            let current = this.parentNode.querySelector('.bluebg');
                             if (current) {
                                 current.classList.remove('bluebg');
                             }
@@ -258,7 +262,7 @@ const modexiahun = {
                             }
                             if (link == 'random') {
                                 link = ['xwxhzhu', 'xwxhhuwei', 'xwxhcike', 'xwxhluankou', 'xwxhxizuo'].randomGet();
-                                for (var i = 0; i < this.parentNode.childElementCount; i++) {
+                                for (let i = 0; i < this.parentNode.childElementCount; i++) {
                                     if (this.parentNode.childNodes[i].link == link) {
                                         this.parentNode.childNodes[i].classList.add('bluebg');
                                     }
@@ -277,15 +281,15 @@ const modexiahun = {
                                 num = 3;
                             }
                             _status.event.parent.swapnodialog = function (dialog, list) {
-                                var buttons = ui.create.div('.buttons');
-                                var node = dialog.buttons[0].parentNode;
+                                const buttons = ui.create.div('.buttons');
+                                const node = dialog.buttons[0].parentNode;
                                 dialog.buttons = ui.create.buttons(list, 'characterx', buttons);
                                 dialog.content.insertBefore(buttons, node);
                                 buttons.addTempClass('start');
                                 node.remove();
                                 game.uncheck();
                                 game.check();
-                                for (var i = 0; i < seats.childElementCount; i++) {
+                                for (let i = 0; i < seats.childElementCount; i++) {
                                     if (get.distance(game.zhu, game.me, 'absolute') === seats.childNodes[i].link) {
                                         seats.childNodes[i].classList.add('bluebg');
                                     }
@@ -312,7 +316,7 @@ const modexiahun = {
                     seats.style.margin = '0';
                     seats.style.width = '100%';
                     seats.style.position = 'relative';
-                    for (var i = 2; i <= game.players.length; i++) {
+                    for (let i = 2; i <= game.players.length; i++) {
                         var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
                         td.innerHTML = get.cnNumber(i, true);
                         td.link = i - 1;
@@ -321,17 +325,18 @@ const modexiahun = {
                             td.classList.add('bluebg');
                         }
                         td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
-                            if (_status.dragged) return;
-                            if (_status.justdragged) return;
-                            if (get.distance(game.zhu, game.me, 'absolute') == this.link) return;
-                            var current = this.parentNode.querySelector('.bluebg');
+                            if (_status.dragged) {return;}
+                            if (_status.justdragged) {return;}
+                            if (get.distance(game.zhu, game.me, 'absolute') == this.link) {return;}
+                            const current = this.parentNode.querySelector('.bluebg');
                             if (current) {
                                 current.classList.remove('bluebg');
                             }
                             this.classList.add('bluebg');
-                            for (var i = 0; i < game.players.length; i++) {
-                                if (get.distance(game.players[i], game.me, 'absolute') == this.link) {
-                                    game.swapSeat(game.zhu, game.players[i], false); return;
+
+                            for (const i of game.players) {
+                                if (get.distance(i, game.me, 'absolute') == this.link) {
+                                    game.swapSeat(game.zhu, i, false); return;
                                 }
                             }
                         });
@@ -343,14 +348,14 @@ const modexiahun = {
                     }
                     dialog.add(ui.create.div('.placeholder.add-setting'));
                     dialog.add(ui.create.div('.placeholder.add-setting'));
-                    if (get.is.phoneLayout()) dialog.add(ui.create.div('.placeholder.add-setting'));
+                    if (get.is.phoneLayout()) {dialog.add(ui.create.div('.placeholder.add-setting'));}
                 };
-                var removeSetting = function () {
-                    var dialog = _status.event.dialog;
+                const removeSetting = function () {
+                    const dialog = _status.event.dialog;
                     if (dialog) {
                         dialog.style.height = '';
                         delete dialog._scrollset;
-                        var list = Array.from(dialog.querySelectorAll('.add-setting'));
+                        const list = Array.from(dialog.querySelectorAll('.add-setting'));
                         while (list.length) {
                             list.shift().remove();
                         }
@@ -365,7 +370,7 @@ const modexiahun = {
                     identityList.remove(event.identity);
                     identityList.unshift(event.identity);
                     if (event.fixedseat) {
-                        var zhuIdentity = 'xwxhzhu';
+                        const zhuIdentity = 'xwxhzhu';
                         if (zhuIdentity != event.identity) {
                             identityList.remove(zhuIdentity);
                             identityList.splice(event.fixedseat, 0, zhuIdentity);
@@ -384,7 +389,7 @@ const modexiahun = {
                     }
                     npc.identityShown = false;
                 });//QQQ
-                if (!game.zhu) game.zhu = game.me;
+                if (!game.zhu) {game.zhu = game.me;}
                 else {
                     game.zhu.setIdentity();
                     game.zhu.identityShown = true;
@@ -394,11 +399,11 @@ const modexiahun = {
                     game.me.setIdentity();
                     game.me.node.identity.classList.remove('guessing');
                 }
-                for (i in lib.character) {
-                    if (i.indexOf('xwjh_') != 0) continue;
-                    if (list4.includes(i)) continue;
-                    if (chosen.includes(i)) continue;
-                    if (lib.filter.characterDisabled(i)) continue;
+                for (const i in lib.character) {
+                    if (i.indexOf('xwjh_') != 0) {continue;}
+                    if (list4.includes(i)) {continue;}
+                    if (chosen.includes(i)) {continue;}
+                    if (lib.filter.characterDisabled(i)) {continue;}
                     event.list.push(i);
                     list4.push(i);
                     if (lib.character[i][4] && lib.character[i][4].includes('zhu')) {
@@ -431,14 +436,14 @@ const modexiahun = {
                     list = list2.concat(list3.slice(0, num));
                 }
                 delete event.swapnochoose;
-                var dialog;
+                let dialog;
                 if (event.swapnodialog) {
                     dialog = ui.dialog;
                     event.swapnodialog(dialog, list);
                     delete event.swapnodialog;
                 }
                 else {
-                    var str = '选择角色';
+                    const str = '选择角色';
                     dialog = ui.create.dialog(str, 'hidden', [list, 'characterx']);
                     if (lib.config.xwxh_change_identity) {
                         addSetting(dialog);
@@ -469,8 +474,8 @@ const modexiahun = {
                             list3.randomSort();
                             list = list2.concat(list3.slice(0, num));
                         }
-                        var buttons = ui.create.div('.buttons');
-                        var node = _status.event.dialog.buttons[0].parentNode;
+                        const buttons = ui.create.div('.buttons');
+                        const node = _status.event.dialog.buttons[0].parentNode;
                         _status.event.dialog.buttons = ui.create.buttons(list, 'characterx', buttons);
                         _status.event.dialog.content.insertBefore(buttons, node);
                         buttons.addTempClass('start');
@@ -525,9 +530,9 @@ const modexiahun = {
                 }
                 if (!_status.brawl || !_status.brawl.chooseCharacterFixed) {
                     if (!ui.cheat && lib.config.xwxh_change_choice)
-                        ui.create.cheat();
+                        {ui.create.cheat();}
                     if (!ui.cheat2 && lib.config.xwxh_free_choose)
-                        ui.create.cheat2();
+                        {ui.create.cheat2();}
                 }
                 "step 1"
                 if (ui.cheat) {
@@ -542,8 +547,8 @@ const modexiahun = {
                     event.choosed = event.chosen;
                 }
                 else if (event.modchosen) {
-                    if (event.modchosen[0] == 'random') event.modchosen[0] = result.buttons[0].link;
-                    else event.modchosen[1] = result.buttons[0].link;
+                    if (event.modchosen[0] == 'random') {event.modchosen[0] = result.buttons[0].link;}
+                    else {event.modchosen[1] = result.buttons[0].link;}
                     event.choosed = event.modchosen;
                 }
                 else if (result.buttons.length == 2) {
@@ -568,33 +573,37 @@ const modexiahun = {
                     game.me.update();
                 }
                 event.list.remove(game.me.name1);
-                for (var i = 0; i < game.players.length; i++) {
-                    if (game.players[i] != game.zhu && game.players[i] != game.me) {
+
+                for (const i of game.players) {
+                    if (i != game.zhu && i != game.me) {
                         event.list.randomSort();
                         var num;
-                        if (game.players[i].identity == 'xwxhzhu') {
+                        if (i.identity == 'xwxhzhu') {
                             num = 8;
-                        } else if (game.players[i].identity == 'xwxhcike') {
+                        } else if (i.identity == 'xwxhcike') {
                             num = 5;
-                        } else if (game.players[i].identity == 'xwxhxizuo') {
+                        } else if (i.identity == 'xwxhxizuo') {
                             num = 6;
                         } else {
                             num = 3;
                         }
-                        event.ai(game.players[i], event.list.splice(0, num), null, event.list)
+                        event.ai(i, event.list.splice(0, num), null, event.list)
                     }
                 }
+
                 "step 3"
                 if (event.group) {
                     game.me.group = event.group;
                     game.me.node.name.dataset.nature = get.groupnature(game.me.group);
                     game.me.update();
                 }
-                for (var i = 0; i < game.players.length; i++) {
-                    _status.characterlist.remove(game.players[i].name);
-                    _status.characterlist.remove(game.players[i].name1);
-                    _status.characterlist.remove(game.players[i].name2);
+
+                for (const i of game.players) {
+                    _status.characterlist.remove(i.name);
+                    _status.characterlist.remove(i.name1);
+                    _status.characterlist.remove(i.name2);
                 }
+
                 "step 4"
                 setTimeout(function () {
                     ui.arena.classList.remove('choose-character');
@@ -606,7 +615,7 @@ const modexiahun = {
                 alert('此模式下,显示身份不会暴露细作和刺客,将被显示为护卫和乱寇.');
                 game.saveConfig('xwxh_xianshishenfen_first', true);
             }
-            for (var p of game.players) {
+            for (const p of game.players) {
                 p.xwShowFakeIdentity();
                 if (p.identity != 'xwxhxizuo' && p.identity != 'xwxhjianzhu') {
                     p.ai.shown = 1;
@@ -624,12 +633,12 @@ const modexiahun = {
     },
     get: {
         xwTeam(player) {
-            if (player.identity == 'xwxhcike' || player.identity == 'xwxhluankou') return 'fan';
-            if (player.identity == 'xwxhzhu' || player.identity == 'xwxhhuwei') return 'zhu';
+            if (player.identity == 'xwxhcike' || player.identity == 'xwxhluankou') {return 'fan';}
+            if (player.identity == 'xwxhzhu' || player.identity == 'xwxhhuwei') {return 'zhu';}
             return 'nei';
         },
         xwIsThreePk() {
-            if (game.players.length != 3) return false;
+            if (game.players.length != 3) {return false;}
             return !game.hasPlayer(function (current) {
                 return game.hasPlayer(function (current2) {
                     return current != current2 && get.xwTeam(current) == get.xwTeam(current2);
@@ -637,14 +646,14 @@ const modexiahun = {
             });
         },
         rawAttitude(a, b) {
-            var shown = b.ai.shown;
-            if (a == b) return 10;
-            if ((a.identity == 'xwxhxizuo' || a.identity == 'xwxhjianzhu') && b.identity == 'xwxhcike') return get.realAttitude(a, b);
-            if (game.players.length <= 3) shown = 1;
+            let shown = b.ai.shown;
+            if (a == b) {return 10;}
+            if ((a.identity == 'xwxhxizuo' || a.identity == 'xwxhjianzhu') && b.identity == 'xwxhcike') {return get.realAttitude(a, b);}
+            if (game.players.length <= 3) {shown = 1;}
             return get.realAttitude(a, b) * shown;
         },
         realAttitude(a, b) {
-            if (a == b) return 10;
+            if (a == b) {return 10;}
             if (get.xwIsThreePk()) {
                 if (a.identity == 'xwxhcike') {
                     if (game.zhu == b) {
@@ -679,12 +688,12 @@ const modexiahun = {
                 return get.xwTeam(a) == get.xwTeam(b) ? 10 : -10;
             }
             if (a.identity == 'xwxhzhu') {
-                if (b.identity == 'xwxhluankou') return -8;
-                if (b.identity == 'xwxhhuwei') return 5;
-                if (b.identity == 'xwxhcike') return -8;
-                if (b.identity == 'xwxhjianzhu') return -2;
+                if (b.identity == 'xwxhluankou') {return -8;}
+                if (b.identity == 'xwxhhuwei') {return 5;}
+                if (b.identity == 'xwxhcike') {return -8;}
+                if (b.identity == 'xwxhjianzhu') {return -2;}
                 if (b.identity == 'xwxhxizuo') {
-                    if (game.players.length <= 2) return -5;
+                    if (game.players.length <= 2) {return -5;}
                     var enemy = get.population('xwxhcike') + get.population('xwxhluankou');
                     var friend = get.population('xwxhhuwei') + 1;
                     if (enemy == 0) {
@@ -700,7 +709,7 @@ const modexiahun = {
                 }
             }
             if (a.identity == 'xwxhhuwei') {
-                if (b.identity == 'xwxhluankou') return -8;
+                if (b.identity == 'xwxhluankou') {return -8;}
                 if (b.identity == 'xwxhhuwei') {
                     if (get.population('xwxhxizuo') && get.population('xwxhcike') + get.population('xwxhluankou') == 0) {
                         if (game.hasPlayer(function (current) {
@@ -714,7 +723,7 @@ const modexiahun = {
                     }
                     return 3;
                 }
-                if (b.identity == 'xwxhzhu') return 10;
+                if (b.identity == 'xwxhzhu') {return 10;}
                 if (b.identity == 'xwxhxizuo') {
                     var enemy = get.population('xwxhcike') + get.population('xwxhluankou');
                     var friend = get.population('xwxhhuwei') + 1;
@@ -744,7 +753,7 @@ const modexiahun = {
                 if (b.identity == 'xwxhjianzhu') {
                     var enemy = get.population('xwxhcike') + get.population('xwxhluankou');
                     if (get.population('xwxhhuwei') == 1) {
-                        if (enemy >= 3) return 2;
+                        if (enemy >= 3) {return 2;}
                         if (get.population('xwxhcike')) {
                             return 1;
                         }
@@ -754,20 +763,20 @@ const modexiahun = {
                 }
             }
             if (a.identity == 'xwxhcike' || a.identity == 'xwxhluankou') {
-                if (b.identity == 'xwxhzhu') return -8;
-                if (b.identity == 'xwxhjianzhu') return -5;
-                if (b.identity == 'xwxhhuwei') return -5;
-                if (b.identity == 'xwxhluankou') return 5;
-                if (b.identity == 'xwxhcike') return 5;
+                if (b.identity == 'xwxhzhu') {return -8;}
+                if (b.identity == 'xwxhjianzhu') {return -5;}
+                if (b.identity == 'xwxhhuwei') {return -5;}
+                if (b.identity == 'xwxhluankou') {return 5;}
+                if (b.identity == 'xwxhcike') {return 5;}
                 if (b.identity == 'xwxhxizuo') {
-                    if (b.ai.identity_mark == 'xwxhhuwei') return -3;
-                    if (b.ai.identity_mark == 'xwxhluankou') return 1;
+                    if (b.ai.identity_mark == 'xwxhhuwei') {return -3;}
+                    if (b.ai.identity_mark == 'xwxhluankou') {return 1;}
                     return -1;
                 }
             }
             if (a.identity == 'xwxhjianzhu') {
                 if (b.identity == 'xwxhcike') {
-                    if (get.population('xwxhluankou') + get.population('xwxhcike') > 2) return -10;
+                    if (get.population('xwxhluankou') + get.population('xwxhcike') > 2) {return -10;}
                     if (get.population('xwxhhuwei') < get.population('xwxhluankou')) {
                         return -4;
                     }
@@ -776,13 +785,13 @@ const modexiahun = {
                     }
                     return 2;
                 }
-                if (b.identity == 'xwxhzhu') return -2;
+                if (b.identity == 'xwxhzhu') {return -2;}
                 if (b.identity == 'xwxhhuwei') {
                     if (get.population('xwxhluankou') + get.population('xwxhcike') == 0) {
                         return -5;
                     } else {
                         if (get.population('xwxhluankou') + get.population('xwxhcike') == 1 && get.population('xwxhhuwei') == 1) {
-                            var luankou = game.filterPlayer(function (current) {
+                            const luankou = game.filterPlayer(function (current) {
                                 return current.identity == 'xwxhluankou' || current.identity == 'xwxhcike';
                             });
                             if (luankou && luankou.length) {
@@ -814,10 +823,10 @@ const modexiahun = {
                 }
             }
             if (a.identity == 'xwxhxizuo') {
-                if (b.identity == 'xwxhcike') return -10;
+                if (b.identity == 'xwxhcike') {return -10;}
                 if (b.identity == 'xwxhzhu') {
-                    if (game.players.length <= 2) return -2;
-                    if (get.population('xwxhcike') + get.population('xwxhluankou') == 0) return -4;
+                    if (game.players.length <= 2) {return -2;}
+                    if (get.population('xwxhcike') + get.population('xwxhluankou') == 0) {return -4;}
                     if (get.population('xwxhcike') == 0) {
                         if (get.population('xwxhhuwei') + get.population('xwxhzhu') > get.population('xwxhluankou')) {
                             return -3;
@@ -879,8 +888,8 @@ const modexiahun = {
                 }
                 'step 1'
                 player.chooseTarget("请选择你的继承人.", true, function (card, player, target) {
-                    if (target.identity == 'xwxhxizuo') return true;
-                    if (target.identity == 'xwxhhuwei') return true;
+                    if (target.identity == 'xwxhxizuo') {return true;}
+                    if (target.identity == 'xwxhhuwei') {return true;}
                     return false;
                 })
                     .set('ai', function (target) {
@@ -892,7 +901,7 @@ const modexiahun = {
                     .set('forceDie', true);
                 'step 2'
                 if (result.targets?.length) {
-                    var target = result.targets[0];
+                    const target = result.targets[0];
                     game.log(target, "继承了盟主之位.");
                     player.line(target, 'green');
                     if (target == game.me && target.identity == 'xwxhxizuo' && event.source == target) {
@@ -907,7 +916,7 @@ const modexiahun = {
                     game.zhu = target;
                     target.xwShowFakeIdentity();
                     target.storage.xwxh_fixedMark = true;
-                    var group = get.xwOriginGroup(target, false);
+                    const group = get.xwOriginGroup(target, false);
                     if (group == 'xwjh_zheng') {
                         target.addSkill('xwjh_tongkai');
                     } else
@@ -928,14 +937,14 @@ const modexiahun = {
                     event.finish();
                     return;
                 }
-                var end = player;
-                var numx = num;
+                const end = player;
+                let numx = num;
                 do {
                     if (typeof num == 'function') {
                         numx = num(player);
                     }
-                    if (player.getTopCards) player.directgain(player.getTopCards(numx));
-                    else player.directgain(get.cards(numx));
+                    if (player.getTopCards) {player.directgain(player.getTopCards(numx));}
+                    else {player.directgain(get.cards(numx));}
                     if (player.singleHp === true && get.mode() != 'guozhan' && (lib.config.mode != 'doudizhu' || _status.mode != 'online')) {
                         player.doubleDraw();
                     }
@@ -978,31 +987,33 @@ const modexiahun = {
                     if (game.changeCoin) {
                         game.changeCoin(-3);
                     }
-                    var hs = game.me.getCards('h');
+                    const hs = game.me.getCards('h');
                     game.addVideo('lose', game.me, [get.cardsInfo(hs), [], [], []]);
-                    for (var i = 0; i < hs.length; i++) {
-                        hs[i].discard(false);
+
+                    for (const i of hs) {
+                        i.discard(false);
                     }
+
                     game.me.directgain(get.cards(hs.length));
                     event.goto(2);
                 }
                 else {
-                    if (event.dialog) event.dialog.close();
-                    if (ui.confirm) ui.confirm.close();
+                    if (event.dialog) {event.dialog.close();}
+                    if (ui.confirm) {ui.confirm.close();}
                     event.finish();
                 }
             },
         },
         player: {
             logAi(targets, card) {
-                if (this.ai.shown == 1 || this.isMad()) return;
-                var fixedMark = (this.storage.xwxh_fixedMark === true);
+                if (this.ai.shown == 1 || this.isMad()) {return;}
+                const fixedMark = (this.storage.xwxh_fixedMark === true);
                 if (typeof targets == 'number') {
                     this.ai.shown += targets;
                 }
                 else {
                     var effect = 0, c, shown;
-                    var info = get.info(card);
+                    const info = get.info(card);
                     if (info.ai && info.ai.expose) {
                         if (_status.event.name == '_wuxie') {
                             if (_status.event.source && _status.event.source.ai.shown) {
@@ -1013,41 +1024,41 @@ const modexiahun = {
                             this.ai.shown += info.ai.expose;
                         }
                     }
-                    if (targets.length > 0) {
-                        for (var i = 0; i < targets.length; i++) {
-                            shown = Math.abs(targets[i].ai.shown);
-                            if (shown < 0.2 || targets[i].identity == 'nei') c = 0;
-                            else if (shown < 0.4) c = 0.5;
-                            else if (shown < 0.6) c = 0.8;
-                            else c = 1;
-                            var eff = get.effect(targets[i], card, this);
+                    if (targets.length) {
+                        for (const i of targets) {
+                            shown = Math.abs(i.ai.shown);
+                            if (shown < 0.2 || i.identity == 'nei') {c = 0;}
+                            else if (shown < 0.4) {c = 0.5;}
+                            else if (shown < 0.6) {c = 0.8;}
+                            else {c = 1;}
+                            const eff = get.effect(i, card, this);
                             effect += eff * c;
-                            if (eff == 0 && shown == 0 && ['zhong', 'rZhong', 'bZhong'].includes(this.identity) && targets[i] != this) {
+                            if (eff == 0 && shown == 0 && ['zhong', 'rZhong', 'bZhong'].includes(this.identity) && i != this) {
                                 effect += 0.1;
                             }
                         }
                     }
                     if (effect > 0) {
-                        if (effect < 1) c = 0.5;
-                        else c = 1;
-                        if (targets.length == 1 && targets[0] == this);
-                        else if (targets.length == 1) this.ai.shown += 0.2 * c;
-                        else this.ai.shown += 0.1 * c;
+                        if (effect < 1) {c = 0.5;}
+                        else {c = 1;}
+                        if (targets.length == 1 && targets[0] == this){;}
+                        else if (targets.length == 1) {this.ai.shown += 0.2 * c;}
+                        else {this.ai.shown += 0.1 * c;}
                     }
                     else if (effect < 0 && this == game.me && ['nei', 'rYe', 'bYe'].includes(game.me.identity)) {
-                        if (targets.length == 1 && targets[0] == this);
-                        else if (targets.length == 1) this.ai.shown -= 0.2;
-                        else this.ai.shown -= 0.1;
+                        if (targets.length == 1 && targets[0] == this){;}
+                        else if (targets.length == 1) {this.ai.shown -= 0.2;}
+                        else {this.ai.shown -= 0.1;}
                     }
                 }
-                if (this != game.me) this.ai.shown *= 2;
-                if (this.ai.shown > 0.95) this.ai.shown = 0.95;
-                if (this.ai.shown < -0.5) this.ai.shown = -0.5;
-                if (_status.mode == 'purple') return;
-                var marknow = (!_status.connectMode && this != game.me && lib.config.xwxh_auto_mark_identity && this.ai.identity_mark != 'finished' && !fixedMark && !this.storage.xwMarked);
+                if (this != game.me) {this.ai.shown *= 2;}
+                if (this.ai.shown > 0.95) {this.ai.shown = 0.95;}
+                if (this.ai.shown < -0.5) {this.ai.shown = -0.5;}
+                if (_status.mode == 'purple') {return;}
+                const marknow = (!_status.connectMode && this != game.me && lib.config.xwxh_auto_mark_identity && this.ai.identity_mark != 'finished' && !fixedMark && !this.storage.xwMarked);
                 // if(true){
                 if (marknow && _status.clickingidentity && _status.clickingidentity[0] == this) {
-                    for (var i = 0; i < _status.clickingidentity[1].length; i++) {
+                    for (let i = 0; i < _status.clickingidentity[1].length; i++) {
                         _status.clickingidentity[1][i].delete();
                         _status.clickingidentity[1][i].style.transform = '';
                     }
@@ -1057,7 +1068,7 @@ const modexiahun = {
                     targets = [];
                 }
                 var effect = 0, c, shown;
-                var zhu = game.zhu;
+                let zhu = game.zhu;
                 if (_status.mode == 'zhong' && !game.zhu.isZhu) {
                     zhu = game.zhong;
                 }
@@ -1074,55 +1085,55 @@ const modexiahun = {
                         }
                     }
                 }
-                else if (targets.length > 0) {
-                    for (var i = 0; i < targets.length; i++) {
-                        shown = Math.abs(targets[i].ai.shown);
-                        if (shown < 0.2 || targets[i].identity == 'xwxhxizuo') c = 0;
-                        else if (shown < 0.4) c = 0.5;
-                        else if (shown < 0.6) c = 0.8;
-                        else c = 1;
-                        effect += get.effect(targets[i], card, this, zhu) * c;
+                else if (targets.length) {
+                    for (const i of targets) {
+                        shown = Math.abs(i.ai.shown);
+                        if (shown < 0.2 || i.identity == 'xwxhxizuo') {c = 0;}
+                        else if (shown < 0.4) {c = 0.5;}
+                        else if (shown < 0.6) {c = 0.8;}
+                        else {c = 1;}
+                        effect += get.effect(i, card, this, zhu) * c;
                     }
                 }
                 if (this.identity == 'xwxhxizuo') {
                     if (effect > 0) {
                         if (this.ai.identity_mark == 'xwxhluankou') {
-                            if (marknow) this.setIdentity();
+                            if (marknow) {this.setIdentity();}
                             this.ai.identity_mark = 'finished';
                         }
                         else {
-                            if (marknow) this.setIdentity('xwxhhuwei');
+                            if (marknow) {this.setIdentity('xwxhhuwei');}
                             this.ai.identity_mark = 'zhong';
                         }
                     }
                     else if (effect < 0 && get.population('xwxhluankou') > 0) {
                         if (this.ai.identity_mark == 'xwxhhuwei') {
-                            if (marknow) this.setIdentity();
+                            if (marknow) {this.setIdentity();}
                             this.ai.identity_mark = 'finished';
                         }
                         else {
-                            if (marknow) this.setIdentity('xwxhluankou');
+                            if (marknow) {this.setIdentity('xwxhluankou');}
                             this.ai.identity_mark = 'fan';
                         }
                     }
                 } else if (this.identity == 'xwxhjianzhu') {
                     if (effect > 0) {
                         if (this.ai.identity_mark == 'xwxhjianzhu') {
-                            if (marknow) this.setIdentity();
+                            if (marknow) {this.setIdentity();}
                             this.ai.identity_mark = 'finished';
                         }
                         else {
-                            if (marknow) this.setIdentity('xwxhzhu');
+                            if (marknow) {this.setIdentity('xwxhzhu');}
                             this.ai.identity_mark = 'xwxhzhu';
                         }
                     }
                     else if (effect < 0 && get.population('xwxhluankou') > 0) {
                         if (this.ai.identity_mark == 'xwxhzhu') {
-                            if (marknow) this.setIdentity();
+                            if (marknow) {this.setIdentity();}
                             this.ai.identity_mark = 'finished';
                         }
                         else {
-                            if (marknow) this.setIdentity('xwxhjianzhu');
+                            if (marknow) {this.setIdentity('xwxhjianzhu');}
                             this.ai.identity_mark = 'xwxhjianzhu';
                         }
                     }
@@ -1149,12 +1160,13 @@ const modexiahun = {
                 }
             },
             hasFriend() {
-                for (var i = 0; i < game.players.length; i++) {
-                    if (game.players[i].isOut()) continue;
-                    if (game.players[i] != this && get.xwTeam(this) == get.xwTeam(game.players[i])) {
+                for (const i of game.players) {
+                    if (i.isOut()) {continue;}
+                    if (i != this && get.xwTeam(this) == get.xwTeam(i)) {
                         return true;
                     }
                 }
+
                 return false;
             },
             dieAfter(source) {
@@ -1231,7 +1243,7 @@ const modexiahun = {
                 this.xwShowFakeIdentity();
             },
             dieAfter2(source) {
-                var player = this;
+                const player = this;
                 if (player.identity == 'xwxhzhu' || player.identity == 'xwxhjianzhu') {
                     player.xwxh_lordDie(source);
                 } else {
@@ -1277,13 +1289,13 @@ const modexiahun = {
                 }
             },
             xwxh_chooseKillLord() {
-                var next = game.createEvent('xwxh_chooseKillLord');
+                const next = game.createEvent('xwxh_chooseKillLord');
                 next.player = this;
                 next.setContent('xwxh_chooseKillLord');
                 return next;
             },
             xwxh_lordDie(source) {
-                var next = game.createEvent('xwxh_lordDie');
+                const next = game.createEvent('xwxh_lordDie');
                 next.player = this;
                 next.forceDie = true;
                 next.source = source;
@@ -1325,8 +1337,8 @@ game.addMode('xwxiahun', modexiahun, {
             onclick(bool) {
                 game.saveConfig('xwxh_free_choose', bool);
                 game.saveConfig('free_choose', bool, true);
-                if (!_status.event.parent.showConfig && !_status.event.showConfig) return;
-                if (!ui.cheat2 && lib.config.xwxh_free_choose) ui.create.cheat2();
+                if (!_status.event.parent.showConfig && !_status.event.showConfig) {return;}
+                if (!ui.cheat2 && lib.config.xwxh_free_choose) {ui.create.cheat2();}
                 else if (ui.cheat2 && !lib.config.xwxh_free_choose) {
                     ui.cheat2.close();
                     delete ui.cheat2;
@@ -1339,13 +1351,13 @@ game.addMode('xwxiahun', modexiahun, {
             onclick(bool) {
                 game.saveConfig('xwxh_change_identity', bool);
                 game.saveConfig('change_identity', bool, true);
-                if (!_status.event.parent.showConfig && !_status.event.showConfig) return;
-                var dialog;
-                if (ui.cheat2 && ui.cheat2.backup) dialog = ui.cheat2.backup;
-                else dialog = _status.event.dialog;
+                if (!_status.event.parent.showConfig && !_status.event.showConfig) {return;}
+                let dialog;
+                if (ui.cheat2 && ui.cheat2.backup) {dialog = ui.cheat2.backup;}
+                else {dialog = _status.event.dialog;}
                 //if(!_status.brawl||!_status.brawl.noAddSetting){
-                if (!dialog.querySelector('table') && lib.config.xwxh_change_identity) _status.event.parent.addSetting(dialog);
-                else _status.event.parent.removeSetting(dialog);
+                if (!dialog.querySelector('table') && lib.config.xwxh_change_identity) {_status.event.parent.addSetting(dialog);}
+                else {_status.event.parent.removeSetting(dialog);}
                 //}
                 ui.update();
             },
