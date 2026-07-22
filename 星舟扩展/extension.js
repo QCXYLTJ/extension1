@@ -8749,74 +8749,75 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			});
 			if (lib.config.extension_星舟扩展_武将全部可选) {
 				Reflect.defineProperty(lib.filter, 'characterDisabled', {
-					get: () =>
-						function (i) {
+					get() {
+						return function (i) {
 							return !lib.character[i];
-						},
+						};
+					},
 					set() { },
 				}); //取消禁将
 				lib.filter.characterDisabled2 = function (i) {
 					return !lib.character[i];
 				}; //取消禁将
 				get.gainableSkills = function (func, player) {
-					var list = [];
-					for (var i in lib.character) {
-						for (var j = 0; j < lib.character[i][3].length; j++) {
+					const list = [];
+					for (const i in lib.character) {
+						for (let j = 0; j < lib.character[i][3].length; j++) {
 							list.add(lib.character[i][3][j]);
 						}
 					}
 					return list;
 				}; //BOSS选将
 				get.gainableSkillsName = function (name, func) {
-					var list = [];
+					const list = [];
 					if (name && lib.character[name]) {
-						for (var j = 0; j < lib.character[name][3].length; j++) {
+						for (let j = 0; j < lib.character[name][3].length; j++) {
 							list.add(lib.character[name][3][j]);
 						}
 					}
 					return list;
 				}; //BOSS选将
 				Reflect.defineProperty(ui.create, 'characterDialog', {
-					get: () =>
-						function () {
-							var filter, str, noclick, thisiscard, seperate, expandall, onlypack, heightset, precharacter, characterx;
-							for (var i = 0; i < arguments.length; i++) {
-								if (arguments[i] === 'thisiscard') {
+					get() {
+						return function () {
+							let filter, str, noclick, thisiscard, seperate, expandall, onlypack, heightset, characterx;
+							const recentCharacter = get.config('recentCharacter')?.filter((c) => lib.character[c]) || [];
+							for (const arg of arguments) {
+								if (arg === 'thisiscard') {
 									thisiscard = true;
-								} else if (arguments[i] === 'expandall') {
+								} else if (arg === 'expandall') {
 									expandall = true;
-								} else if (arguments[i] === 'heightset') {
+								} else if (arg === 'heightset') {
 									heightset = true;
-								} else if (arguments[i] == 'precharacter') {
-									precharacter = true;
-								} else if (arguments[i] == 'characterx') {
+								} else if (arg == 'characterx') {
 									characterx = true;
-								} else if (typeof arguments[i] == 'string' && arguments[i].startsWith('onlypack:')) {
-									onlypack = arguments[i].slice(9);
-								} else if (typeof arguments[i] == 'object' && typeof arguments[i].seperate == 'function') {
-									seperate = arguments[i].seperate;
-								} else if (typeof arguments[i] === 'string') {
-									str = arguments[i];
-								} else if (typeof arguments[i] === 'function') {
-									filter = arguments[i];
-								} else if (typeof arguments[i] == 'boolean') {
-									noclick = arguments[i];
+								} else if (typeof arg == 'string' && arg.startsWith('onlypack:')) {
+									onlypack = arg.slice(9);
+								} else if (typeof arg == 'object' && typeof arg.seperate == 'function') {
+									seperate = arg.seperate;
+								} else if (typeof arg === 'string') {
+									str = arg;
+								} else if (typeof arg === 'function') {
+									filter = arg;
+								} else if (typeof arg == 'boolean') {
+									noclick = arg;
 								}
 							}
-							var list = [];
+							const list = [];
+							const characterlist = Object.keys(lib.character);
 							const groups = [];
-							var dialog;
-							var node = ui.create.div('.caption.pointerspan');
+							let dialog;
+							const node = ui.create.div('.caption.pointerspan');
 							if (get.is.phoneLayout()) {
 								node.style.fontSize = '30px';
 							}
-							var namecapt = [];
-							var getCapt = function (str) {
-								var capt;
-								if (str.indexOf('_') == -1) {
-									capt = str[0];
+							const namecapt = [];
+							const getCapt = function (str2) {
+								let capt;
+								if (str2.indexOf('_') == -1) {
+									capt = str2[0];
 								} else {
-									capt = str[str.lastIndexOf('_') + 1];
+									capt = str2[str2.lastIndexOf('_') + 1];
 								}
 								capt = capt.toLowerCase();
 								if (!/[a-z]/i.test(capt)) {
@@ -8825,163 +8826,145 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return capt;
 							};
 							if (thisiscard) {
-								for (var i in lib.card) {
-									if (!lib.translate[`${i}_info`]) continue;
-									if (filter && filter(i)) continue;
-									list.push(['', get.translation(lib.card[i].type), i]);
-									if (namecapt.indexOf(getCapt(i)) == -1) {
-										namecapt.push(getCapt(i));
+								for (const i in lib.card) {
+									if (!lib.translate[i + '_info']) {
+										continue;
 									}
+									if (filter && filter(i)) {
+										continue;
+									}
+									list.push(['', get.translation(lib.card[i].type), i]);
 								}
 							} else {
-								var groupnum = {};
-								for (var i in lib.character) {
+								const groupCount = {};
+								for (const i in lib.character) {
 									list.push(i);
-									if (get.is.double(i)) {
-										groups.add('double');
-									} else {
-										const Q = lib.character[i][1];
-										if (!groupnum[Q]) groupnum[Q] = 0;
-										groupnum[Q]++;
-										if (groupnum[Q] > 20) {
-											groups.add(lib.character[i][1]);
-										} //删除多余势力
-									}
-									if (namecapt.indexOf(getCapt(i)) == -1) {
-										namecapt.push(getCapt(i));
+									const group = lib.character[i][1];
+									groupCount[group] ??= 0;
+									groupCount[group]++;
+								}
+								for (const [group, count] of Object.entries(groupCount)) {
+									if (count > 20) {
+										groups.add(group);
 									}
 								}
-							}
-							namecapt.sort(function (a, b) {
-								return a > b ? 1 : -1;
-							});
+							} //势力加入
+							namecapt.sort((a, b) => (a > b ? 1 : -1));
 							groups.sort(lib.sort.group);
 							if (!thisiscard) {
 								namecapt.remove('自定义');
-								namecapt.push('newline');
-								for (var i in lib.characterDialogGroup) {
-									namecapt.push(i);
-								}
+								namecapt.push('最近', '收藏');
 							}
-							var newlined = false;
-							var newlined2;
-							var packsource;
-							var clickCapt = function (e) {
-								if (_status.dragged) return;
+							let newlined;
+							if (!thisiscard) {
+								newlined = document.createElement('div');
+								newlined.style.marginTop = '5px';
+								newlined.style.display = 'block';
+								newlined.style.fontSize = get.is.phoneLayout() ? '32px' : '22px';
+								newlined.style.textAlign = 'center';
+								node.appendChild(newlined);
+							}
+							let newlined2;
+							let packsource;
+							let filternode = null;
+							const updatePagination = () => {
+								if (dialog.paginationMaxCount.get('character')) {
+									const buttons = dialog.content.querySelector('.buttons');
+									const array = dialog.buttons.filter((item) => !item.classList.contains('nodisplay') && item.style.display !== 'none');
+									const p = dialog.paginationMap.get(buttons);
+									if (p) {
+										p.state.data = array;
+										p.setTotalPageCount(Math.ceil(array.length / dialog.paginationMaxCount.get('character')));
+									}
+								}
+							};
+							const restoreState = (btn) => {
+								if (btn.style.display == 'none') {
+									btn.style.display = '';
+								}
+							};
+							const clickCapt = function (e) {
+								if (_status.dragged) {
+									return;
+								}
 								if (dialog.currentcapt2 == '最近' && dialog.currentcaptnode2 != this && !dialog.currentcaptnode2.inited) {
 									dialog.currentcapt2 = null;
 									dialog.currentcaptnode2.classList.remove('thundertext');
 									dialog.currentcaptnode2.inited = true;
 									dialog.currentcaptnode2 = null;
 								}
-								if (this.alphabet) {
-									if (this.classList.contains('thundertext')) {
-										dialog.currentcapt = null;
-										dialog.currentcaptnode = null;
-										this.classList.remove('thundertext');
-										if (this.touchlink) {
-											this.touchlink.classList.remove('active');
+								if (newlined2) {
+									newlined2.style.display = 'none';
+									if (!packsource.onlypack) {
+										packsource.classList.remove('thundertext');
+										if (!get.is.phoneLayout() || !lib.config.filternode_button) {
+											packsource.innerHTML = '武将包';
 										}
-										for (var i = 0; i < dialog.buttons.length; i++) {
-											if (dialog.currentgroup && dialog.buttons[i].group != dialog.currentgroup) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentcapt2 && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt, true)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else {
-												dialog.buttons[i].classList.remove('nodisplay');
-											}
-										}
-									} else {
-										if (dialog.currentcaptnode) {
-											dialog.currentcaptnode.classList.remove('thundertext');
-											if (dialog.currentcaptnode.touchlink) {
-												dialog.currentcaptnode.touchlink.classList.remove('active');
-											}
-										}
-										dialog.currentcapt = this.link;
-										dialog.currentcaptnode = this;
-										this.classList.add('thundertext');
-										if (this.touchlink) {
-											this.touchlink.classList.add('active');
-										}
-										for (var i = 0; i < dialog.buttons.length; i++) {
-											if (dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentcapt2 && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt, true)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentgroup && dialog.buttons[i].group != dialog.currentgroup) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else {
-												dialog.buttons[i].classList.remove('nodisplay');
-											}
-										}
+									}
+								} //隐藏武将包下拉菜单
+								while (dialog.buttons.length) {
+									dialog.buttons[0].remove();
+									dialog.buttons.shift();
+								}
+								if (this.classList.contains('thundertext')) {
+									dialog.currentcapt2 = null;
+									dialog.currentcaptnode2 = null;
+									this.classList.remove('thundertext');
+									if (this.touchlink) {
+										this.touchlink.classList.remove('active');
 									}
 								} else {
-									if (newlined2) {
-										newlined2.style.display = 'none';
-										if (!packsource.onlypack) {
-											packsource.classList.remove('thundertext');
-											if (!get.is.phoneLayout() || !lib.config.filternode_button) {
-												packsource.innerHTML = '武将包';
-											}
+									if (dialog.currentcaptnode2) {
+										dialog.currentcaptnode2.classList.remove('thundertext');
+										if (dialog.currentcaptnode2.touchlink) {
+											dialog.currentcaptnode2.touchlink.classList.remove('active');
 										}
 									}
-									if (this.classList.contains('thundertext')) {
-										dialog.currentcapt2 = null;
-										dialog.currentcaptnode2 = null;
-										this.classList.remove('thundertext');
-										if (this.touchlink) {
-											this.touchlink.classList.remove('active');
-										}
-										for (var i = 0; i < dialog.buttons.length; i++) {
-											if (dialog.currentgroup && dialog.buttons[i].group != dialog.currentgroup) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentcapt && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else {
-												dialog.buttons[i].classList.remove('nodisplay');
+									if (dialog.currentgroupnode) {
+										dialog.currentgroupnode.classList.remove('thundertext');
+									}
+									dialog.currentcapt2 = this.link;
+									dialog.currentcaptnode2 = this;
+									this.classList.add('thundertext');
+									if (this.touchlink) {
+										this.touchlink.classList.add('active');
+									} else if (this.parentNode == newlined2) {
+										packsource.innerHTML = this.innerHTML;
+										packsource.classList.add('thundertext');
+									}
+									let listx;
+									switch (dialog.currentcapt2) {
+										case '最近':
+											{
+												listx = recentCharacter;
 											}
-										}
-									} else {
-										if (dialog.currentcaptnode2) {
-											dialog.currentcaptnode2.classList.remove('thundertext');
-											if (dialog.currentcaptnode2.touchlink) {
-												dialog.currentcaptnode2.touchlink.classList.remove('active');
+											break;
+										case '收藏':
+											{
+												listx = lib.config.favouriteCharacter.filter((c) => lib.character[c]);
 											}
+											break;
+										default: {
+											listx = Object.keys(lib.characterPack[dialog.currentcapt2]);
 										}
-										dialog.currentcapt2 = this.link;
-										dialog.currentcaptnode2 = this;
-										this.classList.add('thundertext');
-										if (this.touchlink) {
-											this.touchlink.classList.add('active');
-										} else if (this.parentNode == newlined2) {
-											packsource.innerHTML = this.innerHTML;
-											packsource.classList.add('thundertext');
-										}
-										for (var i = 0; i < dialog.buttons.length; i++) {
-											if (dialog.currentcapt && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt, true)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentgroup && dialog.buttons[i].group != dialog.currentgroup) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else {
-												if (dialog.buttons[i].activate) {
-													dialog.buttons[i].activate();
-												}
-												dialog.buttons[i].classList.remove('nodisplay');
-											}
-										}
+									}
+									if (listx.length) {
+										dialog.add([listx, 'character']);
+									}
+									for (const btn of dialog.buttons) {
+										btn.classList.add('selectable');
+										btn.group = lib.character[btn.link][1];
+										btn.capt = getCapt(btn.link);
 									}
 								}
 								if (dialog.seperate) {
-									for (var i = 0; i < dialog.seperate.length; i++) {
-										if (!dialog.seperate[i].nextSibling.querySelector('.button:not(.nodisplay)')) {
-											dialog.seperate[i].style.display = 'none';
-											dialog.seperate[i].nextSibling.style.display = 'none';
+									for (const sep of dialog.seperate) {
+										if (!sep.nextSibling.querySelector('.button:not(.nodisplay)')) {
+											sep.style.display = 'none';
+											sep.nextSibling.style.display = 'none';
 										} else {
-											dialog.seperate[i].style.display = '';
-											dialog.seperate[i].nextSibling.style.display = '';
+											sep.style.display = '';
+											sep.nextSibling.style.display = '';
 										}
 									}
 								}
@@ -8992,116 +8975,88 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										packsource.classList.remove('thundertext');
 									}
 								}
-								if (e) e.stopPropagation();
-							};
-							for (var i = 0; i < namecapt.length; i++) {
-								if (namecapt[i] == 'newline') {
-									newlined = document.createElement('div');
-									newlined.style.marginTop = '5px';
-									newlined.style.display = 'block';
-									if (get.is.phoneLayout()) {
-										newlined.style.fontSize = '32px';
-									} else {
-										newlined.style.fontSize = '22px';
-									}
-									newlined.style.textAlign = 'center';
-									node.appendChild(newlined);
-								} else if (newlined) {
-									var span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius');
-									span.style.margin = '3px';
-									span.style.width = 'auto';
-									span.innerHTML = ` ${namecapt[i].toUpperCase()} `;
-									span.link = namecapt[i];
-									span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickCapt);
-									newlined.appendChild(span);
-									node[namecapt[i]] = span;
-									if (namecapt[i] == '收藏') {
-										span._nature = 'fire';
-									} else {
-										span._nature = 'wood';
-									}
-								} else {
-									var span = document.createElement('span');
-									span.innerHTML = ` ${namecapt[i].toUpperCase()} `;
-									span.link = namecapt[i];
-									span.alphabet = true;
-									span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickCapt);
-									node.appendChild(span);
+								updatePagination();
+								if (e) {
+									e.stopPropagation();
 								}
-							}
-							if (!thisiscard) {
-								var natures = ['water', 'soil', 'wood', 'metal'];
-								var span = document.createElement('span');
+							}; //最近和收藏按钮监听
+							for (const name of namecapt) {
+								const span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius');
+								span.style.margin = '3px';
+								span.style.width = 'auto';
+								span.innerHTML = ` ${name.toUpperCase()} `;
+								span.link = name;
+								span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickCapt);
 								newlined.appendChild(span);
-								span.style.margin = '8px';
-								var clickGroup = function () {
-									if (_status.dragged) return;
+								node[name] = span;
+								span._nature = name == '收藏' ? 'fire' : 'wood';
+							} //生成最近和收藏
+							if (!thisiscard) {
+								const natures = ['water', 'soil', 'wood', 'metal'];
+								const sep = document.createElement('span');
+								newlined.appendChild(sep);
+								sep.style.margin = '8px';
+								const clickGroup = function () {
+									if (_status.dragged) {
+										return;
+									}
 									if (dialog.currentcapt2 == '最近' && dialog.currentcaptnode2 != this && !dialog.currentcaptnode2.inited) {
 										dialog.currentcapt2 = null;
 										dialog.currentcaptnode2.classList.remove('thundertext');
 										dialog.currentcaptnode2.inited = true;
 										dialog.currentcaptnode2 = null;
 									}
-									var node = this,
-										link = this.link;
-									if (node.classList.contains('thundertext')) {
+									const node2 = this,
+										link2 = this.link;
+									while (dialog.buttons.length) {
+										dialog.buttons[0].remove();
+										dialog.buttons.shift();
+									}
+									if (node2.classList.contains('thundertext')) {
 										dialog.currentgroup = null;
 										dialog.currentgroupnode = null;
-										node.classList.remove('thundertext');
-										for (var i = 0; i < dialog.buttons.length; i++) {
-											if (dialog.currentcapt && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentcapt2 && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt, true)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else {
-												dialog.buttons[i].classList.remove('nodisplay');
+										node2.classList.remove('thundertext');
+									} else {
+										if (dialog.currentcaptnode2) {
+											dialog.currentcaptnode2.classList.remove('thundertext');
+											if (dialog.currentcaptnode2.touchlink) {
+												dialog.currentcaptnode2.touchlink.classList.remove('active');
 											}
 										}
-									} else {
 										if (dialog.currentgroupnode) {
 											dialog.currentgroupnode.classList.remove('thundertext');
 										}
-										dialog.currentgroup = link;
-										dialog.currentgroupnode = node;
-										node.classList.add('thundertext');
-										for (var i = 0; i < dialog.buttons.length; i++) {
-											if (dialog.currentcapt && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentcapt2 && dialog.buttons[i].capt != dialog.getCurrentCapt(dialog.buttons[i].link, dialog.buttons[i].capt, true)) {
-												dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentgroup == 'double') {
-												if (dialog.buttons[i]._changeGroup) dialog.buttons[i].classList.remove('nodisplay');
-												else dialog.buttons[i].classList.add('nodisplay');
-											} else if (dialog.currentgroup == 'ye') {
-												if (dialog.buttons[i].group == 'ye') dialog.buttons[i].classList.remove('nodisplay');
-												else dialog.buttons[i].classList.add('nodisplay');
-											} else {
-												if (dialog.buttons[i]._changeGroup || dialog.buttons[i].group != dialog.currentgroup) {
-													dialog.buttons[i].classList.add('nodisplay');
-												} else {
-													dialog.buttons[i].classList.remove('nodisplay');
-												}
-											}
+										dialog.currentgroup = link2;
+										dialog.currentgroupnode = node2;
+										node2.classList.add('thundertext');
+										const listx = characterlist.filter((c) => lib.character[c].group == link2);
+										if (listx.length) {
+											dialog.add([listx, 'character']);
+										}
+										for (const btn of dialog.buttons) {
+											btn.classList.add('selectable');
+											btn.group = lib.character[btn.link][1];
+											btn.capt = getCapt(btn.link);
 										}
 									}
-								};
-								for (var i = 0; i < groups.length; i++) {
-									var span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
+									updatePagination();
+								}; //群组按钮监听
+								for (const group of groups) {
+									const span = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
 									span.style.margin = '3px';
 									newlined.appendChild(span);
-									span.innerHTML = get.translation(groups[i]);
-									span.link = groups[i];
-									span._nature = natures[i];
+									span.innerHTML = get.translation(group);
+									span.link = group;
+									span._nature = natures[groups.indexOf(group)];
 									span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickGroup);
-								}
-								var span = document.createElement('span');
-								newlined.appendChild(span);
-								span.style.margin = '8px';
+								} //加入群组
+								const spacer = document.createElement('span');
+								newlined.appendChild(spacer);
+								spacer.style.margin = '8px';
 								packsource = ui.create.div('.tdnode.pointerdiv.shadowed.reduce_radius.reduce_margin');
 								packsource.style.margin = '3px';
 								newlined.appendChild(packsource);
-								var filternode = null;
-								var clickCaptNode = function (e) {
+								const clickCaptNode = function (e) {
 									delete _status.filterCharacter;
 									ui.window.classList.remove('shortcutpaused');
 									filternode.delete();
@@ -9114,18 +9069,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filternode = ui.create.div('.popup-container.filter-character.modenopause');
 									ui.create.div(filternode);
 									filternode.listen(function (e) {
-										if (this.classList.contains('removing')) return;
+										if (this.classList.contains('removing')) {
+											return;
+										}
 										delete _status.filterCharacter;
 										ui.window.classList.remove('shortcutpaused');
 										this.delete();
 										this.classList.remove('shown');
 										e.stopPropagation();
 									});
-									for (var i = 0; i < node.childElementCount; i++) {
-										if (node.childNodes[i].tagName.toLowerCase() == 'span') {
-											node.childNodes[i].style.display = 'none';
-											node.childNodes[i].touchlink = ui.create.div(filternode.firstChild, clickCaptNode, '.menubutton.large.capt', node.childNodes[i].innerHTML);
-											node.childNodes[i].touchlink.link = node.childNodes[i];
+									for (const child of node.childNodes) {
+										if (child.tagName.toLowerCase() == 'span') {
+											child.style.display = 'none';
+											child.touchlink = ui.create.div(filternode.firstChild, clickCaptNode, '.menubutton.large.capt', child.innerHTML);
+											child.touchlink.link = child;
 										}
 									}
 									ui.create.node('br', filternode.firstChild);
@@ -9138,76 +9095,82 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else {
 										packsource.innerHTML = '武将包';
 									}
-								}
+								} //武将包按钮
 								newlined2 = document.createElement('div');
 								newlined2.style.marginTop = '5px';
 								newlined2.style.display = 'none';
 								newlined2.style.fontFamily = 'xinwei';
 								newlined2.classList.add('pointernode');
-								if (get.is.phoneLayout()) {
-									newlined2.style.fontSize = '32px';
-								} else {
-									newlined2.style.fontSize = '22px';
-								}
+								newlined2.style.fontSize = get.is.phoneLayout() ? '32px' : '22px';
 								newlined2.style.textAlign = 'center';
 								node.appendChild(newlined2);
 								packsource.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
-									if (packsource.onlypack) return;
-									if (_status.dragged) return;
+									if (packsource.onlypack) {
+										return;
+									}
+									if (_status.dragged) {
+										return;
+									}
 									if (get.is.phoneLayout() && lib.config.filternode_button && filternode) {
 										_status.filterCharacter = true;
 										ui.window.classList.add('shortcutpaused');
 										ui.window.appendChild(filternode);
 										ui.refresh(filternode);
 										filternode.classList.add('shown');
-										var dh = filternode.offsetHeight - filternode.firstChild.offsetHeight;
+										const dh = filternode.offsetHeight - filternode.firstChild.offsetHeight;
 										if (dh > 0) {
 											filternode.firstChild.style.top = dh / 2 + 'px';
 										} else {
 											filternode.firstChild.style.top = '';
 										}
 									} else {
-										if (newlined2.style.display == 'none') {
-											newlined2.style.display = 'block';
-										} else {
-											newlined2.style.display = 'none';
+										newlined2.style.display = newlined2.style.display == 'none' ? 'block' : 'none';
+									}
+								}); //武将包按钮监听
+								const packlist = [];
+								for (const name of lib.config.all.characters) {
+									if (lib.config.characters.includes(name)) {
+										packlist.add(name);
+									}
+								}
+								for (const name of lib.config.characters) {
+									if (lib.config.all.characters.includes(name)) {
+										continue;
+									}
+									if (!lib.characterPack[name] || !lib.translate[name + '_character_config']) {
+										continue;
+									}
+									packlist.add(name);
+								}
+								Object.keys(lib.characterPack)
+									.filter((key) => {
+										if (key.indexOf('mode_extension') != 0) {
+											return false;
 										}
-									}
-								});
-								var packlist = [];
-								for (var i = 0; i < lib.config.all.characters.length; i++) {
-									if (!lib.config.characters.includes(lib.config.all.characters[i])) continue;
-									packlist.push(lib.config.all.characters[i]);
-								}
-								for (var i in lib.characterPack) {
-									if (lib.config.characters.includes(i) && !lib.config.all.characters.includes(i)) {
-										packlist.push(i);
-									}
-								}
-								for (var i = 0; i < packlist.length; i++) {
-									var span = document.createElement('div');
+										const extName = key.slice(15);
+										return lib.config[`extension_${extName}_characters_enable`] === true;
+									})
+									.forEach((key) => packlist.add(key));
+								for (const pkg of packlist) {
+									const span = document.createElement('div');
 									span.style.display = 'inline-block';
 									span.style.width = 'auto';
 									span.style.margin = '5px';
-									if (get.is.phoneLayout()) {
-										span.style.fontSize = '32px';
-									} else {
-										span.style.fontSize = '22px';
-									}
-									span.innerHTML = lib.translate[packlist[i] + '_character_config'];
-									span.link = packlist[i];
+									span.style.fontSize = get.is.phoneLayout() ? '32px' : '22px';
+									span.innerHTML = lib.translate[pkg + '_character_config'];
+									span.link = pkg;
 									span.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', clickCapt);
 									newlined2.appendChild(span);
 									if (filternode && !onlypack) {
 										span.touchlink = ui.create.div(filternode.firstChild, clickCaptNode, '.menubutton.large', span.innerHTML);
 										span.touchlink.link = span;
 									}
-								}
-							}
-							var groupSort;
+								} //所有武将包按钮
+							} //所有武将包按钮监听
+							let groupSort;
 							if (thisiscard) {
 								groupSort = function (name) {
-									var type = lib.card[name[2]].type;
+									const type = lib.card[name[2]].type;
 									if (lib.cardType[type]) {
 										return lib.cardType[type];
 									}
@@ -9228,19 +9191,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 6;
 									}
 								};
-								list.sort(function (a, b) {
-									var del = groupSort(a) - groupSort(b);
-									if (del != 0) return del;
-									var aa = a,
+								list.sort((a, b) => {
+									const del = groupSort(a) - groupSort(b);
+									if (del != 0) {
+										return del;
+									}
+									const aa = a,
 										bb = b;
-									if (a.includes('_')) {
-										a = a.slice(a.lastIndexOf('_') + 1);
-									}
-									if (b.includes('_')) {
-										b = b.slice(b.lastIndexOf('_') + 1);
-									}
-									if (a != b) {
-										return a > b ? 1 : -1;
+									const aName = a.includes('_') ? a.slice(a.lastIndexOf('_') + 1) : a;
+									const bName = b.includes('_') ? b.slice(b.lastIndexOf('_') + 1) : b;
+									if (aName != bName) {
+										return aName > bName ? 1 : -1;
 									}
 									return aa > bb ? 1 : -1;
 								});
@@ -9248,34 +9209,81 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								list.sort(lib.sort.character);
 							}
 							dialog = ui.create.dialog('hidden');
-							dialog.classList.add('noupdate');
-							dialog.classList.add('scroll1');
-							dialog.classList.add('scroll2');
-							dialog.classList.add('scroll3');
+							dialog.classList.add('noupdate', 'scroll1', 'scroll2', 'scroll3');
+							dialog.supportsPagination = Boolean(parseInt(lib.config.showMax_character_number));
+							dialog.paginationMaxCount.set('character', parseInt(lib.config.showMax_character_number));
 							dialog.addEventListener(lib.config.touchscreen ? 'touchend' : 'mouseup', function () {
 								_status.clicked2 = true;
 							});
 							if (heightset) {
-								dialog.style.height = (game.layout == 'long2' || game.layout == 'nova' ? 380 : 350) + 'px';
+								dialog.style.height = (game.layout == 'long2' || game.layout == 'nova' ? 380 : 350) + 50 + 'px';
 								dialog._scrollset = true;
 							}
-							dialog.getCurrentCapt = function (link, capt, noalph) {
-								var currentcapt = noalph ? this.currentcapt2 : this.currentcapt;
+							dialog.getCurrentCapt = function (link2, capt, noalph) {
+								const currentcapt = noalph ? this.currentcapt2 : this.currentcapt;
 								if (this.seperatelist && noalph) {
-									if (this.seperatelist[currentcapt].includes(link)) return capt;
-									return null;
-								}
-								if (lib.characterDialogGroup[currentcapt]) {
-									return lib.characterDialogGroup[currentcapt](link, capt);
-								}
-								if (lib.characterPack[currentcapt]) {
-									if (lib.characterPack[currentcapt][link]) {
+									if (this.seperatelist[currentcapt].includes(link2)) {
 										return capt;
 									}
 									return null;
 								}
+								if (lib.characterDialogGroup[currentcapt]) {
+									return lib.characterDialogGroup[currentcapt](link2, capt);
+								}
+								if (lib.characterPack[currentcapt]) {
+									return lib.characterPack[currentcapt][link2] ? capt : null;
+								}
 								return this.currentcapt;
 							};
+							const container = dialog.querySelector('.content-container>.content');
+							const Searcher = ui.create.div('.searcher.caption');
+							const input = document.createElement('input').css({
+								textAlign: 'center',
+								border: 'solid 2px #294510',
+								borderRadius: '6px',
+								fontWeight: 'bold',
+								fontSize: '21px',
+							});
+							input.placeholder = '支持正则搜索';
+							const find = ui.create.button(['find', '搜索'], 'tdnodes');
+							find.style.display = 'inline';
+							const updateFind = () => {
+								while (dialog.buttons.length) {
+									dialog.buttons[0].remove();
+									dialog.buttons.shift();
+								}
+								if (dialog.currentcaptnode2) {
+									dialog.currentcaptnode2.classList.remove('thundertext');
+									if (dialog.currentcaptnode2.touchlink) {
+										dialog.currentcaptnode2.touchlink.classList.remove('active');
+									}
+								}
+								if (dialog.currentgroupnode) {
+									dialog.currentgroupnode.classList.remove('thundertext');
+								}
+								const { value } = input;
+								const reg = new RegExp(value);
+								const listx = characterlist.filter((c) => reg.test(get.translation(c)) || reg.test(get.translation(c + '_ab')));
+								if (listx.length) {
+									dialog.add([listx, 'character']);
+								}
+								for (const btn of dialog.buttons) {
+									btn.classList.add('selectable');
+									btn.group = lib.character[btn.link][1];
+									btn.capt = getCapt(btn.link);
+								}
+								updatePagination();
+							}; //搜索按钮监听
+							find.addEventListener('click', updateFind);
+							input.addEventListener('keydown', (e) => {
+								e.stopPropagation();
+								if (e.key == 'Enter') {
+									updateFind();
+								}
+							});
+							input.addEventListener('mousedown', (e) => e.stopPropagation());
+							Searcher.append(input, find);
+							container.prepend(Searcher);
 							if (str) {
 								dialog.add(str);
 							}
@@ -9290,15 +9298,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										newlined.style.marginTop = '5px';
 										newlined.style.display = 'block';
 										newlined.style.fontFamily = 'xinwei';
-										if (get.is.phoneLayout()) {
-											newlined.style.fontSize = '32px';
-										} else {
-											newlined.style.fontSize = '22px';
-										}
+										newlined.style.fontSize = get.is.phoneLayout() ? '32px' : '22px';
 										newlined.style.textAlign = 'center';
 										node.appendChild(newlined);
-										for (var i in dialog.seperatelist) {
-											var span = document.createElement('span');
+										for (const i in dialog.seperatelist) {
+											const span = document.createElement('span');
 											span.style.margin = '3px';
 											span.innerHTML = i;
 											span.link = i;
@@ -9307,15 +9311,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											newlined.appendChild(span);
 										}
 									}
-									for (var i in seperate) {
-										if (i == 'list') continue;
-										var link = '';
-										var linkcontent = seperate[i];
+									for (const i in seperate) {
+										if (i == 'list') {
+											continue;
+										}
+										let link = '';
+										const linkcontent = seperate[i];
+										let key = i;
 										if (i.includes('_link:')) {
 											link = i.slice(i.indexOf('_link:') + 6);
-											i = i.slice(0, i.indexOf('_link:'));
+											key = i.slice(0, i.indexOf('_link:'));
 										}
-										var nodesep = dialog.add(i);
+										const nodesep = dialog.add(key);
 										nodesep.link = link;
 										dialog.seperate.push(nodesep);
 										dialog.add([linkcontent, 'vcard'], noclick);
@@ -9324,21 +9331,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									dialog.add([list, 'vcard'], noclick);
 								}
 							} else {
-								if (precharacter) {
-									dialog.add([list, 'precharacter'], noclick);
-								} else if (characterx) {
-									dialog.add([list, 'characterx'], noclick);
-								} else {
-									dialog.add([list, 'character'], noclick);
+								if (recentCharacter.length) {
+									dialog.add([recentCharacter, 'character']);
 								}
-							}
+							} //将所有武将生成div
 							dialog.add(ui.create.div('.placeholder'));
-							for (var i = 0; i < dialog.buttons.length; i++) {
+							for (const btn of dialog.buttons) {
 								if (thisiscard) {
-									dialog.buttons[i].capt = getCapt(dialog.buttons[i].link[2]);
+									btn.capt = getCapt(btn.link[2]);
 								} else {
-									dialog.buttons[i].group = lib.character[dialog.buttons[i].link][1];
-									dialog.buttons[i].capt = getCapt(dialog.buttons[i].link);
+									btn.group = lib.character[btn.link][1];
+									btn.capt = getCapt(btn.link);
 								}
 							}
 							if (!expandall) {
@@ -9346,45 +9349,33 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									clickCapt.call(node[lib.config.character_dialog_tool]);
 								}
 							}
-							//仅仅下面是新加的,by Curpond
-							let container = dialog.querySelector('.content-container>.content');
-							let Searcher = ui.create.div('.searcher.caption');
-							let input = document.createElement('input');
-							input.style.textAlign = 'center';
-							input.style.border = 'solid 2px #294510';
-							input.style.borderRadius = '6px';
-							input.style.fontWeight = 'bold';
-							input.style.fontSize = '21px';
-							let find = ui.create.button(['find', '搜索'], 'tdnodes');
-							find.style.display = 'inline';
-							let clickfind = function (e) {
-								e.stopPropagation();
-								let value = input.value;
-								if (value == '') {
-									game.alert('搜索不能为空');
-									input.focus();
-									return;
-								}
-								let list = [];
-								for (let btn of dialog.buttons) {
-									if (new RegExp(value, 'g').test(get.translation(btn.link))) {
-										btn.classList.remove('nodisplay');
-									} else {
-										btn.classList.add('nodisplay');
-									}
-								}
-							};
-							input.addEventListener('keyup', (e) => {
-								if (e.key == 'Enter') clickfind(e);
-							});
-							find.listen(clickfind);
-							Searcher.appendChild(input);
-							Searcher.appendChild(find);
-							container.prepend(Searcher);
+							if (dialog.paginationMaxCount.get('character')) {
+								const buttons = dialog.content.querySelector('.buttons');
+								const array = dialog.buttons.filter((item) => !item.classList.contains('nodisplay') && item.style.display !== 'none');
+								dialog.addPagination({
+									data: array,
+									totalPageCount: Math.ceil(array.length / dialog.paginationMaxCount.get('character')),
+									container: dialog.content,
+									insertAfter: buttons,
+									onPageChange: (state) => {
+										const { pageNumber, data } = state;
+										const maxCount = dialog.paginationMaxCount.get('character');
+										data.forEach((item, index) => {
+											if (index >= (pageNumber - 1) * maxCount && index < pageNumber * maxCount) {
+												item.classList.remove('nodisplay');
+											} else {
+												item.classList.add('nodisplay');
+											}
+										});
+									},
+									changePageEvent: 'click',
+								});
+							}
 							return dialog;
-						},
+						};
+					},
 					set() { },
-				}); //选将列表修改
+				});
 			} //武将全部可选
 		},
 		config: {
