@@ -40671,7 +40671,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return get.type(card) == 'equip';
                                     })
                                     .set('ai', function (card) {
-                                        if (get.attitude(player, target) >= 0) {
+                                        if (get.attitude(player, trigger.player) >= 0) {
                                             return 0;
                                         }
                                         if (player.isDamaged() && player.getEquip('baiyin') && get.position(card) == 'e') {
