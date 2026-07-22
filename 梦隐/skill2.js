@@ -17074,14 +17074,6 @@ const skill = {
     },
     intro: {
       content: 'cards',
-      onunmark(storage, player) {
-        if (storage && storage.length) {
-          player.$throw(storage, 1000);
-          game.cardsDiscard(storage);
-          game.log(storage, '被置入了弃牌堆');
-          storage.length = 0;
-        }
-      },
     },
     filter(event, player) {
       return event.player.countCards('hej') > 0;
@@ -25496,14 +25488,6 @@ const skill = {
     markimage: 'extension/梦隐/image/mx_laizi.jpg',
     intro: {
       content: 'cards',
-      onunmark(storage, player) {
-        if (storage && storage.length) {
-          player.$throw(storage, 1000);
-          game.cardsDiscard(storage);
-          game.log(storage, '被置入了弃牌堆');
-          storage.length = 0;
-        }
-      },
     },
     trigger: {
       global: 'useCard2',
@@ -41994,14 +41978,6 @@ const skill = {
     },
     intro: {
       content: 'cards',
-      onunmark(storage, player) {
-        if (storage && storage.length) {
-          player.$throw(storage, 1000);
-          game.cardsDiscard(storage);
-          game.log(storage, '被置入了弃牌堆');
-          storage.length = 0;
-        }
-      },
     },
     check(event, player) {
       return get.attitude(player, event.player) <= 0;
@@ -43299,13 +43275,6 @@ const skill = {
     },
     intro: {
       content: 'cards',
-      onunmark(storage, player) {
-        if (storage && storage.length) {
-          player.$throw(storage, 1000);
-          game.cardsDiscard(storage);
-          storage.length = 0;
-        }
-      },
     },
     filter(event, player) {
       return event.player.countCards('hej') > 0;
@@ -50867,14 +50836,6 @@ const skill = {
         markimage: 'extension/梦隐/image/mx_tiannvweiguang.jpg',
         intro: {
           content: 'cards',
-          onunmark(storage, player) {
-            if (storage && storage.length) {
-              player.$throw(storage, 1000);
-              game.cardsDiscard(storage);
-              game.log(storage, '被置入了弃牌堆');
-              storage.length == 0;
-            }
-          },
         },
       },
     },
@@ -53683,14 +53644,6 @@ const skill = {
     markimage: 'extension/梦隐/image/mx_shouqu.jpg',
     intro: {
       content: 'cards',
-      onunmark(storage, player) {
-        if (storage && storage.length) {
-          player.$throw(storage, 1000);
-          game.cardsDiscard(storage);
-          game.log(storage, '被置入了弃牌堆');
-          storage.length = 0;
-        }
-      },
     },
     subSkill: {
       buff: {
@@ -69196,14 +69149,6 @@ const skill = {
     },
     intro: {
       content: 'cards',
-      onunmark(storage, player) {
-        if (storage && storage.length) {
-          player.$throw(storage, 1000);
-          game.cardsDiscard(storage);
-          game.log(storage, '被置入了弃牌堆');
-          storage.length = 0;
-        }
-      },
     },
     filter(event, player) {
       return event.nature && player != event.player && event.player.countCards('hej') > 0;

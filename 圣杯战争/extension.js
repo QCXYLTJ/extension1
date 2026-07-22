@@ -26595,14 +26595,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             subSkill: {
                                 discard: {
@@ -28530,14 +28522,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             group: ['sbzz_cangji2', 'sbzz_cangji3'],
                             mark: true,
                             intro: {
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {
@@ -36803,14 +36787,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         sbzz_bianzhuang1: {
                             mark: true,
                             intro: {
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        player.gain(storage);
-                                        game.log(storage, '获得了变装牌');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {

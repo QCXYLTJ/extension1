@@ -9907,14 +9907,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     intro: {
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length = 0;
-                                            }
-                                        },
                                     },
                                     markimage: 'extension/诸神黄昏/Trace/lg_trace_shengnvdejisi.jpg',
                                     mod: {
@@ -19457,13 +19449,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         } else {
                                             dialog.add('有' + get.cnNumber(cards.length) + '张牌');
                                         }
-                                    }
-                                },
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        player.storage.lg_tianmozangsong.length = 0;
-                                        player.storage.lg_tianmozangsong = [];
                                     }
                                 },
                             },
@@ -44635,14 +44620,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '死灵',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                player.storage.lg_zhuzaizhe_mark.length = 0;
-                                            }
-                                        },
                                     },
                                 },
                             },
@@ -44730,14 +44707,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '死灵',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                player.storage['lg_zhuzaizhe1_mark'].length = 0;
-                                            }
-                                        },
                                     },
                                 },
                             },
@@ -59197,14 +59166,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cardCount',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        player.storage.天空坠落.length = 0;
-                                    }
-                                },
                             },
                             marktext: '坠',
                             popup: false,
@@ -61228,14 +61189,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             markimage: 'extension/诸神黄昏/Trace/lg_trace_yongyequ.jpg',
                             trigger: {

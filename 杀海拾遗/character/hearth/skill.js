@@ -6787,9 +6787,6 @@ const skill = {
 		},
 		intro: {
 			content: "card",
-			onunmark(storage, player) {
-				delete player.storage.mengun2;
-			},
 		},
 	},
 	jianren: {

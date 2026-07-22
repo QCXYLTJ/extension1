@@ -2456,10 +2456,6 @@ const skill = {
 				}
 				return str;
 			},
-			onunmark(storage, player) {
-				delete player.storage.xie;
-				delete player.storage.xie2;
-			},
 		},
 		group: ["xie3", "xie4"],
 	},

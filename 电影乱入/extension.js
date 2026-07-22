@@ -5854,13 +5854,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '梵',
                             intro: {
                                 name: '月影梵经',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {

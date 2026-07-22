@@ -6430,16 +6430,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('tgtt_xglczhangkong');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('tgtt_xglczhangkong');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             charlotte: true,
                             TaiguSkill: true,
@@ -10730,14 +10720,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     marktext: '拉德斯基进行曲',
                                     intro: {
                                         name: '拉德斯基进行曲',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length = 0;
-                                            }
-                                        },
                                         content: 'cardCount',
                                     },
                                 },

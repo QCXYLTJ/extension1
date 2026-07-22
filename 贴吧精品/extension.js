@@ -3258,14 +3258,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '资',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                         },
                         zhuiyi3d8: {
@@ -4209,14 +4201,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '卫',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                         },
                         huwei3d83: {
@@ -7106,14 +7090,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '盟',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                         },
                         ximeng3d8: {
@@ -13707,14 +13683,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '洞察',
                                 content: 'cardCount',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 expose: 0.7,
@@ -24147,14 +24115,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                         },
                         huilan3d8: {

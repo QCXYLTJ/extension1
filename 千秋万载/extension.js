@@ -12016,13 +12016,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									mark: true,
 									intro: {
 										content: 'cards',
-										onunmark(storage, player) {
-											if (storage) {
-												ui.discardPile.appendChild(storage);
-												player.$throw(storage);
-												delete player.storage.qqwz祸常_1;
-											}
-										},
 									},
 									filter(event, player) {
 										return player.storage.qqwz祸常_1;

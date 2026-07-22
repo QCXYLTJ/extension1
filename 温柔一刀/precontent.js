@@ -102,7 +102,7 @@ game.webm1('$1')
 const { result
 \n{0}onLose\([^}]*card
 \n{0}onequip\([^}]*event.cards?.
-
+\n{0}onunmark[^}]*delete
                     async onEquip(event, trigger, player) {
                         if (event.card?.cards?.length) {
                                 const card = event.card.cards[0];

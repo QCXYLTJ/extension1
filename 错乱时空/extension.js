@@ -10031,14 +10031,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         content(storage) {
                                             return get.translation(storage);
                                         },
-                                        onunmark(storage, player) {
-                                            if (player.storage.xwjh_muying_ying) {
-                                                player.$throw([player.storage.xwjh_muying_ying], 1000);
-                                                game.cardsDiscard([player.storage.xwjh_muying_ying]);
-                                                game.log('幕影牌', [player.storage.xwjh_muying_ying], '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_muying_ying;
-                                            }
-                                        },
                                         mark(dialog, storage, player) {
                                             if (player.storage.xwjh_muying_ying) {
                                                 dialog.addAuto([player.storage.xwjh_muying_ying]);

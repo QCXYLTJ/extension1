@@ -2778,14 +2778,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '陨',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 unequip: true,
@@ -12826,14 +12818,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 effect: {
@@ -13544,14 +13528,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             group: '铸资1',
                         },
@@ -17175,14 +17151,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 effect: {

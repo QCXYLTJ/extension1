@@ -1454,9 +1454,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											dialog.addAuto(player.getExpansions('Xqin_cunshen_effect'));
 											dialog.addText(get.translation(storage));
 										},
-										onunmark(storage, player) {
-											delete player.storage.Xqin_cunshen_effect;
-										},
 									},
 									onremove(player, skill) {
 										var cards = player.getExpansions('Xqin_cunshen_effect');

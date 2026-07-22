@@ -2965,7 +2965,6 @@ export async function precontent(config, pack) {
 								},
 								onunmark(storage, player) {
 									player.removeAdditionalSkill('ex_yuhun_equip');
-									delete player.storage.ex_yuhun_equip;
 									player.addEquipTrigger();
 								},
 							},

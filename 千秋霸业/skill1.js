@@ -3870,14 +3870,6 @@ const skill = {
 				},
 				intro: {
 					content: 'cards',
-					onunmark(storage, player) {
-						if (storage && storage.length) {
-							player.$throw(storage, 1000);
-							game.cardsDiscard(storage);
-							game.log(storage, '被置入了弃牌堆');
-							storage.length = 0;
-						}
-					},
 				},
 				marktext: '傲',
 				mod: {
@@ -11842,14 +11834,6 @@ const skill = {
 		mark: true,
 		marktext: '鹰',
 		intro: {
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 			mark(dialog, content, player) {
 				if (content && content.length) {
 					if (player == game.me || player.isUnderControl()) {
@@ -15759,14 +15743,6 @@ const skill = {
 		},
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		subSkill: {
 			1: {
@@ -19741,14 +19717,6 @@ const skill = {
 				intro: {
 					name: '营',
 					content: 'cards',
-					onunmark(storage, player) {
-						if (storage && storage.length) {
-							player.$throw(storage, 1000);
-							game.cardsDiscard(storage);
-							game.log(storage, '被置入了弃牌堆');
-							player.storage.lg_juying_mark.length = 0;
-						}
-					},
 				},
 			},
 		},
@@ -21232,14 +21200,6 @@ const skill = {
 		intro: {
 			name: '引伏',
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard([storage]);
-					game.log('引伏', storage, '被置入了弃牌堆.');
-					delete player.storage.lg_yinfu;
-				}
-			},
 		},
 		filter(event, player) {
 			return event.num >= 1;
@@ -22683,14 +22643,6 @@ const skill = {
 		marktext: '离',
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		filter(event, player) {
 			return event.targets && event.targets.length && event.targets.includes(player);
@@ -39565,14 +39517,6 @@ const skill = {
 		marktext: '淬',
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		group: 'lg_cuihuo_phase',
 		subSkill: {
@@ -52517,14 +52461,6 @@ const skill = {
 		},
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		filter(event, player) {
 			return event.player != player && event.nature != 'thunder' && event.player.countCards('hej') > 0;

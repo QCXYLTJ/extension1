@@ -3897,9 +3897,6 @@ const skill = {
 	xjzhimeng2: {
 		intro: {
 			content: "card",
-			onunmark(storage, player) {
-				delete player.storage.xjzhimeng2;
-			},
 		},
 		mark: "card",
 		trigger: { target: "useCardToBegin" },

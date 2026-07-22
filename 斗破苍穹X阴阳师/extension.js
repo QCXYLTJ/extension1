@@ -13522,14 +13522,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 											return str;
 										},
-										onunmark(storage, player) {
-											if (storage && storage.length) {
-												player.$throw(storage, 1000);
-												game.cardsDiscard(storage);
-												game.log(storage, '被置入了弃牌堆');
-												player.storage.guazhang_G.length = 0;
-											}
-										},
 										mark(dialog, content, player) {
 											var cards = [];
 											if (player.storage.guazhang_G && player.storage.guazhang_G.length) {

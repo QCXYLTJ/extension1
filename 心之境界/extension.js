@@ -2664,14 +2664,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                         },
                         xzjj_quanji: {

@@ -741,12 +741,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							intro: {
 								name: '世界渴望之城,名为君土坦丁堡',
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										storage.length = 0;
-									}
-								},
 							},
 							marktext: '堡',
 							content() {
@@ -1592,14 +1586,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							intro: {
 								name: '巴西琉斯',
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							markimage: 'extension/次元漫谈/image/rain_acgn_Byzantine_yiLinNa_baXiLiuSi.jpg',
 							forced: true,
@@ -5572,15 +5558,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									intro: {
 										name: '分身',
 										content: 'cards',
-										onunmark(storage, player) {
-											player.removeSkill('rain_acgn_fgo_yanKuWang_huangHuangLiaoRan_storage');
-											if (storage && storage.length) {
-												player.$throw(storage, 1000);
-												game.cardsDiscard(storage);
-												game.log(storage, '被置入了弃牌堆');
-												storage.length = 0;
-											}
-										},
 									},
 								},
 								damage: {
@@ -6290,13 +6267,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (cards.length) {
 										if (player.isUnderControl(true)) dialog.add(cards);
 										else dialog.add('共有' + get.cnNumber(cards.length) + '张牌');
-									}
-								},
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										player.storage.rain_acgn_fgo_heiZhenDe_moNv.length = 0;
-										player.storage.rain_acgn_fgo_heiZhenDe_moNv = [];
 									}
 								},
 							},
@@ -7025,13 +6995,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							intro: {
 								name: '星槽',
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										player.storage.rain_acgn_fgo_yiShiTaEr_shanMai.length = 0;
-										player.storage.rain_acgn_fgo_yiShiTaEr_shanMai = [];
-									}
-								},
 							},
 							mod: {
 								targetInRange(card, player, target, now) {
@@ -7432,13 +7395,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										else dialog.add('共有' + get.cnNumber(cards.length) + '张牌');
 									}
 								},
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										player.storage.rain_acgn_fgo_xingBuJi_zhiCao.length = 0;
-										player.storage.rain_acgn_fgo_xingBuJi_zhiCao = [];
-									}
-								},
 							},
 							markimage: 'extension/次元漫谈/image/rain_acgn_fgo_xingBuJi_zhiCao.jpg',
 							trigger: {
@@ -7739,14 +7695,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							markimage: 'extension/次元漫谈/image/rain_acgn_fgo_jingKe_tuCe.jpg',
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							filter(event, player) {
 								return event.targets && event.targets.length && event.targets.includes(player);
@@ -13906,14 +13854,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							markimage: 'extension/次元漫谈/image/rain_acgn_fgo_aErTuoLiYaLily_huaLuo.jpg',
 							trigger: {
@@ -14728,28 +14668,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							intro: {
 								name: '与彼方同坠的梦之眼瞳',
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-										var target = game.filterPlayer(function (c) {
-											return c.name == 'rain_acgn_fgo_aoBoLong';
-										})[0];
-										if (target && target.isAlive()) {
-											if (
-												!game.hasPlayer(function (d) {
-													return d.storage.rain_acgn_fgo_aoBoLong_zhongXiaYe_dis && d.storage.rain_acgn_fgo_aoBoLong_zhongXiaYe_dis.length;
-												})
-											) {
-												if (target.storage.rain_acgn_fgo_aoBoLong_mengZhiYanTong) {
-													target.storage.rain_acgn_fgo_aoBoLong_mengZhiYanTong = false;
-												}
-											}
-										}
-									}
-								},
 							},
 							onremove(player, skill) {
 								var storage = player.storage.rain_acgn_fgo_aoBoLong_zhongXiaYe_dis;
@@ -18140,14 +18058,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 									return '看什么看,小心幽幽子吃掉你哦';
 								},
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 								mark(dialog, storage, player) {
 									if (player.isUnderControl(true)) {
 										if (player.storage.rain_acgn_project_hunPoYaoMeng_banLing && player.storage.rain_acgn_project_hunPoYaoMeng_banLing.length) {
@@ -18950,14 +18860,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							filter(event, player) {
 								return event.nature == 'fire' && event.player.countCards('hej') > 0;
@@ -20542,14 +20444,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							markimage: 'extension/次元漫谈/image/rain_acgn_project_baYiYongLin_tianWenMiZangFa.jpg',
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							trigger: {
 								global: 'roundStart',
@@ -21350,14 +21244,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											dialog.add('<span style="color: #00FA9A">【星辰之涡】</span>');
 										}
 										dialog.add(cards);
-									}
-								},
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
 									}
 								},
 							},

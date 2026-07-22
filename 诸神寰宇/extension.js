@@ -2300,16 +2300,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return card.hasGaintag('zshy_ACmohen_huamo');
 									}).length;
 								},
-								onunmark(storage, player) {
-									var cards = player.getCards('s', function (card) {
-										return card.hasGaintag('zshy_ACmohen_huamo');
-									});
-									if (cards.length) {
-										player.lose(cards, ui.discardPile);
-										player.$throw(cards, 1000);
-										game.log(cards, '进入了弃牌堆');
-									}
-								},
 							},
 							group: ['zshy_ACmohen_huamo_Start', 'zshy_ACmohen_huamo_Deputy'],
 							subSkill: {
@@ -8572,16 +8562,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return card.hasGaintag('zshy_kongcheng');
 									}).length;
 								},
-								onunmark(storage, player) {
-									var cards = player.getCards('s', function (card) {
-										return card.hasGaintag('zshy_kongcheng');
-									});
-									if (cards.length) {
-										player.lose(cards, ui.discardPile);
-										player.$throw(cards, 1000);
-										game.log(cards, '进入了弃牌堆');
-									}
-								},
 							},
 							mod: {
 								targetEnabled(card, player, target) {
@@ -8784,14 +8764,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									mark: true,
 									intro: {
 										content: 'cardCount',
-										onunmark(storage, player) {
-											if (storage && storage.length) {
-												player.$throw(storage, 1000);
-												game.cardsDiscard(storage);
-												game.log(storage, '被置入了弃牌堆');
-												player.storage.zshy_qianxun_sub2.length = 0;
-											}
-										},
 									},
 								},
 							},

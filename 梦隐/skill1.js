@@ -1010,14 +1010,6 @@ const skill = {
         markimage: 'extension/梦隐/image/mx_jiaomingruoyu.jpg',
         mark: true,
         intro: {
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
             mark(dialog, content, player) {
                 if (content && content.length) {
                     if (player == game.me || player.isUnderControl()) {
@@ -3697,14 +3689,6 @@ const skill = {
         },
         intro: {
             content: 'cards',
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
         },
         filter(event, player) {
             return event.nature != 'ice' && event.player.countCards('hej') > 0;
@@ -10908,14 +10892,6 @@ const skill = {
         mark: true,
         markimage: 'extension/梦隐/image/mx_shengzhebimie.jpg',
         intro: {
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
             mark(dialog, content, player) {
                 if (content && content.length) {
                     if (player == game.me || player.isUnderControl()) {
@@ -28658,14 +28634,6 @@ const skill = {
         markimage: 'extension/梦隐/image/mx_cuicanyongheng.jpg',
         intro: {
             content: 'cards',
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
         },
         filter(event, player) {
             return event.card.suit == 'heart' && event.card.name != 'sha' && event.targets && event.targets.length && event.targets.includes(player);
@@ -28920,14 +28888,6 @@ const skill = {
         markimage: 'extension/梦隐/image/mx_qianxueshanyao.jpg',
         intro: {
             content: 'cards',
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
         },
         audio: 'ext:梦隐/Skill dubbing:2',
         trigger: {
@@ -45529,14 +45489,6 @@ const skill = {
         },
         intro: {
             content: 'cards',
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
         },
         markimage: 'extension/梦隐/image/mx_lianzhongshanyao.jpg',
         trigger: {
@@ -66213,13 +66165,6 @@ const skill = {
                     }
                 }
             },
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    player.storage.mx_anshenmifa.length = 0;
-                    player.storage.mx_anshenmifa = [];
-                }
-            },
         },
         marktext: '蝶',
         trigger: {
@@ -68353,14 +68298,6 @@ const skill = {
         mark: true,
         marktext: '✡︎',
         intro: {
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    game.log(storage, '被置入了弃牌堆');
-                    storage.length = 0;
-                }
-            },
             mark(dialog, content, player) {
                 if (content && content.length) {
                     if (player == game.me || player.isUnderControl()) {
@@ -74549,13 +74486,6 @@ const skill = {
         marktext: '✡︎',
         intro: {
             content: 'cards',
-            onunmark(storage, player) {
-                if (storage && storage.length) {
-                    player.$throw(storage, 1000);
-                    game.cardsDiscard(storage);
-                    delete player.storage.mx_ganzhiwending;
-                }
-            },
         },
     },
     mx_moshaozuduan: {

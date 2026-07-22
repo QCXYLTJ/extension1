@@ -11738,16 +11738,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('bhshenguan');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('bhshenguan');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             enable: 'phaseUse',
                             usable: 1,
@@ -23806,14 +23796,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             mod: {
                                 maxHandcard(player, num) {
@@ -24111,14 +24093,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 name: '恒沙',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         return `共有${get.cnNumber(content.length)}个<智>`;
@@ -31378,14 +31352,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '誓约',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             filter(event, player) {
                                 if (!event.targets.length) return false;
@@ -34080,14 +34046,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '门',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             group: ['bhlvling_add', 'bhlvling_change', 'bhlvling_remove'],
                             subSkill: {
@@ -34639,14 +34597,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '弹',
                             intro: {
                                 name: '子弹',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {
@@ -35713,14 +35663,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '猎',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             enable: 'phaseUse',
                             usable: 1,

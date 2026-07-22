@@ -290,8 +290,8 @@ export function gelinPack(lib, game, ui, get, ai, _status, datasrc) {
         markcount: 'expansion',
         mark(dialog, storage, player) {
           var cards = player.getExpansions('gl_gainExpansions');
-          if (player.isUnderControl(true)) dialog.addAuto(cards);else
-          return '共有' + get.cnNumber(cards.length) + '张牌';
+          if (player.isUnderControl(true)) dialog.addAuto(cards); else
+            return '共有' + get.cnNumber(cards.length) + '张牌';
         },
         onunmark(storage, player) {
           var cards = player.getExpansions('gl_gainExpansions');
@@ -342,12 +342,12 @@ export function gelinPack(lib, game, ui, get, ai, _status, datasrc) {
         var type = get.subtype(card, false);
         var current = event.players.shift();
         var cards = current.
-        getCards('e', (card) => {
-          return get.subtype(card, false) == type;
-        }).
-        filter((card) => {
-          return lib.filter.canBeReplaced(card, current);
-        });
+          getCards('e', (card) => {
+            return get.subtype(card, false) == type;
+          }).
+          filter((card) => {
+            return lib.filter.canBeReplaced(card, current);
+          });
         current.lose(cards, 'visible').set('type', 'equip').set('getlx', false).swapEquip = true;
         if (event.info.loseThrow) {
           current.$throw(cards, 1000);
@@ -650,9 +650,6 @@ export function gelinPack(lib, game, ui, get, ai, _status, datasrc) {
           }
           return '你独自处于阵法队列当中';
         },
-        onunmark(storage, player) {
-          delete player.storage.gl_zhenfa;
-        }
       }
     };
     lib.translate.gl_zhenfa = '阵法';

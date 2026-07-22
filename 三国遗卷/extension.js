@@ -1683,6 +1683,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			if (config.xinzhoutai) {
 				lib.arenaReady.push(function () {
 					lib.skill.buqu = {
+						init(player) {
+							player.storage.buqu = [];
+						},
 						audio: 'ext:三国遗卷/audio:2',
 						audioname: ['key_yuri'],
 						trigger: { player: 'chooseToUseBefore' },
@@ -1693,7 +1696,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						content() {
 							'step 0';
 							event.card = get.cards()[0];
-							if (player.storage.buqu == undefined) player.storage.buqu = [];
 							player.storage.buqu.push(event.card);
 							game.cardsGotoSpecial(event.card);
 							player.showCards(player.storage.buqu, '不屈');
@@ -1730,13 +1732,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						},
 						intro: {
 							content: 'cards',
-							onunmark(storage, player) {
-								if (storage && storage.length) {
-									player.$throw(storage, 1000);
-									game.cardsDiscard(storage);
-									delete player.storage.buqu;
-								}
-							},
 						},
 					};
 					lib.translate.buqu_info = '锁定技,当你处于濒死状态时,你将牌堆顶的一张牌置于你的武将牌上,称为<创>.若此牌点数与已有的<创>点数均不同,你将体力回复至1点;此时,若你的手牌数小于当前<创>的数量,将你手牌补至等同于<创>的数量.若点数相同,将此牌置入弃牌堆.若你的武将牌上有<创>,你的手牌上限与<创>的数量相等.';

@@ -55006,7 +55006,7 @@ const skill = {
                 }
             });
             for (const i of list) {
-                if (i != 'wuxie'  && event.filterCard({ name: i }, player, event)) {
+                if (i != 'wuxie' && event.filterCard({ name: i }, player, event)) {
                     return true;
                 }
             }
@@ -55859,9 +55859,6 @@ const skill = {
         marktext: '协',
         intro: {
             name: '协力',
-            onunmark(storage, player) {
-                delete player.storage.qmm_xieli;
-            },
             mark(dialog, content, player) {
                 const storage = player.storage.qmm_xieli;
                 if (storage && storage.length) {

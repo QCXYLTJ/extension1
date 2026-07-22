@@ -6813,14 +6813,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         }
                                     } else dialog.addText('李在看肾么');
                                 },
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage = undefined;
-                                    }
-                                },
                             },
                             trigger: {
                                 player: 'phaseBegin',
@@ -7421,14 +7413,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '卒',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage = undefined;
-                                    }
-                                },
                             },
                             init(player) {
                                 if (!player.storage.paj_xx_Guibing) player.storage.paj_xx_Guibing = [];

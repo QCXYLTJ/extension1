@@ -3312,16 +3312,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('ls_jinfan');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('ls_jinfan');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             mod: {
                                 aiOrder(player, card, num) {
@@ -3460,16 +3450,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('ls_jinfan1');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('ls_jinfan1');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             mod: {
@@ -3729,14 +3709,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 order: 7,
@@ -8865,9 +8837,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '备',
                             intro: {
                                 content: '$',
-                                onunmark(storage, player) {
-                                    delete player.storage.xingqi;
-                                },
                             },
                             group: 'sl_xingqi_gain',
                             subSkill: {
@@ -10385,7 +10354,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         onunmark(storage, player) {
                                             player.removeAdditionalSkill('sl_zhaohuang_equip');
-                                            delete player.storage.sl_zhaohuang_equip;
                                             player.addEquipTrigger();
                                         },
                                     },

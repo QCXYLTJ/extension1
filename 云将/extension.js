@@ -22049,7 +22049,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 },
                                 onunmark(storage, player) {
                                     player.removeAdditionalSkill('yunxiemu_equip');
-                                    delete player.storage.yunxiemu_equip2;
                                     player.addEquipTrigger();
                                 },
                             },

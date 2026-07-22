@@ -2838,14 +2838,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             marktext: '✦',
                             intro: {
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {
@@ -4748,14 +4740,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             subSkill: {
                                 discard: {
@@ -13820,9 +13804,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         lg_yinsezhiyi2: {
                             intro: {
                                 content: 'card',
-                                onunmark(storage, player) {
-                                    delete player.storage.lg_yinsezhiyi2;
-                                },
                             },
                             mark: 'card',
                             trigger: {
@@ -19614,14 +19595,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '✦',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             group: 'lg_baiyanlong_phase',
                             subSkill: {

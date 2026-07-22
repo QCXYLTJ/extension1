@@ -650,9 +650,6 @@ export function gelinPack(lib, game, ui, get, ai, _status, datasrc) {
 					}
 					return '你独自处于阵法队列当中';
 				},
-				onunmark(storage, player) {
-					delete player.storage.gl_zhenfa;
-				},
 			},
 		};
 		lib.translate.gl_zhenfa = '阵法';

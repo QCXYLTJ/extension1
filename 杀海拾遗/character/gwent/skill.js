@@ -1491,12 +1491,6 @@ const skill = {
 					return "当一名敌方角色使用与“幻术”牌颜色相同的锦囊牌时，移去“幻术”牌，取消锦囊的效果，并摸两张牌";
 				}
 			},
-			onunmark(storage, player) {
-				if (storage) {
-					storage.discard();
-					delete player.storage.huanshu2;
-				}
-			},
 		},
 		trigger: { global: "useCard" },
 		forced: true,

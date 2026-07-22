@@ -10390,14 +10390,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '箜弼',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                         },
                         szdl_liangyin: {
@@ -12561,14 +12553,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             intro: {
                                 content: 'cardCount',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             content() {
                                 if (player.storage.szdl_qiulong2) {
@@ -16668,16 +16652,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('szdl_jinfan');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('szdl_jinfan');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             mod: {
@@ -32570,16 +32544,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('szdl_newlongdan2');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('szdl_newlongdan2');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             mod: {

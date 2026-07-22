@@ -39723,7 +39723,6 @@ export async function precontent(config, pack) {
                 },
                 onunmark(storage, player) {
                     player.removeAdditionalSkill('syr_AWand_equip');
-                    delete player.storage.syr_AWand_equip;
                     player.addEquipTrigger();
                 },
             },

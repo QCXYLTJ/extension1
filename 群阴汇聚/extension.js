@@ -8521,14 +8521,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                         },
                         intro: {
                             content: 'cards',
-                            onunmark(storage, player) {
-                                if (storage && storage.length) {
-                                    player.$throw(storage, 1000);
-                                    game.cardsDiscard(storage);
-                                    game.log(storage, '被置入了弃牌堆');
-                                    player.storage.tuntian.length = 0;
-                                }
-                            },
                         },
                         group: 'diy_retuntian_draw',
                         subSkill: {

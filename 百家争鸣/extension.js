@@ -14915,7 +14915,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             forced: true,
                             content() {
-                                'step 0';
                                 event.cards = get.cards(1);
                                 player.showCards(event.cards);
                                 player.gain(event.cards, 'gain2');
@@ -14933,7 +14932,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 } else {
                                     player.loseHp();
                                 }
-                                ('step 1');
                             },
                         },
 
@@ -30119,14 +30117,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        player.storage.bjzm献城.length = 0;
-                                    }
-                                },
                             },
                             group: ['bjzm献城交给他人献', 'bjzm献城去除标记'],
                             ai: {

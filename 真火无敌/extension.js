@@ -13688,7 +13688,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         onunmark(storage, player) {
                                             player.removeAdditionalSkill('ymyizhong_equip');
-                                            delete player.storage.ymyizhong_equip2;
                                             player.addEquipTrigger();
                                         },
                                     },
@@ -15179,7 +15178,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         },
                                         onunmark(storage, player) {
                                             player.removeAdditionalSkill('ymyuhun_equip');
-                                            delete player.storage.ymyuhun_equip;
                                             player.addEquipTrigger();
                                         },
                                     },

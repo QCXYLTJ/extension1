@@ -4881,14 +4881,6 @@ const skill = {
 		},
 		intro: {
 			content: 'cardCount',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					player.storage.lg_falu.length = 0;
-				}
-			},
 		},
 		marktext: '仪',
 		popup: false,
@@ -9237,14 +9229,6 @@ const skill = {
 		},
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		marktext: '忧',
 		trigger: {
@@ -20696,14 +20680,6 @@ const skill = {
 		},
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		subSkill: {
 			discard: {
@@ -24684,13 +24660,6 @@ const skill = {
 		group: ['lg_xiongyong2', 'lg_xiongyong3'],
 		mark: true,
 		intro: {
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					storage.length = 0;
-				}
-			},
 			mark(dialog, content, player) {
 				if (content && content.length) {
 					if (player == game.me || player.isUnderControl()) {
@@ -25308,14 +25277,6 @@ const skill = {
 				},
 				intro: {
 					content: 'cards',
-					onunmark(storage, player) {
-						if (storage && storage.length) {
-							player.$throw(storage, 1000);
-							game.cardsDiscard(storage);
-							game.log(storage, '被置入了弃牌堆');
-							storage.length == 0;
-						}
-					},
 				},
 			},
 		},
@@ -31150,9 +31111,6 @@ const skill = {
 	lg_zhenjun2: {
 		intro: {
 			content: 'card',
-			onunmark(storage, player) {
-				delete player.storage.lg_zhenjun2;
-			},
 		},
 		mark: 'card',
 		trigger: {
@@ -38089,14 +38047,6 @@ const skill = {
 		},
 		intro: {
 			content: 'cards',
-			onunmark(storage, player) {
-				if (storage && storage.length) {
-					player.$throw(storage, 1000);
-					game.cardsDiscard(storage);
-					game.log(storage, '被置入了弃牌堆');
-					storage.length = 0;
-				}
-			},
 		},
 		audio: 'ext:千秋霸业/Centuries:2',
 		trigger: {

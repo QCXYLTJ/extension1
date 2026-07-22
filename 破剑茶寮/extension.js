@@ -6092,16 +6092,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('shizhizhiwu');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('shizhizhiwu');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             ai: {
                                 result: {
@@ -6345,16 +6335,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('renjudashi');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('renjudashi');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                                 content: 'limited',
                             },
                             mark: true,
@@ -6590,16 +6570,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('cidunshajin');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('cidunshajin');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             ai: {

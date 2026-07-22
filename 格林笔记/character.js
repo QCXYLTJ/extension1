@@ -1312,15 +1312,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				marktext: '果',
 				intro: {
 					content: 'cards',
-					onunmark(storage, player) {
-						if (storage && storage.length) {
-							player.$throw(storage, 1000);
-							game.cardsDiscard(storage);
-							game.log(storage, '被置入了弃牌堆');
-							storage.length = 0;
-						}
-						player.storage.gl_duguo2 = [];
-					},
 					mark(dialog, content, player) {
 						if (content && content.length) {
 							dialog.add('你的回合内,你不用此法不能使用或打出手牌;出牌阶段限3次,你可以将1张手牌当以下1张牌使用');
@@ -1619,10 +1610,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							content(storage, player) {
 								if (player.storage.gl_huanmo_lose) return '幻沫已失效';
 								return '本回合已因此法弃置的花色:' + get.translation(player.storage.gl_huanmo);
-							},
-							onunmark(storage, player) {
-								player.storage.gl_huanmo = [];
-								delete player.storage.gl_huanmo_lose;
 							},
 						},
 						charlotte: true,
@@ -2220,14 +2207,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						},
 						intro: {
 							content: 'cards',
-							onunmark(storage, player) {
-								if (storage && storage.length) {
-									player.$throw(storage, 1000);
-									game.cardsDiscard(storage);
-									game.log(storage, '被置入了弃牌堆');
-									player.storage.gl_huoxin_gain.length = 0;
-								}
-							},
 						},
 					},
 				},

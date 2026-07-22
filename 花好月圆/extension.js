@@ -4744,14 +4744,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '大雾',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 maixie: true,
@@ -4870,14 +4862,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 maixie: true,
@@ -6256,14 +6240,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             intro: {
                                 content: 'cardCount',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        player.storage.mou_qianxun3.length = 0;
-                                    }
-                                },
                             },
                         },
                         mou_lianying: {

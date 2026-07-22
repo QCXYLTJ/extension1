@@ -3017,15 +3017,6 @@ export default function () {
                         yue_weilaijizai2: {
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length == 0;
-                                    }
-                                    delete player.storage.yue_weilaijizai2_markcount;
-                                },
                             },
                         },
                         yue_bingjiekuilei: {
@@ -3357,16 +3348,6 @@ export default function () {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('yue_fengjiezhu');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('yue_fengjiezhu');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             filter(event, player) {
@@ -13633,16 +13614,6 @@ export default function () {
                                         return card.hasGaintag('msnwhj_wanhuajing');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('msnwhj_wanhuajing');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             mod: {
                                 aiOrder(player, card, num) {
@@ -14086,16 +14057,6 @@ export default function () {
                                         return card.hasGaintag('fg_wangzhicaibao');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('fg_wangzhicaibao');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                         },
                         fg_zhibao: {
@@ -14499,16 +14460,6 @@ export default function () {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('jjbsy_shenbi');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('jjbsy_shenbi');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                         },
@@ -23684,16 +23635,6 @@ export default function () {
                                                 return card.hasGaintag('bg_haoshuang_pai');
                                             }).length;
                                         },
-                                        onunmark(storage, player) {
-                                            var cards = player.getCards('s', function (card) {
-                                                return card.hasGaintag('bg_haoshuang_pai');
-                                            });
-                                            if (cards.length) {
-                                                player.lose(cards, ui.discardPile);
-                                                player.$throw(cards, 1000);
-                                                game.log(cards, '进入了弃牌堆');
-                                            }
-                                        },
                                     },
                                     mod: {
                                         aiOrder(player, card, num) {
@@ -31412,16 +31353,6 @@ export default function () {
                                         return card.hasGaintag('dmb_zidan');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('dmb_zidan');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             mod: {
                                 aiOrder(player, card, num) {
@@ -32083,16 +32014,6 @@ export default function () {
                                             return player.getCards('s', function (card) {
                                                 return card.hasGaintag('djay_rexingyong_pai');
                                             }).length;
-                                        },
-                                        onunmark(storage, player) {
-                                            var cards = player.getCards('s', function (card) {
-                                                return card.hasGaintag('djay_rexingyong_pai');
-                                            });
-                                            if (cards.length) {
-                                                player.lose(cards, ui.discardPile);
-                                                player.$throw(cards, 1000);
-                                                game.log(cards, '进入了弃牌堆');
-                                            }
                                         },
                                     },
                                     sourceSkill: 'djay_rexingyong',
@@ -32786,16 +32707,6 @@ export default function () {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('fg_qidao');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('fg_qidao');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             mod: {

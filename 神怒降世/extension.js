@@ -4311,14 +4311,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 							},
 							intro: {
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 								mark(dialog, content, player) {
 									if (content && content.length) {
 										if (player == game.me || player.isUnderControl()) {
@@ -14094,14 +14086,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return get.translation(content);
 										}
 										return '共有' + get.cnNumber(content.length) + '张「容华」';
-									}
-								},
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
 									}
 								},
 							},
@@ -24782,14 +24766,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									marktext: '符',
 									intro: {
 										content: 'cards',
-										onunmark(storage, player) {
-											if (storage && storage.length) {
-												player.$throw(storage, 1000);
-												game.cardsDiscard(storage);
-												game.log(storage, '被置入了弃牌堆');
-												storage.length = 0;
-											}
-										},
 									},
 									trigger: {
 										player: 'die',
@@ -28657,13 +28633,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										delete player.storage.snjs_oldbuqu;
-									}
-								},
 							},
 						},
 						snjs_oldbuqu2: {
@@ -32310,14 +32279,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							marktext: '令',
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							trigger: {
 								global: 'roundStart',
@@ -71805,14 +71766,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							mark: true,
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							trigger: {
 								player: 'phaseDrawBegin2',
@@ -72047,14 +72000,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							mark: true,
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							trigger: {
 								player: 'phaseDrawBegin2',
@@ -74174,14 +74119,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							marktext: '破军',
 							intro: {
 								name: '破军',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 								content: 'cardCount',
 							},
 						},

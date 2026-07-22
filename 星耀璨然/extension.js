@@ -4291,14 +4291,6 @@ export default async function () {
                     },
                     intro: {
                         content: 'cards',
-                        onunmark(storage, player) {
-                            if (storage && storage.length) {
-                                player.$throw(storage, 1000);
-                                game.cardsDiscard(storage);
-                                game.log(storage, '被置入了弃牌堆');
-                                storage.length = 0;
-                            }
-                        },
                     },
                     trigger: {
                         global: 'useCard2',
@@ -21084,10 +21076,6 @@ export default async function () {
                         mark(dialog, content, player) {
                             dialog.addSmall([player.storage.radiance_tongxie_source]);
                             dialog.addText('已因同协给出' + get.cnNumber(player.countMark('radiance_tongxie_af')) + '张牌');
-                        },
-                        onunmark(storage, player) {
-                            player.storage.radiance_tongxie_af = 0;
-                            delete player.storage.radiance_tongxie_source;
                         },
                     },
                     trigger: {

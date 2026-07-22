@@ -2595,14 +2595,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             content() {
                                 'step 0';
@@ -3479,14 +3471,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '仇',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             mod: {
                                 maxHandcard(player, num) {
@@ -6594,16 +6578,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('huangmai');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('huangmai');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             mod: {
                                 targetInRange(card, player) {
@@ -7287,14 +7261,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             marktext: '壶',
                             intro: {
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {
@@ -7599,16 +7565,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('yucai');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('yucai');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             mod: {
@@ -9096,15 +9052,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '雷楔',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length == 0;
-                                            }
-                                            delete player.storage.leili_mark_markcount;
-                                        },
                                     },
                                 },
                                 sha: {
@@ -9487,15 +9434,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '度厄真符',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length == 0;
-                                            }
-                                            delete player.storage.due_2_markcount;
-                                        },
                                     },
                                 },
                                 damage: {
@@ -9884,14 +9822,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             mod: {
                                 maxHandcard(player, num) {
@@ -10066,14 +9996,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             init(player, skill) {
                                 player.storage.kong_lvli = [];

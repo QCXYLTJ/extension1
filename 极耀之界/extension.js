@@ -5995,16 +5995,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('tx_standard_kongcheng');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('tx_standard_kongcheng');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                             mod: {
                                 targetEnabled(card, player, target, now) {
@@ -19941,14 +19931,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             trigger: {
                                 source: 'damageSource',
@@ -26929,9 +26911,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '备',
                             intro: {
                                 content: '$',
-                                onunmark(storage, player) {
-                                    delete player.storage.tx_shiji_xingqi;
-                                },
                             },
                             group: 'tx_shiji_xingqi_1',
                             subSkill: {
@@ -30697,16 +30676,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('tx_jxdj_jinfan');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('tx_jxdj_jinfan');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             group: 'tx_jxdj_jinfan_1',

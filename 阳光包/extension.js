@@ -2103,14 +2103,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                             if (!player.storage.ygbhuanyu_conditions) return 0;
                                             return player.storage.ygbhuanyu_conditions.length;
                                         },
-                                        onunmark(storage, player) {
-                                            if (storage) {
-                                                player.$throw([storage]);
-                                                game.cardsDiscard([storage]);
-                                                game.log('「星」', storage, '被置入了弃牌堆.');
-                                                delete player.storage.ygbhuanyu_xing;
-                                            }
-                                        },
                                     },
                                 },
                             },
@@ -3338,16 +3330,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     return player.getCards('s', function (card) {
                                         return card.hasGaintag('ygbtianji_zhangning');
                                     }).length;
-                                },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('ygbtianji_zhangning');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
                                 },
                             },
                             subSkill: {
@@ -11783,14 +11765,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '弦',
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             init(player) {
                                 if (!player.storage.ygbningxian) player.storage.ygbningxian = [];
@@ -16770,14 +16744,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             charlotte: true,
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             content() {
                                 'step 0';

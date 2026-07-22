@@ -2939,14 +2939,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '魂',
                             intro: {
                                 name: '魂',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log('移出游戏的牌', storage, '被置入了弃牌堆');
-                                    }
-                                    delete player.storage.tstsilian_back;
-                                },
                                 content(storage, player) {
                                     if (player.isUnderControl(true)) {
                                         return get.translation(storage);
@@ -17242,14 +17234,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '弦',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage);
-                                        game.cardsDiscard(storage);
-                                        game.log('<弦>牌', storage, '被置入了弃牌堆.');
-                                        delete player.storage.zymjitayingxiong;
-                                    }
-                                },
                             },
                             filter(event, player) {
                                 return player.hasCard(function (card) {

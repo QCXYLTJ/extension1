@@ -13990,13 +13990,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '桃之夭夭',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage);
-                                                game.cardsDiscard(storage);
-                                                delete player.storage.guanfu_disrecover;
-                                            }
-                                        },
                                     },
                                     content() {
                                         'step 0';
@@ -17991,13 +17984,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '锦',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage);
-                                        game.cardsDiscard(storage);
-                                        delete player.storage.ssr_tieji;
-                                    }
-                                },
                             },
                             ai: {
                                 ignoreSkill: true,
@@ -19410,14 +19396,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '神威',
                                         content: 'cardCount',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                player.storage.ssr_shenwei_card.length = 0;
-                                            }
-                                        },
                                     },
                                 },
                                 sha: {
@@ -19837,14 +19815,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         var said = said + '<li>拥有' + get.translation(suit[i]) + '花色共' + suits[i] + '张';
                                     }
                                     return said;
-                                },
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
                                 },
                             },
                             ai: {
@@ -24329,14 +24299,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             mark: true,
                             intro: {
                                 name: '木牛流马',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                                 mark(dialog, content, player) {
                                     if (content && content.length) {
                                         if (player == game.me || player.isUnderControl()) {
@@ -25923,14 +25885,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     },
                                     intro: {
                                         name: '锦囊妙计',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length = 0;
-                                            }
-                                        },
                                         mark(dialog, content, player) {
                                             if (content && content.length) {
                                                 if (player == game.me || player.isUnderControl() || game.me.hasSkill('ssr_jinnang')) {
@@ -27148,13 +27102,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     marktext: '刃',
                                     intro: {
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage);
-                                                game.cardsDiscard(storage);
-                                                delete player.storage.ssr_lieren_en;
-                                            }
-                                        },
                                     },
                                 },
                             },
@@ -32358,14 +32305,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '粮草被截',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length = 0;
-                                            }
-                                        },
                                     },
                                 },
                                 break: {
@@ -34158,15 +34097,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 }
                                                 return '<li>来自' + get.translation(him.name) + '的咒缚';
                                             }
-                                        },
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log(storage, '被置入了弃牌堆');
-                                                storage.length == 0;
-                                            }
-                                            delete target.storage.ssr_guidao_zhou;
                                         },
                                     },
                                 },

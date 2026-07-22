@@ -13354,16 +13354,6 @@ const skills = {
 					return card.hasGaintag('PSreqianxun');
 				}).length;
 			},
-			onunmark(storage, player) {
-				var cards = player.getCards('s', function (card) {
-					return card.hasGaintag('PSreqianxun');
-				});
-				if (cards.length) {
-					player.lose(cards, ui.discardPile);
-					player.$throw(cards, 1000);
-					game.log(cards, '进入了弃牌堆');
-				}
-			},
 		},
 		ai: {
 			effect(card, player, target) {

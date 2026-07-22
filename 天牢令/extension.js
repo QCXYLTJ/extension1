@@ -4286,14 +4286,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '清侧',
                                 content: 'cardCount',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        player.storage.DIY_qingce2.length = 0;
-                                    }
-                                },
                             },
                         },
                         DIY_qingce3: {
@@ -4445,14 +4437,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             forced: true,
                             content() {
@@ -5972,14 +5956,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                             intro: {
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log(storage, '被置入了弃牌堆');
-                                        storage.length = 0;
-                                    }
-                                },
                             },
                             ai: {
                                 effect: {
@@ -19969,16 +19945,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         return card.hasGaintag('DIY_keji');
                                     }).length;
                                 },
-                                onunmark(storage, player) {
-                                    var cards = player.getCards('s', function (card) {
-                                        return card.hasGaintag('DIY_keji');
-                                    });
-                                    if (cards.length) {
-                                        player.lose(cards, ui.discardPile);
-                                        player.$throw(cards, 1000);
-                                        game.log(cards, '进入了弃牌堆');
-                                    }
-                                },
                             },
                         },
                         DIY_keji_gain: {
@@ -32943,10 +32909,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         content(storage, player) {
                                             return '当前拥有' + get.translation(player.storage.DIY_weifeng_mark.num) + '枚【惧(' + get.translation(player.storage.DIY_weifeng_mark.name) + ')】';
-                                        },
-                                        onunmark(storage, player) {
-                                            game.log(player, '移去了', get.translation(player.storage.DIY_weifeng_mark.num), '枚', '#g【惧(' + get.translation(player.storage.DIY_weifeng_mark.name) + ')】');
-                                            delete player.storage.DIY_weifeng_mark;
                                         },
                                         markcount(storage, player) {
                                             return player.storage.DIY_weifeng_mark.num;

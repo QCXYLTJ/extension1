@@ -19502,14 +19502,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										storage.length = 0;
-									}
-								},
 							},
 							content() {
 								'step 0';
@@ -21835,13 +21827,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										delete player.storage.upgrade_buqu;
-									}
-								},
 							},
 						},
 						upgrade_fenji: {
@@ -24971,14 +24956,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							mark: true,
 							intro: {
 								content: 'cardCount',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										player.storage.upgrade_qianxun2.length = 0;
-									}
-								},
 							},
 						},
 						upgrade_lianying: {
@@ -26044,14 +26021,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							intro: {
 								content: 'cards',
-								onunmark(storage, player) {
-									if (storage && storage.length) {
-										player.$throw(storage, 1000);
-										game.cardsDiscard(storage);
-										game.log(storage, '被置入了弃牌堆');
-										player.storage.upgrade_tuntian.length = 0;
-									}
-								},
 							},
 							group: 'upgrade_tuntian_dist',
 							subSkill: {

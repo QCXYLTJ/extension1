@@ -25548,14 +25548,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '暗鸦剑',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage);
-                                        game.cardsDiscard(storage);
-                                        game.log('暗鸦剑牌', storage, '被置入了弃牌堆.');
-                                        delete player.storage.xwjh_card_anyabianjian_skill_jian;
-                                    }
-                                },
                             },
                             init(player) {
                                 player.storage.xwjh_card_anyabianjian_skill_jian = [];
@@ -26902,17 +26894,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '玲珑箭',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage);
-                                        game.cardsDiscard(storage);
-                                        // for(var i=0;i<storage.length;i++){
-                                        //     storage[i].discard();
-                                        // }
-                                        game.log('玲珑箭', storage, '被置入了弃牌堆.');
-                                        delete player.storage.xwjh_card_linglongjijianhe_skill;
-                                    }
-                                },
                             },
                             ai: {
                                 order: 11,
@@ -36746,7 +36727,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 content: 'cards',
                                 onunmark(storage, player) {
                                     if (storage && storage.length) {
-                                        delete player.storage.xwjh_chiwang;
+                                        player.storage.xwjh_chiwang = [];
                                     }
                                 },
                             },
@@ -37385,14 +37366,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     markimage: 'extension/玄武江湖/image/xwjh_icon_leiquan_back.jpg',
                                     intro: {
                                         name: '雷拳',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage, 1000);
-                                                game.cardsDiscard(storage);
-                                                game.log('因雷拳而移出游戏的牌', storage, '被置入了弃牌堆.');
-                                            }
-                                            delete player.storage.xwjh_leiquan_back;
-                                        },
                                         content(storage, player) {
                                             if (player.isUnderControl(true)) {
                                                 return get.translation(storage);
@@ -37631,14 +37604,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '五音',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage);
-                                        game.cardsDiscard(storage);
-                                        game.log('<音>牌', storage, '被置入了弃牌堆.');
-                                        player.storage.xwjh_wuyin = [];
-                                    }
-                                },
                             },
                             filter(event, player) {
                                 return player.hasCard(function (card) {
@@ -38915,14 +38880,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             markimage: 'extension/玄武江湖/image/xwjh_icon_nixin.jpg',
                             intro: {
                                 name: '匿心',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log('【匿心】牌', storage, '被置入了弃牌堆.');
-                                    }
-                                    delete player.storage.xwjh_nixin;
-                                },
                                 content(storage, player) {
                                     if (player.isUnderControl(true)) {
                                         return get.translation(storage);
@@ -39618,14 +39575,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '金',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log('【金】', storage, '被置入了弃牌堆.');
-                                    }
-                                    delete player.storage.xwjh_shigulhq;
-                                },
                             },
                             usable: 1,
                             selectCard: [1, Infinity],
@@ -42107,12 +42056,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     }
                                     return '';
                                 },
-                                onunmark(storage, player) {
-                                    player.$throw(storage, 1000);
-                                    game.cardsDiscard(storage);
-                                    game.log('达智牌', storage, '被置入了弃牌堆');
-                                    delete player.storage.xwjh_dazhi;
-                                },
                                 mark(dialog, storage, player) {
                                     if (player.isUnderControl(true)) {
                                         if (player.storage.xwjh_dazhi && player.storage.xwjh_dazhi.length) {
@@ -44378,14 +44321,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return '信鸦牌';
                                             }
                                         },
-                                        onunmark(storage, player) {
-                                            if (player.storage.xwjh_xinya_ya) {
-                                                player.$throw([player.storage.xwjh_xinya_ya], 1000);
-                                                game.cardsDiscard([player.storage.xwjh_xinya_ya]);
-                                                game.log('信鸦牌', [player.storage.xwjh_xinya_ya], '被置入了弃牌堆');
-                                                delete player.storage.xwjh_xinya_ya;
-                                            }
-                                        },
                                         mark(dialog, storage, player) {
                                             if (game.me.hasSkill('xwjh_xinya')) {
                                                 if (player.storage.xwjh_xinya_ya) {
@@ -44892,9 +44827,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         name: '胧剑',
                                         content(storage) {
                                             return get.translation(storage) + '不是你使用牌的合法目标.';
-                                        },
-                                        onunmark(storage, player) {
-                                            delete player.storage.xwjh_longjian_long;
                                         },
                                     },
                                     mod: {
@@ -46796,14 +46728,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return get.translation(storage);
                                             } else {
                                                 return ['惹了本姑娘,有你苦头吃!', '设机关数百,虏凶兽众千!'].randomGet();
-                                            }
-                                        },
-                                        onunmark(storage, player) {
-                                            if (player.storage.xwjh_shexian_xian) {
-                                                player.$throw([player.storage.xwjh_shexian_xian], 1000);
-                                                game.cardsDiscard([player.storage.xwjh_shexian_xian]);
-                                                game.log('设陷牌', [player.storage.xwjh_shexian_xian], '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_shexian_xian;
                                             }
                                         },
                                         mark(dialog, storage, player) {
@@ -52417,14 +52341,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         content(storage) {
                                             return get.translation(storage);
                                         },
-                                        onunmark(storage, player) {
-                                            if (player.storage.xwjh_guimou_gui) {
-                                                player.$throw([player.storage.xwjh_guimou_gui], 1000);
-                                                game.cardsDiscard([player.storage.xwjh_guimou_gui]);
-                                                game.log('鬼谋牌', [player.storage.xwjh_guimou_gui], '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_guimou_gui;
-                                            }
-                                        },
                                         mark(dialog, storage, player) {
                                             if (player.storage.xwjh_guimou_gui) {
                                                 dialog.addAuto([player.storage.xwjh_guimou_gui]);
@@ -53562,14 +53478,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '忠烈',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard([storage]);
-                                        game.log('忠烈牌', storage, '被置入了弃牌堆.');
-                                        delete player.storage.xwjh_zhonglie;
-                                    }
-                                },
                             },
                             filter(event, player) {
                                 return event.num >= 1;
@@ -54610,14 +54518,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         name: '幕影',
                                         content(storage) {
                                             return get.translation(storage);
-                                        },
-                                        onunmark(storage, player) {
-                                            if (player.storage.xwjh_muying_ying) {
-                                                player.$throw([player.storage.xwjh_muying_ying], 1000);
-                                                game.cardsDiscard([player.storage.xwjh_muying_ying]);
-                                                game.log('幕影牌', [player.storage.xwjh_muying_ying], '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_muying_ying;
-                                            }
                                         },
                                         markcount(storage, player) {
                                             if (player.storage.xwjh_muying_ying) {
@@ -56096,14 +55996,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 mark(dialog, storage, player) {
                                     if (storage !== null) {
                                         dialog.addAuto([player.storage.xwjh_qiaoyu]);
-                                    }
-                                },
-                                onunmark(storage, player) {
-                                    if (player.storage.xwjh_qiaoyu) {
-                                        player.$throw(player.storage.xwjh_qiaoyu, 1000);
-                                        game.cardsDiscard([player.storage.xwjh_qiaoyu]);
-                                        game.log('【网】牌(巧渔)', player.storage.xwjh_qiaoyu, '被置入了弃牌堆.');
-                                        delete player.storage.xwjh_qiaoyu;
                                     }
                                 },
                             },
@@ -64144,14 +64036,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '节用',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage, 1000);
-                                        game.cardsDiscard(storage);
-                                        game.log('节用牌', storage, '被置入了弃牌堆.');
-                                    }
-                                    delete player.storage.xwjh_jieyong;
-                                },
                             },
                             prompt(event, player) {
                                 return '是否发动【节用】,将' + get.translation(event.cards) + '放在武将牌上？';
@@ -64402,14 +64286,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '俘',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage);
-                                                game.cardsDiscard(storage);
-                                                game.log('【俘】', storage, '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_shewei_fu;
-                                            }
-                                        },
                                     },
                                     init(player) {
                                         player.storage.xwjh_shewei_fu = [];
@@ -66683,14 +66559,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     intro: {
                                         name: '堰',
                                         content: 'cards',
-                                        onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage);
-                                                game.cardsDiscard(storage);
-                                                game.log('【堰】牌', storage, '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_xiuyan_yan;
-                                            }
-                                        },
                                     },
                                     trigger: {
                                         player: ['damage', 'phaseJieshuEnd'],
@@ -68935,15 +68803,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         name: '绝棋',
                                         content: 'cards',
                                         onunmark(storage, player) {
-                                            if (storage && storage.length) {
-                                                player.$throw(storage);
-                                                game.cardsDiscard(storage);
-                                                game.log('绝棋牌', storage, '被置入了弃牌堆.');
-                                                delete player.storage.xwjh_jueqi_jue;
-                                            }
                                             if (player.storage.xwjh_jueqi_cards) {
                                                 lib.skill.xwjh_jueqi.put_back_cards(player.storage.xwjh_jueqi_cards);
-                                                delete player.storage.xwjh_jueqi_cards;
                                             }
                                         },
                                     },
@@ -69025,14 +68886,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             intro: {
                                 name: '奴',
                                 content: 'cards',
-                                onunmark(storage, player) {
-                                    if (storage && storage.length) {
-                                        player.$throw(storage);
-                                        game.cardsDiscard(storage);
-                                        game.log('【奴】', storage, '被置入了弃牌堆.');
-                                        delete player.storage.xwjh_yinu;
-                                    }
-                                },
                             },
                             filter(event, player) {
                                 return player.countCards('h', { color: 'black' });

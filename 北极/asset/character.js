@@ -11139,16 +11139,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                             return card.hasGaintag('bjhaiyun1');
                         }).length;
                     },
-                    onunmark(storage, player) {
-                        var cards = player.getCards('s', function (card) {
-                            return card.hasGaintag('bjhaiyun1');
-                        });
-                        if (cards.length) {
-                            player.lose(cards, ui.discardPile);
-                            player.$throw(cards, 1000);
-                            game.log(cards, '进入了弃牌堆');
-                        }
-                    },
                 },
                 mod: {
                     aiOrder(player, card, num) {
@@ -11415,16 +11405,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                         return player.getCards('s', function (card) {
                             return card.hasGaintag('bjhaiyun1');
                         }).length;
-                    },
-                    onunmark(storage, player) {
-                        var cards = player.getCards('s', function (card) {
-                            return card.hasGaintag('bjhaiyun1');
-                        });
-                        if (cards.length) {
-                            player.lose(cards, ui.discardPile);
-                            player.$throw(cards, 1000);
-                            game.log(cards, '进入了弃牌堆');
-                        }
                     },
                 },
                 mod: {

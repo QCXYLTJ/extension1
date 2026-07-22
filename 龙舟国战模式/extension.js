@@ -15719,7 +15719,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													},
 													onunmark(storage, player) {
 														player.removeSkill(skill + 'charactercard');
-														delete player.storage.charactercard;
 													},
 												},
 											};

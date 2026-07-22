@@ -2314,12 +2314,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									marktext: '惧',
 									intro: {
 										content: '当前<惧>标记名称:$',
-										onunmark(storage, player) {
-											if (player.storage.god_zhangliao_weifeng_mark) {
-												game.log(player, '移去了一个', '#g【惧(' + get.translation(player.storage.god_zhangliao_weifeng_mark) + ')】', '标记');
-												delete player.storage.god_zhangliao_weifeng_mark;
-											}
-										},
 									},
 								},
 								damage: {

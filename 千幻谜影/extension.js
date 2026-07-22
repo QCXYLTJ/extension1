@@ -2618,9 +2618,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             marktext: '威风',
                             intro: {
                                 content: '已记录:$',
-                                onunmark(storage, player) {
-                                    delete player.storage.qhmyweifeng;
-                                },
                             },
                             group: ['qhmyweifeng_draw', 'qhmyweifeng_add'],
                             subSkill: {
