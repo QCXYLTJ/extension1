@@ -1093,7 +1093,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					get() {
 						return ['wei', 'shu', 'wu', 'qun', 'jin'];
 					},
-					set() {},
+					set() { },
 				});
 				lib.skill._GFSL = {
 					trigger: {
@@ -3613,7 +3613,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return 1 - get.value(card);
 								},
 								viewAs: { name: links[0][2], nature: links[0][3] },
-								precontent() {},
+								precontent() { },
 							};
 						},
 						prompt(links, player) {
@@ -3773,7 +3773,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										translate: lib.translate[newName],
 										info: lib.translate[`${newName}_info`],
 									});
-								} catch (e) {}
+								} catch (e) { }
 							}
 							var card = cards[0].init({ name: newName, suit: cards[0].suit, number: cards[0].number });
 							if (lib.config.background_audio) {
@@ -5193,7 +5193,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											name: links[0][2],
 											nature: links[0][3],
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -5658,7 +5658,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return 12 - get.value(card);
 										},
 										viewAs: { name: links[0][2], nature: links[0][3] },
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -10230,7 +10230,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													name: links[0][2],
 													nature: links[0][3],
 												},
-												precontent() {},
+												precontent() { },
 											};
 										},
 										prompt(links, player) {
@@ -21344,7 +21344,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										viewAs: { name: links[0][2], nature: links[0][3] },
 										popname: true,
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -26750,7 +26750,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('norestore', true);
 									next.set('addCount', false);
 									next.set('_backupevent', 'dshj_mozhi_backup');
-									next.set('custom', { add: {}, replace: { window() {} } });
+									next.set('custom', { add: {}, replace: { window() { } } });
 									next.backup('dshj_mozhi_backup');
 								} else {
 									event.goto(2);
@@ -26773,7 +26773,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filterTarget(card, player, target) {
 										return lib.filter.targetEnabledx(card, player, target) && lib.filter.targetInRange(card, player, target);
 									},
-									precontent() {},
+									precontent() { },
 								},
 								check: {
 									trigger: {
@@ -28673,7 +28673,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 											return 5 - get.value(card);
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links) {
@@ -30551,7 +30551,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										check(card, player, target) {
 											return 7 - get.value(card);
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -31084,7 +31084,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										check(card, player, target) {
 											return 7 - get.value(card);
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -31856,7 +31856,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											player.countCards('hs', function (card) {
 												return get.tag(card, 'recover') && get.type(card) == 'basic' && player.canUse(card, player);
 											}) +
-												player.hp >
+											player.hp >
 											0
 										) {
 											return 0;
@@ -32714,8 +32714,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							prompt2(event, player) {
 								let num = game.countPlayer(function (current) {
-										return current.group == 'shu';
-									}),
+									return current.group == 'shu';
+								}),
 									str = `令${get.translation(event.player)}摸${num * 2}张牌并回复体力至${num}点`;
 								str += ',令其复原武将牌并获得〖当先〗,最后你失去〖伏枥〗并获得〖尚战〗';
 								return str;
@@ -33228,7 +33228,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												position: 'h',
 												popname: true,
 												viewAs: { name: links[0][2] },
-												precontent() {},
+												precontent() { },
 											};
 										},
 										prompt(links, player) {
@@ -35087,7 +35087,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										check(card, player, target) {
 											return 8 - get.value(card);
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -39637,7 +39637,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										check(card, player, target) {
 											return 8 - get.value(card);
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -43283,7 +43283,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										viewAs: { name: links[0][2], nature: links[0][3] },
 										position: 'hes',
 										popname: true,
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -46209,7 +46209,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							ai: {
 								effect: {
 									player(card, player, target) {
-										if (get.tag(card, 'damage') && !target.inRangeOf(player)) {
+										if (get.tag(card, 'damage') && !target?.inRangeOf(player)) {
 											return 0;
 										}
 									},
@@ -47269,7 +47269,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('norestore', true);
 									next.set('addCount', false);
 									next.set('_backupevent', 'dshj_shehu_backup');
-									next.set('custom', { add: {}, replace: { window() {} } });
+									next.set('custom', { add: {}, replace: { window() { } } });
 									next.backup('dshj_shehu_backup');
 								}
 							},
@@ -47287,7 +47287,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									check(card) {
 										return 7 - get.value(card);
 									},
-									precontent() {},
+									precontent() { },
 								},
 								Doing: {
 									trigger: {
@@ -48652,7 +48652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												viewAs: { name: links[0][2], nature: links[0][3] },
 												position: 'hes',
 												popname: true,
-												precontent() {},
+												precontent() { },
 											};
 										},
 										prompt(links, player) {
@@ -55522,8 +55522,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										precontent() {
 											'step 0';
 											let cards = player.getCards('hes', function (card) {
-													return get.color(card) == 'red';
-												}),
+												return get.color(card) == 'red';
+											}),
 												name = event.result.card.name,
 												forced = false;
 											if (!player.hasMark('dshj_qingnang')) {
@@ -56062,7 +56062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										ai1(card) {
 											return 7 - _status.event.player.getUseValue(card, null, true);
 										},
-										precontent() {},
+										precontent() { },
 									};
 									if (_status.event.dshj_jianying_suit) {
 										next.viewAs.suit = _status.event.dshj_jianying_suit;
@@ -58172,7 +58172,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										viewAs: { name: links[0][2], nature: links[0][3] },
 										position: 'hes',
 										popname: true,
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -62191,7 +62191,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('_backupevent', 'dshj_channi_backup');
 									next.set('custom', {
 										add: {},
-										replace: { window() {} },
+										replace: { window() { } },
 									});
 									next.backup('dshj_channi_backup');
 								} else {
@@ -62251,7 +62251,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 										return 6 - get.value(card);
 									},
-									precontent() {},
+									precontent() { },
 									ai: {
 										wuxie(target, card, player, viewer, status) {
 											if (player === game.me && get.attitude(viewer, player._trueMe || player) > 0) {
@@ -64812,7 +64812,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									position: 'hes',
 									filterCard: true,
 									enable: 'phaseUse',
-									prepare(cards, player, targets) {},
+									prepare(cards, player, targets) { },
 									prompt() {
 										const player = _status.event.player;
 										const list = game.filterPlayer(function (target) {
@@ -65963,7 +65963,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											name: links[0][2],
 											nature: links[0][3],
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -67586,7 +67586,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									next.set('_backupevent', 'dshj_jiexuan_backup');
 									next.set('custom', {
 										add: {},
-										replace: { window() {} },
+										replace: { window() { } },
 									});
 									next.backup('dshj_jiexuan_backup');
 								}
@@ -67617,7 +67617,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									check(card) {
 										return 8 - get.value(card);
 									},
-									precontent() {},
+									precontent() { },
 								},
 							},
 						},
@@ -68338,7 +68338,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											next.set('norestore', true);
 											next.set('addCount', false);
 											next.set('_backupevent', 'dshj_shenjun_backup');
-											next.set('custom', { add: {}, replace: { window() {} } });
+											next.set('custom', { add: {}, replace: { window() { } } });
 											next.backup('dshj_shenjun_backup');
 										}
 									},
@@ -68357,7 +68357,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filterTarget(card, player, target) {
 										return lib.filter.targetEnabledx(card, player, target) && lib.filter.targetInRange(card, player, target);
 									},
-									precontent() {},
+									precontent() { },
 								},
 								remove: {
 									trigger: {
@@ -71083,8 +71083,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								next.set('processAI', function (list) {
 									const cards = list[0][1].slice(0).sort(function (a, b) {
-											return get.value(b) - get.value(a);
-										}),
+										return get.value(b) - get.value(a);
+									}),
 										gains = [];
 									for (const i of cards) {
 										if (i.suit != _status.event.suit) {
@@ -71486,8 +71486,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								const a = game.countPlayer(function (current) {
-										return current.group == 'wei';
-									}),
+									return current.group == 'wei';
+								}),
 									b = game.countPlayer(function (current) {
 										return current.group == 'shu';
 									}),
@@ -75549,7 +75549,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											name: links[0][2],
 											nature: links[0][3],
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -76670,7 +76670,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										viewAs: { name: links[0][2], nature: links[0][3] },
 										position: 'hs',
 										popname: true,
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -78846,7 +78846,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										check(card, player, target) {
 											return 7 - get.value(card);
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -79065,8 +79065,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return 1;
 									})
 									.set('callback', lib.skill.dshj_SNhuishi.callback).judge2 = function (result) {
-									return result.bool ? true : false;
-								};
+										return result.bool ? true : false;
+									};
 								('step 2');
 								var cards = cards.filterInD();
 								if (cards.length) {
@@ -79647,7 +79647,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filter(event, player) {
 										return event.card && event.card.name == 'sha' && event.card.nature == 'fire';
 									},
-									content() {},
+									content() { },
 									mod: {
 										cardname(card, player) {
 											if (get.color(card) == 'red') {
@@ -79682,7 +79682,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									filter(event, player) {
 										return event.card && event.card.name == 'sha' && event.card.nature == 'thunder';
 									},
-									content() {},
+									content() { },
 									mod: {
 										cardname(card, player) {
 											if (get.color(card) == 'black') {
@@ -80694,7 +80694,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										evt.set('norestore', true);
 										evt.set('custom', {
 											add: {},
-											replace: { window() {} },
+											replace: { window() { } },
 										});
 									} else {
 										evt.result.card = {
@@ -83169,7 +83169,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											name: links[0][2],
 											nature: links[0][3],
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -84737,10 +84737,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set(
 										'allUse',
 										player.getExpansions('dshj_qixing').length >=
-											game.countPlayer(function (current) {
-												return get.attitude(player, current) > 4;
-											}) *
-												2,
+										game.countPlayer(function (current) {
+											return get.attitude(player, current) > 4;
+										}) *
+										2,
 									);
 								('step 1');
 								if (result.targets?.length) {
@@ -89886,7 +89886,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										filterCard: { name: 'dshj_mofang' },
 										viewAs: { name: links[0][2], nature: links[0][3] },
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -90036,7 +90036,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										filterCard: { name: 'dshj_jiandun' },
 										viewAs: { name: links[0][2], nature: links[0][3] },
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -92458,7 +92458,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											name: links[0][2],
 											nature: links[0][3],
 										},
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
