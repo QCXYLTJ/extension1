@@ -448,20 +448,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				};
 			}
 			// --------------------------------------挑战主代码------------------------------------------//
-			/*	lib.skill._lqtz_wuxian':{
-			trigger: {
-			player:'dieBefore',
-			},
-			filter(event, player) {
-			if(get.mode()!='boss') return false;
-			if(lib.config.qinyin.langyin.length>10) return false
-			return player.name=='lqtz_langqinyu';
-			},
-			forced: true,
-			content() {
-			game.lqy_gain(player.name);
-			},
-			},*/
+
 			const pian = lib.config.extension_浪琴天阙_lqtq_shanhaizhiyi_pian,
 				pian1 = lib.config.extension_浪琴天阙_lqtq_langqintianque_pian,
 				pia = lib.translate.lqtz_shanhai_info,
@@ -894,7 +881,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						filter() {
 							game.sort();
 						},
-						content() {},
+						content() { },
 					}; //排座位
 					let _me;
 					Reflect.defineProperty(game, 'me', {
@@ -1003,7 +990,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							cards: [],
 						},
 						gaintag: [],
-						forResult() {},
+						forResult() { },
 					};
 					game.changeBossQ = function (name) {
 						_status.event.forceDie = true;
@@ -1134,19 +1121,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.init('lqtq_baibanbiao');
 							},
 						}, //测试
-						/*	_cheshi:{
-							trigger: {
-							global:'phaseBefore'
-							},
-							filter:function (event,player){
-							return player==game.me
-							},
-							content() {
-							game.log(lib.character.lqtz_huorenfenshaolieying[3])
-							game.log(lib.character.lqtz_huorenfenshaolieying[3].length)
-							game.log(get.translation(lib.character.lqtz_huorenfenshaolieying[3]).length)
-							},
-							},*/
+
 						//浪琴天阙技能
 						lqtq_longling: {
 							audio: 'ext:浪琴天阙/audio:2',
@@ -1953,7 +1928,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										},
 										position: 'hes',
 										viewAs: { name: links[0][2], nature: links[0][3] },
-										onuse(result, player) {},
+										onuse(result, player) { },
 									};
 								},
 								prompt(links, player) {
@@ -2030,7 +2005,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											next.set('_backupevent', 'lqtq_huiyix');
 											next.set('custom', {
 												add: {},
-												replace: { window() {} },
+												replace: { window() { } },
 											});
 											next.backup('lqtq_huiyix');
 										}
@@ -5355,7 +5330,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return true;
 										},
 										viewAs: { name: links[0][2], nature: links[0][3] },
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -7236,16 +7211,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								for (const i of lib.inpile) {
-									for (const j of lib.translate[i]) {
-										if (k.includes(j)) {
-											l.add(i);
+									if (typeof lib.translate[i] == 'string') {
+										for (const j of lib.translate[i]) {
+											if (k.includes(j)) {
+												l.add(i);
+											}
 										}
-									}
-									if (lib.translate[i].length == 4 && !l.includes(i)) {
-										a.add(i);
-									}
-									if (get.type2(i) != 'basic' && lib.translate[i].length != 4 && !l.includes(i)) {
-										b.add(i);
+										if (lib.translate[i].length == 4 && !l.includes(i)) {
+											a.add(i);
+										}
+										if (get.type2(i) != 'basic' && lib.translate[i].length != 4 && !l.includes(i)) {
+											b.add(i);
+										}
 									}
 								}
 								a = a.randomGet();
@@ -7287,82 +7264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.list = [];
 							},
 						},
-						/*
-						event.count--
-						var dialog=ui.create.dialog('<font size=6><b>星辰</b></font>','hidden');
-						var a=[],b=[],c=[],d=[],e=[],f=[],g=[],h=['sha','sha','sha','shan','shan','tao','jiu'].randomGet(),k=[],l=[]
-						d.push(get.translation(h))
-						for(let i of ['杀','闪','桃','酒']) if(i!=h) k.push(i)
-						for(var i of lib.inpile){
-						for(let j of lib.translate[i]) if(k.includes(j)) l.add(i)
-						if(lib.translate[i].length==4&&!l.includes(i)) a.add(i);
-						if(get.type2(i)!='basic'&&lib.translate[i].length!=4&&!l.includes(i)) b.add(i);
-						}
-						a=a.randomGet()
-						b=b.randomGet()
-						for(let i of get.translation(a)) if(!d.includes(i)){d.push(i);e.push(i);}
-						for(let i of get.translation(b)) if(!d.includes(i)){d.push(i);f.push(i);}
-						dialog.add('<b><font color=#F08080>按卡牌名称顺序选择文字组合成卡牌(提示:</font><font color=#eeee00>'+e.randomGet()+'</font><font color=#F08080>/</font><font color=#eeee00>'+f.randomGet()+'</font><font color=#F08080>)</font>');
-						for(var i of lib.inpile) if(get.type(i)!='basic') g.push(lib.translate[i])
-						for(let l of g) if(l) for(let j of l) if(!d.includes(j)) c.add(j);
-						c=c.randomGets(50-d.length)
-						for(var i=0;i<c.length;i++) d.push(c[i])
-						d.randomSort()//打乱
-						event.list=[]
-						for(var i in lib.card) event.list.push(i);
-						var yi=document.createElement('div');
-						yi.classList.add('add-setting');
-						yi.style.margin='0';
-						yi.style.width='100%';
-						yi.style.position='relative';
-						for(var i=0;i<d.length;i++){
-						var td=ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
-						td.innerHTML='<font size=5><b><font color=#eeee00>'+d[i]+'</b></font>'
-						td.link=d[i];
-						td.addEventListener(lib.config.touchscreen?'touchend':'click',ui.click.button);
-					   Object.setPrototypeOf(td, lib.element.Button.prototype);//QQQ
-						yi.appendChild(td);
-						dialog.buttons.add(td);
-						}
-						dialog.content.appendChild(yi);
-						var chooseButton=player.chooseButton(true,[1,Infinity],dialog);
-						var m=get.translation(h)
-						if(player.getUseValue(a)>player.getUseValue(b)&&player.getUseValue(a)>player.getUseValue(h)) m=get.translation(a)
-						if(player.getUseValue(b)>player.getUseValue(a)&&player.getUseValue(b)>player.getUseValue(h)) m=get.translation(b)
-						chooseButton.ai=function(button){
-						var n=ui.selected.buttons.length||0
-						if(button.link==m[n]) return 20
-						return false//Math.random()//随机
-						}
-						'step 2'
-						if(result.bool){
-						var a='',b='',d=Math.random()
-						for(var i of result.links) b+=get.translation(i);
-						if(['闪','桃'].includes(b)) d='red';if(b=='火杀'){a='fire';d='red'};if(b=='雷杀'){a='thunder';d='black'};if(b=='冰杀'){a='ice';d='black'};if(b=='神杀') a='kami';if(b=='刺杀'){a='stab';d='black'};
-						var c=get.cardPile(function(card){
-						if(a!=''&&!event.card.includes(card)) return card.name=='sha'&&card.nature==a
-						return !event.card.includes(card)&&get.translation(card.name)==b&&!card.nature
-						})
-						if(c) event.card.push(c)
-						else if(a!='') event.card.push(game.createCard('sha',d,[4,5,6,7,8,10].randomGet(),a));
-						else for(let i of event.list) if(get.translation(i)==b) event.card.push(game.createCard(i,d));
-						if(event.count>0) event.goto(1)
-						}
-						'step 3'
-						if(event.card.length){
-						player.chooseTarget(true,'令一名角色获得'+get.translation(event.card)).set('ai',function(target){
-						return get.attitude(_status.event.player,target);
-						});
-						} else event.finish()
-						'step 4'
-						if(result.bool) result.targets[0].gain(event.card,'gain2');
-						},
-						ai:{
-						order:10,
-						result:{player:4},
-						threaten:3.2,
-						}
-						},*/
+
 						lqtq_xuelin: {
 							audio: 'ext:浪琴天阙/audio:2',
 							trigger: {
@@ -12716,7 +12618,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										selectCard: -1,
 										popname: true,
 										card: links[0],
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -15416,12 +15318,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								next.set('filterButton', function (button) {
 									return button.link == 1
 										? game.hasPlayer(function (current) {
-												return current.isDamaged();
-											})
+											return current.isDamaged();
+										})
 										: button.link == 3
 											? game.hasPlayer(function (current) {
-													return current != _status.event.player && current.countGainableCards(_status.event.player, 'he');
-												})
+												return current != _status.event.player && current.countGainableCards(_status.event.player, 'he');
+											})
 											: true;
 								});
 								next.set('ai', function (button) {
@@ -18261,12 +18163,6 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 								}
 								target.addTempSkill('baiban');
-								/*target.storage.lqym_jizu=[target.maxHp-1,target.hp-1]
-								game.log(target.storage.lqym_jizu)
-								target.addTempSkill('lqym_jizu_count')
-								target.maxHp=1
-								target.hp=1
-								target.update();*/
 							},
 							subSkill: {
 								count: {
@@ -20610,8 +20506,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									.set('callback', function () {
 										event.parent.orderingCards.remove(event.judgeResult.card);
 									}).judge2 = function (result) {
-									return result.bool ? true : false;
-								};
+										return result.bool ? true : false;
+									};
 								('step 2');
 								event.cards.push(result.card);
 								if (result.bool) {
@@ -20663,8 +20559,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											.set('callback', function () {
 												event.parent.orderingCards.remove(event.judgeResult.card);
 											}).judge2 = function (result) {
-											return result.bool ? true : false;
-										};
+												return result.bool ? true : false;
+											};
 										('step 2');
 										event.cards.push(result.card);
 										if (result.bool) {
@@ -20781,7 +20677,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										filterCard: () => false,
 										selectCard: -1,
 										popname: true,
-										precontent() {},
+										precontent() { },
 									};
 								},
 								prompt(links, player) {
@@ -30953,13 +30849,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						const more = ui.create.div(
 							'.LQTQC',
 							'<div style="border:2px solid gray">' +
-								//'<b><li>功能更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>伤害音效:移步功能键长按查看详情,婊就不再多说一遍了.<br><br>体力调整:移步功能键长按查看详情.<br><br>筛技扩充:移步功能键长按查看详情.<br><br>无限婊读:移步功能键长按查看详情.<br><br>评级选将:移步功能键长按查看详情.'<br>+
-								//'<P align=left><li><b>浪琴天阙更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>☄孙尚香:东吴女歌王香香参上!快来与香香举案齐眉双剑共引吧!香香自带两款伴生皮肤(需安装了千幻聆音UI才可查阅).<br><br>☄周处:修复了开局跳屏的bug.<br><br>☄关银屏:修复了武夷AI无法正常判断牌价值的bug.<br><br>◎邓艾:修复了急袭AI卡顿一分钟后直接结束回合的bug.<br><br>◎神甘宁:修复了奇袭AI无法正常判定牌价值的bug.<br>'+
-								'<P align=left><li><b>浪琴荟萃更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>古见:此武将刚上线,我的老婆古见体验过后觉得前期乏力,所以进行了一些技能上的调整,二技能抽卡展示牌堆顶3张改为展示场上人数的牌数,三技能准备阶段学技能改为每轮游戏开始时学,陷阱部分将魔法筒替换为便乘:每个回合对每名角色其他角色各限一次,当这些角色获得牌时,你摸一张牌.<br>' +
-								'<P align=left><li><b>浪琴游漫更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left><br>No.21 冰结正义女郎:前后两难的屑.<br><br>No.22 不乱健:强人锁难.<br><br>No.23 冥界的灵骑士 兰斯洛特:不分敌我的屑<br><br>扩内多个武将更换了武将图并添加了一至两款皮肤(皮肤需千幻)<br>' +
-								'<P align=left><li><b>浪琴超越更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>罠大乔:大乔突破界限后,全场自此不思蜀.<br>' +
-								//'<P align=left><li><b>浪琴挑战更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>bug修复:修复了某些关卡BOSS因缠怨之类的技能阵亡后无法切换下一关的bug.<br><br>急袭猛禽:闯关型挑战,前后共6个关卡,游戏由BOSS先手,BOSS与随从的起始手牌为8,挑战方的起始手牌为5,BOSS阵亡后清空游戏轮数,切换新的BOSS出场,并立即开始BOSS的回合.<br>第一关:挑战起翼猎鹰,随从两只驱逐伯爵.<br>第二关:挑战烈焰猎鹰,随从两只恶魔雕.<br>第三关:挑战革命猎鹰,随从两只武力林鸮.<br>第四关:挑战卫星炮猎鹰,随从两只火刃焚烧猎鹰.<br>第五关:挑战究极猎鹰,随从两只异邦猎鹰.<br>第六关:挑战最终堡垒猎鹰,随从武库猎鹰、智慧林鸮.'+
-								'',
+							//'<b><li>功能更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>伤害音效:移步功能键长按查看详情,婊就不再多说一遍了.<br><br>体力调整:移步功能键长按查看详情.<br><br>筛技扩充:移步功能键长按查看详情.<br><br>无限婊读:移步功能键长按查看详情.<br><br>评级选将:移步功能键长按查看详情.'<br>+
+							//'<P align=left><li><b>浪琴天阙更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>☄孙尚香:东吴女歌王香香参上!快来与香香举案齐眉双剑共引吧!香香自带两款伴生皮肤(需安装了千幻聆音UI才可查阅).<br><br>☄周处:修复了开局跳屏的bug.<br><br>☄关银屏:修复了武夷AI无法正常判断牌价值的bug.<br><br>◎邓艾:修复了急袭AI卡顿一分钟后直接结束回合的bug.<br><br>◎神甘宁:修复了奇袭AI无法正常判定牌价值的bug.<br>'+
+							'<P align=left><li><b>浪琴荟萃更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>古见:此武将刚上线,我的老婆古见体验过后觉得前期乏力,所以进行了一些技能上的调整,二技能抽卡展示牌堆顶3张改为展示场上人数的牌数,三技能准备阶段学技能改为每轮游戏开始时学,陷阱部分将魔法筒替换为便乘:每个回合对每名角色其他角色各限一次,当这些角色获得牌时,你摸一张牌.<br>' +
+							'<P align=left><li><b>浪琴游漫更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left><br>No.21 冰结正义女郎:前后两难的屑.<br><br>No.22 不乱健:强人锁难.<br><br>No.23 冥界的灵骑士 兰斯洛特:不分敌我的屑<br><br>扩内多个武将更换了武将图并添加了一至两款皮肤(皮肤需千幻)<br>' +
+							'<P align=left><li><b>浪琴超越更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>罠大乔:大乔突破界限后,全场自此不思蜀.<br>' +
+							//'<P align=left><li><b>浪琴挑战更新&nbsp;&nbsp;&nbsp;❀</b><br><P align=left>bug修复:修复了某些关卡BOSS因缠怨之类的技能阵亡后无法切换下一关的bug.<br><br>急袭猛禽:闯关型挑战,前后共6个关卡,游戏由BOSS先手,BOSS与随从的起始手牌为8,挑战方的起始手牌为5,BOSS阵亡后清空游戏轮数,切换新的BOSS出场,并立即开始BOSS的回合.<br>第一关:挑战起翼猎鹰,随从两只驱逐伯爵.<br>第二关:挑战烈焰猎鹰,随从两只恶魔雕.<br>第三关:挑战革命猎鹰,随从两只武力林鸮.<br>第四关:挑战卫星炮猎鹰,随从两只火刃焚烧猎鹰.<br>第五关:挑战究极猎鹰,随从两只异邦猎鹰.<br>第六关:挑战最终堡垒猎鹰,随从武库猎鹰、智慧林鸮.'+
+							'',
 						);
 						this.parentNode.insertBefore(more, this.nextSibling);
 						this.LQTQC = more;
