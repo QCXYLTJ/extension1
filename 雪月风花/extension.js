@@ -11750,14 +11750,9 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         game.cardsGotoOrdering(event.cards);
                                         player.showCards(event.cards);
                                         player
-                                            .chooseButton(['请选择其中的两张牌获得', [event.cards, 'vcard']])
+                                            .chooseButton(['请选择其中的两张牌获得', event.cards])
                                             .set('selectButton', 2)
-                                            .set('ai', (button) =>
-                                                player.getUseValue({
-                                                    name: button.link[2],
-                                                    nature: button.link[3],
-                                                }),
-                                            );
+                                            .set('ai', (button) => player.getUseValue(button.link));
                                         ('step 1');
                                         if (result.links?.length) {
                                             player.gain(result.links, 'gain2', 'log');
