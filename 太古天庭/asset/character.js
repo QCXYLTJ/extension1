@@ -28841,7 +28841,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
                     },
                     shuibojian: {
                         audio: 'hanbing_skill',
-                        inherit: 'pyzhuren_club',
                         trigger: {
                             player: 'useCard2',
                         },

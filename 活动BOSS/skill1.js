@@ -42296,6 +42296,7 @@ const skill = {
     superCharlotte: true,
   },
   bzts_boss: {
+    mode: ['boss'],
     trigger: {
       global: 'gameStart',
       player: 'enterGame',
