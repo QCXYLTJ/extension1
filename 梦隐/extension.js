@@ -6940,7 +6940,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
             mx_zhumier_zhenwang: '阵亡',
             mx_zhumier_zhenwang_info: '',
             mx_kuangxiao: '狂啸冥风',
-            mx_kuangxiao_info: '当你处于濒死状态时,你可以执行一个额外的回合,选择攻击范围内的任意名其他角色.若如此做,你弃置这些角色区域内的各一张牌,横置至多等量的角色.若以此法弃置点数均不相同的牌,你可以对一名其他角色造成2点火焰的虚无伤害,回复X点体力(X为你的体力上限).',
+            mx_kuangxiao_info: '当你处于濒死状态时,你可以执行一个额外的回合<br>选择攻击范围内的任意名其他角色,你弃置这些角色区域内的各一张牌并将其横置<br>若以此法弃置点数均不相同的牌,你可以对一名其他角色造成2点火焰的虚无伤害,回复X点体力(X为你的体力上限)',
             mx_simoge_zhenwang: '阵亡',
             mx_simoge_zhenwang_info: '',
             mx_pimo: '辟魔之盏',

@@ -34964,103 +34964,49 @@ const skill = {
     forced: true,
     content() { },
   },
+  // 当你处于濒死状态时,你可以执行一个额外的回合
+  // 选择攻击范围内的任意名其他角色,你弃置这些角色区域内的各一张牌并将其横置
+  // 若以此法弃置点数均不相同的牌,你可以对一名其他角色造成2点火焰的虚无伤害,回复X点体力(X为你的体力上限)
   mx_kuangxiao: {
     audio: 'ext:梦隐/Skill dubbing:2',
     trigger: {
       player: 'dyingBegin',
     },
-    content() {
-      'step 0';
-      player.phase('nodelay');
-      ('step 1');
-      event.cards = [];
-      event.cards.push(result.cards[0]);
-      ('step 2');
-      player
-        .chooseTarget([1, Infinity], '选择目标', function (card, player, current) {
+    async content(event, trigger, player) {
+      const cardlist = [];
+      const { targets } = await player
+        .chooseTarget([1, Infinity], '弃置这些角色区域内的各一张牌并将其横置', function (card, player, current) {
           return current.hasCard((card) => lib.filter.canBeDiscarded(card, current, player), 'hej') && player.inRange(current);
         })
         .set('ai', function (target) {
-          const player = _status.event.player;
           return get.effect(target, { name: 'guohe_copy' }, player, player);
-        });
-      ('step 3');
-      if (result.targets?.length) {
-        event.targets = result.targets;
-        event.targets.sort(lib.sort.seat);
-      } else {
-        event.goto(6);
-      }
-      ('step 4');
-      if (player.isAlive() && event.targets.length) {
-        player.discardPlayerCard(event.targets.shift(), 'hej', true);
-      } else {
-        event.goto(6);
-      }
-      ('step 5');
-      event.cards.push(result.cards[0]);
-      if (event.targets.length) {
-        event.goto(4);
-      }
-      ('step 6');
-      const cards2 = [];
-      if (Array.isArray(event.cards)) {
-        for (const i of event.cards) {
-          cards2.push(i);
+        }).forResult();
+      if (targets?.length) {
+        for (const i of targets) {
+          player.line(i);
+          i.link();
+          const { cards } = await player.discardPlayerCard(i, 'hej', true).forResult();
+          if (cards?.length) {
+            cardlist.push(cards[0]);
+          }
         }
-      }
-      if (cards2.length) {
-        player
-          .chooseTarget('横置至多' + get.cnNumber(cards2.length) + '名角色', [1, cards2.length], function (card, player, target) {
-            return !target.isLinked();
-          })
-          .set('ai', function (target) {
-            return -get.attitude(_status.event.player, target);
-          });
-      } else {
-        event.goto(9);
-      }
-      ('step 7');
-      if (result.targets?.length) {
-        player.line(result.targets);
-        event.targets = result.targets;
-        event.num = 0;
-      } else {
-        event.goto(9);
-      }
-      ('step 8');
-      if (event.num < event.targets.length) {
-        event.targets[event.num].link();
-        event.num++;
-        event.redo();
-      }
-      ('step 9');
-      const numbers = [];
-      if (Array.isArray(event.cards)) {
-        for (const i of event.cards) {
-          const number = i.number;
-          if (number && !numbers.includes(number)) {
-            numbers.add(number);
+        if (cardlist.length) {
+          const numberlist = cardlist.map((i) => i.number).unique();
+          if (numberlist.length == cardlist.length) {
+            const { targets } = await player
+              .chooseTarget('对一名角色造成2点火焰的虚无伤害')
+              .set('ai', function (target) {
+                return get.damageEffect(target, player, player);
+              }).forResult();
+            if (targets?.length) {
+              targets[0].changeHujia(-2);
+              targets[0].damage(2, 'fire')._triggered = null;
+              player.recover(player.maxHp);
+            }
           }
         }
       }
-      if (numbers.length == event.cards.length) {
-        player
-          .chooseTarget('对一名角色造成2点火焰的虚无伤害', function (card, player, target) {
-            return true;
-          })
-          .set('ai', function (target) {
-            return get.damageEffect(target, player, player);
-          });
-      } else {
-        event.finish();
-      }
-      ('step 10');
-      if (result.targets?.length) {
-        result.targets[0].changeHujia(-2);
-        result.targets[0].damage(2, 'fire')._triggered = null;
-        player.recover(player.maxHp);
-      }
+      await player.phase('nodelay');
     },
   },
   mx_simoge_zhenwang: {
