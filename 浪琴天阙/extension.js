@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../noname.js';
 game.import('extension', function (lib, game, ui, get, ai, _status) {
 	return {
 		name: '浪琴天阙',
@@ -7,7 +7,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 			//color/颜色,suit/花色,number/点数,type/类型
 			//basic/基本,trick/锦囊,equip/装备,delay/延迟锦囊
 			//black/黑色,red/红色
-			//heart♥️️,spade♠️️ diamond♦️️,club♣️️
+			//heart♥️️️,spade♠️️️ diamond♦️️️,club♣️️️
 			//player.indexOf//player!=_status.currentPhase,player.isAlive()//存活,player.getStat('triggerSkill').xinfu_lingren--,event._result={control:d[0]}/单选_status.event.//isEnemiesOf//isFriendsOf//chooseButtonBefore
 			// --------------------------------------武将评级------------------------------------------//
 			lib.rank.rarity.junk.addArray([]);
@@ -79,7 +79,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 				table.style.margin = '0';
 				table.style.width = '100%';
 				table.style.position = 'relative';
-				for (var i = 0; i < 2; i++) {
+				for (let i = 0; i < 2; i++) {
 					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.innerHTML = '<span><img src="extension/浪琴天阙/image/辅助图/' + list[i] + '.png" width="135" height="160"></span>';
 					td.link = list[i];
@@ -105,7 +105,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					table.style.margin = '0';
 					table.style.width = '100%';
 					table.style.position = 'relative';
-					for (var i = 2; i < 4; i++) {
+					for (let i = 2; i < 4; i++) {
 						var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 						td.innerHTML = '<span><img src="extension/浪琴天阙/image/辅助图/' + list[i] + '.png" width="135" height="160"></span>';
 						td.link = list[i];
@@ -505,10 +505,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 					};
 					next.setContent(function () {
 						'step 0';
-						var i;
+						let i;
 						const list = [];
 						event.list = list;
-						for (var i in lib.character) {
+						for (const i in lib.character) {
 							if (lib.character[i][4].includes('minskin')) {
 								continue;
 							}
@@ -634,13 +634,11 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						}
 						event.asboss = ui.create.control('应战', function () {
 							event.boss = true;
-							event.enemy = [];
-
+							event.enemy = [];
 							for (const i of ui.selected.buttons) {
 								event.enemy.push(i.link);
 								event.list.remove(i.link);
-							}
-
+							}
 							let sks = 3;
 							if (lib.config.extension_浪琴天阙_lqtq_xuanyuan_tiaozhan == '1') {
 								sks = 1;
@@ -1187,8 +1185,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (player.storage.lqtq_longling.includes(name)) {
@@ -1218,8 +1215,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('龙灵', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -1360,8 +1356,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									return false;
 								}
 								const card = game.createCard(event.card.name, event.card.suit, event.card.number, event.card.nature);
-								const targets = event._targets || event.targets;
-
+								const targets = event._targets || event.targets;
 								for (const i of targets) {
 									if (!i.isIn()) {
 										return false;
@@ -1369,8 +1364,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if (!player.canUse({ name: event.card.name }, i, false, false)) {
 										return false;
 									}
-								}
-
+								}
 								if (player.hasUsableCard('shenmiguo')) {
 									return true;
 								}
@@ -1473,13 +1467,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.storage.lqtq_yabo1 = [];
 								}
 								const a = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									if (player != game.me && lib.character[i][3].length != 1) {
 										continue;
 									}
 									a.push(i);
 								}
-								for (var i of a) {
+								for (const i of a) {
 									for (const j of lib.character[i][3].slice(0).slice(0)) {
 										if (j.includes('rewrite') || player.storage.lqtq_yabo1.includes(j)) {
 											continue;
@@ -1546,7 +1540,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 									if (player.isUnderControl(true)) {
 										const b = [];
-										for (var i of player.getSkills(true, false)) {
+										for (const i of player.getSkills(true, false)) {
 											const info = get.info(i);
 											if (info && !info.charlotte && i.indexOf('rewrite') == -1 && lib.translate[i] && lib.translate[i + '_info'] && i != 'lqtq_yabo') {
 												b.add(i);
@@ -1554,7 +1548,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 										if (b.length && _status.gameStarted) {
 											dialog.addText('可失去一个技能来获得一只🐀.');
-											for (var i of b) {
+											for (const i of b) {
 												dialog.add(
 													ui.create.div('.menubutton.pointerdiv', get.translation(i), function () {
 														if (!this.disabled) {
@@ -1590,7 +1584,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 																player.storage.lqtq_yabo.remove(z);
 																player.markSkill('lqtq_yabo');
 																const a = [];
-																for (var i of player.storage.lqtq_yabo1) {
+																for (const i of player.storage.lqtq_yabo1) {
 																	if (
 																		!game.hasPlayer(function (current) {
 																			return current.hasSkill(i) || current.getStorage('lqtq_yabo2').includes(i);
@@ -1607,7 +1601,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										}
 										if (player.getStorage('lqtq_yabo2').length) {
-											for (var i of player.getStorage('lqtq_yabo2')) {
+											for (const i of player.getStorage('lqtq_yabo2')) {
 												dialog.add('<div><div class="skill">【' + lib.translate[i] + '】</div><div>' + get.skillInfoTranslation(i) + '</div></div>');
 											}
 										}
@@ -1636,7 +1630,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												players.markSkill('lqtq_yabo');
 												players.addSkillLog(skills);
 												const a = [];
-												for (var i of players.storage.lqtq_yabo1) {
+												for (const i of players.storage.lqtq_yabo1) {
 													if (
 														!game.hasPlayer(function (current) {
 															return current.hasSkill(i) || current.getStorage('lqtq_yabo2').includes(i);
@@ -1720,8 +1714,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									yi.classList.add('add-setting');
 									yi.style.margin = '0';
 									yi.style.width = '100%';
-									yi.style.position = 'relative';
-
+									yi.style.position = 'relative';
 									for (const i of skills) {
 										const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 										td.innerHTML = '<font size=4>【' + get.translation(i) + '】<br><P align=left>' + get.skillInfoTranslation(i);
@@ -1730,8 +1723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 										yi.appendChild(td);
 										dialog.buttons.add(td);
-									}
-
+									}
 									dialog.content.appendChild(yi);
 									const chooseButton = player.chooseButton(dialog, true);
 									chooseButton.set('ai', function (button) {
@@ -1914,15 +1906,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (get.type(name) == 'trick' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['锦囊', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('慧宜', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -2217,14 +2207,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.dialog = ui.create.dialog(event.str, 'forcebutton', 'hidden');
 									event.dialog.addText('<li>点击下方的妹子按钮,猜测拥有妹汁的妹子是谁.', false);
 									event.dialog.open();
-									for (var i in event.status) {
+									for (const i in event.status) {
 										event.dialog.content.childNodes[0].innerHTML = event.dialog.content.childNodes[0].innerHTML.replace(i, event.status[i]);
-									}
-
+									}
 									for (const i of event.dialog.buttons) {
 										i.classList.add('pointerdiv');
-									}
-
+									}
 									event.switchToAuto = function () {
 										event._result = {
 											bool: true,
@@ -2238,7 +2226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										_status.imchoosing = false;
 									};
 									event.controls = [];
-									for (var i = 1; i <= 9; i++) {
+									for (let i = 1; i <= 9; i++) {
 										event.controls.push(
 											ui.create.control('lqtq_c' + i, function (link) {
 												const event = _status.event;
@@ -2249,7 +2237,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												if (event.status[link] >= 100) {
 													event.status[link] = 100;
 													var str = event.str.slice(0);
-													for (var i in event.status) {
+													for (const i in event.status) {
 														str = str.replace(i, event.status[i]);
 													}
 													event.dialog.content.childNodes[0].innerHTML = str;
@@ -2260,7 +2248,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 															links: event.finishedx.slice(0),
 														};
 														event.dialog.close();
-														for (var i of event.controls) {
+														for (const i of event.controls) {
 															i.close();
 														}
 														game.resume();
@@ -2268,19 +2256,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													}
 												} else {
 													var str = event.str.slice(0);
-													for (var i in event.status) {
+													for (const i in event.status) {
 														str = str.replace(i, event.status[i]);
 													}
 													event.dialog.content.childNodes[0].innerHTML = str;
 												}
 											}),
 										);
-									}
-
+									}
 									for (const i of event.dialog.buttons) {
 										i.classList.add('selectable');
-									}
-
+									}
 									game.pause();
 									game.countChoose();
 								};
@@ -2307,12 +2293,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.finish();
 									return;
 								}
-								for (var i of list) {
+								for (const i of list) {
 									if (event.b.includes(i)) {
 										e++;
 									}
 								}
-								for (var i = 1; i <= 9; i++) {
+								for (let i = 1; i <= 9; i++) {
 									if (event.b.includes('lqtq_c' + i)) {
 										d.add('lqtq_card' + i);
 									}
@@ -2326,7 +2312,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								er.style.margin = '0';
 								er.style.width = '100%';
 								er.style.position = 'relative';
-								for (var i of d) {
+								for (const i of d) {
 									const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = '<img src="extension/浪琴天阙/image/辅助图/' + i + '.png" width="75" height="75"></span>';
 									td.link = i;
@@ -2462,14 +2448,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const a = [],
 									b = [],
 									c = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									const d = lib.character[i][4];
 									if (lib.character[i][3].length == 1 && (lib.rank.rarity.rare.includes(i) || lib.rank.rarity.epic.includes(i) || lib.rank.rarity.legend.includes(i)) && ((game.me == player && lib.config.extension_浪琴天阙_lqtq_shaiji_kuochong) || !lib.config.forbidai.includes(i))) {
 										a.push(i);
 									}
 								}
 								a.randomSort();
-								for (var i of a) {
+								for (const i of a) {
 									for (const j of lib.character[i][3].slice(0).slice(0)) {
 										if (j.includes('rewrite') || b.includes(j) || !lib.translate[j] || !lib.translate[j + '_info']) {
 											continue;
@@ -2512,7 +2498,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									let links = get.translation(cards[0].name),
 										str = get.translation(result.control);
 									if (links.length > 3) {
-										for (var i = 0; i < links.length; i++) {
+										for (let i = 0; i < links.length; i++) {
 											if (i == 0 || i == 1 || i == links.length - 1) {
 												str += get.translation(links[i]);
 											}
@@ -2659,18 +2645,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							filter(event, player) {
 								const list = [],
 									lists = get.typeCard('basic');
-								for (var i of get.typeCard('trick')) {
+								for (const i of get.typeCard('trick')) {
 									lists.push(i);
 								}
-								for (var i of get.typeCard('delay')) {
+								for (const i of get.typeCard('delay')) {
 									lists.push(i);
 								}
-								for (var i of get.typeCard('equip')) {
+								for (const i of get.typeCard('equip')) {
 									lists.push(i);
-								}
-
+								}
 								for (const j of lists) {
-									var i = j;
+									const i = j;
 									if (event.filterCard && event.filterCard({ name: i }, player, event)) {
 										if (player.storage.lqtq_tianhui3.includes(i) && player.hasSkill('lqtq_tianhui_count')) {
 											return false;
@@ -2679,8 +2664,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											return true;
 										}
 									}
-								}
-
+								}
 								return false;
 							},
 							hiddenCard(player, name) {
@@ -2693,16 +2677,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								dialog(event, player) {
 									const list = [],
 										lists = get.typeCard('basic');
-									for (var i of get.typeCard('trick')) {
+									for (const i of get.typeCard('trick')) {
 										lists.push(i);
 									}
-									for (var i of get.typeCard('delay')) {
+									for (const i of get.typeCard('delay')) {
 										lists.push(i);
 									}
-									for (var i of get.typeCard('equip')) {
+									for (const i of get.typeCard('equip')) {
 										lists.push(i);
-									}
-
+									}
 									for (const j of lists) {
 										const name = j;
 										if (['gw_dieyi_judge', 'yanxiao_card', 'nsfuzhou_card', 'feichu_equip1', 'gw_dieyi_equip1', 'feichu_equip2', 'gw_dieyi_equip2', 'feichu_equip3', 'gw_dieyi_equip3', 'feichu_equip4', 'gw_dieyi_equip4', 'feichu_equip5', 'gw_dieyi_equip5'].includes(name)) {
@@ -2737,8 +2720,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'equip' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['装备', '', name]);
 										}
-									}
-
+									}
 									const a = ui.create.dialog('天慧');
 									a.addSmall([list, 'vcard']);
 									return a;
@@ -2841,12 +2823,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										'step 0';
 										if (event.triggername == 'useCardToBegin') {
 											const car = [trigger.cards[0].name, trigger.cards[0].suit, trigger.cards[0].number, trigger.cards[0].nature],
-												card = player.storage.lqtq_tianhui2;
-
+												card = player.storage.lqtq_tianhui2;
 											for (const i of card) {
 												var name = i;
-											}
-
+											}
 											const card1 = trigger.cards[0].init(game.createCard(name, trigger.cards[0].suit, trigger.cards[0].number));
 											if (!card1.storage.lqtq_fuyuan) {
 												card1.storage.lqtq_fuyuan = car;
@@ -2959,8 +2939,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										yi.classList.add('add-setting');
 										yi.style.margin = '0';
 										yi.style.width = '100%';
-										yi.style.position = 'relative';
-
+										yi.style.position = 'relative';
 										for (const i of skills) {
 											const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 											td.innerHTML = '<font size=4>【' + get.translation(i) + '】<br><P align=left>' + get.skillInfoTranslation(i);
@@ -2969,8 +2948,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 											yi.appendChild(td);
 											dialog.buttons.add(td);
-										}
-
+										}
 										dialog.content.appendChild(yi);
 										const chooseButton = player.chooseButton(dialog, true);
 										chooseButton.set('ai', function (button) {
@@ -3051,8 +3029,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (name == 'sha') {
@@ -3079,8 +3056,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('灭吴', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -3241,7 +3217,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										c = a.name2 || a.name;
 									player.line(a, 'fire');
 									if (a.countCards('h')) {
-										for (var i of a.getCards('h')) {
+										for (const i of a.getCards('h')) {
 											if (!player.storage.lqtq_yuanjiao2.includes(i.name) && get.type(i) != 'equip') {
 												list2.add(i.name);
 											}
@@ -3255,7 +3231,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								} else if (trigger.name == 'useCard') {
 									list2.add(trigger.card.name);
 								} else {
-									for (var i in lib.character) {
+									for (const i in lib.character) {
 										const d = lib.character[i][4];
 										if (player.storage.lqtq_yuanjiao1.includes(i)) {
 											continue;
@@ -3281,13 +3257,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								event.dialog = ui.create.dialog('<div class="text center">' + get.translation(player) + '记录了');
 								if (list.length) {
 									event.dialog.add([list, 'character']);
-									for (var i of list) {
+									for (const i of list) {
 										player.storage.lqtq_yuanjiao1.push(i);
 									}
 								}
 								if (list2.length) {
 									event.dialog.add([list2, 'vcard']);
-									for (var i of list2) {
+									for (const i of list2) {
 										player.storage.lqtq_yuanjiao2.push(i);
 									}
 								}
@@ -3319,7 +3295,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									content() {
 										'step 0';
 										let list = [];
-										for (var i in lib.character) {
+										for (const i in lib.character) {
 											const d = lib.character[i][4];
 											if (player.storage.lqtq_yuanjiao1.includes(i)) {
 												continue;
@@ -3337,7 +3313,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.dialog = ui.create.dialog('<div class="text center">' + get.translation(player) + '记录了');
 										if (list.length) {
 											event.dialog.add([list, 'character']);
-											for (var i of list) {
+											for (const i of list) {
 												player.storage.lqtq_yuanjiao1.push(i);
 											}
 										}
@@ -3387,8 +3363,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							chooseButton: {
 								dialog(event, player) {
 									const list = [];
-									const list1 = player.storage.lqtq_yuanjiao2;
-
+									const list1 = player.storage.lqtq_yuanjiao2;
 									for (const j of list1) {
 										const name = j;
 										if (name == 'sha') {
@@ -3415,8 +3390,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('伪娘', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -3511,15 +3485,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									content() {
 										'step 0';
-										const list = [];
-
+										const list = [];
 										for (const i of player.storage.lqtq_yuanjiao1) {
 											if (player.storage.lqtq_yuanjiao3.includes(i)) {
 												continue;
 											}
 											list.push(i);
-										}
-
+										}
 										if (list.length) {
 											let shiji = '游戏开始,';
 											if (event.triggername == 'phaseBegin') {
@@ -3541,7 +3513,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										('step 1');
 										if (result.links?.length) {
 											player.storage.lqtq_yuanjiao3.push(result.links[0]);
-											for (var i of lib.character[result.links[0]][3]) {
+											for (const i of lib.character[result.links[0]][3]) {
 												if (!player.hasSkill(i)) {
 													player.addSkill(i);
 												}
@@ -3562,7 +3534,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										('step 2');
 										if (result.links?.length) {
 											player.storage.lqtq_yuanjiao3.remove(result.links[0]);
-											for (var i of lib.character[result.links[0]][3]) {
+											for (const i of lib.character[result.links[0]][3]) {
 												if (player.hasSkill(i)) {
 													player.removeSkill(i);
 												}
@@ -3863,8 +3835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								yi.classList.add('add-setting');
 								yi.style.margin = '0';
 								yi.style.width = '100%';
-								yi.style.position = 'relative';
-
+								yi.style.position = 'relative';
 								for (const i of sex) {
 									var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = get.translation(i);
@@ -3873,8 +3844,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 									yi.appendChild(td);
 									dialog.buttons.add(td);
-								}
-
+								}
 								dialog.content.appendChild(yi);
 								dialog.add('选择一个势力');
 								var group = ['wei', 'wu', 'shu', 'qun'];
@@ -3882,8 +3852,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								er.classList.add('add-setting');
 								er.style.margin = '0';
 								er.style.width = '100%';
-								er.style.position = 'relative';
-
+								er.style.position = 'relative';
 								for (const i of group) {
 									var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = get.translation(i);
@@ -3892,8 +3861,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 									er.appendChild(td);
 									dialog.buttons.add(td);
-								}
-
+								}
 								dialog.content.appendChild(er);
 								dialog.add('选择一个体力');
 								var hp = [3, 4, '其他'];
@@ -3901,8 +3869,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								san.classList.add('add-setting');
 								san.style.margin = '0';
 								san.style.width = '100%';
-								san.style.position = 'relative';
-
+								san.style.position = 'relative';
 								for (const i of hp) {
 									var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = get.translation(i);
@@ -3911,8 +3878,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 									san.appendChild(td);
 									dialog.buttons.add(td);
-								}
-
+								}
 								dialog.content.appendChild(san);
 								const chooseButton = player.chooseButton(dialog, 3, true);
 								chooseButton
@@ -3924,13 +3890,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if ((sex.includes(i.link) && sex.includes(button.link)) || (group.includes(i.link) && group.includes(button.link)) || (hp.includes(i.link) && hp.includes(button.link))) {
 												return false;
 											}
-										}
-
+										}
 										return true;
 									});
 								('step 1');
 								if (result.links?.length) {
-									for (var i of result.links) {
+									for (const i of result.links) {
 										if (i == 'male' || i == 'female') {
 											var sex = i;
 										} else if (i == '3' || i == '4' || i == '其他') {
@@ -3942,7 +3907,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									game.log(player, '选择了', '#g【', '#g' + sex, '#g】,【', '#g' + group, '#g】,【', '#g' + hp, '#g】');
 									const skills = [];
 									let chaii = [];
-									for (var i in lib.character) {
+									for (const i in lib.character) {
 										if (hp == '其他' && [3, 4].includes(lib.character[i][2])) {
 											continue;
 										}
@@ -3982,7 +3947,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								const link = result.links[0];
 								player.storage.lqtq_lingrang.push(link);
-								for (var i of lib.character[link][3]) {
+								for (const i of lib.character[link][3]) {
 									player.addSkillLog(i);
 								}
 								if (event.count < event.num) {
@@ -4262,8 +4227,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								'step 0';
-								const list = [];
-
+								const list = [];
 								for (const i of lib.inpile) {
 									const info = lib.card[i];
 									if (info.notarget || ['suijiyingbian', 'shengdong', 'jiedao'].includes(i)) {
@@ -4277,8 +4241,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										}
 									}
-								}
-
+								}
 								if (trigger.player != player) {
 									player.chooseButton(['<font color=#eeee00>躺平了那么久,感觉眼前迷迷糊糊的,难道我产生幻觉了？</font><font color=#ff0000>' + get.translation(trigger.player) + '</font><font color=#eeee00>对</font><font color=#ff0000>' + get.translation(trigger.targets) + '</font><font color=#eeee00>使用的是什么来着？</font>', [list, 'vcard']]).ai = function (button) {
 										const card = { suit: trigger.card.suit, number: trigger.card.number, name: button.link[2] };
@@ -4386,16 +4349,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								const cards = [],
 									list = [];
-								list.push(event.type);
-
+								list.push(event.type);
 								for (const i of ui.cardPile.childNodes) {
 									const type = get.type2(i, false);
 									if (!list.includes(type)) {
 										list.push(type);
 										cards.push(i);
 									}
-								}
-
+								}
 								player.gain(cards, 'gain2');
 							},
 							ai: {
@@ -4566,7 +4527,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											list.add(evt.card.name);
 										}
 									});
-									for (var i = 0; i < list.length; i++) {
+									for (let i = 0; i < list.length; i++) {
 										if (list[i].indexOf('sha:') == 0) {
 											list[i] = ['基本', '', 'sha', list[i].slice(4)];
 										} else {
@@ -4613,7 +4574,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								if (result.bool) {
 									var cards = [],
 										list = [];
-									for (var i of ui.cardPile.childNodes) {
+									for (const i of ui.cardPile.childNodes) {
 										const type = get.type(i, false);
 										if ((!list.length || list.includes(type)) && type != get.type(result.target)) {
 											list.push(type);
@@ -4918,8 +4879,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										yi.classList.add('add-setting');
 										yi.style.margin = '0';
 										yi.style.width = '100%';
-										yi.style.position = 'relative';
-
+										yi.style.position = 'relative';
 										for (const i of b) {
 											const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 											td.innerHTML = get.translation(i);
@@ -4928,8 +4888,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 											yi.appendChild(td);
 											a.buttons.add(td);
-										}
-
+										}
 										a.content.appendChild(yi);
 										a.add(player.getExpansions('lqtq_huiling'));
 										const c = player.chooseButton(a, 2);
@@ -4942,14 +4901,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if ((bb > 0 || aa < 0) && trigger.num1 < trigger.num2) {
 												return false;
 											}
-											for (var i of player.getExpansions('lqtq_huiling')) {
+											for (const i of player.getExpansions('lqtq_huiling')) {
 												if (aa > 0 && i.number > trigger.num2 && [b[0], i].includes(button.link)) {
 													return 20;
 												} else if (bb > 0 && i.number > trigger.num1 && [b[1], i].includes(button.link)) {
 													return 20;
 												}
 											}
-											for (var i of player.getExpansions('lqtq_huiling')) {
+											for (const i of player.getExpansions('lqtq_huiling')) {
 												if (aa < 0 && i.number < trigger.num2 && [b[0], i].includes(button.link)) {
 													return 20;
 												} else if (bb < 0 && i.number < trigger.num1 && [b[1], i].includes(button.link)) {
@@ -5088,8 +5047,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								game.log('此次受伤角色变为了', player);
 								trigger.player = player;
 								('step 1');
-								const targets = game.players;
-
+								const targets = game.players;
 								for (const i of targets) {
 									if (i.hp <= 0 && i.isAlive()) {
 										i.dying();
@@ -5149,16 +5107,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 									dialog.addText('总记录数:' + player.storage.lqtq_tiantuo.length);
 									if (a > 0) {
-										dialog.addText('<font size=4>&nbsp;♠️️️&nbsp</font>:' + a);
+										dialog.addText('<font size=4>&nbsp;♠️️️️&nbsp</font>:' + a);
 									}
 									if (b > 0) {
-										dialog.addText('<font size=4>&nbsp;♥️️️&nbsp;</font>:' + b);
+										dialog.addText('<font size=4>&nbsp;♥️️️️&nbsp;</font>:' + b);
 									}
 									if (c > 0) {
-										dialog.addText('<font size=4>&nbsp;♣️️️&nbsp;</font>:' + c);
+										dialog.addText('<font size=4>&nbsp;♣️️️️&nbsp;</font>:' + c);
 									}
 									if (d > 0) {
-										dialog.addText('<font size=4>&nbsp;♦️️️&nbsp;</font>:' + d);
+										dialog.addText('<font size=4>&nbsp;♦️️️️&nbsp;</font>:' + d);
 									}
 									if (e > 0) {
 										dialog.addText('基本:' + e);
@@ -5193,7 +5151,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.storage.lqtq_tiantuo = [];
 									}
 									var list = [];
-									for (var i of trigger.cards) {
+									for (const i of trigger.cards) {
 										list.push(get.translation(get.type2(i)));
 										list.push(get.translation(i.suit));
 										player.storage.lqtq_tiantuo.push(get.type2(i));
@@ -5207,7 +5165,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.storage.lqtq_tiantuo2 = [];
 									}
 									const a = [];
-									for (var i of lib.skill.lqtq_tiantuo.derivation) {
+									for (const i of lib.skill.lqtq_tiantuo.derivation) {
 										if (!player.storage.lqtq_tiantuo2.includes(i)) {
 											a.push(i);
 										}
@@ -5217,8 +5175,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									yi.classList.add('add-setting');
 									yi.style.margin = '0';
 									yi.style.width = '100%';
-									yi.style.position = 'relative';
-
+									yi.style.position = 'relative';
 									for (const i of a) {
 										const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 										td.innerHTML = '<font size=4>【' + get.translation(i) + '】<br><P align=left>' + get.skillInfoTranslation(i);
@@ -5227,8 +5184,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 										yi.appendChild(td);
 										dialog.buttons.add(td);
-									}
-
+									}
 									dialog.content.appendChild(yi);
 									const chooseButton = player.chooseButton(dialog, true);
 									chooseButton.set('ai', function (button) {
@@ -5236,12 +5192,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								} else {
 									var list = [];
-									for (var i of player.storage.lqtq_tiantuo) {
+									for (const i of player.storage.lqtq_tiantuo) {
 										if (lib.suit.includes(i)) {
 											list.add(i);
 										}
 									}
-									for (var i of player.storage.lqtq_tiantuo) {
+									for (const i of player.storage.lqtq_tiantuo) {
 										if (['basic', 'trick', 'equip'].includes(i)) {
 											list.add(i);
 										}
@@ -5296,8 +5252,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (!player.countCards('h', name)) {
@@ -5325,8 +5280,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'equip' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['装备', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('复音', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -5802,7 +5756,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								'step 0';
 								const d = [];
-								for (var i of ['shuizhuan', 'zhengli', 'yvfeng', 'jiezou', 'pinzi', 'guale', 'touzi', 'yingbi', 'qiuqian', 'mouyi']) {
+								for (const i of ['shuizhuan', 'zhengli', 'yvfeng', 'jiezou', 'pinzi', 'guale', 'touzi', 'yingbi', 'qiuqian', 'mouyi']) {
 									let a = 'majun',
 										b = '水转百戏图',
 										c = 'lqtq_youxi_' + i;
@@ -5910,14 +5864,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.dialog = ui.create.dialog(event.str, 'forcebutton', 'hidden');
 										event.dialog.addText('<li>点击下方的妹子按钮,可增加妹汁填满此图.一次表演最多只能完成3名妹子的进度.', false);
 										event.dialog.open();
-										for (var i in event.status) {
+										for (const i in event.status) {
 											event.dialog.content.childNodes[0].innerHTML = event.dialog.content.childNodes[0].innerHTML.replace(i, event.status[i]);
-										}
-
+										}
 										for (const i of event.dialog.buttons) {
 											i.classList.add('pointerdiv');
-										}
-
+										}
 										event.switchToAuto = function () {
 											event._result = {
 												bool: true,
@@ -5931,7 +5883,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											_status.imchoosing = false;
 										};
 										event.controls = [];
-										for (var i = 1; i <= 6; i++) {
+										for (let i = 1; i <= 6; i++) {
 											event.controls.push(
 												ui.create.control('lqtq_c' + i, function (link) {
 													const event = _status.event;
@@ -5942,7 +5894,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													if (event.status[link] >= 100) {
 														event.status[link] = 100;
 														var str = event.str.slice(0);
-														for (var i in event.status) {
+														for (const i in event.status) {
 															str = str.replace(i, event.status[i]);
 														}
 														event.dialog.content.childNodes[0].innerHTML = str;
@@ -5953,7 +5905,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 																links: event.finishedx.slice(0),
 															};
 															event.dialog.close();
-															for (var i of event.controls) {
+															for (const i of event.controls) {
 																i.close();
 															}
 															game.resume();
@@ -5961,19 +5913,17 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 														}
 													} else {
 														var str = event.str.slice(0);
-														for (var i in event.status) {
+														for (const i in event.status) {
 															str = str.replace(i, event.status[i]);
 														}
 														event.dialog.content.childNodes[0].innerHTML = str;
 													}
 												}),
 											);
-										}
-
+										}
 										for (const i of event.dialog.buttons) {
 											i.classList.add('selectable');
-										}
-
+										}
 										game.pause();
 										game.countChoose();
 									};
@@ -6056,18 +6006,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.zhengjing_nodes = [];
 										names.randomSort();
 										const names2 = names.slice(0);
-										for (var i = 0; i < 2; i++) {
+										for (let i = 0; i < 2; i++) {
 											names2.randomSort();
 											names = names.concat(names2);
 										}
 										event.zhengjing = names;
-										for (var i of list) {
+										for (const i of list) {
 											event.map[i] = 0;
 										}
 										event.dialog = ui.create.dialog('forcebutton', 'hidden');
 										event.dialog.textPrompt = event.dialog.add('<div class="text center">及时点击卡牌!</div>');
 										let str = '<div class="text center">';
-										for (var i of list) {
+										for (const i of list) {
 											str += get.translation(i) + ':' + Math.min(2, event.map[i]) + '/2 ';
 										}
 										str += '</div>';
@@ -6474,7 +6424,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										event.time,
 									);
 									var result = event.result || result;
-									for (var i = 0; i < event.bb.length; i++) {
+									for (let i = 0; i < event.bb.length; i++) {
 										if (!result.links.includes(event.bb[i].name)) {
 											event.bb.splice(i--, 1);
 										}
@@ -6545,7 +6495,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										result.targets.sortBySeat();
 										player.line(result.targets, 'green');
 										game.log(result.targets, '获得了', '#y<御风>', '效果');
-										for (var i of result.targets) {
+										for (const i of result.targets) {
 											i.addSkill('lqtq_buju2');
 										}
 										if (event.bb > result.targets.length) {
@@ -7230,12 +7180,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									k = [],
 									l = [];
 								d.push(get.translation(h));
-								for (var i of ['杀', '闪', '桃', '酒']) {
+								for (const i of ['杀', '闪', '桃', '酒']) {
 									if (i != h) {
 										k.push(i);
 									}
 								}
-								for (var i of lib.inpile) {
+								for (const i of lib.inpile) {
 									for (const j of lib.translate[i]) {
 										if (k.includes(j)) {
 											l.add(i);
@@ -7250,20 +7200,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								a = a.randomGet();
 								b = b.randomGet();
-								for (var i of get.translation(a)) {
+								for (const i of get.translation(a)) {
 									if (!d.includes(i)) {
 										d.push(i);
 										e.push(i);
 									}
 								}
-								for (var i of get.translation(b)) {
+								for (const i of get.translation(b)) {
 									if (!d.includes(i)) {
 										d.push(i);
 										f.push(i);
 									}
 								}
 								dialog.add('<b><font color=#F08080>按卡牌名称顺序选择文字组合成卡牌(提示:</font><font color=#eeee00>' + e.randomGet() + '</font><font color=#F08080>/</font><font color=#eeee00>' + f.randomGet() + '</font><font color=#F08080>)</font>');
-								for (var i of lib.inpile) {
+								for (const i of lib.inpile) {
 									if (get.type(i) != 'basic') {
 										g.push(lib.translate[i]);
 									}
@@ -7277,12 +7227,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 									}
 								}
-								c = c.randomGets(50 - d.length);
-
+								c = c.randomGets(50 - d.length);
 								for (const i of c) {
 									d.push(i);
-								}
-
+								}
 								d.randomSort(); //打乱
 								event.list = [];
 							},
@@ -8110,8 +8058,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (name == 'sha') {
@@ -8130,8 +8077,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'equip' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['装备', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('玉足', [list, 'vcard']);
 								},
 								check(button) {
@@ -8167,7 +8113,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													}
 												}
 											});
-											for (var i of a) {
+											for (const i of a) {
 												var c = i[0],
 													d = i[1],
 													f = 'lqtq_' + c.name + '_' + d;
@@ -8193,12 +8139,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												return Math.random();
 											});
 											('step 1');
-											for (var i of result.links) {
+											for (const i of result.links) {
 												i[0].removeMark(i[2].slice(i[0].name.length + 6));
 											}
 											var a = [],
 												b = [];
-											for (var i of game.players) {
+											for (const i of game.players) {
 												if (i == player) {
 													continue;
 												}
@@ -8228,16 +8174,16 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 											('step 2');
 											((event.bb = []), (event.cc = ''), (event.dd = ''));
-											for (var i of get.skillInfoTranslation(result.links[0][2].slice(11))) {
+											for (const i of get.skillInfoTranslation(result.links[0][2].slice(11))) {
 												event.bb.push(i);
 											}
 											if (result.links[1]) {
-												for (var i of get.skillInfoTranslation(result.links[1][2].slice(11))) {
+												for (const i of get.skillInfoTranslation(result.links[1][2].slice(11))) {
 													event.bb.push(i);
 												}
 											}
 											var a = [];
-											for (var i of result.links) {
+											for (const i of result.links) {
 												a.push(i[2].slice(11));
 											}
 											game.log(player, '选择了', a);
@@ -8250,8 +8196,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											yi.classList.add('add-setting');
 											yi.style.margin = '0';
 											yi.style.width = '100%';
-											yi.style.position = 'relative';
-
+											yi.style.position = 'relative';
 											for (const i of event.bb) {
 												var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 												td.innerHTML = '<font size=5><b><font color=#eeee00>' + i + '</b></font>';
@@ -8260,8 +8205,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 												yi.appendChild(td);
 												dialog.buttons.add(td);
-											}
-
+											}
 											dialog.content.appendChild(yi);
 											var chooseButton = player.chooseButton([1, Infinity], dialog, true);
 											chooseButton.set('ai', function (button) {
@@ -8275,10 +8219,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											});
 											('step 4');
 											event.ee = [];
-											for (var i of result.links) {
+											for (const i of result.links) {
 												event.cc += i;
 											}
-											for (var i in lib.character) {
+											for (const i in lib.character) {
 												var d = lib.character[i][4];
 												if ((game.me == player && lib.config.extension_浪琴天阙_lqtq_shaiji_kuochong) || !lib.config.forbidai.includes(i)) {
 													event.ee.push(i);
@@ -8290,7 +8234,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 											('step 5');
 											event.ff = [];
-											for (var i of event.ee) {
+											for (const i of event.ee) {
 												for (const j of lib.character[i][3]) {
 													if (j.includes('rewrite') || !lib.translate[j] || !lib.translate[j + '_info']) {
 														continue;
@@ -8346,8 +8290,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											yi.classList.add('add-setting');
 											yi.style.margin = '0';
 											yi.style.width = '100%';
-											yi.style.position = 'relative';
-
+											yi.style.position = 'relative';
 											for (const i of event.bb) {
 												var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 												td.innerHTML = '<font size=5><b><font color=#eeee00>' + i + '</b></font>';
@@ -8356,20 +8299,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 												yi.appendChild(td);
 												dialog.buttons.add(td);
-											}
-
+											}
 											dialog.content.appendChild(yi);
 											var chooseButton = player.chooseButton([1, Infinity], dialog, true);
 											chooseButton.set('ai', function (button) {
 												return Math.random();
 											});
 											('step 9');
-											for (var i of result.links) {
+											for (const i of result.links) {
 												event.dd += i;
 											}
 											('step 10');
 											event.gg = [];
-											for (var i of event.ff) {
+											for (const i of event.ff) {
 												var str = lib.translate[i + '_info'];
 												for (var l = 0; l < str.length; l++) {
 													if (str[l] == event.dd[0] && str.substring(l, l + event.dd.length) == event.dd && !event.gg.includes(i)) {
@@ -8420,8 +8362,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											yi.classList.add('add-setting');
 											yi.style.margin = '0';
 											yi.style.width = '100%';
-											yi.style.position = 'relative';
-
+											yi.style.position = 'relative';
 											for (const i of event.gg) {
 												var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 												td.innerHTML = '<font size=4>【' + get.translation(i) + '】<br><P align=left>' + get.skillInfoTranslation(i);
@@ -8430,8 +8371,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 												yi.appendChild(td);
 												dialog.buttons.add(td);
-											}
-
+											}
 											dialog.content.appendChild(yi);
 											var chooseButton = player.chooseButton(dialog, true);
 											chooseButton.set('ai', function (button) {
@@ -8658,7 +8598,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										const info = get.info(trigger.card);
 										if (trigger.targets && !info.multitarget) {
 											const players = game.filterPlayer();
-											for (var i of players) {
+											for (const i of players) {
 												if (lib.card[trigger.card.name].enable && lib.filter.targetEnabled2(trigger.card, player, i) && !trigger.targets.includes(i)) {
 													goon = true;
 													break; //循环
@@ -8685,7 +8625,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										}
 										('step 1');
 										if (result.bool) {
-											for (var i of result.targets) {
+											for (const i of result.targets) {
 												trigger.targets.push(i);
 											}
 										}
@@ -8716,8 +8656,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									enable: ['chooseToUse', 'chooseToRespond'],
 									chooseButton: {
 										dialog(event, player) {
-											const list = [];
-
+											const list = [];
 											for (const i of lib.inpile) {
 												const name = i;
 												if (player.storage.jiux.includes(name)) {
@@ -8748,8 +8687,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												} else if (event.filterCard && event.filterCard({ name: name }, player, event)) {
 													list.push([get.translation(get.type({ name: name })), '', name]);
 												}
-											}
-
+											}
 											return ui.create.dialog('九弦', [list, 'vcard']);
 										},
 										filter(button, player) {
@@ -8865,12 +8803,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								if (player.countCards('h') > 0) {
 									const hs = player.getCards('h');
-									game.addVideo('lose', player, [get.cardsInfo(hs), [], [], []]);
-
+									game.addVideo('lose', player, [get.cardsInfo(hs), [], [], []]);
 									for (const i of hs) {
 										i.discard(false);
-									}
-
+									}
 									player.update();
 									game.log(player, '不会拥有手牌');
 								}
@@ -8949,12 +8885,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player.storage.jiux = [];
 								}
 								const hs = player.getCards('h');
-								game.addVideo('lose', player, [get.cardsInfo(hs), [], [], []]);
-
+								game.addVideo('lose', player, [get.cardsInfo(hs), [], [], []]);
 								for (const i of hs) {
 									i.discard(false);
-								}
-
+								}
 								player.update();
 							},
 							marktext: '九',
@@ -9094,12 +9028,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									audio: 'lqhc_zhaocai',
 									filter(event, player) {
 										const history = player.getHistory('useCard').concat(player.getHistory('respond'));
-										const suit = [];
-
+										const suit = [];
 										for (const i of history) {
 											suit.add(i.card.suit);
-										}
-
+										}
 										return suit.length < 4;
 									},
 									content() {
@@ -9527,8 +9459,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (button.link.suit == i.link.suit) {
 											return false;
 										}
-									}
-
+									}
 									return true;
 								});
 								('step 1');
@@ -10035,7 +9966,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								player.loseMaxHp();
 								('step 1');
-								var i = player.maxHp;
+								const i = player.maxHp;
 								player.draw(i);
 								player
 									.chooseTarget([1, i], '对最多' + get.translation(i) + '名其他角色造成一点伤害.', function (card, player, target) {
@@ -10046,7 +9977,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									});
 								('step 2');
 								if (result.targets?.length) {
-									for (var i of result.targets) {
+									for (const i of result.targets) {
 										i.damage();
 									}
 								}
@@ -10067,7 +9998,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.recover(6 - player.hp);
 								const skills = [],
 									characters = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									const d = lib.character[i][4];
 									if (d.includes('boss') || d.includes('hiddenboss') || d.includes('bossallowed') || d.includes('minskin')) {
 										continue;
@@ -10078,16 +10009,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									if ((game.me == player && lib.config.extension_浪琴天阙_lqtq_shaiji_kuochong) || !lib.config.forbidai.includes(i)) {
 										characters.push(i);
 									}
-								}
-
+								}
 								for (const i of characters) {
 									const name = i;
 									if (!lib.character[name]) {
 										continue;
 									}
 									const skillsx = lib.character[name][3].slice(0);
-									const list = skillsx.slice(0);
-
+									const list = skillsx.slice(0);
 									for (const j of list) {
 										if (j.includes('rewrite') || skills.includes(j)) {
 											continue;
@@ -10114,10 +10043,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										lib.translate['skillCard_' + j] = lib.translate[j];
 										lib.translate['skillCard_' + j + '_info'] = lib.translate[j + '_info'];
 									}
-								}
-
+								}
 								event.list = skills.randomGets(9);
-								for (var i = 0; i < event.list.length; i++) {
+								for (let i = 0; i < event.list.length; i++) {
 									event.list[i] = ['', '', 'skillCard_' + event.list[i]];
 								}
 								if (!event.list.length) {
@@ -10140,13 +10068,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									event.target = result.targets[0];
 									player.chooseButton(['选择你要获得的技能,' + get.translation(event.target) + '获得剩下的技能', [event.list, 'vcard']], true, [1, 2]);
 								} else {
-									for (var i of event.list) {
+									for (const i of event.list) {
 										player.addSkill(i[2].slice(10));
 									}
 									event.finish();
 								}
 								('step 3');
-								for (var i of event.list) {
+								for (const i of event.list) {
 									if (result.links.includes(i)) {
 										player.addSkill(i[2].slice(10));
 									} else {
@@ -10256,8 +10184,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (i.link.number == button.link.number) {
 											return false;
 										}
-									}
-
+									}
 									return true;
 								});
 								next.set('ai', function (button) {
@@ -10966,8 +10893,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									chooseButton: {
 										dialog(event, player) {
 											const list = [],
-												list1 = [];
-
+												list1 = [];
 											for (const i of lib.inpile) {
 												const name = i;
 												if (get.type2(name) == 'trick' && event.filterCard && event.filterCard({ name: name }, player, event)) {
@@ -10977,8 +10903,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 														list1.push(['锦囊', '', name]);
 													}
 												}
-											}
-
+											}
 											const dialog = ui.create.dialog('<font size=6>选择一张牌使用', '<font size=3>', 'hidden');
 											if (list.length) {
 												dialog.add('已记录的牌');
@@ -11505,10 +11430,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								let list = [],
 									list1 = 0;
-								for (var i of player.getExpansions('lqhc_juezan')) {
+								for (const i of player.getExpansions('lqhc_juezan')) {
 									list.add(i.suit);
 								}
-								for (var i of player.getCards('he')) {
+								for (const i of player.getCards('he')) {
 									if (!list.includes(i.suit)) {
 										list1++;
 									}
@@ -11591,7 +11516,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									content() {
 										'step 0';
-										player.chooseCardButton([1, 4], '是否发动【倔堑】？<br><font size=4>弃置任意张<堑>,令' + get.translation(trigger.player) + '跳过对应阶段.</font><br><font size=3><b>♠️️️:跳过判定//♣️️️:跳过摸牌//♦️️️:跳过出牌//♥️️️:跳过弃牌', player.getExpansions('lqhc_juezan')).ai = function (button) {
+										player.chooseCardButton([1, 4], '是否发动【倔堑】？<br><font size=4>弃置任意张<堑>,令' + get.translation(trigger.player) + '跳过对应阶段.</font><br><font size=3><b>♠️️️️:跳过判定//♣️️️️:跳过摸牌//♦️️️️:跳过出牌//♥️️️️:跳过弃牌', player.getExpansions('lqhc_juezan')).ai = function (button) {
 											const att = get.attitude(_status.event.player, trigger.player),
 												suit = button.link.suit;
 											if (att > 0 && trigger.player.countCards('j') && trigger.player.countCards('h') - trigger.player.getHandcardLimit() > 2) {
@@ -11669,10 +11594,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								let list = [],
 									list1 = 0;
-								for (var i of player.getExpansions('lqhc_juezan')) {
+								for (const i of player.getExpansions('lqhc_juezan')) {
 									list.add(i.suit);
 								}
-								for (var i of player.getCards('he')) {
+								for (const i of player.getCards('he')) {
 									if (!list.includes(i.suit)) {
 										list1++;
 									}
@@ -11879,12 +11804,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										lib.translate[name + '_info'] = lib.translate[name1 + '_info'] + '你的【杀】不能被响应.';
 										lib.card[name].cardimage = name1;
 										let links = get.translation(cards[0].name),
-											str = '炼';
-
+											str = '炼';
 										for (const i of links) {
 											str += get.translation(i);
-										}
-
+										}
 										lib.translate[name] = str;
 									}
 									cards[0].init(game.createCard(name, cards[0].suit, cards[0].number));
@@ -11994,15 +11917,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (get.type(name) == 'trick' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['锦囊', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('机智', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -12465,8 +12386,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							//②你可以将一张<兵>当做任意基本牌使用或打出.③你获得或失去<兵>时,你摸一张牌.④你的攻击距离加2X(X为你的<兵>数)
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (name == 'sha') {
@@ -12482,8 +12402,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('兵祸', [list, 'vcard'], 'hidden'); //QQQ
 								},
 								select: 2,
@@ -12674,15 +12593,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (get.type2(name) == 'trick' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['锦囊', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('<font size=6>太平', [list, 'vcard'], 'hidden');
 								},
 								select: 2,
@@ -12880,7 +12797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										const a = player.storage.lqhc_jinglve1,
 											b = [];
 										if (trigger.name != 'die') {
-											for (var i of trigger.cards) {
+											for (const i of trigger.cards) {
 												for (var j = 0; j < a.length; j++) {
 													if (a[j] == i) {
 														b.push(player.storage.lqhc_jinglve1[j]);
@@ -12897,7 +12814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 										}
 										if (b.length) {
-											for (var i of b) {
+											for (const i of b) {
 												player.storage.lqhc_jinglve1.remove(i);
 											}
 										}
@@ -12936,20 +12853,20 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (trigger.name == 'useCard') {
 											trigger.all_excluded = true;
 											trigger.targets.length = 0;
-											for (var i of trigger.cards) {
+											for (const i of trigger.cards) {
 												if (a.includes(i)) {
 													event.l.push(i);
 												}
 											}
 											player.gain(event.l, 'draw2');
 										} else if (trigger.name == 'phase') {
-											for (var i of trigger.player.getCards('hej')) {
+											for (const i of trigger.player.getCards('hej')) {
 												if (a.includes(i)) {
 													event.l.push(i);
 												}
 											}
 										} else {
-											for (var i of trigger.cards) {
+											for (const i of trigger.cards) {
 												if (a.includes(i)) {
 													event.l.push(i);
 												}
@@ -13074,7 +12991,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										var list = get.charactersOL();
 									} else {
 										var list = [];
-										for (var i in lib.character) {
+										for (const i in lib.character) {
 											if (lib.filter.characterDisabled2(i) || lib.filter.characterDisabled(i)) {
 												continue;
 											}
@@ -13084,7 +13001,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									_status.characterlist = list;
 								}
 								_status.characterlist.randomSort();
-								for (var i of _status.characterlist) {
+								for (const i of _status.characterlist) {
 									if (i == 'key_yuri') {
 										continue;
 									}
@@ -13189,8 +13106,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								'step 0';
-								const list = [];
-
+								const list = [];
 								for (const i of lib.inpile) {
 									const name = i,
 										card = { name: name };
@@ -13211,8 +13127,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									} else if (get.type(name) == 'trick' && lib.filter.cardEnabled({ name: name }, player)) {
 										list.push(['锦囊', '', name]);
 									}
-								}
-
+								}
 								const dialog = ui.create.dialog('###是否发动【挑战】？###你可以视为使用一张带有「伤害」标签的牌.', [list, 'vcard'], 'hidden');
 								player.chooseButton(dialog).ai = function (button) {
 									const player = _status.event.player;
@@ -13273,7 +13188,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.drawTo(8);
 										let skills = [],
 											chaii = [];
-										for (var i in lib.character) {
+										for (const i in lib.character) {
 											if (lib.character[i][1] != 'shen') {
 												continue;
 											}
@@ -13297,7 +13212,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											event.finish();
 										}
 										('step 1');
-										for (var i of lib.character[result.links[0]][3]) {
+										for (const i of lib.character[result.links[0]][3]) {
 											player.addSkillLog(i);
 										}
 									},
@@ -13311,7 +13226,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								for (var i of event.cards) {
+								for (const i of event.cards) {
 									return (
 										event.card.name == 'shan' &&
 										([1, 11, 12, 13].includes(i.number) ||
@@ -13514,8 +13429,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												if (get.position(button.link) == get.position(i.link)) {
 													return false;
 												}
-											}
-
+											}
 											return true;
 										});
 									}
@@ -14013,15 +13927,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (get.type(name) == 'delay' && player.canAddJudge({ name: name })) {
 											list.push(['锦囊', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('难辞:选择一张牌置于你的判定区.', [list, 'vcard']);
 								},
 								check(button) {
@@ -14089,7 +14001,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							forced: true,
 							filter(event, player) {
-								for (var i of player.getCards('j')) {
+								for (const i of player.getCards('j')) {
 									if (
 										(game.hasPlayer(function (current) {
 											return current.canAddJudge(i) && current != player;
@@ -14104,7 +14016,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							content() {
 								'step 0';
-								for (var i of player.getCards('j')) {
+								for (const i of player.getCards('j')) {
 									if (
 										game.hasPlayer(function (current) {
 											return current.canAddJudge(i);
@@ -14130,7 +14042,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									const b = result.targets[0];
 									player.recover();
 									event.finish();
-									for (var i of player.getCards('j')) {
+									for (const i of player.getCards('j')) {
 										if (b.canAddJudge(i)) {
 											if (i.viewAs) {
 												b.addJudge({ name: i.viewAs }, [i]);
@@ -14158,7 +14070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return '创建与你判定区同名的牌各一张置入' + (a == 1 ? '一' : '最多' + a) + '名角色的判定区.';
 							},
 							filter(event, player) {
-								for (var i of player.getCards('j')) {
+								for (const i of player.getCards('j')) {
 									if (
 										game.hasPlayer(function (current) {
 											return current.canAddJudge(i) && current != player;
@@ -14363,14 +14275,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										'step 0';
 										player.removeMark('lqhc_yiyou_equip', 2);
 										let b = [];
-										for (var i in lib.characterPack.langqinyouman) {
+										for (const i in lib.characterPack.langqinyouman) {
 											if (!lib.character[i][4].includes('minskin')) {
 												b.push(i);
 											}
 										}
 										b = b.randomGet();
 										game.log(player, '展示了', '#g' + b);
-										for (var i of lib.character[b][3]) {
+										for (const i of lib.character[b][3]) {
 											player.addSkillLog(i);
 										}
 										event.dialog = ui.create.dialog('<div class="text center">' + get.translation(player) + '展示了', [[b], 'character']);
@@ -14392,8 +14304,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									},
 									chooseButton: {
 										dialog(event, player) {
-											const list = [];
-
+											const list = [];
 											for (const i of lib.inpile) {
 												const name = i;
 												if (name == 'sha') {
@@ -14412,8 +14323,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												} else if (get.type(name) == 'equip' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 													list.push(['装备', '', name]);
 												}
-											}
-
+											}
 											return ui.create.dialog('暗决', [list, 'vcard']);
 										},
 										check(button) {
@@ -14580,8 +14490,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									const a = [],
 										b = [],
 										c = [],
-										d = player.getStorage('lqhc_longdan');
-
+										d = player.getStorage('lqhc_longdan');
 									for (const i of lib.inpile) {
 										const name = i;
 										if (d.includes(name) && event.type == 'phase' && !player.hasSkill('lqhc_longdan_count')) {
@@ -14614,8 +14523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												a.push(['basic', '', 'shan']);
 											}
 										}
-									}
-
+									}
 									const dialog = ui.create.dialog('<font size=5>龙胆', '<font size=3>', 'hidden');
 									if (a.length) {
 										dialog.add('闪当闪,闪当杀');
@@ -15145,8 +15053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								yi.classList.add('add-setting');
 								yi.style.margin = '0';
 								yi.style.width = '100%';
-								yi.style.position = 'relative';
-
+								yi.style.position = 'relative';
 								for (const i of sex) {
 									var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = get.translation(i);
@@ -15155,8 +15062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 									yi.appendChild(td);
 									dialog.buttons.add(td);
-								}
-
+								}
 								dialog.content.appendChild(yi);
 								dialog.add('选择伤害');
 								const group = ['普通', 'fire', 'thunder', 'ice', 'kami'];
@@ -15164,8 +15070,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								er.classList.add('add-setting');
 								er.style.margin = '0';
 								er.style.width = '100%';
-								er.style.position = 'relative';
-
+								er.style.position = 'relative';
 								for (const i of group) {
 									var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = get.translation(i);
@@ -15174,8 +15079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 									er.appendChild(td);
 									dialog.buttons.add(td);
-								}
-
+								}
 								dialog.content.appendChild(er);
 								var a = player.chooseButton(dialog, true);
 								a.set('selectButton', function () {
@@ -15564,7 +15468,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return 8 - get.value(card);
 							},
 							prompt() {
-								return '♠️️️:千把刀/♥️️️:魔术咒文书/♣️️️:死亡魔术箱/♦️️️:魔术礼帽';
+								return '♠️️️️:千把刀/♥️️️️:魔术咒文书/♣️️️️:死亡魔术箱/♦️️️️:魔术礼帽';
 							},
 							filter(event, player) {
 								return player.countCards('he');
@@ -15859,7 +15763,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										player.removeMark('lqym_mozhen', 2);
 										const a = [],
 											b = ['lqym_qianbadao', 'lqym_moshuzhouwenshu', 'lqym_siwangmoshuxiang', 'lqym_moshulimao'];
-										for (var i of b) {
+										for (const i of b) {
 											const c = get.cardPile(function (card) {
 												return card.name == i;
 											});
@@ -16535,7 +16439,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								if (trigger.name == 'useCard') {
 									const g = [];
-									for (var i of trigger.cards) {
+									for (const i of trigger.cards) {
 										if (i.storage.dangka && get.position(i) == 'd') {
 											g.push(i);
 										}
@@ -16545,7 +16449,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								} else {
 									const a = [];
 									((event.b = []), (event.d = []), (event.e = Math.max(9, Math.ceil(ui.cardPile.childElementCount / 20))));
-									for (var i in lib.character) {
+									for (const i in lib.character) {
 										const d = lib.character[i][4];
 										if (d.includes('boss') || d.includes('hiddenboss') || d.includes('bossallowed') || d.includes('minskin')) {
 											continue;
@@ -16554,7 +16458,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											a.push(i);
 										}
 									}
-									for (var i of a) {
+									for (const i of a) {
 										if (!lib.character[i]) {
 											continue;
 										}
@@ -16574,7 +16478,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const name = event.b.randomGet();
 								const c = [],
 									f = [];
-								for (var i of event.b) {
+								for (const i of event.b) {
 									if (i != name) {
 										f.add(i);
 									}
@@ -16610,7 +16514,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const a = [],
 									b = [],
 									c = [];
-								for (var i in lib.character) {
+								for (const i in lib.character) {
 									const d = lib.character[i][4];
 									if (d.includes('boss') || d.includes('hiddenboss') || d.includes('bossallowed') || d.includes('minskin')) {
 										continue;
@@ -16619,7 +16523,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										a.push(i);
 									}
 								}
-								for (var i of a) {
+								for (const i of a) {
 									if (!lib.character[i]) {
 										continue;
 									}
@@ -17384,14 +17288,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											}
 											const list = Object.keys(player.disabledSkills);
 											if (list.length) {
-												str += '<br><br>失效技能:';
-
+												str += '<br><br>失效技能:';
 												for (const i of list) {
 													if (lib.translate[i + '_info']) {
 														str += get.translation(i) + '、';
 													}
-												}
-
+												}
 												return str.slice(0, str.length - 1);
 											}
 										},
@@ -17549,13 +17451,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										a = get.cardPile(function (card) {
 											const c = [],
 												d = [];
-											for (var i of b) {
+											for (const i of b) {
 												const j = player.countCards('h', function (car) {
 													return get.type2(car) == i;
 												});
 												c.push([i, j]); //type//num
 											}
-											for (var i = 1; i <= player.countCards('h'); i++) {
+											for (let i = 1; i <= player.countCards('h'); i++) {
 												for (const j of c) {
 													if (j[1] == i) {
 														return get.type2(card) == j[0];
@@ -17742,8 +17644,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 														if (get.position(button.link) == get.position(i.link)) {
 															return false;
 														}
-													}
-
+													}
 													return true;
 												});
 											}
@@ -17781,12 +17682,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											b = player.group;
 										trigger.cancel();
 										var a = player.getCards('hej');
-										game.addVideo('lose', player, [get.cardsInfo(a), [], []]);
-
+										game.addVideo('lose', player, [get.cardsInfo(a), [], []]);
 										for (const i of a) {
 											i.discard(false);
-										}
-
+										}
 										game.log(player, '退化为', '#g「碟状幼体」');
 										player.uninit();
 										player.init('lqym_diezhuangyouti');
@@ -17826,12 +17725,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										game.log(player, '成功完成使命');
 										player.awakenSkill('lqym_jinran');
 										var a = player.getCards('hej');
-										game.addVideo('lose', player, [get.cardsInfo(a), [], []]);
-
+										game.addVideo('lose', player, [get.cardsInfo(a), [], []]);
 										for (const i of a) {
 											i.discard(false);
-										}
-
+										}
 										game.log(player, '化为', '#g「隐形水母怪」');
 										player.uninit();
 										player.init('lqym_No.4');
@@ -19455,14 +19352,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									let str = '本回合,你不能使用黑色基本牌,你使用的锦囊牌不能指定你或' + get.translation(player.storage.lqym_luanjian3) + '以外的角色为目标.';
 									const list = Object.keys(player.disabledSkills);
 									if (list.length) {
-										str += '<br>封印技能:';
-
+										str += '<br>封印技能:';
 										for (const i of list) {
 											if (lib.translate[i + '_info']) {
 												str += get.translation(i) + '/';
 											}
-										}
-
+										}
 										return str.slice(0, str.length - 1);
 									}
 								},
@@ -19719,7 +19614,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										b = ['nanman', 'wanjian', 'juedou', 'sha'],
 										c = game.players.slice(0);
 									c.remove(a);
-									for (var i = 0; i < b.length; i++) {
+									for (let i = 0; i < b.length; i++) {
 										if (!a.canUse(b[i], player, false)) {
 											b.splice(i--, 1);
 										}
@@ -19729,7 +19624,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									}
 									const name = b.randomGet();
 									if (name == 'nanman' || name == 'wanjian') {
-										for (var i = 0; i < c.length; i++) {
+										for (let i = 0; i < c.length; i++) {
 											if (!a.canUse(name, c[i], false)) {
 												c.splice(i--, 1);
 											}
@@ -19828,7 +19723,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 2');
 								if (Array.isArray(result) && result.length) {
 									const a = [];
-									for (var i of result) {
+									for (const i of result) {
 										a.add(get.type2(i));
 									}
 									player.chooseTarget([1, a.length], '遗计:令最多' + a.length + '名角色各摸一张牌.').ai = function (target) {
@@ -19839,7 +19734,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								('step 3');
 								if (result.bool) {
-									for (var i of result.targets) {
+									for (const i of result.targets) {
 										i.draw();
 									}
 								}
@@ -19919,7 +19814,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										b = [],
 										c = [],
 										d = [];
-									for (var i in lib.character) {
+									for (const i in lib.character) {
 										if ((game.me == player && lib.config.extension_浪琴天阙_lqtq_shaiji_kuochong) || !lib.config.forbidai.includes(i)) {
 											a.push(i);
 										}
@@ -19940,7 +19835,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 												continue;
 											}
 											const str = lib.translate[j + '_info'];
-											for (var i = 0; i < str.length; i++) {
+											for (let i = 0; i < str.length; i++) {
 												if (str[i] == '判' && str.substring(i, i + 6) == '判定牌生效前') {
 													c.push(j);
 												}
@@ -19992,12 +19887,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								});
 								('step 1');
 								const top = result.moved[0];
-								top.reverse();
-
+								top.reverse();
 								for (const i of top) {
 									ui.cardPile.insertBefore(i, ui.cardPile.firstChild);
-								}
-
+								}
 								game.updateRoundNumber();
 								player.gain(result.moved[1], 'gain2');
 							},
@@ -20118,14 +20011,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									player(player, target) {
 										if (target.sameSexAs(player)) {
 											return 0;
-										}
-
+										}
 										for (const i of ui.selected.targets) {
 											if (i.differentSexFrom(player)) {
 												return 0;
 											}
-										}
-
+										}
 										return get.attitude(player, target) < 0 && target.countCards('h', 'tao') > 0 ? 1 : -2;
 									},
 								},
@@ -20141,14 +20032,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										if (event.parent.name == 'useCard') {
 											return false;
 										}
-										const evt = event.getl(player);
-
+										const evt = event.getl(player);
 										for (const i of evt.cards2) {
 											if (get.color(i, evt.hs.includes(i) ? evt.player : false) == 'red' && get.position(i) == 'd') {
 												return true;
 											}
-										}
-
+										}
 										return false;
 									},
 									audio: 'lqcy_guose',
@@ -20156,14 +20045,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									content() {
 										'step 0';
 										event.b = [];
-										const evt = trigger.getl(player);
-
+										const evt = trigger.getl(player);
 										for (const i of evt.cards2) {
 											if (get.color(i, evt.hs.includes(i) ? evt.player : false) == 'red' && get.position(i) == 'd') {
 												event.b.push(i);
 											}
-										}
-
+										}
 										if (!event.b.length) {
 											event.finish();
 										}
@@ -20748,8 +20635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (name == 'sha') {
@@ -20766,8 +20652,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('佐幸', [list, 'vcard']);
 								},
 								check(button) {
@@ -21308,15 +21193,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (get.type(name) == 'trick' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['锦囊', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('急袭:选择一张牌使用.', [list, 'vcard']);
 								},
 								check(button) {
@@ -21618,8 +21501,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								yi.classList.add('add-setting');
 								yi.style.margin = '0';
 								yi.style.width = '100%';
-								yi.style.position = 'relative';
-
+								yi.style.position = 'relative';
 								for (const i of skills) {
 									const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 									td.innerHTML = '<font size=4>【' + get.translation(i) + '】<br><P align=left>' + get.skillInfoTranslation(i);
@@ -21628,8 +21510,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									Object.setPrototypeOf(td, lib.element.Button.prototype); //QQQ
 									yi.appendChild(td);
 									dialog.buttons.add(td);
-								}
-
+								}
 								dialog.content.appendChild(yi);
 								const chooseButton = player.chooseButton(dialog, true);
 								chooseButton.set('ai', function (button) {
@@ -21670,12 +21551,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								('step 1');
 								if (result.bool) {
 									const hs = player.getCards('h');
-									game.addVideo('lose', player, [get.cardsInfo(hs), [], []]);
-
+									game.addVideo('lose', player, [get.cardsInfo(hs), [], []]);
 									for (const i of hs) {
 										i.discard(false);
-									}
-
+									}
 									player.directgain(get.cards(hs.length));
 									event.goto(0);
 								}
@@ -21731,14 +21610,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											if (!current.storage.zhuanshums3) {
 												current.storage.zhuanshums3 = [];
 											}
-											for (var i of current.getSkills(true, false)) {
+											for (const i of current.getSkills(true, false)) {
 												if (lib.skill[i].fixed == true) {
 													lib.skill[i].fixed = false;
 													current.removeSkill(i);
 													current.storage.zhuanshums3.push(i);
 												}
 											}
-											for (var i of current.storage.zhuanshums3) {
+											for (const i of current.storage.zhuanshums3) {
 												lib.skill[i].fixed = true;
 											}
 											lib.character[current.name][3] = [];
@@ -21853,7 +21732,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const b = lib.skill.lqtz_zhuanshutiaozhan1.skilla();
 								if (b.length) {
 									const list = b.randomGets(12);
-									for (var i = 0; i < list.length; i++) {
+									for (let i = 0; i < list.length; i++) {
 										list[i] = ['', '', 'skillCard_' + list[i]];
 									}
 									player.chooseButton(['选择要获得的技能', [list, 'vcard']], true);
@@ -21871,7 +21750,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const d = [],
 									a = player.getSkills(true, false).slice(0),
 									c = game.moshi > 0 ? 4 : 3;
-								for (var i of player.storage.zhuanshums1) {
+								for (const i of player.storage.zhuanshums1) {
 									if (i.name == a.name) {
 										d.push(i);
 									}
@@ -21907,7 +21786,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const b = lib.skill.lqtz_zhuanshutiaozhan1.skilla();
 								if (b.length) {
 									const list = b.randomGets(12);
-									for (var i = 0; i < list.length; i++) {
+									for (let i = 0; i < list.length; i++) {
 										list[i] = ['', '', 'skillCard_' + list[i]];
 									}
 									player.chooseButton(['选择要获得的技能', [list, 'vcard']], true);
@@ -21926,7 +21805,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const d = [],
 									a = player.getSkills(true, false).slice(0),
 									c = game.moshi > 0 ? 4 : 3;
-								for (var i of player.storage.zhuanshums1) {
+								for (const i of player.storage.zhuanshums1) {
 									if (i.name == a.name) {
 										d.push(i);
 									}
@@ -21976,7 +21855,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									const b = lib.skill.lqtz_zhuanshutiaozhan1.skilla();
 									if (b.length) {
 										const list = b.randomGets(12);
-										for (var i = 0; i < list.length; i++) {
+										for (let i = 0; i < list.length; i++) {
 											list[i] = ['', '', 'skillCard_' + list[i]];
 										}
 										player.chooseButton(['选择要获得的技能', [list, 'vcard']], true);
@@ -22009,7 +21888,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								const d = [],
 									a = player.getSkills(true, false).slice(0),
 									c = game.moshi > 0 ? 4 : 3;
-								for (var i of player.storage.zhuanshums1) {
+								for (const i of player.storage.zhuanshums1) {
 									if (i.name == a.name) {
 										d.push(i);
 									}
@@ -22139,8 +22018,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							_priority: Infinity,
 							content() {
 								game.addGlobalSkill('lqtz_xiuzheng2');
-								const dead = game.dead.slice(0);
-
+								const dead = game.dead.slice(0);
 								for (const i of dead) {
 									if (i.name == trigger.player.name) {
 										i.revive(i.maxHp);
@@ -23335,14 +23213,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										content(storage, player, skill) {
 											const list = Object.keys(player.disabledSkills);
 											if (list.length) {
-												let str = '遗忘技能:';
-
+												let str = '遗忘技能:';
 												for (const i of list) {
 													if (lib.translate[i + '_info']) {
 														str += get.translation(i) + '/';
 													}
-												}
-
+												}
 												return str.slice(0, str.length - 1);
 											}
 										},
@@ -24177,7 +24053,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							content() {
 								if (event.triggername != 'phaseAfter') {
 									var num = trigger.num || trigger.cards.length;
-									for (var i = 0; i < num; i++) {
+									for (let i = 0; i < num; i++) {
 										player.storage.lqtz_xuanpan1.push(trigger.name);
 									}
 									player.markSkill('lqtz_xuanpan');
@@ -24186,7 +24062,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										num2 = 0,
 										num3 = 0,
 										num4 = 0;
-									for (var i of player.storage.lqtz_xuanpan1) {
+									for (const i of player.storage.lqtz_xuanpan1) {
 										if (i == 'damage') {
 											num++;
 										}
@@ -24329,22 +24205,19 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player: 'phaseAfter',
 							},
 							filter(event, player) {
-								const dead = game.dead.slice(0);
-
+								const dead = game.dead.slice(0);
 								for (const i of dead) {
 									if (i.name == 'lqtz_qijiasi') {
 										return true;
 									}
-								}
-
+								}
 								return false;
 							},
 							_priority: 20,
 							forced: true,
 							popup: false,
 							content() {
-								const dead = game.dead.slice(0);
-
+								const dead = game.dead.slice(0);
 								for (const i of dead) {
 									if (i.parentNode == player.parentNode && i.name == 'lqtz_qijiasi') {
 										i.revive(i.maxHp);
@@ -24371,15 +24244,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw();
 								if (trigger.source && player.getEnemies().includes(trigger.source)) {
 									let d = [];
-									const b = trigger.source.getSkills(true, false);
-
+									const b = trigger.source.getSkills(true, false);
 									for (const l of b) {
 										if (!lib.translate[l] || !lib.translate[l + '_info']) {
 											continue;
 										}
 										d.push(l);
-									}
-
+									}
 									d = d.randomGet();
 									player.addTempSkill(d, { player: 'phaseAfter' });
 								}
@@ -24563,8 +24434,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 													if (get.position(button.link) == get.position(i.link)) {
 														return false;
 													}
-												}
-
+												}
 												return true;
 											});
 										}
@@ -24653,14 +24523,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								player.draw(trigger.num * 3);
 								('step 1');
 								if (Array.isArray(result) && result.length) {
-									event.a = [];
-
+									event.a = [];
 									for (const i of result) {
 										if (player.hasUseTarget(i)) {
 											event.a.push(i);
 										}
-									}
-
+									}
 									if (!event.a.length) {
 										event.finish();
 									}
@@ -25751,12 +25619,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							forced: true,
 							content() {
 								'step 0';
-								let effect = 0;
-
+								let effect = 0;
 								for (const i of trigger.targets) {
 									effect -= get.effect(i, trigger.card, trigger.player, player);
-								}
-
+								}
 								if (effect > 0) {
 									if (player.countCards('h', 'shan')) {
 										effect = 1;
@@ -26334,8 +26200,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (name == 'sha') {
@@ -26352,8 +26217,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('灭吴', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -26429,12 +26293,10 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							mod: {
 								maxHandcardBase(player, num) {
 									var num = 0;
-									const next = game.filterPlayer().sortBySeat();
-
+									const next = game.filterPlayer().sortBySeat();
 									for (const i of next) {
 										num += i.hp;
-									}
-
+									}
 									return num;
 								},
 							},
@@ -26721,21 +26583,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							filter(event, player) {
 								let dead = game.dead.slice(0),
-									list = 0;
-
+									list = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_ren') {
 										list += 5;
 									}
-								}
-
+								}
 								return list > 0 && player.countMark('lqtz_jiajia') >= list;
 							},
 							forced: true,
 							content() {
 								let dead = game.dead.slice(0),
-									num = 0;
-
+									num = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_ren') {
 										num += 5;
@@ -26743,8 +26602,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.draw(4, false);
 										i.update();
 									}
-								}
-
+								}
 								player.removeMark('lqtz_jiajia', num);
 							},
 							ai: {
@@ -26758,21 +26616,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							filter(event, player) {
 								let dead = game.dead.slice(0),
-									list = 0;
-
+									list = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_yi') {
 										list += 5;
 									}
-								}
-
+								}
 								return list > 0 && player.countMark('lqtz_jiajia') >= list;
 							},
 							forced: true,
 							content() {
 								let dead = game.dead.slice(0),
-									num = 0;
-
+									num = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_yi') {
 										num += 5;
@@ -26780,8 +26635,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.draw(4, false);
 										i.update();
 									}
-								}
-
+								}
 								player.removeMark('lqtz_jiajia', num);
 							},
 							ai: {
@@ -26795,21 +26649,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							filter(event, player) {
 								let dead = game.dead.slice(0),
-									list = 0;
-
+									list = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_dun') {
 										list += 5;
 									}
-								}
-
+								}
 								return list > 0 && player.countMark('lqtz_jiajia') >= list;
 							},
 							forced: true,
 							content() {
 								let dead = game.dead.slice(0),
-									num = 0;
-
+									num = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_dun') {
 										num += 5;
@@ -26817,8 +26668,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.draw(4, false);
 										i.update();
 									}
-								}
-
+								}
 								player.removeMark('lqtz_jiajia', num);
 							},
 							ai: {
@@ -26832,21 +26682,18 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							enable: 'phaseUse',
 							filter(event, player) {
 								let dead = game.dead.slice(0),
-									list = 0;
-
+									list = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_shenbing') {
 										list += 5;
 									}
-								}
-
+								}
 								return list > 0 && player.countMark('lqtz_jiajia') >= list;
 							},
 							forced: true,
 							content() {
 								let dead = game.dead.slice(0),
-									num = 0;
-
+									num = 0;
 								for (const i of dead) {
 									if (i.name == 'lqtz_shenbing') {
 										num += 5;
@@ -26854,8 +26701,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										i.draw(4, false);
 										i.update();
 									}
-								}
-
+								}
 								player.removeMark('lqtz_jiajia', num);
 							},
 							ai: {
@@ -26975,9 +26821,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								}
 								event.count = trigger.target.countCards('h', { suit: 'diamond' });
 								let cards = trigger.target.getCards('h'),
-									zi = '没有♦️️️牌';
+									zi = '没有♦️️️️牌';
 								if (event.count > 0) {
-									zi = '共' + get.translation(event.count) + '张♦️️️牌';
+									zi = '共' + get.translation(event.count) + '张♦️️️️牌';
 								}
 								const content = [get.translation(trigger.target) + '的手牌,' + zi, cards];
 								game.log(player, '观看了', trigger.target, '的手牌');
@@ -27164,8 +27010,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							},
 							chooseButton: {
 								dialog(event, player) {
-									const list = [];
-
+									const list = [];
 									for (const i of lib.inpile) {
 										const name = i;
 										if (name == 'sha') {
@@ -27182,8 +27027,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('神潮', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -27650,8 +27494,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								dialog(event, player) {
 									let list = [],
 										a = 0,
-										b = [];
-
+										b = [];
 									for (const i of lib.inpile) {
 										var name = i;
 										a = 0;
@@ -27687,8 +27530,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										} else if (get.type(name) == 'basic' && event.filterCard && event.filterCard({ name: name }, player, event)) {
 											list.push(['基本', '', name]);
 										}
-									}
-
+									}
 									return ui.create.dialog('龙策', [list, 'vcard']);
 								},
 								filter(button, player) {
@@ -27954,14 +27796,14 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 									b = game.filterPlayer(function (current) {
 										return current.isEnemiesOf(player);
 									});
-								for (var i of b) {
+								for (const i of b) {
 									a += i.countCards('h');
 								}
 								const c = Math.ceil(a / targets.length);
-								for (var i of targets) {
+								for (const i of targets) {
 									i.discard(i.getCards('h').randomGets(c));
 								}
-								for (var i of targets) {
+								for (const i of targets) {
 									i.loseHp(c);
 								}
 							},
@@ -28289,12 +28131,12 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								a = game.filterPlayer(function (current) {
 									return current.isEnemiesOf(player);
 								});
-								for (var i of a) {
+								for (const i of a) {
 									if (i.isDamaged()) {
 										i.loseMaxHp(i.maxHp - i.hp);
 									}
 								}
-								for (var i of a) {
+								for (const i of a) {
 									i.loseHp();
 								}
 								('step 1');
@@ -28303,7 +28145,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 										return current.isEnemiesOf(player);
 									});
 									const c = Math.ceil(game.boss.hp / b.length);
-									for (var i of b) {
+									for (const i of b) {
 										i.discard(i.getCards('h').randomGets(c));
 									}
 								}
@@ -29336,9 +29178,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						},
 						lqym_modao(player) {
 							if (player.storage.lqym_modao1 == true) {
-								return '出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」.<br>♠️️️:【千把刀】<br>♥️️️:【魔术咒文书】<br>♣️️️:【死亡魔术箱】<br>♦️️️:【魔术礼帽】';
+								return '出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」.<br>♠️️️️:【千把刀】<br>♥️️️️:【魔术咒文书】<br>♣️️️️:【死亡魔术箱】<br>♦️️️️:【魔术礼帽】';
 							}
-							return '使命技:出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」,记录此牌的花色.<br><b>成功:</b>准备阶段,若你记录的花色大于2,你创建并获得一张你未记录花色对应的「魔导牌」,并获得技能〖魔阵〗.<br><b>失败:</b>你因〖魔导〗而获得你已记录了相同花色的牌时,你不失去〖魔导〗改为修改〖魔导〗.<br>♠️️️:【千把刀】<br>♥️️️:【魔术咒文书】<br>♣️️️:【死亡魔术箱】<br>♦️️️:【魔术礼帽】';
+							return '使命技:出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」,记录此牌的花色.<br><b>成功:</b>准备阶段,若你记录的花色大于2,你创建并获得一张你未记录花色对应的「魔导牌」,并获得技能〖魔阵〗.<br><b>失败:</b>你因〖魔导〗而获得你已记录了相同花色的牌时,你不失去〖魔导〗改为修改〖魔导〗.<br>♠️️️️:【千把刀】<br>♥️️️️:【魔术咒文书】<br>♣️️️️:【死亡魔术箱】<br>♦️️️️:【魔术礼帽】';
 						},
 					},
 					translate: {
@@ -29611,7 +29453,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtq_c8: '<img src="extension/浪琴天阙/image/辅助图/lqtq_card8.png" width="70" height="70"> ',
 						lqtq_c9: '<img src="extension/浪琴天阙/image/辅助图/lqtq_card9.png" width="70" height="70"> ',
 						lqtq_longling: '龙灵',
-						lqtq_longling_info: '①出牌阶段,你可以将一张♦️️牌当做任意一张基本牌或本回合未以此法使用过的普通锦囊牌使用;②你可以将一张♥️️牌当做一张特定时机下才能使用的牌使用;③当你需要使用牌响应其他牌时,你可以将一张♠️️牌当做那张牌使用;④当你需要打出牌响应其他牌时,你可以将一张♣️️牌当做那张牌打出.',
+						lqtq_longling_info: '①出牌阶段,你可以将一张♦️️️牌当做任意一张基本牌或本回合未以此法使用过的普通锦囊牌使用;②你可以将一张♥️️️牌当做一张特定时机下才能使用的牌使用;③当你需要使用牌响应其他牌时,你可以将一张♠️️️牌当做那张牌使用;④当你需要打出牌响应其他牌时,你可以将一张♣️️️牌当做那张牌打出.',
 						lqtq_longling_zhu: '龙灵·注',
 						lqtq_longling_zhu_info: '①:出牌阶段可以直接使用的牌都可以以此法使用.<br>②:特定时机包含角色濒死/趁火打劫/诱敌深入等不可直接使用的锦囊.<br>③:可响应杀/锦囊牌触发技能使用草船借箭/无懈可击/闪.<br>④:可响应万箭齐发/南蛮入侵等触发技能打出杀/闪.',
 						lqtq_juejing: '绝境',
@@ -29655,7 +29497,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtq_huayue: '化月',
 						lqtq_huayue_info: '使命技,锁定技,摸牌阶段,你改为获得每种类型的牌各一张.<br><b>成功:</b>准备阶段开始时,若你装备区内的牌的名称字数合计大于8,则你获得技能〖凌念〗.<br><b>失败:</b>当你进入濒死状态时,你回复一点体力,并可以转移场上一张牌.',
 						lqtq_lingnian: '凌念',
-						lqtq_lingnian_info: '出牌阶段限一次,你可以将一张♦️️牌当做【借刀杀人】使用.',
+						lqtq_lingnian_info: '出牌阶段限一次,你可以将一张♦️️️牌当做【借刀杀人】使用.',
 						lqtq_pingnan: '平南',
 						lqtq_pingnan_info: '①你视为拥有技能〖征南〗.②当一名角色使用转化的【杀】结算后/失去体力后/即将受到的伤害被防止或伤害值发生过减少的事件结算后,你可以令该角色本回合出杀上限+1/令该角色摸两张牌/弃置一张牌令该角色受到一点无来源的伤害.',
 						lqtq_jingzhi2_backup: '精智',
@@ -29743,7 +29585,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtqx_paiyi_backup: '排异',
 						lqtqx_paiyi_info: '出牌阶段每项各限一次,你可移去一张<权>并选择一项:①令一名角色摸X张牌,且最少摸两张.②令一名角色弃置X张牌,且最少弃置两张.③令至多X名角色交给你一张牌.④对至多X名角色各造成1点伤害.(X为<权>的数量)',
 						lqtqx_tuntian: '屯田',
-						lqtqx_tuntian_info: '①当你于回合外失去牌或于回合内失去【杀】后,你可以进行一次判定.若判定结果为♥️️,你摸一张牌.②你的判定牌生效后,你可以将该牌置于武将牌上称为<田>.③你计算与其他角色的距离时-X.(X为<田>的数量)',
+						lqtqx_tuntian_info: '①当你于回合外失去牌或于回合内失去【杀】后,你可以进行一次判定.若判定结果为♥️️️,你摸一张牌.②你的判定牌生效后,你可以将该牌置于武将牌上称为<田>.③你计算与其他角色的距离时-X.(X为<田>的数量)',
 						lqtqx_zaoxian: '凿陷',
 						lqtqx_zaoxian_info: '觉醒技,准备阶段,若你的<田>数大于2,则你回复一点体力,并摸两张牌,获得技能〖急袭〗.你于当前回合结束后进行一个额外的回合.',
 						lqtqx_jixi: '急袭',
@@ -29821,7 +29663,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqhc_longwei: '龙威',
 						lqhc_longwei_info: '锁定技,①你的手牌上限+1,②你的装备区没有武器牌时,你使用的【杀】无视防具.③你的体力上限或体力发生变化时,摸X张牌(X为你的体力与损失的体力最大的一方).',
 						lqhc_longhun: '龙魂',
-						lqhc_longhun_info: '你可以将同花色的一至两张牌按下列规则使用或打出并获得一枚<龙>标记:♥️️当【桃】,♦️️当火【杀】,♣️️当【闪】,♠️️当【无懈可击】.若你以此法使用了两张红色牌,则此牌回复值或伤害值+1.若你以此法使用了两张黑色牌,则你获得一张任意花色的牌.你拥有<龙>标记时,你与其他角色计算的距离-1.',
+						lqhc_longhun_info: '你可以将同花色的一至两张牌按下列规则使用或打出并获得一枚<龙>标记:♥️️️当【桃】,♦️️️当火【杀】,♣️️️当【闪】,♠️️️当【无懈可击】.若你以此法使用了两张红色牌,则此牌回复值或伤害值+1.若你以此法使用了两张黑色牌,则你获得一张任意花色的牌.你拥有<龙>标记时,你与其他角色计算的距离-1.',
 						lqhc_gaoda: '高达',
 						lqhc_gaoda_info: '使命技,你的第二个出牌阶段结束后,你选择一名其他角色,当该角色成为你以外的角色使用的【杀】或普通锦囊牌的目标时,将目标改为你.<br><b>成功:</b>你因此技能而成为了7次【杀】的目标,你获得技能〖英锐〗.<br><b>失败:</b>你因此技能而选择的角色进入濒死状态时,该角色将体力回复至1.',
 						lqhc_yingrui: '英锐',
@@ -29833,7 +29675,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqhc_xingtian: '刑天',
 						lqhc_xingtian_info: '觉醒技,你进入濒死状态时,减少1点体力上限,将体力回复至2,对所有拥有<怨>标记的角色造成一点伤害并移去这些角色的所有标记,你失去技能〖积怨〗,获得技能〖战怒〗.',
 						lqhc_zhannu: '战怒',
-						lqhc_zhannu_info: '锁定技,你的♠️️️牌与【桃园结义】视为【决斗】,你对其他角色或其他角色对你使用的【决斗】不能被【无懈可击】且造成的伤害+1.',
+						lqhc_zhannu_info: '锁定技,你的♠️️️️牌与【桃园结义】视为【决斗】,你对其他角色或其他角色对你使用的【决斗】不能被【无懈可击】且造成的伤害+1.',
 						lqhc_liaodi: '料敌',
 						lqhc_liaodi_info: '每回合限两次,你不因〖料敌〗获得/弃置牌后,你可以观看一名角色区域内随机两张牌,获得/弃置其中一张牌.',
 						lqhc_zhisheng: '制胜',
@@ -29841,13 +29683,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqhc_guicai: '鬼才',
 						lqhc_guicai_info: '牌堆顶的牌对你可见,一名角色的判定牌生效前,你可以选择一项:①打出一张牌或将牌堆顶的牌代替之.②令此次判定不可被更改.③背水:依次执行以上选项,令一名角色对你造成一点伤害.',
 						lqhc_langgu: '狼顾',
-						lqhc_langgu_info: '你造成/受到一点伤害后,可以进行一次判定,红色:你获得受伤害角色/伤害来源一张牌.♠️️:你对受伤害角色/伤害来源造成一点无伤害来源的雷电伤害.♣️️:你摸一张牌并可以弃置受伤害角色/伤害来源一张牌.',
+						lqhc_langgu_info: '你造成/受到一点伤害后,可以进行一次判定,红色:你获得受伤害角色/伤害来源一张牌.♠️️️:你对受伤害角色/伤害来源造成一点无伤害来源的雷电伤害.♣️️️:你摸一张牌并可以弃置受伤害角色/伤害来源一张牌.',
 						lqhc_zhabing: '诈病',
 						lqhc_zhabing_info: '限定技,结束阶段或你进入濒死状态时,你可以令场上所以角色交给你一张手牌,你的体力直到下次回合开始前不会低于1.',
 						lqhc_polu: '破橹',
 						lqhc_polu_info: '一名角色跳过判定/摸牌/出牌/弃牌结束时,你可以摸一张牌,若摸到的牌为黑色,你可以展示那张牌并对该角色造成一点伤害.',
 						lqhc_juezan: '倔堑',
-						lqhc_juezan_info: '①当你受到一点伤害后,你可以摸两张牌并可以将一张牌置于武将牌上称为<堑>(每种花色的<堑>最多一张).②一名角色的回合开始时,你可以弃置任意张<堑>,根据你弃置的花色跳过该角色的对应阶段:♠️️️判定阶段.♣️️️摸牌阶段.♦️️️出牌阶段.♥️️️弃牌阶段.',
+						lqhc_juezan_info: '①当你受到一点伤害后,你可以摸两张牌并可以将一张牌置于武将牌上称为<堑>(每种花色的<堑>最多一张).②一名角色的回合开始时,你可以弃置任意张<堑>,根据你弃置的花色跳过该角色的对应阶段:♠️️️️判定阶段.♣️️️️摸牌阶段.♦️️️️出牌阶段.♥️️️️弃牌阶段.',
 						lqhc_choulue: '筹略',
 						lqhc_choulue_info: '每轮限一次,一名角色的结束阶段,若其的手牌数大于你的手牌数,则你可以令其选择一项:①交给你一张牌,你可以将那张牌当做<堑>置于你的武将牌上.②令你摸一张牌,你可以将一张牌当做<堑>置于你的武将牌上.',
 						lqhc_jueyuan: '绝缘',
@@ -29948,15 +29790,15 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqym_heiyan: '黑炎',
 						lqym_heiyan_info: '限定技,出牌阶段,你可以弃置两张颜色不同的牌,并选择一名目标角色,令该角色失去一点体力或受到一点无来源或来源为你的普通/火焰/雷电/寒冰/神圣伤害,你创建并获得一张延迟锦囊【附链真红牙】.',
 						lqym_fulianzhenhongya: '附链真红牙',
-						lqym_fulianzhenhongya_info: '出牌阶段,对一名其他角色使用.若判定结果为♥️️️/♠️️️,则其受到一点火焰伤害,场上的「真红眼黑龙」创建并获得一张延迟锦囊【附链真红牙】.',
+						lqym_fulianzhenhongya_info: '出牌阶段,对一名其他角色使用.若判定结果为♥️️️️/♠️️️️,则其受到一点火焰伤害,场上的「真红眼黑龙」创建并获得一张延迟锦囊【附链真红牙】.',
 						lqym_honghun: '红魂',
 						lqym_honghun_info: '出牌阶段限一次,你可以弃置一张牌,执行以下X项(X为1,且该牌每满足以下一项,X+1:❶延迟性锦囊牌.❷点数为A的牌.❸名称字数大于4的牌):①令一名角色摸两张牌.②令一名角色回复一点体力.③对一名其他角色造成一点火焰伤害.④获得一名其他角色一张牌.',
 						lqym_zhenhong: '真红',
 						lqym_zhenhong_info: '融合技,游戏开始时,若你的副将是「青眼白龙」或「黑魔导」,则你可以与之融合,诞生出全新的未知武将.',
 						lqym_modao: '魔导',
-						lqym_modao_info: '使命技:出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」,记录此牌的花色.<br><b>成功:</b>准备阶段,若你记录的花色大于2,你创建并获得一张你未记录花色对应的「魔导牌」,并获得技能〖魔阵〗.<br><b>失败:</b>你因〖魔导〗而获得你已记录了相同花色的牌时,你不失去〖魔导〗改为修改〖魔导〗.<br>♠️️️:【千把刀】<br>♥️️️:【魔术咒文书】<br>♣️️️:【死亡魔术箱】<br>♦️️️:【魔术礼帽】',
+						lqym_modao_info: '使命技:出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」,记录此牌的花色.<br><b>成功:</b>准备阶段,若你记录的花色大于2,你创建并获得一张你未记录花色对应的「魔导牌」,并获得技能〖魔阵〗.<br><b>失败:</b>你因〖魔导〗而获得你已记录了相同花色的牌时,你不失去〖魔导〗改为修改〖魔导〗.<br>♠️️️️:【千把刀】<br>♥️️️️:【魔术咒文书】<br>♣️️️️:【死亡魔术箱】<br>♦️️️️:【魔术礼帽】',
 						lqym_modao1: '魔导·改',
-						lqym_modao1_info: '出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」.<br>♠️️️:【千把刀】<br>♥️️️:【魔术咒文书】<br>♣️️️:【死亡魔术箱】<br>♦️️️:【魔术礼帽】',
+						lqym_modao1_info: '出牌阶段限一次,你可以弃置一张牌,根那张牌的花色创建并获得一张与该牌相同花色和点数的「魔导牌」.<br>♠️️️️:【千把刀】<br>♥️️️️:【魔术咒文书】<br>♣️️️️:【死亡魔术箱】<br>♦️️️️:【魔术礼帽】',
 						lqym_mozhen: '魔阵',
 						lqym_mozhen_info: '①一名角色装备装备牌时,你获得一枚<魔力>标记.②出牌阶段限一次,你可以移去两枚<魔力>标记,从「魔导牌」中选择一种牌获得.③一名角色的摸牌阶段开始时,你可以移去一枚<魔力>标记,令该角色多摸一张牌.',
 						lqym_qianbadao: '千把刀',
@@ -30181,7 +30023,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtz_mingchong: '冥虫',
 						lqtz_mingchong_info: '锁定技,你死亡时,若有其他友方角色存活,那些角色获得技能〖毒针〗.',
 						lqtz_guixi: '鬼吸',
-						lqtz_guixi_info: '锁定技,当你受到伤害后,你进行一次判定:若结果为♥️️,你回复一点体力,否则,你摸一张牌.',
+						lqtz_guixi_info: '锁定技,当你受到伤害后,你进行一次判定:若结果为♥️️️,你回复一点体力,否则,你摸一张牌.',
 						lqtz_anchao: '暗潮',
 						lqtz_anchao_info: '锁定技,①友方角色回合结束时,若该角色本回合内未造成过伤害,其获得一枚<暗潮>标记,否则,其移去所有<暗潮>标记.②友方角色的摸牌阶段摸牌时/造成伤害时,摸牌数/伤害+X.(X为该角色拥有的<暗潮>标记数量)',
 						lqtz_tiemian: '铁面',
@@ -30237,7 +30079,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtz_shenou: '神偶',
 						lqtz_shenou_info: '锁定技,①你作为BOSS出场时,你的体力变成<奇达拉>吸收的<奇达>标记数,若无标记则变成无限.②当你的双臂造成伤害后,你受到等量的伤害.',
 						lqtz_baoxing: '暴行',
-						lqtz_baoxing_info: '锁定技,当你受的伤害后,你摸X张牌,(X为受到的伤害数),伤害每有1点,你进行一次判定:♠️️,你对一名敌方角色造成一点雷电伤害;♥️️,你摸一张牌并回复一点体力;♣️️,你令所有敌方角色进入铁索连环状态,若已被铁索连环的角色改为随机弃置一张牌;♦️️,你获得一名角色区域内的各一张牌.',
+						lqtz_baoxing_info: '锁定技,当你受的伤害后,你摸X张牌,(X为受到的伤害数),伤害每有1点,你进行一次判定:♠️️️,你对一名敌方角色造成一点雷电伤害;♥️️️,你摸一张牌并回复一点体力;♣️️️,你令所有敌方角色进入铁索连环状态,若已被铁索连环的角色改为随机弃置一张牌;♦️️️,你获得一名角色区域内的各一张牌.',
 						lqtz_shenhuang: '神荒',
 						lqtz_shenhuang_info: '锁定技,你使用【杀】指定目标时,翻开牌堆顶10张牌,弃置其中一张【杀】,令你使用的【杀】伤害基数变成那张牌的点数,否则你令此【杀】无效且你有技能〖庞躯〗时,你获得1枚<暗黑>标记.',
 						lqtz_pangqu: '庞躯',
@@ -30257,7 +30099,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtz_zuijiu: '醉酒',
 						lqtz_zuijiu_info: '锁定技,你使用的【杀】造成的伤害+1.',
 						lqtz_guanshi: '官势',
-						lqtz_guanshi_info: '锁定技,当你成为延迟性锦囊牌的目标时/当你翻面时,你进行一次判定,若结果为黑色,你取消之.若结果为♥️️,你可以将该牌转移给其他角色/你可以令一名其他角色翻面.',
+						lqtz_guanshi_info: '锁定技,当你成为延迟性锦囊牌的目标时/当你翻面时,你进行一次判定,若结果为黑色,你取消之.若结果为♥️️️,你可以将该牌转移给其他角色/你可以令一名其他角色翻面.',
 						lqtz_huoluan: '祸乱',
 						lqtz_huoluan_info: '锁定技,出牌阶段开始时,你从牌堆随机获得的一张黑色的普通锦囊牌,并使用那张牌,否则你弃置那张牌.你重复此步骤直到发动了4次.',
 						lqtz_xumou: '蓄谋',
@@ -30376,7 +30218,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 						lqtz_jixun: '急迅',
 						lqtz_jixun_info: '锁定技,你与其他角色/其他角色与你计算的距离-1/+1.',
 						lqtz_leiting: '雷霆',
-						lqtz_leiting_info: '<b><font color=#33ccff>雷光极云破:</font></b>你使用【杀】或【决斗】指定目标时,你可以令目标的所有技能失去直到回合结束并选择一项:①摸X张牌,②令此牌的伤害基数+X(X为目标手牌中的♦️️数量牌),你进行一次判定,目标若不弃置一张与判定结果花色相同的牌则不能响应你使用的牌,若你判定的结果不为♥️️️且此牌造成伤害时,你可以令伤害-1,目标失去一点体力上限.',
+						lqtz_leiting_info: '<b><font color=#33ccff>雷光极云破:</font></b>你使用【杀】或【决斗】指定目标时,你可以令目标的所有技能失去直到回合结束并选择一项:①摸X张牌,②令此牌的伤害基数+X(X为目标手牌中的♦️️️数量牌),你进行一次判定,目标若不弃置一张与判定结果花色相同的牌则不能响应你使用的牌,若你判定的结果不为♥️️️️且此牌造成伤害时,你可以令伤害-1,目标失去一点体力上限.',
 						lqtz_tianwei: '天威',
 						lqtz_tianwei_info: '锁定技,①一名角色的回合结束后,若你于回合内造成过伤害,你获得一枚<甲>标记.②你使用的非转化牌造成伤害或你受到伤害后,你获得X枚<甲>标记(X为伤害数).③你的体力大于10时,你视为拥有技能【咆哮】和【无双】,否则你视为拥有技能【龙魂】和【遗计】.④你的体力不大于<span class=firetext>70</span>时,你将体力回复至<span class=firetext>70</span>并终止一切结算,立即开始你的回合,令【天威④】中的数值-10.',
 						lqtz_shenchao: '神潮',
