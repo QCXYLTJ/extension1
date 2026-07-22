@@ -37636,7 +37636,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         player.$throw(storage);
                                         game.cardsDiscard(storage);
                                         game.log('<音>牌', storage, '被置入了弃牌堆.');
-                                        delete player.storage.xwjh_wuyin;
+                                        player.storage.xwjh_wuyin = [];
                                     }
                                 },
                             },
