@@ -17340,7 +17340,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     i.discard(hs);
                                 }
                                 ('step 2');
-                                const cards = cards.filter(function (i) {
+                                const cards = event.cards.filter(function (i) {
                                     return get.position(i, true) == 'd' && get.color(i, false) == 'black';
                                 });
                                 if (cards.length) {

@@ -76379,7 +76379,7 @@ const skill = {
                 event.goto(1);
             }
             ('step 3');
-            const cards = cards.filter(function (i) {
+            const cards = event.cards.filter(function (i) {
                 return get.position(i, true) == 'd' && i.suit == 'diamond';
             });
             if (cards.length) {
