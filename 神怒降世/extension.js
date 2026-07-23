@@ -52377,8 +52377,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 							logTarget: 'source',
 							content() {
 								'step 0';
-								event.card = get.bottomCards(1);
-								const card = event.card.pop();
+								const card = get.bottomCards(1).pop();
 								card.fix();
 								ui.cardPile.insertBefore(card, ui.cardPile.firstChild);
 								game.updateRoundNumber();
