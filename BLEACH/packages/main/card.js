@@ -1907,7 +1907,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
                 ],
 
                 'tdnodes',
-              ]
+              ],
             );
             return dialog;
           },

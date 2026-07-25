@@ -3289,7 +3289,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
           dialog.add(str);
           const content = player.getExpansions('yb_wan_linzuo_mark1');
           dialog.add(content);
-          const result = await player.chooseButton(dialog).forResult().forResult();
+          const result = await player.chooseButton(dialog).forResult();
           if (result.bool) {
             event.result = {
               bool: true,

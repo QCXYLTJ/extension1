@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from "../../../../noname.js";
+import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 const dynamicTranslate = {
   //——————————————————————————————————————————————————————BLEACH——————————————————————————————————————————————————————//
   //转换技
@@ -12,14 +12,14 @@ const dynamicTranslate = {
   },
   bleach_rexunjie(player) {
     var str = '转换技，每回合限两次，当你使用或打出一张牌后，你可以：';
-    if (!player.storage.bleach_rexunjie) str += '<span class="bluetext">阳：摸一张牌；</span>阴：弃置其他角色一张牌，你弃置一张牌，若此次弃置牌中包含2种颜色，你对一名其他角色造成1点伤害。';else
-    str += '阳：摸一张牌；<span class="bluetext">阴：弃置其他角色一张牌，你弃置一张牌，若此次弃置牌中包含2种颜色，你对一名其他角色造成1点伤害。</span>';
+    if (!player.storage.bleach_rexunjie) str += '<span class="bluetext">阳：摸一张牌；</span>阴：弃置其他角色一张牌，你弃置一张牌，若此次弃置牌中包含2种颜色，你对一名其他角色造成1点伤害。';
+    else str += '阳：摸一张牌；<span class="bluetext">阴：弃置其他角色一张牌，你弃置一张牌，若此次弃置牌中包含2种颜色，你对一名其他角色造成1点伤害。</span>';
     return str;
   },
   bleach_xuezhuang(player) {
     var str = '转换技，回合开始时，你可以摸一张牌，获得以下效果：';
-    if (!player.storage.bleach_xuezhuang) str += '<span class="bluetext">你使用牌没有距离限制。</span>';else
-    str += '<span class="bluetext">你每次至多受到1点伤害，你的手牌上限为体力上限。';
+    if (!player.storage.bleach_xuezhuang) str += '<span class="bluetext">你使用牌没有距离限制。</span>';
+    else str += '<span class="bluetext">你每次至多受到1点伤害，你的手牌上限为体力上限。';
     return str;
   },
   burnthewitch_mozhen(player) {
@@ -52,11 +52,7 @@ const dynamicTranslate = {
   bleach_lianfu(player) {
     var num = player.countMark('bleach_lianfu');
     var str = '当你使用牌指定其他角色为目标时，你可以摸一张牌执行并移除首项（若其为上次本技能的目标，额外执行前一项）：';
-    var list = [
-    '1.令其不能响应此牌；',
-    '2.横置其；',
-    '3.弃置其一张牌；',
-    '4.对其造成1点火焰伤害。'];
+    var list = ['1.令其不能响应此牌；', '2.横置其；', '3.弃置其一张牌；', '4.对其造成1点火焰伤害。'];
 
     if (num > 0) str += '<span style="text-decoration: line-through;">';
     for (var i = 0; i < 4; i++) {
@@ -70,6 +66,6 @@ const dynamicTranslate = {
   bleach_tianding(player) {
     if (player.storage.bleach_tianding_mark) return lib.translate.bleach_tianding_info.replace(/-1/g, '-1<span style="text-decoration: line-through;">');
     return lib.translate.bleach_tianding_info;
-  }
+  },
 };
 export default dynamicTranslate;

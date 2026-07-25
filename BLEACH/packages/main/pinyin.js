@@ -86,6 +86,6 @@ const pinyins = {
   妮妮·斯庞柯尔: ['Ninny', 'Spangcole'],
   布鲁诺·邦古耐夫: ['Bruno', 'Bangnyfe'],
   约翰威克: ['John', 'Wick'],
-  红莲骑士兽: ['Dukemon']
+  红莲骑士兽: ['Dukemon'],
 };
 export default pinyins;

@@ -11,6 +11,6 @@ const characterReplaces = {
   bleach_grimmjow: ['bleach_grimmjow', 'bleach_re_grimmjow'],
   bleach_wuerqiaola: ['bleach_wuerqiaola', 'bleach_re_wuerqiaola'],
   bleach_shitianyulong: ['bleach_shitianyulong', 'bleach_2022_shitianyulong'],
-  bleach_dongxian: ['bleach_dongxian', 'bleach_re_dongxian']
+  bleach_dongxian: ['bleach_dongxian', 'bleach_re_dongxian'],
 };
 export default characterReplaces;

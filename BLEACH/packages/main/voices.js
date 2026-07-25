@@ -884,5 +884,5 @@ export default {
   '#ext:BLEACH/skill/soul_shenfeng15': '休猖狂！',
   '#ext:BLEACH/skill/soul_shenfeng16': '等了多年，让我，打个痛快！',
   '#ext:BLEACH/skill/soul_shenfeng17': '多用神通，藏私无用。',
-  '#ext:BLEACH/skill/soul_shenfeng18': '有之为利，无之为用。'
+  '#ext:BLEACH/skill/soul_shenfeng18': '有之为利，无之为用。',
 };

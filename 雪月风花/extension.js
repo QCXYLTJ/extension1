@@ -804,6 +804,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     defaultSelected: true,
                                 },
                             ];
+
                             options.forEach((value) => {
                                 const option = new Option(value.text, value.value, value.defaultSelected);
                                 option.selected = value.defaultSelected;
@@ -1461,6 +1462,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return;
                                 },
                             ];
+
                             event.controls = [ui.create.control(controls.concat(['清除选择', 'stayleft']))];
                         };
                         if (event.isMine()) {
@@ -3315,7 +3317,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     }
                                                     const dialog = ui.create.dialog('获得至多' + num + '张牌', 'hidden');
                                                     dialog.add(piles);
-                                                    const links = await player.chooseButton(true, dialog, [1, num]).forResult('links');
+                                                    const links = (await player.chooseButton(true, dialog, [1, num]).forResult()).links;
                                                     if (links) {
                                                         await player.gain(links, 'gain2');
                                                         num -= links.length;
@@ -3329,7 +3331,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                                     }
                                                     const dialog = ui.create.dialog('获得至多' + num + '张牌', 'hidden');
                                                     dialog.add(piles);
-                                                    const links = await player.chooseButton(true, dialog, [1, num]).forResult('links');
+                                                    const links = (await player.chooseButton(true, dialog, [1, num]).forResult()).links;
                                                     if (links) {
                                                         await player.gain(links, 'gain2');
                                                         num -= links.length;
@@ -5493,7 +5495,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         dialog.add('弃牌堆');
                                         dialog.add(discardpile);
                                     }
-                                    const links = await player.chooseButton(true, dialog, num).forResult('links');
+                                    const links = (await player.chooseButton(true, dialog, num).forResult()).links;
                                     if (links) {
                                         player.gain(links, 'gain2');
                                     }
@@ -5675,7 +5677,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     let count = x;
                                     while (count > 0) {
                                         count--;
-                                        num += await trigger.player.judge().forResult('number');
+                                        num += (await trigger.player.judge().forResult()).number;
                                     }
                                     if (num >= x + y) {
                                         trigger.player.damage(n, 'thunder', 'nosource');
@@ -5716,10 +5718,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     return event.player != player;
                                 },
                                 async content(event, trigger, player) {
-                                    const index = await trigger.player
-                                        .chooseControlList(['从牌堆中获得三张牌,随机受1-3点火焰伤害', '本回合使用的牌无次数限制,每使用或打出一张牌,弃一张牌', '获得三点护甲,将体力流失至一点,并弃置除基本牌以外的牌'], true)
-                                        .set('ai', () => [0, 0, 1, 2, 2, 2].randomGet())
-                                        .forResult('index');
+                                    const index = (
+                                        await trigger.player
+                                            .chooseControlList(['从牌堆中获得三张牌,随机受1-3点火焰伤害', '本回合使用的牌无次数限制,每使用或打出一张牌,弃一张牌', '获得三点护甲,将体力流失至一点,并弃置除基本牌以外的牌'], true)
+                                            .set('ai', () => [0, 0, 1, 2, 2, 2].randomGet())
+                                            .forResult()
+                                    ).index;
                                     switch (index) {
                                         case 0:
                                             trigger.player.say('灾祸①');
@@ -7344,8 +7348,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                         if (cards.length > 1) {
                                             const { links } = await player.chooseCardButton([1, cards.length], cards, true, '选择要分配的牌').forResult();
                                             temp = links;
-                                        }
-                                        else {
+                                        } else {
                                             temp = cards;
                                         }
                                         const { targets } = await player
@@ -8075,10 +8078,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     if (player.countCards('h') > 0) {
                                         list.push('弃置手牌,本轮无法成为其他角色使用牌的目标');
                                     }
-                                    const index = await player
-                                        .chooseControlList(get.prompt('游龙弓法'), list, false)
-                                        .set('ai', () => 1)
-                                        .forResult('index');
+                                    const index = (
+                                        await player
+                                            .chooseControlList(get.prompt('游龙弓法'), list, false)
+                                            .set('ai', () => 1)
+                                            .forResult()
+                                    ).index;
                                     if (index != undefined && index != list.length) {
                                         event.result = {
                                             bool: true,
@@ -9040,11 +9045,13 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 enable: 'phaseUse',
                                 usable: 1,
                                 async content(event, trigger, player) {
-                                    const index = await player
-                                        .chooseControl('1回合', '2回合', '3回合')
-                                        .set('prompt', '请选择施法时长')
-                                        .set('ai', () => ['1回合', '2回合', '2回合', '3回合', '3回合', '3回合'].randomGet())
-                                        .forResult('index');
+                                    const index = (
+                                        await player
+                                            .chooseControl('1回合', '2回合', '3回合')
+                                            .set('prompt', '请选择施法时长')
+                                            .set('ai', () => ['1回合', '2回合', '2回合', '3回合', '3回合', '3回合'].randomGet())
+                                            .forResult()
+                                    ).index;
                                     if (index != undefined) {
                                         player.storage.葬送的芙莉莲_mahou = [index + 1, index + 1];
                                         player.addTempSkill('葬送的芙莉莲_mahou', { player: 'die' });
@@ -9472,6 +9479,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     ['nezha_qiankunquan', '【乾坤圈】' + get.translation('nezha_qiankunquan_info')],
                                     ['nezha_huntianling', '【混天绫】' + get.translation('nezha_huntianling_info')],
                                 ];
+
                                 const next = player.chooseButton(['法器:请选择一种技能获得或替换之', [list, 'textbutton']]);
                                 next.set('filterButton', (button) => !player.hasSkill(button.link));
                                 next.set('ai', () => Math.random());
@@ -10377,6 +10385,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     ['1', '消耗5点蓄力值,摸一张牌,获得<净水>标记'],
                                     ['2', '消耗6点蓄力值,摸一张牌,获得<浊水>标记'],
                                 ];
+
                                 const next = player.chooseButton(['请选择一项', [list, 'textbutton']]);
                                 next.set('filterButton', (button) => {
                                     if (button.link == '1') {
@@ -10574,6 +10583,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     ['lianying_lb_qxsy', '【连营】' + get.translation('lianying_lb_qxsy_info')],
                                     ['fankui_lb_qxsy', '【反馈】' + get.translation('fankui_lb_qxsy_info')],
                                 ];
+
                                 const next = player.chooseButton(['请选择获得一项技能,持续至本回合结束', [list, 'textbutton']], true);
                                 next.set('filterButton', (button) => {
                                     if (player.hasSkill(button.link)) {
@@ -16209,6 +16219,7 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                     [3, '令此牌额外结算两次'],
                                     [4, '此牌结算后,你流失一点体力值'],
                                 ];
+
                                 trigger.target
                                     .chooseButton(true, [get.translation(trigger.player) + '对你发动了【' + get.translation(event.name) + '】请选择两项:', [choice, 'textbutton']])
                                     .set('selectButton', 2)
@@ -22831,10 +22842,12 @@ game.import('extension', (lib, game, ui, get, ai, _status) => {
                                 if (event.directHit) {
                                     result = { bool: false };
                                 } else {
-                                    result = await event.target.chooseToRespond({ name: 'du' })
+                                    result = await event.target
+                                        .chooseToRespond({ name: 'du' })
                                         .set('ai', function (card) {
                                             return 6;
-                                        }).forResult();
+                                        })
+                                        .forResult();
                                 }
                                 if (!result.bool) {
                                     let count = 3;

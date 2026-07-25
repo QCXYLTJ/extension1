@@ -2583,7 +2583,7 @@ game.import('character', function () {
 								dialog.videoId = id;
 							},
 							cards,
-							event.videoId
+							event.videoId,
 						);
 					}
 					event.dialog = ui.create.dialog(get.prompt('xjzh_meiren_huizhi'), [cards, 'character']);
@@ -2655,7 +2655,7 @@ game.import('character', function () {
 									player.node.name.dataset.nature = get.groupnature(player.group);
 								},
 								choice,
-								player
+								player,
 							);
 							var skills = player.storage.xjzh_meiren_huizhi.map[choice];
 							player.addAdditionalSkill('xjzh_meiren_huizhi', skills);
@@ -2782,7 +2782,7 @@ game.import('character', function () {
 							}
 						},
 						player,
-						list
+						list,
 					);
 				},
 			},
@@ -3308,7 +3308,7 @@ game.import('character', function () {
 				async content(event, trigger, player) {
 					let heartEffect = get.effect(player.next, trigger.card, player, player) - get.effect(player, trigger.card, player, player);
 					let spadeEffect = get.effect(player.previous, trigger.card, player, player) - get.effect(player, trigger.card, player, player);
-					const [judge, suit] = await player
+					const { judge, suit } = await player
 						.judge((card) => {
 							let suit = card.suit;
 							if (suit == 'spade') {
@@ -3322,7 +3322,7 @@ game.import('character', function () {
 							let suit = card.suit;
 							return ['spade', 'heart'].includes(suit);
 						})
-						.forResult('judge', 'suit');
+						.forResult();
 					if (['heart', 'spade'].includes(suit)) {
 						player.draw();
 						let evt = trigger.parent;
@@ -3619,7 +3619,7 @@ game.import('character', function () {
 							return card.number == num2;
 						}),
 						player,
-						'giveAuto'
+						'giveAuto',
 					);
 					let skills = trigger.source.getSkills(null, false, false).filter((skill) => {
 						if (!lib.translate[skill] || !lib.translate[skill + '_info']) return false;
@@ -3883,6 +3883,7 @@ game.import('character', function () {
 						[1, `选项一:将所有牌交给漩涡鸣人,立即阵亡`],
 						[2, `选项二:改变${get.mode() == 'guozhan' ? '势力' : '身份'}与漩涡鸣人一致`],
 					];
+
 					const { links } = await trigger.player
 						.chooseButton([`嘴遁:请选择一项`, [list, 'textbutton']], true)
 						.set('ai', (button) => {
@@ -4003,13 +4004,13 @@ game.import('character', function () {
 												1,
 												Math.min(
 													trigger.num,
-													game.countPlayer((current) => current.isDamaged())
+													game.countPlayer((current) => current.isDamaged()),
 												),
 											]
 											: 1,
 										(card, player, target) => {
 											return target.isDamaged();
-										}
+										},
 									)
 									.set('ai', (target) => {
 										return get.attitude(player, target);
@@ -4303,7 +4304,7 @@ game.import('character', function () {
 							game.filterPlayer((current) => {
 								return current.inRangeOf(player);
 							}),
-							false
+							false,
 						)
 						.set('prompt', '〖雷遁·千鸟〗选择一名角色视为对其使用一张随机属性为火/雷的【杀】')
 						.set('ai', (target) => {
@@ -4757,14 +4758,16 @@ game.import('character', function () {
 						cards.forEach((card) => {
 							num += card.number;
 						});
-						const index = await player
-							.chooseControlList(get.prompt(event.name, player), true, [`令一名角色获得所有<雷>`, `令一名角色弃置任意张点数不小于${get.translation(num)}的牌`])
-							.set('ai', (target) => {
-								let att = get.attitude(player, target);
-								if (player.hasFriend() && att >= 0) return 0;
-								return 1;
-							})
-							.forResult('index');
+						const index = (
+							await player
+								.chooseControlList(get.prompt(event.name, player), true, [`令一名角色获得所有<雷>`, `令一名角色弃置任意张点数不小于${get.translation(num)}的牌`])
+								.set('ai', (target) => {
+									let att = get.attitude(player, target);
+									if (player.hasFriend() && att >= 0) return 0;
+									return 1;
+								})
+								.forResult()
+						).index;
 						const { targets } = await player
 							.chooseTarget(true, index == 0 ? '令一名角色获得所有<雷>' : `令一名角色弃置任意张点数和不小于${get.translation(num)}的牌,否则其失去所有体力`, lib.filter.notMe)
 							.set('ai', (target) => {
@@ -4814,23 +4817,25 @@ game.import('character', function () {
 						event.finish();
 						return;
 					}
-					const moved = await player
-						.chooseToMove('〖雷切〗:是否交换<雷>和手牌？')
-						.set('list', [
-							[get.translation(player) + '(你)的雷', cards],
-							['手牌区', player.getCards('h')],
-						])
-						.set('filterMove', function (from, to, moved) {
-							if (to == 0) return moved[0].length < 4;
-							return typeof to != 'number';
-						})
-						.set('processAI', function (list) {
-							let player = get.player(),
-								cards = list[0][1].concat(list[1][1]).sort((a, b) => get.value(a) - get.value(b)),
-								cards2 = cards.splice(0, player.getExpansions('xjzh_huoying_shenwei').length);
-							return [cards2, cards];
-						})
-						.forResult('moved');
+					const moved = (
+						await player
+							.chooseToMove('〖雷切〗:是否交换<雷>和手牌？')
+							.set('list', [
+								[get.translation(player) + '(你)的雷', cards],
+								['手牌区', player.getCards('h')],
+							])
+							.set('filterMove', function (from, to, moved) {
+								if (to == 0) return moved[0].length < 4;
+								return typeof to != 'number';
+							})
+							.set('processAI', function (list) {
+								let player = get.player(),
+									cards = list[0][1].concat(list[1][1]).sort((a, b) => get.value(a) - get.value(b)),
+									cards2 = cards.splice(0, player.getExpansions('xjzh_huoying_shenwei').length);
+								return [cards2, cards];
+							})
+							.forResult()
+					).moved;
 					if (moved) {
 						let pushs = moved[0],
 							gains = moved[1];
@@ -5046,7 +5051,7 @@ game.import('character', function () {
 									lib.character[name][3].filter((skill) => {
 										let info = get.info(skill);
 										return info && !info.sub && !info.unique && !info.juexingji && !info.zhuSkill && !info.dustSkill && !trigger.player.skills.includes(skill);
-									})
+									}),
 								);
 							}
 						});
@@ -5546,13 +5551,13 @@ game.import('character', function () {
 						})
 						.randomGets(3);
 					if (!list.length) return;
-					let [bool, links] = await player
+					const { bool, links } = await player
 						.chooseButton(true)
 						.set('ai', (button) => {
 							return get.rank(button.link, true);
 						})
 						.set('createDialog', ['请选择一张武将牌', [list, 'character']])
-						.forResult('bool', 'links');
+						.forResult();
 					if (bool) {
 						let link = links[0];
 						let skills = lib.character[link][3];
@@ -6396,13 +6401,13 @@ game.import('character', function () {
 					return event.player != player && event.player.countCards('hej');
 				},
 				async content(event, trigger, player) {
-					const [bool, links] = await player
+					const { bool, links } = await player
 						.gainPlayerCard(`〖知书〗:请选择${get.translation(trigger.player)}至多2张牌`, trigger.player, [1, 2], 'visible', 'hej')
 						.set('ai', lib.card.shunshou.ai.button)
-						.forResult('bool', 'links');
+						.forResult();
 					if (bool) {
 						player.draw();
-						const [bool, cards] = await player
+						const { bool, cards } = await player
 							.chooseCard(links.length, '交给' + get.translation(trigger.player) + get.cnNumber(links.length) + '张牌', 'h', true)
 							.set('ai', (card) => {
 								if (get.attitude(trigger.player, player) < 0) {
@@ -6411,7 +6416,7 @@ game.import('character', function () {
 									return get.value(card);
 								}
 							})
-							.forResult('bool', 'cards');
+							.forResult();
 						if (bool) {
 							player.addExpose(0.5);
 							trigger.player.gain(cards, 'giveAuto', player);
@@ -6516,12 +6521,12 @@ game.import('character', function () {
 							}
 						}
 					} while (targetx.length);
-					let [bool, targets] = await player
+					const { bool, targets } = await player
 						.chooseTarget('选择一个目标获得技能〖悲歌〗', lib.filter.notMe)
 						.set('ai', function (target) {
 							return get.attitude(player, target) >= 2;
 						})
-						.forResult('bool', 'targets');
+						.forResult();
 					if (bool) {
 						targets[0].addSkills('xjzh_sanguo_beige');
 						targets[0].popup('xjzh_sanguo_beige', 'thunder');
@@ -6766,7 +6771,7 @@ game.import('character', function () {
 								if (get.attitude(player, trigger.player) >= 0) return true;
 								if (trigger.player.needsToDiscard() > 0) return true;
 								return false;
-							})()
+							})(),
 						)
 						.forResult();
 
@@ -6901,7 +6906,7 @@ game.import('character', function () {
 				},
 				logTarget: 'target',
 				async content(event, trigger, player) {
-					const [suit, number] = await player.judge().forResult('suit', 'number');
+					const { suit, number } = await player.judge().forResult();
 					let target = trigger.target,
 						num = target.countCards('h', 'shan');
 					switch (suit) {
@@ -7394,7 +7399,7 @@ game.import('character', function () {
 							lib.character[i][3].filter(function (skill) {
 								var info = lib.skill[skill];
 								return info && !info.charlotte && !info.dutySkill && !info.juexingji && !info.limited && !info.unique;
-							})
+							}),
 						);
 					}
 					event.skills2.push(skills.randomGet());
@@ -7736,7 +7741,7 @@ game.import('character', function () {
 									target,
 									`的技能${skills.map((item) => {
 										return `〖${get.translation(item)}〗`;
-									})}因庞统的〖横舟〗回复了`
+									})}因庞统的〖横舟〗回复了`,
 								);
 							});
 						} else {
@@ -7758,7 +7763,7 @@ game.import('character', function () {
 										target,
 										`的技能${skills.map((item) => {
 											return `〖${get.translation(item)}〗`;
-										})}因庞统的〖横舟〗失效了`
+										})}因庞统的〖横舟〗失效了`,
 									);
 									if (target.isLinked()) target.link(false);
 								}
@@ -8418,7 +8423,7 @@ game.import('character', function () {
 						2,
 						game.countPlayer(function (current) {
 							return current.group == player.group;
-						})
+						}),
 					);
 					event.cards = get.cards(event.num);
 					player.showCards(event.cards);
@@ -8584,7 +8589,7 @@ game.import('character', function () {
 					return event.card && event.card.name == 'shan';
 				},
 				async content(event, trigger, player) {
-					const [card, color] = await player.judge().forResult('card', 'color');
+					const { card, color } = await player.judge().forResult();
 					const { targets } = await player
 						.chooseTarget(`〖雷祭〗:选择一个目标令其${color == 'red' ? '横置/取消横置' : '受到一点雷属性伤害'}`)
 						.set('ai', (target) => {
@@ -8882,7 +8887,7 @@ game.import('character', function () {
 						player.gain(links[0], 'gain2');
 						trigger.player.gain(
 							cards.filter((card) => !links.includes(card)),
-							'gain2'
+							'gain2',
 						);
 					}
 				},
@@ -9761,7 +9766,7 @@ game.import('character', function () {
 						.addToExpansion(
 							cards.find((item) => item != links[0]),
 							'draw',
-							player
+							player,
 						)
 						.gaintag.add(event.name);
 				},
@@ -11305,7 +11310,7 @@ game.import('character', function () {
 						event.num /
 						game.countPlayer(function (current) {
 							return current != player;
-						})
+						}),
 					);
 					player.maxHp = event.num;
 					player.hp = event.num;
@@ -11664,7 +11669,7 @@ game.import('character', function () {
 							dialog.videoId = id;
 						},
 						cards,
-						dialog.videoId
+						dialog.videoId,
 					);
 					event.dialog = dialog;
 					event.num = 0;
@@ -11734,7 +11739,7 @@ game.import('character', function () {
 								if (lib.translate[name + '_ab']) return lib.translate[name + '_ab'];
 								return get.translation(name);
 							})(targetx),
-							capt
+							capt,
 						);
 					}
 					dialog.content.firstChild.innerHTML = capt;
@@ -12753,7 +12758,7 @@ game.import('character', function () {
 								const att = get.attitude(player, target);
 								if (target.hasSkill('tuntian')) return att / 10;
 								return 1 - att;
-							}
+							},
 						)
 						.set('aicheck', check)
 						.forResult();
@@ -13974,7 +13979,7 @@ game.import('character', function () {
 							targets[0].gain(
 								cards.filter((card) => !links.includes(card)),
 								'draw',
-								player
+								player,
 							);
 						}
 					}
@@ -14401,7 +14406,7 @@ game.import('character', function () {
 									if (!get.skillInfoTranslation(skill)) return false;
 									if (lib.skill.global.includes(skill)) return false;
 									return !get.skillCategoriesOf(skill, player).some((type) => ['Charlotte', '主公技', '觉醒技', '限定技', '隐匿技', '使命技', '持恒技'].includes(type));
-								})
+								}),
 							);
 						}
 					});
@@ -14845,7 +14850,7 @@ game.import('character', function () {
 							lib.character[i][3].filter(function (skill) {
 								var info = lib.skill[skill];
 								return info && !info.charlotte && !info.dutySkill && !info.juexingji && !info.limited && !info.unique && !info.sub;
-							})
+							}),
 						);
 					}
 					var bool = false;
@@ -15052,12 +15057,12 @@ game.import('character', function () {
 							let history2 = player.getAllHistory('damage', (evt) => {
 								return evt && evt.source == target;
 							});
-							const [bool, cards] = await target
+							const { bool, cards } = await target
 								.chooseToDiscard('he', `〖深冻〗:请选择弃置至多${history.length}张牌,否则失去等量体力上限`)
 								.set('ai', (card) => {
 									return 6 - get.value(card);
 								})
-								.forResult('bool', 'cards');
+								.forResult();
 							if (bool && cards.length < history.length) {
 								target.loseMaxHp(cards.length - history.length);
 								await target.getHistory('sourceDamage').removeArray(history);
@@ -16823,7 +16828,7 @@ game.import('character', function () {
 										'targets',
 										game.filterPlayer(function (current) {
 											return current.isFriendsOf(player);
-										})
+										}),
 									).viewAs = true;
 								}
 							});
@@ -16978,7 +16983,7 @@ game.import('character', function () {
 									if (player.skills.includes(skill)) return false;
 									if (info && (info.zhuSkill || info.zhuSkill || info.juexingji || info.limited || info.dutySkill || info.nogainsSkill || info.unique)) return false;
 									return info && info.xjzh_xinghunSkill;
-								})
+								}),
 							);
 						});
 						if (skills.length) {
@@ -17175,7 +17180,7 @@ game.import('character', function () {
 									if (get.skillCategoriesOf(skill, player).some((type) => ['Charlotte', '主公技', '觉醒技', '限定技', '隐匿技', '使命技', '持恒技'].includes(type))) return false;
 									return true;
 								})
-								.randomGet()
+								.randomGet(),
 						);
 					}
 					if (skills.length) player.addAdditionalSkill('xjzh_diablo_hunhuo', skills);
@@ -17500,12 +17505,14 @@ game.import('character', function () {
 
 					if (!links) return;
 					let controlList = ['冰霜灌注:令你被灌注的牌造成冰属性伤害', '火焰灌注:令你被灌注的牌造成火属性伤害', '毒素灌注:令你被灌注的牌造成毒属性伤害'];
-					const index = await player
-						.chooseControlList(get.prompt(event.name, player), true, controlList)
-						.set('ai', () => {
-							return get.rand(0, 2);
-						})
-						.forResult('index');
+					const index = (
+						await player
+							.chooseControlList(get.prompt(event.name, player), true, controlList)
+							.set('ai', () => {
+								return get.rand(0, 2);
+							})
+							.forResult()
+					).index;
 					let storage = new Map();
 					storage.set('guanzhu', {
 						nature: {
@@ -17626,7 +17633,7 @@ game.import('character', function () {
 						.useCard(
 							{ name: 'wanjian' },
 							game.filterPlayer((current) => current != player),
-							false
+							false,
 						)
 						.set('effectCount', bool && Math.random() <= 0.3 ? 2 : 1);
 					let xjzh_diablo_jianyuTimer,
@@ -20412,7 +20419,7 @@ game.import('character', function () {
 						player.reinit(
 							player.name, //QQQ
 							links[0],
-							[player.hp, player.maxHp]
+							[player.hp, player.maxHp],
 						);
 						player.recoverTo(player.maxHp);
 						player.drawTo(player.maxHp);
@@ -20472,7 +20479,7 @@ game.import('character', function () {
 											this.style.opacity = 0.5;
 											await lib.skill.xjzh_wzry_miying2.unCharacter(player);
 										}
-									})
+									}),
 								);
 						}
 					},
@@ -20950,7 +20957,7 @@ game.import('character', function () {
 				},
 				audio: 'ext:仙家之魂/audio/skill:3',
 				async content(event, trigger, player) {
-					const [bool, cards] = await event.targets[0]
+					const { bool, cards } = await event.targets[0]
 						.chooseToDiscard('h', [1, event.cards.length], (card) => {
 							let suits = new Array();
 							event.cards.slice(0).forEach((card) => {
@@ -20961,7 +20968,7 @@ game.import('character', function () {
 						.set('ai', (card) => {
 							return 6 - get.value(card);
 						})
-						.forResult('bool', 'cards');
+						.forResult();
 					let num = 0;
 					if (bool) {
 						num = event.cards.length - cards.length;
@@ -21709,7 +21716,7 @@ game.import('character', function () {
 										game.hasPlayer((current) => {
 											if (get.effect(current, card, player, player) > 0 && get.useful(card, current) > 0) return true;
 											return false;
-										})
+										}),
 								)
 							)
 								return -1;
@@ -22382,7 +22389,7 @@ game.import('character', function () {
 					return true;
 				},
 				async content(event, trigger, player) {
-					const [card, color] = await player.judge().forResult('card', 'color');
+					const { card, color } = await player.judge().forResult();
 					const { targets } = await player
 						.chooseTarget(`〖仁心〗:选择至多2个目标令其各${color == 'red' ? '回复1点体力' : '受到1点雷属性伤害'}`, [1, 2], (card, player, target) => {
 							if (color == 'red') return target.isDamaged();
@@ -23344,7 +23351,7 @@ game.import('character', function () {
 							storage.removeArray(
 								storage.filter((index) => {
 									return index == number;
-								})
+								}),
 							);
 							game.log(player, '移除了点数', number, '获得了', card2);
 							if (storage.length == 0) {
@@ -23410,14 +23417,16 @@ game.import('character', function () {
 						async content(event, trigger, player) {
 							let controlList = [`移除点数${trigger.card.number}摸两张牌`, `移除点数${trigger.card.number}令${get.translation(trigger.cards[0])}额外结算一次`],
 								storage = player.storage.xjzh_zxzh_shiqiao;
-							const index = await player
-								.chooseControlList(get.prompt(event.name, player), controlList, true)
-								.set('ai', () => {
-									let player = get.player();
-									if (player.countCards('h') <= 1) return 0;
-									return 1;
-								})
-								.forResult('index');
+							const index = (
+								await player
+									.chooseControlList(get.prompt(event.name, player), controlList, true)
+									.set('ai', () => {
+										let player = get.player();
+										if (player.countCards('h') <= 1) return 0;
+										return 1;
+									})
+									.forResult()
+							).index;
 							storage.remove(trigger.card.number);
 							if (index == 1) {
 								trigger.effectCount++;
@@ -24557,7 +24566,7 @@ game.import('character', function () {
 							lib.character[name][3].filter(function (skill) {
 								var info = lib.skill[skill];
 								return info && !info.charlotte && !info.dutySkill && !info.juexingji && !info.limited && !info.unique && !info.sub;
-							})
+							}),
 						);
 					}
 					player.addSkillLog(skills.randomGet());
@@ -24768,12 +24777,12 @@ game.import('character', function () {
 						if (lib.card[i]) cards.addArray([i]);
 					}
 					let dialog = ui.create.dialog('〖双生〗:请选择获得至多两个技能', [cards, 'vcard'], 'hidden');
-					const [bool, links] = await player
+					const { bool, links } = await player
 						.chooseButton(dialog, true, [1, 2])
 						.set('ai', (button) => {
 							return Math.random();
 						})
-						.forResult('bool', 'links');
+						.forResult();
 					if (bool) {
 						for (var i of skills) {
 							delete lib.translate[i + '_info'];
@@ -25250,12 +25259,12 @@ game.import('character', function () {
 						.sortBySeat()
 						.filter((target) => target.countCards('e'));
 					if (list.length) {
-						const [bool, links] = await player
+						const { bool, links } = await player
 							.chooseButton(ui.create.dialog('〖裂石〗:选择一名角色弃置其所有装备牌', list))
 							.set('ai', (button) => {
 								return -get.attitude(player, button.link);
 							})
-							.forResult('bool', 'links');
+							.forResult();
 						if (links && bool) {
 							links[0].discard(links[0].getCards('e'));
 						}
@@ -25922,12 +25931,12 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						let option = mathList[num4].option;
 						dialog.addText(`${num + 1}、试题:${question}<br><br>`);
 						dialog.add([option, 'textbutton']);
-						const [bool, links] = await player
+						const { bool, links } = await player
 							.chooseButton(dialog, Array.isArray(answerNum) ? answerNum.length : 1)
 							.set('ai', function (button) {
 								return Math.random();
 							})
-							.forResult('bool', 'links');
+							.forResult();
 						if (bool && links) {
 							let num5 = 0;
 							let str = '正确答案是:';

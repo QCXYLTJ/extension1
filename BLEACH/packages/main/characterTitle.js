@@ -128,6 +128,6 @@ const characterTitle = {
   soul_johnwick: '<font color=black>夜魔</font>',
   soul_duckmon: '<font color=red>红莲的骑士</font>',
   soul_luohou: '<font color=orange>蔽日之锋</font>',
-  soul_erlangshen: '<font color=yellow>二郎神</font>'
+  soul_erlangshen: '<font color=yellow>二郎神</font>',
 };
 export default characterTitle;

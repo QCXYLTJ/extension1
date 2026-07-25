@@ -21,13 +21,15 @@ const skills = {
             let targets2;
             const targets = game.filterPlayer((current) => current != trigger.player && current != player);
             if (targets.length && trigger.num > 1) {
-                targets2 = await player
-                    .chooseTarget(get.prompt('dz_rb_wudun'), '选择至多' + get.cnNumber(trigger.num - 1) + '名角色令这些角色受到' + (trigger.source ? get.translation(trigger.source) + '造成的' : '') + '一点' + (trigger.nature ? get.translation(trigger.nature) : '') + '伤害', [1, trigger.num - 1], function (c, player, target) {
-                        return get.event('targetsx').includes(target);
-                    })
-                    .set('ai', (target) => -get.attitude(player, target))
-                    .set('targetsx', targets)
-                    .forResult('targets'); //QQQ
+                targets2 = (
+                    await player
+                        .chooseTarget(get.prompt('dz_rb_wudun'), '选择至多' + get.cnNumber(trigger.num - 1) + '名角色令这些角色受到' + (trigger.source ? get.translation(trigger.source) + '造成的' : '') + '一点' + (trigger.nature ? get.translation(trigger.nature) : '') + '伤害', [1, trigger.num - 1], function (c, player, target) {
+                            return get.event('targetsx').includes(target);
+                        })
+                        .set('ai', (target) => -get.attitude(player, target))
+                        .set('targetsx', targets)
+                        .forResult()
+                ).targets; //QQQ
                 event.result.targets = targets2 || [];
                 event.result.targets.add(player);
             } else {
@@ -55,10 +57,12 @@ const skills = {
             return player.hasMark('dz_rb_aicang') && _status.currentPhase == player && !_status.dying.length;
         },
         async cost(event, trigger, player) {
-            const bool = await player
-                .chooseBool(get.prompt('dz_rb_aicang'), '你可以受到至多' + get.cnNumber(player.countMark('dz_rb_aicang')) + '点闪电伤害..')
-                .set('ai', () => !player.storage.dz_rb_gongtian_count)
-                .forResult('bool'); //QQQ
+            const bool = (
+                await player
+                    .chooseBool(get.prompt('dz_rb_aicang'), '你可以受到至多' + get.cnNumber(player.countMark('dz_rb_aicang')) + '点闪电伤害..')
+                    .set('ai', () => !player.storage.dz_rb_gongtian_count)
+                    .forResult()
+            ).bool; //QQQ
             if (!bool) {
                 event.result = { bool: false };
                 return;
@@ -82,17 +86,21 @@ const skills = {
             const num = event.cost_data.links[0],
                 cnNum = get.cnNumber(num);
             await player.damage(num, 'nosource', 'thunder');
-            let targets = await player
-                .chooseTarget('哀苍:选择一名角色,令其摸/弃置' + cnNum + '张手牌', true)
-                .set('ai', (target) => target.isFriendsOf(player))
-                .forResult('targets'); //QQQ
+            let targets = (
+                await player
+                    .chooseTarget('哀苍:选择一名角色,令其摸/弃置' + cnNum + '张手牌', true)
+                    .set('ai', (target) => target.isFriendsOf(player))
+                    .forResult()
+            ).targets; //QQQ
             if (!targets || targets.length <= 0) targets = [player];
             const target = targets[0];
             const index = target.countCards('h')
-                ? await player
-                    .chooseControl('摸牌', '弃牌')
-                    .set('prompt', '哀苍:令' + get.translation(target) + '摸或弃置' + cnNum + '张手牌')
-                    .forResult('index')
+                ? (
+                    await player
+                        .chooseControl('摸牌', '弃牌')
+                        .set('prompt', '哀苍:令' + get.translation(target) + '摸或弃置' + cnNum + '张手牌')
+                        .forResult()
+                ).index
                 : 0;
             if (index == 0) await target.draw(num);
             else await target.chooseToDiscard(num, true);
@@ -142,7 +150,7 @@ const skills = {
                 },
                 player,
                 event.videoId,
-                onShowCards
+                onShowCards,
             );
             game.addVideo('showCards', player, [get.translation(player) + '【恭天】亮出牌', get.cardsInfo(onShowCards)]);
             game.log(player, '亮出了卡牌', onShowCards);
@@ -158,12 +166,14 @@ const skills = {
             else choiceList[1] = '<span style="opacity:0.5">' + choiceList[1] + '</span>';
             if (list.length >= 1) {
                 let onCards;
-                control = await player
-                    .chooseControl(list)
-                    .set('choiceList', choiceList)
-                    .set('ai', () => (trigger.player.isFriendsOf(player) ? '选项一' : '选项二')) //QQQ
-                    .set('prompt', '恭天:请令' + get.translation(trigger.player) + (trigger.player == player ? '(你)' : '') + '执行一项')
-                    .forResult('control');
+                control = (
+                    await player
+                        .chooseControl(list)
+                        .set('choiceList', choiceList)
+                        .set('ai', () => (trigger.player.isFriendsOf(player) ? '选项一' : '选项二')) //QQQ
+                        .set('prompt', '恭天:请令' + get.translation(trigger.player) + (trigger.player == player ? '(你)' : '') + '执行一项')
+                        .forResult()
+                ).control;
                 if (control == '选项一') {
                     onCards = trigger.player.getCards('he', (card) => !suits.includes(card.suit) && player.canRecast(card, trigger.player));
                     await trigger.player.recast(onCards);
@@ -291,7 +301,7 @@ const skills = {
                     }
                     let count = Math.max(
                         game.countPlayer((current) => player.canUse(trigger.card, current, false)),
-                        trigger.targets.length
+                        trigger.targets.length,
                     );
                     event.result = await player
                         .chooseTarget(get.prompt('dz_rb_changyu'), '为' + get.translation(trigger.card) + '额外指定或减少任意名目标角色', [1, count], function (card, player, target) {
@@ -351,7 +361,7 @@ const skills = {
                 let card = result.card;
                 event.card = card;
                 let choiceList = ['本回合发动【傲嶙】不能使用' + get.translation(get.type2(event.card)) + '牌且增加一点体力上限', '失去一点体力'];
-                const control = await player.chooseControl().set('choiceList', choiceList).forResult('control');
+                const control = (await player.chooseControl().set('choiceList', choiceList).forResult()).control;
                 if (control == '选项一') {
                     player.markAuto('dz_rb_aolin_nouse', [get.type2(event.card)]);
                     player.addTempSkill('dz_rb_aolin_nouse');
@@ -551,7 +561,7 @@ const skills = {
                                 nature: button.link[3],
                             },
                             null,
-                            true
+                            true,
                         );
                         return number0(num) / 2 + 10;
                     })
@@ -1065,7 +1075,7 @@ const skills = {
                                     },
                                     player,
                                     player.name,
-                                    name
+                                    name,
                                 );
                             }
                             if (info && info[3].length >= 1) {
@@ -1200,7 +1210,7 @@ const skills = {
                     player.$draw(cards, 'nobroadcast');
                 },
                 player,
-                characters.concat(characters2)
+                characters.concat(characters2),
             );
             _status.characterlist.removeArray(characters.concat(characters2));
             if (!player.storage.dz_rbk_zhengdang) player.storage.dz_rbk_zhengdang = {};
@@ -1288,7 +1298,7 @@ const skills = {
                                 player.$draw(cards, 'nobroadcast');
                             },
                             player,
-                            characters
+                            characters,
                         );
                         player.markSkill('dz_rbk_zhengdang');
                     }

@@ -1229,6 +1229,6 @@ const translates = {
   wanjiebufu: '万劫不复',
   wanjiebufu_info: '<a style="color: rgba(255,128,104,1)"><于我而言,一切都在那天坠入了深渊.></a>',
   zhaohuilingxianwang: '昭惠灵显王',
-  zhaohuilingxianwang_info: '<a style="color: rgba(255,128,104,1)">仪容清俊貌堂堂,两耳垂肩目有光.<br>头戴三山飞凤帽,身穿一领淡鹅黄.<br>缕金靴衬盘龙袜,玉带团花八宝妆.<br>腰挎弹弓新月样,手执三尖两刃枪.</a>'
+  zhaohuilingxianwang_info: '<a style="color: rgba(255,128,104,1)">仪容清俊貌堂堂,两耳垂肩目有光.<br>头戴三山飞凤帽,身穿一领淡鹅黄.<br>缕金靴衬盘龙袜,玉带团花八宝妆.<br>腰挎弹弓新月样,手执三尖两刃枪.</a>',
 };
 export default translates;

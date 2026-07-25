@@ -8449,7 +8449,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                                 return _status.event.choice;
                                             })
                                             .set('choice', get.attitude(player, target) > 0 ? 0 : 1)
-                                            .forResultControl());
+                                            .forResult()).control;
                                 }
                                 if (directcontrol) {
                                     if (num > 0) {

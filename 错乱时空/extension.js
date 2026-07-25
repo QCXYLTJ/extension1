@@ -39125,9 +39125,9 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     for (var name in lib.character) {
                                         if (name != 'SP索托斯' && name != '苍响-百战勇者' && name != '界傀影' && name != '界帝牙卢卡' && name != 'SP孙悟空' && name != '龙破坏之剑士' && name != '界龙破坏之剑士' && name != 'key_shiki' && !name.indexOf('key_') >= 0 && !lib.character[name][4].includes('boss') && !game.characterList.includes(name)) list2.push(name);
                                     }
-                                    const { links1 } = await game.me.chooseButton(true, ['请选择一名你要留下的武将', [list1, 'character']]).forResult();
-                                    const { links2 } = await game.me.chooseButton(true, ['请选择一名你要带走的武将', [list2.randomGets(10), 'character']]).forResult();
-                                    game.characterList.remove(links1[0]);
+                                    const { links } = await game.me.chooseButton(true, ['请选择一名你要留下的武将', [list1, 'character']]).forResult();
+                                    const { links: links2 } = await game.me.chooseButton(true, ['请选择一名你要带走的武将', [list2.randomGets(10), 'character']]).forResult();
+                                    game.characterList.remove(links[0]);
                                     game.characterList.push(links2[0]);
                                     alert('你们成功交换了人员,大家都很开心.');
                                 }

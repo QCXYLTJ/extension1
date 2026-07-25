@@ -36,7 +36,7 @@ const characterSort = {
   bravesouls_cacao_society: ['bleach_cacao_wuerqiaola'],
   bravesouls_machine_society: ['bleach_machine_jiliang'],
   bravesouls_spirit_society: ['bleach_yk_grimmjow', 'bleach_yk_baiyihu', 'bleach_yk_shiwanyin'],
-  bravesouls_future_society: ['bleach_future_nnoitra']
+  bravesouls_future_society: ['bleach_future_nnoitra'],
 };
 const characterSortTranslate = {
   //——————————————————————————————————————————————————————BLEACH——————————————————————————————————————————————————————//
@@ -65,8 +65,8 @@ const characterSortTranslate = {
   bleach_inheritance: '传承',
   bleach_norain: '万物无雨',
   bleach_theater: '剧场版',
-  bleach_diy: "群友DIY",
-  bleach_test: "测试",
+  bleach_diy: '群友DIY',
+  bleach_test: '测试',
   //——————————————————————————————————————————————————————Brave Souls——————————————————————————————————————————————————————//
   bravesouls_cfyow: 'CFYOW',
   bravesouls_safwy: 'SAFWY',
@@ -77,6 +77,6 @@ const characterSortTranslate = {
   bravesouls_cacao_society: '可可界',
   bravesouls_machine_society: '机械界',
   bravesouls_spirit_society: '妖魔界',
-  bravesouls_future_society: '未来世界'
+  bravesouls_future_society: '未来世界',
 };
 export { characterSort, characterSortTranslate };
