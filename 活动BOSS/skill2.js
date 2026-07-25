@@ -2245,7 +2245,7 @@ const skill = {
             });
         },
         async content(event, trigger, player) {
-            const [bool, targets, cards] = await player
+            const { bool, targets, cards } = await player
                 .chooseCardTarget({
                     position: 'he',
                     filterCard: lib.filter.cardDiscardable,
@@ -2280,7 +2280,7 @@ const skill = {
                     card: trigger.card,
                 })
                 .setHiddenSkill(event.name)
-                .forResult('bool', 'targets', 'cards');
+                .forResult();
             if (bool) {
                 const target = targets[0];
                 player.discard(cards);

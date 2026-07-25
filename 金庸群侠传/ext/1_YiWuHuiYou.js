@@ -3079,13 +3079,13 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
                 damageNum -= 1;
               } else break;
             }
-            const [bool, links] = await player
+            const { bool, links } = await player
               .chooseCardButton(shuimanCards)
               .set('selectButton', [1, 3])
               .set('ai', (button) => {
                 return 6 - get.value(button.link);
               })
-              .forResult('bool', 'links');
+              .forResult();
             if (bool && links) {
               shuimanCards.removeArray(links);
               await player.gain(links, 'gain2', 'log');

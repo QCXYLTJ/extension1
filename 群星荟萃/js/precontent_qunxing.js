@@ -6604,7 +6604,7 @@ const packs = function () {
                                             return item.backup.ai.result.player(player, target);
                                         })
                                         .set('item', item)
-                                        .forResult('targets')[0]);
+                                        .forResult()).targets[0];
                                 player.addTempSkill('qx_dianlun_count');
                                 player.markAuto('qx_dianlun_count', [target]);
                                 if (event.getParent(2).name !== 'chooseToUse') player.line(target);

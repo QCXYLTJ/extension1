@@ -887,10 +887,10 @@ window.jyimport(function (lib, game, ui, get, ai, _status) {
             return `〖冤罪〗:请选择一名未横置的角色令其交给你一张牌或横置`;
           },
           async content(event, trigger, player) {
-            const [bool, cards] = await event.targets[0].
+            const { bool, cards } = await event.targets[0].
               chooseCard(1, '交给' + get.translation(player) + '1张牌或横置', 'he').
               set('ai', () => get.attitude(player, event.targets[0])).
-              forResult('bool', 'cards');
+              forResult();
             if (bool) event.targets[0].give(cards, player); else
               event.targets[0].link(true);
           },

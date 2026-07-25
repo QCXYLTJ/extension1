@@ -418,7 +418,7 @@ const skills = {
                     return !choosed.includes(item) && lib.skill[item].cost(player);
                 });
                 if (choosed.length) list.push('cancel2');
-                const choice = await player
+                const { choice } = await player
                     .chooseControl(list)
                     .set(
                         'choiceList',
@@ -433,7 +433,7 @@ const skills = {
                     .set('ai', () => {
                         return get.event().controls.randomGet();
                     })
-                    .forResult('control');
+                    .forResult();
                 if (choice && choice !== 'cancel2') {
                     choosed.add(choice);
                     await lib.skill[choice].content(player);

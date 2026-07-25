@@ -25210,7 +25210,7 @@ export let info = {
         next.set('ai', function (target) {
           return -get.attitude(_status.event.player, target);
         });
-        const [bool, targets] = await next.forResult('bool', 'targets');
+        const { bool, targets } = await next.forResult();
         if (bool) {
           if (targets.length) {
             const { links } = await player
@@ -25324,7 +25324,7 @@ export let info = {
         if (preCards.length == 1) {
           viewAs = { name: name };
           if (viewAs.name == 'sha') {
-            const [bool, links] = await player
+            const { bool, links } = await player
               .chooseButton([get.prompt(event.name), '<div class="text center">选择一个属性</div>', [vcard, 'vcard']])
               .set('ai', function (button) {
                 if (button.link[3] == 'fire') return 2.95;
@@ -25332,7 +25332,7 @@ export let info = {
                 else return 2.9;
               })
               .set('direct', true)
-              .forResult('bool', 'links');
+              .forResult();
             if (bool) viewAs.nature = links[0][3];
             else return;
           }
@@ -25345,7 +25345,7 @@ export let info = {
             dialog.addText('选择一个属性');
             dialog.add([vcard, 'vcard']);
           }
-          const [bool, links] = await player
+          const { bool, links } = await player
             .chooseButton(name == 'sha' ? 2 : 1, dialog)
             .set('ai', function (button) {
               const player = _status.event.player,
@@ -25358,14 +25358,14 @@ export let info = {
               if (get.position(button.link, true) == 'h') return (player == current ? get.value(button.link) : get.useful(button.link)) - player.getUseValue(button.link);
               return 1;
             })
-            .forResult('bool', 'links');
+            .forResult();
           if (bool) {
             if (Array.isArray(links[0])) links.reverse();
             viewAs = { name: name };
             if (links[1]) viewAs.nature = links[1][3];
           } else return;
         }
-        const [bool, targets] = await player
+        const { bool, targets } = await player
           .chooseTarget('选择' + get.translation(viewAs) + '(' + get.translation(viewAs.cards) + ')的目标', function (card, player, target) {
             const targets = _status.event.targets;
             return targets.includes(target) && lib.filter.filterTarget2.apply(this, arguments);
@@ -25373,7 +25373,7 @@ export let info = {
           .set('ai', get.effect_use)
           .set('targets', preTargets)
           .set('_get_card', viewAs)
-          .forResult('bool', 'targets');
+          .forResult();
         if (bool) player.useCard(viewAs, viewAs.cards, targets, false).set('skill', event.name);
       },
       ai: { combo: 'dqzw_chuhai' },
