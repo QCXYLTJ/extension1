@@ -86,6 +86,8 @@ pnpm install
 pnpm install -g jscodeshift
 pnpm install prettier
 pnpm install eslint
+npm install @eslint/js --save-dev
+npm install globals --save-dev
 pnpm install @babel/parser @babel/traverse @babel/generator @babel/types
 pnpm install --save-dev @babel/parser @babel/traverse @babel/generator
 jscodeshift -t $env:TRANSFOR . --extensions js --verbose 2
