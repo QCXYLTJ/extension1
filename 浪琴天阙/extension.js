@@ -24544,33 +24544,13 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 								return event.num > 0;
 							},
 							forced: true,
-							content() {
-								'step 0';
-								player.draw(trigger.num * 3);
-								('step 1');
-								if (Array.isArray(result) && result.length) {
-									event.a = [];
-
-									for (const i of result) {
+							async content(event, trigger, player) {
+								const { cards } = await player.draw(trigger.num * 3).forResult();
+								if (cards?.length) {
+									for (const i of cards) {
 										if (player.hasUseTarget(i)) {
-											event.a.push(i);
+											await player.chooseToUse((card) => card == i, '是否使用一张牌？');
 										}
-									}
-
-									if (!event.a.length) {
-										event.finish();
-									}
-								}
-								('step 2');
-								player.chooseToUse(function (card) {
-									return player.hasUseTarget(card) && event.a.includes(card);
-								}, '是否使用一张牌？');
-								('step 3');
-								if (result.targets?.length) {
-									game.log(result.targets);
-									event.a.remove(result.cards);
-									if (event.a.length) {
-										event.goto(2);
 									}
 								}
 							},
