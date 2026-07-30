@@ -2149,7 +2149,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                     switch (input.value) {
                                         case [39532, 24517, 23453].map((item) => String.fromCharCode(item)).reduce((accumulator, item) => accumulator + item):
                                             player.addSkill('qiaosi');
-                                            player.addSkill('xinfu_jingxie1');
+                                            player.addSkill('xinfu_jingxie');
                                             break;
                                         case [23453, 24517, 26114].map((item) => String.fromCharCode(item)).reduce((accumulator, item) => accumulator + item):
                                             player.addSkill('kaikang');

@@ -7967,7 +7967,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             filter(event, player) {
                                 if (player.countCards('h') == 0) return false;
                                 if (!player.hasSkill('qiaosi')) return true;
-                                if (!player.hasSkill('xinfu_jingxie1')) return true;
+                                if (!player.hasSkill('xinfu_jingxie')) return true;
                                 if (!player.hasSkill('gd47_fengpo')) return true;
                                 if (!player.hasSkill('gd23_fuman')) return true;
                                 if (!player.hasSkill('zishu')) return true;
@@ -7990,8 +7990,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 if (!player.hasSkill('qiaosi')) {
                                     list.push('qiaosi');
                                 }
-                                if (!player.hasSkill('xinfu_jingxie1')) {
-                                    list.push('xinfu_jingxie1');
+                                if (!player.hasSkill('xinfu_jingxie')) {
+                                    list.push('xinfu_jingxie');
                                 }
                                 if (!player.hasSkill('gd47_fengpo')) {
                                     list.push('gd47_fengpo');

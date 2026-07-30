@@ -3140,7 +3140,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             group: ['zqyinbing1', 'zqyinbing2', 'zqyinbing3', 'zqyinbing5'],
                         },
                         精器: {
-                            group: ['xinfu_jingxie2'],
+                            group: ['xinfu_jingxie_recast'],
                             position: 'he',
                             audio: 'ext:汤圆神将包/audio:true',
                             enable: 'phaseUse',

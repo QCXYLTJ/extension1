@@ -2059,7 +2059,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                         if (player.storage.jxtp_guimou_mark.length >= Math.max(4, player.maxHp)) {
                                             return false;
                                         }
-                                        if (!['useSkill', 'discard', 'jxtp_tachen', 'duoduan', 'xinfu_jingxie2'].includes(event.parent.name)) {
+                                        if (!['useSkill', 'discard', 'jxtp_tachen', 'duoduan', 'xinfu_jingxie_recast'].includes(event.parent.name)) {
                                             return false;
                                         }
                                         for (const card of event.cards) {

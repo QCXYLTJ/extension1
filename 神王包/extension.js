@@ -4264,7 +4264,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             group: 'pyzhuren_destroy',
                         },
                         shenwangjingxie: {
-                            group: ['xinfu_jingxie2'],
+                            group: ['xinfu_jingxie_recast'],
                             position: 'he',
                             audio: 'xinfu_jingxie',
                             enable: 'phaseUse',
@@ -12797,7 +12797,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         swjingxie: {
-                            group: ['xinfu_jingxie2'],
+                            group: ['xinfu_jingxie_recast'],
                             position: 'he',
                             audio: 'xinfu_jingxie',
                             enable: 'phaseUse',

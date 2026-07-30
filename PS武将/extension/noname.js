@@ -1,1 +1,1 @@
-export { lib, game, ui, get, ai, _status } from '../../../noname.js'
+export { lib, game, ui, get, ai, _status } from '../../../noname.js';

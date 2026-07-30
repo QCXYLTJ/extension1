@@ -5427,7 +5427,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                     },
                 };
 
-                lib.skill.xinfu_jingxie1 = {
+                lib.skill.xinfu_jingxie = {
                     position: 'he',
                     audio: 'xinfu_jingxie',
                     enable: ['phaseUse', 'chooseToUse'],

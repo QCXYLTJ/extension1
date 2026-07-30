@@ -9095,8 +9095,8 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             },
                         },
                         jingxieon: {
-                            audio: 'xinfu_jingxie1',
-                            group: ['xinfu_jingxie1', 'jingxieon1', 'jingxieon2'],
+                            audio: 'xinfu_jingxie',
+                            group: ['xinfu_jingxie', 'jingxieon1', 'jingxieon2'],
                             enable: ['chooseToUse', 'chooseToRespond'],
                             hiddenCard(player, name) {
                                 if (!['sha', 'shan', 'tao', 'jiu', 'wuxie'].includes(name)) return false;
@@ -9211,7 +9211,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                             trigger: {
                                 player: 'dying',
                             },
-                            audio: 'xinfu_jingxie1',
+                            audio: 'xinfu_jingxie',
                             check(event, player) {
                                 if (player.countCards('e') > 2 && player.countCards('h', 'tao') > 0) return 0;
                                 return get.attitude(player, event.player) > 0;
@@ -9232,7 +9232,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
                                 player: 'jingxieon1After',
                             },
                             forced: true,
-                            audio: 'xinfu_jingxie1',
+                            audio: 'xinfu_jingxie',
                             content() {
                                 'step 0';
                                 event.num = 0;

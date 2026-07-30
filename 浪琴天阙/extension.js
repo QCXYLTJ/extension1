@@ -2927,7 +2927,7 @@ game.import('extension', function (lib, game, ui, get, ai, _status) {
 											player.gain(list.randomGet(), 'draw2');
 										}
 									} else {
-										const lise = ['guihan', 'xinjuejing', 'duhun', 'gwfusheng', 'shouwang', 'yuelu', 'chongsheng', 'xinfu_jingxie1', 'wanlan', 'liechi', 'refuli', 'requanfeng', 'zuici', 'spyuejian', 'rezuici', 'mduohun', 'niepan', 'oldniepan', 'buqu', 'chenqing', 'luanfeng', 'decadexushen', 'xinfu_jiyuan', 'shouyin', 'busi', 'huanhun', 'chengxin', 'tanhua', 'shenmu', 'xinfu_qiai', 'fuli', 'xinfuli', 'buyi'];
+										const lise = ['guihan', 'xinjuejing', 'duhun', 'gwfusheng', 'shouwang', 'yuelu', 'chongsheng', 'xinfu_jingxie', 'wanlan', 'liechi', 'refuli', 'requanfeng', 'zuici', 'spyuejian', 'rezuici', 'mduohun', 'niepan', 'oldniepan', 'buqu', 'chenqing', 'luanfeng', 'decadexushen', 'xinfu_jiyuan', 'shouyin', 'busi', 'huanhun', 'chengxin', 'tanhua', 'shenmu', 'xinfu_qiai', 'fuli', 'xinfuli', 'buyi'];
 										const dialog = ui.create.dialog('<b>选择一个技能获得', 'hidden');
 										const skills = lise.randomGets(event.num);
 										const yi = document.createElement('div');

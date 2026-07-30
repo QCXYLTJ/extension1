@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from "../../extension/noname.js";
+import { lib, game, ui, get, ai, _status } from '../../extension/noname.js';
 const card = {
 	PSsp_blank: {
 		type: null,
@@ -9,5 +9,5 @@ const card = {
 			},
 		},
 	},
-}
-export default card
+};
+export default card;

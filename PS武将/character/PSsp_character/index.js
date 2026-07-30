@@ -1,17 +1,17 @@
-import { lib, game, ui, get, ai, _status } from '../../extension/noname.js'
-import character from "./character.js";
-import card from "./card.js";
-import characterTitle from "./characterTitle.js";
-import { characterSort, sortTranslation } from "./sort.js";
-import characterIntro from "./characterIntro.js";
-import skill from "./skill.js";
-import { characterTranslation, skillTranslation } from './translate.js'
-import voices from "./voices.js";
-import dynamicTranslate from "./dynamicTranslate.js";
-"use strict";
-game.import("character", function (lib, game, ui, get, ai, _status) {
+import { lib, game, ui, get, ai, _status } from '../../extension/noname.js';
+import character from './character.js';
+import card from './card.js';
+import characterTitle from './characterTitle.js';
+import { characterSort, sortTranslation } from './sort.js';
+import characterIntro from './characterIntro.js';
+import skill from './skill.js';
+import { characterTranslation, skillTranslation } from './translate.js';
+import voices from './voices.js';
+import dynamicTranslate from './dynamicTranslate.js';
+('use strict');
+game.import('character', function (lib, game, ui, get, ai, _status) {
 	var PSsp_character = {
-		name: "PSsp_character",
+		name: 'PSsp_character',
 		connect: true,
 		characterSort,
 		character,
@@ -25,15 +25,15 @@ game.import("character", function (lib, game, ui, get, ai, _status) {
 		translate: { ...sortTranslation, ...characterTranslation, ...skillTranslation, ...voices },
 		dynamicTranslate,
 	};
-	Object.keys(PSsp_character.character).forEach(i => {
+	Object.keys(PSsp_character.character).forEach((i) => {
 		window.PScharacter.characters.push(i);
 		const character = PSsp_character.character[i];
 		character.trashBin.push(`ext:PS武将/image/character/${i}.jpg`);
-		if (i.includes("PS") && !PSsp_character.translate[i + "_prefix"]) {
-			lib.translate[i + "_prefix"] = i.includes("PSshen_") ? "PS神" : "PS";
+		if (i.includes('PS') && !PSsp_character.translate[i + '_prefix']) {
+			lib.translate[i + '_prefix'] = i.includes('PSshen_') ? 'PS神' : 'PS';
 		}
-	})
+	});
 	return PSsp_character;
 });
-lib.config.all.characters.add("PSsp_character");
-lib.translate["PSsp_character_character_config"] = "PS特殊武将";
+lib.config.all.characters.add('PSsp_character');
+lib.translate['PSsp_character_character_config'] = 'PS特殊武将';

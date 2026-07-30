@@ -77,13 +77,7 @@ export let PRECONTENT = function (config) {
 			return arr; //返回记录匹配位置的数组
 		},
 	}); //const str = 'aabbccaabbcc'; str.searchAll('a') --> [0, 1, 6, 7]; str.searchAll(/a/) --> [0, 1, 6, 7]
-	//将updateHistory.json文件里的更新日志存入window.PScharacter.updateHistory
-	lib.init.promises.json(`extension/PS武将/json/updateHistory.json`).then(
-		(info) => (window.PScharacter.updateHistory = info),
-		(err) => alert('JSON 文件解析失败\n' + err)
-	);
 	/* <-------------------------调用js-------------------------> */
-	import('../asset/update.js');
 	import('../character/PScharacter/index.js');
 	if (lib.config.extension_PS武将_PS_spCharacter === true) import('../character/PSsp_character/index.js');
 	/* <-------------------------改变启动页背景图-------------------------> */
@@ -171,7 +165,7 @@ export let PRECONTENT = function (config) {
 	//将rusheng.json文件里的入声字数组存入lib.PS_rusheng
 	lib.init.promises.json(`extension/PS武将/json/rusheng.json`).then(
 		(info) => (lib.PS_rusheng = info),
-		(err) => alert('JSON 文件解析失败\n' + err)
+		(err) => alert('JSON 文件解析失败\n' + err),
 	);
 	//获取平仄的函数
 	get.PS_pingZe = function (str) {

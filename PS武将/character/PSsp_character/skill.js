@@ -56,7 +56,7 @@ const skill = {
 		enable: ['chooseToUse', 'chooseToRespond'],
 		filter(event, player) {
 			let num1 = player.getCards('he').reduce(function (arr, card) {
-				return arr.add(card.suit), arr;
+				return (arr.add(card.suit), arr);
 			}, []).length;
 			let num2 = player.getAllHistory('useSkill', (evt) => evt.skill == 'PSsp_shadiao_backup').length;
 			if (num2 > num1) return false;
@@ -129,7 +129,7 @@ const skill = {
 		},
 		hiddenCard(player, name) {
 			let num1 = player.getCards('he').reduce(function (arr, card) {
-				return arr.add(card.suit), arr;
+				return (arr.add(card.suit), arr);
 			}, []).length;
 			let num2 = player.getAllHistory('useSkill', (evt) => evt.skill == 'PSsp_shadiao_backup').length;
 			if (num2 > num1) return false;
@@ -143,7 +143,7 @@ const skill = {
 			respondShan: true,
 			skillTagFilter(player) {
 				let num1 = player.getCards('he').reduce(function (arr, card) {
-					return arr.add(card.suit), arr;
+					return (arr.add(card.suit), arr);
 				}, []).length;
 				let num2 = player.getAllHistory('useSkill', (evt) => evt.skill == 'PSsp_shadiao_backup').length;
 				if (num2 > num1) return false;
@@ -247,7 +247,7 @@ const skill = {
 		content() {
 			'step 0';
 			let num = player.getCards('h').reduce(function (arr, card) {
-				return arr.add(card.suit), arr;
+				return (arr.add(card.suit), arr);
 			}, []).length;
 			player
 				.chooseCard([1, num], 'h', true, function (card, player) {
@@ -817,7 +817,7 @@ const skill = {
 											target: target,
 											card: card,
 										},
-										true
+										true,
 									)) &&
 								!target.hasSkillTag('filterDamage', null, {
 									player: player,
@@ -842,7 +842,7 @@ const skill = {
 							target: target,
 							card: card,
 						},
-						true
+						true,
 					)
 				)
 					return false;
@@ -884,7 +884,7 @@ const skill = {
 								target: target,
 								card: card,
 							},
-							true
+							true,
 						)
 					)
 						return eff / 1.2;
