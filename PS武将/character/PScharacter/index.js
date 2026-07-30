@@ -36,6 +36,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	});
 	lib.config.characters.add('PScharacter');
 	lib.config.all.characters.add('PScharacter');
-	lib.translate['PScharacter_character_config'] = 'PS武将';
+	lib.translate.PScharacter_character_config = 'PS武将';
 	return PScharacter;
 });

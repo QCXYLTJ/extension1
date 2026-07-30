@@ -77,7 +77,6 @@ const skill = {
 		chooseButton: {
 			dialog(event, player) {
 				const list = [];
-
 				for (const i of lib.inpile) {
 					const name = i;
 					if (name == 'sha') {
@@ -95,7 +94,6 @@ const skill = {
 						list.push(['基本', '', name]);
 					}
 				}
-
 				return ui.create.dialog('鲨雕', [list, 'vcard']);
 			},
 			filter(button, player) {
@@ -551,7 +549,6 @@ const skill = {
 				table.style.width = '100%';
 				table.style.position = 'relative';
 				const suits = player.storage.PSsp_sucai[0]; //花色列表
-
 				for (const i of suits) {
 					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.link = i;
@@ -577,7 +574,6 @@ const skill = {
 						event._result.suit = link;
 					});
 				}
-
 				dialog.content.appendChild(table);
 				////////////////////////////
 				dialog.addText('点数');
@@ -587,7 +583,6 @@ const skill = {
 				table2.style.width = '100%';
 				table2.style.position = 'relative';
 				const number = player.storage.PSsp_sucai[1]; //点数列表
-
 				for (const i of number) {
 					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.link = i;
@@ -613,7 +608,6 @@ const skill = {
 						event._result.number = link;
 					});
 				}
-
 				dialog.content.appendChild(table2);
 				////////////////////////////
 				dialog.addText('牌名');
@@ -623,7 +617,6 @@ const skill = {
 				table3.style.width = '100%';
 				table3.style.position = 'relative';
 				const uname = player.storage.PSsp_sucai[2]; //牌名列表
-
 				for (const i of uname) {
 					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.link = i;
@@ -649,7 +642,6 @@ const skill = {
 						event._result.name = link;
 					});
 				}
-
 				dialog.content.appendChild(table3);
 				////////////////////////////
 				dialog.add('　　');
@@ -678,11 +670,9 @@ const skill = {
 					game.resume();
 					_status.imchoosing = false;
 				});
-
 				for (const i of event.dialog.buttons) {
 					i.classList.add('selectable');
 				}
-
 				game.pause();
 				game.countChoose();
 			};
@@ -812,14 +802,14 @@ const skill = {
 							};
 						});
 					('step 4');
-					for (var i in result) {
+					for (const i in result) {
 						if (result[i].links[0][2] == 'reguhuo_betray') {
 							event.betrays.push(lib.playerOL[i]);
 							lib.playerOL[i].addExpose(0.2);
 						}
 					}
 					('step 5');
-					for (var i of event.targets2) {
+					for (const i of event.targets2) {
 						const b = event.betrays.includes(i);
 						i.popup(b ? '质疑' : '不质疑', b ? 'fire' : 'wood');
 						game.log(i, b ? '#y质疑' : '#g不质疑');

@@ -36,4 +36,4 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	return PSsp_character;
 });
 lib.config.all.characters.add('PSsp_character');
-lib.translate['PSsp_character_character_config'] = 'PS特殊武将';
+lib.translate.PSsp_character_character_config = 'PS特殊武将';

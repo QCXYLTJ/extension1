@@ -74,10 +74,10 @@ export const CONTENT = function (config, pack) {
 			return void 0;
 		}
 		const obj = {
-			spade: '<font color="black">♠️️︎</font>',
-			heart: '<font color="red">♥️️︎</font>',
-			club: '<font color="black">♣️️︎</font>',
-			diamond: '<font color="red">♦️️︎</font>',
+			spade: '<font color="black">♠️️️︎</font>',
+			heart: '<font color="red">♥️️️︎</font>',
+			club: '<font color="black">♣️️️︎</font>',
+			diamond: '<font color="red">♦️️️︎</font>',
 		};
 		return obj[suit];
 	};
@@ -90,7 +90,6 @@ export const CONTENT = function (config, pack) {
 	 */
 	get.cardsSuitsLength = function (cards, player) {
 		const suits = [];
-
 		for (const i of cards) {
 			const suit = i.suit;
 			if (!lib.suit.includes(suit) || suits.includes(suit)) {
@@ -101,7 +100,6 @@ export const CONTENT = function (config, pack) {
 				break;
 			}
 		}
-
 		return suits.length;
 	};
 	/* <-------------------------Player#reinitCharacter2函数-------------------------> */

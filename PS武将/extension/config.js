@@ -221,7 +221,7 @@ textMenu (node, link) {
 			str += '\n//PScharacters是添加的武将包,<[]>内填武将包名(武将包名可以在武将面板上查看),不写默认为全扩武将包';
 			str += '\n//示例:PScharacters = ["界限突破","PS武将","欢乐三国杀"];';
 			str += '\nPScharacters=[\n';
-			for (var i = 0; i < map.length; i++) {
+			for (let i = 0; i < map.length; i++) {
 				str += '"' + map[i] + '",';
 				if (i + 1 < map.length && (i + 1) % 5 == 0) {
 					str += '\n';
@@ -230,7 +230,7 @@ textMenu (node, link) {
 			str += '\n];\n';
 			str += '\n//PSremoveCharacters是移除的武将包,<[]>内填武将包名,示例同上';
 			str += '\nPSremoveCharacters=[\n';
-			for (var i = 0; i < shed.length; i++) {
+			for (let i = 0; i < shed.length; i++) {
 				str += '"' + shed[i] + '",';
 				if (i + 1 < shed.length && (i + 1) % 5 == 0) {
 					str += '\n';
@@ -240,7 +240,7 @@ textMenu (node, link) {
 			str += '\n//PSaddCharacter是添加的武将,<[]>内填武将id';
 			str += '\n//示例:PSaddCharacter = ["liubei","guanyu","zhangfei"];';
 			str += '\nPSaddCharacter=[\n';
-			for (var i = 0; i < add.length; i++) {
+			for (let i = 0; i < add.length; i++) {
 				str += '"' + add[i] + '",';
 				if (i + 1 < add.length && (i + 1) % 5 == 0) {
 					str += '\n';
@@ -249,7 +249,7 @@ textMenu (node, link) {
 			str += '\n];\n';
 			str += '\n//PSremoveCharacter是移除的武将,<[]>内填武将id,示例同上';
 			str += '\nPSremoveCharacter=[\n';
-			for (var i = 0; i < remove.length; i++) {
+			for (let i = 0; i < remove.length; i++) {
 				str += '"' + remove[i] + '",';
 				if (i + 1 < remove.length && (i + 1) % 5 == 0) {
 					str += '\n';
