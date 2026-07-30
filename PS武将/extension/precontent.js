@@ -1,6 +1,6 @@
 import { lib, get, _status, ui, game, ai } from './noname.js';
 import { MINVERSION } from './version.js';
-export let PRECONTENT = function (config) {
+export const PRECONTENT = function (config) {
 	game.kongfunc = function () {
 		return game.kong;
 	};
@@ -16,19 +16,21 @@ export let PRECONTENT = function (config) {
 			cards: [],
 		},
 		gaintag: [],
-		forResult() { },
+		forResult() {},
 	};
 	/* <-------------------------本体版本检测-------------------------> */
 	function compareVersion(curVersion, minVersion) {
 		function getSliceVersion(version) {
 			const spotIndex = version.search(/(?<=\d+\.\d+\.\d+)(\.)/);
-			if (spotIndex !== -1) version = version.slice(0, spotIndex);
+			if (spotIndex !== -1) {
+				version = version.slice(0, spotIndex);
+			}
 			return version.split('.');
 		}
 		curVersion = getSliceVersion(curVersion);
 		minVersion = getSliceVersion(minVersion);
 		let bool = false;
-		for (var i = 0; i < curVersion.length; i++) {
+		for (let i = 0; i < curVersion.length; i++) {
 			if (+curVersion[i] > +minVersion[i]) {
 				bool = true;
 				break;
@@ -51,7 +53,9 @@ export let PRECONTENT = function (config) {
 	/* <-------------------------给字符串添加查找方法-------------------------> */
 	Reflect.defineProperty(String.prototype, 'searchAll', {
 		value(subStr) {
-			if (typeof subStr !== 'string' && subStr instanceof RegExp === false) throw new Error('参数必须为字符串或正则表达式');
+			if (typeof subStr !== 'string' && subStr instanceof RegExp === false) {
+				throw new Error('参数必须为字符串或正则表达式');
+			}
 			const arr = [];
 			if (subStr instanceof RegExp) {
 				//如果subStr为正则表达式
@@ -66,7 +70,9 @@ export let PRECONTENT = function (config) {
 				}
 			} else {
 				let index = this.search(subStr); //使用字符串的search方法查找子串
-				if (subStr.length === 0) return []; //如果子串为空,则直接返回
+				if (subStr.length === 0) {
+					return [];
+				} //如果子串为空,则直接返回
 				while (index !== -1) {
 					//如果查找到子串,则继续查找下一个子串
 					arr.push(index); //记录匹配位置
@@ -79,17 +85,19 @@ export let PRECONTENT = function (config) {
 	}); //const str = 'aabbccaabbcc'; str.searchAll('a') --> [0, 1, 6, 7]; str.searchAll(/a/) --> [0, 1, 6, 7]
 	/* <-------------------------调用js-------------------------> */
 	import('../character/PScharacter/index.js');
-	if (lib.config.extension_PS武将_PS_spCharacter === true) import('../character/PSsp_character/index.js');
+	if (lib.config.extension_PS武将_PS_spCharacter === true) {
+		import('../character/PSsp_character/index.js');
+	}
 	/* <-------------------------改变启动页背景图-------------------------> */
 	if (game.getExtensionConfig('PS武将', 'PS_splash') !== 'default') {
 		function getAvatars() {
 			if (document.querySelector('#splash.slim')) {
-				let avatars = document.querySelectorAll('.avatar');
+				const avatars = document.querySelectorAll('.avatar');
 				if (avatars.length) {
 					clearInterval(timeId);
 					const url = `extension/PS武将/image/splash/${game.getExtensionConfig('PS武将', 'PS_splash') || 'default'}/`;
 					game.getFileList(url, (folders, files) => {
-						for (var i = 0; i < avatars.length; i++) {
+						for (let i = 0; i < avatars.length; i++) {
 							if (files.length >= i + 1) {
 								avatars[i].style.backgroundImage = `url("${url + files[i]}")`;
 								avatars[i].style.backgroundPosition = `center top`;
@@ -99,7 +107,7 @@ export let PRECONTENT = function (config) {
 				}
 			}
 		}
-		let timeId = setInterval(getAvatars, 30);
+		const timeId = setInterval(getAvatars, 30);
 		setTimeout(() => {
 			clearInterval(timeId);
 		}, 1000);
@@ -118,11 +126,6 @@ export let PRECONTENT = function (config) {
 				style.transform = 'scaleY(0.85)';
 				span.textContent = 'PS';
 				return span.outerHTML;
-				if (game.getExtensionConfig('PS武将', 'PS_prefix') === 'hidden') return '';
-				else if (game.getExtensionConfig('PS武将', 'PS_prefix') === 'symbol') {
-					return `<span style="writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;font-family:MotoyaLMaru;transform:scaleY(0.85)"><font color=#fdd559>℗</font></span>`;
-				}
-				return `<span style="writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;font-family:MotoyaLMaru;transform:scaleY(0.85)"><font color=#fdd559>PS</font></span>`;
 			},
 		});
 		lib.namePrefix.set('PS神', {
@@ -170,15 +173,24 @@ export let PRECONTENT = function (config) {
 	//获取平仄的函数
 	get.PS_pingZe = function (str) {
 		//以平水韵为标准
-		if (typeof str !== 'string') return;
-		if (str === '大宛') return '平';
-		if (lib.PS_rusheng.includes(str.at(-1))) return '仄';
+		if (typeof str !== 'string') {
+			return;
+		}
+		if (str === '大宛') {
+			return '平';
+		}
+		if (lib.PS_rusheng.includes(str.at(-1))) {
+			return '仄';
+		}
 		const ping = ['ā', 'á', 'ē', 'é', 'ī', 'í', 'ō', 'ó', 'ū', 'ú', 'ǖ', 'ǘ'];
 		const ze = ['ǎ', 'à', 'ě', 'è', 'ǐ', 'ì', 'ǒ', 'ò', 'ǔ', 'ù', 'ǚ', 'ǜ'];
 		let pinyin = get.pinyin(str, true);
 		pinyin = pinyin.at(-1);
-		if (ping.some((yin) => pinyin.includes(yin))) return '平';
-		else if (ze.some((yin) => pinyin.includes(yin))) return '仄';
+		if (ping.some((yin) => pinyin.includes(yin))) {
+			return '平';
+		} else if (ze.some((yin) => pinyin.includes(yin))) {
+			return '仄';
+		}
 	};
 	/**
 	 * 改变技能配音的函数
@@ -200,7 +212,7 @@ export let PRECONTENT = function (config) {
 		//ui.backgroundMusic.src='';
 		//}
 		//ui.backgroundMusic.autoplay=true;
-		var temp = lib.config.extension_PS武将_Background_Music;
+		let temp = lib.config.extension_PS武将_Background_Music;
 		if (temp == '0') {
 			temp = get.rand(2, 30);
 			//生成一个范围2到30的整数
@@ -208,7 +220,7 @@ export let PRECONTENT = function (config) {
 			//转为字符串
 		}
 		ui.backgroundMusic.pause();
-		var item = {
+		const item = {
 			2: '一战成名.mp3',
 			3: '逐鹿天下.mp3',
 			4: '三国杀牌局重制版.mp3',

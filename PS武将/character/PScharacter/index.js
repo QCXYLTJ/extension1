@@ -9,7 +9,7 @@ import { characterTranslation, skillTranslation } from './translate.js';
 import voices from './voices.js';
 ('use strict');
 game.import('character', function (lib, game, ui, get, ai, _status) {
-	var PScharacter = {
+	const PScharacter = {
 		name: 'PScharacter',
 		connect: true,
 		character,

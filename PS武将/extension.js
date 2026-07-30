@@ -17,7 +17,7 @@ window.PScharacter = {
 	characters: [],
 };
 lib.init.css('extension/PS武将/css', 'extension'); //调用css样式
-export let type = 'extension';
+export const type = 'extension';
 export default function () {
 	return {
 		name: 'PS武将',

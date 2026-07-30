@@ -1,5 +1,5 @@
 import { lib, get, _status, ui, game, ai } from './noname.js';
-export let CONTENT = function (config, pack) {
+export const CONTENT = function (config, pack) {
 	/* <-------------------------武将评级-------------------------> */
 	const junk = ['PScenhun', 'PSliru', 'PSben_sunben', 'PSquansun', 'PSrs_wolong', 'PSsunshangxiang', 'PSfx_shen_guanyu'];
 	const rare = ['PScaoang', 'PSliubei', 'PSshenpei', 'PSshen_nanhualaoxian', 'PSwenyang', 'PSquyi', 'PSreyuanshu', 'PSlvbu', 'PSqun_machao', 'PSreluxun', 'PSluxun', 'PSxurong', 'PSliaohua', 'PScaopi', 'PShuangzhong', 'PSgongsunzan', 'PSdongzhuo', 'PSlifeng', 'PSqun_zhaoyun', 'PScaoren', 'PSzhangfei', 'PSsp_jiugechenpi', 'PSsp_jiugemangguo', 'PSlingcao', 'PSpanzhangmazhong', 'PSzhugeliang', 'PSmenghuo', 'PSsp_yebai', 'PSshu_sunshangxiang', 'PSxie_sunquan', 'PSxushi', 'PSguanyu', 'PSshen_zhangfei', 'PSlvmeng', 'PSxuyou', 'PShaozhao', 'PSshen_liubei', 'PSjiaxu', 'PSzhuangbeidashi', 'PScaocao', 'PSzhoutai', 'PSzhangsong', 'PSshiniangongzhu', 'PSzhanghe', 'PSzhangjiao', 'PSsp_yeshou', 'PSyuanshu', 'PSxizhicai', 'PSsunben', 'PSsunquan', 'PSliuzan', 'PSshen_jiangweix', 'PSshen_zhuge', 'PSrexusheng', 'PSshen_huangzhong', 'PSshen_guojia', 'PScaochun', 'PSqun_sunce', 'PScaoshuang', 'PSlukang', 'PScaoxiu', 'PSdahantianzi', 'db_PSdaweiwuwang', 'PSdianwei', 'PSduyu', 'PSerciyuan', 'PSgaoguimingmen', 'PSguosi', 'PShs_zhonghui', 'PShuanggai', 'PShuangyueying', 'PShw_sunquan'];
@@ -90,12 +90,18 @@ export let CONTENT = function (config, pack) {
 	 */
 	get.cardsSuitsLength = function (cards, player) {
 		const suits = [];
-		for (var i = 0; i < cards.length; i++) {
-			const suit = cards[i].suit;
-			if (!lib.suit.includes(suit) || suits.includes(suit)) continue;
+
+		for (const i of cards) {
+			const suit = i.suit;
+			if (!lib.suit.includes(suit) || suits.includes(suit)) {
+				continue;
+			}
 			suits.add(suit);
-			if (lib.suit.length === suits.length) break;
+			if (lib.suit.length === suits.length) {
+				break;
+			}
 		}
+
 		return suits.length;
 	};
 	/* <-------------------------Player#reinitCharacter2函数-------------------------> */

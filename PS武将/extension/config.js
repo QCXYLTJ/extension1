@@ -1,6 +1,6 @@
 import { VERSION, MINVERSION } from './version.js';
 import { lib, get, _status, ui, game, ai } from './noname.js';
-export let CONFIG = {
+export const CONFIG = {
 	bd1: {
 		clear: true,
 		name: `最低支持本体版本:${MINVERSION}`,
@@ -168,7 +168,7 @@ textMenu (node, link) {
 			30: '太虚-长设之战',
 		},
 		onclick(item) {
-			let div = document.querySelector('.PSrecord-box .PSrecord-img');
+			const div = document.querySelector('.PSrecord-box .PSrecord-img');
 			div.style.backgroundImage = `url(extension/PS武将/image/music/${item}.jpg)`;
 			game.saveConfig('extension_PS武将_Background_Music', item);
 			game.PS_playBackgroundMusic();
@@ -203,34 +203,38 @@ textMenu (node, link) {
 		intro: '打开<编辑武将>功能页面',
 		clear: true,
 		onclick() {
-			var container = ui.create.div('.popup-container.editor');
-			var editorpage = ui.create.div(container);
-			var discardConfig = ui.create.div('.editbutton', '取消', editorpage, function () {
+			const container = ui.create.div('.popup-container.editor');
+			const editorpage = ui.create.div(container);
+			const discardConfig = ui.create.div('.editbutton', '取消', editorpage, function () {
 				ui.window.classList.remove('shortcutpaused');
 				ui.window.classList.remove('systempaused');
 				container.delete(null);
 				delete window.saveNonameInput;
 			});
-			var node = container;
-			var map = lib.config.extension_PS武将_PScharacters || [];
-			var shed = lib.config.extension_PS武将_PSremoveCharacters || [];
-			var add = lib.config.extension_PS武将_PSaddCharacter || [];
-			var remove = lib.config.extension_PS武将_PSremoveCharacter || [];
-			var str = '//编辑将池,适用武将:PS赵襄、PS左慈、大魏吴王、PS许劭、双倍许劭、梦刘备、PS神孙权,请按照示例正确书写';
+			const node = container;
+			const map = lib.config.extension_PS武将_PScharacters || [];
+			const shed = lib.config.extension_PS武将_PSremoveCharacters || [];
+			const add = lib.config.extension_PS武将_PSaddCharacter || [];
+			const remove = lib.config.extension_PS武将_PSremoveCharacter || [];
+			let str = '//编辑将池,适用武将:PS赵襄、PS左慈、大魏吴王、PS许劭、双倍许劭、梦刘备、PS神孙权,请按照示例正确书写';
 			str += '\n//均用英文标点符号!!!\n';
 			str += '\n//PScharacters是添加的武将包,<[]>内填武将包名(武将包名可以在武将面板上查看),不写默认为全扩武将包';
 			str += '\n//示例:PScharacters = ["界限突破","PS武将","欢乐三国杀"];';
 			str += '\nPScharacters=[\n';
 			for (var i = 0; i < map.length; i++) {
 				str += '"' + map[i] + '",';
-				if (i + 1 < map.length && (i + 1) % 5 == 0) str += '\n';
+				if (i + 1 < map.length && (i + 1) % 5 == 0) {
+					str += '\n';
+				}
 			}
 			str += '\n];\n';
 			str += '\n//PSremoveCharacters是移除的武将包,<[]>内填武将包名,示例同上';
 			str += '\nPSremoveCharacters=[\n';
 			for (var i = 0; i < shed.length; i++) {
 				str += '"' + shed[i] + '",';
-				if (i + 1 < shed.length && (i + 1) % 5 == 0) str += '\n';
+				if (i + 1 < shed.length && (i + 1) % 5 == 0) {
+					str += '\n';
+				}
 			}
 			str += '\n];\n';
 			str += '\n//PSaddCharacter是添加的武将,<[]>内填武将id';
@@ -238,22 +242,26 @@ textMenu (node, link) {
 			str += '\nPSaddCharacter=[\n';
 			for (var i = 0; i < add.length; i++) {
 				str += '"' + add[i] + '",';
-				if (i + 1 < add.length && (i + 1) % 5 == 0) str += '\n';
+				if (i + 1 < add.length && (i + 1) % 5 == 0) {
+					str += '\n';
+				}
 			}
 			str += '\n];\n';
 			str += '\n//PSremoveCharacter是移除的武将,<[]>内填武将id,示例同上';
 			str += '\nPSremoveCharacter=[\n';
 			for (var i = 0; i < remove.length; i++) {
 				str += '"' + remove[i] + '",';
-				if (i + 1 < remove.length && (i + 1) % 5 == 0) str += '\n';
+				if (i + 1 < remove.length && (i + 1) % 5 == 0) {
+					str += '\n';
+				}
 			}
 			str += '\n];\n';
 			str += '\n//将池 = (添加的武将包 - 移除的武将包)内的所有武将 + 添加的武将 - 移除的武将';
 			node.code = str;
 			ui.window.classList.add('shortcutpaused');
 			ui.window.classList.add('systempaused');
-			var saveInput = function () {
-				var code;
+			const saveInput = function () {
+				let code;
 				if (container.editor) {
 					code = container.editor.getValue();
 				} else if (container.textarea) {
@@ -283,24 +291,24 @@ textMenu (node, link) {
 				delete window.saveNonameInput;
 			};
 			window.saveNonameInput = saveInput;
-			var saveConfig = ui.create.div('.editbutton', '保存', editorpage, saveInput);
-			var editor = ui.create.div(editorpage);
+			const saveConfig = ui.create.div('.editbutton', '保存', editorpage, saveInput);
+			const editor = ui.create.div(editorpage);
 			if (node.aced) {
 				ui.window.appendChild(node);
 				node.editor.setValue(node.code, 1);
 			} else if (lib.device == 'ios') {
 				ui.window.appendChild(node);
 				if (!node.textarea) {
-					var textarea = document.createElement('textarea');
+					const textarea = document.createElement('textarea');
 					editor.appendChild(textarea);
 					node.textarea = textarea;
 					lib.setScroll(textarea);
 				}
 				node.textarea.value = node.code;
 			} else {
-				var aceReady = function () {
+				const aceReady = function () {
 					ui.window.appendChild(node);
-					var mirror = window.CodeMirror(editor, {
+					const mirror = window.CodeMirror(editor, {
 						value: node.code,
 						mode: 'javascript',
 						lineWrapping: !lib.config.touchscreen && lib.config.mousewheel,

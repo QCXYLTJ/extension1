@@ -10,7 +10,7 @@ import voices from './voices.js';
 import dynamicTranslate from './dynamicTranslate.js';
 ('use strict');
 game.import('character', function (lib, game, ui, get, ai, _status) {
-	var PSsp_character = {
+	const PSsp_character = {
 		name: 'PSsp_character',
 		connect: true,
 		characterSort,
