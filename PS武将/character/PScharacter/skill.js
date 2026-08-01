@@ -1339,25 +1339,6 @@ const skills = {
 		},
 	},
 	PSpingjian: {
-		initList() {
-			var list = [];
-			if (_status.connectMode) {
-				list = get.charactersOL();
-			} else {
-				var list = [];
-				for (const i in lib.character) {
-					if (!lib.filter.characterDisabled2(i) && !lib.filter.characterDisabled(i)) {
-						list.push(i);
-					}
-				}
-			}
-			game.countPlayer2(function (current) {
-				list.remove(current.name);
-				list.remove(current.name1);
-				list.remove(current.name2);
-			});
-			_status.characterlist = list;
-		},
 		init(player) {
 			player.addSkill('PSpingjian_check');
 			if (!player.storage.PSpingjian_check) {
@@ -1372,100 +1353,54 @@ const skills = {
 			player: ['phaseZhunbeiBegin', 'phaseDrawBegin2', 'damageEnd', 'phaseJieshuBegin', 'dying'],
 		},
 		forced: true,
-		content() {
-			'step 0';
-			if (!_status.characterlist) {
-				lib.skill.PSpingjian.initList();
-			}
-			const allList = _status.characterlist.slice(0);
-			game.countPlayer(function (current) {
-				allList.add(current.name);
-				allList.add(current.name1);
-				allList.add(current.name2);
-			});
-			const list = [];
-			const skills = [];
-			const map = [];
-			allList.randomSort();
+		async content(event, trigger, player) {
 			const name2 = event.triggername;
-			for (const i of allList) {
-				const name = i;
-				if (!name || name.includes('zuoci') || name.includes('xushao')) {
+			const skills = [];
+			for (const k in lib.skill) {
+				const info = lib.skill[k];
+				if (!info || !info.trigger || !info.trigger.player || info.silent || info.limited || info.juexingji || info.zhuanhuanji || info.hiddenSkill || info.dutySkill) {
 					continue;
 				}
-				const skills2 = lib.character[name][3];
-				for (const j of skills2) {
-					if (player.getStorage('PSpingjian').includes(j)) {
+				if (info.trigger.player == name2 || (Array.isArray(info.trigger.player) && info.trigger.player.includes(name2))) {
+					if (info.ai && (info.ai.combo || info.ai.notemp || info.ai.neg)) {
 						continue;
 					}
-					if (skills.includes(j) && lib.skill.PSfushi.characterList().includes(name)) {
-						list.add(name);
-						if (!map[name]) {
-							map[name] = [];
-						}
-						map[name].push(j);
-						skills.add(j);
+					if (info.init) {
 						continue;
 					}
-					const list2 = [j];
-					game.expandSkills(list2);
-					for (const k of list2) {
-						var info = lib.skill[k];
-						if (!info || !info.trigger || !info.trigger.player || info.silent || info.limited || info.juexingji || info.zhuanhuanji || info.hiddenSkill || info.dutySkill) {
+					if (info.filter) {
+						try {
+							const bool = info.filter(trigger, player, name2);
+							if (!bool) {
+								continue;
+							}
+						} catch (e) {
 							continue;
 						}
-						if ((info.trigger.player == name2 || (Array.isArray(info.trigger.player) && info.trigger.player.includes(name2))) && lib.skill.PSfushi.characterList().includes(name)) {
-							if (info.ai && (info.ai.combo || info.ai.notemp || info.ai.neg)) {
-								continue;
-							}
-							if (info.init) {
-								continue;
-							}
-							if (info.filter) {
-								try {
-									const bool = info.filter(trigger, player, name2);
-									if (!bool) {
-										continue;
-									}
-								} catch (e) {
-									continue;
-								}
-							}
-							list.add(name);
-							if (!map[name]) {
-								map[name] = [];
-							}
-							map[name].push(j);
-							skills.add(j);
-							break;
-						}
 					}
-				}
-				if (list.length > 2) {
-					break;
+					skills.add(k);
 				}
 			}
 			if (skills.length) {
-				player.chooseControl(skills).set('dialog', ['评鉴:请选择尝试发动的技能', [list, 'character']]);
-			} else {
-				event.finish();
-			}
-			('step 1');
-			const temp = {
-				phaseDrawBegin2: 'phaseDrawEnd',
-				phaseZhunbeiBegin: 'phaseZhunbei',
-				damageEnd: 'trigger',
-				phaseJieshuBegin: 'phaseJieshu',
-				dying: 'dyingAfter',
-			};
-			player.markAuto('PSpingjian', [result.control]);
-			player.addTempSkill(result.control);
-			player.storage.PSpingjian_check[result.control] = temp[event.triggername];
-			if (trigger.name == 'damage') {
-				var info = lib.translate[result.control + '_info'];
-				if (info && info.indexOf('1点伤害') + info.indexOf('一点伤害') != -2) {
-					trigger.num = 1;
-				} //暂时想到的让多点伤害只执行一次的拙见
+				const { control } = await player.chooseControl(skills)
+					.set('prompt', `选择一种花色,请选择尝试发动的技能`)
+					.forResult();
+				const temp = {
+					phaseDrawBegin2: 'phaseDrawEnd',
+					phaseZhunbeiBegin: 'phaseZhunbei',
+					damageEnd: 'trigger',
+					phaseJieshuBegin: 'phaseJieshu',
+					dying: 'dyingAfter',
+				};
+				player.markAuto('PSpingjian', [control]);
+				player.addTempSkill(control);
+				player.storage.PSpingjian_check[control] = temp[event.triggername];
+				if (trigger.name == 'damage') {
+					const info = lib.translate[control + '_info'];
+					if (info && info.indexOf('1点伤害') + info.indexOf('一点伤害') != -2) {
+						trigger.num = 1;
+					} //暂时想到的让多点伤害只执行一次的拙见
+				}
 			}
 		},
 		group: 'PSpingjian_use',
@@ -1483,18 +1418,8 @@ const skills = {
 			const skills = [];
 			const map = [];
 			const evt = event.getParent(2);
-			if (!_status.characterlist) {
-				lib.skill.PSpingjian.initList();
-			}
-			const allList = _status.characterlist.slice(0);
-			game.countPlayer(function (current) {
-				allList.add(current.name);
-				allList.add(current.name1);
-				allList.add(current.name2);
-			});
-			allList.randomSort();
-			for (const i of allList) {
-				const name = i;
+			const allList = Object.keys(lib.character);
+			for (const name of allList) {
 				if (!name || name.includes('zuoci') || name.includes('xushao')) {
 					continue;
 				}
@@ -1504,7 +1429,7 @@ const skills = {
 						continue;
 					}
 					var info = lib.translate[j + '_info'];
-					if ((skills.includes(j) || (info && info.includes('当你于出牌阶段'))) && lib.skill.PSfushi.characterList().includes(name)) {
+					if ((skills.includes(j) || (info && info.includes('当你于出牌阶段')))) {
 						list.add(name);
 						if (!map[name]) {
 							map[name] = [];
@@ -1520,7 +1445,7 @@ const skills = {
 						if (!info || !info.enable || info.charlotte || info.limited || info.juexingji || info.zhuanhuanji || info.hiddenSkill || info.dutySkill) {
 							continue;
 						}
-						if ((info.enable == 'phaseUse' || (Array.isArray(info.enable) && info.enable.includes('phaseUse')) || info.enable == 'chooseToUse' || (Array.isArray(info.enable) && info.enable.includes('chooseToUse'))) && lib.skill.PSfushi.characterList().includes(name)) {
+						if ((info.enable == 'phaseUse' || (Array.isArray(info.enable) && info.enable.includes('phaseUse')) || info.enable == 'chooseToUse' || (Array.isArray(info.enable) && info.enable.includes('chooseToUse')))) {
 							if (info.ai && (info.ai.combo || info.ai.notemp || info.ai.neg)) {
 								continue;
 							}
@@ -1968,10 +1893,10 @@ const skills = {
 				.set(
 					'allUse',
 					player.getExpansions('PSqixing').length >=
-						game.countPlayer(function (current) {
-							return get.attitude(player, current) > 4;
-						}) *
-							2,
+					game.countPlayer(function (current) {
+						return get.attitude(player, current) > 4;
+					}) *
+					2,
 				);
 			('step 1');
 			if (result.targets?.length) {
@@ -2279,79 +2204,6 @@ const skills = {
 		filter(event, player) {
 			return player.countMark('fanghun') >= 0;
 		},
-		characterList() {
-			//此函数的作用是将武将包名称数组转化为武将id数组
-			lib.config.extension_PS武将_PScharacters = lib.config.extension_PS武将_PScharacters || [];
-			lib.config.extension_PS武将_PSremoveCharacters = lib.config.extension_PS武将_PSremoveCharacters || [];
-			lib.config.extension_PS武将_PSaddCharacter = lib.config.extension_PS武将_PSaddCharacter || [];
-			lib.config.extension_PS武将_PSremoveCharacter = lib.config.extension_PS武将_PSremoveCharacter || [];
-			function removeHTML(text) {
-				//正则表达式,去除HTML标签
-				return text.replace(/<[^>]+>/g, '');
-			}
-			function getAllCharacters(pack = false) {
-				//返回全武将(包)id数组 函数
-				if (pack) {
-					const allPack = [];
-					for (const a in lib.characterPack) {
-						if (Object.hasOwn(lib.characterPack, a)) {
-							allPack.push(a);
-						}
-					}
-					return allPack;
-				} else {
-					const allList = [];
-					for (const b in lib.character) {
-						if (Object.hasOwn(lib.character, b)) {
-							allList.push(b);
-						}
-					}
-					return allList;
-				}
-			}
-			function getPackIdArray(uname = []) {
-				//武将包名称数组转化为武将包id数组函数
-				const listx = [];
-				for (const i of uname) {
-					for (const j in lib.characterPack) {
-						if (Object.hasOwn(lib.characterPack, j)) {
-							if (removeHTML(lib.translate[`${j}_character_config`]) === i || (lib.translate[`${j}_character_config`].includes('extension/') && lib.translate[`${j}_character_config`].includes(i))) {
-								//lib.translate[`${j}_character_config`] 武将包翻译名
-								listx.push(j);
-								break;
-							}
-						}
-					}
-				}
-				return listx;
-			}
-			let pack = []; //pack 武将包id数组
-			let list = []; //list 武将id数组
-			if (!lib.config.extension_PS武将_PScharacters.length) {
-				//不编辑将池默认全扩武将包
-				//lib.config.extension_PS武将_PScharacters 添加的武将包名称数组
-				pack = getAllCharacters(true);
-			} else {
-				pack = getPackIdArray(lib.config.extension_PS武将_PScharacters);
-			}
-			const shed = getPackIdArray(lib.config.extension_PS武将_PSremoveCharacters); //lib.config.extension_PS武将_PSremoveCharacters 移除的武将包名称数组
-			pack.removeArray(shed); // 去除被移除的武将包数组
-			for (const k of pack) {
-				//提取武将包的武将id,放入list数组
-				for (const l in lib.characterPack[k]) {
-					if (Object.hasOwn(lib.characterPack[k], l)) {
-						list.push(l);
-					}
-				}
-			}
-			list.addArray(lib.config.extension_PS武将_PSaddCharacter);
-			list.removeArray(lib.config.extension_PS武将_PSremoveCharacter);
-			if (!list.length) {
-				list = getAllCharacters();
-			}
-			list.removeArray(lib.skill.PShuashen.banned);
-			return list;
-		},
 		//搬运自<天牢令>的chooseToFuHan函数,已得到原作者允许,感谢铝宝和雷佬
 		chooseToFuHan() {
 			'step 0';
@@ -2492,37 +2344,7 @@ const skills = {
 			player.draw(event.num);
 			player.removeMark('fanghun', player.storage.fanghun);
 			('step 1');
-			let list;
-			if (_status.characterlist) {
-				list = [];
-				for (const i of _status.characterlist) {
-					const name = i;
-					if (lib.skill.PSfushi.characterList().includes(name)) {
-						list.push(name);
-					}
-				}
-			} else if (_status.connectMode) {
-				list = get.charactersOL(function (i) {
-					return !lib.skill.PSfushi.characterList().includes(i);
-				});
-			} else {
-				list = get.gainableCharacters(function (info, i) {
-					return lib.skill.PSfushi.characterList().includes(i);
-				});
-			}
-			const players = game.players.concat(game.dead);
-			for (const i of players) {
-				list.remove(i.name);
-				list.remove(i.name1);
-				list.remove(i.name2);
-			}
-			list.remove('zhaoyun');
-			list.remove('re_zhaoyun');
-			list.remove('ol_zhaoyun');
-			list.remove('JX_zhaoxiang');
-			list.remove('zhaoxiang');
-			list.remove('tw_zhaoxiang');
-			list = list.randomGets(8);
+			const list = Object.keys(lib.character).filter((c) => lib.character[c].group == 'shu').randomGets(8);
 			const skills = [];
 			if (player.isUnderControl()) {
 				game.swapPlayerAuto(player);
@@ -2957,8 +2779,8 @@ const skills = {
 					player.countCards('h', function (card) {
 						return card.name == 'sha' && player.hasUseTarget(card);
 					}) -
-						player.getCardUsable('sha') >
-						1
+					player.getCardUsable('sha') >
+					1
 				) {
 					return 'equip1';
 				}
@@ -3000,8 +2822,8 @@ const skills = {
 						player.countCards('h', function (card) {
 							return card.name == 'sha' && player.hasValueTarget(card);
 						}) -
-							player.getCardUsable('sha') >
-							1
+						player.getCardUsable('sha') >
+						1
 					) {
 						return 1;
 					}
@@ -3109,7 +2931,7 @@ const skills = {
 		derivation: ['PSmn_qiangxi', 'sbtieji', 'decadexuanfeng', 'rewansha'],
 		audio: 'jiwu',
 		enable: 'phaseUse',
-		init() {},
+		init() { },
 		filter(event, player) {
 			if (player.countCards('h') == 0) {
 				return false;
@@ -3753,16 +3575,8 @@ const skills = {
 			if (!player.storage.PShuashen) {
 				return;
 			}
-			if (!_status.characterlist) {
-				lib.skill.pingjian.initList();
-			}
-			_status.characterlist.randomSort();
-			for (const i of _status.characterlist) {
-				const name = i;
-				if (!lib.skill.PSfushi.characterList().includes(name)) {
-					continue;
-				} // 必须是<编辑将池>里的武将
-				if (name.includes('zuoci') || name.indexOf('key_') == 0 || name.indexOf('sp_key_') == 0 /* || get.is.double(name) */ || lib.skill.PShuashen.banned.includes(name) || player.storage.PShuashen.character.includes(name)) {
+			for (const name of Object.keys(lib.character)) {
+				if (name.includes('zuoci') || name.indexOf('key_') == 0 || name.indexOf('sp_key_') == 0 || lib.skill.PShuashen.banned.includes(name) || player.storage.PShuashen.character.includes(name)) {
 					continue;
 				}
 				const skills = lib.character[name][3].filter((skill) => {
@@ -3772,7 +3586,6 @@ const skills = {
 				if (skills.length) {
 					player.storage.PShuashen.character.push(name);
 					player.storage.PShuashen.map[name] = skills;
-					_status.characterlist.remove(name);
 					return name;
 				}
 			}
@@ -3792,7 +3605,6 @@ const skills = {
 		},
 		removeHuashen(player, links) {
 			player.storage.PShuashen.character.removeArray(links);
-			_status.characterlist.addArray(links);
 			game.log(player, '移去了', get.cnNumber(links.length) + '张', '#g化身');
 		},
 		drawCharacter(player, list) {
@@ -3875,7 +3687,6 @@ const skills = {
 		mark: true,
 		intro: {
 			onunmark(storage, player) {
-				_status.characterlist.addArray(storage.character);
 				storage.character = [];
 			},
 			mark(dialog, storage, player) {
@@ -5849,8 +5660,8 @@ const skills = {
 			});
 			next.set('processAI', function (list) {
 				const cards = list[0][1].slice(0).sort(function (a, b) {
-						return get.value(b, 'raw') - get.value(a, 'raw');
-					}),
+					return get.value(b, 'raw') - get.value(a, 'raw');
+				}),
 					player = _status.event.player,
 					target = _status.event.getTrigger().player;
 				const info = lib.skill.PSyuqi.getInfo(_status.event.player);
@@ -7908,7 +7719,7 @@ const skills = {
 						card: cards[0].name,
 						legend: true,
 					});
-				} catch (e) {}
+				} catch (e) { }
 			}
 			player.gain(game.createCard({ name: name, suit: cards[0].suit, number: cards[0].number }), 'gain2');
 		},
@@ -9290,37 +9101,7 @@ const skills = {
 			player.draw();
 			player.awakenSkill('PScuicheng');
 			('step 1');
-			let list;
-			if (_status.characterlist) {
-				list = [];
-				for (const i of _status.characterlist) {
-					const name = i;
-					if (lib.character[name][1] == 'wu' && lib.skill.PSfushi.characterList().includes(name)) {
-						list.push(name);
-					}
-				}
-			} else if (_status.connectMode) {
-				list = get.charactersOL(function (i) {
-					return lib.character[i][1] != 'wu' && !lib.skill.PSfushi.characterList().includes(i);
-				});
-			} else {
-				list = get.gainableCharacters(function (info, i) {
-					return info[1] == 'wu' && lib.skill.PSfushi.characterList().includes(i);
-				});
-			}
-			const players = game.players.concat(game.dead);
-			for (const i of players) {
-				list.remove(i.name);
-				list.remove(i.name1);
-				list.remove(i.name2);
-			}
-			list.remove('WU_sunquan');
-			list.remove('sunquan');
-			list.remove('sb_sunquan');
-			list.remove('PSsunquan');
-			list.remove('PSquansun');
-			list.remove('PShw_sunquan');
-			list = list.randomGets(4);
+			const list = Object.keys(lib.character).filter((c) => lib.character[c].group == 'wu').randomGets(4);
 			const skills = [];
 			if (player.isUnderControl()) {
 				game.swapPlayerAuto(player);
@@ -9585,7 +9366,7 @@ const skills = {
 			next.set('_backupevent', 'xinfu_sidaox');
 			next.set('custom', {
 				add: {},
-				replace: { window() {} },
+				replace: { window() { } },
 			});
 			next.backup('xinfu_sidaox');
 		},
@@ -9929,8 +9710,8 @@ const skills = {
 					return 1;
 				})
 				.set('callback', lib.skill.PShuishi.callback).judge2 = function (result) {
-				return result.bool ? true : false;
-			};
+					return result.bool ? true : false;
+				};
 			('step 2');
 			var cards = cards.filterInD();
 			if (cards.length) {
@@ -10916,29 +10697,6 @@ const skills = {
 		trigger: {
 			player: ['damageEnd', 'phaseJieshuBegin'],
 		},
-		initList() {
-			var list = [];
-			if (_status.connectMode) {
-				var list = get.charactersOL();
-			} else {
-				var list = [];
-				for (const i in lib.character) {
-					if (lib.filter.characterDisabled2(i) || lib.filter.characterDisabled(i)) {
-						continue;
-					}
-					list.push(i);
-				}
-			}
-			game.countPlayer2(function (current) {
-				list.remove(current.name);
-				list.remove(current.name1);
-				list.remove(current.name2);
-				if (current.storage.rehuashen && current.storage.rehuashen.character) {
-					list.removeArray(current.storage.rehuashen.character);
-				}
-			});
-			_status.characterlist = list;
-		},
 		forced: true,
 		//搬运魔改自<天牢令>的chooseToFuHan函数,已得到原作者允许,感谢铝宝和雷佬
 		chooseToPingJian() {
@@ -11091,16 +10849,11 @@ const skills = {
 			event._result = { bool: true };
 			('step 1');
 			if (result.bool) {
-				if (!_status.characterlist) {
-					lib.skill.PSsb_pingjian.initList();
-				}
 				const list = [];
 				const skills = [];
 				var map = [];
-				_status.characterlist.randomSort();
 				const name2 = event.triggername;
-				for (const i of _status.characterlist) {
-					const name = i;
+				for (const name of Object.keys(lib.character)) {
 					if (!name || name.includes('zuoci') || name.includes('xushao')) {
 						continue;
 					}
@@ -11109,7 +10862,7 @@ const skills = {
 						if (player.storage.PSsb_pingjian.includes(j)) {
 							continue;
 						}
-						if (skills.includes(j) && lib.skill.PSfushi.characterList().includes(name)) {
+						if (skills.includes(j)) {
 							list.add(name);
 							if (!map[name]) {
 								map[name] = [];
@@ -11125,7 +10878,7 @@ const skills = {
 							if (!info || !info.trigger || !info.trigger.player || info.silent || info.limited || info.juexingji || info.zhuanhuanji || info.hiddenSkill || info.dutySkill) {
 								continue;
 							}
-							if ((info.trigger.player == name2 || (Array.isArray(info.trigger.player) && info.trigger.player.includes(name2))) && lib.skill.PSfushi.characterList().includes(name)) {
+							if ((info.trigger.player == name2 || (Array.isArray(info.trigger.player) && info.trigger.player.includes(name2)))) {
 								if (info.init || (info.ai && (info.ai.combo || info.ai.notemp || info.ai.neg))) {
 									continue;
 								}
@@ -11281,12 +11034,7 @@ const skills = {
 						const list = [];
 						const skills = [];
 						var map = [];
-						if (!_status.characterlist) {
-							lib.skill.PSsb_pingjian.initList();
-						}
-						_status.characterlist.randomSort();
-						for (const i of _status.characterlist) {
-							const name = i;
+						for (const name of Object.keys(lib.character)) {
 							if (!name || name.includes('zuoci') || name.includes('xushao')) {
 								continue;
 							}
@@ -11295,7 +11043,7 @@ const skills = {
 								if (player.storage.PSsb_pingjian.includes(j)) {
 									continue;
 								}
-								if ((skills.includes(j) || lib.skill.PSsb_pingjian.phaseUse_special.includes(j)) && lib.skill.PSfushi.characterList().includes(name)) {
+								if ((skills.includes(j) || lib.skill.PSsb_pingjian.phaseUse_special.includes(j))) {
 									list.add(name);
 									if (!map[name]) {
 										map[name] = [];
@@ -11311,7 +11059,7 @@ const skills = {
 									if (!info || !info.enable || info.viewAs || info.limited || info.juexingji || info.zhuanhuanji || info.hiddenSkill || info.dutySkill) {
 										continue;
 									}
-									if ((info.enable == 'phaseUse' || (Array.isArray(info.enable) && info.enable.includes('phaseUse'))) && lib.skill.PSfushi.characterList().includes(name)) {
+									if ((info.enable == 'phaseUse' || (Array.isArray(info.enable) && info.enable.includes('phaseUse')))) {
 										if (info.init || info.onChooseToUse || (info.ai && (info.ai.combo || info.ai.notemp || info.ai.neg))) {
 											continue;
 										}
@@ -13014,35 +12762,8 @@ const skills = {
 			('step 3');
 			if (result.targets?.length) {
 				const target = result.targets[0];
-				let list;
-				if (_status.characterlist) {
-					list = [];
-					for (const i of _status.characterlist) {
-						const name = i;
-						if (lib.character[name][1] == 'shu' && lib.skill.PSfushi.characterList().includes(name)) {
-							list.push(name);
-						}
-					}
-				} else if (_status.connectMode) {
-					list = get.charactersOL(function (i) {
-						return lib.character[i][1] != 'shu' && !lib.skill.PSfushi.characterList().includes(i);
-					});
-				} else {
-					list = get.gainableCharacters(function (info, i) {
-						return info[1] == 'shu' && lib.skill.PSfushi.characterList().includes(i);
-					});
-				}
-				const players = game.players.concat(game.dead);
-				for (const i of players) {
-					list.remove(i.name);
-					list.remove(i.name1);
-					list.remove(i.name2);
-				}
-				if (!list.length) {
-					event.finish();
-					return;
-				}
-				target.chooseButton(['桃园:选择获得一张武将牌上的所有技能', [list.randomGets(3), 'character']], true);
+				const list = Object.keys(lib.character).filter((c) => lib.character[c].group == 'shu').randomGets(3);
+				target.chooseButton(['桃园:选择获得一张武将牌上的所有技能', [list, 'character']], true);
 				event.target = target;
 			} else {
 				event.finish();
@@ -13678,31 +13399,7 @@ const skills = {
 	},
 	PSyuheng: {
 		getList() {
-			let list;
-			if (_status.characterlist) {
-				list = [];
-				for (const i of _status.characterlist) {
-					const name = i;
-					if (lib.character[name][1] == 'wu' && lib.skill.PSfushi.characterList().includes(name)) {
-						list.push(name);
-					}
-				}
-			} else if (_status.connectMode) {
-				list = get.charactersOL(function (i) {
-					return lib.character[i][1] != 'wu' && !lib.skill.PSfushi.characterList().includes(i);
-				});
-			} else {
-				list = get.gainableCharacters(function (info) {
-					return info[1] == 'wu' && lib.skill.PSfushi.characterList().includes(i);
-				});
-			}
-			const players = game.players.concat(game.dead);
-			for (const i of players) {
-				list.remove(i.name);
-				list.remove(i.name1);
-				list.remove(i.name2);
-			}
-			//list=list.randomGets(Math.max(4,game.countPlayer()));
+			const list = Object.keys(lib.character).filter((c) => lib.character[c].group == 'wu');
 			const skills = [];
 			for (const i of list) {
 				skills.addArray(
@@ -13796,7 +13493,7 @@ const skills = {
 					'step 0';
 					const skills = player.additionalSkills.PSyuheng;
 					event.num = skills.length;
-					player.chooseButton(['驭衡:选择失去任意数量个技能,摸等量的牌', [skills, 'vcard']], [1, event.num], false).set('ai', function (button) {});
+					player.chooseButton(['驭衡:选择失去任意数量个技能,摸等量的牌', [skills, 'vcard']], [1, event.num], false).set('ai', function (button) { });
 					('step 1');
 					if (result.links?.length) {
 						const links = result.links.map((ele) => ele[ele.length - 1]);
@@ -16264,7 +15961,7 @@ const skills = {
 			player: 'changeHp',
 		},
 		forced: true,
-		content() {},
+		content() { },
 		mod: {
 			globalFrom(from, to, current) {
 				return current - Math.max(from.hp, 1);
@@ -17449,33 +17146,7 @@ const skills = {
 		},
 		chooseToAddSkill() {
 			'step 0';
-			let list;
-			if (_status.characterlist) {
-				list = [];
-				for (const i of _status.characterlist) {
-					const name = i;
-					if (true /* lib.character[name][1] == 'shu' */) {
-						list.push(name);
-					}
-				}
-			} else if (_status.connectMode) {
-				list = get.charactersOL(function (i) {
-					return true;
-					// return lib.character[i][1] != 'shu';
-				});
-			} else {
-				list = get.gainableCharacters(function (info) {
-					return true;
-					// return info[1] == 'shu';
-				});
-			}
-			const players = game.players.concat(game.dead);
-			for (const i of players) {
-				list.remove(i.name);
-				list.remove(i.name1);
-				list.remove(i.name2);
-			}
-			list = list.randomGets(5);
+			const list = Object.keys(lib.character).filter((c) => lib.character[c].group == 'shu').randomGets(5);
 			const skills = [];
 			for (const i of list) {
 				skills.addArray(
@@ -18516,7 +18187,6 @@ const skills = {
 		mark: true,
 		intro: {
 			onunmark(storage, player) {
-				_status.characterlist.addArray(storage.character);
 				storage.character = [];
 			},
 			mark(dialog, storage, player) {
@@ -18650,13 +18320,8 @@ const skills = {
 			if (!player.storage.PSshen_huashen) {
 				return;
 			}
-			if (!_status.characterlist) {
-				lib.skill.pingjian.initList();
-			}
-			_status.characterlist.randomSort();
-			for (const i of _status.characterlist) {
-				const name = i;
-				if (name.includes('zuoci') || name.indexOf('key_') == 0 || name.indexOf('sp_key_') == 0 /* || get.is.double(name) */ || lib.skill.PSshen_huashen.banned.includes(name) || player.storage.PSshen_huashen.character.includes(name)) {
+			for (const name of Object.keys(lib.character)) {
+				if (name.includes('zuoci') || name.indexOf('key_') == 0 || name.indexOf('sp_key_') == 0 || lib.skill.PSshen_huashen.banned.includes(name) || player.storage.PSshen_huashen.character.includes(name)) {
 					continue;
 				}
 				const skills = lib.character[name][3].filter((skill) => {
@@ -18666,7 +18331,6 @@ const skills = {
 				if (skills.length) {
 					player.storage.PSshen_huashen.character.push(name);
 					player.storage.PSshen_huashen.map[name] = skills;
-					_status.characterlist.remove(name);
 					return name;
 				}
 			}
@@ -18686,7 +18350,6 @@ const skills = {
 		},
 		removeHuashen(player, links) {
 			player.storage.PSshen_huashen.character.removeArray(links);
-			_status.characterlist.addArray(links);
 			game.log(player, '移去了', get.cnNumber(links.length) + '张', '#g魂');
 		},
 		drawCharacter(player, list) {
@@ -19548,7 +19211,7 @@ const skills = {
 								const source = card.link;
 								const gaintag = get.owner(source) === target && _status.event.moved[0].includes(source);
 								card.node.gaintag.innerHTML = gaintag ? '被交换' : get.owner(source) === target ? '未被交换' : '';
-							} catch (e) {}
+							} catch (e) { }
 						}, 0);
 					}
 					handleGaintag(from);
@@ -19559,8 +19222,8 @@ const skills = {
 					const player = _status.event.player;
 					const target = _status.event.target;
 					const cards = list[0][1].concat(list[1][1]).sort(function (a, b) {
-							return get.attitude(player, target) >= 0 ? get.useful(a) - get.useful(b) : get.useful(b) - get.useful(a);
-						}),
+						return get.attitude(player, target) >= 0 ? get.useful(a) - get.useful(b) : get.useful(b) - get.useful(a);
+					}),
 						cards2 = cards.splice(0, _status.event.num);
 					return [cards2, cards];
 				})
@@ -19856,7 +19519,7 @@ const skills = {
 					},
 					position: 'hes',
 					viewAs: { name: links[0][2], nature: links[0][3], storage: { PSwuji: true } },
-					precontent() {},
+					precontent() { },
 				};
 			},
 			prompt(links, player) {
